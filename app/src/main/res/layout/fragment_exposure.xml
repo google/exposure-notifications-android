@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright 2020 Google LLC
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      https://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  ~
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:orientation="vertical">
+
+  <TextView
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:gravity="center"
+    android:text="@string/home_tab_exposures_text"
+    android:textAppearance="?attr/textAppearanceHeadline6" />
+
+  <ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1">
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:fillViewport="true"
+      android:orientation="vertical">
+
+      <ViewSwitcher
+        android:id="@+id/settings_banner_switcher"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:measureAllChildren="false">
+
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginVertical="@dimen/padding_normal"
+          android:paddingStart="@dimen/padding_large"
+          android:paddingEnd="@dimen/padding_large"
+          android:orientation="vertical">
+          <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:layout_marginBottom="@dimen/padding_normal"
+            android:text="@string/exposure_notifications_are_turned_off" />
+
+          <Button
+            android:id="@+id/go_to_settings_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/turn_on_exposure_notifications_action"
+            android:layout_gravity="center_horizontal"
+            style="?attr/materialButtonOutlinedStyle" />
+
+        </LinearLayout>
+
+        <LinearLayout
+          android:id="@+id/exposure_notifications_toggle"
+          android:clickable="true"
+          android:focusable="true"
+          android:background="?attr/selectableItemBackground"
+          android:orientation="vertical"
+          android:padding="@dimen/padding_large"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content" >
+          <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/exposure_notifications"
+            android:textAppearance="?attr/textAppearanceSubtitle1" />
+
+          <TextView
+            android:id="@+id/exposure_notifications_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_micro"
+            android:textAppearance="?attr/textAppearanceBody2"
+            tools:text="Off – Dynamic Value" />
+        </LinearLayout>
+
+      </ViewSwitcher>
+
+      <include layout="@layout/horizontal_divider"/>
+
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_large"
+        android:paddingStart="@dimen/padding_large"
+        android:paddingEnd="@dimen/padding_large"
+        android:text="@string/exposures_in_past_14_days"
+        android:textAppearance="?attr/textAppearanceOverline"
+        android:textFontWeight="500" />
+
+      <ViewSwitcher
+        android:id="@+id/exposures_list_empty_switcher"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:measureAllChildren="false"
+        android:paddingStart="@dimen/padding_large"
+        android:paddingEnd="@dimen/padding_large"
+        android:layout_marginVertical="@dimen/padding_normal">
+
+        <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="@string/no_recent_exposures"
+          android:textAppearance="?attr/textAppearanceBody1" />
+
+        <androidx.recyclerview.widget.RecyclerView
+          android:id="@+id/exposures_list"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          tools:itemCount="2"
+          tools:listitem="@layout/item_exposure"
+          android:nestedScrollingEnabled="false"/>
+
+      </ViewSwitcher>
+
+      <include layout="@layout/horizontal_divider"/>
+
+      <TextView
+        android:id="@+id/info_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/padding_large"
+        android:paddingStart="@dimen/padding_large"
+        android:paddingEnd="@dimen/padding_large"
+        android:drawableStart="@drawable/ic_info_black_24dp"
+        android:drawablePadding="@dimen/padding_normal"
+        android:text="@string/notifications_enabled_info" />
+
+      <!-- this has a custom padding of 16 + 24 + 16 dp to match left align of previous text -->
+      <TextView
+        android:id="@+id/exposure_check_date"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="56dp"
+        tools:visibility="visible"
+        tools:text="Last checked today at 11:27 am." />
+    </LinearLayout>
+
+  </ScrollView>
+
+</LinearLayout>

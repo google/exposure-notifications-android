@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright 2020 Google LLC
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      https://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  ~
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:orientation="vertical"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:padding="@dimen/padding_normal">
+
+  <androidx.core.widget.NestedScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical">
+
+      <TextView
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:gravity="center"
+        android:text="@string/possible_exposure"
+        android:textAppearance="?attr/textAppearanceHeadline6" />
+
+      <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_small"
+        android:text="@string/actual_copy"
+        android:textAppearance="?attr/textAppearanceBody1" />
+
+      <TextView
+        android:id="@+id/possible_exposure_subheading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/padding_normal"
+        android:padding="@dimen/padding_small"
+        tools:text="Long subheading text goes here." />
+
+      <include layout="@layout/horizontal_divider" />
+
+      <TextView
+        android:id="@+id/verified_result_explanation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_normal"
+        android:padding="@dimen/padding_small"
+        tools:text="@string/verified_result_explanation"
+        android:textAppearance="?attr/textAppearanceBody1" />
+
+      <Button
+        android:id="@+id/learn_more_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/padding_normal"
+        android:padding="@dimen/padding_small"
+        android:text="@string/learn_more"
+        style="@style/Widget.MaterialComponents.Button.TextButton" />
+
+      <include layout="@layout/horizontal_divider" />
+
+      <TextView
+        android:id="@+id/info_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_normal"
+        android:padding="@dimen/padding_small"
+        android:drawableStart="@drawable/ic_info_black_24dp"
+        android:drawablePadding="@dimen/padding_normal"
+        android:text="@string/info_saved_locally" />
+
+      <Button
+        android:id="@+id/done_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/padding_normal"
+        android:text="@string/done" />
+
+    </LinearLayout>
+
+  </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>
