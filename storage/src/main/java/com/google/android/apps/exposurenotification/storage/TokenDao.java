@@ -17,30 +17,33 @@
 
 package com.google.android.apps.exposurenotification.storage;
 
-import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Transaction;
 import com.google.common.util.concurrent.ListenableFuture;
 import java.util.List;
 
 /**
- * Dao for the bucket {@link PositiveDiagnosisEntity} in the exposure notification database.
+ * Dao for the bucket {@link TokenDao} in the exposure notification database.
  */
 @Dao
-public abstract class PositiveDiagnosisDao {
+public abstract class TokenDao {
 
-  @Query("SELECT * FROM PositiveDiagnosisEntity")
-  abstract List<PositiveDiagnosisEntity> getAll();
-
-  @Query("SELECT * FROM PositiveDiagnosisEntity ORDER BY id DESC")
-  abstract LiveData<List<PositiveDiagnosisEntity>> getAllLiveData();
+  @Query("SELECT * FROM TokenEntity")
+  abstract ListenableFuture<List<TokenEntity>> getAllAsync();
 
   @Insert(onConflict = OnConflictStrategy.REPLACE)
-  abstract ListenableFuture<Void> upsertAsync(PositiveDiagnosisEntity entity);
+  abstract ListenableFuture<Void> upsertAsync(TokenEntity entity);
 
-  @Insert(onConflict = OnConflictStrategy.REPLACE)
-  abstract void upsert(PositiveDiagnosisEntity entity);
+  @Query("UPDATE TokenEntity SET responded=1 WHERE token = :token")
+  abstract ListenableFuture<Void> markTokenRespondedAsync(String token);
+
+  @Query("DELETE FROM TokenEntity WHERE token = :token")
+  abstract ListenableFuture<Void> deleteByTokenAsync(String token);
+
+  @Query("DELETE FROM TokenEntity WHERE token IN (:tokens)")
+  abstract ListenableFuture<Void> deleteByTokensAsync(List<String> tokens);
 
 }

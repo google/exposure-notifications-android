@@ -105,7 +105,7 @@
           android:layout_height="wrap_content"
           android:hint="@string/test_date_label"
           android:importantForAutofill="no"
-          android:editable="false"
+          android:inputType="none"
           android:focusable="false"
           tools:ignore="TextFields" />
 

@@ -17,14 +17,16 @@
 
 package com.google.android.apps.exposurenotification.network;
 
+import androidx.annotation.Nullable;
 import com.google.auto.value.AutoValue;
+import java.util.Arrays;
 
 /**
  * A carrier of diagnosis key into and out of the network operations.
  */
 @AutoValue
 public abstract class DiagnosisKey {
-  public abstract byte[] getKeyBytes();
+  public abstract ByteArrayValue getKey();
 
   public abstract int getIntervalNumber();
 
@@ -32,10 +34,53 @@ public abstract class DiagnosisKey {
     return new AutoValue_DiagnosisKey.Builder();
   }
 
+  public byte[] getKeyBytes() {
+    return getKey().getBytes();
+  }
+
   @AutoValue.Builder
   public abstract static class Builder {
-    public abstract Builder setKeyBytes(byte[] keyBytes);
+    public abstract Builder setKey(ByteArrayValue key);
     public abstract Builder setIntervalNumber(int intervalNumber);
     public abstract DiagnosisKey build();
+
+    public Builder setKeyBytes(byte[] keyBytes) {
+      setKey(new ByteArrayValue(keyBytes));
+      return this;
+    }
+  }
+
+  public static class ByteArrayValue {
+    private final byte[] bytes;
+
+    public ByteArrayValue(byte[] bytes) {
+      this.bytes = bytes.clone();
+    }
+
+    public byte[] getBytes() {
+      return bytes.clone();
+    }
+
+    @Override
+    public boolean equals(@Nullable Object other) {
+      if (this == other) {
+        return true;
+      }
+      if (!(other instanceof ByteArrayValue)) {
+        return false;
+      }
+      ByteArrayValue that = (ByteArrayValue) other;
+      return Arrays.equals(bytes, that.bytes);
+    }
+
+    @Override
+    public int hashCode() {
+      return Arrays.hashCode(bytes);
+    }
+
+    @Override
+    public String toString() {
+      return Arrays.toString(bytes);
+    }
   }
 }

@@ -29,22 +29,21 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.common.StringUtils;
-import com.google.android.gms.nearby.exposurenotification.ExposureInformation;
+import com.google.android.apps.exposurenotification.storage.ExposureEntity;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import java.util.Locale;
-import org.jetbrains.annotations.NotNull;
 import org.threeten.bp.Instant;
 import org.threeten.bp.temporal.ChronoUnit;
 
 public class ExposureBottomSheetFragment extends BottomSheetDialogFragment {
 
   static final String TAG = "ExposureDetails";
-  private static final String INFO_TAG = "ExposureInformation";
+  private static final String KEY_DATE_MILLIS_SINCE_EPOCH = "KEY_DATE_MILLIS_SINCE_EPOCH";
 
-  static ExposureBottomSheetFragment newInstance(ExposureInformation information) {
+  static ExposureBottomSheetFragment newInstance(ExposureEntity exposureEntity) {
     ExposureBottomSheetFragment fragment = new ExposureBottomSheetFragment();
     Bundle args = new Bundle();
-    args.putParcelable(INFO_TAG, information);
+    args.putLong(KEY_DATE_MILLIS_SINCE_EPOCH, exposureEntity.getDateMillisSinceEpoch());
     fragment.setArguments(args);
     return fragment;
   }
@@ -66,14 +65,10 @@ public class ExposureBottomSheetFragment extends BottomSheetDialogFragment {
     Button done = view.findViewById(R.id.done_button);
 
     if (getArguments() != null) {
-      ExposureInformation exposureInformation = getArguments().getParcelable(INFO_TAG);
-      if (exposureInformation != null) {
-        String formattedResultsExplanation = getFormattedResultsExplanation(exposureInformation);
-        verifiedResultExplanation.setText(formattedResultsExplanation);
-        String formattedPossibleExposureSubheading = getFormattedPossibleExposureSubheading(
-            exposureInformation);
-        possibleExposureSubheading.setText(formattedPossibleExposureSubheading);
-      }
+      long dateMillisSinceEpoch = getArguments().getLong(KEY_DATE_MILLIS_SINCE_EPOCH);
+      verifiedResultExplanation.setText(getFormattedResultsExplanation(dateMillisSinceEpoch));
+      possibleExposureSubheading
+          .setText(getFormattedPossibleExposureSubheading(dateMillisSinceEpoch));
     }
 
     learnMore.setOnClickListener((v) -> learnMoreClicked());
@@ -90,10 +85,10 @@ public class ExposureBottomSheetFragment extends BottomSheetDialogFragment {
     dismiss();
   }
 
-  @NotNull
-  private String getFormattedPossibleExposureSubheading(ExposureInformation exposureInformation) {
+  @NonNull
+  private String getFormattedPossibleExposureSubheading(long dataMillisSinceEpoch) {
     Instant now = Instant.ofEpochMilli(System.currentTimeMillis());
-    Instant then = Instant.ofEpochMilli(exposureInformation.getDateMillisSinceEpoch());
+    Instant then = Instant.ofEpochMilli(dataMillisSinceEpoch);
 
     int daysAgo = (int) ChronoUnit.DAYS.between(then, now);
 
@@ -101,11 +96,10 @@ public class ExposureBottomSheetFragment extends BottomSheetDialogFragment {
         R.plurals.possible_exposure_subheading, daysAgo, daysAgo);
   }
 
-  @NotNull
-  private String getFormattedResultsExplanation(ExposureInformation exposureInformation) {
+  @NonNull
+  private String getFormattedResultsExplanation(long dataMillisSinceEpoch) {
     Locale locale = getResources().getConfiguration().locale;
-    String formattedDate = StringUtils
-        .timestampMsToMediumString(exposureInformation.getDateMillisSinceEpoch(), locale);
+    String formattedDate = StringUtils.timestampMsToMediumString(dataMillisSinceEpoch, locale);
 
     return getString(R.string.verified_result_explanation,
         formattedDate);

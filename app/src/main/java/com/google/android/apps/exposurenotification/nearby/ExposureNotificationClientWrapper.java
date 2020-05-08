@@ -18,8 +18,6 @@
 package com.google.android.apps.exposurenotification.nearby;
 
 import android.content.Context;
-import com.google.android.apps.exposurenotification.common.AppExecutors;
-import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
 import com.google.android.gms.nearby.Nearby;
 import com.google.android.gms.nearby.exposurenotification.ExposureConfiguration;
 import com.google.android.gms.nearby.exposurenotification.ExposureInformation;
@@ -29,7 +27,7 @@ import com.google.android.gms.nearby.exposurenotification.TemporaryExposureKey;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.Tasks;
 import com.google.common.collect.Lists;
-import com.google.common.util.concurrent.ListeningExecutorService;
+import java.io.File;
 import java.util.List;
 
 /**
@@ -39,10 +37,12 @@ public class ExposureNotificationClientWrapper {
 
   private static ExposureNotificationClientWrapper INSTANCE;
 
-  private final Context appContext;
-  private final ListeningExecutorService backgroundExecutor;
   private final ExposureNotificationClient exposureNotificationClient;
-  private final ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
+  private final Context context;
+
+  public static final String FAKE_TOKEN_1 = "FAKE_TOKEN_1";
+  public static final String FAKE_TOKEN_2 = "FAKE_TOKEN_2";
+  public static final String FAKE_TOKEN_3 = "FAKE_TOKEN_3";
 
   public static ExposureNotificationClientWrapper get(Context context) {
     if (INSTANCE == null) {
@@ -51,27 +51,13 @@ public class ExposureNotificationClientWrapper {
     return INSTANCE;
   }
 
-  public ExposureNotificationClientWrapper(Context context) {
-    this.appContext = context.getApplicationContext();
-    backgroundExecutor = AppExecutors.getBackgroundExecutor();
-    exposureNotificationClient = Nearby.getExposureNotificationClient(appContext);
-    exposureNotificationSharedPreferences = new ExposureNotificationSharedPreferences(appContext);
+  ExposureNotificationClientWrapper(Context context) {
+    this.context = context;
+    exposureNotificationClient = Nearby.getExposureNotificationClient(context);
   }
 
   public Task<Void> start() {
-    ExposureConfiguration exposureConfiguration =
-        new ExposureConfiguration.ExposureConfigurationBuilder()
-            .setMinimumRiskScore(4)
-            .setAttenuationScores(new int[]{4, 4, 4, 4, 4, 4, 4, 4})
-            .setAttenuationWeight(50)
-            .setDaysSinceLastExposureScores(new int[]{4, 4, 4, 4, 4, 4, 4, 4})
-            .setDaysSinceLastExposureWeight(50)
-            .setDurationScores(new int[]{4, 4, 4, 4, 4, 4, 4, 4})
-            .setDurationWeight(50)
-            .setTransmissionRiskScores(new int[]{4, 4, 4, 4, 4, 4, 4, 4})
-            .setTransmissionRiskWeight(50)
-            .build();
-    return exposureNotificationClient.start(exposureConfiguration);
+    return exposureNotificationClient.start();
   }
 
   public Task<Void> stop() {
@@ -86,51 +72,78 @@ public class ExposureNotificationClientWrapper {
     return exposureNotificationClient.getTemporaryExposureKeyHistory();
   }
 
-  public Task<Void> provideDiagnosisKeys(List<TemporaryExposureKey> keys) {
-    return exposureNotificationClient.provideDiagnosisKeys(keys);
+  /**
+   * Provides diagnosis key files with a stable token and default {@link ExposureConfiguration}.
+   */
+  public Task<Void> provideDiagnosisKeys(List<File> files, String token) {
+    // TODO: add some configuration
+    ExposureConfiguration exposureConfiguration =
+        new ExposureConfiguration.ExposureConfigurationBuilder().build();
+    return exposureNotificationClient
+        .provideDiagnosisKeys(files, exposureConfiguration, token);
   }
 
-  public Task<Integer> getMaxDiagnosisKeysCount() {
-    return exposureNotificationClient.getMaxDiagnosisKeyCount();
-  }
-
-  public Task<ExposureSummary> getExposureSummary() {
-    if (exposureNotificationSharedPreferences.getFakeAtRisk()) {
+  /**
+   * Gets the {@link ExposureSummary} using the stable token.
+   *
+   * <p>If the token matches the fake tokens, it will return fake results.
+   */
+  public Task<ExposureSummary> getExposureSummary(String token) {
+    // Check for fake matches.
+    if (FAKE_TOKEN_1.equals(token)) {
       return Tasks.forResult(
           new ExposureSummary.ExposureSummaryBuilder()
               .setMatchedKeyCount(2)
               .setDaysSinceLastExposure(1)
               .build());
-    } else {
-      return exposureNotificationClient.getExposureSummary();
+    } else if (FAKE_TOKEN_2.equals(token)) {
+      return Tasks.forResult(
+          new ExposureSummary.ExposureSummaryBuilder()
+              .setMatchedKeyCount(1)
+              .setDaysSinceLastExposure(2)
+              .build());
+    } else if (FAKE_TOKEN_3.equals(token)) {
+      return Tasks.forResult(
+          new ExposureSummary.ExposureSummaryBuilder()
+              .setMatchedKeyCount(0)
+              .setDaysSinceLastExposure(3)
+              .build());
     }
+    // Otherwise return the real API.
+    return exposureNotificationClient.getExposureSummary(token);
   }
 
-  public Task<List<ExposureInformation>> getExposureInformation() {
-    if (exposureNotificationSharedPreferences.getFakeAtRisk()) {
+  /**
+   * Gets the {@link List} of {@link ExposureInformation} using the stable token.
+   *
+   * <p>If the token matches the fake tokens, it will return fake results.
+   */
+  public Task<List<ExposureInformation>> getExposureInformation(String token) {
+    if (FAKE_TOKEN_1.equals(token)) {
+      long millisInDay = 24L * 60L * 60L * 1000L;
       return Tasks.forResult(
           Lists.newArrayList(
               new ExposureInformation.ExposureInformationBuilder()
                   .setAttenuationValue(1)
-                  .setDateMillisSinceEpoch(System.currentTimeMillis())
+                  .setDateMillisSinceEpoch(
+                      millisInDay * (System.currentTimeMillis() / millisInDay))
                   .setDurationMinutes(5)
                   .build(),
               new ExposureInformation.ExposureInformationBuilder()
                   .setAttenuationValue(1)
-                  .setDateMillisSinceEpoch(1588075162258L)
+                  .setDateMillisSinceEpoch(1588377600000L)
                   .setDurationMinutes(10)
                   .build()));
-    } else {
-      return exposureNotificationClient.getExposureInformation();
+    } else if (FAKE_TOKEN_2.equals(token)) {
+      return Tasks.forResult(
+          Lists.newArrayList(
+              new ExposureInformation.ExposureInformationBuilder()
+                  .setAttenuationValue(1)
+                  .setDateMillisSinceEpoch(1588636800000L)
+                  .setDurationMinutes(5)
+                  .build()));
     }
-  }
-
-  public Task<Void> resetAllData() {
-    return exposureNotificationClient.resetAllData();
-  }
-
-  public Task<Void> resetTemporaryExposureKey() {
-    return exposureNotificationClient.resetTemporaryExposureKey();
+    return exposureNotificationClient.getExposureInformation(token);
   }
 
 }

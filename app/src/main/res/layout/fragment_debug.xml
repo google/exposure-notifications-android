@@ -45,15 +45,6 @@
         android:paddingHorizontal="@dimen/padding_large"
         android:text="@string/debug_master_switch" />
 
-      <Button
-        android:id="@+id/debug_settings_delete_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/padding_large"
-        android:layout_marginVertical="@dimen/padding_normal"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/debug_settings_delete_button_text" />
-
       <include layout="@layout/horizontal_divider" />
 
       <TextView
@@ -83,13 +74,41 @@
         android:text="@string/debug_test_exposure_notify_button_text" />
 
       <Button
-        android:id="@+id/debug_test_exposure_reset_button"
+        android:id="@+id/debug_exposure_reset_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/padding_large"
         android:layout_marginVertical="@dimen/padding_normal"
         android:layout_gravity="center_horizontal"
-        android:text="@string/debug_test_exposure_reset_button_text" />
+        android:text="@string/debug_exposure_reset_button_text" />
+
+      <include layout="@layout/horizontal_divider" />
+
+      <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="@dimen/padding_normal"
+        android:paddingHorizontal="@dimen/padding_large"
+        android:text="@string/debug_keys_category"
+        android:textAllCaps="true"
+        android:textAppearance="?attr/textAppearanceSubtitle1" />
+
+      <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="@dimen/padding_normal"
+        android:paddingHorizontal="@dimen/padding_large"
+        android:text="@string/debug_provide_keys_description"
+        android:textAppearance="?attr/textAppearanceBody1" />
+
+      <Button
+        android:id="@+id/debug_provide_keys_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/padding_large"
+        android:layout_marginVertical="@dimen/padding_normal"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/debug_provide_keys_button_text" />
 
     </LinearLayout>
 

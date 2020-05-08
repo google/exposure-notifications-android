@@ -55,18 +55,13 @@ public class PositiveDiagnosisViewModel extends AndroidViewModel {
   }
 
   @NonNull
-  public LiveData<List<PositiveDiagnosisEntity>> getAllPositiveDiagnosisEntityLiveData() {
-    return exposureNotificationRepository.getAllPositiveDiagnosisEntityLiveData();
+  public LiveData<List<PositiveDiagnosisEntity>> getAllLiveData() {
+    return exposureNotificationRepository.getAllPositiveDiagnosisEntitiesLiveData();
   }
 
   @NonNull
-  public ListenableFuture<Void> deleteAllPositiveDiagnosisEntities() {
-    return exposureNotificationRepository.deleteAllPositiveDiagnosisEntity();
-  }
-
-  @NonNull
-  public ListenableFuture<Void> insertOrUpdatePositiveDiagnosisEntity() {
-    return exposureNotificationRepository.insertOrUpdatePositiveDiagnosisEntity(
+  public ListenableFuture<Void> upsertPositiveDiagnosisEntityAsync() {
+    return exposureNotificationRepository.upsertPositiveDiagnosisEntityAsync(
         PositiveDiagnosisEntity.create(testTimestamp.getValue())
     );
   }

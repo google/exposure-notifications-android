@@ -105,8 +105,7 @@
         android:paddingStart="@dimen/padding_large"
         android:paddingEnd="@dimen/padding_large"
         android:text="@string/exposures_in_past_14_days"
-        android:textAppearance="?attr/textAppearanceOverline"
-        android:textFontWeight="500" />
+        android:textAppearance="?attr/textAppearanceOverline" />
 
       <ViewSwitcher
         android:id="@+id/exposures_list_empty_switcher"
@@ -145,16 +144,6 @@
         android:drawableStart="@drawable/ic_info_black_24dp"
         android:drawablePadding="@dimen/padding_normal"
         android:text="@string/notifications_enabled_info" />
-
-      <!-- this has a custom padding of 16 + 24 + 16 dp to match left align of previous text -->
-      <TextView
-        android:id="@+id/exposure_check_date"
-        android:visibility="gone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingStart="56dp"
-        tools:visibility="visible"
-        tools:text="Last checked today at 11:27 am." />
     </LinearLayout>
 
   </ScrollView>

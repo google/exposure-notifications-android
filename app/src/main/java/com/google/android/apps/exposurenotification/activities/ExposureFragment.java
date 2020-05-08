@@ -17,6 +17,8 @@
 
 package com.google.android.apps.exposurenotification.activities;
 
+import static com.google.android.apps.exposurenotification.nearby.ProvideDiagnosisKeysWorker.DEFAULT_API_TIMEOUT;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,30 +29,41 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.ViewAnimator;
 import android.widget.ViewSwitcher;
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.activities.utils.ExposureNotificationPermissionHelper;
-import com.google.android.apps.exposurenotification.adapter.ExposureNotificationAdapter;
+import com.google.android.apps.exposurenotification.adapter.ExposureAdapter;
+import com.google.android.apps.exposurenotification.common.AppExecutors;
+import com.google.android.apps.exposurenotification.common.TaskToFutureAdapter;
 import com.google.android.apps.exposurenotification.nearby.ExposureNotificationClientWrapper;
+import com.google.android.apps.exposurenotification.storage.ExposureEntity;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
+import com.google.android.apps.exposurenotification.storage.ExposureViewModel;
+import com.google.android.apps.exposurenotification.storage.TokenEntity;
+import com.google.android.apps.exposurenotification.storage.TokenViewModel;
 import com.google.android.gms.nearby.exposurenotification.ExposureInformation;
-import com.google.android.gms.tasks.Tasks;
-import com.google.android.material.snackbar.Snackbar;
+import com.google.common.util.concurrent.FluentFuture;
+import com.google.common.util.concurrent.Futures;
+import com.google.common.util.concurrent.ListenableFuture;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Fragment for Exposures tab on home screen
  */
 public class ExposureFragment extends Fragment {
 
-  private ExposureNotificationAdapter adapter;
   private final String TAG = "ExposureFragment";
 
   private final ExposureNotificationPermissionHelper exposureNotificationPermissionHelper;
+  private ExposureViewModel exposureViewModel;
+  private TokenViewModel tokenViewModel;
+  private ExposureAdapter adapter;
 
   public ExposureFragment() {
     exposureNotificationPermissionHelper =
@@ -72,11 +85,22 @@ public class ExposureFragment extends Fragment {
     exposureNotificationsToggle.setOnClickListener(v -> launchSettings());
 
     RecyclerView exposuresList = view.findViewById(R.id.exposures_list);
-    adapter = new ExposureNotificationAdapter(new ExposureClick());
+    adapter = new ExposureAdapter(new ExposureClick());
     exposuresList.setItemAnimator(null);
     exposuresList.setLayoutManager(new LinearLayoutManager(requireContext(),
         LinearLayoutManager.VERTICAL, false));
     exposuresList.setAdapter(adapter);
+
+    exposureViewModel =
+        new ViewModelProvider(this, getDefaultViewModelProviderFactory())
+            .get(ExposureViewModel.class);
+    exposureViewModel
+        .getAllExposureEntityLiveData()
+        .observe(getViewLifecycleOwner(),
+            exposureEntities -> refreshUiForExposureEntities(exposureEntities));
+    tokenViewModel =
+        new ViewModelProvider(this, getDefaultViewModelProviderFactory())
+            .get(TokenViewModel.class);
   }
 
   @Override
@@ -95,11 +119,8 @@ public class ExposureFragment extends Fragment {
    * Update UI state after Exposure Notifications client state changes
    */
   private void refreshUi() {
-    ExposureNotificationClientWrapper exposureNotificationClientWrapper =
-        ExposureNotificationClientWrapper.get(requireContext());
-
-    exposureNotificationClientWrapper.isEnabled()
-        .continueWithTask((isEnabled) -> {
+    ExposureNotificationClientWrapper.get(requireContext()).isEnabled()
+        .continueWith((isEnabled) -> {
           Boolean currentlyEnabled = isEnabled.getResult();
 
           refreshUiForEnabled(currentlyEnabled);
@@ -109,18 +130,40 @@ public class ExposureFragment extends Fragment {
             noteOnboardingCompleted();
           }
 
-          if (currentlyEnabled) {
-            return exposureNotificationClientWrapper.getExposureInformation();
-          } else {
-            return Tasks.forCanceled();
+          if (tokenViewModel != null) {
+            FluentFuture.from(tokenViewModel.getAllTokenEntityAsync())
+                .transformAsync((tokenEntities) -> checkForRespondedTokensAsync(tokenEntities),
+                    AppExecutors.getBackgroundExecutor());
           }
-        })
-        .addOnSuccessListener(this::refreshUiForExposureInformation)
-        .addOnCanceledListener(() -> refreshUiForExposureInformation(null))
-        .addOnFailureListener((cause) -> {
-          refreshUiForEnabled(false);
-          showExposureNotificationApiError(cause);
+          return null;
         });
+  }
+
+  private ListenableFuture<List<Void>> checkForRespondedTokensAsync(
+      List<TokenEntity> tokenEntities) {
+    List<ListenableFuture<Void>> futures = new ArrayList<>();
+    for (TokenEntity tokenEntity : tokenEntities) {
+      if (tokenEntity.isResponded()) {
+        futures.add(FluentFuture.from(
+            TaskToFutureAdapter.getFutureWithTimeout(
+                ExposureNotificationClientWrapper.get(requireContext())
+                    .getExposureInformation(tokenEntity.getToken()),
+                DEFAULT_API_TIMEOUT.toMillis(),
+                TimeUnit.MILLISECONDS,
+                AppExecutors.getScheduledExecutor()))
+            .transformAsync((exposureInformations) -> {
+              List<ExposureEntity> exposureEntities = new ArrayList<>();
+              for (ExposureInformation exposureInformation : exposureInformations) {
+                exposureEntities.add(
+                    ExposureEntity.create(exposureInformation.getDateMillisSinceEpoch()));
+              }
+              return exposureViewModel.upsertExposureEntitiesAsync(exposureEntities);
+            }, AppExecutors.getLightweightExecutor())
+            .transformAsync((v) -> tokenViewModel.deleteTokenEntityAsync(tokenEntity.getToken()),
+                AppExecutors.getLightweightExecutor()));
+      }
+    }
+    return Futures.allAsList(futures);
   }
 
   /**
@@ -134,21 +177,17 @@ public class ExposureFragment extends Fragment {
       return;
     }
 
-    TextView exposureNotificationStatus = rootView.findViewById(R.id.exposure_notifications_status);
     ViewSwitcher settingsBannerSwitcher = rootView.findViewById(R.id.settings_banner_switcher);
+    TextView exposureNotificationStatus = rootView.findViewById(R.id.exposure_notifications_status);
     TextView infoStatus = rootView.findViewById(R.id.info_status);
 
     settingsBannerSwitcher.setDisplayedChild(currentlyEnabled ? 1 : 0);
 
     if (currentlyEnabled) {
       exposureNotificationStatus.setText(R.string.on);
-    } else {
-      exposureNotificationStatus.setText(R.string.off);
-    }
-
-    if (currentlyEnabled) {
       infoStatus.setText(R.string.notifications_enabled_info);
     } else {
+      exposureNotificationStatus.setText(R.string.off);
       infoStatus.setText(R.string.notifications_disabled_info);
     }
   }
@@ -156,39 +195,20 @@ public class ExposureFragment extends Fragment {
   /**
    * Display new exposure information
    *
-   * @param exposures List of potential exposures
+   * @param exposureEntities List of potential exposures
    */
-  private void refreshUiForExposureInformation(@Nullable List<ExposureInformation> exposures) {
+  private void refreshUiForExposureEntities(@Nullable List<ExposureEntity> exposureEntities) {
     View rootView = getView();
     if (rootView == null) {
       return;
     }
 
     if (adapter != null) {
-      adapter.submitList(exposures);
+      adapter.submitList(exposureEntities);
     }
 
     ViewAnimator switcher = rootView.findViewById(R.id.exposures_list_empty_switcher);
-    switcher.setDisplayedChild(exposures == null || exposures.isEmpty() ? 0 : 1);
-  }
-
-  /**
-   * Display snackbar when Exposure Notifications client returns an error.
-   *
-   * @param cause
-   */
-  private void showExposureNotificationApiError(@NonNull Exception cause) {
-    Log.w(TAG, "Unable to get exposure notifications", cause);
-    View rootView = getView();
-    if (rootView == null) {
-      return;
-    }
-
-    Snackbar.make(rootView, R.string.generic_error_message, Snackbar.LENGTH_LONG).show();
-
-    ViewAnimator exposuresListEmptySwitcher = rootView
-        .findViewById(R.id.exposures_list_empty_switcher);
-    exposuresListEmptySwitcher.setDisplayedChild(0);
+    switcher.setDisplayedChild(exposureEntities == null || exposureEntities.isEmpty() ? 0 : 1);
   }
 
   /**
@@ -210,10 +230,11 @@ public class ExposureFragment extends Fragment {
 
   public class ExposureClick {
 
-    public void onClicked(ExposureInformation exposureInformation) {
-      ExposureBottomSheetFragment sheet = ExposureBottomSheetFragment
-          .newInstance(exposureInformation);
+    public void onClicked(ExposureEntity exposureEntity) {
+      ExposureBottomSheetFragment sheet = ExposureBottomSheetFragment.newInstance(exposureEntity);
       sheet.show(getChildFragmentManager(), ExposureBottomSheetFragment.TAG);
     }
+
   }
+
 }

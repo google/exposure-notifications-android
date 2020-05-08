@@ -17,49 +17,47 @@
 
 package com.google.android.apps.exposurenotification.storage;
 
-
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import com.google.common.base.Preconditions;
-import org.threeten.bp.ZonedDateTime;
 
 /**
- * A positive diagnosis inputted by the user.
+ * A token used when calling provideDiagnosisKeys to identify a given call to the API.
  *
  * <p>Partners should implement a daily TTL/expiry, for on-device storage of this data, and must
  * ensure compliance with all applicable laws and requirements with respect to encryption, storage,
  * and retention polices for end user data.
  */
 @Entity
-public class PositiveDiagnosisEntity {
+public class TokenEntity {
 
-  @PrimaryKey(autoGenerate = true)
-  long id;
+  @PrimaryKey
+  @ColumnInfo(name = "token")
+  @NonNull
+  private String token;
 
   @ColumnInfo(name = "created_timestamp_ms")
   private long createdTimestampMs;
 
-  @ColumnInfo(name = "test_timestamp")
-  @NonNull
-  private ZonedDateTime testTimestamp;
+  @ColumnInfo(name = "responded")
+  private boolean responded;
 
-  PositiveDiagnosisEntity(@NonNull ZonedDateTime testTimestamp) {
+  TokenEntity(@NonNull String token, boolean responded) {
     this.createdTimestampMs = System.currentTimeMillis();
-    this.testTimestamp = testTimestamp;
+    this.token = token;
+    this.responded = responded;
   }
 
   /**
-   * Creates a PositiveDiagnosisEntry.
-   * @param testTimestamp The time at which the test was taken.
+   * Creates a TokenEntity.
+   *
+   * @param token The token identifier.
+   * @param responded
    */
-  public static PositiveDiagnosisEntity create(@NonNull ZonedDateTime testTimestamp) {
-    return new PositiveDiagnosisEntity(Preconditions.checkNotNull(testTimestamp));
-  }
-
-  public long getId() {
-    return id;
+  public static TokenEntity create(@NonNull String token, boolean responded) {
+    return new TokenEntity(Preconditions.checkNotNull(token), responded);
   }
 
   public long getCreatedTimestampMs() {
@@ -71,11 +69,20 @@ public class PositiveDiagnosisEntity {
   }
 
   @NonNull
-  public ZonedDateTime getTestTimestamp() {
-    return testTimestamp;
+  public String getToken() {
+    return token;
   }
 
-  void setTestTimestamp(@NonNull ZonedDateTime testTimestamp) {
-    this.testTimestamp = Preconditions.checkNotNull(testTimestamp);
+  public void setToken(@NonNull String token) {
+    this.token = token;
   }
+
+  public boolean isResponded() {
+    return responded;
+  }
+
+  public void setResponded(boolean responded) {
+    this.responded = responded;
+  }
+
 }

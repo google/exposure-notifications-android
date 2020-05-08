@@ -43,7 +43,7 @@ public class OnboardingPermissionFragment extends Fragment {
 
   public OnboardingPermissionFragment() {
     permissionHelper = new ExposureNotificationPermissionHelper(this,
-        () -> transitionToFinishFragment());
+        this::transitionToFinishFragment);
   }
 
   @Override

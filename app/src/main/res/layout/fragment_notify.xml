@@ -125,8 +125,7 @@
           android:layout_height="wrap_content"
           android:layout_marginBottom="@dimen/padding_normal"
           android:text="@string/positive_test_results"
-          android:textAppearance="?attr/textAppearanceOverline"
-          android:textFontWeight="500" />
+          android:textAppearance="?attr/textAppearanceOverline" />
 
         <ViewSwitcher
           android:id="@+id/fragment_notify_diagnosis_switcher"

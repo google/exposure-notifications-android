@@ -28,23 +28,56 @@ import java.util.List;
 public class ExposureNotificationRepository {
 
   private final PositiveDiagnosisDao positiveDiagnosisDao;
+  private final ExposureDao exposureDao;
+  private final TokenDao tokenDao;
 
   public ExposureNotificationRepository(Context context) {
-    ExposureNotificationDatabase exposureNotificationDatabase = ExposureNotificationDatabase
-        .getInstance(context);
+    ExposureNotificationDatabase exposureNotificationDatabase =
+        ExposureNotificationDatabase.getInstance(context);
     positiveDiagnosisDao = exposureNotificationDatabase.positiveDiagnosisDao();
+    exposureDao = exposureNotificationDatabase.exposureDao();
+    tokenDao = exposureNotificationDatabase.tokenDao();
   }
 
-  public LiveData<List<PositiveDiagnosisEntity>> getAllPositiveDiagnosisEntityLiveData() {
-    return positiveDiagnosisDao.getAllPositiveDiagnosisEntityLiveData();
+  public LiveData<List<PositiveDiagnosisEntity>> getAllPositiveDiagnosisEntitiesLiveData() {
+    return positiveDiagnosisDao.getAllLiveData();
   }
 
-  public ListenableFuture<Void> insertOrUpdatePositiveDiagnosisEntity(
+  public ListenableFuture<Void> upsertPositiveDiagnosisEntityAsync(
       PositiveDiagnosisEntity entity) {
-    return positiveDiagnosisDao.insertOrUpdatePositiveDiagnosisEntityListenableFuture(entity);
+    return positiveDiagnosisDao.upsertAsync(entity);
   }
 
-  public ListenableFuture<Void> deleteAllPositiveDiagnosisEntity() {
-    return positiveDiagnosisDao.deleteAllPositiveDiagnosisEntitiesListenableFuture();
+  public LiveData<List<ExposureEntity>> getAllExposureEntityLiveData() {
+    return exposureDao.getAllLiveData();
   }
+
+  public ListenableFuture<Void> upsertExposureEntitiesAsync(List<ExposureEntity> entities) {
+    return exposureDao.upsertAsync(entities);
+  }
+
+  public ListenableFuture<Void> deleteAllExposureEntitiesAsync() {
+    return exposureDao.deleteAllAsync();
+  }
+
+  public ListenableFuture<List<TokenEntity>> getAllTokenEntityAsync() {
+    return tokenDao.getAllAsync();
+  }
+
+  public ListenableFuture<Void> upsertTokenEntityAsync(TokenEntity entity) {
+    return tokenDao.upsertAsync(entity);
+  }
+
+  public ListenableFuture<Void> markTokenEntityRespondedAsync(String token) {
+    return tokenDao.markTokenRespondedAsync(token);
+  }
+
+  public ListenableFuture<Void> deleteTokenEntityAsync(String token) {
+    return tokenDao.deleteByTokenAsync(token);
+  }
+
+  public ListenableFuture<Void> deleteTokenEntitiesAsync(List<String> tokens) {
+    return tokenDao.deleteByTokensAsync(tokens);
+  }
+
 }

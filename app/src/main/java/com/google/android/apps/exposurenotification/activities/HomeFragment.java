@@ -38,7 +38,6 @@ import com.google.android.apps.exposurenotification.R;
 import com.google.android.material.tabs.TabLayout;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * Main screen of the application.
@@ -58,7 +57,7 @@ public class HomeFragment extends Fragment {
   static final int TAB_NOTIFY = 1;
   static final int TAB_DEBUG = 2;
 
-  @TabName private int defaultTab;
+  @TabName private final int defaultTab;
 
   private TemporaryExposureKeyViewPagerAdapter fragmentPagerAdapter;
 
@@ -143,7 +142,7 @@ public class HomeFragment extends Fragment {
     }
 
     @Override
-    public void setPrimaryItem(@NotNull ViewGroup group, int position, @NotNull Object object) {
+    public void setPrimaryItem(@NonNull ViewGroup group, int position, @NonNull Object object) {
       currentFragment = ((Fragment) object);
       super.setPrimaryItem(group, position, object);
     }

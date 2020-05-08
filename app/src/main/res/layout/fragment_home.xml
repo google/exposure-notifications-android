@@ -42,6 +42,8 @@
     app:tabGravity="fill"
     app:tabMaxWidth="0dp"
     app:tabMode="fixed"
-    app:tabTextAppearance="?textAppearanceBody1" />
+    app:tabTextAppearance="?textAppearanceBody1"
+    app:tabPaddingStart="0dp"
+    app:tabPaddingEnd="0dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

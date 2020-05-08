@@ -20,14 +20,6 @@
 
   <string name="app_name">Sample Public Health Authority App</string>
 
-  <string name="delete_data_failure">Error deleting data</string>
-
-  <string name="delete_data_confirm_title">Clear all device data?</string>
-
-  <string name="delete_data_delete">Clear</string>
-
-  <string name="delete_data_confirm_message">This will clear all data stored on this device and restart the application</string>
-
   <string name="btn_start">Get started</string>
 
   <string name="btn_turn_on">Turn on</string>
@@ -48,7 +40,7 @@
 
   <string name="onboarding_opt_in_text">
     [Actual copy to be provided by Public Health Authority]
-    \n\nThese notifications are designed to notify you if you\’ve been exposed to COVID-19.
+    \n\nThese notifications are designed to notify you if you\'ve been exposed to a user who later reports themselves as testing positive for COVID-19. You can choose to turn off these notifications at any time.
     \n\nExposure notifications rely on the sharing and collecting of random IDs. These IDs are a random string of numbers that won\'t identify you to other users and change many times a day to protect your privacy.
     \n\nYour device will collect and share random IDs with nearby devices. This app can notify you if you\'ve been near someone who has reported a positive COVID-19 test result.
     \n\nIf you test positive for COVID-19, you can also help your community by reporting your test result.
@@ -117,19 +109,15 @@
 
   <string name="share_test_result_title">Share your positive test result</string>
 
-  <string name="share_test_result_description">If you have COVID-19, sharing your positive test result will help notify those who may have been exposed. This will let others in your community know if they should monitor for symptoms.</string>
+  <string name="share_test_result_description">If you have tested positive for COVID-19, sharing your test result will help notify others who may have been exposed. This will let others in your community know if they should monitor for symptoms.</string>
 
   <string name="share_test_result_learn_more_href">about:blank</string>
-
-  <string name="notify_others">Notify others</string>
 
   <string name="positive_test_results">Positive test results</string>
 
   <string name="no_positive_test_results">No positive test results</string>
 
   <string name="positive_test_result_status_shared">Shared</string>
-
-  <string name="positive_test_result_error_sharing">There was an error sharing. Please try again.</string>
 
   <string name="debug_master_switch">Exposure Notifications API Master</string>
 
@@ -139,11 +127,19 @@
 
   <string name="debug_test_exposure_description">This will notify the app that you have been exposed so you can see the exposure experience in the app UI until you reset.</string>
 
-  <string name="debug_test_exposure_notify_button_text">Turn on exposure tests</string>
+  <string name="debug_test_exposure_notify_button_text">Add test exposures</string>
 
-  <string name="debug_test_exposure_reset_button_text">Reset exposure tests</string>
+  <string name="debug_exposure_reset_button_text">Reset exposures</string>
 
   <string name="debug_test_exposure_reset_success">Done</string>
+
+  <string name="debug_keys_category">Diagnosis Keys</string>
+
+  <string name="debug_provide_keys_description">This will enqueue a background job to provide diagnosis keys into the exposure notifications API.</string>
+
+  <string name="debug_provide_keys_button_text">Provide Diagnosis Keys</string>
+
+  <string name="debug_provide_keys_enqueued">Enqueued background job</string>
 
   <string name="notifications_disabled_info">When exposure notifications are turned off, you won\’t be notified if you\'re exposed to COVID-19</string>
 

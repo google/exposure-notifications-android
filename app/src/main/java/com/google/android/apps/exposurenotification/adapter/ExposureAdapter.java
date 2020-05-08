@@ -28,15 +28,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.activities.ExposureFragment.ExposureClick;
 import com.google.android.apps.exposurenotification.common.StringUtils;
-import com.google.android.gms.nearby.exposurenotification.ExposureInformation;
+import com.google.android.apps.exposurenotification.storage.ExposureEntity;
 import java.util.Locale;
 
-public class ExposureNotificationAdapter extends
-    ListAdapter<ExposureInformation, ExposureNotificationAdapter.ViewHolder> {
+/**
+ * View adapter for displaying a list of {@link ExposureEntity}.
+ */
+public class ExposureAdapter extends
+    ListAdapter<ExposureEntity, ExposureAdapter.ViewHolder> {
 
   private final ExposureClick clickListener;
 
-  public ExposureNotificationAdapter(ExposureClick exposureClick) {
+  public ExposureAdapter(ExposureClick exposureClick) {
     super(new ExposureItemCallback());
     clickListener = exposureClick;
   }
@@ -51,14 +54,14 @@ public class ExposureNotificationAdapter extends
 
   @Override
   public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-    ExposureInformation item = getItem(i);
+    ExposureEntity item = getItem(i);
     viewHolder.bind(item);
   }
 
   static class ViewHolder extends RecyclerView.ViewHolder {
 
     private final TextView exposureItemTimestamp;
-    private ExposureInformation currentItem;
+    private ExposureEntity currentItem;
 
     ViewHolder(@NonNull View itemView, ExposureClick exposureClick) {
       super(itemView);
@@ -70,7 +73,7 @@ public class ExposureNotificationAdapter extends
       });
     }
 
-    void bind(ExposureInformation item) {
+    void bind(ExposureEntity item) {
       currentItem = item;
       Locale locale = itemView.getContext().getResources().getConfiguration().locale;
       String formatted = StringUtils.timestampMsToMediumString(item.getDateMillisSinceEpoch(),
@@ -79,18 +82,18 @@ public class ExposureNotificationAdapter extends
     }
   }
 
-  private static class ExposureItemCallback extends DiffUtil.ItemCallback<ExposureInformation> {
+  private static class ExposureItemCallback extends DiffUtil.ItemCallback<ExposureEntity> {
 
     @Override
-    public boolean areItemsTheSame(@NonNull ExposureInformation left,
-        @NonNull ExposureInformation right) {
-      return left == right;
+    public boolean areItemsTheSame(@NonNull ExposureEntity left,
+        @NonNull ExposureEntity right) {
+      return left.getId() == right.getId();
     }
 
     @Override
-    public boolean areContentsTheSame(@NonNull ExposureInformation left,
-        @NonNull ExposureInformation right) {
-      return left.equals(right);
+    public boolean areContentsTheSame(@NonNull ExposureEntity left,
+        @NonNull ExposureEntity right) {
+      return left.getDateMillisSinceEpoch() == right.getDateMillisSinceEpoch();
     }
   }
 

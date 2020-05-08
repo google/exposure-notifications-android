@@ -20,7 +20,7 @@ package com.google.android.apps.exposurenotification.nearby;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import androidx.work.Constraints;
+import androidx.work.Data;
 import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkManager;
 import com.google.android.gms.nearby.exposurenotification.ExposureNotificationClient;
@@ -37,15 +37,11 @@ public class ExposureNotificationBroadcastReceiver extends BroadcastReceiver {
     String action = intent.getAction();
     WorkManager workManager = WorkManager.getInstance(context);
     if (ExposureNotificationClient.ACTION_EXPOSURE_STATE_UPDATED.equals(action)) {
+      String token = intent.getStringExtra(ExposureNotificationClient.EXTRA_TOKEN);
       workManager.enqueue(
-          new OneTimeWorkRequest.Builder(StateUpdatedWorker.class).build());
-    } else if (ExposureNotificationClient.ACTION_REQUEST_DIAGNOSIS_KEYS.equals(action)) {
-      workManager.enqueue(
-          new OneTimeWorkRequest.Builder(RequestDiagnosisKeysWorker.class)
-              .setConstraints(
-                  new Constraints.Builder()
-                      .setRequiresBatteryNotLow(true)
-                      .setRequiresDeviceIdle(true)
+          new OneTimeWorkRequest.Builder(StateUpdatedWorker.class)
+              .setInputData(
+                  new Data.Builder().putString(ExposureNotificationClient.EXTRA_TOKEN, token)
                       .build())
               .build());
     }

@@ -26,21 +26,18 @@ import com.google.common.util.concurrent.ListenableFuture;
 import java.util.List;
 
 /**
- * Dao for the bucket {@link PositiveDiagnosisEntity} in the exposure notification database.
+ * Dao for the bucket {@link ExposureEntity} in the exposure notification database.
  */
 @Dao
-public abstract class PositiveDiagnosisDao {
+public abstract class ExposureDao {
 
-  @Query("SELECT * FROM PositiveDiagnosisEntity")
-  abstract List<PositiveDiagnosisEntity> getAll();
-
-  @Query("SELECT * FROM PositiveDiagnosisEntity ORDER BY id DESC")
-  abstract LiveData<List<PositiveDiagnosisEntity>> getAllLiveData();
+  @Query("SELECT * FROM ExposureEntity ORDER BY date_millis_since_epoch DESC")
+  abstract LiveData<List<ExposureEntity>> getAllLiveData();
 
   @Insert(onConflict = OnConflictStrategy.REPLACE)
-  abstract ListenableFuture<Void> upsertAsync(PositiveDiagnosisEntity entity);
+  abstract ListenableFuture<Void> upsertAsync(List<ExposureEntity> entities);
 
-  @Insert(onConflict = OnConflictStrategy.REPLACE)
-  abstract void upsert(PositiveDiagnosisEntity entity);
+  @Query("DELETE FROM ExposureEntity")
+  abstract ListenableFuture<Void> deleteAllAsync();
 
 }

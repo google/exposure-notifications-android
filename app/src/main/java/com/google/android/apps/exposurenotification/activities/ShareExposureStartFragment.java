@@ -64,7 +64,6 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-import org.jetbrains.annotations.NotNull;
 import org.threeten.bp.Duration;
 import org.threeten.bp.Instant;
 import org.threeten.bp.ZoneId;
@@ -88,9 +87,8 @@ public class ShareExposureStartFragment extends Fragment {
     return inflater.inflate(R.layout.fragment_share_exposure_start, parent, false);
   }
 
-  @SuppressWarnings("UnstableApiUsage")
   @Override
-  public void onViewCreated(@NotNull View view, Bundle savedInstanceState) {
+  public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
     viewReference = new WeakReference<>(view);
 
     EditText identifierEditText = view.findViewById(R.id.share_test_identifier);
@@ -171,13 +169,13 @@ public class ShareExposureStartFragment extends Fragment {
     PositiveDiagnosisViewModel positiveDiagnosisViewModel =
         new ViewModelProvider(this, getDefaultViewModelProviderFactory())
             .get(PositiveDiagnosisViewModel.class);
-    return positiveDiagnosisViewModel.insertOrUpdatePositiveDiagnosisEntity();
+    return positiveDiagnosisViewModel.upsertPositiveDiagnosisEntityAsync();
   }
 
   /** Gets recent (initially 14 days) Temporary Exposure Keys from Google Play Services. */
   private ListenableFuture<List<TemporaryExposureKey>> getRecentKeys() {
     return TaskToFutureAdapter.getFutureWithTimeout(
-        new ExposureNotificationClientWrapper(requireContext()).getTemporaryExposureKeyHistory(),
+        ExposureNotificationClientWrapper.get(requireContext()).getTemporaryExposureKeyHistory(),
         API_TIMEOUT.toMillis(),
         TimeUnit.MILLISECONDS,
         AppExecutors.getScheduledExecutor());
@@ -199,7 +197,7 @@ public class ShareExposureStartFragment extends Fragment {
     return new DiagnosisKeys(requireContext()).upload(keys);
   }
 
-  private TextWatcher enableNextWhenFieldsAreFilledOut =
+  private final TextWatcher enableNextWhenFieldsAreFilledOut =
       new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
@@ -218,7 +216,7 @@ public class ShareExposureStartFragment extends Fragment {
         }
       };
 
-  private FutureCallback<Void> applyResultToUi =
+  private final FutureCallback<Void> applyResultToUi =
       new FutureCallback<Void>() {
         @Override
         public void onSuccess(Void result) {

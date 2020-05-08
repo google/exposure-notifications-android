@@ -19,12 +19,13 @@ package com.google.android.apps.exposurenotification;
 
 import androidx.multidex.MultiDexApplication;
 import com.google.android.apps.exposurenotification.activities.ExposureNotificationActivity;
+import com.google.android.apps.exposurenotification.nearby.ProvideDiagnosisKeysWorker;
 import com.jakewharton.threetenabp.AndroidThreeTen;
 
 /**
  * ExposureNotificationApplication is instantiated whenever the app is running.
  *
- * For UI see {@link ExposureNotificationActivity}
+ * <p>For UI see {@link ExposureNotificationActivity}
  */
 public final class ExposureNotificationApplication extends MultiDexApplication {
 

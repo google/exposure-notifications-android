@@ -19,13 +19,13 @@ package com.google.android.apps.exposurenotification.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import com.google.android.apps.exposurenotification.R;
 import java.util.Objects;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * Activity for sharing a new confirmed diagnosis with others
@@ -85,7 +85,7 @@ public class ShareExposureActivity extends AppCompatActivity {
    * @param outState passed to onCreate when the app finishes the configuration change.
    */
   @Override
-  protected void onSaveInstanceState(@NotNull Bundle outState) {
+  protected void onSaveInstanceState(@NonNull Bundle outState) {
     super.onSaveInstanceState(outState);
     getSupportFragmentManager()
         .putFragment(
@@ -96,13 +96,8 @@ public class ShareExposureActivity extends AppCompatActivity {
   }
 
   @Override
-  protected void onDestroy() {
-    super.onDestroy();
-  }
-
-  @Override
   public void onRequestPermissionsResult(
-      int requestCode, @NotNull String[] permissions, @NotNull int[] grantResults) {
+      int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
     // Propagate to the fragments.
     super.onRequestPermissionsResult(requestCode, permissions, grantResults);
   }

@@ -17,45 +17,46 @@
 
 package com.google.android.apps.exposurenotification.storage;
 
-
-import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-import com.google.common.base.Preconditions;
-import org.threeten.bp.ZonedDateTime;
 
 /**
- * A positive diagnosis inputted by the user.
+ * An exposure element for display in the exposures UI.
  *
  * <p>Partners should implement a daily TTL/expiry, for on-device storage of this data, and must
  * ensure compliance with all applicable laws and requirements with respect to encryption, storage,
  * and retention polices for end user data.
  */
 @Entity
-public class PositiveDiagnosisEntity {
+public class ExposureEntity {
 
   @PrimaryKey(autoGenerate = true)
   long id;
 
+  /**
+   * The dateMillisSinceEpoch provided by the ExposureInformation in the Exposure Notifications API.
+   *
+   * <p>Represents a date of an exposure in millis since epoch rounded to the day.
+   */
+  @ColumnInfo(name = "date_millis_since_epoch")
+  private long dateMillisSinceEpoch;
+
   @ColumnInfo(name = "created_timestamp_ms")
   private long createdTimestampMs;
 
-  @ColumnInfo(name = "test_timestamp")
-  @NonNull
-  private ZonedDateTime testTimestamp;
-
-  PositiveDiagnosisEntity(@NonNull ZonedDateTime testTimestamp) {
+  ExposureEntity(long dateMillisSinceEpoch) {
     this.createdTimestampMs = System.currentTimeMillis();
-    this.testTimestamp = testTimestamp;
+    this.dateMillisSinceEpoch = dateMillisSinceEpoch;
   }
 
   /**
-   * Creates a PositiveDiagnosisEntry.
-   * @param testTimestamp The time at which the test was taken.
+   * Creates a ExposureEntity.
+   *
+   * @param dateMillisSinceEpoch .
    */
-  public static PositiveDiagnosisEntity create(@NonNull ZonedDateTime testTimestamp) {
-    return new PositiveDiagnosisEntity(Preconditions.checkNotNull(testTimestamp));
+  public static ExposureEntity create(long dateMillisSinceEpoch) {
+    return new ExposureEntity(dateMillisSinceEpoch);
   }
 
   public long getId() {
@@ -70,12 +71,12 @@ public class PositiveDiagnosisEntity {
     this.createdTimestampMs = ms;
   }
 
-  @NonNull
-  public ZonedDateTime getTestTimestamp() {
-    return testTimestamp;
+  public long getDateMillisSinceEpoch() {
+    return dateMillisSinceEpoch;
   }
 
-  void setTestTimestamp(@NonNull ZonedDateTime testTimestamp) {
-    this.testTimestamp = Preconditions.checkNotNull(testTimestamp);
+  public void setDateMillisSinceEpoch(long dateMillisSinceEpoch) {
+    this.dateMillisSinceEpoch = dateMillisSinceEpoch;
   }
+
 }

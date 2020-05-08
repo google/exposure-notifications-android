@@ -48,7 +48,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="3dp"
-        android:textSize="14sp"
+        android:textAppearance="?attr/textAppearanceBody2"
         android:text="" />
 
     </LinearLayout>
@@ -60,6 +60,7 @@
       android:layout_margin="4dp"
       android:textSize="14sp"
       android:text="@string/positive_test_result_status_shared"
+      android:textAppearance="?attr/textAppearanceBody1"
       android:textColor="@color/shared"
       android:layout_weight="0"
       android:gravity="center"/>

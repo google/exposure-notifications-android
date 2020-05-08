@@ -34,7 +34,6 @@ public class ExposureNotificationSharedPreferences {
 
   private static final String ONBOARDING_STATE_KEY = "ExposureNotificationSharedPreferences.ONBOARDING_STATE_KEY";
   private static final String SAFETYNET_API_KEY = "ExposureNotificationSharedPreferences.SAFETYNET_API_KEY";
-  private static final String FAKE_AT_RISK_KEY = "ExposureNotificationSharedPreferences.FAKE_AT_RISK_KEY";
 
   private final SharedPreferences sharedPreferences;
 
@@ -87,11 +86,4 @@ public class ExposureNotificationSharedPreferences {
     sharedPreferences.edit().putString(SAFETYNET_API_KEY, key).commit();
   }
 
-  public boolean getFakeAtRisk() {
-    return sharedPreferences.getBoolean(FAKE_AT_RISK_KEY, false);
-  }
-
-  public void setFakeAtRisk(boolean fakeAtRisk) {
-    sharedPreferences.edit().putBoolean(FAKE_AT_RISK_KEY, fakeAtRisk).commit();
-  }
 }

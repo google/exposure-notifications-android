@@ -33,18 +33,21 @@ import androidx.room.TypeConverters;
 @Database(
     entities = {
       PositiveDiagnosisEntity.class,
+      ExposureEntity.class,
+      TokenEntity.class
     },
-    version = 18,
+    version = 20,
     exportSchema = false)
 @TypeConverters({ZonedDateTimeTypeConverter.class})
-public abstract class ExposureNotificationDatabase extends RoomDatabase {
-
+abstract class ExposureNotificationDatabase extends RoomDatabase {
   private static final String DATABASE_NAME = "exposurenotification";
 
   @SuppressWarnings("ConstantField") // Singleton pattern.
   private static volatile ExposureNotificationDatabase INSTANCE;
 
   abstract PositiveDiagnosisDao positiveDiagnosisDao();
+  abstract ExposureDao exposureDao();
+  abstract TokenDao tokenDao();
 
   static synchronized ExposureNotificationDatabase getInstance(Context context) {
     if (INSTANCE == null) {
@@ -58,7 +61,7 @@ public abstract class ExposureNotificationDatabase extends RoomDatabase {
     return Room.databaseBuilder(
         context.getApplicationContext(), ExposureNotificationDatabase.class, DATABASE_NAME)
         .fallbackToDestructiveMigrationFrom(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,
-            17)
+            17, 18, 19)
         .build();
   }
 }

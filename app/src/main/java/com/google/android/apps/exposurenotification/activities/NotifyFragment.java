@@ -19,14 +19,12 @@ package com.google.android.apps.exposurenotification.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.ViewSwitcher;
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -34,15 +32,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.activities.utils.ExposureNotificationPermissionHelper;
+import com.google.android.apps.exposurenotification.adapter.NotifyAdapter;
 import com.google.android.apps.exposurenotification.common.StringUtils;
 import com.google.android.apps.exposurenotification.nearby.ExposureNotificationClientWrapper;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
-import com.google.android.apps.exposurenotification.storage.PositiveDiagnosisEntity;
 import com.google.android.apps.exposurenotification.storage.PositiveDiagnosisViewModel;
-import java.util.Collections;
-import java.util.List;
-import org.threeten.bp.format.DateTimeFormatter;
-import org.threeten.bp.format.FormatStyle;
 
 /**
  * Fragment for Notify tab on home screen
@@ -75,7 +69,7 @@ public class NotifyFragment extends Fragment {
         }
     );
 
-    NotifyViewAdapter notifyViewAdapter = new NotifyViewAdapter();
+    NotifyAdapter notifyViewAdapter = new NotifyAdapter();
     final LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
     RecyclerView recyclerView = view.findViewById(R.id.notify_recycler_view);
     recyclerView.setLayoutManager(layoutManager);
@@ -88,7 +82,7 @@ public class NotifyFragment extends Fragment {
         new ViewModelProvider(this, getDefaultViewModelProviderFactory())
             .get(PositiveDiagnosisViewModel.class);
     positiveDiagnosisViewModel
-        .getAllPositiveDiagnosisEntityLiveData()
+        .getAllLiveData()
         .observe(getViewLifecycleOwner(), l -> {
               switcher.setDisplayedChild(l.isEmpty() ? 0 : 1);
               notifyViewAdapter.setPositiveDiagnosisEntities(l);
@@ -146,64 +140,6 @@ public class NotifyFragment extends Fragment {
         .setVisibility(currentlyEnabled ? View.VISIBLE : View.GONE);
     rootView.findViewById(R.id.diagnosis_history_container)
         .setVisibility(currentlyEnabled ? View.VISIBLE : View.GONE);
-  }
-
-  static class PositiveDiagnosisViewHolder extends RecyclerView.ViewHolder {
-
-    private final TextView date;
-    private final View itemDivider;
-    private final DateTimeFormatter dateTimeFormatter;
-
-    PositiveDiagnosisViewHolder(@NonNull View view, @NonNull DateTimeFormatter dateTimeFormatter) {
-      super(view);
-      date = view.findViewById(R.id.positive_diagnosis_date);
-      itemDivider = view.findViewById(R.id.horizontal_divider_view);
-      this.dateTimeFormatter = dateTimeFormatter;
-    }
-
-    void bind(final PositiveDiagnosisEntity entity, boolean lastElement) {
-      date.setText(dateTimeFormatter.format(entity.getTestTimestamp()));
-      if (lastElement) {
-        itemDivider.setVisibility(View.GONE);
-      } else {
-        itemDivider.setVisibility(View.VISIBLE);
-      }
-    }
-  }
-
-  static class NotifyViewAdapter extends RecyclerView.Adapter<PositiveDiagnosisViewHolder> {
-
-    private List<PositiveDiagnosisEntity> positiveDiagnosisEntities = Collections.emptyList();
-
-    private final DateTimeFormatter dateTimeFormatter
-        = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM);
-
-    void setPositiveDiagnosisEntities(
-        List<PositiveDiagnosisEntity> positiveDiagnosisEntities) {
-      this.positiveDiagnosisEntities = positiveDiagnosisEntities;
-      notifyDataSetChanged();
-    }
-
-    @NonNull
-    @Override
-    public PositiveDiagnosisViewHolder onCreateViewHolder(
-        @NonNull ViewGroup viewGroup, int i) {
-      return new PositiveDiagnosisViewHolder(
-          LayoutInflater.from(viewGroup.getContext())
-              .inflate(R.layout.item_positive_diagnosis, viewGroup, false),
-          dateTimeFormatter
-      );
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull PositiveDiagnosisViewHolder holder, int position) {
-      holder.bind(positiveDiagnosisEntities.get(position), position == getItemCount() - 1);
-    }
-
-    @Override
-    public int getItemCount() {
-      return positiveDiagnosisEntities.size();
-    }
   }
 
 }
