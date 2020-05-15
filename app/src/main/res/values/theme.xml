@@ -21,6 +21,9 @@
 
   <style name="Base.Theme.ExposureNotification" parent="Theme.MaterialComponents.DayNight.NoActionBar">
 
+    <item name="fontFamily">@font/roboto_regular</item>
+    <item name="android:fontFamily">@font/roboto_regular</item>
+
     <!--Material shape attributes-->
     <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.ExposureNotification.SmallComponent</item>
     <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.ExposureNotification.MediumComponent</item>
@@ -44,6 +47,7 @@
     <item name="colorPrimary">@color/color_dark_blue</item>
     <item name="android:textColorLink">?attr/colorPrimary</item>
     <item name="colorControlActivated">?attr/colorPrimary</item>
+
   </style>
 
   <style name="ExposureNotification" parent="Base.Theme.ExposureNotification">

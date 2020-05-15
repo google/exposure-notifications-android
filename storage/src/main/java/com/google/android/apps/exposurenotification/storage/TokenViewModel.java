@@ -28,27 +28,23 @@ import java.util.List;
  */
 public class TokenViewModel extends AndroidViewModel {
 
-  private final ExposureNotificationRepository repository;
+  private final TokenRepository repository;
 
   public TokenViewModel(@NonNull Application application) {
     super(application);
-    repository = new ExposureNotificationRepository(application);
+    repository = new TokenRepository(application);
   }
 
-  public ListenableFuture<List<TokenEntity>> getAllTokenEntityAsync() {
-    return repository.getAllTokenEntityAsync();
+  public ListenableFuture<List<TokenEntity>> getAllAsync() {
+    return repository.getAllAsync();
   }
 
-  public ListenableFuture<Void> upsertTokenEntityAsync(TokenEntity tokenEntity) {
-    return repository.upsertTokenEntityAsync(tokenEntity);
+  public ListenableFuture<Void> upsertAsync(TokenEntity tokenEntity) {
+    return repository.upsertAsync(tokenEntity);
   }
 
-  public ListenableFuture<Void> deleteTokenEntityAsync(String token) {
-    return repository.deleteTokenEntityAsync(token);
-  }
-
-  public ListenableFuture<Void> deleteTokenEntitiesAsync(List<String> tokens) {
-    return repository.deleteTokenEntitiesAsync(tokens);
+  public ListenableFuture<Void> deleteByTokensAsync(String... tokens) {
+    return repository.deleteByTokensAsync(tokens);
   }
 
 }

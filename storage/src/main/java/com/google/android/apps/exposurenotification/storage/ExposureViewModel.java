@@ -29,23 +29,25 @@ import java.util.List;
  */
 public class ExposureViewModel extends AndroidViewModel {
 
-  private final ExposureNotificationRepository repository;
+  private final ExposureRepository repository;
+  private final LiveData<List<ExposureEntity>> getAllLiveData;
 
   public ExposureViewModel(@NonNull Application application) {
     super(application);
-    repository = new ExposureNotificationRepository(application);
+    repository = new ExposureRepository(application);
+    getAllLiveData = repository.getAllLiveData();
   }
 
-  public LiveData<List<ExposureEntity>> getAllExposureEntityLiveData() {
-    return repository.getAllExposureEntityLiveData();
+  public LiveData<List<ExposureEntity>> getAllLiveData() {
+    return getAllLiveData;
   }
 
-  public ListenableFuture<Void> upsertExposureEntitiesAsync(List<ExposureEntity> entities) {
-    return repository.upsertExposureEntitiesAsync(entities);
+  public ListenableFuture<Void> upsertAsync(List<ExposureEntity> entities) {
+    return repository.upsertAsync(entities);
   }
 
-  public ListenableFuture<Void> deleteAllExposureEntitiesAsync() {
-    return repository.deleteAllExposureEntitiesAsync();
+  public ListenableFuture<Void> deleteAllAsync() {
+    return repository.deleteAllAsync();
   }
 
 }

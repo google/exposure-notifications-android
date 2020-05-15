@@ -21,7 +21,8 @@
   android:orientation="vertical"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
-  android:padding="@dimen/padding_normal">
+  android:paddingHorizontal="@dimen/padding_normal"
+  android:paddingVertical="@dimen/padding_small">
 
   <androidx.core.widget.NestedScrollView
     android:layout_width="match_parent"
@@ -51,9 +52,9 @@
         android:id="@+id/possible_exposure_subheading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/padding_normal"
-        android:padding="@dimen/padding_small"
-        tools:text="Long subheading text goes here." />
+        android:paddingBottom="@dimen/padding_normal"
+        android:paddingHorizontal="@dimen/padding_small"
+        tools:text="" />
 
       <include layout="@layout/horizontal_divider" />
 
@@ -61,8 +62,8 @@
         android:id="@+id/verified_result_explanation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/padding_normal"
-        android:padding="@dimen/padding_small"
+        android:paddingTop="@dimen/padding_normal"
+        android:paddingHorizontal="@dimen/padding_small"
         tools:text="@string/verified_result_explanation"
         android:textAppearance="?attr/textAppearanceBody1" />
 
@@ -70,28 +71,47 @@
         android:id="@+id/learn_more_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/padding_normal"
-        android:padding="@dimen/padding_small"
         android:text="@string/learn_more"
         style="@style/Widget.MaterialComponents.Button.TextButton" />
 
-      <include layout="@layout/horizontal_divider" />
-
       <TextView
-        android:id="@+id/info_status"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/padding_normal"
-        android:padding="@dimen/padding_small"
-        android:drawableStart="@drawable/ic_info_black_24dp"
-        android:drawablePadding="@dimen/padding_normal"
-        android:text="@string/info_saved_locally" />
+        android:paddingBottom="@dimen/padding_normal"
+        android:paddingHorizontal="@dimen/padding_small"
+        android:text="@string/verified_result_next_steps"
+        android:textAppearance="?attr/textAppearanceBody1" />
+
+      <include layout="@layout/horizontal_divider" />
+
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/padding_normal"
+        android:orientation="horizontal">
+
+        <ImageView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:src="@drawable/ic_info_black_24dp"/>
+
+        <TextView
+          android:id="@+id/info_status"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:paddingHorizontal="@dimen/padding_small"
+          android:textAppearance="?attr/textAppearanceBody2"
+          android:textColor="?attr/colorControlNormal" />
+
+      </LinearLayout>
 
       <Button
         android:id="@+id/done_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/padding_normal"
+        android:layout_marginHorizontal="@dimen/padding_normal"
+        android:layout_marginVertical="@dimen/padding_small"
         android:text="@string/done" />
 
     </LinearLayout>

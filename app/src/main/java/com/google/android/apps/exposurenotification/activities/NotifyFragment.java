@@ -33,7 +33,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.activities.utils.ExposureNotificationPermissionHelper;
 import com.google.android.apps.exposurenotification.adapter.NotifyAdapter;
-import com.google.android.apps.exposurenotification.common.StringUtils;
 import com.google.android.apps.exposurenotification.nearby.ExposureNotificationClientWrapper;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
 import com.google.android.apps.exposurenotification.storage.PositiveDiagnosisViewModel;
@@ -59,17 +58,12 @@ public class NotifyFragment extends Fragment {
 
   @Override
   public void onViewCreated(View view, Bundle savedInstanceState) {
-    TextView descriptionView = view.findViewById(R.id.fragment_notify_description);
-    StringUtils.appendLearnMoreLink(descriptionView,
-        requireContext().getString(R.string.share_test_result_learn_more_href));
     Button shareButton = view.findViewById(R.id.fragment_notify_share_button);
-    shareButton.setOnClickListener(v -> {
-          Intent shareExposureIntent = new Intent(getContext(), ShareExposureActivity.class);
-          startActivity(shareExposureIntent);
-        }
-    );
+    shareButton.setOnClickListener(
+        v -> startActivity(ShareExposureActivity.newIntentForAddFlow(requireContext())));
 
-    NotifyAdapter notifyViewAdapter = new NotifyAdapter();
+    NotifyAdapter notifyViewAdapter = new NotifyAdapter(positiveDiagnosisEntity -> startActivity(
+        ShareExposureActivity.newIntentForViewFlow(requireContext(), positiveDiagnosisEntity)));
     final LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
     RecyclerView recyclerView = view.findViewById(R.id.notify_recycler_view);
     recyclerView.setLayoutManager(layoutManager);

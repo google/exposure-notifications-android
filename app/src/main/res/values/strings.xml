@@ -51,7 +51,7 @@
 
   <string name="onboarding_finish_message">
    [Actual copy to be provided by Public Health Authority]
-    \n\If you have a positive COVID-19 test result, sharing this information will help notify others who have been exposed. This will help others in your community contain the spread of COVID-19.
+    \n\nIf you have a positive COVID-19 test result, sharing this information will help notify others who have been exposed. This will help others in your community contain the spread of COVID-19.
     \n\nA positive COVID-19 test result isn\'t reported automatically. This app lets you report your positive test result securely and without identifying you to other users.
   </string>
 
@@ -63,13 +63,13 @@
 
   <string name="exposure_notifications">Exposure notifications</string>
 
-  <string name="exposures_in_past_14_days">Exposures in past 14 days</string>
+  <string name="past_exposures">Past exposures</string>
 
   <string name="actual_copy">[Actual copy to be provided by Public Health Authority]</string>
 
-  <string name="possible_exposure">Possible Exposure</string>
+  <string name="possible_exposure">Possible exposure</string>
 
-  <string name="no_recent_exposures">No recent exposures</string>
+  <string name="no_exposures">No exposures</string>
 
   <string name="on">On</string>
 
@@ -87,23 +87,51 @@
 
   <string name="navigate_up">Navigate up</string>
 
-  <string name="verify_test_result_title"><![CDATA[Share your test result & notify others]]></string>
+  <string name="exposure_about_title">Exposure notifications</string>
+
+  <string name="exposure_about_description">[Actual copy to be provided by Public Health Authority]</string>
+
+  <string name="exposure_about_settings_button_pre_text">You can manage exposure notifications in your device’s settings.</string>
+
+  <string name="exposure_about_settings_button_text">Settings</string>
+
+  <string name="exposure_about_detail">
+    These notifications are designed to notify you if you\'ve been exposed to a user who later reports themselves as testing positive for COVID-19. You can choose to turn off these notifications at any time.
+    \n\nExposure notifications rely on the sharing and collecting of random IDs. These IDs are a random string of numbers that won\'t identify you to other users and change many times a day to protect your privacy.
+    \n\nYour device will collect and share random IDs with nearby devices. This app can notify you if you\'ve been near someone who has reported a positive COVID-19 test result.
+    \n\nIf you test positive for COVID-19, you can help your community by reporting your test result.
+    \n\nIf you\'re exposed, the time, approximate date, and distance of your exposure are shared with this app. This helps health experts better understand the spread of COVID-19.
+  </string>
+
+  <string name="exposure_learn_more_title">About verified test results</string>
+
+  <string name="exposure_learn_more_description">[Actual copy to be provided by Public Health Authority]</string>
+
+  <string name="verify_test_result_title">Enter your test result information</string>
 
   <string name="verify_test_result_subtitle">
     [Actual copy to be provided by Public Health Authority]
     \n\nOnly those who have been exposed will receive a notification</string>
 
-  <string name="enter_your_test_identifier">Enter your test identifier</string>
+  <string name="enter_your_test_identifier">Test identifier</string>
 
   <string name="share_test_identifier_help">The unique test identifier that came with your COVID-19 test must be used to verify your positive test result.</string>
 
-  <string name="test_date_label">Enter the date of the test</string>
+  <string name="test_date_label">Date of test</string>
 
   <string name="share_test_date_help">The test date helps the app know when you may have been contagious and notify the right people of possible exposure.</string>
+
+  <string name="share_error">Unable to share</string>
 
   <string name="share_complete_title">Thank you for sharing your test result</string>
 
   <string name="share_complete_detail">[Actual copy to be provided by Public Health Authority]</string>
+
+  <string name="share_not_complete_title">Test result not shared</string>
+
+  <string name="share_not_complete_detail">[Actual copy to be provided by Public Health Authority]</string>
+
+  <string name="share_not_complete_description">Your test result wasn\'t shared. This test result is saved in the app. You can share or delete your test result at any time.</string>
 
   <string name="share_test_result">Share positive test result</string>
 
@@ -111,7 +139,41 @@
 
   <string name="share_test_result_description">If you have tested positive for COVID-19, sharing your test result will help notify others who may have been exposed. This will let others in your community know if they should monitor for symptoms.</string>
 
-  <string name="share_test_result_learn_more_href">about:blank</string>
+  <string name="share_begin_title">Before you get started</string>
+
+  <string name="share_begin_detail">[Actual copy to be provided by Public Health Authority]</string>
+
+  <string name="share_begin_description">
+    If you have tested positive for COVID-19, you can help your community by reporting your test result.
+    \n\nYou\'ll be asked to share your phone\'s random IDs from the past 14 days. This is used to help notify others you\'ve been near about potential exposure.
+    \n\nSharing your random IDs won\'t identify you to other users.
+  </string>
+
+  <string name="share_learn_more_title">About test identifiers</string>
+
+  <string name="share_learn_more_description">[Actual copy to be provided by Public Health Authority]</string>
+
+  <string name="share_review_title">Review your information</string>
+
+  <string name="share_review_description">[Actual copy to be provided by Public Health Authority]</string>
+
+  <string name="share_review_positive_test">Positive test result</string>
+
+  <string name="share_review_positive_test_covid">COVID-19</string>
+
+  <string name="share_review_date">Date of test</string>
+
+  <string name="btn_share_positive">Share positive test result</string>
+
+  <string name="btn_share_already_shared">Test result shared</string>
+
+  <string name="btn_delete_positive">Delete test result</string>
+
+  <string name="dialog_delete_positive_test_title">Delete test result?</string>
+
+  <string name="dialog_delete_positive_test_description">Your test result will be deleted from this app</string>
+
+  <string name="dialog_delete_positive_test_action">Delete</string>
 
   <string name="positive_test_results">Positive test results</string>
 
@@ -119,9 +181,15 @@
 
   <string name="positive_test_result_status_shared">Shared</string>
 
-  <string name="debug_master_switch">Exposure Notifications API Master</string>
+  <string name="positive_test_result_status_not_shared">Not shared</string>
 
-  <string name="debug_settings_delete_button_text">Clear all device data</string>
+  <string name="positive_test_shared_title">Shared COVID-19 test result</string>
+
+  <string name="positive_test_not_shared_title">COVID-19 test result</string>
+
+  <string name="positive_test_description">[Actual copy to be provided by Public Health Authority]</string>
+
+  <string name="debug_master_switch">Exposure Notifications API Master</string>
 
   <string name="debug_test_exposure_category">Test exposure notification</string>
 
@@ -135,11 +203,19 @@
 
   <string name="debug_keys_category">Diagnosis Keys</string>
 
-  <string name="debug_provide_keys_description">This will enqueue a background job to provide diagnosis keys into the exposure notifications API.</string>
+  <string name="debug_provide_keys_description">This will enqueue a background job to provide test diagnosis keys into the exposure notifications API.</string>
 
-  <string name="debug_provide_keys_button_text">Provide Diagnosis Keys</string>
+  <string name="debug_provide_keys_button_text">Provide Test Diagnosis Keys</string>
 
   <string name="debug_provide_keys_enqueued">Enqueued background job</string>
+
+  <string name="debug_network_mode">Enable Diagnosis Key Up/Downloads</string>
+
+  <string name="debug_network_mode_category">Diagnosis Key Server</string>
+
+  <string name="debug_network_mode_description">This enables this app to share diagnosis keys with a test server. When disabled, the app does not upload or download keys.</string>
+
+  <string name="debug_network_mode_default_uri">App was built with default URIs. Non-default URIs are required to use servers.</string>
 
   <string name="notifications_disabled_info">When exposure notifications are turned off, you won\’t be notified if you\'re exposed to COVID-19</string>
 
@@ -151,11 +227,14 @@
 
   <string name="missing_test_date">Please enter a test date</string>
 
-  <string name="info_saved_locally">This report has been saved to this app and you can access it at any time</string>
+  <string name="info_saved_locally">
+    Sample Public Health Authority App received info on %1$s.
+    \n\nThis report has been saved to this app and you can access it at any time.
+  </string>
 
   <string name="verified_result_explanation">This person\'s test result was verified. You were near this person on %1$s.</string>
 
-  <string name="verified_result_learn_more_href">about:blank</string>
+  <string name="verified_result_next_steps">Next steps: [Actual copy to be provided by Public Health Authority]</string>
 
   <plurals name="possible_exposure_subheading">
     <item quantity="one">You were near someone %1$d day ago who has shared their positive COVID-19 test result.</item>

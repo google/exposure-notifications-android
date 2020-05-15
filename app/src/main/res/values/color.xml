@@ -19,7 +19,10 @@
 <resources>
   <color name="color_dark_blue">#26459C</color>
   <color name="shared">#188038</color>
+  <color name="not_shared">#B31412</color>
+  <color name="delete">#B31412</color>
   <color name="card_border_color">#1F000000</color>
   <color name="horizontal_divider_color">#1F000000</color>
   <color name="watermark_color">#1A000000</color>
+  <color name="notification_color">#EA4335</color>
 </resources>

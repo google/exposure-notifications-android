@@ -32,7 +32,7 @@ import org.junit.runner.RunWith;
  * Tests of {@link HomeFragment}.
  */
 @RunWith(AndroidJUnit4.class)
-@Ignore // Until androidx fixes b/147803993 and b/118495999.
+@Ignore("Until androidx fixes b/147803993 and b/118495999.")
 public class HomeFragmentTest {
 
   @Test

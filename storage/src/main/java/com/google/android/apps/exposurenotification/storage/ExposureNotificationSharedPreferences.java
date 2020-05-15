@@ -33,7 +33,7 @@ public class ExposureNotificationSharedPreferences {
       "ExposureNotificationSharedPreferences.SHARED_PREFERENCES_FILE";
 
   private static final String ONBOARDING_STATE_KEY = "ExposureNotificationSharedPreferences.ONBOARDING_STATE_KEY";
-  private static final String SAFETYNET_API_KEY = "ExposureNotificationSharedPreferences.SAFETYNET_API_KEY";
+  private static final String NETWORK_MODE_KEY = "ExposureNotificationSharedPreferences.NETWORK_MODE_KEY";
 
   private final SharedPreferences sharedPreferences;
 
@@ -64,6 +64,13 @@ public class ExposureNotificationSharedPreferences {
     }
   }
 
+  public enum NetworkMode {
+    // Uses live but test instances of the diagnosis key upload and download servers.
+    TEST,
+    // Uses local faked implementations of the diagnosis key uploads and downloads; no actual network calls.
+    FAKE
+  }
+
   public ExposureNotificationSharedPreferences(Context context) {
     sharedPreferences = context.getSharedPreferences(SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE);
   }
@@ -78,12 +85,12 @@ public class ExposureNotificationSharedPreferences {
     return OnboardingStatus.fromValue(sharedPreferences.getInt(ONBOARDING_STATE_KEY, 0));
   }
 
-  public String getSafetyNetApiKey(String defaultKey) {
-    return sharedPreferences.getString(SAFETYNET_API_KEY, defaultKey);
+  public NetworkMode getNetworkMode(NetworkMode defaultMode) {
+    return NetworkMode.valueOf(
+        sharedPreferences.getString(NETWORK_MODE_KEY, defaultMode.toString()));
   }
 
-  public void setSafetyNetApiKey(String key) {
-    sharedPreferences.edit().putString(SAFETYNET_API_KEY, key).commit();
+  public void setNetworkMode(NetworkMode key) {
+    sharedPreferences.edit().putString(NETWORK_MODE_KEY, key.toString()).commit();
   }
-
 }

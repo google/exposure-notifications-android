@@ -26,7 +26,6 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.apps.exposurenotification.R;
-import com.google.android.apps.exposurenotification.activities.ExposureFragment.ExposureClick;
 import com.google.android.apps.exposurenotification.common.StringUtils;
 import com.google.android.apps.exposurenotification.storage.ExposureEntity;
 import java.util.Locale;
@@ -37,11 +36,11 @@ import java.util.Locale;
 public class ExposureAdapter extends
     ListAdapter<ExposureEntity, ExposureAdapter.ViewHolder> {
 
-  private final ExposureClick clickListener;
+  private final OnExposureClickListener onExposureClickListener;
 
-  public ExposureAdapter(ExposureClick exposureClick) {
+  public ExposureAdapter(OnExposureClickListener onExposureClickListener) {
     super(new ExposureItemCallback());
-    clickListener = exposureClick;
+    this.onExposureClickListener = onExposureClickListener;
   }
 
   @NonNull
@@ -49,7 +48,7 @@ public class ExposureAdapter extends
   public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
     LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
     View view = inflater.inflate(R.layout.item_exposure, viewGroup, false);
-    return new ViewHolder(view, clickListener);
+    return new ViewHolder(view, onExposureClickListener);
   }
 
   @Override
@@ -63,12 +62,12 @@ public class ExposureAdapter extends
     private final TextView exposureItemTimestamp;
     private ExposureEntity currentItem;
 
-    ViewHolder(@NonNull View itemView, ExposureClick exposureClick) {
+    ViewHolder(@NonNull View itemView, OnExposureClickListener onExposureClickListener) {
       super(itemView);
       exposureItemTimestamp = itemView.findViewById(R.id.exposure_item_timestamp);
       itemView.setOnClickListener((v) -> {
         if (currentItem != null) {
-          exposureClick.onClicked(currentItem);
+          onExposureClickListener.onClick(currentItem);
         }
       });
     }
@@ -76,7 +75,7 @@ public class ExposureAdapter extends
     void bind(ExposureEntity item) {
       currentItem = item;
       Locale locale = itemView.getContext().getResources().getConfiguration().locale;
-      String formatted = StringUtils.timestampMsToMediumString(item.getDateMillisSinceEpoch(),
+      String formatted = StringUtils.epochTimestampToMediumUTCDateString(item.getDateMillisSinceEpoch(),
           locale);
       exposureItemTimestamp.setText(formatted);
     }
@@ -95,6 +94,10 @@ public class ExposureAdapter extends
         @NonNull ExposureEntity right) {
       return left.getDateMillisSinceEpoch() == right.getDateMillisSinceEpoch();
     }
+  }
+
+  public interface OnExposureClickListener {
+    void onClick(ExposureEntity exposureEntity);
   }
 
 }

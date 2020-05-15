@@ -21,10 +21,12 @@
   android:id="@+id/share_exposurewatermark_frame"
   android:layout_width="match_parent"
   android:layout_height="match_parent" >
+
   <FrameLayout
     android:id="@+id/share_exposure_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent" />
+
   <TextView
     android:id="@+id/share_exposure_watermark"
     android:textStyle="bold"
@@ -36,4 +38,5 @@
     android:textColor="@color/watermark_color"
     app:autoSizeMaxTextSize="50dp"
     app:autoSizeTextType="uniform" />
+
 </FrameLayout>

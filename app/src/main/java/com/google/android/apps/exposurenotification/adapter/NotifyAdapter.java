@@ -21,6 +21,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.ViewSwitcher;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.apps.exposurenotification.R;
@@ -40,6 +41,11 @@ public class NotifyAdapter extends RecyclerView.Adapter<PositiveDiagnosisViewHol
 
   private final DateTimeFormatter dateTimeFormatter
       = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM);
+  private final OnPositiveDiagnosisClickListener onPositiveDiagnosisClickListener;
+
+  public NotifyAdapter(OnPositiveDiagnosisClickListener onPositiveDiagnosisClickListener) {
+    this.onPositiveDiagnosisClickListener = onPositiveDiagnosisClickListener;
+  }
 
   /**
    * Updates the {@link PositiveDiagnosisEntity} to display.
@@ -56,9 +62,7 @@ public class NotifyAdapter extends RecyclerView.Adapter<PositiveDiagnosisViewHol
       @NonNull ViewGroup viewGroup, int i) {
     return new PositiveDiagnosisViewHolder(
         LayoutInflater.from(viewGroup.getContext())
-            .inflate(R.layout.item_positive_diagnosis, viewGroup, false),
-        dateTimeFormatter
-    );
+            .inflate(R.layout.item_positive_diagnosis, viewGroup, false));
   }
 
   @Override
@@ -74,26 +78,37 @@ public class NotifyAdapter extends RecyclerView.Adapter<PositiveDiagnosisViewHol
   /**
    * The {@link RecyclerView.ViewHolder} for the {@link PositiveDiagnosisEntity}.
    */
-  static class PositiveDiagnosisViewHolder extends RecyclerView.ViewHolder {
+  class PositiveDiagnosisViewHolder extends RecyclerView.ViewHolder {
 
+    private final View rootView;
     private final TextView date;
+    private final ViewSwitcher shared;
     private final View itemDivider;
-    private final DateTimeFormatter dateTimeFormatter;
 
-    PositiveDiagnosisViewHolder(@NonNull View view, @NonNull DateTimeFormatter dateTimeFormatter) {
+    PositiveDiagnosisViewHolder(@NonNull View view) {
       super(view);
+      this.rootView = view;
       date = view.findViewById(R.id.positive_diagnosis_date);
+      shared = view.findViewById(R.id.positive_diagnosis_status);
       itemDivider = view.findViewById(R.id.horizontal_divider_view);
-      this.dateTimeFormatter = dateTimeFormatter;
     }
 
     void bind(final PositiveDiagnosisEntity entity, boolean lastElement) {
+      rootView.setOnClickListener(v -> onPositiveDiagnosisClickListener.onClick(entity));
       date.setText(dateTimeFormatter.format(entity.getTestTimestamp()));
       if (lastElement) {
         itemDivider.setVisibility(View.GONE);
       } else {
         itemDivider.setVisibility(View.VISIBLE);
       }
+      shared.setDisplayedChild(entity.isShared() ? 0 : 1);
     }
+
   }
+
+  public interface OnPositiveDiagnosisClickListener {
+
+    void onClick(PositiveDiagnosisEntity entity);
+  }
+
 }

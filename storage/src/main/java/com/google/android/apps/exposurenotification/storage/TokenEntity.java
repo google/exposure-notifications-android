@@ -22,6 +22,7 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import com.google.common.base.Preconditions;
+import java.util.Objects;
 
 /**
  * A token used when calling provideDiagnosisKeys to identify a given call to the API.
@@ -38,14 +39,14 @@ public class TokenEntity {
   @NonNull
   private String token;
 
-  @ColumnInfo(name = "created_timestamp_ms")
-  private long createdTimestampMs;
+  @ColumnInfo(name = "last_updated_timestamp_ms")
+  private long lastUpdatedTimestampMs;
 
   @ColumnInfo(name = "responded")
   private boolean responded;
 
   TokenEntity(@NonNull String token, boolean responded) {
-    this.createdTimestampMs = System.currentTimeMillis();
+    this.lastUpdatedTimestampMs = System.currentTimeMillis();
     this.token = token;
     this.responded = responded;
   }
@@ -53,19 +54,19 @@ public class TokenEntity {
   /**
    * Creates a TokenEntity.
    *
-   * @param token The token identifier.
-   * @param responded
+   * @param token the token identifier
+   * @param responded whether the exposure notification API has responded for the given token
    */
   public static TokenEntity create(@NonNull String token, boolean responded) {
     return new TokenEntity(Preconditions.checkNotNull(token), responded);
   }
 
-  public long getCreatedTimestampMs() {
-    return createdTimestampMs;
+  public long getLastUpdatedTimestampMs() {
+    return lastUpdatedTimestampMs;
   }
 
-  void setCreatedTimestampMs(long ms) {
-    this.createdTimestampMs = ms;
+  void setLastUpdatedTimestampMs(long ms) {
+    this.lastUpdatedTimestampMs = ms;
   }
 
   @NonNull
@@ -83,6 +84,25 @@ public class TokenEntity {
 
   public void setResponded(boolean responded) {
     this.responded = responded;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    TokenEntity that = (TokenEntity) o;
+    return lastUpdatedTimestampMs == that.lastUpdatedTimestampMs &&
+        responded == that.responded &&
+        token.equals(that.token);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(token, lastUpdatedTimestampMs, responded);
   }
 
 }

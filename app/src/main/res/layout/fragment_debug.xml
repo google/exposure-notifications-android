@@ -19,6 +19,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
   android:orientation="vertical">
 
   <TextView
@@ -48,18 +49,18 @@
       <include layout="@layout/horizontal_divider" />
 
       <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingVertical="@dimen/padding_normal"
         android:paddingHorizontal="@dimen/padding_large"
         android:text="@string/debug_test_exposure_category"
-        android:textAllCaps="true"
-        android:textAppearance="?attr/textAppearanceSubtitle1" />
+        android:textAppearance="?attr/textAppearanceSubtitle1"
+        android:layout_gravity="center" />
 
       <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingVertical="@dimen/padding_normal"
+        android:paddingVertical="@dimen/padding_small"
         android:paddingHorizontal="@dimen/padding_large"
         android:text="@string/debug_test_exposure_description"
         android:textAppearance="?attr/textAppearanceBody1" />
@@ -69,7 +70,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/padding_large"
-        android:layout_marginVertical="@dimen/padding_normal"
         android:layout_gravity="center_horizontal"
         android:text="@string/debug_test_exposure_notify_button_text" />
 
@@ -78,25 +78,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/padding_large"
-        android:layout_marginVertical="@dimen/padding_normal"
+        android:layout_marginBottom="@dimen/padding_normal"
         android:layout_gravity="center_horizontal"
+        style="?attr/materialButtonOutlinedStyle"
+        app:strokeColor="?attr/colorControlActivated"
         android:text="@string/debug_exposure_reset_button_text" />
 
       <include layout="@layout/horizontal_divider" />
 
       <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingVertical="@dimen/padding_normal"
         android:paddingHorizontal="@dimen/padding_large"
         android:text="@string/debug_keys_category"
-        android:textAllCaps="true"
-        android:textAppearance="?attr/textAppearanceSubtitle1" />
+        android:textAppearance="?attr/textAppearanceSubtitle1"
+        android:layout_gravity="center" />
 
       <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingVertical="@dimen/padding_normal"
+        android:paddingVertical="@dimen/padding_small"
         android:paddingHorizontal="@dimen/padding_large"
         android:text="@string/debug_provide_keys_description"
         android:textAppearance="?attr/textAppearanceBody1" />
@@ -106,9 +108,36 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/padding_large"
-        android:layout_marginVertical="@dimen/padding_normal"
+        android:layout_marginBottom="@dimen/padding_normal"
         android:layout_gravity="center_horizontal"
         android:text="@string/debug_provide_keys_button_text" />
+
+      <include layout="@layout/horizontal_divider" />
+
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingVertical="@dimen/padding_normal"
+        android:paddingHorizontal="@dimen/padding_large"
+        android:text="@string/debug_network_mode_category"
+        android:textAppearance="?attr/textAppearanceSubtitle1"
+        android:layout_gravity="center" />
+
+      <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="@dimen/padding_small"
+        android:paddingHorizontal="@dimen/padding_large"
+        android:text="@string/debug_network_mode_description"
+        android:textAppearance="?attr/textAppearanceBody1" />
+
+      <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/network_mode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="@dimen/padding_normal"
+        android:paddingHorizontal="@dimen/padding_large"
+        android:text="@string/debug_network_mode" />
 
     </LinearLayout>
 

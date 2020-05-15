@@ -29,7 +29,10 @@ import java.util.List;
  * Dao for the bucket {@link ExposureEntity} in the exposure notification database.
  */
 @Dao
-public abstract class ExposureDao {
+abstract class ExposureDao {
+
+  @Query("SELECT * FROM ExposureEntity ORDER BY date_millis_since_epoch DESC")
+  abstract ListenableFuture<List<ExposureEntity>> getAllAsync();
 
   @Query("SELECT * FROM ExposureEntity ORDER BY date_millis_since_epoch DESC")
   abstract LiveData<List<ExposureEntity>> getAllLiveData();

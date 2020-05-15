@@ -43,6 +43,16 @@
     </activity>
 
     <activity
+      android:name=".activities.ExposureLearnMoreActivity"
+      android:exported="false"
+      android:parentActivityName=".activities.ExposureNotificationActivity" />
+
+    <activity
+      android:name=".activities.ExposureAboutActivity"
+      android:exported="false"
+      android:parentActivityName=".activities.ExposureNotificationActivity" />
+
+    <activity
       android:name=".activities.ShareExposureActivity"
       android:exported="false"
       android:parentActivityName=".activities.ExposureNotificationActivity" />
@@ -54,9 +64,12 @@
       android:exported="true">
       <intent-filter>
         <action android:name="com.google.android.gms.exposurenotification.ACTION_EXPOSURE_STATE_UPDATED" />
-        <action android:name="com.google.android.gms.exposurenotification.ACTION_REQUEST_DIAGNOSIS_KEYS" />
       </intent-filter>
     </receiver>
+
+    <meta-data
+      android:name="preloaded_fonts"
+      android:resource="@array/preloaded_fonts" />
 
   </application>
 

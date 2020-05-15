@@ -23,6 +23,7 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import com.google.common.base.Preconditions;
+import java.util.Objects;
 import org.threeten.bp.ZonedDateTime;
 
 /**
@@ -45,17 +46,24 @@ public class PositiveDiagnosisEntity {
   @NonNull
   private ZonedDateTime testTimestamp;
 
-  PositiveDiagnosisEntity(@NonNull ZonedDateTime testTimestamp) {
+  @ColumnInfo(name = "shared")
+  private boolean shared;
+
+  PositiveDiagnosisEntity(@NonNull ZonedDateTime testTimestamp, boolean shared) {
     this.createdTimestampMs = System.currentTimeMillis();
     this.testTimestamp = testTimestamp;
+    this.shared = shared;
   }
 
   /**
    * Creates a PositiveDiagnosisEntry.
+   *
    * @param testTimestamp The time at which the test was taken.
+   * @param shared        whether the diagnosis has been shared or not
    */
-  public static PositiveDiagnosisEntity create(@NonNull ZonedDateTime testTimestamp) {
-    return new PositiveDiagnosisEntity(Preconditions.checkNotNull(testTimestamp));
+  public static PositiveDiagnosisEntity create(
+      @NonNull ZonedDateTime testTimestamp, boolean shared) {
+    return new PositiveDiagnosisEntity(Preconditions.checkNotNull(testTimestamp), shared);
   }
 
   public long getId() {
@@ -77,5 +85,33 @@ public class PositiveDiagnosisEntity {
 
   void setTestTimestamp(@NonNull ZonedDateTime testTimestamp) {
     this.testTimestamp = Preconditions.checkNotNull(testTimestamp);
+  }
+
+  public boolean isShared() {
+    return shared;
+  }
+
+  public void setShared(boolean shared) {
+    this.shared = shared;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    PositiveDiagnosisEntity entity = (PositiveDiagnosisEntity) o;
+    return id == entity.id &&
+        createdTimestampMs == entity.createdTimestampMs &&
+        shared == entity.shared &&
+        testTimestamp.equals(entity.testTimestamp);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(id, createdTimestampMs, testTimestamp, shared);
   }
 }

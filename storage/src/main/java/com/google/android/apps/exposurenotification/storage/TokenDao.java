@@ -21,7 +21,6 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
-import androidx.room.Transaction;
 import com.google.common.util.concurrent.ListenableFuture;
 import java.util.List;
 
@@ -29,7 +28,7 @@ import java.util.List;
  * Dao for the bucket {@link TokenDao} in the exposure notification database.
  */
 @Dao
-public abstract class TokenDao {
+abstract class TokenDao {
 
   @Query("SELECT * FROM TokenEntity")
   abstract ListenableFuture<List<TokenEntity>> getAllAsync();
@@ -37,13 +36,7 @@ public abstract class TokenDao {
   @Insert(onConflict = OnConflictStrategy.REPLACE)
   abstract ListenableFuture<Void> upsertAsync(TokenEntity entity);
 
-  @Query("UPDATE TokenEntity SET responded=1 WHERE token = :token")
-  abstract ListenableFuture<Void> markTokenRespondedAsync(String token);
-
-  @Query("DELETE FROM TokenEntity WHERE token = :token")
-  abstract ListenableFuture<Void> deleteByTokenAsync(String token);
-
   @Query("DELETE FROM TokenEntity WHERE token IN (:tokens)")
-  abstract ListenableFuture<Void> deleteByTokensAsync(List<String> tokens);
+  abstract ListenableFuture<Void> deleteByTokensAsync(String... tokens);
 
 }

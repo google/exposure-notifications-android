@@ -30,8 +30,8 @@ import androidx.work.WorkerParameters;
 import com.google.android.apps.exposurenotification.common.AppExecutors;
 import com.google.android.apps.exposurenotification.common.TaskToFutureAdapter;
 import com.google.android.apps.exposurenotification.network.DiagnosisKeys;
-import com.google.android.apps.exposurenotification.storage.ExposureNotificationRepository;
 import com.google.android.apps.exposurenotification.storage.TokenEntity;
+import com.google.android.apps.exposurenotification.storage.TokenRepository;
 import com.google.common.io.BaseEncoding;
 import com.google.common.util.concurrent.FluentFuture;
 import com.google.common.util.concurrent.Futures;
@@ -56,7 +56,7 @@ public class ProvideDiagnosisKeysWorker extends ListenableWorker {
   private final DiagnosisKeys diagnosisKeys;
   private final DiagnosisKeyFileSubmitter submitter;
   private final SecureRandom secureRandom;
-  private final ExposureNotificationRepository repository;
+  private final TokenRepository tokenRepository;
 
   public ProvideDiagnosisKeysWorker(@NonNull Context context,
       @NonNull WorkerParameters workerParams) {
@@ -64,7 +64,7 @@ public class ProvideDiagnosisKeysWorker extends ListenableWorker {
     diagnosisKeys = new DiagnosisKeys(context);
     submitter = new DiagnosisKeyFileSubmitter(context);
     secureRandom = new SecureRandom();
-    repository = new ExposureNotificationRepository(context);
+    tokenRepository = new TokenRepository(context);
   }
 
   private String generateRandomToken() {
@@ -76,8 +76,8 @@ public class ProvideDiagnosisKeysWorker extends ListenableWorker {
   @NonNull
   @Override
   public ListenableFuture<Result> startWork() {
-    Log.d(TAG, "Starting worker downloading diagnosis key files, parsing them, and submitting "
-        + "them to the API for exposure detection then storing the token used.");
+    Log.d(TAG, "Starting worker downloading diagnosis key files and submitting "
+        + "them to the API for exposure detection, then storing the token used.");
     final String token = generateRandomToken();
     return FluentFuture.from(TaskToFutureAdapter
         .getFutureWithTimeout(
@@ -94,17 +94,20 @@ public class ProvideDiagnosisKeysWorker extends ListenableWorker {
             return Futures.immediateFailedFuture(new NotEnabledException());
           }
         }, AppExecutors.getBackgroundExecutor())
-        .transformAsync((files) -> submitter.parseFiles(files, token),
+        .transformAsync((files) -> submitter.submitFiles(files, token),
             AppExecutors.getBackgroundExecutor())
         .transformAsync(
-            done -> repository.upsertTokenEntityAsync(TokenEntity.create(token, false)),
+            done -> tokenRepository.upsertAsync(TokenEntity.create(token, false)),
             AppExecutors.getBackgroundExecutor())
         .transform(done -> Result.success(), AppExecutors.getLightweightExecutor())
         .catching(NotEnabledException.class, x -> {
           // Not enabled. Return as success.
           return Result.success();
         }, AppExecutors.getBackgroundExecutor())
-        .catching(Exception.class, x -> Result.failure(), AppExecutors.getBackgroundExecutor());
+        .catching(Exception.class, x -> {
+          Log.e(TAG, "Failure to provide diagnosis keys", x);
+          return Result.failure();
+        }, AppExecutors.getBackgroundExecutor());
     // TODO: consider a retry strategy
   }
 
@@ -131,6 +134,8 @@ public class ProvideDiagnosisKeysWorker extends ListenableWorker {
         .enqueueUniquePeriodicWork(WORKER_NAME, ExistingPeriodicWorkPolicy.REPLACE, workRequest);
   }
 
-  private static class NotEnabledException extends Exception {}
+  private static class NotEnabledException extends Exception {
+
+  }
 
 }

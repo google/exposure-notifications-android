@@ -26,6 +26,8 @@ import java.util.Arrays;
  */
 @AutoValue
 public abstract class DiagnosisKey {
+  // The number of 10-minute intervals the key is valid for
+  public static final int DEFAULT_PERIOD = 144;
   public abstract ByteArrayValue getKey();
 
   public abstract int getIntervalNumber();

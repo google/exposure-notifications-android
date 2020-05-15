@@ -29,10 +29,13 @@ import java.util.List;
  * Dao for the bucket {@link PositiveDiagnosisEntity} in the exposure notification database.
  */
 @Dao
-public abstract class PositiveDiagnosisDao {
+abstract class PositiveDiagnosisDao {
 
   @Query("SELECT * FROM PositiveDiagnosisEntity")
   abstract List<PositiveDiagnosisEntity> getAll();
+
+  @Query("SELECT * FROM PositiveDiagnosisEntity WHERE id = :id")
+  abstract LiveData<PositiveDiagnosisEntity> getById(long id);
 
   @Query("SELECT * FROM PositiveDiagnosisEntity ORDER BY id DESC")
   abstract LiveData<List<PositiveDiagnosisEntity>> getAllLiveData();
@@ -42,5 +45,11 @@ public abstract class PositiveDiagnosisDao {
 
   @Insert(onConflict = OnConflictStrategy.REPLACE)
   abstract void upsert(PositiveDiagnosisEntity entity);
+
+  @Query("DELETE FROM PositiveDiagnosisEntity WHERE id = :id")
+  abstract ListenableFuture<Void> deleteById(long id);
+
+  @Query("UPDATE PositiveDiagnosisEntity SET shared = :shared WHERE id = :id")
+  abstract ListenableFuture<Void> markSharedForId(long id, boolean shared);
 
 }

@@ -18,7 +18,6 @@
 package com.google.android.apps.exposurenotification.activities;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,13 +36,16 @@ import org.threeten.bp.temporal.ChronoUnit;
 
 public class ExposureBottomSheetFragment extends BottomSheetDialogFragment {
 
-  static final String TAG = "ExposureDetails";
+  static final String TAG = "ExposureBottomSheetFragment";
+
   private static final String KEY_DATE_MILLIS_SINCE_EPOCH = "KEY_DATE_MILLIS_SINCE_EPOCH";
+  private static final String KEY_RECEIVED_TIMESTAMP_MS = "KEY_RECEIVED_TIMESTAMP_MS";
 
   static ExposureBottomSheetFragment newInstance(ExposureEntity exposureEntity) {
     ExposureBottomSheetFragment fragment = new ExposureBottomSheetFragment();
     Bundle args = new Bundle();
     args.putLong(KEY_DATE_MILLIS_SINCE_EPOCH, exposureEntity.getDateMillisSinceEpoch());
+    args.putLong(KEY_RECEIVED_TIMESTAMP_MS, exposureEntity.getReceivedTimestampMs());
     fragment.setArguments(args);
     return fragment;
   }
@@ -52,7 +54,7 @@ public class ExposureBottomSheetFragment extends BottomSheetDialogFragment {
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
       @Nullable Bundle savedInstanceState) {
-    return inflater.inflate(R.layout.exposure_bottom_sheet, container, false);
+    return inflater.inflate(R.layout.fragment_exposure_bottom_sheet, container, false);
   }
 
   @Override
@@ -62,6 +64,7 @@ public class ExposureBottomSheetFragment extends BottomSheetDialogFragment {
     TextView possibleExposureSubheading = view.findViewById(R.id.possible_exposure_subheading);
     TextView verifiedResultExplanation = view.findViewById(R.id.verified_result_explanation);
     Button learnMore = view.findViewById(R.id.learn_more_button);
+    TextView infoStatus = view.findViewById(R.id.info_status);
     Button done = view.findViewById(R.id.done_button);
 
     if (getArguments() != null) {
@@ -69,6 +72,9 @@ public class ExposureBottomSheetFragment extends BottomSheetDialogFragment {
       verifiedResultExplanation.setText(getFormattedResultsExplanation(dateMillisSinceEpoch));
       possibleExposureSubheading
           .setText(getFormattedPossibleExposureSubheading(dateMillisSinceEpoch));
+
+      long receivedTimestampMs = getArguments().getLong(KEY_RECEIVED_TIMESTAMP_MS);
+      infoStatus.setText(getFormattedInfoText(receivedTimestampMs));
     }
 
     learnMore.setOnClickListener((v) -> learnMoreClicked());
@@ -76,9 +82,7 @@ public class ExposureBottomSheetFragment extends BottomSheetDialogFragment {
   }
 
   private void learnMoreClicked() {
-    startActivity(new Intent(Intent.ACTION_VIEW)
-        .setData(Uri.parse(getString(R.string.verified_result_learn_more_href)))
-        .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+    startActivity(new Intent(requireContext(), ExposureLearnMoreActivity.class));
   }
 
   private void doneClicked() {
@@ -99,9 +103,17 @@ public class ExposureBottomSheetFragment extends BottomSheetDialogFragment {
   @NonNull
   private String getFormattedResultsExplanation(long dataMillisSinceEpoch) {
     Locale locale = getResources().getConfiguration().locale;
-    String formattedDate = StringUtils.timestampMsToMediumString(dataMillisSinceEpoch, locale);
+    String formattedDate = StringUtils.epochTimestampToMediumUTCDateString(dataMillisSinceEpoch, locale);
 
     return getString(R.string.verified_result_explanation,
         formattedDate);
   }
+
+  @NonNull
+  private String getFormattedInfoText(long receivedTimestampMs) {
+    Locale locale = getResources().getConfiguration().locale;
+    String formattedDate = StringUtils.epochTimestampToMediumUTCDateString(receivedTimestampMs, locale);
+    return getString(R.string.info_saved_locally, formattedDate);
+  }
+
 }

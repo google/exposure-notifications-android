@@ -21,7 +21,6 @@ import static com.google.android.apps.exposurenotification.nearby.ProvideDiagnos
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,7 +53,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Fragment for Exposures tab on home screen
+ * Fragment for Exposures tab on home screen.
  */
 public class ExposureFragment extends Fragment {
 
@@ -82,10 +81,13 @@ public class ExposureFragment extends Fragment {
 
     goToSettingsButton.setOnClickListener(
         v -> exposureNotificationPermissionHelper.optInAndStartExposureTracing(view));
-    exposureNotificationsToggle.setOnClickListener(v -> launchSettings());
+    exposureNotificationsToggle.setOnClickListener(v -> launchAbout());
 
     RecyclerView exposuresList = view.findViewById(R.id.exposures_list);
-    adapter = new ExposureAdapter(new ExposureClick());
+    adapter = new ExposureAdapter(exposureEntity -> {
+      ExposureBottomSheetFragment sheet = ExposureBottomSheetFragment.newInstance(exposureEntity);
+      sheet.show(getChildFragmentManager(), ExposureBottomSheetFragment.TAG);
+    });
     exposuresList.setItemAnimator(null);
     exposuresList.setLayoutManager(new LinearLayoutManager(requireContext(),
         LinearLayoutManager.VERTICAL, false));
@@ -95,9 +97,8 @@ public class ExposureFragment extends Fragment {
         new ViewModelProvider(this, getDefaultViewModelProviderFactory())
             .get(ExposureViewModel.class);
     exposureViewModel
-        .getAllExposureEntityLiveData()
-        .observe(getViewLifecycleOwner(),
-            exposureEntities -> refreshUiForExposureEntities(exposureEntities));
+        .getAllLiveData()
+        .observe(getViewLifecycleOwner(), this::refreshUiForExposureEntities);
     tokenViewModel =
         new ViewModelProvider(this, getDefaultViewModelProviderFactory())
             .get(TokenViewModel.class);
@@ -131,8 +132,8 @@ public class ExposureFragment extends Fragment {
           }
 
           if (tokenViewModel != null) {
-            FluentFuture.from(tokenViewModel.getAllTokenEntityAsync())
-                .transformAsync((tokenEntities) -> checkForRespondedTokensAsync(tokenEntities),
+            FluentFuture.from(tokenViewModel.getAllAsync())
+                .transformAsync(this::checkForRespondedTokensAsync,
                     AppExecutors.getBackgroundExecutor());
           }
           return null;
@@ -155,11 +156,13 @@ public class ExposureFragment extends Fragment {
               List<ExposureEntity> exposureEntities = new ArrayList<>();
               for (ExposureInformation exposureInformation : exposureInformations) {
                 exposureEntities.add(
-                    ExposureEntity.create(exposureInformation.getDateMillisSinceEpoch()));
+                    ExposureEntity.create(
+                        exposureInformation.getDateMillisSinceEpoch(),
+                        tokenEntity.getLastUpdatedTimestampMs()));
               }
-              return exposureViewModel.upsertExposureEntitiesAsync(exposureEntities);
+              return exposureViewModel.upsertAsync(exposureEntities);
             }, AppExecutors.getLightweightExecutor())
-            .transformAsync((v) -> tokenViewModel.deleteTokenEntityAsync(tokenEntity.getToken()),
+            .transformAsync((v) -> tokenViewModel.deleteByTokensAsync(tokenEntity.getToken()),
                 AppExecutors.getLightweightExecutor()));
       }
     }
@@ -221,20 +224,10 @@ public class ExposureFragment extends Fragment {
   }
 
   /**
-   * Open the Exposure Notifications system settings screen
+   * Open the Exposure Notifications about screen.
    */
-  private void launchSettings() {
-    Intent intent = new Intent("com.google.android.gms.settings.EXPOSURE_NOTIFICATION_SETTINGS");
-    startActivity(intent);
-  }
-
-  public class ExposureClick {
-
-    public void onClicked(ExposureEntity exposureEntity) {
-      ExposureBottomSheetFragment sheet = ExposureBottomSheetFragment.newInstance(exposureEntity);
-      sheet.show(getChildFragmentManager(), ExposureBottomSheetFragment.TAG);
-    }
-
+  private void launchAbout() {
+    startActivity(new Intent(requireContext(), ExposureAboutActivity.class));
   }
 
 }

@@ -42,10 +42,16 @@
 
   <style name="TextAppearance.ExposureNotification.Body2" parent="TextAppearance.MaterialComponents.Body2" />
 
-  <style name="TextAppearance.ExposureNotification.Button" parent="TextAppearance.MaterialComponents.Button" />
+  <style name="TextAppearance.ExposureNotification.Button" parent="TextAppearance.MaterialComponents.Button">
+    <item name="fontFamily">@font/roboto_medium</item>
+    <item name="android:fontFamily">@font/roboto_medium</item>
+  </style>
 
   <style name="TextAppearance.ExposureNotification.Caption" parent="TextAppearance.MaterialComponents.Caption" />
 
-  <style name="TextAppearance.ExposureNotification.Overline" parent="TextAppearance.MaterialComponents.Overline" />
+  <style name="TextAppearance.ExposureNotification.Overline" parent="TextAppearance.MaterialComponents.Overline">
+    <item name="fontFamily">@font/roboto_medium</item>
+    <item name="android:fontFamily">@font/roboto_medium</item>
+  </style>
 
 </resources>

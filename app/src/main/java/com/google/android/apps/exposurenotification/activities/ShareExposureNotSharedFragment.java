@@ -26,22 +26,26 @@ import androidx.fragment.app.Fragment;
 import com.google.android.apps.exposurenotification.R;
 
 /**
- * Page 2 of the Verify Diagnosis & Notify Others flow
+ * Result page for exposure not shared confirmation flows
+ *
+ * <p><ul>
+ * <li> Page 4 for the adding a positive diagnosis flow
+ * <li> Page 3 for the updating a positive diagnosis flow
+ * </ul><p>
  */
-public class ShareExposureCompleteFragment extends Fragment {
+public class ShareExposureNotSharedFragment extends Fragment {
+
+  private static final String TAG = "ShareExposureNotSharedFrag";
+
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-    return inflater.inflate(R.layout.fragment_share_exposure_complete, parent, false);
+    return inflater.inflate(R.layout.fragment_share_exposure_not_shared, parent, false);
   }
 
   @Override
   public void onViewCreated(View view, Bundle savedInstanceState) {
-    Button nextButton = view.findViewById(R.id.share_done_button);
-    nextButton.setOnClickListener(
-        v -> {
-          if (getActivity() != null) {
-            getActivity().finish();
-          }
-        });
+    Button doneButton = view.findViewById(R.id.share_done_button);
+    doneButton.setOnClickListener(v -> requireActivity().finish());
   }
+
 }

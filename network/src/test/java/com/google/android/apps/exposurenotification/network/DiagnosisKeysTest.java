@@ -19,31 +19,43 @@ package com.google.android.apps.exposurenotification.network;
 
 import static com.google.common.truth.Truth.assertThat;
 
-import android.support.test.espresso.core.internal.deps.guava.collect.ImmutableList;
+import android.content.Context;
 import androidx.test.core.app.ApplicationProvider;
+import com.google.common.collect.ImmutableList;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
+import org.robolectric.annotation.Config;
+import org.robolectric.shadow.api.Shadow;
+import org.robolectric.shadows.ShadowTelephonyManager;
 
 /** Tests of {@link DiagnosisKeys}. */
 @RunWith(RobolectricTestRunner.class)
+@Config(shadows = {ShadowTelephonyManager.class})
+@Ignore
 public class DiagnosisKeysTest {
+
+  private ShadowTelephonyManager telephonyManager;
 
   private DiagnosisKeys keys;
 
   @Before
   public void setup() {
-    keys = new DiagnosisKeys(ApplicationProvider.getApplicationContext());
+    Context context = ApplicationProvider.getApplicationContext();
+    telephonyManager = Shadow.extract(context.getSystemService(Context.TELEPHONY_SERVICE));
+    telephonyManager.setNetworkCountryIso("US");
+    keys = new DiagnosisKeys(context);
   }
 
   @Test
-  public void download_shouldReturnEmptyListOfFiles() throws Exception {
-    assertThat(keys.download().get()).isEmpty();
+  public void download_shouldReturnSampleFile() throws Exception {
+    assertThat(keys.download().get()).hasSize(1);
   }
 
   @Test
-  public void upload_shouldReturnNUllValuedFuture() throws Exception {
+  public void upload_emptyList_shouldReturnNullValuedFuture() throws Exception {
     assertThat(keys.upload(ImmutableList.of()).get()).isNull();
   }
 }

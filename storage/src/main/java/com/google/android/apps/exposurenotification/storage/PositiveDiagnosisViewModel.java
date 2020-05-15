@@ -35,11 +35,13 @@ public class PositiveDiagnosisViewModel extends AndroidViewModel {
 
   private final MutableLiveData<ZonedDateTime> testTimestamp = new MutableLiveData<>();
 
-  private final ExposureNotificationRepository exposureNotificationRepository;
+  private final PositiveDiagnosisRepository repository;
+  private final LiveData<List<PositiveDiagnosisEntity>> getAllLiveData;
 
   public PositiveDiagnosisViewModel(Application application) {
     super(application);
-    exposureNotificationRepository = new ExposureNotificationRepository(application);
+    repository = new PositiveDiagnosisRepository(application);
+    getAllLiveData = repository.getAllLiveData();
   }
 
   @NonNull
@@ -55,14 +57,31 @@ public class PositiveDiagnosisViewModel extends AndroidViewModel {
   }
 
   @NonNull
-  public LiveData<List<PositiveDiagnosisEntity>> getAllLiveData() {
-    return exposureNotificationRepository.getAllPositiveDiagnosisEntitiesLiveData();
+  public LiveData<PositiveDiagnosisEntity> getByIdLiveData(long id) {
+    // TODO: cache this locally.
+    return repository.getByIdLiveData(id);
   }
 
   @NonNull
-  public ListenableFuture<Void> upsertPositiveDiagnosisEntityAsync() {
-    return exposureNotificationRepository.upsertPositiveDiagnosisEntityAsync(
-        PositiveDiagnosisEntity.create(testTimestamp.getValue())
-    );
+  public LiveData<List<PositiveDiagnosisEntity>> getAllLiveData() {
+    return getAllLiveData;
   }
+
+  @NonNull
+  public ListenableFuture<Void> upsertAsync(
+      ZonedDateTime testTimestamp, boolean testShared) {
+    return repository.upsertAsync(
+        PositiveDiagnosisEntity.create(testTimestamp, testShared));
+  }
+
+  @NonNull
+  public ListenableFuture<Void> deleteByIdAsync(long id) {
+    return repository.deleteByIdAsync(id);
+  }
+
+  @NonNull
+  public ListenableFuture<Void> markSharedForIdAsync(long id, boolean shared) {
+    return repository.markSharedForIdAsync(id, shared);
+  }
+
 }

@@ -107,11 +107,6 @@ public final class ExposureNotificationActivity extends AppCompatActivity {
     }
   }
 
-  @Override
-  public void onResume() {
-    super.onResume();
-  }
-
   /**
    * Save the {@link HomeFragment} across rotations or other configuration changes.
    *

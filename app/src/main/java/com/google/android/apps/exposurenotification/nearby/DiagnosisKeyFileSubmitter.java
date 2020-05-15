@@ -21,6 +21,7 @@ import android.content.Context;
 import android.util.Log;
 import com.google.android.apps.exposurenotification.common.AppExecutors;
 import com.google.android.apps.exposurenotification.common.TaskToFutureAdapter;
+import com.google.common.util.concurrent.FluentFuture;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 import java.io.File;
@@ -29,15 +30,10 @@ import java.util.concurrent.TimeUnit;
 import org.threeten.bp.Duration;
 
 /**
- * A class to take responsibility for parsing downloaded Diagnosis Keys and submitting them to
- * Google Play Services.
- *
- * <p>This implementation is a fake that generates random keys instead of actually parsing files.
- * The implementor would flesh out the file parsing logic and likely enhance robustness in the face
- * of large data volumes, partial failures, etc.
+ * A thin class to take responsibility for submitting downloaded Diagnosis Key files to the Google
+ * Play Services Exposure Notifications API.
  */
 public class DiagnosisKeyFileSubmitter {
-
   private static final String TAG = "KeyFileSubmitter";
   private static final Duration API_TIMEOUT = Duration.ofSeconds(10);
 
@@ -54,15 +50,29 @@ public class DiagnosisKeyFileSubmitter {
    * <p>This naive implementation is not robust to individual failures. In fact, a single failure
    * will fail the entire operation. A more robust implementation would support retries, partial
    * completion, and other robustness measures.
+   *
+   * <p>Returns early if given an empty list of files.
    */
-  public ListenableFuture<?> parseFiles(List<File> files, String token) {
-    Log.d(TAG, "Parsing " + files.size() + " diagnosis key files for submission.");
-
-    return TaskToFutureAdapter.getFutureWithTimeout(
-        client.provideDiagnosisKeys(files, token),
-        API_TIMEOUT.toMillis(),
-        TimeUnit.MILLISECONDS,
-        AppExecutors.getScheduledExecutor());
+  public ListenableFuture<?> submitFiles(List<File> files, String token) {
+    if (files.isEmpty()) {
+      Log.d(TAG, "No files to provide to google play services.");
+      return Futures.immediateFuture(null);
+    }
+    Log.d(TAG, "Providing  " + files.size() + " diagnosis key files to google play services.");
+    return FluentFuture.from(
+            TaskToFutureAdapter.getFutureWithTimeout(
+                client.provideDiagnosisKeys(files, token),
+                API_TIMEOUT.toMillis(),
+                TimeUnit.MILLISECONDS,
+                AppExecutors.getScheduledExecutor()))
+        .transform(
+            done -> {
+              // Once the provideDiagnosisKeys() task completes, we can delete the local files.
+              for (File f : files) {
+                f.delete();
+              }
+              return null;
+            },
+            AppExecutors.getBackgroundExecutor());
   }
-
 }

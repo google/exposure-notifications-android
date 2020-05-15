@@ -88,8 +88,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?attr/textAppearanceBody1"
-        android:layout_marginVertical="@dimen/padding_normal"
+        android:layout_marginTop="@dimen/padding_normal"
         android:text="@string/share_test_identifier_help" />
+
+      <Button
+        android:id="@+id/learn_more_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/learn_more"
+        style="@style/Widget.MaterialComponents.Button.TextButton" />
 
       <include layout="@layout/horizontal_divider" />
 
@@ -123,21 +130,29 @@
 
   </ScrollView>
 
-  <Button
-    android:id="@+id/share_next_button"
+  <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="@dimen/padding_normal"
-    android:paddingVertical="@dimen/padding_small"
-    android:text="@string/btn_next" />
+    android:padding="@dimen/padding_normal"
+    android:orientation="vertical"
+    android:background="?android:attr/colorBackground"
+    android:elevation="20dp">
 
-  <Button
-    android:id="@+id/share_done_button"
-    style="@style/Widget.MaterialComponents.Button.TextButton"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="@dimen/padding_normal"
-    android:layout_marginHorizontal="@dimen/padding_normal"
-    android:text="@string/btn_cancel" />
+    <Button
+      android:id="@+id/share_next_button"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginHorizontal="@dimen/padding_normal"
+      android:text="@string/btn_next" />
+
+    <Button
+      android:id="@+id/share_cancel_button"
+      style="@style/Widget.MaterialComponents.Button.TextButton"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginHorizontal="@dimen/padding_normal"
+      android:text="@string/btn_cancel" />
+
+  </LinearLayout>
 
 </LinearLayout>

@@ -37,13 +37,16 @@ import com.google.android.apps.exposurenotification.common.AppExecutors;
 import com.google.android.apps.exposurenotification.nearby.ExposureNotificationBroadcastReceiver;
 import com.google.android.apps.exposurenotification.nearby.ExposureNotificationClientWrapper;
 import com.google.android.apps.exposurenotification.nearby.ProvideDiagnosisKeysWorker;
+import com.google.android.apps.exposurenotification.network.Uris;
+import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
+import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.NetworkMode;
 import com.google.android.apps.exposurenotification.storage.ExposureViewModel;
 import com.google.android.apps.exposurenotification.storage.TokenEntity;
 import com.google.android.apps.exposurenotification.storage.TokenViewModel;
 import com.google.android.gms.nearby.exposurenotification.ExposureNotificationClient;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.switchmaterial.SwitchMaterial;
-import com.google.common.collect.Lists;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import java.util.List;
@@ -70,6 +73,29 @@ public class DebugFragment extends Fragment {
     }
   };
 
+  private final OnCheckedChangeListener networkModeChangeListener =
+      new OnCheckedChangeListener() {
+        @Override
+        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+          Uris uris = new Uris(requireContext());
+          if (uris.hasDefaultUris()) {
+            preferences.setNetworkMode(NetworkMode.FAKE);
+            Snackbar.make(
+                    requireView(),
+                    R.string.debug_network_mode_default_uri,
+                    BaseTransientBottomBar.LENGTH_LONG)
+                .show();
+            ((SwitchMaterial) requireView().findViewById(R.id.network_mode)).setChecked(false);
+            return;
+          }
+          if (isChecked) {
+            preferences.setNetworkMode(NetworkMode.TEST);
+          } else {
+            preferences.setNetworkMode(NetworkMode.FAKE);
+          }
+        }
+      };
+
   private final Callback permissionHelperCallback = new Callback() {
     @Override
     public void onFailure() {
@@ -93,6 +119,7 @@ public class DebugFragment extends Fragment {
   };
 
   private final ExposureNotificationPermissionHelper permissionHelper;
+  private ExposureNotificationSharedPreferences preferences;
 
   public DebugFragment() {
     permissionHelper = new ExposureNotificationPermissionHelper(this, permissionHelperCallback);
@@ -110,12 +137,16 @@ public class DebugFragment extends Fragment {
 
   @Override
   public void onViewCreated(View view, Bundle savedInstanceState) {
+    preferences = new ExposureNotificationSharedPreferences(requireContext());
     view.findViewById(R.id.debug_test_exposure_notify_button)
         .setOnClickListener(v -> testExposureNotifyAction());
     view.findViewById(R.id.debug_exposure_reset_button)
         .setOnClickListener(v -> exposureResetAction());
     view.findViewById(R.id.debug_provide_keys_button)
         .setOnClickListener(v -> provideKeysAction());
+    SwitchMaterial networkSwitch = view.findViewById(R.id.network_mode);
+    networkSwitch.setOnCheckedChangeListener(networkModeChangeListener);
+    networkSwitch.setChecked(preferences.getNetworkMode(NetworkMode.FAKE).equals(NetworkMode.TEST));
   }
 
   @Override
@@ -161,11 +192,11 @@ public class DebugFragment extends Fragment {
             .get(TokenViewModel.class);
     // First inserts/updates the hard coded tokens.
     Futures.addCallback(Futures.allAsList(
-        tokenViewModel.upsertTokenEntityAsync(
+        tokenViewModel.upsertAsync(
             TokenEntity.create(ExposureNotificationClientWrapper.FAKE_TOKEN_1, false)),
-        tokenViewModel.upsertTokenEntityAsync(
+        tokenViewModel.upsertAsync(
             TokenEntity.create(ExposureNotificationClientWrapper.FAKE_TOKEN_2, false)),
-        tokenViewModel.upsertTokenEntityAsync(
+        tokenViewModel.upsertAsync(
             TokenEntity.create(ExposureNotificationClientWrapper.FAKE_TOKEN_3, false))),
         new FutureCallback<List<Void>>() {
           @Override
@@ -220,12 +251,11 @@ public class DebugFragment extends Fragment {
 
     Futures.addCallback(
         Futures.allAsList(
-            tokenViewModel.deleteTokenEntitiesAsync(Lists
-                .newArrayList(
-                    ExposureNotificationClientWrapper.FAKE_TOKEN_1,
-                    ExposureNotificationClientWrapper.FAKE_TOKEN_2,
-                    ExposureNotificationClientWrapper.FAKE_TOKEN_3)),
-            exposureViewModel.deleteAllExposureEntitiesAsync()),
+            tokenViewModel.deleteByTokensAsync(
+                ExposureNotificationClientWrapper.FAKE_TOKEN_1,
+                ExposureNotificationClientWrapper.FAKE_TOKEN_2,
+                ExposureNotificationClientWrapper.FAKE_TOKEN_3),
+            exposureViewModel.deleteAllAsync()),
         new FutureCallback<List<Void>>() {
           @Override
           public void onSuccess(@NullableDecl List<Void> result) {

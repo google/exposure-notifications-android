@@ -38,7 +38,6 @@ public class ExposureNotificationClientWrapper {
   private static ExposureNotificationClientWrapper INSTANCE;
 
   private final ExposureNotificationClient exposureNotificationClient;
-  private final Context context;
 
   public static final String FAKE_TOKEN_1 = "FAKE_TOKEN_1";
   public static final String FAKE_TOKEN_2 = "FAKE_TOKEN_2";
@@ -52,7 +51,6 @@ public class ExposureNotificationClientWrapper {
   }
 
   ExposureNotificationClientWrapper(Context context) {
-    this.context = context;
     exposureNotificationClient = Nearby.getExposureNotificationClient(context);
   }
 

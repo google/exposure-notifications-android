@@ -25,7 +25,6 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
-import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationCompat.Builder;
@@ -36,11 +35,13 @@ import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.activities.ExposureNotificationActivity;
 import com.google.android.apps.exposurenotification.common.AppExecutors;
 import com.google.android.apps.exposurenotification.common.TaskToFutureAdapter;
-import com.google.android.apps.exposurenotification.storage.ExposureNotificationRepository;
+import com.google.android.apps.exposurenotification.storage.TokenEntity;
+import com.google.android.apps.exposurenotification.storage.TokenRepository;
 import com.google.android.gms.nearby.exposurenotification.ExposureNotificationClient;
 import com.google.common.util.concurrent.FluentFuture;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -57,13 +58,13 @@ public class StateUpdatedWorker extends ListenableWorker {
       "com.google.android.apps.exposurenotification.ACTION_LAUNCH_FROM_EXPOSURE_NOTIFICATION";
 
   private final Context context;
-  private final ExposureNotificationRepository repository;
+  private final TokenRepository tokenRepository;
 
   public StateUpdatedWorker(
       @NonNull Context context, @NonNull WorkerParameters workerParams) {
     super(context, workerParams);
     this.context = context;
-    this.repository = new ExposureNotificationRepository(context);
+    this.tokenRepository = new TokenRepository(context);
   }
 
   @NonNull
@@ -82,12 +83,11 @@ public class StateUpdatedWorker extends ListenableWorker {
             if (exposureSummary.getMatchedKeyCount() > 0) {
               // Positive so show a notification and update the token.
               showNotification();
-              Log.w(TAG, "marking token responded:" + token);
-              return repository.markTokenEntityRespondedAsync(token);
+              // Update the TokenEntity by upserting with the same token.
+              return tokenRepository.upsertAsync(TokenEntity.create(token, true));
             } else {
               // No matches so we show no notification and just delete the token.
-              Log.w(TAG, "deleting token:" + token);
-              return repository.deleteTokenEntityAsync(token);
+              return tokenRepository.deleteByTokensAsync(token);
             }
           }, AppExecutors.getBackgroundExecutor())
           .transform((v) -> Result.success(), AppExecutors.getLightweightExecutor())
@@ -103,7 +103,7 @@ public class StateUpdatedWorker extends ListenableWorker {
               NotificationManager.IMPORTANCE_HIGH);
       channel.setDescription(context.getString(R.string.notification_channel_description));
       NotificationManager notificationManager = context.getSystemService(NotificationManager.class);
-      notificationManager.createNotificationChannel(channel);
+      Objects.requireNonNull(notificationManager).createNotificationChannel(channel);
     }
   }
 
@@ -116,6 +116,7 @@ public class StateUpdatedWorker extends ListenableWorker {
     NotificationCompat.Builder builder =
         new Builder(context, EXPOSURE_NOTIFICATION_CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_notification)
+            .setColor(getApplicationContext().getResources().getColor(R.color.notification_color))
             .setContentTitle(context.getString(R.string.notification_title))
             .setContentText(context.getString(R.string.notification_message))
             .setStyle(new NotificationCompat.BigTextStyle()

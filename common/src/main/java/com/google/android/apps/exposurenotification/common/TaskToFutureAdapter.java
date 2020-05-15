@@ -21,7 +21,6 @@ import androidx.concurrent.futures.CallbackToFutureAdapter;
 import com.google.android.gms.tasks.Task;
 import com.google.common.util.concurrent.FluentFuture;
 import com.google.common.util.concurrent.ListenableFuture;
-import java.util.concurrent.Executor;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
