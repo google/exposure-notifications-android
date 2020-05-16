@@ -17,7 +17,7 @@
 
 package com.google.android.apps.exposurenotification;
 
-import androidx.multidex.MultiDexApplication;
+import android.app.Application;
 import com.google.android.apps.exposurenotification.activities.ExposureNotificationActivity;
 import com.jakewharton.threetenabp.AndroidThreeTen;
 
@@ -26,7 +26,7 @@ import com.jakewharton.threetenabp.AndroidThreeTen;
  *
  * <p>For UI see {@link ExposureNotificationActivity}
  */
-public final class ExposureNotificationApplication extends MultiDexApplication {
+public final class ExposureNotificationApplication extends Application {
 
   @Override
   public void onCreate() {
