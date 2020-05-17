@@ -17,7 +17,6 @@
 
 package com.google.android.apps.exposurenotification.activities;
 
-import static android.view.View.VISIBLE;
 import static com.google.android.apps.exposurenotification.activities.ExposureNotificationActivity.HOME_FRAGMENT_TAG;
 
 import android.content.Intent;
@@ -25,7 +24,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

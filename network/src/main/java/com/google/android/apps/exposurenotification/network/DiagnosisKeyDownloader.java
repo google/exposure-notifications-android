@@ -150,9 +150,7 @@ class DiagnosisKeyDownloader {
 
     // Add a listener to clean up the receiver.
     filesDownloaded.addListener(
-        () -> {
-          context.unregisterReceiver(downloadStatusReceiver);
-        },
+        () -> context.unregisterReceiver(downloadStatusReceiver),
         AppExecutors.getLightweightExecutor());
 
     return filesDownloaded;
