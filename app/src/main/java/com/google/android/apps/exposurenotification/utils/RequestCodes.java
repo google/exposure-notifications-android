@@ -15,22 +15,13 @@
  *
  */
 
-package com.google.android.apps.exposurenotification;
+package com.google.android.apps.exposurenotification.utils;
 
-import androidx.multidex.MultiDexApplication;
-import com.google.android.apps.exposurenotification.home.ExposureNotificationActivity;
-import com.jakewharton.threetenabp.AndroidThreeTen;
+public final class RequestCodes {
 
-/**
- * ExposureNotificationApplication is instantiated whenever the app is running.
- *
- * <p>For UI see {@link ExposureNotificationActivity}
- */
-public final class ExposureNotificationApplication extends MultiDexApplication {
+  public static final int REQUEST_CODE_START_EXPOSURE_NOTIFICATION = 1111;
+  public static final int REQUEST_CODE_GET_TEMP_EXPOSURE_KEY_HISTORY = 2222;
 
-  @Override
-  public void onCreate() {
-    super.onCreate();
-    AndroidThreeTen.init(this);
+  private RequestCodes() {
   }
 }

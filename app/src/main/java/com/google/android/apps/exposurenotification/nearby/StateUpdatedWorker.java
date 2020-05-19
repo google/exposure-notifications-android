@@ -32,7 +32,7 @@ import androidx.core.app.NotificationManagerCompat;
 import androidx.work.ListenableWorker;
 import androidx.work.WorkerParameters;
 import com.google.android.apps.exposurenotification.R;
-import com.google.android.apps.exposurenotification.activities.ExposureNotificationActivity;
+import com.google.android.apps.exposurenotification.home.ExposureNotificationActivity;
 import com.google.android.apps.exposurenotification.common.AppExecutors;
 import com.google.android.apps.exposurenotification.common.TaskToFutureAdapter;
 import com.google.android.apps.exposurenotification.storage.TokenEntity;
@@ -124,7 +124,9 @@ public class StateUpdatedWorker extends ListenableWorker {
             .setPriority(NotificationCompat.PRIORITY_MAX)
             .setContentIntent(pendingIntent)
             .setOnlyAlertOnce(true)
-            .setAutoCancel(true);
+            .setAutoCancel(true)
+            // Do not reveal this notification on a secure lockscreen.
+            .setVisibility(NotificationCompat.VISIBILITY_SECRET);
     NotificationManagerCompat notificationManager = NotificationManagerCompat
         .from(context);
     notificationManager.notify(0, builder.build());

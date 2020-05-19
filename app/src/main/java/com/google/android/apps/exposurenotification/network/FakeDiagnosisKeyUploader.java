@@ -15,22 +15,22 @@
  *
  */
 
-package com.google.android.apps.exposurenotification;
+package com.google.android.apps.exposurenotification.network;
 
-import androidx.multidex.MultiDexApplication;
-import com.google.android.apps.exposurenotification.home.ExposureNotificationActivity;
-import com.jakewharton.threetenabp.AndroidThreeTen;
+import android.content.Context;
+import com.google.common.util.concurrent.Futures;
+import com.google.common.util.concurrent.ListenableFuture;
+import java.util.List;
 
-/**
- * ExposureNotificationApplication is instantiated whenever the app is running.
- *
- * <p>For UI see {@link ExposureNotificationActivity}
- */
-public final class ExposureNotificationApplication extends MultiDexApplication {
+/** A fake NOOP implementation similar to {@link DiagnosisKeyUploader}. */
+public class FakeDiagnosisKeyUploader {
+  private final Context context;
 
-  @Override
-  public void onCreate() {
-    super.onCreate();
-    AndroidThreeTen.init(this);
+  FakeDiagnosisKeyUploader(Context context) {
+    this.context = context;
+  }
+
+  ListenableFuture<Void> upload(List<DiagnosisKey> diagnosisKeys) {
+    return Futures.immediateFuture(null);
   }
 }

@@ -20,6 +20,11 @@ apply plugin: 'com.android.application'
 ext.build_number = project.hasProperty('BUILD_NUMBER') ? project.getProperty('BUILD_NUMBER') : "1"
 ext.build_label = project.hasProperty('BUILD_LABEL') ? project.getProperty('BUILD_LABEL') : "SNAPSHOT"
 
+// Fetch server details from command line arguments (for CI)
+ext.key_server_upload_uri = project.hasProperty('UPLOAD_URI') ? project.getProperty('UPLOAD_URI') : "http://example.com"
+ext.key_server_download_base_uri = project.hasProperty('DOWNLOAD_URI') ? project.getProperty('DOWNLOAD_URI') : "http://example.com"
+ext.safetynet_api_key = project.hasProperty('SAFETYNET_KEY') ? project.getProperty('SAFETYNET_KEY') : "REPLACE-ME"
+
 android {
     compileSdkVersion 29
     defaultConfig {
@@ -33,6 +38,10 @@ android {
 
         testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
         vectorDrawables.useSupportLibrary true
+
+        resValue("string", "key_server_upload_uri", key_server_upload_uri)
+        resValue("string", "key_server_download_base_uri", key_server_download_base_uri)
+        resValue("string", "safetynet_api_key", safetynet_api_key)
     }
 
     buildTypes {
@@ -69,30 +78,62 @@ android {
 }
 
 dependencies {
-    api fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+    implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
 
-    api 'com.jakewharton.threetenabp:threetenabp:1.2.4'
-
-    implementation project(':common')
-    implementation project(':storage')
-    implementation project(':network')
+    implementation 'com.google.auto.value:auto-value-annotations:1.7'
+    annotationProcessor 'com.google.auto.value:auto-value:1.7'
 
     implementation 'androidx.appcompat:appcompat:1.2.0-beta01'
-    implementation 'com.google.android.material:material:1.1.0'
     implementation 'androidx.fragment:fragment:1.2.4'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
+
+    def lifecycle_version = "2.2.0"
+    implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-process:$lifecycle_version"
+    implementation 'androidx.lifecycle:lifecycle-viewmodel:2.2.0'
+
+    implementation 'androidx.concurrent:concurrent-futures:1.0.0'
+
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'androidx.work:work-runtime:2.3.4'
+
     implementation 'androidx.multidex:multidex:2.0.1'
+
+    implementation 'androidx.room:room-guava:2.2.5'
+    implementation 'androidx.room:room-runtime:2.2.5'
+    annotationProcessor 'androidx.room:room-compiler:2.2.5'
+
+    implementation 'androidx.work:work-runtime:2.3.4'
+
+    implementation 'commons-io:commons-io:2.5'
+
+    implementation 'com.android.volley:volley:1.1.1'
+
+    implementation 'com.google.android.gms:play-services-base:17.2.1'
+    implementation 'com.google.android.gms:play-services-basement:17.2.1'
+    implementation 'com.google.android.gms:play-services-safetynet:17.0.0'
+    implementation 'com.google.android.gms:play-services-tasks:17.0.2'
+
+    implementation 'com.google.android.material:material:1.1.0'
+
+    implementation 'com.google.guava:guava:29.0-android'
+
+    implementation 'com.google.android.gms:play-services-tasks:17.0.2'
+    implementation 'com.google.android.gms:play-services-base:17.2.1'
+    implementation 'com.google.android.gms:play-services-basement:17.2.1'
+
+    implementation 'com.google.protobuf:protobuf-java:3.11.4'
+
+    implementation 'com.jakewharton.threetenabp:threetenabp:1.2.4'
+
+    debugImplementation 'androidx.fragment:fragment-testing:1.2.4'
 
     testImplementation 'junit:junit:4.13'
     testImplementation 'androidx.test.ext:junit:1.1.2-beta01'
     testImplementation 'androidx.test:core:1.3.0-beta01'
     testImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     testImplementation 'com.android.support.test:runner:1.0.2'
+    testImplementation 'com.google.guava:guava-testlib:29.0-jre'
     testImplementation 'com.google.truth:truth:1.0.1'
     testImplementation 'org.robolectric:robolectric:4.3.1'
-    debugImplementation 'androidx.fragment:fragment-testing:1.2.4'
     //noinspection FragmentGradleConfiguration
     testImplementation 'androidx.fragment:fragment-testing:1.2.4'
 }

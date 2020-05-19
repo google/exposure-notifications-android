@@ -175,7 +175,7 @@
 
   <string name="dialog_delete_positive_test_action">Delete</string>
 
-  <string name="positive_test_results">Positive test results</string>
+  <string name="positive_test_results">Staging</string>
 
   <string name="no_positive_test_results">No positive test results</string>
 
@@ -252,5 +252,7 @@
   <string name="notification_channel_name">Exposure Notification</string>
 
   <string name="notification_channel_description">Exposure notification alerts.</string>
+
+  <string name="learn_more">Learn more</string>
 
 </resources>

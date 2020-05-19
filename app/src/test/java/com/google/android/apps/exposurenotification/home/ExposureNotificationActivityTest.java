@@ -15,22 +15,26 @@
  *
  */
 
-package com.google.android.apps.exposurenotification;
+package com.google.android.apps.exposurenotification.home;
 
-import androidx.multidex.MultiDexApplication;
-import com.google.android.apps.exposurenotification.home.ExposureNotificationActivity;
-import com.jakewharton.threetenabp.AndroidThreeTen;
+import static com.google.common.truth.Truth.assertThat;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.robolectric.Robolectric;
+import org.robolectric.RobolectricTestRunner;
 
 /**
- * ExposureNotificationApplication is instantiated whenever the app is running.
- *
- * <p>For UI see {@link ExposureNotificationActivity}
+ * Tests of {@link ExposureNotificationActivity}.
  */
-public final class ExposureNotificationApplication extends MultiDexApplication {
+@RunWith(RobolectricTestRunner.class)
+public class ExposureNotificationActivityTest {
 
-  @Override
-  public void onCreate() {
-    super.onCreate();
-    AndroidThreeTen.init(this);
+  @Test
+  public void setupActivity_isNotNull() {
+    ExposureNotificationActivity activity = Robolectric.setupActivity(ExposureNotificationActivity.class);
+
+    assertThat(activity).isNotNull();
   }
+
 }

@@ -35,7 +35,7 @@
       android:theme="@style/ExposureNotification">
 
     <!-- Activities -->
-    <activity android:name=".activities.ExposureNotificationActivity">
+    <activity android:name=".home.ExposureNotificationActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />
@@ -43,19 +43,24 @@
     </activity>
 
     <activity
-      android:name=".activities.ExposureLearnMoreActivity"
+      android:name=".exposure.ExposureLearnMoreActivity"
       android:exported="false"
-      android:parentActivityName=".activities.ExposureNotificationActivity" />
+      android:parentActivityName=".home.ExposureNotificationActivity" />
 
     <activity
-      android:name=".activities.ExposureAboutActivity"
+      android:name=".notify.NotifyLearnMoreActivity"
       android:exported="false"
-      android:parentActivityName=".activities.ExposureNotificationActivity" />
+      android:parentActivityName=".home.ExposureNotificationActivity" />
 
     <activity
-      android:name=".activities.ShareExposureActivity"
+      android:name=".exposure.ExposureAboutActivity"
       android:exported="false"
-      android:parentActivityName=".activities.ExposureNotificationActivity" />
+      android:parentActivityName=".home.ExposureNotificationActivity" />
+
+    <activity
+      android:name=".notify.ShareDiagnosisActivity"
+      android:exported="false"
+      android:parentActivityName=".home.ExposureNotificationActivity" />
 
     <!-- Receivers -->
     <receiver

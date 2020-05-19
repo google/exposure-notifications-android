@@ -16,6 +16,3 @@
  */
 
 include ':app'
-include ':network'
-include ':common'
-include ':storage'
