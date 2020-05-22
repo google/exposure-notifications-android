@@ -33,7 +33,7 @@ public class TemporaryExposureKeyEncodingHelper {
 
   private static final BaseEncoding BASE64 = BaseEncoding.base64();
 
-  private static final String KEY_DATA = "keyData";
+  private static final String KEY = "key";
   private static final String ROLLING_START_NUMBER = "rollingStartNumber";
   private static final String ROLLING_PERIOD = "rollingPeriod";
   private static final String TRANSMISSION_RISK_LEVEL = "transmissionRiskLevel";
@@ -67,10 +67,12 @@ public class TemporaryExposureKeyEncodingHelper {
 
   private static JSONObject encodeSingleAsJsonObject(TemporaryExposureKey temporaryExposureKey)
       throws JSONException {
+    int rollingPeriod = temporaryExposureKey.getRollingPeriod();
+    if (rollingPeriod == 0) rollingPeriod = 144; // the API incorrectly returns a rollingPeriod of 0
     return new JSONObject()
-        .put(KEY_DATA, BASE64.encode(temporaryExposureKey.getKeyData()))
+        .put(KEY, BASE64.encode(temporaryExposureKey.getKeyData()))
         .put(ROLLING_START_NUMBER, temporaryExposureKey.getRollingStartIntervalNumber())
-        .put(ROLLING_PERIOD, temporaryExposureKey.getRollingPeriod())
+        .put(ROLLING_PERIOD, rollingPeriod)
         .put(TRANSMISSION_RISK_LEVEL, temporaryExposureKey.getTransmissionRiskLevel());
   }
 
@@ -106,7 +108,7 @@ public class TemporaryExposureKeyEncodingHelper {
   private static TemporaryExposureKey decodeObject(JSONObject jsonObject)
       throws JSONException, IllegalArgumentException {
     return new TemporaryExposureKeyBuilder()
-        .setKeyData(BASE64.decode(jsonObject.getString(KEY_DATA)))
+        .setKeyData(BASE64.decode(jsonObject.getString(KEY)))
         .setRollingStartIntervalNumber(jsonObject.getInt(ROLLING_START_NUMBER))
         .setRollingPeriod(jsonObject.getInt(ROLLING_PERIOD))
         .setTransmissionRiskLevel(jsonObject.getInt(TRANSMISSION_RISK_LEVEL))
