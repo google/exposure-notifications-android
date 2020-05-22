@@ -17,19 +17,24 @@
 
 package com.google.android.apps.exposurenotification.debug;
 
+import android.content.Intent;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.home.ExposureNotificationViewModel;
 import com.google.android.apps.exposurenotification.network.Uris;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.NetworkMode;
-import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
@@ -72,13 +77,30 @@ public class DebugHomeFragment extends Fragment {
 
     exposureNotificationViewModel
         .getApiErrorLiveEvent()
-        .observe(getViewLifecycleOwner(), unused -> {
-          View rootView = getView();
-          if (rootView != null) {
-            Snackbar.make(rootView, R.string.generic_error_message, Snackbar.LENGTH_LONG).show();
-          }
-        });
+        .observe(
+            getViewLifecycleOwner(),
+            unused -> maybeShowSnackbar(getString(R.string.generic_error_message)));
 
+    // Version
+    TextView appVersion = view.findViewById(R.id.debug_app_version);
+    appVersion.setText(
+        getString(
+            R.string.debug_version_app, getVersionNameForPackage(getContext().getPackageName())));
+
+    TextView gmsVersion = view.findViewById(R.id.debug_gms_version);
+    gmsVersion.setText(
+        getString(
+            R.string.debug_version_gms,
+            getVersionNameForPackage(GoogleApiAvailability.GOOGLE_PLAY_SERVICES_PACKAGE)));
+
+    // Master switch
+    SwitchMaterial masterSwitch = view.findViewById(R.id.master_switch);
+    masterSwitch.setOnCheckedChangeListener(masterSwitchChangeListener);
+    exposureNotificationViewModel
+        .getInFlightLiveData()
+        .observe(getViewLifecycleOwner(), isInFlight -> masterSwitch.setEnabled(!isInFlight));
+
+    // Test exposure notification
     view.findViewById(R.id.debug_test_exposure_notify_button)
         .setOnClickListener(
             v -> debugHomeViewModel.addTestExposures(getString(R.string.generic_error_message)));
@@ -90,28 +112,23 @@ public class DebugHomeFragment extends Fragment {
                     getString(R.string.debug_test_exposure_reset_success),
                     getString(R.string.generic_error_message)));
 
+    // Matching
+    Button manualMatching = view.findViewById(R.id.debug_matching_manual_button);
+    manualMatching.setOnClickListener(
+        v -> startActivity(new Intent(requireContext(), MatchingDebugActivity.class)));
+
     view.findViewById(R.id.debug_provide_keys_button)
         .setOnClickListener(
             v -> {
               debugHomeViewModel.provideKeys();
-              View rootView = getView();
-              if (rootView == null) {
-                return;
-              }
-              Snackbar.make(rootView, R.string.debug_provide_keys_enqueued, Snackbar.LENGTH_LONG)
-                  .show();
+              maybeShowSnackbar(getString(R.string.debug_provide_keys_enqueued));
             });
 
+    // Network
     SwitchMaterial networkSwitch = view.findViewById(R.id.network_mode);
     networkSwitch.setOnCheckedChangeListener(networkModeChangeListener);
     networkSwitch.setChecked(
         debugHomeViewModel.getNetworkMode(NetworkMode.FAKE).equals(NetworkMode.TEST));
-
-    SwitchMaterial masterSwitch = view.findViewById(R.id.master_switch);
-    masterSwitch.setOnCheckedChangeListener(masterSwitchChangeListener);
-    exposureNotificationViewModel
-        .getInFlightLiveData()
-        .observe(getViewLifecycleOwner(), isInFlight -> masterSwitch.setEnabled(!isInFlight));
   }
 
   @Override
@@ -140,11 +157,7 @@ public class DebugHomeFragment extends Fragment {
         Uris uris = new Uris(requireContext());
         if (uris.hasDefaultUris()) {
           debugHomeViewModel.setNetworkMode(NetworkMode.FAKE);
-          Snackbar.make(
-                  requireView(),
-                  R.string.debug_network_mode_default_uri,
-                  BaseTransientBottomBar.LENGTH_LONG)
-              .show();
+          maybeShowSnackbar(getString(R.string.debug_network_mode_default_uri));
           ((SwitchMaterial) requireView().findViewById(R.id.network_mode)).setChecked(false);
           return;
         }
@@ -174,5 +187,22 @@ public class DebugHomeFragment extends Fragment {
     masterSwitch.setOnCheckedChangeListener(null);
     masterSwitch.setChecked(currentlyEnabled);
     masterSwitch.setOnCheckedChangeListener(masterSwitchChangeListener);
+  }
+
+  /** Gets the version name for a specified package. Returns a debug string if not found. */
+  private String getVersionNameForPackage(String packageName) {
+    try {
+      return getContext().getPackageManager().getPackageInfo(packageName, 0).versionName;
+    } catch (NameNotFoundException e) {
+      Log.e(TAG, "Couldn't get the app version", e);
+    }
+    return getString(R.string.debug_version_not_available);
+  }
+
+  private void maybeShowSnackbar(String message) {
+    View rootView = getView();
+    if (rootView != null) {
+      Snackbar.make(rootView, message, Snackbar.LENGTH_LONG).show();
+    }
   }
 }

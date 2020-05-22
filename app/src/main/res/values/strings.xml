@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright 2020 Google LLC
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -201,11 +200,11 @@
 
   <string name="debug_test_exposure_reset_success">Done</string>
 
-  <string name="debug_keys_category">Diagnosis Keys</string>
+  <string name="debug_matching_category">Matching</string>
 
-  <string name="debug_provide_keys_description">This will enqueue a background job to provide test diagnosis keys into the exposure notifications API.</string>
+  <string name="debug_provide_keys_description">This will enqueue a background job to provide test diagnosis keys into the exposure notifications API from the server.</string>
 
-  <string name="debug_provide_keys_button_text">Provide Test Diagnosis Keys</string>
+  <string name="debug_provide_keys_button_text">Provide From Server</string>
 
   <string name="debug_provide_keys_enqueued">Enqueued background job</string>
 
@@ -222,10 +221,6 @@
   <string name="notifications_enabled_info">You will be notified if you have been exposed to someone who reported a positive COVID-19 result</string>
 
   <string name="positive_test_result_type">COVID-19</string>
-
-  <string name="missing_test_identifier">Please enter a test identifier</string>
-
-  <string name="missing_test_date">Please enter a test date</string>
 
   <string name="info_saved_locally">
     Sample Public Health Authority App received info on %1$s.
@@ -254,5 +249,103 @@
   <string name="notification_channel_description">Exposure notification alerts.</string>
 
   <string name="learn_more">Learn more</string>
+
+  <string name="debug_version_app">App: %1$s</string>
+
+  <string name="debug_version_gms">Google Play services: %1$s</string>
+
+  <string name="debug_version_not_available">Not available</string>
+
+  <string name="debug_matching_manual_button_text">Provide Manually</string>
+
+  <string name="debug_matching_manual_button_description">Manually get and provide keys locally for testing matching.</string>
+
+  <string name="debug_matching_view_item_date">Date: %1$s</string>
+
+  <string name="debug_matching_view_item_key">KeyData: %1$s</string>
+
+  <string name="debug_matching_view_item_interval_number">RollingStartIntervalNumber: %1$s</string>
+
+  <string name="debug_matching_view_item_rolling_period">RollingPeriod: %1$s</string>
+
+  <string name="debug_matching_view_item_transmission_risk">TransmissionRiskLevel: %1$s</string>
+
+  <string name="debug_matching_view_tab">View Keys</string>
+
+  <string name="debug_matching_provide_tab">Provide Keys</string>
+
+  <string name="debug_matching_provide_single">Single</string>
+
+  <string name="debug_matching_provide_batch">Batch</string>
+
+  <string name="debug_matching_provide_file">File</string>
+
+  <string name="debug_matching_input_file_chooser_title">Select key file</string>
+
+  <string name="debug_matching_single_error">Error, bad single input. Make sure all fields are provided and valid.</string>
+
+  <string name="debug_matching_single_parse_error">Could not parse as an 32 bit integer</string>
+
+  <string name="debug_matching_batch_error">Error, bad batch input. Make sure all fields are provided and valid.</string>
+
+  <string name="debug_matching_file_error">Error, bad file input. Make sure to provide a valid file.</string>
+
+  <string name="debug_matching_token_error">Error, bad token. Please provide a token.</string>
+
+  <string name="debug_matching_provide_success">Provided</string>
+
+  <string name="debug_matching_provide_error_disabled">Failed, API must be enabled</string>
+
+  <string name="debug_matching_provide_error_unknown">Failed to provideDiagnosisKeys</string>
+
+  <string name="qr_scan_button_default">Please scan a barcode</string>
+
+  <string name="qr_back_button_text">Back</string>
+
+  <string name="qr_scan_permission_failed">Camera permission is required</string>
+
+  <string name="qr_scan_detector_not_operational">QR scanning not available on this device</string>
+
+  <string name="debug_matching_provide_category_input">Input</string>
+
+  <string name="debug_matching_provide_input_method_hint">Input method</string>
+
+  <string name="debug_matching_provide_single_key_icon_description">Scan QR Code</string>
+
+  <string name="debug_matching_provide_single_key_hint">Temporary exposure Key</string>
+
+  <string name="debug_matching_provide_single_interval_number_hint">Interval number</string>
+
+  <string name="debug_matching_provide_single_rolling_period_hint">Rolling period</string>
+
+  <string name="debug_matching_provide_single_transmission_risk_hint">Transmission risk level</string>
+
+  <string name="debug_matching_provide_batch_hint">Batch string</string>
+
+  <string name="debug_matching_provide_file_hint">Choose a file</string>
+
+  <string name="debug_matching_provide_submit_category">Provide to API</string>
+
+  <string name="debug_matching_provide_token_hint">Token</string>
+
+  <string name="debug_matching_batch_format_help">Input a batch encoding from the View Keys tab</string>
+
+  <string name="debug_matching_token_digits" translatable="false">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890</string>
+
+  <string name="debug_matching_provide_button_text">Provide</string>
+
+  <string name="debug_matching_matching_title">Manual Matching</string>
+
+  <string name="debug_matching_view_share_button_text">Share all keys as batch string</string>
+
+  <string name="debug_matching_view_share_success">Copied batch string to clipboard</string>
+
+  <string name="debug_matching_view_share_failure">Unable to share</string>
+
+  <string name="debug_matching_view_rejected">Unable to get keys</string>
+
+  <string name="debug_matching_view_api_not_enabled">API must be enabled</string>
+
+  <string name="debug_matching_provide_scan_error">Error parsing QR data</string>
 
 </resources>

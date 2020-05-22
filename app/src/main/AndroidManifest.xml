@@ -21,9 +21,12 @@
 
   <uses-feature android:name="android.hardware.bluetooth_le" android:required="true" />
   <uses-feature android:name="android.hardware.bluetooth" />
+  <uses-feature android:name="android.hardware.camera" />
+  <uses-feature android:name="android.hardware.camera.autofocus" />
 
   <uses-permission android:name="android.permission.INTERNET" />
   <uses-permission android:name="android.permission.BLUETOOTH" />
+  <uses-permission android:name="android.permission.CAMERA" />
 
   <application
       android:allowBackup="false"
@@ -61,6 +64,16 @@
       android:name=".notify.ShareDiagnosisActivity"
       android:exported="false"
       android:parentActivityName=".home.ExposureNotificationActivity" />
+
+    <activity
+      android:name=".debug.MatchingDebugActivity"
+      android:exported="false"
+      android:parentActivityName=".home.ExposureNotificationActivity" />
+
+    <activity android:name=".debug.QRScannerActivity"
+      android:exported="false"
+      android:label="Scan QR Code"
+      android:parentActivityName=".debug.MatchingDebugActivity"/>
 
     <!-- Receivers -->
     <receiver

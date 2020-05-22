@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright 2020 Google LLC
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      https://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  ~
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:orientation="vertical">
+
+  <androidx.core.widget.NestedScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical">
+
+      <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/padding_large"
+        android:layout_marginVertical="@dimen/padding_normal"
+        android:text="@string/debug_matching_provide_category_input"
+        android:textAppearance="?attr/textAppearanceOverline" />
+
+      <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/padding_large"
+        android:layout_marginVertical="@dimen/padding_small"
+        android:hint="@string/debug_matching_provide_input_method_hint">
+
+        <AutoCompleteTextView
+          android:id="@+id/input_method"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:inputType="none"
+          android:clickable="false"
+          android:cursorVisible="false"
+          android:focusable="false"
+          android:focusableInTouchMode="false" />
+
+      </com.google.android.material.textfield.TextInputLayout>
+
+      <ViewFlipper
+        android:id="@+id/input_view_flipper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:measureAllChildren="false"
+        android:layout_marginBottom="@dimen/padding_normal">
+
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="vertical">
+
+          <Button
+            android:id="@+id/scan_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/padding_large"
+            android:layout_marginVertical="@dimen/padding_normal"
+            android:text="@string/debug_matching_provide_single_key_icon_description"
+            app:icon="@drawable/ic_qr_code_24dp"
+            app:iconGravity="end" />
+
+          <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_single_key_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/padding_large"
+            android:layout_marginVertical="@dimen/padding_small"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+
+            <com.google.android.material.textfield.TextInputEditText
+              android:id="@+id/input_single_key"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:hint="@string/debug_matching_provide_single_key_hint"
+              android:importantForAutofill="no"
+              android:digits="abcdefABCDEFZ1234567890"
+              android:inputType="text" />
+
+          </com.google.android.material.textfield.TextInputLayout>
+
+          <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/padding_large"
+            android:layout_marginVertical="@dimen/padding_small"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+
+            <com.google.android.material.textfield.TextInputEditText
+              android:id="@+id/input_single_interval_number"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:hint="@string/debug_matching_provide_single_interval_number_hint"
+              android:importantForAutofill="no"
+              android:inputType="number" />
+
+          </com.google.android.material.textfield.TextInputLayout>
+
+          <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/padding_large"
+            android:layout_marginVertical="@dimen/padding_small"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+
+            <com.google.android.material.textfield.TextInputEditText
+              android:id="@+id/input_single_rolling_period"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:hint="@string/debug_matching_provide_single_rolling_period_hint"
+              android:importantForAutofill="no"
+              android:inputType="number"
+              android:text="144" />
+
+          </com.google.android.material.textfield.TextInputLayout>
+
+          <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/padding_large"
+            android:layout_marginVertical="@dimen/padding_small"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+
+            <com.google.android.material.textfield.TextInputEditText
+              android:id="@+id/input_single_transmission_risk_level"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:hint="@string/debug_matching_provide_single_transmission_risk_hint"
+              android:importantForAutofill="no"
+              android:inputType="number"
+              android:text="1" />
+
+          </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="vertical">
+
+          <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/padding_large"
+            android:layout_marginVertical="@dimen/padding_small"
+            android:text="@string/debug_matching_batch_format_help" />
+
+          <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/padding_large"
+            android:layout_marginVertical="@dimen/padding_small"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+
+            <com.google.android.material.textfield.TextInputEditText
+              android:id="@+id/input_batch"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:hint="@string/debug_matching_provide_batch_hint"
+              android:importantForAutofill="no"
+              android:inputType="textMultiLine" />
+
+          </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="vertical">
+
+          <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_file_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/padding_large"
+            android:layout_marginVertical="@dimen/padding_small"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            app:endIconMode="custom"
+            app:endIconDrawable="@drawable/ic_insert_drive_file_24dp"
+            app:endIconContentDescription="Open file chooser">
+
+            <com.google.android.material.textfield.TextInputEditText
+              android:id="@+id/input_file"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:hint="@string/debug_matching_provide_file_hint"
+              android:importantForAutofill="no"
+              android:inputType="none"
+              android:clickable="false"
+              android:cursorVisible="false"
+              android:focusable="false"
+              android:focusableInTouchMode="false" />
+
+          </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+      </ViewFlipper>
+
+      <include layout="@layout/horizontal_divider" />
+
+      <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/padding_large"
+        android:layout_marginTop="@dimen/padding_normal"
+        android:layout_marginBottom="@dimen/padding_normal"
+        android:text="@string/debug_matching_provide_submit_category"
+        android:textAppearance="?attr/textAppearanceOverline" />
+
+      <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/padding_large"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+
+        <com.google.android.material.textfield.TextInputEditText
+          android:id="@+id/token"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:hint="@string/debug_matching_provide_token_hint"
+          android:importantForAutofill="no"
+          android:digits="@string/debug_matching_token_digits"
+          android:inputType="text" />
+
+      </com.google.android.material.textfield.TextInputLayout>
+
+      <Button
+        android:id="@+id/provide_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/padding_large"
+        android:layout_marginVertical="@dimen/padding_normal"
+        android:text="@string/debug_matching_provide_button_text"
+        style="@style/Widget.MaterialComponents.Button" />
+
+    </LinearLayout>
+
+  </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

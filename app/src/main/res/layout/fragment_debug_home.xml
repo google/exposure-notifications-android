@@ -38,6 +38,33 @@
       android:layout_height="wrap_content"
       android:orientation="vertical">
 
+      <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:paddingVertical="@dimen/padding_normal"
+        android:paddingHorizontal="@dimen/padding_large"
+        android:text="Version"
+        android:textAppearance="?attr/textAppearanceSubtitle1"
+        android:layout_gravity="center"/>
+
+      <TextView
+        android:id="@+id/debug_app_version"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:paddingBottom="@dimen/padding_small"
+        android:paddingHorizontal="@dimen/padding_large"
+        android:textAppearance="?attr/textAppearanceBody2" />
+
+      <TextView
+        android:id="@+id/debug_gms_version"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:paddingBottom="@dimen/padding_small"
+        android:paddingHorizontal="@dimen/padding_large"
+        android:textAppearance="?attr/textAppearanceBody2" />
+
+      <include layout="@layout/horizontal_divider" />
+
       <com.google.android.material.switchmaterial.SwitchMaterial
         android:id="@+id/master_switch"
         android:layout_width="match_parent"
@@ -91,9 +118,26 @@
         android:layout_height="wrap_content"
         android:paddingVertical="@dimen/padding_normal"
         android:paddingHorizontal="@dimen/padding_large"
-        android:text="@string/debug_keys_category"
+        android:text="@string/debug_matching_category"
         android:textAppearance="?attr/textAppearanceSubtitle1"
         android:layout_gravity="center" />
+
+      <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="@dimen/padding_small"
+        android:paddingHorizontal="@dimen/padding_large"
+        android:text="@string/debug_matching_manual_button_description"
+        android:textAppearance="?attr/textAppearanceBody1" />
+
+      <Button
+        android:id="@+id/debug_matching_manual_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/padding_large"
+        android:layout_marginBottom="@dimen/padding_normal"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/debug_matching_manual_button_text" />
 
       <TextView
         android:layout_width="match_parent"
