@@ -27,6 +27,8 @@ import com.google.android.gms.safetynet.SafetyNetApi.AttestationResponse;
 import com.google.common.base.Joiner;
 import com.google.common.io.BaseEncoding;
 import com.google.common.util.concurrent.FluentFuture;
+import com.google.common.util.concurrent.FutureCallback;
+import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -35,6 +37,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 import org.threeten.bp.Duration;
 
 /**
@@ -91,13 +94,28 @@ class DeviceAttestor {
   }
 
   private ListenableFuture<String> safetyNetAttestationFor(String nonce) {
-    return FluentFuture.from(
+    ListenableFuture<String> attestation = FluentFuture.from(
             TaskToFutureAdapter.getFutureWithTimeout(
                 SafetyNet.getClient(context).attest(nonce.getBytes(), safetyNetApiKey),
                 TIMEOUT.toMillis(),
                 TimeUnit.MILLISECONDS,
                 AppExecutors.getScheduledExecutor()))
         .transform(AttestationResponse::getJwsResult, AppExecutors.getBackgroundExecutor());
+
+    // Add a callback just for success/fail logging for debug purposes.
+    Futures.addCallback(attestation, new FutureCallback<String>() {
+      @Override
+      public void onSuccess(@NullableDecl String result) {
+        Log.d(TAG, "SafetyNet attestation succeeded.");
+      }
+
+      @Override
+      public void onFailure(Throwable t) {
+        Log.e(TAG, "SafetyNet attestation failed.", t);
+      }
+    }, AppExecutors.getLightweightExecutor());
+
+    return attestation;
   }
 
   private String cleartextFor(

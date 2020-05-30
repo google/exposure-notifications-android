@@ -128,6 +128,8 @@ public class ShareDiagnosisReviewFragment extends Fragment {
             getViewLifecycleOwner(),
             shared -> {
               if (!shared) {
+                // Using a Toast instead of Snackbar as a workaround to keep the toast showing
+                // across an animation. TODO: Fix.
                 Toast.makeText(getContext(), R.string.share_error, Toast.LENGTH_LONG).show();
               }
               shareDiagnosisViewModel.save(shared);

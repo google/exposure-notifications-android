@@ -20,6 +20,9 @@ package com.google.android.apps.exposurenotification.debug;
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -34,10 +37,12 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.ViewFlipper;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.common.StringUtils;
 import com.google.android.apps.exposurenotification.debug.TemporaryExposureKeyEncodingHelper.DecodeException;
 import com.google.android.gms.nearby.exposurenotification.TemporaryExposureKey;
 import com.google.android.material.button.MaterialButton;
@@ -64,8 +69,7 @@ public class ProvideMatchingFragment extends Fragment {
   private static final int FILE_REQUEST_CODE = 1235;
 
   private static final int POS_SINGLE = 0;
-  private static final int POS_BATCH = 1;
-  private static final int POS_FILE = 2;
+  private static final int POS_FILE = 1;
 
   private static final String TEMP_INPUT_FILENAME = "input-file.zip";
 
@@ -92,11 +96,11 @@ public class ProvideMatchingFragment extends Fragment {
     token.addTextChangedListener(
         new TextWatcher() {
           @Override
-          public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-          }
+          public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
           @Override
-          public void onTextChanged(CharSequence s, int start, int before, int count) {
-          }
+          public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
           @Override
           public void afterTextChanged(Editable s) {
             if (!TextUtils.isEmpty(s.toString())) {
@@ -118,10 +122,6 @@ public class ProvideMatchingFragment extends Fragment {
                   provideButton.setOnClickListener(
                       (v) -> provideMatchingViewModel.provideSingleAction());
                   break;
-                case POS_BATCH:
-                  provideButton.setOnClickListener(
-                      (v) -> provideMatchingViewModel.provideBatchAction());
-                  break;
                 case POS_FILE:
                   provideButton.setOnClickListener(
                       (v) -> provideMatchingViewModel.provideFileAction());
@@ -134,9 +134,8 @@ public class ProvideMatchingFragment extends Fragment {
     AutoCompleteTextView inputModeDropDown = view.findViewById(R.id.input_method);
     List<String> provideInputMethods =
         Lists.newArrayList(
-          getString(R.string.debug_matching_provide_single),
-          getString(R.string.debug_matching_provide_batch),
-          getString(R.string.debug_matching_provide_file));
+            getString(R.string.debug_matching_provide_single),
+            getString(R.string.debug_matching_provide_file));
     ArrayAdapter<String> adapter =
         new ArrayAdapter<>(getContext(), R.layout.item_input_mode, provideInputMethods);
     inputModeDropDown.setAdapter(adapter);
@@ -149,11 +148,11 @@ public class ProvideMatchingFragment extends Fragment {
     inputSingleKey.addTextChangedListener(
         new TextWatcher() {
           @Override
-          public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-          }
+          public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
           @Override
-          public void onTextChanged(CharSequence s, int start, int before, int count) {
-          }
+          public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
           @Override
           public void afterTextChanged(Editable s) {
             if (!TextUtils.isEmpty(s.toString())) {
@@ -172,11 +171,11 @@ public class ProvideMatchingFragment extends Fragment {
     inputSingleIntervalNumber.addTextChangedListener(
         new TextWatcher() {
           @Override
-          public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-          }
+          public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
           @Override
-          public void onTextChanged(CharSequence s, int start, int before, int count) {
-          }
+          public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
           @Override
           public void afterTextChanged(Editable s) {
             if (!TextUtils.isEmpty(s.toString())) {
@@ -189,11 +188,11 @@ public class ProvideMatchingFragment extends Fragment {
     inputSingleRollingPeriod.addTextChangedListener(
         new TextWatcher() {
           @Override
-          public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-          }
+          public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
           @Override
-          public void onTextChanged(CharSequence s, int start, int before, int count) {
-          }
+          public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
           @Override
           public void afterTextChanged(Editable s) {
             if (!TextUtils.isEmpty(s.toString())) {
@@ -204,39 +203,24 @@ public class ProvideMatchingFragment extends Fragment {
 
     EditText inputSingleTransmissionRiskLevel =
         view.findViewById(R.id.input_single_transmission_risk_level);
-    inputSingleTransmissionRiskLevel.addTextChangedListener(new TextWatcher() {
-      @Override
-      public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-      }
-      @Override
-      public void onTextChanged(CharSequence s, int start, int before, int count) {
-      }
-      @Override
-      public void afterTextChanged(Editable s) {
-        if (!TextUtils.isEmpty(s.toString())) {
-          provideMatchingViewModel.setSingleInputTransmissionRiskLevel(tryParseInteger(s.toString()));
-        }
-      }
-    });
+    inputSingleTransmissionRiskLevel.addTextChangedListener(
+        new TextWatcher() {
+          @Override
+          public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
-    // 2. Batch
-    EditText inputBatch = view.findViewById(R.id.input_batch);
-    inputBatch.addTextChangedListener(new TextWatcher() {
-      @Override
-      public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-      }
-      @Override
-      public void onTextChanged(CharSequence s, int start, int before, int count) {
-      }
-      @Override
-      public void afterTextChanged(Editable s) {
-        if (!TextUtils.isEmpty(s.toString())) {
-          provideMatchingViewModel.setBatchInput(s.toString());
-        }
-      }
-    });
+          @Override
+          public void onTextChanged(CharSequence s, int start, int before, int count) {}
 
-    // 3. File
+          @Override
+          public void afterTextChanged(Editable s) {
+            if (!TextUtils.isEmpty(s.toString())) {
+              provideMatchingViewModel.setSingleInputTransmissionRiskLevel(
+                  tryParseInteger(s.toString()));
+            }
+          }
+        });
+
+    // 2. File
     EditText inputFile = view.findViewById(R.id.input_file);
     provideMatchingViewModel
         .getFileInputLiveData()
@@ -259,6 +243,39 @@ public class ProvideMatchingFragment extends Fragment {
               Intent.createChooser(
                   intent, getString(R.string.debug_matching_input_file_chooser_title)),
               FILE_REQUEST_CODE);
+        });
+
+    provideMatchingViewModel
+        .getSigningKeyInfoLiveData()
+        .observe(
+            getViewLifecycleOwner(),
+            keyInfo -> {
+              TextView signaturePublicKey = view.findViewById(R.id.keyfile_signature_public_key);
+              TextView signaturePackage = view.findViewById(R.id.keyfile_signature_package_name);
+              TextView signatureId = view.findViewById(R.id.keyfile_signature_id);
+              TextView signatureVersion = view.findViewById(R.id.keyfile_signature_version);
+              setTextAndCopyAction(signaturePublicKey, keyInfo.publicKeyBase64());
+              setTextAndCopyAction(signaturePackage, keyInfo.packageName());
+              setTextAndCopyAction(signatureId, keyInfo.keyId());
+              setTextAndCopyAction(signatureVersion, keyInfo.keyVersion());
+            });
+  }
+
+  private void setTextAndCopyAction(TextView view, String text) {
+    view.setText(text);
+    view.setOnClickListener(
+        v -> {
+          ClipboardManager clipboard =
+              (ClipboardManager) v.getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+          ClipData clip = ClipData.newPlainText(text, text);
+          clipboard.setPrimaryClip(clip);
+          Snackbar.make(
+                  v,
+                  getString(
+                      R.string.debug_matching_signature_info_copied_text,
+                      StringUtils.truncateWithEllipsis(text, 35)),
+                  Snackbar.LENGTH_SHORT)
+              .show();
         });
   }
 
@@ -335,13 +352,11 @@ public class ProvideMatchingFragment extends Fragment {
     super.onActivityResult(requestCode, resultCode, data);
   }
 
-  /**
-   * Tries to parse an integer string, if not returns 0 and shows a snackbar.
-   */
+  /** Tries to parse an integer string, if not returns 0 and shows a snackbar. */
   private int tryParseInteger(String integer) {
     try {
       return Integer.parseInt(integer);
-    } catch(NumberFormatException e) {
+    } catch (NumberFormatException e) {
       Log.e(TAG, "Couldn't parse number", e);
       maybeShowSnackbar(getString(R.string.debug_matching_single_parse_error));
     }
@@ -354,5 +369,4 @@ public class ProvideMatchingFragment extends Fragment {
       Snackbar.make(requireView(), message, Snackbar.LENGTH_LONG).show();
     }
   }
-
 }

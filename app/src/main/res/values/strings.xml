@@ -17,6 +17,11 @@
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
+  <plurals name="possible_exposure_subheading">
+    <item quantity="one">You were near someone %1$d day ago who has shared their positive COVID-19 test result.</item>
+    <item quantity="other">You were near someone %1$d days ago who has shared their positive COVID-19 test result.</item>
+  </plurals>
+
   <string name="app_name">Sample Public Health Authority App</string>
 
   <string name="btn_start">Get started</string>
@@ -231,11 +236,6 @@
 
   <string name="verified_result_next_steps">Next steps: [Actual copy to be provided by Public Health Authority]</string>
 
-  <plurals name="possible_exposure_subheading">
-    <item quantity="one">You were near someone %1$d day ago who has shared their positive COVID-19 test result.</item>
-    <item quantity="other">You were near someone %1$d days ago who has shared their positive COVID-19 test result.</item>
-  </plurals>
-
   <string name="done">Done</string>
 
   <string name="reference_only">REFERENCE ONLY</string>
@@ -276,8 +276,6 @@
 
   <string name="debug_matching_provide_single">Single</string>
 
-  <string name="debug_matching_provide_batch">Batch</string>
-
   <string name="debug_matching_provide_file">File</string>
 
   <string name="debug_matching_input_file_chooser_title">Select key file</string>
@@ -285,8 +283,6 @@
   <string name="debug_matching_single_error">Error, bad single input. Make sure all fields are provided and valid.</string>
 
   <string name="debug_matching_single_parse_error">Could not parse as an 32 bit integer</string>
-
-  <string name="debug_matching_batch_error">Error, bad batch input. Make sure all fields are provided and valid.</string>
 
   <string name="debug_matching_file_error">Error, bad file input. Make sure to provide a valid file.</string>
 
@@ -320,15 +316,11 @@
 
   <string name="debug_matching_provide_single_transmission_risk_hint">Transmission risk level</string>
 
-  <string name="debug_matching_provide_batch_hint">Batch string</string>
-
   <string name="debug_matching_provide_file_hint">Choose a file</string>
 
   <string name="debug_matching_provide_submit_category">Provide to API</string>
 
   <string name="debug_matching_provide_token_hint">Token</string>
-
-  <string name="debug_matching_batch_format_help">Input a batch encoding from the View Keys tab</string>
 
   <string name="debug_matching_token_digits" translatable="false">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890</string>
 
@@ -336,9 +328,7 @@
 
   <string name="debug_matching_matching_title">Manual Matching</string>
 
-  <string name="debug_matching_view_share_button_text">Share all keys as batch string</string>
-
-  <string name="debug_matching_view_share_success">Copied batch string to clipboard</string>
+  <string name="debug_matching_view_share_success">Copied key hex to clipboard</string>
 
   <string name="debug_matching_view_share_failure">Unable to share</string>
 
@@ -347,5 +337,24 @@
   <string name="debug_matching_view_api_not_enabled">API must be enabled</string>
 
   <string name="debug_matching_provide_scan_error">Error parsing QR data</string>
+
+  <string name="debug_matching_signature_info_category">Diagnosis Key File Signatures</string>
+
+  <string name="debug_matching_signature_info_help">When using the \"Single\" option above, this app
+    creates Diagnosis Key files, signed with a randomly generated key. To use the Diagnosis Key
+    File, the Exposure Notifications API must be in debug mode and needs info about the signature.
+    Tap each item below to copy it; then paste into Exposure Notifications debug controls. NOTE:
+    When using the \"File\" option above, provide the signature info that your file is signed with
+    instead of the below info.</string>
+
+  <string name="debug_matching_public_key_caption">Public key</string>
+
+  <string name="debug_matching_package_caption">App package name</string>
+
+  <string name="debug_matching_key_id_caption">Verification key ID</string>
+
+  <string name="debug_matching_key_version_caption">Verification key version</string>
+
+  <string name="debug_matching_signature_info_copied_text">Copied %1$s</string>
 
 </resources>

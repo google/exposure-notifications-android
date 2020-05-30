@@ -25,6 +25,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import com.google.android.apps.exposurenotification.common.SingleLiveEvent;
 import com.google.android.apps.exposurenotification.nearby.ExposureNotificationClientWrapper;
+import com.google.android.apps.exposurenotification.network.UploadCoverTrafficWorker;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.nearby.exposurenotification.ExposureNotificationStatusCodes;
@@ -47,9 +48,7 @@ public class ExposureNotificationViewModel extends AndroidViewModel {
     exposureNotificationSharedPreferences = new ExposureNotificationSharedPreferences(application);
   }
 
-  /**
-   * A {@link LiveData} of the isEnabled state of the API.
-   */
+  /** A {@link LiveData} of the isEnabled state of the API. */
   public LiveData<Boolean> getIsEnabledLiveData() {
     return isEnabledLiveData;
   }
@@ -61,16 +60,12 @@ public class ExposureNotificationViewModel extends AndroidViewModel {
     return inFlightLiveData;
   }
 
-  /**
-   * An event that requests a resolution with the given {@link ApiException}.
-   */
+  /** An event that requests a resolution with the given {@link ApiException}. */
   public SingleLiveEvent<ApiException> getResolutionRequiredLiveEvent() {
     return resolutionRequiredLiveEvent;
   }
 
-  /**
-   * An event that triggers when there is an error in the API.
-   */
+  /** An event that triggers when there is an error in the API. */
   public SingleLiveEvent<Void> getApiErrorLiveEvent() {
     return apiErrorLiveEvent;
   }
@@ -85,13 +80,18 @@ public class ExposureNotificationViewModel extends AndroidViewModel {
               if (isEnabled) {
                 // if we're seeing it enabled then permission has been granted
                 noteOnboardingCompleted();
+                schedulePeriodicJobs();
               }
             });
   }
 
-  /**
-   * Calls start on the Exposure Notifications API.
-   */
+  private void schedulePeriodicJobs() {
+    Log.i(TAG, "Scheduling post-enable periodic WorkManager jobs...");
+    // This worker schedules some random fake key upload traffic, to help with privacy.
+    UploadCoverTrafficWorker.schedule(getApplication());
+  }
+
+  /** Calls start on the Exposure Notifications API. */
   public void startExposureNotifications() {
     inFlightLiveData.setValue(true);
     ExposureNotificationClientWrapper.get(getApplication())
@@ -128,9 +128,7 @@ public class ExposureNotificationViewModel extends AndroidViewModel {
         .addOnCanceledListener(() -> inFlightLiveData.setValue(false));
   }
 
-  /**
-   * Handles {@value android.app.Activity#RESULT_OK} for a resolution. User accepted opt-in.
-   */
+  /** Handles {@value android.app.Activity#RESULT_OK} for a resolution. User accepted opt-in. */
   public void startResolutionResultOk() {
     inFlightResolutionLiveData.setValue(false);
     ExposureNotificationClientWrapper.get(getApplication())
@@ -149,29 +147,27 @@ public class ExposureNotificationViewModel extends AndroidViewModel {
         .addOnCanceledListener(() -> inFlightLiveData.setValue(false));
   }
 
-  /**
-   * Handles not {@value android.app.Activity#RESULT_OK} for a resolution. User rejected opt-in.
-   */
+  /** Handles not {@value android.app.Activity#RESULT_OK} for a resolution. User rejected opt-in. */
   public void startResolutionResultNotOk() {
     inFlightResolutionLiveData.setValue(false);
     inFlightLiveData.setValue(false);
   }
 
-  /**
-   * Calls stop on the Exposure Notifications API.
-   */
+  /** Calls stop on the Exposure Notifications API. */
   public void stopExposureNotifications() {
     inFlightLiveData.setValue(true);
     ExposureNotificationClientWrapper.get(getApplication())
         .stop()
-        .addOnSuccessListener(unused -> {
-          refreshIsEnabledState();
-          inFlightLiveData.setValue(false);
-        })
-        .addOnFailureListener(exception -> {
-          Log.w(TAG, "Failed to stop", exception);
-          inFlightLiveData.setValue(false);
-        })
+        .addOnSuccessListener(
+            unused -> {
+              refreshIsEnabledState();
+              inFlightLiveData.setValue(false);
+            })
+        .addOnFailureListener(
+            exception -> {
+              Log.w(TAG, "Failed to stop", exception);
+              inFlightLiveData.setValue(false);
+            })
         .addOnCanceledListener(() -> inFlightLiveData.setValue(false));
   }
 
@@ -179,5 +175,4 @@ public class ExposureNotificationViewModel extends AndroidViewModel {
   public void noteOnboardingCompleted() {
     exposureNotificationSharedPreferences.setOnboardedState(true);
   }
-
 }

@@ -20,6 +20,7 @@ package com.google.android.apps.exposurenotification.debug;
 import android.content.Context;
 import android.security.keystore.KeyProperties;
 import com.google.android.apps.exposurenotification.debug.proto.SignatureInfo;
+import com.google.common.io.BaseEncoding;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.KeyPair;
@@ -44,6 +45,7 @@ public class KeyFileSigner {
   private static final String SIG_ALGO_OID = "1.2.840.10045.4.3.2";
   static final String SIGNATURE_ID = "test-signature-id";
   static final String SIGNATURE_VERSION = "test-signature-version";
+  private static final BaseEncoding BASE64 = BaseEncoding.base64();
 
   private static KeyFileSigner INSTANCE;
 
@@ -101,6 +103,10 @@ public class KeyFileSigner {
 
   KeyPair getKeyPair() {
     return keyPair;
+  }
+
+  String getPublicKeyBase64() {
+    return BASE64.encode(keyPair.getPublic().getEncoded());
   }
 
   private void checkKeyStoreInit() {

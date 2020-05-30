@@ -30,7 +30,7 @@ import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.common.AppExecutors;
 import com.google.android.apps.exposurenotification.common.SingleLiveEvent;
 import com.google.android.apps.exposurenotification.common.TaskToFutureAdapter;
-import com.google.android.apps.exposurenotification.debug.TemporaryExposureKeyEncodingHelper.DecodeException;
+import com.google.android.apps.exposurenotification.debug.proto.SignatureInfo;
 import com.google.android.apps.exposurenotification.nearby.DiagnosisKeyFileSubmitter;
 import com.google.android.apps.exposurenotification.nearby.ExposureNotificationClientWrapper;
 import com.google.android.apps.exposurenotification.network.KeyFileBatch;
@@ -38,6 +38,7 @@ import com.google.android.apps.exposurenotification.storage.TokenEntity;
 import com.google.android.apps.exposurenotification.storage.TokenRepository;
 import com.google.android.gms.nearby.exposurenotification.TemporaryExposureKey;
 import com.google.android.gms.nearby.exposurenotification.TemporaryExposureKey.TemporaryExposureKeyBuilder;
+import com.google.auto.value.AutoValue;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.google.common.io.BaseEncoding;
@@ -61,11 +62,14 @@ public class ProvideMatchingViewModel extends AndroidViewModel {
   private final MutableLiveData<Integer> singleInputIntervalNumberLiveData;
   private final MutableLiveData<Integer> singleInputRollingPeriodLiveData;
   private final MutableLiveData<Integer> singleInputTransmissionRiskLevelLiveData;
-  private final MutableLiveData<String> batchInputLiveData;
   private final MutableLiveData<File> fileInputLiveData;
   private final MutableLiveData<String> tokenLiveData;
 
   private static SingleLiveEvent<String> snackbarLiveEvent = new SingleLiveEvent<>();
+
+  private final MutableLiveData<SigningKeyInfo> keyInfoLiveData;
+
+  private final KeyFileSigner keyFileSigner;
 
   public ProvideMatchingViewModel(@NonNull Application application) {
     super(application);
@@ -75,9 +79,12 @@ public class ProvideMatchingViewModel extends AndroidViewModel {
         new MutableLiveData<>((int) (System.currentTimeMillis() / (10 * 60 * 1000L)));
     singleInputRollingPeriodLiveData = new MutableLiveData<>(144);
     singleInputTransmissionRiskLevelLiveData = new MutableLiveData<>(0);
-    batchInputLiveData = new MutableLiveData<>("");
     tokenLiveData = new MutableLiveData<>("");
     fileInputLiveData = new MutableLiveData<>(null);
+    keyInfoLiveData = new MutableLiveData<>();
+    keyFileSigner = KeyFileSigner.get(application);
+    // The keyfile signing key info doesn't change throughout the run of the app.
+    setSigningKeyInfo();
   }
 
   public LiveData<Integer> getDisplayedChildLiveData() {
@@ -120,14 +127,6 @@ public class ProvideMatchingViewModel extends AndroidViewModel {
     singleInputTransmissionRiskLevelLiveData.setValue(transmissionRiskLevel);
   }
 
-  public LiveData<String> getBatchInputLiveData() {
-    return batchInputLiveData;
-  }
-
-  public void setBatchInput(String batchInput) {
-    batchInputLiveData.setValue(batchInput);
-  }
-
   public LiveData<File> getFileInputLiveData() {
     return fileInputLiveData;
   }
@@ -146,6 +145,10 @@ public class ProvideMatchingViewModel extends AndroidViewModel {
 
   public SingleLiveEvent<String> getSnackbarLiveEvent() {
     return snackbarLiveEvent;
+  }
+
+  public LiveData<SigningKeyInfo> getSigningKeyInfoLiveData() {
+    return keyInfoLiveData;
   }
 
   private boolean isSingleInputTemporaryExposureKeyValid(
@@ -172,13 +175,13 @@ public class ProvideMatchingViewModel extends AndroidViewModel {
     TemporaryExposureKey temporaryExposureKey;
     try {
       temporaryExposureKey =
-        new TemporaryExposureKeyBuilder()
-            .setKeyData(BASE16.decode(key))
-            .setRollingPeriod(getSingleInputRollingPeriodLiveData().getValue())
-            .setTransmissionRiskLevel(getSingleInputTransmissionRiskLevelLiveData().getValue())
-            .setRollingStartIntervalNumber(getSingleInputIntervalNumberLiveData().getValue())
-            .build();
-    } catch(IllegalArgumentException e) {
+          new TemporaryExposureKeyBuilder()
+              .setKeyData(BASE16.decode(key))
+              .setRollingPeriod(getSingleInputRollingPeriodLiveData().getValue())
+              .setTransmissionRiskLevel(getSingleInputTransmissionRiskLevelLiveData().getValue())
+              .setRollingStartIntervalNumber(getSingleInputIntervalNumberLiveData().getValue())
+              .build();
+    } catch (IllegalArgumentException e) {
       Log.e(TAG, "Error creating TemporaryExposureKey", e);
       snackbarLiveEvent.postValue(getApplication().getString(R.string.debug_matching_single_error));
       return;
@@ -196,23 +199,6 @@ public class ProvideMatchingViewModel extends AndroidViewModel {
 
     String encodedToken = getTokenLiveData().getValue();
     provideFiles(files, encodedToken);
-  }
-
-  public void provideBatchAction() {
-    KeyFileWriter keyFileWriter = new KeyFileWriter(getApplication());
-    try {
-      List<TemporaryExposureKey> keys =
-          TemporaryExposureKeyEncodingHelper.decodeList(getBatchInputLiveData().getValue());
-      List<File> files =
-          keyFileWriter.writeForKeys(
-              keys, Instant.now().minus(Duration.ofDays(14)), Instant.now(), "GB");
-
-      String encodedToken = getTokenLiveData().getValue();
-      provideFiles(files, encodedToken);
-    } catch (DecodeException e) {
-      Log.e(TAG, "Error decoding", e);
-      snackbarLiveEvent.postValue(getApplication().getString(R.string.debug_matching_batch_error));
-    }
   }
 
   public void provideFileAction() {
@@ -287,5 +273,45 @@ public class ProvideMatchingViewModel extends AndroidViewModel {
               return null;
             },
             AppExecutors.getBackgroundExecutor());
+  }
+
+  private void setSigningKeyInfo() {
+    SignatureInfo signatureInfo = keyFileSigner.signatureInfo();
+    SigningKeyInfo info =
+        SigningKeyInfo.newBuilder()
+            .setPackageName(getApplication().getPackageName())
+            .setKeyVersion(signatureInfo.getVerificationKeyVersion())
+            .setKeyId(signatureInfo.getVerificationKeyId())
+            .setPublicKeyBase64(keyFileSigner.getPublicKeyBase64())
+            .build();
+    keyInfoLiveData.postValue(info);
+  }
+
+  @AutoValue
+  abstract static class SigningKeyInfo {
+    abstract String packageName();
+
+    abstract String keyId();
+
+    abstract String keyVersion();
+
+    abstract String publicKeyBase64();
+
+    static Builder newBuilder() {
+      return new AutoValue_ProvideMatchingViewModel_SigningKeyInfo.Builder();
+    }
+
+    @AutoValue.Builder
+    abstract static class Builder {
+      abstract Builder setPackageName(String p);
+
+      abstract Builder setKeyId(String p);
+
+      abstract Builder setKeyVersion(String p);
+
+      abstract Builder setPublicKeyBase64(String p);
+
+      abstract SigningKeyInfo build();
+    }
   }
 }

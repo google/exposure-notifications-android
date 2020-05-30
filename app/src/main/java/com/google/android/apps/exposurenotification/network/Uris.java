@@ -89,6 +89,9 @@ public class Uris {
       Log.w(TAG, "Attempting to use servers while compiled with default URIs!");
       return Futures.immediateFuture(ImmutableList.of());
     }
+    Log.d(
+        TAG,
+        "Getting diagnosis key upload URIs for " + regionsIsoAlpha2.size() + " regions/countries.");
     // In this test instance we use one server for all regions.
     // An alternative implementation could have a "home" server and a "roaming" server, or some
     // other scheme.
@@ -102,8 +105,8 @@ public class Uris {
       Log.w(TAG, "Attempting to use servers while compiled with default URIs!");
       return Futures.immediateFuture(ImmutableList.of());
     }
-
     Log.d(TAG, "Getting download URIs for " + regionsIsoAlpha2.size() + " regions");
+
     List<ListenableFuture<ImmutableList<KeyFileBatch>>> perRegionBatches = new ArrayList<>();
     for (String region : regionsIsoAlpha2) {
       perRegionBatches.add(regionBatches(region));

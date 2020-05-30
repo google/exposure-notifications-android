@@ -80,13 +80,17 @@ public class DiagnosisKeyUploader {
   private static final Duration TIMEOUT = Duration.ofSeconds(30);
   private static final int MAX_RETRIES = 3;
   private static final float RETRY_BACKOFF = 1.0f;
+  // Some consts used when we make fake traffic.
+  private static final int KEY_SIZE_BYTES = 16;
+  private static final int FAKE_INTERVAL_NUM = 2650847; // Only size matters here, not the value.
+  private static final int FAKE_SAFETYNET_ATTESTATION_LENGTH = 5394; // Measured from a real payload
 
   private final Context context;
   private final DeviceAttestor deviceAttestor;
   private final CountryCodes countryCodes;
   private final Uris uris;
 
-  DiagnosisKeyUploader(Context context) {
+  public DiagnosisKeyUploader(Context context) {
     this.context = context;
     deviceAttestor = new DeviceAttestor(context);
     countryCodes = new CountryCodes(context);
@@ -106,9 +110,40 @@ public class DiagnosisKeyUploader {
    *     share this around between threads so immutability makes things safer.
    */
   public ListenableFuture<?> upload(ImmutableList<DiagnosisKey> diagnosisKeys) {
+    return doUpload(diagnosisKeys, false);
+  }
+
+  /**
+   * Uploads realistically-sized fake traffic to the key sharing service(s), to help with privacy.
+   *
+   * <p>We use fake data for two things: The diagnosis keys and the safetynet attestation. Note
+   * that we still make an RPC to SafetyNet, we just don't use its result.
+   */
+  public ListenableFuture<?> fakeUpload() {
+    ImmutableList.Builder<DiagnosisKey> builder = ImmutableList.builder();
+    // Build up 14 random diagnosis keys.
+    for (int i = 0; i < 14; i++) {
+      byte[] bytes = new byte[KEY_SIZE_BYTES];
+      RAND.nextBytes(bytes);
+      builder.add(
+          DiagnosisKey.newBuilder()
+              .setKeyBytes(bytes)
+              .setIntervalNumber(FAKE_INTERVAL_NUM)
+              .build());
+    }
+    return doUpload(builder.build(), true);
+  }
+
+  /**
+   * Does the actual work of key uploads, supporting fake cover traffic to help with user privacy.
+   */
+  private ListenableFuture<?> doUpload(
+      ImmutableList<DiagnosisKey> diagnosisKeys, boolean isFakeTraffic) {
     if (diagnosisKeys.isEmpty()) {
+      Log.d(TAG, "Zero keys given, skipping.");
       return Futures.immediateFuture(null);
     }
+    Log.d(TAG, "Uploading " + diagnosisKeys.size() + " keys...");
 
     // In several steps, we need all the relevant countries for the user's last N days.
     ListenableFuture<List<String>> countries = countryCodes.getExposureRelevantCountryCodes();
@@ -128,7 +163,9 @@ public class DiagnosisKeyUploader {
         .transformAsync(uris::getUploadUris, AppExecutors.getLightweightExecutor())
         // For each URI, we start a KeySubmission into which we will add all the necessary parts,
         // like the payload, countries, keys, etc,
-        .transformAsync(this::startSubmissionsForUris, AppExecutors.getLightweightExecutor())
+        .transformAsync(
+            uris -> startSubmissionsForUris(uris, isFakeTraffic),
+            AppExecutors.getLightweightExecutor())
         // To each of these KeySubmissions we add the full list of applicable country codes.
         .transformAsync(
             submissions ->
@@ -149,13 +186,16 @@ public class DiagnosisKeyUploader {
         .transformAsync(this::submitToServers, AppExecutors.getBackgroundExecutor());
   }
 
-  private ListenableFuture<List<KeySubmission>> startSubmissionsForUris(List<Uri> serverUris) {
+  private ListenableFuture<List<KeySubmission>> startSubmissionsForUris(
+      List<Uri> serverUris, boolean isFakeTraffic) {
+    Log.d(TAG, "Composing diagnosis key uploads to " + serverUris.size() + " server(s).");
     List<KeySubmission> submissions = new ArrayList<>();
     for (Uri uri : serverUris) {
       KeySubmission s = new KeySubmission();
       s.uri = uri;
       s.transmissionRisk = DEFAULT_TRANSMISSION_RISK;
       s.verificationCode = DEFAULT_VERIFICATION_CODE;
+      s.isFakeTraffic = isFakeTraffic;
       submissions.add(s);
     }
     return Futures.immediateFuture(submissions);
@@ -219,6 +259,12 @@ public class DiagnosisKeyUploader {
                 submission.transmissionRisk))
         .transformAsync(
             attestation -> {
+              int paddingLengthRange = PADDING_SIZE_MAX - PADDING_SIZE_MIN;
+              int paddingLength = PADDING_SIZE_MIN + RAND.nextInt(paddingLengthRange);
+              String deviceVerificationPayload =
+                  submission.isFakeTraffic
+                      ? randomBase64Data(FAKE_SAFETYNET_ATTESTATION_LENGTH)
+                      : attestation;
               submission.payload =
                   new JSONObject()
                       .put("temporaryExposureKeys", keysJson)
@@ -226,18 +272,16 @@ public class DiagnosisKeyUploader {
                       .put("appPackageName", context.getPackageName())
                       .put("platform", PLATFORM)
                       .put("verificationPayload", DEFAULT_VERIFICATION_CODE)
-                      .put("deviceVerificationPayload", attestation)
-                      .put("padding", randomPadding());
+                      .put("deviceVerificationPayload", deviceVerificationPayload)
+                      .put("padding", randomBase64Data(paddingLength));
               return Futures.immediateFuture(submission);
             },
             AppExecutors.getLightweightExecutor());
   }
 
-  private String randomPadding() {
-    int range = PADDING_SIZE_MAX - PADDING_SIZE_MIN;
-    int paddingLen = PADDING_SIZE_MIN + RAND.nextInt(range);
+  private static String randomBase64Data(int approximateLength) {
     // Approximate the base64 blowup.
-    int numBytes = (int) (((double) paddingLen) * 0.75);
+    int numBytes = (int) (((double) approximateLength) * 0.75);
     byte[] bytes = new byte[numBytes];
     RAND.nextBytes(bytes);
     return BASE64.encode(bytes);
@@ -284,6 +328,7 @@ public class DiagnosisKeyUploader {
     private List<String> applicableCountryCodes;
     private int transmissionRisk;
     private String verificationCode;
+    private boolean isFakeTraffic;
   }
 
   /** Simple construction of a Diagnosis Keys submission. */

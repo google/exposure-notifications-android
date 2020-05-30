@@ -45,4 +45,7 @@ public final class StringUtils {
     return SHORT_FORMAT.withLocale(locale).format(Instant.ofEpochMilli(timestampMs));
   }
 
+  public static String truncateWithEllipsis(String text, int len) {
+    return text.length() <= len ? text : text.substring(0, len - 3) + "\u2026";
+  }
 }

@@ -32,15 +32,6 @@
       android:layout_height="wrap_content"
       android:orientation="vertical">
 
-      <Button
-        android:id="@+id/share_keys_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/padding_large"
-        android:layout_marginVertical="@dimen/padding_normal"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/debug_matching_view_share_button_text" />
-
       <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/temporary_exposure_key_recycler_view"
         android:layout_width="match_parent"

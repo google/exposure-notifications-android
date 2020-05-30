@@ -136,10 +136,8 @@ class TemporaryExposureKeyAdapter extends RecyclerView.Adapter<TemporaryExposure
                       entity.getRollingStartIntervalNumber() * INTERVAL_TIME_MILLIS,
                       Locale.ENGLISH)));
 
-      key.setText(
-          key.getResources()
-              .getString(
-                  R.string.debug_matching_view_item_key, BASE16.encode(entity.getKeyData())));
+      String keyHex = BASE16.encode(entity.getKeyData());
+      key.setText(key.getResources().getString(R.string.debug_matching_view_item_key, keyHex));
 
       intervalNumber.setText(
           intervalNumber
@@ -162,14 +160,13 @@ class TemporaryExposureKeyAdapter extends RecyclerView.Adapter<TemporaryExposure
                   R.string.debug_matching_view_item_transmission_risk,
                   Integer.toString(entity.getTransmissionRiskLevel())));
 
-      String finalListEncoding = listEncoding;
       view.setOnClickListener(
           v -> {
-            if (!TextUtils.isEmpty(finalListEncoding)) {
+            if (!TextUtils.isEmpty(keyHex)) {
               ClipboardManager clipboard =
                   (ClipboardManager) view.getContext().getSystemService(Context.CLIPBOARD_SERVICE);
 
-              ClipData clip = ClipData.newPlainText(finalListEncoding, finalListEncoding);
+              ClipData clip = ClipData.newPlainText(keyHex, keyHex);
               clipboard.setPrimaryClip(clip);
               Snackbar.make(view, R.string.debug_matching_view_share_success, Snackbar.LENGTH_LONG)
                   .show();

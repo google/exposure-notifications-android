@@ -32,12 +32,8 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.apps.exposurenotification.R;
-import com.google.android.apps.exposurenotification.debug.TemporaryExposureKeyEncodingHelper.EncodeException;
 import com.google.android.apps.exposurenotification.utils.RequestCodes;
-import com.google.android.gms.nearby.exposurenotification.TemporaryExposureKey;
-import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
-import java.util.List;
 
 /** Fragment for the view tab in {@link MatchingDebugActivity}. */
 public class KeysMatchingFragment extends Fragment {
@@ -63,16 +59,12 @@ public class KeysMatchingFragment extends Fragment {
     recyclerView.setLayoutManager(layoutManager);
     recyclerView.setAdapter(temporaryExposureKeyAdapter);
 
-    MaterialButton shareKeysButton = view.findViewById(R.id.share_keys_button);
     keysMatchingViewModel
         .getTemporaryExposureKeysLiveData()
         .observe(
             getViewLifecycleOwner(),
-            temporaryExposureKeys -> {
-              temporaryExposureKeyAdapter.setTemporaryExposureKeys(temporaryExposureKeys);
-              shareKeysButton.setOnClickListener(
-                  v -> shareOurKeys(temporaryExposureKeyAdapter.getTemporaryExposureKeys()));
-            });
+            temporaryExposureKeys ->
+                temporaryExposureKeyAdapter.setTemporaryExposureKeys(temporaryExposureKeys));
 
     keysMatchingViewModel
         .getResolutionRequiredLiveEvent()
@@ -113,21 +105,6 @@ public class KeysMatchingFragment extends Fragment {
       } else {
         maybeShowSnackbar(getString(R.string.debug_matching_view_rejected));
       }
-    }
-  }
-
-  private void shareOurKeys(List<TemporaryExposureKey> temporaryExposureKeys) {
-    try {
-      String encoding = TemporaryExposureKeyEncodingHelper.encodeList(temporaryExposureKeys);
-      Log.d(TAG, encoding);
-      Intent shareIntent = new Intent();
-      shareIntent.setAction(Intent.ACTION_SEND);
-      shareIntent.putExtra(Intent.EXTRA_TEXT, encoding);
-      shareIntent.setType("text/plain");
-      startActivity(Intent.createChooser(shareIntent, null));
-    } catch (EncodeException e) {
-      Log.e(TAG, "Failed to encode keys", e);
-      maybeShowSnackbar(getString(R.string.debug_matching_view_share_failure));
     }
   }
 
