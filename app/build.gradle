@@ -32,7 +32,7 @@ android {
     defaultConfig {
         applicationId 'com.google.android.apps.exposurenotification'
 
-        minSdkVersion 21
+        minSdkVersion 23
         targetSdkVersion 29
 
         versionCode build_number.toInteger()
