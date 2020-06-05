@@ -47,7 +47,7 @@ public class KeyFileSigner {
   static final String SIGNATURE_VERSION = "test-signature-version";
   private static final BaseEncoding BASE64 = BaseEncoding.base64();
 
-  private static KeyFileSigner INSTANCE;
+  private KeyFileSigner INSTANCE;
 
   private final Context context;
   private KeyPair keyPair;
@@ -59,7 +59,7 @@ public class KeyFileSigner {
   }
 
   /** Creator method used with private constructor, for singleton operation. */
-  public static KeyFileSigner get(Context context) {
+  public KeyFileSigner get(Context context) {
     if (INSTANCE == null) {
       INSTANCE = new KeyFileSigner(context);
     }
