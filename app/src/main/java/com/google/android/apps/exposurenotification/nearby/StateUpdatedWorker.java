@@ -25,6 +25,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationCompat.Builder;
@@ -80,6 +81,7 @@ public class StateUpdatedWorker extends ListenableWorker {
           TimeUnit.MILLISECONDS,
           AppExecutors.getScheduledExecutor()))
           .transformAsync((exposureSummary) -> {
+            Log.d(TAG, "EN summary received: " + exposureSummary);
             if (exposureSummary.getMatchedKeyCount() > 0) {
               // Positive so show a notification and update the token.
               showNotification();

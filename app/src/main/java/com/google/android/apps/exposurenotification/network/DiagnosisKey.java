@@ -18,7 +18,9 @@
 package com.google.android.apps.exposurenotification.network;
 
 import androidx.annotation.Nullable;
+import com.google.android.gms.common.internal.Objects;
 import com.google.auto.value.AutoValue;
+import com.google.common.io.BaseEncoding;
 import java.util.Arrays;
 
 /**
@@ -26,14 +28,19 @@ import java.util.Arrays;
  */
 @AutoValue
 public abstract class DiagnosisKey {
+  private static final BaseEncoding BASE16 = BaseEncoding.base16().lowerCase();
+  private static final BaseEncoding BASE64 = BaseEncoding.base64();
   // The number of 10-minute intervals the key is valid for
   public static final int DEFAULT_PERIOD = 144;
+
   public abstract ByteArrayValue getKey();
 
   public abstract int getIntervalNumber();
 
+  public abstract int getRollingPeriod();
+
   public static Builder newBuilder() {
-    return new AutoValue_DiagnosisKey.Builder();
+    return new AutoValue_DiagnosisKey.Builder().setRollingPeriod(DEFAULT_PERIOD);
   }
 
   public byte[] getKeyBytes() {
@@ -44,12 +51,22 @@ public abstract class DiagnosisKey {
   public abstract static class Builder {
     public abstract Builder setKey(ByteArrayValue key);
     public abstract Builder setIntervalNumber(int intervalNumber);
+    public abstract Builder setRollingPeriod(int rollingPeriod);
     public abstract DiagnosisKey build();
 
     public Builder setKeyBytes(byte[] keyBytes) {
       setKey(new ByteArrayValue(keyBytes));
       return this;
     }
+  }
+
+  public String toString() {
+    return Objects.toStringHelper(this)
+        .add("key:hex", "[" + BASE16.encode(getKeyBytes()) + "]")
+        .add("key:base64", "[" + BASE64.encode(getKeyBytes()) + "]")
+        .add("interval_number", getIntervalNumber())
+        .add("rolling_period", getRollingPeriod())
+        .toString();
   }
 
   public static class ByteArrayValue {

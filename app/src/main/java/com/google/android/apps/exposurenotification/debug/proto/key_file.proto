@@ -22,6 +22,7 @@ message TemporaryExposureKeyExport {
   optional string region = 3;
 
   // E.g., Batch 2 of 10. Ordinal, 1-based numbering.
+  // Note: Not yet supported on iOS. Use values of 1 for both.
   optional int32 batch_num = 4;
   optional int32 batch_size = 5;
 
@@ -37,15 +38,17 @@ message SignatureInfo {
   optional string app_bundle_id = 1;
   // Android App package name and sha256 hash in the format:
   // "com.app.package:DEADBEEFDEADBEEF"
+  // Don’t set this if exports are to be consumed by multiple apps.
   optional string android_package = 2;
   // Key version for rollovers
+  // Must be in character class [a-zA-Z0-9_]. E.g., 'v1'
   optional string verification_key_version = 3;
   // Additional identifying information
+  // Must be in character class [a-zA-Z0-9_]
+  // For cross-compatibility with Apple, use MCC (https://en.wikipedia.org/wiki/Mobile_country_code)
   optional string verification_key_id = 4;
-  // E.g. ECDSA using a p-256 curve and SHA-256 as a hash function
-  // Currently one of:
-  //   "1.2.840.10045.4.3.2" (which indicates SHA256withECDSA), or
-  //   "1.2.840.10045.4.3.4" (which indicates SHA512withECDSA).
+  // ASN.1 OID for Algorithm Identifier.
+  // For cross-compatibility with Apple, use '1.2.840.10045.4.3.2'
   optional string signature_algorithm = 5;
 }
 

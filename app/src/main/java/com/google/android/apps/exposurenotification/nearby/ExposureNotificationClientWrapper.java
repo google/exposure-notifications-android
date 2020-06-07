@@ -38,6 +38,7 @@ public class ExposureNotificationClientWrapper {
   private static ExposureNotificationClientWrapper INSTANCE;
 
   private final ExposureNotificationClient exposureNotificationClient;
+  private final ExposureConfigurations config;
 
   public static final String FAKE_TOKEN_1 = "FAKE_TOKEN_1";
   public static final String FAKE_TOKEN_2 = "FAKE_TOKEN_2";
@@ -52,6 +53,7 @@ public class ExposureNotificationClientWrapper {
 
   ExposureNotificationClientWrapper(Context context) {
     exposureNotificationClient = Nearby.getExposureNotificationClient(context);
+    config = new ExposureConfigurations(context);
   }
 
   public Task<Void> start() {
@@ -71,14 +73,12 @@ public class ExposureNotificationClientWrapper {
   }
 
   /**
-   * Provides diagnosis key files with a stable token and default {@link ExposureConfiguration}.
+   * Provides diagnosis key files with a stable token and {@link ExposureConfiguration} given by
+   * {@link ExposureConfigurations}.
    */
   public Task<Void> provideDiagnosisKeys(List<File> files, String token) {
-    // TODO: add some configuration
-    ExposureConfiguration exposureConfiguration =
-        new ExposureConfiguration.ExposureConfigurationBuilder().build();
     return exposureNotificationClient
-        .provideDiagnosisKeys(files, exposureConfiguration, token);
+        .provideDiagnosisKeys(files, config.get(), token);
   }
 
   /**

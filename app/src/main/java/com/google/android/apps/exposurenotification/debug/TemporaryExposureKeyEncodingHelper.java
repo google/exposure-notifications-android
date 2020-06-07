@@ -34,7 +34,7 @@ public class TemporaryExposureKeyEncodingHelper {
   private static final BaseEncoding BASE64 = BaseEncoding.base64();
 
   private static final String KEY_DATA = "keyData";
-  private static final String ROLLING_START_NUMBER = "rollingStartNumber";
+  private static final String ROLLING_START_NUMBER = "rollingStartIntervalNumber";
   private static final String ROLLING_PERIOD = "rollingPeriod";
   private static final String TRANSMISSION_RISK_LEVEL = "transmissionRiskLevel";
 

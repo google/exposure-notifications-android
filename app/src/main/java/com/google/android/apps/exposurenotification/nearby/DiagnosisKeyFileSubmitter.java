@@ -21,13 +21,23 @@ import android.content.Context;
 import android.util.Log;
 import com.google.android.apps.exposurenotification.common.AppExecutors;
 import com.google.android.apps.exposurenotification.common.TaskToFutureAdapter;
+import com.google.android.apps.exposurenotification.debug.KeyFileWriter;
+import com.google.android.apps.exposurenotification.debug.proto.TEKSignatureList;
+import com.google.android.apps.exposurenotification.debug.proto.TemporaryExposureKey;
+import com.google.android.apps.exposurenotification.debug.proto.TemporaryExposureKeyExport;
 import com.google.android.apps.exposurenotification.network.KeyFileBatch;
+import com.google.common.io.BaseEncoding;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
+import org.apache.commons.io.IOUtils;
 import org.threeten.bp.Duration;
 
 /**
@@ -37,6 +47,8 @@ import org.threeten.bp.Duration;
 public class DiagnosisKeyFileSubmitter {
   private static final String TAG = "KeyFileSubmitter";
   private static final Duration API_TIMEOUT = Duration.ofSeconds(10);
+  private static final BaseEncoding BASE16 = BaseEncoding.base16().lowerCase();
+  private static final BaseEncoding BASE64 = BaseEncoding.base64();
 
   private final ExposureNotificationClientWrapper client;
 
@@ -80,10 +92,65 @@ public class DiagnosisKeyFileSubmitter {
   }
 
   private ListenableFuture<?> submitBatch(KeyFileBatch batch, String token) {
+    logBatch(batch);
     return TaskToFutureAdapter.getFutureWithTimeout(
         client.provideDiagnosisKeys(batch.files(), token),
         API_TIMEOUT.toMillis(),
         TimeUnit.MILLISECONDS,
         AppExecutors.getScheduledExecutor());
+  }
+
+  private void logBatch(KeyFileBatch batch) {
+    Log.d(TAG,
+        "Submitting batch [" + batch.batchNum() + "] having [" + batch.files().size() + "] files.");
+    int filenum = 1;
+    for (File f : batch.files()) {
+      try {
+        FileContent fc = readFile(f);
+        Log.d(TAG, "File " + filenum + " has signature:\n" + fc.signature);
+        Log.d(TAG, "File " + filenum + " has [" + fc.export.getKeysCount() + "] keys.");
+        for (TemporaryExposureKey k : fc.export.getKeysList()) {
+          Log.d(TAG, "TEK hex:[" + BASE16.encode(k.getKeyData().toByteArray())
+              + "] base64:[" + BASE64.encode(k.getKeyData().toByteArray())
+              + "] interval_num:[" + k.getRollingStartIntervalNumber()
+              + "] rolling_period:[" + k.getRollingPeriod()
+              + "] risk:[" + k.getTransmissionRiskLevel() + "]");
+        }
+        filenum++;
+      } catch (IOException e) {
+        Log.d(TAG, "Failed to read or parse file " + f, e);
+      }
+    }
+  }
+
+  private FileContent readFile(File file) throws IOException {
+    ZipFile zip = new ZipFile(file);
+
+    ZipEntry signatureEntry = zip.getEntry(KeyFileWriter.SIG_FILENAME);
+    ZipEntry exportEntry = zip.getEntry(KeyFileWriter.EXPORT_FILENAME);
+
+    byte[] sigData = IOUtils.toByteArray(zip.getInputStream(signatureEntry));
+    byte[] bodyData = IOUtils.toByteArray(zip.getInputStream(exportEntry));
+
+    byte[] header = Arrays.copyOf(bodyData, 16);
+    byte[] exportData = Arrays.copyOfRange(bodyData, 16, bodyData.length);
+
+    String headerString = new String(header);
+    TEKSignatureList signature = TEKSignatureList.parseFrom(sigData);
+    TemporaryExposureKeyExport export = TemporaryExposureKeyExport.parseFrom(exportData);
+
+    return new FileContent(headerString, export, signature);
+  }
+
+  private static class FileContent {
+    private final String header;
+    private final TemporaryExposureKeyExport export;
+    private final TEKSignatureList signature;
+
+    FileContent(String header, TemporaryExposureKeyExport export, TEKSignatureList signature) {
+      this.export = export;
+      this.header = header;
+      this.signature = signature;
+    }
   }
 }
