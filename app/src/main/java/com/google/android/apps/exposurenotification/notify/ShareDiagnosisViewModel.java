@@ -17,8 +17,6 @@
 
 package com.google.android.apps.exposurenotification.notify;
 
-import static com.google.android.apps.exposurenotification.nearby.ProvideDiagnosisKeysWorker.DEFAULT_API_TIMEOUT;
-
 import android.app.Application;
 import android.util.Log;
 import androidx.annotation.NonNull;
@@ -47,6 +45,7 @@ import com.google.common.util.concurrent.ListenableFuture;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import org.checkerframework.checker.nullness.compatqual.NullableDecl;
+import org.threeten.bp.Duration;
 import org.threeten.bp.Instant;
 import org.threeten.bp.ZonedDateTime;
 
@@ -56,6 +55,7 @@ public class ShareDiagnosisViewModel extends AndroidViewModel {
   private static final String TAG = "ShareDiagnosisViewModel";
 
   public static final long NO_EXISTING_ID = -1;
+  private static final Duration GET_TEKS_TIMEOUT = Duration.ofSeconds(10);
 
   private final PositiveDiagnosisRepository repository;
 
@@ -251,7 +251,7 @@ public class ShareDiagnosisViewModel extends AndroidViewModel {
   private ListenableFuture<List<TemporaryExposureKey>> getRecentKeys() {
     return TaskToFutureAdapter.getFutureWithTimeout(
         ExposureNotificationClientWrapper.get(getApplication()).getTemporaryExposureKeyHistory(),
-        DEFAULT_API_TIMEOUT.toMillis(),
+        GET_TEKS_TIMEOUT.toMillis(),
         TimeUnit.MILLISECONDS,
         AppExecutors.getScheduledExecutor());
   }

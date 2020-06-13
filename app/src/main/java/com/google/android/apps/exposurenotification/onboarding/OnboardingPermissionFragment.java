@@ -24,6 +24,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -72,9 +73,14 @@ public class OnboardingPermissionFragment extends Fragment {
 
     Button nextButton = view.findViewById(R.id.onboarding_next_button);
     nextButton.setOnClickListener(v -> nextAction());
+    ProgressBar progressBar = view.findViewById(R.id.onboarding_progress_bar);
     exposureNotificationViewModel
         .getInFlightLiveData()
-        .observe(getViewLifecycleOwner(), inFlight -> nextButton.setEnabled(!inFlight));
+        .observe(getViewLifecycleOwner(), inFlight -> {
+          nextButton.setEnabled(!inFlight);
+          progressBar.setVisibility(inFlight ? View.VISIBLE : View.INVISIBLE);
+          nextButton.setText(inFlight ? "" : getString(R.string.btn_turn_on));
+        });
 
     view.findViewById(R.id.onboarding_no_thanks_button).setOnClickListener(v -> skipOnboarding());
   }

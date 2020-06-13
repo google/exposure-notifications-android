@@ -66,7 +66,7 @@ class DiagnosisKeyDownloader {
 
   private static final String FILE_PATTERN = "/diag_keys/%s/keys_%s.pb";
   // TODO: Set a reasonable timeout and make it adjustable.
-  private static final Duration TIMEOUT = Duration.ofSeconds(600);
+  private static final Duration DOWNLOAD_ALL_FILES_TIMEOUT = Duration.ofMinutes(30);
 
   private final Context context;
   private final CountryCodes countries;
@@ -118,7 +118,9 @@ class DiagnosisKeyDownloader {
             // It's important to have a timeout since we're waiting for network operations that may
             // or may not complete.
             .withTimeout(
-                TIMEOUT.toMillis(), TimeUnit.MILLISECONDS, AppExecutors.getScheduledExecutor());
+                DOWNLOAD_ALL_FILES_TIMEOUT.toMillis(),
+                TimeUnit.MILLISECONDS,
+                AppExecutors.getScheduledExecutor());
 
     // Add a callback just to log success/failure.
     Futures.addCallback(batchesDownloaded, logOutcome, AppExecutors.getLightweightExecutor());
@@ -174,9 +176,7 @@ class DiagnosisKeyDownloader {
     return files;
   }
 
-  /**
-   * Here's where, after downloading each file, we group them back into {@link KeyFileBatch}es.
-   */
+  /** Here's where, after downloading each file, we group them back into {@link KeyFileBatch}es. */
   private ImmutableList<KeyFileBatch> groupAsBatches(List<BatchFile> batchFiles) {
     // Collect the downloaded files per KeyFileBatch
     Map<KeyFileBatch, List<File>> collector = new HashMap<>();

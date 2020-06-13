@@ -28,6 +28,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
@@ -91,6 +92,7 @@ public class ShareDiagnosisReviewFragment extends Fragment {
 
     Button shareButton = view.findViewById(R.id.share_share_button);
     shareButton.setOnClickListener(v -> shareAction());
+    ProgressBar progressBar = view.findViewById(R.id.share_progress_bar);
     shareDiagnosisViewModel
         .getInFlightResolutionLiveData()
         .observe(
@@ -98,8 +100,12 @@ public class ShareDiagnosisReviewFragment extends Fragment {
             hasInFlightResolution -> {
               if (hasInFlightResolution) {
                 shareButton.setEnabled(false);
+                shareButton.setText("");
+                progressBar.setVisibility(View.VISIBLE);
               } else {
                 shareButton.setEnabled(true);
+                shareButton.setText(R.string.btn_share_positive);
+                progressBar.setVisibility(View.INVISIBLE);
               }
             });
 

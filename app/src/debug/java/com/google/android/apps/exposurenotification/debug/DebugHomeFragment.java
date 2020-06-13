@@ -20,6 +20,8 @@ package com.google.android.apps.exposurenotification.debug;
 import android.content.Intent;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,12 +29,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.EditText;
 import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.home.ExposureNotificationViewModel;
 import com.google.android.apps.exposurenotification.network.Uris;
+import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.NetworkMode;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.material.snackbar.Snackbar;
@@ -100,35 +104,83 @@ public class DebugHomeFragment extends Fragment {
         .getInFlightLiveData()
         .observe(getViewLifecycleOwner(), isInFlight -> masterSwitch.setEnabled(!isInFlight));
 
-    // Test exposure notification
-    view.findViewById(R.id.debug_test_exposure_notify_button)
-        .setOnClickListener(
-            v -> debugHomeViewModel.addTestExposures(getString(R.string.generic_error_message)));
-
-    view.findViewById(R.id.debug_exposure_reset_button)
-        .setOnClickListener(
-            v ->
-                debugHomeViewModel.resetExposures(
-                    getString(R.string.debug_test_exposure_reset_success),
-                    getString(R.string.generic_error_message)));
-
     // Matching
     Button manualMatching = view.findViewById(R.id.debug_matching_manual_button);
     manualMatching.setOnClickListener(
         v -> startActivity(new Intent(requireContext(), MatchingDebugActivity.class)));
 
-    view.findViewById(R.id.debug_provide_keys_button)
-        .setOnClickListener(
-            v -> {
-              debugHomeViewModel.provideKeys();
-              maybeShowSnackbar(getString(R.string.debug_provide_keys_enqueued));
-            });
+    Button provideKeysButton = view.findViewById(R.id.debug_provide_keys_button);
+    provideKeysButton.setOnClickListener(
+        v -> {
+          debugHomeViewModel.provideKeys();
+          maybeShowSnackbar(getString(R.string.debug_provide_keys_enqueued));
+        });
+    provideKeysButton.setEnabled(
+        debugHomeViewModel.getNetworkMode(NetworkMode.FAKE).equals(NetworkMode.TEST));
 
     // Network
     SwitchMaterial networkSwitch = view.findViewById(R.id.network_mode);
     networkSwitch.setOnCheckedChangeListener(networkModeChangeListener);
     networkSwitch.setChecked(
         debugHomeViewModel.getNetworkMode(NetworkMode.FAKE).equals(NetworkMode.TEST));
+
+    debugHomeViewModel
+        .getNetworkModeLiveData()
+        .observe(
+            getViewLifecycleOwner(),
+            networkMode -> {
+              provideKeysButton.setEnabled(networkMode.equals(NetworkMode.TEST));
+              networkSwitch.setChecked(networkMode.equals(NetworkMode.TEST));
+            });
+
+    ExposureNotificationSharedPreferences prefs =
+        new ExposureNotificationSharedPreferences(getContext());
+
+    EditText downloadServer = view.findViewById(R.id.debug_download_server_address);
+    downloadServer.setText(
+        prefs.getDownloadServerAddress(getString(R.string.key_server_download_base_uri)));
+    downloadServer.addTextChangedListener(
+        new TextWatcher() {
+          @Override
+          public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+          @Override
+          public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
+          @Override
+          public void afterTextChanged(Editable s) {
+            if (s.toString() != getString(R.string.key_server_download_base_uri)) {
+              prefs.setDownloadServerAddress(s.toString());
+            }
+          }
+        });
+
+    EditText uploadServer = view.findViewById(R.id.debug_upload_server_address);
+    uploadServer.setText(prefs.getUploadServerAddress(getString(R.string.key_server_upload_uri)));
+    uploadServer.addTextChangedListener(
+        new TextWatcher() {
+          @Override
+          public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+          @Override
+          public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
+          @Override
+          public void afterTextChanged(Editable s) {
+            if (s.toString() != getString(R.string.key_server_upload_uri)) {
+              prefs.setUploadServerAddress(s.toString());
+            }
+          }
+        });
+
+    Button serverReset = view.findViewById(R.id.debug_server_reset_button);
+    serverReset.setOnClickListener(
+        v -> {
+          prefs.clearDownloadServerAddress();
+          downloadServer.setText(R.string.key_server_download_base_uri);
+          prefs.clearUploadServerAddress();
+          uploadServer.setText(R.string.key_server_upload_uri);
+        });
   }
 
   @Override

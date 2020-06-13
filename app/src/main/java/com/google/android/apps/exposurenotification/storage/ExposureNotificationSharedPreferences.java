@@ -19,6 +19,7 @@ package com.google.android.apps.exposurenotification.storage;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import com.google.android.apps.exposurenotification.R;
 
 /**
  * Key value storage for ExposureNotification.
@@ -36,6 +37,10 @@ public class ExposureNotificationSharedPreferences {
   private static final String NETWORK_MODE_KEY = "ExposureNotificationSharedPreferences.NETWORK_MODE_KEY";
   private static final String ATTENUATION_THRESHOLD_1_KEY = "ExposureNotificationSharedPreferences.ATTENUATION_THRESHOLD_1_KEY";
   private static final String ATTENUATION_THRESHOLD_2_KEY = "ExposureNotificationSharedPreferences.ATTENUATION_THRESHOLD_2_KEY";
+  private static final String DOWNLOAD_SERVER_ADDRESS_KEY =
+      "ExposureNotificationSharedPreferences.DOWNLOAD_SERVER_ADDRESS_KEY";
+  private static final String UPLOAD_SERVER_ADDRESS_KEY =
+      "ExposureNotificationSharedPreferences.UPLOAD_SERVER_ADDRESS_KEY";
 
   private final SharedPreferences sharedPreferences;
 
@@ -69,7 +74,8 @@ public class ExposureNotificationSharedPreferences {
   public enum NetworkMode {
     // Uses live but test instances of the diagnosis key upload and download servers.
     TEST,
-    // Uses local faked implementations of the diagnosis key uploads and downloads; no actual network calls.
+    // Uses local faked implementations of the diagnosis key uploads and downloads; no actual
+    // network calls.
     FAKE
   }
 
@@ -80,8 +86,11 @@ public class ExposureNotificationSharedPreferences {
   }
 
   public void setOnboardedState(boolean onboardedState) {
-    sharedPreferences.edit().putInt(ONBOARDING_STATE_KEY,
-        onboardedState ? OnboardingStatus.ONBOARDED.value() : OnboardingStatus.SKIPPED.value())
+    sharedPreferences
+        .edit()
+        .putInt(
+            ONBOARDING_STATE_KEY,
+            onboardedState ? OnboardingStatus.ONBOARDED.value() : OnboardingStatus.SKIPPED.value())
         .apply();
   }
 
@@ -98,6 +107,7 @@ public class ExposureNotificationSharedPreferences {
     sharedPreferences.edit().putString(NETWORK_MODE_KEY, key.toString()).commit();
   }
 
+
   public int getAttenuationThreshold1(int defaultThreshold) {
     return sharedPreferences.getInt(ATTENUATION_THRESHOLD_1_KEY, defaultThreshold);
   }
@@ -112,5 +122,37 @@ public class ExposureNotificationSharedPreferences {
 
   public void setAttenuationThreshold2(int threshold) {
     sharedPreferences.edit().putInt(ATTENUATION_THRESHOLD_2_KEY, threshold).commit();
+  }
+  
+  public void clearUploadServerAddress() {
+    sharedPreferences.edit().remove(DOWNLOAD_SERVER_ADDRESS_KEY).commit();
+  }
+
+  public String getUploadServerAddress(String defaultServerAddress) {
+    return sharedPreferences.getString(DOWNLOAD_SERVER_ADDRESS_KEY, defaultServerAddress);
+  }
+
+  public void setUploadServerAddress(String serverAddress) {
+    if (serverAddress.isEmpty()) {
+      clearUploadServerAddress();
+    } else {
+      sharedPreferences.edit().putString(DOWNLOAD_SERVER_ADDRESS_KEY, serverAddress).commit();
+    }
+  }
+
+  public void clearDownloadServerAddress() {
+    sharedPreferences.edit().remove(UPLOAD_SERVER_ADDRESS_KEY).commit();
+  }
+
+  public String getDownloadServerAddress(String defaultServerAddress) {
+    return sharedPreferences.getString(UPLOAD_SERVER_ADDRESS_KEY, defaultServerAddress);
+  }
+
+  public void setDownloadServerAddress(String serverAddress) {
+    if (serverAddress.isEmpty()) {
+      clearDownloadServerAddress();
+    } else {
+      sharedPreferences.edit().putString(UPLOAD_SERVER_ADDRESS_KEY, serverAddress).commit();
+    }
   }
 }

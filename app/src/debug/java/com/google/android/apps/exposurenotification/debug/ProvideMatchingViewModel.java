@@ -17,8 +17,6 @@
 
 package com.google.android.apps.exposurenotification.debug;
 
-import static com.google.android.apps.exposurenotification.nearby.ProvideDiagnosisKeysWorker.DEFAULT_API_TIMEOUT;
-
 import android.app.Application;
 import android.text.TextUtils;
 import android.util.Log;
@@ -30,7 +28,7 @@ import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.common.AppExecutors;
 import com.google.android.apps.exposurenotification.common.SingleLiveEvent;
 import com.google.android.apps.exposurenotification.common.TaskToFutureAdapter;
-import com.google.android.apps.exposurenotification.debug.proto.SignatureInfo;
+import com.google.android.apps.exposurenotification.proto.SignatureInfo;
 import com.google.android.apps.exposurenotification.nearby.DiagnosisKeyFileSubmitter;
 import com.google.android.apps.exposurenotification.nearby.ExposureNotificationClientWrapper;
 import com.google.android.apps.exposurenotification.network.KeyFileBatch;
@@ -56,6 +54,7 @@ public class ProvideMatchingViewModel extends AndroidViewModel {
   private static final String TAG = "ProvideKeysViewModel";
 
   private static final BaseEncoding BASE16 = BaseEncoding.base16().lowerCase();
+  private static final Duration IS_ENABLED_TIMEOUT = Duration.ofSeconds(10);
 
   private final MutableLiveData<Integer> displayedChildLiveData;
   private final MutableLiveData<String> singleInputKeyLiveData;
@@ -170,6 +169,7 @@ public class ProvideMatchingViewModel extends AndroidViewModel {
 
   public void provideSingleAction() {
     String key = getSingleInputKeyLiveData().getValue();
+    Log.d(TAG, "Submitting " + key);
 
     KeyFileWriter keyFileWriter = new KeyFileWriter(getApplication());
     TemporaryExposureKey temporaryExposureKey;
@@ -186,6 +186,7 @@ public class ProvideMatchingViewModel extends AndroidViewModel {
       snackbarLiveEvent.postValue(getApplication().getString(R.string.debug_matching_single_error));
       return;
     }
+    Log.d(TAG, "Composed " + temporaryExposureKey + " for submission.");
 
     if (!isSingleInputTemporaryExposureKeyValid(temporaryExposureKey)) {
       snackbarLiveEvent.postValue(getApplication().getString(R.string.debug_matching_single_error));
@@ -193,6 +194,7 @@ public class ProvideMatchingViewModel extends AndroidViewModel {
     }
     List<TemporaryExposureKey> keys = Lists.newArrayList(temporaryExposureKey);
 
+    Log.d(TAG, "Creating keyfile...");
     List<File> files =
         keyFileWriter.writeForKeys(
             keys, Instant.now().minus(Duration.ofDays(14)), Instant.now(), "GB");
@@ -230,7 +232,7 @@ public class ProvideMatchingViewModel extends AndroidViewModel {
     FluentFuture.from(
             TaskToFutureAdapter.getFutureWithTimeout(
                 ExposureNotificationClientWrapper.get(getApplication()).isEnabled(),
-                DEFAULT_API_TIMEOUT.toMillis(),
+                IS_ENABLED_TIMEOUT.toMillis(),
                 TimeUnit.MILLISECONDS,
                 AppExecutors.getScheduledExecutor()))
         .transformAsync(

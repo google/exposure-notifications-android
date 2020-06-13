@@ -63,7 +63,7 @@ public class Uris {
   // URIs set in gradle.properties. This pattern helps us check.
   private static final Pattern DEFAULT_URI_PATTERN = Pattern.compile(".*example\\.com.*");
   private static final Pattern BATCH_NUM_PATTERN =
-      Pattern.compile("exposureKeyExport-[A-Z]{2}/([0-9]+)-[0-9]+.zip");
+      Pattern.compile("exposureKeyExport-[A-Z]{2}/([0-9]+)-([0-9]+-)?[0-9]+.zip");
 
   private final Context context;
   private final ExposureNotificationSharedPreferences prefs;
@@ -73,9 +73,14 @@ public class Uris {
   public Uris(Context context) {
     this.context = context;
     this.prefs = new ExposureNotificationSharedPreferences(context);
-    // These two string resources must be set by gradle.properties.
-    baseDownloadUri = Uri.parse(context.getString(R.string.key_server_download_base_uri));
-    uploadUri = Uri.parse(context.getString(R.string.key_server_upload_uri));
+    // These two string resources must be set by gradle.properties or overriden by preferences.
+    baseDownloadUri =
+        Uri.parse(
+            prefs.getDownloadServerAddress(
+                context.getString(R.string.key_server_download_base_uri)));
+    uploadUri =
+        Uri.parse(
+            prefs.getUploadServerAddress(context.getString(R.string.key_server_upload_uri)));
   }
 
   /**

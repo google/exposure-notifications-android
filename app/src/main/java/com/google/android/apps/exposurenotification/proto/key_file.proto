@@ -2,7 +2,7 @@ syntax = "proto2";
 
 package com.google.android.apps.exposurenotification.debug;
 
-option java_package = "com.google.android.apps.exposurenotification.debug.proto";
+option java_package = "com.google.android.apps.exposurenotification.proto";
 option java_multiple_files = true;
 
 // Protobuf definition for exports of confirmed temporary exposure keys.
@@ -34,12 +34,11 @@ message TemporaryExposureKeyExport {
 }
 
 message SignatureInfo {
-  // Apple App Store Application Bundle ID
-  optional string app_bundle_id = 1;
-  // Android App package name and sha256 hash in the format:
-  // "com.app.package:DEADBEEFDEADBEEF"
-  // Don’t set this if exports are to be consumed by multiple apps.
-  optional string android_package = 2;
+  // These fields are no longer needed (confirmed with Apple)
+  // Apple read bundle id from an app's metadata, and we were
+  // always using calling app package. It's not needed in the file.
+  reserved 1, 2;
+  reserved "app_bundle_id", "android_package";
   // Key version for rollovers
   // Must be in character class [a-zA-Z0-9_]. E.g., 'v1'
   optional string verification_key_version = 3;

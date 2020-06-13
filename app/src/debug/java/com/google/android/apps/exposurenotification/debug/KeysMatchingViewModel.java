@@ -32,7 +32,9 @@ import com.google.android.gms.tasks.Tasks;
 import java.util.ArrayList;
 import java.util.List;
 
-/** View model for {@link KeysMatchingFragment}. */
+/**
+ * View model for {@link KeysMatchingFragment}.
+ */
 public class KeysMatchingViewModel extends AndroidViewModel {
 
   private static final String TAG = "ViewKeysViewModel";
@@ -50,27 +52,44 @@ public class KeysMatchingViewModel extends AndroidViewModel {
     temporaryExposureKeysLiveData = new MutableLiveData<>(new ArrayList<>());
   }
 
-  /** An event that requests a resolution with the given {@link ApiException}. */
+  /**
+   * An event that requests a resolution with the given {@link ApiException}.
+   */
   public SingleLiveEvent<ApiException> getResolutionRequiredLiveEvent() {
     return resolutionRequiredLiveEvent;
   }
 
-  /** An event that triggers when the API is disabled. */
+  /**
+   * An event that triggers when the API is disabled.
+   */
   public SingleLiveEvent<Void> getApiDisabledLiveEvent() {
     return apiDisabledLiveEvent;
   }
 
-  /** An event that triggers when there is an error in the API. */
+  /**
+   * An event that triggers when there is an error in the API.
+   */
   public SingleLiveEvent<Void> getApiErrorLiveEvent() {
     return apiErrorLiveEvent;
   }
 
-  /** The {@link LiveData} representing the {@link List} of {@link TemporaryExposureKey}. */
+  /**
+   * The {@link LiveData} representing if there is an in-flight resolution.
+   */
+  public LiveData<Boolean> getInFlightResolutionLiveData() {
+    return inFlightResolutionLiveData;
+  }
+
+  /**
+   * The {@link LiveData} representing the {@link List} of {@link TemporaryExposureKey}.
+   */
   public LiveData<List<TemporaryExposureKey>> getTemporaryExposureKeysLiveData() {
     return temporaryExposureKeysLiveData;
   }
 
-  /** Requests updating the {@link TemporaryExposureKey} from GMSCore API. */
+  /**
+   * Requests updating the {@link TemporaryExposureKey} from GMSCore API.
+   */
   public void updateTemporaryExposureKeys() {
     ExposureNotificationClientWrapper clientWrapper =
         ExposureNotificationClientWrapper.get(getApplication());
@@ -111,7 +130,9 @@ public class KeysMatchingViewModel extends AndroidViewModel {
             });
   }
 
-  /** Handles {@value android.app.Activity#RESULT_OK} for a resolution. User chose to share keys. */
+  /**
+   * Handles {@value android.app.Activity#RESULT_OK} for a resolution. User chose to share keys.
+   */
   public void startResolutionResultOk() {
     inFlightResolutionLiveData.setValue(false);
     ExposureNotificationClientWrapper.get(getApplication())
@@ -122,6 +143,14 @@ public class KeysMatchingViewModel extends AndroidViewModel {
               Log.e(TAG, "Error handling resolution", exception);
               apiErrorLiveEvent.call();
             });
+  }
+
+  /**
+   * Handles not {@value android.app.Activity#RESULT_OK} for a resolution. User chose not to share
+   * keys.
+   */
+  public void startResolutionResultNotOk() {
+    inFlightResolutionLiveData.setValue(false);
   }
 
 }

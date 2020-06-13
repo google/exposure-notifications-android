@@ -47,8 +47,7 @@ public class ProvideDiagnosisKeysWorker extends ListenableWorker {
 
   private static final String TAG = "ProvideDiagnosisKeysWkr";
 
-  public static final Duration DEFAULT_API_TIMEOUT = Duration.ofSeconds(15);
-
+  private static final Duration IS_ENABLED_TIMEOUT = Duration.ofSeconds(10);
   public static final String WORKER_NAME = "ProvideDiagnosisKeysWorker";
   private static final BaseEncoding BASE64_LOWER = BaseEncoding.base64();
   private static final int RANDOM_TOKEN_BYTE_LENGTH = 32;
@@ -82,7 +81,7 @@ public class ProvideDiagnosisKeysWorker extends ListenableWorker {
     return FluentFuture.from(TaskToFutureAdapter
         .getFutureWithTimeout(
             ExposureNotificationClientWrapper.get(getApplicationContext()).isEnabled(),
-            DEFAULT_API_TIMEOUT.toMillis(),
+            IS_ENABLED_TIMEOUT.toMillis(),
             TimeUnit.MILLISECONDS,
             AppExecutors.getScheduledExecutor()))
         .transformAsync((isEnabled) -> {

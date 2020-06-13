@@ -24,6 +24,9 @@
 
 -keep class androidx.core.app.CoreComponentFactory { *; }
 
+# Keep the app's protos' methods
+-keepclassmembers class com.google.android.apps.exposurenotification.proto.** { *; }
+
 # Room configuration.
 -keep class * extends androidx.room.RoomDatabase
 -dontwarn androidx.room.paging.**

@@ -21,6 +21,8 @@ import android.app.Application;
 import android.content.Intent;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkManager;
 import com.google.android.apps.exposurenotification.common.AppExecutors;
@@ -45,6 +47,7 @@ public class DebugHomeViewModel extends AndroidViewModel {
   private static final String TAG = "DebugViewModel";
 
   private static SingleLiveEvent<String> snackbarLiveEvent = new SingleLiveEvent<>();
+  private static MutableLiveData<NetworkMode> networkModeLiveData = new MutableLiveData<>();
 
   private final TokenRepository tokenRepository;
   private final ExposureRepository exposureRepository;
@@ -61,83 +64,19 @@ public class DebugHomeViewModel extends AndroidViewModel {
     return snackbarLiveEvent;
   }
 
+  public LiveData<NetworkMode> getNetworkModeLiveData() {
+    return networkModeLiveData;
+  }
+
   public NetworkMode getNetworkMode(NetworkMode defaultMode) {
-    return exposureNotificationSharedPreferences.getNetworkMode(defaultMode);
+    NetworkMode networkMode = exposureNotificationSharedPreferences.getNetworkMode(defaultMode);
+    networkModeLiveData.setValue(networkMode);
+    return networkMode;
   }
 
   public void setNetworkMode(NetworkMode networkMode) {
     exposureNotificationSharedPreferences.setNetworkMode(networkMode);
-  }
-
-  /** Generate test exposure events */
-  public void addTestExposures(String errorSnackbarMessage) {
-    // First inserts/updates the hard coded tokens.
-    Futures.addCallback(
-        Futures.allAsList(
-            tokenRepository.upsertAsync(
-                TokenEntity.create(ExposureNotificationClientWrapper.FAKE_TOKEN_1, false)),
-            tokenRepository.upsertAsync(
-                TokenEntity.create(ExposureNotificationClientWrapper.FAKE_TOKEN_2, false)),
-            tokenRepository.upsertAsync(
-                TokenEntity.create(ExposureNotificationClientWrapper.FAKE_TOKEN_3, false))),
-        new FutureCallback<List<Void>>() {
-          @Override
-          public void onSuccess(@NullableDecl List<Void> result) {
-            // Now broadcasts them to the worker.
-            Intent intent1 =
-                new Intent(getApplication(), ExposureNotificationBroadcastReceiver.class);
-            intent1.setAction(ExposureNotificationClient.ACTION_EXPOSURE_STATE_UPDATED);
-            intent1.putExtra(
-                ExposureNotificationClient.EXTRA_TOKEN,
-                ExposureNotificationClientWrapper.FAKE_TOKEN_1);
-            getApplication().sendBroadcast(intent1);
-
-            Intent intent2 =
-                new Intent(getApplication(), ExposureNotificationBroadcastReceiver.class);
-            intent2.setAction(ExposureNotificationClient.ACTION_EXPOSURE_STATE_UPDATED);
-            intent2.putExtra(
-                ExposureNotificationClient.EXTRA_TOKEN,
-                ExposureNotificationClientWrapper.FAKE_TOKEN_2);
-            getApplication().sendBroadcast(intent2);
-
-            Intent intent3 =
-                new Intent(getApplication(), ExposureNotificationBroadcastReceiver.class);
-            intent3.setAction(ExposureNotificationClient.ACTION_EXPOSURE_STATE_UPDATED);
-            intent3.putExtra(
-                ExposureNotificationClient.EXTRA_TOKEN,
-                ExposureNotificationClientWrapper.FAKE_TOKEN_3);
-            getApplication().sendBroadcast(intent3);
-          }
-
-          @Override
-          public void onFailure(Throwable t) {
-            snackbarLiveEvent.postValue(errorSnackbarMessage);
-          }
-        },
-        AppExecutors.getBackgroundExecutor());
-  }
-
-  /** Reset exposure events for testing purposes */
-  public void resetExposures(String successSnackbarMessage, String failureSnackbarMessage) {
-    Futures.addCallback(
-        Futures.allAsList(
-            tokenRepository.deleteByTokensAsync(
-                ExposureNotificationClientWrapper.FAKE_TOKEN_1,
-                ExposureNotificationClientWrapper.FAKE_TOKEN_2,
-                ExposureNotificationClientWrapper.FAKE_TOKEN_3),
-            exposureRepository.deleteAllAsync()),
-        new FutureCallback<List<Void>>() {
-          @Override
-          public void onSuccess(@NullableDecl List<Void> result) {
-            snackbarLiveEvent.postValue(successSnackbarMessage);
-          }
-
-          @Override
-          public void onFailure(Throwable t) {
-            snackbarLiveEvent.postValue(failureSnackbarMessage);
-          }
-        },
-        AppExecutors.getBackgroundExecutor());
+    networkModeLiveData.setValue(networkMode);
   }
 
   /** Triggers a one off provide keys job. */

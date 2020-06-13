@@ -18,16 +18,28 @@
 package com.google.android.apps.exposurenotification.debug;
 
 import android.content.Context;
+import android.os.Build.VERSION;
+import android.os.Build.VERSION_CODES;
+import android.security.keystore.KeyGenParameterSpec.Builder;
 import android.security.keystore.KeyProperties;
-import com.google.android.apps.exposurenotification.debug.proto.SignatureInfo;
+import android.util.Log;
+import com.google.android.apps.exposurenotification.proto.SignatureInfo;
 import com.google.common.io.BaseEncoding;
+import java.io.IOException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
+import java.security.PrivateKey;
+import java.security.PublicKey;
 import java.security.Signature;
 import java.security.SignatureException;
+import java.security.UnrecoverableEntryException;
+import java.security.cert.CertificateException;
 import java.security.spec.ECGenParameterSpec;
 
 /**
@@ -39,12 +51,15 @@ public class KeyFileSigner {
 
   private static final String TAG = "KeyFileSigner";
 
+  private static final String KEY_STORE_NAME = "AndroidKeyStore";
+  private static final String KEY_NAME = "KeyFileSigningKey";
   private static final String EC_PARAM_SPEC_NAME = "secp256r1";
   private static final String SIG_ALGO = "SHA256withECDSA";
   // http://oid-info.com/get/1.2.840.10045.4.3.2
   private static final String SIG_ALGO_OID = "1.2.840.10045.4.3.2";
-  static final String SIGNATURE_ID = "test-signature-id";
-  static final String SIGNATURE_VERSION = "test-signature-version";
+  static final String SIGNATURE_ID = "test_signature_id";
+  static final String SIGNATURE_VERSION = "test_signature_version";
+  private static final BaseEncoding BASE16 = BaseEncoding.base16().lowerCase();
   private static final BaseEncoding BASE64 = BaseEncoding.base64();
 
   private static KeyFileSigner INSTANCE;
@@ -67,6 +82,45 @@ public class KeyFileSigner {
   }
 
   private void init() {
+    if (VERSION.SDK_INT < VERSION_CODES.M) {
+      initPriorToM();
+      return;
+    }
+    try {
+      // See if we already have a key in the store.
+      KeyStore keyStore = KeyStore.getInstance(KEY_STORE_NAME);
+      keyStore.load(null);
+      KeyStore.Entry entry = keyStore.getEntry(KEY_NAME, null);
+      if (entry != null) {
+        // If we do, use it.
+        PrivateKey privateKey = ((KeyStore.PrivateKeyEntry) entry).getPrivateKey();
+        PublicKey publicKey = keyStore.getCertificate(KEY_NAME).getPublicKey();
+        keyPair = new KeyPair(publicKey, privateKey);
+      } else {
+        // If we do not have a key already in the store, generate a new one in the store and use it.
+        KeyPairGenerator keyPairGenerator =
+            KeyPairGenerator.getInstance(KeyProperties.KEY_ALGORITHM_EC, KEY_STORE_NAME);
+        keyPairGenerator.initialize(
+            new Builder(KEY_NAME, KeyProperties.PURPOSE_SIGN)
+                .setAlgorithmParameterSpec(new ECGenParameterSpec(EC_PARAM_SPEC_NAME))
+                .setDigests(KeyProperties.DIGEST_SHA256)
+                .setUserAuthenticationRequired(false)
+                .build());
+        keyPair = keyPairGenerator.generateKeyPair();
+      }
+    } catch (UnrecoverableEntryException
+        | NoSuchProviderException
+        | IOException
+        | KeyStoreException
+        | CertificateException
+        | InvalidAlgorithmParameterException
+        | NoSuchAlgorithmException e) {
+      // TODO: Better exception.
+      throw new RuntimeException(e);
+    }
+  }
+
+  private void initPriorToM() {
     try {
       KeyPairGenerator keyGen = KeyPairGenerator.getInstance(KeyProperties.KEY_ALGORITHM_EC);
       keyGen.initialize(new ECGenParameterSpec(EC_PARAM_SPEC_NAME));
@@ -79,6 +133,7 @@ public class KeyFileSigner {
   }
 
   byte[] sign(byte[] message) {
+    Log.d(TAG, "Signing " + message.length + " bytes: " + BASE16.encode(message));
     checkKeyStoreInit();
     try {
       Signature sig = Signature.getInstance(SIG_ALGO);

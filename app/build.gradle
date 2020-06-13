@@ -62,12 +62,12 @@ android {
     sourceSets {
         debug {
             proto {
-                srcDirs 'src/main/java/com/google/android/apps/exposurenotification/debug/proto'
+                srcDirs 'src/main/java/com/google/android/apps/exposurenotification/proto'
             }
         }
         release {
             proto {
-                srcDir 'src/main/java/com/google/android/apps/exposurenotification/debug/proto'
+                srcDir 'src/main/java/com/google/android/apps/exposurenotification/proto'
             }
         }
     }
