@@ -65,15 +65,6 @@
       android:exported="false"
       android:parentActivityName=".home.ExposureNotificationActivity" />
 
-    <activity
-      android:name=".debug.MatchingDebugActivity"
-      android:exported="false"
-      android:parentActivityName=".home.ExposureNotificationActivity" />
-
-    <activity android:name=".debug.QRScannerActivity"
-      android:exported="false"
-      android:label="Scan QR Code"
-      android:parentActivityName=".debug.MatchingDebugActivity"/>
 
     <!-- Receivers -->
     <receiver
@@ -88,14 +79,6 @@
     <meta-data
       android:name="preloaded_fonts"
       android:resource="@array/preloaded_fonts" />
-
-    <meta-data
-      android:name="com.google.android.gms.version"
-      android:value="@integer/google_play_services_version" />
-
-    <meta-data
-      android:name="com.google.android.gms.vision.DEPENDENCIES"
-      android:value="barcode" />
 
   </application>
 

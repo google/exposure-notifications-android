@@ -63,7 +63,7 @@ public class Uris {
   // URIs set in gradle.properties. This pattern helps us check.
   private static final Pattern DEFAULT_URI_PATTERN = Pattern.compile(".*example\\.com.*");
   private static final Pattern BATCH_NUM_PATTERN =
-      Pattern.compile("exposureKeyExport-[A-Z]{2}/([0-9]+)-[0-9]+.zip");
+      Pattern.compile("exposureKeyExport-[A-Z]{2}/([0-9]+)-([0-9]+-)?[0-9]+.zip");
 
   private final Context context;
   private final ExposureNotificationSharedPreferences prefs;
@@ -73,9 +73,14 @@ public class Uris {
   public Uris(Context context) {
     this.context = context;
     this.prefs = new ExposureNotificationSharedPreferences(context);
-    // These two string resources must be set by gradle.properties.
-    baseDownloadUri = Uri.parse(context.getString(R.string.key_server_download_base_uri));
-    uploadUri = Uri.parse(context.getString(R.string.key_server_upload_uri));
+    // These two string resources must be set by gradle.properties or overriden by preferences.
+    baseDownloadUri =
+        Uri.parse(
+            prefs.getDownloadServerAddress(
+                context.getString(R.string.key_server_download_base_uri)));
+    uploadUri =
+        Uri.parse(
+            prefs.getUploadServerAddress(context.getString(R.string.key_server_upload_uri)));
   }
 
   /**
@@ -127,6 +132,7 @@ public class Uris {
     return FluentFuture.from(index(regionCode))
         .transform(
             indexContent -> {
+              Log.d(TAG, "Index content is " + indexContent);
               List<String> indexEntries = WHITESPACE_SPLITTER.splitToList(indexContent);
               Log.d(TAG, "Index file has " + indexEntries.size() + " lines.");
               Map<Long, List<Uri>> batches = new HashMap<>();
@@ -140,7 +146,7 @@ public class Uris {
                   throw new RuntimeException(
                       "Failed to parse batch num from File [" + indexEntry + "].");
                 }
-                Long batchNum = Long.valueOf(m.group(1));
+                long batchNum = Long.parseLong(m.group(1));
                 Log.d(
                     TAG, String.format("Batch number %s from indexEntry %s", batchNum, indexEntry));
                 if (!batches.containsKey(batchNum)) {
@@ -173,9 +179,11 @@ public class Uris {
               };
 
           String path = String.format(INDEX_FILE_FORMAT, countryCode);
-          Uri indexUri = baseDownloadUri.buildUpon().appendPath(path).build();
+          Uri indexUri = baseDownloadUri.buildUpon().appendEncodedPath(path).build();
+          Log.d(TAG, "Getting index file from " + indexUri);
           StringRequest request =
               new StringRequest(indexUri.toString(), responseListener, errorListener);
+          request.setShouldCache(false);
           RequestQueueSingleton.get(context).add(request);
           return request;
         });

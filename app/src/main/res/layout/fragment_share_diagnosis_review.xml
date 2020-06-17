@@ -109,12 +109,28 @@
     android:background="?android:attr/colorBackground"
     android:elevation="20dp">
 
-    <Button
-      android:id="@+id/share_share_button"
+    <RelativeLayout
       android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginHorizontal="@dimen/padding_normal"
-      android:text="@string/btn_share_positive" />
+      android:layout_height="wrap_content">
+
+      <Button
+        android:id="@+id/share_share_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/padding_normal"
+        android:text="@string/btn_share_positive"
+        android:elevation="0dp"/>
+
+      <ProgressBar
+        android:id="@+id/share_progress_bar"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_centerInParent="true"
+        android:indeterminateTint="@android:color/white"
+        android:elevation="10dp"
+        android:visibility="invisible"/>
+
+    </RelativeLayout>
 
     <Button
       android:id="@+id/share_cancel_button"

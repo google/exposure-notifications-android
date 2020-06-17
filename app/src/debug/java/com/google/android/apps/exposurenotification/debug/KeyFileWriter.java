@@ -19,11 +19,11 @@ package com.google.android.apps.exposurenotification.debug;
 
 import android.content.Context;
 import androidx.annotation.Nullable;
-import androidx.annotation.VisibleForTesting;
-import com.google.android.apps.exposurenotification.debug.proto.SignatureInfo;
-import com.google.android.apps.exposurenotification.debug.proto.TEKSignature;
-import com.google.android.apps.exposurenotification.debug.proto.TEKSignatureList;
-import com.google.android.apps.exposurenotification.debug.proto.TemporaryExposureKeyExport;
+import com.google.android.apps.exposurenotification.network.KeyFileConstants;
+import com.google.android.apps.exposurenotification.proto.SignatureInfo;
+import com.google.android.apps.exposurenotification.proto.TEKSignature;
+import com.google.android.apps.exposurenotification.proto.TEKSignatureList;
+import com.google.android.apps.exposurenotification.proto.TemporaryExposureKeyExport;
 import com.google.android.gms.nearby.exposurenotification.TemporaryExposureKey;
 import com.google.common.base.Strings;
 import com.google.common.collect.ImmutableList;
@@ -42,8 +42,6 @@ import org.threeten.bp.Instant;
 
 public class KeyFileWriter {
   private static final String FILENAME_PATTERN = "test-keyfile-%d.zip";
-  @VisibleForTesting public static final String SIG_FILENAME = "export.sig";
-  @VisibleForTesting public static final String EXPORT_FILENAME = "export.bin";
   private static final String HEADER_V1 = "EK Export v1";
   private static final int HEADER_LEN = 16;
   private static final int DEFAULT_MAX_BATCH_SIZE = 10000;
@@ -92,8 +90,8 @@ public class KeyFileWriter {
           new File(
               context.getFilesDir(), String.format(Locale.ENGLISH, FILENAME_PATTERN, batchNum));
       try (ZipOutputStream out = new ZipOutputStream(new FileOutputStream(outFile))) {
-        ZipEntry signatureEntry = new ZipEntry(SIG_FILENAME);
-        ZipEntry exportEntry = new ZipEntry(EXPORT_FILENAME);
+        ZipEntry signatureEntry = new ZipEntry(KeyFileConstants.SIG_FILENAME);
+        ZipEntry exportEntry = new ZipEntry(KeyFileConstants.EXPORT_FILENAME);
 
         TemporaryExposureKeyExport exportProto =
             export(batch, start, end, regionIsoAlpha2, batchNum);
@@ -159,13 +157,13 @@ public class KeyFileWriter {
     return Strings.padEnd(HEADER_V1, HEADER_LEN, ' ');
   }
 
-  private static List<com.google.android.apps.exposurenotification.debug.proto.TemporaryExposureKey>
-  toProto(List<TemporaryExposureKey> keys) {
-    List<com.google.android.apps.exposurenotification.debug.proto.TemporaryExposureKey> protos =
+  private static List<com.google.android.apps.exposurenotification.proto.TemporaryExposureKey>
+      toProto(List<TemporaryExposureKey> keys) {
+    List<com.google.android.apps.exposurenotification.proto.TemporaryExposureKey> protos =
         new ArrayList<>();
     for (TemporaryExposureKey k : keys) {
       protos.add(
-          com.google.android.apps.exposurenotification.debug.proto.TemporaryExposureKey.newBuilder()
+          com.google.android.apps.exposurenotification.proto.TemporaryExposureKey.newBuilder()
               .setKeyData(ByteString.copyFrom(k.getKeyData()))
               .setRollingStartIntervalNumber(k.getRollingStartIntervalNumber())
               .setRollingPeriod(k.getRollingPeriod())

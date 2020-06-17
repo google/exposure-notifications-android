@@ -26,6 +26,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ProgressBar;
+import android.widget.ViewSwitcher;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -59,12 +62,19 @@ public class KeysMatchingFragment extends Fragment {
     recyclerView.setLayoutManager(layoutManager);
     recyclerView.setAdapter(temporaryExposureKeyAdapter);
 
+    ViewSwitcher viewSwitcher = view.findViewById(R.id.debug_matching_view_keys_switcher);
     keysMatchingViewModel
         .getTemporaryExposureKeysLiveData()
         .observe(
             getViewLifecycleOwner(),
-            temporaryExposureKeys ->
-                temporaryExposureKeyAdapter.setTemporaryExposureKeys(temporaryExposureKeys));
+            temporaryExposureKeys -> {
+              temporaryExposureKeyAdapter.setTemporaryExposureKeys(temporaryExposureKeys);
+              if (temporaryExposureKeys.isEmpty()) {
+                viewSwitcher.setDisplayedChild(0);
+              } else {
+                viewSwitcher.setDisplayedChild(1);
+              }
+            });
 
     keysMatchingViewModel
         .getResolutionRequiredLiveEvent()
@@ -93,7 +103,26 @@ public class KeysMatchingFragment extends Fragment {
             getViewLifecycleOwner(),
             unused -> maybeShowSnackbar(getString(R.string.debug_matching_view_api_not_enabled)));
 
-    keysMatchingViewModel.updateTemporaryExposureKeys();
+    Button requestKeys = view.findViewById(R.id.debug_matching_view_request_keys_button);
+    ProgressBar progressBar = view.findViewById(R.id.debug_matching_view_request_key_progress_bar);
+    keysMatchingViewModel
+        .getInFlightResolutionLiveData()
+        .observe(
+            getViewLifecycleOwner(),
+            hasInFlightResolution -> {
+              if (hasInFlightResolution) {
+                requestKeys.setEnabled(false);
+                requestKeys.setText("");
+                progressBar.setVisibility(View.VISIBLE);
+              } else {
+                requestKeys.setEnabled(true);
+                requestKeys.setText(R.string.debug_matching_view_get_keys_button_text);
+                progressBar.setVisibility(View.INVISIBLE);
+              }
+            });
+    requestKeys.setOnClickListener(v -> {
+      keysMatchingViewModel.updateTemporaryExposureKeys();
+    });
   }
 
   @Override
@@ -103,6 +132,7 @@ public class KeysMatchingFragment extends Fragment {
         // Resolution completed. Submit data again.
         keysMatchingViewModel.startResolutionResultOk();
       } else {
+        keysMatchingViewModel.startResolutionResultNotOk();
         maybeShowSnackbar(getString(R.string.debug_matching_view_rejected));
       }
     }

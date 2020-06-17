@@ -23,10 +23,10 @@ import static com.google.android.apps.exposurenotification.home.HomeFragment.TAB
 
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
-import com.google.android.apps.exposurenotification.debug.DebugHomeFragment;
 import com.google.android.apps.exposurenotification.exposure.ExposureHomeFragment;
 import com.google.android.apps.exposurenotification.notify.NotifyHomeFragment;
 
@@ -34,9 +34,25 @@ import com.google.android.apps.exposurenotification.notify.NotifyHomeFragment;
 public class HomeFragmentPagerAdapter extends FragmentPagerAdapter {
 
   private Fragment currentFragment;
+  private FragmentManager fm;
+  private ClassLoader classLoader;
 
-  HomeFragmentPagerAdapter(FragmentManager fm) {
+  HomeFragmentPagerAdapter(FragmentManager fm, ClassLoader classLoader) {
     super(fm, FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+    this.fm = fm;
+    this.classLoader = classLoader;
+  }
+
+  @Nullable
+  private Fragment maybeGetDebugHomeFragment() {
+    try {
+      return fm.getFragmentFactory().instantiate(
+          classLoader,
+          "com.google.android.apps.exposurenotification.debug.DebugHomeFragment");
+    } catch(Fragment.InstantiationException exception) {
+      // Must be release build.
+      return null;
+    }
   }
 
   @NonNull
@@ -46,7 +62,7 @@ public class HomeFragmentPagerAdapter extends FragmentPagerAdapter {
       case TAB_EXPOSURES:
         return new ExposureHomeFragment();
       case TAB_DEBUG:
-        return new DebugHomeFragment();
+        return maybeGetDebugHomeFragment();
       case TAB_NOTIFY:
         // fall through.
       default:
@@ -56,7 +72,11 @@ public class HomeFragmentPagerAdapter extends FragmentPagerAdapter {
 
   @Override
   public int getCount() {
-    return 3;
+    if (maybeGetDebugHomeFragment() != null) {
+      return 3;
+    } else {
+      return 2;
+    }
   }
 
   @Override

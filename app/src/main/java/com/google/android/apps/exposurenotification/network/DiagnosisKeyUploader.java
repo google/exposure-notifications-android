@@ -116,8 +116,8 @@ public class DiagnosisKeyUploader {
   /**
    * Uploads realistically-sized fake traffic to the key sharing service(s), to help with privacy.
    *
-   * <p>We use fake data for two things: The diagnosis keys and the safetynet attestation. Note
-   * that we still make an RPC to SafetyNet, we just don't use its result.
+   * <p>We use fake data for two things: The diagnosis keys and the safetynet attestation. Note that
+   * we still make an RPC to SafetyNet, we just don't use its result.
    */
   public ListenableFuture<?> fakeUpload() {
     ImmutableList.Builder<DiagnosisKey> builder = ImmutableList.builder();
@@ -234,6 +234,7 @@ public class DiagnosisKeyUploader {
     JSONArray keysJson = new JSONArray();
     try {
       for (DiagnosisKey k : submission.diagnosisKeys) {
+        Log.d(TAG, "Adding key: " + k + " to submission.");
         keysJson.put(
             new JSONObject()
                 .put("key", BASE64.encode(k.getKeyBytes()))

@@ -34,12 +34,28 @@
     android:background="?android:attr/colorBackground"
     android:elevation="20dp">
 
-    <Button
-      android:id="@+id/onboarding_next_button"
-      style="@style/Widget.MaterialComponents.Button"
+    <RelativeLayout
       android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:text="@string/btn_turn_on" />
+      android:layout_height="wrap_content">
+
+      <Button
+        android:id="@+id/onboarding_next_button"
+        style="@style/Widget.MaterialComponents.Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_turn_on"
+        android:elevation="0dp"/>
+
+      <ProgressBar
+        android:id="@+id/onboarding_progress_bar"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_centerInParent="true"
+        android:indeterminateTint="@android:color/white"
+        android:elevation="10dp"
+        android:visibility="invisible"/>
+
+    </RelativeLayout>
 
     <Button
       android:id="@+id/onboarding_no_thanks_button"

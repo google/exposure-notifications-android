@@ -38,8 +38,10 @@ public final class AppExecutors {
 
   // Number of lightweight executor threads is dynamic. See #lightweightThreadCount()
   private static final int NUM_BACKGROUND_THREADS = 4;
-  private static final ThreadPolicy POLICY =
+  private static final ThreadPolicy LIGHTWEIGHT_POLICY =
       new ThreadPolicy.Builder().detectAll().penaltyLog().build();
+  private static final ThreadPolicy BACKGROUND_POLICY =
+      new ThreadPolicy.Builder().permitAll().build();
 
   private static ListeningExecutorService lightweightExecutor;
   private static ListeningExecutorService backgroundExecutor;
@@ -49,7 +51,10 @@ public final class AppExecutors {
     if (lightweightExecutor == null) {
       lightweightExecutor =
           createFixed(
-              "Lightweight", lightweightThreadCount(), Process.THREAD_PRIORITY_DEFAULT, POLICY);
+              "Lightweight",
+              lightweightThreadCount(),
+              Process.THREAD_PRIORITY_DEFAULT,
+              LIGHTWEIGHT_POLICY);
     }
     return lightweightExecutor;
   }
@@ -58,7 +63,10 @@ public final class AppExecutors {
     if (backgroundExecutor == null) {
       backgroundExecutor =
           createFixed(
-              "Background", backgroundThreadCount(), Process.THREAD_PRIORITY_BACKGROUND, POLICY);
+              "Background",
+              backgroundThreadCount(),
+              Process.THREAD_PRIORITY_BACKGROUND,
+              BACKGROUND_POLICY);
     }
     return backgroundExecutor;
   }
@@ -67,7 +75,10 @@ public final class AppExecutors {
     if (scheduledExecutor == null) {
       scheduledExecutor =
           createScheduled(
-              "Scheduled", backgroundThreadCount(), Process.THREAD_PRIORITY_BACKGROUND, POLICY);
+              "Scheduled",
+              backgroundThreadCount(),
+              Process.THREAD_PRIORITY_BACKGROUND,
+              BACKGROUND_POLICY);
     }
     return scheduledExecutor;
   }

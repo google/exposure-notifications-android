@@ -21,6 +21,10 @@ import android.content.Context;
 import androidx.annotation.VisibleForTesting;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.BaseHttpStack;
+import com.android.volley.toolbox.BasicNetwork;
+import com.android.volley.toolbox.DiskBasedCache;
+import com.android.volley.toolbox.HurlStack;
+import com.android.volley.toolbox.NoCache;
 import com.android.volley.toolbox.Volley;
 
 /** Holder for a singleton {@link Volley} {@link com.android.volley.RequestQueue}. */
@@ -30,7 +34,10 @@ public class RequestQueueSingleton {
 
   public static RequestQueue get(Context context) {
     if (queue == null) {
-      queue = Volley.newRequestQueue(context.getApplicationContext());
+      // In this reference design, we never want to return cached data; it complicates end to end
+      // testing.
+      queue = new RequestQueue(new NoCache(), new BasicNetwork(new HurlStack()));
+      queue.start();
     }
     return queue;
   }

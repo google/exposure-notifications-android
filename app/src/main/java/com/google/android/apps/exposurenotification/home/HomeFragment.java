@@ -17,7 +17,6 @@
 
 package com.google.android.apps.exposurenotification.home;
 
-import static android.view.View.VISIBLE;
 import static com.google.android.apps.exposurenotification.home.ExposureNotificationActivity.HOME_FRAGMENT_TAG;
 
 import android.content.Intent;
@@ -25,7 +24,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -53,17 +51,21 @@ public class HomeFragment extends Fragment {
   // Constants so the tabs are settable by name and not just index.
   @Retention(RetentionPolicy.SOURCE)
   @IntDef({TAB_EXPOSURES, TAB_NOTIFY, TAB_DEBUG})
-  @interface TabName {}
+  @interface TabName {
+
+  }
 
   static final int TAB_EXPOSURES = 0;
   static final int TAB_NOTIFY = 1;
   static final int TAB_DEBUG = 2;
 
-  static final int TAB_DEFAULT = TAB_NOTIFY;
+  static final int TAB_DEFAULT = TAB_EXPOSURES;
 
   private HomeFragmentPagerAdapter fragmentPagerAdapter;
 
-  /** Creates a {@link HomeFragment} instance with a specified start tab. */
+  /**
+   * Creates a {@link HomeFragment} instance with a specified start tab.
+   */
   public static HomeFragment newInstance(@TabName int tab) {
     HomeFragment homeFragment = new HomeFragment();
     Bundle args = new Bundle();
@@ -72,7 +74,9 @@ public class HomeFragment extends Fragment {
     return homeFragment;
   }
 
-  /** Creates a {@link HomeFragment} instance with a default start tab {@value #TAB_DEFAULT}. */
+  /**
+   * Creates a {@link HomeFragment} instance with a default start tab {@value #TAB_DEFAULT}.
+   */
   public static HomeFragment newInstance() {
     return new HomeFragment();
   }
@@ -82,7 +86,8 @@ public class HomeFragment extends Fragment {
     return inflater.inflate(R.layout.fragment_home, parent, false);
   }
 
-  private @TabName int getStartTab() {
+  private @TabName
+  int getStartTab() {
     if (getArguments() != null) {
       return getArguments().getInt(KEY_START_TAB, TAB_DEFAULT);
     } else {
@@ -93,7 +98,8 @@ public class HomeFragment extends Fragment {
   @SuppressWarnings("ConstantConditions")
   @Override
   public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-    fragmentPagerAdapter = new HomeFragmentPagerAdapter(getParentFragmentManager());
+    fragmentPagerAdapter = new HomeFragmentPagerAdapter(getParentFragmentManager(),
+        requireActivity().getClassLoader());
 
     ViewPager viewPager = view.findViewById(R.id.view_pager);
     viewPager.setOffscreenPageLimit(2);
@@ -106,8 +112,10 @@ public class HomeFragment extends Fragment {
     tabLayout.getTabAt(TAB_EXPOSURES).setText(R.string.home_tab_exposures_text);
     tabLayout.getTabAt(TAB_NOTIFY).setIcon(R.drawable.ic_flag);
     tabLayout.getTabAt(TAB_NOTIFY).setText(R.string.home_tab_notify_text);
-    tabLayout.getTabAt(TAB_DEBUG).setIcon(R.drawable.ic_cog);
-    tabLayout.getTabAt(TAB_DEBUG).setText(R.string.home_tab_notify_debug_text);
+    if (tabLayout.getTabCount() > TAB_DEBUG) {
+      tabLayout.getTabAt(TAB_DEBUG).setIcon(R.drawable.ic_cog);
+      tabLayout.getTabAt(TAB_DEBUG).setText(R.string.home_tab_notify_debug_text);
+    }
   }
 
   @Override
@@ -115,7 +123,7 @@ public class HomeFragment extends Fragment {
     super.onActivityResult(requestCode, resultCode, data);
     fragmentPagerAdapter.getCurrentFragment().onActivityResult(requestCode, resultCode, data);
   }
-  
+
   /**
    * Helper to transition from one fragment to {@link HomeFragment}
    *

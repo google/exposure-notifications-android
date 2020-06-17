@@ -17,8 +17,6 @@
 
 package com.google.android.apps.exposurenotification.exposure;
 
-import static com.google.android.apps.exposurenotification.nearby.ProvideDiagnosisKeysWorker.DEFAULT_API_TIMEOUT;
-
 import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -38,9 +36,11 @@ import com.google.common.util.concurrent.ListenableFuture;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import org.threeten.bp.Duration;
 
 /** View model for the {@link ExposureHomeFragment}. */
 public class ExposureHomeViewModel extends AndroidViewModel {
+  private static final Duration GET_EXPOSURE_INFO_TIMEOUT = Duration.ofSeconds(30);
 
   private final ExposureRepository exposureRepository;
   private final TokenRepository tokenRepository;
@@ -60,41 +60,4 @@ public class ExposureHomeViewModel extends AndroidViewModel {
     return getAllLiveData;
   }
 
-  public void updateExposureEntities() {
-    FluentFuture.from(tokenRepository.getAllAsync())
-        .transformAsync(this::checkForRespondedTokensAsync, AppExecutors.getBackgroundExecutor());
-  }
-
-  private ListenableFuture<List<Void>> checkForRespondedTokensAsync(
-      List<TokenEntity> tokenEntities) {
-    List<ListenableFuture<Void>> futures = new ArrayList<>();
-    for (TokenEntity tokenEntity : tokenEntities) {
-      if (tokenEntity.isResponded()) {
-        futures.add(
-            FluentFuture.from(
-                    TaskToFutureAdapter.getFutureWithTimeout(
-                        ExposureNotificationClientWrapper.get(getApplication())
-                            .getExposureInformation(tokenEntity.getToken()),
-                        DEFAULT_API_TIMEOUT.toMillis(),
-                        TimeUnit.MILLISECONDS,
-                        AppExecutors.getScheduledExecutor()))
-                .transformAsync(
-                    (exposureInformations) -> {
-                      List<ExposureEntity> exposureEntities = new ArrayList<>();
-                      for (ExposureInformation exposureInformation : exposureInformations) {
-                        exposureEntities.add(
-                            ExposureEntity.create(
-                                exposureInformation.getDateMillisSinceEpoch(),
-                                tokenEntity.getLastUpdatedTimestampMs()));
-                      }
-                      return exposureRepository.upsertAsync(exposureEntities);
-                    },
-                    AppExecutors.getLightweightExecutor())
-                .transformAsync(
-                    (v) -> tokenRepository.deleteByTokensAsync(tokenEntity.getToken()),
-                    AppExecutors.getLightweightExecutor()));
-      }
-    }
-    return Futures.allAsList(futures);
-  }
 }
