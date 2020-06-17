@@ -25,4 +25,5 @@ This project uses the Gradle build system. To build this code, use the
 - [Exposure Notification Bluetooth Specification](https://www.blog.google/documents/70/Exposure_Notification_-_Bluetooth_Specification_v1.2.2.pdf)
 - [Exposure Notification Cryptography Specification](https://www.blog.google/documents/69/Exposure_Notification_-_Cryptography_Specification_v1.2.1.pdf)
 - [Android Exposure Notifications API](https://static.googleusercontent.com/media/www.google.com/en//covid19/exposurenotifications/pdfs/Android-Exposure-Notification-API-documentation-v1.3.2.pdf)
-- [Exposure Key Export and File Format](https://static.googleusercontent.com/media/www.google.com/en//covid19/exposurenotifications/pdfs/Exposure-Key-File-Format-and-Verification.pdf)
+- [Exposure Key Export and File Format]
+(https://developers.google.com/android/exposure-notifications/exposure-key-file-format)
