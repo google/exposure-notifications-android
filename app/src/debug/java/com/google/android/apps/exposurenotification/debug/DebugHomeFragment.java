@@ -33,6 +33,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.work.WorkInfo.State;
 import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.home.ExposureNotificationViewModel;
 import com.google.android.apps.exposurenotification.network.Uris;
@@ -42,7 +43,9 @@ import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
-/** Fragment for Debug tab on home screen */
+/**
+ * Fragment for Debug tab on home screen
+ */
 public class DebugHomeFragment extends Fragment {
 
   private static final String TAG = "DebugHomeFragment";
@@ -109,27 +112,68 @@ public class DebugHomeFragment extends Fragment {
     manualMatching.setOnClickListener(
         v -> startActivity(new Intent(requireContext(), MatchingDebugActivity.class)));
 
-    Button provideKeysButton = view.findViewById(R.id.debug_provide_keys_button);
-    provideKeysButton.setOnClickListener(
+    Button enqueueProvide = view.findViewById(R.id.debug_provide_now);
+    enqueueProvide.setOnClickListener(
         v -> {
           debugHomeViewModel.provideKeys();
           maybeShowSnackbar(getString(R.string.debug_provide_keys_enqueued));
         });
-    provideKeysButton.setEnabled(
-        debugHomeViewModel.getNetworkMode(NetworkMode.FAKE).equals(NetworkMode.TEST));
+
+    Button provideHistory = view.findViewById(R.id.debug_provide_history);
+    provideHistory.setOnClickListener(
+        v -> startActivity(new Intent(requireContext(), TokenDebugActivity.class)));
+
+    TextView jobStatus = view.findViewById(R.id.debug_matching_job_status);
+    debugHomeViewModel
+        .getProvideDiagnosisKeysWorkLiveData()
+        .observe(
+            getViewLifecycleOwner(),
+            workInfos -> {
+              if (workInfos == null) {
+                Log.e(TAG, "workInfos is null");
+                jobStatus.setText(getString(R.string.debug_job_status,
+                    getString(R.string.debug_job_status_error)));
+                return;
+              }
+              String jobStatusText = "";
+              switch (workInfos.size()) {
+                case 0:
+                  jobStatusText = getString(
+                      R.string.debug_job_status,
+                      getString(R.string.debug_job_status_not_scheduled));
+                  break;
+                case 1:
+                  if (workInfos.get(0).getState() == State.ENQUEUED) {
+                    jobStatusText = getString(R.string.debug_job_status,
+                        getString(R.string.debug_job_status_scheduled));
+                  } else {
+                    jobStatusText = getString(
+                        R.string.debug_job_status, getString(R.string.debug_job_status_error));
+                  }
+                  break;
+                default:
+                  Log.e(TAG, "workInfos.size() != 1");
+                  jobStatusText = getString(
+                      R.string.debug_job_status, getString(R.string.debug_job_status_error));
+                  break;
+              }
+              jobStatus.setText(jobStatusText);
+            });
 
     // Network
     SwitchMaterial networkSwitch = view.findViewById(R.id.network_mode);
     networkSwitch.setOnCheckedChangeListener(networkModeChangeListener);
     networkSwitch.setChecked(
-        debugHomeViewModel.getNetworkMode(NetworkMode.FAKE).equals(NetworkMode.TEST));
+        debugHomeViewModel.getNetworkMode(NetworkMode.FAKE).
+
+            equals(NetworkMode.TEST));
 
     debugHomeViewModel
         .getNetworkModeLiveData()
         .observe(
             getViewLifecycleOwner(),
             networkMode -> {
-              provideKeysButton.setEnabled(networkMode.equals(NetworkMode.TEST));
+              enqueueProvide.setEnabled(networkMode.equals(NetworkMode.TEST));
               networkSwitch.setChecked(networkMode.equals(NetworkMode.TEST));
             });
 
@@ -138,14 +182,18 @@ public class DebugHomeFragment extends Fragment {
 
     EditText downloadServer = view.findViewById(R.id.debug_download_server_address);
     downloadServer.setText(
-        prefs.getDownloadServerAddress(getString(R.string.key_server_download_base_uri)));
+        prefs.getDownloadServerAddress(
+
+            getString(R.string.key_server_download_base_uri)));
     downloadServer.addTextChangedListener(
         new TextWatcher() {
           @Override
-          public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+          public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+          }
 
           @Override
-          public void onTextChanged(CharSequence s, int start, int before, int count) {}
+          public void onTextChanged(CharSequence s, int start, int before, int count) {
+          }
 
           @Override
           public void afterTextChanged(Editable s) {
@@ -156,14 +204,18 @@ public class DebugHomeFragment extends Fragment {
         });
 
     EditText uploadServer = view.findViewById(R.id.debug_upload_server_address);
-    uploadServer.setText(prefs.getUploadServerAddress(getString(R.string.key_server_upload_uri)));
+    uploadServer.setText(prefs.getUploadServerAddress(
+
+        getString(R.string.key_server_upload_uri)));
     uploadServer.addTextChangedListener(
         new TextWatcher() {
           @Override
-          public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+          public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+          }
 
           @Override
-          public void onTextChanged(CharSequence s, int start, int before, int count) {}
+          public void onTextChanged(CharSequence s, int start, int before, int count) {
+          }
 
           @Override
           public void afterTextChanged(Editable s) {
@@ -220,7 +272,9 @@ public class DebugHomeFragment extends Fragment {
         }
       };
 
-  /** Update UI state after Exposure Notifications client state changes */
+  /**
+   * Update UI state after Exposure Notifications client state changes
+   */
   private void refreshUi() {
     exposureNotificationViewModel.refreshIsEnabledState();
   }
@@ -241,7 +295,9 @@ public class DebugHomeFragment extends Fragment {
     masterSwitch.setOnCheckedChangeListener(masterSwitchChangeListener);
   }
 
-  /** Gets the version name for a specified package. Returns a debug string if not found. */
+  /**
+   * Gets the version name for a specified package. Returns a debug string if not found.
+   */
   private String getVersionNameForPackage(String packageName) {
     try {
       return getContext().getPackageManager().getPackageInfo(packageName, 0).versionName;

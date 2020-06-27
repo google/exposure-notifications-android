@@ -205,53 +205,56 @@ class DiagnosisKeyDownloader {
       new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-          String action = intent.getAction();
-          if (!DownloadManager.ACTION_DOWNLOAD_COMPLETE.equals(action)) {
-            // This really shouldn't happen.
-            return;
-          }
-          long downloadId = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);
-          if (downloadId == -1) {
-            // This is also unexpected.
-            return;
-          }
-
-          // Grab the details of this download "chunk".
-          Download download;
-          if (!downloadMap.containsKey(downloadId)) {
-            return;
-          }
-          download = downloadMap.get(downloadId);
-
-          Query q = new Query();
-          q.setFilterById(downloadId);
-          Cursor c = downloadManager.query(q);
-          if (c.moveToFirst()) {
-            int columnIndex = c.getColumnIndex(DownloadManager.COLUMN_STATUS);
-            if (DownloadManager.STATUS_SUCCESSFUL == c.getInt(columnIndex)) {
-              // We have a file.
-              Uri uri = downloadManager.getUriForDownloadedFile(download.downloadId);
-              try (InputStream stream = context.getContentResolver().openInputStream(uri)) {
-                // Great. Now copy the file to app-specific storage.
-                String filename = String.format(FILE_PATTERN, download.dir, downloadId);
-                File toFile = new File(context.getFilesDir(), filename);
-                FileUtils.copyInputStreamToFile(stream, toFile);
-                // And complete the Download's SettableFuture with the file's ultimate destination.
-                download.succeed(toFile);
-                // Then remove the original from DownloadManager.
-                downloadManager.remove(downloadId);
-              } catch (IOException | NullPointerException e) {
-                // Failed to get the downloaded file, or to copy it. Fail the future.
-                download.fail(e);
-              }
-            } else {
-              // This download failed. We fail the future.
-              // TODO: Use some other exception.
-              download.fileFuture.setException(new FileNotFoundException());
+          // TODO: consider better mechanism to offload from the UI thread. Potentially WorkManager.
+          AppExecutors.getBackgroundExecutor().submit(() -> {
+            String action = intent.getAction();
+            if (!DownloadManager.ACTION_DOWNLOAD_COMPLETE.equals(action)) {
+              // This really shouldn't happen.
+              return;
             }
-          }
+            long downloadId = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);
+            if (downloadId == -1) {
+              // This is also unexpected.
+              return;
+            }
 
-          downloadMap.remove(downloadId);
+            // Grab the details of this download "chunk".
+            Download download;
+            if (!downloadMap.containsKey(downloadId)) {
+              return;
+            }
+            download = downloadMap.get(downloadId);
+
+            Query q = new Query();
+            q.setFilterById(downloadId);
+            Cursor c = downloadManager.query(q);
+            if (c.moveToFirst()) {
+              int columnIndex = c.getColumnIndex(DownloadManager.COLUMN_STATUS);
+              if (DownloadManager.STATUS_SUCCESSFUL == c.getInt(columnIndex)) {
+                // We have a file.
+                Uri uri = downloadManager.getUriForDownloadedFile(download.downloadId);
+                try (InputStream stream = context.getContentResolver().openInputStream(uri)) {
+                  // Great. Now copy the file to app-specific storage.
+                  String filename = String.format(FILE_PATTERN, download.dir, downloadId);
+                  File toFile = new File(context.getFilesDir(), filename);
+                  FileUtils.copyInputStreamToFile(stream, toFile);
+                  // And complete the Download's SettableFuture with the file's ultimate destination.
+                  download.succeed(toFile);
+                  // Then remove the original from DownloadManager.
+                  downloadManager.remove(downloadId);
+                } catch (IOException | NullPointerException e) {
+                  // Failed to get the downloaded file, or to copy it. Fail the future.
+                  download.fail(e);
+                }
+              } else {
+                // This download failed. We fail the future.
+                // TODO: Use some other exception.
+                download.fileFuture.setException(new FileNotFoundException());
+              }
+            }
+
+            downloadMap.remove(downloadId);
+          });
         }
       };
 

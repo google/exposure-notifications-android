@@ -30,8 +30,9 @@ import java.util.Arrays;
 public abstract class DiagnosisKey {
   private static final BaseEncoding BASE16 = BaseEncoding.base16().lowerCase();
   private static final BaseEncoding BASE64 = BaseEncoding.base64();
-  // The number of 10-minute intervals the key is valid for
-  public static final int DEFAULT_PERIOD = 144;
+  // The number of 10-minute intervals the key is valid for, by default.
+  private static final int DEFAULT_PERIOD = 144;
+  private static final int DEFAULT_TRANSMISSION_RISK = 1;
 
   public abstract ByteArrayValue getKey();
 
@@ -39,8 +40,12 @@ public abstract class DiagnosisKey {
 
   public abstract int getRollingPeriod();
 
+  public abstract int getTransmissionRisk();
+
   public static Builder newBuilder() {
-    return new AutoValue_DiagnosisKey.Builder().setRollingPeriod(DEFAULT_PERIOD);
+    return new AutoValue_DiagnosisKey.Builder()
+        .setRollingPeriod(DEFAULT_PERIOD)
+        .setTransmissionRisk(DEFAULT_TRANSMISSION_RISK);
   }
 
   public byte[] getKeyBytes() {
@@ -52,7 +57,19 @@ public abstract class DiagnosisKey {
     public abstract Builder setKey(ByteArrayValue key);
     public abstract Builder setIntervalNumber(int intervalNumber);
     public abstract Builder setRollingPeriod(int rollingPeriod);
-    public abstract DiagnosisKey build();
+    public abstract Builder setTransmissionRisk(int risk);
+    abstract int getRollingPeriod();
+    abstract int getTransmissionRisk();
+    abstract DiagnosisKey autoBuild();
+
+    public DiagnosisKey build() {
+      // Both transmission risk and rolling period need to be positive ints. If they're zero, they
+      // probably were unset in the source data, so we use defaults.
+      setTransmissionRisk(
+          getTransmissionRisk() > 0 ? getTransmissionRisk() : DEFAULT_TRANSMISSION_RISK);
+      setRollingPeriod(getRollingPeriod() > 0 ? getRollingPeriod() : DEFAULT_PERIOD);
+      return autoBuild();
+    }
 
     public Builder setKeyBytes(byte[] keyBytes) {
       setKey(new ByteArrayValue(keyBytes));
@@ -66,6 +83,7 @@ public abstract class DiagnosisKey {
         .add("key:base64", "[" + BASE64.encode(getKeyBytes()) + "]")
         .add("interval_number", getIntervalNumber())
         .add("rolling_period", getRollingPeriod())
+        .add("transmission_risk", getTransmissionRisk())
         .toString();
   }
 

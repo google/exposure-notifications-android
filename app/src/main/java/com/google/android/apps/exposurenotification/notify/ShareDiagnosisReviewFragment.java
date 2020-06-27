@@ -94,7 +94,7 @@ public class ShareDiagnosisReviewFragment extends Fragment {
     shareButton.setOnClickListener(v -> shareAction());
     ProgressBar progressBar = view.findViewById(R.id.share_progress_bar);
     shareDiagnosisViewModel
-        .getInFlightResolutionLiveData()
+        .getInFlightLiveData()
         .observe(
             getViewLifecycleOwner(),
             hasInFlightResolution -> {
@@ -119,7 +119,6 @@ public class ShareDiagnosisReviewFragment extends Fragment {
             getViewLifecycleOwner(),
             apiException -> {
               try {
-                shareDiagnosisViewModel.setInflightResolution(true);
                 apiException.getStatus().startResolutionForResult(
                     requireActivity(), RequestCodes.REQUEST_CODE_GET_TEMP_EXPOSURE_KEY_HISTORY);
               } catch (SendIntentException e) {
@@ -164,7 +163,6 @@ public class ShareDiagnosisReviewFragment extends Fragment {
   @Override
   public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
     if (requestCode == RequestCodes.REQUEST_CODE_GET_TEMP_EXPOSURE_KEY_HISTORY) {
-      shareDiagnosisViewModel.setInflightResolution(false);
       if (resultCode == RESULT_OK) {
         // Okay to share, submit data.
         shareDiagnosisViewModel.share();

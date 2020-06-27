@@ -48,7 +48,6 @@ import java.security.spec.ECGenParameterSpec;
  * <p>Uses a randomly generated public/private keypair to sign files.
  */
 public class KeyFileSigner {
-
   private static final String TAG = "KeyFileSigner";
 
   private static final String KEY_STORE_NAME = "AndroidKeyStore";

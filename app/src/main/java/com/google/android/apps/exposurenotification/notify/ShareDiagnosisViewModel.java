@@ -62,7 +62,7 @@ public class ShareDiagnosisViewModel extends AndroidViewModel {
   private final MutableLiveData<String> testIdentifierLiveData = new MutableLiveData<>();
   private final MutableLiveData<ZonedDateTime> testTimestampLiveData = new MutableLiveData<>();
   private final MutableLiveData<Long> existingIdLiveData = new MutableLiveData<>(NO_EXISTING_ID);
-  private final MutableLiveData<Boolean> inFlightResolutionLiveData = new MutableLiveData<>(false);
+  private final MutableLiveData<Boolean> inFlightLiveData = new MutableLiveData<>(false);
 
   private final SingleLiveEvent<Void> deletedLiveEvent = new SingleLiveEvent<>();
   private final SingleLiveEvent<String> snackbarLiveEvent = new SingleLiveEvent<>();
@@ -106,12 +106,12 @@ public class ShareDiagnosisViewModel extends AndroidViewModel {
   }
 
   @NonNull
-  public LiveData<Boolean> getInFlightResolutionLiveData() {
-    return inFlightResolutionLiveData;
+  public LiveData<Boolean> getInFlightLiveData() {
+    return inFlightLiveData;
   }
 
-  public void setInflightResolution(boolean inFlightResolution) {
-    inFlightResolutionLiveData.setValue(inFlightResolution);
+  private void postInflight(boolean inFlight) {
+    inFlightLiveData.postValue(inFlight);
   }
 
   @NonNull
@@ -180,8 +180,12 @@ public class ShareDiagnosisViewModel extends AndroidViewModel {
    * Share the keys.
    */
   public void share() {
+    postInflight(true);
+
     FluentFuture<Boolean> getKeysAndSubmitToService =
         FluentFuture.from(getRecentKeys())
+            .transform(
+                this::toDiagnosisKeysWithTransmissionRisk, AppExecutors.getLightweightExecutor())
             .transformAsync(this::submitKeysToService, AppExecutors.getBackgroundExecutor());
 
     Futures.addCallback(
@@ -190,6 +194,7 @@ public class ShareDiagnosisViewModel extends AndroidViewModel {
           @Override
           public void onSuccess(Boolean shared) {
             sharedLiveEvent.postValue(shared);
+            postInflight(false);
           }
 
           @Override
@@ -198,6 +203,7 @@ public class ShareDiagnosisViewModel extends AndroidViewModel {
               Log.e(TAG, "Unknown error", exception);
               snackbarLiveEvent.postValue(
                   getApplication().getString(R.string.generic_error_message));
+              postInflight(false);
               return;
             }
             ApiException apiException = (ApiException) exception;
@@ -208,6 +214,7 @@ public class ShareDiagnosisViewModel extends AndroidViewModel {
               Log.w(TAG, "No RESOLUTION_REQUIRED in result", apiException);
               snackbarLiveEvent.postValue(
                   getApplication().getString(R.string.generic_error_message));;
+              postInflight(false);
             }
           }
         },
@@ -257,21 +264,35 @@ public class ShareDiagnosisViewModel extends AndroidViewModel {
   }
 
   /**
-   * Submits the given Temporary Exposure Keys to the key sharing service, designating them as
-   * Diagnosis Keys.
-   *
-   * @return a {@link ListenableFuture} of type {@link Boolean} of successfully submitted state
+   * Transforms from EN API's TEK object to our network package's expression of it, applying a
+   * default transmission risk. This default TR is temporary, while we determine that part of the EN
+   * API's contract.
    */
-  private ListenableFuture<Boolean> submitKeysToService(List<TemporaryExposureKey> recentKeys) {
+  private ImmutableList<DiagnosisKey> toDiagnosisKeysWithTransmissionRisk(
+      List<TemporaryExposureKey> recentKeys) {
     ImmutableList.Builder<DiagnosisKey> builder = new Builder<>();
     for (TemporaryExposureKey k : recentKeys) {
       builder.add(
           DiagnosisKey.newBuilder()
               .setKeyBytes(k.getKeyData())
               .setIntervalNumber(k.getRollingStartIntervalNumber())
+              .setRollingPeriod(k.getRollingPeriod())
+              // Accepting the default transmission risk for now, which the DiagnosisKey.Builder
+              // comes with pre-set.
               .build());
     }
-    return FluentFuture.from(new DiagnosisKeys(getApplication()).upload(builder.build()))
+    return builder.build();
+  }
+
+
+    /**
+     * Submits the given Temporary Exposure Keys to the key sharing service, designating them as
+     * Diagnosis Keys.
+     *
+     * @return a {@link ListenableFuture} of type {@link Boolean} of successfully submitted state
+     */
+  private ListenableFuture<Boolean> submitKeysToService(ImmutableList<DiagnosisKey> diagnosisKeys) {
+    return FluentFuture.from(new DiagnosisKeys(getApplication()).upload(diagnosisKeys))
         .transform(
             v -> {
               // Successfully submitted

@@ -25,10 +25,11 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import com.google.android.apps.exposurenotification.R;
-import com.google.android.apps.exposurenotification.nearby.StateUpdatedWorker;
 import com.google.android.apps.exposurenotification.onboarding.OnboardingPermissionFragment;
 import com.google.android.apps.exposurenotification.onboarding.OnboardingStartFragment;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
@@ -109,22 +110,22 @@ public final class ExposureNotificationActivity extends AppCompatActivity {
       } else {
         // Otherwise transition to the home UI.
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        Intent intent = getIntent();
-        HomeFragment homeFragment;
-        if (intent != null
-            && intent.getAction() != null
-            && intent
-                .getAction()
-                .equals(StateUpdatedWorker.ACTION_LAUNCH_FROM_EXPOSURE_NOTIFICATION)) {
-          // If we're started by the exposure notification we should show the Exposures tab,
-          // otherwise
-          // show the default.
-          homeFragment = HomeFragment.newInstance(HomeFragment.TAB_EXPOSURES);
-        } else {
-          homeFragment = HomeFragment.newInstance();
-        }
-        fragmentTransaction.replace(R.id.home_fragment, homeFragment, HOME_FRAGMENT_TAG);
+        fragmentTransaction
+            .replace(R.id.home_fragment, HomeFragment.newInstance(), HOME_FRAGMENT_TAG);
         fragmentTransaction.commit();
+      }
+    }
+  }
+
+  @Override
+  public void onNewIntent(Intent intent) {
+    super.onNewIntent(intent);
+    // onNewIntent means a new intent triggered (e.g. a notification click). Change the home
+    // fragment tab to the exposures tab.
+    // TODO: handle different intents separately
+    for (Fragment fragment : getSupportFragmentManager().getFragments()) {
+      if (fragment != null && fragment instanceof HomeFragment) {
+        ((HomeFragment) fragment).setTab(HomeFragment.TAB_EXPOSURES);
       }
     }
   }

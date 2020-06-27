@@ -29,8 +29,15 @@
       android:exported="false"
       android:parentActivityName=".home.ExposureNotificationActivity" />
 
-    <activity android:name=".debug.QRScannerActivity"
-      android:label="Scan QR Code" />
+    <activity
+      android:name=".debug.QRScannerActivity"
+      android:exported="false"
+      android:parentActivityName=".debug.MatchingDebugActivity" />
+
+    <activity
+      android:name=".debug.TokenDebugActivity"
+      android:exported="false"
+      android:parentActivityName=".home.ExposureNotificationActivity" />
 
     <meta-data
       android:name="com.google.android.gms.version"

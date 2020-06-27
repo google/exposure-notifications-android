@@ -60,7 +60,7 @@ import org.threeten.bp.Duration;
  *
  * <p>All joined with the pipe ("|") character.
  */
-class DeviceAttestor {
+class SafetyNetAttestor {
   private static final String TAG = "DeviceAttestor";
   // NOTE: The server expects base64 with padding.
   private static final BaseEncoding BASE64 = BaseEncoding.base64();
@@ -72,7 +72,7 @@ class DeviceAttestor {
   private final Context context;
   private final String safetyNetApiKey;
 
-  DeviceAttestor(Context context) {
+  SafetyNetAttestor(Context context) {
     this.context = context;
     // This api key must be set in gradle.properties.
     safetyNetApiKey = context.getString(R.string.safetynet_api_key);
@@ -82,13 +82,12 @@ class DeviceAttestor {
    * Obtains from SafetyNet an attestation token using the given keys and regions, plus the app
    * package name as the nonce to sign.
    */
-  ListenableFuture<String> attestFor(
+  public ListenableFuture<String> attestFor(
       List<DiagnosisKey> keys,
       List<String> regions,
-      String verificationCode,
-      int transmissionRisk) {
+      String verificationCode) {
     Log.i(TAG, "Getting SafetyNet attestation.");
-    String cleartext = cleartextFor(keys, regions, verificationCode, transmissionRisk);
+    String cleartext = cleartextFor(keys, regions, verificationCode);
     String nonce = BASE64.encode(sha256(cleartext));
     return safetyNetAttestationFor(nonce);
   }
@@ -121,19 +120,18 @@ class DeviceAttestor {
   private String cleartextFor(
       List<DiagnosisKey> keys,
       List<String> regions,
-      String verificationCode,
-      int transmissionRisk) {
+      String verificationCode) {
     List<String> parts = new ArrayList<>(5);
     // Order of the parts is important here. Don't shuffle them, or the server may not be able to
     // verify the attestation.
     parts.add(context.getPackageName());
-    parts.add(keys(keys, transmissionRisk));
+    parts.add(keyInfo(keys));
     parts.add(regions(regions));
     parts.add(verificationCode);
     return PIPE_JOINER.join(parts);
   }
 
-  private String keys(List<DiagnosisKey> keys, int transmissionRisk) {
+  private String keyInfo(List<DiagnosisKey> keys) {
     List<String> keysBase64 = new ArrayList<>();
     for (DiagnosisKey k : keys) {
       String keyInfo =
@@ -141,9 +139,9 @@ class DeviceAttestor {
               + "."
               + k.getIntervalNumber()
               + "."
-              + DiagnosisKey.DEFAULT_PERIOD
+              + k.getRollingPeriod()
               + "."
-              + transmissionRisk;
+              + k.getTransmissionRisk();
       keysBase64.add(keyInfo);
     }
     Collections.sort(keysBase64);

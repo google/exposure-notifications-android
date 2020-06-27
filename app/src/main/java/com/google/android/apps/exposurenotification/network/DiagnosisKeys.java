@@ -57,7 +57,7 @@ public class DiagnosisKeys {
    *
    * <p>A Diagnosis key is a Temporary Exposure Key from a user who has tested positive.
    *
-   * @param diagnosisKeys List of keys, which includes their interval
+   * @param diagnosisKeys List of keys including their interval, period and transmission risk.
    */
   public ListenableFuture<?> upload(ImmutableList<DiagnosisKey> diagnosisKeys) {
     NetworkMode mode = preferences.getNetworkMode(NetworkMode.FAKE);
