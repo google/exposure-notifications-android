@@ -65,6 +65,8 @@ class DiagnosisKeyDownloader {
   private static final BaseEncoding BASE32 = BaseEncoding.base32().lowerCase().omitPadding();
 
   private static final String FILE_PATTERN = "/diag_keys/%s/keys_%s.pb";
+  private static final String FILE_PATTERN_TEMP = "/diag_keys/%s";
+
   // TODO: Set a reasonable timeout and make it adjustable.
   private static final Duration DOWNLOAD_ALL_FILES_TIMEOUT = Duration.ofMinutes(30);
 
@@ -156,6 +158,8 @@ class DiagnosisKeyDownloader {
     Log.i(TAG, "Start " + batch.uris().size() + " key file downloads.");
     List<ListenableFuture<BatchFile>> files = new ArrayList<>();
     for (Uri uri : batch.uris()) {
+      String filenameForDownload = String.format(FILE_PATTERN_TEMP, uri.getLastPathSegment());
+
       DownloadManager.Request req =
           new DownloadManager.Request(uri)
               // TODO: Consider applying some policies such as:
@@ -164,6 +168,8 @@ class DiagnosisKeyDownloader {
               // .setRequiresCharging(true)
               // .setRequiresDeviceIdle(true)
               .setNotificationVisibility(Request.VISIBILITY_VISIBLE)
+              // set destination to own app external path, not common download.
+              .setDestinationInExternalFilesDir(context, null, filenameForDownload )
               .setMimeType("application/octet-stream")
               .setTitle("Exposure Notifications Check")
               .setDescription("Exposure Notifications Check");
