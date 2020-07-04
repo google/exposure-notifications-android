@@ -31,12 +31,14 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.JsonRequest;
 import com.google.android.apps.exposurenotification.common.AppExecutors;
+import com.google.android.apps.exposurenotification.common.StringUtils;
 import com.google.common.collect.ImmutableList;
 import com.google.common.io.BaseEncoding;
 import com.google.common.util.concurrent.FluentFuture;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
@@ -63,7 +65,6 @@ import org.threeten.bp.Duration;
  * privacy and security practices, such as randomly scheduled fake uploads, logging changes, etc.
  */
 public class DiagnosisKeyUploader {
-
   private static final String TAG = "KeyUploader";
   // NOTE: The server expects padding.
   private static final BaseEncoding BASE64 = BaseEncoding.base64();
@@ -71,9 +72,6 @@ public class DiagnosisKeyUploader {
   private static final int PADDING_SIZE_MIN = 1024;
   private static final int PADDING_SIZE_MAX = 2048;
   private static final SecureRandom RAND = new SecureRandom();
-  // TODO: accept these as args instead of hard-coded.
-  private static final int DEFAULT_PERIOD = DiagnosisKey.DEFAULT_PERIOD;
-  private static final int DEFAULT_TRANSMISSION_RISK = 1;
   private static final String DEFAULT_VERIFICATION_CODE = "POSITIVE_TEST_123456";
   private static final String PLATFORM = "android";
   // All requests to the server take at least 5s by design, so time out far longer than that.
@@ -86,13 +84,13 @@ public class DiagnosisKeyUploader {
   private static final int FAKE_SAFETYNET_ATTESTATION_LENGTH = 5394; // Measured from a real payload
 
   private final Context context;
-  private final DeviceAttestor deviceAttestor;
+  private final DiagnosisAttestor diagnosisAttestor;
   private final CountryCodes countryCodes;
   private final Uris uris;
 
   public DiagnosisKeyUploader(Context context) {
     this.context = context;
-    deviceAttestor = new DeviceAttestor(context);
+    diagnosisAttestor = new DiagnosisAttestor(context);
     countryCodes = new CountryCodes(context);
     uris = new Uris(context);
   }
@@ -128,6 +126,8 @@ public class DiagnosisKeyUploader {
       builder.add(
           DiagnosisKey.newBuilder()
               .setKeyBytes(bytes)
+              // Accepting the default rolling period that the DiagnosisKey.Builder comes with.
+              .setTransmissionRisk(i % 7)
               .setIntervalNumber(FAKE_INTERVAL_NUM)
               .build());
     }
@@ -143,7 +143,7 @@ public class DiagnosisKeyUploader {
       Log.d(TAG, "Zero keys given, skipping.");
       return Futures.immediateFuture(null);
     }
-    Log.d(TAG, "Uploading " + diagnosisKeys.size() + " keys...");
+    Log.d(TAG, "Uploading keys: [" + diagnosisKeys + "]");
 
     // In several steps, we need all the relevant countries for the user's last N days.
     ListenableFuture<List<String>> countries = countryCodes.getExposureRelevantCountryCodes();
@@ -193,7 +193,6 @@ public class DiagnosisKeyUploader {
     for (Uri uri : serverUris) {
       KeySubmission s = new KeySubmission();
       s.uri = uri;
-      s.transmissionRisk = DEFAULT_TRANSMISSION_RISK;
       s.verificationCode = DEFAULT_VERIFICATION_CODE;
       s.isFakeTraffic = isFakeTraffic;
       submissions.add(s);
@@ -239,8 +238,8 @@ public class DiagnosisKeyUploader {
             new JSONObject()
                 .put("key", BASE64.encode(k.getKeyBytes()))
                 .put("rollingStartNumber", k.getIntervalNumber())
-                .put("rollingPeriod", DEFAULT_PERIOD)
-                .put("transmissionRisk", submission.transmissionRisk));
+                .put("rollingPeriod", k.getRollingPeriod())
+                .put("transmissionRisk", k.getTransmissionRisk()));
       }
     } catch (JSONException e) {
       // TODO: Some better exception.
@@ -253,19 +252,18 @@ public class DiagnosisKeyUploader {
     }
 
     return FluentFuture.from(
-            deviceAttestor.attestFor(
+            diagnosisAttestor.attestFor(
                 submission.diagnosisKeys,
                 submission.applicableCountryCodes,
-                submission.verificationCode,
-                submission.transmissionRisk))
+                submission.verificationCode))
         .transformAsync(
             attestation -> {
-              int paddingLengthRange = PADDING_SIZE_MAX - PADDING_SIZE_MIN;
-              int paddingLength = PADDING_SIZE_MIN + RAND.nextInt(paddingLengthRange);
+              int paddingLength =
+                  PADDING_SIZE_MIN + RAND.nextInt(PADDING_SIZE_MAX - PADDING_SIZE_MIN);
               String deviceVerificationPayload =
                   submission.isFakeTraffic
-                      ? randomBase64Data(FAKE_SAFETYNET_ATTESTATION_LENGTH)
-                      : attestation;
+                      ? StringUtils.randomBase64Data(FAKE_SAFETYNET_ATTESTATION_LENGTH)
+                      : attestation.token();
               submission.payload =
                   new JSONObject()
                       .put("temporaryExposureKeys", keysJson)
@@ -274,18 +272,10 @@ public class DiagnosisKeyUploader {
                       .put("platform", PLATFORM)
                       .put("verificationPayload", DEFAULT_VERIFICATION_CODE)
                       .put("deviceVerificationPayload", deviceVerificationPayload)
-                      .put("padding", randomBase64Data(paddingLength));
+                      .put("padding", StringUtils.randomBase64Data(paddingLength));
               return Futures.immediateFuture(submission);
             },
             AppExecutors.getLightweightExecutor());
-  }
-
-  private static String randomBase64Data(int approximateLength) {
-    // Approximate the base64 blowup.
-    int numBytes = (int) (((double) approximateLength) * 0.75);
-    byte[] bytes = new byte[numBytes];
-    RAND.nextBytes(bytes);
-    return BASE64.encode(bytes);
   }
 
   private ListenableFuture<List<Void>> submitToServers(List<KeySubmission> submissions) {
@@ -302,9 +292,15 @@ public class DiagnosisKeyUploader {
 
                 ErrorListener errorListener =
                     err -> {
-                      Log.e(TAG, String.format("Diagnosis Key upload error: [%s]", err));
+                      String msg =
+                          (err.networkResponse == null || err.networkResponse.data == null)
+                              ? "call failed; network problem?"
+                              : new String(err.networkResponse.data, StandardCharsets.UTF_8);
+                      Log.e(TAG, String.format("Diagnosis Key upload error: [%s]", msg));
                       completer.setCancelled();
                     };
+
+                Log.d(TAG, "Submitting " + submission.payload);
 
                 SubmitKeysRequest request =
                     new SubmitKeysRequest(
@@ -327,7 +323,6 @@ public class DiagnosisKeyUploader {
     private ImmutableList<DiagnosisKey> diagnosisKeys;
     // All countries will be the same in all submissions.
     private List<String> applicableCountryCodes;
-    private int transmissionRisk;
     private String verificationCode;
     private boolean isFakeTraffic;
   }

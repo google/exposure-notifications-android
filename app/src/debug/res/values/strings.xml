@@ -152,4 +152,30 @@
 
   <string name="debug_network_mode_default_uri">App was built with default URIs. Non-default URIs are required to use servers.</string>
 
+  <string name="debug_provide_history_text">Provide History</string>
+
+  <string name="debug_provide_now_text">Enqueue provide job now</string>
+
+  <string name="debug_job_status">Daily provide worker: %1$s</string>
+
+  <string name="debug_job_status_error">Unknown error</string>
+
+  <string name="debug_job_status_scheduled">Scheduled</string>
+
+  <string name="debug_job_status_not_scheduled">Not scheduled</string>
+
+  <string name="debug_token_token">Token: %1$s</string>
+
+  <string name="debug_token_created">Created: %1$s</string>
+
+  <string name="debug_token_updated">Updated: %1$s</string>
+
+  <string name="debug_token_status">Status: %1$s</string>
+
+  <string name="debug_token_status_pending">Pending</string>
+
+  <string name="debug_token_status_responded">Responded</string>
+
+  <string name="debug_token_history_empty">No history</string>
+
 </resources>

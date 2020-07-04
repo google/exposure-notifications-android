@@ -94,6 +94,21 @@ public class TokenDaoTest {
   }
 
   @Test
+  public void markTokenRespondedAsync_updates()
+      throws InterruptedException, ExecutionException, TimeoutException {
+    TokenEntity updatedToken = TokenEntity.create(TOKEN_1, true);
+    updatedToken.setCreatedTimestampMs(TOKEN_ENTITY_1.getCreatedTimestampMs());
+    updatedToken.setLastUpdatedTimestampMs(123L);
+    ListenableFuture<List<TokenEntity>> finalTokens =
+        FluentFuture.from(populate(TOKEN_ENTITY_1))
+            .transformAsync(v -> tokenDao.markTokenRespondedAsync(TOKEN_1, 123L),
+                MoreExecutors.directExecutor())
+            .transformAsync(v -> tokenDao.getAllAsync(), MoreExecutors.directExecutor());
+
+    assertThat(finalTokens.get(10, TimeUnit.SECONDS)).containsExactly(updatedToken);
+  }
+
+  @Test
   public void getAllAsync() throws InterruptedException, ExecutionException, TimeoutException {
     ListenableFuture<List<TokenEntity>> finalTokens =
         FluentFuture.from(populate(TOKEN_ENTITY_1, TOKEN_ENTITY_2, TOKEN_ENTITY_3))
@@ -101,18 +116,6 @@ public class TokenDaoTest {
 
     assertThat(finalTokens.get(10, TimeUnit.SECONDS))
         .containsExactly(TOKEN_ENTITY_1, TOKEN_ENTITY_2, TOKEN_ENTITY_3);
-  }
-
-  @Test
-  public void deleteByTokensAsync()
-      throws InterruptedException, ExecutionException, TimeoutException {
-    ListenableFuture<List<TokenEntity>> finalTokens =
-        FluentFuture.from(populate(TOKEN_ENTITY_1, TOKEN_ENTITY_2, TOKEN_ENTITY_3))
-            .transformAsync(v -> tokenDao.deleteByTokensAsync(TOKEN_1, TOKEN_2),
-                MoreExecutors.directExecutor())
-            .transformAsync(v -> tokenDao.getAllAsync(), MoreExecutors.directExecutor());
-
-    assertThat(finalTokens.get(10, TimeUnit.SECONDS)).containsExactly(TOKEN_ENTITY_3);
   }
 
   private ListenableFuture<List<Void>> populate(TokenEntity... tokenEntities) {

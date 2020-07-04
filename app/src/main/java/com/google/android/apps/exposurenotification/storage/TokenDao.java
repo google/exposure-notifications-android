@@ -17,6 +17,7 @@
 
 package com.google.android.apps.exposurenotification.storage;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
@@ -33,10 +34,13 @@ abstract class TokenDao {
   @Query("SELECT * FROM TokenEntity")
   abstract ListenableFuture<List<TokenEntity>> getAllAsync();
 
+  @Query("SELECT * FROM TokenEntity ORDER BY created_timestamp_ms DESC")
+  abstract LiveData<List<TokenEntity>> getAllLiveData();
+
   @Insert(onConflict = OnConflictStrategy.REPLACE)
   abstract ListenableFuture<Void> upsertAsync(TokenEntity entity);
 
-  @Query("DELETE FROM TokenEntity WHERE token IN (:tokens)")
-  abstract ListenableFuture<Void> deleteByTokensAsync(String... tokens);
+  @Query("UPDATE TokenEntity SET responded = 1, last_updated_timestamp_ms = :timestampMs WHERE token = :token")
+  abstract ListenableFuture<Void> markTokenRespondedAsync(String token, long timestampMs);
 
 }

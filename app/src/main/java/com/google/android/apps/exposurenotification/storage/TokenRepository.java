@@ -18,6 +18,7 @@
 package com.google.android.apps.exposurenotification.storage;
 
 import android.content.Context;
+import androidx.lifecycle.LiveData;
 import com.google.common.util.concurrent.ListenableFuture;
 import java.util.List;
 
@@ -34,16 +35,16 @@ public class TokenRepository {
     tokenDao = exposureNotificationDatabase.tokenDao();
   }
 
-  public ListenableFuture<List<TokenEntity>> getAllAsync() {
-    return tokenDao.getAllAsync();
+  public LiveData<List<TokenEntity>> getAllLiveData() {
+    return tokenDao.getAllLiveData();
   }
 
   public ListenableFuture<Void> upsertAsync(TokenEntity entity) {
     return tokenDao.upsertAsync(entity);
   }
 
-  public ListenableFuture<Void> deleteByTokensAsync(String... tokens) {
-    return tokenDao.deleteByTokensAsync(tokens);
+  public ListenableFuture<Void> markTokenRespondedAsync(String token) {
+    return tokenDao.markTokenRespondedAsync(token, System.currentTimeMillis());
   }
 
 }

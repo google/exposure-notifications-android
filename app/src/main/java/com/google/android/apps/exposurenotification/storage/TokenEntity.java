@@ -39,6 +39,9 @@ public class TokenEntity {
   @NonNull
   private String token;
 
+  @ColumnInfo(name = "created_timestamp_ms")
+  private long createdTimestampMs;
+
   @ColumnInfo(name = "last_updated_timestamp_ms")
   private long lastUpdatedTimestampMs;
 
@@ -46,19 +49,28 @@ public class TokenEntity {
   private boolean responded;
 
   TokenEntity(@NonNull String token, boolean responded) {
-    this.lastUpdatedTimestampMs = System.currentTimeMillis();
+    this.createdTimestampMs = System.currentTimeMillis();
+    this.lastUpdatedTimestampMs = this.createdTimestampMs;
     this.token = token;
     this.responded = responded;
   }
 
   /**
-   * Creates a TokenEntity.
+   * Creates a new TokenEntity.
    *
    * @param token the token identifier
    * @param responded whether the exposure notification API has responded for the given token
    */
   public static TokenEntity create(@NonNull String token, boolean responded) {
     return new TokenEntity(Preconditions.checkNotNull(token), responded);
+  }
+
+  public long getCreatedTimestampMs() {
+    return createdTimestampMs;
+  }
+
+  void setCreatedTimestampMs(long ms) {
+    this.createdTimestampMs = ms;
   }
 
   public long getLastUpdatedTimestampMs() {
@@ -95,7 +107,8 @@ public class TokenEntity {
       return false;
     }
     TokenEntity that = (TokenEntity) o;
-    return lastUpdatedTimestampMs == that.lastUpdatedTimestampMs &&
+    return createdTimestampMs == that.createdTimestampMs &&
+        lastUpdatedTimestampMs == that.lastUpdatedTimestampMs &&
         responded == that.responded &&
         token.equals(that.token);
   }

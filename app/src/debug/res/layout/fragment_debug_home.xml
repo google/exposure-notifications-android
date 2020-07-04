@@ -102,21 +102,30 @@
         android:text="@string/debug_matching_manual_button_text" />
 
       <TextView
+        android:id="@+id/debug_matching_job_status"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingVertical="@dimen/padding_small"
         android:paddingHorizontal="@dimen/padding_large"
-        android:text="@string/debug_provide_keys_description"
         android:textAppearance="?attr/textAppearanceBody1" />
 
       <Button
-        android:id="@+id/debug_provide_keys_button"
+        android:id="@+id/debug_provide_now"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/padding_large"
+        android:layout_marginVertical="@dimen/padding_normal"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/debug_provide_now_text" />
+
+      <Button
+        android:id="@+id/debug_provide_history"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/padding_large"
         android:layout_marginBottom="@dimen/padding_normal"
         android:layout_gravity="center_horizontal"
-        android:text="@string/debug_provide_keys_button_text" />
+        android:text="@string/debug_provide_history_text" />
 
       <include layout="@layout/horizontal_divider" />
 

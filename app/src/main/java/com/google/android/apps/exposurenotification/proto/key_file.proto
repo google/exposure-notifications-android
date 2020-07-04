@@ -11,7 +11,7 @@ option java_multiple_files = true;
 // starts. They will be contained in a zip archive, alongside a signature
 // file verifying the contents.
 //
-// See https://static.googleusercontent.com/media/www.google.com/en//covid19/exposurenotifications/pdfs/Exposure-Key-File-Format-and-Verification.pdf
+// See https://developers.google.com/android/exposure-notifications/exposure-key-file-format
 message TemporaryExposureKeyExport {
   // Time window of keys in this file based on arrival to server, in UTC
   // seconds

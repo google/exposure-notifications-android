@@ -20,7 +20,10 @@ package com.google.android.apps.exposurenotification.nearby;
 import android.content.Context;
 import android.util.Log;
 import androidx.annotation.NonNull;
+import androidx.work.Data;
 import androidx.work.ListenableWorker;
+import androidx.work.OneTimeWorkRequest;
+import androidx.work.WorkManager;
 import androidx.work.WorkerParameters;
 import com.google.android.apps.exposurenotification.common.AppExecutors;
 import com.google.android.apps.exposurenotification.common.TaskToFutureAdapter;
@@ -28,7 +31,6 @@ import com.google.android.apps.exposurenotification.storage.ExposureEntity;
 import com.google.android.apps.exposurenotification.storage.ExposureRepository;
 import com.google.android.apps.exposurenotification.storage.TokenRepository;
 import com.google.android.gms.nearby.exposurenotification.ExposureInformation;
-import com.google.android.gms.nearby.exposurenotification.ExposureNotificationClient;
 import com.google.common.util.concurrent.FluentFuture;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
@@ -43,13 +45,13 @@ import org.threeten.bp.Duration;
  * broadcast from exposure notification API.
  */
 public class StateUpdatedWorker extends ListenableWorker {
-
   private static final String TAG = "StateUpdatedWorker";
 
   public static final String ACTION_LAUNCH_FROM_EXPOSURE_NOTIFICATION =
       "com.google.android.apps.exposurenotification.ACTION_LAUNCH_FROM_EXPOSURE_NOTIFICATION";
   private static final Duration GET_SUMMARY_TIMEOUT = Duration.ofSeconds(30);
   private static final Duration GET_EXPOSURE_INFORMATION_TIMEOUT = Duration.ofSeconds(30);
+  private static final String DATA_TOKEN = "TOKEN";
 
   private final Context context;
   private final TokenRepository tokenRepository;
@@ -65,7 +67,7 @@ public class StateUpdatedWorker extends ListenableWorker {
   @NonNull
   @Override
   public ListenableFuture<Result> startWork() {
-    final String token = getInputData().getString(ExposureNotificationClient.EXTRA_TOKEN);
+    final String token = getInputData().getString(DATA_TOKEN);
     if (token == null) {
       return Futures.immediateFuture(Result.failure());
     } else {
@@ -86,41 +88,49 @@ public class StateUpdatedWorker extends ListenableWorker {
               },
               AppExecutors.getBackgroundExecutor())
           .transform((v) -> Result.success(), AppExecutors.getLightweightExecutor())
-          .catching(Exception.class, x -> {
-            Log.e(TAG, "Failure to update app state (tokens, etc) from exposure summary.", x);
-            return Result.failure();
-            }, AppExecutors.getLightweightExecutor());
+          .catching(
+              Exception.class,
+              x -> {
+                Log.e(TAG, "Failure to update app state (tokens, etc) from exposure summary.", x);
+                return Result.failure();
+              },
+              AppExecutors.getLightweightExecutor());
     }
   }
 
-
-  public ListenableFuture<Void> hasMatches(String token) {
+  private ListenableFuture<Void> hasMatches(String token) {
     return FluentFuture.from(
-        TaskToFutureAdapter.getFutureWithTimeout(
-            ExposureNotificationClientWrapper.get(context).getExposureInformation(token),
-            GET_EXPOSURE_INFORMATION_TIMEOUT.toMillis(),
-            TimeUnit.MILLISECONDS,
-            AppExecutors.getScheduledExecutor()))
+            TaskToFutureAdapter.getFutureWithTimeout(
+                ExposureNotificationClientWrapper.get(context).getExposureInformation(token),
+                GET_EXPOSURE_INFORMATION_TIMEOUT.toMillis(),
+                TimeUnit.MILLISECONDS,
+                AppExecutors.getScheduledExecutor()))
         .transformAsync(
             (exposureInformations) -> {
               List<ExposureEntity> exposureEntities = new ArrayList<>();
               for (ExposureInformation exposureInformation : exposureInformations) {
                 exposureEntities.add(
                     ExposureEntity.create(
-                        exposureInformation.getDateMillisSinceEpoch(),
-                        System.currentTimeMillis()));
+                        exposureInformation.getDateMillisSinceEpoch(), System.currentTimeMillis()));
               }
               return exposureRepository.upsertAsync(exposureEntities);
             },
             AppExecutors.getBackgroundExecutor())
         .transformAsync(
-            (v) -> tokenRepository.deleteByTokensAsync(token),
+            (v) -> tokenRepository.markTokenRespondedAsync(token),
             AppExecutors.getBackgroundExecutor());
   }
 
-  public ListenableFuture<Void> noMatches(String token) {
-    // No matches so we show no notification and just delete the token.
-    return tokenRepository.deleteByTokensAsync(token);
+  private ListenableFuture<Void> noMatches(String token) {
+    // No matches so we show no notification and just mark the token as responded.
+    return tokenRepository.markTokenRespondedAsync(token);
   }
 
+  static void runOnce(Context context, String token) {
+    WorkManager.getInstance(context)
+        .enqueue(
+            new OneTimeWorkRequest.Builder(StateUpdatedWorker.class)
+                .setInputData(new Data.Builder().putString(DATA_TOKEN, token).build())
+                .build());
+  }
 }

@@ -71,6 +71,29 @@ public class ShareDiagnosisEditFragment extends Fragment {
             getViewLifecycleOwner(),
             timestamp ->
                 dateEditText.setText(timestamp != null ? formatter.format(timestamp) : ""));
+
+    TextWatcher enableNextWhenFieldsAreFilledOut =
+        new TextWatcher() {
+          @Override
+          public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+          @Override
+          public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
+          @Override
+          public void afterTextChanged(Editable s) {
+            EditText identifierEditText = view.findViewById(R.id.share_test_identifier);
+            shareDiagnosisViewModel.setTestIdentifier(identifierEditText.getText().toString());
+
+            EditText dateEditText = view.findViewById(R.id.share_test_date);
+
+            Button nextButton = view.findViewById(R.id.share_next_button);
+            nextButton.setEnabled(
+                !TextUtils.isEmpty(identifierEditText.getText())
+                    && !TextUtils.isEmpty(dateEditText.getText()));
+          }
+        };
+
     dateEditText.addTextChangedListener(enableNextWhenFieldsAreFilledOut);
     dateEditText.setOnClickListener((v) -> showMaterialDatePicker());
 
@@ -146,28 +169,6 @@ public class ShareDiagnosisEditFragment extends Fragment {
         });
     dialog.show(getChildFragmentManager(), "date_picker");
   }
-
-  private final TextWatcher enableNextWhenFieldsAreFilledOut =
-      new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {}
-
-        @Override
-        public void afterTextChanged(Editable s) {
-          EditText identifierEditText = requireView().findViewById(R.id.share_test_identifier);
-          shareDiagnosisViewModel.setTestIdentifier(identifierEditText.getText().toString());
-
-          EditText dateEditText = requireView().findViewById(R.id.share_test_date);
-
-          Button nextButton = requireView().findViewById(R.id.share_next_button);
-          nextButton.setEnabled(
-              !TextUtils.isEmpty(identifierEditText.getText())
-                  && !TextUtils.isEmpty(dateEditText.getText()));
-        }
-      };
 
   private static final DateValidator NOW_OR_PAST_DATE_VALIDATOR =
       new DateValidator() {

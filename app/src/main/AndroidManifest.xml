@@ -38,7 +38,11 @@
       android:theme="@style/ExposureNotification">
 
     <!-- Activities -->
-    <activity android:name=".home.ExposureNotificationActivity">
+    <activity
+      android:name=".home.ExposureNotificationActivity"
+      android:exported="true"
+      android:launchMode="singleTask"
+      android:clearTaskOnLaunch="true">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />
@@ -64,7 +68,6 @@
       android:name=".notify.ShareDiagnosisActivity"
       android:exported="false"
       android:parentActivityName=".home.ExposureNotificationActivity" />
-
 
     <!-- Receivers -->
     <receiver

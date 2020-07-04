@@ -35,6 +35,7 @@ public class ExposureNotificationSharedPreferences {
 
   private static final String ONBOARDING_STATE_KEY = "ExposureNotificationSharedPreferences.ONBOARDING_STATE_KEY";
   private static final String NETWORK_MODE_KEY = "ExposureNotificationSharedPreferences.NETWORK_MODE_KEY";
+  private static final String IS_ENABLED_CACHE_KEY = "ExposureNotificationSharedPreferences.IS_ENABLED_CACHE_KEY";
   private static final String ATTENUATION_THRESHOLD_1_KEY = "ExposureNotificationSharedPreferences.ATTENUATION_THRESHOLD_1_KEY";
   private static final String ATTENUATION_THRESHOLD_2_KEY = "ExposureNotificationSharedPreferences.ATTENUATION_THRESHOLD_2_KEY";
   private static final String DOWNLOAD_SERVER_ADDRESS_KEY =
@@ -155,4 +156,13 @@ public class ExposureNotificationSharedPreferences {
       sharedPreferences.edit().putString(UPLOAD_SERVER_ADDRESS_KEY, serverAddress).commit();
     }
   }
+
+  public boolean getIsEnabledCache() {
+    return sharedPreferences.getBoolean(IS_ENABLED_CACHE_KEY, false);
+  }
+
+  public void setIsEnabledCache(boolean isEnabled) {
+    sharedPreferences.edit().putBoolean(IS_ENABLED_CACHE_KEY, isEnabled).apply();
+  }
+
 }

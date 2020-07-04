@@ -26,4 +26,5 @@
   <color name="horizontal_divider_color">#1F000000</color>
   <color name="watermark_color">#1A000000</color>
   <color name="notification_color">#EA4335</color>
+  <color name="navigation_bar_color">#29202020</color>
 </resources>

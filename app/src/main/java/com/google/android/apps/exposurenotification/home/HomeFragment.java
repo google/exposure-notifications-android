@@ -21,6 +21,7 @@ import static com.google.android.apps.exposurenotification.home.ExposureNotifica
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,6 +47,8 @@ import java.lang.annotation.RetentionPolicy;
  */
 public class HomeFragment extends Fragment {
 
+  private static final String TAG = "HomeFragment";
+
   private static final String KEY_START_TAB = "KEY_START_TAB";
 
   // Constants so the tabs are settable by name and not just index.
@@ -62,17 +65,6 @@ public class HomeFragment extends Fragment {
   static final int TAB_DEFAULT = TAB_EXPOSURES;
 
   private HomeFragmentPagerAdapter fragmentPagerAdapter;
-
-  /**
-   * Creates a {@link HomeFragment} instance with a specified start tab.
-   */
-  public static HomeFragment newInstance(@TabName int tab) {
-    HomeFragment homeFragment = new HomeFragment();
-    Bundle args = new Bundle();
-    args.putInt(KEY_START_TAB, tab);
-    homeFragment.setArguments(args);
-    return homeFragment;
-  }
 
   /**
    * Creates a {@link HomeFragment} instance with a default start tab {@value #TAB_DEFAULT}.
@@ -141,4 +133,15 @@ public class HomeFragment extends Fragment {
     fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
     fragmentTransaction.commit();
   }
+
+  public void setTab(@TabName int tab) {
+    View rootView = getView();
+    if (rootView == null) {
+      Log.w(TAG, "Unable to set the tab");
+      return;
+    }
+    ViewPager viewPager = rootView.findViewById(R.id.view_pager);
+    viewPager.setCurrentItem(tab);
+  }
+
 }
