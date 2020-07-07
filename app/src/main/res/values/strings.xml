@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright 2020 Google LLC
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,6 +16,11 @@
   -->
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+  <plurals name="possible_exposure_subheading">
+    <item quantity="one">You were near someone %1$d day ago who has shared their positive COVID-19 test result.</item>
+    <item quantity="other">You were near someone %1$d days ago who has shared their positive COVID-19 test result.</item>
+  </plurals>
 
   <string name="app_name">Sample Public Health Authority App</string>
 
@@ -175,7 +179,7 @@
 
   <string name="dialog_delete_positive_test_action">Delete</string>
 
-  <string name="positive_test_results">Positive test results</string>
+  <string name="positive_test_results">Staging</string>
 
   <string name="no_positive_test_results">No positive test results</string>
 
@@ -189,43 +193,11 @@
 
   <string name="positive_test_description">[Actual copy to be provided by Public Health Authority]</string>
 
-  <string name="debug_master_switch">Exposure Notifications API Master</string>
-
-  <string name="debug_test_exposure_category">Test exposure notification</string>
-
-  <string name="debug_test_exposure_description">This will notify the app that you have been exposed so you can see the exposure experience in the app UI until you reset.</string>
-
-  <string name="debug_test_exposure_notify_button_text">Add test exposures</string>
-
-  <string name="debug_exposure_reset_button_text">Reset exposures</string>
-
-  <string name="debug_test_exposure_reset_success">Done</string>
-
-  <string name="debug_keys_category">Diagnosis Keys</string>
-
-  <string name="debug_provide_keys_description">This will enqueue a background job to provide test diagnosis keys into the exposure notifications API.</string>
-
-  <string name="debug_provide_keys_button_text">Provide Test Diagnosis Keys</string>
-
-  <string name="debug_provide_keys_enqueued">Enqueued background job</string>
-
-  <string name="debug_network_mode">Enable Diagnosis Key Up/Downloads</string>
-
-  <string name="debug_network_mode_category">Diagnosis Key Server</string>
-
-  <string name="debug_network_mode_description">This enables this app to share diagnosis keys with a test server. When disabled, the app does not upload or download keys.</string>
-
-  <string name="debug_network_mode_default_uri">App was built with default URIs. Non-default URIs are required to use servers.</string>
-
   <string name="notifications_disabled_info">When exposure notifications are turned off, you won\’t be notified if you\'re exposed to COVID-19</string>
 
   <string name="notifications_enabled_info">You will be notified if you have been exposed to someone who reported a positive COVID-19 result</string>
 
   <string name="positive_test_result_type">COVID-19</string>
-
-  <string name="missing_test_identifier">Please enter a test identifier</string>
-
-  <string name="missing_test_date">Please enter a test date</string>
 
   <string name="info_saved_locally">
     Sample Public Health Authority App received info on %1$s.
@@ -236,21 +208,10 @@
 
   <string name="verified_result_next_steps">Next steps: [Actual copy to be provided by Public Health Authority]</string>
 
-  <plurals name="possible_exposure_subheading">
-    <item quantity="one">You were near someone %1$d day ago who has shared their positive COVID-19 test result.</item>
-    <item quantity="other">You were near someone %1$d days ago who has shared their positive COVID-19 test result.</item>
-  </plurals>
-
   <string name="done">Done</string>
 
   <string name="reference_only">REFERENCE ONLY</string>
 
-  <string name="notification_title">Possible COVID-19 exposure</string>
-
-  <string name="notification_message">Someone you were near has tested positive for COVID-19. Tap for more info.</string>
-
-  <string name="notification_channel_name">Exposure Notification</string>
-
-  <string name="notification_channel_description">Exposure notification alerts.</string>
+  <string name="learn_more">Learn more</string>
 
 </resources>

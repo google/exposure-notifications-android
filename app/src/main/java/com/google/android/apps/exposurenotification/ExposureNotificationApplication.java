@@ -18,7 +18,7 @@
 package com.google.android.apps.exposurenotification;
 
 import androidx.multidex.MultiDexApplication;
-import com.google.android.apps.exposurenotification.activities.ExposureNotificationActivity;
+import com.google.android.apps.exposurenotification.home.ExposureNotificationActivity;
 import com.jakewharton.threetenabp.AndroidThreeTen;
 
 /**

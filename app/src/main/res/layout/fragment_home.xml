@@ -44,6 +44,6 @@
     app:tabMode="fixed"
     app:tabTextAppearance="?textAppearanceBody1"
     app:tabPaddingStart="0dp"
-    app:tabPaddingEnd="0dp" />
+    app:tabPaddingEnd="0dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

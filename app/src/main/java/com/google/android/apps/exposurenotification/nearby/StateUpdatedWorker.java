@@ -17,116 +17,120 @@
 
 package com.google.android.apps.exposurenotification.nearby;
 
-import static com.google.android.apps.exposurenotification.nearby.ProvideDiagnosisKeysWorker.DEFAULT_API_TIMEOUT;
-
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Context;
-import android.content.Intent;
-import android.os.Build;
+import android.util.Log;
 import androidx.annotation.NonNull;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationCompat.Builder;
-import androidx.core.app.NotificationManagerCompat;
+import androidx.work.Data;
 import androidx.work.ListenableWorker;
+import androidx.work.OneTimeWorkRequest;
+import androidx.work.WorkManager;
 import androidx.work.WorkerParameters;
-import com.google.android.apps.exposurenotification.R;
-import com.google.android.apps.exposurenotification.activities.ExposureNotificationActivity;
 import com.google.android.apps.exposurenotification.common.AppExecutors;
 import com.google.android.apps.exposurenotification.common.TaskToFutureAdapter;
-import com.google.android.apps.exposurenotification.storage.TokenEntity;
+import com.google.android.apps.exposurenotification.storage.ExposureEntity;
+import com.google.android.apps.exposurenotification.storage.ExposureRepository;
 import com.google.android.apps.exposurenotification.storage.TokenRepository;
-import com.google.android.gms.nearby.exposurenotification.ExposureNotificationClient;
+import com.google.android.gms.nearby.exposurenotification.ExposureInformation;
 import com.google.common.util.concurrent.FluentFuture;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
-import java.util.Objects;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
+import org.threeten.bp.Duration;
 
 /**
- * Performs work for {@value com.google.android.gms.nearby.exposurenotification.ExposureNotificationClient#ACTION_EXPOSURE_STATE_UPDATED}
+ * Performs work for {@value
+ * com.google.android.gms.nearby.exposurenotification.ExposureNotificationClient#ACTION_EXPOSURE_STATE_UPDATED}
  * broadcast from exposure notification API.
  */
 public class StateUpdatedWorker extends ListenableWorker {
-
   private static final String TAG = "StateUpdatedWorker";
 
-  private static final String EXPOSURE_NOTIFICATION_CHANNEL_ID =
-      "ApolloExposureNotificationCallback.EXPOSURE_NOTIFICATION_CHANNEL_ID";
   public static final String ACTION_LAUNCH_FROM_EXPOSURE_NOTIFICATION =
       "com.google.android.apps.exposurenotification.ACTION_LAUNCH_FROM_EXPOSURE_NOTIFICATION";
+  private static final Duration GET_SUMMARY_TIMEOUT = Duration.ofSeconds(30);
+  private static final Duration GET_EXPOSURE_INFORMATION_TIMEOUT = Duration.ofSeconds(30);
+  private static final String DATA_TOKEN = "TOKEN";
 
   private final Context context;
   private final TokenRepository tokenRepository;
+  private final ExposureRepository exposureRepository;
 
-  public StateUpdatedWorker(
-      @NonNull Context context, @NonNull WorkerParameters workerParams) {
+  public StateUpdatedWorker(@NonNull Context context, @NonNull WorkerParameters workerParams) {
     super(context, workerParams);
     this.context = context;
     this.tokenRepository = new TokenRepository(context);
+    this.exposureRepository = new ExposureRepository(context);
   }
 
   @NonNull
   @Override
   public ListenableFuture<Result> startWork() {
-    final String token = getInputData().getString(ExposureNotificationClient.EXTRA_TOKEN);
+    final String token = getInputData().getString(DATA_TOKEN);
     if (token == null) {
       return Futures.immediateFuture(Result.failure());
     } else {
-      return FluentFuture.from(TaskToFutureAdapter.getFutureWithTimeout(
-          ExposureNotificationClientWrapper.get(context).getExposureSummary(token),
-          DEFAULT_API_TIMEOUT.toMillis(),
-          TimeUnit.MILLISECONDS,
-          AppExecutors.getScheduledExecutor()))
-          .transformAsync((exposureSummary) -> {
-            if (exposureSummary.getMatchedKeyCount() > 0) {
-              // Positive so show a notification and update the token.
-              showNotification();
-              // Update the TokenEntity by upserting with the same token.
-              return tokenRepository.upsertAsync(TokenEntity.create(token, true));
-            } else {
-              // No matches so we show no notification and just delete the token.
-              return tokenRepository.deleteByTokensAsync(token);
-            }
-          }, AppExecutors.getBackgroundExecutor())
+      return FluentFuture.from(
+              TaskToFutureAdapter.getFutureWithTimeout(
+                  ExposureNotificationClientWrapper.get(context).getExposureSummary(token),
+                  GET_SUMMARY_TIMEOUT.toMillis(),
+                  TimeUnit.MILLISECONDS,
+                  AppExecutors.getScheduledExecutor()))
+          .transformAsync(
+              (exposureSummary) -> {
+                Log.d(TAG, "EN summary received: " + exposureSummary);
+                if (exposureSummary.getMatchedKeyCount() > 0) {
+                  return hasMatches(token);
+                } else {
+                  return noMatches(token);
+                }
+              },
+              AppExecutors.getBackgroundExecutor())
           .transform((v) -> Result.success(), AppExecutors.getLightweightExecutor())
-          .catching(Exception.class, x -> Result.failure(), AppExecutors.getLightweightExecutor());
+          .catching(
+              Exception.class,
+              x -> {
+                Log.e(TAG, "Failure to update app state (tokens, etc) from exposure summary.", x);
+                return Result.failure();
+              },
+              AppExecutors.getLightweightExecutor());
     }
   }
 
-  private void createNotificationChannel() {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-      NotificationChannel channel =
-          new NotificationChannel(EXPOSURE_NOTIFICATION_CHANNEL_ID,
-              context.getString(R.string.notification_channel_name),
-              NotificationManager.IMPORTANCE_HIGH);
-      channel.setDescription(context.getString(R.string.notification_channel_description));
-      NotificationManager notificationManager = context.getSystemService(NotificationManager.class);
-      Objects.requireNonNull(notificationManager).createNotificationChannel(channel);
-    }
+  private ListenableFuture<Void> hasMatches(String token) {
+    return FluentFuture.from(
+            TaskToFutureAdapter.getFutureWithTimeout(
+                ExposureNotificationClientWrapper.get(context).getExposureInformation(token),
+                GET_EXPOSURE_INFORMATION_TIMEOUT.toMillis(),
+                TimeUnit.MILLISECONDS,
+                AppExecutors.getScheduledExecutor()))
+        .transformAsync(
+            (exposureInformations) -> {
+              List<ExposureEntity> exposureEntities = new ArrayList<>();
+              for (ExposureInformation exposureInformation : exposureInformations) {
+                exposureEntities.add(
+                    ExposureEntity.create(
+                        exposureInformation.getDateMillisSinceEpoch(), System.currentTimeMillis()));
+              }
+              return exposureRepository.upsertAsync(exposureEntities);
+            },
+            AppExecutors.getBackgroundExecutor())
+        .transformAsync(
+            (v) -> tokenRepository.markTokenRespondedAsync(token),
+            AppExecutors.getBackgroundExecutor());
   }
 
-  public void showNotification() {
-    createNotificationChannel();
-    Intent intent = new Intent(getApplicationContext(), ExposureNotificationActivity.class);
-    intent.setAction(ACTION_LAUNCH_FROM_EXPOSURE_NOTIFICATION);
-    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-    PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
-    NotificationCompat.Builder builder =
-        new Builder(context, EXPOSURE_NOTIFICATION_CHANNEL_ID)
-            .setSmallIcon(R.drawable.ic_notification)
-            .setColor(getApplicationContext().getResources().getColor(R.color.notification_color))
-            .setContentTitle(context.getString(R.string.notification_title))
-            .setContentText(context.getString(R.string.notification_message))
-            .setStyle(new NotificationCompat.BigTextStyle()
-                .bigText(context.getString(R.string.notification_message)))
-            .setPriority(NotificationCompat.PRIORITY_MAX)
-            .setContentIntent(pendingIntent)
-            .setOnlyAlertOnce(true)
-            .setAutoCancel(true);
-    NotificationManagerCompat notificationManager = NotificationManagerCompat
-        .from(context);
-    notificationManager.notify(0, builder.build());
+  private ListenableFuture<Void> noMatches(String token) {
+    // No matches so we show no notification and just mark the token as responded.
+    return tokenRepository.markTokenRespondedAsync(token);
+  }
+
+  static void runOnce(Context context, String token) {
+    WorkManager.getInstance(context)
+        .enqueue(
+            new OneTimeWorkRequest.Builder(StateUpdatedWorker.class)
+                .setInputData(new Data.Builder().putString(DATA_TOKEN, token).build())
+                .build());
   }
 }
