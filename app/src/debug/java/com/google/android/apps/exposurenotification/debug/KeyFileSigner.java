@@ -23,6 +23,7 @@ import android.os.Build.VERSION_CODES;
 import android.security.keystore.KeyGenParameterSpec.Builder;
 import android.security.keystore.KeyProperties;
 import android.util.Log;
+import androidx.annotation.RequiresApi;
 import com.google.android.apps.exposurenotification.proto.SignatureInfo;
 import com.google.common.io.BaseEncoding;
 import java.io.IOException;
@@ -119,6 +120,7 @@ public class KeyFileSigner {
     }
   }
 
+  @RequiresApi(api = VERSION_CODES.M)
   private void initPriorToM() {
     try {
       KeyPairGenerator keyGen = KeyPairGenerator.getInstance(KeyProperties.KEY_ALGORITHM_EC);

@@ -28,12 +28,12 @@ ext.safetynet_api_key = project.hasProperty('SAFETYNET_KEY') ? project.getProper
 apply plugin: 'com.google.protobuf'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
     defaultConfig {
         applicationId 'com.google.android.apps.exposurenotification'
 
         minSdkVersion 21
-        targetSdkVersion 29
+        targetSdkVersion 30
 
         versionCode build_number.toInteger()
         versionName build_label
@@ -134,7 +134,7 @@ dependencies {
     implementation 'com.google.protobuf:protobuf-java:3.11.4'
     implementation 'com.google.zxing:core:3.3.0'
     implementation 'com.jakewharton.threetenabp:threetenabp:1.2.4'
-    implementation 'commons-io:commons-io:2.5'
+    implementation 'commons-io:commons-io:2.6'
 
     //noinspection FragmentGradleConfiguration
     testImplementation 'androidx.fragment:fragment-testing:1.2.5'
@@ -144,7 +144,7 @@ dependencies {
     testImplementation 'com.android.support.test:runner:1.0.2'
     testImplementation 'com.google.guava:guava-testlib:29.0-jre'
     testImplementation 'com.google.truth:truth:1.0.1'
-    testImplementation 'commons-io:commons-io:2.5'
+    testImplementation 'commons-io:commons-io:2.6'
     testImplementation 'junit:junit:4.13'
     testImplementation 'org.robolectric:robolectric:4.3.1'
 }

@@ -62,7 +62,7 @@ public class NotifyHomeFragment extends Fragment {
 
     exposureNotificationViewModel
         .getIsEnabledLiveData()
-        .observe(getViewLifecycleOwner(), isEnabled -> refreshUiForEnabled(isEnabled));
+        .observe(getViewLifecycleOwner(), this::refreshUiForEnabled);
 
     Button startApiButton = view.findViewById(R.id.start_api_button);
     startApiButton.setOnClickListener(

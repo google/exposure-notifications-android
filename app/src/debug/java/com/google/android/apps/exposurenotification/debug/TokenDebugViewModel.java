@@ -21,8 +21,6 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.work.WorkManager;
-import com.google.android.apps.exposurenotification.nearby.ProvideDiagnosisKeysWorker;
 import com.google.android.apps.exposurenotification.storage.TokenEntity;
 import com.google.android.apps.exposurenotification.storage.TokenRepository;
 import java.util.List;

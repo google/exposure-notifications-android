@@ -150,7 +150,6 @@ public class ExposureNotificationViewModel extends AndroidViewModel {
                   == ExposureNotificationStatusCodes.RESOLUTION_REQUIRED) {
                 if (inFlightResolutionLiveData.getValue()) {
                   Log.e(TAG, "Error, has in flight resolution", exception);
-                  return;
                 } else {
                   inFlightResolutionLiveData.setValue(true);
                   resolutionRequiredLiveEvent.postValue(apiException);

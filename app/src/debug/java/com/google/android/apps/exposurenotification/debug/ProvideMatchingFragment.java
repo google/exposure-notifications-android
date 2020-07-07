@@ -88,7 +88,7 @@ public class ProvideMatchingFragment extends Fragment {
 
     provideMatchingViewModel
         .getSnackbarLiveEvent()
-        .observe(getViewLifecycleOwner(), message -> maybeShowSnackbar(message));
+        .observe(getViewLifecycleOwner(), this::maybeShowSnackbar);
 
     // Submit section
     MaterialButton provideButton = view.findViewById(R.id.provide_button);

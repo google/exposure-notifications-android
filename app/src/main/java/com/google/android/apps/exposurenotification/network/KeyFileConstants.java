@@ -26,5 +26,5 @@ public final class KeyFileConstants {
   @VisibleForTesting public static final String SIG_FILENAME = "export.sig";
   @VisibleForTesting public static final String EXPORT_FILENAME = "export.bin";
 
-  private KeyFileConstants() {};
+  private KeyFileConstants() {}
 }

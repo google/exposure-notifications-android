@@ -61,7 +61,7 @@ public class ExposureHomeFragment extends Fragment {
 
     exposureNotificationViewModel
         .getIsEnabledLiveData()
-        .observe(getViewLifecycleOwner(), isEnabled -> refreshUiForEnabled(isEnabled));
+        .observe(getViewLifecycleOwner(), this::refreshUiForEnabled);
 
     Button startButton = view.findViewById(R.id.start_api_button);
     startButton.setOnClickListener(v -> exposureNotificationViewModel.startExposureNotifications());

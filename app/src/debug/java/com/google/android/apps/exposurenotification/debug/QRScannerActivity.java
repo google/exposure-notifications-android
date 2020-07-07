@@ -18,6 +18,7 @@
 package com.google.android.apps.exposurenotification.debug;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Rect;
@@ -120,6 +121,7 @@ public final class QRScannerActivity extends AppCompatActivity {
         .getHolder()
         .addCallback(
             new SurfaceHolder.Callback() {
+              @SuppressLint("MissingPermission")
               @Override
               public void surfaceCreated(SurfaceHolder holder) {
                 try {

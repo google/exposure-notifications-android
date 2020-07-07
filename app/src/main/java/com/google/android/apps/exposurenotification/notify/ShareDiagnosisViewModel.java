@@ -213,7 +213,7 @@ public class ShareDiagnosisViewModel extends AndroidViewModel {
             } else {
               Log.w(TAG, "No RESOLUTION_REQUIRED in result", apiException);
               snackbarLiveEvent.postValue(
-                  getApplication().getString(R.string.generic_error_message));;
+                  getApplication().getString(R.string.generic_error_message));
               postInflight(false);
             }
           }

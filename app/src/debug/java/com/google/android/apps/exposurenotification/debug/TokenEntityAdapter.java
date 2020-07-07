@@ -64,7 +64,7 @@ class TokenEntityAdapter extends RecyclerView.Adapter<TokenEntityViewHolder> {
     return tokenEntities.size();
   }
 
-  class TokenEntityViewHolder extends RecyclerView.ViewHolder {
+  static class TokenEntityViewHolder extends RecyclerView.ViewHolder {
 
     private final View view;
     private final TextView token;

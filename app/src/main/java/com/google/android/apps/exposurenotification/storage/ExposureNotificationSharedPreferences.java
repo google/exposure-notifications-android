@@ -19,7 +19,6 @@ package com.google.android.apps.exposurenotification.storage;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import com.google.android.apps.exposurenotification.R;
 
 /**
  * Key value storage for ExposureNotification.

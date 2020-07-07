@@ -19,6 +19,7 @@ package com.google.android.apps.exposurenotification.home;
 
 import static com.google.common.truth.Truth.assertThat;
 
+import androidx.test.core.app.ActivityScenario;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
@@ -32,9 +33,9 @@ public class ExposureNotificationActivityTest {
 
   @Test
   public void setupActivity_isNotNull() {
-    ExposureNotificationActivity activity = Robolectric.setupActivity(ExposureNotificationActivity.class);
+    ActivityScenario<ExposureNotificationActivity> scenario = ActivityScenario.launch(ExposureNotificationActivity.class);
 
-    assertThat(activity).isNotNull();
+    scenario.onActivity(activity -> assertThat(activity).isNotNull());
   }
 
 }

@@ -26,7 +26,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import com.google.android.apps.exposurenotification.R;
@@ -124,7 +123,7 @@ public final class ExposureNotificationActivity extends AppCompatActivity {
     // fragment tab to the exposures tab.
     // TODO: handle different intents separately
     for (Fragment fragment : getSupportFragmentManager().getFragments()) {
-      if (fragment != null && fragment instanceof HomeFragment) {
+      if (fragment instanceof HomeFragment) {
         ((HomeFragment) fragment).setTab(HomeFragment.TAB_EXPOSURES);
       }
     }

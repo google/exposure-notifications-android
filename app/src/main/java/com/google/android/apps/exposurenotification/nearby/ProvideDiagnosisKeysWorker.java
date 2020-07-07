@@ -69,7 +69,7 @@ public class ProvideDiagnosisKeysWorker extends ListenableWorker {
   }
 
   private String generateRandomToken() {
-    byte bytes[] = new byte[RANDOM_TOKEN_BYTE_LENGTH];
+    byte[] bytes = new byte[RANDOM_TOKEN_BYTE_LENGTH];
     secureRandom.nextBytes(bytes);
     return BASE64_LOWER.encode(bytes);
   }

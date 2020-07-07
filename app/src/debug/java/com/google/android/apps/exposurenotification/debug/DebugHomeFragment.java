@@ -80,7 +80,7 @@ public class DebugHomeFragment extends Fragment {
 
     exposureNotificationViewModel
         .getIsEnabledLiveData()
-        .observe(getViewLifecycleOwner(), isEnabled -> refreshUiForEnabled(isEnabled));
+        .observe(getViewLifecycleOwner(), this::refreshUiForEnabled);
 
     exposureNotificationViewModel
         .getApiErrorLiveEvent()
@@ -197,7 +197,7 @@ public class DebugHomeFragment extends Fragment {
 
           @Override
           public void afterTextChanged(Editable s) {
-            if (s.toString() != getString(R.string.key_server_download_base_uri)) {
+            if (!s.toString().equals(getString(R.string.key_server_download_base_uri))) {
               prefs.setDownloadServerAddress(s.toString());
             }
           }
@@ -219,7 +219,7 @@ public class DebugHomeFragment extends Fragment {
 
           @Override
           public void afterTextChanged(Editable s) {
-            if (s.toString() != getString(R.string.key_server_upload_uri)) {
+            if (!s.toString().equals(getString(R.string.key_server_upload_uri))) {
               prefs.setUploadServerAddress(s.toString());
             }
           }
