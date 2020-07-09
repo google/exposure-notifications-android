@@ -20,6 +20,7 @@ This project uses the Gradle build system. To build this code, use the
 
 # Links
 
+- [Exposure Notifications System: Helping Health Authorities fight SARS-CoV-2](https://youtu.be/1Cz2Xzm6knM)
 - [Overview of COVID-19 Exposure Notifications](https://www.blog.google/documents/66/Overview_of_COVID-19_Contact_Tracing_Using_BLE_1.pdf)
 - [Frequently Asked Questions](https://www.blog.google/documents/63/Exposure_Notification_-_FAQ_v1.0.pdf)
 - [Exposure Notification Bluetooth Specification](https://www.blog.google/documents/70/Exposure_Notification_-_Bluetooth_Specification_v1.2.2.pdf)
