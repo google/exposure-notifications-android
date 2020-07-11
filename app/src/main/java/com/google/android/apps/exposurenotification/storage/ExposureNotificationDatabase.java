@@ -34,9 +34,8 @@ import androidx.room.TypeConverters;
     entities = {
       PositiveDiagnosisEntity.class,
       ExposureEntity.class,
-      TokenEntity.class,
     },
-    version = 24,
+    version = 26,
     exportSchema = false)
 @TypeConverters({ZonedDateTimeTypeConverter.class})
 abstract class ExposureNotificationDatabase extends RoomDatabase {
@@ -47,7 +46,6 @@ abstract class ExposureNotificationDatabase extends RoomDatabase {
 
   abstract PositiveDiagnosisDao positiveDiagnosisDao();
   abstract ExposureDao exposureDao();
-  abstract TokenDao tokenDao();
 
   static synchronized ExposureNotificationDatabase getInstance(Context context) {
     if (INSTANCE == null) {
@@ -63,7 +61,7 @@ abstract class ExposureNotificationDatabase extends RoomDatabase {
     return Room.databaseBuilder(
         context.getApplicationContext(), ExposureNotificationDatabase.class, DATABASE_NAME)
         .fallbackToDestructiveMigrationFrom(
-            1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23)
+            1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25)
         .build();
   }
 }

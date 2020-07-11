@@ -101,6 +101,7 @@
           android:layout_height="wrap_content"
           android:layout_weight="1"
           android:paddingHorizontal="@dimen/padding_small"
+          android:text="@string/info_saved_locally"
           android:textAppearance="?attr/textAppearanceBody2"
           android:textColor="?attr/colorControlNormal" />
 

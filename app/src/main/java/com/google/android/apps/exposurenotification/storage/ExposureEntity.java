@@ -21,6 +21,7 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import java.util.Objects;
+import org.threeten.bp.Instant;
 
 /**
  * An exposure element for display in the exposures UI.
@@ -109,5 +110,16 @@ public class ExposureEntity {
   @Override
   public int hashCode() {
     return Objects.hash(id, dateMillisSinceEpoch, receivedTimestampMs);
+  }
+
+  @Override
+  public String toString() {
+    return "ExposureEntity{" +
+        "id=" + id +
+        ", dateMillisSinceEpoch=" + dateMillisSinceEpoch +
+        "(" + Instant.ofEpochMilli(dateMillisSinceEpoch) + ")" +
+        ", receivedTimestampMs=" + receivedTimestampMs +
+        "(" + Instant.ofEpochMilli(receivedTimestampMs) + ")" +
+        '}';
   }
 }

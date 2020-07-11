@@ -92,22 +92,6 @@ public class ProvideMatchingFragment extends Fragment {
 
     // Submit section
     MaterialButton provideButton = view.findViewById(R.id.provide_button);
-    EditText token = view.findViewById(R.id.token);
-    token.addTextChangedListener(
-        new TextWatcher() {
-          @Override
-          public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-
-          @Override
-          public void onTextChanged(CharSequence s, int start, int before, int count) {}
-
-          @Override
-          public void afterTextChanged(Editable s) {
-            if (!TextUtils.isEmpty(s.toString())) {
-              provideMatchingViewModel.setToken(s.toString());
-            }
-          }
-        });
 
     // Input sections
     ViewFlipper viewFlipper = view.findViewById(R.id.input_view_flipper);

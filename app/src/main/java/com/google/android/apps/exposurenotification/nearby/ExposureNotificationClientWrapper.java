@@ -23,6 +23,7 @@ import com.google.android.gms.nearby.exposurenotification.ExposureConfiguration;
 import com.google.android.gms.nearby.exposurenotification.ExposureInformation;
 import com.google.android.gms.nearby.exposurenotification.ExposureNotificationClient;
 import com.google.android.gms.nearby.exposurenotification.ExposureSummary;
+import com.google.android.gms.nearby.exposurenotification.ExposureWindow;
 import com.google.android.gms.nearby.exposurenotification.TemporaryExposureKey;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.Tasks;
@@ -73,8 +74,7 @@ public class ExposureNotificationClientWrapper {
    * {@link ExposureConfigurations}.
    */
   public Task<Void> provideDiagnosisKeys(List<File> files, String token) {
-    return exposureNotificationClient
-        .provideDiagnosisKeys(files, config.get(), token);
+    return exposureNotificationClient.provideDiagnosisKeys(files, config.get(), token);
   }
 
   /**
@@ -89,6 +89,10 @@ public class ExposureNotificationClientWrapper {
    */
   public Task<List<ExposureInformation>> getExposureInformation(String token) {
     return exposureNotificationClient.getExposureInformation(token);
+  }
+
+  public Task<List<ExposureWindow>> getExposureWindows() {
+    return exposureNotificationClient.getExposureWindows(ExposureNotificationClient.TOKEN_A);
   }
 
 }

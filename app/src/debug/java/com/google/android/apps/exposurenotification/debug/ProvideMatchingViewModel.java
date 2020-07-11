@@ -28,12 +28,11 @@ import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.common.AppExecutors;
 import com.google.android.apps.exposurenotification.common.SingleLiveEvent;
 import com.google.android.apps.exposurenotification.common.TaskToFutureAdapter;
-import com.google.android.apps.exposurenotification.proto.SignatureInfo;
 import com.google.android.apps.exposurenotification.nearby.DiagnosisKeyFileSubmitter;
 import com.google.android.apps.exposurenotification.nearby.ExposureNotificationClientWrapper;
 import com.google.android.apps.exposurenotification.network.KeyFileBatch;
-import com.google.android.apps.exposurenotification.storage.TokenEntity;
-import com.google.android.apps.exposurenotification.storage.TokenRepository;
+import com.google.android.apps.exposurenotification.proto.SignatureInfo;
+import com.google.android.gms.nearby.exposurenotification.ExposureNotificationClient;
 import com.google.android.gms.nearby.exposurenotification.TemporaryExposureKey;
 import com.google.android.gms.nearby.exposurenotification.TemporaryExposureKey.TemporaryExposureKeyBuilder;
 import com.google.auto.value.AutoValue;
@@ -48,7 +47,9 @@ import java.util.concurrent.TimeUnit;
 import org.threeten.bp.Duration;
 import org.threeten.bp.Instant;
 
-/** View model for {@link ProvideMatchingFragment}. */
+/**
+ * View model for {@link ProvideMatchingFragment}.
+ */
 public class ProvideMatchingViewModel extends AndroidViewModel {
 
   private static final String TAG = "ProvideKeysViewModel";
@@ -62,7 +63,6 @@ public class ProvideMatchingViewModel extends AndroidViewModel {
   private final MutableLiveData<Integer> singleInputRollingPeriodLiveData;
   private final MutableLiveData<Integer> singleInputTransmissionRiskLevelLiveData;
   private final MutableLiveData<File> fileInputLiveData;
-  private final MutableLiveData<String> tokenLiveData;
 
   private static SingleLiveEvent<String> snackbarLiveEvent = new SingleLiveEvent<>();
 
@@ -78,7 +78,6 @@ public class ProvideMatchingViewModel extends AndroidViewModel {
         new MutableLiveData<>((int) (System.currentTimeMillis() / (10 * 60 * 1000L)));
     singleInputRollingPeriodLiveData = new MutableLiveData<>(144);
     singleInputTransmissionRiskLevelLiveData = new MutableLiveData<>(0);
-    tokenLiveData = new MutableLiveData<>("");
     fileInputLiveData = new MutableLiveData<>(null);
     keyInfoLiveData = new MutableLiveData<>();
     keyFileSigner = KeyFileSigner.get(application);
@@ -134,14 +133,6 @@ public class ProvideMatchingViewModel extends AndroidViewModel {
     fileInputLiveData.setValue(file);
   }
 
-  public LiveData<String> getTokenLiveData() {
-    return tokenLiveData;
-  }
-
-  public void setToken(String token) {
-    tokenLiveData.setValue(token);
-  }
-
   public SingleLiveEvent<String> getSnackbarLiveEvent() {
     return snackbarLiveEvent;
   }
@@ -161,10 +152,6 @@ public class ProvideMatchingViewModel extends AndroidViewModel {
 
   private boolean isFileInputValid(File file) {
     return file != null;
-  }
-
-  private boolean isTokenValid(String token) {
-    return !TextUtils.isEmpty(token);
   }
 
   public void provideSingleAction() {
@@ -199,8 +186,7 @@ public class ProvideMatchingViewModel extends AndroidViewModel {
         keyFileWriter.writeForKeys(
             keys, Instant.now().minus(Duration.ofDays(14)), Instant.now(), "GB");
 
-    String encodedToken = getTokenLiveData().getValue();
-    provideFiles(files, encodedToken);
+    provideFiles(files);
   }
 
   public void provideFileAction() {
@@ -212,29 +198,25 @@ public class ProvideMatchingViewModel extends AndroidViewModel {
 
     List<File> files = Lists.newArrayList(file);
 
-    String encodedToken = getTokenLiveData().getValue();
-    provideFiles(files, encodedToken);
+    provideFiles(files);
   }
 
-  static class NotEnabledException extends Exception {}
+  static class NotEnabledException extends Exception {
 
-  private void provideFiles(List<File> files, String token) {
-    if (!isTokenValid(token)) {
-      snackbarLiveEvent.postValue(getApplication().getString(R.string.debug_matching_token_error));
-      return;
-    }
+  }
+
+  private void provideFiles(List<File> files) {
     Log.d(TAG, String.format("About to provide %d key files.", files.size()));
     DiagnosisKeyFileSubmitter submitter = new DiagnosisKeyFileSubmitter(getApplication());
-    TokenRepository repository = new TokenRepository(getApplication());
 
     KeyFileBatch batch = KeyFileBatch.ofFiles("US", 1, files);
 
     FluentFuture.from(
-            TaskToFutureAdapter.getFutureWithTimeout(
-                ExposureNotificationClientWrapper.get(getApplication()).isEnabled(),
-                IS_ENABLED_TIMEOUT.toMillis(),
-                TimeUnit.MILLISECONDS,
-                AppExecutors.getScheduledExecutor()))
+        TaskToFutureAdapter.getFutureWithTimeout(
+            ExposureNotificationClientWrapper.get(getApplication()).isEnabled(),
+            IS_ENABLED_TIMEOUT.toMillis(),
+            TimeUnit.MILLISECONDS,
+            AppExecutors.getScheduledExecutor()))
         .transformAsync(
             (isEnabled) -> {
               // Only continue if it is enabled.
@@ -246,9 +228,7 @@ public class ProvideMatchingViewModel extends AndroidViewModel {
             },
             AppExecutors.getBackgroundExecutor())
         .transformAsync(
-            batches -> submitter.submitFiles(batches, token), AppExecutors.getBackgroundExecutor())
-        .transformAsync(
-            done -> repository.upsertAsync(TokenEntity.create(token, false)),
+            batches -> submitter.submitFiles(batches, ExposureNotificationClient.TOKEN_A),
             AppExecutors.getBackgroundExecutor())
         .transform(
             done -> {
@@ -291,6 +271,7 @@ public class ProvideMatchingViewModel extends AndroidViewModel {
 
   @AutoValue
   abstract static class SigningKeyInfo {
+
     abstract String packageName();
 
     abstract String keyId();
@@ -305,6 +286,7 @@ public class ProvideMatchingViewModel extends AndroidViewModel {
 
     @AutoValue.Builder
     abstract static class Builder {
+
       abstract Builder setPackageName(String p);
 
       abstract Builder setKeyId(String p);

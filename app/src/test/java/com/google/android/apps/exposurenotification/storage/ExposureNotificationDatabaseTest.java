@@ -53,7 +53,6 @@ public class ExposureNotificationDatabaseTest {
     assertThat(database).isNotNull();
     assertThat(database.exposureDao()).isNotNull();
     assertThat(database.positiveDiagnosisDao()).isNotNull();
-    assertThat(database.tokenDao()).isNotNull();
   }
 
 }

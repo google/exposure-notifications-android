@@ -46,7 +46,9 @@ import org.threeten.bp.Duration;
  */
 public class DiagnosisKeyFileSubmitter {
   private static final String TAG = "KeyFileSubmitter";
-  private static final Duration PROVIDE_KEYS_TIMEOUT = Duration.ofMinutes(10);
+  // Use a very very long timeout, in case of a stress-test that supplies a very large number of
+  // diagnosis key files.
+  private static final Duration PROVIDE_KEYS_TIMEOUT = Duration.ofMinutes(30);
   private static final BaseEncoding BASE16 = BaseEncoding.base16().lowerCase();
   private static final BaseEncoding BASE64 = BaseEncoding.base64();
 
@@ -72,12 +74,10 @@ public class DiagnosisKeyFileSubmitter {
       return Futures.immediateFuture(null);
     }
     Log.d(TAG, "Providing  " + batches.size() + " diagnosis key batches to google play services.");
-    List<ListenableFuture<?>> batchCompletions = new ArrayList<>();
-    for (KeyFileBatch b : batches) {
-      batchCompletions.add(submitBatch(b, token));
-    }
 
-    ListenableFuture<?> allDone = Futures.allAsList(batchCompletions);
+    ListenableFuture<?> allDone = submitBatches(batches, token);
+
+    // Add a listener to delete all the files.
     allDone.addListener(
         () -> {
           for (KeyFileBatch b : batches) {
@@ -91,10 +91,20 @@ public class DiagnosisKeyFileSubmitter {
     return allDone;
   }
 
-  private ListenableFuture<?> submitBatch(KeyFileBatch batch, String token) {
-    logBatch(batch);
+  private ListenableFuture<?> submitBatches(List<KeyFileBatch> batches, String token) {
+    Log.d(
+        TAG,
+        "Combining ["
+            + batches.size()
+            + "] key file batches into a single submission to provideDiagnosisKeys().");
+    List<File> files = new ArrayList<>();
+    for (KeyFileBatch b : batches) {
+      files.addAll(b.files());
+      logBatch(b);
+    }
+
     return TaskToFutureAdapter.getFutureWithTimeout(
-        client.provideDiagnosisKeys(batch.files(), token),
+        client.provideDiagnosisKeys(files, token),
         PROVIDE_KEYS_TIMEOUT.toMillis(),
         TimeUnit.MILLISECONDS,
         AppExecutors.getScheduledExecutor());
@@ -103,7 +113,7 @@ public class DiagnosisKeyFileSubmitter {
   private void logBatch(KeyFileBatch batch) {
     Log.d(
         TAG,
-        "Submitting batch [" + batch.batchNum() + "] having [" + batch.files().size() + "] files.");
+        "Batch [" + batch.batchNum() + "] has [" + batch.files().size() + "] files.");
     int filenum = 1;
     for (File f : batch.files()) {
       try {
@@ -133,22 +143,22 @@ public class DiagnosisKeyFileSubmitter {
   }
 
   private FileContent readFile(File file) throws IOException {
-    ZipFile zip = new ZipFile(file);
+    try(ZipFile zip = new ZipFile(file)) {
+      ZipEntry signatureEntry = zip.getEntry(KeyFileConstants.SIG_FILENAME);
+      ZipEntry exportEntry = zip.getEntry(KeyFileConstants.EXPORT_FILENAME);
 
-    ZipEntry signatureEntry = zip.getEntry(KeyFileConstants.SIG_FILENAME);
-    ZipEntry exportEntry = zip.getEntry(KeyFileConstants.EXPORT_FILENAME);
+      byte[] sigData = IOUtils.toByteArray(zip.getInputStream(signatureEntry));
+      byte[] bodyData = IOUtils.toByteArray(zip.getInputStream(exportEntry));
 
-    byte[] sigData = IOUtils.toByteArray(zip.getInputStream(signatureEntry));
-    byte[] bodyData = IOUtils.toByteArray(zip.getInputStream(exportEntry));
+      byte[] header = Arrays.copyOf(bodyData, 16);
+      byte[] exportData = Arrays.copyOfRange(bodyData, 16, bodyData.length);
 
-    byte[] header = Arrays.copyOf(bodyData, 16);
-    byte[] exportData = Arrays.copyOfRange(bodyData, 16, bodyData.length);
+      String headerString = new String(header);
+      TEKSignatureList signature = TEKSignatureList.parseFrom(sigData);
+      TemporaryExposureKeyExport export = TemporaryExposureKeyExport.parseFrom(exportData);
 
-    String headerString = new String(header);
-    TEKSignatureList signature = TEKSignatureList.parseFrom(sigData);
-    TemporaryExposureKeyExport export = TemporaryExposureKeyExport.parseFrom(exportData);
-
-    return new FileContent(headerString, export, signature);
+      return new FileContent(headerString, export, signature);
+    }
   }
 
   private static class FileContent {

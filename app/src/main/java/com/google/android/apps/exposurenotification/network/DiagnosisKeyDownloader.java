@@ -227,8 +227,10 @@ class DiagnosisKeyDownloader {
 
             Query q = new Query();
             q.setFilterById(downloadId);
-            Cursor c = downloadManager.query(q);
-            if (c.moveToFirst()) {
+            try (Cursor c = downloadManager.query(q)) {
+              if (!c.moveToFirst()) {
+                return;
+              }
               int columnIndex = c.getColumnIndex(DownloadManager.COLUMN_STATUS);
               if (DownloadManager.STATUS_SUCCESSFUL == c.getInt(columnIndex)) {
                 // We have a file.

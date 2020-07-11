@@ -32,8 +32,7 @@ import androidx.work.WorkerParameters;
 import com.google.android.apps.exposurenotification.common.AppExecutors;
 import com.google.android.apps.exposurenotification.common.TaskToFutureAdapter;
 import com.google.android.apps.exposurenotification.network.DiagnosisKeys;
-import com.google.android.apps.exposurenotification.storage.TokenEntity;
-import com.google.android.apps.exposurenotification.storage.TokenRepository;
+import com.google.android.gms.nearby.exposurenotification.ExposureNotificationClient;
 import com.google.common.io.BaseEncoding;
 import com.google.common.util.concurrent.FluentFuture;
 import com.google.common.util.concurrent.Futures;
@@ -57,7 +56,6 @@ public class ProvideDiagnosisKeysWorker extends ListenableWorker {
   private final DiagnosisKeys diagnosisKeys;
   private final DiagnosisKeyFileSubmitter submitter;
   private final SecureRandom secureRandom;
-  private final TokenRepository tokenRepository;
 
   public ProvideDiagnosisKeysWorker(
       @NonNull Context context, @NonNull WorkerParameters workerParams) {
@@ -65,13 +63,6 @@ public class ProvideDiagnosisKeysWorker extends ListenableWorker {
     diagnosisKeys = new DiagnosisKeys(context);
     submitter = new DiagnosisKeyFileSubmitter(context);
     secureRandom = new SecureRandom();
-    tokenRepository = new TokenRepository(context);
-  }
-
-  private String generateRandomToken() {
-    byte bytes[] = new byte[RANDOM_TOKEN_BYTE_LENGTH];
-    secureRandom.nextBytes(bytes);
-    return BASE64_LOWER.encode(bytes);
   }
 
   @NonNull
@@ -81,7 +72,6 @@ public class ProvideDiagnosisKeysWorker extends ListenableWorker {
         TAG,
         "Starting worker downloading diagnosis key files and submitting "
             + "them to the API for exposure detection, then storing the token used.");
-    final String token = generateRandomToken();
     return FluentFuture.from(
             TaskToFutureAdapter.getFutureWithTimeout(
                 ExposureNotificationClientWrapper.get(getApplicationContext()).isEnabled(),
@@ -100,10 +90,7 @@ public class ProvideDiagnosisKeysWorker extends ListenableWorker {
             },
             AppExecutors.getBackgroundExecutor())
         .transformAsync(
-            (batches) -> submitter.submitFiles(batches, token),
-            AppExecutors.getBackgroundExecutor())
-        .transformAsync(
-            done -> tokenRepository.upsertAsync(TokenEntity.create(token, false)),
+            (batches) -> submitter.submitFiles(batches, ExposureNotificationClient.TOKEN_A),
             AppExecutors.getBackgroundExecutor())
         .transform(done -> Result.success(), AppExecutors.getBackgroundExecutor())
         .catching(

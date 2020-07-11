@@ -105,7 +105,7 @@ public class ExposureHomeFragment extends Fragment {
   }
 
   private void refreshUi() {
-    exposureNotificationViewModel.refreshIsEnabledState();
+    exposureNotificationViewModel.refreshState();
   }
 
   /**

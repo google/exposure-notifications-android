@@ -119,10 +119,6 @@ public class DebugHomeFragment extends Fragment {
           maybeShowSnackbar(getString(R.string.debug_provide_keys_enqueued));
         });
 
-    Button provideHistory = view.findViewById(R.id.debug_provide_history);
-    provideHistory.setOnClickListener(
-        v -> startActivity(new Intent(requireContext(), TokenDebugActivity.class)));
-
     TextView jobStatus = view.findViewById(R.id.debug_matching_job_status);
     debugHomeViewModel
         .getProvideDiagnosisKeysWorkLiveData()
@@ -276,7 +272,7 @@ public class DebugHomeFragment extends Fragment {
    * Update UI state after Exposure Notifications client state changes
    */
   private void refreshUi() {
-    exposureNotificationViewModel.refreshIsEnabledState();
+    exposureNotificationViewModel.refreshState();
   }
 
   /**

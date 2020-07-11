@@ -29,6 +29,7 @@ import com.google.android.apps.exposurenotification.nearby.ExposureNotificationC
 import com.google.android.apps.exposurenotification.nearby.ProvideDiagnosisKeysWorker;
 import com.google.android.apps.exposurenotification.network.UploadCoverTrafficWorker;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
+import com.google.android.apps.exposurenotification.storage.ExposureRepository;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.nearby.exposurenotification.ExposureNotificationStatusCodes;
 import com.google.common.util.concurrent.FutureCallback;
@@ -46,13 +47,17 @@ public class ExposureNotificationViewModel extends AndroidViewModel {
   private final MutableLiveData<Boolean> inFlightLiveData = new MutableLiveData<>(false);
   private final MutableLiveData<Boolean> inFlightResolutionLiveData = new MutableLiveData<>(false);
   private final ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
+  private final ExposureRepository exposureRepository;
 
   private final SingleLiveEvent<Void> apiErrorLiveEvent = new SingleLiveEvent<>();
   private final SingleLiveEvent<ApiException> resolutionRequiredLiveEvent = new SingleLiveEvent<>();
 
+  private boolean inFlightIsEnabled = false;
+
   public ExposureNotificationViewModel(@NonNull Application application) {
     super(application);
     exposureNotificationSharedPreferences = new ExposureNotificationSharedPreferences(application);
+    exposureRepository = new ExposureRepository(application);
     isEnabledLiveData = new MutableLiveData<>(
         exposureNotificationSharedPreferences.getIsEnabledCache());
   }
@@ -87,11 +92,20 @@ public class ExposureNotificationViewModel extends AndroidViewModel {
   }
 
   /**
-   * Refresh isEnabled state from Exposure Notification API.
+   * Refresh isEnabled state and getExposureWindows from Exposure Notification API.
    */
-  public void refreshIsEnabledState() {
-    ExposureNotificationClientWrapper.get(getApplication())
-        .isEnabled()
+  public void refreshState() {
+    ExposureNotificationClientWrapper wrapper = ExposureNotificationClientWrapper
+        .get(getApplication());
+    maybeRefreshIsEnabled(wrapper);
+  }
+
+  private synchronized void maybeRefreshIsEnabled(ExposureNotificationClientWrapper wrapper) {
+    if (inFlightIsEnabled) {
+      return;
+    }
+    inFlightIsEnabled = true;
+    wrapper.isEnabled()
         .addOnSuccessListener(
             (isEnabled) -> {
               isEnabledLiveData.setValue(isEnabled);
@@ -101,7 +115,15 @@ public class ExposureNotificationViewModel extends AndroidViewModel {
                 noteOnboardingCompleted();
                 schedulePeriodicJobs();
               }
-            });
+              inFlightIsEnabled = false;
+            })
+        .addOnCanceledListener(() -> inFlightIsEnabled = false)
+        .addOnFailureListener((t) -> {
+          Log.e(TAG, "Failed to call isEnabled", t);
+          inFlightIsEnabled = false;
+          isEnabledLiveData.setValue(false);
+          exposureNotificationSharedPreferences.setIsEnabledCache(false);
+        });
   }
 
   private void schedulePeriodicJobs() {
@@ -134,7 +156,7 @@ public class ExposureNotificationViewModel extends AndroidViewModel {
         .start()
         .addOnSuccessListener(
             unused -> {
-              refreshIsEnabledState();
+              refreshState();
               inFlightLiveData.setValue(false);
             })
         .addOnFailureListener(
@@ -173,7 +195,7 @@ public class ExposureNotificationViewModel extends AndroidViewModel {
         .start()
         .addOnSuccessListener(
             unused -> {
-              refreshIsEnabledState();
+              refreshState();
               inFlightLiveData.setValue(false);
             })
         .addOnFailureListener(
@@ -202,7 +224,7 @@ public class ExposureNotificationViewModel extends AndroidViewModel {
         .stop()
         .addOnSuccessListener(
             unused -> {
-              refreshIsEnabledState();
+              refreshState();
               inFlightLiveData.setValue(false);
             })
         .addOnFailureListener(

@@ -137,7 +137,7 @@ public class NotifyHomeFragment extends Fragment {
 
   /** Update UI state after Exposure Notifications client state changes */
   private void refreshUi() {
-    exposureNotificationViewModel.refreshIsEnabledState();
+    exposureNotificationViewModel.refreshState();
   }
 
   /**

@@ -63,7 +63,7 @@ public class Uris {
   // URIs set in gradle.properties. This pattern helps us check.
   private static final Pattern DEFAULT_URI_PATTERN = Pattern.compile(".*example\\.com.*");
   private static final Pattern BATCH_NUM_PATTERN =
-      Pattern.compile("exposureKeyExport-[A-Z]{2}/([0-9]+)-([0-9]+-)?[0-9]+.zip");
+      Pattern.compile("exposureKeyExport-([A-Z]{2})/([0-9]+)-([0-9]+-)?[0-9]+.zip");
 
   private final Context context;
   private final ExposureNotificationSharedPreferences prefs;
@@ -79,8 +79,7 @@ public class Uris {
             prefs.getDownloadServerAddress(
                 context.getString(R.string.key_server_download_base_uri)));
     uploadUri =
-        Uri.parse(
-            prefs.getUploadServerAddress(context.getString(R.string.key_server_upload_uri)));
+        Uri.parse(prefs.getUploadServerAddress(context.getString(R.string.key_server_upload_uri)));
   }
 
   /**
@@ -139,19 +138,38 @@ public class Uris {
 
               // Parse out each line of the index file and split them into batches as indicated by
               // the leading timestamp in the filename, e.g. "1589490000" for
-              // "exposureKeyExport-US/1589490000-00002.zip"
+              // "exposureKeyExport-US/1589490000-1589510000-00002.zip"
               for (String indexEntry : indexEntries) {
                 Matcher m = BATCH_NUM_PATTERN.matcher(indexEntry);
-                if (!m.matches() || m.group(1) == null) {
+                if (!m.matches() || m.group(1) == null || m.group(2) == null) {
                   throw new RuntimeException(
-                      "Failed to parse batch num from File [" + indexEntry + "].");
+                      "Failed to parse country/region code and batch num from File ["
+                          + indexEntry
+                          + "].");
                 }
-                long batchNum = Long.parseLong(m.group(1));
+
+                String regionCodeFromFilename = m.group(1);
+                // Allow NumberFormatExceptions from parseLong() to bubble up.
+                long batchNum = Long.parseLong(m.group(2));
                 Log.d(
-                    TAG, String.format("Batch number %s from indexEntry %s", batchNum, indexEntry));
+                    TAG,
+                    String.format(
+                        "Country/region code %s and batch number %s from indexEntry %s",
+                        regionCodeFromFilename, batchNum, indexEntry));
+                if (!regionCode.equals(regionCodeFromFilename)) {
+                  Log.d(
+                      TAG,
+                      String.format(
+                          "Region code %s from filename %s unequal to desired region %s."
+                              + " Skipping this file.",
+                          regionCodeFromFilename, indexEntry, regionCode));
+                  continue;
+                }
+
                 if (!batches.containsKey(batchNum)) {
                   batches.put(batchNum, new ArrayList<>());
                 }
+
                 batches
                     .get(batchNum)
                     .add(baseDownloadUri.buildUpon().appendEncodedPath(indexEntry).build());

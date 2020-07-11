@@ -26,7 +26,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import com.google.android.apps.exposurenotification.R;
@@ -53,6 +52,9 @@ import java.util.Objects;
 public final class ExposureNotificationActivity extends AppCompatActivity {
 
   private static final String TAG = "ExposureNotifnActivity";
+
+  public static final String ACTION_LAUNCH_FROM_EXPOSURE_NOTIFICATION =
+      "com.google.android.apps.exposurenotification.ACTION_LAUNCH_FROM_EXPOSURE_NOTIFICATION";
 
   private static final String SAVED_INSTANCE_STATE_FRAGMENT_KEY =
       "ExposureNotificationActivity.SAVED_INSTANCE_STATE_FRAGMENT_KEY";

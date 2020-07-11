@@ -200,23 +200,6 @@
         android:text="@string/debug_matching_provide_submit_category"
         android:textAppearance="?attr/textAppearanceOverline" />
 
-      <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/padding_large"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
-
-        <com.google.android.material.textfield.TextInputEditText
-          android:id="@+id/token"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:hint="@string/debug_matching_provide_token_hint"
-          android:importantForAutofill="no"
-          android:digits="@string/debug_matching_token_digits"
-          android:inputType="text" />
-
-      </com.google.android.material.textfield.TextInputLayout>
-
       <Button
         android:id="@+id/provide_button"
         android:layout_width="match_parent"

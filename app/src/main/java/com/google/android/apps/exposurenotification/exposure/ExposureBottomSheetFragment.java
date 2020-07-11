@@ -72,9 +72,9 @@ public class ExposureBottomSheetFragment extends BottomSheetDialogFragment {
       verifiedResultExplanation.setText(getFormattedResultsExplanation(dateMillisSinceEpoch));
       possibleExposureSubheading
           .setText(getFormattedPossibleExposureSubheading(dateMillisSinceEpoch));
-
       long receivedTimestampMs = getArguments().getLong(KEY_RECEIVED_TIMESTAMP_MS);
       infoStatus.setText(getFormattedInfoText(receivedTimestampMs));
+
     }
 
     learnMore.setOnClickListener((v) -> learnMoreClicked());

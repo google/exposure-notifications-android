@@ -19,6 +19,7 @@ package com.google.android.apps.exposurenotification.storage;
 
 import android.content.Context;
 import androidx.lifecycle.LiveData;
+import com.google.android.gms.nearby.exposurenotification.ExposureWindow;
 import com.google.common.util.concurrent.ListenableFuture;
 import java.util.List;
 
@@ -41,12 +42,14 @@ public class ExposureRepository {
     return getAllLiveData;
   }
 
-  public ListenableFuture<Void> upsertAsync(List<ExposureEntity> entities) {
-    return exposureDao.upsertAsync(entities);
-  }
-
-  public ListenableFuture<Void> deleteAllAsync() {
-    return exposureDao.deleteAllAsync();
+  /**
+   * Adds missing exposures based on the current windows state.
+   *
+   * @param exposureWindows the {@link ExposureWindow}s
+   * @return if any exposure was added
+   */
+  public boolean refreshWithExposureWindows(List<ExposureWindow> exposureWindows) {
+    return exposureDao.refreshWithExposureWindows(exposureWindows);
   }
 
 }

@@ -164,18 +164,4 @@
 
   <string name="debug_job_status_not_scheduled">Not scheduled</string>
 
-  <string name="debug_token_token">Token: %1$s</string>
-
-  <string name="debug_token_created">Created: %1$s</string>
-
-  <string name="debug_token_updated">Updated: %1$s</string>
-
-  <string name="debug_token_status">Status: %1$s</string>
-
-  <string name="debug_token_status_pending">Pending</string>
-
-  <string name="debug_token_status_responded">Responded</string>
-
-  <string name="debug_token_history_empty">No history</string>
-
 </resources>

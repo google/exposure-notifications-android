@@ -17,22 +17,23 @@
 
 package com.google.android.apps.exposurenotification.nearby;
 
-import static com.google.android.gms.nearby.exposurenotification.ExposureNotificationClient.EXTRA_TOKEN;
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import com.google.android.gms.nearby.exposurenotification.ExposureNotificationClient;
 
-/** Broadcast receiver for callbacks from exposure notification API. */
+/**
+ * Broadcast receiver for callbacks from exposure notification API.
+ */
 public class ExposureNotificationBroadcastReceiver extends BroadcastReceiver {
 
   @Override
   public void onReceive(Context context, Intent intent) {
     String action = intent.getAction();
-    if (ExposureNotificationClient.ACTION_EXPOSURE_STATE_UPDATED.equals(action)) {
-      String token = intent.getStringExtra(EXTRA_TOKEN);
-      StateUpdatedWorker.runOnce(context, token);
+    if (ExposureNotificationClient.ACTION_EXPOSURE_STATE_UPDATED.equals(action)
+        || ExposureNotificationClient.ACTION_EXPOSURE_NOT_FOUND.equals(action)) {
+      StateUpdatedWorker.runOnce(context);
     }
   }
+
 }

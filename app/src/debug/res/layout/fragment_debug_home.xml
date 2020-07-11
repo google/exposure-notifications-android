@@ -118,15 +118,6 @@
         android:layout_gravity="center_horizontal"
         android:text="@string/debug_provide_now_text" />
 
-      <Button
-        android:id="@+id/debug_provide_history"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/padding_large"
-        android:layout_marginBottom="@dimen/padding_normal"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/debug_provide_history_text" />
-
       <include layout="@layout/horizontal_divider" />
 
       <TextView
