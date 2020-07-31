@@ -19,6 +19,7 @@ package com.google.android.apps.exposurenotification.common;
 
 import android.util.Log;
 import androidx.annotation.MainThread;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.MutableLiveData;
@@ -43,7 +44,7 @@ public class SingleLiveEvent<T> extends MutableLiveData<T> {
 
   @MainThread
   @Override
-  public void observe(LifecycleOwner owner, final Observer<? super T> observer) {
+  public void observe(@NonNull LifecycleOwner owner, @NonNull final Observer<? super T> observer) {
     if (hasActiveObservers()) {
       Log.w(TAG, "Multiple observers registered but only one will be notified of changes.");
     }

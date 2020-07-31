@@ -120,9 +120,7 @@ public class KeysMatchingFragment extends Fragment {
                 progressBar.setVisibility(View.INVISIBLE);
               }
             });
-    requestKeys.setOnClickListener(v -> {
-      keysMatchingViewModel.updateTemporaryExposureKeys();
-    });
+    requestKeys.setOnClickListener(v -> keysMatchingViewModel.updateTemporaryExposureKeys());
   }
 
   @Override

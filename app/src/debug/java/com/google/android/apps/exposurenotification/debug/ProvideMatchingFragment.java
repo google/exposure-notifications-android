@@ -47,9 +47,12 @@ import com.google.android.apps.exposurenotification.debug.TemporaryExposureKeyEn
 import com.google.android.gms.nearby.exposurenotification.TemporaryExposureKey;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.common.collect.Lists;
 import com.google.common.io.BaseEncoding;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -57,6 +60,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.List;
+import org.threeten.bp.Duration;
 
 /** Fragment for the provide tab in matching debug. */
 public class ProvideMatchingFragment extends Fragment {
@@ -65,11 +69,12 @@ public class ProvideMatchingFragment extends Fragment {
 
   private static final BaseEncoding BASE16 = BaseEncoding.base16().lowerCase();
 
-  private static final int QR_SCAN_REQUEST_CODE = 1234;
   private static final int FILE_REQUEST_CODE = 1235;
 
   private static final int POS_SINGLE = 0;
   private static final int POS_FILE = 1;
+
+  private static final Duration INTERVAL_DURATION = Duration.ofMinutes(10);
 
   private static final String TEMP_INPUT_FILENAME = "input-file.zip";
 
@@ -88,7 +93,7 @@ public class ProvideMatchingFragment extends Fragment {
 
     provideMatchingViewModel
         .getSnackbarLiveEvent()
-        .observe(getViewLifecycleOwner(), message -> maybeShowSnackbar(message));
+        .observe(getViewLifecycleOwner(), this::maybeShowSnackbar);
 
     // Submit section
     MaterialButton provideButton = view.findViewById(R.id.provide_button);
@@ -147,11 +152,15 @@ public class ProvideMatchingFragment extends Fragment {
 
     Button inputSingleScanButton = view.findViewById(R.id.scan_button);
     inputSingleScanButton.setOnClickListener(
-        v ->
-            startActivityForResult(
-                new Intent(requireContext(), QRScannerActivity.class), QR_SCAN_REQUEST_CODE));
+        v -> IntentIntegrator.forSupportFragment(this)
+            .setDesiredBarcodeFormats(IntentIntegrator.QR_CODE)
+            .setOrientationLocked(false)
+            .setBarcodeImageEnabled(false).initiateScan());
 
-    EditText inputSingleIntervalNumber = view.findViewById(R.id.input_single_interval_number);
+    TextInputLayout inputSingleIntervalNumberLayout = view
+        .findViewById(R.id.input_single_interval_number_layout);
+    TextInputEditText inputSingleIntervalNumber = view
+        .findViewById(R.id.input_single_interval_number);
     inputSingleIntervalNumber.addTextChangedListener(
         new TextWatcher() {
           @Override
@@ -164,7 +173,21 @@ public class ProvideMatchingFragment extends Fragment {
           public void afterTextChanged(Editable s) {
             if (!TextUtils.isEmpty(s.toString())) {
               provideMatchingViewModel.setSingleInputIntervalNumber(tryParseInteger(s.toString()));
+            } else {
+              provideMatchingViewModel.setSingleInputIntervalNumber(0);
             }
+          }
+        });
+
+    provideMatchingViewModel.getSingleInputIntervalNumberLiveData().observe(getViewLifecycleOwner(),
+        intervalNumber -> {
+          if (intervalNumber == 0) {
+            inputSingleIntervalNumberLayout.setSuffixText("");
+          } else {
+            inputSingleIntervalNumberLayout.setSuffixText(StringUtils
+                .epochTimestampToLongUTCDateTimeString(
+                    intervalNumber * INTERVAL_DURATION.toMillis(),
+                    requireContext().getResources().getConfiguration().locale));
           }
         });
 
@@ -254,11 +277,11 @@ public class ProvideMatchingFragment extends Fragment {
           ClipData clip = ClipData.newPlainText(text, text);
           clipboard.setPrimaryClip(clip);
           Snackbar.make(
-                  v,
-                  getString(
-                      R.string.debug_matching_signature_info_copied_text,
-                      StringUtils.truncateWithEllipsis(text, 35)),
-                  Snackbar.LENGTH_SHORT)
+              v,
+              getString(
+                  R.string.debug_snackbar_copied_text,
+                  StringUtils.truncateWithEllipsis(text, 35)),
+              Snackbar.LENGTH_SHORT)
               .show();
         });
   }
@@ -268,38 +291,30 @@ public class ProvideMatchingFragment extends Fragment {
     ProvideMatchingViewModel provideMatchingViewModel =
         new ViewModelProvider(this, getDefaultViewModelProviderFactory())
             .get(ProvideMatchingViewModel.class);
-    if (requestCode == QR_SCAN_REQUEST_CODE) {
-      switch (resultCode) {
-        case RESULT_OK:
-          Log.d(TAG, "onActivityResult with requestCode=QR_SCAN_REQUEST_CODE: OK");
-          try {
-            TemporaryExposureKey temporaryExposureKey =
-                TemporaryExposureKeyEncodingHelper.decodeSingle(
-                    data.getStringExtra(QRScannerActivity.RESULT_KEY));
+    if (requestCode == IntentIntegrator.REQUEST_CODE) {
+      Log.d(TAG, "onActivityResult with requestCode=IntentIntegrator.REQUEST_CODE");
+      IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+      if(result != null && result.getContents() != null) {
+        try {
+          TemporaryExposureKey temporaryExposureKey =
+              TemporaryExposureKeyEncodingHelper.decodeSingle(result.getContents());
 
-            EditText key = requireView().findViewById(R.id.input_single_key);
-            EditText interValNumber = requireView().findViewById(R.id.input_single_interval_number);
-            EditText rollingPeriod = requireView().findViewById(R.id.input_single_rolling_period);
-            EditText transmissionRiskLevel =
-                requireView().findViewById(R.id.input_single_transmission_risk_level);
+          EditText key = requireView().findViewById(R.id.input_single_key);
+          EditText interValNumber = requireView().findViewById(R.id.input_single_interval_number);
+          EditText rollingPeriod = requireView().findViewById(R.id.input_single_rolling_period);
+          EditText transmissionRiskLevel =
+              requireView().findViewById(R.id.input_single_transmission_risk_level);
 
-            key.setText(BASE16.encode(temporaryExposureKey.getKeyData()));
-            interValNumber.setText(
-                Integer.toString(temporaryExposureKey.getRollingStartIntervalNumber()));
-            rollingPeriod.setText(Integer.toString(temporaryExposureKey.getRollingPeriod()));
-            transmissionRiskLevel.setText(
-                Integer.toString(temporaryExposureKey.getTransmissionRiskLevel()));
-          } catch (DecodeException e) {
-            Log.e(TAG, "Decode error", e);
-            maybeShowSnackbar(getString(R.string.debug_matching_provide_scan_error));
-          }
-          break;
-        case RESULT_CANCELED:
-          Log.d(TAG, "onActivityResult with requestCode=QR_SCAN_REQUEST_CODE: CANCELED");
-          break;
-        default:
-          Log.d(TAG, "onActivityResult with requestCode=QR_SCAN_REQUEST_CODE: UNKNOWN");
-          break;
+          key.setText(BASE16.encode(temporaryExposureKey.getKeyData()));
+          interValNumber.setText(
+              Integer.toString(temporaryExposureKey.getRollingStartIntervalNumber()));
+          rollingPeriod.setText(Integer.toString(temporaryExposureKey.getRollingPeriod()));
+          transmissionRiskLevel.setText(
+              Integer.toString(temporaryExposureKey.getTransmissionRiskLevel()));
+        } catch (DecodeException e) {
+          Log.e(TAG, "Decode error", e);
+          maybeShowSnackbar(getString(R.string.debug_matching_provide_scan_error));
+        }
       }
     } else if (requestCode == FILE_REQUEST_CODE) {
       switch (resultCode) {

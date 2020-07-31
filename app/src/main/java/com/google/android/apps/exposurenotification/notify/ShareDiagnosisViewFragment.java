@@ -65,7 +65,7 @@ public class ShareDiagnosisViewFragment extends Fragment {
   }
 
   @Override
-  public void onViewCreated(View view, Bundle savedInstanceState) {
+  public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
     if (savedInstanceState != null) {
       deleteOpen = savedInstanceState.getBoolean(STATE_DELETE_OPEN, false);
     }

@@ -17,11 +17,14 @@
 
 package com.google.android.apps.exposurenotification.network;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import com.google.android.gms.common.internal.Objects;
 import com.google.auto.value.AutoValue;
+import com.google.common.base.MoreObjects;
 import com.google.common.io.BaseEncoding;
 import java.util.Arrays;
+import java.util.concurrent.TimeUnit;
+import org.threeten.bp.Instant;
 
 /**
  * A carrier of diagnosis key into and out of the network operations.
@@ -33,6 +36,8 @@ public abstract class DiagnosisKey {
   // The number of 10-minute intervals the key is valid for, by default.
   private static final int DEFAULT_PERIOD = 144;
   private static final int DEFAULT_TRANSMISSION_RISK = 1;
+  // EN time is measured in ten minute intervals since epoch.
+  private static final long INTERVAL_LEN_MS = TimeUnit.MINUTES.toMillis(10);
 
   public abstract ByteArrayValue getKey();
 
@@ -52,6 +57,7 @@ public abstract class DiagnosisKey {
     return getKey().getBytes();
   }
 
+  /** Builder for {@link DiagnosisKey}. */
   @AutoValue.Builder
   public abstract static class Builder {
     public abstract Builder setKey(ByteArrayValue key);
@@ -77,8 +83,9 @@ public abstract class DiagnosisKey {
     }
   }
 
+  @NonNull
   public String toString() {
-    return Objects.toStringHelper(this)
+    return MoreObjects.toStringHelper(this)
         .add("key:hex", "[" + BASE16.encode(getKeyBytes()) + "]")
         .add("key:base64", "[" + BASE64.encode(getKeyBytes()) + "]")
         .add("interval_number", getIntervalNumber())
@@ -87,6 +94,15 @@ public abstract class DiagnosisKey {
         .toString();
   }
 
+  public static Instant intervalToInstant(int interval) {
+    return Instant.ofEpochMilli(((long) interval) * INTERVAL_LEN_MS);
+  }
+
+  public static int instantToInterval(Instant instant) {
+    return (int) (instant.toEpochMilli() / INTERVAL_LEN_MS);
+  }
+
+  /** Wrapper class which makes a {@code byte[]} value immutable. */
   public static class ByteArrayValue {
     private final byte[] bytes;
 
@@ -115,6 +131,7 @@ public abstract class DiagnosisKey {
       return Arrays.hashCode(bytes);
     }
 
+    @NonNull
     @Override
     public String toString() {
       return Arrays.toString(bytes);

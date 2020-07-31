@@ -86,7 +86,7 @@ class TemporaryExposureKeyAdapter extends RecyclerView.Adapter<TemporaryExposure
     return temporaryExposureKeys.size();
   }
 
-  class TemporaryExposureKeyViewHolder extends RecyclerView.ViewHolder {
+  static class TemporaryExposureKeyViewHolder extends RecyclerView.ViewHolder {
 
     private static final long INTERVAL_TIME_MILLIS = 10 * 60 * 1000L;
 

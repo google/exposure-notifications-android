@@ -17,7 +17,8 @@
   -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.google.android.apps.exposurenotification">
+  xmlns:tools="http://schemas.android.com/tools"
+  package="com.google.android.apps.exposurenotification">
 
   <uses-feature android:name="android.hardware.bluetooth_le" android:required="true" />
   <uses-feature android:name="android.hardware.bluetooth" />
@@ -27,6 +28,8 @@
   <uses-permission android:name="android.permission.INTERNET" />
   <uses-permission android:name="android.permission.BLUETOOTH" />
   <uses-permission android:name="android.permission.CAMERA" />
+
+  <uses-sdk tools:overrideLibrary="com.google.zxing.client.android" />
 
   <application
       android:allowBackup="false"
@@ -42,7 +45,8 @@
       android:name=".home.ExposureNotificationActivity"
       android:exported="true"
       android:launchMode="singleTask"
-      android:clearTaskOnLaunch="true">
+      android:clearTaskOnLaunch="true"
+      android:windowSoftInputMode="stateHidden">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />
@@ -52,21 +56,25 @@
     <activity
       android:name=".exposure.ExposureLearnMoreActivity"
       android:exported="false"
+      android:windowSoftInputMode="stateHidden"
       android:parentActivityName=".home.ExposureNotificationActivity" />
 
     <activity
       android:name=".notify.NotifyLearnMoreActivity"
       android:exported="false"
+      android:windowSoftInputMode="stateHidden"
       android:parentActivityName=".home.ExposureNotificationActivity" />
 
     <activity
       android:name=".exposure.ExposureAboutActivity"
       android:exported="false"
+      android:windowSoftInputMode="stateHidden"
       android:parentActivityName=".home.ExposureNotificationActivity" />
 
     <activity
       android:name=".notify.ShareDiagnosisActivity"
       android:exported="false"
+      android:windowSoftInputMode="stateHidden|adjustResize"
       android:parentActivityName=".home.ExposureNotificationActivity" />
 
     <!-- Receivers -->

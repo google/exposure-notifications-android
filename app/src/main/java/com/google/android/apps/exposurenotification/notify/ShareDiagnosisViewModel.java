@@ -30,7 +30,9 @@ import com.google.android.apps.exposurenotification.common.SingleLiveEvent;
 import com.google.android.apps.exposurenotification.common.TaskToFutureAdapter;
 import com.google.android.apps.exposurenotification.nearby.ExposureNotificationClientWrapper;
 import com.google.android.apps.exposurenotification.network.DiagnosisKey;
-import com.google.android.apps.exposurenotification.network.DiagnosisKeys;
+import com.google.android.apps.exposurenotification.network.Upload;
+import com.google.android.apps.exposurenotification.network.UploadController;
+import com.google.android.apps.exposurenotification.network.UploadControllerFactory;
 import com.google.android.apps.exposurenotification.storage.PositiveDiagnosisEntity;
 import com.google.android.apps.exposurenotification.storage.PositiveDiagnosisRepository;
 import com.google.android.gms.common.api.ApiException;
@@ -49,7 +51,9 @@ import org.threeten.bp.Duration;
 import org.threeten.bp.Instant;
 import org.threeten.bp.ZonedDateTime;
 
-/** View model for {@link ShareDiagnosisActivity} and fragments. */
+/**
+ * View model for {@link ShareDiagnosisActivity} and fragments.
+ */
 public class ShareDiagnosisViewModel extends AndroidViewModel {
 
   private static final String TAG = "ShareDiagnosisViewModel";
@@ -58,6 +62,7 @@ public class ShareDiagnosisViewModel extends AndroidViewModel {
   private static final Duration GET_TEKS_TIMEOUT = Duration.ofSeconds(10);
 
   private final PositiveDiagnosisRepository repository;
+  private final UploadController controller;
 
   private final MutableLiveData<String> testIdentifierLiveData = new MutableLiveData<>();
   private final MutableLiveData<ZonedDateTime> testTimestampLiveData = new MutableLiveData<>();
@@ -72,6 +77,7 @@ public class ShareDiagnosisViewModel extends AndroidViewModel {
 
   public ShareDiagnosisViewModel(Application application) {
     super(application);
+    controller = UploadControllerFactory.create(application);
     repository = new PositiveDiagnosisRepository(application);
   }
 
@@ -169,7 +175,7 @@ public class ShareDiagnosisViewModel extends AndroidViewModel {
           }
 
           @Override
-          public void onFailure(Throwable t) {
+          public void onFailure(@NonNull Throwable t) {
             Log.w(TAG, "Failed to delete", t);
           }
         },
@@ -198,7 +204,7 @@ public class ShareDiagnosisViewModel extends AndroidViewModel {
           }
 
           @Override
-          public void onFailure(Throwable exception) {
+          public void onFailure(@NonNull Throwable exception) {
             if (!(exception instanceof ApiException)) {
               Log.e(TAG, "Unknown error", exception);
               snackbarLiveEvent.postValue(
@@ -213,7 +219,7 @@ public class ShareDiagnosisViewModel extends AndroidViewModel {
             } else {
               Log.w(TAG, "No RESOLUTION_REQUIRED in result", apiException);
               snackbarLiveEvent.postValue(
-                  getApplication().getString(R.string.generic_error_message));;
+                  getApplication().getString(R.string.generic_error_message));
               postInflight(false);
             }
           }
@@ -234,14 +240,16 @@ public class ShareDiagnosisViewModel extends AndroidViewModel {
           }
 
           @Override
-          public void onFailure(Throwable t) {
+          public void onFailure(@NonNull Throwable t) {
             snackbarLiveEvent.postValue(getApplication().getString(R.string.generic_error_message));
           }
         },
         AppExecutors.getLightweightExecutor());
   }
 
-  /** Inserts current diagnosis into the local database with a shared state. */
+  /**
+   * Inserts current diagnosis into the local database with a shared state.
+   */
   private ListenableFuture<Void> insertOrUpdateDiagnosis(boolean shared) {
     long positiveDiagnosisId = existingIdLiveData.getValue();
     if (positiveDiagnosisId == NO_EXISTING_ID) {
@@ -254,7 +262,9 @@ public class ShareDiagnosisViewModel extends AndroidViewModel {
     }
   }
 
-  /** Gets recent (initially 14 days) Temporary Exposure Keys from Google Play Services. */
+  /**
+   * Gets recent (initially 14 days) Temporary Exposure Keys from Google Play Services.
+   */
   private ListenableFuture<List<TemporaryExposureKey>> getRecentKeys() {
     return TaskToFutureAdapter.getFutureWithTimeout(
         ExposureNotificationClientWrapper.get(getApplication()).getTemporaryExposureKeyHistory(),
@@ -284,15 +294,17 @@ public class ShareDiagnosisViewModel extends AndroidViewModel {
     return builder.build();
   }
 
-
-    /**
-     * Submits the given Temporary Exposure Keys to the key sharing service, designating them as
-     * Diagnosis Keys.
-     *
-     * @return a {@link ListenableFuture} of type {@link Boolean} of successfully submitted state
-     */
+  /**
+   * Submits the given Temporary Exposure Keys to the key sharing service, designating them as
+   * Diagnosis Keys.
+   *
+   * @return a {@link ListenableFuture} of type {@link Boolean} of successfully submitted state
+   */
   private ListenableFuture<Boolean> submitKeysToService(ImmutableList<DiagnosisKey> diagnosisKeys) {
-    return FluentFuture.from(new DiagnosisKeys(getApplication()).upload(diagnosisKeys))
+    Upload upload = Upload.newBuilder(diagnosisKeys, testIdentifierLiveData.getValue()).build();
+    return FluentFuture.from(controller.verify(upload))
+        .transformAsync(
+            verified -> controller.upload(verified), AppExecutors.getBackgroundExecutor())
         .transform(
             v -> {
               // Successfully submitted

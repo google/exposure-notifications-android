@@ -27,6 +27,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.common.AppExecutors;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
+import com.google.common.base.Optional;
 import com.google.common.base.Splitter;
 import com.google.common.collect.ImmutableList;
 import com.google.common.util.concurrent.FluentFuture;
@@ -38,6 +39,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import org.threeten.bp.Duration;
+import org.threeten.bp.Instant;
 
 /**
  * Encapsulates logic for resolving URIs for uploading and downloading Diagnosis Keys.
@@ -53,6 +56,7 @@ import java.util.regex.Pattern;
  * a production app might implement.
  */
 public class Uris {
+
   private static final String TAG = "Uris";
   private static final Splitter WHITESPACE_SPLITTER =
       Splitter.onPattern("\\s+").trimResults().omitEmptyStrings();
@@ -62,24 +66,77 @@ public class Uris {
   // For any of the server uploads and downloads to work, the app must be built with non-default
   // URIs set in gradle.properties. This pattern helps us check.
   private static final Pattern DEFAULT_URI_PATTERN = Pattern.compile(".*example\\.com.*");
-  private static final Pattern BATCH_NUM_PATTERN =
+  private static final Pattern DOWNLOAD_FILENAME_PATTERN =
       Pattern.compile("exposureKeyExport-([A-Z]{2})/([0-9]+)-([0-9]+-)?[0-9]+.zip");
+  private static final Duration DEFAULT_MAX_DOWNLOAD_AGE = Duration.ofHours(24);
 
-  private final Context context;
   private final ExposureNotificationSharedPreferences prefs;
   private final Uri baseDownloadUri;
   private final Uri uploadUri;
+  private final Uri verificationUriStep1;
+  private final Uri verificationUriStep2;
+  private final RequestQueueWrapper queue;
 
   public Uris(Context context) {
-    this.context = context;
-    this.prefs = new ExposureNotificationSharedPreferences(context);
-    // These two string resources must be set by gradle.properties or overriden by preferences.
+    this(context,
+        RequestQueueWrapper.wrapping(RequestQueueSingleton.get(context)),
+        new ExposureNotificationSharedPreferences(context));
+  }
+
+  public Uris(
+      Context context, RequestQueueWrapper queue, ExposureNotificationSharedPreferences prefs) {
+    this.prefs = prefs;
+    this.queue = queue;
+
+    // These three string resources must be set by gradle.properties or overriden by preferences.
     baseDownloadUri =
         Uri.parse(
             prefs.getDownloadServerAddress(
                 context.getString(R.string.key_server_download_base_uri)));
     uploadUri =
         Uri.parse(prefs.getUploadServerAddress(context.getString(R.string.key_server_upload_uri)));
+    verificationUriStep1 =
+        Uri.parse(
+            prefs.getVerificationServerAddress1(
+                context.getString(R.string.verification_server_uri_step_1)));
+    verificationUriStep2 =
+        Uri.parse(
+            prefs.getVerificationServerAddress1(
+                context.getString(R.string.verification_server_uri_step_2)));
+  }
+
+  /**
+   * Gets the URI of the diagnosis verification service's first step for the given country/region
+   * code.
+   *
+   * @param region a code for the "home" country/region of the user, whose public health authority
+   *               owns the verification server they would consult for diagnosis verification
+   */
+  Uri getVerificationUri1(String region) {
+    if (hasDefaultUris()) {
+      throw new IllegalStateException(
+          "Attempting to use servers while compiled with default URIs!");
+    }
+    Log.d(TAG, "Verification server step 1 URI for region/country: [" + region + "] is ["
+        + verificationUriStep1 + "]");
+    return verificationUriStep1;
+  }
+
+  /**
+   * Gets the URI of the diagnosis verification service's second step for the given country/region
+   * code.
+   *
+   * @param region a code for the "home" country/region of the user, whose public health authority
+   *               owns the verification server they would consult for diagnosis verification
+   */
+  Uri getVerificationUri2(String region) {
+    if (hasDefaultUris()) {
+      throw new IllegalStateException(
+          "Attempting to use servers while compiled with default URIs!");
+    }
+    Log.d(TAG, "Verification server step 2 URI for region/country: [" + region + "] is ["
+        + verificationUriStep2 + "]");
+    return verificationUriStep2;
   }
 
   /**
@@ -87,22 +144,23 @@ public class Uris {
    *
    * <p>Not necessarily exactly one per country.
    */
-  ListenableFuture<ImmutableList<Uri>> getUploadUris(List<String> regionsIsoAlpha2) {
+  ListenableFuture<ImmutableList<Uri>> getUploadUris(List<String> regions) {
     // Check if the app has been built with default URIs first.
     if (hasDefaultUris()) {
-      Log.w(TAG, "Attempting to use servers while compiled with default URIs!");
-      return Futures.immediateFuture(ImmutableList.of());
+      return Futures.immediateFailedFuture(
+          new IllegalStateException("Attempting to use servers while compiled with default URIs!"));
     }
-    Log.d(
-        TAG,
-        "Getting diagnosis key upload URIs for " + regionsIsoAlpha2.size() + " regions/countries.");
+    Log.d(TAG, "Key server URIs for regions/countries: " + regions + " are ["
+        + ImmutableList.of(uploadUri) + "]");
     // In this test instance we use one server for all regions.
     // An alternative implementation could have a "home" server and a "roaming" server, or some
     // other scheme.
     return Futures.immediateFuture(ImmutableList.of(uploadUri));
   }
 
-  /** Gets batches of URIs from which to download key files for the given country codes. */
+  /**
+   * Gets batches of URIs from which to download key files for the given country codes.
+   */
   ListenableFuture<ImmutableList<KeyFileBatch>> getDownloadFileUris(List<String> regionsIsoAlpha2) {
     // Check if the app has been built with default URIs first.
     if (hasDefaultUris()) {
@@ -140,31 +198,11 @@ public class Uris {
               // the leading timestamp in the filename, e.g. "1589490000" for
               // "exposureKeyExport-US/1589490000-1589510000-00002.zip"
               for (String indexEntry : indexEntries) {
-                Matcher m = BATCH_NUM_PATTERN.matcher(indexEntry);
-                if (!m.matches() || m.group(1) == null || m.group(2) == null) {
-                  throw new RuntimeException(
-                      "Failed to parse country/region code and batch num from File ["
-                          + indexEntry
-                          + "].");
-                }
-
-                String regionCodeFromFilename = m.group(1);
-                // Allow NumberFormatExceptions from parseLong() to bubble up.
-                long batchNum = Long.parseLong(m.group(2));
-                Log.d(
-                    TAG,
-                    String.format(
-                        "Country/region code %s and batch number %s from indexEntry %s",
-                        regionCodeFromFilename, batchNum, indexEntry));
-                if (!regionCode.equals(regionCodeFromFilename)) {
-                  Log.d(
-                      TAG,
-                      String.format(
-                          "Region code %s from filename %s unequal to desired region %s."
-                              + " Skipping this file.",
-                          regionCodeFromFilename, indexEntry, regionCode));
+                Optional<Long> batchNumOrSkip = maybeGetBatchNum(indexEntry, regionCode);
+                if (!batchNumOrSkip.isPresent()) {
                   continue;
                 }
+                long batchNum = batchNumOrSkip.get();
 
                 if (!batches.containsKey(batchNum)) {
                   batches.put(batchNum, new ArrayList<>());
@@ -185,6 +223,54 @@ public class Uris {
             AppExecutors.getBackgroundExecutor());
   }
 
+  /**
+   * Parses the given filename to get its batch number, or empty() if we should skip this file.
+   *
+   * <p>Skips files that are too old, or from the wrong country/region.
+   *
+   * @throws RuntimeException      for failures to parse.
+   * @throws NumberFormatException for numeric failures to parse.
+   */
+  private Optional<Long> maybeGetBatchNum(String filename, String regionCode) {
+    Matcher m = DOWNLOAD_FILENAME_PATTERN.matcher(filename);
+    if (!m.matches() || m.group(1) == null || m.group(2) == null) {
+      throw new RuntimeException(
+          "Failed to parse country/region code and batch num from File [" + filename + "].");
+    }
+
+    String regionCodeFromFilename = m.group(1);
+    // Allow NumberFormatExceptions from parseLong() to bubble up.
+    long batchNum = Long.parseLong(m.group(2));
+    Log.d(
+        TAG,
+        String.format(
+            "Country/region code %s and batch number %s from indexEntry %s",
+            regionCodeFromFilename, batchNum, filename));
+    if (!regionCode.equals(regionCodeFromFilename)) {
+      Log.d(
+          TAG,
+          String.format(
+              "Region code %s from filename %s unequal to desired region %s."
+                  + " Skipping this file.",
+              regionCodeFromFilename, filename, regionCode));
+      return Optional.absent();
+    }
+
+    Instant fileCTime = Instant.ofEpochSecond(batchNum);
+    Instant oldestCTimeDesired =
+        Instant.now().minus(prefs.getMaxDownloadAge(DEFAULT_MAX_DOWNLOAD_AGE));
+    if (fileCTime.isBefore(oldestCTimeDesired)) {
+      Log.d(
+          TAG,
+          String.format(
+              "Skipping file created at/near %s, it looks older than %s",
+              fileCTime, oldestCTimeDesired));
+      return Optional.absent();
+    }
+
+    return Optional.of(batchNum);
+  }
+
   private ListenableFuture<String> index(String countryCode) {
     return CallbackToFutureAdapter.getFuture(
         completer -> {
@@ -202,13 +288,15 @@ public class Uris {
           StringRequest request =
               new StringRequest(indexUri.toString(), responseListener, errorListener);
           request.setShouldCache(false);
-          RequestQueueSingleton.get(context).add(request);
+          queue.add(request);
           return request;
         });
   }
 
   public boolean hasDefaultUris() {
     return DEFAULT_URI_PATTERN.matcher(baseDownloadUri.toString()).matches()
-        || DEFAULT_URI_PATTERN.matcher(uploadUri.toString()).matches();
+        || DEFAULT_URI_PATTERN.matcher(uploadUri.toString()).matches()
+        || DEFAULT_URI_PATTERN.matcher(verificationUriStep1.toString()).matches()
+        || DEFAULT_URI_PATTERN.matcher(verificationUriStep2.toString()).matches();
   }
 }

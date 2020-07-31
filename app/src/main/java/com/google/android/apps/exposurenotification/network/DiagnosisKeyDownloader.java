@@ -17,16 +17,19 @@
 
 package com.google.android.apps.exposurenotification.network;
 
-import android.app.DownloadManager;
-import android.app.DownloadManager.Query;
-import android.app.DownloadManager.Request;
-import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.database.Cursor;
 import android.net.Uri;
 import android.util.Log;
+import androidx.annotation.NonNull;
+import androidx.concurrent.futures.CallbackToFutureAdapter;
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.NetworkResponse;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.Response.ErrorListener;
+import com.android.volley.Response.Listener;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.HttpHeaderParser;
 import com.google.android.apps.exposurenotification.common.AppExecutors;
 import com.google.common.collect.ImmutableList;
 import com.google.common.io.BaseEncoding;
@@ -34,18 +37,13 @@ import com.google.common.util.concurrent.FluentFuture;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
-import com.google.common.util.concurrent.SettableFuture;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.TimeUnit;
 import org.apache.commons.io.FileUtils;
 import org.checkerframework.checker.nullness.compatqual.NullableDecl;
@@ -58,56 +56,57 @@ import org.threeten.bp.Duration;
  * from it. It simply downloads all files available for the user's applicable regions every time it
  * is called. This does not address the different batching or interval strategies that a production
  * app might implement.
+ *
+ * <p>A production implementation should remember past keyfiles it has successfully downloaded and
+ * provided to the EN API for matching, then skip those files in future. In production. each keyfile
+ * need only be provided to the EN API once.
  */
 class DiagnosisKeyDownloader {
+
   private static final String TAG = "KeyDownloader";
   private static final SecureRandom RAND = new SecureRandom();
   private static final BaseEncoding BASE32 = BaseEncoding.base32().lowerCase().omitPadding();
 
-  private static final String FILE_PATTERN = "/diag_keys/%s/keys_%s.pb";
-  // TODO: Set a reasonable timeout and make it adjustable.
+  private static final String FILE_PATTERN = "/diag_keys/%s/keys_%s.zip";
   private static final Duration DOWNLOAD_ALL_FILES_TIMEOUT = Duration.ofMinutes(30);
+
+  private static final Duration SINGLE_FILE_TIMEOUT = Duration.ofSeconds(30);
+  private static final int MAX_RETRIES = 3;
+  private static final float RETRY_BACKOFF = 1.0f;
 
   private final Context context;
   private final CountryCodes countries;
-  private final DownloadManager downloadManager;
   private final Uris uris;
-
-  // A map of Downloads, keyed by download IDs (from DownloadManager).
-  private final ConcurrentMap<Long, Download> downloadMap = new ConcurrentHashMap<>();
+  private final RequestQueueWrapper queue;
 
   DiagnosisKeyDownloader(Context context) {
     this.context = context;
     countries = new CountryCodes(context);
-    downloadManager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
     uris = new Uris(context);
+    queue = RequestQueueWrapper.wrapping(RequestQueueSingleton.get(context));
+  }
+
+  DiagnosisKeyDownloader(
+      Context context,
+      CountryCodes countries,
+      Uris uris,
+      RequestQueueWrapper queue) {
+    this.context = context;
+    this.countries = countries;
+    this.uris = uris;
+    this.queue = queue;
   }
 
   /**
    * Downloads all available files of Diagnosis Keys for the currently applicable regions and
-   * returns a future with a list of all the files.
-   *
-   * <p>Uses DownloadManager but there may be other solutions. DownloadManager initially downloads
-   * the files in its default location then we copy them to app-specific storage. Times out the
-   * whole operation after TIMEOUT duration.
-   *
-   * <p>TODO: Apply the timeout individually to each file instead.
-   *
-   * <p>Currently all files in a given batch fail or succeed as a group. This is also not ideal; it
-   * would be better to support retrying only the failed downloads.
+   * returns a future with a list of all the batches of files.
    */
   ListenableFuture<ImmutableList<KeyFileBatch>> download() {
     String dir = randDirname();
 
-    context.registerReceiver(
-        downloadStatusReceiver, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
-
     ListenableFuture<ImmutableList<KeyFileBatch>> batchesDownloaded =
         // Start with the relevant country codes for the user.
-        FluentFuture.from(countries.getExposureRelevantCountryCodes())
-            // Get the network locations of all the files we need to download for those
-            // countries/regions, as batches of URIs.
-            .transformAsync(uris::getDownloadFileUris, AppExecutors.getLightweightExecutor())
+        FluentFuture.from(uris.getDownloadFileUris(countries.getExposureRelevantCountryCodes()))
             // Now initiate file downloads for each URI in each of those batches.
             .transformAsync(
                 uriBatches -> initiateDownloads(uriBatches, dir),
@@ -123,12 +122,7 @@ class DiagnosisKeyDownloader {
                 AppExecutors.getScheduledExecutor());
 
     // Add a callback just to log success/failure.
-    Futures.addCallback(batchesDownloaded, logOutcome, AppExecutors.getLightweightExecutor());
-
-    // Add a listener to clean up the receiver.
-    batchesDownloaded.addListener(
-        () -> context.unregisterReceiver(downloadStatusReceiver),
-        AppExecutors.getLightweightExecutor());
+    Futures.addCallback(batchesDownloaded, LOG_OUTCOME, AppExecutors.getLightweightExecutor());
 
     return batchesDownloaded;
   }
@@ -136,47 +130,62 @@ class DiagnosisKeyDownloader {
   private ListenableFuture<List<BatchFile>> initiateDownloads(
       List<KeyFileBatch> batches, String dir) {
     List<ListenableFuture<BatchFile>> batchFiles = new ArrayList<>();
+    int fileCounter = 1;
     for (KeyFileBatch b : batches) {
-      batchFiles.addAll(handleBatch(b, dir));
+      for (Uri uri : b.uris()) {
+        batchFiles.add(downloadAndSave(b, uri, dir, fileCounter++));
+      }
     }
     return Futures.allAsList(batchFiles);
   }
 
-  /**
-   * Initiates download of all the files in the given batch and returns a list of futures, one for
-   * each file.
-   *
-   * <p>Each returned future will complete when the file download is complete (or fails). The value
-   * of each returned future is a {@link BatchFile}, which just pairs a {@link File} with the {@link
-   * KeyFileBatch} it belongs to so that we can more easily group them by batch later in this
-   * download process.
-   */
-  private List<ListenableFuture<BatchFile>> handleBatch(KeyFileBatch batch, String dir) {
-    // Start a separate DownloadManager operation for each file.
-    Log.i(TAG, "Start " + batch.uris().size() + " key file downloads.");
-    List<ListenableFuture<BatchFile>> files = new ArrayList<>();
-    for (Uri uri : batch.uris()) {
-      DownloadManager.Request req =
-          new DownloadManager.Request(uri)
-              // TODO: Consider applying some policies such as:
-              // .setAllowedNetworkTypes(Request.NETWORK_WIFI)
-              // .setAllowedOverMetered(false)
-              // .setRequiresCharging(true)
-              // .setRequiresDeviceIdle(true)
-              .setNotificationVisibility(Request.VISIBILITY_VISIBLE)
-              .setMimeType("application/octet-stream")
-              .setTitle("Exposure Notifications Check")
-              .setDescription("Exposure Notifications Check");
-
-      long downloadId = downloadManager.enqueue(req);
-      Download d = new Download(batch, downloadId, dir);
-      files.add(d.fileFuture);
-      downloadMap.put(downloadId, d);
-    }
-    return files;
+  private ListenableFuture<BatchFile> downloadAndSave(
+      KeyFileBatch batch, Uri uri, String dir, int fileCounter) {
+    return FluentFuture.from(downloadFile(uri))
+        .transformAsync(
+            bytes -> saveKeyFile(batch, bytes, dir, fileCounter),
+            AppExecutors.getBackgroundExecutor());
   }
 
-  /** Here's where, after downloading each file, we group them back into {@link KeyFileBatch}es. */
+  private ListenableFuture<byte[]> downloadFile(Uri uri) {
+    return CallbackToFutureAdapter.getFuture(
+        completer -> {
+          Listener<byte[]> responseListener =
+              response -> {
+                Log.d(
+                    TAG,
+                    "Keyfile " + uri + " successfully downloaded " + response.length + " bytes.");
+                completer.set(response);
+              };
+
+          ErrorListener errorListener =
+              err -> {
+                Log.e(TAG, "Error getting keyfile " + uri);
+                completer.setCancelled();
+              };
+
+          Log.d(TAG, "Downloading keyfile file from " + uri);
+          ByteArrayRequest request = new ByteArrayRequest(uri, responseListener, errorListener);
+          queue.add(request);
+          return request;
+        });
+  }
+
+  private ListenableFuture<BatchFile> saveKeyFile(
+      KeyFileBatch batch, byte[] content, String dir, int fileCounter) {
+    String filename = String.format(FILE_PATTERN, dir, fileCounter);
+    File toFile = new File(context.getFilesDir(), filename);
+    try {
+      FileUtils.writeByteArrayToFile(toFile, content);
+      return Futures.immediateFuture(new BatchFile(batch, toFile));
+    } catch (IOException e) {
+      return Futures.immediateFailedFuture(e);
+    }
+  }
+
+  /**
+   * Here's where, after downloading each file, we group them back into {@link KeyFileBatch}es.
+   */
   private ImmutableList<KeyFileBatch> groupAsBatches(List<BatchFile> batchFiles) {
     // Collect the downloaded files per KeyFileBatch
     Map<KeyFileBatch, List<File>> collector = new HashMap<>();
@@ -200,68 +209,39 @@ class DiagnosisKeyDownloader {
     return BASE32.encode(bytes);
   }
 
-  /** A {@link BroadcastReceiver} to receive the results of each file download. */
-  private final BroadcastReceiver downloadStatusReceiver =
-      new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-          // TODO: consider better mechanism to offload from the UI thread. Potentially WorkManager.
-          AppExecutors.getBackgroundExecutor().submit(() -> {
-            String action = intent.getAction();
-            if (!DownloadManager.ACTION_DOWNLOAD_COMPLETE.equals(action)) {
-              // This really shouldn't happen.
-              return;
-            }
-            long downloadId = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);
-            if (downloadId == -1) {
-              // This is also unexpected.
-              return;
-            }
+  /**
+   * A request for the raw bytes of a keyfile.
+   */
+  private static class ByteArrayRequest extends Request<byte[]> {
 
-            // Grab the details of this download "chunk".
-            Download download;
-            if (!downloadMap.containsKey(downloadId)) {
-              return;
-            }
-            download = downloadMap.get(downloadId);
+    private final Response.Listener<byte[]> listener;
 
-            Query q = new Query();
-            q.setFilterById(downloadId);
-            try (Cursor c = downloadManager.query(q)) {
-              if (!c.moveToFirst()) {
-                return;
-              }
-              int columnIndex = c.getColumnIndex(DownloadManager.COLUMN_STATUS);
-              if (DownloadManager.STATUS_SUCCESSFUL == c.getInt(columnIndex)) {
-                // We have a file.
-                Uri uri = downloadManager.getUriForDownloadedFile(download.downloadId);
-                try (InputStream stream = context.getContentResolver().openInputStream(uri)) {
-                  // Great. Now copy the file to app-specific storage.
-                  String filename = String.format(FILE_PATTERN, download.dir, downloadId);
-                  File toFile = new File(context.getFilesDir(), filename);
-                  FileUtils.copyInputStreamToFile(stream, toFile);
-                  // And complete the Download's SettableFuture with the file's ultimate destination.
-                  download.succeed(toFile);
-                  // Then remove the original from DownloadManager.
-                  downloadManager.remove(downloadId);
-                } catch (IOException | NullPointerException e) {
-                  // Failed to get the downloaded file, or to copy it. Fail the future.
-                  download.fail(e);
-                }
-              } else {
-                // This download failed. We fail the future.
-                // TODO: Use some other exception.
-                download.fileFuture.setException(new FileNotFoundException());
-              }
-            }
+    public ByteArrayRequest(
+        Uri uri, Response.Listener<byte[]> listener, ErrorListener errorListener) {
+      super(Method.GET, uri.toString(), errorListener);
+      this.listener = listener;
+      setRetryPolicy(
+          new DefaultRetryPolicy((int) SINGLE_FILE_TIMEOUT.toMillis(), MAX_RETRIES, RETRY_BACKOFF));
+    }
 
-            downloadMap.remove(downloadId);
-          });
-        }
-      };
+    @Override
+    protected Response<byte[]> parseNetworkResponse(NetworkResponse response) {
+      return response.statusCode < 400
+          ? Response.success(response.data, HttpHeaderParser.parseCacheHeaders(response))
+          : Response.error(new VolleyError(response));
+    }
 
-  /** A {@link File} that knows which {@link KeyFileBatch} it belongs to. */
+    @Override
+    protected void deliverResponse(byte[] response) {
+      listener.onResponse(response);
+    }
+  }
+
+  /**
+   * A {@link File} that knows which {@link KeyFileBatch} it belongs to.
+   */
   private static class BatchFile {
+
     private final KeyFileBatch batch;
     private final File file;
 
@@ -271,33 +251,7 @@ class DiagnosisKeyDownloader {
     }
   }
 
-  /** A simple value class for holding all the details of a single downloaded file. */
-  private static class Download {
-    private final KeyFileBatch batch;
-    private final long downloadId;
-    // The dir is really the same for all downloads in a single "run", but this is a convenient
-    // place to retain it for the benefit of the BroadcastReceiver that does the post-download copy.
-    private final String dir;
-    // SettableFutures can be error prone. CallbackToFutureAdapter would be better.
-    // TODO: Figure a way to use CallbackToFutureAdapter or similar.
-    private final SettableFuture<BatchFile> fileFuture = SettableFuture.create();
-
-    private Download(KeyFileBatch batch, long downloadId, String dir) {
-      this.batch = batch;
-      this.downloadId = downloadId;
-      this.dir = dir;
-    }
-
-    private void succeed(File f) {
-      fileFuture.set(new BatchFile(batch, f));
-    }
-
-    private void fail(Throwable t) {
-      fileFuture.setException(t);
-    }
-  }
-
-  private FutureCallback<ImmutableList<KeyFileBatch>> logOutcome =
+  private static FutureCallback<ImmutableList<KeyFileBatch>> LOG_OUTCOME =
       new FutureCallback<ImmutableList<KeyFileBatch>>() {
         @Override
         public void onSuccess(@NullableDecl ImmutableList<KeyFileBatch> result) {
@@ -305,7 +259,7 @@ class DiagnosisKeyDownloader {
         }
 
         @Override
-        public void onFailure(Throwable t) {
+        public void onFailure(@NonNull Throwable t) {
           Log.e(TAG, "Key file download failed.");
         }
       };

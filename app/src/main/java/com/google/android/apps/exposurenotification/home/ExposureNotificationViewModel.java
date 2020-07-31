@@ -18,8 +18,13 @@
 package com.google.android.apps.exposurenotification.home;
 
 import android.app.Application;
+import android.bluetooth.BluetoothAdapter;
+import android.content.Context;
+import android.location.LocationManager;
+import android.os.StatFs;
 import android.util.Log;
 import androidx.annotation.NonNull;
+import androidx.core.location.LocationManagerCompat;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -29,7 +34,6 @@ import com.google.android.apps.exposurenotification.nearby.ExposureNotificationC
 import com.google.android.apps.exposurenotification.nearby.ProvideDiagnosisKeysWorker;
 import com.google.android.apps.exposurenotification.network.UploadCoverTrafficWorker;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
-import com.google.android.apps.exposurenotification.storage.ExposureRepository;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.nearby.exposurenotification.ExposureNotificationStatusCodes;
 import com.google.common.util.concurrent.FutureCallback;
@@ -43,30 +47,40 @@ public class ExposureNotificationViewModel extends AndroidViewModel {
 
   private static final String TAG = "ExposureNotificationVM";
 
-  private final MutableLiveData<Boolean> isEnabledLiveData;
+  private static final long MINIMUM_FREE_STORAGE_REQUIRED_BYTES = 1024L * 1024L * 100L;
+
+  private final MutableLiveData<ExposureNotificationState> stateLiveData;
   private final MutableLiveData<Boolean> inFlightLiveData = new MutableLiveData<>(false);
   private final MutableLiveData<Boolean> inFlightResolutionLiveData = new MutableLiveData<>(false);
   private final ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
-  private final ExposureRepository exposureRepository;
 
   private final SingleLiveEvent<Void> apiErrorLiveEvent = new SingleLiveEvent<>();
   private final SingleLiveEvent<ApiException> resolutionRequiredLiveEvent = new SingleLiveEvent<>();
 
+  private final ExposureNotificationClientWrapper wrapper;
+
   private boolean inFlightIsEnabled = false;
+
+  public enum ExposureNotificationState {
+    DISABLED,
+    ENABLED,
+    PAUSED_BLE_OR_LOCATION_OFF,
+    STORAGE_LOW
+  }
 
   public ExposureNotificationViewModel(@NonNull Application application) {
     super(application);
     exposureNotificationSharedPreferences = new ExposureNotificationSharedPreferences(application);
-    exposureRepository = new ExposureRepository(application);
-    isEnabledLiveData = new MutableLiveData<>(
-        exposureNotificationSharedPreferences.getIsEnabledCache());
+    stateLiveData = new MutableLiveData<>(
+        getStateForIsEnabled(exposureNotificationSharedPreferences.getIsEnabledCache()));
+    wrapper = ExposureNotificationClientWrapper.get(getApplication());
   }
 
   /**
-   * A {@link LiveData} of the isEnabled state of the API.
+   * A {@link LiveData} of the {@link ExposureNotificationState} of the API.
    */
-  public LiveData<Boolean> getIsEnabledLiveData() {
-    return isEnabledLiveData;
+  public LiveData<ExposureNotificationState> getStateLiveData() {
+    return stateLiveData;
   }
 
   /**
@@ -95,8 +109,6 @@ public class ExposureNotificationViewModel extends AndroidViewModel {
    * Refresh isEnabled state and getExposureWindows from Exposure Notification API.
    */
   public void refreshState() {
-    ExposureNotificationClientWrapper wrapper = ExposureNotificationClientWrapper
-        .get(getApplication());
     maybeRefreshIsEnabled(wrapper);
   }
 
@@ -108,7 +120,7 @@ public class ExposureNotificationViewModel extends AndroidViewModel {
     wrapper.isEnabled()
         .addOnSuccessListener(
             (isEnabled) -> {
-              isEnabledLiveData.setValue(isEnabled);
+              stateLiveData.setValue(getStateForIsEnabled(isEnabled));
               exposureNotificationSharedPreferences.setIsEnabledCache(isEnabled);
               if (isEnabled) {
                 // if we're seeing it enabled then permission has been granted
@@ -121,9 +133,35 @@ public class ExposureNotificationViewModel extends AndroidViewModel {
         .addOnFailureListener((t) -> {
           Log.e(TAG, "Failed to call isEnabled", t);
           inFlightIsEnabled = false;
-          isEnabledLiveData.setValue(false);
+          stateLiveData.setValue(getStateForIsEnabled(false));
           exposureNotificationSharedPreferences.setIsEnabledCache(false);
         });
+  }
+
+  private ExposureNotificationState getStateForIsEnabled(boolean isEnabled) {
+    if (!isEnabled) {
+      return ExposureNotificationState.DISABLED;
+    }
+
+    BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+    if (mBluetoothAdapter != null && !mBluetoothAdapter.isEnabled()) {
+      return ExposureNotificationState.PAUSED_BLE_OR_LOCATION_OFF;
+    }
+
+    LocationManager locationManager = (LocationManager) getApplication()
+        .getSystemService(Context.LOCATION_SERVICE);
+    if (locationManager != null && !LocationManagerCompat.isLocationEnabled(locationManager)) {
+      return ExposureNotificationState.PAUSED_BLE_OR_LOCATION_OFF;
+    }
+
+    // DiagnosisKeyDownloader works with the App's private files dir, so check available space there
+    StatFs filesDirStat = new StatFs(getApplication().getFilesDir().toString());
+    long freeStorage = filesDirStat.getAvailableBytes();
+    if (freeStorage <= MINIMUM_FREE_STORAGE_REQUIRED_BYTES) {
+      return ExposureNotificationState.STORAGE_LOW;
+    }
+
+    return ExposureNotificationState.ENABLED;
   }
 
   private void schedulePeriodicJobs() {
@@ -141,7 +179,7 @@ public class ExposureNotificationViewModel extends AndroidViewModel {
       }
 
       @Override
-      public void onFailure(Throwable t) {
+      public void onFailure(@NonNull Throwable t) {
         Log.e(TAG, "Failed to schedule periodic WorkManager jobs.", t);
       }
     }, AppExecutors.getLightweightExecutor());
@@ -152,12 +190,13 @@ public class ExposureNotificationViewModel extends AndroidViewModel {
    */
   public void startExposureNotifications() {
     inFlightLiveData.setValue(true);
-    ExposureNotificationClientWrapper.get(getApplication())
+    wrapper
         .start()
         .addOnSuccessListener(
             unused -> {
-              refreshState();
+              stateLiveData.setValue(getStateForIsEnabled(true));
               inFlightLiveData.setValue(false);
+              refreshState();
             })
         .addOnFailureListener(
             exception -> {
@@ -172,7 +211,6 @@ public class ExposureNotificationViewModel extends AndroidViewModel {
                   == ExposureNotificationStatusCodes.RESOLUTION_REQUIRED) {
                 if (inFlightResolutionLiveData.getValue()) {
                   Log.e(TAG, "Error, has in flight resolution", exception);
-                  return;
                 } else {
                   inFlightResolutionLiveData.setValue(true);
                   resolutionRequiredLiveEvent.postValue(apiException);
@@ -191,12 +229,13 @@ public class ExposureNotificationViewModel extends AndroidViewModel {
    */
   public void startResolutionResultOk() {
     inFlightResolutionLiveData.setValue(false);
-    ExposureNotificationClientWrapper.get(getApplication())
+    wrapper
         .start()
         .addOnSuccessListener(
             unused -> {
-              refreshState();
+              stateLiveData.setValue(getStateForIsEnabled(true));
               inFlightLiveData.setValue(false);
+              refreshState();
             })
         .addOnFailureListener(
             exception -> {
@@ -220,7 +259,7 @@ public class ExposureNotificationViewModel extends AndroidViewModel {
    */
   public void stopExposureNotifications() {
     inFlightLiveData.setValue(true);
-    ExposureNotificationClientWrapper.get(getApplication())
+    wrapper
         .stop()
         .addOnSuccessListener(
             unused -> {

@@ -21,9 +21,7 @@ import static com.google.common.truth.Truth.assertThat;
 
 import android.content.Context;
 import androidx.test.core.app.ApplicationProvider;
-import com.google.common.collect.ImmutableList;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
@@ -31,31 +29,27 @@ import org.robolectric.annotation.Config;
 import org.robolectric.shadow.api.Shadow;
 import org.robolectric.shadows.ShadowTelephonyManager;
 
-/** Tests of {@link DiagnosisKeys}. */
+/**
+ * Tests of {@link DownloadController}.
+ */
 @RunWith(RobolectricTestRunner.class)
 @Config(shadows = {ShadowTelephonyManager.class})
-@Ignore
-public class DiagnosisKeysTest {
+public class DownloadControllerTest {
 
   private ShadowTelephonyManager telephonyManager;
 
-  private DiagnosisKeys keys;
+  private DownloadController controller;
 
   @Before
   public void setup() {
     Context context = ApplicationProvider.getApplicationContext();
     telephonyManager = Shadow.extract(context.getSystemService(Context.TELEPHONY_SERVICE));
     telephonyManager.setNetworkCountryIso("US");
-    keys = new DiagnosisKeys(context);
+    controller = new DownloadController(context);
   }
 
   @Test
   public void download_shouldReturnSampleFile() throws Exception {
-    assertThat(keys.download().get()).hasSize(1);
-  }
-
-  @Test
-  public void upload_emptyList_shouldReturnNullValuedFuture() throws Exception {
-    assertThat(keys.upload(ImmutableList.of()).get()).isNull();
+    assertThat(controller.download().get()).hasSize(1);
   }
 }

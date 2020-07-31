@@ -1,0 +1,49 @@
+/*
+ * Copyright 2020 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
+apply plugin: 'jacoco'
+
+tasks.withType(Test) {
+    jacoco.excludes = ['jdk.internal.*']
+    // Necessary for JaCoCo to work with Robolectric
+    jacoco.includeNoLocationClasses = true
+}
+
+task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest', 'createDebugCoverageReport']) {
+
+    // Output only the HTML report
+    reports {
+        xml.enabled = false
+        html.enabled = true
+    }
+
+    // Add our project classes and exclude common Android classes from code coverage
+    def debugTree = fileTree(dir: "$project.buildDir/intermediates/javac/debug", excludes: [
+            '**/R.class',
+            '**/R$*.class',
+            '**/BuildConfig.*',
+            '**/Manifest*.*',
+            'android/**/*.*',
+    ])
+
+    classDirectories.setFrom files([debugTree])
+    sourceDirectories.setFrom files(["$project.projectDir/src/main/java"])
+    executionData.setFrom fileTree(dir: buildDir, includes: [
+            'jacoco/testDebugUnitTest.exec',
+            'outputs/code-coverage/debugAndroidTest/connected/*coverage.ec',
+    ])
+}

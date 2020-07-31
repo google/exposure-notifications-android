@@ -17,20 +17,22 @@
 
 package com.google.android.apps.exposurenotification.network;
 
-import android.content.Context;
-import com.google.common.util.concurrent.Futures;
-import com.google.common.util.concurrent.ListenableFuture;
-import java.util.List;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 
-/** A fake NOOP implementation similar to {@link DiagnosisKeyUploader}. */
-public class FakeDiagnosisKeyUploader {
-  private final Context context;
+/**
+ * A razor-thin wrapper to make testing code that uses Volley easier to test with fakes.
+ */
+public abstract class RequestQueueWrapper {
 
-  FakeDiagnosisKeyUploader(Context context) {
-    this.context = context;
-  }
+  public abstract <T> Request<T> add(Request<T> request);
 
-  ListenableFuture<Void> upload(List<DiagnosisKey> diagnosisKeys) {
-    return Futures.immediateFuture(null);
+  public static RequestQueueWrapper wrapping(RequestQueue innerQueue) {
+    return new RequestQueueWrapper() {
+      @Override
+      public <T> Request<T> add(Request<T> request) {
+        return innerQueue.add(request);
+      }
+    };
   }
 }

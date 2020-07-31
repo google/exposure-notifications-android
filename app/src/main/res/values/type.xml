@@ -54,4 +54,14 @@
     <item name="android:fontFamily">@font/roboto_medium</item>
   </style>
 
+  <style name="VerificationCodeOutlinedBox"
+    parent="ThemeOverlay.MaterialComponents.TextInputEditText.OutlinedBox">
+    <item name="android:textSize">40sp</item>
+  </style>
+
+  <style name="OnsetDateOutlinedBox"
+    parent="ThemeOverlay.MaterialComponents.TextInputEditText.OutlinedBox">
+    <item name="android:textSize">30sp</item>
+  </style>
+
 </resources>

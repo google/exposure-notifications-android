@@ -26,8 +26,6 @@ import com.google.android.gms.nearby.exposurenotification.ExposureSummary;
 import com.google.android.gms.nearby.exposurenotification.ExposureWindow;
 import com.google.android.gms.nearby.exposurenotification.TemporaryExposureKey;
 import com.google.android.gms.tasks.Task;
-import com.google.android.gms.tasks.Tasks;
-import com.google.common.collect.Lists;
 import java.io.File;
 import java.util.List;
 

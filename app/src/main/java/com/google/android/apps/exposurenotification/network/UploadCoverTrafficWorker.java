@@ -30,6 +30,7 @@ import androidx.work.WorkerParameters;
 import com.google.android.apps.exposurenotification.common.AppExecutors;
 import com.google.android.apps.exposurenotification.common.TaskToFutureAdapter;
 import com.google.android.apps.exposurenotification.nearby.ExposureNotificationClientWrapper;
+import com.google.common.collect.ImmutableList;
 import com.google.common.util.concurrent.FluentFuture;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
@@ -44,6 +45,7 @@ import org.threeten.bp.Duration;
  * within a loose time period, and by skipping some executions at random.
  */
 public final class UploadCoverTrafficWorker extends ListenableWorker {
+
   private static final String TAG = "UploadCoverTrafficWrk";
   private static final String WORKER_NAME = "UploadCoverTrafficWorker";
   private static final int REPEAT_INTERVAL = 6;
@@ -53,18 +55,21 @@ public final class UploadCoverTrafficWorker extends ListenableWorker {
   private static final SecureRandom RAND = new SecureRandom();
   private static final double EXECUTION_PROBABILITY = 0.5d;
   public static final Duration API_TIMEOUT = Duration.ofSeconds(5);
+  private static final int KEY_SIZE_BYTES = 16;
+  private static final int FAKE_INTERVAL_NUM = 2650847; // Only size matters here, not the value.
+  private static final int FAKE_SAFETYNET_ATTESTATION_LENGTH = 5394; // Measured from a real payload
 
-  private final DiagnosisKeyUploader uploader;
+  private final UploadController controller;
   private final ExposureNotificationClientWrapper enClient;
 
   /**
-   * @param appContext The application {@link Context}
+   * @param appContext   The application {@link Context}
    * @param workerParams Parameters to setup the internal state of this worker
    */
   public UploadCoverTrafficWorker(
       @NonNull Context appContext, @NonNull WorkerParameters workerParams) {
     super(appContext, workerParams);
-    uploader = new DiagnosisKeyUploader(appContext);
+    controller = UploadControllerFactory.create(appContext);
     enClient = ExposureNotificationClientWrapper.get(appContext);
   }
 
@@ -76,11 +81,37 @@ public final class UploadCoverTrafficWorker extends ListenableWorker {
       return Futures.immediateFuture(Result.success());
     }
 
+    ImmutableList.Builder<DiagnosisKey> builder = ImmutableList.builder();
+    // Build up 14 random diagnosis keys.
+    for (int i = 0; i < 14; i++) {
+      byte[] bytes = new byte[KEY_SIZE_BYTES];
+      RAND.nextBytes(bytes);
+      builder.add(
+          DiagnosisKey.newBuilder()
+              .setKeyBytes(bytes)
+              // Accepting the default rolling period that the DiagnosisKey.Builder comes with.
+              .setTransmissionRisk(i % 7)
+              .setIntervalNumber(FAKE_INTERVAL_NUM)
+              .build());
+    }
+
+    Upload fakeUpload = Upload.newBuilder(builder.build(), "FAKE-VALIDATION-CODE")
+        .setIsCoverTraffic(true)
+        .build();
+
     // First see if the API is enabled in the first place.
     return FluentFuture.from(apiIsEnabled())
         .transformAsync(
-            // If the API is not enabled, skip the upload.
-            isEnabled -> isEnabled ? uploader.fakeUpload() : Futures.immediateFuture(null),
+            isEnabled -> {
+              if (!isEnabled) {
+                // If the API is not enabled, skip the upload.
+                return Futures.immediateFuture(null);
+              }
+              return FluentFuture.from(controller.verify(fakeUpload))
+                  .transformAsync(
+                      verified -> controller.upload(verified),
+                      AppExecutors.getBackgroundExecutor());
+            },
             AppExecutors.getLightweightExecutor())
         // Report success or failure.
         .transform(unused -> Result.success(), AppExecutors.getLightweightExecutor())
@@ -104,11 +135,11 @@ public final class UploadCoverTrafficWorker extends ListenableWorker {
     WorkManager workManager = WorkManager.getInstance(context);
     PeriodicWorkRequest workRequest =
         new PeriodicWorkRequest.Builder(
-                UploadCoverTrafficWorker.class,
-                REPEAT_INTERVAL,
-                REPEAT_INTERVAL_UNITS,
-                FLEX_INTERVAL,
-                FLEX_INTERVAL_UNITS)
+            UploadCoverTrafficWorker.class,
+            REPEAT_INTERVAL,
+            REPEAT_INTERVAL_UNITS,
+            FLEX_INTERVAL,
+            FLEX_INTERVAL_UNITS)
             .setConstraints(
                 new Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED).build())
             .build();

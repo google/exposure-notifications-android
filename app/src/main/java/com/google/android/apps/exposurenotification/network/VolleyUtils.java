@@ -17,15 +17,22 @@
 
 package com.google.android.apps.exposurenotification.network;
 
-import androidx.annotation.VisibleForTesting;
+import com.android.volley.VolleyError;
+import java.nio.charset.StandardCharsets;
 
-/**
- * Some static constants for key file parsing.
- */
-public final class KeyFileConstants {
-  @VisibleForTesting public static final String SIG_FILENAME = "export.sig";
-  @VisibleForTesting public static final String EXPORT_FILENAME = "export.bin";
+/** Static utils to ease common tasks dealing with Volley requests & responses. */
+public class VolleyUtils {
 
-  private KeyFileConstants() {
+  // Prevent instantiation.
+  private VolleyUtils(){}
+
+  public static int getHttpStatus(VolleyError err, int defaultStatus) {
+    return err.networkResponse == null ? defaultStatus : err.networkResponse.statusCode;
+  }
+
+  public static String getErrorMessage(VolleyError err, String defaultMsg) {
+    return (err.networkResponse == null || err.networkResponse.data == null)
+        ? defaultMsg
+        : new String(err.networkResponse.data, StandardCharsets.UTF_8);
   }
 }

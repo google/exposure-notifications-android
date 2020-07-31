@@ -62,16 +62,58 @@ public class ExposureNotificationSharedPreferencesTest {
   }
 
   @Test
-  public void networkMode_default() {
-    assertThat(exposureNotificationSharedPreferences.getNetworkMode(NetworkMode.FAKE))
-        .isEqualTo(NetworkMode.FAKE);
+  public void keySharingNetworkMode_default() {
+    assertThat(exposureNotificationSharedPreferences.getKeySharingNetworkMode(NetworkMode.DISABLED))
+        .isEqualTo(NetworkMode.DISABLED);
   }
 
   @Test
-  public void networkMode_update() {
-    exposureNotificationSharedPreferences.setNetworkMode(NetworkMode.TEST);
+  public void keySharingNetworkMode_update() {
+    exposureNotificationSharedPreferences.setKeySharingNetworkMode(NetworkMode.LIVE);
 
-    assertThat(exposureNotificationSharedPreferences.getNetworkMode(NetworkMode.FAKE))
-        .isEqualTo(NetworkMode.TEST);
+    assertThat(exposureNotificationSharedPreferences.getKeySharingNetworkMode(NetworkMode.DISABLED))
+        .isEqualTo(NetworkMode.LIVE);
+  }
+
+  @Test
+  public void verificationNetworkMode_default() {
+    assertThat(exposureNotificationSharedPreferences.getVerificationNetworkMode(NetworkMode.DISABLED))
+        .isEqualTo(NetworkMode.DISABLED);
+  }
+
+  @Test
+  public void verificationNetworkMode_update() {
+    exposureNotificationSharedPreferences.setVerificationNetworkMode(NetworkMode.LIVE);
+
+    assertThat(exposureNotificationSharedPreferences.getVerificationNetworkMode(NetworkMode.DISABLED))
+        .isEqualTo(NetworkMode.LIVE);
+  }
+
+  @Test
+  public void verificationServerUri1_default() {
+    assertThat(exposureNotificationSharedPreferences.getVerificationServerAddress1("default"))
+        .isEqualTo("default");
+  }
+
+  @Test
+  public void verificationServerUri1_update() {
+    exposureNotificationSharedPreferences.setVerificationServerAddress1("updated");
+
+    assertThat(exposureNotificationSharedPreferences.getVerificationServerAddress1("default"))
+        .isEqualTo("updated");
+  }
+
+  @Test
+  public void verificationServerUri2_default() {
+    assertThat(exposureNotificationSharedPreferences.getVerificationServerAddress2("default"))
+        .isEqualTo("default");
+  }
+
+  @Test
+  public void verificationServerUri2_update() {
+    exposureNotificationSharedPreferences.setVerificationServerAddress2("updated");
+
+    assertThat(exposureNotificationSharedPreferences.getVerificationServerAddress2("default"))
+        .isEqualTo("updated");
   }
 }

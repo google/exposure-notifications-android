@@ -111,7 +111,7 @@ public class ShareDiagnosisReviewFragment extends Fragment {
 
     shareDiagnosisViewModel
         .getSnackbarSingleLiveEvent()
-        .observe(getViewLifecycleOwner(), message -> maybeShowSnackbar(message));
+        .observe(getViewLifecycleOwner(), this::maybeShowSnackbar);
 
     shareDiagnosisViewModel
         .getResolutionRequiredLiveEvent()

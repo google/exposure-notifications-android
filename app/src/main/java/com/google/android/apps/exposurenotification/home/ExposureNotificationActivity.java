@@ -126,7 +126,7 @@ public final class ExposureNotificationActivity extends AppCompatActivity {
     // fragment tab to the exposures tab.
     // TODO: handle different intents separately
     for (Fragment fragment : getSupportFragmentManager().getFragments()) {
-      if (fragment != null && fragment instanceof HomeFragment) {
+      if (fragment instanceof HomeFragment) {
         ((HomeFragment) fragment).setTab(HomeFragment.TAB_EXPOSURES);
       }
     }

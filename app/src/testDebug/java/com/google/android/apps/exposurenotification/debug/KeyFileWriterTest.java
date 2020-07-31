@@ -61,7 +61,7 @@ public class KeyFileWriterTest {
   }
 
   @Test
-  public void givenEmptyListOfkeys_returnsEmptyFileList() throws Exception {
+  public void givenEmptyListOfkeys_returnsEmptyFileList() {
     Instant start = Instant.ofEpochMilli(1234);
     Instant end = Instant.ofEpochMilli(5678);
     String region = "GB";

@@ -17,6 +17,7 @@
 
 package com.google.android.apps.exposurenotification.storage;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -112,6 +113,7 @@ public class ExposureEntity {
     return Objects.hash(id, dateMillisSinceEpoch, receivedTimestampMs);
   }
 
+  @NonNull
   @Override
   public String toString() {
     return "ExposureEntity{" +

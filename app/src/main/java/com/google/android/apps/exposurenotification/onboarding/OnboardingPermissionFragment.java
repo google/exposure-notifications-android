@@ -25,17 +25,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.ViewSwitcher;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.home.ExposureNotificationViewModel;
+import com.google.android.apps.exposurenotification.home.ExposureNotificationViewModel.ExposureNotificationState;
 import com.google.android.apps.exposurenotification.home.HomeFragment;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
 import com.google.android.material.snackbar.Snackbar;
 
-/** Page 2 of the onboarding flow {@link Fragment} where the API is started. */
+/**
+ * Page 2 of the onboarding flow {@link Fragment} where the API is started.
+ */
 public class OnboardingPermissionFragment extends Fragment {
 
   private static final String TAG = "OnboardingPermission";
@@ -52,13 +56,19 @@ public class OnboardingPermissionFragment extends Fragment {
     exposureNotificationViewModel =
         new ViewModelProvider(requireActivity()).get(ExposureNotificationViewModel.class);
 
+    ViewSwitcher onboardingButtonsLoadingSwitcher =
+        view.findViewById(R.id.onboarding_buttons_loading_switcher);
+
     exposureNotificationViewModel
-        .getIsEnabledLiveData()
+        .getStateLiveData()
         .observe(
             getViewLifecycleOwner(),
-            isEnabled -> {
-              if (isEnabled) {
+            state -> {
+              if (state != ExposureNotificationState.DISABLED) {
+                onboardingButtonsLoadingSwitcher.setDisplayedChild(1);
                 transitionToFinishFragment();
+              } else {
+                onboardingButtonsLoadingSwitcher.setDisplayedChild(0);
               }
             });
 
@@ -72,17 +82,20 @@ public class OnboardingPermissionFragment extends Fragment {
         });
 
     Button nextButton = view.findViewById(R.id.onboarding_next_button);
-    nextButton.setOnClickListener(v -> nextAction());
     ProgressBar progressBar = view.findViewById(R.id.onboarding_progress_bar);
+    nextButton.setOnClickListener(v -> nextAction());
+
+    Button dismissButton = view.findViewById(R.id.onboarding_no_thanks_button);
+    dismissButton.setOnClickListener(v -> skipOnboarding());
+
     exposureNotificationViewModel
         .getInFlightLiveData()
         .observe(getViewLifecycleOwner(), inFlight -> {
           nextButton.setEnabled(!inFlight);
+          dismissButton.setEnabled(!inFlight);
           progressBar.setVisibility(inFlight ? View.VISIBLE : View.INVISIBLE);
           nextButton.setText(inFlight ? "" : getString(R.string.btn_turn_on));
         });
-
-    view.findViewById(R.id.onboarding_no_thanks_button).setOnClickListener(v -> skipOnboarding());
   }
 
   private void skipOnboarding() {

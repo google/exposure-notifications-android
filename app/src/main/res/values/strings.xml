@@ -65,6 +65,18 @@
 
   <string name="exposure_notifications_are_turned_off">Exposure notifications are turned off</string>
 
+  <string name="location_ble_off_notify">Turn on Bluetooth and device location to use this feature and share your test result</string>
+
+  <string name="location_ble_off_exposures">Turn on Bluetooth and device location to use this feature</string>
+
+  <string name="storage_low_notify">Not enough storage. Free up space to use this feature and share your test result</string>
+
+  <string name="storage_low_exposures">Not enough storage. Free up space to use this feature</string>
+
+  <string name="device_settings">Device settings</string>
+
+  <string name="manage_storage">Manage storage</string>
+
   <string name="exposure_notifications">Exposure notifications</string>
 
   <string name="past_exposures">Past exposures</string>
@@ -99,6 +111,8 @@
 
   <string name="exposure_about_settings_button_text">Settings</string>
 
+  <string name="home_menu_showosslicenses">Open source libraries</string>
+
   <string name="exposure_about_detail">
     These notifications are designed to notify you if you\'ve been exposed to a user who later reports themselves as testing positive for COVID-19. You can choose to turn off these notifications at any time.
     \n\nExposure notifications rely on the sharing and collecting of random IDs. These IDs are a random string of numbers that won\'t identify you to other users and change many times a day to protect your privacy.
@@ -117,13 +131,13 @@
     [Actual copy to be provided by Public Health Authority]
     \n\nOnly those who have been exposed will receive a notification</string>
 
-  <string name="enter_your_test_identifier">Test identifier</string>
+  <string name="enter_your_test_identifier">Verification Code</string>
 
   <string name="share_test_identifier_help">The unique test identifier that came with your COVID-19 test must be used to verify your positive test result.</string>
 
-  <string name="test_date_label">Date of test</string>
+  <string name="test_date_label">Symptom Onset Date</string>
 
-  <string name="share_test_date_help">The test date helps the app know when you may have been contagious and notify the right people of possible exposure.</string>
+  <string name="share_test_date_help">The symptom onset date helps the app know when you may have been contagious and notify the right people of possible exposure.</string>
 
   <string name="share_error">Unable to share</string>
 

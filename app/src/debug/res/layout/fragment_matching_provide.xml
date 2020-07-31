@@ -55,7 +55,8 @@
           android:clickable="false"
           android:cursorVisible="false"
           android:focusable="false"
-          android:focusableInTouchMode="false" />
+          android:focusableInTouchMode="false"
+          android:saveEnabled="false" />
 
       </com.google.android.material.textfield.TextInputLayout>
 
@@ -101,6 +102,7 @@
           </com.google.android.material.textfield.TextInputLayout>
 
           <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_single_interval_number_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/padding_large"
@@ -113,6 +115,7 @@
               android:layout_height="wrap_content"
               android:hint="@string/debug_matching_provide_single_interval_number_hint"
               android:importantForAutofill="no"
+              android:text="0"
               android:inputType="number" />
 
           </com.google.android.material.textfield.TextInputLayout>

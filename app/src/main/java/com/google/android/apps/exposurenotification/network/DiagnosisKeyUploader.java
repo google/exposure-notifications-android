@@ -46,6 +46,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.threeten.bp.Duration;
+import org.threeten.bp.LocalDate;
+import org.threeten.bp.ZoneId;
+import org.threeten.bp.ZoneOffset;
 
 /**
  * A class to encapsulate uploading Diagnosis Keys to one or more key sharing servers.
@@ -64,7 +67,8 @@ import org.threeten.bp.Duration;
  * Notifications API while in development. A production implementation might consider additional
  * privacy and security practices, such as randomly scheduled fake uploads, logging changes, etc.
  */
-public class DiagnosisKeyUploader {
+class DiagnosisKeyUploader {
+
   private static final String TAG = "KeyUploader";
   // NOTE: The server expects padding.
   private static final BaseEncoding BASE64 = BaseEncoding.base64();
@@ -78,21 +82,18 @@ public class DiagnosisKeyUploader {
   private static final Duration TIMEOUT = Duration.ofSeconds(30);
   private static final int MAX_RETRIES = 3;
   private static final float RETRY_BACKOFF = 1.0f;
-  // Some consts used when we make fake traffic.
-  private static final int KEY_SIZE_BYTES = 16;
-  private static final int FAKE_INTERVAL_NUM = 2650847; // Only size matters here, not the value.
-  private static final int FAKE_SAFETYNET_ATTESTATION_LENGTH = 5394; // Measured from a real payload
 
   private final Context context;
-  private final DiagnosisAttestor diagnosisAttestor;
-  private final CountryCodes countryCodes;
   private final Uris uris;
+  private final RequestQueueWrapper queue;
 
-  public DiagnosisKeyUploader(Context context) {
+  public DiagnosisKeyUploader(
+      Context context,
+      Uris uris,
+      RequestQueueWrapper queue) {
     this.context = context;
-    diagnosisAttestor = new DiagnosisAttestor(context);
-    countryCodes = new CountryCodes(context);
-    uris = new Uris(context);
+    this.uris = uris;
+    this.queue = queue;
   }
 
   /**
@@ -104,49 +105,14 @@ public class DiagnosisKeyUploader {
    *
    * <p>TODO: Perhaps it would be good to support partial success with retry of failed submissions.
    *
-   * @param diagnosisKeys the keys to submit, in an {@link ImmutableList} because internally we'll
-   *     share this around between threads so immutability makes things safer.
+   * @param upload with the keys to submit, having been previously signed by the validation server.
    */
-  public ListenableFuture<?> upload(ImmutableList<DiagnosisKey> diagnosisKeys) {
-    return doUpload(diagnosisKeys, false);
-  }
-
-  /**
-   * Uploads realistically-sized fake traffic to the key sharing service(s), to help with privacy.
-   *
-   * <p>We use fake data for two things: The diagnosis keys and the safetynet attestation. Note that
-   * we still make an RPC to SafetyNet, we just don't use its result.
-   */
-  public ListenableFuture<?> fakeUpload() {
-    ImmutableList.Builder<DiagnosisKey> builder = ImmutableList.builder();
-    // Build up 14 random diagnosis keys.
-    for (int i = 0; i < 14; i++) {
-      byte[] bytes = new byte[KEY_SIZE_BYTES];
-      RAND.nextBytes(bytes);
-      builder.add(
-          DiagnosisKey.newBuilder()
-              .setKeyBytes(bytes)
-              // Accepting the default rolling period that the DiagnosisKey.Builder comes with.
-              .setTransmissionRisk(i % 7)
-              .setIntervalNumber(FAKE_INTERVAL_NUM)
-              .build());
-    }
-    return doUpload(builder.build(), true);
-  }
-
-  /**
-   * Does the actual work of key uploads, supporting fake cover traffic to help with user privacy.
-   */
-  private ListenableFuture<?> doUpload(
-      ImmutableList<DiagnosisKey> diagnosisKeys, boolean isFakeTraffic) {
-    if (diagnosisKeys.isEmpty()) {
+  public ListenableFuture<Upload> upload(Upload upload) {
+    if (upload.keys().isEmpty()) {
       Log.d(TAG, "Zero keys given, skipping.");
       return Futures.immediateFuture(null);
     }
-    Log.d(TAG, "Uploading keys: [" + diagnosisKeys + "]");
-
-    // In several steps, we need all the relevant countries for the user's last N days.
-    ListenableFuture<List<String>> countries = countryCodes.getExposureRelevantCountryCodes();
+    Log.d(TAG, "Uploading keys: [" + upload.keys().size() + "]");
 
     // The flow below assumes a certain scheme for users roaming between countries/regions, but the
     // true roaming plan is not known to the author at the time of writing. The temporary scheme
@@ -156,45 +122,48 @@ public class DiagnosisKeyUploader {
     //    one relationship between countries and URIs).
     // 3. Send all Temporary Tracing Keys from the past N days to all servers.
 
-    // We start with that list of countries.
-    return FluentFuture.from(countries)
+    // We start with that list of countries/regions.
+    return FluentFuture.from(Futures.immediateFuture(upload.regions()))
         // From these we find the URIs for key servers for that list of countries. There need not be
         // a one-to-one relationship between country codes and server URIs.
         .transformAsync(uris::getUploadUris, AppExecutors.getLightweightExecutor())
         // For each URI, we start a KeySubmission into which we will add all the necessary parts,
         // like the payload, countries, keys, etc,
         .transformAsync(
-            uris -> startSubmissionsForUris(uris, isFakeTraffic),
+            uris -> startSubmissionsForUris(uris, upload),
             AppExecutors.getLightweightExecutor())
         // To each of these KeySubmissions we add the full list of applicable country codes.
         .transformAsync(
-            submissions ->
-                FluentFuture.from(countries)
-                    .transformAsync(
-                        countryCodes -> addCountryCodes(submissions, countryCodes),
-                        AppExecutors.getLightweightExecutor()),
+            submissions -> addCountryCodes(submissions, upload.regions()),
             AppExecutors.getLightweightExecutor())
         // To each KeySubmission, add all the keys. All keys go in all submissions.
         .transformAsync(
-            submissions -> addKeys(submissions, diagnosisKeys),
+            submissions -> addKeys(submissions, upload.keys()),
             AppExecutors.getLightweightExecutor())
         // Now we have all we need to create the JSON body of the request. In addPayloads we also
         // obtain a SafetyNet attestation. The SafetyNet RPCs go on the background executor
         // internally to DeviceAttestor, so getLightweightExecutor() is fine here.
         .transformAsync(this::addPayloads, AppExecutors.getLightweightExecutor())
         // Ok, now we can submit all the key submission requests to the key server(s).
-        .transformAsync(this::submitToServers, AppExecutors.getBackgroundExecutor());
+        .transformAsync(this::submitToServers, AppExecutors.getBackgroundExecutor())
+        // Finally return the input Upload. Seems odd to return this unchanged, but we'll likely
+        // want to add some info from the diagnosis server in future.
+        .transform(x -> upload, AppExecutors.getLightweightExecutor());
   }
 
   private ListenableFuture<List<KeySubmission>> startSubmissionsForUris(
-      List<Uri> serverUris, boolean isFakeTraffic) {
+      List<Uri> serverUris, Upload upload) {
     Log.d(TAG, "Composing diagnosis key uploads to " + serverUris.size() + " server(s).");
     List<KeySubmission> submissions = new ArrayList<>();
     for (Uri uri : serverUris) {
       KeySubmission s = new KeySubmission();
       s.uri = uri;
-      s.verificationCode = DEFAULT_VERIFICATION_CODE;
-      s.isFakeTraffic = isFakeTraffic;
+      s.hmacKey = upload.hmacKeyBase64();
+      s.verificationCert = upload.certificate();
+      if (upload.symptomOnset() != null) {
+        s.onsetDateInterval = DiagnosisKey.instantToInterval(
+            upload.symptomOnset().atStartOfDay(ZoneOffset.UTC).toInstant());
+      }
       submissions.add(s);
     }
     return Futures.immediateFuture(submissions);
@@ -241,41 +210,27 @@ public class DiagnosisKeyUploader {
                 .put("rollingPeriod", k.getRollingPeriod())
                 .put("transmissionRisk", k.getTransmissionRisk()));
       }
+
+      JSONArray regionCodesJson = new JSONArray();
+      for (String r : submission.applicableCountryCodes) {
+        regionCodesJson.put(r);
+      }
+
+      int paddingLength =
+          PADDING_SIZE_MIN + RAND.nextInt(PADDING_SIZE_MAX - PADDING_SIZE_MIN);
+      submission.payload =
+          new JSONObject()
+              .put("temporaryExposureKeys", keysJson)
+              .put("regions", regionCodesJson)
+              .put("appPackageName", context.getPackageName())
+              .put("hmackey", submission.hmacKey)
+              .put("symptomOnsetInterval", submission.onsetDateInterval)
+              .put("verificationPayload", submission.verificationCert)
+              .put("padding", StringUtils.randomBase64Data(paddingLength));
     } catch (JSONException e) {
-      // TODO: Some better exception.
-      throw new RuntimeException(e);
+      return Futures.immediateFailedFuture(e);
     }
-
-    JSONArray regionCodesJson = new JSONArray();
-    for (String r : submission.applicableCountryCodes) {
-      regionCodesJson.put(r);
-    }
-
-    return FluentFuture.from(
-            diagnosisAttestor.attestFor(
-                submission.diagnosisKeys,
-                submission.applicableCountryCodes,
-                submission.verificationCode))
-        .transformAsync(
-            attestation -> {
-              int paddingLength =
-                  PADDING_SIZE_MIN + RAND.nextInt(PADDING_SIZE_MAX - PADDING_SIZE_MIN);
-              String deviceVerificationPayload =
-                  submission.isFakeTraffic
-                      ? StringUtils.randomBase64Data(FAKE_SAFETYNET_ATTESTATION_LENGTH)
-                      : attestation.token();
-              submission.payload =
-                  new JSONObject()
-                      .put("temporaryExposureKeys", keysJson)
-                      .put("regions", regionCodesJson)
-                      .put("appPackageName", context.getPackageName())
-                      .put("platform", PLATFORM)
-                      .put("verificationPayload", DEFAULT_VERIFICATION_CODE)
-                      .put("deviceVerificationPayload", deviceVerificationPayload)
-                      .put("padding", StringUtils.randomBase64Data(paddingLength));
-              return Futures.immediateFuture(submission);
-            },
-            AppExecutors.getLightweightExecutor());
+    return Futures.immediateFuture(submission);
   }
 
   private ListenableFuture<List<Void>> submitToServers(List<KeySubmission> submissions) {
@@ -305,7 +260,7 @@ public class DiagnosisKeyUploader {
                 SubmitKeysRequest request =
                     new SubmitKeysRequest(
                         submission.uri, submission.payload, responseListener, errorListener);
-                RequestQueueSingleton.get(context).add(request);
+                queue.add(request);
                 return request;
               }));
     }
@@ -314,6 +269,9 @@ public class DiagnosisKeyUploader {
 
   /**
    * A private value class to help assembling the elements needed to upload keys to a given server.
+   *
+   * TODO: As the protocol evolves, more and more of the data carried here is the same in all
+   * submissions of a given set of keys. Refactor?
    */
   private static class KeySubmission {
     // Uri and payload will be different in each submission.
@@ -323,11 +281,15 @@ public class DiagnosisKeyUploader {
     private ImmutableList<DiagnosisKey> diagnosisKeys;
     // All countries will be the same in all submissions.
     private List<String> applicableCountryCodes;
-    private String verificationCode;
-    private boolean isFakeTraffic;
+    // The following verification data is the same in all submissions.
+    private String hmacKey;
+    private String verificationCert;
+    private int onsetDateInterval;
   }
 
-  /** Simple construction of a Diagnosis Keys submission. */
+  /**
+   * Simple construction of a Diagnosis Keys submission.
+   */
   private static class SubmitKeysRequest extends JsonRequest<String> {
 
     SubmitKeysRequest(

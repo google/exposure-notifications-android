@@ -17,30 +17,44 @@
 
 package com.google.android.apps.exposurenotification.exposure;
 
+import static com.google.android.gms.nearby.exposurenotification.ExposureNotificationClient.ACTION_EXPOSURE_NOTIFICATION_SETTINGS;
+
+import android.bluetooth.BluetoothAdapter;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.ViewAnimator;
-import android.widget.ViewSwitcher;
+import android.widget.ViewFlipper;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.common.StorageManagementHelper;
 import com.google.android.apps.exposurenotification.home.ExposureNotificationViewModel;
+import com.google.android.apps.exposurenotification.home.ExposureNotificationViewModel.ExposureNotificationState;
 import com.google.android.apps.exposurenotification.storage.ExposureEntity;
 import com.google.android.material.snackbar.Snackbar;
+import com.mikepenz.aboutlibraries.LibsBuilder;
 import java.util.List;
 
-/** Fragment for Exposures tab on home screen. */
+/**
+ * Fragment for Exposures tab on home screen.
+ */
 public class ExposureHomeFragment extends Fragment {
 
-  private final String TAG = "ExposureHomeFragment";
+  private static final String TAG = "ExposureHomeFragment";
 
   private ExposureNotificationViewModel exposureNotificationViewModel;
   private ExposureHomeViewModel exposureHomeViewModel;
@@ -60,8 +74,10 @@ public class ExposureHomeFragment extends Fragment {
             .get(ExposureHomeViewModel.class);
 
     exposureNotificationViewModel
-        .getIsEnabledLiveData()
-        .observe(getViewLifecycleOwner(), isEnabled -> refreshUiForEnabled(isEnabled));
+        .getStateLiveData()
+        .observe(getViewLifecycleOwner(), this::refreshUiForState);
+
+    view.findViewById(R.id.exposure_menu).setOnClickListener(v -> showPopup(v));
 
     Button startButton = view.findViewById(R.id.start_api_button);
     startButton.setOnClickListener(v -> exposureNotificationViewModel.startExposureNotifications());
@@ -79,6 +95,9 @@ public class ExposureHomeFragment extends Fragment {
         });
 
     view.findViewById(R.id.exposure_about_button).setOnClickListener(v -> launchAboutAction());
+    view.findViewById(R.id.api_settings_button).setOnClickListener(v -> launchEnSettings());
+    view.findViewById(R.id.manage_storage_button)
+        .setOnClickListener(v -> StorageManagementHelper.launchStorageManagement(getContext()));
 
     RecyclerView exposuresList = view.findViewById(R.id.exposures_list);
     adapter =
@@ -96,7 +115,19 @@ public class ExposureHomeFragment extends Fragment {
     exposureHomeViewModel
         .getAllExposureEntityLiveData()
         .observe(getViewLifecycleOwner(), this::refreshUiForExposureEntities);
+
+    IntentFilter intentFilter = new IntentFilter();
+    intentFilter.addAction(LocationManager.PROVIDERS_CHANGED_ACTION);
+    intentFilter.addAction(BluetoothAdapter.ACTION_STATE_CHANGED);
+    requireContext().registerReceiver(refreshBroadcastReceiver, intentFilter);
   }
+
+  private final BroadcastReceiver refreshBroadcastReceiver = new BroadcastReceiver() {
+    @Override
+    public void onReceive(Context context, Intent intent) {
+      refreshUi();
+    }
+  };
 
   @Override
   public void onResume() {
@@ -104,33 +135,57 @@ public class ExposureHomeFragment extends Fragment {
     refreshUi();
   }
 
+  @Override
+  public void onDestroy() {
+    super.onDestroy();
+    requireContext().unregisterReceiver(refreshBroadcastReceiver);
+  }
+
   private void refreshUi() {
     exposureNotificationViewModel.refreshState();
   }
 
   /**
-   * Update UI to match Exposure Notifications client has become enabled/not-enabled.
+   * Update UI to match Exposure Notifications state.
    *
-   * @param isEnabled True if Exposure Notifications is enabled
+   * @param state the {@link ExposureNotificationState} of the API
    */
-  private void refreshUiForEnabled(Boolean isEnabled) {
+  private void refreshUiForState(ExposureNotificationState state) {
     View rootView = getView();
     if (rootView == null) {
       return;
     }
 
-    ViewSwitcher settingsBannerSwitcher = rootView.findViewById(R.id.settings_banner_switcher);
+    ViewFlipper settingsBannerFlipper = rootView.findViewById(R.id.settings_banner_flipper);
     TextView exposureNotificationStatus = rootView.findViewById(R.id.exposure_notifications_status);
     TextView infoStatus = rootView.findViewById(R.id.info_status);
+    Button manageStorageButton = rootView.findViewById(R.id.manage_storage_button);
 
-    settingsBannerSwitcher.setDisplayedChild(isEnabled ? 1 : 0);
-
-    if (isEnabled) {
-      exposureNotificationStatus.setText(R.string.on);
-      infoStatus.setText(R.string.notifications_enabled_info);
-    } else {
-      exposureNotificationStatus.setText(R.string.off);
-      infoStatus.setText(R.string.notifications_disabled_info);
+    switch (state) {
+      case ENABLED:
+        settingsBannerFlipper.setDisplayedChild(1);
+        exposureNotificationStatus.setText(R.string.on);
+        infoStatus.setText(R.string.notifications_enabled_info);
+        break;
+      case PAUSED_BLE_OR_LOCATION_OFF:
+        settingsBannerFlipper.setDisplayedChild(2);
+        exposureNotificationStatus.setText(R.string.on);
+        infoStatus.setText(R.string.notifications_enabled_info);
+        break;
+      case STORAGE_LOW:
+        settingsBannerFlipper.setDisplayedChild(3);
+        exposureNotificationStatus.setText(R.string.on);
+        infoStatus.setText(R.string.notifications_enabled_info);
+        manageStorageButton.setVisibility(
+            StorageManagementHelper.isStorageManagementAvailable(getContext())
+            ? Button.VISIBLE : Button.GONE);
+        break;
+      case DISABLED:
+      default:
+        settingsBannerFlipper.setDisplayedChild(0);
+        exposureNotificationStatus.setText(R.string.off);
+        infoStatus.setText(R.string.notifications_disabled_info);
+        break;
     }
   }
 
@@ -153,8 +208,34 @@ public class ExposureHomeFragment extends Fragment {
     switcher.setDisplayedChild(exposureEntities == null || exposureEntities.isEmpty() ? 0 : 1);
   }
 
-  /** Open the Exposure Notifications about screen. */
+  /**
+   * Open the Exposure Notifications about screen.
+   */
   private void launchAboutAction() {
     startActivity(new Intent(requireContext(), ExposureAboutActivity.class));
   }
+
+  /**
+   * Open the Exposure Notifications Settings screen.
+   */
+  private void launchEnSettings() {
+    Intent intent = new Intent(ACTION_EXPOSURE_NOTIFICATION_SETTINGS);
+    startActivity(intent);
+  }
+
+  public void showPopup(View v) {
+    PopupMenu popup = new PopupMenu(getContext(), v);
+    popup.setOnMenuItemClickListener(menuItem -> {
+      showOsLicenses();
+      return true;
+    });
+    MenuInflater inflater = popup.getMenuInflater();
+    inflater.inflate(R.menu.popup_menu, popup.getMenu());
+    popup.show();
+  }
+
+  private void showOsLicenses(){
+    new LibsBuilder().withLicenseShown(true).start(getActivity());
+  }
+
 }

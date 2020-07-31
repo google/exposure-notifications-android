@@ -31,7 +31,7 @@ import androidx.work.WorkRequest;
 import androidx.work.WorkerParameters;
 import com.google.android.apps.exposurenotification.common.AppExecutors;
 import com.google.android.apps.exposurenotification.common.TaskToFutureAdapter;
-import com.google.android.apps.exposurenotification.network.DiagnosisKeys;
+import com.google.android.apps.exposurenotification.network.DownloadController;
 import com.google.android.gms.nearby.exposurenotification.ExposureNotificationClient;
 import com.google.common.io.BaseEncoding;
 import com.google.common.util.concurrent.FluentFuture;
@@ -53,14 +53,14 @@ public class ProvideDiagnosisKeysWorker extends ListenableWorker {
   private static final BaseEncoding BASE64_LOWER = BaseEncoding.base64();
   private static final int RANDOM_TOKEN_BYTE_LENGTH = 32;
 
-  private final DiagnosisKeys diagnosisKeys;
+  private final DownloadController downloadController;
   private final DiagnosisKeyFileSubmitter submitter;
   private final SecureRandom secureRandom;
 
   public ProvideDiagnosisKeysWorker(
       @NonNull Context context, @NonNull WorkerParameters workerParams) {
     super(context, workerParams);
-    diagnosisKeys = new DiagnosisKeys(context);
+    downloadController = new DownloadController(context);
     submitter = new DiagnosisKeyFileSubmitter(context);
     secureRandom = new SecureRandom();
   }
@@ -82,7 +82,7 @@ public class ProvideDiagnosisKeysWorker extends ListenableWorker {
             (isEnabled) -> {
               // Only continue if it is enabled.
               if (isEnabled) {
-                return diagnosisKeys.download();
+                return downloadController.download();
               } else {
                 // Stop here because things aren't enabled. Will still return successful though.
                 return Futures.immediateFailedFuture(new NotEnabledException());

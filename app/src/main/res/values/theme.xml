@@ -49,7 +49,6 @@
     <item name="colorControlActivated">?attr/colorPrimary</item>
 
     <item name="android:navigationBarColor">@color/navigation_bar_color</item>
-
   </style>
 
   <style name="ExposureNotification" parent="Base.Theme.ExposureNotification">

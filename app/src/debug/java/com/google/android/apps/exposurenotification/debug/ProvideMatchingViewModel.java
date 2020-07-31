@@ -18,7 +18,6 @@
 package com.google.android.apps.exposurenotification.debug;
 
 import android.app.Application;
-import android.text.TextUtils;
 import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -74,8 +73,7 @@ public class ProvideMatchingViewModel extends AndroidViewModel {
     super(application);
     displayedChildLiveData = new MutableLiveData<>(0);
     singleInputKeyLiveData = new MutableLiveData<>("");
-    singleInputIntervalNumberLiveData =
-        new MutableLiveData<>((int) (System.currentTimeMillis() / (10 * 60 * 1000L)));
+    singleInputIntervalNumberLiveData = new MutableLiveData<>(0);
     singleInputRollingPeriodLiveData = new MutableLiveData<>(144);
     singleInputTransmissionRiskLevelLiveData = new MutableLiveData<>(0);
     fileInputLiveData = new MutableLiveData<>(null);
@@ -211,7 +209,7 @@ public class ProvideMatchingViewModel extends AndroidViewModel {
 
     KeyFileBatch batch = KeyFileBatch.ofFiles("US", 1, files);
 
-    FluentFuture.from(
+    FluentFuture<Object> unusedResult = FluentFuture.from(
         TaskToFutureAdapter.getFutureWithTimeout(
             ExposureNotificationClientWrapper.get(getApplication()).isEnabled(),
             IS_ENABLED_TIMEOUT.toMillis(),

@@ -19,6 +19,7 @@ package com.google.android.apps.exposurenotification.network;
 
 import android.content.Context;
 import android.util.Log;
+import androidx.annotation.NonNull;
 import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.common.AppExecutors;
 import com.google.android.apps.exposurenotification.common.TaskToFutureAdapter;
@@ -109,7 +110,7 @@ class SafetyNetAttestor {
       }
 
       @Override
-      public void onFailure(Throwable t) {
+      public void onFailure(@NonNull Throwable t) {
         Log.e(TAG, "SafetyNet attestation failed.", t);
       }
     }, AppExecutors.getLightweightExecutor());

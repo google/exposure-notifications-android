@@ -17,35 +17,31 @@
   -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
   package="com.google.android.apps.exposurenotification">
 
   <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
   <uses-permission android:name="android.permission.WAKE_LOCK" />
 
-  <application>
+  <uses-sdk tools:overrideLibrary="com.google.zxing.client.android" />
+
+  <application
+    android:hardwareAccelerated="true">
 
     <activity
       android:name=".debug.MatchingDebugActivity"
       android:exported="false"
+      android:windowSoftInputMode="stateHidden"
       android:parentActivityName=".home.ExposureNotificationActivity" />
 
     <activity
-      android:name=".debug.QRScannerActivity"
-      android:exported="false"
-      android:parentActivityName=".debug.MatchingDebugActivity" />
-
-    <activity
-      android:name=".debug.TokenDebugActivity"
-      android:exported="false"
-      android:parentActivityName=".home.ExposureNotificationActivity" />
+      android:name="com.journeyapps.barcodescanner.CaptureActivity"
+      android:screenOrientation="fullSensor"
+      tools:replace="screenOrientation" />
 
     <meta-data
       android:name="com.google.android.gms.version"
       android:value="@integer/google_play_services_version" />
-
-    <meta-data
-      android:name="com.google.android.gms.vision.DEPENDENCIES"
-      android:value="barcode" />
 
   </application>
 

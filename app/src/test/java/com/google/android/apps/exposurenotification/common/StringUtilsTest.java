@@ -17,6 +17,7 @@
 
 package com.google.android.apps.exposurenotification.common;
 
+import static com.google.android.apps.exposurenotification.common.StringUtils.ELLIPSIS;
 import static com.google.common.truth.Truth.assertThat;
 
 import java.util.Locale;
@@ -41,11 +42,48 @@ public class StringUtilsTest {
   }
 
   @Test
+  public void epochTimestampToLongUTCDateString_localeUS() {
+    String formattedDate = StringUtils
+        .epochTimestampToLongUTCDateTimeString(TIMESTAMP_APR_10_MS, Locale.US);
+
+    assertThat(formattedDate).isEqualTo("2020-04-10, 00:00:00 UTC");
+  }
+
+  @Test
   public void epochTimestampToMediumUTCDateString_localeFRANCE() {
     String formattedDate = StringUtils
         .epochTimestampToMediumUTCDateString(TIMESTAMP_APR_10_MS, Locale.FRANCE);
 
     assertThat(formattedDate).isEqualTo("avril 10, 2020");
+  }
+
+  @Test
+  public void randomBase64Data_zeroLength() {
+    String base64Data = StringUtils.randomBase64Data(0);
+
+    assertThat(base64Data).hasLength(0);
+  }
+
+  @Test
+  public void randomBase64Data_notSame() {
+    String base64Data1 = StringUtils.randomBase64Data(100);
+    String base64Data2 = StringUtils.randomBase64Data(100);
+
+    assertThat(base64Data1).isNotEqualTo(base64Data2);
+  }
+
+  @Test
+  public void truncateWithEllipsis_normal() {
+    String truncated = StringUtils.truncateWithEllipsis("1234567890", 7);
+
+    assertThat(truncated).isEqualTo("123456" + ELLIPSIS);
+  }
+
+  @Test
+  public void truncateWithEllipsis_lengthLessThanOne() {
+    String truncated = StringUtils.truncateWithEllipsis("1234567890", 0);
+
+    assertThat(truncated).isEqualTo(ELLIPSIS);
   }
 
 }

@@ -38,6 +38,7 @@ import com.google.android.apps.exposurenotification.R;
 import com.google.android.material.datepicker.CalendarConstraints;
 import com.google.android.material.datepicker.CalendarConstraints.DateValidator;
 import com.google.android.material.datepicker.MaterialDatePicker;
+import java.util.Locale;
 import org.threeten.bp.Instant;
 import org.threeten.bp.ZoneId;
 import org.threeten.bp.ZonedDateTime;
@@ -145,6 +146,8 @@ public class ShareDiagnosisEditFragment extends Fragment {
   }
 
   private void showMaterialDatePicker() {
+    Locale.setDefault(getResources().getConfiguration().locale);
+
     @Nullable
     ZonedDateTime selectedZonedDateTime =
         shareDiagnosisViewModel.getTestTimestampLiveData().getValue();

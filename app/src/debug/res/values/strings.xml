@@ -118,21 +118,13 @@
 
   <string name="debug_matching_key_version_caption">Verification key version</string>
 
-  <string name="debug_matching_signature_info_copied_text">Copied %1$s</string>
+  <string name="debug_snackbar_copied_text">Copied %1$s</string>
 
   <string name="debug_download_server_address">Download Server Address</string>
 
   <string name="debug_upload_server_address">Upload Server Address</string>
 
-  <string name="debug_server_reset_button_text">Reset Server Defaults</string>
-
-  <string name="qr_scan_button_default">Please scan a barcode</string>
-
-  <string name="qr_back_button_text">Back</string>
-
-  <string name="qr_scan_permission_failed">Camera permission is required</string>
-
-  <string name="qr_scan_detector_not_operational">QR scanning not available on this device</string>
+  <string name="debug_keyserver_reset_button_text">Reset Key Server Defaults</string>
 
   <string name="debug_test_exposure_reset_success">Done</string>
 
@@ -150,7 +142,19 @@
 
   <string name="debug_network_mode_description">This enables this app to share diagnosis keys with a test server. When disabled, the app does not upload or download keys.</string>
 
-  <string name="debug_network_mode_default_uri">App was built with default URIs. Non-default URIs are required to use servers.</string>
+  <string name="debug_network_default_uri">App was built with default URIs. Non-default URIs are required to use servers.</string>
+
+  <string name="debug_verification_network_mode">Use Verification Server</string>
+
+  <string name="debug_verification_server_category">Verification Server</string>
+
+  <string name="debug_verification_server_address">Verification Server Address</string>
+
+  <string name="debug_verification_server_reset_button_text">Reset Verification Server Default</string>
+
+  <string name="debug_verification_code_create_button_text">Create verification code</string>
+
+  <string name="debug_verification_code_expiry">Expires: %1$s UTC</string>
 
   <string name="debug_provide_history_text">Provide History</string>
 

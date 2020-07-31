@@ -61,7 +61,7 @@ public class StateUpdatedWorker extends ListenableWorker {
             TimeUnit.MILLISECONDS,
             AppExecutors.getScheduledExecutor()))
         .transform(
-            (exposureWindows) -> exposureRepository.refreshWithExposureWindows(exposureWindows),
+            exposureRepository::refreshWithExposureWindows,
             AppExecutors.getBackgroundExecutor())
         .transform((exposuresAdded) -> {
           if (exposuresAdded) {

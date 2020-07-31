@@ -18,6 +18,7 @@
 package com.google.android.apps.exposurenotification.network;
 
 import android.net.Uri;
+import androidx.annotation.NonNull;
 import com.google.auto.value.AutoValue;
 import com.google.common.base.MoreObjects;
 import com.google.common.collect.ImmutableList;
@@ -89,6 +90,7 @@ public abstract class KeyFileBatch {
     return new AutoValue_KeyFileBatch(region(), batchNum(), ImmutableList.copyOf(files), uris());
   }
 
+  @NonNull
   public String toString() {
     return MoreObjects.toStringHelper(KeyFileBatch.class)
         .add("region", region())

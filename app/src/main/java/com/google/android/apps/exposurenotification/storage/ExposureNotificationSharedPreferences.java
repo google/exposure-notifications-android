@@ -19,7 +19,7 @@ package com.google.android.apps.exposurenotification.storage;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import com.google.android.apps.exposurenotification.R;
+import org.threeten.bp.Duration;
 
 /**
  * Key value storage for ExposureNotification.
@@ -33,18 +33,32 @@ public class ExposureNotificationSharedPreferences {
   private static final String SHARED_PREFERENCES_FILE =
       "ExposureNotificationSharedPreferences.SHARED_PREFERENCES_FILE";
 
-  private static final String ONBOARDING_STATE_KEY = "ExposureNotificationSharedPreferences.ONBOARDING_STATE_KEY";
-  private static final String NETWORK_MODE_KEY = "ExposureNotificationSharedPreferences.NETWORK_MODE_KEY";
-  private static final String IS_ENABLED_CACHE_KEY = "ExposureNotificationSharedPreferences.IS_ENABLED_CACHE_KEY";
-  private static final String ATTENUATION_THRESHOLD_1_KEY = "ExposureNotificationSharedPreferences.ATTENUATION_THRESHOLD_1_KEY";
-  private static final String ATTENUATION_THRESHOLD_2_KEY = "ExposureNotificationSharedPreferences.ATTENUATION_THRESHOLD_2_KEY";
+  private static final String ONBOARDING_STATE_KEY =
+      "ExposureNotificationSharedPreferences.ONBOARDING_STATE_KEY";
+  private static final String KEY_SHARING_NETWORK_MODE_KEY =
+      "ExposureNotificationSharedPreferences.KEY_SHARING_NETWORK_MODE_KEY";
+  private static final String VERIFICATION_NETWORK_MODE_KEY =
+      "ExposureNotificationSharedPreferences.VERIFICATION_NETWORK_MODE_KEY";
+  private static final String IS_ENABLED_CACHE_KEY =
+      "ExposureNotificationSharedPreferences.IS_ENABLED_CACHE_KEY";
+  private static final String ATTENUATION_THRESHOLD_1_KEY =
+      "ExposureNotificationSharedPreferences.ATTENUATION_THRESHOLD_1_KEY";
+  private static final String ATTENUATION_THRESHOLD_2_KEY =
+      "ExposureNotificationSharedPreferences.ATTENUATION_THRESHOLD_2_KEY";
   private static final String DOWNLOAD_SERVER_ADDRESS_KEY =
       "ExposureNotificationSharedPreferences.DOWNLOAD_SERVER_ADDRESS_KEY";
   private static final String UPLOAD_SERVER_ADDRESS_KEY =
       "ExposureNotificationSharedPreferences.UPLOAD_SERVER_ADDRESS_KEY";
+  private static final String DOWNLOAD_PAST_X_MINUTES_KEY =
+      "ExposureNotificationSharedPreferences.DOWNLOAD_PAST_X_MINUTES_KEY";
+  private static final String VERIFICATION_SERVER_ADDRESS_KEY_1 =
+      "ExposureNotificationSharedPreferences.VERIFICATION_SERVER_ADDRESS_KEY";
+  private static final String VERIFICATION_SERVER_ADDRESS_KEY_2 =
+      "ExposureNotificationSharedPreferences.VERIFICATION_SERVER_ADDRESS_KEY_2";
 
   private final SharedPreferences sharedPreferences;
 
+  /** Enum for onboarding status. */
   public enum OnboardingStatus {
     UNKNOWN(0),
     ONBOARDED(1),
@@ -72,12 +86,13 @@ public class ExposureNotificationSharedPreferences {
     }
   }
 
+  /** Enum for network handling. */
   public enum NetworkMode {
-    // Uses live but test instances of the diagnosis key upload and download servers.
-    TEST,
-    // Uses local faked implementations of the diagnosis key uploads and downloads; no actual
-    // network calls.
-    FAKE
+    // Uses live but test instances of the diagnosis verification, key upload and download servers.
+    LIVE,
+    // Bypasses diagnosis verification, key uploads and downloads; no actual network calls.
+    // Useful to test other components of Exposure Notifications in isolation from the servers.
+    DISABLED
   }
 
   public ExposureNotificationSharedPreferences(Context context) {
@@ -99,15 +114,33 @@ public class ExposureNotificationSharedPreferences {
     return OnboardingStatus.fromValue(sharedPreferences.getInt(ONBOARDING_STATE_KEY, 0));
   }
 
-  public NetworkMode getNetworkMode(NetworkMode defaultMode) {
-    return NetworkMode.valueOf(
-        sharedPreferences.getString(NETWORK_MODE_KEY, defaultMode.toString()));
+  public NetworkMode getKeySharingNetworkMode(NetworkMode defaultMode) {
+    try {
+      return NetworkMode.valueOf(
+          sharedPreferences.getString(KEY_SHARING_NETWORK_MODE_KEY, defaultMode.toString()));
+    } catch (IllegalArgumentException e) {
+      // In case of enum value changes causing errors parsing existing stored string values.
+      return NetworkMode.DISABLED;
+    }
   }
 
-  public void setNetworkMode(NetworkMode key) {
-    sharedPreferences.edit().putString(NETWORK_MODE_KEY, key.toString()).commit();
+  public void setKeySharingNetworkMode(NetworkMode key) {
+    sharedPreferences.edit().putString(KEY_SHARING_NETWORK_MODE_KEY, key.toString()).commit();
   }
 
+  public NetworkMode getVerificationNetworkMode(NetworkMode defaultMode) {
+    try {
+      return NetworkMode.valueOf(
+          sharedPreferences.getString(VERIFICATION_NETWORK_MODE_KEY, defaultMode.toString()));
+    } catch (IllegalArgumentException e) {
+      // In case of enum value changes causing errors parsing existing stored string values.
+      return NetworkMode.DISABLED;
+    }
+  }
+
+  public void setVerificationNetworkMode(NetworkMode key) {
+    sharedPreferences.edit().putString(VERIFICATION_NETWORK_MODE_KEY, key.toString()).commit();
+  }
 
   public int getAttenuationThreshold1(int defaultThreshold) {
     return sharedPreferences.getInt(ATTENUATION_THRESHOLD_1_KEY, defaultThreshold);
@@ -124,7 +157,7 @@ public class ExposureNotificationSharedPreferences {
   public void setAttenuationThreshold2(int threshold) {
     sharedPreferences.edit().putInt(ATTENUATION_THRESHOLD_2_KEY, threshold).commit();
   }
-  
+
   public void clearUploadServerAddress() {
     sharedPreferences.edit().remove(DOWNLOAD_SERVER_ADDRESS_KEY).commit();
   }
@@ -138,6 +171,38 @@ public class ExposureNotificationSharedPreferences {
       clearUploadServerAddress();
     } else {
       sharedPreferences.edit().putString(DOWNLOAD_SERVER_ADDRESS_KEY, serverAddress).commit();
+    }
+  }
+
+  public void clearVerificationServerAddress1() {
+    sharedPreferences.edit().remove(VERIFICATION_SERVER_ADDRESS_KEY_1).commit();
+  }
+
+  public String getVerificationServerAddress1(String defaultServerAddress) {
+    return sharedPreferences.getString(VERIFICATION_SERVER_ADDRESS_KEY_1, defaultServerAddress);
+  }
+
+  public void setVerificationServerAddress1(String serverAddress) {
+    if (serverAddress.isEmpty()) {
+      clearUploadServerAddress();
+    } else {
+      sharedPreferences.edit().putString(VERIFICATION_SERVER_ADDRESS_KEY_1, serverAddress).commit();
+    }
+  }
+
+  public void clearVerificationServerAddress2() {
+    sharedPreferences.edit().remove(VERIFICATION_SERVER_ADDRESS_KEY_2).commit();
+  }
+
+  public String getVerificationServerAddress2(String defaultServerAddress) {
+    return sharedPreferences.getString(VERIFICATION_SERVER_ADDRESS_KEY_2, defaultServerAddress);
+  }
+
+  public void setVerificationServerAddress2(String serverAddress) {
+    if (serverAddress.isEmpty()) {
+      clearUploadServerAddress();
+    } else {
+      sharedPreferences.edit().putString(VERIFICATION_SERVER_ADDRESS_KEY_2, serverAddress).commit();
     }
   }
 
@@ -165,4 +230,12 @@ public class ExposureNotificationSharedPreferences {
     sharedPreferences.edit().putBoolean(IS_ENABLED_CACHE_KEY, isEnabled).apply();
   }
 
+  public Duration getMaxDownloadAge(Duration defaultMaxAge) {
+    return Duration.ofMinutes(
+        sharedPreferences.getLong(DOWNLOAD_PAST_X_MINUTES_KEY, defaultMaxAge.toMinutes()));
+  }
+
+  public void setMaxDownloadAge(Duration maxAge) {
+    sharedPreferences.edit().putLong(DOWNLOAD_PAST_X_MINUTES_KEY, maxAge.toMinutes()).apply();
+  }
 }

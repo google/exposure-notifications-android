@@ -20,7 +20,6 @@ package com.google.android.apps.exposurenotification.storage;
 import android.content.Context;
 import androidx.lifecycle.LiveData;
 import com.google.android.gms.nearby.exposurenotification.ExposureWindow;
-import com.google.common.util.concurrent.ListenableFuture;
 import java.util.List;
 
 /**

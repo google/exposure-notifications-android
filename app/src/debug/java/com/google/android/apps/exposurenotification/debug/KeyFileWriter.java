@@ -79,7 +79,7 @@ public class KeyFileWriter {
       int maxBatchSize) {
 
     if (keys.isEmpty()) {
-      ImmutableList.of();
+      return ImmutableList.of();
     }
 
     List<File> outFiles = new ArrayList<>();
