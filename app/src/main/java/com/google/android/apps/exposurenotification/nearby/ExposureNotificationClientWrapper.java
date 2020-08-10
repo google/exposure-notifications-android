@@ -93,4 +93,8 @@ public class ExposureNotificationClientWrapper {
     return exposureNotificationClient.getExposureWindows(ExposureNotificationClient.TOKEN_A);
   }
 
+  public boolean deviceSupportsLocationlessScanning() {
+    return exposureNotificationClient.deviceSupportsLocationlessScanning();
+  }
+
 }

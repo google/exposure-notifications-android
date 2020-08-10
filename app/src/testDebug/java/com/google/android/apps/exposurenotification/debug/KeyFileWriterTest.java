@@ -189,7 +189,7 @@ public class KeyFileWriterTest {
     ImmutableList.Builder<TemporaryExposureKey> builder = new Builder<>();
     for (int i = 0; i < 105; i++) {
       // I'm pretty sure there are 8 transmission risk levels.
-      builder.add(keyOf(("key-" + i).getBytes(), 11111 + i, i, (i % 7) + 1));
+      builder.add(keyOf(("key-" + i).getBytes(), 11111 + i, i + 1, (i % 7) + 1));
     }
     ImmutableList<TemporaryExposureKey> keys = builder.build();
 

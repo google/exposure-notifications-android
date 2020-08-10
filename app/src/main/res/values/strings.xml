@@ -69,6 +69,14 @@
 
   <string name="location_ble_off_exposures">Turn on Bluetooth and device location to use this feature</string>
 
+  <string name="ble_off_notify">Turn on Bluetooth to use this feature and share your test result</string>
+
+  <string name="ble_off_exposures">Turn on Bluetooth to use this feature</string>
+
+  <string name="location_off_notify">Turn on device location to use this feature and share your test result</string>
+
+  <string name="location_off_exposures">Turn on device location to use this feature</string>
+
   <string name="storage_low_notify">Not enough storage. Free up space to use this feature and share your test result</string>
 
   <string name="storage_low_exposures">Not enough storage. Free up space to use this feature</string>

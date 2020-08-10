@@ -95,7 +95,8 @@ public class ExposureHomeFragment extends Fragment {
         });
 
     view.findViewById(R.id.exposure_about_button).setOnClickListener(v -> launchAboutAction());
-    view.findViewById(R.id.api_settings_button).setOnClickListener(v -> launchEnSettings());
+    view.findViewById(R.id.ble_settings_button).setOnClickListener(v -> launchEnSettings());
+    view.findViewById(R.id.location_settings_button).setOnClickListener(v -> launchEnSettings());
     view.findViewById(R.id.manage_storage_button)
         .setOnClickListener(v -> StorageManagementHelper.launchStorageManagement(getContext()));
 
@@ -167,13 +168,18 @@ public class ExposureHomeFragment extends Fragment {
         exposureNotificationStatus.setText(R.string.on);
         infoStatus.setText(R.string.notifications_enabled_info);
         break;
-      case PAUSED_BLE_OR_LOCATION_OFF:
+      case PAUSED_BLE:
         settingsBannerFlipper.setDisplayedChild(2);
         exposureNotificationStatus.setText(R.string.on);
         infoStatus.setText(R.string.notifications_enabled_info);
         break;
-      case STORAGE_LOW:
+      case PAUSED_LOCATION:
         settingsBannerFlipper.setDisplayedChild(3);
+        exposureNotificationStatus.setText(R.string.on);
+        infoStatus.setText(R.string.notifications_enabled_info);
+        break;
+      case STORAGE_LOW:
+        settingsBannerFlipper.setDisplayedChild(4);
         exposureNotificationStatus.setText(R.string.on);
         infoStatus.setText(R.string.notifications_enabled_info);
         manageStorageButton.setVisibility(

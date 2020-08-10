@@ -113,7 +113,8 @@ public class NotifyHomeFragment extends Fragment {
     final ViewSwitcher switcher =
         requireView().findViewById(R.id.fragment_notify_diagnosis_switcher);
 
-    view.findViewById(R.id.api_settings_button).setOnClickListener(v -> launchEnSettings());
+    view.findViewById(R.id.ble_settings_button).setOnClickListener(v -> launchEnSettings());
+    view.findViewById(R.id.location_settings_button).setOnClickListener(v -> launchEnSettings());
     view.findViewById(R.id.manage_storage_button)
         .setOnClickListener(v -> StorageManagementHelper.launchStorageManagement(getContext()));
 
@@ -200,14 +201,19 @@ public class NotifyHomeFragment extends Fragment {
         viewFlipper.setDisplayedChild(1);
         diagnosisHistoryContainer.setVisibility(View.VISIBLE);
         break;
-      case PAUSED_BLE_OR_LOCATION_OFF:
+      case PAUSED_BLE:
         sharedPrefs.setOnboardedState(true);
         viewFlipper.setDisplayedChild(2);
         diagnosisHistoryContainer.setVisibility(View.VISIBLE);
         break;
-      case STORAGE_LOW:
+      case PAUSED_LOCATION:
         sharedPrefs.setOnboardedState(true);
         viewFlipper.setDisplayedChild(3);
+        diagnosisHistoryContainer.setVisibility(View.VISIBLE);
+        break;
+      case STORAGE_LOW:
+        sharedPrefs.setOnboardedState(true);
+        viewFlipper.setDisplayedChild(4);
         diagnosisHistoryContainer.setVisibility(View.VISIBLE);
         manageStorageButton.setVisibility(
             StorageManagementHelper.isStorageManagementAvailable(getContext())

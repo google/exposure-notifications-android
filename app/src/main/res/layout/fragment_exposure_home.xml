@@ -132,10 +132,42 @@
             android:layout_height="wrap_content"
             android:textAppearance="?attr/textAppearanceBody2"
             android:layout_marginBottom="@dimen/padding_normal"
-            android:text="@string/location_ble_off_exposures" />
+            android:text="@string/ble_off_exposures" />
 
           <Button
-            android:id="@+id/api_settings_button"
+            android:id="@+id/ble_settings_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/device_settings"
+            android:layout_gravity="center_horizontal"
+            style="?attr/materialButtonOutlinedStyle" />
+
+        </LinearLayout>
+
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginVertical="@dimen/padding_normal"
+          android:paddingStart="@dimen/padding_large"
+          android:paddingEnd="@dimen/padding_large"
+          android:orientation="vertical">
+
+          <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:layout_marginBottom="@dimen/padding_normal"
+            android:text="@string/exposure_notifications_are_turned_off" />
+
+          <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?attr/textAppearanceBody2"
+            android:layout_marginBottom="@dimen/padding_normal"
+            android:text="@string/location_off_exposures" />
+
+          <Button
+            android:id="@+id/location_settings_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/device_settings"

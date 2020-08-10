@@ -461,7 +461,9 @@ public class DebugHomeFragment extends Fragment {
     masterSwitch.setOnCheckedChangeListener(null);
     switch (state) {
       case ENABLED:
-      case PAUSED_BLE_OR_LOCATION_OFF:
+      case PAUSED_BLE:
+      case PAUSED_LOCATION:
+      case STORAGE_LOW:
         masterSwitch.setChecked(true);
         break;
       case DISABLED:

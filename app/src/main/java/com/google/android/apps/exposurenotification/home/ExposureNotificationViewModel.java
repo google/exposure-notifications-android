@@ -21,6 +21,8 @@ import android.app.Application;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.location.LocationManager;
+import android.os.Build.VERSION;
+import android.os.Build.VERSION_CODES;
 import android.os.StatFs;
 import android.util.Log;
 import androidx.annotation.NonNull;
@@ -64,16 +66,17 @@ public class ExposureNotificationViewModel extends AndroidViewModel {
   public enum ExposureNotificationState {
     DISABLED,
     ENABLED,
-    PAUSED_BLE_OR_LOCATION_OFF,
+    PAUSED_BLE,
+    PAUSED_LOCATION,
     STORAGE_LOW
   }
 
   public ExposureNotificationViewModel(@NonNull Application application) {
     super(application);
     exposureNotificationSharedPreferences = new ExposureNotificationSharedPreferences(application);
+    wrapper = ExposureNotificationClientWrapper.get(getApplication());
     stateLiveData = new MutableLiveData<>(
         getStateForIsEnabled(exposureNotificationSharedPreferences.getIsEnabledCache()));
-    wrapper = ExposureNotificationClientWrapper.get(getApplication());
   }
 
   /**
@@ -145,16 +148,15 @@ public class ExposureNotificationViewModel extends AndroidViewModel {
 
     BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
     if (mBluetoothAdapter != null && !mBluetoothAdapter.isEnabled()) {
-      return ExposureNotificationState.PAUSED_BLE_OR_LOCATION_OFF;
+      return ExposureNotificationState.PAUSED_BLE;
     }
 
-    LocationManager locationManager = (LocationManager) getApplication()
-        .getSystemService(Context.LOCATION_SERVICE);
-    if (locationManager != null && !LocationManagerCompat.isLocationEnabled(locationManager)) {
-      return ExposureNotificationState.PAUSED_BLE_OR_LOCATION_OFF;
+    if (isLocationEnableRequired(getApplication())) {
+      return ExposureNotificationState.PAUSED_LOCATION;
     }
 
-    // DiagnosisKeyDownloader works with the App's private files dir, so check available space there
+    /* DiagnosisKeyDownloader works with the App's private files dir, so check available space
+     * there */
     StatFs filesDirStat = new StatFs(getApplication().getFilesDir().toString());
     long freeStorage = filesDirStat.getAvailableBytes();
     if (freeStorage <= MINIMUM_FREE_STORAGE_REQUIRED_BYTES) {
@@ -162,6 +164,22 @@ public class ExposureNotificationViewModel extends AndroidViewModel {
     }
 
     return ExposureNotificationState.ENABLED;
+  }
+
+  /**
+   * When it comes to Location and BLE, there are the following conditions:
+   * - Location on is only necessary to use bluetooth for Android M+.
+   * - Starting with Android S, there may be support for locationless BLE scanning
+   * => We only go into an error state if these conditions require us to have location on, but
+   *    it is not activated on device.
+   */
+  private boolean isLocationEnableRequired(Context context) {
+    LocationManager locationManager =
+        (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+
+    return (!wrapper.deviceSupportsLocationlessScanning()
+        && VERSION.SDK_INT >= VERSION_CODES.M
+        && locationManager != null && !LocationManagerCompat.isLocationEnabled(locationManager));
   }
 
   private void schedulePeriodicJobs() {
