@@ -1,0 +1,146 @@
+// DO NOT CHANGE - must comply with log ingestion pipeline proto format
+
+syntax = "proto2";
+package logs.proto.enx;
+
+option java_package = "com.google.android.apps.exposurenotification.proto";
+option java_multiple_files = true;
+
+message EnxLogExtension {
+  // Result of RPC calls made to test result authentication server
+  // and key servers for uploading and downloading keys
+  repeated RpcCall rpc_call = 1;
+
+  // Result of API calls to GMSCore Exposure notification API
+  repeated ApiCall api_call = 2;
+
+  // Result of work manager tasks completion
+  repeated WorkManagerTask work_manager_task = 3;
+
+  // UI interactions - navigation in the app and warning messages shown.
+  repeated UiInteraction ui_interaction = 4;
+
+  // Build number of ENX reporting
+  optional int32 build_id = 5;
+
+  // enx_regionIdentifier string
+  optional string region_identifier = 6;
+
+  // number of hours since last log upload (rounded)
+  optional int32 hours_since_last_batch = 7;
+}
+
+message RpcCall {
+  enum RpcCallType {
+    RPC_TYPE_UNKNOWN = 0;
+    RPC_TYPE_KEYS_DOWNLOAD = 1;
+    RPC_TYPE_KEYS_UPLOAD = 2;
+    RPC_TYPE_VERIFICATION = 3;
+  }
+
+  enum RpcCallResult {
+    RESULT_FAILED_UNKNOWN = 0;
+    RESULT_SUCCESS = 1;
+    RESULT_FAILED_GENERIC_4XX = 2;
+    RESULT_FAILED_GENERIC_5XX = 3;
+  }
+
+  // deprecated - use region identifier instead.
+  optional string health_authority = 1 [deprecated = true];
+
+  // RPC call type
+  optional RpcCallType rpc_call_type = 2;
+
+  // Result of keys download
+  optional RpcCallResult rpc_call_result = 3;
+
+  // Size of downloaded payload
+  optional int32 payload_size = 4;
+
+  // Number of time message was logged
+  optional int32 count = 5;
+}
+
+message ApiCall {
+  enum ApiCallType {
+    CALL_GET_EXPOSURE_NOTIFICATION_CLIENT = 0;
+    CALL_START = 1;
+    CALL_STOP = 2;
+    CALL_IS_ENABLED = 3;
+    CALL_SET_DIAGNOSIS_KEYS_DATA_MAPPING = 4;
+    CALL_GET_DAILY_SUMMARIES = 5;
+    CALL_DEVICE_SUPPORTS_LOCATIONLESS_SCANNING = 6;
+    CALL_PROVIDE_DIAGNOSIS_KEYS = 7;
+  }
+
+  // deprecated - use region identifier instead.
+  optional string health_authority = 1 [deprecated = true];
+
+  // Result of keys download
+  optional ApiCallType api_call_type = 2;
+
+  // API call status code from getStatusCode()
+  optional int32 status_code = 3;
+
+  // Number of time message was logged
+  optional int32 count = 4;
+}
+
+message WorkManagerTask {
+  enum WorkerTask {
+    TASK_UNKNOWN = 0;
+    TASK_UPLOAD_COVER_TRAFFIC = 1;
+    TASK_PROVIDE_DIAGNOSIS_KEYS = 2;
+    TASK_STATE_UPDATED = 3;
+  }
+
+  enum Status {
+    STATUS_UNKNOWN = 0;
+    STATUS_STARTED = 1;
+    STATUS_SUCCESS = 2;
+    STATUS_TIMEOUT = 3;
+    STATUS_FAIL = 4;
+  }
+
+  // deprecated - use region identifier instead.
+  optional string health_authority = 1 [deprecated = true];
+
+  // Work manager task
+  optional WorkerTask worker_task = 2;
+
+  // Work manager task start or result of execution
+  optional Status status = 3;
+
+  // Number of time message was logged
+  optional int32 count = 4;
+}
+
+//  UI event.
+message UiInteraction {
+  // deprecated - use region identifier instead.
+  optional string health_authority = 1 [deprecated = true];
+
+  enum EventType {
+    UNKNOWN = 0;
+
+    // Event logged every time App is opened by user
+    APP_OPENED = 1;
+
+    // Event logged if app shows request to enable bluetooth
+    BLUETOOTH_DISABLED_WARNING_SHOWN = 2;
+
+    // Event logged if app shows request to grant location permission
+    LOCATION_PERMISSION_WARNING_SHOWN = 3;
+
+    // Event logged if app shows low storage warning
+    LOW_STORAGE_WARNING_SHOWN = 4;
+
+    // User clicked share this app link in settings
+    SHARE_APP_CLICKED = 5;
+  }
+
+  optional EventType event_type = 2;
+
+  // Number of time message was logged
+  optional int32 count = 3;
+}

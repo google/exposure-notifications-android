@@ -23,17 +23,18 @@ import com.google.common.util.concurrent.FluentFuture;
 import com.google.common.util.concurrent.ListenableFuture;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import org.threeten.bp.Duration;
 
 /**
  * A converter similar to {@link CallbackToFutureAdapter} for GMSCore Tasks (so similar in fact,
  * that it uses {@link CallbackToFutureAdapter} internally.
  */
-public class TaskToFutureAdapter {
+public final class TaskToFutureAdapter {
 
   private static final String TAG = "TaskToFutureAdapter";
 
   public static <T> ListenableFuture<T> getFutureWithTimeout(
-      Task<T> task, long timeout, TimeUnit timeUnit, ScheduledExecutorService executor) {
+      Task<T> task, Duration timeout, ScheduledExecutorService executor) {
     return FluentFuture.<T>from(
         CallbackToFutureAdapter.getFuture(
             completer -> {
@@ -54,7 +55,9 @@ public class TaskToFutureAdapter {
                   });
               return "GmsCoreTask";
             }))
-        .withTimeout(timeout, timeUnit, executor);
+        .withTimeout(timeout.toMillis(), TimeUnit.MILLISECONDS, executor);
   }
+
+  private TaskToFutureAdapter() {}
 
 }

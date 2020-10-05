@@ -18,19 +18,57 @@
 package com.google.android.apps.exposurenotification;
 
 import android.app.Application;
+import android.util.Log;
+import androidx.annotation.Keep;
+import androidx.hilt.work.HiltWorkerFactory;
+import androidx.work.Configuration;
+import androidx.work.Configuration.Builder;
+import androidx.work.WorkManager;
 import com.google.android.apps.exposurenotification.home.ExposureNotificationActivity;
+import com.google.android.apps.exposurenotification.work.WorkScheduler;
 import com.jakewharton.threetenabp.AndroidThreeTen;
+import dagger.hilt.android.HiltAndroidApp;
+import javax.inject.Inject;
 
 /**
  * ExposureNotificationApplication is instantiated whenever the app is running.
  *
  * <p>For UI see {@link ExposureNotificationActivity}
  */
-public final class ExposureNotificationApplication extends Application {
+@HiltAndroidApp
+public final class ExposureNotificationApplication extends Application implements
+    Configuration.Provider {
+
+  private static final String TAG = "ENApplication";
+  @Inject
+  HiltWorkerFactory workerFactory;
+
+  /**
+   * Force inject WorkManager to ensure it is initialized when the app was force-stopped and it
+   * re-schedule all workers when woken up by Google Play Services.
+   */
+  @Keep
+  @Inject
+  WorkManager workManager;
+
+  @Inject
+  WorkScheduler workScheduler;
 
   @Override
   public void onCreate() {
     super.onCreate();
     AndroidThreeTen.init(this);
+    workScheduler.schedule();
+  }
+
+  @Override
+  public Configuration getWorkManagerConfiguration() {
+    Builder builder = new Builder().setWorkerFactory(workerFactory);
+
+    // Enable debug logging for debug builds.
+    if (BuildConfig.DEBUG) {
+      builder.setMinimumLoggingLevel(Log.DEBUG);
+    }
+    return builder.build();
   }
 }

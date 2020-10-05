@@ -19,7 +19,10 @@ package com.google.android.apps.exposurenotification.common;
 
 import com.google.common.io.BaseEncoding;
 import java.security.SecureRandom;
+import java.text.DateFormat;
 import java.util.Locale;
+import java.util.TimeZone;
+import java.util.concurrent.TimeUnit;
 import org.threeten.bp.Instant;
 import org.threeten.bp.ZoneId;
 import org.threeten.bp.format.DateTimeFormatter;
@@ -28,11 +31,9 @@ import org.threeten.bp.format.DateTimeFormatter;
  * Simple util class for manipulating strings.
  */
 public final class StringUtils {
+
   private static final SecureRandom RAND = new SecureRandom();
   private static final BaseEncoding BASE64 = BaseEncoding.base64();
-
-  private static final DateTimeFormatter MEDIUM_FORMAT =
-      DateTimeFormatter.ofPattern("MMMM dd, yyyy").withZone(ZoneId.of("UTC"));
 
   private static final DateTimeFormatter LONG_FORMAT =
       DateTimeFormatter.ofPattern("yyyy-MM-dd, HH:mm:ss z").withZone(ZoneId.of("UTC"));
@@ -48,10 +49,24 @@ public final class StringUtils {
    *
    * @param timestampMs the epoch timestamp to convert
    * @param locale the locale to represent the text in
-   * @return the MMMM dd, YYYY representation of the timestamp as a UTC date
+   * @return standard date format includes month and year of the timestamp as a UTC date
    */
   public static String epochTimestampToMediumUTCDateString(long timestampMs, Locale locale) {
-    return MEDIUM_FORMAT.withLocale(locale).format(Instant.ofEpochMilli(timestampMs));
+    DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.LONG, locale);
+    dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+    return dateFormat.format(timestampMs);
+  }
+
+  /**
+   * Converts an epoch UTC timestamp in days to a formatted UTC date for a given locale.
+   *
+   * @param epochDays the epoch timestamp to convert in days since epoch
+   * @param locale the locale to represent the text in
+   * @return the MMMM dd, YYYY representation of the timestamp as a UTC date
+   */
+  public static String epochDaysTimestampToMediumUTCDateString(long epochDays, Locale locale) {
+    return epochTimestampToMediumUTCDateString(TimeUnit.DAYS.toMillis(epochDays),
+        locale);
   }
 
   /**
@@ -76,9 +91,7 @@ public final class StringUtils {
     return text.length() <= len ? text : text.substring(0, Math.max(0, len - 1)) + ELLIPSIS;
   }
 
-  public static String randomBase64Data(int approximateLength) {
-    // Approximate the base64 blowup.
-    int numBytes = (int) (((double) approximateLength) * 0.75);
+  public static String randomBase64Data(int numBytes) {
     byte[] bytes = new byte[numBytes];
     RAND.nextBytes(bytes);
     return BASE64.encode(bytes);

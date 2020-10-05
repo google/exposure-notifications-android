@@ -18,7 +18,6 @@
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
-  android:id="@+id/watermark_frame"
   android:layout_width="match_parent"
   android:layout_height="match_parent" >
 
@@ -28,7 +27,6 @@
     android:layout_height="match_parent" />
 
   <TextView
-    android:id="@+id/watermark"
     android:textStyle="bold"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -36,6 +34,7 @@
     android:rotation="45"
     android:text="@string/reference_only"
     android:textColor="@color/watermark_color"
+    android:importantForAccessibility="no"
     app:autoSizeMaxTextSize="50dp"
     app:autoSizeTextType="uniform" />
 

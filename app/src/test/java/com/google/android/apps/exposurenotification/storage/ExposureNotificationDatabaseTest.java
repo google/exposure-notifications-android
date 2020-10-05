@@ -19,40 +19,30 @@ package com.google.android.apps.exposurenotification.storage;
 
 import static com.google.common.truth.Truth.assertThat;
 
-import androidx.room.Room;
-import androidx.test.core.app.ApplicationProvider;
-import org.junit.After;
-import org.junit.Before;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+import com.google.android.apps.exposurenotification.testsupport.InMemoryDb;
+import dagger.hilt.android.testing.HiltAndroidTest;
+import dagger.hilt.android.testing.HiltTestApplication;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
+import org.robolectric.annotation.Config;
 
 /**
  * Basic test for {@link ExposureNotificationDatabase}. Dao's tested separately.
  */
-@RunWith(RobolectricTestRunner.class)
+@RunWith(AndroidJUnit4.class)
+@HiltAndroidTest
+@Config(application = HiltTestApplication.class)
 public class ExposureNotificationDatabaseTest {
 
-  private ExposureNotificationDatabase database;
-
-  @Before
-  public void setUp() {
-    database = Room.inMemoryDatabaseBuilder(
-        ApplicationProvider.getApplicationContext(), ExposureNotificationDatabase.class)
-        .allowMainThreadQueries()
-        .build();
-  }
-
-  @After
-  public void tearDown() {
-    database.close();
-  }
+  private ExposureNotificationDatabase database = InMemoryDb.create();
 
   @Test
   public void testDatabase() {
     assertThat(database).isNotNull();
     assertThat(database.exposureDao()).isNotNull();
-    assertThat(database.positiveDiagnosisDao()).isNotNull();
+    assertThat(database.diagnosisDao()).isNotNull();
   }
 
 }

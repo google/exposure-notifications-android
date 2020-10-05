@@ -29,11 +29,14 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.common.KeyboardHelper;
 import com.google.android.material.tabs.TabLayout;
+import dagger.hilt.android.AndroidEntryPoint;
 
 /**
  * Activity for the various debug UIs related to matching like viewing and providing keys.
  */
+@AndroidEntryPoint
 public final class MatchingDebugActivity extends AppCompatActivity {
 
   public static final String TAB_EXTRA = "TAB_EXTRA";
@@ -57,8 +60,17 @@ public final class MatchingDebugActivity extends AppCompatActivity {
         new TemporaryExposureKeyViewPagerAdapter(getSupportFragmentManager());
     viewPager.setAdapter(fragmentPagerAdapter);
     tabLayout.setupWithViewPager(viewPager);
+    tabLayout.addOnTabSelectedListener(
+        KeyboardHelper.createOnTabSelectedMaybeHideKeyboardListener(this, toolbar.getRootView()));
 
-    viewPager.setCurrentItem(getIntent().getIntExtra(TAB_EXTRA, 0));
+    Intent intent = getIntent();
+    int page;
+    if (Intent.ACTION_VIEW.equals(intent.getAction()) && intent.getData() != null) {
+      page = 1;
+    } else {
+      page = intent.getIntExtra(TAB_EXTRA, 0);
+    }
+    viewPager.setCurrentItem(page);
   }
 
   @Override

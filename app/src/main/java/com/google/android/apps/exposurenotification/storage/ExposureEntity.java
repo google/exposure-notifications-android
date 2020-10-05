@@ -17,111 +17,60 @@
 
 package com.google.android.apps.exposurenotification.storage;
 
-import androidx.annotation.NonNull;
-import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-import java.util.Objects;
-import org.threeten.bp.Instant;
+import com.google.auto.value.AutoValue;
+import com.google.auto.value.AutoValue.CopyAnnotations;
 
 /**
- * An exposure element for display in the exposures UI.
- *
- * <p>Partners should implement a daily TTL/expiry, for on-device storage of this data, and must
- * ensure compliance with all applicable laws and requirements with respect to encryption, storage,
- * and retention polices for end user data.
+ * A (day, exposure score) tuple, computed from dailySummaryScore.
+ * Mainly used to detect revocations.
  */
+@AutoValue
 @Entity
-public class ExposureEntity {
-
-  @PrimaryKey(autoGenerate = true)
-  long id;
+public abstract class ExposureEntity {
 
   /**
-   * The dateMillisSinceEpoch provided by the ExposureInformation in the Exposure Notifications
-   * API.
-   *
-   * <p>Represents a date of an exposure in millis since epoch rounded to the day.
+   * The dateDaysSinceEpoch provided by the DailyExposureSummaries API.
    */
-  @ColumnInfo(name = "date_millis_since_epoch")
-  private long dateMillisSinceEpoch;
+  @CopyAnnotations
+  @PrimaryKey
+  public abstract long getDateDaysSinceEpoch();
 
   /**
-   * The timestamp in millis since epoch for when the exposure notification status update was
-   * received.
+   * The score that DailySummaries reported for this day (from getScoreSum())
    */
-  @ColumnInfo(name = "received_timestamp_ms")
-  private long receivedTimestampMs;
+  public abstract double getExposureScore();
 
-  ExposureEntity(long dateMillisSinceEpoch, long receivedTimestampMs) {
-    this.receivedTimestampMs = receivedTimestampMs;
-    this.dateMillisSinceEpoch = dateMillisSinceEpoch;
+  public abstract Builder toBuilder();
+
+  public static Builder newBuilder() {
+    return new AutoValue_ExposureEntity.Builder()
+        // AutoValue complains if fields not marked @Nullable are not set, but primitives cannot be
+        // @Nullable, so we set empty here.
+        .setDateDaysSinceEpoch(0L)
+        .setExposureScore(0.0);
+  }
+
+  @AutoValue.Builder
+  public abstract static class Builder {
+
+    public abstract Builder setDateDaysSinceEpoch(long dateDaysSinceEpoch);
+
+    public abstract Builder setExposureScore(double exposureScore);
+
+    public abstract ExposureEntity build();
   }
 
   /**
-   * Creates an ExposureEntity.
-   *
-   * @param dateMillisSinceEpoch the date of an exposure in millis since epoch rounded to the day of
-   *                             the detected exposure
-   * @param receivedTimestampMs  the timestamp in milliseconds since epoch for when the exposure was
-   *                             received by the app
+   * Creates a {@link ExposureEntity}. This is a factory required by Room. Normally the builder
+   * should be used instead.
    */
-  public static ExposureEntity create(long dateMillisSinceEpoch, long receivedTimestampMs) {
-    return new ExposureEntity(dateMillisSinceEpoch, receivedTimestampMs);
+  public static ExposureEntity create(long dateDaysSinceEpoch, double exposureScore) {
+    return newBuilder()
+        .setDateDaysSinceEpoch(dateDaysSinceEpoch)
+        .setExposureScore(exposureScore)
+        .build();
   }
 
-  public long getId() {
-    return id;
-  }
-
-  void setId(long id) {
-    this.id = id;
-  }
-
-  public long getReceivedTimestampMs() {
-    return receivedTimestampMs;
-  }
-
-  void setReceivedTimestampMs(long ms) {
-    this.receivedTimestampMs = ms;
-  }
-
-  public long getDateMillisSinceEpoch() {
-    return dateMillisSinceEpoch;
-  }
-
-  public void setDateMillisSinceEpoch(long dateMillisSinceEpoch) {
-    this.dateMillisSinceEpoch = dateMillisSinceEpoch;
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    ExposureEntity that = (ExposureEntity) o;
-    return id == that.id &&
-        dateMillisSinceEpoch == that.dateMillisSinceEpoch &&
-        receivedTimestampMs == that.receivedTimestampMs;
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(id, dateMillisSinceEpoch, receivedTimestampMs);
-  }
-
-  @NonNull
-  @Override
-  public String toString() {
-    return "ExposureEntity{" +
-        "id=" + id +
-        ", dateMillisSinceEpoch=" + dateMillisSinceEpoch +
-        "(" + Instant.ofEpochMilli(dateMillisSinceEpoch) + ")" +
-        ", receivedTimestampMs=" + receivedTimestampMs +
-        "(" + Instant.ofEpochMilli(receivedTimestampMs) + ")" +
-        '}';
-  }
 }

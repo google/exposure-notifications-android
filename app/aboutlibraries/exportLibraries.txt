@@ -1,0 +1,355 @@
+Configuration on demand is an incubating feature.
+
+> Task :app:exportLibraries
+All dependencies.size=176
+Read custom mapping file from: /usr/local/google/home/wtroberts/.gradle/daemon/6.1.1/app/aboutlibraries/custom_exclusion_list.prop
+--> Retrieved POM for: org_apache_maven__maven_artifact_manager from org.apache.maven:maven:2.2.1
+----> Had to fallback to parent description for: org_apache_maven__maven_artifact_manager
+----> Had to fallback to parent version for: org_apache_maven__maven_artifact_manager -- result: 2.2.1
+--> Retrieved POM for: com_google_code_findbugs__jsr305 from org.sonatype.oss:oss-parent:7
+--> Retrieved POM for: com_google_protobuf__protobuf_javalite from com.google.protobuf:protobuf-parent:3.11.1
+----> Had to fallback to parent author for: com_google_protobuf__protobuf_javalite -- result: Hao Nguyen
+----> Had to fallback to parent authorWebsite for: com_google_protobuf__protobuf_javalite -- result: https://cloud.google.com
+----> Had to fallback to parent version for: com_google_protobuf__protobuf_javalite -- result: 3.11.1
+--> Had to resolve license from custom mapping for: com_google_protobuf__protobuf_javalite as BSD_3_Clause
+--> Retrieved POM for: org_hamcrest__hamcrest_core from org.hamcrest:hamcrest-parent:1.3
+----> Had to fallback to parent author for: org_hamcrest__hamcrest_core -- result: Joe Walnes, Nat Pryce, Steve Freeman, Neil Dunn, Tom Denley
+----> Had to fallback to parent version for: org_hamcrest__hamcrest_core -- result: 1.3
+----> Found license from parent for: org_hamcrest__hamcrest_core -- result: BSD_3_Clause
+--> Retrieved POM for: org_apache_maven_wagon__wagon_http_lightweight from org.apache.maven.wagon:wagon-providers:1.0-beta-6
+----> Had to fallback to parent version for: org_apache_maven_wagon__wagon_http_lightweight -- result: 1.0-beta-6
+Could not get the name for nekohtml__xercesMinimal, Using nekohtml:xercesMinimal
+--> Retrieved POM for: org_ow2_asm__asm from org.ow2:ow2:1.5
+--> Had to resolve license from custom mapping for: org_ow2_asm__asm as BSD_3_Clause
+--> Retrieved POM for: com_google_protobuf__protobuf_java from com.google:google:1
+----> Had to fallback to parent author for: com_google_protobuf__protobuf_java -- result: Google
+----> Had to fallback to parent authorWebsite for: com_google_protobuf__protobuf_java -- result: http://www.google.com/
+--> Had to resolve license from custom mapping for: com_google_protobuf__protobuf_java as BSD_3_Clause
+--> Retrieved POM for: org_codehaus_plexus__plexus_utils from org.codehaus.plexus:plexus:2.0.2
+----> Had to fallback to parent author for: org_codehaus_plexus__plexus_utils -- result: Jason van Zyl, Pete Kazmier, James Taylor, Dan Diephouse, Kasper Nielsen, Ben Walding, Mark Wilkinson, Michal Maczka, Emmanuel Venisse, Trygve Laugstøl, Kenney Westerhof, Carlos Sanchez, Brett Porter, John Casey, Andrew Williams, Rahul Thakur, Joakim Erdfelt, Olivier Lamy, Hervé Boutemy, Oleg Gusakov
+----> Had to fallback to parent authorWebsite for: org_codehaus_plexus__plexus_utils -- result: http://www.codehaus.org/
+----> Found license from parent for: org_codehaus_plexus__plexus_utils -- result: Apache_2_0
+--> Retrieved POM for: com_google_guava__guava from com.google.guava:guava-parent:29.0-android
+----> Had to fallback to parent author for: com_google_guava__guava -- result: Kevin Bourrillion
+----> Had to fallback to parent authorWebsite for: com_google_guava__guava -- result: http://www.google.com
+----> Had to fallback to parent version for: com_google_guava__guava -- result: 29.0-android
+----> Found license from parent for: com_google_guava__guava -- result: Apache_2_0
+--> Skipping com_google_zxing__core
+--> Skipping com_journeyapps__zxing_android_embedded
+--> Retrieved POM for: org_ow2_asm__asm_tree from org.ow2:ow2:1.5
+--> Had to resolve license from custom mapping for: org_ow2_asm__asm_tree as BSD_3_Clause
+--> Had to resolve license from custom mapping for: javax_annotation__jsr250_api as CDDL_1_0
+--> Retrieved POM for: org_hamcrest__hamcrest_library from org.hamcrest:hamcrest-parent:1.3
+----> Had to fallback to parent author for: org_hamcrest__hamcrest_library -- result: Joe Walnes, Nat Pryce, Steve Freeman, Neil Dunn, Tom Denley
+----> Had to fallback to parent version for: org_hamcrest__hamcrest_library -- result: 1.3
+----> Found license from parent for: org_hamcrest__hamcrest_library -- result: BSD_3_Clause
+--> Skipping javax_annotation__javax_annotation_api
+--> Retrieved POM for: com_google_guava__guava_testlib from com.google.guava:guava-parent:29.0-jre
+----> Had to fallback to parent author for: com_google_guava__guava_testlib -- result: Kevin Bourrillion
+----> Had to fallback to parent authorWebsite for: com_google_guava__guava_testlib -- result: http://www.google.com
+----> Had to fallback to parent version for: com_google_guava__guava_testlib -- result: 29.0-jre
+----> Found license from parent for: com_google_guava__guava_testlib -- result: Apache_2_0
+--> Retrieved POM for: org_apache_maven__maven_profile from org.apache.maven:maven:2.2.1
+----> Had to fallback to parent description for: org_apache_maven__maven_profile
+----> Had to fallback to parent version for: org_apache_maven__maven_profile -- result: 2.2.1
+--> Retrieved POM for: org_apache_maven_wagon__wagon_file from org.apache.maven.wagon:wagon-providers:1.0-beta-6
+----> Had to fallback to parent version for: org_apache_maven_wagon__wagon_file -- result: 1.0-beta-6
+--> Retrieved POM for: org_apache_maven__maven_model from org.apache.maven:maven:2.2.1
+----> Had to fallback to parent version for: org_apache_maven__maven_model -- result: 2.2.1
+--> Retrieved POM for: com_google_auto__auto_common from com.google.auto:auto-parent:3
+----> Had to fallback to parent author for: com_google_auto__auto_common -- result: Google, Inc.
+----> Had to fallback to parent authorWebsite for: com_google_auto__auto_common -- result: http://www.google.com
+----> Found license from parent for: com_google_auto__auto_common -- result: Apache_2_0
+--> Retrieved POM for: com_google_j2objc__j2objc_annotations from org.sonatype.oss:oss-parent:7
+--> Retrieved POM for: com_google_dagger__dagger from org.sonatype.oss:oss-parent:7
+--> Retrieved POM for: com_google_dagger__dagger_lint_aar from org.sonatype.oss:oss-parent:7
+--> Retrieved POM for: org_codehaus_plexus__plexus_interpolation from org.codehaus.plexus:plexus-components:1.1.14
+----> Had to fallback to parent description for: org_codehaus_plexus__plexus_interpolation
+--> Retrieved POM for: org_apache_maven__maven_artifact from org.apache.maven:maven:2.2.1
+----> Had to fallback to parent description for: org_apache_maven__maven_artifact
+----> Had to fallback to parent version for: org_apache_maven__maven_artifact -- result: 2.2.1
+--> Retrieved POM for: org_apache_maven__maven_project from org.apache.maven:maven:2.2.1
+----> Had to fallback to parent version for: org_apache_maven__maven_project -- result: 2.2.1
+--> Retrieved POM for: org_apache_ant__ant_launcher from org.apache.ant:ant-parent:1.8.0
+----> Had to fallback to parent author for: org_apache_ant__ant_launcher -- result: Apache Software Foundation
+----> Had to fallback to parent description for: org_apache_ant__ant_launcher
+Could not get the name for org_apache_ant__ant_launcher, Using org.apache.ant:ant-launcher
+--> Retrieved POM for: org_codehaus_plexus__plexus_container_default from org.codehaus.plexus:plexus-containers:1.0.3
+----> Had to fallback to parent description for: org_codehaus_plexus__plexus_container_default
+--> Retrieved POM for: org_apache_maven__maven_settings from org.apache.maven:maven:2.2.1
+----> Had to fallback to parent description for: org_apache_maven__maven_settings
+----> Had to fallback to parent version for: org_apache_maven__maven_settings -- result: 2.2.1
+--> Retrieved POM for: com_google_guava__failureaccess from com.google.guava:guava-parent:26.0-android
+----> Had to fallback to parent author for: com_google_guava__failureaccess -- result: Kevin Bourrillion
+----> Had to fallback to parent authorWebsite for: com_google_guava__failureaccess -- result: http://www.google.com
+----> Found license from parent for: com_google_guava__failureaccess -- result: Apache_2_0
+--> Retrieved POM for: com_google_errorprone__error_prone_annotations from com.google.errorprone:error_prone_parent:2.3.4
+----> Had to fallback to parent description for: com_google_errorprone__error_prone_annotations
+----> Had to fallback to parent version for: com_google_errorprone__error_prone_annotations -- result: 2.3.4
+--> Retrieved POM for: com_google_auto_value__auto_value_annotations from com.google.auto.value:auto-value-parent:1.7.3
+----> Had to fallback to parent author for: com_google_auto_value__auto_value_annotations -- result: Google LLC
+----> Had to fallback to parent authorWebsite for: com_google_auto_value__auto_value_annotations -- result: http://www.google.com
+----> Found license from parent for: com_google_auto_value__auto_value_annotations -- result: Apache_2_0
+--> Retrieved POM for: org_objenesis__objenesis from org.objenesis:objenesis-parent:2.6
+----> Had to fallback to parent author for: org_objenesis__objenesis -- result: Joe Walnes, Henri Tremblay, Leonardo Mesquita
+----> Had to fallback to parent version for: org_objenesis__objenesis -- result: 2.6
+----> Found license from parent for: org_objenesis__objenesis -- result: Apache_2_0
+--> Had to resolve license from custom mapping for: com_android_volley__volley as Apache_2_0
+Could not get the name for com_android_volley__volley, Using com.android.volley:volley
+--> Retrieved POM for: com_google_auto_service__auto_service from com.google.auto:auto-parent:5
+----> Had to fallback to parent author for: com_google_auto_service__auto_service -- result: Google, Inc.
+----> Had to fallback to parent authorWebsite for: com_google_auto_service__auto_service -- result: http://www.google.com
+----> Found license from parent for: com_google_auto_service__auto_service -- result: Apache_2_0
+--> Retrieved POM for: org_apache_ant__ant from org.apache.ant:ant-parent:1.8.0
+----> Had to fallback to parent author for: org_apache_ant__ant -- result: Apache Software Foundation
+--> Retrieved POM for: com_google_guava__listenablefuture from com.google.guava:guava-parent:26.0-android
+----> Had to fallback to parent author for: com_google_guava__listenablefuture -- result: Kevin Bourrillion
+----> Had to fallback to parent authorWebsite for: com_google_guava__listenablefuture -- result: http://www.google.com
+----> Found license from parent for: com_google_guava__listenablefuture -- result: Apache_2_0
+--> Retrieved POM for: org_apache_maven__maven_repository_metadata from org.apache.maven:maven:2.2.1
+----> Had to fallback to parent version for: org_apache_maven__maven_repository_metadata -- result: 2.2.1
+--> Retrieved POM for: net_bytebuddy__byte_buddy_agent from net.bytebuddy:byte-buddy-parent:1.9.7
+----> Had to fallback to parent author for: net_bytebuddy__byte_buddy_agent -- result: Rafael Winterhalter
+----> Had to fallback to parent version for: net_bytebuddy__byte_buddy_agent -- result: 1.9.7
+----> Found license from parent for: net_bytebuddy__byte_buddy_agent -- result: Apache_2_0
+--> Retrieved POM for: org_apache_maven_wagon__wagon_provider_api from org.apache.maven.wagon:wagon:1.0-beta-6
+----> Had to fallback to parent author for: org_apache_maven_wagon__wagon_provider_api -- result: Michal Maczka
+----> Had to fallback to parent version for: org_apache_maven_wagon__wagon_provider_api -- result: 1.0-beta-6
+--> Retrieved POM for: com_google_truth__truth from com.google.truth:truth-parent:1.0.1
+----> Had to fallback to parent author for: com_google_truth__truth -- result: Christian Gruber, Kurt Alfred Kluever, David Saff, David B
+----> Had to fallback to parent description for: com_google_truth__truth
+----> Had to fallback to parent version for: com_google_truth__truth -- result: 1.0.1
+----> Found license from parent for: com_google_truth__truth -- result: Apache_2_0
+--> Retrieved POM for: com_almworks_sqlite4java__sqlite4java from org.sonatype.oss:oss-parent:4
+--> Retrieved POM for: org_ow2_asm__asm_util from org.ow2:ow2:1.5
+--> Had to resolve license from custom mapping for: org_ow2_asm__asm_util as BSD_3_Clause
+--> Retrieved POM for: com_googlecode_java_diff_utils__diffutils from org.sonatype.oss:oss-parent:7
+--> Retrieved POM for: commons_io__commons_io from org.apache.commons:commons-parent:42
+--> Had to resolve license from custom mapping for: commons_io__commons_io as Apache_2_0
+--> Retrieved POM for: org_apache_maven__maven_plugin_registry from org.apache.maven:maven:2.2.1
+----> Had to fallback to parent description for: org_apache_maven__maven_plugin_registry
+----> Had to fallback to parent version for: org_apache_maven__maven_plugin_registry -- result: 2.2.1
+--> Retrieved POM for: org_apache_maven__maven_ant_tasks from org.apache.maven:maven-parent:19
+----> Had to fallback to parent author for: org_apache_maven__maven_ant_tasks -- result: Brian Fox, Arnaud Héritier, Barrie Treloar, Benjamin Bentmann, Brett Porter, Carlos Sanchez, Dennis Lundberg, Daniel Fabulich, Daniel Kulp, Emmanuel Venisse, Hervé Boutemy, John Casey, Kenney Westerhof, Kristian Rosenvold, Lukas Theussl, Milos Kleint, Maria Odea B. Ching, Olivier Lamy, Paul Gier, Ralph Goers, Stephane Nicoll, Stephen Connolly, Vincent Massol, Vincent Siveton, Wayne Fay, Wendy Smoak, Brian Demers, Fabrice Bellingard, Tamas Cservenak, Dan Tran, Damian Bradicich, Igor Fedorenko, Fabrizio Giustina, Andrew Williams, Jeff Jensen, Jason van Zyl, Raphaël Piéroni, Allan Q. Ramirez, Henri Yandell, Chris Stevenson, David Blevins, Daniel Rall, Edwin Punzalan, Felipe Leme, Jesse McConnell, Joakim Erdfelt, James Strachan, Ernesto Tolentino Jr., Mark Hobson, Mike Perham, Oleg Gusakov, Patrick Schneider, Petar Tahchiev, Rahul Thakur, Shinobu Kuwai, Torbjorn Eikli Smorgrav, Trygve Laugstol
+--> Retrieved POM for: org_hamcrest__hamcrest_integration from org.hamcrest:hamcrest-parent:1.3
+----> Had to fallback to parent author for: org_hamcrest__hamcrest_integration -- result: Joe Walnes, Nat Pryce, Steve Freeman, Neil Dunn, Tom Denley
+----> Had to fallback to parent version for: org_hamcrest__hamcrest_integration -- result: 1.3
+----> Found license from parent for: org_hamcrest__hamcrest_integration -- result: BSD_3_Clause
+--> Had to resolve license from custom mapping for: net_sf_kxml__kxml2 as MIT
+--> Had to resolve name from custom mapping for: androidx_savedstate__savedstate as SavedState
+--> Had to resolve license from custom mapping for: backport_util_concurrent__backport_util_concurrent as CC_PDDC
+--> Retrieved POM for: com_squareup__javawriter from org.sonatype.oss:oss-parent:7
+--> Retrieved POM for: org_ow2_asm__asm_analysis from org.ow2:ow2:1.5
+--> Had to resolve license from custom mapping for: org_ow2_asm__asm_analysis as BSD_3_Clause
+--> Retrieved POM for: org_apache_maven__maven_error_diagnostics from org.apache.maven:maven:2.2.1
+----> Had to fallback to parent version for: org_apache_maven__maven_error_diagnostics -- result: 2.2.1
+--> Retrieved POM for: com_google_dagger__hilt_android from org.sonatype.oss:oss-parent:7
+--> Retrieved POM for: org_apache_maven_wagon__wagon_http_shared from org.apache.maven.wagon:wagon-providers:1.0-beta-6
+----> Had to fallback to parent version for: org_apache_maven_wagon__wagon_http_shared -- result: 1.0-beta-6
+--> Retrieved POM for: com_google_dagger__hilt_android_testing from org.sonatype.oss:oss-parent:7
+--> Had to resolve license from custom mapping for: org_bouncycastle__bcprov_jdk15on as MIT
+--> Skipping org_jacoco__org_jacoco_agent
+--> Retrieved POM for: net_bytebuddy__byte_buddy from net.bytebuddy:byte-buddy-parent:1.9.7
+----> Had to fallback to parent author for: net_bytebuddy__byte_buddy -- result: Rafael Winterhalter
+----> Had to fallback to parent version for: net_bytebuddy__byte_buddy -- result: 1.9.7
+----> Found license from parent for: net_bytebuddy__byte_buddy -- result: Apache_2_0
+--> Retrieved POM for: org_ow2_asm__asm_commons from org.ow2:ow2:1.5
+--> Had to resolve license from custom mapping for: org_ow2_asm__asm_commons as BSD_3_Clause
+
+
+LIBRARIES:
+Maven Artifact Manager;org.apache.maven:maven-artifact-manager:2.2.1;[]
+Android Arch-Runtime;androidx.arch.core:core-runtime:2.1.0;[Apache_2_0]
+Core Kotlin Extensions;androidx.core:core-ktx:1.3.0;[Apache_2_0]
+FindBugs-jsr305;com.google.code.findbugs:jsr305:3.0.2;[Apache_2_0]
+Protocol Buffers [Lite];com.google.protobuf:protobuf-javalite:3.11.1;[BSD_3_Clause]
+Checker Qual;org.checkerframework:checker-qual:2.11.1;[MIT]
+Fragment Test Extensions;androidx.fragment:fragment-testing:1.2.5;[Apache_2_0]
+utils;org.robolectric:utils:4.3.1;[MIT]
+Hamcrest Core;org.hamcrest:hamcrest-core:1.3;[BSD_3_Clause]
+Maven Wagon Lightweight HTTP Provider;org.apache.maven.wagon:wagon-http-lightweight:1.0-beta-6;[]
+nekohtml:xercesMinimal;nekohtml:xercesMinimal:1.9.6.2;[]
+asm;org.ow2.asm:asm:7.0;[BSD_3_Clause]
+AndroidX Futures;androidx.concurrent:concurrent-futures:1.1.0;[Apache_2_0]
+Protocol Buffer Java API;com.google.protobuf:protobuf-java:2.6.1;[BSD_3_Clause]
+Android ConstraintLayout Solver;androidx.constraintlayout:constraintlayout-solver:2.0.1;[Apache_2_0]
+Android WorkManager Runtime;androidx.work:work-runtime:2.4.0;[Apache_2_0]
+Android Multi-Dex Library;androidx.multidex:multidex:2.0.1;[Apache_2_0]
+Plexus Common Utilities;org.codehaus.plexus:plexus-utils:1.5.15;[Apache_2_0]
+Support fragment;androidx.fragment:fragment:1.3.0-alpha08;[Apache_2_0]
+Guava: Google Core Libraries for Java;com.google.guava:guava:29.0-android;[Apache_2_0]
+Android Testing Support Library;com.android.support.test:runner:1.0.2;[Apache_2_0]
+Support core utils;androidx.legacy:legacy-support-core-utils:1.0.0;[Apache_2_0]
+Support Annotations;com.android.support:support-annotations:27.1.1;[Apache_2_0]
+Android Lifecycle ViewModel Kotlin Extensions;androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0;[Apache_2_0]
+asm-tree;org.ow2.asm:asm-tree:7.0;[BSD_3_Clause]
+JSR-250 Common Annotations for the JavaTM Platform;javax.annotation:jsr250-api:1.0;[CDDL_1_0]
+Hamcrest library;org.hamcrest:hamcrest-library:1.3;[BSD_3_Clause]
+Android Lifecycle WorkManager Hilt Extension;androidx.hilt:hilt-work:1.0.0-alpha02;[Apache_2_0]
+sandbox;org.robolectric:sandbox:4.3.1;[MIT]
+Android Room-Common;androidx.room:room-common:2.2.5;[Apache_2_0]
+junit;org.robolectric:junit:4.3.1;[MIT]
+resources;org.robolectric:resources:4.3.1;[MIT]
+Guava Testing Library;com.google.guava:guava-testlib:29.0-jre;[Apache_2_0]
+kotlin-stdlib-common;org.jetbrains.kotlin:kotlin-stdlib-common:1.3.72;[Apache_2_0]
+Support VectorDrawable;androidx.vectordrawable:vectordrawable:1.1.0;[Apache_2_0]
+Activity;androidx.activity:activity:1.2.0-alpha08;[Apache_2_0]
+Android Lifecycle ViewModel with SavedState;androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.0-alpha07;[Apache_2_0]
+pluginapi;org.robolectric:pluginapi:4.3.1;[MIT]
+AndroidX Test Library;androidx.test.ext:junit:1.1.2-rc01;[Apache_2_0]
+Android Navigation Fragment;androidx.navigation:navigation-fragment:2.3.0;[Apache_2_0]
+Maven Profile Model;org.apache.maven:maven-profile:2.2.1;[]
+JUnit;junit:junit:4.12;[EPL_1_0]
+Fragment Kotlin Extensions;androidx.fragment:fragment-ktx:1.2.5;[Apache_2_0]
+Experimental annotation;androidx.annotation:annotation-experimental:1.0.0;[Apache_2_0]
+Maven Wagon File Provider;org.apache.maven.wagon:wagon-file:1.0-beta-6;[]
+Support Cursor Adapter;androidx.cursoradapter:cursoradapter:1.0.0;[Apache_2_0]
+robolectric;org.robolectric:robolectric:4.3.1;[MIT]
+framework;org.robolectric:shadows-framework:4.3.1;[MIT]
+Maven Model;org.apache.maven:maven-model:2.2.1;[]
+Auto Common Libraries;com.google.auto:auto-common:0.8;[Apache_2_0]
+Android Testing Support Library;com.android.support.test:monitor:1.0.2;[Apache_2_0]
+Android DB;androidx.sqlite:sqlite:2.1.0;[Apache_2_0]
+Support Custom View;androidx.customview:customview:1.0.0;[Apache_2_0]
+Support Annotations;androidx.annotation:annotation:1.2.0-alpha01;[Apache_2_0]
+Support View Pager;androidx.viewpager:viewpager:1.0.0;[Apache_2_0]
+Android Room Guava;androidx.room:room-guava:2.2.5;[Apache_2_0]
+Android Room-Runtime;androidx.room:room-runtime:2.2.5;[Apache_2_0]
+play-services-base;com.google.android.gms:play-services-base:17.4.0;[ASDKL]
+javax.inject;javax.inject:javax.inject:1;[Apache_2_0]
+transport-runtime;com.google.android.datatransport:transport-runtime:2.2.5;[Apache_2_0]
+J2ObjC Annotations;com.google.j2objc:j2objc-annotations:1.3;[Apache_2_0]
+Android Arch-Common;androidx.arch.core:core-common:2.1.0;[Apache_2_0]
+Android Lifecycle ViewModel;androidx.lifecycle:lifecycle-viewmodel:2.3.0-alpha07;[Apache_2_0]
+Dagger;com.google.dagger:dagger:2.28.3;[Apache_2_0]
+Android Lifecycle ViewModel Hilt Extension;androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha02;[Apache_2_0]
+Android Lifecycle LiveData Core;androidx.lifecycle:lifecycle-livedata-core:2.3.0-alpha07;[Apache_2_0]
+AndroidX Test Library;androidx.test:monitor:1.3.0-rc01;[Apache_2_0]
+Support Interpolators;androidx.interpolator:interpolator:1.0.0;[Apache_2_0]
+Android Navigation Runtime;androidx.navigation:navigation-runtime:2.3.0;[Apache_2_0]
+VersionedParcelable;androidx.versionedparcelable:versionedparcelable:1.1.0;[Apache_2_0]
+Support Local Broadcast Manager;androidx.localbroadcastmanager:localbroadcastmanager:1.0.0;[Apache_2_0]
+AboutLibraries Library;com.mikepenz:aboutlibraries-core:8.3.0;[Apache_2_0]
+Support Coordinator Layout;androidx.coordinatorlayout:coordinatorlayout:1.1.0;[Apache_2_0]
+LiveData Core Kotlin Extensions;androidx.lifecycle:lifecycle-livedata-core-ktx:2.2.0;[Apache_2_0]
+Support SQLite - Framework Implementation;androidx.sqlite:sqlite-framework:2.1.0;[Apache_2_0]
+Dagger Lint Rules AAR Distribution;com.google.dagger:dagger-lint-aar:2.28.3;[Apache_2_0]
+Plexus Interpolation API;org.codehaus.plexus:plexus-interpolation:1.11;[]
+Maven Artifact;org.apache.maven:maven-artifact:2.2.1;[]
+Neko HTML;nekohtml:nekohtml:1.9.6.2;[Apache_2_0]
+ThreeTen backport;org.threeten:threetenbp:1.4.4;[BSD_3_Clause]
+kotlinx-coroutines-core;org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.0;[Apache_2_0]
+AndroidX Hilt Extension Annotations;androidx.hilt:hilt-common:1.0.0-alpha02;[Apache_2_0]
+kotlin-stdlib-jdk7;org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.72;[Apache_2_0]
+kotlin-stdlib-jdk8;org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.72;[Apache_2_0]
+firebase-datatransport;com.google.firebase:firebase-datatransport:17.0.8;[Apache_2_0]
+Maven Project Builder;org.apache.maven:maven-project:2.2.1;[]
+org.apache.ant:ant-launcher;org.apache.ant:ant-launcher:1.8.0;[]
+Default Plexus Container;org.codehaus.plexus:plexus-container-default:1.0-alpha-9-stable-1;[]
+reflector;org.robolectric:utils-reflector:4.3.1;[MIT]
+Maven Local Settings Model;org.apache.maven:maven-settings:2.2.1;[]
+Guava InternalFutureFailureAccess and InternalFutures;com.google.guava:failureaccess:1.0.1;[Apache_2_0]
+Android Transition Support Library;androidx.transition:transition:1.2.0;[Apache_2_0]
+error-prone annotations;com.google.errorprone:error_prone_annotations:2.3.4;[Apache_2_0]
+Android Core-Testing;androidx.arch.core:core-testing:2.1.0;[Apache_2_0]
+Android Lifecycle-Common;androidx.lifecycle:lifecycle-common:2.3.0-alpha07;[Apache_2_0]
+Support Drawer Layout;androidx.drawerlayout:drawerlayout:1.0.0;[Apache_2_0]
+AutoValue Annotations;com.google.auto.value:auto-value-annotations:1.7.3;[Apache_2_0]
+Objenesis;org.objenesis:objenesis:2.6;[Apache_2_0]
+com.android.volley:volley;com.android.volley:volley:1.1.1;[Apache_2_0]
+transport-api;com.google.android.datatransport:transport-api:2.2.1;[Apache_2_0]
+mockito-inline;org.mockito:mockito-inline:2.25.0;[MIT]
+AutoService;com.google.auto.service:auto-service:1.0-rc4;[Apache_2_0]
+ICU4J;com.ibm.icu:icu4j:53.1;[ICU]
+Support collections;androidx.collection:collection:1.1.0;[Apache_2_0]
+Android Testing Support Library;com.android.support.test.espresso:espresso-core:3.0.2;[Apache_2_0]
+kotlin-stdlib;org.jetbrains.kotlin:kotlin-stdlib:1.3.72;[Apache_2_0]
+org.apache.tools.ant;org.apache.ant:ant:1.8.0;[]
+Guava ListenableFuture only;com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava;[Apache_2_0]
+Maven Repository Metadata Model;org.apache.maven:maven-repository-metadata:2.2.1;[]
+Support RecyclerView v7;androidx.recyclerview:recyclerview:1.1.0;[Apache_2_0]
+Byte Buddy Java agent;net.bytebuddy:byte-buddy-agent:1.9.7;[Apache_2_0]
+shadowapi;org.robolectric:shadowapi:4.3.1;[MIT]
+Maven Wagon API;org.apache.maven.wagon:wagon-provider-api:1.0-beta-6;[]
+Checker Qual;org.checkerframework:checker-compat-qual:2.5.5;[MIT]
+Android Testing Support Library;com.android.support.test.espresso:espresso-idling-resource:3.0.2;[Apache_2_0]
+Activity Kotlin Extensions;androidx.activity:activity-ktx:1.1.0;[Apache_2_0]
+Truth Core;com.google.truth:truth:1.0.1;[Apache_2_0]
+sqlite4java;com.almworks.sqlite4java:sqlite4java:0.282;[Apache_2_0]
+firebase-components;com.google.firebase:firebase-components:16.0.0;[Apache_2_0]
+Android ConstraintLayout;androidx.constraintlayout:constraintlayout:2.0.1;[Apache_2_0]
+Accessibility Test Framework;com.google.android.apps.common.testing.accessibility.framework:accessibility-test-framework:2.1;[Apache_2_0]
+Support Print;androidx.print:print:1.0.0;[Apache_2_0]
+Android Lifecycle Service;androidx.lifecycle:lifecycle-service:2.1.0;[Apache_2_0]
+asm-util;org.ow2.asm:asm-util:7.0;[BSD_3_Clause]
+java-diff-utils;com.googlecode.java-diff-utils:diffutils:1.3.0;[Apache_2_0]
+Apache Commons IO;commons-io:commons-io:2.6;[Apache_2_0]
+Maven Plugin Registry Model;org.apache.maven:maven-plugin-registry:2.2.1;[]
+Support CardView v7;androidx.cardview:cardview:1.0.0;[Apache_2_0]
+firebase-encoders-json;com.google.firebase:firebase-encoders-json:16.1.0;[Apache_2_0]
+play-services-basement;com.google.android.gms:play-services-basement:17.4.0;[ASDKL]
+Maven Ant Tasks;org.apache.maven:maven-ant-tasks:2.1.3;[]
+ThreeTenAbp;com.jakewharton.threetenabp:threetenabp:1.2.4;[Apache_2_0]
+Hamcrest Integration;org.hamcrest:hamcrest-integration:1.3;[BSD_3_Clause]
+kXML 2 is a small XML pull parser based on the common XML pull API;net.sf.kxml:kxml2:2.3.0;[MIT]
+kotlinx-coroutines-android;org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.0;[Apache_2_0]
+Support AnimatedVectorDrawable;androidx.vectordrawable:vectordrawable-animated:1.1.0;[Apache_2_0]
+Android Lifecycle LiveData;androidx.lifecycle:lifecycle-livedata:2.1.0;[Apache_2_0]
+SavedState;androidx.savedstate:savedstate:1.1.0-alpha01;[Apache_2_0]
+Backport of JSR 166;backport-util-concurrent:backport-util-concurrent:3.1;[CC_PDDC]
+Support compat;androidx.core:core:1.5.0-alpha02;[Apache_2_0]
+Android Lifecycle Runtime;androidx.lifecycle:lifecycle-runtime:2.3.0-alpha07;[Apache_2_0]
+JavaWriter;com.squareup:javawriter:2.1.1;[Apache_2_0]
+Collections Kotlin Extensions;androidx.collection:collection-ktx:1.1.0;[Apache_2_0]
+annotations;org.robolectric:annotations:4.3.1;[MIT]
+asm-analysis;org.ow2.asm:asm-analysis:7.0;[BSD_3_Clause]
+Support loader;androidx.loader:loader:1.0.0;[Apache_2_0]
+Android Navigation Common;androidx.navigation:navigation-common:2.3.0;[Apache_2_0]
+firebase-common;com.google.firebase:firebase-common:19.3.1;[Apache_2_0]
+maven-dependency-resolver;org.robolectric:plugins-maven-dependency-resolver:4.3.1;[MIT]
+Maven Error Diagnostics;org.apache.maven:maven-error-diagnostics:2.2.1;[]
+Hilt Android;com.google.dagger:hilt-android:2.28.3-alpha;[Apache_2_0]
+Maven Wagon HTTP Shared Library;org.apache.maven.wagon:wagon-http-shared:1.0-beta-6;[]
+Hilt Android Testing;com.google.dagger:hilt-android-testing:2.28.3-alpha;[Apache_2_0]
+Android Lifecycle Kotlin Extensions;androidx.lifecycle:lifecycle-runtime-ktx:2.2.0;[Apache_2_0]
+Support Document File;androidx.documentfile:documentfile:1.0.0;[Apache_2_0]
+Android Resources Library;androidx.appcompat:appcompat-resources:1.3.0-alpha02;[Apache_2_0]
+FastAdapter Library;com.mikepenz:fastadapter:5.1.0;[Apache_2_0]
+Bouncy Castle Provider;org.bouncycastle:bcprov-jdk15on:1.52;[MIT]
+Support DynamicAnimation;androidx.dynamicanimation:dynamicanimation:1.0.0;[Apache_2_0]
+IntelliJ IDEA Annotations;org.jetbrains:annotations:13.0;[Apache_2_0]
+Material Components for Android;com.google.android.material:material:1.3.0-alpha02;[Apache_2_0]
+classworlds;classworlds:classworlds:1.1-alpha-2;[]
+kotlin-android-extensions-runtime;org.jetbrains.kotlin:kotlin-android-extensions-runtime:1.3.72;[Apache_2_0]
+Byte Buddy (without dependencies);net.bytebuddy:byte-buddy:1.9.7;[Apache_2_0]
+mockito-core;org.mockito:mockito-core:2.25.0;[MIT]
+AndroidX Widget ViewPager2;androidx.viewpager2:viewpager2:1.0.0;[Apache_2_0]
+asm-commons;org.ow2.asm:asm-commons:7.0;[BSD_3_Clause]
+AndroidX Test Library;androidx.test:core:1.3.0-rc01;[Apache_2_0]
+transport-backend-cct;com.google.android.datatransport:transport-backend-cct:2.3.1;[Apache_2_0]
+Android AppCompat Library;androidx.appcompat:appcompat:1.3.0-alpha02;[Apache_2_0]
+play-services-tasks;com.google.android.gms:play-services-tasks:17.2.0;[ASDKL]
+
+
+LICENSES:
+EPL-1.0;Eclipse Public License 1.0;https://spdx.org/licenses/EPL-1.0.html
+Apache-2.0;Apache License 2.0;https://spdx.org/licenses/Apache-2.0.html
+ICU;ICU License;https://spdx.org/licenses/ICU.html
+CDDL-1.0;Common Development and Distribution License 1.0;https://spdx.org/licenses/CDDL-1.0.html
+ASDKL;Android Software Development Kit License;https://spdx.org/licenses/ASDKL.html
+MIT;MIT License;https://spdx.org/licenses/MIT.html
+CC-PDDC;Creative Commons Public Domain Dedication and Certification;https://spdx.org/licenses/CC-PDDC.html
+BSD-3-Clause;BSD 3-Clause "New" or "Revised" License;https://spdx.org/licenses/BSD-3-Clause.html
+
+
+ARTIFACTS WITHOUT LICENSE:
+
+
+UNKNOWN LICENSES:
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 7.0.
+Use '--warning-mode all' to show the individual deprecation warnings.
+See https://docs.gradle.org/6.1.1/userguide/command_line_interface.html#sec:command_line_warnings
+
+BUILD SUCCESSFUL in 2s
+1 actionable task: 1 executed

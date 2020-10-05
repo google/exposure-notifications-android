@@ -1,0 +1,65 @@
+/*
+ * Copyright 2020 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+// This module handles generating a list of consent info for Play Store.
+
+apply from: 'enexpress_locales.gradle'
+
+import groovy.json.JsonOutput
+
+def generatePlayStoreConsent(configData) {
+  task publishConsent {
+    configData.each { name, config ->
+      inputs.files(config["files"])
+    }
+    doLast {
+      configData.each { name, config ->
+        Map result = [:]
+        def packageName = config["healthAuthorityID"]
+        def locales = getConfigLocales(config)
+        def defaultLocale = pickDefaultLocale(config, locales)
+        def playLocales = filterLocalesForPlayStore(locales)
+        List items = []
+        playLocales.each { playLocale, plainLocale ->
+          def locale = plainLocale.toUpperCase().replace("-", "_")
+          def agencyDisplayName = config.get("agencyDisplayName_" + locale, "")
+          def agencyRegionName = config.get("agencyRegionName_" + locale, "")
+          def legalConsentText = config.get("legalConsentText_" + locale, "")
+          items.add([
+            "locale": playLocale,
+            "agency_region_name": agencyRegionName,
+            "agency_display_name": agencyDisplayName,
+            "legal_consent_text": legalConsentText,
+          ])
+        }
+        result[packageName] = [
+          "localized": items,
+          "region_identifier": config.get("regionIdentifier", ""),
+          "legal_consent_version": config.get("legalConsentVersion", ""),
+          "default_locale": defaultLocale,
+        ]
+        def consentDir = "$buildDir/playstore_consent/" + name
+        mkdir consentDir
+        def json = JsonOutput.prettyPrint(JsonOutput.toJson(result))
+        new File(consentDir + "/consent.json").write(json)
+      }
+    }
+  }
+}
+
+ext {
+  generatePlayStoreConsent = this.&generatePlayStoreConsent
+}

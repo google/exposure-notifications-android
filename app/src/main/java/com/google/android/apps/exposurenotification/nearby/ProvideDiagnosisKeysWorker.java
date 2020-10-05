@@ -20,49 +20,76 @@ package com.google.android.apps.exposurenotification.nearby;
 import android.content.Context;
 import android.util.Log;
 import androidx.annotation.NonNull;
+import androidx.hilt.Assisted;
+import androidx.hilt.work.WorkerInject;
 import androidx.work.BackoffPolicy;
 import androidx.work.Constraints;
 import androidx.work.ExistingPeriodicWorkPolicy;
 import androidx.work.ListenableWorker;
 import androidx.work.NetworkType;
+import androidx.work.Operation;
 import androidx.work.PeriodicWorkRequest;
 import androidx.work.WorkManager;
 import androidx.work.WorkRequest;
 import androidx.work.WorkerParameters;
-import com.google.android.apps.exposurenotification.common.AppExecutors;
+import com.google.android.apps.exposurenotification.common.Qualifiers.BackgroundExecutor;
+import com.google.android.apps.exposurenotification.common.Qualifiers.ScheduledExecutor;
 import com.google.android.apps.exposurenotification.common.TaskToFutureAdapter;
-import com.google.android.apps.exposurenotification.network.DownloadController;
-import com.google.android.gms.nearby.exposurenotification.ExposureNotificationClient;
-import com.google.common.io.BaseEncoding;
+import com.google.android.apps.exposurenotification.keydownload.DiagnosisKeyDownloader;
+import com.google.android.apps.exposurenotification.work.WorkerStartupManager;
+import com.google.android.gms.nearby.exposurenotification.DiagnosisKeysDataMapping;
 import com.google.common.util.concurrent.FluentFuture;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
-import java.security.SecureRandom;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import org.threeten.bp.Duration;
 
-/** Performs work to provide diagnosis keys to the exposure notifications API. */
+/**
+ * Performs work to provide diagnosis keys to the exposure notifications API.
+ */
 public class ProvideDiagnosisKeysWorker extends ListenableWorker {
+  /*
+   * If we schedule the provide job more frequent than every 4 hours, nearby_en returns call-quota
+   * exceeded errors. This variable represents the lower bound to the configuration value set by
+   * the HA.
+   */
+  private static final Duration MINIMAL_TEK_PUBLISH_INTERVAL = Duration.ofHours(4);
 
   private static final String TAG = "ProvideDiagnosisKeysWkr";
 
-  private static final Duration IS_ENABLED_TIMEOUT = Duration.ofSeconds(10);
-  public static final Duration JOB_INTERVAL = Duration.ofHours(24);
-  public static final Duration JOB_FLEX_INTERVAL = Duration.ofHours(6);
+  private static final Duration GET_DIAGNOSIS_KEY_DATA_MAPPING_TIMEOUT = Duration.ofSeconds(10);
+  private static final Duration SET_DIAGNOSIS_KEY_DATA_MAPPING_TIMEOUT = Duration.ofSeconds(10);
   public static final String WORKER_NAME = "ProvideDiagnosisKeysWorker";
-  private static final BaseEncoding BASE64_LOWER = BaseEncoding.base64();
-  private static final int RANDOM_TOKEN_BYTE_LENGTH = 32;
 
-  private final DownloadController downloadController;
-  private final DiagnosisKeyFileSubmitter submitter;
-  private final SecureRandom secureRandom;
+  private final DiagnosisKeyDownloader downloader;
+  private final DiagnosisKeyFileSubmitter diagnosisKeyFileSubmitter;
+  private final ExposureNotificationClientWrapper exposureNotificationClientWrapper;
+  private final DiagnosisKeysDataMapping diagnosisKeysDataMapping;
+  private final ExecutorService backgroundExecutor;
+  private final ScheduledExecutorService scheduledExecutor;
+  private final WorkerStartupManager workerStartupManager;
 
+  @WorkerInject
   public ProvideDiagnosisKeysWorker(
-      @NonNull Context context, @NonNull WorkerParameters workerParams) {
+      @Assisted @NonNull Context context,
+      @Assisted @NonNull WorkerParameters workerParams,
+      DiagnosisKeyDownloader downloadController,
+      ExposureNotificationClientWrapper exposureNotificationClientWrapper,
+      DiagnosisKeyFileSubmitter diagnosisKeyFileSubmitter,
+      DiagnosisKeysDataMapping diagnosisKeysDataMapping,
+      @BackgroundExecutor ExecutorService backgroundExecutor,
+      @ScheduledExecutor ScheduledExecutorService scheduledExecutor,
+      WorkerStartupManager workerStartupManager) {
     super(context, workerParams);
-    downloadController = new DownloadController(context);
-    submitter = new DiagnosisKeyFileSubmitter(context);
-    secureRandom = new SecureRandom();
+    this.downloader = downloadController;
+    this.exposureNotificationClientWrapper = exposureNotificationClientWrapper;
+    this.diagnosisKeyFileSubmitter = diagnosisKeyFileSubmitter;
+    this.diagnosisKeysDataMapping = diagnosisKeysDataMapping;
+    this.backgroundExecutor = backgroundExecutor;
+    this.scheduledExecutor = scheduledExecutor;
+    this.workerStartupManager = workerStartupManager;
   }
 
   @NonNull
@@ -70,43 +97,90 @@ public class ProvideDiagnosisKeysWorker extends ListenableWorker {
   public ListenableFuture<Result> startWork() {
     Log.d(
         TAG,
-        "Starting worker downloading diagnosis key files and submitting "
+        "Starting worker providing the DiagnosisKeysDataMapping to the API, "
+            + "downloading diagnosis key files and submitting "
             + "them to the API for exposure detection, then storing the token used.");
     return FluentFuture.from(
-            TaskToFutureAdapter.getFutureWithTimeout(
-                ExposureNotificationClientWrapper.get(getApplicationContext()).isEnabled(),
-                IS_ENABLED_TIMEOUT.toMillis(),
-                TimeUnit.MILLISECONDS,
-                AppExecutors.getScheduledExecutor()))
+        workerStartupManager.getIsEnabledWithStartupTasks())
         .transformAsync(
             (isEnabled) -> {
               // Only continue if it is enabled.
               if (isEnabled) {
-                return downloadController.download();
+                return TaskToFutureAdapter.getFutureWithTimeout(
+                    exposureNotificationClientWrapper.getDiagnosisKeysDataMapping(),
+                    GET_DIAGNOSIS_KEY_DATA_MAPPING_TIMEOUT,
+                    scheduledExecutor);
               } else {
                 // Stop here because things aren't enabled. Will still return successful though.
                 return Futures.immediateFailedFuture(new NotEnabledException());
               }
             },
-            AppExecutors.getBackgroundExecutor())
+            backgroundExecutor)
         .transformAsync(
-            (batches) -> submitter.submitFiles(batches, ExposureNotificationClient.TOKEN_A),
-            AppExecutors.getBackgroundExecutor())
-        .transform(done -> Result.success(), AppExecutors.getBackgroundExecutor())
+            this::checkDiagnosisKeyDataMappingForUpdate, backgroundExecutor)
+        .catchingAsync(
+            Exception.class,
+            e -> {
+              // Rethrow NotEnabledExceptions to handle at the end of the Future chain
+              if (e instanceof NotEnabledException) {
+                return Futures.immediateFailedFuture(new NotEnabledException());
+              }
+              // Ignore other exceptions thrown during DiagnosisKeyDataMapping calls
+              else {
+                Log.e(TAG, "Exception while updating the DiagnosisKeyDataMapping", e);
+                return Futures.immediateVoidFuture();
+              }
+            },
+            backgroundExecutor)
+        .transformAsync(
+            (unused) -> downloader.download(), backgroundExecutor)
+        .transformAsync(
+            (files) ->
+                diagnosisKeyFileSubmitter.submitFiles(files),
+            backgroundExecutor)
+        .transform(done -> Result.success(), backgroundExecutor)
         .catching(
             NotEnabledException.class,
             x -> {
               // Not enabled. Return as success.
               return Result.success();
             },
-            AppExecutors.getBackgroundExecutor())
+            backgroundExecutor)
         .catching(
             Exception.class,
             x -> {
               Log.e(TAG, "Failure to provide diagnosis keys", x);
               return Result.failure();
             },
-            AppExecutors.getBackgroundExecutor());
+            backgroundExecutor);
+  }
+
+  /**
+   * Check if we need to update EN Api's version of DiagnosisKeysDataMapping. Only on update call
+   * Nearby.setDiagnosisKeysDataMapping().
+   * <p>
+   * Please note that if two or more updates / calls to setDiagnosisKeysDataMapping() happen within
+   * the same week, the method throws an ApiException with StatusCode
+   * ExposureNotificationStatusCodes.FAILED_RATE_LIMITED. As it is only called on
+   * DiagnosisKeysDataMapping updates this should happen rarely.
+   */
+  private ListenableFuture<Void> checkDiagnosisKeyDataMappingForUpdate(
+      DiagnosisKeysDataMapping previousDkdm) {
+
+    DiagnosisKeysDataMapping newDkdm = diagnosisKeysDataMapping;
+
+    if (previousDkdm.equals(newDkdm)) {
+      Log.d(TAG, "DiagnosisKeysDataMapping unchanged, not requesting update");
+      return Futures.immediateVoidFuture();
+    } else {
+      Log.d(TAG, "Updated DiagnosisKeysDataMapping detected, "
+          + "calling Nearby.setDiagnosisKeysDataMapping");
+
+      return TaskToFutureAdapter.getFutureWithTimeout(
+          exposureNotificationClientWrapper.setDiagnosisKeysDataMapping(newDkdm),
+          SET_DIAGNOSIS_KEY_DATA_MAPPING_TIMEOUT,
+          scheduledExecutor);
+    }
   }
 
   /**
@@ -115,15 +189,18 @@ public class ProvideDiagnosisKeysWorker extends ListenableWorker {
    *
    * <p>This job will only be run when not low battery and with network connection.
    */
-  public static void schedule(Context context) {
-    WorkManager workManager = WorkManager.getInstance(context);
+  public static Operation schedule(WorkManager workManager, Duration tekPublishInterval) {
+    // Lower-bound tekPublishInterval and convert to primitive as required by PeriodicWorkRequest
+    long tekPublishIntervalHours =
+        Math.max(MINIMAL_TEK_PUBLISH_INTERVAL.toHours(), tekPublishInterval.toHours());
+
+    // WARNING: You must set ExistingPeriodicWorkPolicy.REPLACE if you want to change the params for
+    //          previous app version users.
     PeriodicWorkRequest workRequest =
         new PeriodicWorkRequest.Builder(
-                ProvideDiagnosisKeysWorker.class,
-                JOB_INTERVAL.toHours(),
-                TimeUnit.HOURS,
-                JOB_FLEX_INTERVAL.toHours(),
-                TimeUnit.HOURS)
+            ProvideDiagnosisKeysWorker.class,
+            tekPublishIntervalHours,
+            TimeUnit.HOURS)
             .setConstraints(
                 new Constraints.Builder()
                     .setRequiresBatteryNotLow(true)
@@ -134,9 +211,11 @@ public class ProvideDiagnosisKeysWorker extends ListenableWorker {
                 WorkRequest.DEFAULT_BACKOFF_DELAY_MILLIS,
                 TimeUnit.MILLISECONDS)
             .build();
-    workManager.enqueueUniquePeriodicWork(
-        WORKER_NAME, ExistingPeriodicWorkPolicy.REPLACE, workRequest);
+    return workManager.enqueueUniquePeriodicWork(
+        WORKER_NAME, ExistingPeriodicWorkPolicy.KEEP, workRequest);
   }
 
-  private static class NotEnabledException extends Exception {}
+  private static class NotEnabledException extends Exception {
+
+  }
 }

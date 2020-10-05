@@ -55,8 +55,6 @@
 
   <string name="debug_matching_file_error">Error, bad file input. Make sure to provide a valid file.</string>
 
-  <string name="debug_matching_token_error">Error, bad token. Please provide a token.</string>
-
   <string name="debug_matching_provide_success">Provided</string>
 
   <string name="debug_matching_provide_error_disabled">Failed, API must be enabled</string>
@@ -81,17 +79,11 @@
 
   <string name="debug_matching_provide_submit_category">Provide to API</string>
 
-  <string name="debug_matching_provide_token_hint">Token</string>
-
-  <string name="debug_matching_token_digits" translatable="false">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890</string>
-
   <string name="debug_matching_provide_button_text">Provide</string>
 
   <string name="debug_matching_matching_title">Manual Matching</string>
 
   <string name="debug_matching_view_share_success">Copied key hex to clipboard</string>
-
-  <string name="debug_matching_view_share_failure">Unable to share</string>
 
   <string name="debug_matching_view_rejected">Unable to get keys</string>
 
@@ -126,37 +118,17 @@
 
   <string name="debug_keyserver_reset_button_text">Reset Key Server Defaults</string>
 
-  <string name="debug_test_exposure_reset_success">Done</string>
-
   <string name="debug_matching_category">Matching</string>
-
-  <string name="debug_provide_keys_description">This will enqueue a background job to provide test diagnosis keys into the exposure notifications API from the server.</string>
-
-  <string name="debug_provide_keys_button_text">Provide From Server</string>
 
   <string name="debug_provide_keys_enqueued">Enqueued background job</string>
 
-  <string name="debug_network_mode">Use Diagnosis Key Server</string>
-
-  <string name="debug_network_mode_category">Diagnosis Key Server</string>
-
-  <string name="debug_network_mode_description">This enables this app to share diagnosis keys with a test server. When disabled, the app does not upload or download keys.</string>
-
   <string name="debug_network_default_uri">App was built with default URIs. Non-default URIs are required to use servers.</string>
 
-  <string name="debug_verification_network_mode">Use Verification Server</string>
-
-  <string name="debug_verification_server_category">Verification Server</string>
-
-  <string name="debug_verification_server_address">Verification Server Address</string>
-
-  <string name="debug_verification_server_reset_button_text">Reset Verification Server Default</string>
+  <string name="debug_verification_codes">Verification Codes</string>
 
   <string name="debug_verification_code_create_button_text">Create verification code</string>
 
   <string name="debug_verification_code_expiry">Expires: %1$s UTC</string>
-
-  <string name="debug_provide_history_text">Provide History</string>
 
   <string name="debug_provide_now_text">Enqueue provide job now</string>
 
@@ -166,6 +138,36 @@
 
   <string name="debug_job_status_scheduled">Scheduled</string>
 
+  <string name="debug_job_status_running">Running</string>
+
   <string name="debug_job_status_not_scheduled">Not scheduled</string>
+
+  <string name="debug_test_type">Test Type</string>
+
+  <string name="debug_test_type_confirmed">Positive</string>
+
+  <string name="debug_test_type_likely">Likely</string>
+
+  <string name="debug_test_type_negative">Negative</string>
+
+  <string name="debug_snackbar_verification_server_error_msg" translatable="false">There was verification server error, please try again.</string>
+
+  <string name="debug_snackbar_failed_to_parse_verification_code_response_msg" translatable="false">Failed to parse create verification code response</string>
+
+  <string name="debug_possible_exposure">Possible exposure</string>
+
+  <string name="home_tab_notify_debug_text">Debug</string>
+
+  <string name="debug_roaming_title">Roaming</string>
+
+  <string name="debug_roaming_country_code_input_text">Two letter country codes (comma separated)</string>
+
+  <string name="debug_roaming_country_code_insert_button_text">Mark as visited</string>
+
+  <string name="debug_roaming_country_code_clear_button_text">Clear all visited</string>
+
+  <string name="debug_roaming_country_code_invalid_message">Invalid country code</string>
+
+  <string name="debug_roaming_country_code_database_error">Database error</string>
 
 </resources>

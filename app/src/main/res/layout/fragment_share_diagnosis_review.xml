@@ -19,9 +19,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  android:orientation="vertical">
+  android:orientation="vertical"
+  android:accessibilityPaneTitle="@string/share_review_title">
 
-  <LinearLayout
+  <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize">
 
@@ -31,9 +32,20 @@
       android:layout_width="?attr/actionBarSize"
       android:layout_height="match_parent"
       android:background="?attr/selectableItemBackgroundBorderless"
-      android:src="?attr/homeAsUpIndicator" />
+      android:src="?attr/homeAsUpIndicator"
+      android:layout_alignParentStart="true" />
 
-  </LinearLayout>
+    <ImageButton
+      android:id="@+id/share_review_delete"
+      style="?attr/borderlessButtonStyle"
+      android:layout_width="?attr/actionBarSize"
+      android:layout_height="match_parent"
+      android:background="?attr/selectableItemBackgroundBorderless"
+      android:src="@drawable/ic_delete"
+      android:contentDescription="@string/btn_delete_status"
+      android:layout_alignParentEnd="true" />
+
+  </RelativeLayout>
 
   <ScrollView
     android:layout_width="match_parent"
@@ -53,31 +65,28 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/share_review_title"
-        android:textAppearance="?attr/textAppearanceHeadline4" />
+        android:textAppearance="?attr/textAppearanceHeadline5" />
+
+      <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_banner_hand"/>
 
       <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/padding_normal"
-        android:gravity="center"
-        android:text="@string/share_review_description"
-        android:textAppearance="?attr/textAppearanceSubtitle1" />
-
-      <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/padding_normal"
         android:layout_marginBottom="@dimen/padding_small"
-        android:text="@string/share_review_positive_test"
-        android:textAppearance="?attr/textAppearanceBody1" />
+        android:text="@string/share_review_status_subtitle"
+        android:textAllCaps="true"
+        android:textAppearance="?attr/textAppearanceBody2" />
 
       <TextView
+        android:id="@+id/share_review_status"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/padding_normal"
-        android:text="@string/share_review_positive_test_covid"
-        android:textAppearance="?attr/textAppearanceBody2"
-        android:textColor="?attr/colorControlNormal" />
+        android:textAppearance="?attr/textAppearanceHeadline6"
+        android:textSize="@dimen/notify_review_text_size" />
 
       <include layout="@layout/horizontal_divider" />
 
@@ -86,16 +95,36 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/padding_normal"
         android:layout_marginBottom="@dimen/padding_small"
-        android:text="@string/share_review_date"
-        android:textAppearance="?attr/textAppearanceBody1" />
+        android:text="@string/share_review_travel_subtitle"
+        android:textAllCaps="true"
+        android:textAppearance="?attr/textAppearanceBody2" />
+
+      <TextView
+        android:id="@+id/share_review_travel"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/padding_normal"
+        android:textAppearance="?attr/textAppearanceHeadline6"
+        android:textSize="@dimen/notify_review_text_size" />
+
+      <include layout="@layout/horizontal_divider" />
+
+      <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_normal"
+        android:layout_marginBottom="@dimen/padding_small"
+        android:text="@string/share_review_onset_subtitle"
+        android:textAllCaps="true"
+        android:textAppearance="?attr/textAppearanceBody2" />
 
       <TextView
         android:id="@+id/share_review_date"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/padding_normal"
-        android:textAppearance="?attr/textAppearanceBody2"
-        android:textColor="?attr/colorControlNormal" />
+        android:textAppearance="?attr/textAppearanceHeadline6"
+        android:textSize="@dimen/notify_review_text_size" />
 
     </LinearLayout>
 
@@ -104,41 +133,52 @@
   <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/padding_normal"
-    android:orientation="vertical"
-    android:background="?android:attr/colorBackground"
-    android:elevation="20dp">
+    android:layout_marginVertical="@dimen/padding_normal"
+    android:orientation="horizontal">
 
-    <RelativeLayout
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content">
+    <LinearLayout
+      android:layout_width="0dp"
+      android:layout_weight="1"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_vertical">
+
+      <Button
+        android:id="@+id/share_previous_button"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/padding_normal"
+        android:text="@string/btn_back" />
+
+    </LinearLayout>
+
+    <FrameLayout
+      android:layout_width="0dp"
+      android:layout_weight="2"
+      android:layout_marginHorizontal="@dimen/padding_small"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_vertical"
+      android:layout_alignParentEnd="true">
 
       <Button
         android:id="@+id/share_share_button"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/padding_normal"
         android:text="@string/btn_share_positive"
-        android:elevation="0dp"/>
+        android:elevation="0dp"
+        android:layout_gravity="end"/>
 
       <ProgressBar
         android:id="@+id/share_progress_bar"
-        android:layout_width="24dp"
+        android:layout_width="match_parent"
         android:layout_height="24dp"
-        android:layout_centerInParent="true"
+        android:layout_gravity="center_vertical"
         android:indeterminateTint="@android:color/white"
         android:elevation="10dp"
         android:visibility="invisible"/>
 
-    </RelativeLayout>
-
-    <Button
-      android:id="@+id/share_cancel_button"
-      style="@style/Widget.MaterialComponents.Button.TextButton"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginHorizontal="@dimen/padding_normal"
-      android:text="@string/btn_cancel" />
+    </FrameLayout>
 
   </LinearLayout>
 

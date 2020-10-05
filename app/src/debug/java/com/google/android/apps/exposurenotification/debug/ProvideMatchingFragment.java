@@ -28,7 +28,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,6 +41,8 @@ import android.widget.ViewFlipper;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.common.AbstractTextWatcher;
+import com.google.android.apps.exposurenotification.common.KeyboardHelper;
 import com.google.android.apps.exposurenotification.common.StringUtils;
 import com.google.android.apps.exposurenotification.debug.TemporaryExposureKeyEncodingHelper.DecodeException;
 import com.google.android.gms.nearby.exposurenotification.TemporaryExposureKey;
@@ -53,6 +54,7 @@ import com.google.common.collect.Lists;
 import com.google.common.io.BaseEncoding;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+import dagger.hilt.android.AndroidEntryPoint;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -62,7 +64,10 @@ import java.io.OutputStream;
 import java.util.List;
 import org.threeten.bp.Duration;
 
-/** Fragment for the provide tab in matching debug. */
+/**
+ * Fragment for the provide tab in matching debug.
+ */
+@AndroidEntryPoint
 public class ProvideMatchingFragment extends Fragment {
 
   private static final String TAG = "ProvideMatchingFragment";
@@ -109,11 +114,17 @@ public class ProvideMatchingFragment extends Fragment {
               switch (pos) {
                 case POS_SINGLE:
                   provideButton.setOnClickListener(
-                      (v) -> provideMatchingViewModel.provideSingleAction());
+                      (v) -> {
+                        KeyboardHelper.maybeHideKeyboard(getContext(), view);
+                        provideMatchingViewModel.provideSingleAction();
+                      });
                   break;
                 case POS_FILE:
                   provideButton.setOnClickListener(
-                      (v) -> provideMatchingViewModel.provideFileAction());
+                      (v) -> {
+                        KeyboardHelper.maybeHideKeyboard(getContext(), view);
+                        provideMatchingViewModel.provideFileAction();
+                      });
                   break;
                 default:
                   break;
@@ -130,18 +141,15 @@ public class ProvideMatchingFragment extends Fragment {
     inputModeDropDown.setAdapter(adapter);
     inputModeDropDown.setText(provideInputMethods.get(0), false);
     inputModeDropDown.setOnItemClickListener(
-        (parent, arg1, pos, id) -> provideMatchingViewModel.setDisplayedChild(pos));
+        (parent, arg1, pos, id) -> {
+          provideMatchingViewModel.setDisplayedChild(pos);
+          KeyboardHelper.maybeHideKeyboard(requireContext(), view);
+        });
 
     // 1. Single
     EditText inputSingleKey = view.findViewById(R.id.input_single_key);
     inputSingleKey.addTextChangedListener(
-        new TextWatcher() {
-          @Override
-          public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-
-          @Override
-          public void onTextChanged(CharSequence s, int start, int before, int count) {}
-
+        new AbstractTextWatcher() {
           @Override
           public void afterTextChanged(Editable s) {
             if (!TextUtils.isEmpty(s.toString())) {
@@ -162,13 +170,7 @@ public class ProvideMatchingFragment extends Fragment {
     TextInputEditText inputSingleIntervalNumber = view
         .findViewById(R.id.input_single_interval_number);
     inputSingleIntervalNumber.addTextChangedListener(
-        new TextWatcher() {
-          @Override
-          public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-
-          @Override
-          public void onTextChanged(CharSequence s, int start, int before, int count) {}
-
+        new AbstractTextWatcher() {
           @Override
           public void afterTextChanged(Editable s) {
             if (!TextUtils.isEmpty(s.toString())) {
@@ -193,13 +195,7 @@ public class ProvideMatchingFragment extends Fragment {
 
     EditText inputSingleRollingPeriod = view.findViewById(R.id.input_single_rolling_period);
     inputSingleRollingPeriod.addTextChangedListener(
-        new TextWatcher() {
-          @Override
-          public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-
-          @Override
-          public void onTextChanged(CharSequence s, int start, int before, int count) {}
-
+        new AbstractTextWatcher() {
           @Override
           public void afterTextChanged(Editable s) {
             if (!TextUtils.isEmpty(s.toString())) {
@@ -211,13 +207,7 @@ public class ProvideMatchingFragment extends Fragment {
     EditText inputSingleTransmissionRiskLevel =
         view.findViewById(R.id.input_single_transmission_risk_level);
     inputSingleTransmissionRiskLevel.addTextChangedListener(
-        new TextWatcher() {
-          @Override
-          public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-
-          @Override
-          public void onTextChanged(CharSequence s, int start, int before, int count) {}
-
+        new AbstractTextWatcher() {
           @Override
           public void afterTextChanged(Editable s) {
             if (!TextUtils.isEmpty(s.toString())) {
@@ -266,6 +256,14 @@ public class ProvideMatchingFragment extends Fragment {
               setTextAndCopyAction(signatureId, keyInfo.keyId());
               setTextAndCopyAction(signatureVersion, keyInfo.keyVersion());
             });
+
+    // Get file url from intent if any
+    Intent intent = requireActivity().getIntent();
+    if (intent.getData() != null) {
+      inputModeDropDown.setText(provideInputMethods.get(1), false);
+      provideMatchingViewModel.setDisplayedChild(1);
+      onFileSelected(intent.getData());
+    }
   }
 
   private void setTextAndCopyAction(TextView view, String text) {
@@ -288,13 +286,10 @@ public class ProvideMatchingFragment extends Fragment {
 
   @Override
   public void onActivityResult(int requestCode, int resultCode, Intent data) {
-    ProvideMatchingViewModel provideMatchingViewModel =
-        new ViewModelProvider(this, getDefaultViewModelProviderFactory())
-            .get(ProvideMatchingViewModel.class);
     if (requestCode == IntentIntegrator.REQUEST_CODE) {
       Log.d(TAG, "onActivityResult with requestCode=IntentIntegrator.REQUEST_CODE");
       IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
-      if(result != null && result.getContents() != null) {
+      if (result != null && result.getContents() != null) {
         try {
           TemporaryExposureKey temporaryExposureKey =
               TemporaryExposureKeyEncodingHelper.decodeSingle(result.getContents());
@@ -321,22 +316,7 @@ public class ProvideMatchingFragment extends Fragment {
         case RESULT_OK:
           Log.d(TAG, "onActivityResult with requestCode=FILE_REQUEST_CODE: OK");
           Uri uri = data.getData();
-          // Copy the file to a local app file for providing to the API.
-          File file = new File(requireContext().getFilesDir(), TEMP_INPUT_FILENAME);
-          try (InputStream in = getContext().getContentResolver().openInputStream(uri)) {
-            try (OutputStream out = new FileOutputStream(file)) {
-              byte[] buf = new byte[1024];
-              int len;
-              while ((len = in.read(buf)) > 0) {
-                out.write(buf, 0, len);
-              }
-            }
-          } catch (FileNotFoundException e) {
-            Log.e(TAG, "FileNotFoundException creating temp file", e);
-          } catch (IOException e) {
-            Log.e(TAG, "IOException creating temp file", e);
-          }
-          provideMatchingViewModel.setFileInput(file);
+          onFileSelected(uri);
           break;
         case RESULT_CANCELED:
           Log.d(TAG, "onActivityResult with requestCode=FILE_REQUEST_CODE: CANCELED");
@@ -351,7 +331,33 @@ public class ProvideMatchingFragment extends Fragment {
     super.onActivityResult(requestCode, resultCode, data);
   }
 
-  /** Tries to parse an integer string, if not returns 0 and shows a snackbar. */
+  /**
+   * Given a file URI copy into internal storage and select it
+   * <p>
+   * TODO this should be done outside of the main thread
+   */
+  private void onFileSelected(Uri uri) {
+    // Copy the file to a local app file for providing to the API.
+    File file = new File(requireContext().getFilesDir(), TEMP_INPUT_FILENAME);
+    try (InputStream in = requireContext().getContentResolver().openInputStream(uri)) {
+      try (OutputStream out = new FileOutputStream(file)) {
+        byte[] buf = new byte[1024];
+        int len;
+        while ((len = in.read(buf)) > 0) {
+          out.write(buf, 0, len);
+        }
+      }
+    } catch (FileNotFoundException e) {
+      Log.e(TAG, "FileNotFoundException creating temp file", e);
+    } catch (IOException e) {
+      Log.e(TAG, "IOException creating temp file", e);
+    }
+    provideMatchingViewModel.setFileInput(file);
+  }
+
+  /**
+   * Tries to parse an integer string, if not returns 0 and shows a snackbar.
+   */
   private int tryParseInteger(String integer) {
     try {
       return Integer.parseInt(integer);

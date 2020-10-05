@@ -31,7 +31,7 @@
       android:id="@+id/qr_code"
       android:layout_width="200dp"
       android:layout_height="200dp"
-      android:src="@drawable/ic_info_black_24dp"/>
+      android:src="@drawable/ic_info"/>
 
     <LinearLayout
         android:layout_width="match_parent"

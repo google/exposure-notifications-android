@@ -17,49 +17,52 @@
 
 package com.google.android.apps.exposurenotification.home;
 
-import android.app.Application;
 import android.bluetooth.BluetoothAdapter;
-import android.content.Context;
 import android.location.LocationManager;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.StatFs;
 import android.util.Log;
-import androidx.annotation.NonNull;
+import androidx.annotation.VisibleForTesting;
 import androidx.core.location.LocationManagerCompat;
-import androidx.lifecycle.AndroidViewModel;
+import androidx.hilt.lifecycle.ViewModelInject;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import com.google.android.apps.exposurenotification.common.AppExecutors;
+import androidx.lifecycle.ViewModel;
 import com.google.android.apps.exposurenotification.common.SingleLiveEvent;
+import com.google.android.apps.exposurenotification.logging.AnalyticsLogger;
+import com.google.android.apps.exposurenotification.proto.UiInteraction.EventType;
 import com.google.android.apps.exposurenotification.nearby.ExposureNotificationClientWrapper;
-import com.google.android.apps.exposurenotification.nearby.ProvideDiagnosisKeysWorker;
-import com.google.android.apps.exposurenotification.network.UploadCoverTrafficWorker;
+import com.google.android.apps.exposurenotification.nearby.PackageConfigurationHelper;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
+import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.OnboardingStatus;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.nearby.exposurenotification.ExposureNotificationStatusCodes;
-import com.google.common.util.concurrent.FutureCallback;
-import com.google.common.util.concurrent.Futures;
-import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 
 /**
  * View model for the {@link ExposureNotificationActivity} and fragments.
  */
-public class ExposureNotificationViewModel extends AndroidViewModel {
+public class ExposureNotificationViewModel extends ViewModel {
 
   private static final String TAG = "ExposureNotificationVM";
 
-  private static final long MINIMUM_FREE_STORAGE_REQUIRED_BYTES = 1024L * 1024L * 100L;
+  @VisibleForTesting
+  static final long MINIMUM_FREE_STORAGE_REQUIRED_BYTES = 1024L * 1024L * 100L;
 
   private final MutableLiveData<ExposureNotificationState> stateLiveData;
   private final MutableLiveData<Boolean> inFlightLiveData = new MutableLiveData<>(false);
   private final MutableLiveData<Boolean> inFlightResolutionLiveData = new MutableLiveData<>(false);
+  private final MutableLiveData<Boolean> enEnabledLiveData;
   private final ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
 
   private final SingleLiveEvent<Void> apiErrorLiveEvent = new SingleLiveEvent<>();
   private final SingleLiveEvent<ApiException> resolutionRequiredLiveEvent = new SingleLiveEvent<>();
 
-  private final ExposureNotificationClientWrapper wrapper;
+  private final ExposureNotificationClientWrapper exposureNotificationClientWrapper;
+  private final LocationManager locationManager;
+  private final StatFs filesDirStat;
+  private final AnalyticsLogger logger;
+  private final PackageConfigurationHelper packageConfigurationHelper;
 
   private boolean inFlightIsEnabled = false;
 
@@ -68,15 +71,28 @@ public class ExposureNotificationViewModel extends AndroidViewModel {
     ENABLED,
     PAUSED_BLE,
     PAUSED_LOCATION,
+    PAUSED_LOCATION_BLE,
     STORAGE_LOW
   }
 
-  public ExposureNotificationViewModel(@NonNull Application application) {
-    super(application);
-    exposureNotificationSharedPreferences = new ExposureNotificationSharedPreferences(application);
-    wrapper = ExposureNotificationClientWrapper.get(getApplication());
-    stateLiveData = new MutableLiveData<>(
-        getStateForIsEnabled(exposureNotificationSharedPreferences.getIsEnabledCache()));
+  @ViewModelInject
+  public ExposureNotificationViewModel(
+      ExposureNotificationSharedPreferences exposureNotificationSharedPreferences,
+      ExposureNotificationClientWrapper exposureNotificationClientWrapper,
+      LocationManager locationManager,
+      StatFs statFs,
+      AnalyticsLogger logger,
+      PackageConfigurationHelper packageConfigurationHelper) {
+    this.exposureNotificationSharedPreferences = exposureNotificationSharedPreferences;
+    this.exposureNotificationClientWrapper = exposureNotificationClientWrapper;
+    this.locationManager = locationManager;
+    this.filesDirStat = statFs;
+    this.logger = logger;
+    this.packageConfigurationHelper = packageConfigurationHelper;
+
+    boolean isEnabled = exposureNotificationSharedPreferences.getIsEnabledCache();
+    enEnabledLiveData = new MutableLiveData<>(isEnabled);
+    stateLiveData = new MutableLiveData<>(getStateForIsEnabled(isEnabled));
   }
 
   /**
@@ -95,6 +111,27 @@ public class ExposureNotificationViewModel extends AndroidViewModel {
   }
 
   /**
+   * Returns whether en_module is on/off, irrespective of its functional state. Should be used if
+   * there is a EN on/off button.
+   */
+  public LiveData<Boolean> getEnEnabledLiveData() {
+    return enEnabledLiveData;
+  }
+
+  /**
+   * Returns whether en_module is on/off, without use of a cache. Returns immediately and completes
+   * the returned LiveData asynchronously when the API query returns.
+   */
+  public LiveData<Boolean> getIsEnabledLiveDataWithoutCache() {
+    SingleLiveEvent<Boolean> liveEvent = new SingleLiveEvent<>();
+    exposureNotificationClientWrapper.isEnabled()
+        .addOnSuccessListener(liveEvent::postValue)
+        .addOnFailureListener(e -> liveEvent.postValue(false))
+        .addOnCanceledListener(() -> liveEvent.postValue(false));
+    return liveEvent;
+  }
+
+  /**
    * An event that requests a resolution with the given {@link ApiException}.
    */
   public SingleLiveEvent<ApiException> getResolutionRequiredLiveEvent() {
@@ -108,58 +145,87 @@ public class ExposureNotificationViewModel extends AndroidViewModel {
     return apiErrorLiveEvent;
   }
 
+  public OnboardingStatus getOnboardedState() {
+    return exposureNotificationSharedPreferences.getOnboardedState();
+  }
+
   /**
    * Refresh isEnabled state and getExposureWindows from Exposure Notification API.
    */
   public void refreshState() {
-    maybeRefreshIsEnabled(wrapper);
+    maybeRefreshIsEnabled();
+    maybeRefreshAppAnalytics();
   }
 
-  private synchronized void maybeRefreshIsEnabled(ExposureNotificationClientWrapper wrapper) {
+  private synchronized void maybeRefreshIsEnabled() {
     if (inFlightIsEnabled) {
       return;
     }
     inFlightIsEnabled = true;
-    wrapper.isEnabled()
+    exposureNotificationClientWrapper.isEnabled()
         .addOnSuccessListener(
             (isEnabled) -> {
               stateLiveData.setValue(getStateForIsEnabled(isEnabled));
               exposureNotificationSharedPreferences.setIsEnabledCache(isEnabled);
-              if (isEnabled) {
-                // if we're seeing it enabled then permission has been granted
-                noteOnboardingCompleted();
-                schedulePeriodicJobs();
-              }
               inFlightIsEnabled = false;
             })
-        .addOnCanceledListener(() -> inFlightIsEnabled = false)
+        .addOnCanceledListener(() -> {
+          Log.i(TAG, "Call isEnabled is canceled");
+          inFlightIsEnabled = false;
+        })
         .addOnFailureListener((t) -> {
-          Log.e(TAG, "Failed to call isEnabled", t);
           inFlightIsEnabled = false;
           stateLiveData.setValue(getStateForIsEnabled(false));
           exposureNotificationSharedPreferences.setIsEnabledCache(false);
         });
   }
 
+  private synchronized void maybeRefreshAppAnalytics() {
+    exposureNotificationClientWrapper.getPackageConfiguration()
+        .addOnSuccessListener(
+            (packageConfiguration) ->
+                packageConfigurationHelper.maybeUpdateAppAnalyticsState(packageConfiguration))
+        .addOnCanceledListener(() -> Log.i(TAG, "Call getPackageConfiguration is canceled"))
+        .addOnFailureListener((t) -> Log.e(TAG, "Error calling getPackageConfiguration", t));
+  }
+
   private ExposureNotificationState getStateForIsEnabled(boolean isEnabled) {
+    enEnabledLiveData.setValue(isEnabled);
     if (!isEnabled) {
+      /*
+       * Show low-storage errors before telling the user that EN is disabled,
+       * as EN can only be (re)enabled with enough storage space available.
+       */
+      if (freeStorageSpaceRequired()) {
+        return ExposureNotificationState.STORAGE_LOW;
+      }
+
       return ExposureNotificationState.DISABLED;
     }
 
-    BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-    if (mBluetoothAdapter != null && !mBluetoothAdapter.isEnabled()) {
+    /*
+     * Go though the possible combinations of location/ble enabled states and set the
+     * ExposureNotificationState accordingly
+     */
+    boolean isLocationEnableRequired = isLocationEnableRequired();
+    boolean isBluetoothEnableRequired = isBluetoothEnableRequired();
+
+    if (isBluetoothEnableRequired && isLocationEnableRequired) {
+      return ExposureNotificationState.PAUSED_LOCATION_BLE;
+    }
+
+    if (isBluetoothEnableRequired) {
       return ExposureNotificationState.PAUSED_BLE;
     }
 
-    if (isLocationEnableRequired(getApplication())) {
+    if (isLocationEnableRequired) {
       return ExposureNotificationState.PAUSED_LOCATION;
     }
 
-    /* DiagnosisKeyDownloader works with the App's private files dir, so check available space
-     * there */
-    StatFs filesDirStat = new StatFs(getApplication().getFilesDir().toString());
-    long freeStorage = filesDirStat.getAvailableBytes();
-    if (freeStorage <= MINIMUM_FREE_STORAGE_REQUIRED_BYTES) {
+    /*
+     * If everything else works, finally make sure that there is enough storage space
+     */
+    if (freeStorageSpaceRequired()) {
       return ExposureNotificationState.STORAGE_LOW;
     }
 
@@ -167,40 +233,35 @@ public class ExposureNotificationViewModel extends AndroidViewModel {
   }
 
   /**
-   * When it comes to Location and BLE, there are the following conditions:
-   * - Location on is only necessary to use bluetooth for Android M+.
-   * - Starting with Android S, there may be support for locationless BLE scanning
-   * => We only go into an error state if these conditions require us to have location on, but
-   *    it is not activated on device.
+   * Check if the user needs more free storage space
    */
-  private boolean isLocationEnableRequired(Context context) {
-    LocationManager locationManager =
-        (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
-
-    return (!wrapper.deviceSupportsLocationlessScanning()
-        && VERSION.SDK_INT >= VERSION_CODES.M
-        && locationManager != null && !LocationManagerCompat.isLocationEnabled(locationManager));
+  private boolean freeStorageSpaceRequired() {
+    /*
+     * DiagnosisKeyDownloader works with the App's private files dir, so check available space
+     * there
+     */
+    long freeStorage = filesDirStat.getAvailableBytes();
+    return (freeStorage <= MINIMUM_FREE_STORAGE_REQUIRED_BYTES);
   }
 
-  private void schedulePeriodicJobs() {
-    Futures.addCallback(AppExecutors.getBackgroundExecutor().submit(() -> {
-      Log.i(TAG, "Scheduling post-enable periodic WorkManager jobs...");
-      // This worker schedules some random fake key upload traffic, to help with privacy.
-      UploadCoverTrafficWorker.schedule(getApplication());
-      // This worker schedules daily providing of keys.
-      ProvideDiagnosisKeysWorker.schedule(getApplication());
-      return null;
-    }), new FutureCallback<Void>() {
-      @Override
-      public void onSuccess(@NullableDecl Void result) {
-        Log.i(TAG, "Scheduled periodic WorkManager jobs.");
-      }
+  /**
+   * Check if the user needs to enable Bluetooth
+   */
+  private boolean isBluetoothEnableRequired() {
+    BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+    return (mBluetoothAdapter != null && !mBluetoothAdapter.isEnabled());
+  }
 
-      @Override
-      public void onFailure(@NonNull Throwable t) {
-        Log.e(TAG, "Failed to schedule periodic WorkManager jobs.", t);
-      }
-    }, AppExecutors.getLightweightExecutor());
+  /**
+   * When it comes to Location and BLE, there are the following conditions: - Location on is only
+   * necessary to use bluetooth for Android M+. - Starting with Android S, there may be support for
+   * locationless BLE scanning => We only go into an error state if these conditions require us to
+   * have location on, but it is not activated on device.
+   */
+  private boolean isLocationEnableRequired() {
+    return (!exposureNotificationClientWrapper.deviceSupportsLocationlessScanning()
+        && VERSION.SDK_INT >= VERSION_CODES.M
+        && locationManager != null && !LocationManagerCompat.isLocationEnabled(locationManager));
   }
 
   /**
@@ -208,7 +269,7 @@ public class ExposureNotificationViewModel extends AndroidViewModel {
    */
   public void startExposureNotifications() {
     inFlightLiveData.setValue(true);
-    wrapper
+    exposureNotificationClientWrapper
         .start()
         .addOnSuccessListener(
             unused -> {
@@ -219,7 +280,6 @@ public class ExposureNotificationViewModel extends AndroidViewModel {
         .addOnFailureListener(
             exception -> {
               if (!(exception instanceof ApiException)) {
-                Log.e(TAG, "Unknown error when attempting to start API", exception);
                 inFlightLiveData.setValue(false);
                 apiErrorLiveEvent.call();
                 return;
@@ -247,7 +307,7 @@ public class ExposureNotificationViewModel extends AndroidViewModel {
    */
   public void startResolutionResultOk() {
     inFlightResolutionLiveData.setValue(false);
-    wrapper
+    exposureNotificationClientWrapper
         .start()
         .addOnSuccessListener(
             unused -> {
@@ -257,7 +317,6 @@ public class ExposureNotificationViewModel extends AndroidViewModel {
             })
         .addOnFailureListener(
             exception -> {
-              Log.e(TAG, "Error handling resolution ok", exception);
               apiErrorLiveEvent.call();
               inFlightLiveData.setValue(false);
             })
@@ -277,7 +336,7 @@ public class ExposureNotificationViewModel extends AndroidViewModel {
    */
   public void stopExposureNotifications() {
     inFlightLiveData.setValue(true);
-    wrapper
+    exposureNotificationClientWrapper
         .stop()
         .addOnSuccessListener(
             unused -> {
@@ -286,16 +345,12 @@ public class ExposureNotificationViewModel extends AndroidViewModel {
             })
         .addOnFailureListener(
             exception -> {
-              Log.w(TAG, "Failed to stop", exception);
               inFlightLiveData.setValue(false);
             })
         .addOnCanceledListener(() -> inFlightLiveData.setValue(false));
   }
 
-  /**
-   * Record in SharedPreferences that the user has completed the Onboarding flow.
-   */
-  public void noteOnboardingCompleted() {
-    exposureNotificationSharedPreferences.setOnboardedState(true);
+  public void logUiInteraction(EventType event) {
+    logger.logUiInteraction(event);
   }
 }

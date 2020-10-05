@@ -37,8 +37,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.utils.RequestCodes;
 import com.google.android.material.snackbar.Snackbar;
+import dagger.hilt.android.AndroidEntryPoint;
 
-/** Fragment for the view tab in {@link MatchingDebugActivity}. */
+/**
+ * Fragment for the view tab in {@link MatchingDebugActivity}.
+ */
+@AndroidEntryPoint
 public class KeysMatchingFragment extends Fragment {
 
   private static final String TAG = "ViewKeysFragment";

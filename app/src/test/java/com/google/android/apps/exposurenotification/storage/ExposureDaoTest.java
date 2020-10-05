@@ -17,121 +17,78 @@
 
 package com.google.android.apps.exposurenotification.storage;
 
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+import com.google.android.apps.exposurenotification.testsupport.InMemoryDb;
+import dagger.hilt.android.testing.HiltAndroidTest;
+import dagger.hilt.android.testing.HiltTestApplication;
 import static com.google.common.truth.Truth.assertThat;
-
-import androidx.room.Room;
-import androidx.test.core.app.ApplicationProvider;
-import com.google.common.collect.Lists;
-import com.google.common.util.concurrent.FluentFuture;
-import com.google.common.util.concurrent.ListenableFuture;
-import com.google.common.util.concurrent.MoreExecutors;
-import java.util.ArrayList;
+import com.google.common.collect.ImmutableList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.robolectric.RobolectricTestRunner;
+import org.robolectric.annotation.Config;
 
 /**
  * Tests for operations in {@link ExposureDao}.
  */
-@RunWith(RobolectricTestRunner.class)
+@RunWith(AndroidJUnit4.class)
+@HiltAndroidTest
+@Config(application = HiltTestApplication.class)
 public class ExposureDaoTest {
 
-  // Sample data with which we'll populate the test database.
-  private static final long DATE_MILLIS_SINCE_EPOCH_1 = 1234L;
-  private static final long RECEIVED_TIMESTAMP_MS_1 = 5678L;
-  private static final ExposureEntity EXPOSURE_ENTITY_1 = ExposureEntity
-      .create(DATE_MILLIS_SINCE_EPOCH_1, RECEIVED_TIMESTAMP_MS_1);
-
-  private static final long DATE_MILLIS_SINCE_EPOCH_2 = 1234L;
-  private static final long RECEIVED_TIMESTAMP_MS_2 = 5678L;
-  private static final ExposureEntity EXPOSURE_ENTITY_2 = ExposureEntity
-      .create(DATE_MILLIS_SINCE_EPOCH_2, RECEIVED_TIMESTAMP_MS_2);
-
-  private ExposureNotificationDatabase database;
   private ExposureDao exposureDao;
 
   @Before
   public void setUp() {
-    database = Room.inMemoryDatabaseBuilder(
-        ApplicationProvider.getApplicationContext(), ExposureNotificationDatabase.class).build();
-    exposureDao = database.exposureDao();
-  }
-
-  @After
-  public void tearDown() {
-    database.close();
-  }
-
-
-  @Test
-  public void upsertAsync_insert()
-      throws InterruptedException, ExecutionException, TimeoutException {
-    ListenableFuture<List<ExposureEntity>> finalTokens =
-        FluentFuture.from(exposureDao.upsertAsync(Lists.newArrayList(EXPOSURE_ENTITY_1)))
-            .transformAsync(v -> exposureDao.getAllAsync(), MoreExecutors.directExecutor());
-
-    assertEqualsStripIds(finalTokens.get(10, TimeUnit.SECONDS),
-        Lists.newArrayList(EXPOSURE_ENTITY_1));
+    exposureDao = InMemoryDb.create().exposureDao();
   }
 
   @Test
-  public void upsertAsync_update()
-      throws InterruptedException, ExecutionException, TimeoutException {
-    ExposureEntity updatedEntity1 = ExposureEntity
-        .create(DATE_MILLIS_SINCE_EPOCH_1 + 1, RECEIVED_TIMESTAMP_MS_1 + 1);
-    ExposureEntity updatedEntity2 = ExposureEntity
-        .create(DATE_MILLIS_SINCE_EPOCH_2 + 1, RECEIVED_TIMESTAMP_MS_2 + 1);
+  public void getAll_shouldReturnAllEntities() {
+    List<ExposureEntity> input = ImmutableList.of(
+        createExposureEntity(1234L, 4242L),
+        createExposureEntity(5678L, 1000L));
 
-    ListenableFuture<List<ExposureEntity>> finalTokens =
-        FluentFuture
-            .from(exposureDao.upsertAsync(Lists.newArrayList(EXPOSURE_ENTITY_1, EXPOSURE_ENTITY_2)))
-            .transformAsync(v -> exposureDao.getAllAsync(), MoreExecutors.directExecutor())
-            .transformAsync(entities -> {
-              List<ExposureEntity> updates = new ArrayList<>();
-              for (ExposureEntity entity : entities) {
-                entity.setDateMillisSinceEpoch(entity.getDateMillisSinceEpoch() + 1);
-                entity.setReceivedTimestampMs(entity.getReceivedTimestampMs() + 1);
-                updates.add(entity);
-              }
-              return exposureDao.upsertAsync(updates);
-            }, MoreExecutors.directExecutor())
-            .transformAsync(v -> exposureDao.getAllAsync(), MoreExecutors.directExecutor());
+    exposureDao.upsertAll(input);
 
-    assertEqualsStripIds(finalTokens.get(10, TimeUnit.SECONDS),
-        Lists.newArrayList(updatedEntity1, updatedEntity2));
+    List<ExposureEntity> entities = exposureDao.getAll();
+
+    assertThat(entities).containsExactlyElementsIn(input);
   }
 
   @Test
-  public void deleteAllAsync()
-      throws InterruptedException, ExecutionException, TimeoutException {
-    ListenableFuture<List<ExposureEntity>> finalTokens =
-        FluentFuture
-            .from(exposureDao.upsertAsync(Lists.newArrayList(EXPOSURE_ENTITY_1, EXPOSURE_ENTITY_2)))
-            .transformAsync(v -> exposureDao.deleteAllAsync(),
-                MoreExecutors.directExecutor())
-            .transformAsync(v -> exposureDao.getAllAsync(), MoreExecutors.directExecutor());
+  public void deleteAll_shouldReturnNoEntities() {
+    List<ExposureEntity> input = ImmutableList.of(
+        createExposureEntity(3333L, 4444L),
+        createExposureEntity(1111L, 2222L));
+    exposureDao.upsertAll(input);
+    exposureDao.deleteAll();
 
-    assertThat(finalTokens.get(10, TimeUnit.SECONDS)).isEmpty();
+    List<ExposureEntity> entities = exposureDao.getAll();
+
+    assertThat(entities).hasSize(0);
   }
 
-  private static void assertEqualsStripIds(List<ExposureEntity> exposureEntitiesA,
-      List<ExposureEntity> exposureEntitiesB) {
-    assertThat(stripIds(exposureEntitiesA)).containsExactlyElementsIn(stripIds(exposureEntitiesB));
+  @Test
+  public void clearInsertExposureEntities_shouldReplaceAllEntities() {
+    ExposureEntity exposureEntity1 = createExposureEntity(1337L, 118999L);
+    ExposureEntity exposureEntity2 = createExposureEntity(4242L, 88199911L);
+    ExposureEntity exposureEntity3 = createExposureEntity(1337L, 97252L);
+
+    exposureDao.upsertAll(ImmutableList.of(exposureEntity1, exposureEntity2));
+    exposureDao.clearInsertExposureEntities(ImmutableList.of(exposureEntity3));
+
+    List<ExposureEntity> entities = exposureDao.getAll();
+
+    assertThat(entities).containsExactly(exposureEntity3);
   }
 
-  private static List<ExposureEntity> stripIds(List<ExposureEntity> exposureEntities) {
-    List<ExposureEntity> exposureEntitiesStripped = new ArrayList<>();
-    for (ExposureEntity exposureEntity : exposureEntities) {
-      exposureEntity.setId(0);
-      exposureEntitiesStripped.add(exposureEntity);
-    }
-    return exposureEntitiesStripped;
+  private ExposureEntity createExposureEntity(long daysSinceEpoch, long score) {
+    return ExposureEntity.newBuilder()
+        .setDateDaysSinceEpoch(daysSinceEpoch)
+        .setExposureScore(score)
+        .build();
   }
 
 }

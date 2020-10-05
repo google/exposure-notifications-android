@@ -25,6 +25,8 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import androidx.annotation.StringRes;
+import androidx.annotation.VisibleForTesting;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationCompat.Builder;
 import androidx.core.app.NotificationManagerCompat;
@@ -37,13 +39,15 @@ import java.util.Objects;
  */
 public final class NotificationHelper {
 
-  private static final String EXPOSURE_NOTIFICATION_CHANNEL_ID =
+  @VisibleForTesting
+  static final String EXPOSURE_NOTIFICATION_CHANNEL_ID =
       "ApolloExposureNotificationCallback.EXPOSURE_NOTIFICATION_CHANNEL_ID";
 
   /**
    * Shows a notification, notifying of a possible exposure.
    */
-  public static void showPossibleExposureNotification(Context context) {
+  public void showPossibleExposureNotification(Context context, @StringRes int titleResource,
+      @StringRes int messageResource) {
     createNotificationChannel(context);
     Intent intent = new Intent(context, ExposureNotificationActivity.class);
     intent.setAction(ACTION_LAUNCH_FROM_EXPOSURE_NOTIFICATION);
@@ -52,10 +56,10 @@ public final class NotificationHelper {
     NotificationCompat.Builder builder =
         new Builder(context, EXPOSURE_NOTIFICATION_CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_notification)
-            .setContentTitle(context.getString(R.string.notification_title))
-            .setContentText(context.getString(R.string.notification_message))
+            .setContentTitle(context.getString(titleResource))
+            .setContentText(context.getString(messageResource))
             .setStyle(new NotificationCompat.BigTextStyle()
-                .bigText(context.getString(R.string.notification_message)))
+                .bigText(context.getString(messageResource)))
             .setPriority(NotificationCompat.PRIORITY_MAX)
             .setContentIntent(pendingIntent)
             .setOnlyAlertOnce(true)
@@ -70,7 +74,7 @@ public final class NotificationHelper {
   /**
    * Creates the notification channel for O and above.
    */
-  private static void createNotificationChannel(Context context) {
+  private void createNotificationChannel(Context context) {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
       NotificationChannel channel =
           new NotificationChannel(EXPOSURE_NOTIFICATION_CHANNEL_ID,
@@ -82,5 +86,4 @@ public final class NotificationHelper {
     }
   }
 
-  private NotificationHelper() {}
 }

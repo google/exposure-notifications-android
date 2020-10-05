@@ -25,6 +25,9 @@ import com.android.volley.RequestQueue;
  */
 public abstract class RequestQueueWrapper {
 
+  /**
+   * See {@link RequestQueue#add(Request)}
+   */
   public abstract <T> Request<T> add(Request<T> request);
 
   public static RequestQueueWrapper wrapping(RequestQueue innerQueue) {

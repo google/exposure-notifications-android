@@ -19,7 +19,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  android:orientation="vertical">
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:orientation="vertical"
+  android:animateLayoutChanges="false">
 
   <FrameLayout
     android:layout_width="match_parent"
@@ -30,16 +32,8 @@
       android:layout_height="?attr/actionBarSize"
       android:text="@string/home_tab_notify_text"
       android:gravity="center"
-      android:textAppearance="?attr/textAppearanceHeadline6"/>
-
-    <ImageButton
-      style="?attr/borderlessButtonStyle"
-      android:background="?attr/selectableItemBackgroundBorderless"
-      android:src="@drawable/ic_options_menu"
-      android:id="@+id/exposure_menu"
-      android:layout_width="wrap_content"
-      android:layout_height="?attr/actionBarSize"
-      android:layout_gravity="right"/>
+      android:textAppearance="?attr/textAppearanceHeadline6"
+      android:fontFamily="@font/google_sans_medium"/>
 
   </FrameLayout>
 
@@ -54,172 +48,66 @@
       android:orientation="vertical">
 
       <ViewFlipper
+        android:id="@+id/notify_header_banner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:measureAllChildren="false">
+
+        <ImageView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:adjustViewBounds="true"
+          android:padding="@dimen/padding_normal"
+          app:srcCompat="@drawable/ic_banner_notification" />
+
+        <ImageView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:paddingHorizontal="@dimen/padding_large"
+          app:srcCompat="@drawable/ic_banner_circle" />
+
+      </ViewFlipper>
+
+      <ViewFlipper
         android:id="@+id/notify_header_flipper"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:measureAllChildren="false">
 
-        <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_marginVertical="@dimen/padding_large"
-          android:paddingStart="@dimen/padding_large"
-          android:paddingEnd="@dimen/padding_large"
-          android:orientation="vertical">
-
-          <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/padding_extra_large"
-            android:textAppearance="?attr/textAppearanceHeadline6"
-            android:text="@string/exposure_notifications_are_turned_off" />
-
-          <TextView
-            android:id="@+id/settings_banner_subtitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/padding_normal"
-            android:textAppearance="?attr/textAppearanceBody1"
-            android:text="@string/notify_turn_on_exposure_notifications_header" />
-
-          <Button
-            android:id="@+id/start_api_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/turn_on_exposure_notifications_action"
-            android:layout_gravity="center_horizontal"
-            style="?attr/materialButtonOutlinedStyle" />
-
-        </LinearLayout>
+        <include layout="@layout/viewflipper_children_error_cases" />
 
         <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:layout_marginTop="@dimen/padding_large"
           android:orientation="vertical">
 
           <TextView
-            android:id="@+id/fragment_notify_subtitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/padding_large"
             android:paddingBottom="@dimen/padding_normal"
             android:text="@string/share_test_result_title"
-            android:textAppearance="?attr/textAppearanceHeadline6" />
+            android:textAppearance="?attr/textAppearanceHeadline5"
+            android:gravity="center" />
 
           <TextView
-            android:id="@+id/fragment_notify_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/padding_large"
             android:layout_marginBottom="@dimen/padding_extra_large"
             android:text="@string/share_test_result_description"
-            android:textAppearance="?attr/textAppearanceBody1" />
+            android:textAppearance="?attr/textAppearanceBody1"
+            android:textColor="?attr/colorControlNormal"
+            android:gravity="center" />
 
           <Button
             android:id="@+id/fragment_notify_share_button"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginHorizontal="@dimen/padding_large"
             android:layout_marginBottom="@dimen/padding_large"
-            android:text="@string/share_test_result" />
-
-        </LinearLayout>
-
-        <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_marginVertical="@dimen/padding_normal"
-          android:paddingStart="@dimen/padding_large"
-          android:paddingEnd="@dimen/padding_large"
-          android:orientation="vertical">
-
-          <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?attr/textAppearanceHeadline6"
-            android:layout_marginBottom="@dimen/padding_normal"
-            android:text="@string/exposure_notifications_are_turned_off" />
-
-          <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?attr/textAppearanceBody2"
-            android:layout_marginBottom="@dimen/padding_normal"
-            android:text="@string/ble_off_notify" />
-
-          <Button
-            android:id="@+id/ble_settings_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/device_settings"
-            android:layout_gravity="center_horizontal"
-            style="?attr/materialButtonOutlinedStyle" />
-
-        </LinearLayout>
-
-        <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_marginVertical="@dimen/padding_normal"
-          android:paddingStart="@dimen/padding_large"
-          android:paddingEnd="@dimen/padding_large"
-          android:orientation="vertical">
-
-          <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?attr/textAppearanceHeadline6"
-            android:layout_marginBottom="@dimen/padding_normal"
-            android:text="@string/exposure_notifications_are_turned_off" />
-
-          <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?attr/textAppearanceBody2"
-            android:layout_marginBottom="@dimen/padding_normal"
-            android:text="@string/location_off_notify" />
-
-          <Button
-            android:id="@+id/location_settings_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/device_settings"
-            android:layout_gravity="center_horizontal"
-            style="?attr/materialButtonOutlinedStyle" />
-
-        </LinearLayout>
-
-        <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_marginVertical="@dimen/padding_normal"
-          android:paddingStart="@dimen/padding_large"
-          android:paddingEnd="@dimen/padding_large"
-          android:orientation="vertical">
-
-          <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?attr/textAppearanceHeadline6"
-            android:layout_marginBottom="@dimen/padding_normal"
-            android:text="@string/exposure_notifications_are_turned_off" />
-
-          <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?attr/textAppearanceBody2"
-            android:text="@string/storage_low_notify" />
-
-          <Button
-            android:id="@+id/manage_storage_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/padding_normal"
-            android:text="@string/manage_storage"
-            android:layout_gravity="center_horizontal"
-            style="?attr/materialButtonOutlinedStyle" />
+            android:text="@string/btn_share_positive" />
 
         </LinearLayout>
 
@@ -234,37 +122,18 @@
         <include layout="@layout/horizontal_divider" />
 
         <TextView
-          android:id="@+id/fragment_notify_diagnosis_heading"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:paddingHorizontal="@dimen/padding_large"
           android:layout_marginTop="@dimen/padding_large"
           android:layout_marginBottom="@dimen/padding_normal"
-          android:text="@string/positive_test_results"
+          android:text="@string/test_result_subtitle"
           android:textAppearance="?attr/textAppearanceOverline" />
 
-        <ViewSwitcher
-          android:id="@+id/fragment_notify_diagnosis_switcher"
+        <androidx.recyclerview.widget.RecyclerView
+          android:id="@+id/notify_recycler_view"
           android:layout_width="match_parent"
-          android:layout_height="wrap_content">
-
-          <TextView
-            android:id="@+id/fragment_notify_no_diagnosis_label"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/padding_extra_large"
-            android:paddingHorizontal="@dimen/padding_large"
-            android:text="@string/no_positive_test_results"
-            android:textAppearance="?attr/textAppearanceBody1"
-            android:textColor="?attr/colorControlNormal"
-            android:gravity="center" />
-
-          <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/notify_recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        </ViewSwitcher>
+          android:layout_height="wrap_content" />
 
       </LinearLayout>
 

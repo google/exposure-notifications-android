@@ -22,7 +22,7 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent">
 
-  <androidx.viewpager.widget.ViewPager
+  <androidx.viewpager2.widget.ViewPager2
     android:id="@+id/view_pager"
     android:layout_width="wrap_content"
     android:layout_height="0dp"
@@ -42,8 +42,9 @@
     app:tabGravity="fill"
     app:tabMaxWidth="0dp"
     app:tabMode="fixed"
-    app:tabTextAppearance="?textAppearanceBody1"
+    app:tabTextAppearance="?attr/textAppearanceSubtitle2"
     app:tabPaddingStart="0dp"
-    app:tabPaddingEnd="0dp"/>
+    app:tabPaddingEnd="0dp"
+    />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

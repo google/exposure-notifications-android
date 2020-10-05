@@ -20,7 +20,8 @@ package com.google.android.apps.exposurenotification.debug;
 import static com.google.common.truth.Truth.assertThat;
 
 import androidx.test.core.app.ApplicationProvider;
-import com.google.android.apps.exposurenotification.network.KeyFileConstants;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+import com.google.android.apps.exposurenotification.keydownload.KeyFileConstants;
 import com.google.android.apps.exposurenotification.proto.TEKSignatureList;
 import com.google.android.apps.exposurenotification.proto.TemporaryExposureKeyExport;
 import com.google.android.gms.nearby.exposurenotification.TemporaryExposureKey;
@@ -28,6 +29,8 @@ import com.google.common.base.Strings;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableList.Builder;
 import com.google.protobuf.ByteString;
+import dagger.hilt.android.testing.HiltAndroidTest;
+import dagger.hilt.android.testing.HiltTestApplication;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -39,10 +42,13 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
+import org.robolectric.annotation.Config;
 import org.threeten.bp.Instant;
 
 /** Tests of {@link KeyFileWriter}. */
-@RunWith(RobolectricTestRunner.class)
+@RunWith(AndroidJUnit4.class)
+@HiltAndroidTest
+@Config(application = HiltTestApplication.class)
 public class KeyFileWriterTest {
   public static final String HEADER_V1 = "EK Export v1";
 

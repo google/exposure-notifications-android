@@ -22,20 +22,14 @@
 
   <uses-feature android:name="android.hardware.bluetooth_le" android:required="true" />
   <uses-feature android:name="android.hardware.bluetooth" />
-  <uses-feature android:name="android.hardware.camera" />
-  <uses-feature android:name="android.hardware.camera.autofocus" />
 
   <uses-permission android:name="android.permission.INTERNET" />
   <uses-permission android:name="android.permission.BLUETOOTH" />
-  <uses-permission android:name="android.permission.CAMERA" />
-
-  <uses-sdk tools:overrideLibrary="com.google.zxing.client.android" />
 
   <application
       android:allowBackup="false"
       android:name=".ExposureNotificationApplication"
       android:icon="@mipmap/ic_launcher"
-      android:roundIcon="@mipmap/ic_launcher_round"
       android:label="@string/app_name"
       android:supportsRtl="true"
       android:theme="@style/ExposureNotification">
@@ -54,25 +48,48 @@
     </activity>
 
     <activity
-      android:name=".exposure.ExposureLearnMoreActivity"
-      android:exported="false"
-      android:windowSoftInputMode="stateHidden"
-      android:parentActivityName=".home.ExposureNotificationActivity" />
-
-    <activity
-      android:name=".notify.NotifyLearnMoreActivity"
-      android:exported="false"
-      android:windowSoftInputMode="stateHidden"
-      android:parentActivityName=".home.ExposureNotificationActivity" />
-
-    <activity
-      android:name=".exposure.ExposureAboutActivity"
+      android:name=".settings.ExposureAboutActivity"
+      android:label="@string/exposure_about_title"
       android:exported="false"
       android:windowSoftInputMode="stateHidden"
       android:parentActivityName=".home.ExposureNotificationActivity" />
 
     <activity
       android:name=".notify.ShareDiagnosisActivity"
+      android:exported="true"
+      android:windowSoftInputMode="stateHidden|adjustResize"
+      android:parentActivityName=".home.ExposureNotificationActivity">
+      <intent-filter>
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
+        <data android:scheme="ens" />
+      </intent-filter>
+      <intent-filter android:autoVerify="true">
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
+        <data android:scheme="https" android:host="${appLinkHost}" />
+      </intent-filter>
+    </activity>
+
+    <activity
+      android:name=".settings.AppAnalyticsActivity"
+      android:label="@string/app_analytics_title"
+      android:exported="false"
+      android:windowSoftInputMode="stateHidden|adjustResize"
+      android:parentActivityName=".home.ExposureNotificationActivity" />
+
+    <activity
+      android:name=".settings.AgencyActivity"
+      android:label="@string/agency_message_title"
+      android:exported="false"
+      android:windowSoftInputMode="stateHidden|adjustResize"
+      android:parentActivityName=".home.ExposureNotificationActivity" />
+
+    <activity
+      android:name=".settings.LegalTermsActivity"
+      android:label="@string/settings_legal_terms"
       android:exported="false"
       android:windowSoftInputMode="stateHidden|adjustResize"
       android:parentActivityName=".home.ExposureNotificationActivity" />
@@ -91,6 +108,11 @@
     <meta-data
       android:name="preloaded_fonts"
       android:resource="@array/preloaded_fonts" />
+
+    <provider
+      android:name="androidx.work.impl.WorkManagerInitializer"
+      android:authorities="${applicationId}.workmanager-init"
+      tools:node="remove" />
 
   </application>
 

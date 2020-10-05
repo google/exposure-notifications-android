@@ -1,0 +1,287 @@
+/*
+ * Copyright 2020 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+// This module handles resource generation for EN Express.
+
+apply from: 'enexpress_images.gradle'
+apply from: 'enexpress_locales.gradle'
+
+import groovy.xml.MarkupBuilder
+import java.lang.Math
+
+def convertPrimary(value) {
+  return ("0" + Integer.toString((int) (value * 255), 16))[-2..-1]
+}
+
+def convertColor(color) {
+  return "#" + convertPrimary(color[0]) +
+               convertPrimary(color[1]) +
+               convertPrimary(color[2])
+}
+
+/**
+ * Computes contrast:
+ * https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html
+ */
+def computeContrast(rgb1, rgb2) {
+  def lum1 = (relativeLuminance(rgb1) + 0.05)
+  def lum2 = (relativeLuminance(rgb2) + 0.05)
+  return Math.max(lum1, lum2) / Math.min(lum1, lum2)
+}
+
+/**
+ * Computes relative luminance:
+ * https://www.w3.org/TR/2008/REC-WCAG20-20081211/#relativeluminancedef
+ */
+def relativeLuminance(rgb) {
+  double sr = rgb[0]
+  sr = sr < 0.03928 ? sr / 12.92 : Math.pow((sr + 0.055) / 1.055, 2.4)
+  double sg = rgb[1]
+  sg = sg < 0.03928 ? sg / 12.92 : Math.pow((sg + 0.055) / 1.055, 2.4)
+  double sb = rgb[2]
+  sb = sb < 0.03928 ? sb / 12.92 : Math.pow((sb + 0.055) / 1.055, 2.4)
+  return sr * 0.2126 + sg * 0.7152 + sb * 0.0722
+}
+
+/**
+ * Constrains a value to an upper and lower bound.
+ */
+def constrain(amount, low, high) {
+  return amount < low ? low : (amount > high ? high : amount)
+}
+
+/**
+ * converts a color from rgb space to hsl color space.
+ */
+def convertRGBToHSL(color) {
+  float rf = color[0]
+  float gf = color[1]
+  float bf = color[2]
+  float max = Math.max(rf, Math.max(gf, bf))
+  float min = Math.min(rf, Math.min(gf, bf))
+  float deltaMaxMin = max - min
+  float h, s
+  float l = (max + min) / 2f
+  if (max == min) {
+    h = 0f
+    s = 0f
+  } else {
+    if (max == rf) {
+      h = ((gf - bf) / deltaMaxMin) % 6f
+    } else if (max == gf) {
+      h = ((bf - rf) / deltaMaxMin) + 2f
+    } else {
+      h = ((rf - gf) / deltaMaxMin) + 4f
+    }
+    s = deltaMaxMin / (1f - Math.abs(2f * l - 1f))
+  }
+  h = (h * 60f) % 360f
+  if (h < 0) {
+    h += 360f
+  }
+  def hsl = new float[3]
+  hsl[0] = constrain(h, 0f, 360f)
+  hsl[1] = constrain(s, 0f, 1f)
+  hsl[2] = constrain(l, 0f, 1f)
+  return hsl
+}
+
+/**
+ * converts a color from hsl space to rgb color space.
+ */
+def convertHSLToRGB(hsl) {
+  float h = hsl[0]
+  float s = hsl[1]
+  float l = hsl[2]
+  float c = (1f - Math.abs(2 * l - 1f)) * s
+  float m = l - 0.5f * c
+  float x = c * (1f - Math.abs((h / 60f % 2f) - 1f))
+  int hueSegment = (int) h / 60
+  int r = 0, g = 0, b = 0
+  switch (hueSegment) {
+    case 0:
+      r = Math.round(255 * (c + m))
+      g = Math.round(255 * (x + m))
+      b = Math.round(255 * m)
+      break
+    case 1:
+      r = Math.round(255 * (x + m))
+      g = Math.round(255 * (c + m))
+      b = Math.round(255 * m)
+      break
+    case 2:
+      r = Math.round(255 * m)
+      g = Math.round(255 * (c + m))
+      b = Math.round(255 * (x + m))
+      break
+    case 3:
+      r = Math.round(255 * m)
+      g = Math.round(255 * (x + m))
+      b = Math.round(255 * (c + m))
+      break
+    case 4:
+      r = Math.round(255 * (x + m))
+      g = Math.round(255 * m)
+      b = Math.round(255 * (c + m))
+      break
+    case 5:
+    case 6:
+      r = Math.round(255 * (c + m))
+      g = Math.round(255 * m)
+      b = Math.round(255 * (x + m))
+      break
+  }
+  def rgb = new float[3]
+  rgb[0] = constrain(r, 0, 255) / 255f
+  rgb[1] = constrain(g, 0, 255) / 255f
+  rgb[2] = constrain(b, 0, 255) / 255f
+  return rgb
+}
+
+/**
+ * Increases lightness in a color to reach 4.5 contrast ratio to pass accessibility testing
+ *
+ * @return a hex string of the lightened color
+ */
+def convertColorDark(rgb) {
+  def hsl = convertRGBToHSL(rgb)
+  def dark = new float[3]
+  // #313131 is the lighter background color in the app so always compare contrast to this.
+  dark[0] = 0.21
+  dark[1] = 0.21
+  dark[2] = 0.21
+  // 4.5 is the minimum required contrast so keep adjusting the lightness in hsl space
+  while (computeContrast(convertHSLToRGB(hsl), dark) < 4.5) {
+    hsl[2] = hsl[2] + 0.001
+    if (hsl[2] >= 1f) {
+      hsl[2] = 1f
+      break
+    }
+  }
+  return convertColor(convertHSLToRGB(hsl))
+}
+
+def emitLocaleStrings(config, defaultLocale, locale, outputDir) {
+  mkdir outputDir
+  def outFile = new File(outputDir, "resources.xml").withWriter { writer ->
+    def destXml = new MarkupBuilder(
+        new IndentPrinter(writer, "    ", true, true))
+    destXml.setDoubleQuotes(true)
+    def destXmlMkp = destXml.getMkp()
+    destXmlMkp.xmlDeclaration(version: "1.0", encoding: "utf-8")
+    destXmlMkp.comment("Generated at ${new Date()}")
+    destXmlMkp.yield "\r\n"
+    destXml.resources() {
+      config.each { itemKey, itemValue ->
+        if (itemKey == "files" || itemKey.startsWith("playStore") ||
+            itemKey == "serviceAccount") {
+          return
+        }
+        def itemLocale = getKeyLocale(itemKey)
+        def itemKeySansLocale = getKeyWithoutLocale(itemKey)
+        // Include exact locale matches
+        Boolean isMatch = itemLocale == locale
+        // Include default locale in values/
+        if (locale == "" && itemLocale == defaultLocale) {
+          isMatch = true
+        }
+        if (isMatch && (itemValue != "" || itemLocale == "") &&
+          !itemKey.endsWith("Image") &&
+          !itemKey.endsWith("PNG") &&
+          !itemKey.endsWith("IconBackground")&&
+          !itemKey.endsWith("IconForeground")) {
+          if (itemValue instanceof List) {
+            "color"("name": "enx_" + itemKeySansLocale) {
+              destXmlMkp.yield(convertColor(itemValue))
+            }
+            "color"("name": "enx_" + itemKeySansLocale + "Dark") {
+              destXmlMkp.yield(convertColorDark(itemValue))
+            }
+          } else if (itemValue instanceof String) {
+            "string"("name": "enx_" + itemKeySansLocale) {
+              destXmlMkp.yield(escapeString(itemValue))
+            }
+          } else if (itemValue instanceof Integer) {
+            "integer"("name": "enx_" + itemKeySansLocale) {
+              destXmlMkp.yield(itemValue)
+            }
+          } else if (itemValue instanceof Boolean) {
+            "bool"("name": "enx_" + itemKeySansLocale) {
+              destXmlMkp.yield(itemValue)
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+def escapeString(str) {
+  // TODO: Would have also escaped "?", but that wouldn't build
+  //       for some reason.
+  return str.replaceAll("'", "\\\\'")
+      .replaceAll("\"", "\\\\\"")
+      // Newlines in json become newlines in XML, not in the UI.
+      // Must double-escape them.
+      .replaceAll("\n", "\\\\n")
+}
+
+def generateResources(configData) {
+  configData.each { name, config ->
+    def taskName = name + "GenerateExpressResources"
+    task "$taskName" {
+      def outPath = "$buildDir/express_resources/$name/res"
+      inputs.files(config["files"])
+      def locales = getConfigLocales(config)
+      def defaultLocale = pickDefaultLocale(config, locales)
+      doFirst {
+        // Emit images.
+        emitDrawables(config, outPath)
+        // Emit non-locale specific ones.
+        emitLocaleStrings(config, defaultLocale, "", file(outPath + "/values"))
+        // Emit lang-COUNTRY locale version
+        locales.each { locale ->
+          def outputDir = file(outPath + "/values-" + toAndroidLocale(locale))
+          emitLocaleStrings(config, defaultLocale, locale, outputDir)
+        }
+        // Emit lang only version, for compatibility.
+        def langLocales = locales.collect { toAndroidLanguageOnly(it) }.unique()
+        langLocales.each { locale ->
+          def best = bestFitLocale(locales, locale)
+          def outputDir = file(outPath + "/values-" + locale)
+          emitLocaleStrings(config, defaultLocale, best, outputDir)
+        }
+      }
+      ext.outputDir = file(outPath)
+    }
+  }
+
+  android.applicationVariants.all { variant ->
+    def configPrefixes = configData.collect { name, config -> name }
+    def name = configPrefixes.findAll {
+      variant.getName().startsWith(it) }.max { it.size() }
+    def gen = tasks.named(name + "GenerateExpressResources").get()
+    def files = project.files(gen.outputDir)
+    files.builtBy(gen)
+    variant.preBuildProvider.configure { dependsOn(gen) }
+    variant.mergeResourcesProvider.configure { dependsOn(gen) }
+    variant.registerGeneratedResFolders(files)
+  }
+}
+
+ext {
+  generateResources = this.&generateResources
+}

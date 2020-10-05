@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright 2020 Google LLC
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      https://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  ~
+  -->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:orientation="vertical"
+  android:accessibilityPaneTitle="@string/verify_test_result_title">
+
+  <LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="?attr/actionBarSize">
+
+      <ImageButton
+        android:id="@android:id/home"
+        style="?attr/borderlessButtonStyle"
+        android:layout_width="?attr/actionBarSize"
+        android:layout_height="match_parent"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        app:srcCompat="@drawable/ic_close" />
+
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_weight="1"
+      android:isScrollContainer="false"
+      android:fillViewport="true">
+
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/padding_large">
+
+        <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:gravity="center"
+          android:layout_marginBottom="@dimen/padding_extra_large"
+          android:text="@string/verify_test_result_title"
+          android:textAppearance="?attr/textAppearanceHeadline5" />
+
+        <com.google.android.material.textfield.TextInputLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/padding_normal"
+          style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+          android:hint="@string/enter_your_test_identifier"
+          android:textColorHint="?android:attr/textColorPrimary">
+
+          <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/share_test_identifier"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/touch_area_min_size"
+            android:importantForAutofill="no"
+            android:maxLength="32"
+            android:inputType="text" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+          android:id="@+id/share_test_verified"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          android:visibility="gone">
+
+          <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_check"
+            android:layout_gravity="center_vertical"/>
+
+          <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:textAppearance="?attr/textAppearanceBody1"
+            android:text="@string/share_test_identifier_verified"
+            android:layout_gravity="center_vertical" />
+
+        </LinearLayout>
+
+        <LinearLayout
+          android:id="@+id/share_test_error"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          android:visibility="gone">
+
+          <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_error_outline"
+            android:layout_gravity="center_vertical"/>
+
+          <TextView
+            android:id="@+id/share_test_error_text"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:textAppearance="?attr/textAppearanceBody1"
+            android:layout_gravity="center_vertical" />
+
+        </LinearLayout>
+
+        <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:textAppearance="?attr/textAppearanceBody1"
+          android:layout_marginTop="@dimen/padding_normal"
+          android:text="@string/share_test_identifier_help" />
+
+        <Button
+          android:id="@+id/learn_more_button"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:paddingHorizontal="0dp"
+          android:text="@string/learn_more"
+          style="@style/Widget.MaterialComponents.Button.TextButton" />
+
+      </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginVertical="@dimen/padding_normal"
+      android:orientation="horizontal">
+
+      <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical">
+
+        <Button
+          android:id="@+id/share_previous_button"
+          style="@style/Widget.MaterialComponents.Button.TextButton"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginHorizontal="@dimen/padding_normal"
+          android:text="@string/btn_back" />
+
+      </LinearLayout>
+
+      <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical">
+
+        <ViewSwitcher
+          android:id="@+id/share_advance_switcher"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginHorizontal="@dimen/padding_normal">
+
+          <ViewSwitcher
+            android:id="@+id/share_verify_switcher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:measureAllChildren="true">
+
+            <Button
+              android:id="@+id/share_verify_button"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="@string/btn_verify"/>
+
+            <ProgressBar
+              android:layout_width="match_parent"
+              android:layout_height="24dp"
+              android:layout_gravity="center"
+              android:elevation="10dp"/>
+
+          </ViewSwitcher>
+
+          <Button
+            android:id="@+id/share_next_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_continue"
+            android:layout_gravity="end"/>
+
+        </ViewSwitcher>
+
+      </LinearLayout>
+
+    </LinearLayout>
+
+  </LinearLayout>
+
+  <!-- A mask view to hide everything but the progress indicator. -->
+  <RelativeLayout
+    android:id="@+id/verify_mask"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/design_default_color_background"
+    android:visibility="gone" />
+
+  <com.google.android.material.progressindicator.ProgressIndicator
+    android:id="@+id/verify_progress_indicator"
+    style="@style/Widget.MaterialComponents.ProgressIndicator.Circular.Indeterminate"
+    android:layout_width="64dp"
+    android:layout_height="64dp"
+    android:layout_centerInParent="true"
+    app:circularRadius="32dp"
+    app:indicatorColor="@color/enx_agencyColor"
+    android:visibility="gone"/>
+
+</RelativeLayout>

@@ -19,7 +19,12 @@ package com.google.android.apps.exposurenotification.storage;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import org.threeten.bp.Duration;
+import androidx.lifecycle.LiveData;
+import com.google.android.apps.exposurenotification.common.BooleanSharedPreferenceLiveData;
+import com.google.android.apps.exposurenotification.common.SharedPreferenceLiveData;
+import com.google.android.apps.exposurenotification.common.time.Clock;
+import com.google.android.apps.exposurenotification.riskcalculation.ExposureClassification;
+import org.threeten.bp.Instant;
 
 /**
  * Key value storage for ExposureNotification.
@@ -35,30 +40,38 @@ public class ExposureNotificationSharedPreferences {
 
   private static final String ONBOARDING_STATE_KEY =
       "ExposureNotificationSharedPreferences.ONBOARDING_STATE_KEY";
+  private static final String SHARE_ANALYTICS_KEY =
+      "ExposureNotificationSharedPreferences.SHARE_ANALYTICS_KEY";
   private static final String KEY_SHARING_NETWORK_MODE_KEY =
       "ExposureNotificationSharedPreferences.KEY_SHARING_NETWORK_MODE_KEY";
-  private static final String VERIFICATION_NETWORK_MODE_KEY =
-      "ExposureNotificationSharedPreferences.VERIFICATION_NETWORK_MODE_KEY";
   private static final String IS_ENABLED_CACHE_KEY =
       "ExposureNotificationSharedPreferences.IS_ENABLED_CACHE_KEY";
   private static final String ATTENUATION_THRESHOLD_1_KEY =
       "ExposureNotificationSharedPreferences.ATTENUATION_THRESHOLD_1_KEY";
   private static final String ATTENUATION_THRESHOLD_2_KEY =
       "ExposureNotificationSharedPreferences.ATTENUATION_THRESHOLD_2_KEY";
-  private static final String DOWNLOAD_SERVER_ADDRESS_KEY =
-      "ExposureNotificationSharedPreferences.DOWNLOAD_SERVER_ADDRESS_KEY";
-  private static final String UPLOAD_SERVER_ADDRESS_KEY =
-      "ExposureNotificationSharedPreferences.UPLOAD_SERVER_ADDRESS_KEY";
-  private static final String DOWNLOAD_PAST_X_MINUTES_KEY =
-      "ExposureNotificationSharedPreferences.DOWNLOAD_PAST_X_MINUTES_KEY";
-  private static final String VERIFICATION_SERVER_ADDRESS_KEY_1 =
-      "ExposureNotificationSharedPreferences.VERIFICATION_SERVER_ADDRESS_KEY";
-  private static final String VERIFICATION_SERVER_ADDRESS_KEY_2 =
-      "ExposureNotificationSharedPreferences.VERIFICATION_SERVER_ADDRESS_KEY_2";
+  private static final String EXPOSURE_CLASSIFICATION_INDEX_KEY =
+      "ExposureNotificationSharedPreferences.EXPOSURE_CLASSIFICATION_INDEX_KEY";
+  private static final String EXPOSURE_CLASSIFICATION_NAME_KEY =
+      "ExposureNotificationSharedPreferences.EXPOSURE_CLASSIFICATION_NAME_KEY";
+  private static final String EXPOSURE_CLASSIFICATION_DATE_KEY =
+      "ExposureNotificationSharedPreferences.EXPOSURE_CLASSIFICATION_DATE_KEY";
+  private static final String EXPOSURE_CLASSIFICATION_IS_REVOKED_KEY =
+      "ExposureNotificationSharedPreferences.EXPOSURE_CLASSIFICATION_IS_REVOKED_KEY";
+  private static final String EXPOSURE_CLASSIFICATION_IS_CLASSIFICATION_NEW_KEY =
+      "ExposureNotificationSharedPreferences.EXPOSURE_CLASSIFICATION_IS_CLASSIFICATION_NEW_KEY";
+  private static final String EXPOSURE_CLASSIFICATION_IS_DATE_NEW_KEY =
+      "ExposureNotificationSharedPreferences.EXPOSURE_CLASSIFICATION_IS_DATE_NEW_KEY";
+  private static final String ANALYTICS_LOGGING_LAST_TIMESTAMP =
+      "ExposureNotificationSharedPreferences.ANALYTICS_LOGGING_LAST_TIMESTAMP";
 
   private final SharedPreferences sharedPreferences;
+  private final Clock clock;
+  private static AnalyticsStateListener analyticsStateListener;
 
-  /** Enum for onboarding status. */
+  /**
+   * Enum for onboarding status.
+   */
   public enum OnboardingStatus {
     UNKNOWN(0),
     ONBOARDED(1),
@@ -86,7 +99,39 @@ public class ExposureNotificationSharedPreferences {
     }
   }
 
-  /** Enum for network handling. */
+  /**
+   * Enum for "new" badge status.
+   */
+  public enum BadgeStatus {
+    NEW(0),
+    SEEN(1),
+    DISMISSED(2);
+
+    private final int value;
+
+    BadgeStatus(int value) {
+      this.value = value;
+    }
+
+    public int value() {
+      return value;
+    }
+
+    public static BadgeStatus fromValue(int value) {
+      switch (value) {
+        case 1:
+          return SEEN;
+        case 2:
+          return DISMISSED;
+        default:
+          return NEW;
+      }
+    }
+  }
+
+  /**
+   * Enum for network handling.
+   */
   public enum NetworkMode {
     // Uses live but test instances of the diagnosis verification, key upload and download servers.
     LIVE,
@@ -95,10 +140,11 @@ public class ExposureNotificationSharedPreferences {
     DISABLED
   }
 
-  public ExposureNotificationSharedPreferences(Context context) {
+  ExposureNotificationSharedPreferences(Context context, Clock clock) {
     // These shared preferences are stored in {@value Context#MODE_PRIVATE} to be made only
     // accessible by the app.
     sharedPreferences = context.getSharedPreferences(SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE);
+    this.clock = clock;
   }
 
   public void setOnboardedState(boolean onboardedState) {
@@ -114,32 +160,45 @@ public class ExposureNotificationSharedPreferences {
     return OnboardingStatus.fromValue(sharedPreferences.getInt(ONBOARDING_STATE_KEY, 0));
   }
 
-  public NetworkMode getKeySharingNetworkMode(NetworkMode defaultMode) {
-    try {
-      return NetworkMode.valueOf(
-          sharedPreferences.getString(KEY_SHARING_NETWORK_MODE_KEY, defaultMode.toString()));
-    } catch (IllegalArgumentException e) {
-      // In case of enum value changes causing errors parsing existing stored string values.
-      return NetworkMode.DISABLED;
+  public LiveData<Boolean> getAppAnalyticsStateLiveData() {
+    return new BooleanSharedPreferenceLiveData(sharedPreferences, SHARE_ANALYTICS_KEY, false);
+  }
+
+  public void setAppAnalyticsState(boolean isEnabled) {
+    sharedPreferences.edit().putBoolean(SHARE_ANALYTICS_KEY, isEnabled).commit();
+    if (analyticsStateListener != null) {
+      analyticsStateListener.onChanged(isEnabled);
     }
   }
 
-  public void setKeySharingNetworkMode(NetworkMode key) {
-    sharedPreferences.edit().putString(KEY_SHARING_NETWORK_MODE_KEY, key.toString()).commit();
+  public synchronized void setAnalyticsStateListener(AnalyticsStateListener listener) {
+    analyticsStateListener = listener;
   }
 
-  public NetworkMode getVerificationNetworkMode(NetworkMode defaultMode) {
-    try {
-      return NetworkMode.valueOf(
-          sharedPreferences.getString(VERIFICATION_NETWORK_MODE_KEY, defaultMode.toString()));
-    } catch (IllegalArgumentException e) {
-      // In case of enum value changes causing errors parsing existing stored string values.
-      return NetworkMode.DISABLED;
+  public boolean getAppAnalyticsState() {
+    return sharedPreferences.getBoolean(SHARE_ANALYTICS_KEY, false);
+  }
+
+  public Instant getAnalyticsLoggingLastTimestamp() {
+    long timestamp = sharedPreferences.getLong(ANALYTICS_LOGGING_LAST_TIMESTAMP, 0L);
+    if (timestamp == 0) {
+      sharedPreferences.edit().putLong(ANALYTICS_LOGGING_LAST_TIMESTAMP, clock.now().toEpochMilli())
+          .commit();
+      return clock.now();
     }
+    return Instant.ofEpochMilli(sharedPreferences.getLong(ANALYTICS_LOGGING_LAST_TIMESTAMP, 0L));
   }
 
-  public void setVerificationNetworkMode(NetworkMode key) {
-    sharedPreferences.edit().putString(VERIFICATION_NETWORK_MODE_KEY, key.toString()).commit();
+  public Instant getAndResetAnalyticsLoggingLastTimestamp() {
+    Instant lastTimestamp = Instant
+        .ofEpochMilli(sharedPreferences.getLong(ANALYTICS_LOGGING_LAST_TIMESTAMP, 0L));
+    sharedPreferences.edit().putLong(ANALYTICS_LOGGING_LAST_TIMESTAMP, clock.now().toEpochMilli())
+        .commit();
+    return lastTimestamp;
+  }
+
+  public boolean isAppAnalyticsSet() {
+    return sharedPreferences.contains(SHARE_ANALYTICS_KEY);
   }
 
   public int getAttenuationThreshold1(int defaultThreshold) {
@@ -154,74 +213,6 @@ public class ExposureNotificationSharedPreferences {
     return sharedPreferences.getInt(ATTENUATION_THRESHOLD_2_KEY, defaultThreshold);
   }
 
-  public void setAttenuationThreshold2(int threshold) {
-    sharedPreferences.edit().putInt(ATTENUATION_THRESHOLD_2_KEY, threshold).commit();
-  }
-
-  public void clearUploadServerAddress() {
-    sharedPreferences.edit().remove(DOWNLOAD_SERVER_ADDRESS_KEY).commit();
-  }
-
-  public String getUploadServerAddress(String defaultServerAddress) {
-    return sharedPreferences.getString(DOWNLOAD_SERVER_ADDRESS_KEY, defaultServerAddress);
-  }
-
-  public void setUploadServerAddress(String serverAddress) {
-    if (serverAddress.isEmpty()) {
-      clearUploadServerAddress();
-    } else {
-      sharedPreferences.edit().putString(DOWNLOAD_SERVER_ADDRESS_KEY, serverAddress).commit();
-    }
-  }
-
-  public void clearVerificationServerAddress1() {
-    sharedPreferences.edit().remove(VERIFICATION_SERVER_ADDRESS_KEY_1).commit();
-  }
-
-  public String getVerificationServerAddress1(String defaultServerAddress) {
-    return sharedPreferences.getString(VERIFICATION_SERVER_ADDRESS_KEY_1, defaultServerAddress);
-  }
-
-  public void setVerificationServerAddress1(String serverAddress) {
-    if (serverAddress.isEmpty()) {
-      clearUploadServerAddress();
-    } else {
-      sharedPreferences.edit().putString(VERIFICATION_SERVER_ADDRESS_KEY_1, serverAddress).commit();
-    }
-  }
-
-  public void clearVerificationServerAddress2() {
-    sharedPreferences.edit().remove(VERIFICATION_SERVER_ADDRESS_KEY_2).commit();
-  }
-
-  public String getVerificationServerAddress2(String defaultServerAddress) {
-    return sharedPreferences.getString(VERIFICATION_SERVER_ADDRESS_KEY_2, defaultServerAddress);
-  }
-
-  public void setVerificationServerAddress2(String serverAddress) {
-    if (serverAddress.isEmpty()) {
-      clearUploadServerAddress();
-    } else {
-      sharedPreferences.edit().putString(VERIFICATION_SERVER_ADDRESS_KEY_2, serverAddress).commit();
-    }
-  }
-
-  public void clearDownloadServerAddress() {
-    sharedPreferences.edit().remove(UPLOAD_SERVER_ADDRESS_KEY).commit();
-  }
-
-  public String getDownloadServerAddress(String defaultServerAddress) {
-    return sharedPreferences.getString(UPLOAD_SERVER_ADDRESS_KEY, defaultServerAddress);
-  }
-
-  public void setDownloadServerAddress(String serverAddress) {
-    if (serverAddress.isEmpty()) {
-      clearDownloadServerAddress();
-    } else {
-      sharedPreferences.edit().putString(UPLOAD_SERVER_ADDRESS_KEY, serverAddress).commit();
-    }
-  }
-
   public boolean getIsEnabledCache() {
     return sharedPreferences.getBoolean(IS_ENABLED_CACHE_KEY, false);
   }
@@ -230,12 +221,99 @@ public class ExposureNotificationSharedPreferences {
     sharedPreferences.edit().putBoolean(IS_ENABLED_CACHE_KEY, isEnabled).apply();
   }
 
-  public Duration getMaxDownloadAge(Duration defaultMaxAge) {
-    return Duration.ofMinutes(
-        sharedPreferences.getLong(DOWNLOAD_PAST_X_MINUTES_KEY, defaultMaxAge.toMinutes()));
+  public void setExposureClassification(ExposureClassification exposureClassification) {
+    sharedPreferences
+        .edit()
+        .putInt(
+            EXPOSURE_CLASSIFICATION_INDEX_KEY,
+            exposureClassification.getClassificationIndex())
+        .putString(
+            EXPOSURE_CLASSIFICATION_NAME_KEY,
+            exposureClassification.getClassificationName()
+        )
+        .putLong(
+            EXPOSURE_CLASSIFICATION_DATE_KEY,
+            exposureClassification.getClassificationDate()
+        )
+        .commit();
   }
 
-  public void setMaxDownloadAge(Duration maxAge) {
-    sharedPreferences.edit().putLong(DOWNLOAD_PAST_X_MINUTES_KEY, maxAge.toMinutes()).apply();
+  public ExposureClassification getExposureClassification() {
+    return ExposureClassification.create(
+        sharedPreferences.getInt(EXPOSURE_CLASSIFICATION_INDEX_KEY,
+            ExposureClassification.NO_EXPOSURE_CLASSIFICATION_INDEX),
+        sharedPreferences.getString(EXPOSURE_CLASSIFICATION_NAME_KEY,
+            ExposureClassification.NO_EXPOSURE_CLASSIFICATION_NAME),
+        sharedPreferences.getLong(EXPOSURE_CLASSIFICATION_DATE_KEY,
+            ExposureClassification.NO_EXPOSURE_CLASSIFICATION_DATE));
+  }
+
+  public LiveData<ExposureClassification> getExposureClassificationLiveData() {
+    return new SharedPreferenceLiveData<ExposureClassification>(
+        this.sharedPreferences,
+        EXPOSURE_CLASSIFICATION_INDEX_KEY,
+        EXPOSURE_CLASSIFICATION_NAME_KEY,
+        EXPOSURE_CLASSIFICATION_DATE_KEY) {
+      @Override
+      protected void updateValue() {
+        setValue(getExposureClassification());
+      }};
+  }
+
+  public void setIsExposureClassificationRevoked(boolean isRevoked) {
+    sharedPreferences.edit().putBoolean(EXPOSURE_CLASSIFICATION_IS_REVOKED_KEY, isRevoked).commit();
+  }
+
+  public boolean getIsExposureClassificationRevoked() {
+    return sharedPreferences.getBoolean(EXPOSURE_CLASSIFICATION_IS_REVOKED_KEY, false);
+  }
+
+  public LiveData<Boolean> getIsExposureClassificationRevokedLiveData() {
+    return new BooleanSharedPreferenceLiveData(sharedPreferences,
+        EXPOSURE_CLASSIFICATION_IS_REVOKED_KEY, false);
+  }
+
+  public void setIsExposureClassificationNewAsync(BadgeStatus badgeStatus) {
+    sharedPreferences.edit()
+        .putInt(EXPOSURE_CLASSIFICATION_IS_CLASSIFICATION_NEW_KEY,badgeStatus.value()).apply();
+  }
+
+  public BadgeStatus getIsExposureClassificationNew() {
+    return BadgeStatus.fromValue(
+        sharedPreferences
+            .getInt(EXPOSURE_CLASSIFICATION_IS_CLASSIFICATION_NEW_KEY, BadgeStatus.NEW.value()));
+  }
+
+  public LiveData<BadgeStatus> getIsExposureClassificationNewLiveData() {
+    return new SharedPreferenceLiveData<BadgeStatus>(this.sharedPreferences,
+        EXPOSURE_CLASSIFICATION_IS_CLASSIFICATION_NEW_KEY) {
+      @Override
+      protected void updateValue() {
+        setValue(getIsExposureClassificationNew());
+      }};
+  }
+
+  public void setIsExposureClassificationDateNewAsync(BadgeStatus badgeStatus) {
+    sharedPreferences.edit()
+        .putInt(EXPOSURE_CLASSIFICATION_IS_DATE_NEW_KEY, badgeStatus.value()).apply();
+  }
+
+  public BadgeStatus getIsExposureClassificationDateNew() {
+    return BadgeStatus.fromValue(
+        sharedPreferences
+            .getInt(EXPOSURE_CLASSIFICATION_IS_DATE_NEW_KEY, BadgeStatus.NEW.value()));
+  }
+
+  public LiveData<BadgeStatus> getIsExposureClassificationDateNewLiveData() {
+    return new SharedPreferenceLiveData<BadgeStatus>(this.sharedPreferences,
+        EXPOSURE_CLASSIFICATION_IS_DATE_NEW_KEY) {
+      @Override
+      protected void updateValue() {
+        setValue(getIsExposureClassificationDateNew());
+      }};
+  }
+
+  public interface AnalyticsStateListener {
+    void onChanged(boolean analyticsEnabled);
   }
 }

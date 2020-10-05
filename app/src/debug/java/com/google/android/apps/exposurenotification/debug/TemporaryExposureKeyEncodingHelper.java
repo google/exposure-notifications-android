@@ -79,7 +79,7 @@ public class TemporaryExposureKeyEncodingHelper {
    */
   public static List<TemporaryExposureKey> decodeList(String encodedList) throws DecodeException {
     List<TemporaryExposureKey> temporaryExposureKeys = new ArrayList<>();
-    JSONArray jsonArray = null;
+    JSONArray jsonArray;
     try {
       jsonArray = new JSONArray(encodedList);
       for (int i = 0; i < jsonArray.length(); i++) {

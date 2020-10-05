@@ -18,40 +18,82 @@
 
 <resources>
 
-  <style name="TextAppearance.ExposureNotification.Headline1" parent="TextAppearance.MaterialComponents.Headline1" />
+  <style name="TextAppearance.ExposureNotification.Headline1" parent="TextAppearance.MaterialComponents.Headline1">
+    <item name="fontFamily">@font/google_sans_regular</item>
+    <item name="android:fontFamily">@font/google_sans_regular</item>
+  </style>
 
-  <style name="TextAppearance.ExposureNotification.Headline2" parent="TextAppearance.MaterialComponents.Headline2" />
+  <style name="TextAppearance.ExposureNotification.Headline2" parent="TextAppearance.MaterialComponents.Headline2">
+    <item name="fontFamily">@font/google_sans_regular</item>
+    <item name="android:fontFamily">@font/google_sans_regular</item>
+  </style>
 
-  <style name="TextAppearance.ExposureNotification.Headline3" parent="TextAppearance.MaterialComponents.Headline3" />
+  <style name="TextAppearance.ExposureNotification.Headline3" parent="TextAppearance.MaterialComponents.Headline3">
+    <item name="fontFamily">@font/google_sans_regular</item>
+    <item name="android:fontFamily">@font/google_sans_regular</item>
+  </style>
 
   <style name="TextAppearance.ExposureNotification.Headline4" parent="TextAppearance.MaterialComponents.Headline4">
+    <item name="fontFamily">@font/google_sans_regular</item>
+    <item name="android:fontFamily">@font/google_sans_regular</item>
     <item name="android:textColor">?android:attr/textColorPrimary</item>
   </style>
 
-  <style name="TextAppearance.ExposureNotification.Headline5" parent="TextAppearance.MaterialComponents.Headline5" />
+  <style name="TextAppearance.ExposureNotification.Headline5" parent="TextAppearance.MaterialComponents.Headline5">
+    <item name="fontFamily">@font/google_sans_regular</item>
+    <item name="android:fontFamily">@font/google_sans_regular</item>
+  </style>
 
   <style name="TextAppearance.ExposureNotification.Headline6" parent="TextAppearance.MaterialComponents.Headline6">
+    <item name="fontFamily">@font/google_sans_regular</item>
+    <item name="android:fontFamily">@font/google_sans_regular</item>
     <item name="android:textStyle">normal</item>
   </style>
 
-  <style name="TextAppearance.ExposureNotification.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1" />
-
-  <style name="TextAppearance.ExposureNotification.Subtitle2" parent="TextAppearance.MaterialComponents.Subtitle2" />
-
-  <style name="TextAppearance.ExposureNotification.Body1" parent="TextAppearance.MaterialComponents.Body1" />
-
-  <style name="TextAppearance.ExposureNotification.Body2" parent="TextAppearance.MaterialComponents.Body2" />
-
-  <style name="TextAppearance.ExposureNotification.Button" parent="TextAppearance.MaterialComponents.Button">
-    <item name="fontFamily">@font/roboto_medium</item>
-    <item name="android:fontFamily">@font/roboto_medium</item>
+  <style name="TextAppearance.ExposureNotification.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1">
+    <item name="fontFamily">@font/google_sans_regular</item>
+    <item name="android:fontFamily">@font/google_sans_regular</item>
   </style>
 
-  <style name="TextAppearance.ExposureNotification.Caption" parent="TextAppearance.MaterialComponents.Caption" />
+  <style name="TextAppearance.ExposureNotification.Subtitle2" parent="TextAppearance.MaterialComponents.Subtitle2">
+    <item name="fontFamily">@font/google_sans_medium</item>
+    <item name="android:fontFamily">@font/google_sans_medium</item>
+  </style>
+
+  <style name="TextAppearance.ExposureNotification.Body1" parent="TextAppearance.MaterialComponents.Body1">
+    <item name="fontFamily">@font/roboto_regular</item>
+    <item name="android:fontFamily">@font/roboto_regular</item>
+  </style>
+
+  <style name="TextAppearance.ExposureNotification.Body2" parent="TextAppearance.MaterialComponents.Body2">
+    <item name="fontFamily">@font/roboto_regular</item>
+    <item name="android:fontFamily">@font/roboto_regular</item>
+  </style>
+
+  <style name="TextAppearance.ExposureNotification.Button" parent="TextAppearance.MaterialComponents.Button">
+    <item name="fontFamily">@font/google_sans_medium</item>
+    <item name="android:fontFamily">@font/google_sans_medium</item>
+    <item name="android:textAllCaps">false</item>
+  </style>
+
+  <style name="TextAppearance.ExposureNotification.Caption" parent="TextAppearance.MaterialComponents.Caption">
+    <item name="fontFamily">@font/roboto_regular</item>
+    <item name="android:fontFamily">@font/roboto_regular</item>
+  </style>
 
   <style name="TextAppearance.ExposureNotification.Overline" parent="TextAppearance.MaterialComponents.Overline">
     <item name="fontFamily">@font/roboto_medium</item>
     <item name="android:fontFamily">@font/roboto_medium</item>
+  </style>
+
+  <style name="TextAppearance.ExposureNotification.ListItem" parent="TextAppearance.MaterialComponents.Body2">
+    <item name="fontFamily">@font/google_sans_regular</item>
+    <item name="android:fontFamily">@font/google_sans_regular</item>
+  </style>
+
+  <style name="TextAppearance.ExposureNotification.ListItemSecondary" parent="TextAppearance.MaterialComponents.Body1">
+    <item name="fontFamily">@font/roboto_regular</item>
+    <item name="android:fontFamily">@font/roboto_regular</item>
   </style>
 
   <style name="VerificationCodeOutlinedBox"

@@ -20,10 +20,7 @@
 
 
   <style name="Base.Theme.ExposureNotification" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-
-    <item name="fontFamily">@font/roboto_regular</item>
-    <item name="android:fontFamily">@font/roboto_regular</item>
-
+      
     <!--Material shape attributes-->
     <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.ExposureNotification.SmallComponent</item>
     <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.ExposureNotification.MediumComponent</item>
@@ -43,9 +40,13 @@
     <item name="textAppearanceButton">@style/TextAppearance.ExposureNotification.Button</item>
     <item name="textAppearanceCaption">@style/TextAppearance.ExposureNotification.Caption</item>
     <item name="textAppearanceOverline">@style/TextAppearance.ExposureNotification.Overline</item>
+    <item name="textAppearanceListItem">@style/TextAppearance.ExposureNotification.ListItem</item>
+    <item name="textAppearanceListItemSecondary">@style/TextAppearance.ExposureNotification.ListItemSecondary</item>
 
-    <item name="colorPrimary">@color/color_dark_blue</item>
+    <item name="colorPrimary">@color/colorPrimary</item>
     <item name="android:textColorLink">?attr/colorPrimary</item>
+    <item name="android:textAlignment">gravity</item>
+    <item name="android:textDirection">locale</item>
     <item name="colorControlActivated">?attr/colorPrimary</item>
 
     <item name="android:navigationBarColor">@color/navigation_bar_color</item>

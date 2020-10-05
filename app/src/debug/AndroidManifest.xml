@@ -20,6 +20,10 @@
   xmlns:tools="http://schemas.android.com/tools"
   package="com.google.android.apps.exposurenotification">
 
+  <uses-feature android:name="android.hardware.camera" />
+  <uses-feature android:name="android.hardware.camera.autofocus" />
+
+  <uses-permission android:name="android.permission.CAMERA" />
   <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
   <uses-permission android:name="android.permission.WAKE_LOCK" />
 
@@ -30,13 +34,42 @@
 
     <activity
       android:name=".debug.MatchingDebugActivity"
+      android:label="@string/debug_matching_matching_title"
+      android:windowSoftInputMode="stateHidden|adjustResize"
+      android:parentActivityName=".home.ExposureNotificationActivity">
+
+      <intent-filter>
+        <action android:name="android.intent.action.VIEW" />
+
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
+
+        <data android:scheme="file" />
+        <data android:scheme="content" />
+        <data android:scheme="http" />
+        <data android:scheme="https" />
+        <data android:mimeType="application/zip" />
+      </intent-filter>
+
+      <intent-filter>
+        <action android:name="android.intent.action.SEND" />
+
+        <category android:name="android.intent.category.DEFAULT" />
+
+        <data android:mimeType="application/zip" />
+      </intent-filter>
+
+    </activity>
+
+    <activity
+      android:name=".debug.DebugActivity"
+      android:label="@string/home_tab_notify_debug_text"
       android:exported="false"
-      android:windowSoftInputMode="stateHidden"
-      android:parentActivityName=".home.ExposureNotificationActivity" />
+      android:windowSoftInputMode="stateHidden|adjustResize" />
 
     <activity
       android:name="com.journeyapps.barcodescanner.CaptureActivity"
-      android:screenOrientation="fullSensor"
+      android:screenOrientation="portrait"
       tools:replace="screenOrientation" />
 
     <meta-data

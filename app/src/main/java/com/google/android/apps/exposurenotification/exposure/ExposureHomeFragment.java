@@ -19,46 +19,45 @@ package com.google.android.apps.exposurenotification.exposure;
 
 import static com.google.android.gms.nearby.exposurenotification.ExposureNotificationClient.ACTION_EXPOSURE_NOTIFICATION_SETTINGS;
 
-import android.bluetooth.BluetoothAdapter;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.PopupMenu;
 import android.widget.TextView;
-import android.widget.ViewAnimator;
 import android.widget.ViewFlipper;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.common.ErrorStateViewFlipperChildren;
 import com.google.android.apps.exposurenotification.common.StorageManagementHelper;
+import com.google.android.apps.exposurenotification.common.StringUtils;
 import com.google.android.apps.exposurenotification.home.ExposureNotificationViewModel;
 import com.google.android.apps.exposurenotification.home.ExposureNotificationViewModel.ExposureNotificationState;
-import com.google.android.apps.exposurenotification.storage.ExposureEntity;
+import com.google.android.apps.exposurenotification.riskcalculation.ExposureClassification;
+import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.BadgeStatus;
 import com.google.android.material.snackbar.Snackbar;
-import com.mikepenz.aboutlibraries.LibsBuilder;
-import java.util.List;
+import dagger.hilt.android.AndroidEntryPoint;
 
 /**
  * Fragment for Exposures tab on home screen.
  */
+@AndroidEntryPoint
 public class ExposureHomeFragment extends Fragment {
 
   private static final String TAG = "ExposureHomeFragment";
 
+  private static final int EXPOSURE_BANNER_EDGE_CASE_CHILD = 0;
+  private static final int EXPOSURE_BANNER_EXPOSURE_CHILD = 1;
+
+  private static final int EXPOSURE_INFORMATION_FLIPPER_NO_EXPOSURE_CHILD = 0;
+  private static final int EXPOSURE_INFORMATION_FLIPPER_INFORMATION_AVAILABLE_CHILD = 1;
+
   private ExposureNotificationViewModel exposureNotificationViewModel;
   private ExposureHomeViewModel exposureHomeViewModel;
-  private ExposureEntityAdapter adapter;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
@@ -77,10 +76,9 @@ public class ExposureHomeFragment extends Fragment {
         .getStateLiveData()
         .observe(getViewLifecycleOwner(), this::refreshUiForState);
 
-    view.findViewById(R.id.exposure_menu).setOnClickListener(v -> showPopup(v));
-
     Button startButton = view.findViewById(R.id.start_api_button);
-    startButton.setOnClickListener(v -> exposureNotificationViewModel.startExposureNotifications());
+    startButton.setOnClickListener(
+        v -> exposureNotificationViewModel.startExposureNotifications());
     exposureNotificationViewModel
         .getInFlightLiveData()
         .observe(getViewLifecycleOwner(), isInFlight -> startButton.setEnabled(!isInFlight));
@@ -94,41 +92,47 @@ public class ExposureHomeFragment extends Fragment {
           }
         });
 
-    view.findViewById(R.id.exposure_about_button).setOnClickListener(v -> launchAboutAction());
     view.findViewById(R.id.ble_settings_button).setOnClickListener(v -> launchEnSettings());
     view.findViewById(R.id.location_settings_button).setOnClickListener(v -> launchEnSettings());
+    view.findViewById(R.id.location_ble_settings_button).setOnClickListener(v -> launchEnSettings());
     view.findViewById(R.id.manage_storage_button)
         .setOnClickListener(v -> StorageManagementHelper.launchStorageManagement(getContext()));
+    view.findViewById(R.id.exposure_details_url_text).setOnClickListener(
+        v -> openExposureDetailsUrl(
+            ((TextView)v).getText().toString()
+        ));
 
-    RecyclerView exposuresList = view.findViewById(R.id.exposures_list);
-    adapter =
-        new ExposureEntityAdapter(
-            exposureEntity -> {
-              ExposureBottomSheetFragment sheet =
-                  ExposureBottomSheetFragment.newInstance(exposureEntity);
-              sheet.show(getChildFragmentManager(), ExposureBottomSheetFragment.TAG);
-            });
-    exposuresList.setItemAnimator(null);
-    exposuresList.setLayoutManager(
-        new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false));
-    exposuresList.setAdapter(adapter);
+    TextView badgeNewClassification = view.findViewById(R.id.exposure_details_new_badge);
+    exposureHomeViewModel
+        .getIsExposureClassificationNewLiveData()
+        .observe(getViewLifecycleOwner(), badgeStatus ->
+            badgeNewClassification.setVisibility(
+                (badgeStatus != BadgeStatus.DISMISSED) ? TextView.VISIBLE : TextView.GONE));
+
+    TextView badgeNewDate = view.findViewById(R.id.exposure_date_new_badge);
+    exposureHomeViewModel
+        .getIsExposureClassificationDateNewLiveData()
+        .observe(getViewLifecycleOwner(), badgeStatus ->
+            badgeNewDate.setVisibility(
+                (badgeStatus != BadgeStatus.DISMISSED) ? TextView.VISIBLE : TextView.GONE));
 
     exposureHomeViewModel
-        .getAllExposureEntityLiveData()
-        .observe(getViewLifecycleOwner(), this::refreshUiForExposureEntities);
+        .getExposureClassificationLiveData()
+        .observe(getViewLifecycleOwner(),
+            exposureClassification -> {
+              boolean isRevoked = exposureHomeViewModel.getIsExposureClassificationRevoked();
+              refreshUiForClassification(exposureClassification, isRevoked);
+            });
 
-    IntentFilter intentFilter = new IntentFilter();
-    intentFilter.addAction(LocationManager.PROVIDERS_CHANGED_ACTION);
-    intentFilter.addAction(BluetoothAdapter.ACTION_STATE_CHANGED);
-    requireContext().registerReceiver(refreshBroadcastReceiver, intentFilter);
+    /*
+     If this view is created, we assume that "new" badges were seen.
+     If they were previously BadgeStatus.NEW, we now set them to BadgeStatus.SEEN
+     */
+    exposureHomeViewModel.tryTransitionExposureClassificationNew(BadgeStatus.NEW, BadgeStatus.SEEN);
+    exposureHomeViewModel.tryTransitionExposureClassificationDateNew(BadgeStatus.NEW,
+        BadgeStatus.SEEN);
+
   }
-
-  private final BroadcastReceiver refreshBroadcastReceiver = new BroadcastReceiver() {
-    @Override
-    public void onReceive(Context context, Intent intent) {
-      refreshUi();
-    }
-  };
 
   @Override
   public void onResume() {
@@ -136,18 +140,12 @@ public class ExposureHomeFragment extends Fragment {
     refreshUi();
   }
 
-  @Override
-  public void onDestroy() {
-    super.onDestroy();
-    requireContext().unregisterReceiver(refreshBroadcastReceiver);
-  }
-
   private void refreshUi() {
     exposureNotificationViewModel.refreshState();
   }
 
   /**
-   * Update UI to match Exposure Notifications state.
+   * Update UI to match Exposure Notifications module state (disabled, enabled, error states).
    *
    * @param state the {@link ExposureNotificationState} of the API
    */
@@ -157,68 +155,172 @@ public class ExposureHomeFragment extends Fragment {
       return;
     }
 
-    ViewFlipper settingsBannerFlipper = rootView.findViewById(R.id.settings_banner_flipper);
-    TextView exposureNotificationStatus = rootView.findViewById(R.id.exposure_notifications_status);
-    TextView infoStatus = rootView.findViewById(R.id.info_status);
+    ViewFlipper bannerFlipper =
+        rootView.findViewById(R.id.exposures_banner_flipper);
+    ViewFlipper edgeCaseFlipper = rootView.findViewById(R.id.edge_case_flipper);
     Button manageStorageButton = rootView.findViewById(R.id.manage_storage_button);
 
     switch (state) {
       case ENABLED:
-        settingsBannerFlipper.setDisplayedChild(1);
-        exposureNotificationStatus.setText(R.string.on);
-        infoStatus.setText(R.string.notifications_enabled_info);
+        edgeCaseFlipper.setVisibility(ViewFlipper.GONE);
+        bannerFlipper.setVisibility(View.GONE);
+        break;
+      case PAUSED_LOCATION_BLE:
+        edgeCaseFlipper
+            .setDisplayedChild(ErrorStateViewFlipperChildren.LOCATION_BLE_ERROR_CHILD);
+        edgeCaseFlipper.setVisibility(ViewFlipper.VISIBLE);
+        bannerFlipper.setDisplayedChild(EXPOSURE_BANNER_EDGE_CASE_CHILD);
+        bannerFlipper.setVisibility(View.VISIBLE);
         break;
       case PAUSED_BLE:
-        settingsBannerFlipper.setDisplayedChild(2);
-        exposureNotificationStatus.setText(R.string.on);
-        infoStatus.setText(R.string.notifications_enabled_info);
+        edgeCaseFlipper.setDisplayedChild(ErrorStateViewFlipperChildren.BLE_ERROR_CHILD);
+        edgeCaseFlipper.setVisibility(ViewFlipper.VISIBLE);
+        bannerFlipper.setDisplayedChild(EXPOSURE_BANNER_EDGE_CASE_CHILD);
+        bannerFlipper.setVisibility(View.VISIBLE);
         break;
       case PAUSED_LOCATION:
-        settingsBannerFlipper.setDisplayedChild(3);
-        exposureNotificationStatus.setText(R.string.on);
-        infoStatus.setText(R.string.notifications_enabled_info);
+        edgeCaseFlipper.setDisplayedChild(ErrorStateViewFlipperChildren.LOCATION_ERROR_CHILD);
+        edgeCaseFlipper.setVisibility(ViewFlipper.VISIBLE);
+        bannerFlipper.setDisplayedChild(EXPOSURE_BANNER_EDGE_CASE_CHILD);
+        bannerFlipper.setVisibility(View.VISIBLE);
         break;
       case STORAGE_LOW:
-        settingsBannerFlipper.setDisplayedChild(4);
-        exposureNotificationStatus.setText(R.string.on);
-        infoStatus.setText(R.string.notifications_enabled_info);
+        edgeCaseFlipper
+            .setDisplayedChild(ErrorStateViewFlipperChildren.LOW_STORAGE_ERROR_CHILD);
         manageStorageButton.setVisibility(
             StorageManagementHelper.isStorageManagementAvailable(getContext())
-            ? Button.VISIBLE : Button.GONE);
+                ? Button.VISIBLE : Button.GONE);
+        edgeCaseFlipper.setVisibility(ViewFlipper.VISIBLE);
+        bannerFlipper.setDisplayedChild(EXPOSURE_BANNER_EDGE_CASE_CHILD);
+        bannerFlipper.setVisibility(View.VISIBLE);
         break;
       case DISABLED:
       default:
-        settingsBannerFlipper.setDisplayedChild(0);
-        exposureNotificationStatus.setText(R.string.off);
-        infoStatus.setText(R.string.notifications_disabled_info);
+        edgeCaseFlipper.setDisplayedChild(ErrorStateViewFlipperChildren.DISABLED_ERROR_CHILD);
+        edgeCaseFlipper.setVisibility(ViewFlipper.VISIBLE);
+        bannerFlipper.setDisplayedChild(EXPOSURE_BANNER_EDGE_CASE_CHILD);
+        bannerFlipper.setVisibility(View.VISIBLE);
         break;
     }
+
+    /*
+     * Depending on whether we have a state where we require user interaction, we show different
+     * versions of the "no exposures" view and decide whether or not to show a banner.
+     * Thus update the classification UI too.
+     */
+    refreshUiForClassification(exposureHomeViewModel.getExposureClassification(),
+        exposureHomeViewModel.getIsExposureClassificationRevoked());
+
   }
 
   /**
-   * Display new exposure information
+   * Update UI to match the current exposure risk classification
    *
-   * @param exposureEntities List of potential exposures
+   * @param exposureClassification the {@link ExposureClassification} as returned by
+   *                               DailySummaryRiskCalculator
+   * @param isRevoked a boolean indicating a "revoked" state transition
+   *
    */
-  private void refreshUiForExposureEntities(@Nullable List<ExposureEntity> exposureEntities) {
+  private void refreshUiForClassification(ExposureClassification exposureClassification,
+      boolean isRevoked) {
     View rootView = getView();
     if (rootView == null) {
       return;
     }
 
-    if (adapter != null) {
-      adapter.submitList(exposureEntities);
+    ViewFlipper bannerFlipper =
+        rootView.findViewById(R.id.exposures_banner_flipper);
+    ViewFlipper exposureInformationFlipper =
+        rootView.findViewById(R.id.exposure_information_flipper);
+
+    TextView exposureDetailsDateExposedText
+        = rootView.findViewById(R.id.exposure_details_date_exposed_text);
+    TextView exposureDetailsUrlText = rootView.findViewById(R.id.exposure_details_url_text);
+    TextView exposureDetailsText = rootView.findViewById(R.id.exposure_details_text);
+
+    /*
+     * Switch to the right view in the ViewFlippers depending on whether we have an exposure.
+     * Fill in information accordingly
+     */
+    if (exposureClassification.getClassificationIndex()
+        == ExposureClassification.NO_EXPOSURE_CLASSIFICATION_INDEX
+        && !isRevoked) {
+      /*
+       * No exposure
+       */
+      if (exposureNotificationViewModel.getStateLiveData().getValue()
+          == ExposureNotificationState.ENABLED) {
+        // Without any actionable item, show the full "No exposures" view and banner
+        exposureInformationFlipper
+            .setDisplayedChild(EXPOSURE_INFORMATION_FLIPPER_NO_EXPOSURE_CHILD);
+        exposureInformationFlipper.setVisibility(ViewFlipper.VISIBLE);
+        bannerFlipper.setDisplayedChild(EXPOSURE_BANNER_EXPOSURE_CHILD);
+        bannerFlipper.setVisibility(View.VISIBLE);
+      } else {
+        // If there is an item the user needs to act upon (e.g. enabling ble), we hide this view
+        exposureInformationFlipper.setVisibility(ViewFlipper.GONE);
+      }
+    } else {
+      /*
+       * We've got an exposure! Fill in all the details (exposure date, text, further info url)
+       */
+      exposureInformationFlipper
+          .setDisplayedChild(EXPOSURE_INFORMATION_FLIPPER_INFORMATION_AVAILABLE_CHILD);
+      exposureInformationFlipper.setVisibility(ViewFlipper.VISIBLE);
+      exposureDetailsDateExposedText.setText(
+          StringUtils.epochDaysTimestampToMediumUTCDateString(
+              exposureClassification.getClassificationDate(), getResources().getConfiguration().locale)
+      );
+
+      // Catch the revoked edge case
+      if (isRevoked) {
+        exposureDetailsUrlText.setText(R.string.exposure_details_url_revoked);
+        exposureDetailsText.setText(R.string.exposure_details_text_revoked);
+      }
+
+      // All the other "normal" classifications
+      else {
+        switch (exposureClassification.getClassificationIndex()) {
+          case 1:
+            exposureDetailsUrlText.setText(R.string.exposure_details_url_1);
+            exposureDetailsText.setText(R.string.exposure_details_text_1);
+            break;
+          case 2:
+            exposureDetailsUrlText.setText(R.string.exposure_details_url_2);
+            exposureDetailsText.setText(R.string.exposure_details_text_2);
+            break;
+          case 3:
+            exposureDetailsUrlText.setText(R.string.exposure_details_url_3);
+            exposureDetailsText.setText(R.string.exposure_details_text_3);
+            break;
+          case 4:
+            exposureDetailsUrlText.setText(R.string.exposure_details_url_4);
+            exposureDetailsText.setText(R.string.exposure_details_text_4);
+            break;
+        }
+      }
     }
 
-    ViewAnimator switcher = rootView.findViewById(R.id.exposures_list_empty_switcher);
-    switcher.setDisplayedChild(exposureEntities == null || exposureEntities.isEmpty() ? 0 : 1);
+    updateFlipperDividerVisibility(rootView);
   }
 
   /**
-   * Open the Exposure Notifications about screen.
+   * The divider-bar between the ViewFlippers (Exposure module state/settings flipper and
+   * ExposureClassification flipper) should only be visible if BOTH view flippers are
    */
-  private void launchAboutAction() {
-    startActivity(new Intent(requireContext(), ExposureAboutActivity.class));
+  private void updateFlipperDividerVisibility(View rootView) {
+    ViewFlipper exposureInformationFlipper =
+        rootView.findViewById(R.id.exposure_information_flipper);
+    ViewFlipper edgeCaseFlipper = rootView.findViewById(R.id.edge_case_flipper);
+
+    View horizontalDividerView = rootView.findViewById(R.id.view_flipper_divider);
+
+    if (exposureInformationFlipper.getVisibility() == ViewFlipper.VISIBLE
+    && edgeCaseFlipper.getVisibility() == ViewFlipper.VISIBLE) {
+      horizontalDividerView.setVisibility(View.VISIBLE);
+    } else {
+      horizontalDividerView.setVisibility(View.GONE);
+    }
   }
 
   /**
@@ -229,19 +331,26 @@ public class ExposureHomeFragment extends Fragment {
     startActivity(intent);
   }
 
-  public void showPopup(View v) {
-    PopupMenu popup = new PopupMenu(getContext(), v);
-    popup.setOnMenuItemClickListener(menuItem -> {
-      showOsLicenses();
-      return true;
-    });
-    MenuInflater inflater = popup.getMenuInflater();
-    inflater.inflate(R.menu.popup_menu, popup.getMenu());
-    popup.show();
-  }
+  /**
+   * Open the URL at "learn more"
+   */
+  private void openExposureDetailsUrl(String url) {
+    if (!url.startsWith("http://") && !url.startsWith("https://")) {
+      url = "https://" + url;
+    }
 
-  private void showOsLicenses(){
-    new LibsBuilder().withLicenseShown(true).start(getActivity());
+    try {
+      Intent i = new Intent(Intent.ACTION_VIEW);
+      i.setData(Uri.parse(url));
+      startActivity(i);
+    } catch (Exception e) {
+      /*
+       * This might fail either if the user does not have an App to handle the intent (Browser)
+       * or the URL provided by the HA can not be parsed. In these cases we don't show an error to
+       * the user, but log it.
+       */
+      Log.e(TAG, "Exception while launching ACTION_VIEW with URL " + url , e);
+    }
   }
 
 }

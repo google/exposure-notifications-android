@@ -18,11 +18,31 @@
 
 <resources>
   <dimen name="onboarding_logo_size">128dp</dimen>
-  <dimen name="onboarding_logo_marginTop">100dp</dimen>
-  <dimen name="onboarding_button_marginBottom">48dp</dimen>
+  <dimen name="onboarding_button_elevation">20dp</dimen>
+  <dimen name="onboarding_progress_bar_size">24dp</dimen>
+  <dimen name="onboarding_progress_bar_elevation">10dp</dimen>
+  <dimen name="onboarding_section_header_text_size">18sp</dimen>
+  <dimen name="onboarding_section_header_image_height">42dp</dimen>
+  <dimen name="onboarding_section_header_image_width">64dp</dimen>
+  <dimen name="onboarding_logo_padding">100dp</dimen>
+
+  <dimen name="notify_row_min_height">56dp</dimen>
+  <dimen name="touch_area_min_size">48dp</dimen>
+
   <dimen name="padding_normal">16dp</dimen>
   <dimen name="padding_small">8dp</dimen>
   <dimen name="padding_micro">4dp</dimen>
   <dimen name="padding_large">24dp</dimen>
   <dimen name="padding_extra_large">32dp</dimen>
+
+  <dimen name="settings_row_min_height">64dp</dimen>
+  <dimen name="settings_icon_field_width">72dp</dimen>
+  <dimen name="settings_icon_height">24dp</dimen>
+  <dimen name="settings_page_icon_width">42dp</dimen>
+
+  <dimen name="exposure_icon_field_min_height">72dp</dimen>
+  <dimen name="exposure_icon_size">48dp</dimen>
+
+  <dimen name="notify_review_text_size">16sp</dimen>
+
 </resources>

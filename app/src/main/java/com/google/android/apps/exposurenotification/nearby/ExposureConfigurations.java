@@ -17,7 +17,6 @@
 
 package com.google.android.apps.exposurenotification.nearby;
 
-import android.content.Context;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
 import com.google.android.gms.nearby.exposurenotification.ExposureConfiguration;
 
@@ -27,19 +26,19 @@ import com.google.android.gms.nearby.exposurenotification.ExposureConfiguration;
  */
 public class ExposureConfigurations {
 
-  private final Context context;
-  private final ExposureNotificationSharedPreferences prefs;
+  private final ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
 
-  public ExposureConfigurations(Context context) {
-    this.context = context;
-    prefs = new ExposureNotificationSharedPreferences(context);
+  ExposureConfigurations(
+      ExposureNotificationSharedPreferences exposureNotificationSharedPreferences) {
+    this.exposureNotificationSharedPreferences = exposureNotificationSharedPreferences;
   }
 
-  public ExposureConfiguration get() {
+  ExposureConfiguration get() {
     return new ExposureConfiguration.ExposureConfigurationBuilder()
         .setDurationAtAttenuationThresholds(
             // TODO: Make these settable in debug UI
-            prefs.getAttenuationThreshold1(50), prefs.getAttenuationThreshold2(60))
+            exposureNotificationSharedPreferences.getAttenuationThreshold1(50),
+            exposureNotificationSharedPreferences.getAttenuationThreshold2(60))
         .build();
   }
 }

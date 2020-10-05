@@ -20,15 +20,21 @@ package com.google.android.apps.exposurenotification.common;
 import static com.google.android.apps.exposurenotification.common.StringUtils.ELLIPSIS;
 import static com.google.common.truth.Truth.assertThat;
 
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+import dagger.hilt.android.testing.HiltAndroidTest;
+import dagger.hilt.android.testing.HiltTestApplication;
 import java.util.Locale;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
+import org.robolectric.annotation.Config;
 
 /**
  * Tests for {@link StringUtils} utility function helper class.
  */
-@RunWith(RobolectricTestRunner.class)
+@RunWith(AndroidJUnit4.class)
+@HiltAndroidTest
+@Config(application = HiltTestApplication.class)
 public class StringUtilsTest {
 
   private static final long TIMESTAMP_APR_10_MS = 1586476800000L;
@@ -54,8 +60,17 @@ public class StringUtilsTest {
     String formattedDate = StringUtils
         .epochTimestampToMediumUTCDateString(TIMESTAMP_APR_10_MS, Locale.FRANCE);
 
-    assertThat(formattedDate).isEqualTo("avril 10, 2020");
+    assertThat(formattedDate).isEqualTo("10 avril 2020");
   }
+
+  @Test
+  public void epochTimestampToMediumUTCDateString_localeJAPAN() {
+    String formattedDate = StringUtils
+        .epochTimestampToMediumUTCDateString(TIMESTAMP_APR_10_MS, Locale.JAPAN);
+
+    assertThat(formattedDate).isEqualTo("2020年4月10日");
+  }
+
 
   @Test
   public void randomBase64Data_zeroLength() {

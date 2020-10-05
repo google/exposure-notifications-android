@@ -1,0 +1,252 @@
+/*
+ * Copyright 2020 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+// This module gathers a collection of configs/.json and generates
+// build flavors + resources for each.
+// TODO: Link to documentation of config format.
+
+buildscript {
+  repositories {
+    google()
+      jcenter()
+  }
+  dependencies {
+    classpath "com.android.tools:sdk-common:27.0.1"
+    classpath "com.google.android:android:4.0.1.2"
+  }
+}
+
+import com.android.ide.common.vectordrawable.Svg2Vector
+import java.awt.Color
+import java.awt.Image
+import java.awt.geom.Ellipse2D
+import java.awt.image.BufferedImage
+import java.io.ByteArrayInputStream
+import javax.imageio.ImageIO
+
+
+def svgToXml(content) {
+  def tmp = File.createTempFile("temp", ".tmp")
+  tmp.bytes = content
+  ByteArrayOutputStream outStream = new ByteArrayOutputStream()
+  Svg2Vector.parseSvgToXml(tmp, outStream)
+  tmp.delete()
+  return outStream.toByteArray()
+}
+
+def writeBytes(content, dst) {
+  new File(dst).bytes = content
+}
+
+def resizeImage(image, scale) {
+  def w = (int) (image.getWidth() * scale)
+  def h = (int) (image.getHeight() * scale)
+  BufferedImage newImage = new BufferedImage(
+      w, h, BufferedImage.TYPE_INT_ARGB)
+  def graphics = newImage.getGraphics()
+  def resized = image.getScaledInstance(w, h, Image.SCALE_SMOOTH)
+  graphics.drawImage(resized, 0, 0, null)
+  return newImage
+}
+
+def emitImage(image, dst) {
+  OutputStream outStream = new File(dst).newOutputStream()
+  if (!ImageIO.write(image, "png", outStream)) {
+    throw new GradleException("Unsupported image encoding")
+  }
+}
+
+def drawIconResized(outImage, graphics, imgContent, scale) {
+  def image = ImageIO.read(new ByteArrayInputStream(imgContent))
+  Image resized
+  // Scale to center but make as large as possible
+  if (image.getWidth() > image.getHeight()) {
+    resized = image.getScaledInstance(
+        scale,
+        (int) Math.floor(image.getHeight() * scale / image.getWidth()),
+        Image.SCALE_SMOOTH)
+  } else {
+    resized = image.getScaledInstance(
+        (int) Math.floor(image.getWidth() * scale / image.getHeight()),
+        scale, Image.SCALE_SMOOTH)
+  }
+  // Draw in the center.
+  graphics.drawImage(
+       resized,
+       (int) Math.floor((outImage.getWidth() - resized.getWidth())/2),
+       (int) Math.floor((outImage.getHeight() - resized.getHeight())/2), null)
+}
+
+def composeIcon(fg, bg, color, scale, dst) {
+  def (fgContent, fgExtension) = fg
+  // Oversample by 4
+  scale *= 4
+  // Combine one or more pngs to produce a backward compatible
+  // version of an adaptive icon.
+  if (fgExtension != '.png') {
+    throw GradleException("Got svg but need png")
+  }
+  if (bg != null && bg[1] != '.png') {
+    throw GradleException("Got svg but need png")
+  }
+  BufferedImage newImage = new BufferedImage(
+      scale, scale, BufferedImage.TYPE_INT_ARGB)
+  def graphics = newImage.getGraphics()
+  // Clip to a circle
+  Ellipse2D clip = new Ellipse2D.Float()
+  clip.setFrame(0, 0, newImage.getWidth(), newImage.getHeight())
+  graphics.setClip(clip)
+  // Scale images to match size of adaptive icon visible region.
+  def iconPortion = (int) Math.floor(scale * (108.0 / 72.0))
+  // Fill with background color (if any).
+  if (color) {
+    graphics.setColor(new Color(color[0], color[1], color[2]))
+    graphics.fillRect(0, 0, newImage.getWidth(), newImage.getHeight())
+  }
+  // Draw background image if any first.
+  if (bg != null) {
+    drawIconResized(newImage, graphics, bg[0], iconPortion)
+  }
+  // Draw foreground image.
+  drawIconResized(newImage, graphics, fgContent, iconPortion)
+  // Downsample and emit.
+  emitImage(resizeImage(newImage, 1.0 / 4), dst)
+}
+
+def generateIconSizes(fg, bg, color, dir, filename) {
+  // Generate icons in all the major sizes for compatibility.
+  [
+    ['-ldpi', 36],
+    ['-mdpi', 48],
+    ['-hdpi', 72],
+    ['-xhdpi', 96],
+    ['-xxhdpi', 144],
+    ['-xxxhdpi', 192],
+  ].each { name, scale ->
+    def subpath = dir + "/mipmap" + name
+    mkdir subpath
+    if (color != null) {
+      composeIcon(fg, null, color, scale,
+                  subpath + "/" + filename + ".png")
+    } else {
+      composeIcon(fg, bg, null, scale,
+                  subpath + "/" + filename + ".png")
+    }
+  }
+}
+
+def downloadImage(url) {
+  // Handle data urls separately.
+  if (url.startsWith("data:")) {
+    def parts = url.split(":")[1].split(",")
+    def kind = parts[0].split(";")
+    def content = parts[1]
+    def format = kind[0]
+    def encoding = kind[1]
+    if (encoding != "base64") {
+      throw new GradleException("Unsupported image encoding")
+    }
+    def contentBytes = content.decodeBase64()
+    // Convert SVGs to XML, copy PNGs directly.
+    if (format.startsWith("image/svg")) {
+      return [contentBytes, ".svg"]
+    } else if (format.startsWith("image/png")) {
+      return [contentBytes, ".png"]
+    } else {
+      throw new GradleException(
+          "Unsupported image file format: " + format)
+    }
+    return
+  }
+  // Convert SVGs to XML, copy PNGs directly.
+  if (url.endsWith(".png")) {
+    return [new URL(url).bytes, ".png"]
+  } else if (url.endsWith(".svg")) {
+    return [new URL(url).bytes, ".svg"]
+  } else {
+    throw new GradleException("Unsupported image file format")
+  }
+}
+
+def downloadImages(config, name) {
+  def image = downloadImage(config[name])
+  def pngName = name + "PNG"
+  if (config.containsKey(pngName)) {
+    def pngImage = downloadImage(config[pngName])
+    return [image, pngImage]
+  } else {
+    return [image, image]
+  }
+}
+
+def writeImage(img, path) {
+  if (img[1] == ".svg") {
+    writeBytes(svgToXml(img[0]), path + ".xml")
+  } else {
+    writeBytes(img[0], path + img[1])
+  }
+}
+
+def writeBackground(outDrawablePath) {
+  def back = new File(outDrawablePath + "/ic_launcher_background.xml")
+  back.write('''\
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+ android:height="118dp"
+ android:width="118dp"
+ android:viewportWidth="118.0"
+ android:viewportHeight="118.0">
+  <path
+   android:name="box"
+   android:fillColor="@color/enx_agencyColor"
+   android:pathData="M0,0h118v118h-118z"/>
+</vector>
+''')
+}
+
+def emitDrawables(config, outDir) {
+  // Emit agencyImage drawables
+  def outDrawablePath = outDir + "/drawable"
+  mkdir outDrawablePath
+  def (img, imgPNG) = downloadImages(config, "agencyImage")
+  writeImage(img, outDrawablePath + "/enx_agency_image")
+
+  if (config.containsKey("agencyIconForeground") &&
+      config["agencyIconForeground"] != "") {
+    // Produce an adaptive icon
+    def (fg, fgPNG) = downloadImages(config, "agencyIconForeground")
+    writeImage(fg, outDrawablePath + "/ic_launcher_foreground")
+    if (config.containsKey("agencyIconBackground") &&
+        config["agencyIconBackground"] != "") {
+      def (bg, bgPNG) = downloadImages(config, "agencyIconBackground")
+      writeImage(bg, outDrawablePath + "/ic_launcher_background")
+      generateIconSizes(fgPNG, bgPNG, null, outDir, "ic_launcher")
+    } else {
+      generateIconSizes(fgPNG, null, null, outDir, "ic_launcher")
+      writeImage(fg, outDrawablePath + "/ic_launcher_background")
+      writeBackground(outDrawablePath)
+    }
+  } else {
+    // Synthesize icon from agencyImage
+    generateIconSizes(imgPNG, null, config["agencyColor"],
+                      outDir, "ic_launcher")
+    writeImage(img, outDrawablePath + "/ic_launcher_foreground")
+    writeBackground(outDrawablePath)
+  }
+}
+
+ext {
+  emitDrawables = this.&emitDrawables
+}

@@ -17,16 +17,20 @@
 
 package com.google.android.apps.exposurenotification.nearby;
 
-import android.content.Context;
 import android.util.Log;
-import com.google.android.apps.exposurenotification.common.AppExecutors;
+import com.google.android.apps.exposurenotification.common.Qualifiers.BackgroundExecutor;
+import com.google.android.apps.exposurenotification.common.Qualifiers.ScheduledExecutor;
 import com.google.android.apps.exposurenotification.common.TaskToFutureAdapter;
-import com.google.android.apps.exposurenotification.network.KeyFileBatch;
-import com.google.android.apps.exposurenotification.network.KeyFileConstants;
+import com.google.android.apps.exposurenotification.keydownload.KeyFile;
+import com.google.android.apps.exposurenotification.keydownload.KeyFileConstants;
 import com.google.android.apps.exposurenotification.proto.TEKSignatureList;
 import com.google.android.apps.exposurenotification.proto.TemporaryExposureKey;
 import com.google.android.apps.exposurenotification.proto.TemporaryExposureKeyExport;
+import com.google.android.apps.exposurenotification.storage.DownloadServerEntity;
+import com.google.android.apps.exposurenotification.storage.DownloadServerRepository;
+import com.google.common.collect.ImmutableList;
 import com.google.common.io.BaseEncoding;
+import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 import java.io.File;
@@ -34,10 +38,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
+import javax.inject.Inject;
 import org.apache.commons.io.IOUtils;
+import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 import org.threeten.bp.Duration;
 
 /**
@@ -45,6 +53,7 @@ import org.threeten.bp.Duration;
  * Play Services Exposure Notifications API.
  */
 public class DiagnosisKeyFileSubmitter {
+
   private static final String TAG = "KeyFileSubmitter";
   // Use a very very long timeout, in case of a stress-test that supplies a very large number of
   // diagnosis key files.
@@ -52,14 +61,25 @@ public class DiagnosisKeyFileSubmitter {
   private static final BaseEncoding BASE16 = BaseEncoding.base16().lowerCase();
   private static final BaseEncoding BASE64 = BaseEncoding.base64();
 
-  private final ExposureNotificationClientWrapper client;
+  private final ExposureNotificationClientWrapper exposureNotificationClientWrapper;
+  private final DownloadServerRepository downloadServerRepo;
+  private final ExecutorService backgroundExecutor;
+  private final ScheduledExecutorService scheduledExecutor;
 
-  public DiagnosisKeyFileSubmitter(Context context) {
-    client = ExposureNotificationClientWrapper.get(context);
+  @Inject
+  DiagnosisKeyFileSubmitter(
+      ExposureNotificationClientWrapper exposureNotificationClientWrapper,
+      DownloadServerRepository downloadServerRepo,
+      @BackgroundExecutor ExecutorService backgroundExecutor,
+      @ScheduledExecutor ScheduledExecutorService scheduledExecutor) {
+    this.exposureNotificationClientWrapper = exposureNotificationClientWrapper;
+    this.downloadServerRepo = downloadServerRepo;
+    this.backgroundExecutor = backgroundExecutor;
+    this.scheduledExecutor = scheduledExecutor;
   }
 
   /**
-   * Accepts batches of key files, and submits them to provideDiagnosisKeys(), and returns a future
+   * Accepts key files, and submits them to provideDiagnosisKeys(), and returns a future
    * representing the completion of that task.
    *
    * <p>This naive implementation is not robust to individual failures. In fact, a single failure
@@ -68,56 +88,60 @@ public class DiagnosisKeyFileSubmitter {
    *
    * <p>Returns early if given an empty list of batches.
    */
-  public ListenableFuture<?> submitFiles(List<KeyFileBatch> batches, String token) {
-    if (batches.isEmpty()) {
+  public ListenableFuture<?> submitFiles(ImmutableList<KeyFile> keyFiles) {
+    if (keyFiles.isEmpty()) {
       Log.d(TAG, "No files to provide to google play services.");
       return Futures.immediateFuture(null);
     }
-    Log.d(TAG, "Providing  " + batches.size() + " diagnosis key batches to google play services.");
+    Log.d(TAG, "Providing  " + keyFiles.size() + " diagnosis key files to google play services.");
 
-    ListenableFuture<?> allDone = submitBatches(batches, token);
+    logFiles(keyFiles);
+    ListenableFuture<Void> allDone =
+        TaskToFutureAdapter.getFutureWithTimeout(
+            exposureNotificationClientWrapper.provideDiagnosisKeys(filesFrom(keyFiles)),
+            PROVIDE_KEYS_TIMEOUT,
+            scheduledExecutor);
 
-    // Add a listener to delete all the files.
-    allDone.addListener(
-        () -> {
-          for (KeyFileBatch b : batches) {
-            for (File f : b.files()) {
-              f.delete();
-            }
+    Futures.addCallback(allDone, new FutureCallback<Void>() {
+      @Override
+      public void onSuccess(@NullableDecl Void result) {
+        for (KeyFile f : keyFiles) {
+          if (f.isMostRecent()) {
+            // On success, remember the last successful file for each server.
+            Log.d(TAG, String.format(
+                "Mark last successful download [%s] for server [%s]", f.uri(), f.index()));
+            downloadServerRepo.upsert(DownloadServerEntity.create(f.index(), f.uri()));
           }
-        },
-        AppExecutors.getBackgroundExecutor());
+          // and delete all files locally.
+          f.file().delete();
+        }
+      }
+
+      @Override
+      public void onFailure(Throwable t) {
+        for (KeyFile f : keyFiles) {
+          // After failures, only delete the local files.
+          f.file().delete();
+        }
+      }
+    }, backgroundExecutor);
 
     return allDone;
   }
 
-  private ListenableFuture<?> submitBatches(List<KeyFileBatch> batches, String token) {
-    Log.d(
-        TAG,
-        "Combining ["
-            + batches.size()
-            + "] key file batches into a single submission to provideDiagnosisKeys().");
+  private static List<File> filesFrom(List<KeyFile> keyFiles) {
     List<File> files = new ArrayList<>();
-    for (KeyFileBatch b : batches) {
-      files.addAll(b.files());
-      logBatch(b);
+    for (KeyFile f : keyFiles) {
+      files.add(f.file());
     }
-
-    return TaskToFutureAdapter.getFutureWithTimeout(
-        client.provideDiagnosisKeys(files, token),
-        PROVIDE_KEYS_TIMEOUT.toMillis(),
-        TimeUnit.MILLISECONDS,
-        AppExecutors.getScheduledExecutor());
+    return files;
   }
 
-  private void logBatch(KeyFileBatch batch) {
-    Log.d(
-        TAG,
-        "Batch [" + batch.batchNum() + "] has [" + batch.files().size() + "] files.");
+  private void logFiles(ImmutableList<KeyFile> files) {
     int filenum = 1;
-    for (File f : batch.files()) {
+    for (KeyFile f : files) {
       try {
-        FileContent fc = readFile(f);
+        FileContent fc = readFile(f.file());
         Log.d(TAG, "File " + filenum + " has signature:\n" + fc.signature);
         Log.d(TAG, "File " + filenum + " has [" + fc.export.getKeysCount() + "] keys.");
         for (TemporaryExposureKey k : fc.export.getKeysList()) {
@@ -143,7 +167,7 @@ public class DiagnosisKeyFileSubmitter {
   }
 
   private FileContent readFile(File file) throws IOException {
-    try(ZipFile zip = new ZipFile(file)) {
+    try (ZipFile zip = new ZipFile(file)) {
       ZipEntry signatureEntry = zip.getEntry(KeyFileConstants.SIG_FILENAME);
       ZipEntry exportEntry = zip.getEntry(KeyFileConstants.EXPORT_FILENAME);
 
@@ -162,6 +186,7 @@ public class DiagnosisKeyFileSubmitter {
   }
 
   private static class FileContent {
+
     private final String header;
     private final TemporaryExposureKeyExport export;
     private final TEKSignatureList signature;

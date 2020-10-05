@@ -1,0 +1,30 @@
+<!--
+  ~ Copyright 2020 Google LLC
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      https://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  ~
+  -->
+
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+  <path
+      android:pathData="M24,0L24,0A24,24 0,0 1,48 24L48,24A24,24 0,0 1,24 48L24,48A24,24 0,0 1,0 24L0,24A24,24 0,0 1,24 0z"
+      android:fillColor="#E9D2FD"/>
+  <path
+      android:pathData="M26.82,16H31C32.1,16 33,16.9 33,18V32C33,33.1 32.1,34 31,34H17C16.86,34 16.73,33.99 16.6,33.97C16.21,33.89 15.86,33.69 15.59,33.42C15.41,33.23 15.26,33.02 15.16,32.78C15.06,32.54 15,32.27 15,32V18C15,17.72 15.06,17.46 15.16,17.23C15.26,16.99 15.41,16.77 15.59,16.59C15.86,16.32 16.21,16.12 16.6,16.04C16.73,16.01 16.86,16 17,16H21.18C21.6,14.84 22.7,14 24,14C25.3,14 26.4,14.84 26.82,16ZM19,22V20H29V22H19ZM29,26V24H19V26H29ZM26,28H19V30H26V28ZM24,15.75C24.41,15.75 24.75,16.09 24.75,16.5C24.75,16.91 24.41,17.25 24,17.25C23.59,17.25 23.25,16.91 23.25,16.5C23.25,16.09 23.59,15.75 24,15.75ZM17,32H31V18H17V32Z"
+      android:fillColor="#6200EE"
+      android:fillType="evenOdd"/>
+</vector>

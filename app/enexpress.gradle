@@ -1,0 +1,43 @@
+/*
+ * Copyright 2020 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+// This module gathers a collection of configs/.json and generates
+// build flavors + resources for each for EN Express.
+
+apply from: 'enexpress_play_store.gradle'
+apply from: 'enexpress_play_consent.gradle'
+apply from: 'enexpress_resources.gradle'
+apply from: 'enexpress_config.gradle'
+
+Map configData = loadConfigFiles()
+
+// Generate a flavor for each config file.
+android {
+  flavorDimensions "ha"
+  productFlavors {
+    configData.each { name, config ->
+      "$name" {
+        dimension "ha"
+        applicationId config["healthAuthorityID"]
+        manifestPlaceholders = [appLinkHost: config["appLinkHost"]]
+      }
+    }
+  }
+}
+
+generateResources(configData)
+generatePlayStorePublish(configData)
+generatePlayStoreConsent(configData)

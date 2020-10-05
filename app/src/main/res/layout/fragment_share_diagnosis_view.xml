@@ -16,6 +16,7 @@
   -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:orientation="vertical">
@@ -30,11 +31,11 @@
       android:layout_width="?attr/actionBarSize"
       android:layout_height="match_parent"
       android:background="?attr/selectableItemBackgroundBorderless"
-      android:src="?attr/homeAsUpIndicator" />
+      app:srcCompat="@drawable/ic_close" />
 
   </LinearLayout>
 
-  <ScrollView
+  <androidx.core.widget.NestedScrollView
     android:layout_width="match_parent"
     android:layout_height="0dp"
     android:layout_weight="1"
@@ -48,35 +49,32 @@
       android:paddingHorizontal="@dimen/padding_large">
 
       <TextView
-        android:id="@+id/share_exposure_view_title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:textAppearance="?attr/textAppearanceHeadline4" />
+        android:text="@string/status_shared_detail_title"
+        android:textAppearance="?attr/textAppearanceHeadline5" />
+
+      <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_banner_hand"/>
 
       <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/padding_normal"
-        android:gravity="center"
-        android:text="@string/positive_test_description"
-        android:textAppearance="?attr/textAppearanceSubtitle1" />
-
-      <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/padding_normal"
         android:layout_marginBottom="@dimen/padding_small"
-        android:text="@string/share_review_positive_test"
-        android:textAppearance="?attr/textAppearanceBody1" />
+        android:text="@string/share_review_status_subtitle"
+        android:textAppearance="?attr/textAppearanceBody2"
+        android:textAllCaps="true" />
 
       <TextView
+        android:id="@+id/share_review_status"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/padding_normal"
-        android:text="@string/share_review_positive_test_covid"
-        android:textAppearance="?attr/textAppearanceBody2"
-        android:textColor="?attr/colorControlNormal"/>
+        android:textAppearance="?attr/textAppearanceHeadline6"
+        android:textSize="@dimen/notify_review_text_size" />
 
       <include layout="@layout/horizontal_divider" />
 
@@ -85,44 +83,57 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/padding_normal"
         android:layout_marginBottom="@dimen/padding_small"
-        android:text="@string/share_review_date"
-        android:textAppearance="?attr/textAppearanceBody1" />
+        android:text="@string/share_review_travel_subtitle"
+        android:textAppearance="?attr/textAppearanceBody2"
+        android:textAllCaps="true" />
 
       <TextView
-        android:id="@+id/test_date"
+        android:id="@+id/share_review_travel"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/padding_normal"
+        android:textAppearance="?attr/textAppearanceHeadline6"
+        android:textSize="@dimen/notify_review_text_size"/>
+
+      <include layout="@layout/horizontal_divider" />
+
+      <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_normal"
+        android:layout_marginBottom="@dimen/padding_small"
+        android:text="@string/share_review_onset_subtitle"
         android:textAppearance="?attr/textAppearanceBody2"
-        android:textColor="?attr/colorControlNormal" />
+        android:textAllCaps="true" />
+
+      <TextView
+        android:id="@+id/share_review_date"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/padding_normal"
+        android:textAppearance="?attr/textAppearanceHeadline6"
+        android:textSize="@dimen/notify_review_text_size" />
 
     </LinearLayout>
 
-  </ScrollView>
+  </androidx.core.widget.NestedScrollView>
 
-  <LinearLayout
+  <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/padding_normal"
-    android:orientation="vertical"
-    android:background="?android:attr/colorBackground"
-    android:elevation="20dp">
-
-    <Button
-      android:id="@+id/positive_diagnosis_share_button"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginHorizontal="@dimen/padding_normal" />
+    android:layout_marginVertical="@dimen/padding_normal"
+    android:orientation="horizontal">
 
     <Button
       android:id="@+id/positive_diagnosis_delete_button"
       style="@style/Widget.MaterialComponents.Button.TextButton"
-      android:layout_width="match_parent"
+      android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginHorizontal="@dimen/padding_normal"
+      android:layout_alignParentEnd="true"
       android:textColor="@color/delete"
-      android:text="@string/btn_delete_positive" />
+      android:text="@string/btn_delete_status" />
 
-  </LinearLayout>
+  </RelativeLayout>
 
 </LinearLayout>

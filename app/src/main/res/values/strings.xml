@@ -17,231 +17,425 @@
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-  <plurals name="possible_exposure_subheading">
-    <item quantity="one">You were near someone %1$d day ago who has shared their positive COVID-19 test result.</item>
-    <item quantity="other">You were near someone %1$d days ago who has shared their positive COVID-19 test result.</item>
-  </plurals>
+  <!-- COMMON SCREENS -->
 
-  <string name="app_name">Sample Public Health Authority App</string>
+  <!-- Title of the button used on multi-screen flows in the app, like onboarding. [CHAR_LIMIT=40] -->
+  <string name="btn_continue">Continue</string>
 
-  <string name="btn_start">Get started</string>
+  <!-- Title of the button used at the end of a flow when no options are offered, like onboarding. [CHAR_LIMIT=40] -->
+  <string name="btn_got_it">Got it</string>
 
+  <!-- Title of the button used at the end of a flow asking to turn something on, like onboarding. [CHAR_LIMIT=40] -->
   <string name="btn_turn_on">Turn on</string>
 
-  <string name="btn_done">Done</string>
+  <!-- Title of the button on the dialog confirming that the user would like to turn off exposure notifications. [CHAR_LIMIT=40] -->
+  <string name="btn_turn_off">Turn off</string>
 
+  <!-- Title of the button used during onboarding to allow the user to complete without enabling. [CHAR_LIMIT=40] -->
   <string name="btn_not_now">Not now</string>
 
-  <string name="generic_error_message">Internal error, please try again.</string>
-
-  <string name="onboarding_welcome_text">Welcome to the Sample Public Health Authority COVID-19 App</string>
-
-  <string name="onboarding_start_text">
-    [Actual copy to be provided by Public Health Authority]\n\n
-  </string>
-
-  <string name="onboarding_opt_in_title">Turn on COVID-19 Exposure Notifications</string>
-
-  <string name="onboarding_opt_in_text">
-    [Actual copy to be provided by Public Health Authority]
-    \n\nThese notifications are designed to notify you if you\'ve been exposed to a user who later reports themselves as testing positive for COVID-19. You can choose to turn off these notifications at any time.
-    \n\nExposure notifications rely on the sharing and collecting of random IDs. These IDs are a random string of numbers that won\'t identify you to other users and change many times a day to protect your privacy.
-    \n\nYour device will collect and share random IDs with nearby devices. This app can notify you if you\'ve been near someone who has reported a positive COVID-19 test result.
-    \n\nIf you test positive for COVID-19, you can also help your community by reporting your test result.
-    \n\nIf you’re exposed, the time, approximate date, and distance of your exposure are shared with this app. This helps health experts better understand the spread of COVID-19. These details aren’t associated with your random IDs to protect your privacy.
-  </string>
-
-  <string name="onboarding_finish_title">It\'s important to your community to share a positive test result</string>
-
-  <string name="onboarding_finish_message">
-   [Actual copy to be provided by Public Health Authority]
-    \n\nIf you have a positive COVID-19 test result, sharing this information will help notify others who have been exposed. This will help others in your community contain the spread of COVID-19.
-    \n\nA positive COVID-19 test result isn\'t reported automatically. This app lets you report your positive test result securely and without identifying you to other users.
-  </string>
-
-  <string name="notify_turn_on_exposure_notifications_header">You can\'t share your positive test results until exposure notifications are turned on</string>
-
-  <string name="turn_on_exposure_notifications_action">Turn on Exposure Notifications</string>
-
-  <string name="exposure_notifications_are_turned_off">Exposure notifications are turned off</string>
-
-  <string name="location_ble_off_notify">Turn on Bluetooth and device location to use this feature and share your test result</string>
-
-  <string name="location_ble_off_exposures">Turn on Bluetooth and device location to use this feature</string>
-
-  <string name="ble_off_notify">Turn on Bluetooth to use this feature and share your test result</string>
-
-  <string name="ble_off_exposures">Turn on Bluetooth to use this feature</string>
-
-  <string name="location_off_notify">Turn on device location to use this feature and share your test result</string>
-
-  <string name="location_off_exposures">Turn on device location to use this feature</string>
-
-  <string name="storage_low_notify">Not enough storage. Free up space to use this feature and share your test result</string>
-
-  <string name="storage_low_exposures">Not enough storage. Free up space to use this feature</string>
-
-  <string name="device_settings">Device settings</string>
-
-  <string name="manage_storage">Manage storage</string>
-
-  <string name="exposure_notifications">Exposure notifications</string>
-
-  <string name="past_exposures">Past exposures</string>
-
-  <string name="actual_copy">[Actual copy to be provided by Public Health Authority]</string>
-
-  <string name="possible_exposure">Possible exposure</string>
-
-  <string name="no_exposures">No exposures</string>
-
-  <string name="on">On</string>
-
-  <string name="off">Off</string>
-
-  <string name="home_tab_exposures_text">Exposures</string>
-
-  <string name="home_tab_notify_text">Notify others</string>
-
-  <string name="home_tab_notify_debug_text">Debug</string>
-
-  <string name="btn_next">Next</string>
-
+  <!-- Title of the button used on many screens to abort the current flow without saving. [CHAR_LIMIT=40] -->
   <string name="btn_cancel">Cancel</string>
 
-  <string name="navigate_up">Navigate up</string>
+  <!-- Title of the button used on the shared / not-shared status page to allow the user to delete their COVID-19 status in the app. [CHAR_LIMIT=40] -->
+  <string name="btn_delete_status">Delete status</string>
 
-  <string name="exposure_about_title">Exposure notifications</string>
+  <!-- Title of the button used on the delete test result confirmation dialog. [CHAR_LIMIT=40] -->
+  <string name="btn_delete">Delete</string>
 
-  <string name="exposure_about_description">[Actual copy to be provided by Public Health Authority]</string>
+  <!-- Title of the button on the settings page, allowing the user to share this app with others. [CHAR_LIMIT=40] -->
+  <string name="btn_share_this_app">Share this app</string>
 
-  <string name="exposure_about_settings_button_pre_text">You can manage exposure notifications in your device’s settings.</string>
+  <!-- Button on the dialog shown when the user chooses not to turn on Exposure Notifications -->
+  <string name="btn_no_go_back">No, go back</string>
 
-  <string name="exposure_about_settings_button_text">Settings</string>
+  <!-- Button on the dialog shown when the user chooses not to turn on Exposure Notifications -->
+  <string name="btn_yes_continue">Yes, continue</string>
 
-  <string name="home_menu_showosslicenses">Open source libraries</string>
+  <!-- Text shown on the button to start the process of sharing a positive COVID-19 test result with others. [CHAR_LIMIT=40] -->
+  <string name="btn_share_positive">Share COVID-19 test result</string>
 
-  <string name="exposure_about_detail">
-    These notifications are designed to notify you if you\'ve been exposed to a user who later reports themselves as testing positive for COVID-19. You can choose to turn off these notifications at any time.
-    \n\nExposure notifications rely on the sharing and collecting of random IDs. These IDs are a random string of numbers that won\'t identify you to other users and change many times a day to protect your privacy.
-    \n\nYour device will collect and share random IDs with nearby devices. This app can notify you if you\'ve been near someone who has reported a positive COVID-19 test result.
-    \n\nIf you test positive for COVID-19, you can help your community by reporting your test result.
-    \n\nIf you\'re exposed, the time, approximate date, and distance of your exposure are shared with this app. This helps health experts better understand the spread of COVID-19.
-  </string>
+  <!-- Button text shown on a page that needs to be closed.  Like at the end of the diagnosis sharing upload flow. [CHAR_LIMIT=40] -->
+  <string name="btn_done">Done</string>
 
-  <string name="exposure_learn_more_title">About verified test results</string>
+  <!-- Button text shown on the notify others flow to go back to the previous screen in the flow. [CHAR_LIMIT=40] -->
+  <string name="btn_back">Back</string>
 
-  <string name="exposure_learn_more_description">[Actual copy to be provided by Public Health Authority]</string>
+  <!-- Button text shown on the notify others save progress dialog. Clicking save will store a snapshot of all the information the user has entered about their diagnosis and allow them to continue the process of submitting it later. [CHAR_LIMIT=40] -->
+  <string name="btn_save">Save</string>
 
-  <string name="verify_test_result_title">Enter your test result information</string>
+  <!-- Button text shown on the notify others save progress dialog. Clicking discard will remove all information entered about the diagnosis. [CHAR_LIMIT=40] -->
+  <string name="btn_discard">Discard</string>
 
-  <string name="verify_test_result_subtitle">
-    [Actual copy to be provided by Public Health Authority]
-    \n\nOnly those who have been exposed will receive a notification</string>
+  <!-- Button text shown on the notify others flow. Clicking will attempt to verify their test result. [CHAR_LIMIT=40] -->
+  <string name="btn_verify">Verify</string>
 
-  <string name="enter_your_test_identifier">Verification Code</string>
-
-  <string name="share_test_identifier_help">The unique test identifier that came with your COVID-19 test must be used to verify your positive test result.</string>
-
-  <string name="test_date_label">Symptom Onset Date</string>
-
-  <string name="share_test_date_help">The symptom onset date helps the app know when you may have been contagious and notify the right people of possible exposure.</string>
-
-  <string name="share_error">Unable to share</string>
-
-  <string name="share_complete_title">Thank you for sharing your test result</string>
-
-  <string name="share_complete_detail">[Actual copy to be provided by Public Health Authority]</string>
-
-  <string name="share_not_complete_title">Test result not shared</string>
-
-  <string name="share_not_complete_detail">[Actual copy to be provided by Public Health Authority]</string>
-
-  <string name="share_not_complete_description">Your test result wasn\'t shared. This test result is saved in the app. You can share or delete your test result at any time.</string>
-
-  <string name="share_test_result">Share positive test result</string>
-
-  <string name="share_test_result_title">Share your positive test result</string>
-
-  <string name="share_test_result_description">If you have tested positive for COVID-19, sharing your test result will help notify others who may have been exposed. This will let others in your community know if they should monitor for symptoms.</string>
-
-  <string name="share_begin_title">Before you get started</string>
-
-  <string name="share_begin_detail">[Actual copy to be provided by Public Health Authority]</string>
-
-  <string name="share_begin_description">
-    If you have tested positive for COVID-19, you can help your community by reporting your test result.
-    \n\nYou\'ll be asked to share your phone\'s random IDs from the past 14 days. This is used to help notify others you\'ve been near about potential exposure.
-    \n\nSharing your random IDs won\'t identify you to other users.
-  </string>
-
-  <string name="share_learn_more_title">About test identifiers</string>
-
-  <string name="share_learn_more_description">[Actual copy to be provided by Public Health Authority]</string>
-
-  <string name="share_review_title">Review your information</string>
-
-  <string name="share_review_description">[Actual copy to be provided by Public Health Authority]</string>
-
-  <string name="share_review_positive_test">Positive test result</string>
-
-  <string name="share_review_positive_test_covid">COVID-19</string>
-
-  <string name="share_review_date">Date of test</string>
-
-  <string name="btn_share_positive">Share positive test result</string>
-
-  <string name="btn_share_already_shared">Test result shared</string>
-
-  <string name="btn_delete_positive">Delete test result</string>
-
-  <string name="dialog_delete_positive_test_title">Delete test result?</string>
-
-  <string name="dialog_delete_positive_test_description">Your test result will be deleted from this app</string>
-
-  <string name="dialog_delete_positive_test_action">Delete</string>
-
-  <string name="positive_test_results">Staging</string>
-
-  <string name="no_positive_test_results">No positive test results</string>
-
-  <string name="positive_test_result_status_shared">Shared</string>
-
-  <string name="positive_test_result_status_not_shared">Not shared</string>
-
-  <string name="positive_test_shared_title">Shared COVID-19 test result</string>
-
-  <string name="positive_test_not_shared_title">COVID-19 test result</string>
-
-  <string name="positive_test_description">[Actual copy to be provided by Public Health Authority]</string>
-
-  <string name="notifications_disabled_info">When exposure notifications are turned off, you won\’t be notified if you\'re exposed to COVID-19</string>
-
-  <string name="notifications_enabled_info">You will be notified if you have been exposed to someone who reported a positive COVID-19 result</string>
-
-  <string name="positive_test_result_type">COVID-19</string>
-
-  <string name="info_saved_locally">
-    Sample Public Health Authority App received info on %1$s.
-    \n\nThis report has been saved to this app and you can access it at any time.
-  </string>
-
-  <string name="verified_result_explanation">This person\'s test result was verified. You were near this person on %1$s.</string>
-
-  <string name="verified_result_next_steps">Next steps: [Actual copy to be provided by Public Health Authority]</string>
-
-  <string name="done">Done</string>
-
-  <string name="reference_only">REFERENCE ONLY</string>
-
+  <!-- Link title to more information about a topic where the link is displayed. [CHAR_LIMIT=100] -->
   <string name="learn_more">Learn more</string>
 
-  <string name="notification_title">Possible COVID-19 exposure</string>
+  <!-- Name displayed on the exposures tab in the bottom tabbed layout. This also gets displayed as a title when on that tab. [CHAR_LIMIT=20] -->
+  <string name="home_tab_exposures_text">Exposure</string>
 
-  <string name="notification_message">Someone you were near has tested positive for COVID-19. Tap for more info.</string>
+  <!-- Name displayed on the notify others tab in the bottom tabbed layout. This also gets displayed as a title when on that tab. [CHAR_LIMIT=20] -->
+  <string name="home_tab_notify_text">Notify others</string>
 
-  <string name="notification_channel_name">Exposure Notification</string>
+  <!-- Name displayed on the settings tab in the bottom tabbed layout. This also gets displayed as a title when on that tab. [CHAR_LIMIT=20] -->
+  <string name="home_tab_settings_text">Settings</string>
 
-  <string name="notification_channel_description">Exposure notification alerts.</string>
+  <!-- Name of the Android notification channel.  This appears in Android settings where the user can choose to disable notifications on specific channels.  Android documentation sets a recommended maximum of 40 characters and longer strings may be truncated. [CHAR_LIMIT=40] -->
+  <string name="notification_channel_name">Possible COVID-19 exposure</string>
+
+  <!-- Description of the Android notification channel.  This appears in Android settings where the user can choose to disable notifications on specific channels.  Android documentation sets a recommended maximum of 300 characters and longer strings may be truncated. [CHAR_LIMIT=300] -->
+  <string name="notification_channel_description">Get notifications if you were possibly exposed to someone with COVID-19.</string>
+
+  <!-- Text associated with the back arrow button shown on some screens in the app, allowing the user to go back to the previous page. The text isn't displayed but is present for accessibility reasons. [CHAR_LIMIT=NONE] -->
+  <string name="navigate_up">Go back to previous screen</string>
+
+  <!-- ONBOARDING SCREENS -->
+
+  <!-- Title of the onboarding screen reached when the user has not previously been through accepting the exposure notification permissions. This title is not shown on the page but needed for accessibility purposes. [CHAR_LIMIT=NONE] -->
+  <string name="onboarding_opt_in_title">Permissions needed to install and optimally use this app</string>
+
+  <!-- Title of the onboarding screen reached when the user has accepted the exposure notification permissions, but is coming into the app for the first time. This title is not shown on the page but needed for accessibility purposes. [CHAR_LIMIT=NONE] -->
+  <string name="onboarding_finish_title">Continuation of permissions needed to install and optimally use this app</string>
+
+  <!-- Title of the exposure notification section on the onboarding screen explaining that exposure notifications will be turned on. This screen is shown on first use of the app when not previously enabled. [CHAR_LIMIT=60] -->
+  <string name="onboarding_exposure_notifications_title">Turn on Exposure Notifications</string>
+
+  <!-- Text of the exposure notification section on the onboarding screen explaining that exposure notifications will be turned on. This screen is shown on first use of the app when not previously enabled. The placeholder string is the app name. [CHAR_LIMIT=NONE] -->
+  <string name="onboarding_exposure_notifications_detail">
+    Turn on Exposure Notifications so that %1$s can notify you if you\'ve been near someone who reported having COVID-19.
+    \n\nYour phone uses Bluetooth to securely collect and share random IDs with other phones that are nearby.
+    \n\nThe date, duration, and signal strength associated with an exposure will be shared with the app.
+  </string>
+
+  <!-- Title of the metric sharing section on the onboarding screen explaining that choosing to share metrics will help improve the app. This screen is shown on first use of the app when not previously enabled. [CHAR_LIMIT=60] -->
+  <string name="onboarding_metrics_title">Help make this app better</string>
+
+  <!-- Subtitle of the metric sharing section on the onboarding screen explaining that choosing to share metrics will help improve the app. This screen is shown on first use of the app when not previously enabled. [CHAR_LIMIT=60] -->
+  <string name="onboarding_metrics_subtitle">Share app usage &amp; performance data with Google</string>
+
+  <!-- Text of the metric sharing section on the onboarding screen explaining that choosing to share metrics will help improve the app. This screen is shown on first use of the app when not previously enabled. [CHAR_LIMIT=NONE] -->
+  <string name="onboarding_metrics_detail">
+    To help maintain and improve the app, some limited de-identified data about app performance and usage is shared with Google. This data does not identify you.
+  </string>
+
+  <!-- Title of the dialog shown in onboarding when the user chooses not to turn on exposure notifications. [CHAR_LIMIT=60] -->
+  <string name="onboarding_confirm_later_title">Keep Exposure Notification turned off?</string>
+
+  <!-- Detail text of the dialog shown in onboarding when the user chooses not to turn on exposure notifications. [CHAR_LIMIT=200] -->
+  <string name="onboarding_confirm_later_detail">Until Exposure Notifications are turned on, you won’t be notified of possible exposure to COVID-19</string>
+
+
+
+  <!-- EXPOSURES SCREENS -->
+
+  <!-- Title of the exposures home page, shown when there have been no COVID-19 exposures detected. [CHAR_LIMIT=60] -->
+  <string name="no_recent_exposure_subtitle">No recent exposures</string>
+
+  <!-- Text displayed on the exposures home page, shown when there have been no COVID-19 exposures detected. [CHAR_LIMIT=NONE] -->
+  <string name="notifications_enabled_info">You currently have no reported COVID-19 exposure risk. You\’ll be notified if someone you were near reports a positive COVID-19 test result.</string>
+
+  <!-- Title of both the notify others and exposures home pages, shown when the user lands on the page and exposure notifications is currently disabled. [CHAR_LIMIT=60] -->
+  <string name="exposure_notifications_are_turned_off">Exposure notifications are turned off</string>
+
+  <!-- Button text on the notify others and exposure home pages to allow the user to turn on exposure notifications when it is currently disabled. [CHAR_LIMIT=40] -->
+  <string name="turn_on_exposure_notifications_action">Turn on Exposure Notifications</string>
+
+  <!-- Subtitle on the exposures home page, shown above the exposure details when there has been a possible COVID-19 exposure detected. [CHAR_LIMIT=60] -->
+  <string name="recent_exposures_subtitle">Recent exposure</string>
+
+  <!-- Subtitle shown above the COVID-19 status on the exposure details page. [CHAR_LIMIT=60] -->
+  <string name="exposure_details_status_subtitle">Status</string>
+
+  <!-- COVID-19 exposure status shown on the exposure details page. [CHAR_LIMIT=60] -->
+  <string name="exposure_details_status_exposure">Possible COVID-19 exposure</string>
+
+  <!-- Subtitle shown above the date of COVID-19 exposure on the exposure details page. [CHAR_LIMIT=60] -->
+  <string name="exposure_details_date_exposed_subtitle">Possible exposure date</string>
+
+  <!-- Subtitle shown at the bottom of the COVID-19 exposure report stating that it will expire in 14 days. [CHAR_LIMIT=NONE] -->
+  <string name="exposure_details_expiring_subtitle">Exposure reports are stored for 14 days from the date of exposure</string>
+
+  <!-- Subtitle on the exposure details page above a link to learn more from the health authority webpage. [CHAR_LIMIT=40] -->
+  <string name="exposure_details_learn_more">Learn more</string>
+
+  <!-- Small badge shown next to aspects of the exposure notification that have changed on the exposure details page. [CHAR_LIMIT=15] -->
+  <string name="exposure_details_new_badge">New</string>
+
+
+
+  <!-- NOTIFY OTHERS SCREENS -->
+
+  <!-- Subtitle of the notify others home page, shown when the user clicks the notify others tab. -->
+  <string name="share_test_result_title">Protect your community, share your COVID-19 test result</string>
+
+  <!-- Body text of the notify others home page, explaining the importance of sharing a positive COVID-19 diagnosis. [CHAR_LIMIT=NONE] -->
+  <string name="share_test_result_description">Sharing your COVID-19 test result, especially if you have tested positive, will help notify others who may have been exposed. It will let others in your community monitor for symptoms.</string>
+
+  <!-- Subtitle shown for the COVID-19 test status section that shows all previous diagnosis. [CHAR_LIMIT=40] -->
+  <string name="test_result_subtitle">COVID-19 Status</string>
+
+  <!-- Text shown for the COVID-19 test status when the diagnosis was confirmed as positive. [CHAR_LIMIT=40] -->
+  <string name="test_result_type_confirmed">COVID-19 Positive</string>
+
+  <!-- Text shown for the COVID-19 test status when the diagnosis was confirmed as likely. [CHAR_LIMIT=40] -->
+  <string name="test_result_type_likely">COVID-19 Likely</string>
+
+  <!-- Text shown for the COVID-19 test status when the diagnosis was confirmed as negative. [CHAR_LIMIT=40] -->
+  <string name="test_result_type_negative">COVID-19 Negative</string>
+
+  <!-- Text shown next to a COVID-19 diagnosis that was previously entered and shared. [CHAR_LIMIT=20] -->
+  <string name="positive_test_result_status_shared">Shared</string>
+
+  <!-- Text shown next to a COVID-19 diagnosis that was previously entered but not yet shared. [CHAR_LIMIT=20] -->
+  <string name="positive_test_result_status_not_shared">Not shared</string>
+
+  <!-- Body text of the notify others home page, shown when the user clicks the notify others tab and exposure notifications is currently disabled [CHAR_LIMIT=NONE] -->
+  <string name="notify_turn_on_exposure_notifications_header">To be notified of possible COVID-19 exposure &amp; share your COVID-19 test result, turn on Exposure Notifications</string>
+
+  <!-- Title of the first screen in the notify others flow for uploading your COVID-19 diagnosis. [CHAR_LIMIT=100] -->
+  <string name="share_begin_title">Help protect your community</string>
+
+  <!-- Title of the close dialog in the notify others flow. [CHAR_LIMIT=40] -->
+  <string name="share_close_title">Exit without sharing?</string>
+
+  <!-- Detail of the close dialog in the notify others flow. [CHAR_LIMIT=200] -->
+  <string name="share_close_detail">You can best help your community if you share your test result sooner. However, the test result information you\'ve entered so far is saved in the app for you to resume editing later.</string>
+
+  <!-- Positive button of the close dialog button in the notify others flow to exit and resume the flow later. [CHAR_LIMIT=60] -->
+  <string name="btn_resume_later">Yes, exit</string>
+
+  <!-- Title displayed on the second screen in the notify others flow, requesting a valid COVID-19 test result verification code. [CHAR_LIMIT=60] -->
+  <string name="verify_test_result_title">Enter COVID-19 test information</string>
+
+  <!-- Shown on the second screen in the notify others flow, prompt requesting the COVID-19 test verification PIN number the user received from their health authority. [CHAR_LIMIT=40] -->
+  <string name="enter_your_test_identifier">Verification code</string>
+
+  <!-- Shown on the second screen in the notify others flow, text describing what the requested COVID-19 verification code is. [CHAR_LIMIT=NONE]-->
+  <string name="share_test_identifier_help">This one-time code is used to verify your test result &amp; can\'t be used again.</string>
+
+  <!-- Shown on the second screen in the notify others flow, this text appears under the disabled verification code checkbox after the verification code has been validated. [CHAR_LIMIT=100]-->
+  <string name="share_test_identifier_verified">Your code has been verified</string>
+
+  <!-- Shown at the bottom of the second screen in the notify others flow, providing a link to the health authority website to get more information about exposure notifications. The placeholder in the string is the health authority's name. [CHAR_LIMIT=NONE]-->
+  <string name="share_test_identifier_link">Learn more at %1$s</string>
+
+  <!-- Title displayed on the third screen in the notify others flow, requesting the date of COVID-19 symptom onset. [CHAR_LIMIT=60] -->
+  <string name="share_onset_title">Have you had symptoms?</string>
+
+  <!-- Subtitle displayed on the third screen in the notify others flow, requesting the date of COVID-19 symptom onset. [CHAR_LIMIT=60] -->
+  <string name="share_onset_subtitle">Helps the app determine when you may have been infectious and notify the right people of possible exposure.</string>
+
+  <!-- Shown on the third screen in the notify others flow, prompt requesting the date of COVID-19 symptom onset. [CHAR_LIMIT=40] -->
+  <string name="test_date_label">Symptom start date</string>
+
+  <!-- Shown on the third screen in the notify others flow, one of three options asking whether the user has had COVID-19 symptoms. [CHAR_LIMIT=40] -->
+  <string name="share_onset_symptoms">Yes</string>
+
+  <!-- Shown on the third screen in the notify others flow, one of three options asking whether the user has had COVID-19 symptoms. [CHAR_LIMIT=40] -->
+  <string name="share_onset_no_symptoms">No</string>
+
+  <!-- Shown on the third screen in the notify others flow, one of three options asking whether the user has had COVID-19 symptoms. [CHAR_LIMIT=40] -->
+  <string name="share_onset_no_answer">Prefer not to answer</string>
+
+  <!-- Title of fourth screen in the notify others flow, asking whether the user has traveled while being positive with COVID-19. [CHAR_LIMIT=60] -->
+  <string name="share_travel_title">Have you traveled in the last 14 days\?</string>
+
+  <!-- Shown on the fourth screen in the notify others flow, one of three possible options in response to the question: have you traveled? [CHAR_LIMIT=40] -->
+  <string name="share_travel_confirmed">Yes</string>
+
+  <!-- Shown on the fourth screen in the notify others flow, one of three possible options in response to the question: have you traveled? [CHAR_LIMIT=40] -->
+  <string name="share_travel_no_travel">No</string>
+
+  <!-- Shown on the fourth screen in the notify others flow, one of three possible options in response to the question: have you traveled? [CHAR_LIMIT=40] -->
+  <string name="share_travel_no_answer">Prefer not to answer</string>
+
+  <!-- Title of last screen in the notify others flow, confirming the information the user has provided before sharing it with the health authority. [CHAR_LIMIT=60] -->
+  <string name="share_review_title">Review your information</string>
+
+  <!-- Subtitle on the last screen in the notify others flow, shown above the users's COVID-19 test results which will be one of: confirmed, likely or negative. [CHAR_LIMIT=60] -->
+  <string name="share_review_status_subtitle">COVID-19 status</string>
+
+  <!-- Shown on the last screen in the notify others flow, displaying the users COVID-19 test result being confirmed positive. [CHAR_LIMIT=60] -->
+  <string name="share_review_status_confirmed">Positive</string>
+
+  <!-- Shown on the last screen in the notify others flow, displaying the users COVID-19 test result being likely positive. [CHAR_LIMIT=60] -->
+  <string name="share_review_status_likely">Likely</string>
+
+  <!-- Shown on the last screen in the notify others flow, displaying the users COVID-19 test result being negative. [CHAR_LIMIT=60] -->
+  <string name="share_review_status_negative">Negative</string>
+
+  <!-- Subtitle on the last screen in the notify others flow, shown above the users's symptom onset choice. [CHAR_LIMIT=60] -->
+  <string name="share_review_onset_subtitle">Symptom info</string>
+
+  <!-- Shown on the last screen in the notify others flow, displaying the user's chosen symptom onset date. The placeholder is a date. [CHAR_LIMIT=60] -->
+  <string name="share_review_onset_date">Symptoms from %1$s</string>
+
+  <!-- Shown on the last screen in the notify others flow, displaying the user said they had not symptoms. [CHAR_LIMIT=60] -->
+  <string name="share_review_onset_no_symptoms">No symptoms</string>
+
+  <!-- Shown on the last screen in the notify others flow, displaying the user chose not to answer whether that had symptoms. [CHAR_LIMIT=60] -->
+  <string name="share_review_onset_no_answer">Not answered</string>
+
+  <!-- Subtitle on the last screen in the notify others flow, shown above the users's choice of whether they have traveled while positive for COVID-19. [CHAR_LIMIT=60] -->
+  <string name="share_review_travel_subtitle">Travel history</string>
+
+  <!-- Shown on the last screen in the notify others flow, displaying that the user confirmed they had traveled. [CHAR_LIMIT=60] -->
+  <string name="share_review_travel_confirmed">Traveled in last 14 days</string>
+
+  <!-- Shown on the last screen in the notify others flow, displaying that the user confirmed they had not traveled. [CHAR_LIMIT=60] -->
+  <string name="share_review_travel_no_travel">Not traveled in last 14 days</string>
+
+  <!-- Shown on the last screen in the notify others flow, displaying that the user chose not to answer whether they had traveled. [CHAR_LIMIT=60] -->
+  <string name="share_review_travel_no_answer">Not answered</string>
+
+  <!-- Title of the page shown after sharing in the notify others flow. [CHAR_LIMIT=NONE] -->
+  <string name="share_confirm_title">Thank you for sharing your COVID-19 status and helping your community stay safe</string>
+
+  <!-- Title of the page shown after choosing not to share in the notify others flow. [CHAR_LIMIT=60] -->
+  <string name="not_shared_confirm_title">COVID-19 status not shared</string>
+
+  <!-- Body text of the page shown after choosing not to share in the notify others flow. [CHAR_LIMIT=NONE] -->
+  <string name="not_shared_confirm_detail">Your COVID-19 status wasn\'t shared but is saved in the app. You can share or delete your status at any time.</string>
+
+  <!-- Title of the shared status detail page. [CHAR_LIMIT=60] -->
+  <string name="status_shared_detail_title">Shared COVID-19 status</string>
+
+  <!-- Title of dialog confirming the user wants to delete their COVID-19 test result information from the app. [CHAR_LIMIT=40] -->
+  <string name="delete_test_result_title">Delete COVID-19 test result?</string>
+
+  <!-- Main body of text on the dialog confirming the user wants to delete their COVID-19 test result information from the app. [CHAR_LIMIT=100] -->
+  <string name="delete_test_result_detail">Your test result details will be deleted from this app.</string>
+
+  <!-- Snackbar message shown as confirmation after the user chooses to delete a COVID-19 test resut from the app. [CHAR_LIMIT=60] -->
+  <string name="delete_test_result_confirmed">Test result deleted</string>
+
+  <!-- Error message telling the user to connect to the internet before sharing their diagnosis. [CHAR_LIMIT=NONE] -->
+  <string name="share_error_no_internet">Can\’t share test results offline. Check your internet connection &amp; try again.</string>
+
+  <!-- SETTINGS SCREENS -->
+
+  <!-- Text displayed on the link going to the exposure notifications about page and displayed above the current exposure notification on / off status.  This is displayed on the settings tab home page. [CHAR_LIMIT=40] -->
+  <string name="settings_exposure_notifications_subtitle">Exposure notifications</string>
+
+  <!-- Text displayed on the link going to the app analytics settings page and displayed above the current setting status.  This is displayed on the settings tab home page. [CHAR_LIMIT=40] -->
+  <string name="settings_app_analytics_subtitle">App usage &amp; performance sharing</string>
+
+  <!-- Text displayed on the link going to the privacy policy.  This is displayed on the settings tab home page. [CHAR_LIMIT=40] -->
+  <string name="settings_privacy_policy">Privacy policy</string>
+
+  <!-- Text displayed on the link going to the legal terms.  This is displayed on the settings tab home page. [CHAR_LIMIT=40] -->
+  <string name="settings_legal_terms">Legal terms</string>
+
+  <!-- Text displayed on the link going to the debug page.  This is displayed on the settings tab home page. [CHAR_LIMIT=40] -->
+  <string name="settings_debug">Debug mode</string>
+
+  <!-- Text displayed at the bottom of the settings page allowing users to share the app with others. [CHAR_LIMIT=300] -->
+  <string name="settings_share">Help contain the spread of COVID-19. Share this app with your community and help them protect themselves better with possible exposure notifications.</string>
+
+  <!-- Message shared when sharing the the app with others using the share app button. [CHAR_LIMIT=200] -->
+  <string name="settings_share_message">Help fight the spread of COVID-19 in the community. Download the app here: <xliff:g id="playlink" example="https://play.google.com/store/apps/details?id=com.google.android.exposurenotification">%1$s</xliff:g></string>
+
+  <!-- Text displayed on the link going to the page which lists the licenses for Open Source libraries used in the app. This is displayed on the settings tab home page. [CHAR_LIMIT=40] -->
+  <string name="settings_open_source">Open source licenses</string>
+
+  <!-- Displayed on the settings tab home page to indicate the exposure notification system is turned on. [CHAR_LIMIT=40] -->
+  <string name="settings_exposure_notifications_on">On</string>
+
+  <!-- Displayed on the settings tab home page to indicate the exposure notification system is turned off. [CHAR_LIMIT=40] -->
+  <string name="settings_exposure_notifications_off">Off</string>
+
+  <!-- Displayed on the settings tab home page to indicate app analytics sharing is turned on. [CHAR_LIMIT=40] -->
+  <string name="settings_analytics_on">On</string>
+
+  <!-- Displayed on the settings tab home page to indicate app analytics sharing is turned off. [CHAR_LIMIT=40] -->
+  <string name="settings_analytics_off">Off</string>
+
+  <!-- Title of the exposure notifications about page, where the user is able to get more information about what exposure notifications is and can find the system settings page. [CHAR_LIMIT=60] -->
+  <string name="exposure_about_title">Exposure notifications</string>
+
+  <!-- Text shown on the exposure notifications about page. It appears next to the toggle that turns on or off the exposure notification system. [CHAR_LIMIT=40] -->
+  <string name="exposure_about_toggle">Use exposure notifications</string>
+
+  <!-- The body of text shown on the exposure notifications about page. This describes how exposure notifications work. [CHAR_LIMIT=NONE] -->
+  <string name="exposure_about_detail">
+    Turn on Exposure Notifications so that <xliff:g id="health_authority" example="National Health Service">%1$s</xliff:g> can notify you if you’ve been near someone who reported having COVID-19.
+    \n\nYour phone uses Bluetooth to securely collect and share random IDs with other phones that are nearby.
+    \n\nThe date, duration, and signal strength associated with an exposure will be shared with the app.
+  </string>
+
+  <!-- Title of the dialog that appears when turning off exposure notifications. [CHAR_LIMIT=60] -->
+  <string name="exposure_turn_off_title">Turn off Exposure notifications?</string>
+
+  <!-- Body text of the dialog that appears when turning off exposure notifications. [CHAR_LIMIT=200] -->
+  <string name="exposure_turn_off_detail">You won\'t be notified if you\'re exposed to COVID-19</string>
+
+  <!-- Title of the app analytics settings page, where the user is able to turn on / off app analytics collection. [CHAR_LIMIT=60] -->
+  <string name="app_analytics_title">Help make this app better</string>
+
+  <!-- Subtitle of the app analytics settings page, shown next to the toggle that turns collection on / off [CHAR_LIMIT=40] -->
+  <string name="app_analytics_toggle">Share app usage &amp; performance data with Google</string>
+
+  <!-- Main body of text displayed on the data analytics settings page, explaining the feature. [CHAR_LIMIT=NONE] -->
+  <string name="app_analytics_detail">To help maintain and improve the app, some limited, de-identified data about app performance and usage is shared with Google. This data does not identify you.</string>
+
+  <!-- Shown at the bottom of the agency message screen found from settings. The placeholder in the string is the health authority's website. [CHAR_LIMIT=NONE]-->
+  <string name="agency_message_link">Learn more at\n%1$s</string>
+
+  <!-- EDGE CASES -->
+
+  <!-- Title of both the notify others and exposures home pages, shown when the user lands on the page and exposure notifications are on but not running because bluetooth or device location are disabled. [CHAR_LIMIT=60] -->
+  <string name="exposure_notifications_are_inactive">Exposure notifications are inactive</string>
+
+  <!-- Title of both the page, shown when the user lands on the page and exposure notifications are on but not running because bluetooth or device location are disabled. [CHAR_LIMIT=60] -->
+  <string name="exposure_notifications_currently_inactive">Exposure notifications are currently inactive</string>
+
+  <!-- Displayed on the button when the user needs to go to the device settings page to correct location / bluetooth off. [CHAR_LIMIT=40] -->
+  <string name="device_settings">Device settings</string>
+
+  <!-- Displayed on the button when the user needs to free up space to continue to use exposure notifications. [CHAR_LIMIT=40] -->
+  <string name="manage_storage">Manage storage</string>
+
+  <!-- Displayed in three locations (exposures home, notify others home, settings) when the user has device location off, causing exposure notifications to be inactive. [CHAR_LIMIT=NONE] -->
+  <string name="location_off_warning">To continue to get possible COVID-19 exposure notifications &amp; share your COVID-19 test result, turn on the device location setting</string>
+
+  <!-- Displayed in three locations (exposures home, notify others home, settings) when the user has Bluetooth off, causing exposure notifications to be inactive. [CHAR_LIMIT=NONE] -->
+  <string name="ble_off_warning">To continue to get possible COVID-19 exposure notifications &amp; share your COVID-19 test result, turn on Bluetooth</string>
+
+  <!-- Displayed in three locations (exposures home, notify others home, settings) when the user has both Bluetooth and device location off, causing exposure notifications to be inactive. [CHAR_LIMIT=NONE] -->
+  <string name="location_ble_off_warning">To continue to get possible COVID-19 exposure notifications &amp; share your COVID-19 test result, turn on Bluetooth and the device location setting</string>
+
+  <!-- Displayed in three locations (exposures home, notify others home, settings) when the device is low on storage, causing exposure notifications to be inactive. [CHAR_LIMIT=NONE] -->
+  <string name="storage_low_warning">To continue to get Exposure Notifications &amp; share your COVID-19 test result, free up storage space on your phone.</string>
+
+  <!-- ERROR MESSAGE -->
+
+  <!-- Displayed in the notify others flow when the symptom onset date enterred by the user is too far in the past and not in the valid date range. [CHAR_LIMIT=NONE] -->
+  <string name="input_error_onset_date_past">Date should occur within last <xliff:g id="number_of_days" example="14">%1$s</xliff:g> days of today\’s date</string>
+
+  <!-- Displayed in the notify others flow when the symptom onset date enterred by the user is in the future and not in the valid date range. [CHAR_LIMIT=NONE] -->
+  <string name="input_error_onset_date_future">Date occurs in the future</string>
+
+  <!-- Displayed when providing a verification code in the notify others flow that the verification server does not recognize as an authenticate code. It could be that the code has already been used or it was mistyped. [CHAR_LIMIT=NONE] -->
+  <string name="network_error_code_invalid">The verification code doesn’t match. Try again.</string>
+
+  <!-- Displayed when providing a verification code in the notify others flow that has expired. A new code provided by the appropriate health authority will be required to proceed. [CHAR_LIMIT=NONE] -->
+  <string name="network_error_code_expired">The verification code is out of date. Contact <xliff:g id="health_authority" example="National Health Service">%1$s</xliff:g> for a new one.</string>
+
+  <!-- Displayed during the notify others flow when an error occured contacting the servers. There is generally nothing the user can do to resolve the error other than trying again in these cases. [CHAR_LIMIT=NONE] -->
+  <string name="network_error_server_error">Something went wrong. Try again.</string>
+
+  <!-- Displayed during the notify others flow when the provided verification code is for a diagnosis type not supported by the app. The only potential fix is to update the app, if a newer version of the app has added support for that diagnosis type. [CHAR_LIMIT=NONE] -->
+  <string name="network_error_unsupported_test_type">Verification code can\’t be used in this version of the app. Upgrade the app &amp; try again.</string>
+
+  <!-- Displayed when unable to retrieve the user's keys from gmscore at the time of sharing a diangosis with the server. [CHAR_LIMIT=NONE] -->
+  <string name="share_error">Unable to share the test result. Try again later. </string>
+
+  <!-- General error message displayed when an unknown error has happened and there is no more known ot share with the user. [CHAR_LIMIT=NONE] -->
+  <string name="generic_error_message">Something went wrong. Try again.</string>
+
+  <!-- Error message when a user tries to submit the same verification code that has already been used and submitted. [CHAR_LIMIT=NONE] -->
+  <string name="code_error_already_submitted">Code has already been used to share test result</string>
 
 </resources>

@@ -17,10 +17,8 @@
 
 package com.google.android.apps.exposurenotification.storage;
 
-import android.content.Context;
-import androidx.lifecycle.LiveData;
-import com.google.android.gms.nearby.exposurenotification.ExposureWindow;
 import java.util.List;
+import javax.inject.Inject;
 
 /**
  * Abstracts database access to {@link ExposureDao} data source.
@@ -28,27 +26,26 @@ import java.util.List;
 public class ExposureRepository {
 
   private final ExposureDao exposureDao;
-  private final LiveData<List<ExposureEntity>> getAllLiveData;
 
-  public ExposureRepository(Context context) {
-    ExposureNotificationDatabase exposureNotificationDatabase =
-        ExposureNotificationDatabase.getInstance(context);
+  @Inject
+  ExposureRepository(ExposureNotificationDatabase exposureNotificationDatabase) {
     exposureDao = exposureNotificationDatabase.exposureDao();
-    getAllLiveData = exposureDao.getAllLiveData();
-  }
-
-  public LiveData<List<ExposureEntity>> getAllLiveData() {
-    return getAllLiveData;
   }
 
   /**
-   * Adds missing exposures based on the current windows state.
-   *
-   * @param exposureWindows the {@link ExposureWindow}s
-   * @return if any exposure was added
+   * Query all ExposureEntities from the previous run
+   * @return {@link ExposureEntity}s from the previous run
    */
-  public boolean refreshWithExposureWindows(List<ExposureWindow> exposureWindows) {
-    return exposureDao.refreshWithExposureWindows(exposureWindows);
+  public List<ExposureEntity> getAllExposureEntities() {
+    return exposureDao.getAll();
+  }
+
+  /**
+   * Wipe the ExposureEntity table and insert the ExposureEntites in this list
+   * @param exposureEntities the computed from DailySummaries {@link ExposureEntity}s
+   */
+  public void clearInsertExposureEntities(List<ExposureEntity> exposureEntities) {
+    exposureDao.clearInsertExposureEntities(exposureEntities);
   }
 
 }

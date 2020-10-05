@@ -19,7 +19,6 @@ package com.google.android.apps.exposurenotification.home;
 
 import static com.google.android.apps.exposurenotification.home.ExposureNotificationActivity.HOME_FRAGMENT_TAG;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,13 +26,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager2.widget.ViewPager2;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.common.KeyboardHelper;
 import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
+import dagger.hilt.android.AndroidEntryPoint;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
@@ -45,26 +46,31 @@ import java.lang.annotation.RetentionPolicy;
  *
  * <p>This fragment will be shown first whenever the onboarding flow has already been completed.
  */
+@AndroidEntryPoint
 public class HomeFragment extends Fragment {
 
   private static final String TAG = "HomeFragment";
+
+  private static final String SAVED_INSTANCE_STATE_CURRENT_ITEM =
+      "HomeFragment.SAVED_INSTANCE_STATE_CURRENT_ITEM";
 
   private static final String KEY_START_TAB = "KEY_START_TAB";
 
   // Constants so the tabs are settable by name and not just index.
   @Retention(RetentionPolicy.SOURCE)
-  @IntDef({TAB_EXPOSURES, TAB_NOTIFY, TAB_DEBUG})
+  @IntDef({TAB_EXPOSURES, TAB_NOTIFY, TAB_SETTINGS})
   @interface TabName {
 
   }
 
   static final int TAB_EXPOSURES = 0;
   static final int TAB_NOTIFY = 1;
-  static final int TAB_DEBUG = 2;
+  static final int TAB_SETTINGS = 2;
 
   static final int TAB_DEFAULT = TAB_EXPOSURES;
 
-  private HomeFragmentPagerAdapter fragmentPagerAdapter;
+  private HomeFragmentStateAdapter fragmentStateAdapter;
+  private ViewPager2 viewPager;
 
   /**
    * Creates a {@link HomeFragment} instance with a default start tab {@value #TAB_DEFAULT}.
@@ -87,33 +93,48 @@ public class HomeFragment extends Fragment {
     }
   }
 
-  @SuppressWarnings("ConstantConditions")
   @Override
   public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-    fragmentPagerAdapter = new HomeFragmentPagerAdapter(getParentFragmentManager(),
-        requireActivity().getClassLoader());
+    getActivity().setTitle(R.string.app_name);
+    fragmentStateAdapter = new HomeFragmentStateAdapter(this);
 
-    ViewPager viewPager = view.findViewById(R.id.view_pager);
+    viewPager = view.findViewById(R.id.view_pager);
+    viewPager.setUserInputEnabled(false);
     viewPager.setOffscreenPageLimit(2);
-    viewPager.setAdapter(fragmentPagerAdapter);
-    viewPager.setCurrentItem(getStartTab());
+    viewPager.setAdapter(fragmentStateAdapter);
+    if (savedInstanceState != null) {
+      viewPager.setCurrentItem(
+          savedInstanceState.getInt(SAVED_INSTANCE_STATE_CURRENT_ITEM, getStartTab()));
+    } else {
+      viewPager.setCurrentItem(getStartTab());
+    }
 
     TabLayout tabLayout = view.findViewById(R.id.tab_layout);
-    tabLayout.setupWithViewPager(viewPager);
-    tabLayout.getTabAt(TAB_EXPOSURES).setIcon(R.drawable.ic_bell);
-    tabLayout.getTabAt(TAB_EXPOSURES).setText(R.string.home_tab_exposures_text);
-    tabLayout.getTabAt(TAB_NOTIFY).setIcon(R.drawable.ic_flag);
-    tabLayout.getTabAt(TAB_NOTIFY).setText(R.string.home_tab_notify_text);
-    if (tabLayout.getTabCount() > TAB_DEBUG) {
-      tabLayout.getTabAt(TAB_DEBUG).setIcon(R.drawable.ic_cog);
-      tabLayout.getTabAt(TAB_DEBUG).setText(R.string.home_tab_notify_debug_text);
-    }
+    new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> {
+      switch (position) {
+        case TAB_EXPOSURES:
+          tab.setIcon(R.drawable.ic_bell);
+          tab.setText(R.string.home_tab_exposures_text);
+          break;
+        case TAB_NOTIFY:
+          tab.setIcon(R.drawable.ic_flag);
+          tab.setText(R.string.home_tab_notify_text);
+          break;
+        case TAB_SETTINGS:
+          tab.setIcon(R.drawable.ic_cog);
+          tab.setText(R.string.home_tab_settings_text);
+          break;
+      }
+    }).attach();
+
+    tabLayout.addOnTabSelectedListener(
+        KeyboardHelper.createOnTabSelectedMaybeHideKeyboardListener(requireContext(), view));
   }
 
   @Override
-  public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-    super.onActivityResult(requestCode, resultCode, data);
-    fragmentPagerAdapter.getCurrentFragment().onActivityResult(requestCode, resultCode, data);
+  public void onSaveInstanceState(Bundle outState) {
+    super.onSaveInstanceState(outState);
+    outState.putInt(SAVED_INSTANCE_STATE_CURRENT_ITEM, viewPager.getCurrentItem());
   }
 
   /**
@@ -140,7 +161,7 @@ public class HomeFragment extends Fragment {
       Log.w(TAG, "Unable to set the tab");
       return;
     }
-    ViewPager viewPager = rootView.findViewById(R.id.view_pager);
+    ViewPager2 viewPager = rootView.findViewById(R.id.view_pager);
     viewPager.setCurrentItem(tab);
   }
 

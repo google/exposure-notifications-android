@@ -23,7 +23,7 @@ tasks.withType(Test) {
     jacoco.includeNoLocationClasses = true
 }
 
-task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest', 'createDebugCoverageReport']) {
+task jacocoTestReport(type: JacocoReport, dependsOn: ['testSampleDebugUnitTest']) {
 
     // Output only the HTML report
     reports {
@@ -32,7 +32,7 @@ task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest', 'crea
     }
 
     // Add our project classes and exclude common Android classes from code coverage
-    def debugTree = fileTree(dir: "$project.buildDir/intermediates/javac/debug", excludes: [
+    def debugTree = fileTree(dir: "$project.buildDir/intermediates/javac/sampleDebug", excludes: [
             '**/R.class',
             '**/R$*.class',
             '**/BuildConfig.*',
@@ -43,7 +43,6 @@ task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest', 'crea
     classDirectories.setFrom files([debugTree])
     sourceDirectories.setFrom files(["$project.projectDir/src/main/java"])
     executionData.setFrom fileTree(dir: buildDir, includes: [
-            'jacoco/testDebugUnitTest.exec',
-            'outputs/code-coverage/debugAndroidTest/connected/*coverage.ec',
+            'jacoco/testSampleDebugUnitTest.exec',
     ])
 }

@@ -17,29 +17,31 @@
 
 package com.google.android.apps.exposurenotification.notify;
 
-import android.app.Application;
-import androidx.annotation.NonNull;
-import androidx.lifecycle.AndroidViewModel;
+import androidx.hilt.lifecycle.ViewModelInject;
 import androidx.lifecycle.LiveData;
-import com.google.android.apps.exposurenotification.storage.PositiveDiagnosisEntity;
-import com.google.android.apps.exposurenotification.storage.PositiveDiagnosisRepository;
+import androidx.lifecycle.ViewModel;
+import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
+import com.google.android.apps.exposurenotification.storage.DiagnosisEntity;
+import com.google.android.apps.exposurenotification.storage.DiagnosisRepository;
 import java.util.List;
 
-/** View model for the {@link NotifyHomeFragment}. */
-public class NotifyHomeViewModel extends AndroidViewModel {
+/**
+ * View model for the {@link NotifyHomeFragment}.
+ */
+public class NotifyHomeViewModel extends ViewModel {
 
-  private final PositiveDiagnosisRepository positiveDiagnosisRepository;
+  private final LiveData<List<DiagnosisEntity>> getAllDiagnosisLiveData;
+  private final ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
 
-  private final LiveData<List<PositiveDiagnosisEntity>> getAllPositiveDiagnosisLiveData;
-
-  public NotifyHomeViewModel(@NonNull Application application) {
-    super(application);
-    positiveDiagnosisRepository = new PositiveDiagnosisRepository(application);
-    getAllPositiveDiagnosisLiveData = positiveDiagnosisRepository.getAllLiveData();
+  @ViewModelInject
+  public NotifyHomeViewModel(
+      DiagnosisRepository diagnosisRepository,
+      ExposureNotificationSharedPreferences exposureNotificationSharedPreferences) {
+    getAllDiagnosisLiveData = diagnosisRepository.getAllLiveData();
+    this.exposureNotificationSharedPreferences = exposureNotificationSharedPreferences;
   }
 
-  public LiveData<List<PositiveDiagnosisEntity>> getAllPositiveDiagnosisEntityLiveData() {
-    return getAllPositiveDiagnosisLiveData;
+  public LiveData<List<DiagnosisEntity>> getAllDiagnosisEntityLiveData() {
+    return getAllDiagnosisLiveData;
   }
-
 }

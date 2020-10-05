@@ -17,19 +17,24 @@
 
 package com.google.android.apps.exposurenotification.debug;
 
-import android.app.Application;
+import static java.util.concurrent.TimeUnit.MILLISECONDS;
+
+import android.content.Context;
+import android.content.res.Resources;
 import android.util.Log;
-import androidx.annotation.NonNull;
-import androidx.lifecycle.AndroidViewModel;
+import androidx.hilt.lifecycle.ViewModelInject;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 import com.google.android.apps.exposurenotification.R;
-import com.google.android.apps.exposurenotification.common.AppExecutors;
+import com.google.android.apps.exposurenotification.common.Qualifiers.BackgroundExecutor;
+import com.google.android.apps.exposurenotification.common.Qualifiers.LightweightExecutor;
+import com.google.android.apps.exposurenotification.common.Qualifiers.ScheduledExecutor;
 import com.google.android.apps.exposurenotification.common.SingleLiveEvent;
 import com.google.android.apps.exposurenotification.common.TaskToFutureAdapter;
+import com.google.android.apps.exposurenotification.keydownload.KeyFile;
 import com.google.android.apps.exposurenotification.nearby.DiagnosisKeyFileSubmitter;
 import com.google.android.apps.exposurenotification.nearby.ExposureNotificationClientWrapper;
-import com.google.android.apps.exposurenotification.network.KeyFileBatch;
 import com.google.android.apps.exposurenotification.proto.SignatureInfo;
 import com.google.android.gms.nearby.exposurenotification.ExposureNotificationClient;
 import com.google.android.gms.nearby.exposurenotification.TemporaryExposureKey;
@@ -40,16 +45,19 @@ import com.google.common.collect.Lists;
 import com.google.common.io.BaseEncoding;
 import com.google.common.util.concurrent.FluentFuture;
 import com.google.common.util.concurrent.Futures;
+import dagger.hilt.android.qualifiers.ApplicationContext;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.ScheduledExecutorService;
 import org.threeten.bp.Duration;
 import org.threeten.bp.Instant;
 
 /**
  * View model for {@link ProvideMatchingFragment}.
  */
-public class ProvideMatchingViewModel extends AndroidViewModel {
+public class ProvideMatchingViewModel extends ViewModel {
 
   private static final String TAG = "ProvideKeysViewModel";
 
@@ -67,10 +75,33 @@ public class ProvideMatchingViewModel extends AndroidViewModel {
 
   private final MutableLiveData<SigningKeyInfo> keyInfoLiveData;
 
+  private final ExposureNotificationClientWrapper exposureNotificationClientWrapper;
   private final KeyFileSigner keyFileSigner;
+  private final KeyFileWriter keyFileWriter;
+  private final DiagnosisKeyFileSubmitter diagnosisKeyFileSubmitter;
+  private final Resources resources;
+  private final String packageName;
+  private final ExecutorService backgroundExecutor;
+  private final ExecutorService lightweightExecutor;
+  private final ScheduledExecutorService scheduledExecutor;
 
-  public ProvideMatchingViewModel(@NonNull Application application) {
-    super(application);
+  @ViewModelInject
+  public ProvideMatchingViewModel(@ApplicationContext Context context,
+      ExposureNotificationClientWrapper exposureNotificationClientWrapper,
+      DiagnosisKeyFileSubmitter diagnosisKeyFileSubmitter,
+      @BackgroundExecutor ExecutorService backgroundExecutor,
+      @LightweightExecutor ExecutorService lightweightExecutor,
+      @ScheduledExecutor ScheduledExecutorService scheduledExecutor) {
+    this.exposureNotificationClientWrapper = exposureNotificationClientWrapper;
+    this.diagnosisKeyFileSubmitter = diagnosisKeyFileSubmitter;
+    this.backgroundExecutor = backgroundExecutor;
+    this.lightweightExecutor = lightweightExecutor;
+    this.scheduledExecutor = scheduledExecutor;
+    keyFileSigner = KeyFileSigner.get(context);
+    keyFileWriter = new KeyFileWriter(context);
+    resources = context.getResources();
+    packageName = context.getPackageName();
+
     displayedChildLiveData = new MutableLiveData<>(0);
     singleInputKeyLiveData = new MutableLiveData<>("");
     singleInputIntervalNumberLiveData = new MutableLiveData<>(0);
@@ -78,7 +109,6 @@ public class ProvideMatchingViewModel extends AndroidViewModel {
     singleInputTransmissionRiskLevelLiveData = new MutableLiveData<>(0);
     fileInputLiveData = new MutableLiveData<>(null);
     keyInfoLiveData = new MutableLiveData<>();
-    keyFileSigner = KeyFileSigner.get(application);
     // The keyfile signing key info doesn't change throughout the run of the app.
     setSigningKeyInfo();
   }
@@ -156,7 +186,6 @@ public class ProvideMatchingViewModel extends AndroidViewModel {
     String key = getSingleInputKeyLiveData().getValue();
     Log.d(TAG, "Submitting " + key);
 
-    KeyFileWriter keyFileWriter = new KeyFileWriter(getApplication());
     TemporaryExposureKey temporaryExposureKey;
     try {
       temporaryExposureKey =
@@ -168,13 +197,13 @@ public class ProvideMatchingViewModel extends AndroidViewModel {
               .build();
     } catch (IllegalArgumentException e) {
       Log.e(TAG, "Error creating TemporaryExposureKey", e);
-      snackbarLiveEvent.postValue(getApplication().getString(R.string.debug_matching_single_error));
+      snackbarLiveEvent.postValue(resources.getString(R.string.debug_matching_single_error));
       return;
     }
     Log.d(TAG, "Composed " + temporaryExposureKey + " for submission.");
 
     if (!isSingleInputTemporaryExposureKeyValid(temporaryExposureKey)) {
-      snackbarLiveEvent.postValue(getApplication().getString(R.string.debug_matching_single_error));
+      snackbarLiveEvent.postValue(resources.getString(R.string.debug_matching_single_error));
       return;
     }
     List<TemporaryExposureKey> keys = Lists.newArrayList(temporaryExposureKey);
@@ -184,17 +213,22 @@ public class ProvideMatchingViewModel extends AndroidViewModel {
         keyFileWriter.writeForKeys(
             keys, Instant.now().minus(Duration.ofDays(14)), Instant.now(), "GB");
 
-    provideFiles(files);
+    List<KeyFile> keyFiles = new ArrayList<>();
+    for (File f : files) {
+      keyFiles.add(KeyFile.createNonProd(f));
+    }
+
+    provideFiles(keyFiles);
   }
 
   public void provideFileAction() {
     File file = getFileInputLiveData().getValue();
     if (!isFileInputValid(file)) {
-      snackbarLiveEvent.postValue(getApplication().getString(R.string.debug_matching_file_error));
+      snackbarLiveEvent.postValue(resources.getString(R.string.debug_matching_file_error));
       return;
     }
 
-    List<File> files = Lists.newArrayList(file);
+    List<KeyFile> files = Lists.newArrayList(KeyFile.createNonProd(file));
 
     provideFiles(files);
   }
@@ -203,63 +237,60 @@ public class ProvideMatchingViewModel extends AndroidViewModel {
 
   }
 
-  private void provideFiles(List<File> files) {
+  private void provideFiles(List<KeyFile> files) {
     Log.d(TAG, String.format("About to provide %d key files.", files.size()));
-    DiagnosisKeyFileSubmitter submitter = new DiagnosisKeyFileSubmitter(getApplication());
-
-    KeyFileBatch batch = KeyFileBatch.ofFiles("US", 1, files);
 
     FluentFuture<Object> unusedResult = FluentFuture.from(
         TaskToFutureAdapter.getFutureWithTimeout(
-            ExposureNotificationClientWrapper.get(getApplication()).isEnabled(),
-            IS_ENABLED_TIMEOUT.toMillis(),
-            TimeUnit.MILLISECONDS,
-            AppExecutors.getScheduledExecutor()))
+            exposureNotificationClientWrapper.isEnabled(),
+            IS_ENABLED_TIMEOUT,
+            scheduledExecutor))
         .transformAsync(
             (isEnabled) -> {
               // Only continue if it is enabled.
               if (isEnabled) {
-                return Futures.immediateFuture(ImmutableList.of(batch));
+                return Futures.immediateFuture(ImmutableList.copyOf(files));
               } else {
                 return Futures.immediateFailedFuture(new NotEnabledException());
               }
             },
-            AppExecutors.getBackgroundExecutor())
+            backgroundExecutor)
         .transformAsync(
-            batches -> submitter.submitFiles(batches, ExposureNotificationClient.TOKEN_A),
-            AppExecutors.getBackgroundExecutor())
+            fileList -> diagnosisKeyFileSubmitter
+                .submitFiles(fileList),
+            backgroundExecutor)
         .transform(
             done -> {
               snackbarLiveEvent.postValue(
-                  getApplication().getString(R.string.debug_matching_provide_success));
+                  resources.getString(R.string.debug_matching_provide_success));
               return null;
             },
-            AppExecutors.getLightweightExecutor())
+            lightweightExecutor)
         .catching(
             NotEnabledException.class,
             x -> {
               snackbarLiveEvent.postValue(
-                  getApplication().getString(R.string.debug_matching_provide_error_disabled));
+                  resources.getString(R.string.debug_matching_provide_error_disabled));
               Log.w(TAG, "Error, isEnabled is false", x);
               return null;
             },
-            AppExecutors.getBackgroundExecutor())
+            backgroundExecutor)
         .catching(
             Exception.class,
             x -> {
               snackbarLiveEvent.postValue(
-                  getApplication().getString(R.string.debug_matching_provide_error_unknown));
+                  resources.getString(R.string.debug_matching_provide_error_unknown));
               Log.w(TAG, "Unknown exception when providing", x);
               return null;
             },
-            AppExecutors.getBackgroundExecutor());
+            backgroundExecutor);
   }
 
   private void setSigningKeyInfo() {
     SignatureInfo signatureInfo = keyFileSigner.signatureInfo();
     SigningKeyInfo info =
         SigningKeyInfo.newBuilder()
-            .setPackageName(getApplication().getPackageName())
+            .setPackageName(packageName)
             .setKeyVersion(signatureInfo.getVerificationKeyVersion())
             .setKeyId(signatureInfo.getVerificationKeyId())
             .setPublicKeyBase64(keyFileSigner.getPublicKeyBase64())

@@ -25,11 +25,12 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
+import androidx.annotation.VisibleForTesting;
 
 /**
  * Helper class for dealing with storage management and it's edge cases for invocation.
  */
-public class StorageManagementHelper {
+public final class StorageManagementHelper {
 
   /**
    * Check whether storage management is available on this device
@@ -53,7 +54,8 @@ public class StorageManagementHelper {
     context.startActivity(intent);
   }
 
-  private static Intent createStorageManagementIntent(Context context) {
+  @VisibleForTesting
+  static Intent createStorageManagementIntent(Context context) {
     PackageManager packageManager = context.getPackageManager();
 
     if (VERSION.SDK_INT >= VERSION_CODES.N_MR1) {
@@ -70,5 +72,7 @@ public class StorageManagementHelper {
 
     return null;
   }
+
+  private StorageManagementHelper() {}
 
 }

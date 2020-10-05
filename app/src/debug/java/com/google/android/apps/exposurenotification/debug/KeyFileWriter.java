@@ -19,7 +19,7 @@ package com.google.android.apps.exposurenotification.debug;
 
 import android.content.Context;
 import androidx.annotation.Nullable;
-import com.google.android.apps.exposurenotification.network.KeyFileConstants;
+import com.google.android.apps.exposurenotification.keydownload.KeyFileConstants;
 import com.google.android.apps.exposurenotification.proto.SignatureInfo;
 import com.google.android.apps.exposurenotification.proto.TEKSignature;
 import com.google.android.apps.exposurenotification.proto.TEKSignatureList;

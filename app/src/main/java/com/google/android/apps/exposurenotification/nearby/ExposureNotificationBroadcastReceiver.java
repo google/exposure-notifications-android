@@ -20,19 +20,42 @@ package com.google.android.apps.exposurenotification.nearby;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.widget.Toast;
+import androidx.work.WorkManager;
+import com.google.android.apps.exposurenotification.BuildConfig;
 import com.google.android.gms.nearby.exposurenotification.ExposureNotificationClient;
+import dagger.hilt.android.AndroidEntryPoint;
+import javax.inject.Inject;
 
 /**
  * Broadcast receiver for callbacks from exposure notification API.
  */
-public class ExposureNotificationBroadcastReceiver extends BroadcastReceiver {
+@AndroidEntryPoint(BroadcastReceiver.class)
+public class ExposureNotificationBroadcastReceiver extends
+    Hilt_ExposureNotificationBroadcastReceiver {
+
+  @Inject
+  WorkManager workManager;
 
   @Override
   public void onReceive(Context context, Intent intent) {
+    super.onReceive(context, intent);
     String action = intent.getAction();
-    if (ExposureNotificationClient.ACTION_EXPOSURE_STATE_UPDATED.equals(action)
-        || ExposureNotificationClient.ACTION_EXPOSURE_NOT_FOUND.equals(action)) {
-      StateUpdatedWorker.runOnce(context);
+    if (action == null) {
+      return;
+    }
+
+    switch (action) {
+      case ExposureNotificationClient.ACTION_EXPOSURE_NOT_FOUND:
+        // For debug/testing purposes show a toast when no exposures were found
+        if (BuildConfig.DEBUG) {
+          Toast.makeText(context, "No exposures found", Toast.LENGTH_SHORT).show();
+        }
+        StateUpdatedWorker.runOnce(workManager);
+        break;
+      case ExposureNotificationClient.ACTION_EXPOSURE_STATE_UPDATED:
+        StateUpdatedWorker.runOnce(workManager);
+        break;
     }
   }
 

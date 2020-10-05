@@ -20,14 +20,31 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
   android:orientation="vertical">
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:orientation="horizontal">
+
+    <ImageButton
+      android:id="@android:id/home"
+      style="?attr/borderlessButtonStyle"
+      android:layout_width="?attr/actionBarSize"
+      android:layout_height="match_parent"
+      android:background="?attr/selectableItemBackgroundBorderless"
+      android:src="?attr/homeAsUpIndicator" />
 
   <TextView
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
     android:text="@string/home_tab_notify_debug_text"
+    android:layout_marginRight="?attr/actionBarSize"
     android:gravity="center"
     android:textAppearance="?attr/textAppearanceHeadline6"/>
+
+  </LinearLayout>
 
   <ScrollView
     android:layout_width="match_parent"
@@ -120,48 +137,35 @@
 
       <include layout="@layout/horizontal_divider" />
 
+      <include layout="@layout/horizontal_divider"/>
+
       <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingVertical="@dimen/padding_normal"
         android:paddingHorizontal="@dimen/padding_large"
-        android:text="@string/debug_network_mode_category"
+        android:text="@string/debug_verification_codes"
         android:textAppearance="?attr/textAppearanceSubtitle1"
         android:layout_gravity="center" />
 
-      <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingVertical="@dimen/padding_small"
-        android:paddingHorizontal="@dimen/padding_large"
-        android:text="@string/debug_network_mode_description"
-        android:textAppearance="?attr/textAppearanceBody1" />
-
-      <com.google.android.material.switchmaterial.SwitchMaterial
-        android:id="@+id/keyserver_network_mode"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingVertical="@dimen/padding_normal"
-        android:paddingHorizontal="@dimen/padding_large"
-        android:text="@string/debug_network_mode" />
-
       <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/padding_large"
         android:layout_marginVertical="@dimen/padding_small"
-        android:hint="@string/debug_download_server_address"
-        app:endIconMode="clear_text"
-        app:hintAnimationEnabled="false"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        android:hint="@string/debug_test_type">
 
-        <com.google.android.material.textfield.TextInputEditText
-          android:id="@+id/debug_download_server_address"
+        <AutoCompleteTextView
+          android:id="@+id/test_type_dropdown"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:importantForAutofill="no"
-          android:inputType="textUri"
-          android:text="@string/key_server_download_base_uri"/>
+          android:inputType="none"
+          android:clickable="false"
+          android:cursorVisible="false"
+          android:focusable="false"
+          android:focusableInTouchMode="false"
+          android:saveEnabled="false" />
 
       </com.google.android.material.textfield.TextInputLayout>
 
@@ -170,52 +174,20 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/padding_large"
         android:layout_marginVertical="@dimen/padding_small"
-        android:hint="@string/debug_upload_server_address"
-        app:placeholderText="@string/key_server_upload_uri"
-        app:endIconMode="clear_text"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
 
         <com.google.android.material.textfield.TextInputEditText
-          android:id="@+id/debug_upload_server_address"
+          android:id="@+id/symptom_onset_date"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
+          android:hint="@string/test_date_label"
           android:importantForAutofill="no"
-          android:inputType="textUri"
-          android:text="@string/key_server_upload_uri"/>
+          android:inputType="none"
+          android:cursorVisible="false"
+          android:focusable="false"
+          tools:ignore="TextFields" />
 
       </com.google.android.material.textfield.TextInputLayout>
-
-      <Button
-        android:id="@+id/debug_server_reset_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/padding_large"
-        android:layout_marginBottom="@dimen/padding_normal"
-        android:layout_gravity="center_horizontal"
-        style="?attr/materialButtonOutlinedStyle"
-        app:strokeColor="?attr/colorControlActivated"
-        android:text="@string/debug_keyserver_reset_button_text" />
-
-      <!-- Below views for verification server are temporarily hidden -->
-      <include
-        layout="@layout/horizontal_divider"/>
-
-      <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingVertical="@dimen/padding_normal"
-        android:paddingHorizontal="@dimen/padding_large"
-        android:text="@string/debug_verification_server_category"
-        android:textAppearance="?attr/textAppearanceSubtitle1"
-        android:layout_gravity="center" />
-
-      <com.google.android.material.switchmaterial.SwitchMaterial
-        android:id="@+id/verification_network_mode"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingVertical="@dimen/padding_normal"
-        android:paddingHorizontal="@dimen/padding_large"
-        android:text="@string/debug_verification_network_mode" />
 
       <Button
         android:id="@+id/debug_create_verification_code_button"
@@ -253,50 +225,49 @@
 
       </LinearLayout>
 
+      <include
+        layout="@layout/horizontal_divider"/>
+
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingVertical="@dimen/padding_normal"
+        android:paddingHorizontal="@dimen/padding_large"
+        android:text="@string/debug_roaming_title"
+        android:textAppearance="?attr/textAppearanceSubtitle1"
+        android:layout_gravity="center" />
 
       <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/padding_large"
         android:layout_marginVertical="@dimen/padding_small"
-        android:hint="@string/debug_verification_server_address"
+        android:hint="@string/debug_roaming_country_code_input_text"
         app:endIconMode="clear_text"
         app:hintAnimationEnabled="false"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
 
         <com.google.android.material.textfield.TextInputEditText
-          android:id="@+id/debug_verification_server_address_1"
+          android:id="@+id/debug_roaming_country_code_input"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:importantForAutofill="no"
-          android:inputType="textUri"
-          android:text="@string/verification_server_uri_step_1"/>
-
-      </com.google.android.material.textfield.TextInputLayout>
-
-      <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/padding_large"
-        android:layout_marginVertical="@dimen/padding_small"
-        android:hint="@string/debug_verification_server_address"
-        app:endIconMode="clear_text"
-        app:hintAnimationEnabled="false"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
-
-
-        <com.google.android.material.textfield.TextInputEditText
-          android:id="@+id/debug_verification_server_address_2"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:importantForAutofill="no"
-          android:inputType="textUri"
-          android:text="@string/verification_server_uri_step_2"/>
+          android:inputType="textUri"/>
 
       </com.google.android.material.textfield.TextInputLayout>
 
       <Button
-        android:id="@+id/debug_verification_server_reset_button"
+        android:id="@+id/debug_roaming_country_code_insert_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/padding_large"
+        android:layout_gravity="center_horizontal"
+        style="?attr/materialButtonOutlinedStyle"
+        app:strokeColor="?attr/colorControlActivated"
+        android:text="@string/debug_roaming_country_code_insert_button_text" />
+
+      <Button
+        android:id="@+id/debug_roaming_country_code_clear_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/padding_large"
@@ -304,7 +275,7 @@
         android:layout_gravity="center_horizontal"
         style="?attr/materialButtonOutlinedStyle"
         app:strokeColor="?attr/colorControlActivated"
-        android:text="@string/debug_verification_server_reset_button_text" />
+        android:text="@string/debug_roaming_country_code_clear_button_text" />
 
     </LinearLayout>
 

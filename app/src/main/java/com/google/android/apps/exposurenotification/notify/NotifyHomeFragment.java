@@ -19,43 +19,39 @@ package com.google.android.apps.exposurenotification.notify;
 
 import static com.google.android.gms.nearby.exposurenotification.ExposureNotificationClient.ACTION_EXPOSURE_NOTIFICATION_SETTINGS;
 
-import android.bluetooth.BluetoothAdapter;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.location.LocationManager;
 import android.os.Bundle;
-import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.TextUtils;
-import android.text.method.LinkMovementMethod;
-import android.text.style.ClickableSpan;
 import android.view.LayoutInflater;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.PopupMenu;
-import android.widget.TextView;
 import android.widget.ViewFlipper;
-import android.widget.ViewSwitcher;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.common.ErrorStateViewFlipperChildren;
 import com.google.android.apps.exposurenotification.common.StorageManagementHelper;
 import com.google.android.apps.exposurenotification.home.ExposureNotificationViewModel;
 import com.google.android.apps.exposurenotification.home.ExposureNotificationViewModel.ExposureNotificationState;
-import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
+import com.google.android.apps.exposurenotification.proto.UiInteraction.EventType;
 import com.google.android.material.snackbar.Snackbar;
-import com.mikepenz.aboutlibraries.LibsBuilder;
+import dagger.hilt.android.AndroidEntryPoint;
 
-/** Fragment for Notify tab on home screen */
+/**
+ * Fragment for Notify tab on home screen
+ */
+@AndroidEntryPoint
 public class NotifyHomeFragment extends Fragment {
 
   private static final String TAG = "NotifyHomeFragment";
+
+  private static final int NOTIFY_BANNER_EDGE_CASE_CHILD = 0;
+  private static final int NOTIFY_BANNER_SHARE_CHILD = 1;
+
+  private static final int NOTIFY_VIEW_FLIPPER_NOTIFY =
+      ErrorStateViewFlipperChildren.END_OF_COMMON /*+ 0*/;
 
   private ExposureNotificationViewModel exposureNotificationViewModel;
   private NotifyHomeViewModel notifyHomeViewModel;
@@ -77,8 +73,6 @@ public class NotifyHomeFragment extends Fragment {
         .getStateLiveData()
         .observe(getViewLifecycleOwner(), this::refreshUiForState);
 
-    view.findViewById(R.id.exposure_menu).setOnClickListener(v -> showPopup(v));
-    
     Button startApiButton = view.findViewById(R.id.start_api_button);
     startApiButton.setOnClickListener(
         v -> exposureNotificationViewModel.startExposureNotifications());
@@ -99,66 +93,33 @@ public class NotifyHomeFragment extends Fragment {
     shareButton.setOnClickListener(
         v -> startActivity(ShareDiagnosisActivity.newIntentForAddFlow(requireContext())));
 
-    PositiveDiagnosisEntityAdapter notifyViewAdapter =
-        new PositiveDiagnosisEntityAdapter(
-            positiveDiagnosisEntity ->
+    DiagnosisEntityAdapter notifyViewAdapter =
+        new DiagnosisEntityAdapter(
+            diagnosis ->
                 startActivity(
                     ShareDiagnosisActivity.newIntentForViewFlow(
-                        requireContext(), positiveDiagnosisEntity)));
+                        requireContext(), diagnosis)));
     final LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
     RecyclerView recyclerView = view.findViewById(R.id.notify_recycler_view);
     recyclerView.setLayoutManager(layoutManager);
     recyclerView.setAdapter(notifyViewAdapter);
 
-    final ViewSwitcher switcher =
-        requireView().findViewById(R.id.fragment_notify_diagnosis_switcher);
-
     view.findViewById(R.id.ble_settings_button).setOnClickListener(v -> launchEnSettings());
     view.findViewById(R.id.location_settings_button).setOnClickListener(v -> launchEnSettings());
+    view.findViewById(R.id.location_ble_settings_button).setOnClickListener(v -> launchEnSettings());
     view.findViewById(R.id.manage_storage_button)
         .setOnClickListener(v -> StorageManagementHelper.launchStorageManagement(getContext()));
 
+    View diagnosisHistoryContainer = view.findViewById(R.id.diagnosis_history_container);
+
     notifyHomeViewModel
-        .getAllPositiveDiagnosisEntityLiveData()
+        .getAllDiagnosisEntityLiveData()
         .observe(
             getViewLifecycleOwner(),
             l -> {
-              switcher.setDisplayedChild(l.isEmpty() ? 0 : 1);
-              notifyViewAdapter.setPositiveDiagnosisEntities(l);
+              diagnosisHistoryContainer.setVisibility(l.isEmpty() ? View.GONE : View.VISIBLE);
+              notifyViewAdapter.setDiagnosisEntities(l);
             });
-
-    TextView notifyDescription = view.findViewById(R.id.fragment_notify_description);
-    appendLearnMoreLink(
-        notifyDescription, new Intent(requireContext(), NotifyLearnMoreActivity.class));
-
-    IntentFilter intentFilter = new IntentFilter();
-    intentFilter.addAction(LocationManager.PROVIDERS_CHANGED_ACTION);
-    intentFilter.addAction(BluetoothAdapter.ACTION_STATE_CHANGED);
-    requireContext().registerReceiver(refreshBroadcastReceiver, intentFilter);
-  }
-
-  private final BroadcastReceiver refreshBroadcastReceiver = new BroadcastReceiver() {
-    @Override
-    public void onReceive(Context context, Intent intent) {
-      refreshUi();
-    }
-  };
-
-  /** Appends a clickable learn more link to the end of the text view specified. */
-  public static void appendLearnMoreLink(TextView textView, Intent intent) {
-    ClickableSpan clickableSpan =
-        new ClickableSpan() {
-          @Override
-          public void onClick(View widget) {
-            textView.getContext().startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
-          }
-        };
-    String learnMoreText = textView.getContext().getString(R.string.learn_more);
-    SpannableString learnMoreSpannable = new SpannableString(learnMoreText);
-    learnMoreSpannable.setSpan(
-        clickableSpan, 0, learnMoreText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-    textView.setText(TextUtils.concat(textView.getText(), " ", learnMoreSpannable));
-    textView.setMovementMethod(LinkMovementMethod.getInstance());
   }
 
   @Override
@@ -167,13 +128,9 @@ public class NotifyHomeFragment extends Fragment {
     refreshUi();
   }
 
-  @Override
-  public void onDestroy() {
-    super.onDestroy();
-    requireContext().unregisterReceiver(refreshBroadcastReceiver);
-  }
-
-  /** Update UI state after Exposure Notifications client state changes */
+  /**
+   * Update UI state after Exposure Notifications client state changes
+   */
   private void refreshUi() {
     exposureNotificationViewModel.refreshState();
   }
@@ -189,40 +146,43 @@ public class NotifyHomeFragment extends Fragment {
       return;
     }
 
+    ViewFlipper bannerFlipper = rootView.findViewById(R.id.notify_header_banner);
     ViewFlipper viewFlipper = rootView.findViewById(R.id.notify_header_flipper);
-    View diagnosisHistoryContainer = rootView.findViewById(R.id.diagnosis_history_container);
     Button manageStorageButton = rootView.findViewById(R.id.manage_storage_button);
 
-    ExposureNotificationSharedPreferences sharedPrefs =
-        new ExposureNotificationSharedPreferences(requireContext());
     switch (state) {
       case ENABLED:
-        sharedPrefs.setOnboardedState(true);
-        viewFlipper.setDisplayedChild(1);
-        diagnosisHistoryContainer.setVisibility(View.VISIBLE);
+        bannerFlipper.setDisplayedChild(NOTIFY_BANNER_SHARE_CHILD);
+        viewFlipper.setDisplayedChild(NOTIFY_VIEW_FLIPPER_NOTIFY);
+        break;
+      case PAUSED_LOCATION_BLE:
+        bannerFlipper.setDisplayedChild(NOTIFY_BANNER_EDGE_CASE_CHILD);
+        viewFlipper.setDisplayedChild(ErrorStateViewFlipperChildren.LOCATION_BLE_ERROR_CHILD);
+        exposureNotificationViewModel.logUiInteraction(EventType.LOCATION_PERMISSION_WARNING_SHOWN);
+        exposureNotificationViewModel.logUiInteraction(EventType.BLUETOOTH_DISABLED_WARNING_SHOWN);
         break;
       case PAUSED_BLE:
-        sharedPrefs.setOnboardedState(true);
-        viewFlipper.setDisplayedChild(2);
-        diagnosisHistoryContainer.setVisibility(View.VISIBLE);
+        bannerFlipper.setDisplayedChild(NOTIFY_BANNER_EDGE_CASE_CHILD);
+        viewFlipper.setDisplayedChild(ErrorStateViewFlipperChildren.BLE_ERROR_CHILD);
+        exposureNotificationViewModel.logUiInteraction(EventType.BLUETOOTH_DISABLED_WARNING_SHOWN);
         break;
       case PAUSED_LOCATION:
-        sharedPrefs.setOnboardedState(true);
-        viewFlipper.setDisplayedChild(3);
-        diagnosisHistoryContainer.setVisibility(View.VISIBLE);
+        bannerFlipper.setDisplayedChild(NOTIFY_BANNER_EDGE_CASE_CHILD);
+        viewFlipper.setDisplayedChild(ErrorStateViewFlipperChildren.LOCATION_ERROR_CHILD);
+        exposureNotificationViewModel.logUiInteraction(EventType.LOCATION_PERMISSION_WARNING_SHOWN);
         break;
       case STORAGE_LOW:
-        sharedPrefs.setOnboardedState(true);
-        viewFlipper.setDisplayedChild(4);
-        diagnosisHistoryContainer.setVisibility(View.VISIBLE);
+        viewFlipper.setDisplayedChild(ErrorStateViewFlipperChildren.LOW_STORAGE_ERROR_CHILD);
+        bannerFlipper.setDisplayedChild(NOTIFY_BANNER_EDGE_CASE_CHILD);
         manageStorageButton.setVisibility(
             StorageManagementHelper.isStorageManagementAvailable(getContext())
                 ? Button.VISIBLE : Button.GONE);
+        exposureNotificationViewModel.logUiInteraction(EventType.LOW_STORAGE_WARNING_SHOWN);
         break;
       case DISABLED:
       default:
-        viewFlipper.setDisplayedChild(0);
-        diagnosisHistoryContainer.setVisibility(View.GONE);
+        bannerFlipper.setDisplayedChild(NOTIFY_BANNER_EDGE_CASE_CHILD);
+        viewFlipper.setDisplayedChild(ErrorStateViewFlipperChildren.DISABLED_ERROR_CHILD);
         break;
     }
   }
@@ -233,21 +193,6 @@ public class NotifyHomeFragment extends Fragment {
   private void launchEnSettings() {
     Intent intent = new Intent(ACTION_EXPOSURE_NOTIFICATION_SETTINGS);
     startActivity(intent);
-  }
-
-  public void showPopup(View v) {
-    PopupMenu popup = new PopupMenu(getContext(), v);
-    popup.setOnMenuItemClickListener(menuItem -> {
-      showOsLicenses();
-      return true;
-    });
-    MenuInflater inflater = popup.getMenuInflater();
-    inflater.inflate(R.menu.popup_menu, popup.getMenu());
-    popup.show();
-  }
-
-  private void showOsLicenses(){
-    new LibsBuilder().withLicenseShown(true).start(getActivity());
   }
 
 }

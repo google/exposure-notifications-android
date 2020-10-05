@@ -17,15 +17,12 @@
 
 package com.google.android.apps.exposurenotification.storage;
 
-import android.util.Log;
-import androidx.lifecycle.LiveData;
+import androidx.annotation.WorkerThread;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Transaction;
-import com.google.android.gms.nearby.exposurenotification.ExposureWindow;
-import com.google.common.util.concurrent.ListenableFuture;
 import java.util.List;
 
 /**
@@ -36,53 +33,27 @@ abstract class ExposureDao {
 
   private static final String TAG = "ExposureDao";
 
+  @WorkerThread
   @Query("SELECT * FROM ExposureEntity")
   abstract List<ExposureEntity> getAll();
 
-  @Query("SELECT * FROM ExposureEntity ORDER BY date_millis_since_epoch DESC")
-  abstract ListenableFuture<List<ExposureEntity>> getAllAsync();
-
-  @Query("SELECT * FROM ExposureEntity ORDER BY date_millis_since_epoch DESC")
-  abstract LiveData<List<ExposureEntity>> getAllLiveData();
-
+  @WorkerThread
   @Insert(onConflict = OnConflictStrategy.REPLACE)
-  abstract ListenableFuture<Void> upsertAsync(List<ExposureEntity> entities);
+  abstract void upsertAll(List<ExposureEntity> entities);
 
-  @Insert(onConflict = OnConflictStrategy.REPLACE)
-  abstract void upsert(ExposureEntity entity);
-
+  @WorkerThread
   @Query("DELETE FROM ExposureEntity")
-  abstract ListenableFuture<Void> deleteAllAsync();
+  abstract void deleteAll();
 
   /**
-   * Adds missing exposures based on the current windows state.
-   *
-   * @param exposureWindows the {@link ExposureWindow}s
-   * @return if any exposure was added
+   * Wipe the ExposureEntity table and insert the ExposureEntites in this list
+   * @param exposureEntities the computed from DailySummaries {@link ExposureEntity}s
    */
+  @WorkerThread
   @Transaction
-  public boolean refreshWithExposureWindows(List<ExposureWindow> exposureWindows) {
-    // Keep track of the exposures already handled and remove them when we find matching windows.
-    List<ExposureEntity> exposureEntities = getAll();
-    boolean somethingAdded = false;
-    for (ExposureWindow exposureWindow : exposureWindows) {
-      boolean found = false;
-      for (int i = 0; i < exposureEntities.size(); i++) {
-        if (exposureEntities.get(i).getDateMillisSinceEpoch() == exposureWindow
-            .getDateMillisSinceEpoch()) {
-          exposureEntities.remove(i);
-          found = true;
-          break;
-        }
-      }
-      if (!found) {
-        // No existing ExposureEntity with the given date, must add an entity for this window.
-        somethingAdded = true;
-        upsert(ExposureEntity
-            .create(exposureWindow.getDateMillisSinceEpoch(), System.currentTimeMillis()));
-      }
-    }
-    return somethingAdded;
+  public void clearInsertExposureEntities(List<ExposureEntity> exposureEntities) {
+    deleteAll();
+    upsertAll(exposureEntities);
   }
 
 }

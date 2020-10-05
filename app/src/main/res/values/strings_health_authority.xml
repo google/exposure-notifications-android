@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright 2020 Google LLC
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      https://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  ~
+  -->
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+  <string name="app_name">@string/enx_appTitle</string>
+
+  <!-- Health authority name displayed on app first open. -->
+  <string name="onboarding_agency_name">@string/enx_agencyDisplayName</string>
+
+  <!-- Health authority region name displayed on app first open. -->
+  <string name="onboarding_region_name">@string/enx_agencyRegionName</string>
+
+  <!-- Health authority legal subtitle on app first open. -->
+  <string name="onboarding_legal_subtitle">@string/enx_agencyDisplayName</string>
+
+  <!-- Health authority message displayed on app first open. -->
+  <string name="onboarding_agency_message">@string/enx_agencyMessage</string>
+
+  <!-- Health authority legal title, displayed in the onboarding flow, above the health authority's legal text. -->
+  <string name="onboarding_legal_title">@string/enx_agencyRegionName</string>
+
+  <!-- Displayed during the onboarding flow, showing the health authority's legal text. -->
+  <string name="onboarding_legal_detail">@string/enx_legalConsentText</string>
+
+  <string name="onboarding_welcome_text">@string/enx_agencyDisplayName</string>
+
+  <string name="onboarding_start_text">@string/enx_agencyMessage</string>
+
+  <!-- Name of the agency shown in the text of the exposure about screen. -->
+  <string name="exposure_about_agency">@string/enx_agencyDisplayName</string>
+
+  <!-- Title of the exposure notification when an exposure of classification 1 has been detected. -->
+  <string name="exposure_notification_title_1">@string/enx_notificationSubject_1</string>
+
+  <!-- Title of the exposure notification when an exposure of classification 2 has been detected. -->
+  <string name="exposure_notification_title_2">@string/enx_notificationSubject_2</string>
+
+  <!-- Title of the exposure notification when an exposure of classification 3 has been detected. -->
+  <string name="exposure_notification_title_3">@string/enx_notificationSubject_3</string>
+
+  <!-- Title of the exposure notification when an exposure of classification 4 has been detected. -->
+  <string name="exposure_notification_title_4">@string/enx_notificationSubject_4</string>
+
+  <!-- Title of the exposure notification when it has been detected that the exposure status has been revoked. -->
+  <string name="exposure_notification_title_revoked">@string/enx_revokedNotificationSubject</string>
+
+  <!-- Body text of the exposure notification when an exposure of classification 1 has been detected. -->
+  <string name="exposure_notification_message_1">@string/enx_notificationBody_1</string>
+
+  <!-- Body text of the exposure notification when an exposure of classification 2 has been detected. -->
+  <string name="exposure_notification_message_2">@string/enx_notificationBody_2</string>
+
+  <!-- Body text of the exposure notification when an exposure of classification 3 has been detected. -->
+  <string name="exposure_notification_message_3">@string/enx_notificationBody_3</string>
+
+  <!-- Body text of the exposure notification when an exposure of classification 4 has been detected. -->
+  <string name="exposure_notification_message_4">@string/enx_notificationBody_4</string>
+
+  <!-- Body text of the exposure notification when it has been detected that the exposure status has been revoked. -->
+  <string name="exposure_notification_message_revoked">@string/enx_revokedNotificationBody</string>
+
+  <!-- Text shown on the exposure details page for exposures of classification 1. -->
+  <string name="exposure_details_text_1">@string/enx_exposureDetailsBodyText_1</string>
+
+  <!-- Text shown on the exposure details page for exposures of classification 2. -->
+  <string name="exposure_details_text_2">@string/enx_exposureDetailsBodyText_2</string>
+
+  <!-- Text shown on the exposure details page for exposures of classification 3. -->
+  <string name="exposure_details_text_3">@string/enx_exposureDetailsBodyText_3</string>
+
+  <!-- Text shown on the exposure details page for exposures of classification 4. -->
+  <string name="exposure_details_text_4">@string/enx_exposureDetailsBodyText_4</string>
+
+  <!-- Text shown on the exposure details page for revoked exposures. -->
+  <string name="exposure_details_text_revoked">@string/enx_revokedDetailsBodyText</string>
+
+  <!-- Health authority URL for more information, shown on the exposure details page for exposures of classification 1. -->
+  <string name="exposure_details_url_1">@string/enx_classificationURL_1</string>
+
+  <!-- Health authority URL for more information, shown on the exposure details page for exposures of classification 2. -->
+  <string name="exposure_details_url_2">@string/enx_classificationURL_2</string>
+
+  <!-- Health authority URL for more information, shown on the exposure details page for exposures of classification 3. -->
+  <string name="exposure_details_url_3">@string/enx_classificationURL_3</string>
+
+  <!-- Health authority URL for more information, shown on the exposure details page for exposures of classification 4. -->
+  <string name="exposure_details_url_4">@string/enx_classificationURL_4</string>
+
+  <!-- Health authority URL for more information, shown on the exposure details page for revoked exposures. -->
+  <string name="exposure_details_url_revoked">@string/enx_revokedURL</string>
+
+  <!-- Health authority name to be displayed above their text at the beginning of the notify others flow. -->
+  <string name="share_begin_agency_name">@string/enx_agencyDisplayName</string>
+
+  <!-- Health authority region name to be displayed above their text at the beginning of the notify others flow. -->
+  <string name="share_begin_agency_region">@string/enx_agencyRegionName</string>
+
+  <!-- Health authority text to be displayed at the begining of the notify others flow. -->
+  <string name="share_begin_detail">@string/enx_testVerificationIntroMessage</string>
+
+  <!-- URL for the learn more link on the share verification code page. -->
+  <string name="share_verification_code_learn_more_url">@string/enx_verificationCodeLearnMoreURL</string>
+
+  <!-- Text displayed on the third screen in the notify others flow, describing COVID-19 symptom onset. -->
+  <string name="share_onset_detail">@string/enx_symptomsOnsetDescription</string>
+
+  <!-- Text displayed on the fourth screen in the notify others flow, describing the question of whether the user has traveled. -->
+  <string name="share_travel_detail">@string/enx_traveledQuestionText</string>
+
+  <!-- Name for public health authority website link. -->
+  <string name="health_authority_website_name">@string/enx_agencyDisplayName</string>
+
+  <!-- HTTP URL for the public health authority website. -->
+  <string name="health_authority_website_url">@string/enx_agencyWebsiteURL</string>
+
+  <!-- Title of the agency message page found from the settings page. -->
+  <string name="agency_message_title">@string/enx_agencyDisplayName</string>
+
+  <!-- Subtitle on the agency message page, shows the agency's region name. -->
+  <string name="agency_message_subtitle_region">@string/enx_agencyRegionName</string>
+
+  <!-- Subtitle on the agency message page, shows the agency's name. -->
+  <string name="agency_message_subtitle_name">@string/enx_agencyDisplayName</string>
+
+  <!-- Main body of text on the agency message page, showing the agency's message. -->
+  <string name="agency_message_detail">@string/enx_agencyMessage</string>
+
+  <!-- Subtitle on the legal terms page, shows the agency's region name. -->
+  <string name="legal_terms_subtitle_region">@string/enx_agencyRegionName</string>
+
+  <!-- Subtitle on the legal terms page, shows the agency's name. -->
+  <string name="legal_terms_subtitle_name">@string/enx_agencyDisplayName</string>
+
+  <!-- Main body of text on the legal terms page, showing the agency's legal content. -->
+  <string name="legal_terms_detail">@string/enx_legalConsentText</string>
+
+  <!-- Name of the agency shown to be put into error messages. -->
+  <string name="error_agency_name">@string/enx_agencyDisplayName</string>
+</resources>

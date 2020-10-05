@@ -1,0 +1,180 @@
+/*
+ * Copyright 2020 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+// This module handles Play Store pushes for EN Express apps.
+
+apply from: 'enexpress_locales.gradle'
+
+buildscript {
+  repositories {
+    google()
+    jcenter()
+  }
+  dependencies {
+    classpath "com.google.apis:google-api-services-androidpublisher:v3-rev142-1.25.0"
+    classpath "com.google.api-client:google-api-client-jackson2:1.20.0"
+    classpath "com.google.auth:google-auth-library-oauth2-http:0.21.1"
+  }
+}
+
+import com.google.api.client.googleapis.auth.oauth2.GoogleCredential
+import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport
+import com.google.api.client.http.FileContent
+import com.google.api.client.json.jackson2.JacksonFactory
+import com.google.api.services.androidpublisher.AndroidPublisher
+import com.google.api.services.androidpublisher.AndroidPublisher.Edits
+import com.google.api.services.androidpublisher.AndroidPublisherScopes
+import com.google.api.services.androidpublisher.model.Apk
+import com.google.api.services.androidpublisher.model.AppEdit
+import com.google.api.services.androidpublisher.model.Listing
+import com.google.api.services.androidpublisher.model.LocalizedText
+import com.google.api.services.androidpublisher.model.Track
+import com.google.api.services.androidpublisher.model.TrackRelease
+
+
+def login(config) {
+  def serviceAccountEmail = config["serviceAccount"]
+  def serviceAccountKey = fileTree("configs").findAll
+     { it.getName() == config["name"] + ".p12" }[0]
+
+  def jsonFactory = JacksonFactory.getDefaultInstance()
+  def httpTransport = GoogleNetHttpTransport.newTrustedTransport()
+  // Get acount credential.
+  def credential = new GoogleCredential.Builder()
+     .setTransport(httpTransport)
+     .setJsonFactory(jsonFactory)
+     .setServiceAccountId(serviceAccountEmail)
+     .setServiceAccountScopes(
+          Collections.singleton(
+              AndroidPublisherScopes.ANDROIDPUBLISHER))
+     .setServiceAccountPrivateKeyFromP12File(serviceAccountKey)
+     .build()
+  // Create the API service.
+  def service = new AndroidPublisher.Builder(
+      httpTransport, jsonFactory, credential)
+      .setApplicationName(name)
+      .build()
+  return service
+}
+
+def updateListing(config, edits, editId) {
+  def packageName = config["healthAuthorityID"]
+  def locales = getConfigLocales(config)
+  def defaultLocale = pickDefaultLocale(config, locales)
+
+  def playLocales = filterLocalesForPlayStore(locales)
+  playLocales.each { playLocale, plainLocale ->
+    def locale = plainLocale.toUpperCase().replace("-", "_")
+    def listing = new Listing()
+    listing.setTitle(
+        config.get("playStoreAppTitle_" + locale,
+        config.get("appTitle_" + locale,
+        config.get("agencyDisplayName_" + locale, ""))))
+    listing.setShortDescription(
+        config.get("playStoreShortDescription_" + locale,
+        config.get("agencyDisplayName_" + locale, "")))
+    listing.setFullDescription(
+        config.get("playStoreFullDescription_" + locale,
+        config.get("agencyDisplayName_" + locale, "")))
+    edits.listings()
+        .update(packageName, editId, playLocale, listing)
+        .execute()
+  }
+}
+
+def updateTrack(config, edits, editId, bundleVersionCodes) {
+  def packageName = config["healthAuthorityID"]
+  def trackRelease = new TrackRelease()
+      .setName("My Alpha Release")
+      .setVersionCodes(bundleVersionCodes)
+      .setStatus("draft")  // completed
+      .setReleaseNotes(Collections.singletonList(
+                       new LocalizedText()
+                       .setLanguage(Locale.US.toString())
+                       .setText("recent changes text")))
+  def track = new Track()
+      .setReleases([trackRelease])
+  edits.tracks()
+       .update(packageName, editId, "internal", track)
+       .execute()
+}
+
+def uploadApp(config, edits, editId, appPath) {
+  def packageName = config["healthAuthorityID"]
+  def file =
+      new FileContent("application/octet-stream", new File(appPath))
+  def app = edits
+      .bundles()
+      .upload(packageName, editId, file)
+      .execute()
+  List<Long> versionCodes = new ArrayList<>()
+  versionCodes.add(Long.valueOf(app.getVersionCode()))
+  return versionCodes
+}
+
+def generatePlayStorePublishApp(configData) {
+  configData.each { name, config ->
+    def packageName = config["healthAuthorityID"]
+    def appPath = "$buildDir/outputs/bundle/" + name +
+        "Release/app-" + name + "-release.aab"
+    def taskName = "publishApp" + name.capitalize()
+    task "$taskName" {
+      inputs.files(config["files"])
+      doLast {
+        // Create a new edit to make changes.
+        def edits = login(config).edits()
+        String editId = edits.insert(packageName, null).execute().getId()
+
+        // Upload bundle, and tracks.
+        def versions = uploadApp(config, edits, editId, appPath)
+        updateTrack(config, edits, editId, versions)
+
+        // Commit changes for edit.
+        edits.commit(packageName, editId).execute()
+      }
+    }
+  }
+}
+
+def generatePlayStorePublishListing(configData) {
+  configData.each { name, config ->
+    def packageName = config["healthAuthorityID"]
+    def taskName = "publishListing" + name.capitalize()
+    task "$taskName" {
+      inputs.files(config["files"])
+      doLast {
+        // Create a new edit to make changes.
+        def edits = login(config).edits()
+        String editId = edits.insert(packageName, null).execute().getId()
+
+        // Upload listing only.
+        updateListing(config, edits, editId)
+
+        // Commit changes for edit.
+        edits.commit(packageName, editId).execute()
+      }
+    }
+  }
+}
+
+def generatePlayStorePublish(configData) {
+  generatePlayStorePublishApp(configData)
+  generatePlayStorePublishListing(configData)
+}
+
+ext {
+  generatePlayStorePublish = this.&generatePlayStorePublish
+}

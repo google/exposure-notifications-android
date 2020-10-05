@@ -20,17 +20,37 @@ package com.google.android.apps.exposurenotification.nearby;
 import android.content.Context;
 import android.util.Log;
 import androidx.annotation.NonNull;
+import androidx.hilt.Assisted;
+import androidx.hilt.work.WorkerInject;
 import androidx.work.ListenableWorker;
 import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkManager;
 import androidx.work.WorkerParameters;
-import com.google.android.apps.exposurenotification.common.AppExecutors;
+import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.common.NotificationHelper;
+import com.google.android.apps.exposurenotification.common.Qualifiers.BackgroundExecutor;
+import com.google.android.apps.exposurenotification.common.Qualifiers.LightweightExecutor;
+import com.google.android.apps.exposurenotification.common.Qualifiers.ScheduledExecutor;
 import com.google.android.apps.exposurenotification.common.TaskToFutureAdapter;
+import com.google.android.apps.exposurenotification.logging.AnalyticsLogger;
+import com.google.android.apps.exposurenotification.proto.WorkManagerTask.WorkerTask;
+import com.google.android.apps.exposurenotification.riskcalculation.DailySummaryRiskCalculator;
+import com.google.android.apps.exposurenotification.riskcalculation.ExposureClassification;
+import com.google.android.apps.exposurenotification.riskcalculation.RevocationDetector;
+import com.google.android.apps.exposurenotification.storage.ExposureEntity;
+import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
+import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.BadgeStatus;
 import com.google.android.apps.exposurenotification.storage.ExposureRepository;
+import com.google.android.gms.nearby.exposurenotification.DailySummariesConfig;
 import com.google.common.util.concurrent.FluentFuture;
+import com.google.common.util.concurrent.FutureCallback;
+import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
+import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 import org.threeten.bp.Duration;
 
 /**
@@ -38,48 +58,248 @@ import org.threeten.bp.Duration;
  * broadcast from exposure notification API.
  */
 public class StateUpdatedWorker extends ListenableWorker {
+
   private static final String TAG = "StateUpdatedWorker";
 
-  private static final Duration GET_WINDOWS_TIMEOUT = Duration.ofSeconds(120);
+  private static final Duration GET_DAILY_SUMMARIES_TIMEOUT = Duration.ofSeconds(120);
 
   private final Context context;
   private final ExposureRepository exposureRepository;
+  private final ExposureNotificationClientWrapper exposureNotificationClientWrapper;
+  private final RevocationDetector revocationDetector;
+  private final DailySummariesConfig dailySummariesConfig;
+  private final DailySummaryRiskCalculator dailySummaryRiskCalculator;
+  private final NotificationHelper notificationHelper;
+  private final ExecutorService backgroundExecutor;
+  private final ExecutorService lightweightExecutor;
+  private final ScheduledExecutorService scheduledExecutor;
+  private final AnalyticsLogger logger;
 
-  public StateUpdatedWorker(@NonNull Context context, @NonNull WorkerParameters workerParams) {
+  ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
+
+  @WorkerInject
+  public StateUpdatedWorker(
+      @Assisted @NonNull Context context,
+      @Assisted @NonNull WorkerParameters workerParams,
+      ExposureRepository exposureRepository,
+      ExposureNotificationClientWrapper exposureNotificationClientWrapper,
+      ExposureNotificationSharedPreferences exposureNotificationSharedPreferences,
+      RevocationDetector revocationDetector,
+      DailySummariesConfig dailySummariesConfig,
+      DailySummaryRiskCalculator dailySummaryRiskCalculator,
+      NotificationHelper notificationHelper,
+      @BackgroundExecutor ExecutorService backgroundExecutor,
+      @LightweightExecutor ExecutorService lightweightExecutor,
+      @ScheduledExecutor ScheduledExecutorService scheduledExecutor,
+      AnalyticsLogger logger) {
+
     super(context, workerParams);
     this.context = context;
-    this.exposureRepository = new ExposureRepository(context);
+    this.exposureRepository = exposureRepository;
+    this.exposureNotificationClientWrapper = exposureNotificationClientWrapper;
+    this.exposureNotificationSharedPreferences = exposureNotificationSharedPreferences;
+    this.revocationDetector = revocationDetector;
+    this.dailySummariesConfig = dailySummariesConfig;
+    this.dailySummaryRiskCalculator = dailySummaryRiskCalculator;
+    this.notificationHelper = notificationHelper;
+    this.backgroundExecutor = backgroundExecutor;
+    this.lightweightExecutor = lightweightExecutor;
+    this.scheduledExecutor = scheduledExecutor;
+    this.logger = logger;
   }
 
   @NonNull
   @Override
   public ListenableFuture<Result> startWork() {
-    return FluentFuture.from(
+    ListenableFuture<Result> listenableFuture = FluentFuture.from(
         TaskToFutureAdapter.getFutureWithTimeout(
-            ExposureNotificationClientWrapper.get(context).getExposureWindows(),
-            GET_WINDOWS_TIMEOUT.toMillis(),
-            TimeUnit.MILLISECONDS,
-            AppExecutors.getScheduledExecutor()))
+            exposureNotificationClientWrapper.getDailySummaries(dailySummariesConfig),
+            GET_DAILY_SUMMARIES_TIMEOUT,
+            scheduledExecutor))
         .transform(
-            exposureRepository::refreshWithExposureWindows,
-            AppExecutors.getBackgroundExecutor())
-        .transform((exposuresAdded) -> {
-          if (exposuresAdded) {
-            NotificationHelper.showPossibleExposureNotification(context);
-          }
-          return Result.success();
-        }, AppExecutors.getLightweightExecutor())
+            (dailySummaries) -> {
+              retrievePreviousExposuresAndCheckForExposureUpdate(context, dailySummaries);
+              return Result.success();
+            },
+                backgroundExecutor)
         .catching(
             Exception.class,
             x -> {
               Log.e(TAG, "Failure to update app state (tokens, etc) from exposure summary.", x);
               return Result.failure();
-            },
-            AppExecutors.getLightweightExecutor());
+            }, lightweightExecutor);
+    Futures.addCallback(listenableFuture, LOG_OUTCOME, lightweightExecutor);
+    return listenableFuture;
   }
 
-  static void runOnce(Context context) {
-    WorkManager.getInstance(context).enqueue(
-        new OneTimeWorkRequest.Builder(StateUpdatedWorker.class).build());
+  static void runOnce(WorkManager workManager) {
+    workManager.enqueue(new OneTimeWorkRequest.Builder(StateUpdatedWorker.class).build());
   }
+
+  private void retrievePreviousExposuresAndCheckForExposureUpdate(Context context,
+      List<DailySummaryWrapper> dailySummaries) {
+    List<ExposureEntity> currentExposureEntities =
+        revocationDetector.dailySummaryToExposureEntity(dailySummaries);
+
+    ExposureClassification currentClassification =
+        dailySummaryRiskCalculator.classifyExposure(dailySummaries);
+
+    ExposureClassification previousClassification =
+        exposureNotificationSharedPreferences.getExposureClassification();
+
+    checkForExposureUpdate(context, currentExposureEntities, currentClassification,
+        previousClassification);
+  }
+
+  /**
+   * Handle dailySummary update logic:
+   * - Update UI's classification and date components
+   * - Badge UI components as "new"
+   * - Recognize changes that trigger notifications
+   * - Detect revocations
+   */
+  public void checkForExposureUpdate(Context context,
+      List<ExposureEntity> currentExposureEntities, ExposureClassification currentClassification,
+      ExposureClassification previousClassification) {
+
+    boolean isClassificationRevoked = false;
+
+    Log.d(TAG, "Current ExposureClassification: " + currentClassification);
+
+    Log.d(TAG, "Previous ExposureClassification: " + previousClassification);
+
+    /*
+     * We assume a change of classification if either the classification index (and resources)
+     * change (because of changes in the underlying dailySummaries)
+     * OR if the classification name changes (when the health authority changes their definitions).
+     * This is also the information used to decide on the "new" badges
+     */
+    boolean newExposureClassification =
+        (previousClassification.getClassificationIndex()
+            != currentClassification.getClassificationIndex())
+        || (!previousClassification.getClassificationName()
+            .equals(currentClassification.getClassificationName()));
+
+    boolean newExposureDate =
+        (previousClassification.getClassificationDate()
+            != currentClassification.getClassificationDate());
+
+    /*
+     * If either of these change, we almost always notify the user with the notification message of
+     * the current exposure classification. The only exceptions are state
+     * changes from "some exposure classification" to "no exposure". In this case we only notify
+     * if we believe the state-change was caused by a key revocation.
+     * If this transition occurs without a revocation, it is usually caused by exposure windows
+     * expiring after 14 days. We don't want to notify the user in this case.
+     *
+     * To give the UI a chance to update to changed exposure classifications, we only set a
+     * "notifyUser" flag here and postpone the actual notification to the very end of this method.
+     */
+    int notificationTitleResource = 0;
+    int notificationMessageResource = 0;
+
+    if (newExposureClassification || newExposureDate) {
+      if (previousClassification.getClassificationIndex()
+          != ExposureClassification.NO_EXPOSURE_CLASSIFICATION_INDEX
+        && currentClassification.getClassificationIndex()
+          == ExposureClassification.NO_EXPOSURE_CLASSIFICATION_INDEX) {
+
+        // Check for the revocation edge case by looking up previous exposures in room
+        List<ExposureEntity> previousExposureEntities = exposureRepository.getAllExposureEntities();
+        if (revocationDetector.isRevocation(previousExposureEntities, currentExposureEntities)){
+          notificationTitleResource = R.string.exposure_notification_title_revoked;
+          notificationMessageResource = R.string.exposure_notification_message_revoked;
+          isClassificationRevoked = true;
+        }
+      }
+      // Otherwise just notify using the normal classifications
+      else {
+        notificationTitleResource = getNotificationTitleResource(currentClassification);
+        notificationMessageResource = getNotificationMessageResource(currentClassification);
+      }
+
+    }
+
+    /*
+     * Write the new state to SharedPrefs to detect changes on the next call.
+     * Persist information on what was updated / if there was a revocation for the UI
+     */
+    exposureNotificationSharedPreferences.setExposureClassification(currentClassification);
+    exposureNotificationSharedPreferences
+        .setIsExposureClassificationRevoked(isClassificationRevoked);
+    if (newExposureClassification) {
+      exposureNotificationSharedPreferences
+          .setIsExposureClassificationNewAsync(BadgeStatus.NEW);
+    }
+    if (newExposureDate) {
+      exposureNotificationSharedPreferences.setIsExposureClassificationDateNewAsync(BadgeStatus.NEW);
+    }
+
+    /*
+     * Notify the user
+     */
+    if (notificationTitleResource != 0 || notificationMessageResource != 0) {
+      notificationHelper.showPossibleExposureNotification(
+          context, notificationTitleResource, notificationMessageResource);
+      Log.d(TAG, "Notifying user: "
+          + context.getResources().getString(notificationTitleResource) + " - "
+          + context.getResources().getString(notificationMessageResource));
+    } else {
+      Log.d(TAG, "No new exposure information, not notifying user");
+    }
+
+    /*
+     * Write a the scores of the DailySummaries to disk for later revocation detection
+     */
+    exposureRepository.clearInsertExposureEntities(currentExposureEntities);
+  }
+
+  /**
+   * Helper to provide the string resources for the notification title
+   */
+  private int getNotificationTitleResource(ExposureClassification exposureClassification) {
+    switch (exposureClassification.getClassificationIndex()) {
+      case 1:
+        return R.string.exposure_notification_title_1;
+      case 2:
+        return R.string.exposure_notification_title_2;
+      case 3:
+        return R.string.exposure_notification_title_3;
+      case 4:
+        return R.string.exposure_notification_title_4;
+      default:
+        throw new IllegalArgumentException("Classification index must be between 1 and 4");
+    }
+  }
+
+  /**
+   * Helper to provide the string resources for the notification message
+   */
+  private int getNotificationMessageResource(ExposureClassification exposureClassification) {
+    switch (exposureClassification.getClassificationIndex()) {
+      case 1:
+        return  R.string.exposure_notification_message_1;
+      case 2:
+        return R.string.exposure_notification_message_2;
+      case 3:
+        return R.string.exposure_notification_message_3;
+      case 4:
+        return R.string.exposure_notification_message_4;
+      default:
+        throw new IllegalArgumentException("Classification index must be between 1 and 4");
+    }
+  }
+
+  private FutureCallback<Result> LOG_OUTCOME =
+      new FutureCallback<Result>() {
+        @Override
+        public void onSuccess(@NullableDecl Result result) {
+          logger.logWorkManagerTaskSuccess(WorkerTask.TASK_STATE_UPDATED);
+        }
+
+        @Override
+        public void onFailure(@NonNull Throwable t) {
+          logger.logWorkManagerTaskFailure(WorkerTask.TASK_STATE_UPDATED, t);
+        }
+      };
 }

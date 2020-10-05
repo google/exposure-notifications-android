@@ -18,7 +18,6 @@
 package com.google.android.apps.exposurenotification.notify;
 
 import static android.app.Activity.RESULT_OK;
-import static com.google.android.apps.exposurenotification.notify.ShareDiagnosisActivity.SHARE_EXPOSURE_FRAGMENT_TAG;
 
 import android.content.Intent;
 import android.content.IntentSender.SendIntentException;
@@ -33,23 +32,25 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.network.Connectivity;
+import com.google.android.apps.exposurenotification.notify.ShareDiagnosisViewModel.Step;
+import com.google.android.apps.exposurenotification.storage.DiagnosisEntity;
+import com.google.android.apps.exposurenotification.storage.DiagnosisEntity.Shared;
 import com.google.android.apps.exposurenotification.utils.RequestCodes;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
+import dagger.hilt.android.AndroidEntryPoint;
+import javax.inject.Inject;
 import org.threeten.bp.format.DateTimeFormatter;
 import org.threeten.bp.format.FormatStyle;
 
 /**
- * Page for reviewing adding or updating a positive diagnosis flows
- *
- * <p><ul>
- * <li> Page 3 for the adding a positive diagnosis flow
- * <li> Page 2 for the view a positive diagnosis flow for updating the share status
- * </ul><p>
+ * Page of the diagnosis flow that allows the user to see their diagnosis info and choose whether or
+ * not to share their keys with the upload server.
  */
+@AndroidEntryPoint
 public class ShareDiagnosisReviewFragment extends Fragment {
 
   private static final String TAG = "ShareExposureReviewFrag";
@@ -59,6 +60,9 @@ public class ShareDiagnosisReviewFragment extends Fragment {
 
   private ShareDiagnosisViewModel shareDiagnosisViewModel;
 
+  @Inject
+  Connectivity connectivity;
+
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
     return inflater.inflate(R.layout.fragment_share_diagnosis_review, parent, false);
@@ -66,33 +70,98 @@ public class ShareDiagnosisReviewFragment extends Fragment {
 
   @Override
   public void onViewCreated(View view, Bundle savedInstanceState) {
+    getActivity().setTitle(R.string.share_review_title);
+
     shareDiagnosisViewModel =
         new ViewModelProvider(getActivity()).get(ShareDiagnosisViewModel.class);
 
+    TextView covidStatus = view.findViewById(R.id.share_review_status);
+    TextView travelStatus = view.findViewById(R.id.share_review_travel);
     TextView date = view.findViewById(R.id.share_review_date);
-    shareDiagnosisViewModel
-        .getTestTimestampLiveData()
-        .observe(
-            getViewLifecycleOwner(),
-            timestamp -> {
-              if (timestamp != null) {
-                date.setText(dateTimeFormatter.format(timestamp));
-              }
-            });
-
-    shareDiagnosisViewModel
-        .getByIdLiveData(shareDiagnosisViewModel.getExistingIdLiveData().getValue())
-        .observe(
-            getViewLifecycleOwner(),
-            entity -> {
-              if (entity != null) {
-                shareDiagnosisViewModel.onTestTimestampChanged(entity.getTestTimestamp());
-              }
-            });
-
     Button shareButton = view.findViewById(R.id.share_share_button);
-    shareButton.setOnClickListener(v -> shareAction());
+    Button previousButton = view.findViewById(R.id.share_previous_button);
     ProgressBar progressBar = view.findViewById(R.id.share_progress_bar);
+    View closeButton = view.findViewById(android.R.id.home);
+    View deleteButton = view.findViewById(R.id.share_review_delete);
+
+    shareDiagnosisViewModel
+        .getCurrentDiagnosisLiveData()
+        .observe(
+            getViewLifecycleOwner(),
+            diagnosisEntity -> {
+              // Can become null during the delete case.
+              if (diagnosisEntity == null) {
+                return;
+              }
+
+              deleteButton.setOnClickListener(v -> deleteAction(diagnosisEntity));
+              if (shareDiagnosisViewModel.isDeleteOpen()) {
+                deleteAction(diagnosisEntity);
+              }
+
+              if (diagnosisEntity.getTestResult() != null) {
+                switch (diagnosisEntity.getTestResult()) {
+                  case LIKELY:
+                    covidStatus.setText(R.string.share_review_status_likely);
+                    break;
+                  case NEGATIVE:
+                    covidStatus.setText(R.string.share_review_status_negative);
+                    break;
+                  case CONFIRMED:
+                  default:
+                    covidStatus.setText(R.string.share_review_status_confirmed);
+                    break;
+                }
+              } else {
+                // We "shouldn't" get here, but in case, default to the most likely value rather
+                // than fail.
+                covidStatus.setText(R.string.share_review_status_confirmed);
+              }
+
+              if (diagnosisEntity.getTravelStatus() != null) {
+                switch (diagnosisEntity.getTravelStatus()) {
+                  case TRAVELED:
+                    travelStatus.setText(R.string.share_review_travel_confirmed);
+                    break;
+                  case NOT_TRAVELED:
+                    travelStatus.setText(R.string.share_review_travel_no_travel);
+                    break;
+                  case NO_ANSWER:
+                  case NOT_ATTEMPTED:
+                  default:
+                    travelStatus.setText(R.string.share_review_travel_no_answer);
+                }
+              } else {
+                travelStatus.setText(R.string.share_review_travel_no_answer);
+              }
+
+              // HasSymptoms cannot be null.
+              // TODO make the other enums like this.
+              switch (diagnosisEntity.getHasSymptoms()) {
+                case YES:
+                  date.setText(requireContext()
+                      .getString(R.string.share_review_onset_date,
+                          dateTimeFormatter.withLocale(getResources().getConfiguration().locale)
+                              .format(diagnosisEntity.getOnsetDate())));
+                  break;
+                case NO:
+                  date.setText(R.string.share_review_onset_no_symptoms);
+                  break;
+                case WITHHELD:
+                case UNSET:
+                default:
+                  date.setText(R.string.share_review_onset_no_answer);
+                  break;
+              }
+            });
+
+    shareButton.setOnClickListener(v -> {
+      if (connectivity.hasInternet()) {
+        shareAction();
+      } else {
+        maybeShowSnackbar(requireContext().getString(R.string.share_error_no_internet));
+      }
+    });
     shareDiagnosisViewModel
         .getInFlightLiveData()
         .observe(
@@ -108,10 +177,6 @@ public class ShareDiagnosisReviewFragment extends Fragment {
                 progressBar.setVisibility(View.INVISIBLE);
               }
             });
-
-    shareDiagnosisViewModel
-        .getSnackbarSingleLiveEvent()
-        .observe(getViewLifecycleOwner(), this::maybeShowSnackbar);
 
     shareDiagnosisViewModel
         .getResolutionRequiredLiveEvent()
@@ -131,33 +196,29 @@ public class ShareDiagnosisReviewFragment extends Fragment {
         .getSharedLiveEvent()
         .observe(
             getViewLifecycleOwner(),
-            shared -> {
-              if (!shared) {
-                // Using a Toast instead of Snackbar as a workaround to keep the toast showing
-                // across an animation. TODO: Fix.
-                Toast.makeText(getContext(), R.string.share_error, Toast.LENGTH_LONG).show();
-              }
-              shareDiagnosisViewModel.save(shared);
-            });
+            shared -> shareDiagnosisViewModel
+                .nextStepIrreversible(shared ? Step.SHARED : Step.NOT_SHARED));
 
     shareDiagnosisViewModel
-        .getSavedLiveEvent()
+        .getDeletedSingleLiveEvent()
         .observe(
             getViewLifecycleOwner(),
-            shared -> {
-              if (shared) {
-                transitionToFragment(new ShareDiagnosisSharedFragment());
-              } else {
-                transitionToFragment(new ShareDiagnosisNotSharedFragment());
+            unused -> {
+              if (getActivity() != null) {
+                Toast.makeText(getContext(), R.string.delete_test_result_confirmed,
+                    Toast.LENGTH_LONG).show();
+                getActivity().finish();
               }
             });
 
-    Button cancelButton = view.findViewById(R.id.share_cancel_button);
-    cancelButton.findViewById(R.id.share_cancel_button).setOnClickListener((v) -> cancelAction());
+    shareDiagnosisViewModel.getSnackbarSingleLiveEvent()
+        .observe(getViewLifecycleOwner(), this::maybeShowSnackbar);
 
-    View upButton = view.findViewById(android.R.id.home);
-    upButton.setContentDescription(getString(R.string.navigate_up));
-    upButton.setOnClickListener((v) -> navigateUp());
+    previousButton.findViewById(R.id.share_previous_button)
+        .setOnClickListener((v) -> previousAction());
+
+    closeButton.setContentDescription(getString(R.string.navigate_up));
+    closeButton.setOnClickListener((v) -> closeAction());
   }
 
   @Override
@@ -165,35 +226,39 @@ public class ShareDiagnosisReviewFragment extends Fragment {
     if (requestCode == RequestCodes.REQUEST_CODE_GET_TEMP_EXPOSURE_KEY_HISTORY) {
       if (resultCode == RESULT_OK) {
         // Okay to share, submit data.
-        shareDiagnosisViewModel.share();
+        shareDiagnosisViewModel.uploadKeys();
       } else {
         // Not okay to share, just store for later.
-        shareDiagnosisViewModel.save(false);
+        shareDiagnosisViewModel.setIsShared(Shared.NOT_ATTEMPTED);
       }
     }
   }
 
   private void shareAction() {
-    shareDiagnosisViewModel.share();
+    Log.d(TAG, "Submitting diagnosis keys...");
+    shareDiagnosisViewModel.uploadKeys();
   }
 
-  private void cancelAction() {
-    requireActivity().finish();
+  private void previousAction() {
+    shareDiagnosisViewModel.previousStep(Step.TRAVEL_STATUS);
   }
 
-  private void navigateUp() {
-    getParentFragmentManager().popBackStack();
+  private void closeAction() {
+    ShareDiagnosisActivity.showCloseWarningAlertDialog(requireActivity(), shareDiagnosisViewModel);
   }
 
-  private void transitionToFragment(Fragment fragment) {
-    // Remove previous fragment from the stack if it is there so we can't go back.
-    getParentFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-
-    getParentFragmentManager()
-        .beginTransaction()
-        .replace(R.id.share_exposure_fragment, fragment, SHARE_EXPOSURE_FRAGMENT_TAG)
-        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-        .commit();
+  private void deleteAction(DiagnosisEntity diagnosis) {
+    shareDiagnosisViewModel.setDeleteOpen(true);
+    new MaterialAlertDialogBuilder(requireContext())
+        .setTitle(R.string.delete_test_result_title)
+        .setMessage(R.string.delete_test_result_detail)
+        .setCancelable(true)
+        .setPositiveButton(
+            R.string.btn_delete,
+            (d, w) -> shareDiagnosisViewModel.deleteEntity(diagnosis))
+        .setNegativeButton(R.string.btn_cancel, (d, w) -> shareDiagnosisViewModel.setDeleteOpen(false))
+        .setOnCancelListener((d) -> shareDiagnosisViewModel.setDeleteOpen(false))
+        .show();
   }
 
   /**

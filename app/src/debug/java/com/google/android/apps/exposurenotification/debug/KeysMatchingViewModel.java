@@ -17,12 +17,11 @@
 
 package com.google.android.apps.exposurenotification.debug;
 
-import android.app.Application;
 import android.util.Log;
-import androidx.annotation.NonNull;
-import androidx.lifecycle.AndroidViewModel;
+import androidx.hilt.lifecycle.ViewModelInject;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 import com.google.android.apps.exposurenotification.common.SingleLiveEvent;
 import com.google.android.apps.exposurenotification.nearby.ExposureNotificationClientWrapper;
 import com.google.android.gms.common.api.ApiException;
@@ -35,7 +34,7 @@ import java.util.List;
 /**
  * View model for {@link KeysMatchingFragment}.
  */
-public class KeysMatchingViewModel extends AndroidViewModel {
+public class KeysMatchingViewModel extends ViewModel {
 
   private static final String TAG = "ViewKeysViewModel";
 
@@ -47,8 +46,13 @@ public class KeysMatchingViewModel extends AndroidViewModel {
   private final SingleLiveEvent<Void> apiErrorLiveEvent = new SingleLiveEvent<>();
   private final SingleLiveEvent<ApiException> resolutionRequiredLiveEvent = new SingleLiveEvent<>();
 
-  public KeysMatchingViewModel(@NonNull Application application) {
-    super(application);
+  private final ExposureNotificationClientWrapper exposureNotificationClientWrapper;
+
+  @ViewModelInject
+  public KeysMatchingViewModel(
+      ExposureNotificationClientWrapper exposureNotificationClientWrapper) {
+    this.exposureNotificationClientWrapper = exposureNotificationClientWrapper;
+
     temporaryExposureKeysLiveData = new MutableLiveData<>(new ArrayList<>());
   }
 
@@ -91,14 +95,12 @@ public class KeysMatchingViewModel extends AndroidViewModel {
    * Requests updating the {@link TemporaryExposureKey} from GMSCore API.
    */
   public void updateTemporaryExposureKeys() {
-    ExposureNotificationClientWrapper clientWrapper =
-        ExposureNotificationClientWrapper.get(getApplication());
-    clientWrapper
+    exposureNotificationClientWrapper
         .isEnabled()
         .continueWithTask(
             isEnabled -> {
               if (isEnabled.getResult()) {
-                return clientWrapper.getTemporaryExposureKeyHistory();
+                return exposureNotificationClientWrapper.getTemporaryExposureKeyHistory();
               } else {
                 apiDisabledLiveEvent.call();
                 return Tasks.forResult(new ArrayList<>());
@@ -134,7 +136,7 @@ public class KeysMatchingViewModel extends AndroidViewModel {
    */
   public void startResolutionResultOk() {
     inFlightResolutionLiveData.setValue(false);
-    ExposureNotificationClientWrapper.get(getApplication())
+    exposureNotificationClientWrapper
         .getTemporaryExposureKeyHistory()
         .addOnSuccessListener(temporaryExposureKeysLiveData::setValue)
         .addOnFailureListener(

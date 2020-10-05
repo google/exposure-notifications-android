@@ -17,26 +17,57 @@
 
 package com.google.android.apps.exposurenotification.exposure;
 
-import android.app.Application;
-import androidx.annotation.NonNull;
-import androidx.lifecycle.AndroidViewModel;
+import androidx.hilt.lifecycle.ViewModelInject;
 import androidx.lifecycle.LiveData;
-import com.google.android.apps.exposurenotification.storage.ExposureEntity;
-import com.google.android.apps.exposurenotification.storage.ExposureRepository;
-import java.util.List;
+import androidx.lifecycle.ViewModel;
+import com.google.android.apps.exposurenotification.riskcalculation.ExposureClassification;
+import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
+import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.BadgeStatus;
 
-/** View model for the {@link ExposureHomeFragment}. */
-public class ExposureHomeViewModel extends AndroidViewModel {
-  private final ExposureRepository exposureRepository;
-  private final LiveData<List<ExposureEntity>> getAllLiveData;
+/**
+ * View model for the {@link ExposureHomeFragment}.
+ */
+public class ExposureHomeViewModel extends ViewModel {
 
-  public ExposureHomeViewModel(@NonNull Application application) {
-    super(application);
-    exposureRepository = new ExposureRepository(application);
-    getAllLiveData = exposureRepository.getAllLiveData();
+  private final ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
+
+  @ViewModelInject
+  public ExposureHomeViewModel(ExposureNotificationSharedPreferences exposureNotificationSharedPreferences) {
+    this.exposureNotificationSharedPreferences = exposureNotificationSharedPreferences;
   }
 
-  public LiveData<List<ExposureEntity>> getAllExposureEntityLiveData() {
-    return getAllLiveData;
+  public LiveData<ExposureClassification> getExposureClassificationLiveData() {
+    return exposureNotificationSharedPreferences.getExposureClassificationLiveData();
   }
+
+  public ExposureClassification getExposureClassification() {
+    return exposureNotificationSharedPreferences.getExposureClassification();
+  }
+
+  public Boolean getIsExposureClassificationRevoked() {
+    return exposureNotificationSharedPreferences.getIsExposureClassificationRevoked();
+  }
+
+  public LiveData<BadgeStatus> getIsExposureClassificationNewLiveData() {
+    return exposureNotificationSharedPreferences.getIsExposureClassificationNewLiveData();
+  }
+
+  public void tryTransitionExposureClassificationNew(BadgeStatus from, BadgeStatus to) {
+    if (exposureNotificationSharedPreferences.getIsExposureClassificationNew()
+      == from) {
+      exposureNotificationSharedPreferences.setIsExposureClassificationNewAsync(to);
+    }
+  }
+
+  public LiveData<BadgeStatus> getIsExposureClassificationDateNewLiveData() {
+    return exposureNotificationSharedPreferences.getIsExposureClassificationDateNewLiveData();
+  }
+
+  public void tryTransitionExposureClassificationDateNew(BadgeStatus from, BadgeStatus to) {
+    if (exposureNotificationSharedPreferences.getIsExposureClassificationDateNew()
+        == from) {
+      exposureNotificationSharedPreferences.setIsExposureClassificationDateNewAsync(to);
+    }
+  }
+
 }

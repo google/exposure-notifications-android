@@ -1,0 +1,178 @@
+/*
+ * Copyright 2020 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+// This module handles locales for EN Express.
+
+def toAndroidLocale(locale) {
+  return locale.replace("-", "-r")
+}
+
+def toAndroidLanguageOnly(locale) {
+  return locale.split("-")[0]
+}
+
+def getKeyLocale(key) {
+  def parts = key.split("_")
+  if (parts.size() > 2) {
+    return parts[-2].toLowerCase() + "-" + parts[-1].toUpperCase()
+  }
+  return ""
+}
+
+def getKeyWithoutLocale(key) {
+  def parts = key.split("_")
+  if (parts.size() > 2) {
+    return parts[0..-3].join("_")
+  } else {
+    return key
+  }
+}
+
+def getConfigLocales(config) {
+  Set locales = []
+  config.each {
+    def locale = getKeyLocale(it.key)
+    if (locale != "") {
+      locales.add(getKeyLocale(it.key))
+    }
+  }
+  return locales
+}
+
+def bestFitLocale(locales, locale) {
+  if (locales.contains(locale)) {
+    return locale
+  }
+  def lang = locale.split("-")[0]
+  return locales.find { it.split("-")[0] == lang }
+}
+
+def pickDefaultLocale(config, locales) {
+  // TODO: Do something better to pick fallback default locale.
+  return config.get("playStoreDefaultLocale", locales.findAll {it != ""}[0])
+}
+
+def filterLocalesForPlayStore(locales) {
+  def PLAY_STORE_LOCALES = [
+    [name: "Afrikaans", code: "af"],
+    [name: "Albanian", code: "sq"],
+    [name: "Amharic", code: "am"],
+    [name: "Arabic", code: "ar"],
+    [name: "Armenian", code: "hy-AM"],
+    [name: "Azerbaijani", code: "az-AZ"],
+    [name: "Bangla", code: "bn-BD"],
+    [name: "Basque", code: "eu-ES"],
+    [name: "Belarusian", code: "be"],
+    [name: "Bulgarian", code: "bg"],
+    [name: "Burmese", code: "my-MM"],
+    [name: "Catalan", code: "ca"],
+    [name: "Chinese (Hong Kong)", code: "zh-HK"],
+    [name: "Chinese (Simplified)", code: "zh-CN"],
+    [name: "Chinese (Traditional)", code: "zh-TW"],
+    [name: "Croatian", code: "hr"],
+    [name: "Czech", code: "cs-CZ"],
+    [name: "Danish", code: "da-DK"],
+    [name: "Dutch", code: "nl-NL"],
+    [name: "English", code: "en-IN"],
+    [name: "English", code: "en-SG"],
+    [name: "English", code: "en-ZA"],
+    [name: "English (Australia)", code: "en-AU"],
+    [name: "English (Canada)", code: "en-CA"],
+    [name: "English (United Kingdom)", code: "en-GB"],
+    [name: "English (United States)", code: "en-US"],
+    [name: "Estonian", code: "et"],
+    [name: "Filipino", code: "fil"],
+    [name: "Finnish", code: "fi-FI"],
+    [name: "French (Canada)", code: "fr-CA"],
+    [name: "French (France)", code: "fr-FR"],
+    [name: "Galician", code: "gl-ES"],
+    [name: "Georgian", code: "ka-GE"],
+    [name: "German", code: "de-DE"],
+    [name: "Greek", code: "el-GR"],
+    [name: "Gujarati", code: "gu"],
+    [name: "Hebrew", code: "iw-IL"],
+    [name: "Hindi", code: "hi-IN"],
+    [name: "Hungarian", code: "hu-HU"],
+    [name: "Icelandic", code: "is-IS"],
+    [name: "Indonesian", code: "id"],
+    [name: "Italian", code: "it-IT"],
+    [name: "Japanese", code: "ja-JP"],
+    [name: "Kannada", code: "kn-IN"],
+    [name: "Kazakh", code: "kk"],
+    [name: "Khmer", code: "km-KH"],
+    [name: "Korean", code: "ko-KR"],
+    [name: "Kyrgyz", code: "ky-KG"],
+    [name: "Lao", code: "lo-LA"],
+    [name: "Latvian", code: "lv"],
+    [name: "Lithuanian", code: "lt"],
+    [name: "Macedonian", code: "mk-MK"],
+    [name: "Malay", code: "ms"],
+    [name: "Malay (Malaysia)", code: "ms-MY"],
+    [name: "Malayalam", code: "ml-IN"],
+    [name: "Marathi", code: "mr-IN"],
+    [name: "Mongolian", code: "mn-MN"],
+    [name: "Nepali", code: "ne-NP"],
+    [name: "Norwegian", code: "no-NO"],
+    [name: "Persian", code: "fa"],
+    [name: "Persian", code: "fa-AE"],
+    [name: "Persian", code: "fa-AF"],
+    [name: "Persian", code: "fa-IR"],
+    [name: "Polish", code: "pl-PL"],
+    [name: "Portuguese (Brazil)", code: "pt-BR"],
+    [name: "Portuguese (Portugal)", code: "pt-PT"],
+    [name: "Punjabi", code: "pa"],
+    [name: "Romanian", code: "ro"],
+    [name: "Romansh", code: "rm"],
+    [name: "Russian", code: "ru-RU"],
+    [name: "Serbian", code: "sr"],
+    [name: "Sinhala", code: "si-LK"],
+    [name: "Slovak", code: "sk"],
+    [name: "Slovenian", code: "sl"],
+    [name: "Spanish (Latin America)", code: "es-419"],
+    [name: "Spanish (Spain)", code: "es-ES"],
+    [name: "Spanish (United States)", code: "es-US"],
+    [name: "Swahili", code: "sw"],
+    [name: "Swedish", code: "sv-SE"],
+    [name: "Tamil", code: "ta-IN"],
+    [name: "Telugu", code: "te-IN"],
+    [name: "Thai", code: "th"],
+    [name: "Turkish", code: "tr-TR"],
+    [name: "Ukrainian", code: "uk"],
+    [name: "Urdu", code: "ur"],
+    [name: "Vietnamese", code: "vi"],
+    [name: "Zulu", code: "zu"],
+  ]
+
+  Map playLocales = [:]
+  PLAY_STORE_LOCALES.each { localeInfo ->
+    def best = bestFitLocale(locales, localeInfo.code)
+    if (best != null) {
+      playLocales[localeInfo.code] = best
+    }
+  }
+  return playLocales
+}
+
+ext {
+  getConfigLocales = this.&getConfigLocales
+  pickDefaultLocale = this.&pickDefaultLocale
+  filterLocalesForPlayStore = this.&filterLocalesForPlayStore
+  toAndroidLocale = this.&toAndroidLocale
+  toAndroidLanguageOnly = this.&toAndroidLanguageOnly
+  bestFitLocale = this.&bestFitLocale
+  getKeyLocale = this.&getKeyLocale
+  getKeyWithoutLocale = this.&getKeyWithoutLocale
+}

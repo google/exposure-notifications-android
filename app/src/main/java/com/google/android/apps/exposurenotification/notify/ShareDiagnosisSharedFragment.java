@@ -23,15 +23,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 import com.google.android.apps.exposurenotification.R;
+import dagger.hilt.android.AndroidEntryPoint;
 
 /**
- * Result page for exposure shared confirmation flows
- *
- * <p><ul>
- * <li> Page 4 for the adding a positive diagnosis flow
- * <li> Page 3 for the updating a positive diagnosis flow
- * </ul><p>
+ * Result page the diagnosis flow, shown when the user's keys have been successfully uploaded to the
+ * keyserver.
  */
+@AndroidEntryPoint
 public class ShareDiagnosisSharedFragment extends Fragment {
 
   private static final String TAG = "ShareExposureSharedFrag";
@@ -43,6 +41,7 @@ public class ShareDiagnosisSharedFragment extends Fragment {
 
   @Override
   public void onViewCreated(View view, Bundle savedInstanceState) {
+    getActivity().setTitle(R.string.share_confirm_title);
     view.findViewById(R.id.share_done_button).setOnClickListener(v -> requireActivity().finish());
   }
 

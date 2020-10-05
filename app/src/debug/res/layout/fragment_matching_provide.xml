@@ -83,7 +83,6 @@
             app:iconGravity="end" />
 
           <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_single_key_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/padding_large"
@@ -233,7 +232,7 @@
         <ImageView
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:src="@drawable/ic_info_black_24dp"/>
+          android:src="@drawable/ic_info"/>
 
         <TextView
           android:layout_width="match_parent"
