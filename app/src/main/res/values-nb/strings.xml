@@ -16,6 +16,8 @@
   <string name="btn_save">Lagre</string>
   <string name="btn_discard">Forkast</string>
   <string name="btn_verify">Bekreft</string>
+  <string name="btn_dont_share">Ikke del</string>
+  <string name="btn_share">Del</string>
   <string name="learn_more">Finn ut mer</string>
   <string name="home_tab_exposures_text">Eksponering</string>
   <string name="home_tab_notify_text">Varsle andre</string>
@@ -31,7 +33,7 @@
     \n\nDatoen, varigheten og signalstyrken knyttet til en eksponering deles med appen.</string>
   <string name="onboarding_metrics_title">Bidra til å gjøre appen bedre</string>
   <string name="onboarding_metrics_subtitle">Del appbruk og ytelsesdata med Google</string>
-  <string name="onboarding_metrics_detail">For å vedlikeholde og forbedre appen deles noen begrensede, avidentifiserte data om appens ytelse og bruk med Google. Disse dataene identifiserer deg ikke.</string>
+  <string name="onboarding_metrics_description">For å vedlikeholde og forbedre appen deles noen begrensede, avidentifiserte data om appytelsen og -bruken med Google. Disse dataene identifiserer deg ikke. %1$s</string>
   <string name="onboarding_confirm_later_title">Vil du holde eksponeringsvarsler slått av?</string>
   <string name="onboarding_confirm_later_detail">Før eksponeringsvarsler slås på, blir du ikke varslet om mulig covid-19-eksponering</string>
   <string name="no_recent_exposure_subtitle">Ingen nylig eksponering</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">Status</string>
   <string name="exposure_details_status_exposure">Mulig covid-19-eksponering</string>
   <string name="exposure_details_date_exposed_subtitle">Dato for mulig eksponering</string>
-  <string name="exposure_details_expiring_subtitle">Eksponeringsrapporter lagres i 14 dager fra eksponeringsdatoen</string>
+  <string name="exposure_details_expiring_subtitle">Eksponeringsrapporter lagres i 14 dager fra den mulige eksponeringsdatoen</string>
   <string name="exposure_details_learn_more">Finn ut mer</string>
   <string name="exposure_details_new_badge">Ny</string>
   <string name="share_test_result_title">Beskytt lokalsamfunnet – del covid-19-testresultatet ditt</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">Eksponeringsvarsler</string>
   <string name="settings_app_analytics_subtitle">Deling av appbruk og ytelse</string>
   <string name="settings_privacy_policy">Personvernregler</string>
+  <string name="settings_help_and_support">Om Exposure Notification Express</string>
   <string name="settings_legal_terms">Juridiske vilkår</string>
   <string name="settings_debug">Feilsøkingsmodus</string>
   <string name="settings_share">Bidra til å hindre spredning av covid-19. Del denne appen med lokalsamfunnet for å få bedre beskyttelse med mulige eksponeringsvarsler.</string>
@@ -134,4 +137,10 @@
   <string name="share_error">Kunne ikke dele testresultatet. Prøv på nytt senere.</string>
   <string name="generic_error_message">Noe gikk galt. Prøv på nytt.</string>
   <string name="code_error_already_submitted">Koden er allerede brukt til å dele testresultater</string>
+  <string name="settings_private_analytics_subtitle">Deling av statistikk om eksponeringsvarsler</string>
+  <string name="private_analytics_title">Hjelp helsemyndighetene med å forstå spredningen av covid-19</string>
+  <string name="private_analytics_subtitle">Del statistikk om eksponeringsvarsler med helsemyndighetene</string>
+  <string name="private_analytics_footer">Denne statistikken, for eksempel antall varsler i regionen, hjelper helsemyndighetene med å forstå hvordan covid-19 spres. Google kan ikke lese den, og den aggregeres for helsemyndighetene, slik at den ikke kan knyttes til telefonen din. %1$s</string>
+  <string name="private_analytics_footer_onboarding">Google kan ikke lese denne statistikken, og den aggregeres for helsemyndighetene, slik at den ikke kan knyttes til telefonen din. %1$s</string>
+  <string name="private_analytics_footer_learn_more">Finn ut mer</string>
 </resources>

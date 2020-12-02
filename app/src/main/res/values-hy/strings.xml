@@ -16,6 +16,8 @@
   <string name="btn_save">Պահել</string>
   <string name="btn_discard">Հեռացնել</string>
   <string name="btn_verify">Հաստատել</string>
+  <string name="btn_dont_share">Չուղարկել</string>
+  <string name="btn_share">Կիսվել</string>
   <string name="learn_more">Իմանալ ավելին</string>
   <string name="home_tab_exposures_text">Վարակման վտանգ</string>
   <string name="home_tab_notify_text">Հայտնեք մյուսներին</string>
@@ -31,7 +33,7 @@
     \n\nՎարակակրի հետ շփման ամսաթիվը, տևողությունը, ինչպես նաև այդ պահին Bluetooth ազդանշանի ուժգնության մասին տվյալները կուղարկվեն հավելվածին։</string>
   <string name="onboarding_metrics_title">Օգնեք ավելի լավը դարձնել այս հավելվածը</string>
   <string name="onboarding_metrics_subtitle">Ուղարկել հավելվածի մասին տվյալները Google-ին</string>
-  <string name="onboarding_metrics_detail">Հավելվածի պատշաճ աշխատանքն ապահովելու համար դրա օգտագործման և բնութագրերի մասին որոշ անանուն տվյալներ կուղարկվեն Google-ին։ Այդ տվյալները չեն նույնականացնի ձեզ։</string>
+  <string name="onboarding_metrics_description">Հավելվածի պատշաճ աշխատանքն ապահովելու և այն կատարելագործելու նպատակով հավելվածի աշխատանքի և օգտագործման մասին որոշ անանուն տվյալներ կուղարկվեն Google-ին։ Այդ տվյալները չեն նույնականացնի ձեզ։ %1$s</string>
   <string name="onboarding_confirm_later_title">Անջատված թողնե՞լ ծանուցումները</string>
   <string name="onboarding_confirm_later_detail">Եթե չմիացնեք, դուք չեք ծանուցվի COVID-19-ի վարակակիրների հետ հնարավոր շփումների մասին։</string>
   <string name="no_recent_exposure_subtitle">Վերջերս վարակակիրների հետ շփումներ չեն եղել</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">Կարգավիճակ</string>
   <string name="exposure_details_status_exposure">COVID-19 վարակակրի հետ հնարավոր շփում</string>
   <string name="exposure_details_date_exposed_subtitle">Հնարավոր շփման ամսաթիվը</string>
-  <string name="exposure_details_expiring_subtitle">Վարակման վտանգի մասին հաղորդումները պահվում են 14 օր՝ վարակակիրների հետ շփման օրվանից սկսած։</string>
+  <string name="exposure_details_expiring_subtitle">Վարակման վտանգի մասին հաղորդումները պահվում են 14 օր՝ սկսած վարակակրի հետ հնարավոր շփման օրվանից։</string>
   <string name="exposure_details_learn_more">Իմանալ ավելին</string>
   <string name="exposure_details_new_badge">Նոր</string>
   <string name="share_test_result_title">Պաշտպանեք ձեր համայնքին, հաղորդեք COVID-19-ի ձեր թեստի արդյունքի մասին</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">Ծանուցումներ վարակման վտանգի մասին</string>
   <string name="settings_app_analytics_subtitle">Հավելվածի մասին տվյալների ուղարկում</string>
   <string name="settings_privacy_policy">Գաղտնիության քաղաքականություն</string>
+  <string name="settings_help_and_support">Տեղեկություններ վարակման վտանգի մասին ծանուցումների վերաբերյալ</string>
   <string name="settings_legal_terms">Իրավական պայմաններ</string>
   <string name="settings_debug">Վրիպազերծման ռեժիմ</string>
   <string name="settings_share">Օգնեք պայքարել COVID-19-ի տարածման դեմ։ Կիսվեք այս հավելվածով այլ օգտատերերի հետ, որպեսզի նրանք կարողանան ստանալ ծանուցումներ՝ վարակման հնարավոր վտանգի մասին ժամանակին իմանալու համար։</string>
@@ -134,4 +137,10 @@
   <string name="share_error">Չհաջողվեց կիսվել թեստի արդյունքով։ Փորձեք ավելի ուշ։</string>
   <string name="generic_error_message">Սխալ առաջացավ։ Նորից փորձեք։</string>
   <string name="code_error_already_submitted">Կոդն արդեն օգտագործվել է թեստի արդյունքներով կիսվելու համար</string>
+  <string name="settings_private_analytics_subtitle">Վարակման վտանգի մասին ծանուցումների վիճակագրության ուղարկում</string>
+  <string name="private_analytics_title">Օգնեք տեղական առողջապահական մարմիններին վերլուծել, թե ինչպես է տարածվում COVID-19-ը</string>
+  <string name="private_analytics_subtitle">Կիսվեք վարակման վտանգի մասին ծանուցումների վիճակագրությամբ տեղական առողջապահական մարմինների հետ</string>
+  <string name="private_analytics_footer">Վիճակագրական տվյալներն օգնում են առողջապահական մարմիններին վերլուծել COVID-19-ի տարածման միտումը։ Դրանք հասանելի չեն Google-ին և ուղարկվում են առողջապահական մարմիններին՝ առանց ձեր հեռախոսի հետ կապելու հնարավորության։ %1$s</string>
+  <string name="private_analytics_footer_onboarding">Վիճակագրական տվյալները հասանելի չեն Google-ին և ուղարկվում են առողջապահական մարմիններին՝ առանց ձեր հեռախոսի հետ կապելու հնարավորության։ %1$s</string>
+  <string name="private_analytics_footer_learn_more">Իմանալ ավելին</string>
 </resources>

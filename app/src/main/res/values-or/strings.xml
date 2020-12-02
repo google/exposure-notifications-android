@@ -16,6 +16,8 @@
   <string name="btn_save">ସେଭ୍ କରନ୍ତୁ</string>
   <string name="btn_discard">ଖାରଜ କରନ୍ତୁ</string>
   <string name="btn_verify">ଯାଞ୍ଚ କରନ୍ତୁ</string>
+  <string name="btn_dont_share">ସେୟାର୍ କରନ୍ତୁ ନାହିଁ</string>
+  <string name="btn_share">ସେୟାର୍ କରନ୍ତୁ</string>
   <string name="learn_more">ଅଧିକ ଜାଣନ୍ତୁ</string>
   <string name="home_tab_exposures_text">ସଂକ୍ରମଣ</string>
   <string name="home_tab_notify_text">ଅନ୍ୟମାନଙ୍କୁ ସୂଚିତ କର</string>
@@ -31,7 +33,7 @@
     \n\nଏକ ସଂକ୍ରମଣ ସମ୍ବନ୍ଧିତ ତାରିଖ, ଅବଧି ଏବଂ ସିଗନାଲର କ୍ଷମତା ଆପ୍ ସହ ସେୟାର୍ କରାଯିବ।</string>
   <string name="onboarding_metrics_title">ଏହି ଆପକୁ ଉନ୍ନତ କରିବାରେ ସାହାଯ୍ୟ କରନ୍ତୁ</string>
   <string name="onboarding_metrics_subtitle">ଆପର ବ୍ୟବହାର ଏବଂ କାର୍ଯ୍ୟଦକ୍ଷତା ଡାଟା Google ସହିତ ସେୟାର୍ କରନ୍ତୁ</string>
-  <string name="onboarding_metrics_detail">ଆପକୁ ପରିଚାଳନା କରିବା ଏବଂ ଉନ୍ନତ କରିବାରେ ସାହାଯ୍ୟ କରିବା ପାଇଁ, ଆପର କାର୍ଯ୍ୟଦକ୍ଷତା ଏବଂ ବ୍ୟବହାର ବିଷୟରେ ବ୍ୟକ୍ତିଗତ ଚିହ୍ନଟକାରୀ ସୂଚନା-ବିନା କିଛି ସୀମିତ ଡାଟା Google ସହ ସେୟାର୍ କରାଯାଏ। ଏହି ଡାଟା ଆପଣଙ୍କୁ ଚିହ୍ନଟ କରେ ନାହିଁ।</string>
+  <string name="onboarding_metrics_description">ଆପକୁ ପରିଚାଳନା କରିବା ଏବଂ ଉନ୍ନତ କରିବାରେ ସାହାଯ୍ୟ କରିବା ପାଇଁ, ଆପର କାର୍ଯ୍ୟଦକ୍ଷତା ଏବଂ ବ୍ୟବହାର ବିଷୟରେ ବ୍ୟକ୍ତିଗତ ଚିହ୍ନଟକାରୀ ସୂଚନା-ବିନା କିଛି ସୀମିତ ଡାଟା Google ସହ ସେୟାର୍ କରାଯାଏ। ଏହି ଡାଟା ଆପଣଙ୍କୁ ଚିହ୍ନଟ କରେ ନାହିଁ। %1$s</string>
   <string name="onboarding_confirm_later_title">ସଂକ୍ରମଣ ବିଜ୍ଞପ୍ତିଗୁଡ଼ିକ ବନ୍ଦ ରଖିବେ?</string>
   <string name="onboarding_confirm_later_detail">ସଂକ୍ରମଣ ବିଜ୍ଞପ୍ତିଗୁଡ଼ିକ ଚାଲୁ ନହେବା ପର୍ଯ୍ୟନ୍ତ, COVID-19ର ସମ୍ଭାବ୍ୟ ସଂକ୍ରମଣ ବିଷୟରେ ଆପଣଙ୍କୁ ସୂଚିତ କରାଯିବ ନାହିଁ</string>
   <string name="no_recent_exposure_subtitle">ବର୍ତ୍ତମାନ ସଂକ୍ରମଣ ହୋଇନାହିଁ</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">ସ୍ଥିତି</string>
   <string name="exposure_details_status_exposure">COVID-19 ସଂକ୍ରମଣର ସମ୍ଭାବନା</string>
   <string name="exposure_details_date_exposed_subtitle">ସମ୍ଭାବ୍ୟ ସଂକ୍ରମଣ ତାରିଖ</string>
-  <string name="exposure_details_expiring_subtitle">ସଂକ୍ରମଣ ସମ୍ବନ୍ଧିତ ରିପୋର୍ଟଗୁଡ଼ିକ ସଂକ୍ରମିତ ହେବାର ତାରିଖ ଠାରୁ 14 ଦିନ ପାଇଁ ଷ୍ଟୋର୍ କରାଯାଏ</string>
+  <string name="exposure_details_expiring_subtitle">ସଂକ୍ରମଣ ରିପୋର୍ଟଗୁଡ଼ିକ ସମ୍ଭାବ୍ୟ ସଂକ୍ରମଣ ତାରିଖ ଠାରୁ 14 ଦିନ ପାଇଁ ଷ୍ଟୋର୍ କରାଯାଏ</string>
   <string name="exposure_details_learn_more">ଅଧିକ ଜାଣନ୍ତୁ</string>
   <string name="exposure_details_new_badge">ନୂଆ</string>
   <string name="share_test_result_title">ଆପଣଙ୍କ କମ୍ୟୁନିଟୀକୁ ସୁରକ୍ଷିତ ରଖନ୍ତୁ, ଆପଣଙ୍କର COVID-19 ଟେଷ୍ଟ ରିପୋର୍ଟ ସେୟାର୍ କରନ୍ତୁ</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">ସଂକ୍ରମଣ ବିଜ୍ଞପ୍ତିଗୁଡ଼ିକ</string>
   <string name="settings_app_analytics_subtitle">ଆପର ବ୍ୟବହାର ଏବଂ କାର୍ଯ୍ୟଦକ୍ଷତା ସେୟାରିଂ</string>
   <string name="settings_privacy_policy">ଗୋପନୀୟତା ନୀତି</string>
+  <string name="settings_help_and_support">ସଂକ୍ରମଣ ବିଜ୍ଞପ୍ତି ଏକ୍ସପ୍ରେସ୍ ବିଷୟରେ</string>
   <string name="settings_legal_terms">ଆଇନଗତ ସର୍ତ୍ତାବଳୀ</string>
   <string name="settings_debug">ଡିବଗ୍ ମୋଡ୍</string>
   <string name="settings_share">COVID-19କୁ ବ୍ୟାପିବାରୁ ପ୍ରତିରୋଧ କରିବାରେ ସାହାଯ୍ୟ କରନ୍ତୁ। ଏହି ଆପକୁ ଆପଣଙ୍କ କମ୍ୟୁନିଟୀ ସହିତ ସେୟାର୍ କରନ୍ତୁ ଏବଂ ସମ୍ଭାବ୍ୟ ସଂକ୍ରମଣ ବିଜ୍ଞପ୍ତିଗୁଡ଼ିକ ମାଧ୍ୟମରେ ନିଜକୁ ଆହୁରି ଭଲ ଭାବରେ ସୁରକ୍ଷିତ ରଖିବାରେ ସେମାନଙ୍କୁ ସାହାଯ୍ୟ କରନ୍ତୁ।</string>
@@ -134,4 +137,10 @@
   <string name="share_error">ଟେଷ୍ଟ ଫଳାଫଳ ସେୟାର୍ କରିବାକୁ ଅସମର୍ଥ। ପରେ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।</string>
   <string name="generic_error_message">କିଛି ତ୍ରୁଟି ହୋଇଗଲା। ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।</string>
   <string name="code_error_already_submitted">ଟେଷ୍ଟ ରିପୋର୍ଟ ସେୟାର୍ କରିବାକୁ କୋଡ୍ ପୂର୍ବରୁ ବ୍ୟବହାର ହୋଇସାରିଛି</string>
+  <string name="settings_private_analytics_subtitle">ସଂକ୍ରମଣ ବିଜ୍ଞପ୍ତି ଆନାଲିଟିକ୍ସର ସେୟାରିଂ</string>
+  <string name="private_analytics_title">ଆପଣଙ୍କ ସ୍ୱାସ୍ଥ୍ୟ କର୍ତ୍ତୃପକ୍ଷଙ୍କୁ COVID-19ର ବ୍ୟାପିବାକୁ ବୁଝିବା ବିଷୟରେ ସାହାଯ୍ୟ କରନ୍ତୁ</string>
+  <string name="private_analytics_subtitle">ସଂକ୍ରମଣ ବିଜ୍ଞପ୍ତି ଆନାଲିଟିକ୍ସ ଆପଣଙ୍କ ସ୍ୱାସ୍ଥ୍ୟ କର୍ତ୍ତୃପକ୍ଷଙ୍କ ସହ ସେୟାର୍ କରନ୍ତୁ</string>
+  <string name="private_analytics_footer">ଆପଣଙ୍କ ଅଞ୍ଚଳରେ ବିଜ୍ଞପ୍ତିଗୁଡ଼ିକର ସଂଖ୍ୟା ପରି ଏହି ଆନାଲିଟିକ୍ସ, COVID-19ର ବ୍ୟାପିବାକୁ ବୁଝିବାରେ ସ୍ୱାସ୍ଥ୍ୟ କର୍ତ୍ତୃପକ୍ଷଙ୍କୁ ସାହାଯ୍ୟ କରିଥାଏ। Google ସେଗୁଡ଼ିକୁ ପଢ଼ିପାରିବ ନାହିଁ ଏବଂ ଆପଣଙ୍କ ସ୍ୱାସ୍ଥ୍ୟ କର୍ତ୍ତୃପକ୍ଷଙ୍କ ପାଇଁ ଏକତ୍ରିତ କରାଯାଏ, ତେଣୁ ସେଗୁଡ଼ିକୁ ଆପଣଙ୍କ ଫୋନ୍ ସହିତ ଲିଙ୍କ୍ କରାଯାଇପାରିବ ନାହିଁ। %1$s</string>
+  <string name="private_analytics_footer_onboarding">ଏହି ଆନାଲିଟିକ୍ସ Google ଦ୍ୱାରା ପଢ଼ା ଯାଇପାରିବ ନାହିଁ ଏବଂ ଆପଣଙ୍କ ସ୍ୱାସ୍ଥ୍ୟ କର୍ତ୍ତୃପକ୍ଷଙ୍କ ପାଇଁ ଏକତ୍ରିତ କରାଯାଏ, ତେଣୁ ସେଗୁଡ଼ିକୁ ଆପଣଙ୍କ ଫୋନ୍ ସହିତ ଲିଙ୍କ୍ କରାଯାଇପାରିବ ନାହିଁ।%1$s</string>
+  <string name="private_analytics_footer_learn_more">ଅଧିକ ଜାଣନ୍ତୁ</string>
 </resources>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+  <!-- Hand-crafted descriptions of the C++ dependencies, for use by AboutLibraries -->
+
+  <string name="define_plu_github_abseil_abseil_cpp" translatable="false"></string>
+  <string name="library_github_abseil_abseil_cpp_libraryName" translatable="false">Abseil</string>
+  <string name="library_github_abseil_abseil_cpp_libraryDescription" translatable="false"><![CDATA[Abseil Common Libraries (C++)]]></string>
+  <string name="library_github_abseil_abseil_cpp_libraryVersion" translatable="false">Latest</string>
+  <string name="library_github_abseil_abseil_cpp_libraryWebsite" translatable="false">https://github.com/abseil/abseil-cpp</string>
+  <string name="library_github_abseil_abseil_cpp_repositoryLink" translatable="false">https://github.com/abseil/abseil-cpp</string>
+  <string name="library_github_abseil_abseil_cpp_libraryArtifactId" translatable="false">abseil:1.0.0</string>
+  <string name="library_github_abseil_abseil_cpp_licenseIds" translatable="false">Apache_2_0</string>
+  <string name="library_github_abseil_abseil_cpp_licenseId" translatable="false">Apache_2_0</string>
+
+  <string name="define_plu_github_google_boringssl" translatable="false"></string>
+  <string name="library_github_google_boringssl_libraryName" translatable="false">BoringSSL</string>
+  <string name="library_github_google_boringssl_libraryDescription" translatable="false"><![CDATA[BoringSSL]]></string>
+  <string name="library_github_google_boringssl_libraryVersion" translatable="false">Latest</string>
+  <string name="library_github_google_boringssl_libraryWebsite" translatable="false">https://github.com/google/boringssl</string>
+  <string name="library_github_google_boringssl_repositoryLink" translatable="false">https://github.com/google/boringssl</string>
+  <string name="library_github_google_boringssl_libraryArtifactId" translatable="false">boringssl:1.0.0</string>
+  <string name="library_github_google_boringssl_licenseIds" translatable="false">BoringSSL</string>
+  <string name="library_github_google_boringssl_licenseId" translatable="false">BoringSSL</string>
+  <string name="define_license_BoringSSL" translatable="false"></string>
+  <string name="license_BoringSSL_licenseName" translatable="false">Boring SSL (BSD-style)</string>
+  <string name="license_BoringSSL_licenseWebsite" translatable="false">https://raw.githubusercontent.com/google/boringssl/master/LICENSE</string>
+
+  <string name="define_plu_github_protocolbuffers_protobuf" translatable="false"></string>
+  <string name="library_github_protocolbuffers_protobuf_libraryName" translatable="false">Protobuf</string>
+  <string name="library_github_protocolbuffers_protobuf_libraryDescription" translatable="false"><![CDATA[Protocol Buffers - Google\'s data interchange format]]></string>
+  <string name="library_github_protocolbuffers_protobuf_libraryVersion" translatable="false">3.7.0</string>
+  <string name="library_github_protocolbuffers_protobuf_libraryWebsite" translatable="false">https://github.com/protocolbuffers/protobuf</string>
+  <string name="library_github_protocolbuffers_protobuf_repositoryLink" translatable="false">https://github.com/protocolbuffers/protobuf</string>
+  <string name="library_github_protocolbuffers_protobuf_libraryArtifactId" translatable="false">protobuf:3.7.0</string>
+  <string name="library_github_protocolbuffers_protobuf_licenseIds" translatable="false">BSD_3_Clause</string>
+  <string name="library_github_protocolbuffers_protobuf_licenseId" translatable="false">BSD_3_Clause</string>
+
+  <string name="define_plu_github_google_libprio_cc" translatable="false"></string>
+  <string name="library_github_google_libprio_cc_libraryName" translatable="false">libprio-cc</string>
+  <string name="library_github_google_libprio_cc_libraryDescription" translatable="false"><![CDATA[A Prio implementation in C++ and its JNI wrapper]]></string>
+  <string name="library_github_google_libprio_cc_libraryVersion" translatable="false">Latest</string>
+  <string name="library_github_google_libprio_cc_libraryWebsite" translatable="false">https://github.com/google/libprio-cc</string>
+  <string name="library_github_google_libprio_cc_repositoryLink" translatable="false">https://github.com/google/libprio-cc</string>
+  <string name="library_github_google_libprio_cc_libraryArtifactId" translatable="false">libprio:1.0.0</string>
+  <string name="library_github_google_libprio_cc_licenseIds" translatable="false">Apache_2_0</string>
+  <string name="library_github_google_libprio_cc_licenseId" translatable="false">Apache_2_0</string>
+
+<!-- Description of this Sample app source, for use by AboutLibraries -->
+
+  <string name="define_plu_github_google_exposure_notifications_android" translatable="false"></string>
+  <string name="library_github_google_exposure_notifications_android_libraryName" translatable="false">EN Express</string>
+  <string name="library_github_google_exposure_notifications_android_libraryDescription" translatable="false"><![CDATA[Exposure Notifications Android Reference Design]]></string>
+  <string name="library_github_google_exposure_notifications_android_libraryVersion" translatable="false">Latest</string>
+  <string name="library_github_google_exposure_notifications_android_libraryWebsite" translatable="false">https://www.google.com/covid19/exposurenotifications</string>
+  <string name="library_github_google_exposure_notifications_android_repositoryLink" translatable="false">https://github.com/google/exposure-notifications-android</string>
+  <string name="library_github_google_exposure_notifications_android_libraryArtifactId" translatable="false">abseil:1.0.0</string>
+  <string name="library_github_google_exposure_notifications_android_licenseIds" translatable="false">Apache_2_0</string>
+  <string name="library_github_google_exposure_notifications_android_licenseId" translatable="false">Apache_2_0</string>
+
+</resources>

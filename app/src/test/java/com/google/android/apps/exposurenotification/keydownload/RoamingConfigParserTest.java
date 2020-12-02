@@ -19,20 +19,25 @@ package com.google.android.apps.exposurenotification.keydownload;
 
 import static com.google.common.truth.Truth.assertThat;
 
-import androidx.test.ext.junit.runners.AndroidJUnit4;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
+import dagger.hilt.android.testing.HiltAndroidTest;
+import dagger.hilt.android.testing.HiltTestApplication;
 import java.util.List;
 import java.util.Map;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.robolectric.RobolectricTestRunner;
+import org.robolectric.annotation.Config;
 
 /**
  * Tests for {@link RoamingConfigParser}.
  */
-@RunWith(AndroidJUnit4.class)
+@HiltAndroidTest
+@RunWith(RobolectricTestRunner.class)
+@Config(application = HiltTestApplication.class)
 public class RoamingConfigParserTest {
 
   @Test

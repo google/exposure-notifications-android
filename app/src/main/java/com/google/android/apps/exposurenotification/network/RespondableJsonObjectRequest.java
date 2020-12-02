@@ -17,6 +17,8 @@
 
 package com.google.android.apps.exposurenotification.network;
 
+import com.android.volley.Cache;
+import com.android.volley.NetworkResponse;
 import com.android.volley.Response;
 import com.android.volley.Response.Listener;
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -32,15 +34,30 @@ import org.json.JSONObject;
  */
 public class RespondableJsonObjectRequest extends JsonObjectRequest {
 
+  private static final Response<JSONObject> COVER_TRAFFIC_RESPONSE =
+      Response.success(new JSONObject(), new Cache.Entry());
+
+  protected final boolean isCoverTraffic;
+
   public RespondableJsonObjectRequest(
-      String url, JSONObject jsonRequest, Listener<JSONObject> listener,
-      Response.ErrorListener errorListener, Clock clock) {
-    super(Method.POST, url, jsonRequest, listener, errorListener);
+      int method, String url, JSONObject jsonRequest, Listener<JSONObject> listener,
+      Response.ErrorListener errorListener, Clock clock, boolean isCoverTraffic) {
+    super(method, url, jsonRequest, listener, errorListener);
+    this.isCoverTraffic = isCoverTraffic;
     setRetryPolicy(new CustomRetryPolicy(clock));
   }
 
   @Override
   public void deliverResponse(JSONObject response) {
     super.deliverResponse(response);
+  }
+
+  @Override
+  public Response<JSONObject> parseNetworkResponse(NetworkResponse response) {
+    if (isCoverTraffic) {
+      // The servers may not return JSON for cover traffic requests. Do not try to parse it.
+      return COVER_TRAFFIC_RESPONSE;
+    }
+    return super.parseNetworkResponse(response);
   }
 }

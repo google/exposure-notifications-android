@@ -20,10 +20,8 @@ package com.google.android.apps.exposurenotification.storage;
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-import com.google.android.apps.exposurenotification.proto.EnxLogExtension;
 import com.google.auto.value.AutoValue;
 import com.google.auto.value.AutoValue.CopyAnnotations;
-import com.google.protobuf.InvalidProtocolBufferException;
 
 @AutoValue
 @Entity

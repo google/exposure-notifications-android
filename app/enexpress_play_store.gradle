@@ -30,9 +30,11 @@ buildscript {
   }
 }
 
+import com.google.api.client.googleapis.GoogleUtils
 import com.google.api.client.googleapis.auth.oauth2.GoogleCredential
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport
 import com.google.api.client.http.FileContent
+import com.google.api.client.http.javanet.NetHttpTransport
 import com.google.api.client.json.jackson2.JacksonFactory
 import com.google.api.services.androidpublisher.AndroidPublisher
 import com.google.api.services.androidpublisher.AndroidPublisher.Edits
@@ -51,7 +53,17 @@ def login(config) {
      { it.getName() == config["name"] + ".p12" }[0]
 
   def jsonFactory = JacksonFactory.getDefaultInstance()
-  def httpTransport = GoogleNetHttpTransport.newTrustedTransport()
+  NetHttpTransport httpTransport = null
+  if (System.getenv("PLAY_STORE_PROXY")) {
+    def proxy = System.getenv("PLAY_STORE_PROXY").split(":")
+    NetHttpTransport.Builder builder = new NetHttpTransport.Builder()
+    builder.trustCertificates(GoogleUtils.getCertificateTrustStore())
+    builder.setProxy(new Proxy(Proxy.Type.HTTP,
+                     new InetSocketAddress(proxy[0], proxy[1].toInteger())))
+    httpTransport = builder.build()
+  } else {
+    httpTransport = GoogleNetHttpTransport.newTrustedTransport()
+  }
   // Get acount credential.
   def credential = new GoogleCredential.Builder()
      .setTransport(httpTransport)
@@ -70,7 +82,7 @@ def login(config) {
   return service
 }
 
-def updateListing(config, edits, editId) {
+static def updateListing(config, edits, editId) {
   def packageName = config["healthAuthorityID"]
   def locales = getConfigLocales(config)
   def defaultLocale = pickDefaultLocale(config, locales)
@@ -95,7 +107,7 @@ def updateListing(config, edits, editId) {
   }
 }
 
-def updateTrack(config, edits, editId, bundleVersionCodes) {
+static def updateTrack(config, edits, editId, bundleVersionCodes) {
   def packageName = config["healthAuthorityID"]
   def trackRelease = new TrackRelease()
       .setName("My Alpha Release")
@@ -112,7 +124,7 @@ def updateTrack(config, edits, editId, bundleVersionCodes) {
        .execute()
 }
 
-def uploadApp(config, edits, editId, appPath) {
+static def uploadApp(config, edits, editId, appPath) {
   def packageName = config["healthAuthorityID"]
   def file =
       new FileContent("application/octet-stream", new File(appPath))

@@ -39,11 +39,15 @@ public class VolleyUtils {
   /**
    * Returns the HTTP status code from {@code error} if it can be read, otherwise zero.
    */
-  public static int getHttpStatus(@Nullable VolleyError error) {
-    if (error == null || error.networkResponse == null) {
+  public static int getHttpStatus(@Nullable Throwable error) {
+    if (!(error instanceof VolleyError)) {
       return  DEFAULT_HTTP_STATUS;
     }
-    return error.networkResponse.statusCode;
+    VolleyError volleyError = (VolleyError) error;
+    if (volleyError.networkResponse == null) {
+      return  DEFAULT_HTTP_STATUS;
+    }
+    return volleyError.networkResponse.statusCode;
   }
 
   /**
@@ -51,8 +55,12 @@ public class VolleyUtils {
    * default error code.
    */
   @NonNull
-  public static String getErrorCode(@Nullable VolleyError error) {
-    JSONObject errorBody = getErrorBodyWithoutPadding(error);
+  public static String getErrorCode(@Nullable Throwable error) {
+    if (!(error instanceof VolleyError)) {
+      return DEFAULT_ERROR_CODE;
+    }
+    VolleyError volleyError = (VolleyError) error;
+    JSONObject errorBody = getErrorBodyWithoutPadding(volleyError);
     // The two servers use different JSON keys for the error code.
     if (errorBody.has(VerifyV1.ERR_CODE)) {
       return errorBody.optString(VerifyV1.ERR_CODE);
@@ -65,8 +73,12 @@ public class VolleyUtils {
    * default error message.
    */
   @NonNull
-  public static String getErrorMessage(@Nullable VolleyError error) {
-    JSONObject errorBody = getErrorBodyWithoutPadding(error);
+  public static String getErrorMessage(@Nullable Throwable error) {
+    if (!(error instanceof VolleyError)) {
+      return DEFAULT_ERROR_CODE;
+    }
+    VolleyError volleyError = (VolleyError) error;
+    JSONObject errorBody = getErrorBodyWithoutPadding(volleyError);
     // The two servers happen to use the same JSON key for error message (unlike error code).
     return errorBody.optString(VerifyV1.ERR_MESSAGE, DEFAULT_ERROR_MESSAGE);
   }
@@ -78,14 +90,18 @@ public class VolleyUtils {
    * <p>If a {@code padding} field is present in the response, we remove it.
    */
   @NonNull
-  public static JSONObject getErrorBodyWithoutPadding(@Nullable VolleyError error) {
-    if (error == null || error.networkResponse == null || error.networkResponse.data == null) {
+  public static JSONObject getErrorBodyWithoutPadding(@Nullable Throwable error) {
+    if (!(error instanceof VolleyError)) {
+      return new JSONObject();
+    }
+    VolleyError volleyError = (VolleyError) error;
+    if (volleyError.networkResponse == null || volleyError.networkResponse.data == null) {
       return new JSONObject();
     }
 
     try {
       JSONObject body =
-          new JSONObject(new String(error.networkResponse.data, StandardCharsets.UTF_8));
+          new JSONObject(new String(volleyError.networkResponse.data, StandardCharsets.UTF_8));
       // Both servers use the same key for padding.
       if (body.has(VerifyV1.PADDING)) {
         body.remove(VerifyV1.PADDING);

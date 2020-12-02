@@ -18,6 +18,7 @@
 package com.google.android.apps.exposurenotification.network;
 
 import com.android.volley.RetryPolicy;
+import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.common.base.Optional;
@@ -82,6 +83,12 @@ public class CustomRetryPolicy implements RetryPolicy {
 
     // Server errors retry SERVER_ERR_NUM_RETRIES times.
     if (httpStatus >= SERVER_ERR && currentRetryCount < SERVER_ERR_NUM_RETRIES) {
+      currentRetryCount++;
+      return;
+    }
+
+    // Network timeouts retry SERVER_ERR_NUM_RETRIES times.
+    if (error instanceof TimeoutError && currentRetryCount < SERVER_ERR_NUM_RETRIES) {
       currentRetryCount++;
       return;
     }

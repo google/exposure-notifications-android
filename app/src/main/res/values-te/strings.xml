@@ -16,6 +16,8 @@
   <string name="btn_save">సేవ్ చేయి</string>
   <string name="btn_discard">విస్మరించు</string>
   <string name="btn_verify">వెరిఫై చేయి</string>
+  <string name="btn_dont_share">షేర్ చేయవద్దు</string>
+  <string name="btn_share">షేర్ చేయి</string>
   <string name="learn_more">మరింత తెలుసుకోండి</string>
   <string name="home_tab_exposures_text">వ్యాధి సోకే అవకాశం</string>
   <string name="home_tab_notify_text">ఇతరులకు తెలపండి</string>
@@ -31,7 +33,7 @@
     \n\nవ్యాధి సోకే అవకాశంతో అనుబంధంగా ఉన్న తేదీ, వ్యవధి, సిగ్నల్ సామర్థ్యం, యాప్‌తో షేర్ చేయబడతాయి.</string>
   <string name="onboarding_metrics_title">ఈ యాప్‌ను మరింత మెరుగుపరచడంలో సహాయపడండి</string>
   <string name="onboarding_metrics_subtitle">యాప్ వినియోగం &amp; పనితీరు డేటాను Googleతో షేర్ చేయండి</string>
-  <string name="onboarding_metrics_detail">యాప్ నిర్వహణ, మెరుగుదలలో సహాయపడటానికి యాప్ పనితీరు, వినియోగం గురించి పరిమిత పరిధిలో అనామకంగా మార్చిన కొంత డేటా Googleతో షేర్ చేయబడుతుంది. ఈ డేటా మిమ్మల్ని గుర్తించదు.</string>
+  <string name="onboarding_metrics_description">యాప్ నిర్వహణ, మెరుగుదలలో సహాయపడటానికి యాప్ పనితీరు, వినియోగం గురించి పరిమిత పరిధిలో అనామకంగా మార్చిన కొంత డేటా Googleతో షేర్ చేయబడుతుంది. ఈ డేటా మిమ్మల్ని గుర్తించేదిగా ఉండదు. %1$s</string>
   <string name="onboarding_confirm_later_title">వ్యాధి సోకగల అవకాశాన్ని తెలిపే నోటిఫికేషన్‌లు ఆఫ్‌లో ఉంచాలా?</string>
   <string name="onboarding_confirm_later_detail">వ్యాధి సోకగల అవకాశాన్ని తెలిపే నోటిఫికేషన్‌లు ఆన్ చేసే తప్ప, ఆ నోటిఫికేషన్‌లు మీకు COVID-19 సోకగల అవకాశం గురించి తెలియజేయవు</string>
   <string name="no_recent_exposure_subtitle">ఇటీవల వ్యాధి సోకగలిగిన సందర్భాలు ఎదురుకాలేదు</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">స్టేటస్</string>
   <string name="exposure_details_status_exposure">COVID-19 వ్యాధి సోకే అవకాశం</string>
   <string name="exposure_details_date_exposed_subtitle">ఈ తేదీ నాడు వ్యాధి సోకి ఉండవచ్చు</string>
-  <string name="exposure_details_expiring_subtitle">వ్యాధి సోకే అవకాశం ఉన్న తేదీ నుండి 14 రోజుల వరకు వ్యాధి సోకే అవకాశం రిపోర్ట్‌లు స్టోర్ చేయబడతాయి</string>
+  <string name="exposure_details_expiring_subtitle">వ్యాధి సోకే అవకాశం ఉన్న తేదీ నుండి 14 రోజుల పాటు వ్యాధి సోకే అవకాశం రిపోర్ట్‌లు స్టోర్ చేయబడతాయి</string>
   <string name="exposure_details_learn_more">మరింత తెలుసుకోండి</string>
   <string name="exposure_details_new_badge">కొత్తది</string>
   <string name="share_test_result_title">మీ కమ్యూనిటీని కాపాడుకోండి, మీ COVID-19 పరీక్షా ఫలితాన్ని షేర్ చేయండి</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">వ్యాధి సోకగల అవకాశాన్ని తెలిపే నోటిఫికేషన్‌లు</string>
   <string name="settings_app_analytics_subtitle">యాప్ వినియోగం &amp; పనితీరు షేరింగ్</string>
   <string name="settings_privacy_policy">గోప్యతా పాలసీ</string>
+  <string name="settings_help_and_support">ఎక్స్‌పోజర్ నోటిఫి. ఎక్స్‌ప్రెస్ గురించి</string>
   <string name="settings_legal_terms">చట్టపరమైన నియమాలు</string>
   <string name="settings_debug">డీబగ్ మోడ్</string>
   <string name="settings_share">COVID-19 వ్యాప్తిని అరికట్టడంలో సహాయం చేయండి. ఈ యాప్‌ను మీ కమ్యూనిటీతో షేర్ చేయండి, వ్యాధి సోకగల అవకాశాన్ని తెలిపే నోటిఫికేషన్‌లను ముందుగానే తెలుసుకోవడం ద్వారా వారిని వారు రక్షించుకోవడంలో సహాయం చేయండి.</string>
@@ -134,4 +137,10 @@
   <string name="share_error">పరీక్ష ఫలితాన్ని షేర్ చేయడం సాధ్యపడలేదు. తర్వాత మళ్లీ ట్రై చేయండి.</string>
   <string name="generic_error_message">ఏదో తప్పు జరిగింది. మళ్లీ ట్రై చేయండి.</string>
   <string name="code_error_already_submitted">పరీక్షా ఫలితాన్ని షేర్ చేయడం కోసం, కోడ్ ఇప్పటికే ఉపయోగించబడింది</string>
+  <string name="settings_private_analytics_subtitle">ఎక్స్‌పోజర్ సమాచార ఎనలిటిక్స్ షేరింగ్</string>
+  <string name="private_analytics_title">COVID-19 వ్యాప్తి గురించి అర్థం చేసుకోవడంలో మీ ఆరోగ్య సంరక్షణ శాఖకు సహాయపడండి</string>
+  <string name="private_analytics_subtitle">వ్యాధి సోకగల అవకాశాన్ని తెలిపే నోటిఫికేషన్‌ల ఎనలిటిక్స్ మీ ఆరోగ్య సంరక్షణ శాఖకు షేర్ చేయండి</string>
+  <string name="private_analytics_footer">మీ ప్రాంతంలోని నోటిఫికేషన్‌ల సంఖ్య, మొ. ఎనలిటిక్స్ వల్ల ప్రభుత్వ ఆరోగ్య సంస్థలకు COVID-19 వ్యాప్తి తెలుస్తుంది. వీటిని Google చదవలేదు, ఆయా సంస్థలకు సమగ్రంగా అందిస్తాము. ఇవి మీ ఫోన్‌తో లింక్ అవ్వవు. %1$s</string>
+  <string name="private_analytics_footer_onboarding">ఈ ఎనలిటిక్స్‌ని Google చదవలేదు, అలాగే ఇవి మీ ఆరోగ్య సంరక్షణ శాఖకు సమగ్ర రూపంలో అందిస్తాము, కాబట్టి అవి మీ ఫోన్‌తో లింక్ అవ్వవు. %1$s</string>
+  <string name="private_analytics_footer_learn_more">మరింత తెలుసుకోండి</string>
 </resources>

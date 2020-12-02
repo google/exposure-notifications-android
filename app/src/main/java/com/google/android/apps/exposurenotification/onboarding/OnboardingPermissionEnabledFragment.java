@@ -45,6 +45,8 @@ public class OnboardingPermissionEnabledFragment extends Fragment {
   private Button nextButton;
   private NestedScrollView scroller;
 
+  private boolean shouldShowPrivateAnalyticsOnboarding = false;
+
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
     return inflater.inflate(R.layout.fragment_onboarding_permission_enabled, parent, false);
@@ -76,6 +78,11 @@ public class OnboardingPermissionEnabledFragment extends Fragment {
         updateAtBottom(true);
       }
     });
+
+    onboardingViewModel.shouldShowPrivateAnalyticsOnboardingLiveData()
+        .observe(getViewLifecycleOwner(),
+            shouldShowPrivateAnalyticsOnboarding ->
+                this.shouldShowPrivateAnalyticsOnboarding = shouldShowPrivateAnalyticsOnboarding);
   }
 
   /**
@@ -86,7 +93,7 @@ public class OnboardingPermissionEnabledFragment extends Fragment {
       nextButton.setText(R.string.btn_got_it);
       nextButton.setOnClickListener(v2 -> {
         onboardingViewModel.setOnboardedState(true);
-        HomeFragment.transitionToHomeFragment(this);
+        transitionNext();
       });
       onboardingButtons.setElevation(0F);
     } else {
@@ -98,6 +105,14 @@ public class OnboardingPermissionEnabledFragment extends Fragment {
     if (nextButton.isAccessibilityFocused()) {
       // Let accessibility service announce when button text change.
       nextButton.sendAccessibilityEvent(AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED);
+    }
+  }
+
+  private void transitionNext() {
+    if (shouldShowPrivateAnalyticsOnboarding) {
+      OnboardingPrivateAnalyticsFragment.transitionToOnboardingPrivateAnalyticsFragment(this);
+    } else {
+      HomeFragment.transitionToHomeFragment(this);
     }
   }
 

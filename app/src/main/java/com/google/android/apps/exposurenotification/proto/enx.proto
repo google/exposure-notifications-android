@@ -36,6 +36,7 @@ message RpcCall {
     RPC_TYPE_KEYS_DOWNLOAD = 1;
     RPC_TYPE_KEYS_UPLOAD = 2;
     RPC_TYPE_VERIFICATION = 3;
+    RPC_TYPE_ENPA_REMOTE_CONFIG_FETCH = 4;
   }
 
   enum RpcCallResult {
@@ -89,9 +90,12 @@ message ApiCall {
 message WorkManagerTask {
   enum WorkerTask {
     TASK_UNKNOWN = 0;
-    TASK_UPLOAD_COVER_TRAFFIC = 1;
     TASK_PROVIDE_DIAGNOSIS_KEYS = 2;
     TASK_STATE_UPDATED = 3;
+    TASK_SUBMIT_PRIVATE_ANALYTICS = 4;
+    TASK_COUNTRY_CHECKING = 5;
+    TASK_FIRELOG_ANALYTICS = 6;
+    reserved 1;
   }
 
   enum Status {
@@ -100,6 +104,7 @@ message WorkManagerTask {
     STATUS_SUCCESS = 2;
     STATUS_TIMEOUT = 3;
     STATUS_FAIL = 4;
+    STATUS_ABANDONED = 5;
   }
 
   // deprecated - use region identifier instead.
@@ -113,6 +118,9 @@ message WorkManagerTask {
 
   // Number of time message was logged
   optional int32 count = 4;
+
+  // number of hours since last run for the task for this status (rounded)
+  optional int32 hours_since_last_run = 5;
 }
 
 //  UI event.

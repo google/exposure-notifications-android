@@ -58,3 +58,9 @@
 
 # Joda
 -dontwarn org.joda.convert.**
+
+# AboutLibraries
+-keep class .R
+-keep class **.R$* {
+    <fields>;
+}

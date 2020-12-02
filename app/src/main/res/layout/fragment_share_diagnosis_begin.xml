@@ -70,26 +70,19 @@
           <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/bg_verify_begin">
+            android:orientation="vertical">
 
             <LinearLayout
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:padding="@dimen/padding_normal"
-              android:background="@drawable/bg_verify_begin_title"
+              android:paddingVertical="@dimen/padding_small"
+              android:paddingHorizontal="@dimen/padding_normal"
               android:orientation="horizontal">
 
-              <ImageView
-                android:layout_width="@dimen/settings_page_icon_width"
-                android:layout_height="@dimen/settings_page_icon_width"
-                android:layout_gravity="center_vertical"
-                android:src="@mipmap/ic_launcher" />
-
               <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:paddingHorizontal="@dimen/padding_normal"
+                android:layout_weight="1"
                 android:layout_gravity="center_vertical"
                 android:orientation="vertical">
 
@@ -98,16 +91,22 @@
                   android:layout_height="wrap_content"
                   android:text="@string/share_begin_agency_region"
                   android:textAppearance="?attr/textAppearanceHeadline6"
-                  android:textColor="?android:attr/textColorPrimaryInverse" />
+                  android:textSize="@dimen/ha_header_text_size" />
 
                 <TextView
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:text="@string/share_begin_agency_name"
                   android:textAppearance="?attr/textAppearanceBody2"
-                  android:textColor="?android:attr/textColorPrimaryInverse" />
+                  android:textColor="?attr/colorControlNormal" />
 
               </LinearLayout>
+
+              <ImageView
+                android:layout_width="@dimen/settings_page_icon_width"
+                android:layout_height="@dimen/settings_page_icon_width"
+                android:layout_gravity="center_vertical"
+                android:src="@mipmap/ic_launcher" />
 
             </LinearLayout>
 
@@ -115,6 +114,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/padding_normal"
+            android:autoLink="web"
             android:text="@string/share_begin_detail"
             android:textAppearance="?attr/textAppearanceBody2" />
 

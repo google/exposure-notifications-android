@@ -16,6 +16,8 @@
   <string name="btn_save">Salvesta</string>
   <string name="btn_discard">Loobu</string>
   <string name="btn_verify">Kinnita</string>
+  <string name="btn_dont_share">Ära jaga</string>
+  <string name="btn_share">Jaga</string>
   <string name="learn_more">Lisateave</string>
   <string name="home_tab_exposures_text">Kokkupuude</string>
   <string name="home_tab_notify_text">Teiste teavitamine</string>
@@ -31,7 +33,7 @@
     \n\nKokkupuute kuupäeva, kestust ja kokkupuutega seotud signaalitugevust jagatakse rakendusega.</string>
   <string name="onboarding_metrics_title">Aidake seda rakendust paremaks muuta</string>
   <string name="onboarding_metrics_subtitle">Jagage Google\'iga rakenduse kasutus- ja toimivusandmeid</string>
-  <string name="onboarding_metrics_detail">Selleks et aidata rakendust hallata ja täiustada, jagatakse Google\'iga teatud piiratud ning isikustamata andmeid rakenduse toimivuse ja kasutamise kohta. Nende andmete põhjal ei saa teid tuvastada.</string>
+  <string name="onboarding_metrics_description">Selleks et aidata rakendust hallata ja täiustada, jagatakse Google\'iga teatud piiratud ning isikustamata andmeid rakenduse toimivuse ja kasutamise kohta. Nende andmete põhjal ei saa teid tuvastada. %1$s</string>
   <string name="onboarding_confirm_later_title">Kas jätta kokkupuute märguanded väljalülitatuks?</string>
   <string name="onboarding_confirm_later_detail">Seni, kuni kokkupuute märguandeid pole sisse lülitatud, ei teavitata teid võimalikust kokkupuutest COVID-19-ga</string>
   <string name="no_recent_exposure_subtitle">Hiljutisi kokkupuuteid pole</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">Olek</string>
   <string name="exposure_details_status_exposure">Võimalik kokkupuude COVID-19-ga</string>
   <string name="exposure_details_date_exposed_subtitle">Võimaliku kokkupuute kuupäev</string>
-  <string name="exposure_details_expiring_subtitle">Kokkupuute teavitused säilitatakse 14 päevaks alates kokkupuute kuupäevast</string>
+  <string name="exposure_details_expiring_subtitle">Kokkupuute teavitused säilitatakse 14 päevaks alates võimaliku kokkupuute kuupäevast</string>
   <string name="exposure_details_learn_more">Lisateave</string>
   <string name="exposure_details_new_badge">Uus</string>
   <string name="share_test_result_title">Kaitske oma kogukonda, jagades oma COVID-19 testitulemust</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">Kokkupuute märguanded</string>
   <string name="settings_app_analytics_subtitle">Rakenduse kasutus- ja toimivusandmete jagamine</string>
   <string name="settings_privacy_policy">Privaatsuseeskirjad</string>
+  <string name="settings_help_and_support">Teave kokkupuute kiirmärguannete kohta</string>
   <string name="settings_legal_terms">Juriidilised tingimused</string>
   <string name="settings_debug">Silumisrežiim</string>
   <string name="settings_share">Aidake COVID-19 levikut piirata. Jagage seda rakendust oma kogukonnaga ja aidake teistel end võimaliku kokkupuute märguannete abil paremini kaitsta.</string>
@@ -134,4 +137,10 @@
   <string name="share_error">Testitulemust ei õnnestu jagada. Proovige hiljem uuesti.</string>
   <string name="generic_error_message">Midagi läks valesti. Proovige uuesti.</string>
   <string name="code_error_already_submitted">Seda koodi on testitulemuste jagamiseks juba kasutatud</string>
+  <string name="settings_private_analytics_subtitle">Kokkupuute märguannete statistika jagamine</string>
+  <string name="private_analytics_title">Aidake tervishoiuasutustel mõista COVID-19 levikut</string>
+  <string name="private_analytics_subtitle">Kokkupuute märguannete statistika jagamine kohaliku tervishoiuasutusega</string>
+  <string name="private_analytics_footer">Need analüüsiandmed, näiteks märguannete arv teie piirkonnas, aitavad tervishoiuasutustel mõista, kuidas COVID-19 levib. Google ei saa neid andmeid lugeda ja see koondatakse tervishoiuasutuste jaoks üheks kogumiks, nii et seda ei saa teie telefoniga seostada. %1$s</string>
+  <string name="private_analytics_footer_onboarding">Google ei saa seda statistikat lugeda ja see koondatakse kohaliku tervishoiuasutuse jaoks üheks kogumiks, nii et seda ei saa teie telefoniga seostada. %1$s</string>
+  <string name="private_analytics_footer_learn_more">Lisateave</string>
 </resources>

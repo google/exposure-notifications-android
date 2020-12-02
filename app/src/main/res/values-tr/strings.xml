@@ -16,6 +16,8 @@
   <string name="btn_save">Kaydet</string>
   <string name="btn_discard">Sil</string>
   <string name="btn_verify">Doğrula</string>
+  <string name="btn_dont_share">Paylaşma</string>
+  <string name="btn_share">Paylaş</string>
   <string name="learn_more">Daha fazla bilgi</string>
   <string name="home_tab_exposures_text">Temas</string>
   <string name="home_tab_notify_text">Diğerlerine bildir</string>
@@ -31,7 +33,7 @@
     \n\nTemasla ilişkilendirilen tarih, süre ve sinyal gücü bilgileri, uygulamayla paylaşılır.</string>
   <string name="onboarding_metrics_title">Bu uygulamayı daha iyi hale getirmeye yardımcı olun</string>
   <string name="onboarding_metrics_subtitle">Uygulama kullanım ve performans verilerini Google\'la paylaşın</string>
-  <string name="onboarding_metrics_detail">Uygulamayı kullanıcılara sunmaya devam etmek ve daha iyi hale getirmek için uygulama performansı ve kullanımı ile ilgili bazı sınırlı, kimlik bilgilerinden arındırılmış veriler Google\'la paylaşılır. Bu veriler sizi tanımlamaz.</string>
+  <string name="onboarding_metrics_description">Uygulamayı sürdürmek ve iyileştirmek için uygulama performansı ve kullanımı ile ilgili bazı sınırlı, kimlik bilgilerinden arındırılmış veriler Google\'la paylaşılır. Bu veriler kimlik bilgilerinizi tanımlamaz. %1$s</string>
   <string name="onboarding_confirm_later_title">Temas Bildirimleri kapalı mı tutulsun?</string>
   <string name="onboarding_confirm_later_detail">Temas Bildirimleri açılana kadar COVID-19 ile olası temas hakkında bilgilendirilmeyeceksiniz</string>
   <string name="no_recent_exposure_subtitle">Yakın tarihli temas yok</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">Durum</string>
   <string name="exposure_details_status_exposure">Olası COVID-19 teması</string>
   <string name="exposure_details_date_exposed_subtitle">Olası temas tarihi</string>
-  <string name="exposure_details_expiring_subtitle">Temas raporları, temasın gerçekleştiği tarihten itibaren 14 gün saklanır</string>
+  <string name="exposure_details_expiring_subtitle">Temas raporları, olası temasın gerçekleştiği tarihten itibaren 14 gün saklanır</string>
   <string name="exposure_details_learn_more">Daha fazla bilgi</string>
   <string name="exposure_details_new_badge">Yeni</string>
   <string name="share_test_result_title">Topluluğunuzu koruyun, COVID-19 test sonucunuzu paylaşın</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">Temas bildirimleri</string>
   <string name="settings_app_analytics_subtitle">Kullanım ve performans verisi paylaşımı</string>
   <string name="settings_privacy_policy">Gizlilik politikası</string>
+  <string name="settings_help_and_support">Temas Bildirimleri Ekspres Hakkında</string>
   <string name="settings_legal_terms">Yasal şartlar</string>
   <string name="settings_debug">Hata ayıklama modu</string>
   <string name="settings_share">COVID-19\'un yayılmasını önlemeye yardımcı olun. Bu uygulamayı topluluğunuzla paylaşarak olası temas bildirimleriyle kendilerini daha iyi korumalarına yardımcı olun.</string>
@@ -134,4 +137,10 @@
   <string name="share_error">Test sonucu paylaşılamadı. Daha sonra tekrar deneyin.</string>
   <string name="generic_error_message">Bir sorun oldu. Tekrar deneyin.</string>
   <string name="code_error_already_submitted">Bu kod, test sonucu paylaşımı için daha önce kullanıldı</string>
+  <string name="settings_private_analytics_subtitle">Temas Bildirimleri analiz paylaşımı</string>
+  <string name="private_analytics_title">Sağlık yetkililerinin COVID-19\'un nasıl yayıldığını anlamalarına yardımcı olun</string>
+  <string name="private_analytics_subtitle">Temas Bildirimleri analizlerini sağlık yetkililerinizle paylaşın</string>
+  <string name="private_analytics_footer">Bölgenizdeki bildirim sayısı gibi bu analizler, sağlık yetkililerinin COVID-19\'un nasıl yayıldığını anlamalarına yardımcı olur. Bu bilgiler sağlık yetkilileri için toplanır, Google tarafından okunamaz. Bu nedenle telefonunuzla ilişkilendirilemez. %1$s</string>
+  <string name="private_analytics_footer_onboarding">Bu analizler sağlık yetkilileri için toplanır, Google tarafından okunamaz. Bu nedenle telefonunuzla ilişkilendirilemez. %1$s</string>
+  <string name="private_analytics_footer_learn_more">Daha fazla bilgi</string>
 </resources>

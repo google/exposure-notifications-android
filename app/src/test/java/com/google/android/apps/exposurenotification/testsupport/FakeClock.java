@@ -18,6 +18,7 @@
 package com.google.android.apps.exposurenotification.testsupport;
 
 import com.google.android.apps.exposurenotification.common.time.Clock;
+import org.threeten.bp.Duration;
 import org.threeten.bp.Instant;
 
 /**
@@ -25,31 +26,35 @@ import org.threeten.bp.Instant;
  * {@link System#currentTimeMillis()} or {@link Instant#now()}.
  */
 public class FakeClock implements Clock {
-  private long nowMs;
+  private Instant now;
 
   public FakeClock() {
-    this(100_000_000_000L);
+    this(Instant.ofEpochMilli(100_000_000_000L));
   }
 
-  public FakeClock(long nowMs) {
-    this.nowMs = nowMs;
+  public FakeClock(Instant now) {
+    this.now = now;
   }
 
   @Override
   public long currentTimeMillis() {
-    return nowMs;
+    return now.toEpochMilli();
   }
 
   @Override
   public Instant now() {
-    return Instant.ofEpochMilli(nowMs);
+    return now;
   }
 
-  public void advanceMs(long advanceMs) {
-    nowMs += advanceMs;
+  public void advance() {
+    advanceBy(Duration.ofMillis(1));
   }
 
-  public void setMs(long timeMs) {
-    nowMs = timeMs;
+  public void advanceBy(Duration increment) {
+    now = now.plus(increment);
+  }
+    
+  public void set(Instant time) {
+    now = time;
   }
 }

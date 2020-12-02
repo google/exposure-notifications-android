@@ -20,7 +20,6 @@ package com.google.android.apps.exposurenotification.roaming;
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.roaming.Qualifiers.HomeCountry;
 import com.google.android.apps.exposurenotification.storage.CountryRepository;
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import java.util.List;
 import javax.inject.Inject;

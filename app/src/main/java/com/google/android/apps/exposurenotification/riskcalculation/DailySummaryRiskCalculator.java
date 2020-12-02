@@ -32,7 +32,7 @@ public class DailySummaryRiskCalculator {
 
   private static final String TAG = "DailySummaryRiskCalc";
 
-  ClassificationThreshold[] classificationThresholds;
+  private final ClassificationThreshold[] classificationThresholds;
 
   DailySummaryRiskCalculator(ClassificationThreshold[] classificationThresholds) {
     this.classificationThresholds = classificationThresholds;

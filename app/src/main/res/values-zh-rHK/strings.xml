@@ -16,6 +16,8 @@
   <string name="btn_save">儲存</string>
   <string name="btn_discard">捨棄</string>
   <string name="btn_verify">驗證</string>
+  <string name="btn_dont_share">不要分享</string>
+  <string name="btn_share">分享</string>
   <string name="learn_more">瞭解詳情</string>
   <string name="home_tab_exposures_text">接觸</string>
   <string name="home_tab_notify_text">通知其他人</string>
@@ -31,7 +33,7 @@
     \n\n該次接觸的日期、持續時間和藍牙訊號強度將與此應用程式分享。</string>
   <string name="onboarding_metrics_title">協助改善此應用程式</string>
   <string name="onboarding_metrics_subtitle">將應用程式使用情況和效能資料分享給 Google</string>
-  <string name="onboarding_metrics_detail">為協助維護及改善此應用程式，系統會將部分有關應用程式效能和使用情況的去識別化資料分享給 Google。請放心，這些資料無法識別您的身分。</string>
+  <string name="onboarding_metrics_description">為協助維護及改善此應用程式，部分有關應用程式效能和使用情況的去識別化資料將會與 Google 共用。請放心，這些資料無法識別您的身分。%1$s</string>
   <string name="onboarding_confirm_later_title">保持關閉「接觸通知」嗎？</string>
   <string name="onboarding_confirm_later_detail">您需要開啟「接觸通知」，系統才能通知您可能接觸到 COVID-19 的情況。</string>
   <string name="no_recent_exposure_subtitle">最近沒有接觸記錄</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">狀態</string>
   <string name="exposure_details_status_exposure">可能接觸到 COVID-19 的情況</string>
   <string name="exposure_details_date_exposed_subtitle">可能接觸到 COVID-19 的日期</string>
-  <string name="exposure_details_expiring_subtitle">接觸報告會從接觸日期起計保留 14 天</string>
+  <string name="exposure_details_expiring_subtitle">接觸報告的保留期間為可能接觸到 COVID-19 當日起計 14 天</string>
   <string name="exposure_details_learn_more">瞭解詳情</string>
   <string name="exposure_details_new_badge">最新</string>
   <string name="share_test_result_title">分享 COVID-19 檢測結果，協助保護您的社區</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">接觸通知</string>
   <string name="settings_app_analytics_subtitle">應用程式使用情況和效能資料分享</string>
   <string name="settings_privacy_policy">私隱權政策</string>
+  <string name="settings_help_and_support">關於「快速接觸通知」</string>
   <string name="settings_legal_terms">法律條款</string>
   <string name="settings_debug">偵錯模式</string>
   <string name="settings_share">攜手防止 COVID-19 傳播。請與您的社群分享此應用程式，讓他們在可能接觸到 COVID-19 時接收通知，進一步保障個人健康。</string>
@@ -134,4 +137,10 @@
   <string name="share_error">無法分享檢測結果，請稍後再試。</string>
   <string name="generic_error_message">發生錯誤，請再試一次。</string>
   <string name="code_error_already_submitted">已使用此驗證碼分享檢測結果</string>
+  <string name="settings_private_analytics_subtitle">接觸通知數據分析分享</string>
+  <string name="private_analytics_title">協助本地公共衛生機關瞭解 COVID-19 的傳播情況</string>
+  <string name="private_analytics_subtitle">請與當地衛生署分享「接觸通知」數據分析</string>
+  <string name="private_analytics_footer">這些數據分析 (例如您所在地區的通知數量) 有助衛生署瞭解 COVID-19 的傳播情況。這些資料會在交予當地公共衛生機關前彙整，因此不會與您的手機連結，而 Google 亦無法讀取。%1$s</string>
+  <string name="private_analytics_footer_onboarding">Google 無法讀取這些數據分析，並會以彙整方式傳送給本地公共衛生機關。換言之，這些資料並不會與您的手機連繫。%1$s</string>
+  <string name="private_analytics_footer_learn_more">瞭解詳情</string>
 </resources>

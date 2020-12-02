@@ -16,6 +16,8 @@
   <string name="btn_save">저장</string>
   <string name="btn_discard">삭제</string>
   <string name="btn_verify">확인</string>
+  <string name="btn_dont_share">공유 안함</string>
+  <string name="btn_share">공유</string>
   <string name="learn_more">자세히 알아보기</string>
   <string name="home_tab_exposures_text">노출</string>
   <string name="home_tab_notify_text">결과 공유</string>
@@ -31,7 +33,7 @@
     \n\n노출과 관련된 날짜, 기간, 블루투스 신호 강도가 앱과 공유됩니다.</string>
   <string name="onboarding_metrics_title">앱 개선에 참여하기</string>
   <string name="onboarding_metrics_subtitle">Google에 앱 사용 정보 및 성능 데이터 공유</string>
-  <string name="onboarding_metrics_detail">앱을 유지관리하고 개선하기 위해 앱 성능 및 사용과 관련된 일부 익명화된 데이터가 Google과 제한적으로 공유됩니다. 이 데이터로는 사용자 식별이 불가능합니다.</string>
+  <string name="onboarding_metrics_description">앱을 유지관리하고 개선하기 위해 앱 성능 및 사용과 관련된 일부 익명화된 데이터가 Google과 제한적으로 공유됩니다. 이 데이터로는 사용자 식별이 불가능합니다. %1$s</string>
   <string name="onboarding_confirm_later_title">노출 알림을 사용 중지된 상태로 유지하시겠습니까?</string>
   <string name="onboarding_confirm_later_detail">노출 알림이 켜질 때까지 코로나19에 노출되었을 가능성에 관한 알림이 전송되지 않습니다.</string>
   <string name="no_recent_exposure_subtitle">최근 노출 없음</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">상태</string>
   <string name="exposure_details_status_exposure">코로나19 노출 가능성</string>
   <string name="exposure_details_date_exposed_subtitle">노출 가능성이 있는 날짜</string>
-  <string name="exposure_details_expiring_subtitle">노출 보고서는 노출된 날짜로부터 14일 동안 저장됩니다.</string>
+  <string name="exposure_details_expiring_subtitle">노출 보고서는 잠재적 노출 날짜로부터 14일 동안 저장됩니다.</string>
   <string name="exposure_details_learn_more">자세히 알아보기</string>
   <string name="exposure_details_new_badge">New</string>
   <string name="share_test_result_title">지역사회 보호를 위해 코로나19 검사 결과를 공유해 주세요</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">노출 알림</string>
   <string name="settings_app_analytics_subtitle">앱 사용 정보 및 성능 데이터 공유</string>
   <string name="settings_privacy_policy">개인정보처리방침</string>
+  <string name="settings_help_and_support">Exposure Notification Express 정보</string>
   <string name="settings_legal_terms">법률 조항</string>
   <string name="settings_debug">디버그 모드</string>
   <string name="settings_share">코로나19 확산을 막기 위한 노력에 동참해 주세요. 이 앱을 커뮤니티와 공유하면 노출 가능성 알림을 통해 사람들이 자신을 보호하는 데 도움이 됩니다.</string>
@@ -134,4 +137,10 @@
   <string name="share_error">검사 결과를 공유할 수 없습니다. 나중에 다시 시도해 보세요.</string>
   <string name="generic_error_message">문제가 발생했습니다. 다시 시도해 보세요.</string>
   <string name="code_error_already_submitted">검사 결과를 공유하기 위해 이미 사용된 코드입니다.</string>
+  <string name="settings_private_analytics_subtitle">노출 알림 분석 공유</string>
+  <string name="private_analytics_title">코로나19 확산을 파악하기 위한 보건 당국의 노력에 일조하기</string>
+  <string name="private_analytics_subtitle">보건 당국과 노출 알림 분석 공유</string>
+  <string name="private_analytics_footer">지역 내 알림 수와 같은 분석 데이터는 보건 당국이 코로나19의 확산 동태를 파악하는 데 도움을 줍니다. Google에서는 이 데이터를 읽을 수 없으며, 집계 후 보건 당국에 제공되므로 휴대전화와 연결되지 않습니다. %1$s</string>
+  <string name="private_analytics_footer_onboarding">이 분석은 Google에서 확인할 수 없으며 보건 당국에서 집계하므로 사용자의 휴대전화와 연결되지 않습니다. %1$s</string>
+  <string name="private_analytics_footer_learn_more">자세히 알아보기</string>
 </resources>

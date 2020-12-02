@@ -22,6 +22,7 @@ import static org.junit.Assert.assertThrows;
 
 import com.android.volley.Header;
 import com.android.volley.NetworkResponse;
+import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.google.android.apps.exposurenotification.testsupport.FakeClock;
 import com.google.common.collect.ImmutableList;
@@ -147,11 +148,21 @@ public class CustomRetryPolicyTest {
     assertThat(policy.getCurrentTimeout()).isEqualTo(newDelay.toMillis());
   }
 
+  @Test
+  public void requestTimeout_shouldRetry() throws Exception {
+    // WHEN
+    CustomRetryPolicy policy = new CustomRetryPolicy(clock);
+    policy.retry(new TimeoutError());
+
+    // THEN
+    assertThat(policy.getCurrentRetryCount()).isEqualTo(1);
+  }
+
   private static VolleyError errorOf(int httpStatus) throws Exception {
     return errorOf(httpStatus, ImmutableList.of());
   }
 
-  private static VolleyError errorOf(int httpStatus, List<Header> headers) throws Exception {
+  private static VolleyError errorOf(int httpStatus, List<Header> headers) {
     NetworkResponse networkResponse = new NetworkResponse(
         httpStatus,
         new byte[]{},

@@ -109,6 +109,7 @@
             android:layout_height="wrap_content"
             android:paddingVertical="@dimen/padding_normal"
             android:paddingHorizontal="@dimen/padding_normal"
+            android:autoLink="web"
             android:text="@string/agency_message_detail"
             android:textAppearance="?attr/textAppearanceBody2"
             android:textColor="?attr/colorControlNormal" />

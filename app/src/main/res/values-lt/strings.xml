@@ -16,6 +16,8 @@
   <string name="btn_save">Išsaugoti</string>
   <string name="btn_discard">Atmesti</string>
   <string name="btn_verify">Patvirtinti</string>
+  <string name="btn_dont_share">Nebendrinti</string>
+  <string name="btn_share">Bendrinti</string>
   <string name="learn_more">Sužinokite daugiau</string>
   <string name="home_tab_exposures_text">Galimas kontaktas</string>
   <string name="home_tab_notify_text">Pranešti kitiems</string>
@@ -31,7 +33,7 @@
     \n\nGalimo kontakto su užsikrėtusiu asmeniu data, trukmė ir signalo stiprumas bus bendrinami su programa.</string>
   <string name="onboarding_metrics_title">Padėkite tobulinti šią programą</string>
   <string name="onboarding_metrics_subtitle">Programos naudojimo ir našumo duom. bendrinimas su „Google“</string>
-  <string name="onboarding_metrics_detail">Siekiant padėti tvarkyti ir tobulinti programą, su „Google“ bendrinami tam tikri riboti anonimizuoti duomenys apie programos našumą ir naudojimą. Pagal šiuos duomenis negalima jūsų identifikuoti.</string>
+  <string name="onboarding_metrics_description">Siekiant padėti tvarkyti ir tobulinti programą, su „Google“ bendrinami tam tikri riboti anonimizuoti duomenys apie programos našumą ir naudojimą. Pagal šiuos duomenis negalima jūsų identifikuoti. %1$s</string>
   <string name="onboarding_confirm_later_title">Išjungti pranešimus apie galimą kontaktą su užsikr. asmeniu?</string>
   <string name="onboarding_confirm_later_detail">Jei ši funkcija bus išjungta, negausite pranešimų apie galimą kontaktą su COVID-19 užsikr. asmeniu</string>
   <string name="no_recent_exposure_subtitle">Pastaruoju metu galimo kontakto su užsikrėt. asmeniu nebuvo</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">Praneš. apie gal. kont. su užsikr. asm.</string>
   <string name="settings_app_analytics_subtitle">Progr. naud. ir našumo duom. bendrinimas</string>
   <string name="settings_privacy_policy">Privatumo politika</string>
+  <string name="settings_help_and_support">Apie greit. pran. apie gal. kont. su užsikr. asm.</string>
   <string name="settings_legal_terms">Teisinės sąlygos</string>
   <string name="settings_debug">Derinimo režimas</string>
   <string name="settings_share">Padėkite stabdyti COVID-19 plitimą. Bendrinkite šią programą su bendruomene ir padėkite jiems geriau apsisaugoti gaunant pranešimus apie galimą kontaktą su užsikrėtusiu asmeniu.</string>
@@ -134,4 +137,10 @@
   <string name="share_error">Nepavyko bendrinti testo rezultato. Vėliau bandykite dar kartą.</string>
   <string name="generic_error_message">Įvyko klaida. Bandykite dar kartą.</string>
   <string name="code_error_already_submitted">Šis kodas jau buvo naudotas testo rezultatui bendrinti</string>
+  <string name="settings_private_analytics_subtitle">Praneš. apie galimą kont. su užsikr. asmeniu analizės bendr.</string>
+  <string name="private_analytics_title">Padėkite sveikatos institucijai suprasti, kaip plinta COVID-19</string>
+  <string name="private_analytics_subtitle">Bendrinti pranešimų apie galimą kontaktą su užsikrėtusiu asmeniu analizės duomenis su sveikatos institucija</string>
+  <string name="private_analytics_footer">Ši analizė, pvz., pranešimų skaičius regione, padės sveikatos institucijoms suprasti COVID-19 plitimą. Jos negali skaityti „Google“ ir ji apibendrinama sveikatos institucijai, kad nebūtų susieta su jūsų telefonu. %1$s</string>
+  <string name="private_analytics_footer_onboarding">„Google“ negali skaityti šios analizės duomenų. Jie renkami sveikatos institucijai, kad nebūtų susieti su jūsų telefonu. %1$s</string>
+  <string name="private_analytics_footer_learn_more">Sužinokite daugiau</string>
 </resources>

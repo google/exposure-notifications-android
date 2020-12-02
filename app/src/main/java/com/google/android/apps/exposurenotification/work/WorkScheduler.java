@@ -24,7 +24,12 @@ import com.google.android.apps.exposurenotification.common.Qualifiers.Lightweigh
 import com.google.android.apps.exposurenotification.keyupload.UploadCoverTrafficWorker;
 import com.google.android.apps.exposurenotification.logging.FirelogAnalyticsWorker;
 import com.google.android.apps.exposurenotification.nearby.ProvideDiagnosisKeysWorker;
+import com.google.android.apps.exposurenotification.privateanalytics.PrivateAnalyticsDeviceAttestation;
+import com.google.android.apps.exposurenotification.privateanalytics.PrivateAnalyticsRemoteConfig;
+import com.google.android.apps.exposurenotification.privateanalytics.PrivateAnalyticsSettingsUtil;
+import com.google.android.apps.exposurenotification.privateanalytics.SubmitPrivateAnalyticsWorker;
 import com.google.android.apps.exposurenotification.roaming.CountryCheckingWorker;
+import com.google.common.util.concurrent.FluentFuture;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListeningExecutorService;
@@ -41,14 +46,17 @@ public class WorkScheduler {
   private final WorkManager workManager;
   private final ListeningExecutorService lightweightExecutor;
   private final Duration tekPublishInterval;
+  private final PrivateAnalyticsRemoteConfig privateAnalyticsRemoteConfig;
 
   public WorkScheduler(
       WorkManager workManager,
       @LightweightExecutor ListeningExecutorService lightweightExecutor,
-      Duration tekPublishInterval) {
+      Duration tekPublishInterval,
+      PrivateAnalyticsRemoteConfig privateAnalyticsRemoteConfig) {
     this.workManager = workManager;
     this.lightweightExecutor = lightweightExecutor;
     this.tekPublishInterval = tekPublishInterval;
+    this.privateAnalyticsRemoteConfig = privateAnalyticsRemoteConfig;
   }
 
   public void schedule() {
@@ -108,5 +116,27 @@ public class WorkScheduler {
             Log.e(TAG, "Failed to schedule FirelogAnalyticsWorker.", t);
           }
         }, lightweightExecutor);
+
+    if (PrivateAnalyticsSettingsUtil.isPrivateAnalyticsSupported() &&
+        PrivateAnalyticsDeviceAttestation.isDeviceAttestationAvailable()) {
+      Futures.addCallback(
+          SubmitPrivateAnalyticsWorker.schedule(workManager).getResult(),
+          new FutureCallback<SUCCESS>() {
+            @Override
+            public void onSuccess(@NullableDecl SUCCESS result) {
+              Log.i(TAG, "Scheduled SubmitPrivateAnalyticsWorker.");
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+              Log.e(TAG, "Failed to schedule SubmitPrivateAnalyticsWorker.", t);
+            }
+          }, lightweightExecutor);
+    } else {
+      Log.d(TAG, String.format(
+          "Private Analytics not scheduled. isFeatureSupported=%s, isDeviceAttestationAvailable=%s",
+          PrivateAnalyticsSettingsUtil.isPrivateAnalyticsSupported(),
+          PrivateAnalyticsDeviceAttestation.isDeviceAttestationAvailable()));
+    }
   }
 }

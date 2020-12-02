@@ -16,6 +16,8 @@
   <string name="btn_save">Simpan</string>
   <string name="btn_discard">Buang</string>
   <string name="btn_verify">Sahkan</string>
+  <string name="btn_dont_share">Jangan kongsi</string>
+  <string name="btn_share">Kongsi</string>
   <string name="learn_more">Ketahui lebih lanjut</string>
   <string name="home_tab_exposures_text">Dedahan</string>
   <string name="home_tab_notify_text">Beritahu orang</string>
@@ -31,7 +33,7 @@
     \n\nTarikh, tempoh dan kekuatan isyarat yang dikaitkan dengan pendedahan akan dikongsi dengan apl.</string>
   <string name="onboarding_metrics_title">Jadikan apl ini lebih baik</string>
   <string name="onboarding_metrics_subtitle">Kongsikan data penggunaan &amp; prestasi apl dengan Google</string>
-  <string name="onboarding_metrics_detail">Bagi membantu penyelenggaraan dan peningkatan apl, beberapa data yang dinyahkenal pasti tentang prestasi dan penggunaan apl dikongsikan dengan Google. Data ini tidak mengenal pasti anda.</string>
+  <string name="onboarding_metrics_description">Untuk membantu penyenggaraan dan peningkatan apl, beberapa data yang dinyahkenal pasti tentang prestasi dan penggunaan apl dikongsikan dengan Google. Data ini tidak mengenal pasti anda. %1$s</string>
   <string name="onboarding_confirm_later_title">Pemberitahuan Pendedahan kekal dimatikan?</string>
   <string name="onboarding_confirm_later_detail">Tiada pemberitahuan kemungkinan pendedahan COVID-19 sehingga Pemberitahuan Pendedahan dihidupkan</string>
   <string name="no_recent_exposure_subtitle">Tiada pendedahan baru-baru ini</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">Status</string>
   <string name="exposure_details_status_exposure">Kemungkinan pendedahan COVID-19</string>
   <string name="exposure_details_date_exposed_subtitle">Kemungkinan tarikh pendedahan</string>
-  <string name="exposure_details_expiring_subtitle">Laporan pendedahan disimpan selama 14 hari dari tarikh pendedahan</string>
+  <string name="exposure_details_expiring_subtitle">Laporan pendedahan disimpan selama 14 hari daripada kemungkinan tarikh pendedahan</string>
   <string name="exposure_details_learn_more">Ketahui lebih lanjut</string>
   <string name="exposure_details_new_badge">Baharu</string>
   <string name="share_test_result_title">Lindungi komuniti anda, kongsikan keputusan ujian COVID-19 anda</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">Pemberitahuan pendedahan</string>
   <string name="settings_app_analytics_subtitle">Perkongsian penggunaan &amp; prestasi apl</string>
   <string name="settings_privacy_policy">Dasar privasi</string>
+  <string name="settings_help_and_support">Perihal Pemberitahuan Pendedahan Pantas</string>
   <string name="settings_legal_terms">Syarat undang-undang</string>
   <string name="settings_debug">Mod nyahpepijat</string>
   <string name="settings_share">Bantu pembendungan penyebaran COVID-19. Kongsi apl ini dengan komuniti anda dan bantu mereka melindungi diri mereka dengan lebih baik dengan pemberitahuan kemungkinan pendedahan.</string>
@@ -134,4 +137,10 @@
   <string name="share_error">Tidak dapat berkongsi keputusan ujian. Cuba lagi nanti.</string>
   <string name="generic_error_message">Sesuatu telah berlaku. Cuba lagi.</string>
   <string name="code_error_already_submitted">Kod telah digunakan untuk berkongsi keputusan ujian</string>
+  <string name="settings_private_analytics_subtitle">Perkongsian analitis Pemberitahuan Pendedahan</string>
+  <string name="private_analytics_title">Bantu pihak berkuasa kesihatan anda memahami penyebaran COVID-19</string>
+  <string name="private_analytics_subtitle">Kongsi analitis Pemberitahuan Pendedahan dengan pihak berkuasa kesihatan anda</string>
+  <string name="private_analytics_footer">Analitis ini, seperti bilangan pemberitahuan di kawasan anda, membantu pihak berkuasa kesihatan memahami cara COVID-19 tersebar. Analitis tidak boleh dibaca melalui Google dan diagregatkan untuk pihak berkuasa kesihatan anda supaya analitis tidak boleh dipautkan kepada telefon anda. %1$s</string>
+  <string name="private_analytics_footer_onboarding">Analitis ini tidak boleh dibaca oleh Google dan diagregat untuk pihak berkuasa kesihatan anda supaya data tidak dapat dipautkan kepada telefon anda. %1$s</string>
+  <string name="private_analytics_footer_learn_more">Ketahui lebih lanjut</string>
 </resources>

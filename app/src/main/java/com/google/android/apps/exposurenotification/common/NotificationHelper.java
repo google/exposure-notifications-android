@@ -30,6 +30,7 @@ import androidx.annotation.VisibleForTesting;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationCompat.Builder;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.core.content.ContextCompat;
 import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.home.ExposureNotificationActivity;
 import java.util.Objects;
@@ -43,6 +44,9 @@ public final class NotificationHelper {
   static final String EXPOSURE_NOTIFICATION_CHANNEL_ID =
       "ApolloExposureNotificationCallback.EXPOSURE_NOTIFICATION_CHANNEL_ID";
 
+  protected static final String NOTIFICATION_DISMISSED_ACTION_ID =
+      "ApolloExposureNotificationCallback.NOTIFICATION_DISMISSED_ACTION_ID";
+
   /**
    * Shows a notification, notifying of a possible exposure.
    */
@@ -53,9 +57,16 @@ public final class NotificationHelper {
     intent.setAction(ACTION_LAUNCH_FROM_EXPOSURE_NOTIFICATION);
     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
     PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+
+    Intent deleteIntent = new Intent(context, ExposureNotificationDismissedReceiver.class);
+    deleteIntent.setAction(NOTIFICATION_DISMISSED_ACTION_ID);
+    PendingIntent deletePendingIntent = PendingIntent
+        .getBroadcast(context, 0, deleteIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+
     NotificationCompat.Builder builder =
         new Builder(context, EXPOSURE_NOTIFICATION_CHANNEL_ID)
-            .setSmallIcon(R.drawable.ic_notification)
+            .setSmallIcon(R.drawable.ic_exposure_notification)
+            .setColor(ContextCompat.getColor(context, R.color.notification_color))
             .setContentTitle(context.getString(titleResource))
             .setContentText(context.getString(messageResource))
             .setStyle(new NotificationCompat.BigTextStyle()
@@ -64,6 +75,7 @@ public final class NotificationHelper {
             .setContentIntent(pendingIntent)
             .setOnlyAlertOnce(true)
             .setAutoCancel(true)
+            .setDeleteIntent(deletePendingIntent)
             // Do not reveal this notification on a secure lockscreen.
             .setVisibility(NotificationCompat.VISIBILITY_SECRET);
     NotificationManagerCompat notificationManager = NotificationManagerCompat
@@ -85,5 +97,4 @@ public final class NotificationHelper {
       Objects.requireNonNull(notificationManager).createNotificationChannel(channel);
     }
   }
-
 }

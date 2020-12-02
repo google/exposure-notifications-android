@@ -54,7 +54,7 @@ public class KeyFileWriter {
    * because Robolectric doesn't support the KeyStore operations the signer uses.
    */
   public KeyFileWriter(Context context) {
-    this(context, KeyFileSigner.get(context));
+    this(context, KeyFileSigner.get());
   }
 
   /**

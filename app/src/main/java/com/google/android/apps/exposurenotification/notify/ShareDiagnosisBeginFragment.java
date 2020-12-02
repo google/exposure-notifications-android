@@ -80,8 +80,8 @@ public class ShareDiagnosisBeginFragment extends Fragment {
     Button nextButton = view.findViewById(R.id.share_next_button);
 
     viewModel.getCurrentDiagnosisLiveData().observe(getViewLifecycleOwner(), diagnosisEntity -> {
-      nextButton.setOnClickListener(v -> viewModel
-          .nextStep(ShareDiagnosisFlowHelper.getNextStep(Step.BEGIN, diagnosisEntity)));
+      nextButton.setOnClickListener(v -> viewModel.nextStep(
+          ShareDiagnosisFlowHelper.getNextStep(Step.BEGIN, diagnosisEntity, getContext())));
       closeButton.setOnClickListener(v -> {
         // Only show the dialog if has been verified.
         if (DiagnosisEntityHelper.hasVerified(diagnosisEntity)) {

@@ -19,7 +19,9 @@ package com.google.android.apps.exposurenotification.logging;
 
 import android.content.Context;
 import android.util.Log;
+import androidx.annotation.AnyThread;
 import androidx.annotation.Nullable;
+import androidx.annotation.UiThread;
 import com.android.volley.VolleyError;
 import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.proto.ApiCall.ApiCallType;
@@ -28,7 +30,11 @@ import com.google.android.apps.exposurenotification.proto.UiInteraction.EventTyp
 import com.google.android.apps.exposurenotification.proto.WorkManagerTask.Status;
 import com.google.android.apps.exposurenotification.proto.WorkManagerTask.WorkerTask;
 import com.google.android.apps.exposurenotification.network.VolleyUtils;
+import com.google.common.util.concurrent.Futures;
+import com.google.common.util.concurrent.ListenableFuture;
+import dagger.hilt.android.qualifiers.ApplicationContext;
 import java.util.concurrent.TimeoutException;
+import javax.inject.Inject;
 
 /** Analytics logger which logs to Logcat only */
 class LogcatAnalyticsLogger implements AnalyticsLogger {
@@ -36,7 +42,8 @@ class LogcatAnalyticsLogger implements AnalyticsLogger {
   private final String healthAuthorityCode;
   private final String tag;
 
-  public LogcatAnalyticsLogger (Context context) {
+  @Inject
+  public LogcatAnalyticsLogger(@ApplicationContext Context context) {
     Context appContext = context.getApplicationContext();
     healthAuthorityCode = appContext.getResources().getString(R.string.enx_regionIdentifier);
     tag = "ENX." + healthAuthorityCode;
@@ -44,6 +51,7 @@ class LogcatAnalyticsLogger implements AnalyticsLogger {
   }
 
   @Override
+  @UiThread
   public void logUiInteraction(EventType event) {
     if (event == EventType.LOW_STORAGE_WARNING_SHOWN) {
       Log.e(tag, event.toString());
@@ -53,22 +61,47 @@ class LogcatAnalyticsLogger implements AnalyticsLogger {
   }
 
   @Override
+  @AnyThread
+  public void logWorkManagerTaskStarted(WorkerTask workerTask) {
+    Log.i(tag, workerTask + " started.");
+  }
+
+  @Override
+  @AnyThread
   public void logApiCallFailure(ApiCallType apiCallType, Exception exception) {
     Log.e(tag, apiCallType + " failed.", exception);
   }
 
   @Override
+  @AnyThread
   public void logApiCallSuccess(ApiCallType apiCallType) {
     Log.i(tag, apiCallType + " succeeded.");
   }
 
   @Override
+  @AnyThread
+  public ListenableFuture<?> logApiCallFailureAsync(
+      ApiCallType apiCallType, Exception exception) {
+    logApiCallFailure(apiCallType, exception);
+    return Futures.immediateVoidFuture();
+  }
+
+  @Override
+  @AnyThread
+  public ListenableFuture<?> logApiCallSuccessAsync(ApiCallType apiCallType) {
+    logApiCallSuccess(apiCallType);
+    return Futures.immediateVoidFuture();
+  }
+
+  @Override
+  @AnyThread
   public void logRpcCallSuccess(RpcCallType rpcCallType, int payloadSize) {
     Log.i(tag, rpcCallType + " succeeded with payload size: " + payloadSize);
   }
 
   @Override
-  public void logRpcCallFailure(RpcCallType rpcCallType, @Nullable VolleyError error) {
+  @AnyThread
+  public void logRpcCallFailure(RpcCallType rpcCallType, Throwable error) {
     int httpStatus = VolleyUtils.getHttpStatus(error);
     String errorCode = VolleyUtils.getErrorCode(error);
     String errorMessage = VolleyUtils.getErrorMessage(error);
@@ -78,11 +111,27 @@ class LogcatAnalyticsLogger implements AnalyticsLogger {
   }
 
   @Override
-  public void logWorkManagerTaskSuccess(WorkerTask workerTask) {
-    Log.i(tag, workerTask + " finished with status: SUCCESS");
+  @AnyThread
+  public ListenableFuture<?> logRpcCallSuccessAsync(RpcCallType rpcCallType, int payloadSize) {
+    logRpcCallSuccess(rpcCallType, payloadSize);
+    return Futures.immediateVoidFuture();
   }
 
   @Override
+  @AnyThread
+  public ListenableFuture<?> logRpcCallFailureAsync(RpcCallType rpcCallType, Throwable error) {
+    logRpcCallFailure(rpcCallType, error);
+    return Futures.immediateVoidFuture();
+  }
+
+  @Override
+  @AnyThread
+  public void logWorkManagerTaskSuccess(WorkerTask workerTask) {
+    Log.i(tag, workerTask + " finished with status: " + Status.STATUS_SUCCESS);
+  }
+
+  @Override
+  @AnyThread
   public void logWorkManagerTaskFailure(WorkerTask workerTask, Throwable t) {
     Status status = Status.STATUS_FAIL;
     if (t instanceof TimeoutException) {
@@ -92,8 +141,16 @@ class LogcatAnalyticsLogger implements AnalyticsLogger {
   }
 
   @Override
-  public void sendLoggingBatchIfEnabled() {
+  @AnyThread
+  public void logWorkManagerTaskAbandoned(WorkerTask workerTask) {
+    Log.e(tag, workerTask + " finished with status: " + Status.STATUS_ABANDONED);
+  }
+
+  @Override
+  @AnyThread
+  public ListenableFuture<Void> sendLoggingBatchIfEnabled() {
     // No action as logcat logger doesn't send anything off device
     Log.i(tag, "LogcatAnalytics logger - no batch upload operation specified");
+    return Futures.immediateVoidFuture();
   }
 }

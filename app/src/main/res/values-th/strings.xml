@@ -16,6 +16,8 @@
   <string name="btn_save">บันทึก</string>
   <string name="btn_discard">ทิ้ง</string>
   <string name="btn_verify">ยืนยัน</string>
+  <string name="btn_dont_share">ไม่แชร์</string>
+  <string name="btn_share">แชร์</string>
   <string name="learn_more">ดูข้อมูลเพิ่มเติม</string>
   <string name="home_tab_exposures_text">ความเสี่ยงต่อการติดเชื้อ</string>
   <string name="home_tab_notify_text">แจ้งเตือนบุคคลอื่น</string>
@@ -31,7 +33,7 @@
     \n\nระบบจะแชร์วันที่ ระยะเวลา และความแรงของสัญญาณที่เกี่ยวข้องกับความเสี่ยงต่อการติดเชื้อกับแอปนี้</string>
   <string name="onboarding_metrics_title">ช่วยปรับปรุงแอปนี้</string>
   <string name="onboarding_metrics_subtitle">แชร์ข้อมูลการใช้งานและประสิทธิภาพของแอปกับ Google</string>
-  <string name="onboarding_metrics_detail">ระบบจะแชร์ข้อมูลเพียงบางอย่างที่ลบการระบุตัวตนแล้วซึ่งเกี่ยวกับประสิทธิภาพและการใช้งานแอปกับ Google เพื่อช่วยคงฟังก์ชันการทำงานและปรับปรุงแอป ข้อมูลนี้ไม่ได้ระบุตัวตนของคุณ</string>
+  <string name="onboarding_metrics_description">ระบบจะแชร์ข้อมูลเกี่ยวกับประสิทธิภาพและการใช้งานแอปเพียงบางอย่างที่ลบการระบุตัวตนแล้วกับ Google เพื่อช่วยคงฟังก์ชันการทำงานและปรับปรุงแอป ข้อมูลนี้ไม่ได้ระบุตัวตนของคุณ %1$s</string>
   <string name="onboarding_confirm_later_title">ปิดการแจ้งเตือนความเสี่ยงต่อการติดเชื้อต่อไปใช่ไหม</string>
   <string name="onboarding_confirm_later_detail">คุณจะไม่ได้รับการแจ้งเตือนความเสี่ยงต่อการติดเชื้อโควิด-19 จนกว่าจะเปิดการแจ้งเตือนนี้</string>
   <string name="no_recent_exposure_subtitle">ยังไม่มีความเสี่ยงต่อการติดเชื้อ</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">สถานะ</string>
   <string name="exposure_details_status_exposure">มีความเสี่ยงต่อการติดเชื้อโควิด-19</string>
   <string name="exposure_details_date_exposed_subtitle">วันที่อาจเสี่ยงต่อการติดเชื้อ</string>
-  <string name="exposure_details_expiring_subtitle">ระบบจะจัดเก็บรายงานความเสี่ยงต่อการติดเชื้อไว้เป็นเวลา 14 วันนับจากวันที่มีความเสี่ยง</string>
+  <string name="exposure_details_expiring_subtitle">ระบบจะจัดเก็บรายงานความเสี่ยงต่อการติดเชื้อไว้เป็นเวลา 14 วันนับจากวันที่อาจเสี่ยงต่อการติดเชื้อ</string>
   <string name="exposure_details_learn_more">ดูข้อมูลเพิ่มเติม</string>
   <string name="exposure_details_new_badge">ใหม่</string>
   <string name="share_test_result_title">ปกป้องชุมชนด้วยการแชร์ผลการตรวจหาเชื้อโควิด-19 ของคุณ</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">การแจ้งเตือนความเสี่ยงต่อการติดเชื้อ</string>
   <string name="settings_app_analytics_subtitle">การแชร์การใช้งานและประสิทธิภาพของแอป</string>
   <string name="settings_privacy_policy">นโยบายความเป็นส่วนตัว</string>
+  <string name="settings_help_and_support">เกี่ยวกับการแจ้งเตือนความเสี่ยงติดเชื้อ</string>
   <string name="settings_legal_terms">เงื่อนไขทางกฎหมาย</string>
   <string name="settings_debug">โหมดแก้ไขข้อบกพร่อง</string>
   <string name="settings_share">ช่วยควบคุมการแพร่กระจายของเชื้อโควิด-19 แชร์แอปนี้กับชุมชนของคุณและช่วยพวกเขาให้ป้องกันตนได้ดียิ่งขึ้นด้วยการแจ้งเตือนความเสี่ยงต่อการติดเชื้อที่อาจเกิดขึ้นได้</string>
@@ -115,7 +118,7 @@
   <string name="exposure_turn_off_detail">คุณจะไม่ได้รับการแจ้งเตือนหากคุณมีความเสี่ยงต่อการติดเชื้อโควิด-19</string>
   <string name="app_analytics_title">ช่วยปรับปรุงแอปนี้</string>
   <string name="app_analytics_toggle">แชร์ข้อมูลการใช้งานและประสิทธิภาพของแอปกับ Google</string>
-  <string name="app_analytics_detail">ระบบจะแชร์ข้อมูลเพียงบางอย่างที่ลบการระบุตัวตนแล้วซึ่งเกี่ยวกับประสิทธิภาพและการใช้งานแอปกับ Google เพื่อช่วยคงฟังก์ชันการทำงานและปรับปรุงแอป ข้อมูลนี้ไม่ได้ระบุตัวตนของคุณ</string>
+  <string name="app_analytics_detail">ระบบจะแชร์ข้อมูลเกี่ยวกับประสิทธิภาพและการใช้งานแอปเพียงบางอย่างที่ลบการระบุตัวตนแล้วกับ Google เพื่อช่วยคงฟังก์ชันการทำงานและปรับปรุงแอป ข้อมูลนี้ไม่ได้ระบุตัวตนของคุณ</string>
   <string name="agency_message_link">ดูข้อมูลเพิ่มเติมที่\n%1$s</string>
   <string name="exposure_notifications_are_inactive">การแจ้งเตือนความเสี่ยงต่อการติดเชื้อไม่ทำงาน</string>
   <string name="exposure_notifications_currently_inactive">ไม่ได้ใช้งานการแจ้งเตือนความเสี่ยงต่อการติดเชื้ออยู่ในขณะนี้</string>
@@ -134,4 +137,10 @@
   <string name="share_error">แชร์ผลการทดสอบไม่ได้ โปรดลองอีกครั้งในภายหลัง</string>
   <string name="generic_error_message">มีข้อผิดพลาดเกิดขึ้น โปรดลองอีกครั้ง</string>
   <string name="code_error_already_submitted">มีการใช้รหัสนี้แชร์ผลตรวจไปแล้ว</string>
+  <string name="settings_private_analytics_subtitle">การแชร์ข้อมูลวิเคราะห์การเตือนความเสี่ยง</string>
+  <string name="private_analytics_title">ช่วยให้หน่วยงานด้านสาธารณสุขทราบการแพร่กระจายของเชื้อโค⁠วิด-19</string>
+  <string name="private_analytics_subtitle">แชร์ข้อมูลวิเคราะห์จากการแจ้งเตือนความเสี่ยงต่อการติดเชื้อกับหน่วยงานด้านสาธารณสุข</string>
+  <string name="private_analytics_footer">ข้อมูลเหล่านี้ เช่น จำนวนการแจ้งเตือนในภูมิภาคช่วยให้หน่วยงานสาธารณสุขทราบการแพร่กระจายของโควิด-19 Google จะอ่านข้อมูลไม่ได้และรวบรวมไว้เพื่อหน่วยงานดังกล่าวเท่านั้นเพื่อให้ลิงก์ไปยังโทรศัพท์ไม่ได้ %1$s</string>
+  <string name="private_analytics_footer_onboarding">Google จะอ่านข้อมูลวิเคราะห์เหล่านี้ไม่ได้และรวบรวมไว้เพื่อหน่วยงานด้านสาธารณสุขเท่านั้น จึงลิงก์ไปยังโทรศัพท์ไม่ได้ %1$s</string>
+  <string name="private_analytics_footer_learn_more">ดูข้อมูลเพิ่มเติม</string>
 </resources>

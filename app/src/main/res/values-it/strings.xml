@@ -16,6 +16,8 @@
   <string name="btn_save">Salva</string>
   <string name="btn_discard">Ignora</string>
   <string name="btn_verify">Verifica</string>
+  <string name="btn_dont_share">Non condividere</string>
+  <string name="btn_share">Condividi</string>
   <string name="learn_more">Ulteriori informazioni</string>
   <string name="home_tab_exposures_text">Esposizione</string>
   <string name="home_tab_notify_text">Avvisa altre persone</string>
@@ -26,12 +28,12 @@
   <string name="onboarding_opt_in_title">Autorizzazioni necessarie per installare e utilizzare questa app in maniera ottimale</string>
   <string name="onboarding_finish_title">Altre autorizzazioni necessarie per installare e utilizzare questa app in maniera ottimale</string>
   <string name="onboarding_exposure_notifications_title">Attiva le Notifiche di esposizione</string>
-  <string name="onboarding_exposure_notifications_detail">Attiva Notifiche di esposizione così che %1$s possa inviarti una notifica se ti sei trovato nelle vicinanze di qualcuno risultato positivo al COVID-19.
+  <string name="onboarding_exposure_notifications_detail">Attiva Notifiche di esposizione così che %1$s possa avvisarti se hai avuto contatti ravvicinati con una persona che ha segnalato di aver contratto il COVID-19.
     \n\nIl tuo telefono usa il Bluetooth per raccogliere e condividere in modo sicuro ID casuali con altri telefoni nelle vicinanze.
-    \n\nLa data, la durata e l\'intensità del segnale associate a un\'esposizione verranno condivise con l\'app.</string>
+    \n\nLa data, la durata e l\'intensità del segnale associate all\'esposizione verranno condivise con l\'app.</string>
   <string name="onboarding_metrics_title">Contribuisci a migliorare questa app</string>
   <string name="onboarding_metrics_subtitle">Condividi dati su prestazioni e utilizzo dell\'app con Google</string>
-  <string name="onboarding_metrics_detail">Per contribuire a gestire e migliorare l\'app, alcuni dati anonimizzati e limitati relativi alle prestazioni e all\'utilizzo dell\'app vengono condivisi con Google. Questi dati non consentono la tua identificazione.</string>
+  <string name="onboarding_metrics_description">Per contribuire a gestire e migliorare l\'app, alcuni dati anonimizzati e limitati relativi alle prestazioni e all\'utilizzo dell\'app vengono condivisi con Google. Questi dati non consentono la tua identificazione. %1$s</string>
   <string name="onboarding_confirm_later_title">Vuoi mantenere disattivate le Notifiche di esposizione?</string>
   <string name="onboarding_confirm_later_detail">Finché non attiverai le Notifiche di esposizione, non riceverai notifiche relative alla possibile esposizione al COVID-19</string>
   <string name="no_recent_exposure_subtitle">Nessuna esposizione recente</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">Stato</string>
   <string name="exposure_details_status_exposure">Possibile esposizione al COVID-19</string>
   <string name="exposure_details_date_exposed_subtitle">Data di possibile esposizione</string>
-  <string name="exposure_details_expiring_subtitle">I rapporti relativi all\'esposizione vengono memorizzati per 14 giorni dalla data dell\'esposizione</string>
+  <string name="exposure_details_expiring_subtitle">I rapporti relativi all\'esposizione vengono memorizzati per 14 giorni dalla data della possibile esposizione</string>
   <string name="exposure_details_learn_more">Ulteriori informazioni</string>
   <string name="exposure_details_new_badge">Novità</string>
   <string name="share_test_result_title">Tutela la tua comunità: condividi il tuo risultato al test del COVID-19</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">Notifiche di esposizione</string>
   <string name="settings_app_analytics_subtitle">Condivisione prestazioni e uso dell\'app</string>
   <string name="settings_privacy_policy">Norme sulla privacy</string>
+  <string name="settings_help_and_support">Info su Notifiche di esposizione rapide</string>
   <string name="settings_legal_terms">Termini legali</string>
   <string name="settings_debug">Modalità di debug</string>
   <string name="settings_share">Contribuisci a contenere la diffusione del COVID-19. Condividi questa app con la tua comunità per aiutare i membri a proteggersi meglio grazie alle eventuali notifiche di esposizione.</string>
@@ -134,4 +137,10 @@
   <string name="share_error">Impossibile condividere il risultato del test. Riprova più tardi.</string>
   <string name="generic_error_message">Si è verificato un problema. Riprova.</string>
   <string name="code_error_already_submitted">Il codice è già stato usato per condividere il risultato del test</string>
+  <string name="settings_private_analytics_subtitle">Condivisione dati Notifiche di esposizione</string>
+  <string name="private_analytics_title">Aiuta le autorità sanitarie locali a comprendere in che modo si diffonde il COVID-19</string>
+  <string name="private_analytics_subtitle">Condividi i dati di Notifiche di esposizione con le autorità sanitarie locali</string>
+  <string name="private_analytics_footer">I dati, come il numero di notifiche nella tua area geografica, aiutano le autorità sanitarie a capire come si diffonde il COVID-19. Google non può leggerli e sono aggregati per impedire alle autorità sanitarie di collegarli al tuo telefono. %1$s</string>
+  <string name="private_analytics_footer_onboarding">I dati non sono leggibili da Google e sono forniti in formato aggregato in modo che le autorità sanitarie locali non possano associarli al tuo telefono. %1$s</string>
+  <string name="private_analytics_footer_learn_more">Ulteriori informazioni</string>
 </resources>

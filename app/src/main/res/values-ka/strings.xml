@@ -16,6 +16,8 @@
   <string name="btn_save">შენახვა</string>
   <string name="btn_discard">გაუქმება</string>
   <string name="btn_verify">დადასტურება</string>
+  <string name="btn_dont_share">არ გაზიარდეს</string>
+  <string name="btn_share">გაზიარება</string>
   <string name="learn_more">შეიტყვეთ მეტი</string>
   <string name="home_tab_exposures_text">კონტაქტი</string>
   <string name="home_tab_notify_text">აცნობეთ სხვებს</string>
@@ -31,7 +33,7 @@
     \n\nაპს გაუზიარდება კონტაქტის თარიღი, ხანგრძლივობა და სიგნალის სიძლიერე.</string>
   <string name="onboarding_metrics_title">დაგვეხმარეთ აპის გაუმჯობესებაში</string>
   <string name="onboarding_metrics_subtitle">მოხმარების და შესრულების ინფოს გაზიარება</string>
-  <string name="onboarding_metrics_detail">აპის გამართულად მუშაობისა და გაუმჯობესებისთვის ზოგიერთი შეზღუდული, არამაიდენტიფიცირებელი ინფორმაცია აპის შესრულებისა და მოხმარების შესახებ გაზიარდება Google-თან. ამ მონაცემებით თქვენი იდენტიფიკაცია არ ხდება.</string>
+  <string name="onboarding_metrics_description">აპის გამართულად მუშაობისა და გაუმჯობესებისთვის ზოგიერთი შეზღუდული, არამაიდენტიფიცირებელი ინფორმაცია აპის შესრულებისა და მოხმარების შესახებ გაზიარდება Google-თან. ამ მონაცემებით თქვენი იდენტიფიკაცია არ ხდება. %1$s</string>
   <string name="onboarding_confirm_later_title">კონტაქტის შეტყობინ. გამორთული დარჩეს?</string>
   <string name="onboarding_confirm_later_detail">ჩართვამდე COVID-19-თან პოტენციურ კონტაქტზე არ გაცნობებენ</string>
   <string name="no_recent_exposure_subtitle">ბოლოდროინდელი შემთხვევები არ გამოვლენილა</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">სტატუსი</string>
   <string name="exposure_details_status_exposure">COVID-19-თან პოტენციური კონტაქტი</string>
   <string name="exposure_details_date_exposed_subtitle">შესაძლო კონტაქტის თარიღი</string>
-  <string name="exposure_details_expiring_subtitle">კონტაქტის შეტყობინებები ინახება კონტაქტიდან 14 დღის განმავლობაში</string>
+  <string name="exposure_details_expiring_subtitle">კონტაქტის შეტყობინებები ინახება შესაძლო კონტაქტის თარიღიდან 14 დღის განმავლობაში</string>
   <string name="exposure_details_learn_more">შეიტყვეთ მეტი</string>
   <string name="exposure_details_new_badge">ახალი</string>
   <string name="share_test_result_title">გააზიარეთ COVID-19 ტესტის შედეგი საზოგადოების დასაცავად</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">კონტაქტის შეტყობინებები</string>
   <string name="settings_app_analytics_subtitle">აპის მოხმარების და შესრულების გაზიარება</string>
   <string name="settings_privacy_policy">კონფიდენციალურობის დებულება</string>
+  <string name="settings_help_and_support">Exposure Notification Express-ის შესახებ</string>
   <string name="settings_legal_terms">სამართლებრივი პირობები</string>
   <string name="settings_debug">გამართვის რეჟიმი</string>
   <string name="settings_share">შეიტანეთ წვლილი COVID-19-ის გავრცელების შეკავებაში. გააზიარეთ ეს აპი თქვენს საზოგადოებაში და დაეხმარეთ მათ, უკეთ დაიცვან თავი შესაძლო კონტაქტის შეტყობინებების მეშვეობით.</string>
@@ -134,4 +137,10 @@
   <string name="share_error">ტესტის შედეგების გამოგზავნა ვერ ხერხდება. ცადეთ მოგვიანებით.</string>
   <string name="generic_error_message">რაღაც შეცდომა მოხდა. ცადეთ ხელახლა.</string>
   <string name="code_error_already_submitted">კოდი უკვე გამოყენებულია ტესტის შედეგის გასაზიარებლად</string>
+  <string name="settings_private_analytics_subtitle">კონტაქტის შეტყობინებების საანალიზო მონაცემების გაზიარება</string>
+  <string name="private_analytics_title">დაეხმარეთ თქვენს ჯანდაცვის უწყებას, გაერკვეს COVID-19-ის გავრცელების კანონზომიერებებში</string>
+  <string name="private_analytics_subtitle">კონტაქტის შეტყობინებების საანალიზო მონაცემების გაზიარება თქვენს ჯანდაცვის უწყებასთან</string>
+  <string name="private_analytics_footer">ეს საანალიზო მონაცემები, მაგალითად, შეტყობინებების რაოდენობა თქვენს რეგიონში, ეხმარება ჯანდაცვის უწყებებს, გაერკვნენ, თუ როგორ ვრცელდება COVID-19. მათ Google ვერ კითხულობს, ისინი გროვდება თქვენი ჯანდაცვის უწყებისთვის თქვენს ტელეფონთან კავშირის გარეშე. %1$s</string>
+  <string name="private_analytics_footer_onboarding">ამ საანალიზო მონაცემებს Google ვერ კითხულობს, ისინი გროვდება თქვენი ჯანდაცვის უწყებისთვის თქვენს ტელეფონთან კავშირის გარეშე. %1$s</string>
+  <string name="private_analytics_footer_learn_more">შეიტყვეთ მეტი</string>
 </resources>

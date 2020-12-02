@@ -16,6 +16,8 @@
   <string name="btn_save">Hifadhi</string>
   <string name="btn_discard">Ondoa</string>
   <string name="btn_verify">Thibitisha</string>
+  <string name="btn_dont_share">Usishiriki</string>
+  <string name="btn_share">Shiriki</string>
   <string name="learn_more">Pata maelezo zaidi</string>
   <string name="home_tab_exposures_text">Kukaribia aliyeambukizwa</string>
   <string name="home_tab_notify_text">Arifu wengine</string>
@@ -31,7 +33,7 @@
     \n\nMaelezo ya tarehe, muda na uthabiti wa mawimbi yanayohusiana na kukaribia aliyeambukizwa yatashirikiwa na programu.</string>
   <string name="onboarding_metrics_title">Saidia kuboresha programu hii</string>
   <string name="onboarding_metrics_subtitle">Shiriki data ya utendaji na matumizi ya programu na Google</string>
-  <string name="onboarding_metrics_detail">Ili kusaidia kudumisha na kuboresha programu, data fulani isiyomtambulisha mtu, kuhusu matumizi na utendaji wa programu hushirikiwa na Google. Data hii haikutambulishi.</string>
+  <string name="onboarding_metrics_description">Ili kusaidia kudumisha na kuboresha programu, data fulani isiyomtambulisha mtu kuhusu matumizi na utendaji wa programu hushirikiwa na Google. Data hii haikutambulishi. %1$s</string>
   <string name="onboarding_confirm_later_title">Ungependa kuzima Arifa Kuhusu Kukaribia Aliye na COVID-19?</string>
   <string name="onboarding_confirm_later_detail">Hadi utakapowasha Arifa Kuhusu Kukaribia Aliye na COVID-19, hutaarifiwa unapomkaribia mtu aliye na COVID-19.</string>
   <string name="no_recent_exposure_subtitle">Hujakuwa karibu na yeyote aliyeambukizwa</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">Hali</string>
   <string name="exposure_details_status_exposure">Huenda umemkaribia mtu aliye na COVID-19</string>
   <string name="exposure_details_date_exposed_subtitle">Tarehe ambayo huenda ulimkaribia aliyeambukizwa</string>
-  <string name="exposure_details_expiring_subtitle">Ripoti kuhusu kukaribia aliyeambukizwa huhifadhiwa kwa siku 14 kuanzia siku ya kukaribia aliyeambukizwa</string>
+  <string name="exposure_details_expiring_subtitle">Ripoti kuhusu kukaribia aliyeambukizwa zinahifadhiwa kwa siku 14 kuanzia tarehe ambayo huenda ulimkaribia</string>
   <string name="exposure_details_learn_more">Pata maelezo zaidi</string>
   <string name="exposure_details_new_badge">Mpya</string>
   <string name="share_test_result_title">Linda jamii yako, shiriki matokeo yako ya COVID-19</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">Arifa kuhusu kukaribia aliye na COVID-19</string>
   <string name="settings_app_analytics_subtitle">Shiriki matumizi na utendaji wa programu</string>
   <string name="settings_privacy_policy">Sera ya faragha</string>
+  <string name="settings_help_and_support">Kuhusu Exposure Notification Express</string>
   <string name="settings_legal_terms">Masharti ya kisheria</string>
   <string name="settings_debug">Hali ya utatuzi</string>
   <string name="settings_share">Saidia kuzuia kuenea kwa COVID-19. Shiriki programu hii na jamii yako na uwasaidie kujilinda vyema kwa kutumia arifa kuhusu kukaribia aliye na COVID-19.</string>
@@ -134,4 +137,10 @@
   <string name="share_error">Imeshindwa kushiriki matokeo ya kipimo cha COVID-19. Jaribu tena baadaye.</string>
   <string name="generic_error_message">Hitilafu imetokea. Jaribu tena.</string>
   <string name="code_error_already_submitted">Msimbo tayari umetumiwa kushiriki matokeo ya kipimo cha COVID-19</string>
+  <string name="settings_private_analytics_subtitle">Kushiriki takwimu za Kukaribia Aliye na COVID-19</string>
+  <string name="private_analytics_title">Saidia mamlaka ya afya katika eneo lako kuelewa kuhusu kuenea kwa COVID-19.</string>
+  <string name="private_analytics_subtitle">Shiriki takwimu za Arifa Kuhusu Kukaribia Aliye na COVID-19 na mamlaka ya afya katika eneo lako</string>
+  <string name="private_analytics_footer">Takwimu hizi, mfano idadi ya arifa katika eneo lako, zinasaidia mamlaka za afya kuelewa jinsi COVID-19 inavyoenea. Haziwezi kusomwa na Google na zinajumlishwa kwa ajili ya mamlaka ya afya mahali ulipo, hivyo haziwezi kuhusishwa na simu yako. %1$s</string>
+  <string name="private_analytics_footer_onboarding">Takwimu hizi haziwezi kusomwa na Google na zinajumlishwa kwa ajili ya mamlaka ya afya katika eneo lako kwa hivyo haziwezi kuhusishwa na simu yako. %1$s</string>
+  <string name="private_analytics_footer_learn_more">Pata maelezo zaidi</string>
 </resources>

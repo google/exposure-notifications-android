@@ -21,6 +21,7 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
 import com.google.android.gms.nearby.exposurenotification.PackageConfiguration;
+import com.google.common.base.Optional;
 import javax.inject.Inject;
 
 /**
@@ -28,7 +29,8 @@ import javax.inject.Inject;
  */
 public class PackageConfigurationHelper {
 
-  public static final String METRICS_OPT_IN = "METRICS_OPT_IN";
+  public static final String APP_ANALYTICS_OPT_IN = "METRICS_OPT_IN";
+  public static final String PRIVATE_ANALYTICS_OPT_IN = "APPA_OPT_IN";
 
   private final ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
 
@@ -39,16 +41,32 @@ public class PackageConfigurationHelper {
   }
 
   /**
-   * If app analytics is not set and app analytics state from {@link PackageConfiguration} is true,
+   * Updates the various analytics states with a given {@link PackageConfiguration}
+   *
+   * <p>If app analytics is not set and app analytics state from {@link PackageConfiguration} is
+   * true,
    * update the app analytics state in {@link ExposureNotificationSharedPreferences}.
+   *
+   * <p>If private analytics is not set, and private analytics state exists in the {@link
+   * PackageConfiguration}, set the private analytics state in {@link
+   * ExposureNotificationSharedPreferences}.
    */
-  public void maybeUpdateAppAnalyticsState(@Nullable PackageConfiguration packageConfiguration) {
+  public void maybeUpdateAnalyticsState(@Nullable PackageConfiguration packageConfiguration) {
     if (packageConfiguration == null) {
       return;
     }
     if (getAppAnalyticsFromPackageConfiguration(packageConfiguration)) {
       if (!exposureNotificationSharedPreferences.isAppAnalyticsSet()) {
         exposureNotificationSharedPreferences.setAppAnalyticsState(true);
+      }
+    }
+
+    Optional<Boolean> privateAnalyticsFromConfiguration =
+        maybeGetPrivateAnalyticsFromPackageConfiguration(packageConfiguration);
+    if (privateAnalyticsFromConfiguration.isPresent()) {
+      if (!exposureNotificationSharedPreferences.isPrivateAnalyticsStateSet()) {
+        exposureNotificationSharedPreferences
+            .setPrivateAnalyticsState(privateAnalyticsFromConfiguration.get());
       }
     }
   }
@@ -61,9 +79,25 @@ public class PackageConfigurationHelper {
       PackageConfiguration packageConfiguration) {
     Bundle values = packageConfiguration.getValues();
     if (values != null) {
-      return values.getBoolean(METRICS_OPT_IN, false);
+      return values.getBoolean(APP_ANALYTICS_OPT_IN, false);
     }
     return false;
+  }
+
+  /**
+   * Fetches the private analytics state from a {@link PackageConfiguration} if it exists. Otherwise
+   * absent.
+   */
+  private static Optional<Boolean> maybeGetPrivateAnalyticsFromPackageConfiguration(
+      PackageConfiguration packageConfiguration) {
+    Bundle values = packageConfiguration.getValues();
+    if (values == null) {
+      return Optional.absent();
+    }
+    if (!values.containsKey(PRIVATE_ANALYTICS_OPT_IN)) {
+      return Optional.absent();
+    }
+    return Optional.of(values.getBoolean(PRIVATE_ANALYTICS_OPT_IN));
   }
 
 }

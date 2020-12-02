@@ -16,6 +16,8 @@
   <string name="btn_save">Opslaan</string>
   <string name="btn_discard">Verwijderen</string>
   <string name="btn_verify">Verifiëren</string>
+  <string name="btn_dont_share">Niet delen</string>
+  <string name="btn_share">Delen</string>
   <string name="learn_more">Meer informatie</string>
   <string name="home_tab_exposures_text">Blootstelling</string>
   <string name="home_tab_notify_text">Anderen informeren</string>
@@ -31,7 +33,7 @@
     \n\nDe datum, duur en signaalsterkte van een blootstelling worden gedeeld met de app.</string>
   <string name="onboarding_metrics_title">Help ons deze app te verbeteren</string>
   <string name="onboarding_metrics_subtitle">App-gebruik en prestatiegegevens delen met Google</string>
-  <string name="onboarding_metrics_detail">Bepaalde beperkte, niet-persoonlijk herkenbare gegevens over app-prestaties en gebruik worden met Google gedeeld om de app te onderhouden en te verbeteren. Je bent niet te herkennen aan deze gegevens.</string>
+  <string name="onboarding_metrics_description">Bepaalde beperkte, niet-persoonlijk herkenbare gegevens over app-prestaties en gebruik worden met Google gedeeld om de app te onderhouden en te verbeteren. Je bent niet te herkennen aan deze gegevens. %1$s</string>
   <string name="onboarding_confirm_later_title">Blootstellingsmeldingen uitgeschakeld laten?</string>
   <string name="onboarding_confirm_later_detail">Pas als je blootstellingsmeldingen inschakelt, krijg je meldingen over mogelijke blootstelling aan COVID-19</string>
   <string name="no_recent_exposure_subtitle">Geen recente blootstellingen</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">Status</string>
   <string name="exposure_details_status_exposure">Mogelijke blootstelling aan COVID-19</string>
   <string name="exposure_details_date_exposed_subtitle">Datum van mogelijke blootstelling</string>
-  <string name="exposure_details_expiring_subtitle">Blootstellingsrapporten worden tot 14 dagen na de datum van blootstelling bewaard</string>
+  <string name="exposure_details_expiring_subtitle">Blootstellingsrapporten worden gedurende 14 dagen na de mogelijke blootstellingsdatum bewaard</string>
   <string name="exposure_details_learn_more">Meer informatie</string>
   <string name="exposure_details_new_badge">Nieuw</string>
   <string name="share_test_result_title">Bescherm je gemeenschap en deel je COVID-19-testresultaat</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">Blootstellingsmeldingen</string>
   <string name="settings_app_analytics_subtitle">App-gebruik en prestatiegegevens delen</string>
   <string name="settings_privacy_policy">Privacybeleid</string>
+  <string name="settings_help_and_support">Over Exposure Notification Express</string>
   <string name="settings_legal_terms">Juridische voorwaarden</string>
   <string name="settings_debug">Modus voor foutopsporing</string>
   <string name="settings_share">Help de verspreiding van COVID-19 tegen te gaan. Deel deze app met anderen in je gemeenschap en help mensen zichzelf beter te beschermen dankzij meldingen bij mogelijke blootstelling.</string>
@@ -134,4 +137,10 @@
   <string name="share_error">Kan het testresultaat niet delen. Probeer het later opnieuw.</string>
   <string name="generic_error_message">Er is iets misgegaan. Probeer het nog eens.</string>
   <string name="code_error_already_submitted">Code is al gebruikt om testresultaat te delen</string>
+  <string name="settings_private_analytics_subtitle">Analysegegevens van blootstellingsmeldingen delen</string>
+  <string name="private_analytics_title">Help je gezondheidsautoriteit inzicht te krijgen in de verspreiding van COVID-19</string>
+  <string name="private_analytics_subtitle">Deel analysegegevens van blootstellingsmeldingen met je gezondheidsautoriteit</string>
+  <string name="private_analytics_footer">Aan de hand van deze analysegegevens, zoals het aantal meldingen in jouw regio, krijgen gezondheidsautoriteiten inzicht in hoe COVID-19 zich verspreidt. Google kan de gegevens niet lezen. Ze worden verzameld voor je gezondheidsautoriteit zodat ze niet aan je telefoon kunnen worden gekoppeld. %1$s</string>
+  <string name="private_analytics_footer_onboarding">Google kan deze analysegegevens niet lezen. Ze worden verzameld voor je gezondheidsautoriteit zodat ze niet aan je telefoon kunnen worden gekoppeld. %1$s</string>
+  <string name="private_analytics_footer_learn_more">Meer informatie</string>
 </resources>

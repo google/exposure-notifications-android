@@ -22,11 +22,11 @@ apply from: 'enexpress_locales.gradle'
 import groovy.xml.MarkupBuilder
 import java.lang.Math
 
-def convertPrimary(value) {
+static def convertPrimary(value) {
   return ("0" + Integer.toString((int) (value * 255), 16))[-2..-1]
 }
 
-def convertColor(color) {
+static def convertColor(color) {
   return "#" + convertPrimary(color[0]) +
                convertPrimary(color[1]) +
                convertPrimary(color[2])
@@ -46,7 +46,7 @@ def computeContrast(rgb1, rgb2) {
  * Computes relative luminance:
  * https://www.w3.org/TR/2008/REC-WCAG20-20081211/#relativeluminancedef
  */
-def relativeLuminance(rgb) {
+static def relativeLuminance(rgb) {
   double sr = rgb[0]
   sr = sr < 0.03928 ? sr / 12.92 : Math.pow((sr + 0.055) / 1.055, 2.4)
   double sg = rgb[1]
@@ -59,14 +59,14 @@ def relativeLuminance(rgb) {
 /**
  * Constrains a value to an upper and lower bound.
  */
-def constrain(amount, low, high) {
+static def constrain(amount, low, high) {
   return amount < low ? low : (amount > high ? high : amount)
 }
 
 /**
  * converts a color from rgb space to hsl color space.
  */
-def convertRGBToHSL(color) {
+static def convertRGBToHSL(color) {
   float rf = color[0]
   float gf = color[1]
   float bf = color[2]
@@ -102,7 +102,7 @@ def convertRGBToHSL(color) {
 /**
  * converts a color from hsl space to rgb color space.
  */
-def convertHSLToRGB(hsl) {
+static def convertHSLToRGB(hsl) {
   float h = hsl[0]
   float s = hsl[1]
   float l = hsl[2]
@@ -198,11 +198,10 @@ def emitLocaleStrings(config, defaultLocale, locale, outputDir) {
         if (locale == "" && itemLocale == defaultLocale) {
           isMatch = true
         }
-        if (isMatch && (itemValue != "" || itemLocale == "") &&
-          !itemKey.endsWith("Image") &&
-          !itemKey.endsWith("PNG") &&
-          !itemKey.endsWith("IconBackground")&&
-          !itemKey.endsWith("IconForeground")) {
+        if (isMatch &&
+            !itemKey.endsWith("Image") && !itemKey.endsWith("ImageDarkMode") &&
+            !itemKey.endsWith("IconBackground") && !itemKey.endsWith("IconBackgroundDarkMode") &&
+            !itemKey.endsWith("IconForeground") && !itemKey.endsWith("IconForegroundDarkMode")) {
           if (itemValue instanceof List) {
             "color"("name": "enx_" + itemKeySansLocale) {
               destXmlMkp.yield(convertColor(itemValue))
@@ -229,7 +228,7 @@ def emitLocaleStrings(config, defaultLocale, locale, outputDir) {
   }
 }
 
-def escapeString(str) {
+static def escapeString(str) {
   // TODO: Would have also escaped "?", but that wouldn't build
   //       for some reason.
   return str.replaceAll("'", "\\\\'")
@@ -247,6 +246,14 @@ def generateResources(configData) {
       inputs.files(config["files"])
       def locales = getConfigLocales(config)
       def defaultLocale = pickDefaultLocale(config, locales)
+      // Add default values for mandatory fields which are not used when
+      // ENPA is disabled. These are typically string resources.
+      if (!config.get("enableENPA")) {
+        def localeSuffix = defaultLocale.toUpperCase().replace("-", "_");
+        config["enpaConsentText_" + localeSuffix] = "unused";
+        config["enpaConsentVersion"] = "unused";
+        config["enpaRemoteConfigURL"] = "unused";
+      }
       doFirst {
         // Emit images.
         emitDrawables(config, outPath)
@@ -254,8 +261,12 @@ def generateResources(configData) {
         emitLocaleStrings(config, defaultLocale, "", file(outPath + "/values"))
         // Emit lang-COUNTRY locale version
         locales.each { locale ->
-          def outputDir = file(outPath + "/values-" + toAndroidLocale(locale))
-          emitLocaleStrings(config, defaultLocale, locale, outputDir)
+          // Skip es-419, which isn't supported directly. Instead this will
+          // get picked up by way of the lang only version below.
+          if (locale != "es-419") {
+            def outputDir = file(outPath + "/values-" + toAndroidLocale(locale))
+            emitLocaleStrings(config, defaultLocale, locale, outputDir)
+          }
         }
         // Emit lang only version, for compatibility.
         def langLocales = locales.collect { toAndroidLanguageOnly(it) }.unique()

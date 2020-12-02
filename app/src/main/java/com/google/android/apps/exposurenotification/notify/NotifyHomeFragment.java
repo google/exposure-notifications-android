@@ -80,15 +80,6 @@ public class NotifyHomeFragment extends Fragment {
         .getInFlightLiveData()
         .observe(getViewLifecycleOwner(), isInFlight -> startApiButton.setEnabled(!isInFlight));
 
-    exposureNotificationViewModel
-        .getApiErrorLiveEvent()
-        .observe(getViewLifecycleOwner(), unused -> {
-          View rootView = getView();
-          if (rootView != null) {
-            Snackbar.make(rootView, R.string.generic_error_message, Snackbar.LENGTH_LONG).show();
-          }
-        });
-
     Button shareButton = view.findViewById(R.id.fragment_notify_share_button);
     shareButton.setOnClickListener(
         v -> startActivity(ShareDiagnosisActivity.newIntentForAddFlow(requireContext())));

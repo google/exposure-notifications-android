@@ -47,8 +47,8 @@ import org.robolectric.annotation.Config;
 import org.threeten.bp.LocalDate;
 
 /**
- * Tests for operations in {@link DiagnosisRepository}, which serves to also test
- * {@link DiagnosisDao} which it wraps.
+ * Tests for operations in {@link DiagnosisRepository}, which serves to also test {@link
+ * DiagnosisDao} which it wraps.
  */
 @RunWith(AndroidJUnit4.class)
 @HiltAndroidTest
@@ -81,7 +81,7 @@ public class DiagnosisRepositoryTest {
 
     // But read a different ID and assert nothing is returned.
     long otherId = newId + 1;
-    assertThat(diagnosisRepo.getById(otherId).get()).isNull();
+    assertThat(diagnosisRepo.getByIdAsync(otherId).get()).isNull();
   }
 
   @Test
@@ -100,7 +100,7 @@ public class DiagnosisRepositoryTest {
         .build();
 
     long newId = diagnosisRepo.upsertAsync(diagnosis).get();
-    DiagnosisEntity readBack = diagnosisRepo.getById(newId).get();
+    DiagnosisEntity readBack = diagnosisRepo.getByIdAsync(newId).get();
 
     assertThat(readBack).isNotNull();
     assertEqualIgnoringId(readBack, diagnosis);
@@ -111,7 +111,7 @@ public class DiagnosisRepositoryTest {
     DiagnosisEntity diagnosis = DiagnosisEntity.newBuilder().build();
 
     long newId = diagnosisRepo.upsertAsync(diagnosis).get();
-    DiagnosisEntity readBack = diagnosisRepo.getById(newId).get();
+    DiagnosisEntity readBack = diagnosisRepo.getByIdAsync(newId).get();
 
     DiagnosisEntity expected = DiagnosisEntity.newBuilder()
         .setCreatedTimestampMs(clock.now().toEpochMilli())
@@ -125,7 +125,7 @@ public class DiagnosisRepositoryTest {
     // Create and read back one record.
     long newId = diagnosisRepo.upsertAsync(
         DiagnosisEntity.newBuilder().setVerificationCode("code1").build()).get();
-    DiagnosisEntity readBack = diagnosisRepo.getById(newId).get();
+    DiagnosisEntity readBack = diagnosisRepo.getByIdAsync(newId).get();
 
     // Mutate all the fields!
     DiagnosisEntity mutated = readBack.toBuilder()
@@ -139,10 +139,10 @@ public class DiagnosisRepositoryTest {
         .setTestResult(TestResult.LIKELY)
         .setTravelStatus(TravelStatus.NOT_TRAVELED)
         .build();
-    diagnosisRepo.upsertAsync(mutated);
+    diagnosisRepo.upsertAsync(mutated).get();
 
     // Read it back again and it should have the token.
-    DiagnosisEntity readAgain = diagnosisRepo.getById(newId).get();
+    DiagnosisEntity readAgain = diagnosisRepo.getByIdAsync(newId).get();
     assertThat(readAgain).isEqualTo(mutated);
   }
 
@@ -163,7 +163,7 @@ public class DiagnosisRepositoryTest {
     Long newId = diagnosisRepo.upsertAsync(diagnosis).get();
 
     // Then read it back and verify.
-    DiagnosisEntity readBack = diagnosisRepo.getById(newId).get();
+    DiagnosisEntity readBack = diagnosisRepo.getByIdAsync(newId).get();
     assertEqualIgnoringId(readBack, diagnosis);
   }
 
@@ -172,7 +172,7 @@ public class DiagnosisRepositoryTest {
     // Create and read back one record.
     long newId = diagnosisRepo.upsertAsync(
         DiagnosisEntity.newBuilder().setVerificationCode("code1").build()).get();
-    DiagnosisEntity readBack = diagnosisRepo.getById(newId).get();
+    DiagnosisEntity readBack = diagnosisRepo.getByIdAsync(newId).get();
 
     // Mutate all the fields!
     DiagnosisEntity mutated = readBack.toBuilder()
@@ -189,15 +189,21 @@ public class DiagnosisRepositoryTest {
     diagnosisRepo.upsertAsync(mutated).get();
 
     // Read it back again and verify.
-    DiagnosisEntity readAgain = diagnosisRepo.getById(newId).get();
+    DiagnosisEntity readAgain = diagnosisRepo.getByIdAsync(newId).get();
     assertThat(readAgain).isEqualTo(mutated);
   }
 
   @Test
-  public void getAll_shouldReturnAllEntities() {
-    diagnosisRepo.upsertAsync(DiagnosisEntity.newBuilder().setVerificationCode("code1").build());
-    diagnosisRepo.upsertAsync(DiagnosisEntity.newBuilder().setVerificationCode("code2").build());
-    diagnosisRepo.upsertAsync(DiagnosisEntity.newBuilder().setVerificationCode("code3").build());
+  public void getAll_shouldReturnAllEntities() throws Exception {
+    diagnosisRepo
+        .upsertAsync(DiagnosisEntity.newBuilder().setVerificationCode("code1").build())
+        .get();
+    diagnosisRepo
+        .upsertAsync(DiagnosisEntity.newBuilder().setVerificationCode("code2").build())
+        .get();
+    diagnosisRepo
+        .upsertAsync(DiagnosisEntity.newBuilder().setVerificationCode("code3").build())
+        .get();
     List<DiagnosisEntity> observer = new ArrayList<>();
     diagnosisRepo.getAllLiveData().observeForever(observer::addAll);
 
@@ -211,9 +217,15 @@ public class DiagnosisRepositoryTest {
   @Test
   public void getByVerificationCodeAsync_noneMatching_returnsEmpty()
       throws ExecutionException, InterruptedException {
-    diagnosisRepo.upsertAsync(DiagnosisEntity.newBuilder().setId(1).setVerificationCode("code1").build());
-    diagnosisRepo.upsertAsync(DiagnosisEntity.newBuilder().setId(2).setVerificationCode("code2").build());
-    diagnosisRepo.upsertAsync(DiagnosisEntity.newBuilder().setId(3).setVerificationCode("code3").build());
+    diagnosisRepo
+        .upsertAsync(DiagnosisEntity.newBuilder().setId(1).setVerificationCode("code1").build())
+        .get();
+    diagnosisRepo
+        .upsertAsync(DiagnosisEntity.newBuilder().setId(2).setVerificationCode("code2").build())
+        .get();
+    diagnosisRepo
+        .upsertAsync(DiagnosisEntity.newBuilder().setId(3).setVerificationCode("code3").build())
+        .get();
 
     ListenableFuture<List<DiagnosisEntity>> entities = diagnosisRepo
         .getByVerificationCodeAsync("code4");
@@ -226,9 +238,15 @@ public class DiagnosisRepositoryTest {
       throws ExecutionException, InterruptedException {
     String matchingCode = "matchingCode";
     diagnosisRepo
-        .upsertAsync(DiagnosisEntity.newBuilder().setId(1).setVerificationCode(matchingCode).build());
-    diagnosisRepo.upsertAsync(DiagnosisEntity.newBuilder().setId(2).setVerificationCode("code2").build());
-    diagnosisRepo.upsertAsync(DiagnosisEntity.newBuilder().setId(3).setVerificationCode("code3").build());
+        .upsertAsync(
+            DiagnosisEntity.newBuilder().setId(1).setVerificationCode(matchingCode).build())
+        .get();
+    diagnosisRepo
+        .upsertAsync(DiagnosisEntity.newBuilder().setId(2).setVerificationCode("code2").build())
+        .get();
+    diagnosisRepo
+        .upsertAsync(DiagnosisEntity.newBuilder().setId(3).setVerificationCode("code3").build())
+        .get();
 
     ListenableFuture<List<DiagnosisEntity>> entities = diagnosisRepo
         .getByVerificationCodeAsync(matchingCode);
@@ -245,10 +263,16 @@ public class DiagnosisRepositoryTest {
       throws ExecutionException, InterruptedException {
     String matchingCode = "matchingCode";
     diagnosisRepo
-        .upsertAsync(DiagnosisEntity.newBuilder().setId(1).setVerificationCode(matchingCode).build());
+        .upsertAsync(
+            DiagnosisEntity.newBuilder().setId(1).setVerificationCode(matchingCode).build())
+        .get();
     diagnosisRepo
-        .upsertAsync(DiagnosisEntity.newBuilder().setId(2).setVerificationCode(matchingCode).build());
-    diagnosisRepo.upsertAsync(DiagnosisEntity.newBuilder().setId(3).setVerificationCode("code3").build());
+        .upsertAsync(
+            DiagnosisEntity.newBuilder().setId(2).setVerificationCode(matchingCode).build())
+        .get();
+    diagnosisRepo
+        .upsertAsync(DiagnosisEntity.newBuilder().setId(3).setVerificationCode("code3").build())
+        .get();
 
     ListenableFuture<List<DiagnosisEntity>> entities = diagnosisRepo
         .getByVerificationCodeAsync(matchingCode);
@@ -270,12 +294,14 @@ public class DiagnosisRepositoryTest {
     diagnosisRepo.deleteByIdAsync(newId).get();
 
     // Reading back should return null.
-    assertThat(diagnosisRepo.getById(newId).get()).isNull();
+    assertThat(diagnosisRepo.getByIdAsync(newId).get()).isNull();
   }
 
   @Test
   public void getRevisionToken_noTokensStored_shouldReturnNull() throws Exception {
-    diagnosisRepo.upsertAsync(DiagnosisEntity.newBuilder().setVerificationCode("code1").build());
+    diagnosisRepo
+        .upsertAsync(DiagnosisEntity.newBuilder().setVerificationCode("code1").build())
+        .get();
 
     assertThat(diagnosisRepo.getMostRecentRevisionTokenAsync().get()).isNull();
   }
@@ -287,30 +313,54 @@ public class DiagnosisRepositoryTest {
         .setCreatedTimestampMs(10L)
         .setRevisionToken("revisionToken1")
         .build();
-    diagnosisRepo.upsertAsync(diagnosis1);
+    diagnosisRepo.upsertAsync(diagnosis1).get();
 
     DiagnosisEntity diagnosis2 = DiagnosisEntity.newBuilder()
         .setVerificationCode("code2")
         .setCreatedTimestampMs(42L)
         .setRevisionToken("revisionToken2")
         .build();
-    diagnosisRepo.upsertAsync(diagnosis2);
+    diagnosisRepo.upsertAsync(diagnosis2).get();
 
     DiagnosisEntity diagnosis3 = DiagnosisEntity.newBuilder()
         .setVerificationCode("code3")
         .setCreatedTimestampMs(43L)
         .setRevisionToken("revisionToken3")
         .build();
-    diagnosisRepo.upsertAsync(diagnosis3);
+    diagnosisRepo.upsertAsync(diagnosis3).get();
 
     DiagnosisEntity diagnosis4 = DiagnosisEntity.newBuilder()
         .setVerificationCode("code4")
         .setCreatedTimestampMs(44L)
         // No revision token.
         .build();
-    diagnosisRepo.upsertAsync(diagnosis4);
+    diagnosisRepo.upsertAsync(diagnosis4).get();
 
     assertThat(diagnosisRepo.getMostRecentRevisionTokenAsync().get()).isEqualTo("revisionToken3");
+  }
+
+  @Test
+  public void getRevisionToken_afterDeletingDiagnosis_shouldStillReturnTheMostRecentToken()
+      throws Exception {
+    // GIVEN
+    DiagnosisEntity diagnosis1 = DiagnosisEntity.newBuilder()
+        .setVerificationCode("code1")
+        .setCreatedTimestampMs(10L)
+        .setRevisionToken("revision-token-1")
+        .build();
+    diagnosisRepo.upsertAsync(diagnosis1).get();
+    DiagnosisEntity diagnosis2 = DiagnosisEntity.newBuilder()
+        .setVerificationCode("code2")
+        .setCreatedTimestampMs(42L)
+        .setRevisionToken("revision-token-2")
+        .build();
+    long diagnosis2id = diagnosisRepo.upsertAsync(diagnosis2).get();
+
+    // WHEN
+    diagnosisRepo.deleteByIdAsync(diagnosis2id).get();
+
+    // THEN
+    assertThat(diagnosisRepo.getMostRecentRevisionTokenAsync().get()).isEqualTo("revision-token-2");
   }
 
   @Test
@@ -320,8 +370,19 @@ public class DiagnosisRepositoryTest {
         -1, diagnosis -> diagnosis.toBuilder().setVerificationCode("code123").build());
 
     // THEN
-    DiagnosisEntity readBack = diagnosisRepo.getById(newId).get();
+    DiagnosisEntity readBack = diagnosisRepo.getByIdAsync(newId).get();
     assertThat(readBack.getVerificationCode()).isEqualTo("code123");
+  }
+
+  @Test
+  public void createOrMutateById_withNonexistentId_shouldSetCreationTime() throws Exception {
+    // WHEN
+    long newId = diagnosisRepo.createOrMutateById(
+        -1, diagnosis -> diagnosis.toBuilder().setVerificationCode("code123").build());
+
+    // THEN
+    DiagnosisEntity readBack = diagnosisRepo.getByIdAsync(newId).get();
+    assertThat(readBack.getCreatedTimestampMs()).isEqualTo(clock.currentTimeMillis());
   }
 
   @Test
@@ -336,7 +397,7 @@ public class DiagnosisRepositoryTest {
         newId, diagnosis -> diagnosis.toBuilder().setVerificationCode("code456").build());
 
     // THEN
-    DiagnosisEntity readBack = diagnosisRepo.getById(newId).get();
+    DiagnosisEntity readBack = diagnosisRepo.getByIdAsync(newId).get();
     // Make sure the one field is mutated
     assertThat(readBack.getVerificationCode()).isEqualTo("code456");
     // But not the other.

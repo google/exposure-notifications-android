@@ -23,6 +23,7 @@ import com.google.android.apps.exposurenotification.storage.DiagnosisEntity.HasS
 import com.google.android.apps.exposurenotification.storage.DiagnosisEntity.Shared;
 import com.google.android.apps.exposurenotification.storage.DiagnosisEntity.TestResult;
 import com.google.android.apps.exposurenotification.storage.DiagnosisEntity.TravelStatus;
+import org.threeten.bp.Instant;
 import org.threeten.bp.LocalDate;
 import org.threeten.bp.ZonedDateTime;
 import org.threeten.bp.format.DateTimeFormatter;
@@ -155,6 +156,22 @@ class Converters {
     @TypeConverter
     public static Uri toUri(String uri) {
       return uri == null ? null : Uri.parse(uri);
+    }
+  }
+
+  /**
+   * Type converter for {@link Instant}.
+   */
+  public static class InstantConverter {
+
+    @TypeConverter
+    public static long fromInstant(Instant instant) {
+      return instant == null ? 0 : instant.toEpochMilli();
+    }
+
+    @TypeConverter
+    public static Instant toInstant(long epochMillis) {
+      return Instant.ofEpochMilli(epochMillis);
     }
   }
 }

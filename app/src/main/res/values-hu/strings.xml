@@ -16,6 +16,8 @@
   <string name="btn_save">Mentés</string>
   <string name="btn_discard">Elvetés</string>
   <string name="btn_verify">Ellenőrzés</string>
+  <string name="btn_dont_share">Nem osztom meg</string>
+  <string name="btn_share">Megosztás</string>
   <string name="learn_more">További információ</string>
   <string name="home_tab_exposures_text">Kitettség</string>
   <string name="home_tab_notify_text">Mások értesítése</string>
@@ -31,7 +33,7 @@
     \n\nA kitettséggel kapcsolatos dátumot, időtartamot és jelerősséget a rendszer megosztja az alkalmazással.</string>
   <string name="onboarding_metrics_title">Segítsen az alkalmazás fejlesztésében</string>
   <string name="onboarding_metrics_subtitle">Apphasználati és teljesítményadatok megosztása a Google-lal</string>
-  <string name="onboarding_metrics_detail">Az alkalmazás karbantartásának és fejlesztésének segítése érdekében bizonyos azonosításra nem alkalmas adatokat oszt meg az alkalmazás a teljesítményéről és a használatáról a Google-lal. Ezek az adatok nem használhatók az Ön azonosítására.</string>
+  <string name="onboarding_metrics_description">Az alkalmazás karbantartásának és fejlesztésének segítése érdekében bizonyos azonosításra nem alkalmas adatokat oszt meg az alkalmazás a teljesítményéről és a használatáról a Google-lal. Ezek az adatok nem használhatók az Ön azonosítására. %1$s</string>
   <string name="onboarding_confirm_later_title">Kikapcsolva tartja a Kitettséget jelző értesítéseket?</string>
   <string name="onboarding_confirm_later_detail">A Kitettséget jelző értesítések bekapcsolásáig nem értesül a lehetséges COVID-19-kitettségről.</string>
   <string name="no_recent_exposure_subtitle">Nem észlelt a rendszer kitettséget a közelmúltban</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">Állapot</string>
   <string name="exposure_details_status_exposure">Lehetséges COVID-19-kitettség</string>
   <string name="exposure_details_date_exposed_subtitle">Lehetséges kitettségi dátum</string>
-  <string name="exposure_details_expiring_subtitle">A kitettségi jelentéseket a kitettség napjától számítva 14 napig tárolja a rendszer</string>
+  <string name="exposure_details_expiring_subtitle">A kitettségi jelentéseket a lehetséges kitettség napjától számítva 14 napig tárolja a rendszer</string>
   <string name="exposure_details_learn_more">További információ</string>
   <string name="exposure_details_new_badge">Új</string>
   <string name="share_test_result_title">Védje a közösségét, ossza meg COVID-19-teszteredményét</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">Kitettséget jelző értesítések</string>
   <string name="settings_app_analytics_subtitle">Apphasználat és teljesítmény megosztása</string>
   <string name="settings_privacy_policy">Adatvédelmi irányelvek</string>
+  <string name="settings_help_and_support">Kitettséget jelző értesítések – Express</string>
   <string name="settings_legal_terms">Jogi feltételek</string>
   <string name="settings_debug">Hibakeresési mód</string>
   <string name="settings_share">Segítsen a COVID-19 terjedésének visszaszorításában. Ossza meg ezt az alkalmazást a közösségével, és segítsen nekik abban, hogy a kitettséget jelző értesítéseknek köszönhetően jobban vigyázhassanak magukra.</string>
@@ -134,4 +137,10 @@
   <string name="share_error">Nem lehet megosztani a teszteredményt. Próbálkozzon újra később.</string>
   <string name="generic_error_message">Hiba történt. Próbálkozzon újra.</string>
   <string name="code_error_already_submitted">A kódot már felhasználták teszteredmény megosztására</string>
+  <string name="settings_private_analytics_subtitle">Kitettségjelzés elemzéseinek megosztása</string>
+  <string name="private_analytics_title">Segítsen az egészségügyi hatóságoknak megérteni a COVID-19 terjedését</string>
+  <string name="private_analytics_subtitle">A kitettséget jelző értesítések elemzéseinek megosztása az egészségügyi hatósággal</string>
+  <string name="private_analytics_footer">Ezek az elemzési adatok (pl. az Ön régiójában küldött értesítések száma) segíthet az egészségügyi hatóságoknak a COVID-19 terjedésének megértésében. A Google nem olvashatja ezeket az adatokat, a rendszer pedig összesítve biztosítja őket az egészségügyi hatóságoknak, így nem köthetők az Ön telefonjához. %1$s</string>
+  <string name="private_analytics_footer_onboarding">A Google nem olvashatja ezeket az elemzési adatokat, a rendszer pedig összesítve biztosítja őket az egészségügyi hatóságoknak, így nem köthetők az Ön telefonjához. %1$s.</string>
+  <string name="private_analytics_footer_learn_more">További információ</string>
 </resources>

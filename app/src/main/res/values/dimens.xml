@@ -26,6 +26,8 @@
   <dimen name="onboarding_section_header_image_width">64dp</dimen>
   <dimen name="onboarding_logo_padding">100dp</dimen>
 
+  <dimen name="ha_header_text_size">18sp</dimen>
+
   <dimen name="notify_row_min_height">56dp</dimen>
   <dimen name="touch_area_min_size">48dp</dimen>
 
@@ -39,6 +41,8 @@
   <dimen name="settings_icon_field_width">72dp</dimen>
   <dimen name="settings_icon_height">24dp</dimen>
   <dimen name="settings_page_icon_width">42dp</dimen>
+
+  <dimen name="settings_page_switch_text_size">14sp</dimen>
 
   <dimen name="exposure_icon_field_min_height">72dp</dimen>
   <dimen name="exposure_icon_size">48dp</dimen>

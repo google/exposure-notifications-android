@@ -16,6 +16,8 @@
   <string name="btn_save">Salvați</string>
   <string name="btn_discard">Renunțați</string>
   <string name="btn_verify">Confirmați</string>
+  <string name="btn_dont_share">Nu trimiteți</string>
+  <string name="btn_share">Trimiteți</string>
   <string name="learn_more">Aflați mai multe</string>
   <string name="home_tab_exposures_text">Expunere</string>
   <string name="home_tab_notify_text">Notificați pe alții</string>
@@ -31,7 +33,7 @@
     \n\nData, durata și puterea semnalului asociate unei expuneri vor fi transmise aplicației.</string>
   <string name="onboarding_metrics_title">Ajutați-ne să îmbunătățim aplicația</string>
   <string name="onboarding_metrics_subtitle">Trimiteți datele despre performanță și utilizare la Google</string>
-  <string name="onboarding_metrics_detail">Pentru a ne ajuta să întreținem și să îmbunătățim aplicația, anumite date limitate cu informațiile de identificare eliminate despre performanța și utilizarea aplicației se trimit la Google. Aceste date nu vă identifică.</string>
+  <string name="onboarding_metrics_description">Pentru a ne ajuta să întreținem și să îmbunătățim aplicația, anumite date limitate cu informațiile de identificare eliminate despre performanța și utilizarea aplicației se trimit la Google. Aceste date nu vă identifică. %1$s</string>
   <string name="onboarding_confirm_later_title">Păstrați Notificările privind expunerea dezactivate?</string>
   <string name="onboarding_confirm_later_detail">Dacă da, nu veți fi anunțat(ă) de posibila expunere la COVID-19</string>
   <string name="no_recent_exposure_subtitle">Nicio expunere recentă</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">Stare</string>
   <string name="exposure_details_status_exposure">Expunere posibilă la COVID-19</string>
   <string name="exposure_details_date_exposed_subtitle">Data posibilei expuneri</string>
-  <string name="exposure_details_expiring_subtitle">Rapoartele privind expunerea sunt păstrate 14 zile de la data expunerii</string>
+  <string name="exposure_details_expiring_subtitle">Rapoartele privind expunerea sunt păstrate 14 zile de la data posibilei expuneri</string>
   <string name="exposure_details_learn_more">Aflați mai multe</string>
   <string name="exposure_details_new_badge">Nou</string>
   <string name="share_test_result_title">Protejați-vă comunitatea; trimiteți rezultatul testului dvs. COVID-19</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">Notificări privind expunerea</string>
   <string name="settings_app_analytics_subtitle">Permiteți accesul la performanță și utilizare</string>
   <string name="settings_privacy_policy">Politica de confidențialitate</string>
+  <string name="settings_help_and_support">Despre Exposure Notification Express</string>
   <string name="settings_legal_terms">Condiții legale</string>
   <string name="settings_debug">Modul Remediere</string>
   <string name="settings_share">Ajutați la combaterea răspândirii COVID-19. Trimiteți-le aplicația membrilor comunității și ajutați-i să se protejeze mai bine, cu notificările privind expunerea.</string>
@@ -134,4 +137,10 @@
   <string name="share_error">Nu s-a putut trimite rezultatul testului. Încercați din nou mai târziu.</string>
   <string name="generic_error_message">A apărut o eroare. Încercați din nou.</string>
   <string name="code_error_already_submitted">Codul a fost deja folosit pentru a trimite rezultatul testului</string>
+  <string name="settings_private_analytics_subtitle">Trimiterea statisticilor pentru Notificări privind expunerea</string>
+  <string name="private_analytics_title">Ajutați autoritățile de sănătate să înțeleagă cum se răspândește COVID-19</string>
+  <string name="private_analytics_subtitle">Trimiteți autorităților de sănătate date statistice pentru Notificări privind expunerea</string>
+  <string name="private_analytics_footer">Aceste date statistice, precum numărul de notificări din regiunea dvs., ajută autoritățile de sănătate să înțeleagă cum se răspândește COVID-19. Ele nu pot fi citite de Google și sunt cumulate pentru autoritățile de sănătate, astfel încât să nu poată fi asociate cu telefonul dvs. %1$s</string>
+  <string name="private_analytics_footer_onboarding">Aceste date statistice nu pot fi citite de Google și sunt cumulate pentru autoritățile de sănătate, astfel încât să nu poată fi asociate cu telefonul dvs. %1$s</string>
+  <string name="private_analytics_footer_learn_more">Aflați mai multe</string>
 </resources>

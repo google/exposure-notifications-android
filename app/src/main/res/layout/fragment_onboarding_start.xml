@@ -28,6 +28,7 @@
     android:layout_height="match_parent"
     android:padding="@dimen/onboarding_logo_padding"
     app:srcCompat="@drawable/enx_agency_image"
+    android:background="@color/enx_agencyImageBackgroundColor"
     android:layout_gravity="center"
     android:importantForAccessibility="no" />
 

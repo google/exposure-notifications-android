@@ -61,6 +61,7 @@ public class ShareDiagnosisViewFragment extends Fragment {
         new ViewModelProvider(getActivity()).get(ShareDiagnosisViewModel.class);
 
     TextView covidStatus = view.findViewById(R.id.share_review_status);
+    TextView travelStatusSubtitle = view.findViewById(R.id.share_review_travel_subtitle);
     TextView travelStatus = view.findViewById(R.id.share_review_travel);
     TextView date = view.findViewById(R.id.share_review_date);
     Button deleteButton = view.findViewById(R.id.positive_diagnosis_delete_button);
@@ -94,21 +95,26 @@ public class ShareDiagnosisViewFragment extends Fragment {
                   covidStatus.setText(R.string.share_review_status_confirmed);
                 }
 
-                if (diagnosis.getTravelStatus() != null) {
-                  switch (diagnosis.getTravelStatus()) {
-                    case TRAVELED:
-                      travelStatus.setText(R.string.share_review_travel_confirmed);
-                      break;
-                    case NOT_TRAVELED:
-                      travelStatus.setText(R.string.share_review_travel_no_travel);
-                      break;
-                    case NO_ANSWER:
-                    case NOT_ATTEMPTED:
-                    default:
-                      travelStatus.setText(R.string.share_review_travel_no_answer);
+                if (!ShareDiagnosisFlowHelper.isTravelStatusStepSkippable(getContext())) {
+                  travelStatusSubtitle.setVisibility(View.VISIBLE);
+                  travelStatus.setVisibility(View.VISIBLE);
+
+                  if (diagnosis.getTravelStatus() != null) {
+                    switch (diagnosis.getTravelStatus()) {
+                      case TRAVELED:
+                        travelStatus.setText(R.string.share_review_travel_confirmed);
+                        break;
+                      case NOT_TRAVELED:
+                        travelStatus.setText(R.string.share_review_travel_no_travel);
+                        break;
+                      case NO_ANSWER:
+                      case NOT_ATTEMPTED:
+                      default:
+                        travelStatus.setText(R.string.share_review_travel_no_answer);
+                    }
+                  } else {
+                    travelStatus.setText(R.string.share_review_travel_no_answer);
                   }
-                } else {
-                  travelStatus.setText(R.string.share_review_travel_no_answer);
                 }
 
                 // HasSymptoms cannot be null.

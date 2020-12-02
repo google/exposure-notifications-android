@@ -123,7 +123,8 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:textAppearance="?attr/textAppearanceBody1"
-            android:layout_gravity="center_vertical" />
+            android:layout_gravity="center_vertical"
+            android:textColor="@color/code_verification_error"/>
 
         </LinearLayout>
 

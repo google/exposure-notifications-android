@@ -29,6 +29,7 @@ import com.google.android.gms.nearby.exposurenotification.DiagnosisKeysDataMappi
 import com.google.android.gms.nearby.exposurenotification.ExposureInformation;
 import com.google.android.gms.nearby.exposurenotification.ExposureNotificationClient;
 import com.google.android.gms.nearby.exposurenotification.ExposureSummary;
+import com.google.android.gms.nearby.exposurenotification.ExposureWindow;
 import com.google.android.gms.nearby.exposurenotification.PackageConfiguration;
 import com.google.android.gms.nearby.exposurenotification.ReportType;
 import com.google.android.gms.nearby.exposurenotification.TemporaryExposureKey;
@@ -58,21 +59,21 @@ public class ExposureNotificationClientWrapper {
 
   public Task<Void> start() {
     return exposureNotificationClient.start()
-        .addOnFailureListener(e -> logger.logApiCallFailure(ApiCallType.CALL_START, e))
-        .addOnSuccessListener(aVoid -> logger.logApiCallSuccess(ApiCallType.CALL_START));
+        .addOnFailureListener(e -> logger.logApiCallFailureAsync(ApiCallType.CALL_START, e))
+        .addOnSuccessListener(aVoid -> logger.logApiCallSuccessAsync(ApiCallType.CALL_START));
   }
 
   public Task<Void> stop() {
     return exposureNotificationClient.stop()
-        .addOnFailureListener(e -> logger.logApiCallFailure(ApiCallType.CALL_STOP, e))
-        .addOnSuccessListener(aVoid -> logger.logApiCallSuccess(ApiCallType.CALL_STOP));
+        .addOnFailureListener(e -> logger.logApiCallFailureAsync(ApiCallType.CALL_STOP, e))
+        .addOnSuccessListener(aVoid -> logger.logApiCallSuccessAsync(ApiCallType.CALL_STOP));
   }
 
   public Task<Boolean> isEnabled() {
     return exposureNotificationClient.isEnabled()
         .addOnFailureListener(
-            e -> logger.logApiCallFailure(ApiCallType.CALL_IS_ENABLED, e))
-        .addOnSuccessListener(aVoid -> logger.logApiCallSuccess(ApiCallType.CALL_IS_ENABLED));
+            e -> logger.logApiCallFailureAsync(ApiCallType.CALL_IS_ENABLED, e))
+        .addOnSuccessListener(aVoid -> logger.logApiCallSuccessAsync(ApiCallType.CALL_IS_ENABLED));
   }
 
   public Task<List<TemporaryExposureKey>> getTemporaryExposureKeyHistory() {
@@ -83,19 +84,11 @@ public class ExposureNotificationClientWrapper {
    * Provides diagnosis key files to the API for matching.
    */
   public Task<Void> provideDiagnosisKeys(List<File> files) {
-    Task<Void> task = isAtLeastEnModuleVersion1Pt7()
-        .onSuccessTask(is1Pt7APIAvailable -> {
-          if (is1Pt7APIAvailable) {
-            return exposureNotificationClient
-                .provideDiagnosisKeys(new DiagnosisKeyFileProvider(files));
-          } else {
-            return exposureNotificationClient.provideDiagnosisKeys(files);
-          }
-        });
+    Task<Void> task = exposureNotificationClient.provideDiagnosisKeys(files);
     task.addOnFailureListener(
-        e -> logger.logApiCallFailure(ApiCallType.CALL_PROVIDE_DIAGNOSIS_KEYS, e))
+        e -> logger.logApiCallFailureAsync(ApiCallType.CALL_PROVIDE_DIAGNOSIS_KEYS, e))
         .addOnSuccessListener(
-            aVoid -> logger.logApiCallSuccess(ApiCallType.CALL_PROVIDE_DIAGNOSIS_KEYS));
+            aVoid -> logger.logApiCallSuccessAsync(ApiCallType.CALL_PROVIDE_DIAGNOSIS_KEYS));
     return task;
   }
 
@@ -104,6 +97,10 @@ public class ExposureNotificationClientWrapper {
    */
   public Task<ExposureSummary> getExposureSummary(String token) {
     return exposureNotificationClient.getExposureSummary(token);
+  }
+
+  public Task<List<ExposureWindow>> getExposureWindows() {
+    return exposureNotificationClient.getExposureWindows();
   }
 
   /**
@@ -116,10 +113,9 @@ public class ExposureNotificationClientWrapper {
   public Task<Void> setDiagnosisKeysDataMapping(DiagnosisKeysDataMapping diagnosisKeysDataMapping) {
     return exposureNotificationClient.setDiagnosisKeysDataMapping(diagnosisKeysDataMapping)
         .addOnFailureListener(
-            e -> logger.logApiCallFailure(ApiCallType.CALL_SET_DIAGNOSIS_KEYS_DATA_MAPPING, e))
+            e -> logger.logApiCallFailureAsync(ApiCallType.CALL_SET_DIAGNOSIS_KEYS_DATA_MAPPING, e))
         .addOnSuccessListener(
-            aVoid -> logger.logApiCallSuccess(ApiCallType.CALL_SET_DIAGNOSIS_KEYS_DATA_MAPPING));
-
+            aVoid -> logger.logApiCallSuccessAsync(ApiCallType.CALL_SET_DIAGNOSIS_KEYS_DATA_MAPPING));
   }
 
   public Task<DiagnosisKeysDataMapping> getDiagnosisKeysDataMapping() {
@@ -129,9 +125,9 @@ public class ExposureNotificationClientWrapper {
   public Task<List<DailySummaryWrapper>> getDailySummaries(DailySummariesConfig dailySummariesConfig) {
     return exposureNotificationClient.getDailySummaries(dailySummariesConfig)
         .addOnFailureListener(
-            e -> logger.logApiCallFailure(ApiCallType.CALL_GET_DAILY_SUMMARIES, e))
+            e -> logger.logApiCallFailureAsync(ApiCallType.CALL_GET_DAILY_SUMMARIES, e))
         .addOnSuccessListener(
-            dailySummaries -> logger.logApiCallSuccess(ApiCallType.CALL_GET_DAILY_SUMMARIES))
+            dailySummaries -> logger.logApiCallSuccessAsync(ApiCallType.CALL_GET_DAILY_SUMMARIES))
         .continueWith(task -> wrapDailySummaries(task.getResult()));
   }
 
@@ -189,7 +185,7 @@ public class ExposureNotificationClientWrapper {
     return exposureNotificationClient.deviceSupportsLocationlessScanning();
   }
 
-  private Task<Long> getVersion() {
+  public Task<Long> getVersion() {
     return exposureNotificationClient.getVersion();
   }
 

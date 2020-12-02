@@ -16,6 +16,8 @@
   <string name="btn_save">ಉಳಿಸಿ</string>
   <string name="btn_discard">ತ್ಯಜಿಸಿ</string>
   <string name="btn_verify">ಪರಿಶೀಲಿಸಿ</string>
+  <string name="btn_dont_share">ಹಂಚಿಕೊಳ್ಳಬೇಡಿ</string>
+  <string name="btn_share">ಹಂಚಿಕೊಳ್ಳಿ</string>
   <string name="learn_more">ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</string>
   <string name="home_tab_exposures_text">ಎಕ್ಸ್‌ಪೋಶರ್</string>
   <string name="home_tab_notify_text">ಇತರರಿಗೆ ಸೂಚಿಸಿ</string>
@@ -31,7 +33,7 @@
     \n\nಸಂಪರ್ಕಕ್ಕೆ ಬಂದಿರುವುದರ ಕುರಿತಂತೆ ದಿನಾಂಕ, ಅವಧಿ ಮತ್ತು ಸಿಗ್ನಲ್ ಸಾಮರ್ಥ್ಯವನ್ನು ಆ್ಯಪ್ ಜೊತೆಗೆ ಹಂಚಿಕೊಳ್ಳಲಾಗುತ್ತದೆ.</string>
   <string name="onboarding_metrics_title">ಈ ಆ್ಯಪ್ ಅನ್ನು ಉತ್ತಮಗೊಳಿಸಲು ಸಹಾಯ ಮಾಡಿ</string>
   <string name="onboarding_metrics_subtitle">ಆ್ಯಪ್ ಬಳಕೆ ಮತ್ತು ಕಾರ್ಯಕ್ಷಮತೆ ಡೇಟಾವನ್ನು Google ಜೊತೆಗೆ ಹಂಚಿಕೊಳ್ಳಿ</string>
-  <string name="onboarding_metrics_detail">ಆ್ಯಪ್ ಅನ್ನು ನಿರ್ವಹಿಸಲು ಮತ್ತು ಸುಧಾರಿಸಲು, ಆ್ಯಪ್ ಕಾರ್ಯಕ್ಷಮತೆ ಮತ್ತು ಬಳಕೆಯ ಕುರಿತು ಕೆಲವು ಸೀಮಿತ, ಗುರುತಿಸದ ಡೇಟಾವನ್ನು Google ಜೊತೆಗೆ ಹಂಚಿಕೊಳ್ಳಲಾಗುತ್ತದೆ. ಈ ಡೇಟಾ ನಿಮ್ಮನ್ನು ಗುರುತಿಸುವುದಿಲ್ಲ.</string>
+  <string name="onboarding_metrics_description">ಆ್ಯಪ್ ಅನ್ನು ನಿರ್ವಹಿಸಲು ಮತ್ತು ಸುಧಾರಿಸಲು, ಆ್ಯಪ್ ಕಾರ್ಯಕ್ಷಮತೆ ಮತ್ತು ಬಳಕೆಯ ಕುರಿತು ಕೆಲವು ಸೀಮಿತ, ಗುರುತಿಸದ ಡೇಟಾವನ್ನು Google ಜೊತೆಗೆ ಹಂಚಿಕೊಳ್ಳಲಾಗುತ್ತದೆ. ಈ ಡೇಟಾ ನಿಮ್ಮನ್ನು ಗುರುತಿಸುವುದಿಲ್ಲ. %1$s</string>
   <string name="onboarding_confirm_later_title">ಎಕ್ಸ್‌ಪೋಶರ್ ಅಧಿಸೂಚನೆಗಳನ್ನು ಆಫ್‌ ಮಾಡಿ ಇಡಬೇಕೇ?</string>
   <string name="onboarding_confirm_later_detail">ಎಕ್ಸ್‌ಪೋಶರ್ ಅಧಿಸೂಚನೆಗಳನ್ನು ಆನ್ ಮಾಡುವವರೆಗೆ COVID-19 ನ ಸಂಭವನೀಯ ಸಂಪರ್ಕಕ್ಕೆ ಬಂದಿರುವ ಕುರಿತು ನಿಮಗೆ ಸೂಚಿಸಲಾಗುವುದಿಲ್ಲ</string>
   <string name="no_recent_exposure_subtitle">ಇತ್ತೀಚಿನ ಯಾವುದೇ ಎಕ್ಸ್‌ಪೋಶರ್‌ಗಳಿಲ್ಲ</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">ಸ್ಥಿತಿ</string>
   <string name="exposure_details_status_exposure">ಬಹುಶಃ ನೀವು COVID-19 ಸೋಂಕಿತರೊಬ್ಬರ ಸಂಪರ್ಕಕ್ಕೆ ಬಂದಿದ್ದೀರಿ</string>
   <string name="exposure_details_date_exposed_subtitle">ಸಂಪರ್ಕಕ್ಕೆ ಬಂದಿರುವ ಸಂಭಾವ್ಯ ದಿನಾಂಕ</string>
-  <string name="exposure_details_expiring_subtitle">ಸಂಪರ್ಕಕ್ಕೆ ಬಂದಿರುವ ದಿನಾಂಕದಿಂದ 14 ದಿನಗಳವರೆಗೆ ಸಂಪರ್ಕಕ್ಕೆ ಬಂದಿರುವ ವರದಿಗಳನ್ನು ಸಂಗ್ರಹಿಸಲಾಗುತ್ತದೆ</string>
+  <string name="exposure_details_expiring_subtitle">ಎಕ್ಸ್‌ಪೋಶರ್ ವರದಿಗಳನ್ನು ಸಂಭವನೀಯ ಎಕ್ಸ್‌ಪೋಶರ್ ದಿನಾಂಕದಿಂದ 14 ದಿನಗಳವರೆಗೆ ಸಂಗ್ರಹಿಸಲಾಗುತ್ತದೆ</string>
   <string name="exposure_details_learn_more">ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</string>
   <string name="exposure_details_new_badge">ಹೊಸತು</string>
   <string name="share_test_result_title">ನಿಮ್ಮ ಸಮುದಾಯವನ್ನು ಸುರಕ್ಷಿತವಾಗಿಡಿ, ನಿಮ್ಮ COVID-19 ಪರೀಕ್ಷಾ ಫಲಿತಾಂಶವನ್ನು ಹಂಚಿಕೊಳ್ಳಿ</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">ಎಕ್ಸ್‌ಪೋಶರ್ ಅಧಿಸೂಚನೆಗಳು</string>
   <string name="settings_app_analytics_subtitle">ಆ್ಯಪ್ ಬಳಕೆ ಮತ್ತು ಕಾರ್ಯಕ್ಷಮತೆ ಹಂಚಿಕೆ</string>
   <string name="settings_privacy_policy">ಗೌಪ್ಯತೆ ನೀತಿ</string>
+  <string name="settings_help_and_support">ಎಕ್ಸ್‌ಪೋಶರ್ ಅಧಿಸೂಚನೆ ಎಕ್ಸ್‌ಪ್ರೆಸ್ ಕುರಿತು</string>
   <string name="settings_legal_terms">ಕಾನೂನು ನಿಬಂಧನೆಗಳು</string>
   <string name="settings_debug">ಡೀಬಗ್ ಮೋಡ್</string>
   <string name="settings_share">COVID-19 ಹರಡುವುದನ್ನು ತಡೆಗಟ್ಟಲು ಸಹಾಯ ಮಾಡಿ. ಈ ಆ್ಯಪ್ ಅನ್ನು ನಿಮ್ಮ ಸಮುದಾಯದ ಜೊತೆ ಹಂಚಿಕೊಳ್ಳಿ ಮತ್ತು ಸಂಭಾವ್ಯ ಎಕ್ಸ್‌ಪೋಶರ್ ಅಧಿಸೂಚನೆಗಳ ಮೂಲಕ ತಮ್ಮನ್ನು ಪರಿಣಾಮಕಾರಿಯಾಗಿ ರಕ್ಷಿಸಿಕೊಳ್ಳಲು ಅವರಿಗೆ ಸಹಾಯ ಮಾಡಿ.</string>
@@ -134,4 +137,10 @@
   <string name="share_error">ಪರೀಕ್ಷೆಯ ಫಲಿತಾಂಶವನ್ನು ಹಂಚಿಕೊಳ್ಳಲು ಸಾಧ್ಯವಾಗುತ್ತಿಲ್ಲ. ನಂತರ ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.</string>
   <string name="generic_error_message">ಏನೋ ತಪ್ಪಾಗಿದೆ. ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.</string>
   <string name="code_error_already_submitted">ಕೋಡ್ ಅನ್ನು ಫಲಿತಾಂಶವನ್ನು ಹಂಚಿಕೊಳ್ಳಲು ಈಗಾಗಲೇ ಬಳಸಲಾಗಿದೆ</string>
+  <string name="settings_private_analytics_subtitle">ಎಕ್ಸ್‌ಪೋಶರ್ ಅಧಿಸೂಚನೆ ಅನಾಲಿಟಿಕ್ಸ್ ಹಂಚಿಕೆ</string>
+  <string name="private_analytics_title">COVID-19 ನ ಹರಡುವಿಕೆಯನ್ನು ಅರ್ಥಮಾಡಿಕೊಳ್ಳಲು ನಿಮ್ಮ ಆರೋಗ್ಯ ಪ್ರಾಧಿಕಾರಕ್ಕೆ ಸಹಾಯ ಮಾಡಿ</string>
+  <string name="private_analytics_subtitle">ಎಕ್ಸ್‌ಪೋಶರ್ ಅಧಿಸೂಚನೆಗಳ ಅನಾಲಿಟಿಕ್ಸ್ ಅನ್ನು ನಿಮ್ಮ ಆರೋಗ್ಯ ಪ್ರಾಧಿಕಾರದ ಜೊತೆಗೆ ಹಂಚಿಕೊಳ್ಳಿ</string>
+  <string name="private_analytics_footer">ನಿಮ್ಮ ಪ್ರದೇಶದಲ್ಲಿನ ಅಧಿಸೂಚನೆಗಳ ಸಂಖ್ಯೆಯಂತಹ ಈ ಅನಾಲಿಟಿಕ್ಸ್, COVID-19 ಹೇಗೆ ಹರಡುತ್ತದೆ ಎಂಬುದನ್ನು ಅರ್ಥಮಾಡಿಕೊಳ್ಳಲು ಆರೋಗ್ಯ ಪ್ರಾಧಿಕಾರಿಗಳಿಗೆ ಸಹಾಯ ಮಾಡುತ್ತದೆ. ಅವುಗಳನ್ನು ಓದಲು Google ಗೆ ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ ಮತ್ತು ಅವುಗಳನ್ನು ನಿಮ್ಮ ಆರೋಗ್ಯ ಪ್ರಾಧಿಕಾರಕ್ಕಾಗಿ ಒಟ್ಟುಗೂಡಿಸಲಾಗಿರುತ್ತದೆ ಆದ್ದರಿಂದ ಅವುಗಳನ್ನು ನಿಮ್ಮ ಫೋನ್‌ಗೆ ಲಿಂಕ್ ಮಾಡಲಾಗುವುದಿಲ್ಲ. %1$s</string>
+  <string name="private_analytics_footer_onboarding">ಈ ಅನಾಲಿಟಿಕ್ಸ್ ಅನ್ನು ಓದಲು Google ಗೆ ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ ಮತ್ತು ಅವುಗಳನ್ನು ನಿಮ್ಮ ಆರೋಗ್ಯ ಪ್ರಾಧಿಕಾರಕ್ಕಾಗಿ ಒಟ್ಟುಗೂಡಿಸಲಾಗಿರುತ್ತದೆ ಆದ್ದರಿಂದ ಅವುಗಳನ್ನು ನಿಮ್ಮ ಫೋನ್‌ಗೆ ಲಿಂಕ್ ಮಾಡಲಾಗುವುದಿಲ್ಲ. %1$s</string>
+  <string name="private_analytics_footer_learn_more">ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</string>
 </resources>

@@ -16,6 +16,8 @@
   <string name="btn_save">Сактоо</string>
   <string name="btn_discard">Жоюу</string>
   <string name="btn_verify">Ырастоо</string>
+  <string name="btn_dont_share">Бөлүшүлбөсүн</string>
+  <string name="btn_share">Бөлүшүү</string>
   <string name="learn_more">Кененирээк</string>
   <string name="home_tab_exposures_text">Жугузуу коркунучу</string>
   <string name="home_tab_notify_text">Башкаларга кабарлоо</string>
@@ -31,7 +33,7 @@
     \n\nКолдонмодо телефондордун байланышуу узактыгы, вирусту жугузуу коркунучуна дуушар болгон күн жана Bluetooth сигналынын күчү тууралуу маалымат сакталат.</string>
   <string name="onboarding_metrics_title">Бул колдонмону жакшыртууга жардам бериңиз</string>
   <string name="onboarding_metrics_subtitle">Колдонмонун иштеши жөнүндө маалыматты Google менен бөлүшүңүз</string>
-  <string name="onboarding_metrics_detail">Колдонмонун иштешин жакшыртуу үчүн Google анын колдонулушу жана мүнөздөмөлөрү тууралуу маалыматты жашыруун түрдө чогултуп турат. Мындай маалымат аркылуу өздүгүңүздү аныктоого болбойт.</string>
+  <string name="onboarding_metrics_description">Колдонмону жакшыртып, бир калыпта иштешин камсыз кылуу үчүн Google анын колдонулушу жана иштеши тууралуу айрым маалыматты чогултуп турат. Мындай маалыматтын негизинде колдонуучунун ким экенин аныктоого болбойт. %1$s</string>
   <string name="onboarding_confirm_later_title">Жугузуп алуу коркунучу тууралуу билдирмелерсиз улантасызбы?</string>
   <string name="onboarding_confirm_later_detail">Билдирмелерди иштетпесеңиз, COVID-19 вирусун жугузуп алуу коркунучу тууралуу кабар албайсыз</string>
   <string name="no_recent_exposure_subtitle">Ооруну жугузуп алуу коркунучу тууралуу билдирмелер жок</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">Статусу</string>
   <string name="exposure_details_status_exposure">Коронавирусту (COVID-19) жугузуп алуу коркунучу бар</string>
   <string name="exposure_details_date_exposed_subtitle">Ооруну жугузуп алуу коркунучуна кабылган күн</string>
-  <string name="exposure_details_expiring_subtitle">Ооруну жугузуп алуу коркунучу тууралуу билдирмелер 14 күн сакталат</string>
+  <string name="exposure_details_expiring_subtitle">Ооруну жугузуп алуу коркунучу тууралуу билдирүүлөр оорулуу адам менен байланышкан күндөн тартып 14 күн сакталат</string>
   <string name="exposure_details_learn_more">Кененирээк</string>
   <string name="exposure_details_new_badge">Жаңы</string>
   <string name="share_test_result_title">COVID-19 анализинин жыйынтыгын кабарлап, башкаларды оорудан коргоңуз</string>
@@ -95,8 +97,9 @@
   <string name="delete_test_result_confirmed">Анализдин жыйынтыгы өчүрүлдү</string>
   <string name="share_error_no_internet">Анализдин жыйынтыктарын оффлайн режиминде бөлүшүү мүмкүн эмес. Интернет байланышыңызды текшерип, кайталап көрүңүз.</string>
   <string name="settings_exposure_notifications_subtitle">Ооруну жугузуп алуу коркунучу тууралуу билдирмелер</string>
-  <string name="settings_app_analytics_subtitle">Колдонмонун иштетилиши жөнүндө маалыматты бөлүшүү</string>
+  <string name="settings_app_analytics_subtitle">Колдонмонун иштеши тууралуу маалыматты бөлүшүү</string>
   <string name="settings_privacy_policy">Купуялык саясаты</string>
+  <string name="settings_help_and_support">Ооруну жугузуп алуу коркунучун кабарлоо тууралуу</string>
   <string name="settings_legal_terms">Юридикалык шарттар</string>
   <string name="settings_debug">Мүчүлүштүктөрдү аныктоо режими</string>
   <string name="settings_share">COVID-19 вирусунун жайылышына тоскоол болууга жардам бериңиз. Бул колдонмону башка колдонуучулар менен бөлүшүп, аларга ооруну жугузуу коркунучу тууралуу билдирмелерди алып, вирустан коргонууга жардам бериңиз.</string>
@@ -134,4 +137,10 @@
   <string name="share_error">Анализдин жыйынтыгы бөлүшүлгөн жок. Кийинчерээк кайталаңыз.</string>
   <string name="generic_error_message">Бир жерден ката кетти. Кайталап көрүңүз.</string>
   <string name="code_error_already_submitted">Анализдин жыйынтыгын бөлүшүү үчүн код буга чейин колдонулду</string>
+  <string name="settings_private_analytics_subtitle">Ооруну жугузуп алуу коркунучу тууралуу маалыматты бөлүшүү</string>
+  <string name="private_analytics_title">Саламаттыкты сактоо органдарына COVID-19 вирусунун жайылуусун көзөмөлдөөгө жардам бериңиз</string>
+  <string name="private_analytics_subtitle">Ооруну жугузуп алуу коркунучу тууралуу маалыматты жергиликтүү саламаттыкты сактоо органдары менен бөлүшүү</string>
+  <string name="private_analytics_footer">Аймагыңыздагы билдирмелердин саны сыяктуу маалымат аркылуу саламаттыкты сактоо органдары COVID-19 вирусунун кантип жайылып жатканын түшүнө алышат. Google аларды окуй албайт жана аларды телефонуңуз менен байланыштырууга болбойт. %1$s</string>
+  <string name="private_analytics_footer_onboarding">Google аларды окуй албайт жана алар телефонуңуз менен байланыштырылбай, жергиликтүү саламаттыкты сактоо органдарына берүү үчүн топтолот. %1$s</string>
+  <string name="private_analytics_footer_learn_more">Кененирээк</string>
 </resources>

@@ -127,6 +127,17 @@ As the app title may be clipped when long, 12 characters or less for visibility.
 
 Optional field, defaults to `agencyDisplayName` if blank
 
+#### appLinkHost
+
+**ABR Field:** (unknown)\
+**Data Type:** String\
+
+Hostname to use to create an
+[App Link](https://developer.android.com/training/app-links)
+association for SMS redirection.
+
+**Required Field**
+
 #### agencyIconForeground
 
 **ABR Field:** URL for foreground portion of icon.\
@@ -191,6 +202,39 @@ Example:
 ```
 
 *Optional field, defaults to no roaming if blank.*
+
+## ENPA Specific Fields
+
+Exposure Notifications Private Analytics (ENPA) has some additional
+configuration fields.
+
+#### enableENPA
+
+**ABR Field:** (unknown)\
+**Data Type:** Boolean\
+
+This field is true to enable ENPA.
+
+#### enpaConsentText
+
+**ABR Field:** ENPA Consent Text\
+**Data Type:** String\
+**Required**\
+**Localizable**
+
+A string that contains the plain text end-user consent document provided by
+the PHA for ENPA.
+
+#### enpaConsentVersion
+
+**ABR Field:** ENPA Consent Version\
+**Data Type:** String\
+**Limit:** 25 chars\
+**Required**\
+**Localizable**
+
+A string that contains the semantic version or monotonically increasing number
+of the consent text for ENPA.
 
 ## General Fields
 

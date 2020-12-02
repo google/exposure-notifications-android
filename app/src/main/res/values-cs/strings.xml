@@ -16,6 +16,8 @@
   <string name="btn_save">Uložit</string>
   <string name="btn_discard">Zahodit</string>
   <string name="btn_verify">Ověřit</string>
+  <string name="btn_dont_share">Nesdílet</string>
+  <string name="btn_share">Sdílet</string>
   <string name="learn_more">Další informace</string>
   <string name="home_tab_exposures_text">Kontakt</string>
   <string name="home_tab_notify_text">Upozornit ostatní</string>
@@ -31,7 +33,7 @@
     \n\nAplikace bude mít k dispozici datum vašeho kontaktu s tímto onemocněním, jeho trvání a s ním spojenou sílu signálu.</string>
   <string name="onboarding_metrics_title">Pomozte aplikaci vylepšit</string>
   <string name="onboarding_metrics_subtitle">Sdílejte data o využití aplikace a výkonu s Googlem</string>
-  <string name="onboarding_metrics_detail">Za účelem údržby a vylepšování aplikace jsou s Googlem sdílena omezená data o využití a výkonu aplikace. Tato data neumožňují identifikaci uživatele.</string>
+  <string name="onboarding_metrics_description">Za účelem údržby a vylepšování aplikace jsou s Googlem sdílena omezená data o využití a výkonu aplikace. Tato data neumožňují identifikaci uživatele. %1$s</string>
   <string name="onboarding_confirm_later_title">Nechat oznámení o možném kontaktu vypnutá?</string>
   <string name="onboarding_confirm_later_detail">Pokud je nezapnete, nebudete informováni o možném kontaktu s COVID-19</string>
   <string name="no_recent_exposure_subtitle">Žádný nedávný kontakt</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">Stav</string>
   <string name="exposure_details_status_exposure">Možný kontakt s COVID-19</string>
   <string name="exposure_details_date_exposed_subtitle">Datum možného kontaktu</string>
-  <string name="exposure_details_expiring_subtitle">Přehledy kontaktu uchováváme 14 dnů od data kontaktu</string>
+  <string name="exposure_details_expiring_subtitle">Přehledy kontaktů uchováváme 14 dnů od data možného kontaktu</string>
   <string name="exposure_details_learn_more">Další informace</string>
   <string name="exposure_details_new_badge">Nové</string>
   <string name="share_test_result_title">Chraňte své okolí, sdílejte výsledek testu na COVID-19</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">Oznámení o možném kontaktu</string>
   <string name="settings_app_analytics_subtitle">Sdílení využití a výkonu aplikace</string>
   <string name="settings_privacy_policy">Zásady ochrany soukromí</string>
+  <string name="settings_help_and_support">Expresní oznámení o možném kontaktu</string>
   <string name="settings_legal_terms">Právní podmínky</string>
   <string name="settings_debug">Režim ladění</string>
   <string name="settings_share">Pomáhejte zastavit šíření COVID-19. Sdílejte tuto aplikaci se svými blízkými, aby se mohli lépe chránit díky oznámením o možném kontaktu.</string>
@@ -134,4 +137,10 @@
   <string name="share_error">Sdílení výsledku testu se nezdařilo. Zkuste to později.</string>
   <string name="generic_error_message">Došlo k chybě. Zkuste to znovu.</string>
   <string name="code_error_already_submitted">Kód již ke sdílení výsledku testu byl použit</string>
+  <string name="settings_private_analytics_subtitle">Oznámení o možném kontaktu – sdílení údajů</string>
+  <string name="private_analytics_title">Pomozte své veřejné zdravotnické instituci zjistit, jak se šíří COVID-19</string>
+  <string name="private_analytics_subtitle">Sdílejte se svou veřejnou zdravotnickou institucí analytické údaje související s oznámeními o možném kontaktu</string>
+  <string name="private_analytics_footer">Tyto analytické údaje, například počet oznámení ve vašem regionu, pomáhají zdravotnickým institucím zjišťovat, jak se šíří COVID-19. Google je nemůže číst a jsou shromažďovány pro zdravotnickou instituci, takže je nelze spojit s vaším telefonem. %1$s</string>
+  <string name="private_analytics_footer_onboarding">Tyto analytické údaje nemůže Google číst a jsou shromažďovány pro zdravotnickou instituci, takže je nelze spojit s vaším telefonem. %1$s</string>
+  <string name="private_analytics_footer_learn_more">Další informace</string>
 </resources>

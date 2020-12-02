@@ -16,6 +16,8 @@
   <string name="btn_save">‏‮Save‬‏</string>
   <string name="btn_discard">‏‮Discard‬‏</string>
   <string name="btn_verify">‏‮Verify‬‏</string>
+  <string name="btn_dont_share">‏‮Don‬‏\'‏‮t‬‏ ‏‮share‬‏</string>
+  <string name="btn_share">‏‮Share‬‏</string>
   <string name="learn_more">‏‮Learn‬‏ ‏‮more‬‏</string>
   <string name="home_tab_exposures_text">‏‮Exposure‬‏</string>
   <string name="home_tab_notify_text">‏‮Notify‬‏ ‏‮others‬‏</string>
@@ -31,7 +33,7 @@
     \‏‮n‬‏\‏‮nThe‬‏ ‏‮date‬‏, ‏‮duration‬‏, ‏‮and‬‏ ‏‮signal‬‏ ‏‮strength‬‏ ‏‮associated‬‏ ‏‮with‬‏ ‏‮an‬‏ ‏‮exposure‬‏ ‏‮will‬‏ ‏‮be‬‏ ‏‮shared‬‏ ‏‮with‬‏ ‏‮the‬‏ ‏‮app‬‏.</string>
   <string name="onboarding_metrics_title">‏‮Help‬‏ ‏‮make‬‏ ‏‮this‬‏ ‏‮app‬‏ ‏‮better‬‏</string>
   <string name="onboarding_metrics_subtitle">‏‮Share‬‏ ‏‮app‬‏ ‏‮usage‬‏ &amp; ‏‮performance‬‏ ‏‮data‬‏ ‏‮with‬‏ ‏‮Google‬‏</string>
-  <string name="onboarding_metrics_detail">‏‮To‬‏ ‏‮help‬‏ ‏‮maintain‬‏ ‏‮and‬‏ ‏‮improve‬‏ ‏‮the‬‏ ‏‮app‬‏, ‏‮some‬‏ ‏‮limited‬‏ ‏‮de‬‏-‏‮identified‬‏ ‏‮data‬‏ ‏‮about‬‏ ‏‮app‬‏ ‏‮performance‬‏ ‏‮and‬‏ ‏‮usage‬‏ ‏‮is‬‏ ‏‮shared‬‏ ‏‮with‬‏ ‏‮Google‬‏. ‏‮This‬‏ ‏‮data‬‏ ‏‮does‬‏ ‏‮not‬‏ ‏‮identify‬‏ ‏‮you‬‏.</string>
+  <string name="onboarding_metrics_description">‏‮To‬‏ ‏‮help‬‏ ‏‮maintain‬‏ ‏‮and‬‏ ‏‮improve‬‏ ‏‮the‬‏ ‏‮app‬‏, ‏‮some‬‏ ‏‮limited‬‏ ‏‮de‬‏-‏‮identified‬‏ ‏‮data‬‏ ‏‮about‬‏ ‏‮app‬‏ ‏‮performance‬‏ ‏‮and‬‏ ‏‮usage‬‏ ‏‮is‬‏ ‏‮shared‬‏ ‏‮with‬‏ ‏‮Google‬‏. ‏‮This‬‏ ‏‮data‬‏ ‏‮does‬‏ ‏‮not‬‏ ‏‮identify‬‏ ‏‮you‬‏. %1$s</string>
   <string name="onboarding_confirm_later_title">‏‮Keep‬‏ ‏‮Exposure‬‏ ‏‮Notification‬‏ ‏‮turned‬‏ ‏‮off‬‏?</string>
   <string name="onboarding_confirm_later_detail">‏‮Until‬‏ ‏‮Exposure‬‏ ‏‮Notifications‬‏ ‏‮are‬‏ ‏‮turned‬‏ ‏‮on‬‏, ‏‮you‬‏ ‏‮won‬‏’‏‮t‬‏ ‏‮be‬‏ ‏‮notified‬‏ ‏‮of‬‏ ‏‮possible‬‏ ‏‮exposure‬‏ ‏‮to‬‏ ‏‮COVID‬‏-19</string>
   <string name="no_recent_exposure_subtitle">‏‮No‬‏ ‏‮recent‬‏ ‏‮exposures‬‏</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">‏‮Status‬‏</string>
   <string name="exposure_details_status_exposure">‏‮Possible‬‏ ‏‮COVID‬‏-19 ‏‮exposure‬‏</string>
   <string name="exposure_details_date_exposed_subtitle">‏‮Possible‬‏ ‏‮exposure‬‏ ‏‮date‬‏</string>
-  <string name="exposure_details_expiring_subtitle">‏‮Exposure‬‏ ‏‮reports‬‏ ‏‮are‬‏ ‏‮stored‬‏ ‏‮for‬‏ 14 ‏‮days‬‏ ‏‮from‬‏ ‏‮the‬‏ ‏‮date‬‏ ‏‮of‬‏ ‏‮exposure‬‏</string>
+  <string name="exposure_details_expiring_subtitle">‏‮Exposure‬‏ ‏‮reports‬‏ ‏‮are‬‏ ‏‮stored‬‏ ‏‮for‬‏ 14 ‏‮days‬‏ ‏‮from‬‏ ‏‮possible‬‏ ‏‮exposure‬‏ ‏‮date‬‏</string>
   <string name="exposure_details_learn_more">‏‮Learn‬‏ ‏‮more‬‏</string>
   <string name="exposure_details_new_badge">‏‮New‬‏</string>
   <string name="share_test_result_title">‏‮Protect‬‏ ‏‮your‬‏ ‏‮community‬‏, ‏‮share‬‏ ‏‮your‬‏ ‏‮COVID‬‏-19 ‏‮test‬‏ ‏‮result‬‏</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">‏‮Exposure‬‏ ‏‮notifications‬‏</string>
   <string name="settings_app_analytics_subtitle">‏‮App‬‏ ‏‮usage‬‏ &amp; ‏‮performance‬‏ ‏‮sharing‬‏</string>
   <string name="settings_privacy_policy">‏‮Privacy‬‏ ‏‮policy‬‏</string>
+  <string name="settings_help_and_support">‏‮About‬‏ ‏‮Exposure‬‏ ‏‮Notification‬‏ ‏‮Express‬‏</string>
   <string name="settings_legal_terms">‏‮Legal‬‏ ‏‮terms‬‏</string>
   <string name="settings_debug">‏‮Debug‬‏ ‏‮mode‬‏</string>
   <string name="settings_share">‏‮Help‬‏ ‏‮contain‬‏ ‏‮the‬‏ ‏‮spread‬‏ ‏‮of‬‏ ‏‮COVID‬‏-19. ‏‮Share‬‏ ‏‮this‬‏ ‏‮app‬‏ ‏‮with‬‏ ‏‮your‬‏ ‏‮community‬‏ ‏‮and‬‏ ‏‮help‬‏ ‏‮them‬‏ ‏‮protect‬‏ ‏‮themselves‬‏ ‏‮better‬‏ ‏‮with‬‏ ‏‮possible‬‏ ‏‮exposure‬‏ ‏‮notifications‬‏.</string>
@@ -134,4 +137,10 @@
   <string name="share_error">‏‮Unable‬‏ ‏‮to‬‏ ‏‮share‬‏ ‏‮the‬‏ ‏‮test‬‏ ‏‮result‬‏. ‏‮Try‬‏ ‏‮again‬‏ ‏‮later‬‏.</string>
   <string name="generic_error_message">‏‮Something‬‏ ‏‮went‬‏ ‏‮wrong‬‏. ‏‮Try‬‏ ‏‮again‬‏.</string>
   <string name="code_error_already_submitted">‏‮Code‬‏ ‏‮has‬‏ ‏‮already‬‏ ‏‮been‬‏ ‏‮used‬‏ ‏‮to‬‏ ‏‮share‬‏ ‏‮test‬‏ ‏‮result‬‏</string>
+  <string name="settings_private_analytics_subtitle">‏‮Exposure‬‏ ‏‮Notifications‬‏ ‏‮analytics‬‏ ‏‮sharing‬‏</string>
+  <string name="private_analytics_title">‏‮Help‬‏ ‏‮your‬‏ ‏‮health‬‏ ‏‮authority‬‏ ‏‮understand‬‏ ‏‮the‬‏ ‏‮spread‬‏ ‏‮of‬‏ ‏‮COVID‬‏-19</string>
+  <string name="private_analytics_subtitle">‏‮Share‬‏ ‏‮Exposure‬‏ ‏‮Notifications‬‏ ‏‮analytics‬‏ ‏‮with‬‏ ‏‮your‬‏ ‏‮health‬‏ ‏‮authority‬‏</string>
+  <string name="private_analytics_footer">‏‮These‬‏ ‏‮analytics‬‏, ‏‮such‬‏ ‏‮as‬‏ ‏‮the‬‏ ‏‮number‬‏ ‏‮of‬‏ ‏‮notifications‬‏ ‏‮in‬‏ ‏‮your‬‏ ‏‮region‬‏, ‏‮help‬‏ ‏‮health‬‏ ‏‮authorities‬‏ ‏‮understand‬‏ ‏‮how‬‏ ‏‮COVID‬‏-19 ‏‮spreads‬‏. ‏‮They‬‏ ‏‮can‬‏’‏‮t‬‏ ‏‮be‬‏ ‏‮read‬‏ ‏‮by‬‏ ‏‮Google‬‏ ‏‮and‬‏ ‏‮are‬‏ ‏‮aggregated‬‏ ‏‮for‬‏ ‏‮your‬‏ ‏‮health‬‏ ‏‮authority‬‏ ‏‮so‬‏ ‏‮they‬‏ ‏‮can‬‏’‏‮t‬‏ ‏‮be‬‏ ‏‮linked‬‏ ‏‮to‬‏ ‏‮your‬‏ ‏‮phone‬‏. %1$s</string>
+  <string name="private_analytics_footer_onboarding">‏‮These‬‏ ‏‮analytics‬‏ ‏‮can‬‏’‏‮t‬‏ ‏‮be‬‏ ‏‮read‬‏ ‏‮by‬‏ ‏‮Google‬‏ ‏‮and‬‏ ‏‮are‬‏ ‏‮aggregated‬‏ ‏‮for‬‏ ‏‮your‬‏ ‏‮health‬‏ ‏‮authority‬‏ ‏‮so‬‏ ‏‮they‬‏ ‏‮can‬‏’‏‮t‬‏ ‏‮be‬‏ ‏‮linked‬‏ ‏‮to‬‏ ‏‮your‬‏ ‏‮phone‬‏. %1$s</string>
+  <string name="private_analytics_footer_learn_more">‏‮Learn‬‏ ‏‮more‬‏</string>
 </resources>

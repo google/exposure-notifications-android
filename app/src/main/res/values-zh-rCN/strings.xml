@@ -16,6 +16,8 @@
   <string name="btn_save">保存</string>
   <string name="btn_discard">舍弃</string>
   <string name="btn_verify">验证</string>
+  <string name="btn_dont_share">不分享</string>
+  <string name="btn_share">分享</string>
   <string name="learn_more">了解详情</string>
   <string name="home_tab_exposures_text">接触史</string>
   <string name="home_tab_notify_text">通知其他人</string>
@@ -31,7 +33,7 @@
     \n\n您可通过该应用了解发生接触的日期、接触时长和信号强度信息。</string>
   <string name="onboarding_metrics_title">协助改进此应用</string>
   <string name="onboarding_metrics_subtitle">与 Google 分享应用使用情况和性能数据</string>
-  <string name="onboarding_metrics_detail">为帮助维护和改进该应用，系统会将少量与应用性能和使用情况有关的数据（去除了可用于识别个人身份的信息）提供给 Google。这些数据不会泄露您的身份。</string>
+  <string name="onboarding_metrics_description">为帮助维护和改进该应用，系统会将少量与应用性能和使用情况有关的数据（去除了可用于识别个人身份的信息）提供给 Google。这些数据不会泄露您的身份。%1$s</string>
   <string name="onboarding_confirm_later_title">要让接触史通知保持关闭状态吗？</string>
   <string name="onboarding_confirm_later_detail">您需要开启接触史通知，系统才能在您可能接触到了新冠肺炎 (COVID-19) 患者时发出通知</string>
   <string name="no_recent_exposure_subtitle">无近期接触史</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">状况</string>
   <string name="exposure_details_status_exposure">您可能接触过新冠肺炎 (COVID-19) 患者</string>
   <string name="exposure_details_date_exposed_subtitle">可能接触到 COVID-19 患者的日期</string>
-  <string name="exposure_details_expiring_subtitle">接触史报告会从接触日期起保留 14 天</string>
+  <string name="exposure_details_expiring_subtitle">接触史报告会从可能接触到 COVID-19 患者的日期起保留 14 天</string>
   <string name="exposure_details_learn_more">了解详情</string>
   <string name="exposure_details_new_badge">最新</string>
   <string name="share_test_result_title">分享您的新冠肺炎 (COVID-19) 检测结果，协助保护社区成员</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">接触史通知</string>
   <string name="settings_app_analytics_subtitle">分享应用使用情况和性能数据</string>
   <string name="settings_privacy_policy">隐私权政策</string>
+  <string name="settings_help_and_support">关于快速接触史通知</string>
   <string name="settings_legal_terms">法律条款</string>
   <string name="settings_debug">调试模式</string>
   <string name="settings_share">帮助遏制新冠肺炎 (COVID-19) 的传播。与社区成员分享此应用，以便他们在可能接触到 COVID-19 患者时收到通知，协助他们妥善保护自身安全。</string>
@@ -134,4 +137,10 @@
   <string name="share_error">无法分享检测结果。请稍后重试。</string>
   <string name="generic_error_message">出了点问题。请重试。</string>
   <string name="code_error_already_submitted">已有人使用过该验证码分享检测结果</string>
+  <string name="settings_private_analytics_subtitle">分享接触史通知分析数据</string>
+  <string name="private_analytics_title">协助公共卫生机构了解新冠肺炎 (COVID-19) 的传播情况</string>
+  <string name="private_analytics_subtitle">与公共卫生机构分享接触史通知分析数据</string>
+  <string name="private_analytics_footer">这些分析数据（例如您所在地区的通知数量）有助于公共卫生机构了解 COVID-19 的传播情况。Google 无法读取这些分析数据。这些分析数据经过汇总才会提供给公共卫生机构，因此其中的数据无法与您的手机相关联。%1$s</string>
+  <string name="private_analytics_footer_onboarding">Google 无法读取这些分析数据。这些分析数据也无法与您的手机相关联，因为它们经过汇总才会提供给公共卫生机构。%1$s</string>
+  <string name="private_analytics_footer_learn_more">了解详情</string>
 </resources>

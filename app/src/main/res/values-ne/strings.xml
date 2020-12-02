@@ -16,6 +16,8 @@
   <string name="btn_save">सुरक्षित गर्नुहोस्</string>
   <string name="btn_discard">खारेज गर्नुहोस्</string>
   <string name="btn_verify">पुष्टि गर्नुहोस्</string>
+  <string name="btn_dont_share">सेयर नगर्नुहोस्</string>
+  <string name="btn_share">सेयर गर्नुहोस्</string>
   <string name="learn_more">थप जान्नुहोस्</string>
   <string name="home_tab_exposures_text">सङ्क्रमितसँगको घुलमिल</string>
   <string name="home_tab_notify_text">अरूलाई सूचित गर्नु…</string>
@@ -31,7 +33,7 @@
     \n\nतपाईं सङ्क्रमित व्यक्तिको सम्पर्कमा आउनुभएको मिति, समय र त्यस बखत नेटवर्कको सिग्नल कस्तो थियो भन्ने कुराको जानकारी यस एपसँग सेयर गरिने छ।</string>
   <string name="onboarding_metrics_title">यो एप सुधार्न मद्दत गर्नुहोस्</string>
   <string name="onboarding_metrics_subtitle">Google लाई एपको प्रयोग र कार्यसम्पादनसम्बन्धी डेटा पठाउनुहोस्</string>
-  <string name="onboarding_metrics_detail">यो एप सञ्चालन गर्न तथा यसलाई सुधार्न Google लाई एपको कार्यसम्पादन तथा प्रयोगसम्बन्धी केही सीमित डेटा पठाइन्छ। ती डेटा Google लाई पठाउनुअघि ती डेटाबाट प्रयोगकर्ताको पहिचान खुलाउने विवरण हटाइन्छ। तसर्थ ती डेटाले तपाईंको पहिचान खुलाउँदैन।</string>
+  <string name="onboarding_metrics_description">यो एप सञ्चालन गर्न तथा यसलाई सुधार्न Google लाई एपको कार्यसम्पादन तथा प्रयोगसम्बन्धी केही सीमित डेटा पठाइन्छ। ती डेटा Google लाई पठाउनुअघि ती डेटाबाट प्रयोगकर्ताको पहिचान खुलाउने विवरण हटाइन्छ। तसर्थ ती डेटाले तपाईंको पहिचान खुलाउँदैन। %1$s</string>
   <string name="onboarding_confirm_later_title">सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सूचना दिने प्रणाली अफ राख्ने हो?</string>
   <string name="onboarding_confirm_later_detail">तपाईंले सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सूचना दिने प्रणाली अन गरेपछि मात्र तपाईंलाई तपाईं सम्भवतः COVID-19 सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सूचना पठाइन्छ</string>
   <string name="no_recent_exposure_subtitle">तपाईं हालसालै COVID-19 सङ्क्रमित व्यक्तिको सम्पर्कमा आएको कुनै जानकारी छैन</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">स्थिति</string>
   <string name="exposure_details_status_exposure">तपाईं COVID-19 सङ्क्रमित व्यक्तिको सम्पर्कमा आएको हुन सक्ने सम्भावना छ</string>
   <string name="exposure_details_date_exposed_subtitle">सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सम्भावित मिति</string>
-  <string name="exposure_details_expiring_subtitle">तपाईं COVID-19 सङ्क्रमित व्यक्तिको सम्पर्कमा आएको कुरासम्बन्धी रिपोर्ट १४ दिनसम्म राखिन्छ</string>
+  <string name="exposure_details_expiring_subtitle">तपाईं COVID-19 सङ्क्रमित व्यक्तिको सम्पर्कमा आएको कुरासम्बन्धी रिपोर्ट तपाईं सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सम्भावित मितिबाट १४ दिनसम्म राखिन्छ</string>
   <string name="exposure_details_learn_more">थप जान्नुहोस्</string>
   <string name="exposure_details_new_badge">नयाँ</string>
   <string name="share_test_result_title">आफ्नो COVID-19 परीक्षणको नतिजा सेयर गरी आफ्नो समुदायमा सङ्क्रमण रोक्न मद्दत गर्नुहोस्</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सूचना दिने प्रणाली</string>
   <string name="settings_app_analytics_subtitle">एपको प्रयोग र कार्यसम्पादनसम्बन्धी डेटा सेयर गर्ने</string>
   <string name="settings_privacy_policy">गोपनीयता नीति</string>
+  <string name="settings_help_and_support">सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सूचना दिने द्रुत प्रणालीका बारेमा जानकारी</string>
   <string name="settings_legal_terms">कानुनी सर्तहरू</string>
   <string name="settings_debug">डिबग मोड</string>
   <string name="settings_share">COVID-19 को सङ्क्रमण फैलन नदिनुहोस्। यो एप आफ्नो समुदायका मान्छेहरूसँग सेयर गर्नुहोस् र सङ्क्रमित व्यक्तिको सम्पर्कमा आएको हुन सक्ने सम्भावना देखिँदा सूचना दिने प्रणालीको सहयोगले उनीहरूलाई अझ राम्ररी सुरक्षित हुन मद्दत गर्नुहोस्।</string>
@@ -134,4 +137,10 @@
   <string name="share_error">परीक्षणको नतिजा सेयर गर्न सकिएन। पछि फेरि प्रयास गर्नुहोस्।</string>
   <string name="generic_error_message">केही चिज गडबड भयो। फेरि प्रयास गर्नुहोस्।</string>
   <string name="code_error_already_submitted">यो कोड परीक्षणको नतिजा सेयर गर्नका निम्ति प्रयोग गरिसकिएको छ</string>
+  <string name="settings_private_analytics_subtitle">सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सूचना दिने प्रणालीको विश्लेषणात्मक डेटा सेयरिङ</string>
+  <string name="private_analytics_title">आफ्नो स्थानीय स्वास्थ्य निकायलाई COVID-19 को फैलावट बुझ्न मद्दत गर्नुहोस्</string>
+  <string name="private_analytics_subtitle">आफ्नो स्थानीय स्वास्थ्य निकायसँग सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सूचना दिने प्रणालीको विश्लेषणात्मक डेटा सेयर गर्नुहोस्</string>
+  <string name="private_analytics_footer">तपाईंको क्षेत्रमा पठाइएका सूचनाहरूको सङ्ख्यालगायतका तथ्याङ्क समावेश यी विश्लेषणात्मक डेटाले स्वास्थ्य निकायहरूलाई COVID-19 कसरी फैलिन्छ भन्ने कुरा बुझ्न मद्दत गर्छन्। Google ले ती डेटा पढ्न सक्दैन। कुन डेटा कुन फोनबाट प्राप्त गरिएको हो भन्ने कुरा पत्ता लगाउन नसकियोस् भन्नाका खातिर तपाईंको स्थानीय स्वास्थ्य निकायको प्रयोजनका लागि ती डेटा समग्र रूपमा सङ्कलन गरिन्छ। %1$s</string>
+  <string name="private_analytics_footer_onboarding">Google ले यी विश्लेषणात्मक डेटा पढ्न सक्दैन। कुन डेटा कुन फोनबाट प्राप्त गरिएको हो भन्ने कुरा पत्ता लगाउन नसकियोस् भन्नाका खातिर तपाईंको स्थानीय स्वास्थ्य निकायको प्रयोजनका लागि ती डेटा समग्र रूपमा सङ्कलन गरिन्छ। %1$s</string>
+  <string name="private_analytics_footer_learn_more">थप जान्नुहोस्</string>
 </resources>

@@ -16,6 +16,8 @@
   <string name="btn_save">Uložiť</string>
   <string name="btn_discard">Zahodiť</string>
   <string name="btn_verify">Overiť</string>
+  <string name="btn_dont_share">Nezdieľať</string>
+  <string name="btn_share">Zdieľať</string>
   <string name="learn_more">Ďalšie informácie</string>
   <string name="home_tab_exposures_text">Kontakt</string>
   <string name="home_tab_notify_text">Upozorniť ostatných</string>
@@ -31,7 +33,7 @@
     \n\nTáto aplikácia získa dátum, trvanie a silu signálu súvisiace s možným kontaktom.</string>
   <string name="onboarding_metrics_title">Pomôžte zlepšiť túto aplikáciu</string>
   <string name="onboarding_metrics_subtitle">Zdieľanie údajov o používaní a výkonnosti aplik. s Googlom</string>
-  <string name="onboarding_metrics_detail">Niektoré obmedzené údaje o výkonnosti a používaní aplikácie, ktoré neumožňujú osobnú identifikáciu, sú zdieľané s Googlom, aby sme ju mohli udržiavať v chode a zlepšovať. Podľa týchto údajov vás nie je možné identifikovať.</string>
+  <string name="onboarding_metrics_description">Niektoré obmedzené údaje o výkonnosti a používaní aplikácie, ktoré neumožňujú osobnú identifikáciu, sú zdieľané s Googlom, aby sme ju mohli udržiavať v chode a zlepšovať. Podľa týchto údajov vás nie je možné identifikovať. %1$s</string>
   <string name="onboarding_confirm_later_title">Chcete nechať upozornenia na kontakt vypnuté?</string>
   <string name="onboarding_confirm_later_detail">Ak nezapnete upozornenia na kontakt, nedostanete upozornenie na kontakt s ochorením COVID‑19</string>
   <string name="no_recent_exposure_subtitle">Žiadne nedávne kontakty</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">Stav</string>
   <string name="exposure_details_status_exposure">Možný kontakt s ochorením COVID‑19</string>
   <string name="exposure_details_date_exposed_subtitle">Dátum možného kontaktu</string>
-  <string name="exposure_details_expiring_subtitle">Hlásenia o kontakte uchovávame 14 dní od dátumu kontaktu</string>
+  <string name="exposure_details_expiring_subtitle">Hlásenia o kontakte uchovávame 14 dní od dátumu možného kontaktu</string>
   <string name="exposure_details_learn_more">Ďalšie informácie</string>
   <string name="exposure_details_new_badge">Nové</string>
   <string name="share_test_result_title">Chráňte svoje okolie, zdieľajte výsledok testu na COVID‑19</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">Upozornenia na kontakt</string>
   <string name="settings_app_analytics_subtitle">Zdieľanie údajov o používaní a výkone aplikácie</string>
   <string name="settings_privacy_policy">Pravidlá ochrany súkromia</string>
+  <string name="settings_help_and_support">Exposure Notification Express</string>
   <string name="settings_legal_terms">Právne podmienky</string>
   <string name="settings_debug">Režim ladenia</string>
   <string name="settings_share">Pomáhajte zabrániť šíreniu ochorenia COVID‑19. Zdieľajte túto aplikáciu s ľuďmi v svojej komunite, aby sa mohli vďaka upozorneniam na možný kontakt lepšie chrániť.</string>
@@ -134,4 +137,10 @@
   <string name="share_error">Výsledok testu sa nedá zdieľať. Skúste to znova neskôr.</string>
   <string name="generic_error_message">Vyskytol sa problém. Skúste to znova.</string>
   <string name="code_error_already_submitted">Pomocou tohto kódu už bol zdieľaný výsledok testu</string>
+  <string name="settings_private_analytics_subtitle">Zdieľanie štatistík upozornení na kontakt</string>
+  <string name="private_analytics_title">Pomôžte svojej inštitúcii verejného zdravotníctva porozumieť šíreniu ochorenia COVID‑19</string>
+  <string name="private_analytics_subtitle">Zdieľajte štatistiky upozornení na kontakt s príslušnou inštitúciou verejného zdravotníctva</string>
+  <string name="private_analytics_footer">Tieto štatistiky, napríklad počet upozornení vo vašej oblasti, pomáhajú inštitúciám verejného zdravotníctva porozumieť tomu, ako sa ochorenie COVID‑19 šíri. Google ich nemôže čítať a sú zhromažďované pre inštitúciu verejného zdravotníctva, takže ich nie je možné spojiť s vaším telefónom. %1$s</string>
+  <string name="private_analytics_footer_onboarding">Google tieto štatistiky nemôže čítať a sú zhromažďované pre inštitúciu verejného zdravotníctva, takže ich nie je možné spojiť s vaším telefónom. %1$s</string>
+  <string name="private_analytics_footer_learn_more">Ďalšie informácie</string>
 </resources>

@@ -19,6 +19,7 @@ package com.google.android.apps.exposurenotification.testsupport;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
+import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.google.android.apps.exposurenotification.network.RequestQueueWrapper;
 import com.google.android.apps.exposurenotification.network.RespondableByteArrayRequest;
@@ -144,16 +145,15 @@ public class FakeRequestQueue extends RequestQueueWrapper {
         ((RespondableByteArrayRequest) request)
             .deliverResponse(matchingResponse.responseBody.getBytes());
       } else if (request instanceof RespondableJsonObjectRequest) {
-        try {
-          JSONObject response = new JSONObject(matchingResponse.responseBody);
-          ((RespondableJsonObjectRequest) request).deliverResponse(response);
-        } catch (JSONException e) {
-          throw new RuntimeException(
-              "Test response could not be parsed as JSON:\n" + matchingResponse.responseBody);
-        }
-      } else if (request instanceof RespondableByteArrayRequest) {
-        ((RespondableByteArrayRequest) request)
-            .deliverResponse(matchingResponse.responseBody.getBytes());
+        // We do some awkward looking back-and-forths here to support testing how
+        // RespondableJsonObjectRequest handles non-JSON responses with its own overload of
+        // parseNetworkResponse(). Makes this fake request queue a bit tightly coupled to the SUT,
+        // not ideal.
+        NetworkResponse networkResponse =
+            new NetworkResponse(matchingResponse.responseBody.getBytes());
+        Response<JSONObject> jsonResponse =
+            ((RespondableJsonObjectRequest) request).parseNetworkResponse(networkResponse);
+        ((RespondableJsonObjectRequest) request).deliverResponse(jsonResponse.result);
       } else {
         throw new RuntimeException(FakeRequestQueue.class.getSimpleName()
             + " only works with " + RespondableStringRequest.class.getSimpleName()

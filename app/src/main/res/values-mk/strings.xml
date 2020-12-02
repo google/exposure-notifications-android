@@ -16,6 +16,8 @@
   <string name="btn_save">Зачувај</string>
   <string name="btn_discard">Отфрли</string>
   <string name="btn_verify">Потврди</string>
+  <string name="btn_dont_share">Не споделувај</string>
+  <string name="btn_share">Сподели</string>
   <string name="learn_more">Дознајте повеќе</string>
   <string name="home_tab_exposures_text">Изложеност</string>
   <string name="home_tab_notify_text">Известете ги другите</string>
@@ -31,7 +33,7 @@
     \n\nДатумот, времетраењето и јачината на сигналот поврзани со изложеноста ќе се споделат со апликацијата.</string>
   <string name="onboarding_metrics_title">Помогнете да се подобри апликацијава</string>
   <string name="onboarding_metrics_subtitle">Испрати податоци за користењето на апликацијата до Google</string>
-  <string name="onboarding_metrics_detail">За одржување и подобрување на апликацијата, некои ограничени податоци за изведбата и користењето на апликацијата коишто не содржат податоци за лична идентификација се споделуваат со Google. Овие податоци не ве идентификуваат.</string>
+  <string name="onboarding_metrics_description">За одржување и подобрување на апликацијата, некои ограничени податоци за изведбата и користењето на апликацијата коишто не содржат податоци за лична идентификација се споделуваат со Google. Овие податоци не ве идентификуваат. %1$s</string>
   <string name="onboarding_confirm_later_title">Да останат исклучени „Известувањата за изложеност“?</string>
   <string name="onboarding_confirm_later_detail">Со исклучени „Известувања за изложеност“ нема да добивате известувања за можна изложеност на COVID-19</string>
   <string name="no_recent_exposure_subtitle">Нема неодамнешна изложеност</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">Статус</string>
   <string name="exposure_details_status_exposure">Можна изложеност на COVID-19</string>
   <string name="exposure_details_date_exposed_subtitle">Датум на можна изложеност</string>
-  <string name="exposure_details_expiring_subtitle">Извештаите за изложеност се чуваат 14 дена од датумот на изложеноста</string>
+  <string name="exposure_details_expiring_subtitle">Извештаите за изложеност се чуваат 14 дена од датумот на можната изложеност</string>
   <string name="exposure_details_learn_more">Дознајте повеќе</string>
   <string name="exposure_details_new_badge">Ново</string>
   <string name="share_test_result_title">Споделете го вашиот резултат од тестирањето за COVID-19 и заштитете ја заедницата</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">Известувања за изложеност</string>
   <string name="settings_app_analytics_subtitle">Споделување на користењето и изведбата на апликацијата</string>
   <string name="settings_privacy_policy">Политика за приватност</string>
+  <string name="settings_help_and_support">За Exposure Notification Express</string>
   <string name="settings_legal_terms">Правни услови</string>
   <string name="settings_debug">Режим за отстранување грешки</string>
   <string name="settings_share">Помогнете да се сопре ширењето на COVID-19. Споделете ја апликацијава со членовите на вашата заедница и помогнете им подобро да се заштитат преку известувањата за можна изложеност.</string>
@@ -134,4 +137,10 @@
   <string name="share_error">Не може да се сподели резултатот од тестирањето. Обидете се повторно подоцна.</string>
   <string name="generic_error_message">Нешто тргна наопаку. Обидете се повторно.</string>
   <string name="code_error_already_submitted">Кодов веќе е искористен за споделување на резултатот од тестирањето</string>
+  <string name="settings_private_analytics_subtitle">Сподели аналитика за „Известувањата за изложеност“</string>
+  <string name="private_analytics_title">Помогнете им на здравствените органи да го сфатат ширењето на COVID-19</string>
+  <string name="private_analytics_subtitle">Споделувајте аналитика за „Известувањата за изложеност“ со здравствените органи</string>
+  <string name="private_analytics_footer">Оваа аналитика, како бројот на известувања во вашата област, им помага на здравствените органи да сфатат како се шири COVID-19. Google не може да ја прочита, а таа се прибира за вашите здравствени органи, што значи дека не може да биде поврзана со вашиот телефон. %1$s</string>
+  <string name="private_analytics_footer_onboarding">Google не може да ја прочита аналитикава којашто се прибира за вашите здравствени органи, што значи дека не може да биде поврзана со вашиот телефон. %1$s</string>
+  <string name="private_analytics_footer_learn_more">Дознајте повеќе</string>
 </resources>

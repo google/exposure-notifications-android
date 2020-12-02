@@ -23,8 +23,6 @@ import com.google.android.apps.exposurenotification.storage.DbModule;
 import com.google.android.apps.exposurenotification.storage.DiagnosisEntity;
 import com.google.android.apps.exposurenotification.storage.DiagnosisRepository;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationDatabase;
-import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
-import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.OnboardingStatus;
 import com.google.android.apps.exposurenotification.testsupport.ExposureNotificationRules;
 import com.google.android.apps.exposurenotification.testsupport.InMemoryDb;
 import dagger.hilt.android.testing.BindValue;
@@ -55,24 +53,22 @@ public class NotifyHomeViewModelTest {
 
   @Inject
   DiagnosisRepository diagnosisRepository;
-  @Inject
-  ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
 
   private NotifyHomeViewModel notifyHomeViewModel;
 
   @Before
   public void setup() {
     rules.hilt().inject();
-    notifyHomeViewModel = new NotifyHomeViewModel(diagnosisRepository,
-        exposureNotificationSharedPreferences);
+    notifyHomeViewModel = new NotifyHomeViewModel(diagnosisRepository);
   }
 
   @Test
-  public void diagnosisRepository_upsertAsync_deliversDiagnosisEntityToObservers() {
+  public void diagnosisRepository_upsertAsync_deliversDiagnosisEntityToObservers()
+      throws Exception {
     List<DiagnosisEntity> diagnosisEntityList = new ArrayList<>();
     notifyHomeViewModel.getAllDiagnosisEntityLiveData().observeForever(diagnosisEntityList::addAll);
 
-    diagnosisRepository.upsertAsync(DiagnosisEntity.newBuilder().setId(12345L).build());
+    diagnosisRepository.upsertAsync(DiagnosisEntity.newBuilder().setId(12345L).build()).get();
 
     assertThat(diagnosisEntityList).hasSize(1);
     assertThat(diagnosisEntityList.get(0).getId()).isEqualTo(12345L);

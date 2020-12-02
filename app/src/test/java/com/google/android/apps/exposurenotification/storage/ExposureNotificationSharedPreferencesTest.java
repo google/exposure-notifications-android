@@ -21,10 +21,10 @@ import static com.google.common.truth.Truth.assertThat;
 
 import androidx.lifecycle.LiveData;
 import androidx.test.core.app.ApplicationProvider;
-import com.google.android.apps.exposurenotification.common.time.Clock;
-import com.google.android.apps.exposurenotification.testsupport.FakeClock;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.OnboardingStatus;
 import com.google.android.apps.exposurenotification.testsupport.ExposureNotificationRules;
+import com.google.android.apps.exposurenotification.testsupport.FakeClock;
+import com.google.common.base.Optional;
 import dagger.hilt.android.testing.HiltAndroidTest;
 import dagger.hilt.android.testing.HiltTestApplication;
 import java.util.ArrayList;
@@ -35,6 +35,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
+import org.threeten.bp.Duration;
 import org.threeten.bp.Instant;
 
 /**
@@ -55,7 +56,8 @@ public class ExposureNotificationSharedPreferencesTest {
   public void setUp() {
     clock = new FakeClock();
     exposureNotificationSharedPreferences =
-        new ExposureNotificationSharedPreferences(ApplicationProvider.getApplicationContext(), clock);
+        new ExposureNotificationSharedPreferences(ApplicationProvider.getApplicationContext(),
+            clock);
   }
 
   @Test
@@ -70,6 +72,21 @@ public class ExposureNotificationSharedPreferencesTest {
 
     assertThat(exposureNotificationSharedPreferences.getOnboardedState())
         .isEqualTo(OnboardingStatus.SKIPPED);
+  }
+
+  @Test
+  public void exposureNotificationLastShownClassification() {
+    exposureNotificationSharedPreferences.setPrivateAnalyticsState(true);
+    Instant notificationTime = Instant.ofEpochMilli(123L);
+    exposureNotificationSharedPreferences
+        .setExposureNotificationLastShownClassification(notificationTime, /* classificationIndex= */
+            1);
+
+    assertThat(
+        exposureNotificationSharedPreferences.getExposureNotificationLastShownClassification())
+        .isEqualTo(1);
+    assertThat(exposureNotificationSharedPreferences.getExposureNotificationLastShownTime())
+        .isEqualTo(notificationTime);
   }
 
   @Test
@@ -105,17 +122,81 @@ public class ExposureNotificationSharedPreferencesTest {
   }
 
   @Test
+  public void getPrivateAnalyticsStateLiveData_default_isFalse() {
+    LiveData<Boolean> privateAnalyticsStateLiveData =
+        exposureNotificationSharedPreferences.getPrivateAnalyticsStateLiveData();
+    List<Boolean> values = new ArrayList<>();
+    privateAnalyticsStateLiveData.observeForever(values::add);
+
+    assertThat(values).containsExactly(false);
+  }
+
+  @Test
+  public void setPrivateAnalyticsState_trueThenFalse_observedInLiveData() {
+    LiveData<Boolean> privateAnalyticsStateLiveData =
+        exposureNotificationSharedPreferences.getPrivateAnalyticsStateLiveData();
+    List<Boolean> values = new ArrayList<>();
+    privateAnalyticsStateLiveData.observeForever(values::add);
+
+    exposureNotificationSharedPreferences.setPrivateAnalyticsState(true);
+    exposureNotificationSharedPreferences.setPrivateAnalyticsState(false);
+
+    // Observe default, then true, then false
+    assertThat(values).containsExactly(false, true, false).inOrder();
+  }
+
+  @Test
+  public void isPrivateAnalyticsStateSetLiveData_default_isFalse() {
+    LiveData<Boolean> privateAnalyticsStateLiveData =
+        exposureNotificationSharedPreferences.isPrivateAnalyticsStateSetLiveData();
+    List<Boolean> values = new ArrayList<>();
+    privateAnalyticsStateLiveData.observeForever(values::add);
+
+    assertThat(values).containsExactly(false);
+  }
+
+  @Test
+  public void isPrivateAnalyticsStateSetLiveData_setTwice_observedInLiveDataOnce() {
+    LiveData<Boolean> privateAnalyticsStateLiveData =
+        exposureNotificationSharedPreferences.isPrivateAnalyticsStateSetLiveData();
+    List<Boolean> values = new ArrayList<>();
+    privateAnalyticsStateLiveData.observeForever(values::add);
+
+    exposureNotificationSharedPreferences.setPrivateAnalyticsState(true);
+    exposureNotificationSharedPreferences.setPrivateAnalyticsState(false);
+
+    assertThat(values).containsExactly(false, true);
+  }
+
+  @Test
+  public void isPrivateAnalyticsStateSet_default_isFalse() {
+    assertThat(exposureNotificationSharedPreferences.isPrivateAnalyticsStateSet()).isFalse();
+  }
+
+  @Test
+  public void isPrivateAnalyticsStateSet_set_isTrue() {
+    exposureNotificationSharedPreferences.setPrivateAnalyticsState(true);
+
+    assertThat(exposureNotificationSharedPreferences.isPrivateAnalyticsStateSet()).isTrue();
+  }
+
+  @Test
   public void setAndGetLoggingLastTimeStamp() {
-    clock.setMs(2);
-    exposureNotificationSharedPreferences.getAndResetAnalyticsLoggingLastTimestamp();
-    Instant instant = exposureNotificationSharedPreferences.getAnalyticsLoggingLastTimestamp();
-    assertThat(instant).isEqualTo(Instant.ofEpochMilli(2));
+    clock.set(Instant.ofEpochMilli(2));
+    Optional<Instant> instant =
+        exposureNotificationSharedPreferences.maybeGetAnalyticsLoggingLastTimestamp();
+    assertThat(instant.isPresent()).isFalse();
 
-    clock.advanceMs(2);
-    instant = exposureNotificationSharedPreferences.getAndResetAnalyticsLoggingLastTimestamp();
-    assertThat(instant).isEqualTo(Instant.ofEpochMilli(2));
+    exposureNotificationSharedPreferences.resetAnalyticsLoggingLastTimestamp();
+    instant = exposureNotificationSharedPreferences.maybeGetAnalyticsLoggingLastTimestamp();
+    assertThat(instant.get()).isEqualTo(Instant.ofEpochMilli(2));
 
-    instant = exposureNotificationSharedPreferences.getAnalyticsLoggingLastTimestamp();
-    assertThat(instant).isEqualTo(Instant.ofEpochMilli(4));
+    clock.advanceBy(Duration.ofMillis(2));
+    instant = exposureNotificationSharedPreferences.maybeGetAnalyticsLoggingLastTimestamp();
+    assertThat(instant.get()).isEqualTo(Instant.ofEpochMilli(2));
+
+    exposureNotificationSharedPreferences.resetAnalyticsLoggingLastTimestamp();
+    instant = exposureNotificationSharedPreferences.maybeGetAnalyticsLoggingLastTimestamp();
+    assertThat(instant.get()).isEqualTo(Instant.ofEpochMilli(4));
   }
 }

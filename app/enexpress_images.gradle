@@ -26,19 +26,24 @@ buildscript {
   dependencies {
     classpath "com.android.tools:sdk-common:27.0.1"
     classpath "com.google.android:android:4.0.1.2"
+    classpath "org.apache.xmlgraphics:batik-codec:1.13"
+    classpath "org.apache.xmlgraphics:batik-transcoder:1.13"
   }
 }
 
 import com.android.ide.common.vectordrawable.Svg2Vector
+import org.apache.batik.transcoder.image.PNGTranscoder
+import org.apache.batik.transcoder.TranscoderInput
+import org.apache.batik.transcoder.TranscoderOutput
+import groovy.xml.MarkupBuilder
 import java.awt.Color
 import java.awt.Image
 import java.awt.geom.Ellipse2D
 import java.awt.image.BufferedImage
-import java.io.ByteArrayInputStream
 import javax.imageio.ImageIO
 
 
-def svgToXml(content) {
+static def svgToXml(content) {
   def tmp = File.createTempFile("temp", ".tmp")
   tmp.bytes = content
   ByteArrayOutputStream outStream = new ByteArrayOutputStream()
@@ -47,11 +52,11 @@ def svgToXml(content) {
   return outStream.toByteArray()
 }
 
-def writeBytes(content, dst) {
+static def writeBytes(content, dst) {
   new File(dst).bytes = content
 }
 
-def resizeImage(image, scale) {
+static def resizeImage(image, scale) {
   def w = (int) (image.getWidth() * scale)
   def h = (int) (image.getHeight() * scale)
   BufferedImage newImage = new BufferedImage(
@@ -148,7 +153,13 @@ def generateIconSizes(fg, bg, color, dir, filename) {
   }
 }
 
-def downloadImage(url) {
+static def downloadImage(url) {
+  // Handle local files separately.
+  if (url.startsWith("./")) {
+    def ext = url.substring(url.lastIndexOf("."))
+    def contentBytes = new File("app/configs/" + url).bytes
+    return [contentBytes, ext]
+  }
   // Handle data urls separately.
   if (url.startsWith("data:")) {
     def parts = url.split(":")[1].split(",")
@@ -169,7 +180,6 @@ def downloadImage(url) {
       throw new GradleException(
           "Unsupported image file format: " + format)
     }
-    return
   }
   // Convert SVGs to XML, copy PNGs directly.
   if (url.endsWith(".png")) {
@@ -183,16 +193,21 @@ def downloadImage(url) {
 
 def downloadImages(config, name) {
   def image = downloadImage(config[name])
-  def pngName = name + "PNG"
-  if (config.containsKey(pngName)) {
-    def pngImage = downloadImage(config[pngName])
+  if (image[1] == ".svg") {
+    PNGTranscoder transcoder = new PNGTranscoder()
+    def input = new TranscoderInput(new ByteArrayInputStream(image[0]))
+    ByteArrayOutputStream ostream = new ByteArrayOutputStream()
+    TranscoderOutput output = new TranscoderOutput(ostream)
+    transcoder.addTranscodingHint(PNGTranscoder.KEY_WIDTH, new Float(512))
+    transcoder.transcode(input, output)
+    def pngImage = [ostream.toByteArray(), ".png"]
     return [image, pngImage]
   } else {
     return [image, image]
   }
 }
 
-def writeImage(img, path) {
+static def writeImage(img, path) {
   if (img[1] == ".svg") {
     writeBytes(svgToXml(img[0]), path + ".xml")
   } else {
@@ -200,7 +215,7 @@ def writeImage(img, path) {
   }
 }
 
-def writeBackground(outDrawablePath) {
+static def writeBackground(outDrawablePath) {
   def back = new File(outDrawablePath + "/ic_launcher_background.xml")
   back.write('''\
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
@@ -216,7 +231,7 @@ def writeBackground(outDrawablePath) {
 ''')
 }
 
-def emitDrawables(config, outDir) {
+def emitDrawablesLightMode(config, outDir) {
   // Emit agencyImage drawables
   def outDrawablePath = outDir + "/drawable"
   mkdir outDrawablePath
@@ -245,6 +260,65 @@ def emitDrawables(config, outDir) {
     writeImage(img, outDrawablePath + "/ic_launcher_foreground")
     writeBackground(outDrawablePath)
   }
+}
+
+def emitDrawablesDarkMode(config, outDir) {
+  // Emit agencyImage drawables for dark mode
+  def outDrawablePath = outDir + "/drawable-night"
+  mkdir outDrawablePath
+
+  def agencyImageDarkMode = config.containsKey("agencyImageDarkMode") &&
+          config["agencyImageDarkMode"] != ""
+
+  def imageSource = agencyImageDarkMode ? "agencyImageDarkMode" : "agencyImage"
+  def (img, imgPNG) = downloadImages(config, imageSource)
+  writeImage(img, outDrawablePath + "/enx_agency_image")
+
+  def outValuesNightPath = outDir + "/values-night"
+  if (!agencyImageDarkMode) {
+    mkdir outValuesNightPath
+    def outFile = new File(outValuesNightPath, "color.xml").withWriter { writer ->
+      def destXml = new MarkupBuilder(new IndentPrinter(writer, "    ", true, true))
+      destXml.setDoubleQuotes(true)
+      def destXmlMkp = destXml.getMkp()
+      destXmlMkp.xmlDeclaration(version: "1.0", encoding: "utf-8")
+      destXmlMkp.comment("Generated at ${new Date()}")
+      destXmlMkp.yield "\r\n"
+      destXml.resources() {
+        "color"("name": "enx_agencyImageBackgroundColor") {
+          destXmlMkp.yield "@android:color/background_light"
+        }
+      }
+    }
+  }
+
+  if (config.containsKey("agencyIconForegroundDarkMode") &&
+          config["agencyIconForegroundDarkMode"] != "") {
+    // Produce an adaptive icon
+    def (fg, fgPNG) = downloadImages(config, "agencyIconForegroundDarkMode")
+    writeImage(fg, outDrawablePath + "/ic_launcher_foreground")
+    if (config.containsKey("agencyIconBackgroundDarkMode") &&
+            config["agencyIconBackgroundDarkMode"] != "") {
+      def (bg, bgPNG) = downloadImages(config, "agencyIconBackgroundDarkMode")
+      writeImage(bg, outDrawablePath + "/ic_launcher_background")
+      generateIconSizes(fgPNG, bgPNG, null, outDir, "ic_launcher")
+    } else {
+      generateIconSizes(fgPNG, null, null, outDir, "ic_launcher")
+      writeImage(fg, outDrawablePath + "/ic_launcher_background")
+      writeBackground(outDrawablePath)
+    }
+  } else {
+    // Synthesize icon from agencyImage
+    generateIconSizes(imgPNG, null, config["agencyColor"],
+            outDir, "ic_launcher")
+    writeImage(img, outDrawablePath + "/ic_launcher_foreground")
+    writeBackground(outDrawablePath)
+  }
+}
+
+def emitDrawables(config, outDir) {
+  emitDrawablesLightMode(config, outDir)
+  emitDrawablesDarkMode(config, outDir)
 }
 
 ext {

@@ -18,6 +18,10 @@
 package com.google.android.apps.exposurenotification.onboarding;
 
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
+import android.text.style.URLSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,11 +39,11 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.home.ExposureNotificationViewModel;
-import com.google.android.apps.exposurenotification.home.ExposureNotificationViewModel.ExposureNotificationState;
 import com.google.android.apps.exposurenotification.home.HomeFragment;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.switchmaterial.SwitchMaterial;
+import com.google.common.base.Optional;
 import dagger.hilt.android.AndroidEntryPoint;
 
 /**
@@ -60,6 +64,10 @@ public class OnboardingPermissionDisabledFragment extends Fragment {
 
   private boolean skipDialogShown = false;
 
+  private boolean shouldShowPrivateAnalyticsOnboarding = false;
+
+  private Optional<Boolean> lastUpdateAtBottom = Optional.absent();
+
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
     return inflater.inflate(R.layout.fragment_onboarding_permission_disabled, parent, false);
@@ -72,6 +80,19 @@ public class OnboardingPermissionDisabledFragment extends Fragment {
     exposureNotificationViewModel =
         new ViewModelProvider(requireActivity()).get(ExposureNotificationViewModel.class);
     onboardingViewModel = new ViewModelProvider(this).get(OnboardingViewModel.class);
+
+    String learnMore = getString(R.string.learn_more);
+    URLSpan learnMoreClickableSpan = new URLSpan(getString(R.string.app_analytics_link));
+    String onboardingMetricsDescription =
+        getString(R.string.onboarding_metrics_description, learnMore);
+    SpannableString spannableString = new SpannableString(onboardingMetricsDescription);
+    int learnMoreStart = onboardingMetricsDescription.indexOf(learnMore);
+    spannableString
+        .setSpan(learnMoreClickableSpan, learnMoreStart, learnMoreStart + learnMore.length(),
+            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+    TextView appAnalyticsDetail = view.findViewById(R.id.app_analytics_detail);
+    appAnalyticsDetail.setText(spannableString);
+    appAnalyticsDetail.setMovementMethod(LinkMovementMethod.getInstance());
 
     ViewSwitcher onboardingButtonsLoadingSwitcher =
         view.findViewById(R.id.onboarding_buttons_loading_switcher);
@@ -90,7 +111,7 @@ public class OnboardingPermissionDisabledFragment extends Fragment {
                 onboardingViewModel.setAppAnalyticsState(analyticsSwitch.isChecked());
                 onboardingButtonsLoadingSwitcher.setDisplayedChild(1);
                 onboardingViewModel.setOnboardedState(true);
-                HomeFragment.transitionToHomeFragment(this);
+                transitionNext();
               } else {
                 onboardingButtonsLoadingSwitcher.setDisplayedChild(0);
               }
@@ -146,6 +167,11 @@ public class OnboardingPermissionDisabledFragment extends Fragment {
           nextButton.setVisibility(inFlight ? View.INVISIBLE : View.VISIBLE);
         });
 
+
+    onboardingViewModel.shouldShowPrivateAnalyticsOnboardingLiveData()
+        .observe(getViewLifecycleOwner(),
+            shouldShowPrivateAnalyticsOnboarding ->
+                this.shouldShowPrivateAnalyticsOnboarding = shouldShowPrivateAnalyticsOnboarding);
   }
 
   @Override
@@ -158,6 +184,11 @@ public class OnboardingPermissionDisabledFragment extends Fragment {
    * Update the UI depending on whether scrolling is at the bottom or not.
    */
   private void updateAtBottom(boolean atBottom) {
+    if (lastUpdateAtBottom.isPresent() && lastUpdateAtBottom.get() == atBottom) {
+      // Don't update if already at set.
+      return;
+    }
+    lastUpdateAtBottom = Optional.of(atBottom);
     if (atBottom) {
       nextButton.setText(R.string.btn_turn_on);
       nextButton.setOnClickListener(v2 -> nextAction());
@@ -165,8 +196,7 @@ public class OnboardingPermissionDisabledFragment extends Fragment {
     } else {
       nextButton.setText(R.string.btn_continue);
       nextButton.setOnClickListener(v2 -> scroller.fullScroll(View.FOCUS_DOWN));
-      onboardingButtons
-          .setElevation(getResources().getDimension(R.dimen.onboarding_button_elevation));
+      onboardingButtons.setElevation(getResources().getDimension(R.dimen.onboarding_button_elevation));
     }
     if (nextButton.isAccessibilityFocused()) {
       // Let accessibility service announce when button text change.
@@ -197,6 +227,14 @@ public class OnboardingPermissionDisabledFragment extends Fragment {
 
   private void nextAction() {
     exposureNotificationViewModel.startExposureNotifications();
+  }
+
+  private void transitionNext() {
+    if (shouldShowPrivateAnalyticsOnboarding) {
+      OnboardingPrivateAnalyticsFragment.transitionToOnboardingPrivateAnalyticsFragment(this);
+    } else {
+      HomeFragment.transitionToHomeFragment(this);
+    }
   }
 
 }

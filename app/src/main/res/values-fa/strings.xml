@@ -16,13 +16,15 @@
   <string name="btn_save">ذخیره</string>
   <string name="btn_discard">صرف‌نظر کردن</string>
   <string name="btn_verify">‌تأیید کردن</string>
+  <string name="btn_dont_share">هم‌رسانی نشود</string>
+  <string name="btn_share">هم‌رسانی</string>
   <string name="learn_more">بیشتر بدانید</string>
   <string name="home_tab_exposures_text">تماس‌های پرخطر</string>
   <string name="home_tab_notify_text">اطلاع به دیگران</string>
   <string name="home_tab_settings_text">تنظیمات</string>
   <string name="notification_channel_name">تماس پرخطر احتمالی با کووید-۱۹</string>
   <string name="notification_channel_description">درصورت احتمال برقراری تماس پرخطر با فرد مبتلا به کووید-۱۹، اعلان دریافت کنید.</string>
-  <string name="navigate_up">برگشتن به صفحه قبلی</string>
+  <string name="navigate_up">برگشتن به صفحه قبل</string>
   <string name="onboarding_opt_in_title">اجازه‌های موردنیاز برای نصب و استفاده بهینه از این برنامه</string>
   <string name="onboarding_finish_title">ادامه اجازه‌های موردنیاز برای نصب و استفاده بهینه از این برنامه</string>
   <string name="onboarding_exposure_notifications_title">روشن کردن اعلان تماس‌های پرخطر</string>
@@ -31,7 +33,7 @@
     \n\nتاریخ، مدت، و قدرت سیگنال مربوط به قرار گرفتن درمعرض تماس پرخطر با برنامه هم‌رسانی خواهد شد.</string>
   <string name="onboarding_metrics_title">به بهبود این برنامه کمک کنید</string>
   <string name="onboarding_metrics_subtitle">داده عملکرد و استفاده از برنامه را با Google هم‌رسانی کنید</string>
-  <string name="onboarding_metrics_detail">برای کمک به نگهداری و بهبود برنامه، داده‌هایی محدود و غیرقابل شناسایی درباره عملکرد و استفاده از برنامه با Google هم‌رسانی می‌شود. این داده‌ها هویت شما را نشان نمی‌دهند.</string>
+  <string name="onboarding_metrics_description">برای کمک به نگهداری و بهبود برنامه، برخی داده‌هایی محدود و غیرقابل‌شناسایی درباره عملکرد و استفاده از برنامه، با Google هم‌رسانی می‌شود. این داده‌ها هویت شما را فاش نمی‌کند. %1$s</string>
   <string name="onboarding_confirm_later_title">«اعلان تماس‌های پرخطر» خاموش بماند؟</string>
   <string name="onboarding_confirm_later_detail">اگر «اعلان تماس‌های پرخطر» را روشن نکنید، از تماس پرخطر احتمالی کووید-۱۹ مطلع نمی‌شوید</string>
   <string name="no_recent_exposure_subtitle">تماس پرخطر جدیدی وجود ندارد</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">وضعیت</string>
   <string name="exposure_details_status_exposure">تماس پرخطر احتمالی با کووید-۱۹</string>
   <string name="exposure_details_date_exposed_subtitle">تاریخ تماس پرخطر احتمالی</string>
-  <string name="exposure_details_expiring_subtitle">گزارش‌های تماس پرخطر به‌مدت ۱۴ روز از تاریخ قرار گرفتن درمعرض تماس ذخیره می‌شوند</string>
+  <string name="exposure_details_expiring_subtitle">گزارش تماس‌های پرخطر تا ۱۴ روز بعداز تاریخ قرار گرفتن درمعرض تماس پرخطر احتمالی ذخیره می‌شود</string>
   <string name="exposure_details_learn_more">بیشتر بدانید</string>
   <string name="exposure_details_new_badge">جدید</string>
   <string name="share_test_result_title">از جامعه‌تان محافظت کنید، نتیجه آزمایش کووید-۱۹ را هم‌رسانی کنید</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">اعلان تماس‌های پرخطر</string>
   <string name="settings_app_analytics_subtitle">هم‌رسانی عملکرد و استفاده از برنامه</string>
   <string name="settings_privacy_policy">خط‌مشی رازداری</string>
+  <string name="settings_help_and_support">درباره «اعلان تماس‌های پرخطر Express»</string>
   <string name="settings_legal_terms">شرایط قانونی</string>
   <string name="settings_debug">حالت اشکال‌زدایی</string>
   <string name="settings_share">به جلوگیری از شیوع کووید-۱۹ کمک کنید. این برنامه را در اجتماع خود هم‌رسانی کنید تا به آن‌ها کمک کنید با اعلان‌های احتمالی تماس‌های پرخطر بهتر از خودشان محافظت کنند.</string>
@@ -134,4 +137,10 @@
   <string name="share_error">نتیجه آزمایش هم‌رسانی نمی‌شود. بعداً دوباره امتحان کنید.</string>
   <string name="generic_error_message">مشکلی پیش آمد. دوباره امتحان کنید.</string>
   <string name="code_error_already_submitted">کد برای هم‌رسانی نتیجه آزمایش استفاده شده است</string>
+  <string name="settings_private_analytics_subtitle">هم‌رسانی تجزیه‌وتحلیل «اعلان تماس پرخطر»</string>
+  <string name="private_analytics_title">به وزارت بهداشت (یا مؤسسات تابعه) کمک کنید راه‌های سرایت کووید-۱۹ را بشناسند</string>
+  <string name="private_analytics_subtitle">هم‌رسانی تجزیه‌وتحلیل‌های «اعلان تماس‌های پرخطر» با وزارت بهداشت (یا مؤسسات تابعه)</string>
+  <string name="private_analytics_footer">این تجزیه‌وتحلیل‌ها، مانند تعداد اعلان‌ها در منطقه‌تان، به وزارت بهداشت (یا مؤسسات تابعه) کمک می‌کند راه‌های سرایت کووید-۱۹ را بشناسند. Google نمی‌تواند این داده‌ها را بخواند و به‌صورت داده‌های انبوهشی دراختیار وزارت بهداشت (یا مؤسسات تابعه) قرار می‌گیرد تا نتوان آن‌ها را به تلفنتان پیوند داد. %1$s</string>
+  <string name="private_analytics_footer_onboarding">Google نمی‌تواند این داده‌ها را بخواند و به‌صورت داده‌های انبوهشی دراختیار وزارت بهداشت (یا مؤسسات تابعه) قرار می‌گیرد تا نتوان آن‌ها را به تلفنتان پیوند داد. %1$s</string>
+  <string name="private_analytics_footer_learn_more">بیشتر بدانید</string>
 </resources>

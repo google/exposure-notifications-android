@@ -16,6 +16,8 @@
   <string name="btn_save">Lưu</string>
   <string name="btn_discard">Hủy</string>
   <string name="btn_verify">Xác minh</string>
+  <string name="btn_dont_share">Không chia sẻ</string>
+  <string name="btn_share">Chia sẻ</string>
   <string name="learn_more">Tìm hiểu thêm</string>
   <string name="home_tab_exposures_text">Tiếp xúc</string>
   <string name="home_tab_notify_text">Báo cho người khác</string>
@@ -31,7 +33,7 @@
     \n\nNgày, thời gian tiếp xúc và cường độ tín hiệu Bluetooth liên quan đến lần tiếp xúc sẽ được chia sẻ với ứng dụng.</string>
   <string name="onboarding_metrics_title">Giúp cải tiến ứng dụng này</string>
   <string name="onboarding_metrics_subtitle">Chia sẻ dữ liệu hiệu suất và mức sử dụng ứng dụng với Google</string>
-  <string name="onboarding_metrics_detail">Nhằm giúp duy trì và cải tiến ứng dụng này, một số dữ liệu hạn chế về hiệu suất và mức sử dụng ứng dụng (đã loại bỏ thông tin nhận dạng cá nhân) sẽ được chia sẻ với Google. Dữ liệu này không xác định danh tính của bạn.</string>
+  <string name="onboarding_metrics_description">Nhằm giúp duy trì và cải tiến ứng dụng này, một số dữ liệu hạn chế về hiệu suất và mức sử dụng ứng dụng (đã loại bỏ thông tin nhận dạng cá nhân) sẽ được chia sẻ với Google. Dữ liệu này không xác định danh tính của bạn. %1$s</string>
   <string name="onboarding_confirm_later_title">Tiếp tục tắt Thông báo tiếp xúc?</string>
   <string name="onboarding_confirm_later_detail">Bạn sẽ không nhận được thông báo về khả năng tiếp xúc COVID-19 cho đến khi bật Thông báo tiếp xúc</string>
   <string name="no_recent_exposure_subtitle">Không có lần tiếp xúc nào gần đây</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">Trạng thái</string>
   <string name="exposure_details_status_exposure">Khả năng tiếp xúc COVID-19</string>
   <string name="exposure_details_date_exposed_subtitle">Ngày có khả năng tiếp xúc</string>
-  <string name="exposure_details_expiring_subtitle">Báo cáo tiếp xúc được lưu trữ trong 14 ngày kể từ ngày tiếp xúc</string>
+  <string name="exposure_details_expiring_subtitle">Báo cáo tiếp xúc được lưu trữ trong 14 ngày kể từ ngày có khả năng tiếp xúc</string>
   <string name="exposure_details_learn_more">Tìm hiểu thêm</string>
   <string name="exposure_details_new_badge">Mới</string>
   <string name="share_test_result_title">Để bảo vệ cộng đồng, hãy chia sẻ kết quả xét nghiệm COVID-19 của bạn</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">Thông báo tiếp xúc</string>
   <string name="settings_app_analytics_subtitle">Chia sẻ dữ liệu hiệu suất và mức sử dụng ứng dụng</string>
   <string name="settings_privacy_policy">Chính sách quyền riêng tư</string>
+  <string name="settings_help_and_support">Giới thiệu về Thông báo tiếp xúc nhanh</string>
   <string name="settings_legal_terms">Điều khoản pháp lý</string>
   <string name="settings_debug">Chế độ gỡ lỗi</string>
   <string name="settings_share">Giúp ngăn chặn sự lây lan của COVID-19. Hãy chia sẻ ứng dụng này với cộng đồng của bạn và giúp họ bảo vệ bản thân tốt hơn bằng thông báo về khả năng tiếp xúc.</string>
@@ -134,4 +137,10 @@
   <string name="share_error">Không thể chia sẻ kết quả xét nghiệm. Hãy thử lại sau.</string>
   <string name="generic_error_message">Đã xảy ra lỗi. Hãy thử lại.</string>
   <string name="code_error_already_submitted">Đã có người sử dụng mã đó để chia sẻ kết quả xét nghiệm</string>
+  <string name="settings_private_analytics_subtitle">Chia sẻ số liệu phân tích về Thông báo tiếp xúc</string>
+  <string name="private_analytics_title">Giúp cơ quan y tế nắm được tình hình lây lan của COVID-19</string>
+  <string name="private_analytics_subtitle">Chia sẻ số liệu phân tích về Thông báo tiếp xúc với cơ quan y tế</string>
+  <string name="private_analytics_footer">Những số liệu phân tích này, như số thông báo trong khu vực của bạn, giúp các cơ quan y tế nắm được tình hình lây lan của COVID-19. Google không thể đọc những số liệu này. Đây là số liệu được tổng hợp cho cơ quan y tế nên không được liên kết với điện thoại của bạn. %1$s</string>
+  <string name="private_analytics_footer_onboarding">Google không thể đọc những số liệu phân tích này. Số liệu này được tổng hợp cho cơ quan y tế nên không được liên kết với điện thoại của bạn. %1$s</string>
+  <string name="private_analytics_footer_learn_more">Tìm hiểu thêm</string>
 </resources>

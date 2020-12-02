@@ -16,6 +16,8 @@
   <string name="btn_save">သိမ်းရန်</string>
   <string name="btn_discard">ဖယ်ပစ်ရန်</string>
   <string name="btn_verify">စိစစ်ရန်</string>
+  <string name="btn_dont_share">မမျှဝေပါနှင့်</string>
+  <string name="btn_share">မျှဝေရန်</string>
   <string name="learn_more">ပိုမိုလေ့လာရန်</string>
   <string name="home_tab_exposures_text">ထိတွေ့မှု</string>
   <string name="home_tab_notify_text">အသိပေးပါ</string>
@@ -31,7 +33,7 @@
     \n\nထိတွေ့မှုနှင့်ဆက်စပ်နေသည့် ရက်စွဲ၊ ကြာချိန်နှင့် လိုင်းဆွဲအားတို့ကို အက်ပ်နှင့်မျှဝေပါမည်။</string>
   <string name="onboarding_metrics_title">ဤအက်ပ်ကို ပိုမိုကောင်းမွန်စေရန် ကူညီဆောင်ရွက်ပေးပါ</string>
   <string name="onboarding_metrics_subtitle">အက်ပ်အသုံးပြုမှုနှင့် စွမ်းဆောင်ရည်ဒေတာကို Google နှင့်မျှဝေပါ</string>
-  <string name="onboarding_metrics_detail">အက်ပ်ကို ကူညီထိန်းသိမ်းရန်နှင့် ပိုမိုကောင်းမွန်စေရန် အက်ပ်စွမ်းဆောင်ရည်နှင့် အသုံးပြုမှုတို့နှင့်ပတ်သက်သည့် ကန့်သတ်ထားသော မည်သူမည်ဝါဖြစ်ကြောင်း မပါဝင်သည့်ဒေတာအချို့ကို Google နှင့်မျှဝေသည်။ ဤဒေတာသည် သင့်ကို မည်သူမည်ဝါဖြစ်ကြောင်း ထုတ်ဖော်မည်မဟုတ်ပါ။</string>
+  <string name="onboarding_metrics_description">အက်ပ်ကို ကူညီထိန်းသိမ်းရန်နှင့် ပိုမိုကောင်းမွန်စေရန် အက်ပ်စွမ်းဆောင်ရည်၊ အသုံးပြုမှုတို့နှင့်ပတ်သက်သော အမည်ခွဲခြားမသိနိုင်သည့် ဒေတာအချို့ကို Google အားမျှဝေသည်။ ဤဒေတာသည် သင် မည်သူမည်ဝါဖြစ်ကြောင်း ထုတ်ဖော်မည်မဟုတ်ပါ။ %1$s</string>
   <string name="onboarding_confirm_later_title">\'ထိတွေ့မှု အကြောင်းကြားချက်များ\' ကို ပိတ်ထားမလား။</string>
   <string name="onboarding_confirm_later_detail">\'ထိတွေ့မှု အကြောင်းကြားချက်များ\' မဖွင့်မချင်း ဖြစ်နိုင်ခြေရှိသော COVID-19 ထိတွေ့မှုအသိပေးချက် မရရှိနိုင်ပါ</string>
   <string name="no_recent_exposure_subtitle">လတ်တလောထိတွေ့မှုမရှိပါ</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">အခြေအနေ</string>
   <string name="exposure_details_status_exposure">COVID-19 ထိတွေ့နိုင်ခြေ</string>
   <string name="exposure_details_date_exposed_subtitle">ထိတွေ့နိုင်ခဲ့ခြေရှိသည့် ရက်စွဲ</string>
-  <string name="exposure_details_expiring_subtitle">ထိတွေ့မှုအစီရင်ခံစာများကို ထိတွေ့သည့်ရက်မှစ၍ ၁၄ ရက်အထိ သိမ်းထားသည်</string>
+  <string name="exposure_details_expiring_subtitle">ထိတွေ့မှုအစီရင်ခံစာများကို ထိတွေ့နိုင်ခဲ့ခြေရှိသည့်ရက်မှစ၍ ၁၄ ရက်ကြာ သိမ်းသည်</string>
   <string name="exposure_details_learn_more">ပိုမိုလေ့လာရန်</string>
   <string name="exposure_details_new_badge">အသစ်</string>
   <string name="share_test_result_title">သင်၏ကွန်မြူနတီကို ကာကွယ်ပါ၊ သင်၏ COVID-19 စစ်ဆေးမှုရလဒ်ကို မျှဝေပါ</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">ထိတွေ့မှု အကြောင်းကြားချက်များ</string>
   <string name="settings_app_analytics_subtitle">အက်ပ်အသုံးပြုမှုနှင့် စွမ်းဆောင်ရည်မျှဝေခြင်း</string>
   <string name="settings_privacy_policy">ပုဂ္ဂိုလ်ရေးဆိုင်ရာ မူဝါဒ</string>
+  <string name="settings_help_and_support">\'ထိတွေ့မှု အမြန်အကြောင်းကြားချက်များ\' အကြောင်း</string>
   <string name="settings_legal_terms">ဥပဒေဆိုင်ရာ စည်းမျဉ်းများ</string>
   <string name="settings_debug">အမှားရှာပြင်ခြင်းမုဒ်</string>
   <string name="settings_share">COVID-19 ကူးစက်ပြန့်ပွားခြင်းကို ကူညီထိန်းသိမ်းပါ။ ဤအက်ပ်ကို သင့်ကွန်မြူနတီနှင့်မျှဝေပြီး ဖြစ်နိုင်သော \'ထိတွေ့မှု အကြောင်းကြားချက်များ\' ဖြင့် မိမိကိုယ်ကို ပိုမိုကောင်းမွန်စွာကာကွယ်နိုင်ရန် ကူညီပါ။</string>
@@ -134,4 +137,10 @@
   <string name="share_error">စစ်ဆေးမှုရလဒ်ကို မျှဝေ၍မရပါ။ နောက်မှ ထပ်စမ်းကြည့်ပါ။</string>
   <string name="generic_error_message">တစ်ခုခုမှားသွားသည်။ ထပ်စမ်းကြည့်ပါ။</string>
   <string name="code_error_already_submitted">စစ်ဆေးမှုရလဒ်ကို မျှဝေရန် ကုဒ်ကို အသုံးပြုထားပြီးဖြစ်သည်။</string>
+  <string name="settings_private_analytics_subtitle">ထိတွေ့မှုအကြောင်းကြားချက်၏ စိတ်ဖြာမှု မျှဝေခြင်း</string>
+  <string name="private_analytics_title">သင်၏ ကျန်းမာရေး အာဏာပိုင်များ COVID-19 ကူးစက်ပြန့်ပွားမှုကို နားလည်သဘောပေါက်ရန် ကူညီပါ</string>
+  <string name="private_analytics_subtitle">ထိတွေ့မှုအကြောင်းကြားချက်၏ စိတ်ဖြာလေ့လာမှုကို သင်၏ ကျန်းမာရေး အာဏာပိုင်များနှင့် မျှဝေပါ</string>
+  <string name="private_analytics_footer">သင့်ဒေသရှိ အကြောင်းကြားချက်အရေအတွက် ကဲ့သို့သော စိတ်ဖြာလေ့လာချက်များသည် COVID-19 ကူးစက်ပုံကို ကျန်းမာရေးအာဏာပိုင်များ နားလည်ရန် ကူညီပေးသည်။ ကျန်းမာရေးအာဏာပိုင်များအတွက် စုစည်းထားခြင်းသာဖြစ်ပြီး Google က မဖတ်နိုင်သောကြောင့် ၎င်းတို့ကို သင့်ဖုန်းနှင့် နှီးနွယ်ဆက်စပ်၍ မရနိုင်ပါ။ %1$s</string>
+  <string name="private_analytics_footer_onboarding">ဤစိတ်ဖြာချက်များကို သင်၏ ကျန်းမာရေးအာဏာပိုင်များအတွက် စုစည်းထားခြင်းသာဖြစ်ပြီး Google က မဖတ်နိုင်သောကြောင့် ၎င်းတို့ကို သင့်ဖုန်းနှင့် နှီးနွှယ်ဆက်စပ်၍မရနိုင်ပါ။ %1$s</string>
+  <string name="private_analytics_footer_learn_more">ပိုမိုလေ့လာရန်</string>
 </resources>

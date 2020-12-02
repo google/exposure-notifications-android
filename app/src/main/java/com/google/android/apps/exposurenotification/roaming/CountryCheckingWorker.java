@@ -29,16 +29,14 @@ import androidx.work.PeriodicWorkRequest;
 import androidx.work.WorkManager;
 import androidx.work.WorkerParameters;
 import com.google.android.apps.exposurenotification.common.Qualifiers.BackgroundExecutor;
-import com.google.android.apps.exposurenotification.common.Qualifiers.ScheduledExecutor;
-import com.google.android.apps.exposurenotification.nearby.ExposureNotificationClientWrapper;
+import com.google.android.apps.exposurenotification.logging.AnalyticsLogger;
+import com.google.android.apps.exposurenotification.proto.WorkManagerTask.WorkerTask;
 import com.google.android.apps.exposurenotification.work.WorkerStartupManager;
 import com.google.common.util.concurrent.FluentFuture;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-import org.threeten.bp.Duration;
 
 public class CountryCheckingWorker extends ListenableWorker {
 
@@ -48,6 +46,7 @@ public class CountryCheckingWorker extends ListenableWorker {
   private final ExecutorService backgroundExecutor;
   private final CountryCodes countryCodes;
   private final WorkerStartupManager workerStartupManager;
+  private final AnalyticsLogger logger;
 
   @WorkerInject
   public CountryCheckingWorker(
@@ -55,11 +54,13 @@ public class CountryCheckingWorker extends ListenableWorker {
       @Assisted @NonNull WorkerParameters workerParams,
       @BackgroundExecutor ExecutorService backgroundExecutor,
       CountryCodes countryCodes,
-      WorkerStartupManager workerStartupManager) {
+      WorkerStartupManager workerStartupManager,
+      AnalyticsLogger logger) {
     super(context, workerParams);
     this.backgroundExecutor = backgroundExecutor;
     this.countryCodes = countryCodes;
     this.workerStartupManager = workerStartupManager;
+    this.logger = logger;
   }
 
   @NonNull
@@ -69,21 +70,21 @@ public class CountryCheckingWorker extends ListenableWorker {
         workerStartupManager.getIsEnabledWithStartupTasks())
         .transformAsync(
             (isEnabled) -> {
+              logger.logWorkManagerTaskStarted(WorkerTask.TASK_COUNTRY_CHECKING);
               // Only continue if it is enabled.
               if (isEnabled) {
                 countryCodes.updateDatabaseWithCurrentCountryCode();
-                countryCodes.deleteObsoleteCountryCodes();
-                return Futures.immediateFuture(Result.success());
-              } else {
-                // Stop here because things aren't enabled. Will still return successful though.
-                return Futures.immediateFuture(Result.success());
               }
+              countryCodes.deleteObsoleteCountryCodes();
+              logger.logWorkManagerTaskSuccess(WorkerTask.TASK_COUNTRY_CHECKING);
+              return Futures.immediateFuture(Result.success());
             },
             backgroundExecutor)
         .catching(
             Exception.class,
             x -> {
               Log.e(TAG, "Failure to check country code", x);
+              logger.logWorkManagerTaskFailure(WorkerTask.TASK_COUNTRY_CHECKING, x);
               return Result.failure();
             },
             backgroundExecutor);

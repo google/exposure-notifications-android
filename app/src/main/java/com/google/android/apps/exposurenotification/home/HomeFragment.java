@@ -29,9 +29,11 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.widget.ViewPager2;
 import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.common.KeyboardHelper;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import dagger.hilt.android.AndroidEntryPoint;
@@ -69,8 +71,8 @@ public class HomeFragment extends Fragment {
 
   static final int TAB_DEFAULT = TAB_EXPOSURES;
 
-  private HomeFragmentStateAdapter fragmentStateAdapter;
   private ViewPager2 viewPager;
+  private ExposureNotificationViewModel exposureNotificationViewModel;
 
   /**
    * Creates a {@link HomeFragment} instance with a default start tab {@value #TAB_DEFAULT}.
@@ -96,12 +98,29 @@ public class HomeFragment extends Fragment {
   @Override
   public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
     getActivity().setTitle(R.string.app_name);
-    fragmentStateAdapter = new HomeFragmentStateAdapter(this);
+    HomeFragmentStateAdapter fragmentStateAdapter = new HomeFragmentStateAdapter(this);
+
+    exposureNotificationViewModel =
+        new ViewModelProvider(requireActivity()).get(ExposureNotificationViewModel.class);
 
     viewPager = view.findViewById(R.id.view_pager);
     viewPager.setUserInputEnabled(false);
     viewPager.setOffscreenPageLimit(2);
     viewPager.setAdapter(fragmentStateAdapter);
+    viewPager.setPageTransformer((v, position) -> {
+      if (position <= -1.0F || position >= 1.0F) {
+        v.setAlpha(0.0F);
+        v.setTranslationX(0F);
+      } else if (position == 0.0F) {
+        v.setAlpha(1.0F);
+        v.setTranslationX(0F);
+      } else {
+        // Position is between -1 and 1 but non 0
+        v.setAlpha(1.0F - Math.abs(position));
+        v.setTranslationX(v.getWidth() * -position);
+      }
+    });
+
     if (savedInstanceState != null) {
       viewPager.setCurrentItem(
           savedInstanceState.getInt(SAVED_INSTANCE_STATE_CURRENT_ITEM, getStartTab()));
@@ -129,10 +148,19 @@ public class HomeFragment extends Fragment {
 
     tabLayout.addOnTabSelectedListener(
         KeyboardHelper.createOnTabSelectedMaybeHideKeyboardListener(requireContext(), view));
+
+    exposureNotificationViewModel
+        .getApiErrorLiveEvent()
+        .observe(getViewLifecycleOwner(), unused -> {
+          View rootView = getView();
+          if (rootView != null) {
+            Snackbar.make(rootView, R.string.generic_error_message, Snackbar.LENGTH_LONG).show();
+          }
+        });
   }
 
   @Override
-  public void onSaveInstanceState(Bundle outState) {
+  public void onSaveInstanceState(@NonNull Bundle outState) {
     super.onSaveInstanceState(outState);
     outState.putInt(SAVED_INSTANCE_STATE_CURRENT_ITEM, viewPager.getCurrentItem());
   }

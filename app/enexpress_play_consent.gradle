@@ -30,27 +30,42 @@ def generatePlayStoreConsent(configData) {
         Map result = [:]
         def packageName = config["healthAuthorityID"]
         def locales = getConfigLocales(config)
-        def defaultLocale = pickDefaultLocale(config, locales)
+        def defaultPlayLocale = pickDefaultLocale(config, locales)
         def playLocales = filterLocalesForPlayStore(locales)
+        def defaultLocale = bestFitLocale(locales, defaultPlayLocale)
+                            .toUpperCase().replace("-", "_")
         List items = []
         playLocales.each { playLocale, plainLocale ->
           def locale = plainLocale.toUpperCase().replace("-", "_")
-          def agencyDisplayName = config.get("agencyDisplayName_" + locale, "")
-          def agencyRegionName = config.get("agencyRegionName_" + locale, "")
-          def legalConsentText = config.get("legalConsentText_" + locale, "")
-          items.add([
+          def localize = { field ->
+             return config.get(field + "_" + locale,
+                    config.get(field + "_" + defaultLocale, ""))
+          }
+          def agencyDisplayName = localize("agencyDisplayName")
+          def agencyRegionName = localize("agencyRegionName")
+          def legalConsentText = localize("legalConsentText")
+          Map item = [
             "locale": playLocale,
             "agency_region_name": agencyRegionName,
             "agency_display_name": agencyDisplayName,
             "legal_consent_text": legalConsentText,
-          ])
+          ]
+          if (config.get("enableENPA", false)) {
+            item["enpa_consent_text"] = localize("enpaConsentText")
+          }
+          items.add(item)
         }
-        result[packageName] = [
+        Map package_result = [
           "localized": items,
           "region_identifier": config.get("regionIdentifier", ""),
           "legal_consent_version": config.get("legalConsentVersion", ""),
-          "default_locale": defaultLocale,
+          "default_locale": defaultPlayLocale,
         ]
+        if (config.get("enableENPA", false)) {
+          package_result["enpa_consent_version"] =
+              config.get("enpaConsentVersion", "")
+        }
+        result[packageName] = package_result
         def consentDir = "$buildDir/playstore_consent/" + name
         mkdir consentDir
         def json = JsonOutput.prettyPrint(JsonOutput.toJson(result))

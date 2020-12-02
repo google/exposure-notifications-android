@@ -16,6 +16,8 @@
   <string name="btn_save">حفظ</string>
   <string name="btn_discard">تجاهل</string>
   <string name="btn_verify">تأكيد</string>
+  <string name="btn_dont_share">عدم المشاركة</string>
+  <string name="btn_share">مشاركة</string>
   <string name="learn_more">مزيد من المعلومات</string>
   <string name="home_tab_exposures_text">التعرّض للفيروس</string>
   <string name="home_tab_notify_text">إشعار الآخرين</string>
@@ -31,7 +33,7 @@
     \n\nستتم مشاركة المعلومات التالية مع هذا التطبيق: تاريخ ومدة الإصابة المسجّلة من الأجهزة المجاورة وقوة إشارة البلوتوث الخاصة بهذه الأجهزة.</string>
   <string name="onboarding_metrics_title">المساعدة في تحسين هذا التطبيق</string>
   <string name="onboarding_metrics_subtitle">مشاركة بيانات استخدام التطبيق وأدائه مع Google</string>
-  <string name="onboarding_metrics_detail">للمساعدة في الحفاظ على التطبيق وتحسينه، تتم مشاركة بعض البيانات عن استخدام التطبيق وأدائه مع Google، بدون الكشف عن هوية صاحبها أي أن هذه المعلومات لا تحدّد هويتك.</string>
+  <string name="onboarding_metrics_description">للمساعدة في الحفاظ على التطبيق وتحسينه، تتم مشاركة بعض البيانات المجهولة الهوية عن استخدام التطبيق وأدائه مع Google. وهذه المعلومات لا تحدّد هويتك. %1$s</string>
   <string name="onboarding_confirm_later_title">هل اخترت عدم تفعيل نظام \"إشعارات التعرّض لفيروس كورونا\"؟</string>
   <string name="onboarding_confirm_later_detail">في حال عدم تفعيله، لن تتلقّى إشعارات عن التعرّض المحتمل للفيروس.</string>
   <string name="no_recent_exposure_subtitle">لم يتم رصد حالات تعرّض للفيروس مؤخرًا</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">الحالة</string>
   <string name="exposure_details_status_exposure">هناك احتمال أنّك تعرّضت لفيروس كورونا المستجد (كوفيد-19)</string>
   <string name="exposure_details_date_exposed_subtitle">التاريخ المحتمل للتعرّض للفيروس</string>
-  <string name="exposure_details_expiring_subtitle">يتم تخزين تقارير التعرّض للفيروس لمدة 14 يومًا بدءًا من تاريخ التعرّض.</string>
+  <string name="exposure_details_expiring_subtitle">يتم تخزين تقارير التعرّض للفيروس لمدة 14 يومًا من تاريخ التعرّض المحتمل</string>
   <string name="exposure_details_learn_more">مزيد من المعلومات</string>
   <string name="exposure_details_new_badge">جديد</string>
   <string name="share_test_result_title">حماية مجتمعك من خلال مشاركة نتيجة اختبار فيروس كورونا المستجد (كوفيد-19)</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">إشعارات التعرّض لفيروس كورونا</string>
   <string name="settings_app_analytics_subtitle">مشاركة استخدام التطبيق وأدائه</string>
   <string name="settings_privacy_policy">سياسة الخصوصية</string>
+  <string name="settings_help_and_support">معلومات عن \"إشعارات التعرّض لفيروس كورونا\"</string>
   <string name="settings_legal_terms">البنود القانونية</string>
   <string name="settings_debug">وضع تصحيح الأخطاء</string>
   <string name="settings_share">يمكنك المساعدة في احتواء انتشار فيروس كورونا المستجد (كوفيد-19). يُرجى مشاركة هذا التطبيق مع المجتمع لمساعدة الناس على حماية أنفسهم بشكل أفضل باستخدام إشعارات التعرّض المحتمل لفيروس كورونا.</string>
@@ -134,4 +137,10 @@
   <string name="share_error">تتعذّر مشاركة نتيجة الفحص. يُرجى إعادة المحاولة لاحقًا.</string>
   <string name="generic_error_message">حدث خطأ. يُرجى إعادة المحاولة.</string>
   <string name="code_error_already_submitted">سبق أن تم استخدام هذا الرمز لمشاركة نتيجة الاختبار.</string>
+  <string name="settings_private_analytics_subtitle">مشاركة إحصاءات \"إشعارات التعرّض لفيروس كورونا\"</string>
+  <string name="private_analytics_title">مساعدة هيئة الصحة في تتبّع انتشار فيروس كورونا المستجد</string>
+  <string name="private_analytics_subtitle">مشاركة إحصاءات \"إشعارات التعرّض لفيروس كورونا\" مع هيئة الصحة في منطقتك</string>
+  <string name="private_analytics_footer">تساعد هذه الإحصاءات، مثلاً عدد الإشعارات في المنطقة، هيئات الصحة في فهم كيفية انتشار فيروس كورونا. ولا يمكن لشركة Google الاطّلاع عليها أو تجميعها، لذلك لا يمكن ربطها بهاتفك. %1$s</string>
+  <string name="private_analytics_footer_onboarding">لا يمكن لشركة Google قراءة هذه الإحصاءات، بل يتم جمعها لغرض مشاركتها مع هيئة الصحة في منطقتك، لذلك لا يمكن ربطها بهاتفك. %1$s</string>
+  <string name="private_analytics_footer_learn_more">مزيد من المعلومات</string>
 </resources>

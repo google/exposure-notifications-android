@@ -16,15 +16,15 @@
 
 // This module handles locales for EN Express.
 
-def toAndroidLocale(locale) {
+static def toAndroidLocale(locale) {
   return locale.replace("-", "-r")
 }
 
-def toAndroidLanguageOnly(locale) {
+static def toAndroidLanguageOnly(locale) {
   return locale.split("-")[0]
 }
 
-def getKeyLocale(key) {
+static def getKeyLocale(key) {
   def parts = key.split("_")
   if (parts.size() > 2) {
     return parts[-2].toLowerCase() + "-" + parts[-1].toUpperCase()
@@ -32,7 +32,7 @@ def getKeyLocale(key) {
   return ""
 }
 
-def getKeyWithoutLocale(key) {
+static def getKeyWithoutLocale(key) {
   def parts = key.split("_")
   if (parts.size() > 2) {
     return parts[0..-3].join("_")
@@ -52,7 +52,7 @@ def getConfigLocales(config) {
   return locales
 }
 
-def bestFitLocale(locales, locale) {
+static def bestFitLocale(locales, locale) {
   if (locales.contains(locale)) {
     return locale
   }
@@ -60,7 +60,7 @@ def bestFitLocale(locales, locale) {
   return locales.find { it.split("-")[0] == lang }
 }
 
-def pickDefaultLocale(config, locales) {
+static def pickDefaultLocale(config, locales) {
   // TODO: Do something better to pick fallback default locale.
   return config.get("playStoreDefaultLocale", locales.findAll {it != ""}[0])
 }

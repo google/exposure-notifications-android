@@ -16,6 +16,8 @@
   <string name="btn_save">Сачувај</string>
   <string name="btn_discard">Одбаци</string>
   <string name="btn_verify">Потврди</string>
+  <string name="btn_dont_share">Не дели</string>
+  <string name="btn_share">Дели</string>
   <string name="learn_more">Сазнајте више</string>
   <string name="home_tab_exposures_text">Изложеност</string>
   <string name="home_tab_notify_text">Обавештавајте друге</string>
@@ -31,7 +33,7 @@
     \n\nСа апликацијом се деле датум, трајање и јачина сигнала у вези са изложеношћу.</string>
   <string name="onboarding_metrics_title">Помозите нам да побољшамо ову апликацију</string>
   <string name="onboarding_metrics_subtitle">Делите податке о коришћењу и учинку апликације са Google-ом</string>
-  <string name="onboarding_metrics_detail">Да бисте нам помогли да одржавамо и побољшавамо апликацију, неки ограничени подаци о учинку и коришћењу апликације који не садрже личне податке се деле са Google-ом. Ти подаци вас не идентификују.</string>
+  <string name="onboarding_metrics_description">Да бисте нам помогли да одржавамо и побољшавамо апликацију, неки ограничени подаци о учинку и коришћењу апликације који не садрже личне податке се деле са Google-ом. Ти подаци вас не идентификују. %1$s</string>
   <string name="onboarding_confirm_later_title">Не желите да укључујете обавештења о изложености?</string>
   <string name="onboarding_confirm_later_detail">Без укључених обавештења о изложености нема обавештења о могућој изложености болести COVID-19</string>
   <string name="no_recent_exposure_subtitle">Нема недавних изложености</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">Статус</string>
   <string name="exposure_details_status_exposure">Могућа изложеност болести COVID-19</string>
   <string name="exposure_details_date_exposed_subtitle">Датум могуће изложености</string>
-  <string name="exposure_details_expiring_subtitle">Извештаји о изложености се чувају 14 дана од датума изложености</string>
+  <string name="exposure_details_expiring_subtitle">Извештаји о изложености се чувају 14 дана од датума могуће изложености</string>
   <string name="exposure_details_learn_more">Сазнајте више</string>
   <string name="exposure_details_new_badge">Ново</string>
   <string name="share_test_result_title">Заштитите заједницу, делите резултат теста на COVID-19</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">Обавештења о изложености</string>
   <string name="settings_app_analytics_subtitle">Дељење коришћења и учинка апликације</string>
   <string name="settings_privacy_policy">Политика приватности</string>
+  <string name="settings_help_and_support">О експрес обавештењима о изложености</string>
   <string name="settings_legal_terms">Правни услови</string>
   <string name="settings_debug">Режим отклањања грешака</string>
   <string name="settings_share">Помозите у борби против ширења болести COVID-19. Делите ову апликацију са члановима своје заједнице и помозите им да се боље заштите помоћу обавештења о могућој изложености.</string>
@@ -134,4 +137,10 @@
   <string name="share_error">Дељење резултата тестова није успело. Пробајте поново касније.</string>
   <string name="generic_error_message">Дошло је до грешке. Пробајте поново.</string>
   <string name="code_error_already_submitted">Кôд је већ искоришћен за дељење резултата теста.</string>
+  <string name="settings_private_analytics_subtitle">Дељење аналитике обавештења о изложености</string>
+  <string name="private_analytics_title">Помозите установи за јавно здравље да разуме како се шири COVID-19</string>
+  <string name="private_analytics_subtitle">Делите аналитику обавештења о изложености са институцијом за јавно здравље</string>
+  <string name="private_analytics_footer">Ове аналитике, попут броја обавештења у региону, помажу надлежнима за здравље да разумеју како се шири COVID-19. Google не може да их чита, обједињују се, па не могу да се повежу са вашим телефоном. %1$s</string>
+  <string name="private_analytics_footer_onboarding">Google не може да чита ове аналитичке податке и они се обједињују за институцију за јавно здравље, па не могу да се повежу са телефоном. %1$s</string>
+  <string name="private_analytics_footer_learn_more">Сазнајте више</string>
 </resources>

@@ -16,6 +16,8 @@
   <string name="btn_save">Stoor</string>
   <string name="btn_discard">Gooi weg</string>
   <string name="btn_verify">Verifieer</string>
+  <string name="btn_dont_share">Moenie deel nie</string>
+  <string name="btn_share">Deel</string>
   <string name="learn_more">Kom meer te wete</string>
   <string name="home_tab_exposures_text">Blootstelling</string>
   <string name="home_tab_notify_text">Lig ander in</string>
@@ -31,7 +33,7 @@
     \n\nDie datum, tydsduur en seinsterkte wat met \'n blootstelling geassosieer word, sal met die program gedeel word.</string>
   <string name="onboarding_metrics_title">Help om hierdie program beter te maak</string>
   <string name="onboarding_metrics_subtitle">Deel programgebruik- en -werkverrigtingdata met Google</string>
-  <string name="onboarding_metrics_detail">Sekere beperkte, gedeïdentifiseerde data oor programwerkverrigting en -gebruik sal met Google gedeel word om te help om die program te onderhou en beter te maak. Hierdie data identifiseer jou nie.</string>
+  <string name="onboarding_metrics_description">Sekere beperkte, gedeïdentifiseerde data oor programwerkverrigting en -gebruik sal met Google gedeel word om te help om die program te onderhou en beter te maak. Hierdie data identifiseer jou nie. %1$s</string>
   <string name="onboarding_confirm_later_title">Hou Blootstellingkennisgewings afgeskakel?</string>
   <string name="onboarding_confirm_later_detail">Jy sal nie oor moontlike blootstelling aan COVID-19 in kennis gestel word voordat Blootstellingkennisgewings aangeskakel word nie</string>
   <string name="no_recent_exposure_subtitle">Geen onlangse blootstellings nie</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">Status</string>
   <string name="exposure_details_status_exposure">Moontlike COVID-19-blootstelling</string>
   <string name="exposure_details_date_exposed_subtitle">Datum van moontlike blootstelling</string>
-  <string name="exposure_details_expiring_subtitle">Blootstellingverslae word 14 dae vanaf die datum van blootstelling geberg</string>
+  <string name="exposure_details_expiring_subtitle">Blootstellingverslae word geberg vir 14 dae vanaf die datum van moontlike blootstelling</string>
   <string name="exposure_details_learn_more">Kom meer te wete</string>
   <string name="exposure_details_new_badge">Nuut</string>
   <string name="share_test_result_title">Beskerm jou gemeenskap, deel jou COVID-19-toetsuitslag</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">Blootstellingkennisgewings</string>
   <string name="settings_app_analytics_subtitle">Programgebruik- en -werkverrigtingdeling</string>
   <string name="settings_privacy_policy">Privaatheidsbeleid</string>
+  <string name="settings_help_and_support">Meer oor Kitskennisgewingblootstellings</string>
   <string name="settings_legal_terms">Regsbepalings</string>
   <string name="settings_debug">Ontfoutmodus</string>
   <string name="settings_share">Help om die verspreiding van COVID-19 te bekamp. Deel hierdie program met jou gemeenskap en help hulle om hulself beter te beskerm met kennisgewings oor moontlike blootstelling.</string>
@@ -134,4 +137,11 @@
   <string name="share_error">Kan nie die toetsuitslag deel nie. Probeer later weer.</string>
   <string name="generic_error_message">Iets was fout. Probeer weer.</string>
   <string name="code_error_already_submitted">Kode is reeds gebruik om toetsuitslag te deel</string>
+  <string name="settings_private_analytics_subtitle">Deel Blootstellingkennisgewings-ontledings</string>
+  <string name="private_analytics_title">Help jou gesondheidowerheid om die verspreiding van COVID-19 te verstaan</string>
+  <string name="private_analytics_subtitle">Deel Blootstellingkennisgewings-
+ontledings met jou gesondheidowerheid</string>
+  <string name="private_analytics_footer">Ontledings, soos aantal streekkennisgewings, help owerhede COVID-19-verspreiding verstaan. Google lees dit nie. Hulle word vir jou gesondheidowerheid saamgevoeg en nie aan jou foon gekoppel nie. %1$s</string>
+  <string name="private_analytics_footer_onboarding">Hierdie ontledings kan nie deur Google gelees word nie en word vir jou gesondheidowerheid saamgestel sodat hulle nie met jou foon verbind kan word nie. %1$s</string>
+  <string name="private_analytics_footer_learn_more">Kom meer te wete</string>
 </resources>

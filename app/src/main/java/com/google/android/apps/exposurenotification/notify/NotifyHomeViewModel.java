@@ -31,14 +31,11 @@ import java.util.List;
 public class NotifyHomeViewModel extends ViewModel {
 
   private final LiveData<List<DiagnosisEntity>> getAllDiagnosisLiveData;
-  private final ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
 
   @ViewModelInject
   public NotifyHomeViewModel(
-      DiagnosisRepository diagnosisRepository,
-      ExposureNotificationSharedPreferences exposureNotificationSharedPreferences) {
+      DiagnosisRepository diagnosisRepository) {
     getAllDiagnosisLiveData = diagnosisRepository.getAllLiveData();
-    this.exposureNotificationSharedPreferences = exposureNotificationSharedPreferences;
   }
 
   public LiveData<List<DiagnosisEntity>> getAllDiagnosisEntityLiveData() {

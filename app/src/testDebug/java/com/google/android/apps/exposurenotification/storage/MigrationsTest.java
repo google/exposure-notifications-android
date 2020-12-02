@@ -20,7 +20,11 @@ package com.google.android.apps.exposurenotification.storage;
 import static com.google.android.apps.exposurenotification.storage.ExposureNotificationDatabase.MIGRATION_35_36;
 import static com.google.android.apps.exposurenotification.storage.ExposureNotificationDatabase.MIGRATION_36_37;
 import static com.google.android.apps.exposurenotification.storage.ExposureNotificationDatabase.MIGRATION_37_38;
+import static com.google.android.apps.exposurenotification.storage.ExposureNotificationDatabase.MIGRATION_38_39;
+import static com.google.android.apps.exposurenotification.storage.ExposureNotificationDatabase.MIGRATION_39_40;
+import static com.google.common.truth.Truth.assertThat;
 
+import android.database.Cursor;
 import androidx.room.Room;
 import androidx.room.testing.MigrationTestHelper;
 import androidx.sqlite.db.SupportSQLiteDatabase;
@@ -46,7 +50,8 @@ public class MigrationsTest {
   public MigrationTestHelper helper;
 
   public MigrationsTest() {
-    helper = new MigrationTestHelper(InstrumentationRegistry.getInstrumentation(),
+    helper = new MigrationTestHelper(
+        InstrumentationRegistry.getInstrumentation(),
         ExposureNotificationDatabase.class.getCanonicalName(),
         new FrameworkSQLiteOpenHelperFactory());
   }
@@ -59,13 +64,8 @@ public class MigrationsTest {
 
     // Open latest version of the database. Room will validate the schema
     // once all migrations execute.
-    ExposureNotificationDatabase appDb = Room.databaseBuilder(
-        InstrumentationRegistry.getInstrumentation().getTargetContext(),
-        ExposureNotificationDatabase.class,
-        TEST_DB)
-        .addMigrations(ExposureNotificationDatabase.ALL_MIGRATIONS).build();
+    ExposureNotificationDatabase appDb = createAppDatabase();
     appDb.getOpenHelper().getWritableDatabase();
-    appDb.close();
   }
 
   @Test
@@ -90,5 +90,59 @@ public class MigrationsTest {
     db.close();
     // MigrationTestHelper automatically verifies the schema changes.
     db = helper.runMigrationsAndValidate(TEST_DB, 38, true, MIGRATION_37_38);
+  }
+
+  @Test
+  public void migrate38To39() throws IOException {
+    SupportSQLiteDatabase db = helper.createDatabase(TEST_DB, 38);
+    db.close();
+    // MigrationTestHelper automatically verifies the schema changes.
+    db = helper.runMigrationsAndValidate(TEST_DB, 39, true, MIGRATION_38_39);
+  }
+
+  @Test
+  public void migrate38To39_shouldBackFillExistingRevisionTokens() throws Exception {
+    // GIVEN
+    // Set up a version 38 database with two diagnoses.
+    SupportSQLiteDatabase db = helper.createDatabase(TEST_DB, 38);
+    db.execSQL("INSERT INTO DiagnosisEntity"
+        + " (id, createdTimestampMs, revisionToken, isServerOnsetDate, hasSymptoms, isCodeFromLink)"
+        + " VALUES (1, 100, 'revision-token-1', 0, 'NO', 0)");
+    db.execSQL("INSERT INTO DiagnosisEntity"
+        + " (id, createdTimestampMs, revisionToken, isServerOnsetDate, hasSymptoms, isCodeFromLink)"
+        + " VALUES (2, 200, 'revision-token-2', 0, 'NO', 0)");
+
+    // WHEN
+    // Now upgrade the database
+    helper.runMigrationsAndValidate(TEST_DB, 39, true, MIGRATION_38_39);
+
+    // THEN
+    // The most recent revision token should be available in the revision token table.
+    try (Cursor c = db.query(
+        "SELECT revisionToken FROM RevisionTokenEntity"
+            + " WHERE revisionToken IS NOT NULL"
+            + " ORDER BY createdTimestampMs DESC LIMIT 1")) {
+      assertThat(c.moveToNext()).isTrue();
+      assertThat(c.getString(0)).isEqualTo("revision-token-2");
+    }
+  }
+
+  @Test
+  public void migrate39To40() throws IOException {
+    SupportSQLiteDatabase db = helper.createDatabase(TEST_DB, 39);
+    db.close();
+    // MigrationTestHelper automatically verifies the schema changes.
+    db = helper.runMigrationsAndValidate(TEST_DB, 40, true, MIGRATION_39_40);
+  }
+
+  private ExposureNotificationDatabase createAppDatabase() {
+    ExposureNotificationDatabase db = Room.databaseBuilder(
+        InstrumentationRegistry.getInstrumentation().getTargetContext(),
+        ExposureNotificationDatabase.class,
+        TEST_DB)
+        .addMigrations(ExposureNotificationDatabase.ALL_MIGRATIONS)
+        .build();
+    helper.closeWhenFinished(db);
+    return db;
   }
 }

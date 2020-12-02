@@ -20,19 +20,14 @@ package com.google.android.apps.exposurenotification.work;
 import android.content.Context;
 import androidx.work.WorkManager;
 import com.google.android.apps.exposurenotification.R;
-import com.google.android.apps.exposurenotification.common.Qualifiers.BackgroundExecutor;
 import com.google.android.apps.exposurenotification.common.Qualifiers.LightweightExecutor;
-import com.google.android.apps.exposurenotification.common.Qualifiers.ScheduledExecutor;
-import com.google.android.apps.exposurenotification.nearby.ExposureNotificationClientWrapper;
-import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
+import com.google.android.apps.exposurenotification.privateanalytics.PrivateAnalyticsRemoteConfig;
 import com.google.common.util.concurrent.ListeningExecutorService;
 import dagger.Module;
 import dagger.Provides;
 import dagger.hilt.InstallIn;
 import dagger.hilt.android.components.ApplicationComponent;
 import dagger.hilt.android.qualifiers.ApplicationContext;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.ScheduledExecutorService;
 import org.threeten.bp.Duration;
 
 @Module
@@ -43,10 +38,12 @@ public class WorkModule {
   public WorkScheduler provideWorkScheduler(
       @ApplicationContext Context context,
       WorkManager workManager,
-      @LightweightExecutor ListeningExecutorService lightweightExecutor) {
+      @LightweightExecutor ListeningExecutorService lightweightExecutor,
+      PrivateAnalyticsRemoteConfig privateAnalyticsRemoteConfig) {
     Duration tekPublishInterval =
         Duration.ofHours(context.getResources().getInteger(R.integer.enx_tekPublishInterval));
-    return new WorkScheduler(workManager, lightweightExecutor, tekPublishInterval);
+    return new WorkScheduler(workManager, lightweightExecutor, tekPublishInterval,
+        privateAnalyticsRemoteConfig);
   }
 
   @Provides

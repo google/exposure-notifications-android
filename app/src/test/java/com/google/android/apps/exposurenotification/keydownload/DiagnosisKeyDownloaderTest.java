@@ -329,7 +329,7 @@ public class DiagnosisKeyDownloaderTest {
   }
 
   @Test
-  public void indexFileNotFound_failsWithVolleyError() throws Exception {
+  public void indexFileNotFound_failsWithVolleyError() {
     // GIVEN
     // Set up the home index file to 404
     fakeQueue().addResponse(HOME_URIS.indexUri().toString(), 404, "");
@@ -343,7 +343,7 @@ public class DiagnosisKeyDownloaderTest {
   }
 
   @Test
-  public void keyFileNotFound_failsWithVolleyError() throws Exception {
+  public void keyFileNotFound_failsWithVolleyError() {
     // GIVEN
     // Set up the index file as normal.
     String file = uniqueFileName();
@@ -362,7 +362,7 @@ public class DiagnosisKeyDownloaderTest {
   }
 
   @Test
-  public void server500Error_failsWithVolleyError() throws Exception {
+  public void server500Error_failsWithVolleyError() {
     // GIVEN
     fakeQueue().addResponse(".*", 500, "Network error");
 

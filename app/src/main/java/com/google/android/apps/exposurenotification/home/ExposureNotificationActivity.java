@@ -37,9 +37,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.exposure.ExposureHomeViewModel;
 import com.google.android.apps.exposurenotification.proto.UiInteraction.EventType;
-import com.google.android.apps.exposurenotification.onboarding.OnboardingStartFragment;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.BadgeStatus;
-import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.OnboardingStatus;
 import com.google.android.apps.exposurenotification.utils.RequestCodes;
 import dagger.hilt.android.AndroidEntryPoint;
 import java.util.Objects;
@@ -49,7 +47,7 @@ import java.util.Objects;
  *
  * <p>This activity uses fragments to show the various screens of the application.
  *
- * <p>Onboarding is handled by {@link OnboardingStartFragment}.
+ * <p>Onboarding is handled by {@link SplashFragment}.
  *
  * <p>The main screen of the application is in @{link HomeFragment}.
  *
@@ -121,23 +119,13 @@ public final class ExposureNotificationActivity extends AppCompatActivity {
                   .getFragment(savedInstanceState, SAVED_INSTANCE_STATE_FRAGMENT_KEY)),
           HOME_FRAGMENT_TAG);
       fragmentTransaction.commit();
-      exposureNotificationViewModel.logUiInteraction(EventType.APP_OPENED);
     } else {
       // This is a fresh launch.
-      if (exposureNotificationViewModel.getOnboardedState() == OnboardingStatus.UNKNOWN) {
-        // If the user has not seen the onboarding flow, show it when the app resumes.
-        getSupportFragmentManager()
-            .beginTransaction()
-            .replace(R.id.home_fragment, new OnboardingStartFragment(), HOME_FRAGMENT_TAG)
-            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-            .commitNow();
-      } else {
-        // Otherwise transition to the home UI.
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction
-            .replace(R.id.home_fragment, HomeFragment.newInstance(), HOME_FRAGMENT_TAG);
-        fragmentTransaction.commit();
-      }
+      FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+      fragmentTransaction
+          .replace(R.id.home_fragment, SplashFragment.newInstance(), HOME_FRAGMENT_TAG);
+      fragmentTransaction.commit();
+      exposureNotificationViewModel.logUiInteraction(EventType.APP_OPENED);
     }
 
     IntentFilter intentFilter = new IntentFilter();
@@ -178,6 +166,10 @@ public final class ExposureNotificationActivity extends AppCompatActivity {
     for (Fragment fragment : getSupportFragmentManager().getFragments()) {
       if (fragment instanceof HomeFragment) {
         ((HomeFragment) fragment).setTab(HomeFragment.TAB_EXPOSURES);
+        if(ACTION_LAUNCH_FROM_EXPOSURE_NOTIFICATION.equals(intent.getAction())) {
+          exposureNotificationViewModel
+              .updateLastExposureNotificationLastClickedTime();
+        }
       }
     }
   }

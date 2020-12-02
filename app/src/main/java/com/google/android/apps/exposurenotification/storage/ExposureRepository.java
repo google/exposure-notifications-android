@@ -17,6 +17,7 @@
 
 package com.google.android.apps.exposurenotification.storage;
 
+import androidx.annotation.WorkerThread;
 import java.util.List;
 import javax.inject.Inject;
 
@@ -36,6 +37,7 @@ public class ExposureRepository {
    * Query all ExposureEntities from the previous run
    * @return {@link ExposureEntity}s from the previous run
    */
+  @WorkerThread
   public List<ExposureEntity> getAllExposureEntities() {
     return exposureDao.getAll();
   }
@@ -44,6 +46,7 @@ public class ExposureRepository {
    * Wipe the ExposureEntity table and insert the ExposureEntites in this list
    * @param exposureEntities the computed from DailySummaries {@link ExposureEntity}s
    */
+  @WorkerThread
   public void clearInsertExposureEntities(List<ExposureEntity> exposureEntities) {
     exposureDao.clearInsertExposureEntities(exposureEntities);
   }

@@ -70,6 +70,12 @@
   <!-- Button text shown on the notify others flow. Clicking will attempt to verify their test result. [CHAR_LIMIT=40] -->
   <string name="btn_verify">Verify</string>
 
+  <!-- Button text shown on the onboarding flow. Clicking will opt-out to private analytics to help contain the spread of COVID-19. [CHAR_LIMIT=40] -->
+  <string name="btn_dont_share">Don\'t share</string>
+
+  <!-- Button text shown on the onboarding flow. Clicking will opt-in to private analytics to help contain the spread of COVID-19. [CHAR_LIMIT=40] -->
+  <string name="btn_share">Share</string>
+
   <!-- Link title to more information about a topic where the link is displayed. [CHAR_LIMIT=100] -->
   <string name="learn_more">Learn more</string>
 
@@ -90,6 +96,7 @@
 
   <!-- Text associated with the back arrow button shown on some screens in the app, allowing the user to go back to the previous page. The text isn't displayed but is present for accessibility reasons. [CHAR_LIMIT=NONE] -->
   <string name="navigate_up">Go back to previous screen</string>
+
 
   <!-- ONBOARDING SCREENS -->
 
@@ -115,9 +122,9 @@
   <!-- Subtitle of the metric sharing section on the onboarding screen explaining that choosing to share metrics will help improve the app. This screen is shown on first use of the app when not previously enabled. [CHAR_LIMIT=60] -->
   <string name="onboarding_metrics_subtitle">Share app usage &amp; performance data with Google</string>
 
-  <!-- Text of the metric sharing section on the onboarding screen explaining that choosing to share metrics will help improve the app. This screen is shown on first use of the app when not previously enabled. [CHAR_LIMIT=NONE] -->
-  <string name="onboarding_metrics_detail">
-    To help maintain and improve the app, some limited de-identified data about app performance and usage is shared with Google. This data does not identify you.
+  <!-- Text of the metric sharing section on the onboarding screen explaining that choosing to share metrics will help improve the app. This screen is shown on first use of the app when not previously enabled. The placeholder is a learn more link. [CHAR_LIMIT=NONE] -->
+  <string name="onboarding_metrics_description">
+    To help maintain and improve the app, some limited de-identified data about app performance and usage is shared with Google. This data does not identify you. <xliff:g id="learn_more" example="Learn more">%1$s</xliff:g>
   </string>
 
   <!-- Title of the dialog shown in onboarding when the user chooses not to turn on exposure notifications. [CHAR_LIMIT=60] -->
@@ -125,8 +132,6 @@
 
   <!-- Detail text of the dialog shown in onboarding when the user chooses not to turn on exposure notifications. [CHAR_LIMIT=200] -->
   <string name="onboarding_confirm_later_detail">Until Exposure Notifications are turned on, you won’t be notified of possible exposure to COVID-19</string>
-
-
 
   <!-- EXPOSURES SCREENS -->
 
@@ -155,7 +160,7 @@
   <string name="exposure_details_date_exposed_subtitle">Possible exposure date</string>
 
   <!-- Subtitle shown at the bottom of the COVID-19 exposure report stating that it will expire in 14 days. [CHAR_LIMIT=NONE] -->
-  <string name="exposure_details_expiring_subtitle">Exposure reports are stored for 14 days from the date of exposure</string>
+  <string name="exposure_details_expiring_subtitle">Exposure reports are stored for 14 days from possible exposure date</string>
 
   <!-- Subtitle on the exposure details page above a link to learn more from the health authority webpage. [CHAR_LIMIT=40] -->
   <string name="exposure_details_learn_more">Learn more</string>
@@ -325,6 +330,9 @@
   <!-- Text displayed on the link going to the privacy policy.  This is displayed on the settings tab home page. [CHAR_LIMIT=40] -->
   <string name="settings_privacy_policy">Privacy policy</string>
 
+  <!-- Text displayed on the link going to the help and support website.  This is displayed on the settings tab home page. [CHAR_LIMIT=40] -->
+  <string name="settings_help_and_support">About Exposure Notification Express</string>
+
   <!-- Text displayed on the link going to the legal terms.  This is displayed on the settings tab home page. [CHAR_LIMIT=40] -->
   <string name="settings_legal_terms">Legal terms</string>
 
@@ -438,4 +446,23 @@
   <!-- Error message when a user tries to submit the same verification code that has already been used and submitted. [CHAR_LIMIT=NONE] -->
   <string name="code_error_already_submitted">Code has already been used to share test result</string>
 
+  <!-- PRIVATE ANALYTICS -->
+
+  <!-- Text displayed on the link going to the private analytics settings page and displayed above the current setting status.  This is displayed on the settings tab home page. [CHAR_LIMIT=40] -->
+  <string name="settings_private_analytics_subtitle">Exposure Notifications analytics sharing</string>
+
+  <!-- Title of the onboarding screen / settings page for opting in to private analytics sharing. [CHAR_LIMIT=200] -->
+  <string name="private_analytics_title">Help your health authority understand the spread of COVID-19</string>
+
+  <!-- Subtitle of the onboarding screen / settings page for opting in to private analytics sharing. [CHAR_LIMIT=200] -->
+  <string name="private_analytics_subtitle">Share Exposure Notifications analytics with your health authority</string>
+
+  <!-- Footer of the settings page for opting in to private analytics sharing. The placeholder is a learn more link. [CHAR_LIMIT=200] -->
+  <string name="private_analytics_footer">These analytics, such as the number of notifications in your region, help health authorities understand how COVID-19 spreads. They can’t be read by Google and are aggregated for your health authority so they can’t be linked to your phone. <xliff:g id="learn_more_link" example="Learn More">%1$s</xliff:g></string>
+
+  <!-- Footer of the onboarding screen for opting in to private analytics sharing. The placeholder is a learn more link. [CHAR_LIMIT=200] -->
+  <string name="private_analytics_footer_onboarding">These analytics can’t be read by Google and are aggregated for your health authority so they can’t be linked to your phone. <xliff:g id="learn_more_link" example="Learn More">%1$s</xliff:g></string>
+
+  <!-- Learn more link text in the onboarding / settings page footer text. [CHAR_LIMIT=40] -->
+  <string name="private_analytics_footer_learn_more">Learn more</string>
 </resources>

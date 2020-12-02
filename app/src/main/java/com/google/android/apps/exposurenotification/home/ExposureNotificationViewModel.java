@@ -30,11 +30,13 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import com.google.android.apps.exposurenotification.common.SingleLiveEvent;
+import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.logging.AnalyticsLogger;
-import com.google.android.apps.exposurenotification.proto.UiInteraction.EventType;
 import com.google.android.apps.exposurenotification.nearby.ExposureNotificationClientWrapper;
 import com.google.android.apps.exposurenotification.nearby.PackageConfigurationHelper;
+import com.google.android.apps.exposurenotification.proto.UiInteraction.EventType;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
+import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.NotificationInteraction;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.OnboardingStatus;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.nearby.exposurenotification.ExposureNotificationStatusCodes;
@@ -63,6 +65,7 @@ public class ExposureNotificationViewModel extends ViewModel {
   private final StatFs filesDirStat;
   private final AnalyticsLogger logger;
   private final PackageConfigurationHelper packageConfigurationHelper;
+  private final Clock clock;
 
   private boolean inFlightIsEnabled = false;
 
@@ -82,13 +85,15 @@ public class ExposureNotificationViewModel extends ViewModel {
       LocationManager locationManager,
       StatFs statFs,
       AnalyticsLogger logger,
-      PackageConfigurationHelper packageConfigurationHelper) {
+      PackageConfigurationHelper packageConfigurationHelper,
+      Clock clock) {
     this.exposureNotificationSharedPreferences = exposureNotificationSharedPreferences;
     this.exposureNotificationClientWrapper = exposureNotificationClientWrapper;
     this.locationManager = locationManager;
     this.filesDirStat = statFs;
     this.logger = logger;
     this.packageConfigurationHelper = packageConfigurationHelper;
+    this.clock = clock;
 
     boolean isEnabled = exposureNotificationSharedPreferences.getIsEnabledCache();
     enEnabledLiveData = new MutableLiveData<>(isEnabled);
@@ -119,19 +124,6 @@ public class ExposureNotificationViewModel extends ViewModel {
   }
 
   /**
-   * Returns whether en_module is on/off, without use of a cache. Returns immediately and completes
-   * the returned LiveData asynchronously when the API query returns.
-   */
-  public LiveData<Boolean> getIsEnabledLiveDataWithoutCache() {
-    SingleLiveEvent<Boolean> liveEvent = new SingleLiveEvent<>();
-    exposureNotificationClientWrapper.isEnabled()
-        .addOnSuccessListener(liveEvent::postValue)
-        .addOnFailureListener(e -> liveEvent.postValue(false))
-        .addOnCanceledListener(() -> liveEvent.postValue(false));
-    return liveEvent;
-  }
-
-  /**
    * An event that requests a resolution with the given {@link ApiException}.
    */
   public SingleLiveEvent<ApiException> getResolutionRequiredLiveEvent() {
@@ -154,7 +146,7 @@ public class ExposureNotificationViewModel extends ViewModel {
    */
   public void refreshState() {
     maybeRefreshIsEnabled();
-    maybeRefreshAppAnalytics();
+    maybeRefreshAnalytics();
   }
 
   private synchronized void maybeRefreshIsEnabled() {
@@ -180,11 +172,10 @@ public class ExposureNotificationViewModel extends ViewModel {
         });
   }
 
-  private synchronized void maybeRefreshAppAnalytics() {
+  private synchronized void maybeRefreshAnalytics() {
     exposureNotificationClientWrapper.getPackageConfiguration()
         .addOnSuccessListener(
-            (packageConfiguration) ->
-                packageConfigurationHelper.maybeUpdateAppAnalyticsState(packageConfiguration))
+            packageConfigurationHelper::maybeUpdateAnalyticsState)
         .addOnCanceledListener(() -> Log.i(TAG, "Call getPackageConfiguration is canceled"))
         .addOnFailureListener((t) -> Log.e(TAG, "Error calling getPackageConfiguration", t));
   }
@@ -344,10 +335,12 @@ public class ExposureNotificationViewModel extends ViewModel {
               inFlightLiveData.setValue(false);
             })
         .addOnFailureListener(
-            exception -> {
-              inFlightLiveData.setValue(false);
-            })
+            exception -> inFlightLiveData.setValue(false))
         .addOnCanceledListener(() -> inFlightLiveData.setValue(false));
+  }
+
+  public void updateLastExposureNotificationLastClickedTime() {
+    exposureNotificationSharedPreferences.setExposureNotificationLastInteraction(clock.now(), NotificationInteraction.CLICKED);
   }
 
   public void logUiInteraction(EventType event) {

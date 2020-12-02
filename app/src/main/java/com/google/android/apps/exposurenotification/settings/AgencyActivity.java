@@ -17,17 +17,13 @@
 
 package com.google.android.apps.exposurenotification.settings;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
-import android.text.style.ClickableSpan;
 import android.text.style.URLSpan;
 import android.view.View;
 import android.widget.TextView;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.apps.exposurenotification.R;
 import dagger.hilt.android.AndroidEntryPoint;

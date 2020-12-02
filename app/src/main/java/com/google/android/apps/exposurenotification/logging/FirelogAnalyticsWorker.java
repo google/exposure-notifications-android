@@ -28,8 +28,10 @@ import androidx.work.PeriodicWorkRequest;
 import androidx.work.WorkManager;
 import androidx.work.WorkerParameters;
 import com.google.android.apps.exposurenotification.common.Qualifiers.BackgroundExecutor;
+import com.google.android.apps.exposurenotification.proto.WorkManagerTask.WorkerTask;
 import com.google.android.apps.exposurenotification.work.WorkerStartupManager;
 import com.google.common.util.concurrent.FluentFuture;
+import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -68,12 +70,35 @@ public class FirelogAnalyticsWorker extends ListenableWorker {
   public ListenableFuture<Result> startWork() {
     return FluentFuture.from(
         workerStartupManager.getIsEnabledWithStartupTasks())
-        .transform((isEnabled) -> {
-          if (isEnabled) {
-            logger.sendLoggingBatchIfEnabled();
-          }
+        .transformAsync(
+            isEnabled -> {
+              logger.logWorkManagerTaskStarted(WorkerTask.TASK_FIRELOG_ANALYTICS);
+              if (!isEnabled) {
+                // If the API is not enabled, do not attempt sending logs.
+                return Futures.immediateFailedFuture(new NotEnabledException());
+              }
+              return logger.sendLoggingBatchIfEnabled();
+            },
+            backgroundExecutor)
+        // Report success or failure.
+        .transform(unused -> {
+          logger.logWorkManagerTaskSuccess(WorkerTask.TASK_FIRELOG_ANALYTICS);
           return Result.success();
-        }, backgroundExecutor);
+        }, backgroundExecutor)
+        .catching(
+            NotEnabledException.class,
+            x -> {
+              // Not enabled. Return as success.
+              logger.logWorkManagerTaskAbandoned(WorkerTask.TASK_FIRELOG_ANALYTICS);
+              return Result.success();
+            },
+            backgroundExecutor)
+        .catching(
+            Exception.class, x -> {
+              logger.logWorkManagerTaskFailure(WorkerTask.TASK_FIRELOG_ANALYTICS, x);
+              return Result.failure();
+            },
+            backgroundExecutor);
   }
 
   /**
@@ -84,5 +109,9 @@ public class FirelogAnalyticsWorker extends ListenableWorker {
         JOB_INTERVAL.toMinutes(), TimeUnit.MINUTES).build();
     return workManager
         .enqueueUniquePeriodicWork(WORKER_NAME, ExistingPeriodicWorkPolicy.KEEP, workRequest);
+  }
+
+  private static class NotEnabledException extends Exception {
+
   }
 }

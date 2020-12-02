@@ -17,7 +17,8 @@
   -->
 
 <resources>
-  <color name="colorPrimary">@color/enx_agencyColorDark</color>
+  <color name="colorPrimary">#7fa0f9</color>
+  <color name="agencyColor">@color/enx_agencyColorDark</color>
 
   <color name="shared">#34A853</color>
   <color name="not_shared">#F27A78</color>

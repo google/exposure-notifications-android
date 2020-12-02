@@ -18,7 +18,13 @@
 package com.google.android.apps.exposurenotification.onboarding;
 
 import androidx.hilt.lifecycle.ViewModelInject;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
+import androidx.work.OneTimeWorkRequest;
+import androidx.work.WorkManager;
+import com.google.android.apps.exposurenotification.privateanalytics.PrivateAnalyticsSettingsUtil;
+import com.google.android.apps.exposurenotification.privateanalytics.SubmitPrivateAnalyticsWorker;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
 
 /**
@@ -27,11 +33,14 @@ import com.google.android.apps.exposurenotification.storage.ExposureNotification
 public class OnboardingViewModel extends ViewModel {
 
   private final ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
+  private final WorkManager workManager;
 
   @ViewModelInject
   public OnboardingViewModel(
-      ExposureNotificationSharedPreferences exposureNotificationSharedPreferences) {
+      ExposureNotificationSharedPreferences exposureNotificationSharedPreferences,
+      WorkManager workManager) {
     this.exposureNotificationSharedPreferences = exposureNotificationSharedPreferences;
+    this.workManager = workManager;
   }
 
   public void setOnboardedState(boolean onboarded) {
@@ -42,4 +51,24 @@ public class OnboardingViewModel extends ViewModel {
     exposureNotificationSharedPreferences.setAppAnalyticsState(isEnabled);
   }
 
+  public LiveData<Boolean> isPrivateAnalyticsStateSetLiveData() {
+    return exposureNotificationSharedPreferences.isPrivateAnalyticsStateSetLiveData();
+  }
+
+  public LiveData<Boolean> shouldShowPrivateAnalyticsOnboardingLiveData() {
+    return Transformations.map(isPrivateAnalyticsStateSetLiveData(),
+        (isPrivateAnalyticsStateSet) -> !isPrivateAnalyticsStateSet && PrivateAnalyticsSettingsUtil
+            .isPrivateAnalyticsSupported());
+  }
+
+  public void setPrivateAnalyticsState(boolean isEnabled) {
+    exposureNotificationSharedPreferences.setPrivateAnalyticsState(isEnabled);
+  }
+
+  /**
+   * Triggers a one off submit private analytics job.
+   */
+  public void submitPrivateAnalytics() {
+    workManager.enqueue(new OneTimeWorkRequest.Builder(SubmitPrivateAnalyticsWorker.class).build());
+  }
 }

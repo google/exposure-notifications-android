@@ -16,6 +16,8 @@
   <string name="btn_save">[Šåvé one]</string>
   <string name="btn_discard">[Ðîšçåŕð one]</string>
   <string name="btn_verify">[Véŕîƒý one]</string>
+  <string name="btn_dont_share">[Ðöñ\'ţ šĥåŕé one two]</string>
+  <string name="btn_share">[Šĥåŕé one]</string>
   <string name="learn_more">[Ļéåŕñ möŕé one two]</string>
   <string name="home_tab_exposures_text">[Éxþöšûŕé one]</string>
   <string name="home_tab_notify_text">[Ñöţîƒý öţĥéŕš one two]</string>
@@ -31,7 +33,7 @@
     \ñ\ñŢĥé ðåţé, ðûŕåţîöñ, åñð šîĝñåļ šţŕéñĝţĥ åššöçîåţéð ŵîţĥ åñ éxþöšûŕé ŵîļļ бé šĥåŕéð ŵîţĥ ţĥé åþþ. one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty twentyone twentytwo twentythree twentyfour twentyfive twentysix twentyseven twentyeight twentynine thirty thirtyone thirtytwo thirtythree thirtyfour thirtyfive thirtysix thirtyseven thirtyeight thirtynine]</string>
   <string name="onboarding_metrics_title">[Ĥéļþ måķé ţĥîš åþþ бéţţéŕ one two three four five six]</string>
   <string name="onboarding_metrics_subtitle">[Šĥåŕé åþþ ûšåĝé &amp; þéŕƒöŕmåñçé ðåţå ŵîţĥ Ĝööĝļé one two three four five six seven eight nine ten]</string>
-  <string name="onboarding_metrics_detail">[Ţö ĥéļþ måîñţåîñ åñð îmþŕövé ţĥé åþþ, šömé ļîmîţéð ðé-îðéñţîƒîéð ðåţå åбöûţ åþþ þéŕƒöŕmåñçé åñð ûšåĝé îš šĥåŕéð ŵîţĥ Ĝööĝļé. Ţĥîš ðåţå ðöéš ñöţ îðéñţîƒý ýöû. one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty twentyone twentytwo twentythree]</string>
+  <string name="onboarding_metrics_description">[Ţö ĥéļþ måîñţåîñ åñð îmþŕövé ţĥé åþþ, šömé ļîmîţéð ðé-îðéñţîƒîéð ðåţå åбöûţ åþþ þéŕƒöŕmåñçé åñð ûšåĝé îš šĥåŕéð ŵîţĥ Ĝööĝļé. Ţĥîš ðåţå ðöéš ñöţ îðéñţîƒý ýöû. ᐅ%1$sᐊ one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty twentyone twentytwo twentythree]</string>
   <string name="onboarding_confirm_later_title">[Ķééþ Éxþöšûŕé Ñöţîƒîçåţîöñ ţûŕñéð öƒƒ¿ one two three four five six seven eight]</string>
   <string name="onboarding_confirm_later_detail">[Ûñţîļ Éxþöšûŕé Ñöţîƒîçåţîöñš åŕé ţûŕñéð öñ, ýöû ŵöñ’ţ бé ñöţîƒîéð öƒ þöššîбļé éxþöšûŕé ţö ÇÖVÎÐ-19 one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen]</string>
   <string name="no_recent_exposure_subtitle">[Ñö ŕéçéñţ éxþöšûŕéš one two three]</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">[Šţåţûš one]</string>
   <string name="exposure_details_status_exposure">[Þöššîбļé ÇÖVÎÐ-19 éxþöšûŕé one two three]</string>
   <string name="exposure_details_date_exposed_subtitle">[Þöššîбļé éxþöšûŕé ðåţé one two three]</string>
-  <string name="exposure_details_expiring_subtitle">[Éxþöšûŕé ŕéþöŕţš åŕé šţöŕéð ƒöŕ 14 ðåýš ƒŕöm ţĥé ðåţé öƒ éxþöšûŕé one two three four five six seven eight nine ten eleven twelve thirteen]</string>
+  <string name="exposure_details_expiring_subtitle">[Éxþöšûŕé ŕéþöŕţš åŕé šţöŕéð ƒöŕ 14 ðåýš ƒŕöm þöššîбļé éxþöšûŕé ðåţé one two three four five six seven eight nine ten eleven twelve thirteen]</string>
   <string name="exposure_details_learn_more">[Ļéåŕñ möŕé one two]</string>
   <string name="exposure_details_new_badge">[Ñéŵ one]</string>
   <string name="share_test_result_title">[Þŕöţéçţ ýöûŕ çömmûñîţý, šĥåŕé ýöûŕ ÇÖVÎÐ-19 ţéšţ ŕéšûļţ one two three four five six seven eight nine ten eleven]</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">[Éxþöšûŕé ñöţîƒîçåţîöñš one two three]</string>
   <string name="settings_app_analytics_subtitle">[Åþþ ûšåĝé &amp; þéŕƒöŕmåñçé šĥåŕîñĝ one two three four five six seven]</string>
   <string name="settings_privacy_policy">[Þŕîvåçý þöļîçý one two]</string>
+  <string name="settings_help_and_support">[Åбöûţ Éxþöšûŕé Ñöţîƒîçåţîöñ Éxþŕéšš one two three four five six seven eight]</string>
   <string name="settings_legal_terms">[Ļéĝåļ ţéŕmš one two]</string>
   <string name="settings_debug">[Ðéбûĝ möðé one two]</string>
   <string name="settings_share">[Ĥéļþ çöñţåîñ ţĥé šþŕéåð öƒ ÇÖVÎÐ-19. Šĥåŕé ţĥîš åþþ ŵîţĥ ýöûŕ çömmûñîţý åñð ĥéļþ ţĥém þŕöţéçţ ţĥémšéļvéš бéţţéŕ ŵîţĥ þöššîбļé éxþöšûŕé ñöţîƒîçåţîöñš. one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty twentyone twentytwo]</string>
@@ -134,4 +137,10 @@
   <string name="share_error">[Ûñåбļé ţö šĥåŕé ţĥé ţéšţ ŕéšûļţ. Ţŕý åĝåîñ ļåţéŕ. one two three four five six seven eight nine ten]</string>
   <string name="generic_error_message">[Šöméţĥîñĝ ŵéñţ ŵŕöñĝ. Ţŕý åĝåîñ. one two three four five six seven]</string>
   <string name="code_error_already_submitted">[Çöðé ĥåš åļŕéåðý бééñ ûšéð ţö šĥåŕé ţéšţ ŕéšûļţ one two three four five six seven eight nine ten]</string>
+  <string name="settings_private_analytics_subtitle">[Éxþöšûŕé Ñöţîƒîçåţîöñš åñåļýţîçš šĥåŕîñĝ one two three four five six seven eight]</string>
+  <string name="private_analytics_title">[Ĥéļþ ýöûŕ ĥéåļţĥ åûţĥöŕîţý ûñðéŕšţåñð ţĥé šþŕéåð öƒ ÇÖVÎÐ-19 one two three four five six seven eight nine ten eleven twelve]</string>
+  <string name="private_analytics_subtitle">[Šĥåŕé Éxþöšûŕé Ñöţîƒîçåţîöñš åñåļýţîçš ŵîţĥ ýöûŕ ĥéåļţĥ åûţĥöŕîţý one two three four five six seven eight nine ten eleven twelve thirteen]</string>
+  <string name="private_analytics_footer">[Ţĥéšé åñåļýţîçš, šûçĥ åš ţĥé ñûmбéŕ öƒ ñöţîƒîçåţîöñš îñ ýöûŕ ŕéĝîöñ, ĥéļþ ĥéåļţĥ åûţĥöŕîţîéš ûñðéŕšţåñð ĥöŵ ÇÖVÎÐ-19 šþŕéåðš. Ţĥéý çåñ’ţ бé ŕéåð бý Ĝööĝļé åñð åŕé åĝĝŕéĝåţéð ƒöŕ ýöûŕ ĥéåļţĥ åûţĥöŕîţý šö ţĥéý çåñ’ţ бé ļîñķéð ţö ýöûŕ þĥöñé. ᐅ%1$sᐊ one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty twentyone twentytwo twentythree twentyfour twentyfive twentysix twentyseven twentyeight twentynine thirty thirtyone]</string>
+  <string name="private_analytics_footer_onboarding">[Ţĥéšé åñåļýţîçš çåñ’ţ бé ŕéåð бý Ĝööĝļé åñð åŕé åĝĝŕéĝåţéð ƒöŕ ýöûŕ ĥéåļţĥ åûţĥöŕîţý šö ţĥéý çåñ’ţ бé ļîñķéð ţö ýöûŕ þĥöñé. ᐅ%1$sᐊ one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty]</string>
+  <string name="private_analytics_footer_learn_more">[Ļéåŕñ möŕé one two]</string>
 </resources>

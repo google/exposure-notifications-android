@@ -23,7 +23,6 @@ import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.keyupload.Qualifiers.UploadUri;
 import com.google.android.apps.exposurenotification.keyupload.Qualifiers.VerificationCertUri;
 import com.google.android.apps.exposurenotification.keyupload.Qualifiers.VerificationCodeUri;
-import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
 import dagger.Module;
 import dagger.Provides;
 import dagger.hilt.InstallIn;

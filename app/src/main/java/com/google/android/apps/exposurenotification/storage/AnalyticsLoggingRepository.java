@@ -17,11 +17,10 @@
 
 package com.google.android.apps.exposurenotification.storage;
 
-import com.google.android.apps.exposurenotification.common.Qualifiers.BackgroundExecutor;
+import androidx.annotation.WorkerThread;
 import com.google.android.apps.exposurenotification.proto.EnxLogExtension;
 import com.google.common.io.BaseEncoding;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
 import javax.inject.Inject;
 
 /**
@@ -30,31 +29,25 @@ import javax.inject.Inject;
 public class AnalyticsLoggingRepository {
 
   private final AnalyticsLoggingDao loggingDao;
-  private final ExecutorService backgroundExecutor;
 
   @Inject
-  AnalyticsLoggingRepository(ExposureNotificationDatabase exposureNotificationDatabase,
-      @BackgroundExecutor ExecutorService backgroundExecutor) {
+  AnalyticsLoggingRepository(ExposureNotificationDatabase exposureNotificationDatabase) {
     this.loggingDao = exposureNotificationDatabase.analyticsLoggingDao();
-    this.backgroundExecutor = backgroundExecutor;
   }
 
-  public List<AnalyticsLoggingEntity> getAndEraseEventsBatch() {
-    synchronized (AnalyticsLoggingRepository.class) {
-      List<AnalyticsLoggingEntity> batch = loggingDao.getAllLogEvents();
-      loggingDao.deleteLogEvents();
-      return batch;
-    }
-  }
-
+  @WorkerThread
   public void eraseEventsBatch() {
       loggingDao.deleteLogEvents();
   }
 
+  @WorkerThread
   public void recordEvent(EnxLogExtension logProto) {
-    backgroundExecutor.execute(() -> {
-      loggingDao.insert(
-          AnalyticsLoggingEntity.create(0, BaseEncoding.base64().encode(logProto.toByteArray())));
-    });
+    loggingDao.insert(
+        AnalyticsLoggingEntity.create(0, BaseEncoding.base64().encode(logProto.toByteArray())));
+  }
+
+  @WorkerThread
+  public List<AnalyticsLoggingEntity> getEventsBatch() {
+    return loggingDao.getAllLogEvents();
   }
 }

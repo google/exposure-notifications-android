@@ -16,6 +16,8 @@
   <string name="btn_save">I-save</string>
   <string name="btn_discard">I-discard</string>
   <string name="btn_verify">I-verify</string>
+  <string name="btn_dont_share">Huwag ibahagi</string>
+  <string name="btn_share">Ibahagi</string>
   <string name="learn_more">Matuto pa</string>
   <string name="home_tab_exposures_text">Exposure</string>
   <string name="home_tab_notify_text">Abisuhan ang iba</string>
@@ -31,7 +33,7 @@
     \n\nIbabahagi sa app ang petsa, tagal, at lakas ng signal na nauugnay sa isang exposure.</string>
   <string name="onboarding_metrics_title">Tumulong na pahusayin ang app na ito</string>
   <string name="onboarding_metrics_subtitle">Magbahagi ng data ng app usage at performance sa Google</string>
-  <string name="onboarding_metrics_detail">Para makatulong na mapanatili at mapahusay ang app, ibinabahagi sa Google ang ilang limitado at walang pagkakakilanlang data tungkol sa performance at paggamit ng app. Hindi ka tutukuyin sa data na ito.</string>
+  <string name="onboarding_metrics_description">Para makatulong na mapanatili at mapahusay ang app, ibinabahagi sa Google ang ilang limitado at walang pagkakakilanlang data tungkol sa performance at paggamit ng app. Hindi ka makikilala sa data na ito. %1$s</string>
   <string name="onboarding_confirm_later_title">Panatilihing naka-off ang Notification sa Exposure?</string>
   <string name="onboarding_confirm_later_detail">Hanggang sa i-on ang Notification sa Exposure, hindi ka aabisuhan tungkol sa exposure sa COVID-19</string>
   <string name="no_recent_exposure_subtitle">Walang kamakailang exposure</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">Status</string>
   <string name="exposure_details_status_exposure">Posibleng exposure sa COVID-19</string>
   <string name="exposure_details_date_exposed_subtitle">Petsa ng posibleng exposure</string>
-  <string name="exposure_details_expiring_subtitle">Sino-store ang mga ulat sa exposure sa loob ng 14 na araw mula sa petsa ng exposure</string>
+  <string name="exposure_details_expiring_subtitle">Sino-store ang mga ulat sa exposure sa loob ng 14 na araw mula sa petsa ng posibleng exposure</string>
   <string name="exposure_details_learn_more">Matuto pa</string>
   <string name="exposure_details_new_badge">Bago</string>
   <string name="share_test_result_title">Protektahan ang iyong komunidad, ibahagi ang resulta ng COVID-19 test mo</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">Mga notification sa exposure</string>
   <string name="settings_app_analytics_subtitle">Pagbabahagi ng app usage at performance</string>
   <string name="settings_privacy_policy">Patakaran sa privacy</string>
+  <string name="settings_help_and_support">Tungkol sa Exposure Notification Express</string>
   <string name="settings_legal_terms">Mga legal na tuntunin</string>
   <string name="settings_debug">Debug mode</string>
   <string name="settings_share">Tumulong na pigilan ang paglaganap ng COVID-19. Ibahagi ang app na ito sa iyong komunidad at tulungan silang mas mahusay na maprotektahan ang kanilang mga sarili sa pamamagitan ng mga notification sa posibleng exposure.</string>
@@ -134,4 +137,10 @@
   <string name="share_error">Hindi maibahagi ang resulta ng pagsusuri. Subukan ulit sa ibang pagkakataon.</string>
   <string name="generic_error_message">Nagkaproblema. Subukan ulit.</string>
   <string name="code_error_already_submitted">Nagamit na ang code para ibahagi ang resulta ng test</string>
+  <string name="settings_private_analytics_subtitle">Pagbahagi ng analytics ng Notification sa Exposure</string>
+  <string name="private_analytics_title">Tulungan ang iyong awtoridad sa kalusugan na maunawaan ang pagkalat ng COVID-19</string>
+  <string name="private_analytics_subtitle">Magbahagi ng Mga Notification sa Exposure sa iyong lokal na awtoridad sa kalusugan</string>
+  <string name="private_analytics_footer">Makakatulong ang analytics, tulad ng bilang ng notification sa rehiyon, sa pag-unawa ng awtoridad sa kalusugan sa pagkalat ng COVID-19. Hindi ito mababasa ng Google at pinagsasama-sama ito para sa awtoridad sa kalusugan para hindi ito maiugnay sa telepono mo. %1$s</string>
+  <string name="private_analytics_footer_onboarding">Hindi mababasa ng Google ang analytics na ito at pinagsasama-sama ang mga ito para sa iyong awtoridad sa kalusugan para hindi maiugnay ang mga ito sa telepono mo. %1$s</string>
+  <string name="private_analytics_footer_learn_more">Matuto pa</string>
 </resources>

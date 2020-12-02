@@ -32,6 +32,7 @@ import com.google.android.apps.exposurenotification.common.Qualifiers.Background
 import com.google.android.apps.exposurenotification.common.Qualifiers.LightweightExecutor;
 import com.google.android.apps.exposurenotification.common.Qualifiers.ScheduledExecutor;
 import com.google.android.apps.exposurenotification.common.TaskToFutureAdapter;
+import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.logging.AnalyticsLogger;
 import com.google.android.apps.exposurenotification.proto.WorkManagerTask.WorkerTask;
 import com.google.android.apps.exposurenotification.riskcalculation.DailySummaryRiskCalculator;
@@ -46,10 +47,9 @@ import com.google.common.util.concurrent.FluentFuture;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ScheduledExecutorService;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
 import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 import org.threeten.bp.Duration;
 
@@ -74,6 +74,7 @@ public class StateUpdatedWorker extends ListenableWorker {
   private final ExecutorService lightweightExecutor;
   private final ScheduledExecutorService scheduledExecutor;
   private final AnalyticsLogger logger;
+  private final Clock clock;
 
   ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
 
@@ -91,8 +92,8 @@ public class StateUpdatedWorker extends ListenableWorker {
       @BackgroundExecutor ExecutorService backgroundExecutor,
       @LightweightExecutor ExecutorService lightweightExecutor,
       @ScheduledExecutor ScheduledExecutorService scheduledExecutor,
-      AnalyticsLogger logger) {
-
+      AnalyticsLogger logger,
+      Clock clock) {
     super(context, workerParams);
     this.context = context;
     this.exposureRepository = exposureRepository;
@@ -106,34 +107,36 @@ public class StateUpdatedWorker extends ListenableWorker {
     this.lightweightExecutor = lightweightExecutor;
     this.scheduledExecutor = scheduledExecutor;
     this.logger = logger;
+    this.clock = clock;
+  }
+
+  static void runOnce(WorkManager workManager) {
+    workManager.enqueue(new OneTimeWorkRequest.Builder(StateUpdatedWorker.class).build());
   }
 
   @NonNull
   @Override
   public ListenableFuture<Result> startWork() {
-    ListenableFuture<Result> listenableFuture = FluentFuture.from(
+    return FluentFuture.from(
         TaskToFutureAdapter.getFutureWithTimeout(
             exposureNotificationClientWrapper.getDailySummaries(dailySummariesConfig),
             GET_DAILY_SUMMARIES_TIMEOUT,
             scheduledExecutor))
         .transform(
             (dailySummaries) -> {
+              logger.logWorkManagerTaskStarted(WorkerTask.TASK_STATE_UPDATED);
               retrievePreviousExposuresAndCheckForExposureUpdate(context, dailySummaries);
+              logger.logWorkManagerTaskSuccess(WorkerTask.TASK_STATE_UPDATED);
               return Result.success();
             },
-                backgroundExecutor)
+            backgroundExecutor)
         .catching(
             Exception.class,
             x -> {
               Log.e(TAG, "Failure to update app state (tokens, etc) from exposure summary.", x);
+              logger.logWorkManagerTaskFailure(WorkerTask.TASK_STATE_UPDATED, x);
               return Result.failure();
-            }, lightweightExecutor);
-    Futures.addCallback(listenableFuture, LOG_OUTCOME, lightweightExecutor);
-    return listenableFuture;
-  }
-
-  static void runOnce(WorkManager workManager) {
-    workManager.enqueue(new OneTimeWorkRequest.Builder(StateUpdatedWorker.class).build());
+            }, backgroundExecutor);
   }
 
   private void retrievePreviousExposuresAndCheckForExposureUpdate(Context context,
@@ -153,10 +156,12 @@ public class StateUpdatedWorker extends ListenableWorker {
 
   /**
    * Handle dailySummary update logic:
-   * - Update UI's classification and date components
-   * - Badge UI components as "new"
-   * - Recognize changes that trigger notifications
-   * - Detect revocations
+   * <ul>
+   * <li>- Update UI's classification and date components
+   * <li>- Badge UI components as "new"
+   * <li>- Recognize changes that trigger notifications
+   * <li>- Detect revocations
+   * </ul>
    */
   public void checkForExposureUpdate(Context context,
       List<ExposureEntity> currentExposureEntities, ExposureClassification currentClassification,
@@ -177,7 +182,7 @@ public class StateUpdatedWorker extends ListenableWorker {
     boolean newExposureClassification =
         (previousClassification.getClassificationIndex()
             != currentClassification.getClassificationIndex())
-        || (!previousClassification.getClassificationName()
+            || (!previousClassification.getClassificationName()
             .equals(currentClassification.getClassificationName()));
 
     boolean newExposureDate =
@@ -201,12 +206,12 @@ public class StateUpdatedWorker extends ListenableWorker {
     if (newExposureClassification || newExposureDate) {
       if (previousClassification.getClassificationIndex()
           != ExposureClassification.NO_EXPOSURE_CLASSIFICATION_INDEX
-        && currentClassification.getClassificationIndex()
+          && currentClassification.getClassificationIndex()
           == ExposureClassification.NO_EXPOSURE_CLASSIFICATION_INDEX) {
 
         // Check for the revocation edge case by looking up previous exposures in room
         List<ExposureEntity> previousExposureEntities = exposureRepository.getAllExposureEntities();
-        if (revocationDetector.isRevocation(previousExposureEntities, currentExposureEntities)){
+        if (revocationDetector.isRevocation(previousExposureEntities, currentExposureEntities)) {
           notificationTitleResource = R.string.exposure_notification_title_revoked;
           notificationMessageResource = R.string.exposure_notification_message_revoked;
           isClassificationRevoked = true;
@@ -232,7 +237,8 @@ public class StateUpdatedWorker extends ListenableWorker {
           .setIsExposureClassificationNewAsync(BadgeStatus.NEW);
     }
     if (newExposureDate) {
-      exposureNotificationSharedPreferences.setIsExposureClassificationDateNewAsync(BadgeStatus.NEW);
+      exposureNotificationSharedPreferences
+          .setIsExposureClassificationDateNewAsync(BadgeStatus.NEW);
     }
 
     /*
@@ -241,6 +247,9 @@ public class StateUpdatedWorker extends ListenableWorker {
     if (notificationTitleResource != 0 || notificationMessageResource != 0) {
       notificationHelper.showPossibleExposureNotification(
           context, notificationTitleResource, notificationMessageResource);
+      exposureNotificationSharedPreferences
+          .setExposureNotificationLastShownClassification(clock.now(),
+              currentClassification.getClassificationIndex());
       Log.d(TAG, "Notifying user: "
           + context.getResources().getString(notificationTitleResource) + " - "
           + context.getResources().getString(notificationMessageResource));
@@ -278,7 +287,7 @@ public class StateUpdatedWorker extends ListenableWorker {
   private int getNotificationMessageResource(ExposureClassification exposureClassification) {
     switch (exposureClassification.getClassificationIndex()) {
       case 1:
-        return  R.string.exposure_notification_message_1;
+        return R.string.exposure_notification_message_1;
       case 2:
         return R.string.exposure_notification_message_2;
       case 3:
@@ -289,17 +298,4 @@ public class StateUpdatedWorker extends ListenableWorker {
         throw new IllegalArgumentException("Classification index must be between 1 and 4");
     }
   }
-
-  private FutureCallback<Result> LOG_OUTCOME =
-      new FutureCallback<Result>() {
-        @Override
-        public void onSuccess(@NullableDecl Result result) {
-          logger.logWorkManagerTaskSuccess(WorkerTask.TASK_STATE_UPDATED);
-        }
-
-        @Override
-        public void onFailure(@NonNull Throwable t) {
-          logger.logWorkManagerTaskFailure(WorkerTask.TASK_STATE_UPDATED, t);
-        }
-      };
 }

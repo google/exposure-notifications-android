@@ -16,6 +16,8 @@
   <string name="btn_save">አስቀምጥ</string>
   <string name="btn_discard">አስወግድ</string>
   <string name="btn_verify">ያረጋግጡ</string>
+  <string name="btn_dont_share">አታጋራ</string>
+  <string name="btn_share">አጋራ</string>
   <string name="learn_more">የበለጠ ለመረዳት</string>
   <string name="home_tab_exposures_text">ተጋላጭነት</string>
   <string name="home_tab_notify_text">ሌሎቹን ያሳውቁ</string>
@@ -31,7 +33,7 @@
     \n\nከተጋላጭነት ጋር የሚጎዳኘው ቀን፣ የቆይታ ጊዜ እና የሲግናል ጥንካሬ ለመተግበሪያው ይጋራል።</string>
   <string name="onboarding_metrics_title">ይህ መተግበሪያ የተሻለ እንዲሆን ያግዙ</string>
   <string name="onboarding_metrics_subtitle">የመተግበሪያ አጠቃቀም እና የአፈፃፀም ውሂብን በGoogle ያጋሩ</string>
-  <string name="onboarding_metrics_detail">መተግበሪያውን ጠብቆ ለማቆየት እና ለማሻሻል ለማገዝ፣ ስለ መተግበሪያ አፈፃፀም እና አጠቃቀም አንዳንድ የተወሰነ ማንነት እንዳይገለጽ የሚከለክል ውሂብ ዕውቅና ከGoogle ጋር ይጋራል። ይህ ውሂብ እርስዎን ለይቶ አያውቀዎትም።</string>
+  <string name="onboarding_metrics_description">መተግበሪያውን ጠብቆ ለማቆየት እና ለማሻሻል ለማገዝ ስለመተግበሪያ አፈፃፀም እና አጠቃቀም አንዳንድ የተወሰነ ማንነት እንዳይገለጽ የሚከለክል ውሂብ ዕውቅና ለGoogle ይጋራል። ይህ ውሂብ እርስዎን ለይቶ አያውቀዎትም። %1$s</string>
   <string name="onboarding_confirm_later_title">የተጋላጭነት ማስታወቂያ እንደጠፋ ይቆይ?</string>
   <string name="onboarding_confirm_later_detail">የተጋላጭነት ማስታወቂያዎች እስኪበሩ ድረስ፣ የኮቪድ-19 ሊሆን ለሚችል ተጋላጭነት እንዲያውቁ አይደረጉም</string>
   <string name="no_recent_exposure_subtitle">ምንም የቅርብ ጊዜ ተጋላጭነቶች የሉም</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">ሁኔታ</string>
   <string name="exposure_details_status_exposure">ሊሆን የሚችል ለኮቪድ-19 መጋለጥ</string>
   <string name="exposure_details_date_exposed_subtitle">የተጋለጡበት ሊሆን የሚችል ቀን</string>
-  <string name="exposure_details_expiring_subtitle">የተጋላጭነት ሪፖርቶች ከተጋለጡበት ቀን ጀምሮ ለ14 ቀኖች ይቀመጣሉ</string>
+  <string name="exposure_details_expiring_subtitle">የተጋላጭነት ሪፖርቶች ሊጋለጡ ከሚችሉበት ቀን ጀምሮ ለ14 ቀኖች ይቀመጣሉ</string>
   <string name="exposure_details_learn_more">የበለጠ ለመረዳት</string>
   <string name="exposure_details_new_badge">አዲስ</string>
   <string name="share_test_result_title">ማህበረሰብዎን ይጠብቁ፣ የእርስዎን የኮቪድ-19 ምርመራ ውጤት ያጋሩ</string>
@@ -58,7 +60,7 @@
   <string name="share_close_title">ሳያጋሩ ይወጣሉ?</string>
   <string name="share_close_detail">የእርስዎን የምርመራ ውጤት በቅርቡ የሚያጋሩ ከሆነ የእርስዎን ማኅበረሰብ በይበልጥ በተሻለ ሁኔታ ማገዝ ይችላሉ። ይሁንና፣ እስካሁን ያስገቡት የምርመራ ውጤት መረጃ በኋላ ላይ እርስዎ አርትዖት ካቆሙበት መቀጠል እንዲችሉ በመተግበሪያው ውስጥ ተቀምጦልዎለታል።</string>
   <string name="btn_resume_later">አዎ፣ ውጣ</string>
-  <string name="verify_test_result_title">የኮቪድ-19 የምርመራ መረጃ ያስገቡ</string>
+  <string name="verify_test_result_title">የCOVID-19 የምርመራ መረጃ ያስገቡ</string>
   <string name="enter_your_test_identifier">የማረጋገጫ ኮድ</string>
   <string name="share_test_identifier_help">ይህ የአንድ ጊዜ ኮድ የእርስዎን የሙከራ ውጤት ለማረጋገጥ ስራ ላይ የሚውል ሲሆን ዳግም ስራ ላይ መዋል አይችልም።</string>
   <string name="share_test_identifier_verified">የእርስዎ ኮድ ተረጋግጧል</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">የተጋላጭነት ማሳወቂያዎች</string>
   <string name="settings_app_analytics_subtitle">የመተግበሪያ አጠቃቀም እና የአፈፃፀም ማጋራት</string>
   <string name="settings_privacy_policy">የግላዊነት መመሪያ</string>
+  <string name="settings_help_and_support">ስለExposure Notification Express</string>
   <string name="settings_legal_terms">የሕጋዊ ደንቦች</string>
   <string name="settings_debug">የማረም ሁነታ</string>
   <string name="settings_share">የኮቪድ-19ን ስርጭት ለመግታት ያግዙ። ይህን መተግበሪያ ለእርስዎ ማኅበረሰብ ያጋሩ እና ሊገኙ በሚችሉ የተጋላጭነት ማሳወቂያዎች አማካኝነት ራሳቸውን የተሻለ እንዲጠብቁ ያግዟቸው።</string>
@@ -134,4 +137,10 @@
   <string name="share_error">የምርመራ ውጤቱን ማጋራት አልተቻለም። ቆይተው እንደገና ይሞክሩ።</string>
   <string name="generic_error_message">የሆነ ችግር ተፈጥሯል። እንደገና ይሞክሩ።</string>
   <string name="code_error_already_submitted">ኮድ አስቀድሞ የሙከራ ውጤትን ለማጋራት ስራ ላይ ውሏል</string>
+  <string name="settings_private_analytics_subtitle">የተጋላጭነት ማሳወቂያዎች ትንታኔ መጋራት</string>
+  <string name="private_analytics_title">የጤና ባለስልጣንዎ የኮቪድ-19 ስርጭትን እንዲረዳ ያግዙ</string>
+  <string name="private_analytics_subtitle">የተጋላጭነት ማሳወቂያዎችን ትንታኔዎች ለእርስዎ ጤና ባለስልጣን ያጋሩ</string>
+  <string name="private_analytics_footer">እንደ የእርስዎ ክልል ውስጥ ባሉ ማሳወቂያዎች ብዛት ያሉ እነዚህ ትንታኔዎች የጤና ባለሥልጣናት ኮቪድ-19 እንዴት እንደሚሰራጭ እንዲገነዘቡ ይረዳቸዋል። እነሱ በGoogle ሊነበቡ አይችሉም እና ለእርስዎ የጤና ባለስልጣን ተዋሃዱ ስለሆኑ ከስልክዎ ጋር መገናኘት አይችሉም። %1$s</string>
+  <string name="private_analytics_footer_onboarding">እነዚህ ትንታኔዎች በGoogle ሊነበቡ አይችሉም እና ለእርስዎ የጤና ባለስልጣን የተዋሃዱ ስለሆኑ ከስልክዎ ጋር መገናኘት አይችሉም። %1$s</string>
+  <string name="private_analytics_footer_learn_more">የበለጠ ለመረዳት</string>
 </resources>

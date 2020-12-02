@@ -16,6 +16,8 @@
   <string name="btn_save">Захаваць</string>
   <string name="btn_discard">Адхіліць</string>
   <string name="btn_verify">Спраўдзіць</string>
+  <string name="btn_dont_share">Не абагульваць</string>
+  <string name="btn_share">Абагуліць</string>
   <string name="learn_more">Даведацца больш</string>
   <string name="home_tab_exposures_text">Рызыка заражэння</string>
   <string name="home_tab_notify_text">Апавясціць іншых</string>
@@ -31,7 +33,7 @@
     \n\nЗ праграмай будуць абагулены дата, працягласць і ўзровень сігналу, звязаныя з рызыкай заражэння.</string>
   <string name="onboarding_metrics_title">Дапамажыце ўдасканаліць гэту праграму</string>
   <string name="onboarding_metrics_subtitle">Абагульвайце даныя пра выкарыстанне праграмы з Google</string>
-  <string name="onboarding_metrics_detail">Дзеля падтрымкі і ўдасканалення нашай праграмы частка інфармацыі пра яе прадукцыйнасць і выкарыстанне будзе ананімна абагульвацца з Google. Гэтыя даныя не дазволяць вызначыць вашу асобу.</string>
+  <string name="onboarding_metrics_description">Дзеля падтрымкі і ўдасканалення нашай праграмы частка інфармацыі пра яе прадукцыйнасць і выкарыстанне будзе ананімна абагульвацца з Google. Гэтыя даныя не дазволяць вызначыць вашу асобу. %1$s</string>
   <string name="onboarding_confirm_later_title">Не ўключаць Апавяшчэнні пра рызыку заражэння?</string>
   <string name="onboarding_confirm_later_detail">З выключанымі Апавяшчэннямі вы не даведаецеся пра рызыку</string>
   <string name="no_recent_exposure_subtitle">Рызыкі заражэння ў апошні час не было</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">Стан</string>
   <string name="exposure_details_status_exposure">Магчымая рызыка заражэння COVID-19</string>
   <string name="exposure_details_date_exposed_subtitle">Дата магчымага заражэння</string>
-  <string name="exposure_details_expiring_subtitle">Інфармацыя пра рызыку заражэння захоўваецца на працягу 14 дзён з даты кантакту</string>
+  <string name="exposure_details_expiring_subtitle">Інфармацыя пра рызыку заражэння захоўваецца на працягу 14 дзён з даты магчымага заражэння</string>
   <string name="exposure_details_learn_more">Даведацца больш</string>
   <string name="exposure_details_new_badge">Новае</string>
   <string name="share_test_result_title">Падумайце пра людзей, якія знаходзяцца побач з вамі. Абагульце свае вынікі тэсту на COVID-19</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">Апавяшчэнні пра рызыку заражэння</string>
   <string name="settings_app_analytics_subtitle">Абагульваюцца даныя пра выкарыстанне</string>
   <string name="settings_privacy_policy">Палітыка прыватнасці</string>
+  <string name="settings_help_and_support">Пра экспрэс-апавяшчэнні пра рызыку заражэння</string>
   <string name="settings_legal_terms">Юрыдычныя ўмовы</string>
   <string name="settings_debug">Рэжым адладкі</string>
   <string name="settings_share">Дапамажыце спыніць распаўсюджванне COVID-19. Абагульце гэту праграму з іншымі карыстальнікамі, каб яны маглі лепш засцерагацца, атрымліваючы апавяшчэнні пра рызыку заражэння.</string>
@@ -134,4 +137,10 @@
   <string name="share_error">Не ўдалося абагуліць вынікі тэсту. Паўтарыце спробу пазней.</string>
   <string name="generic_error_message">Нешта пайшло не так. Паўтарыце спробу.</string>
   <string name="code_error_already_submitted">Код ужо скарыстаны для абагульвання вынікаў тэсту</string>
+  <string name="settings_private_analytics_subtitle">Абагульванне аналітыкі з апавяшчэнняў</string>
+  <string name="private_analytics_title">Дапамажыце органам аховы здароўя аналізаваць звесткі пра распаўсюджванне COVID-19</string>
+  <string name="private_analytics_subtitle">Абагульвайце аналітыку з апавяшчэнняў пра рызыку заражэння з мясцовымі органамі аховы здароўя</string>
+  <string name="private_analytics_footer">Звесткі аналітыкі, напрыклад колькасць апавяшчэнняў у вашым рэгіёне, дапамогуць зразумець, як распаўсюджваецца COVID-19. Гэта сукупныя даныя, яны недаступныя для Google і не звязаны з вашым тэлефонам.%1$s</string>
+  <string name="private_analytics_footer_onboarding">Гэта аналітыка недаступная для Google і збіраецца для мясцовых органаў аховы здароўя, таму яна не можа быць звязана з вашым тэлефонам. %1$s</string>
+  <string name="private_analytics_footer_learn_more">Даведацца больш</string>
 </resources>

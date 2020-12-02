@@ -48,10 +48,49 @@
       android:orientation="vertical">
 
       <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/settings_icon_field_width"
+        android:paddingRight="@dimen/padding_normal"
+        android:paddingTop="@dimen/padding_small"
+        android:orientation="horizontal">
+
+        <ImageView
+          android:layout_width="@dimen/settings_icon_field_width"
+          android:layout_height="@dimen/settings_icon_height"
+          app:srcCompat="@drawable/ic_share"
+          android:layout_gravity="center_horizontal" />
+
+        <TextView
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:layout_gravity="center_vertical"
+          android:textSize="16sp"
+          android:textAppearance="?attr/textAppearanceBody2"
+          android:text="@string/settings_share"
+          android:textColor="?attr/colorControlNormal" />
+
+      </LinearLayout>
+
+      <Button
+        android:id="@+id/share_app_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/settings_icon_field_width"
+        android:layout_marginTop="@dimen/padding_micro"
+        android:layout_marginBottom="@dimen/padding_normal"
+        android:text="@string/btn_share_this_app" />
+
+      <include layout="@layout/horizontal_divider"/>
+
+      <LinearLayout
         android:id="@+id/exposure_notifications_link"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="@dimen/settings_row_min_height"
+        android:paddingVertical="@dimen/padding_small"
+        android:paddingRight="@dimen/padding_normal"
         android:background="?attr/selectableItemBackground"
         android:orientation="horizontal">
 
@@ -100,6 +139,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="@dimen/settings_row_min_height"
+        android:paddingVertical="@dimen/padding_small"
+        android:paddingRight="@dimen/padding_normal"
         android:background="?attr/selectableItemBackground"
         android:orientation="horizontal">
 
@@ -135,6 +176,48 @@
 
       </LinearLayout>
 
+      <LinearLayout
+        android:id="@+id/private_analytics_link"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/settings_row_min_height"
+        android:paddingVertical="@dimen/padding_small"
+        android:paddingRight="@dimen/padding_normal"
+        android:background="?attr/selectableItemBackground"
+        android:orientation="horizontal">
+
+        <ImageView
+          android:layout_width="@dimen/settings_icon_field_width"
+          android:layout_height="@dimen/settings_icon_height"
+          app:srcCompat="@drawable/ic_chart"
+          android:layout_gravity="center_vertical" />
+
+        <LinearLayout
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center_vertical"
+          android:orientation="vertical">
+
+          <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textAppearance="?android:attr/textAppearanceListItem"
+            android:text="@string/settings_private_analytics_subtitle"/>
+
+          <TextView
+            android:id="@+id/private_analytics_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceListItemSecondary"
+            android:textSize="14sp"
+            android:textColor="?android:attr/textColorSecondary"/>
+
+        </LinearLayout>
+
+      </LinearLayout>
+
       <include layout="@layout/horizontal_divider"/>
 
       <LinearLayout
@@ -142,6 +225,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="@dimen/settings_row_min_height"
+        android:paddingVertical="@dimen/padding_small"
+        android:paddingRight="@dimen/padding_normal"
         android:background="?attr/selectableItemBackground"
         android:orientation="horizontal">
 
@@ -167,6 +252,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="@dimen/settings_row_min_height"
+        android:paddingVertical="@dimen/padding_small"
+        android:paddingRight="@dimen/padding_normal"
         android:background="?attr/selectableItemBackground"
         android:orientation="horizontal">
 
@@ -192,6 +279,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="@dimen/settings_row_min_height"
+        android:paddingVertical="@dimen/padding_small"
+        android:paddingRight="@dimen/padding_normal"
         android:background="?attr/selectableItemBackground"
         android:orientation="horizontal">
 
@@ -217,13 +306,46 @@
           android:layout_gravity="center_vertical" />
       </LinearLayout>
 
-      <include layout="@layout/horizontal_divider"/>
+      <LinearLayout
+        android:id="@+id/help_and_support_link"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/settings_row_min_height"
+        android:paddingVertical="@dimen/padding_small"
+        android:paddingRight="@dimen/padding_normal"
+        android:background="?attr/selectableItemBackground"
+        android:orientation="horizontal">
+
+        <ImageView
+          android:layout_width="@dimen/settings_icon_field_width"
+          android:layout_height="@dimen/settings_icon_height"
+          app:srcCompat="@drawable/ic_help"
+          android:layout_gravity="center_vertical" />
+
+        <TextView
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center_vertical"
+          android:textSize="16sp"
+          android:textAppearance="?attr/textAppearanceListItem"
+          android:text="@string/settings_help_and_support"
+          android:layout_weight="1"/>
+
+        <ImageView
+          android:layout_width="@dimen/settings_icon_field_width"
+          android:layout_height="@dimen/settings_icon_height"
+          app:srcCompat="@drawable/ic_open_new_window"
+          android:layout_gravity="center_vertical" />
+
+      </LinearLayout>
 
       <LinearLayout
         android:id="@+id/open_source_link"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="@dimen/settings_row_min_height"
+        android:paddingVertical="@dimen/padding_small"
+        android:paddingRight="@dimen/padding_normal"
         android:background="?attr/selectableItemBackground"
         android:orientation="horizontal">
 
@@ -248,7 +370,9 @@
         android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="@dimen/settings_icon_field_width"
+        android:minHeight="@dimen/settings_row_min_height"
+        android:paddingVertical="@dimen/padding_small"
+        android:paddingRight="@dimen/padding_normal"
         android:background="?attr/selectableItemBackground"
         android:orientation="horizontal">
 
@@ -267,43 +391,6 @@
           android:text="@string/settings_debug" />
 
       </LinearLayout>
-
-      <include layout="@layout/horizontal_divider"/>
-
-      <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="@dimen/settings_icon_field_width"
-        android:paddingTop="24dp"
-        android:orientation="horizontal">
-
-        <ImageView
-          android:layout_width="@dimen/settings_icon_field_width"
-          android:layout_height="@dimen/settings_icon_height"
-          app:srcCompat="@drawable/ic_share"
-          android:layout_gravity="center_horizontal" />
-
-        <TextView
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_weight="1"
-          android:layout_gravity="center_vertical"
-          android:textSize="16sp"
-          android:textAppearance="?attr/textAppearanceBody2"
-          android:text="@string/settings_share"
-          android:textColor="?attr/colorControlNormal" />
-
-      </LinearLayout>
-
-      <Button
-        android:id="@+id/share_app_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/settings_icon_field_width"
-        android:layout_marginTop="@dimen/padding_micro"
-        android:layout_marginBottom="@dimen/padding_normal"
-        android:text="@string/btn_share_this_app"
-        style="?attr/materialButtonOutlinedStyle" />
 
     </LinearLayout>
 

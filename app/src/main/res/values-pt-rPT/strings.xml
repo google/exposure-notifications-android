@@ -16,6 +16,8 @@
   <string name="btn_save">Guardar</string>
   <string name="btn_discard">Rejeitar</string>
   <string name="btn_verify">Validar</string>
+  <string name="btn_dont_share">Não partilhar</string>
+  <string name="btn_share">Partilhar</string>
   <string name="learn_more">Saiba mais</string>
   <string name="home_tab_exposures_text">Exposição</string>
   <string name="home_tab_notify_text">Notificar outros</string>
@@ -31,7 +33,7 @@
     \n\nA data, a duração e a intensidade do sinal associadas a uma exposição serão partilhadas com a app.</string>
   <string name="onboarding_metrics_title">Ajude a melhorar esta app</string>
   <string name="onboarding_metrics_subtitle">Partilhe dados de utilização/desempenho da app com a Google.</string>
-  <string name="onboarding_metrics_detail">Para ajudar a manter e melhorar a app, são partilhados dados desidentificados limitados acerca do desempenho e utilização da mesma com a Google. Estes dados não incluem a sua identidade.</string>
+  <string name="onboarding_metrics_description">Para ajudar a manter e melhorar a app, são partilhados dados desidentificados limitados acerca do desempenho e utilização da mesma com a Google. Estes dados não incluem a sua identidade. %1$s</string>
   <string name="onboarding_confirm_later_title">Pretender manter as Notificações de Exposição desativadas?</string>
   <string name="onboarding_confirm_later_detail">Não vai receber notificações acerca da possível exposição à COVID-19 até as ativar.</string>
   <string name="no_recent_exposure_subtitle">Sem exposições recentes</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">Estado</string>
   <string name="exposure_details_status_exposure">Possível exposição à COVID-19</string>
   <string name="exposure_details_date_exposed_subtitle">Data da possível exposição</string>
-  <string name="exposure_details_expiring_subtitle">Os relatórios de exposição são armazenados durante 14 dias a partir da data da exposição.</string>
+  <string name="exposure_details_expiring_subtitle">Os relatórios de exposição são armazenados durante 14 dias a partir da data da possível exposição.</string>
   <string name="exposure_details_learn_more">Saiba mais</string>
   <string name="exposure_details_new_badge">Novo</string>
   <string name="share_test_result_title">Partilhe o resultado do seu teste à COVID-19 para proteger a comunidade</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">Notificações de Exposição</string>
   <string name="settings_app_analytics_subtitle">Partilha da utilização/desempenho da app</string>
   <string name="settings_privacy_policy">Política de Privacidade</string>
+  <string name="settings_help_and_support">Sobre Notificações de Exposição Express</string>
   <string name="settings_legal_terms">Termos legais</string>
   <string name="settings_debug">Modo de depuração</string>
   <string name="settings_share">Ajude a evitar a propagação da COVID-19. Partilhe esta app com a comunidade e ajude-a a proteger-se melhor com notificações de uma possível exposição.</string>
@@ -134,4 +137,10 @@
   <string name="share_error">Não foi possível partilhar o resultado do teste. Tente novamente mais tarde.</string>
   <string name="generic_error_message">Ocorreu um erro. Tente novamente.</string>
   <string name="code_error_already_submitted">O código já foi utilizado para partilhar o resultado do teste.</string>
+  <string name="settings_private_analytics_subtitle">Partilha estatíst. das Notif. Exposição</string>
+  <string name="private_analytics_title">Ajude a sua autoridade de saúde a compreender a propagação da COVID-19</string>
+  <string name="private_analytics_subtitle">Partilhe as estatísticas das Notificações de Exposição com a sua autoridade de saúde</string>
+  <string name="private_analytics_footer">As estatísticas, como o n.º de notificações na região, ajudam as autoridades de saúde a entender a propagação da COVID-19. A Google não as consegue ler e estas são agregadas p/ a autoridade de saúde p/ não serem associadas ao seu tlm. %1$s</string>
+  <string name="private_analytics_footer_onboarding">A Google não consegue ler estas estatísticas e as mesmas são agregadas para a sua autoridade de saúde de forma a não serem associadas ao seu telemóvel. %1$s</string>
+  <string name="private_analytics_footer_learn_more">Saiba mais</string>
 </resources>

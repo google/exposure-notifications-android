@@ -18,7 +18,9 @@
 package com.google.android.apps.exposurenotification.notify;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
+import android.net.UrlQuerySanitizer;
 import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -40,6 +42,7 @@ import com.google.android.apps.exposurenotification.keyupload.UploadController.K
 import com.google.android.apps.exposurenotification.keyupload.UploadController.VerificationFailureException;
 import com.google.android.apps.exposurenotification.keyupload.UploadController.VerificationServerFailureException;
 import com.google.android.apps.exposurenotification.nearby.ExposureNotificationClientWrapper;
+import com.google.android.apps.exposurenotification.network.Connectivity;
 import com.google.android.apps.exposurenotification.network.DiagnosisKey;
 import com.google.android.apps.exposurenotification.storage.DiagnosisEntity;
 import com.google.android.apps.exposurenotification.storage.DiagnosisEntity.HasSymptoms;
@@ -50,6 +53,7 @@ import com.google.android.apps.exposurenotification.storage.DiagnosisRepository;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.nearby.exposurenotification.ExposureNotificationStatusCodes;
 import com.google.android.gms.nearby.exposurenotification.TemporaryExposureKey;
+import com.google.auto.value.AutoValue;
 import com.google.common.base.Function;
 import com.google.common.base.Optional;
 import com.google.common.base.Strings;
@@ -59,13 +63,11 @@ import com.google.common.util.concurrent.FluentFuture;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
-import com.google.common.util.concurrent.MoreExecutors;
 import dagger.hilt.android.qualifiers.ApplicationContext;
 import java.util.List;
 import java.util.Stack;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 import org.threeten.bp.Duration;
 import org.threeten.bp.LocalDate;
@@ -95,6 +97,7 @@ public class ShareDiagnosisViewModel extends ViewModel {
   private final UploadController uploadController;
   private final ExposureNotificationClientWrapper exposureNotificationClientWrapper;
   private final Resources resources;
+  private final Connectivity connectivity;
 
   private final MutableLiveData<Long> currentDiagnosisId = new MutableLiveData<>(NO_EXISTING_ID);
 
@@ -104,9 +107,7 @@ public class ShareDiagnosisViewModel extends ViewModel {
   private final SingleLiveEvent<String> snackbarLiveEvent = new SingleLiveEvent<>();
   private final SingleLiveEvent<ApiException> resolutionRequiredLiveEvent = new SingleLiveEvent<>();
   private final SingleLiveEvent<Boolean> sharedLiveEvent = new SingleLiveEvent<>();
-  // Sent when response to the verification code submission is received. If code is accepted, the
-  // optional contains the created DiagnosisEntity. Otherwise the optional is empty.
-  private final SingleLiveEvent<Optional<DiagnosisEntity>> verificationCodeSubmittedEvent = new SingleLiveEvent<>();
+  private final SingleLiveEvent<Boolean> revealCodeStepEvent = new SingleLiveEvent<>();
 
   private final ExecutorService backgroundExecutor;
   private final ExecutorService lightweightExecutor;
@@ -119,6 +120,9 @@ public class ShareDiagnosisViewModel extends ViewModel {
 
   private final MutableLiveData<Step> currentStepLiveData = new MutableLiveData<>();
   private final Stack<Step> backStack = new Stack<>();
+
+  private final MutableLiveData<String> verificationErrorLiveData = new MutableLiveData<>("");
+  private final Context context;
 
   private boolean isDeleteOpen = false;
   private boolean isCloseOpen = false;
@@ -138,12 +142,15 @@ public class ShareDiagnosisViewModel extends ViewModel {
       UploadController uploadController,
       DiagnosisRepository diagnosisRepository,
       ExposureNotificationClientWrapper exposureNotificationClientWrapper,
+      Connectivity connectivity,
       @BackgroundExecutor ExecutorService backgroundExecutor,
       @LightweightExecutor ExecutorService lightweightExecutor,
       @ScheduledExecutor ScheduledExecutorService scheduledExecutor) {
+    this.context = context;
     this.uploadController = uploadController;
     this.diagnosisRepository = diagnosisRepository;
     this.exposureNotificationClientWrapper = exposureNotificationClientWrapper;
+    this.connectivity = connectivity;
     this.backgroundExecutor = backgroundExecutor;
     this.lightweightExecutor = lightweightExecutor;
     this.scheduledExecutor = scheduledExecutor;
@@ -178,6 +185,13 @@ public class ShareDiagnosisViewModel extends ViewModel {
    */
   public LiveData<Step> getCurrentStepLiveData() {
     return Transformations.distinctUntilChanged(currentStepLiveData);
+  }
+
+  /**
+   * Notifies if the code verification has failed with a particular {@link String} error message.
+   */
+  public LiveData<String> getVerificationErrorLiveData() {
+    return Transformations.distinctUntilChanged(verificationErrorLiveData);
   }
 
   /**
@@ -294,7 +308,7 @@ public class ShareDiagnosisViewModel extends ViewModel {
   }
 
   private ListenableFuture<DiagnosisEntity> getCurrentDiagnosis() {
-    return FluentFuture.from(diagnosisRepository.getById(currentDiagnosisId.getValue()))
+    return FluentFuture.from(diagnosisRepository.getByIdAsync(currentDiagnosisId.getValue()))
         .transform(diagnosis -> {
           if (diagnosis == null) {
             Log.d(TAG, "No diagnosis id [" + currentDiagnosisId
@@ -412,24 +426,69 @@ public class ShareDiagnosisViewModel extends ViewModel {
     return builder.build();
   }
 
-  public void submitCode(String code, boolean isCodeFromLink) {
-    if (inFlightLiveData.getValue()) {
-      return;
-    }
-    Log.d(TAG, "Submitting verification code...");
-    inFlightLiveData.setValue(true);
-    Upload upload = Upload.newBuilder(code).build();
-    // Submit the verification code to the verification server:
+  @AutoValue
+  abstract static class EnterCodeStepReturnValue {
 
-    FluentFuture.from(diagnosisRepository.getByVerificationCodeAsync(code))
+    static EnterCodeStepReturnValue create(boolean revealPage,
+        Optional<String> verificationCodeToPrefill) {
+      return new AutoValue_ShareDiagnosisViewModel_EnterCodeStepReturnValue(revealPage,
+          verificationCodeToPrefill);
+    }
+
+    abstract boolean revealPage();
+
+    abstract Optional<String> verificationCodeToPrefill();
+  }
+
+  /**
+   * Call this function in onCreateView() of 'Code' step fragment.
+   */
+  public EnterCodeStepReturnValue enterCodeStep(@Nullable Intent activityStartIntent) {
+    // The sharing diagnosis activity is not started from SMS link.
+    if (activityStartIntent == null || activityStartIntent.getData() == null) {
+      return EnterCodeStepReturnValue.create(true, Optional.absent());
+    }
+
+    // Not the first time user navigates to 'Code' step and the verification code from the link has
+    // been used earlier. In this case, we deem the code was not accepted due to errors thus we
+    // reveal the normal 'Code' page.
+    if (isCodeFromLinkUsed()) {
+      return EnterCodeStepReturnValue.create(true, Optional.absent());
+    }
+
+    String codeFromLink = new UrlQuerySanitizer(
+        activityStartIntent.getData().toString())
+        .getValue("c");
+    if (Strings.isNullOrEmpty(codeFromLink)) {
+      return EnterCodeStepReturnValue.create(true, Optional.absent());
+    }
+
+    setCodeFromUrlUsed();
+    submitCode(codeFromLink, true);
+    return EnterCodeStepReturnValue.create(false, Optional.of(codeFromLink));
+  }
+
+  public ListenableFuture<?> submitCode(String code, boolean isCodeFromLink) {
+    if (inFlightLiveData.getValue()) {
+      return Futures.immediateVoidFuture();
+    }
+    inFlightLiveData.setValue(true);
+
+    Log.d(TAG, "Checking verification code locally");
+    return FluentFuture.from(diagnosisRepository.getByVerificationCodeAsync(code))
         .transformAsync(diagnosisEntities -> {
-          if (diagnosisEntities.isEmpty()) {
-            return uploadController.submitCode(upload);
-          } else {
+          if (!diagnosisEntities.isEmpty()) {
             // Should only be 1, but to be sure just choose the first.
             return Futures.immediateFailedFuture(
-                new VerificationCodeExistsException(diagnosisEntities.get(0).getId()));
+                new VerificationCodeExistsException(diagnosisEntities.get(0)));
           }
+          if (!connectivity.hasInternet()) {
+            return Futures.immediateFailedFuture(new NoInternetException());
+          }
+          Log.d(TAG, "Submitting verification code...");
+          // Submit the verification code to the verification server:
+          Upload upload = Upload.newBuilder(code).build();
+          return uploadController.submitCode(upload);
         }, lightweightExecutor)
         .transformAsync(
             verifiedUpload -> {
@@ -460,39 +519,58 @@ public class ShareDiagnosisViewModel extends ViewModel {
               Log.d(TAG, "Current diagnosis stored, notifying view");
               postCurrentDiagnosisId(newDiagnosisId);
               inFlightLiveData.postValue(false);
-              return diagnosisRepository.getById(newDiagnosisId);
-            },
-            MoreExecutors.directExecutor())
+              verificationErrorLiveData.postValue("");
+              return diagnosisRepository.getByIdAsync(newDiagnosisId);
+            }, lightweightExecutor)
         .transform(
             diagnosisEntity -> {
-              verificationCodeSubmittedEvent.postValue(Optional.of(diagnosisEntity));
+              if (ShareDiagnosisFlowHelper.isCodeStepSkippable(diagnosisEntity)) {
+                skipCodeStep(diagnosisEntity);
+              } else {
+                revealCodeStepEvent.postValue(true);
+              }
               return null;
-            }, MoreExecutors.directExecutor()
-        )
+            }, lightweightExecutor)
         .catching(VerificationCodeExistsException.class, ex -> {
           inFlightLiveData.postValue(false);
-          postCurrentDiagnosisId(ex.getId());
+          postCurrentDiagnosisId(ex.getDiagnosisEntity().getId());
+          if (Shared.SHARED.equals(ex.getDiagnosisEntity().getSharedStatus())) {
+            verificationErrorLiveData.postValue(
+                resources.getString(R.string.code_error_already_submitted));
+          }
+          if (ShareDiagnosisFlowHelper.isCodeStepSkippable(ex.getDiagnosisEntity())) {
+            skipCodeStep(ex.getDiagnosisEntity());
+          } else {
+            revealCodeStepEvent.postValue(true);
+          }
           return null;
         }, lightweightExecutor)
-        .catching(
-            Exception.class,
-            ex -> {
-              Log.e(TAG, "Failed to submit verification code.", ex);
-              inFlightLiveData.postValue(false);
-              verificationCodeSubmittedEvent.postValue(Optional.absent());
-              String snackbarErrorMsg = resources.getString(R.string.generic_error_message);
-              if (ex instanceof VerificationServerFailureException) {
-                snackbarErrorMsg =
-                    resources.getString(R.string.network_error_server_error);
-              } else if (ex instanceof VerificationFailureException) {
-                snackbarErrorMsg =
-                    ((VerificationFailureException) ex).getUploadError()
-                        .getErrorMessage(resources);
-              }
-              snackbarLiveEvent.postValue(snackbarErrorMsg);
-              return null;
-            },
-            lightweightExecutor);
+        .catching(NoInternetException.class, ex -> {
+          inFlightLiveData.postValue(false);
+          verificationErrorLiveData.postValue(
+              resources.getString(R.string.share_error_no_internet));
+          revealCodeStepEvent.postValue(true);
+          return null;
+        }, lightweightExecutor)
+        .catching(Exception.class, ex -> {
+          Log.e(TAG, "Failed to submit verification code.", ex);
+          inFlightLiveData.postValue(false);
+          revealCodeStepEvent.postValue(true);
+          String codeVerificationErrorMsg = resources.getString(R.string.generic_error_message);
+          if (ex instanceof VerificationServerFailureException) {
+            codeVerificationErrorMsg = resources.getString(R.string.network_error_server_error);
+          } else if (ex instanceof VerificationFailureException) {
+            codeVerificationErrorMsg = ((VerificationFailureException) ex).getUploadError()
+                .getErrorMessage(resources);
+          }
+          verificationErrorLiveData.postValue(codeVerificationErrorMsg);
+          return null;
+        }, lightweightExecutor);
+  }
+
+  void skipCodeStep(DiagnosisEntity diagnosisEntity) {
+    removeCurrentStepFromBackStack();
+    nextStep(ShareDiagnosisFlowHelper.getNextStep(Step.CODE, diagnosisEntity, context));
   }
 
   /**
@@ -500,16 +578,21 @@ public class ShareDiagnosisViewModel extends ViewModel {
    */
   private static class VerificationCodeExistsException extends Exception {
 
-    private final long id;
+    private final DiagnosisEntity diagnosisEntity;
 
-    public VerificationCodeExistsException(long id) {
-      this.id = id;
+    public VerificationCodeExistsException(DiagnosisEntity diagnosisEntity) {
+      this.diagnosisEntity = diagnosisEntity;
     }
 
-    public long getId() {
-      return id;
+    public DiagnosisEntity getDiagnosisEntity() {
+      return diagnosisEntity;
     }
   }
+
+  /**
+   * An {@link Exception} thrown when there is no internet connectivity during code submission.
+   */
+  private static class NoInternetException extends Exception {}
 
   /**
    * Submits TEKs and our diagnosis for sharing to other EN participating devices.
@@ -614,10 +697,11 @@ public class ShareDiagnosisViewModel extends ViewModel {
   }
 
   /**
-   * Updates once the server response to the verification code submission is received and handled.
+   * A {@link SingleLiveEvent} that returns {@link Boolean} to control whether the 'Code' step view
+   * should be revealed.
    */
-  public SingleLiveEvent<Optional<DiagnosisEntity>> getVerificationCodeSubmittedEvent() {
-    return verificationCodeSubmittedEvent;
+  public SingleLiveEvent<Boolean> getRevealCodeStepEvent() {
+    return revealCodeStepEvent;
   }
 
   /**

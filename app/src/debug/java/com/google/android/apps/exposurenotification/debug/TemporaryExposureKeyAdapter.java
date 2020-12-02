@@ -116,12 +116,6 @@ class TemporaryExposureKeyAdapter extends RecyclerView.Adapter<TemporaryExposure
       } catch (EncodeException e) {
         Log.e(TAG, "Error encoding", e);
       }
-      String listEncoding = "";
-      try {
-        listEncoding = TemporaryExposureKeyEncodingHelper.encodeList(Lists.newArrayList(entity));
-      } catch (EncodeException e) {
-        Log.e(TAG, "Error encoding", e);
-      }
       try {
         qrCode.setImageBitmap(encodeAsQRCode(singleEncoding));
       } catch (WriterException e) {

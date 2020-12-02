@@ -16,6 +16,8 @@
   <string name="btn_save">Sačuvaj</string>
   <string name="btn_discard">Odbaci</string>
   <string name="btn_verify">Potvrdi</string>
+  <string name="btn_dont_share">Ne dijeli</string>
+  <string name="btn_share">Dijeli</string>
   <string name="learn_more">Saznajte više</string>
   <string name="home_tab_exposures_text">Izloženost</string>
   <string name="home_tab_notify_text">Obavijestite druge</string>
@@ -31,7 +33,7 @@
     \n\nDatum, trajanje i jačina signala povezana s ovim izlaganjem će se podijeliti s aplikacijom.</string>
   <string name="onboarding_metrics_title">Pomozite nam da poboljšamo aplikaciju</string>
   <string name="onboarding_metrics_subtitle">Dijelite s Googleom podatke o korištenju i radu aplikacije</string>
-  <string name="onboarding_metrics_detail">Radi pomoći u održavanju i poboljšanju aplikacije, s Googleom se dijele neki podaci o radu i korištenju aplikacije bez informacija o identitetu. Ti podaci ne otkrivaju vaš identitet.</string>
+  <string name="onboarding_metrics_description">Radi pomoći u održavanju i poboljšanju aplikacije, s Googleom se dijele neki podaci o radu i korištenju aplikacije bez informacija o identitetu. Ti podaci ne otkrivaju vaš identitet. %1$s</string>
   <string name="onboarding_confirm_later_title">Ostaviti Obavještenja o izloženosti isključenim?</string>
   <string name="onboarding_confirm_later_detail">Nećete biti obaviješteni o mogućoj izloženosti virusu COVID-19 dok se ne uključe Obavještenja o izloženosti</string>
   <string name="no_recent_exposure_subtitle">Nema nedavnih izloženosti</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">Status</string>
   <string name="exposure_details_status_exposure">Moguća je izloženost virusu COVID-19</string>
   <string name="exposure_details_date_exposed_subtitle">Datum moguće izloženosti</string>
-  <string name="exposure_details_expiring_subtitle">Izvještaji o izloženosti se čuvaju 14 dana od datuma izlaganja</string>
+  <string name="exposure_details_expiring_subtitle">Izvještaji o izloženosti se čuvaju 14 dana od mogućeg datuma izlaganja</string>
   <string name="exposure_details_learn_more">Saznajte više</string>
   <string name="exposure_details_new_badge">Novo</string>
   <string name="share_test_result_title">Zaštitite svoju zajednicu i dijelite rezultat testa na COVID-19</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">Obavještenja o izloženosti</string>
   <string name="settings_app_analytics_subtitle">Dijeljenje korištenja i rada aplikacije</string>
   <string name="settings_privacy_policy">Pravila privatnosti</string>
+  <string name="settings_help_and_support">O Ekspresnim obavještenjima o izloženosti</string>
   <string name="settings_legal_terms">Pravni uslovi</string>
   <string name="settings_debug">Način rada za otklanjanje grešaka</string>
   <string name="settings_share">Pomozite u sprečavanju širenja virusa COVID-19. Podijelite ovu aplikaciju s članovima svoje zajednice i pomozite im da se bolje zaštite pomoću obavještenja o mogućoj izloženosti.</string>
@@ -134,4 +137,10 @@
   <string name="share_error">Nije moguće dijeliti rezultate testa. Pokušajte ponovo kasnije.</string>
   <string name="generic_error_message">Nešto nije uredu. Pokušajte ponovo.</string>
   <string name="code_error_already_submitted">Kôd je već iskorišten za dijeljenje rezultata testa</string>
+  <string name="settings_private_analytics_subtitle">Dijelj. analitike Obavj. o izloženosti</string>
+  <string name="private_analytics_title">Pomozite instituciji za javno zdravstvo da bolje razumije širenje virusa COVID-19</string>
+  <string name="private_analytics_subtitle">Dijelite analitiku Obavještenja o izloženosti sa svojom institucijom za javno zdravstvo</string>
+  <string name="private_analytics_footer">Ta analitika, npr. br. obavještenja u vašoj regiji, pomaže instituciji da sazna kako se širi COVID-19. Google je ne može vidjeti, a za instituciju se objedinjuje da se ne bi mogla povezati s vašim tel. %1$s</string>
+  <string name="private_analytics_footer_onboarding">Google ne može vidjeti te analitičke podatke, a za instituciju se objedinjuju da se ne bi mogli povezati s vašim telefonom. %1$s</string>
+  <string name="private_analytics_footer_learn_more">Saznajte više</string>
 </resources>

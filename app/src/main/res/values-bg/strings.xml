@@ -16,6 +16,8 @@
   <string name="btn_save">Запазване</string>
   <string name="btn_discard">Отхвърляне</string>
   <string name="btn_verify">Потвърждаване</string>
+  <string name="btn_dont_share">Без споделяне</string>
+  <string name="btn_share">Споделяне</string>
   <string name="learn_more">Научете повече</string>
   <string name="home_tab_exposures_text">Риск от заразяване</string>
   <string name="home_tab_notify_text">Известяване на хора</string>
@@ -31,7 +33,7 @@
     \n\nДатата, продължителността и силата на сигнала, свързани с излагането на опасност от заразяване, ще бъдат споделени с приложението.</string>
   <string name="onboarding_metrics_title">Помогнете ни да подобрим това приложение</string>
   <string name="onboarding_metrics_subtitle">Споделяне с Google на данни за употребата и ефективността</string>
-  <string name="onboarding_metrics_detail">С цел поддръжка и подобряване на приложението с Google ще се споделят ограничени данни за ефективността и употребата му, непозволяващи лично идентифициране. Тази информация не ви идентифицира.</string>
+  <string name="onboarding_metrics_description">С цел поддръжка и подобряване на приложението с Google ще се споделят ограничени данни за ефективността и употребата му, непозволяващи лично идентифициране. Тази информация не ви идентифицира. %1$s</string>
   <string name="onboarding_confirm_later_title">Известията при опасност изключени ли да бъдат?</string>
   <string name="onboarding_confirm_later_detail">Няма да научавате за излагане на опасност от заразяване с COVID-19, докато не включите известията</string>
   <string name="no_recent_exposure_subtitle">Няма скорошни излагания на опасност от заразяване</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">Състояние</string>
   <string name="exposure_details_status_exposure">Възможно излагане на опасност от заразяване с COVID-19</string>
   <string name="exposure_details_date_exposed_subtitle">Дата на вероятното излагане на опасност от заразяване</string>
-  <string name="exposure_details_expiring_subtitle">Сигналите за излагане на опасност от заразяване се съхраняват 14 дни след излагането на опасност</string>
+  <string name="exposure_details_expiring_subtitle">Сигналите за излагане на опасност от заразяване се съхраняват 14 дни след датата на вероятното излагане на опасност</string>
   <string name="exposure_details_learn_more">Научете повече</string>
   <string name="exposure_details_new_badge">Ново</string>
   <string name="share_test_result_title">Защитете общността си, като споделите резултата от теста си за COVID-19</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">Изв. за излагане на опасност от заразяв.</string>
   <string name="settings_app_analytics_subtitle">Споделяне на данни за приложението</string>
   <string name="settings_privacy_policy">Декларация за поверителност</string>
+  <string name="settings_help_and_support">Всичко за експресните известия за излагане на опасност от заразяване</string>
   <string name="settings_legal_terms">Правни условия</string>
   <string name="settings_debug">Режим за отстраняване на грешки</string>
   <string name="settings_share">Помогнете за овладяването на разпространението на COVID-19. Споделете това приложение с общността си, за да помогнете на хората да се предпазват по-добре чрез известията за възможно излагане на опасност от заразяване.</string>
@@ -134,4 +137,10 @@
   <string name="share_error">Резултатът от теста не може да се сподели. Опитайте пак по-късно.</string>
   <string name="generic_error_message">Нещо се обърка. Опитайте отново.</string>
   <string name="code_error_already_submitted">Кодът вече е използван за споделяне на резултата от теста</string>
+  <string name="settings_private_analytics_subtitle">Споделяне на анализа от ENS</string>
+  <string name="private_analytics_title">Помогнете на органите за обществено здравеопазване да добият по-добра представа за разпространението на COVID-19</string>
+  <string name="private_analytics_subtitle">Споделяне на анализа от системата за известия за излагане на опасност от заразяване със здравните органи</string>
+  <string name="private_analytics_footer">Тези данни, например броя известия в региона ви, помагат на органите за обществено здравеопазване да добият по-добра представа за разпространението на COVID-19. Те не могат да бъдат прочетени от Google и са обобщени, така че не могат да бъдат свързани с телефона ви. %1$s</string>
+  <string name="private_analytics_footer_onboarding">Тези анализи не могат да бъдат прочетени от Google и са обобщени за здравните органи, така че не могат да бъдат свързани с телефона ви. %1$s</string>
+  <string name="private_analytics_footer_learn_more">Научете повече</string>
 </resources>

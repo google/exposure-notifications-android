@@ -76,6 +76,7 @@ public class ShareDiagnosisReviewFragment extends Fragment {
         new ViewModelProvider(getActivity()).get(ShareDiagnosisViewModel.class);
 
     TextView covidStatus = view.findViewById(R.id.share_review_status);
+    TextView travelStatusSubtitle = view.findViewById(R.id.share_review_travel_subtitle);
     TextView travelStatus = view.findViewById(R.id.share_review_travel);
     TextView date = view.findViewById(R.id.share_review_date);
     Button shareButton = view.findViewById(R.id.share_share_button);
@@ -99,6 +100,12 @@ public class ShareDiagnosisReviewFragment extends Fragment {
                 deleteAction(diagnosisEntity);
               }
 
+              previousButton.setOnClickListener((v) -> {
+                shareDiagnosisViewModel.previousStep(
+                    ShareDiagnosisFlowHelper.getPreviousStep(
+                        Step.REVIEW, diagnosisEntity, getContext()));
+              });
+
               if (diagnosisEntity.getTestResult() != null) {
                 switch (diagnosisEntity.getTestResult()) {
                   case LIKELY:
@@ -118,21 +125,26 @@ public class ShareDiagnosisReviewFragment extends Fragment {
                 covidStatus.setText(R.string.share_review_status_confirmed);
               }
 
-              if (diagnosisEntity.getTravelStatus() != null) {
-                switch (diagnosisEntity.getTravelStatus()) {
-                  case TRAVELED:
-                    travelStatus.setText(R.string.share_review_travel_confirmed);
-                    break;
-                  case NOT_TRAVELED:
-                    travelStatus.setText(R.string.share_review_travel_no_travel);
-                    break;
-                  case NO_ANSWER:
-                  case NOT_ATTEMPTED:
-                  default:
-                    travelStatus.setText(R.string.share_review_travel_no_answer);
+              if (!ShareDiagnosisFlowHelper.isTravelStatusStepSkippable(getContext())) {
+                travelStatusSubtitle.setVisibility(View.VISIBLE);
+                travelStatus.setVisibility(View.VISIBLE);
+
+                if (diagnosisEntity.getTravelStatus() != null) {
+                  switch (diagnosisEntity.getTravelStatus()) {
+                    case TRAVELED:
+                      travelStatus.setText(R.string.share_review_travel_confirmed);
+                      break;
+                    case NOT_TRAVELED:
+                      travelStatus.setText(R.string.share_review_travel_no_travel);
+                      break;
+                    case NO_ANSWER:
+                    case NOT_ATTEMPTED:
+                    default:
+                      travelStatus.setText(R.string.share_review_travel_no_answer);
+                  }
+                } else {
+                  travelStatus.setText(R.string.share_review_travel_no_answer);
                 }
-              } else {
-                travelStatus.setText(R.string.share_review_travel_no_answer);
               }
 
               // HasSymptoms cannot be null.
@@ -214,9 +226,6 @@ public class ShareDiagnosisReviewFragment extends Fragment {
     shareDiagnosisViewModel.getSnackbarSingleLiveEvent()
         .observe(getViewLifecycleOwner(), this::maybeShowSnackbar);
 
-    previousButton.findViewById(R.id.share_previous_button)
-        .setOnClickListener((v) -> previousAction());
-
     closeButton.setContentDescription(getString(R.string.navigate_up));
     closeButton.setOnClickListener((v) -> closeAction());
   }
@@ -237,10 +246,6 @@ public class ShareDiagnosisReviewFragment extends Fragment {
   private void shareAction() {
     Log.d(TAG, "Submitting diagnosis keys...");
     shareDiagnosisViewModel.uploadKeys();
-  }
-
-  private void previousAction() {
-    shareDiagnosisViewModel.previousStep(Step.TRAVEL_STATUS);
   }
 
   private void closeAction() {

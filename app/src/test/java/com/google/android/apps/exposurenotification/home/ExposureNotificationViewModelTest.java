@@ -33,12 +33,15 @@ import android.os.StatFs;
 import androidx.test.core.app.ApplicationProvider;
 import com.google.android.apps.exposurenotification.common.Qualifiers.BackgroundExecutor;
 import com.google.android.apps.exposurenotification.common.Qualifiers.LightweightExecutor;
+import com.google.android.apps.exposurenotification.common.time.Clock;
+import com.google.android.apps.exposurenotification.common.time.RealTimeModule;
 import com.google.android.apps.exposurenotification.home.ExposureNotificationViewModel.ExposureNotificationState;
 import com.google.android.apps.exposurenotification.logging.AnalyticsLogger;
 import com.google.android.apps.exposurenotification.nearby.ExposureNotificationClientWrapper;
 import com.google.android.apps.exposurenotification.nearby.PackageConfigurationHelper;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
 import com.google.android.apps.exposurenotification.testsupport.ExposureNotificationRules;
+import com.google.android.apps.exposurenotification.testsupport.FakeClock;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.nearby.exposurenotification.ExposureNotificationStatusCodes;
@@ -46,8 +49,10 @@ import com.google.android.gms.nearby.exposurenotification.PackageConfiguration.P
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.Tasks;
 import com.google.common.util.concurrent.ListeningExecutorService;
+import dagger.hilt.android.testing.BindValue;
 import dagger.hilt.android.testing.HiltAndroidTest;
 import dagger.hilt.android.testing.HiltTestApplication;
+import dagger.hilt.android.testing.UninstallModules;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
@@ -65,6 +70,7 @@ import org.robolectric.shadows.ShadowStatFs;
 @HiltAndroidTest
 @RunWith(RobolectricTestRunner.class)
 @Config(application = HiltTestApplication.class)
+@UninstallModules({RealTimeModule.class})
 public class ExposureNotificationViewModelTest {
 
   @Rule
@@ -83,6 +89,8 @@ public class ExposureNotificationViewModelTest {
   @Inject
   @LightweightExecutor
   ExecutorService lightweightExecutor;
+  @BindValue
+  Clock clock = new FakeClock();
 
 
   final Context context = ApplicationProvider.getApplicationContext();
@@ -112,7 +120,8 @@ public class ExposureNotificationViewModelTest {
         locationManager,
         statsFs,
         logger,
-        packageConfigurationHelper);
+        packageConfigurationHelper,
+        clock);
     when(exposureNotificationClientWrapper.getPackageConfiguration())
         .thenReturn(Tasks.forResult(new PackageConfigurationBuilder().build()));
   }
@@ -133,7 +142,7 @@ public class ExposureNotificationViewModelTest {
     when(exposureNotificationClientWrapper.isEnabled()).thenReturn(Tasks.forResult(false));
     exposureNotificationSharedPreferences.setIsEnabledCache(true);
     Bundle values = new Bundle();
-    values.putBoolean(PackageConfigurationHelper.METRICS_OPT_IN, true);
+    values.putBoolean(PackageConfigurationHelper.APP_ANALYTICS_OPT_IN, true);
     when(exposureNotificationClientWrapper.getPackageConfiguration())
         .thenReturn(Tasks.forResult(new PackageConfigurationBuilder().setValues(values).build()));
 

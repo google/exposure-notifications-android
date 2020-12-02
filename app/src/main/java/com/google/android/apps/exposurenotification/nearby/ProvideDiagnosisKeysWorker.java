@@ -36,6 +36,8 @@ import com.google.android.apps.exposurenotification.common.Qualifiers.Background
 import com.google.android.apps.exposurenotification.common.Qualifiers.ScheduledExecutor;
 import com.google.android.apps.exposurenotification.common.TaskToFutureAdapter;
 import com.google.android.apps.exposurenotification.keydownload.DiagnosisKeyDownloader;
+import com.google.android.apps.exposurenotification.logging.AnalyticsLogger;
+import com.google.android.apps.exposurenotification.proto.WorkManagerTask.WorkerTask;
 import com.google.android.apps.exposurenotification.work.WorkerStartupManager;
 import com.google.android.gms.nearby.exposurenotification.DiagnosisKeysDataMapping;
 import com.google.common.util.concurrent.FluentFuture;
@@ -50,6 +52,7 @@ import org.threeten.bp.Duration;
  * Performs work to provide diagnosis keys to the exposure notifications API.
  */
 public class ProvideDiagnosisKeysWorker extends ListenableWorker {
+
   /*
    * If we schedule the provide job more frequent than every 4 hours, nearby_en returns call-quota
    * exceeded errors. This variable represents the lower bound to the configuration value set by
@@ -70,6 +73,7 @@ public class ProvideDiagnosisKeysWorker extends ListenableWorker {
   private final ExecutorService backgroundExecutor;
   private final ScheduledExecutorService scheduledExecutor;
   private final WorkerStartupManager workerStartupManager;
+  private final AnalyticsLogger logger;
 
   @WorkerInject
   public ProvideDiagnosisKeysWorker(
@@ -81,7 +85,8 @@ public class ProvideDiagnosisKeysWorker extends ListenableWorker {
       DiagnosisKeysDataMapping diagnosisKeysDataMapping,
       @BackgroundExecutor ExecutorService backgroundExecutor,
       @ScheduledExecutor ScheduledExecutorService scheduledExecutor,
-      WorkerStartupManager workerStartupManager) {
+      WorkerStartupManager workerStartupManager,
+      AnalyticsLogger logger) {
     super(context, workerParams);
     this.downloader = downloadController;
     this.exposureNotificationClientWrapper = exposureNotificationClientWrapper;
@@ -90,6 +95,7 @@ public class ProvideDiagnosisKeysWorker extends ListenableWorker {
     this.backgroundExecutor = backgroundExecutor;
     this.scheduledExecutor = scheduledExecutor;
     this.workerStartupManager = workerStartupManager;
+    this.logger = logger;
   }
 
   @NonNull
@@ -104,6 +110,7 @@ public class ProvideDiagnosisKeysWorker extends ListenableWorker {
         workerStartupManager.getIsEnabledWithStartupTasks())
         .transformAsync(
             (isEnabled) -> {
+              logger.logWorkManagerTaskStarted(WorkerTask.TASK_PROVIDE_DIAGNOSIS_KEYS);
               // Only continue if it is enabled.
               if (isEnabled) {
                 return TaskToFutureAdapter.getFutureWithTimeout(
@@ -135,14 +142,17 @@ public class ProvideDiagnosisKeysWorker extends ListenableWorker {
         .transformAsync(
             (unused) -> downloader.download(), backgroundExecutor)
         .transformAsync(
-            (files) ->
-                diagnosisKeyFileSubmitter.submitFiles(files),
+            diagnosisKeyFileSubmitter::submitFiles,
             backgroundExecutor)
-        .transform(done -> Result.success(), backgroundExecutor)
+        .transform(done -> {
+          logger.logWorkManagerTaskSuccess(WorkerTask.TASK_PROVIDE_DIAGNOSIS_KEYS);
+          return Result.success();
+        }, backgroundExecutor)
         .catching(
             NotEnabledException.class,
             x -> {
               // Not enabled. Return as success.
+              logger.logWorkManagerTaskAbandoned(WorkerTask.TASK_PROVIDE_DIAGNOSIS_KEYS);
               return Result.success();
             },
             backgroundExecutor)
@@ -150,6 +160,7 @@ public class ProvideDiagnosisKeysWorker extends ListenableWorker {
             Exception.class,
             x -> {
               Log.e(TAG, "Failure to provide diagnosis keys", x);
+              logger.logWorkManagerTaskFailure(WorkerTask.TASK_PROVIDE_DIAGNOSIS_KEYS, x);
               return Result.failure();
             },
             backgroundExecutor);

@@ -16,6 +16,8 @@
   <string name="btn_save">Saqlash</string>
   <string name="btn_discard">Yopish</string>
   <string name="btn_verify">Tasdiqlash</string>
+  <string name="btn_dont_share">Ulashilmasin</string>
+  <string name="btn_share">Ulashish</string>
   <string name="learn_more">Batafsil</string>
   <string name="home_tab_exposures_text">Xavf</string>
   <string name="home_tab_notify_text">Xabar berish</string>
@@ -31,7 +33,7 @@
     \n\nIlovaga uchrashilgan sana va telefonlar orqali kontakt davomiyligi hamda Bluetooth signali kuchiga oid axborot yuboriladi.</string>
   <string name="onboarding_metrics_title">Bu ilovani yaxshilashga yordam bering</string>
   <string name="onboarding_metrics_subtitle">Ilova haqidagi axborotlarni Googlega yuborish</string>
-  <string name="onboarding_metrics_detail">Ilovaning ishlashini yaxshilash uchun Google ilovadan foydalanish va uning xususiyatlari haqida qatʼiy cheklangan anonim axborotlarni jamlaydi. Bu axborotlarda siz haqingizda maʼlumot boʻlmaydi.</string>
+  <string name="onboarding_metrics_description">Ilovaning ishlashini yaxshilash uchun Google ilovadan foydalanish va uning xususiyatlari haqida qatʼiy cheklangan anonim axborotlarni jamlaydi. Bu axborotlarda siz haqingizda maʼlumot boʻlmaydi. %1$s</string>
   <string name="onboarding_confirm_later_title">Ehtimoliy zararlanish bildirishnomalari oʻchiq qolsinmi?</string>
   <string name="onboarding_confirm_later_detail">Bildirishnomalar yoqilmasa, ehtimoliy zararlanish bildirishnomalari kelmaydi</string>
   <string name="no_recent_exposure_subtitle">Yangi kontaktlar mavjud emas</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">Ehtimoliy zararlanish bildirishnomalari</string>
   <string name="settings_app_analytics_subtitle">Ilova haqidagi axborotlarni yuborish</string>
   <string name="settings_privacy_policy">Maxfiylik siyosati</string>
+  <string name="settings_help_and_support">Ekspress ehtimoliy zararlanish bildirishnomalari haqida</string>
   <string name="settings_legal_terms">Huquqiy shartlar</string>
   <string name="settings_debug">Tuzatish rejimi</string>
   <string name="settings_share">COVID-19 tarqalishining oldini olishga yordam bering. Bu ilovani hududingizdagi tanishlarga ulashing va ularning ehtimoliy zararlanish bildirishnomalari yordamida himoyalanishiga yordam bering.</string>
@@ -134,4 +137,10 @@
   <string name="share_error">Test natijasi ulashilmadi. Keyinroq qayta urining.</string>
   <string name="generic_error_message">Nimadir xato ketdi. Qayta urining.</string>
   <string name="code_error_already_submitted">Kiritilgan kod allaqachon tahlil natijalarini ulashishda ishlatilgan</string>
+  <string name="settings_private_analytics_subtitle">Xavf bildirishnomalari tahlilini ulashish</string>
+  <string name="private_analytics_title">Sogʻliqni saqlash muassasalariga COVID-19 virusi qanchalik yoyilganini aniqlashga yordam bering</string>
+  <string name="private_analytics_subtitle">Ehtimoliy zararlanish bildirishnomalari tahliliy axborotini sogʻliqni saqlash muassasalari bilan ulashish</string>
+  <string name="private_analytics_footer">Hududingizdagi bildirishnomalar soni kabi tahliliy axborot sogʻliqni saqlash muassasalariga COVID-19 virusi qanchalik yoyilganini aniqlashga yordam beradi. Ular Google tomonidan ochilmaydi. Sogʻliqni saqlash muassasalari uchun jamlangani sababli ular telefoningizga ulanmagan. %1$s</string>
+  <string name="private_analytics_footer_onboarding">Mazkur tahliliy axborot Google tomonidan ochilmaydi. Sogʻliqni saqlash muassasalari uchun jamlangani sababli ular telefoningizga ulanmagan. %1$s</string>
+  <string name="private_analytics_footer_learn_more">Batafsil</string>
 </resources>

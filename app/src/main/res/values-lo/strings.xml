@@ -16,6 +16,8 @@
   <string name="btn_save">ບັນທຶກ</string>
   <string name="btn_discard">ປິດໄວ້</string>
   <string name="btn_verify">ຢັ້ງຢືນ</string>
+  <string name="btn_dont_share">ຢ່າແບ່ງປັນ</string>
+  <string name="btn_share">ແບ່ງປັນ</string>
   <string name="learn_more">ສຶກສາເພີ່ມເຕີມ</string>
   <string name="home_tab_exposures_text">ຄວາມສ່ຽງຕິດເຊື້ອ</string>
   <string name="home_tab_notify_text">ແຈ້ງເຕືອນຄົນອື່ນ</string>
@@ -31,7 +33,7 @@
     \n\nວັນທີ, ໄລຍະເວລາ ແລະ ຄວາມແຮງສັນຍານທີ່ເຊື່ອມໂຍງກັບການຕິດເຊື້ອຈະຖືກແບ່ງປັນໃຫ້ກັບແອັບ.</string>
   <string name="onboarding_metrics_title">ຊ່ວຍເຮັດໃຫ້ແອັບນີ້ດີຂຶ້ນ</string>
   <string name="onboarding_metrics_subtitle">ແບ່ງປັນຂໍ້ມູນການນຳໃຊ້ ແລະ ປະສິດທິພາບແອັບໃຫ້ກັບ Google</string>
-  <string name="onboarding_metrics_detail">ເພື່ອຊ່ວຍບຳລຸງຮັກສາ ແລະ ປັບປຸງແອັບ, ຂໍ້ມູນທີ່ບໍ່ສາມາດລະບຸຕົວຕົນທີ່ຈຳກັດໄວ້ບາງຢ່າງກ່ຽວກັບປະສິດທິພາບ ແລະ ການນຳໃຊ້ແອັບຈະຖືກແບ່ງປັນໃຫ້ກັບ Google. ຂໍ້ມູນນີ້ຈະບໍ່ລະບຸຕົວຕົນຂອງທ່ານ.</string>
+  <string name="onboarding_metrics_description">ເພື່ອຊ່ວຍບຳລຸງຮັກສາ ແລະ ປັບປຸງແອັບ, ຂໍ້ມູນທີ່ບໍ່ສາມາດລະບຸຕົວຕົນທີ່ຈຳກັດໄວ້ບາງຢ່າງກ່ຽວກັບປະສິດທິພາບ ແລະ ການນຳໃຊ້ແອັບຈະຖືກແບ່ງປັນໃຫ້ກັບ Google. ຂໍ້ມູນນີ້ຈະບໍ່ລະບຸຕົວຕົນຂອງທ່ານ. %1$s</string>
   <string name="onboarding_confirm_later_title">ປິດການແຈ້ງເຕືອນຄວາມສ່ຽງຕິດເຊື້ອໄວ້ຕໍ່ໄປບໍ?</string>
   <string name="onboarding_confirm_later_detail">ຈົນກວ່າຈະເປີດການແຈ້ງເຕືອນຄວາມສ່ຽງຕິດເຊື້ອ, ທ່ານຈະບໍ່ໄດ້ຮັບການແຈ້ງເຕືອນຄວາມສ່ຽງໃນການຕິດເຊື້ອ COVID-19.</string>
   <string name="no_recent_exposure_subtitle">ບໍ່ມີຄວາມສ່ຽງຕິດເຊື້ອຫຼ້າສຸດ</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">ສະຖານະ</string>
   <string name="exposure_details_status_exposure">ຄວາມສ່ຽງຕິດເຊື້ອ COVID-19</string>
   <string name="exposure_details_date_exposed_subtitle">ວັນທີ່ມີຄວາມສ່ຽງຕິດເຊື້ອ</string>
-  <string name="exposure_details_expiring_subtitle">ລາຍງານຄວາມສ່ຽງຕິດເຊື້ອຈະຖືກບັນທຶກໄວ້ 14 ມື້ນັບຈາກມື້ທີ່ສ່ຽງຕິດເຊື້ອ</string>
+  <string name="exposure_details_expiring_subtitle">ລາຍງານຄວາມສ່ຽງຕິດເຊື້ອຈະຖືກຈັດເກັບໄວ້ເປັນເວລາ 14 ມື້ນັບຈາກມື້ທີ່ສ່ຽງຕິດເຊື້ອ</string>
   <string name="exposure_details_learn_more">ສຶກສາເພີ່ມເຕີມ</string>
   <string name="exposure_details_new_badge">ໃໝ່</string>
   <string name="share_test_result_title">ປົກປ້ອງຊຸມຊົນຂອງທ່ານດ້ວຍການແບ່ງປັນຜົນກວດ COVID-19 ຂອງທ່ານ</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">ການແຈ້ງເຕືອນຄວາມສ່ຽງຕິດເຊື້ອ</string>
   <string name="settings_app_analytics_subtitle">ການແບ່ງປັນການນຳໃຊ້ແອັບ ແລະ ປະສິດທິພາບ</string>
   <string name="settings_privacy_policy">ນະໂບບາຍຄວາມເປັນສ່ວນຕົວ</string>
+  <string name="settings_help_and_support">ກ່ຽວກັບການແຈ້ງເຕືອນຄວາມສ່ຽງຕິດເຊື້ອ</string>
   <string name="settings_legal_terms">ຂໍ້ກຳນົດທາງກົດໝາຍ</string>
   <string name="settings_debug">ໂໝດດີບັກ</string>
   <string name="settings_share">ຊ່ວຍກັກກັນການຂະຫຍາຍຂອງ COVID-19. ແບ່ງປັນແອັບນີ້ໃຫ້ກັບຊຸມຊົນຂອງທ່ານ ແລະ ຊ່ວຍເຂົາເຈົ້າປົກປ້ອງຕົວເອງໃຫ້ດີຂຶ້ນດ້ວຍການແຈ້ງເຕືອນຄວາມສ່ຽງຕິດເຊື້ອທີ່ເປັນໄປໄດ້.</string>
@@ -134,4 +137,10 @@
   <string name="share_error">ບໍ່ສາມາດແບ່ງປັນຜົນກວດໄດ້. ກະລຸນາລອງໃໝ່ໃນພາຍຫຼັງ.</string>
   <string name="generic_error_message">ເກີດບາງຢ່າງຜິດພາດຂຶ້ນ. ກະລຸນາລອງໃໝ່.</string>
   <string name="code_error_already_submitted">ລະຫັດເຄີຍຖືກໃຊ້ເພື່ອແບ່ງປັນຜົນກວດໄປກ່ອນແລ້ວ</string>
+  <string name="settings_private_analytics_subtitle">ການແບ່ງປັນການວິເຄາະການແຈ້ງເຕືອນຄວາມສ່ຽງຕິດເຊື້ອ</string>
+  <string name="private_analytics_title">ຊ່ວຍໜ່ວຍງານສາທາລະນະສຸກຂອງທ່ານເຂົ້າໃຈການແຜ່ກະຈາຍຂອງ COVID-19</string>
+  <string name="private_analytics_subtitle">ແບ່ງປັນການວິເຄາະການແຈ້ງເຕືອນຄວາມສ່ຽງຕິດເຊື້ອໃຫ້ກັບໜ່ວຍງານສາທາລະນະສຸກຂອງທ່ານ</string>
+  <string name="private_analytics_footer">ການວິເຄາະເຫຼົ່ານີ້ ເຊັ່ນ: ຈຳນວນການແຈ້ງເຕືອນໃນພາກພື້ນທ່ານ, ຈະຊ່ວຍໜ່ວຍງານສາທາລະນະສຸກເຂົ້າໃຈວິທີແຜ່ກະຈາຍ COVID-19 ໄດ້. Google ຈະບໍ່ສາມາດການວິເຄາະເຫຼົ່ານັ້ນໄດ້ ແລະ ຂໍ້ມູນເຫຼົ່ານີ້ແມ່ນຖືກຮວບຮວມມາໃຫ້ກັບໜ່ວຍງານສາທາລະນະສຸກຂອງທ່ານເພື່ອບໍ່ໃຫ້ສາມາດເຊື່ອມໂຍງໂປຫາໂທລະສັບຂອງທ່ານໄດ້. %1$s</string>
+  <string name="private_analytics_footer_onboarding">Google ຈະບໍ່ສາມາດອ່ານການວິເຄາະເຫຼົ່ານີ້ໄດ້ ແລະ ຂໍ້ມູນເຫຼົ່ານີ້ແມ່ນຖືກຮວບຮວມມາໃຫ້ກັບໜ່ວຍງານສາທາລະນະສຸກຂອງທ່ານເພື່ອບໍ່ໃຫ້ສາມາດເຊື່ອມໂຍງໄປຫາໂທລະສັບຂອງທ່ານໄດ້. %1$s</string>
+  <string name="private_analytics_footer_learn_more">ສຶກສາເພີ່ມເຕີມ</string>
 </resources>

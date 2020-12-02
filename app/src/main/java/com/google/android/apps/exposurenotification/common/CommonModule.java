@@ -20,7 +20,6 @@ package com.google.android.apps.exposurenotification.common;
 import android.content.Context;
 import android.location.LocationManager;
 import android.telephony.TelephonyManager;
-import androidx.work.WorkManager;
 import dagger.Module;
 import dagger.Provides;
 import dagger.hilt.InstallIn;

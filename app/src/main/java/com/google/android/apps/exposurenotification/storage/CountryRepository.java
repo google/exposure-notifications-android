@@ -17,6 +17,8 @@
 
 package com.google.android.apps.exposurenotification.storage;
 
+import androidx.annotation.AnyThread;
+import androidx.annotation.WorkerThread;
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.common.util.concurrent.ListenableFuture;
 import java.util.List;
@@ -37,22 +39,27 @@ public class CountryRepository {
     this.clock = clock;
   }
 
+  @WorkerThread
   public List<String> getRecentlySeenCountryCodes(Instant earliestTimestamp) {
     return countryDao.getRecentlySeenCountryCodes(earliestTimestamp.toEpochMilli());
   }
 
+  @WorkerThread
   public void deleteObsoleteCountryCodes(Instant earliestTimestamp) {
     countryDao.deleteObsoleteCountryCodes(earliestTimestamp.toEpochMilli());
   }
 
+  @AnyThread
   public ListenableFuture<Void> deleteObsoleteCountryCodesAsync(Instant earliestTimestamp) {
     return countryDao.deleteObsoleteCountryCodesAsync(earliestTimestamp.toEpochMilli());
   }
 
+  @WorkerThread
   public void markCountrySeen(String countryCode) {
     countryDao.markCountryCodeSeen(countryCode, clock.currentTimeMillis());
   }
 
+  @AnyThread
   public ListenableFuture<Void> markCountrySeenAsync(String countryCode) {
     return countryDao.markCountryCodeSeenAsync(countryCode, clock.currentTimeMillis());
   }

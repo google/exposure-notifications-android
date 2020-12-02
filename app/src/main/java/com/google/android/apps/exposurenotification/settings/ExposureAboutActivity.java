@@ -148,14 +148,14 @@ public class ExposureAboutActivity extends AppCompatActivity {
     refreshUi();
   }
 
-  private final OnCheckedChangeListener masterSwitchChangeListener =
+  private final OnCheckedChangeListener enSwitchChangeListener =
       new OnCheckedChangeListener() {
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
           buttonView.setOnCheckedChangeListener(null);
           // Set the toggle back. It will only toggle to correct state if operation succeeds.
           buttonView.setChecked(!isChecked);
-          buttonView.setOnCheckedChangeListener(masterSwitchChangeListener);
+          buttonView.setOnCheckedChangeListener(enSwitchChangeListener);
           if (isChecked) {
             exposureNotificationViewModel.startExposureNotifications();
           } else {
@@ -182,9 +182,15 @@ public class ExposureAboutActivity extends AppCompatActivity {
    * @param state the {@link ExposureNotificationState} of the API
    */
   private void refreshUiForState(ExposureNotificationState state) {
-    SwitchMaterial masterSwitch = findViewById(R.id.exposure_notification_toggle);
-    masterSwitch.setOnCheckedChangeListener(null);
-    masterSwitch.setChecked(exposureNotificationViewModel.getEnEnabledLiveData().getValue());
+    SwitchMaterial exposureNotificationToggle = findViewById(R.id.exposure_notification_toggle);
+    /*
+     * Set OnCheckedChangeListener to null to while changing switch state to avoid unwanted calls
+     * to enSwitchChangeListener.
+     */
+    exposureNotificationToggle.setOnCheckedChangeListener(null);
+    exposureNotificationToggle
+        .setChecked(exposureNotificationViewModel.getEnEnabledLiveData().getValue());
+    exposureNotificationToggle.setOnCheckedChangeListener(enSwitchChangeListener);
 
     ViewSwitcher errorSwitcher = findViewById(R.id.exposure_about_errors);
     View errorDivider = findViewById(R.id.exposure_about_error_divider);
@@ -226,7 +232,6 @@ public class ExposureAboutActivity extends AppCompatActivity {
         errorSwitcher.setDisplayedChild(1);
         errorDivider.setVisibility(View.VISIBLE);
         errorSwitcher.setVisibility(View.VISIBLE);
-        masterSwitch.setChecked(true);
         exposureAboutDetailLayout.setVisibility(View.GONE);
         Button manageStorageButton = findViewById(R.id.exposure_about_manage_storage);
         manageStorageButton.setVisibility(
@@ -241,7 +246,6 @@ public class ExposureAboutActivity extends AppCompatActivity {
         exposureAboutDetailLayout.setVisibility(View.VISIBLE);
         break;
     }
-    masterSwitch.setOnCheckedChangeListener(masterSwitchChangeListener);
   }
 
   private void maybeShowSnackbar(String message) {

@@ -23,6 +23,7 @@ apply from: 'enexpress_resources.gradle'
 apply from: 'enexpress_config.gradle'
 
 Map configData = loadConfigFiles()
+project.ext.excludedTasks = []
 
 // Generate a flavor for each config file.
 android {
@@ -33,6 +34,15 @@ android {
         dimension "ha"
         applicationId config["healthAuthorityID"]
         manifestPlaceholders = [appLinkHost: config["appLinkHost"]]
+        buildConfigField("boolean", "PRIVATE_ANALYTICS_SUPPORTED",
+                String.valueOf(config["enableENPA"]))
+        if (!config["enableENPA"]) {
+          println "Disabling google-services plugin tasks for " + name
+          project.excludedTasks += [
+              'process' + name.capitalize() + 'ReleaseGoogleServices',
+              'process' + name.capitalize() + 'DebugGoogleServices',
+              ]
+        }
       }
     }
   }

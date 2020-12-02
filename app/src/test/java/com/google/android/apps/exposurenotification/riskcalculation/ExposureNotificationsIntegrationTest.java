@@ -34,6 +34,7 @@ import androidx.work.ListenableWorker.Result;
 import androidx.work.WorkerParameters;
 import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.common.NotificationHelper;
+import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.logging.AnalyticsLogger;
 import com.google.android.apps.exposurenotification.nearby.DailySummaryWrapper;
 import com.google.android.apps.exposurenotification.nearby.DailySummaryWrapper.ExposureSummaryDataWrapper;
@@ -45,6 +46,7 @@ import com.google.android.apps.exposurenotification.storage.ExposureNotification
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.BadgeStatus;
 import com.google.android.apps.exposurenotification.storage.ExposureRepository;
 import com.google.android.apps.exposurenotification.testsupport.ExposureNotificationRules;
+import com.google.android.apps.exposurenotification.testsupport.FakeClock;
 import com.google.android.apps.exposurenotification.testsupport.HAConfigObjects;
 import com.google.android.apps.exposurenotification.testsupport.InMemoryDb;
 import com.google.android.gms.nearby.exposurenotification.DailySummariesConfig;
@@ -76,15 +78,15 @@ import org.threeten.bp.LocalDate;
 import org.threeten.bp.ZoneOffset;
 
 /**
- * This is more of a integration test than a unit test, it tests
- * risk-calculation/revocation/notification as a whole.
- *
+ * This is more of a integration test than a unit test. It tests risk-calculation, revocation,
+ * notification as a whole.
+ * <p>
  * Unit tests covering the components in isolation can be found in the other classes in the
  * riskcalculation package.
- *
+ * <p>
  * Essentially this test only really mocks the behavior of exposureNotificationClientWrapper to
  * simulate different exposure over a longer period of time.
- *
+ * <p>
  * It then calls the StateUpdateWorker and observes if the right Notifications and/or
  * SharedPreferenceChanges happen as expected.
  */
@@ -119,6 +121,7 @@ public class ExposureNotificationsIntegrationTest {
   ExposureNotificationClientWrapper exposureNotificationClientWrapper;
 
   Context context;
+  Clock clock = new FakeClock();
   StateUpdatedWorker stateUpdatedWorker;
   ExposuresHelper exposuresHelper;
   NotificationManager notificationManager;
@@ -143,7 +146,7 @@ public class ExposureNotificationsIntegrationTest {
     // Use testing versions for all the threading dependencies
     ExecutorService backgroundExecutor = MoreExecutors.newDirectExecutorService();
     ExecutorService lightweightExecutor = MoreExecutors.newDirectExecutorService();
-    ScheduledExecutorService scheduledExecutor =  TestingExecutors.sameThreadScheduledExecutor();
+    ScheduledExecutorService scheduledExecutor = TestingExecutors.sameThreadScheduledExecutor();
 
     /*
      * Instantiate an ExposureHelper object that will simulate different exposures for us.
@@ -156,7 +159,7 @@ public class ExposureNotificationsIntegrationTest {
     stateUpdatedWorker = new StateUpdatedWorker(context, workerParameters, exposureRepository,
         exposureNotificationClientWrapper, exposureNotificationSharedPreferences,
         revocationDetector, dailySummariesConfig, dailySummaryRiskCalculator, notificationHelper,
-        backgroundExecutor, lightweightExecutor, scheduledExecutor, analyticsLogger);
+        backgroundExecutor, lightweightExecutor, scheduledExecutor, analyticsLogger, clock);
   }
 
 
@@ -184,7 +187,7 @@ public class ExposureNotificationsIntegrationTest {
     assertThat(result).isEqualTo(Result.success());
   }
 
-   // Following test methods: Most basic "exposure" / "no exposure" cases
+  // Following test methods: Most basic "exposure" / "no exposure" cases
 
   @Test
   public void basic_stateUpdateWorker_noExposure_noNotification_noExposureUI()
@@ -201,7 +204,7 @@ public class ExposureNotificationsIntegrationTest {
   public void basic_stateUpdateWorker_singleExposure_notification_exposureUI()
       throws Exception {
     exposuresHelper.addExposure(TODAY, ReportType.CONFIRMED_TEST, 3000.0)
-    .commit();
+        .commit();
 
     stateUpdatedWorker.startWork().get();
 
@@ -214,7 +217,7 @@ public class ExposureNotificationsIntegrationTest {
    */
 
   /**
-   Scenario A: C3 (notification) -> C1 on next day (additional notification)
+   * Scenario A: C3 (notification) -> C1 on next day (additional notification)
    */
   @Test
   public void scenario_stateUpdateWorker_likelyThenAddConfirmed_nextDay_additionalNotification()
@@ -272,7 +275,7 @@ public class ExposureNotificationsIntegrationTest {
   }
 
   /**
-   Scenario C: C1 (notification) -> new C1 on next day (additional notification)
+   * Scenario C: C1 (notification) -> new C1 on next day (additional notification)
    */
   @Test
   public void scenario_stateUpdateWorker_confirmedThenAddConfirmed_nextDay_additionalNotification()
@@ -301,6 +304,7 @@ public class ExposureNotificationsIntegrationTest {
   }
 
   // Scenario D: C3 (notification) -> any type of key revision for the same day
+
   /**
    * a) C3 -> revoked: revoked notification
    */
@@ -425,7 +429,7 @@ public class ExposureNotificationsIntegrationTest {
 
   @Test
   public void
-      edge_stateUpdateWorker_confirmedShortAddConfirmedShort_sameDay_additionalLongNotification()
+    edge_stateUpdateWorker_confirmedShortAddConfirmedShort_sameDay_additionalLongNotification()
       throws Exception {
     // Confirmed exposure that stays under the "long" threshold of 2700 and thus qualifies as short
     exposuresHelper
@@ -478,7 +482,7 @@ public class ExposureNotificationsIntegrationTest {
 
   @Test
   public void
-      edge_stateUpdateWorker_confirmedThenAddConfirmed_previousDay_noAdditionalNotification()
+    edge_stateUpdateWorker_confirmedThenAddConfirmed_previousDay_noAdditionalNotification()
       throws Exception {
     // Confirmed exposure today
     exposuresHelper
@@ -560,7 +564,7 @@ public class ExposureNotificationsIntegrationTest {
   private void assertNoNotificationTriggered() {
     if (shadowNotificationManager.size() != 0) {
       Notification notification = shadowNotificationManager.getNotification(0);
-      fail("Expected no notification, but got " +  shadowOf(notification).getContentTitle());
+      fail("Expected no notification, but got " + shadowOf(notification).getContentTitle());
     }
   }
 
@@ -609,14 +613,14 @@ public class ExposureNotificationsIntegrationTest {
   }
 
   /**
-   * TODO verify that this realistically simulates nearby
-   * This is a class that makes it easier for us to simulate different exposure scenarios.
-   * It provides a list of dailySummaries that we can clear, selectively remove days or add
-   * different types of exposures to.
-   * It uses the Builder pattern, but additionally enables us to provide the resulting
-   * dailySummaries to ExposureNotificationsWrapper.
+   * TODO verify that this realistically simulates nearby This is a class that makes it easier for
+   * us to simulate different exposure scenarios. It provides a list of dailySummaries that we can
+   * clear, selectively remove days or add different types of exposures to. It uses the Builder
+   * pattern, but additionally enables us to provide the resulting dailySummaries to
+   * ExposureNotificationsWrapper.
    */
   private static class ExposuresHelper {
+
     ExposureNotificationClientWrapper exposureNotificationClientWrapper;
     Map<Long, DailySummaryWrapper> dailySummaryMap = new HashMap<>();
 
@@ -644,7 +648,7 @@ public class ExposureNotificationsIntegrationTest {
 
         // As this is this day's first exposure, ReportSummary and SummaryData are the same
         DailySummaryWrapper dailySummary = DailySummaryWrapper.newBuilder()
-            .setDaysSinceEpoch((int)date.toEpochDay())
+            .setDaysSinceEpoch((int) date.toEpochDay())
             .setReportSummary(reportType, exposureSummaryData)
             .setSummaryData(exposureSummaryData)
             .build();
@@ -653,21 +657,21 @@ public class ExposureNotificationsIntegrationTest {
       }
 
       // Merge the new Exposure to the information already available on this day
-     else {
+      else {
         // Refresh the reportType-specific sum first:
         ExposureSummaryDataWrapper prev = previousSummary.getSummaryDataForReportType(reportType);
         ExposureSummaryDataWrapper refreshedReportTypeSummary =
             ExposureSummaryDataWrapper.newBuilder()
-            .setMaximumScore(
-                Math.min(DAILY_SUMMARY_MAXIMUM_SCORE,
-                    Math.max(prev.getMaximumScore(), weightedExposureSeconds)))
-            .setScoreSum(prev.getScoreSum() + weightedExposureSeconds)
-            .setWeightedDurationSum(prev.getMaximumScore() + weightedExposureSeconds)
-            .build();
+                .setMaximumScore(
+                    Math.min(DAILY_SUMMARY_MAXIMUM_SCORE,
+                        Math.max(prev.getMaximumScore(), weightedExposureSeconds)))
+                .setScoreSum(prev.getScoreSum() + weightedExposureSeconds)
+                .setWeightedDurationSum(prev.getMaximumScore() + weightedExposureSeconds)
+                .build();
 
         //Create a new DailySummaryObject with the new report info
         DailySummaryWrapper.Builder dailySummaryBuilder = DailySummaryWrapper.newBuilder()
-            .setDaysSinceEpoch((int)date.toEpochDay())
+            .setDaysSinceEpoch((int) date.toEpochDay())
             .setReportSummary(reportType, refreshedReportTypeSummary)
             /*
              * This will be overwritten by a correct overall summary by refreshOverallSummaryOnDate
@@ -679,7 +683,6 @@ public class ExposureNotificationsIntegrationTest {
             dailySummaryBuilder.setReportSummary(r, previousSummary.getSummaryDataForReportType(r));
           }
         }
-
 
         dailySummaryMap.put(date.toEpochDay(), dailySummaryBuilder.build());
 
@@ -697,8 +700,8 @@ public class ExposureNotificationsIntegrationTest {
     }
 
     /**
-     * DailySummary.getSummaryData() is computed from the other ReportType data. Do that here.
-     * This recreates the DailySummary object.
+     * DailySummary.getSummaryData() is computed from the other ReportType data. Do that here. This
+     * recreates the DailySummary object.
      */
     private void refreshOverallSummaryOnDate(LocalDate date) {
       DailySummaryWrapper unrefreshedDailySummary = dailySummaryMap.get(date.toEpochDay());
@@ -730,7 +733,7 @@ public class ExposureNotificationsIntegrationTest {
 
       //Finally create the new DailySummaryObject
       DailySummaryWrapper.Builder dailySummaryBuilder = DailySummaryWrapper.newBuilder()
-          .setDaysSinceEpoch((int)date.toEpochDay())
+          .setDaysSinceEpoch((int) date.toEpochDay())
           .setSummaryData(refreshedOverallSummary);
       for (int r : ALL_REPORT_TYPES) {
         dailySummaryBuilder

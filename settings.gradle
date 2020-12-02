@@ -16,3 +16,10 @@
  */
 
 include ':app'
+
+if (file('app/libs/prioclient-release.aar').exists()) {
+  println "Using prebuilt prioclient AAR"
+} else {
+  include ":prioclient"
+}
+

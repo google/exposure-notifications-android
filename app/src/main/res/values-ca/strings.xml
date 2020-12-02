@@ -16,6 +16,8 @@
   <string name="btn_save">Desa</string>
   <string name="btn_discard">Descarta</string>
   <string name="btn_verify">Verifica</string>
+  <string name="btn_dont_share">No comparteixis</string>
+  <string name="btn_share">Comparteix</string>
   <string name="learn_more">Més informació</string>
   <string name="home_tab_exposures_text">Exposició</string>
   <string name="home_tab_notify_text">Notifica als altres</string>
@@ -31,7 +33,7 @@
     \n\nLa data, la durada i la intensitat del senyal associades a cada exposició es compartiran amb l\'aplicació.</string>
   <string name="onboarding_metrics_title">Ajuda a millorar aquesta aplicació</string>
   <string name="onboarding_metrics_subtitle">Envia a Google dades d\'ús i de rendiment de l\'aplicació</string>
-  <string name="onboarding_metrics_detail">Es comparteixen amb Google algunes dades limitades i sense identificar sobre l\'ús i el rendiment de l\'aplicació per ajudar a mantenir-la i millorar-la. Aquestes dades no t\'identifiquen de cap manera.</string>
+  <string name="onboarding_metrics_description">Per ajudar a mantenir i millorar l\'aplicació, es comparteixen amb Google algunes dades limitades i sense identificar sobre l\'ús i el rendiment de l\'aplicació. Aquestes dades no permeten identificar-te. %1$s</string>
   <string name="onboarding_confirm_later_title">Vols mantenir les notificacions d\'exposició desactivades?</string>
   <string name="onboarding_confirm_later_detail">No se\'t notificaran possibles exposicions a la COVID-19 fins que no activis aquestes notificacions</string>
   <string name="no_recent_exposure_subtitle">No hi ha exposicions recents</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">Estat</string>
   <string name="exposure_details_status_exposure">Possible exposició a la COVID-19</string>
   <string name="exposure_details_date_exposed_subtitle">Data de possible exposició</string>
-  <string name="exposure_details_expiring_subtitle">Els informes d\'exposicions s\'emmagatzemen durant 14 dies a partir de la data de l\'exposició</string>
+  <string name="exposure_details_expiring_subtitle">Els informes d\'exposicions s\'emmagatzemen durant 14 dies a partir de la possible data d\'exposició</string>
   <string name="exposure_details_learn_more">Més informació</string>
   <string name="exposure_details_new_badge">Nou</string>
   <string name="share_test_result_title">Protegeix la teva comunitat i comparteix el resultat de la prova de la COVID-19</string>
@@ -97,10 +99,11 @@
   <string name="settings_exposure_notifications_subtitle">Notificacions d\'exposició</string>
   <string name="settings_app_analytics_subtitle">Envia dades d\'ús i de rendiment de l\'aplicació</string>
   <string name="settings_privacy_policy">Política de privadesa</string>
+  <string name="settings_help_and_support">Notificacions d\'exposició ràpides</string>
   <string name="settings_legal_terms">Termes legals</string>
   <string name="settings_debug">Mode de depuració</string>
-  <string name="settings_share">Ajuda a contenir el contagi de la COVID-19. Comparteix aquesta aplicació amb la teva comunitat i ajuda\'ls a protegir-se millor amb les notificacions de possibles exposicions.</string>
-  <string name="settings_share_message">Ajuda a combatre el contagi de la COVID-19 a la teva comunitat. Baixa l\'aplicació: %1$s</string>
+  <string name="settings_share">Ajuda a contenir la propagació de la COVID-19. Comparteix aquesta aplicació amb la teva comunitat i ajuda\'ls a protegir-se millor amb les notificacions de possibles exposicions.</string>
+  <string name="settings_share_message">Ajuda a combatre la propagació de la COVID-19 a la teva comunitat. Baixa l\'aplicació: %1$s</string>
   <string name="settings_open_source">Llicències de programari lliure</string>
   <string name="settings_exposure_notifications_on">Activat</string>
   <string name="settings_exposure_notifications_off">Desactivat</string>
@@ -115,7 +118,7 @@
   <string name="exposure_turn_off_detail">No rebràs cap notificació en el cas que hagis estat exposat a la COVID-19</string>
   <string name="app_analytics_title">Ajuda a millorar aquesta aplicació</string>
   <string name="app_analytics_toggle">Envia a Google dades d\'ús i de rendiment de l\'aplicació</string>
-  <string name="app_analytics_detail">Es comparteixen amb Google algunes dades limitades i sense identificar sobre l\'ús i el rendiment de l\'aplicació per ajudar a mantenir-la i millorar-la. Aquestes dades no t\'identifiquen de cap manera.</string>
+  <string name="app_analytics_detail">Per ajudar a mantenir i millorar l\'aplicació, es comparteixen amb Google algunes dades limitades i sense identificar sobre l\'ús i el rendiment de l\'aplicació. Aquestes dades no permeten identificar-te.</string>
   <string name="agency_message_link">Obtén més informació a\n%1$s</string>
   <string name="exposure_notifications_are_inactive">Les notificacions d\'exposició estan inactives</string>
   <string name="exposure_notifications_currently_inactive">Les notificacions d\'exposició estan inactives</string>
@@ -134,4 +137,10 @@
   <string name="share_error">No s\'ha pogut compartir el resultat de la prova. Torna-ho a provar més tard.</string>
   <string name="generic_error_message">S\'ha produït un error. Torna-ho a provar.</string>
   <string name="code_error_already_submitted">El codi ja s\'ha utilitzat per compartir el resultat de la prova</string>
+  <string name="settings_private_analytics_subtitle">Compartició analítiques de notificacions d\'exposició</string>
+  <string name="private_analytics_title">Ajuda les autoritats sanitàries a entendre com es propaga la COVID-19</string>
+  <string name="private_analytics_subtitle">Comparteix les analítiques de les notificacions d\'exposició amb les autoritats sanitàries</string>
+  <string name="private_analytics_footer">Aquestes analítiques, com el nombre de notificacions a la regió, ajuden les autoritats sanitàries a entendre com es propaga la COVID-19. Google no les pot llegir, i les autoritats sanitàries les reben agregades; per tant, no es poden vincular al teu telèfon. %1$s</string>
+  <string name="private_analytics_footer_onboarding">Google no pot llegir aquestes analítiques, i les autoritats sanitàries les reben agregades; per tant, no es poden vincular al teu telèfon.%1$s</string>
+  <string name="private_analytics_footer_learn_more">Més informació</string>
 </resources>

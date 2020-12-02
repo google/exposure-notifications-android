@@ -65,7 +65,8 @@
         android:layout_marginVertical="@dimen/padding_large"
         android:layout_height="@dimen/onboarding_logo_size"
         android:importantForAccessibility="no"
-        app:srcCompat="@drawable/enx_agency_image" />
+        app:srcCompat="@drawable/enx_agency_image"
+        android:background="@color/enx_agencyImageBackgroundColor" />
 
       <LinearLayout
         android:layout_width="match_parent"
@@ -82,7 +83,6 @@
             android:layout_width="@dimen/onboarding_section_header_image_width"
             android:layout_height="@dimen/onboarding_section_header_image_height"
             android:layout_gravity="center_vertical"
-            android:layout_alignParentEnd="true"
             app:srcCompat="@mipmap/ic_launcher" />
 
           <LinearLayout
@@ -95,7 +95,6 @@
             <TextView
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:layout_weight="1"
               android:text="@string/onboarding_region_name"
               android:layout_gravity="center_vertical"
               android:textAppearance="?attr/textAppearanceHeadline6"
@@ -120,6 +119,7 @@
           android:layout_marginVertical="@dimen/padding_small"
           android:layout_marginStart="@dimen/onboarding_section_header_image_width"
           android:paddingBottom="@dimen/padding_small"
+          android:autoLink="web"
           android:text="@string/onboarding_agency_message"
           android:textAppearance="?attr/textAppearanceBody2" />
 

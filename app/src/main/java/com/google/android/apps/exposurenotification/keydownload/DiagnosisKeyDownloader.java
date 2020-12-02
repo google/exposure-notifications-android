@@ -132,7 +132,7 @@ public class DiagnosisKeyDownloader {
         FluentFuture.from(keyFileUriResolver.resolve(keyserversToCall.build()))
             // Now initiate file downloads for each URI
             .transformAsync(
-                uris -> initiateDownloads(uris),
+                this::initiateDownloads,
                 backgroundExecutor)
             // It's important to have a timeout since we're waiting for network operations that may
             // or may not complete.
@@ -156,7 +156,7 @@ public class DiagnosisKeyDownloader {
       downloadedFiles.add(downloadAndSave(file, path));
     }
     return FluentFuture.from(Futures.allAsList(downloadedFiles))
-        .transform(fileList -> ImmutableList.copyOf(fileList), lightweightExecutor);
+        .transform(ImmutableList::copyOf, lightweightExecutor);
   }
 
   private ListenableFuture<KeyFile> downloadAndSave(KeyFile keyFile, String path) {
@@ -222,12 +222,8 @@ public class DiagnosisKeyDownloader {
 
         @Override
         public void onFailure(@NonNull Throwable t) {
-          VolleyError error = null;
-          if (t instanceof VolleyError) {
-            error = (VolleyError) t;
-          }
-          logger.logRpcCallFailure(RpcCallType.RPC_TYPE_KEYS_DOWNLOAD, error);
-          Log.d(TAG, VolleyUtils.getErrorBodyWithoutPadding(error).toString());
+          logger.logRpcCallFailure(RpcCallType.RPC_TYPE_KEYS_DOWNLOAD, t);
+          Log.d(TAG, VolleyUtils.getErrorBodyWithoutPadding(t).toString());
         }
       };
 }

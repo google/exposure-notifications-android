@@ -81,6 +81,12 @@
       android:parentActivityName=".home.ExposureNotificationActivity" />
 
     <activity
+      android:name=".settings.PrivateAnalyticsActivity"
+      android:exported="false"
+      android:windowSoftInputMode="stateHidden|adjustResize"
+      android:parentActivityName=".home.ExposureNotificationActivity" />
+
+    <activity
       android:name=".settings.AgencyActivity"
       android:label="@string/agency_message_title"
       android:exported="false"
@@ -102,6 +108,13 @@
       <intent-filter>
         <action android:name="com.google.android.gms.exposurenotification.ACTION_EXPOSURE_STATE_UPDATED" />
         <action android:name="com.google.android.gms.exposurenotification.ACTION_EXPOSURE_NOT_FOUND" />
+      </intent-filter>
+    </receiver>
+
+    <receiver
+      android:name=".common.ExposureNotificationDismissedReceiver">
+      <intent-filter>
+        <action android:name="com.google.android.apps.exposurenotification.common.NotificationHelper.NOTIFICATION_DISMISSED_ACTION_ID" />
       </intent-filter>
     </receiver>
 

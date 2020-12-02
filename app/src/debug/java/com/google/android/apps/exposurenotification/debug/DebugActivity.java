@@ -17,22 +17,19 @@
 
 package com.google.android.apps.exposurenotification.debug;
 
-import android.app.Activity;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentSender.SendIntentException;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 import android.os.Parcel;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -43,15 +40,12 @@ import androidx.work.WorkInfo.State;
 import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.common.KeyboardHelper;
 import com.google.android.apps.exposurenotification.debug.VerificationCodeCreator.VerificationCode;
-import com.google.android.apps.exposurenotification.home.ExposureNotificationViewModel;
-import com.google.android.apps.exposurenotification.home.ExposureNotificationViewModel.ExposureNotificationState;
-import com.google.android.apps.exposurenotification.utils.RequestCodes;
+import com.google.android.apps.exposurenotification.privateanalytics.PrivateAnalyticsSettingsUtil;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.material.datepicker.CalendarConstraints;
 import com.google.android.material.datepicker.CalendarConstraints.DateValidator;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.switchmaterial.SwitchMaterial;
 import dagger.hilt.android.AndroidEntryPoint;
 import java.util.Locale;
 import org.threeten.bp.Instant;
@@ -71,7 +65,6 @@ public final class DebugActivity extends AppCompatActivity {
   private static final DateTimeFormatter SYMPTOM_ONSET_DATE_FORMATTER =
       DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM);
 
-  private ExposureNotificationViewModel exposureNotificationViewModel;
   private DebugViewModel debugViewModel;
 
   @Override
@@ -89,7 +82,6 @@ public final class DebugActivity extends AppCompatActivity {
 
     setupViewModels();
     setupVersionInfo();
-    setupEnMasterSwitch();
     setupTestTypeDropDown();
     setupSymptomOnSetDatePicker();
     setupMatchingControls();
@@ -98,32 +90,6 @@ public final class DebugActivity extends AppCompatActivity {
   }
 
   private void setupViewModels() {
-    exposureNotificationViewModel =
-        new ViewModelProvider(this).get(ExposureNotificationViewModel.class);
-    exposureNotificationViewModel
-        .getStateLiveData()
-        .observe(this, this::refreshUiForState);
-    exposureNotificationViewModel
-        .getApiErrorLiveEvent()
-        .observe(
-            this,
-            unused -> maybeShowSnackbar(getString(R.string.generic_error_message)));
-    exposureNotificationViewModel
-        .getResolutionRequiredLiveEvent()
-        .observe(
-            this,
-            apiException -> {
-              try {
-                Log.d(TAG, "startResolutionForResult");
-                apiException
-                    .getStatus()
-                    .startResolutionForResult(
-                        this, RequestCodes.REQUEST_CODE_START_EXPOSURE_NOTIFICATION);
-              } catch (SendIntentException e) {
-                Log.w(TAG, "Error calling startResolutionForResult", apiException);
-              }
-            });
-
     debugViewModel =
         new ViewModelProvider(this, getDefaultViewModelProviderFactory())
             .get(DebugViewModel.class);
@@ -132,14 +98,6 @@ public final class DebugActivity extends AppCompatActivity {
         .observe(
             this,
             this::maybeShowSnackbar);
-  }
-
-  private void setupEnMasterSwitch() {
-    SwitchMaterial masterSwitch = findViewById(R.id.master_switch);
-    masterSwitch.setOnCheckedChangeListener(masterSwitchChangeListener);
-    exposureNotificationViewModel
-        .getInFlightLiveData()
-        .observe(this, isInFlight -> masterSwitch.setEnabled(!isInFlight));
   }
 
   private void setupTestTypeDropDown() {
@@ -177,6 +135,17 @@ public final class DebugActivity extends AppCompatActivity {
     TextView gmsVersion = findViewById(R.id.debug_gms_version);
     gmsVersion.setText(getString(R.string.debug_version_gms,
         getVersionNameForPackage(GoogleApiAvailability.GOOGLE_PLAY_SERVICES_PACKAGE)));
+
+    TextView enVersion = findViewById(R.id.debug_en_version);
+    debugViewModel.getEnModuleVersionLiveData()
+        .observe(this, version -> {
+          if (TextUtils.isEmpty(version)) {
+            enVersion.setVisibility(View.GONE);
+          } else {
+            enVersion.setText(getString(R.string.debug_version_en, version));
+            enVersion.setVisibility(View.VISIBLE);
+          }
+        });
   }
 
   private void setupMatchingControls() {
@@ -230,6 +199,25 @@ public final class DebugActivity extends AppCompatActivity {
               }
               jobStatus.setText(jobStatusText);
             });
+
+    Button submitPrivateAnalytics = findViewById(R.id.debug_submit_private_analytics_button);
+    submitPrivateAnalytics.setOnClickListener(
+        v -> {
+          debugViewModel.submitPrivateAnalytics();
+          maybeShowSnackbar(getString(R.string.debug_provide_keys_enqueued));
+        });
+
+    Button clearKeyStoreButton = findViewById(R.id.debug_private_analytics_clear_key_store_button);
+    clearKeyStoreButton.setOnClickListener(
+        v -> {
+          debugViewModel.clearKeyStore();
+          maybeShowSnackbar(getString(R.string.debug_provide_keys_enqueued));
+        });
+
+    View privateAnalyticsContainer = findViewById(R.id.debug_private_analytics_container);
+    privateAnalyticsContainer.setVisibility(
+        PrivateAnalyticsSettingsUtil.isPrivateAnalyticsSupported() ? TextView.VISIBLE
+            : TextView.GONE);
   }
 
   private void setupVerificationCodeControls() {
@@ -283,58 +271,6 @@ public final class DebugActivity extends AppCompatActivity {
     clearButton.setOnClickListener((v) -> debugViewModel.clearCountryCodes());
   }
 
-  @Override
-  public void onResume() {
-    super.onResume();
-    refreshUi();
-  }
-
-  private final OnCheckedChangeListener masterSwitchChangeListener =
-      new OnCheckedChangeListener() {
-        @Override
-        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-          KeyboardHelper.maybeHideKeyboard(getApplicationContext(), buttonView);
-          buttonView.setOnCheckedChangeListener(null);
-          // Set the toggle back. It will only toggle to correct state if operation succeeds.
-          buttonView.setChecked(!isChecked);
-          if (isChecked) {
-            exposureNotificationViewModel.startExposureNotifications();
-          } else {
-            exposureNotificationViewModel.stopExposureNotifications();
-          }
-        }
-      };
-
-  /**
-   * Update UI state after Exposure Notifications client state changes
-   */
-  private void refreshUi() {
-    exposureNotificationViewModel.refreshState();
-  }
-
-  /**
-   * Update UI to match Exposure Notifications state.
-   *
-   * @param state the {@link ExposureNotificationState} of the API
-   */
-  private void refreshUiForState(ExposureNotificationState state) {
-    SwitchMaterial masterSwitch = findViewById(R.id.master_switch);
-    masterSwitch.setOnCheckedChangeListener(null);
-    switch (state) {
-      case ENABLED:
-      case PAUSED_BLE:
-      case PAUSED_LOCATION:
-      case STORAGE_LOW:
-        masterSwitch.setChecked(true);
-        break;
-      case DISABLED:
-      default:
-        masterSwitch.setChecked(false);
-        break;
-    }
-    masterSwitch.setOnCheckedChangeListener(masterSwitchChangeListener);
-  }
-
   /**
    * Gets the version name for a specified package. Returns a debug string if not found.
    */
@@ -351,29 +287,6 @@ public final class DebugActivity extends AppCompatActivity {
     View rootView = findViewById(android.R.id.content);
     if (rootView != null) {
       Snackbar.make(rootView, message, Snackbar.LENGTH_LONG).show();
-    }
-  }
-
-  @Override
-  protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-    super.onActivityResult(requestCode, resultCode, data);
-    onResolutionComplete(requestCode, resultCode);
-  }
-
-  /**
-   * Called when opt-in resolution is completed by user.
-   *
-   * <p>Modeled after {@code Activity#onActivityResult} as that's how the API sends callback to
-   * apps.
-   */
-  public void onResolutionComplete(int requestCode, int resultCode) {
-    if (requestCode != RequestCodes.REQUEST_CODE_START_EXPOSURE_NOTIFICATION) {
-      return;
-    }
-    if (resultCode == Activity.RESULT_OK) {
-      exposureNotificationViewModel.startResolutionResultOk();
-    } else {
-      exposureNotificationViewModel.startResolutionResultNotOk();
     }
   }
 

@@ -59,12 +59,12 @@ public class DownloadServerRepositoryTest {
   }
 
   @Test
-  public void getMostRecentDownload_emptyDb_returnsNull() throws Exception {
+  public void getMostRecentDownload_emptyDb_returnsNull() {
     assertThat(downloadServerRepo.getMostRecentSuccessfulDownload(Uri.parse("anything"))).isNull();
   }
 
   @Test
-  public void saveOneServer_shouldReturnMostRecentDownload() throws Exception {
+  public void saveOneServer_shouldReturnMostRecentDownload() {
     Uri index = Uri.parse("example.com/index");
     Uri file = Uri.parse("example.com/file");
     DownloadServerEntity record = DownloadServerEntity.create(index, file);
@@ -74,7 +74,7 @@ public class DownloadServerRepositoryTest {
   }
 
   @Test
-  public void saveOneServer_querySomeOtherServer_shouldReturnNull() throws Exception {
+  public void saveOneServer_querySomeOtherServer_shouldReturnNull() {
     Uri index = Uri.parse("example.com/index");
     Uri file = Uri.parse("example.com/file");
     DownloadServerEntity record = DownloadServerEntity.create(index, file);
@@ -84,7 +84,7 @@ public class DownloadServerRepositoryTest {
   }
 
   @Test
-  public void saveMultipleServers_queryOneOfThem_shouldReturnCorrectFileUri() throws Exception {
+  public void saveMultipleServers_queryOneOfThem_shouldReturnCorrectFileUri() {
     Uri index1 = Uri.parse("example-1.com/index");
     Uri file1 = Uri.parse("example-1.com/file");
     Uri index2 = Uri.parse("example-2.com/index");
@@ -102,7 +102,7 @@ public class DownloadServerRepositoryTest {
   }
 
   @Test
-  public void saveSameServerMultipleTimes_shouldReturnLastUri() throws Exception {
+  public void saveSameServerMultipleTimes_shouldReturnLastUri() {
     Uri index = Uri.parse("example.com/index");
     Uri file1 = Uri.parse("example.com/file1");
     Uri file2 = Uri.parse("example.com/file2");

@@ -15,10 +15,11 @@
  *
  */
 
-package com.google.android.apps.exposurenotification.onboarding;
+package com.google.android.apps.exposurenotification.home;
 
 import static com.google.android.apps.exposurenotification.home.ExposureNotificationActivity.HOME_FRAGMENT_TAG;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.LayoutInflater;
@@ -30,26 +31,32 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.common.time.Clock;
-import com.google.android.apps.exposurenotification.home.ExposureNotificationViewModel;
 import dagger.hilt.android.AndroidEntryPoint;
 import javax.inject.Inject;
 import org.threeten.bp.Duration;
 
 /**
- * Splash screen of the on-boarding flow for app first launch.
+ * Splash screen for app first launch.
  */
 @AndroidEntryPoint
-public class OnboardingStartFragment extends Fragment {
+public class SplashFragment extends Fragment {
 
-  private static final Duration SPLASH_DURATION = Duration.ofMillis(3500L);
+  private static final Duration SPLASH_DURATION = Duration.ofMillis(2500L);
 
   @Inject
   Clock clock;
 
-  // Default to disabled fragment.
-  private Fragment nextFragment = new OnboardingPermissionDisabledFragment();
+  // Default to home fragment.
+  private Fragment nextFragment = new HomeFragment();
   private long startTime;
   private CountDownTimer countdownTimer = null;
+
+  private ExposureNotificationViewModel exposureNotificationViewModel;
+  private SplashViewModel splashViewModel;
+
+  public static SplashFragment newInstance() {
+    return new SplashFragment();
+  }
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
@@ -58,28 +65,22 @@ public class OnboardingStartFragment extends Fragment {
 
   @Override
   public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-    ExposureNotificationViewModel exposureNotificationViewModel =
-        new ViewModelProvider(requireActivity()).get(ExposureNotificationViewModel.class);
-
     startTime = clock.currentTimeMillis();
 
-    exposureNotificationViewModel
-        .getIsEnabledLiveDataWithoutCache()
-        .observe(
-            getViewLifecycleOwner(),
-            isEnabled -> {
-              if (isEnabled) {
-                // "Override" the default "disabled" fragment with the "enabled" one, if prior to
-                // the countdown expiring, we learn that the API is enabled. If the "is enabled"
-                // check fails we'll go through full onboarding, which may be redundant but is
-                // harmless.
-                nextFragment = new OnboardingPermissionEnabledFragment();
-              }
-            });
+    exposureNotificationViewModel =
+        new ViewModelProvider(requireActivity()).get(ExposureNotificationViewModel.class);
+    splashViewModel = new ViewModelProvider(this).get(SplashViewModel.class);
+
+    Intent intent = getActivity().getIntent();
+    splashViewModel
+        .getNextFragmentLiveData(
+            intent == null ? null : intent.getAction(),
+            exposureNotificationViewModel.getEnEnabledLiveData())
+        .observe(getViewLifecycleOwner(), nextFragment -> this.nextFragment = nextFragment);
 
     view.setOnClickListener(v -> {
       if (clock.currentTimeMillis() - startTime > SPLASH_DURATION.toMillis()) {
-        launchPermissionFragment();
+        launchNextFragment();
       }
     });
   }
@@ -87,6 +88,7 @@ public class OnboardingStartFragment extends Fragment {
   @Override
   public void onResume() {
     super.onResume();
+    exposureNotificationViewModel.refreshState();
     startTimer();
   }
 
@@ -107,13 +109,13 @@ public class OnboardingStartFragment extends Fragment {
       }
 
       public void onFinish() {
-        launchPermissionFragment();
+        launchNextFragment();
       }
     };
     countdownTimer.start();
   }
 
-  private void launchPermissionFragment() {
+  private void launchNextFragment() {
     getParentFragmentManager()
         .beginTransaction()
         .replace(R.id.home_fragment, nextFragment, HOME_FRAGMENT_TAG)

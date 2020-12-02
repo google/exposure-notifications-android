@@ -55,60 +55,105 @@ public class PackageConfigurationHelperTest {
   }
 
   @Test
-  public void maybeUpdateAppAnalyticsState_nullConfiguration_notUpdated() {
-    packageConfigurationHelper.maybeUpdateAppAnalyticsState(null);
+  public void maybeUpdateAnalyticsState_nullConfiguration_nothingUpdated() {
+    packageConfigurationHelper.maybeUpdateAnalyticsState(null);
 
     assertThat(exposureNotificationSharedPreferences.isAppAnalyticsSet()).isEqualTo(false);
     assertThat(exposureNotificationSharedPreferences.getAppAnalyticsState()).isEqualTo(false);
+    assertThat(exposureNotificationSharedPreferences.isPrivateAnalyticsStateSet()).isEqualTo(false);
+    assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticState()).isEqualTo(false);
   }
 
   @Test
-  public void maybeUpdateAppAnalyticsState_nullConfigurationBundle_notUpdated() {
+  public void maybeUpdateAnalyticsState_nullConfigurationBundle_nothingUpdated() {
     PackageConfiguration packageConfiguration = new PackageConfigurationBuilder().build();
 
-    packageConfigurationHelper.maybeUpdateAppAnalyticsState(packageConfiguration);
+    packageConfigurationHelper.maybeUpdateAnalyticsState(packageConfiguration);
 
     assertThat(exposureNotificationSharedPreferences.isAppAnalyticsSet()).isEqualTo(false);
     assertThat(exposureNotificationSharedPreferences.getAppAnalyticsState()).isEqualTo(false);
+    assertThat(exposureNotificationSharedPreferences.isPrivateAnalyticsStateSet()).isEqualTo(false);
+    assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticState()).isEqualTo(false);
   }
 
   @Test
-  public void maybeUpdateAppAnalyticsState_alreadySet_notUpdated() {
+  public void maybeUpdateAnalyticsState_appAnalyticsAlreadySet_notUpdated() {
     exposureNotificationSharedPreferences.setAppAnalyticsState(false);
     Bundle bundle = new Bundle();
-    bundle.putBoolean(PackageConfigurationHelper.METRICS_OPT_IN, true);
+    bundle.putBoolean(PackageConfigurationHelper.APP_ANALYTICS_OPT_IN, true);
     PackageConfiguration packageConfiguration =
         new PackageConfigurationBuilder().setValues(bundle).build();
 
-    packageConfigurationHelper.maybeUpdateAppAnalyticsState(packageConfiguration);
+    packageConfigurationHelper.maybeUpdateAnalyticsState(packageConfiguration);
 
     assertThat(exposureNotificationSharedPreferences.isAppAnalyticsSet()).isEqualTo(true);
     assertThat(exposureNotificationSharedPreferences.getAppAnalyticsState()).isEqualTo(false);
   }
 
   @Test
-  public void maybeUpdateAppAnalyticsState_metricsFalse_notUpdated() {
+  public void maybeUpdateAnalyticsState_privateAnalyticsAlreadySet_notUpdated() {
+    exposureNotificationSharedPreferences.setPrivateAnalyticsState(false);
     Bundle bundle = new Bundle();
-    bundle.putBoolean(PackageConfigurationHelper.METRICS_OPT_IN, false);
+    bundle.putBoolean(PackageConfigurationHelper.PRIVATE_ANALYTICS_OPT_IN, true);
     PackageConfiguration packageConfiguration =
         new PackageConfigurationBuilder().setValues(bundle).build();
 
-    packageConfigurationHelper.maybeUpdateAppAnalyticsState(packageConfiguration);
+    packageConfigurationHelper.maybeUpdateAnalyticsState(packageConfiguration);
+
+    assertThat(exposureNotificationSharedPreferences.isPrivateAnalyticsStateSet()).isEqualTo(true);
+    assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticState()).isEqualTo(false);
+
+  }
+
+  @Test
+  public void maybeUpdateAnalyticsState_appAnalyticsFalse_notUpdated() {
+    Bundle bundle = new Bundle();
+    bundle.putBoolean(PackageConfigurationHelper.APP_ANALYTICS_OPT_IN, false);
+    PackageConfiguration packageConfiguration =
+        new PackageConfigurationBuilder().setValues(bundle).build();
+
+    packageConfigurationHelper.maybeUpdateAnalyticsState(packageConfiguration);
 
     assertThat(exposureNotificationSharedPreferences.isAppAnalyticsSet()).isEqualTo(false);
     assertThat(exposureNotificationSharedPreferences.getAppAnalyticsState()).isEqualTo(false);
   }
 
   @Test
-  public void maybeUpdateAppAnalyticsState_metricsTrue_updated() {
+  public void maybeUpdateAnalyticsState_appAnalyticsTrue_updated() {
     Bundle bundle = new Bundle();
-    bundle.putBoolean(PackageConfigurationHelper.METRICS_OPT_IN, true);
+    bundle.putBoolean(PackageConfigurationHelper.APP_ANALYTICS_OPT_IN, true);
     PackageConfiguration packageConfiguration =
         new PackageConfigurationBuilder().setValues(bundle).build();
 
-    packageConfigurationHelper.maybeUpdateAppAnalyticsState(packageConfiguration);
+    packageConfigurationHelper.maybeUpdateAnalyticsState(packageConfiguration);
 
     assertThat(exposureNotificationSharedPreferences.isAppAnalyticsSet()).isEqualTo(true);
     assertThat(exposureNotificationSharedPreferences.getAppAnalyticsState()).isEqualTo(true);
+  }
+
+  @Test
+  public void maybeUpdateAnalyticsState_privateAnalyticsFalse_updated() {
+    Bundle bundle = new Bundle();
+    bundle.putBoolean(PackageConfigurationHelper.PRIVATE_ANALYTICS_OPT_IN, false);
+    PackageConfiguration packageConfiguration =
+        new PackageConfigurationBuilder().setValues(bundle).build();
+
+    packageConfigurationHelper.maybeUpdateAnalyticsState(packageConfiguration);
+
+    assertThat(exposureNotificationSharedPreferences.isPrivateAnalyticsStateSet()).isEqualTo(true);
+    assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticState()).isEqualTo(false);
+  }
+
+  @Test
+  public void maybeUpdateAnalyticsState_privateAnalyticsTrue_updated() {
+    Bundle bundle = new Bundle();
+    bundle.putBoolean(PackageConfigurationHelper.PRIVATE_ANALYTICS_OPT_IN, true);
+    PackageConfiguration packageConfiguration =
+        new PackageConfigurationBuilder().setValues(bundle).build();
+
+    packageConfigurationHelper.maybeUpdateAnalyticsState(packageConfiguration);
+
+    assertThat(exposureNotificationSharedPreferences.isPrivateAnalyticsStateSet()).isEqualTo(true);
+    assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticState()).isEqualTo(true);
   }
 }

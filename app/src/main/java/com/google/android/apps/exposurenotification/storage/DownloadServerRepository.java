@@ -18,6 +18,7 @@
 package com.google.android.apps.exposurenotification.storage;
 
 import android.net.Uri;
+import androidx.annotation.WorkerThread;
 import javax.inject.Inject;
 
 /**
@@ -32,10 +33,12 @@ public class DownloadServerRepository {
     dao = db.downloadServerDao();
   }
 
+  @WorkerThread
   public Uri getMostRecentSuccessfulDownload(Uri indexUri) {
     return dao.getMostRecentSuccessfulDownload(indexUri);
   }
 
+  @WorkerThread
   public void upsert(DownloadServerEntity server) {
     dao.upsert(server);
   }

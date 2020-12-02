@@ -16,6 +16,8 @@
   <string name="btn_save">Saglabāt</string>
   <string name="btn_discard">Atmest</string>
   <string name="btn_verify">Verificēt</string>
+  <string name="btn_dont_share">Nekopīgot</string>
+  <string name="btn_share">Kopīgot</string>
   <string name="learn_more">Uzzināt vairāk</string>
   <string name="home_tab_exposures_text">Iesp. saskare</string>
   <string name="home_tab_notify_text">Paziņot citiem</string>
@@ -31,7 +33,7 @@
     \n\nAr lietotni tiks kopīgots iespējamās saskares datums, ilgums un signāla stiprums.</string>
   <string name="onboarding_metrics_title">Lietotnes uzlabošana</string>
   <string name="onboarding_metrics_subtitle">Kopīgojiet lietotnes izmantojuma un veiktsp. datus ar Google</string>
-  <string name="onboarding_metrics_detail">Lai palīdzētu uzturēt un uzlabot lietotni, ar uzņēmumu Google tiek kopīgoti noteikti anonimizēti dati par lietotnes veiktspēju un izmantojumu. Šos datus nevar izmantot, lai jūs identificētu.</string>
+  <string name="onboarding_metrics_description">Lai palīdzētu uzturēt un uzlabot lietotni, ar uzņēmumu Google tiek kopīgoti noteikti anonimizēti dati par lietotnes veiktspēju un izmantojumu. Šos datus nevar izmantot, lai jūs identificētu. %1$s</string>
   <string name="onboarding_confirm_later_title">Vai paziņojumiem par saskari arī turpmāk jābūt izslēgtiem?</string>
   <string name="onboarding_confirm_later_detail">Ja paziņojumi par saskari nav ieslēgti, jūs netiekat informēts par iespējamu saskari ar Covid-19</string>
   <string name="no_recent_exposure_subtitle">Pēdējā laikā nav iespējamas saskares gadījumu</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">Statuss</string>
   <string name="exposure_details_status_exposure">Iespējama saskare ar Covid-19</string>
   <string name="exposure_details_date_exposed_subtitle">Iespējamās saskares datums</string>
-  <string name="exposure_details_expiring_subtitle">Ziņojumi par saskari tiek glabāti 14 dienas no iespējamās saskares datuma</string>
+  <string name="exposure_details_expiring_subtitle">Ziņojumi par saskari tiek glabāti 14 dienas no iespējamās saskares datuma.</string>
   <string name="exposure_details_learn_more">Uzzināt vairāk</string>
   <string name="exposure_details_new_badge">Jaunums</string>
   <string name="share_test_result_title">Aizsargājiet apkārtējos, kopīgojot Covid-19 testa rezultātu</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">Paziņojumi par saskari</string>
   <string name="settings_app_analytics_subtitle">Lietotnes datu kopīgošana</string>
   <string name="settings_privacy_policy">Konfidencialitātes politika</string>
+  <string name="settings_help_and_support">Par ātrajiem paziņojumiem par saskari</string>
   <string name="settings_legal_terms">Juridiskie noteikumi</string>
   <string name="settings_debug">Atkļūdošanas režīms</string>
   <string name="settings_share">Palīdziet ierobežot Covid-19 izplatību sabiedrībā. Kopīgojiet šo lietotni ar savu kopienu un palīdziet tai labāk aizsargāties, izmantojot paziņojumus par iespējamu saskari.</string>
@@ -134,4 +137,10 @@
   <string name="share_error">Nevar kopīgot testa rezultātu. Vēlāk mēģiniet vēlreiz.</string>
   <string name="generic_error_message">Radās kļūda. Mēģiniet vēlreiz.</string>
   <string name="code_error_already_submitted">Kods jau ir izmantots testa rezultāta kopīgošanai.</string>
+  <string name="settings_private_analytics_subtitle">Paziņojumu par saskari analīzes kopīgošana</string>
+  <string name="private_analytics_title">Palīdziet savai veselības aizsardzības iestādei noteikt Covid-19 izplatību</string>
+  <string name="private_analytics_subtitle">Kopīgot ar savu veselības aizsardzības iestādi paziņojumu par saskari analīzes datus</string>
+  <string name="private_analytics_footer">Šie analīzes dati, piem., paziņojumu skaits jūsu reģionā, palīdz veselības aizsardzības iestādēm noteikt Covid-19 izplatību. Google nevar lasīt šos datus. Tie tiek vākti veselības aizsardzības iestādei, tādēļ tos nevar saistīt ar tālruni. %1$s</string>
+  <string name="private_analytics_footer_onboarding">Google nevar lasīt šos analīzes datus, un tie tiek vākti jūsu veselības aizsardzības iestādei, tādēļ tos nevar saistīt ar jūsu tālruni. %1$s</string>
+  <string name="private_analytics_footer_learn_more">Uzzināt vairāk</string>
 </resources>

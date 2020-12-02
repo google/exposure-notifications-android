@@ -16,6 +16,8 @@
   <string name="btn_save">Yadda saxlayın</string>
   <string name="btn_discard">İmtina edin</string>
   <string name="btn_verify">Doğrulayın</string>
+  <string name="btn_dont_share">Paylaşmayın</string>
+  <string name="btn_share">Paylaşın</string>
   <string name="learn_more">Ətraflı məlumat</string>
   <string name="home_tab_exposures_text">Yoluxma</string>
   <string name="home_tab_notify_text">Digərlərinə bildirin</string>
@@ -31,7 +33,7 @@
     \n\nTəmas ilə əlaqəli tarix, müddət və siqnal gücü tətbiq ilə paylaşılacaq.</string>
   <string name="onboarding_metrics_title">Bu tətbiqi təkmilləşdirməyə kömək edin</string>
   <string name="onboarding_metrics_subtitle">Tətbiq istifadəsi, məhsuldarlıq datasını Google ilə paylaşın</string>
-  <string name="onboarding_metrics_detail">Tətbiqin dəstəklənməsi və təkmilləşdirilməsinə kömək etmək üçün tətbiq məhsuldarlığı və istifadəsi barədə şəxsiyyəti müəyyənləşdirməyən bəzi məhdud məlumatlar Google ilə paylaşılır. Bu məlumatlar kimliyinizi müəyyənləşdirmir.</string>
+  <string name="onboarding_metrics_description">Tətbiqin dəstəklənməsi və təkmilləşdirilməsinə kömək etmək üçün tətbiq məhsuldarlığı və istifadəsi barədə şəxsiyyəti müəyyənləşdirməyən bəzi məhdud məlumatlar Google ilə paylaşılır. Bu məlumatlar kimliyinizi müəyyənləşdirmir. %1$s</string>
   <string name="onboarding_confirm_later_title">Yoluxma Bildirişləri sönülü saxlanılsın?</string>
   <string name="onboarding_confirm_later_detail">Təmas Bildirişləri yandırılana qədər sizə mümkün COVID-19 ilə təmas barədə bildirilməyəcək</string>
   <string name="no_recent_exposure_subtitle">Bu yaxınlarda təmas olmayıb</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">Status</string>
   <string name="exposure_details_status_exposure">Mümkün COVID-19 təması</string>
   <string name="exposure_details_date_exposed_subtitle">Ehtimal təmas tarixi</string>
-  <string name="exposure_details_expiring_subtitle">Təmas bildirişləri təmas tarixindən etibarən 14 gün saxlanılır</string>
+  <string name="exposure_details_expiring_subtitle">Yoluxma hesabatları ehtimal təmas tarixindən etibarən 14 gün saxlanılır</string>
   <string name="exposure_details_learn_more">Ətraflı məlumat</string>
   <string name="exposure_details_new_badge">Yeni</string>
   <string name="share_test_result_title">İcmanızı qoruyun, COVID-19 test nəticənizi paylaşın</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">Yoluxma bildirişləri</string>
   <string name="settings_app_analytics_subtitle">Tətbiqdən istifadə, məhsuldarlıq datasının paylaşılması</string>
   <string name="settings_privacy_policy">Məxfilik siyasəti</string>
+  <string name="settings_help_and_support">Ekspress Yoluxma Bildirişləri haqqında</string>
   <string name="settings_legal_terms">Hüquqi şərtlər</string>
   <string name="settings_debug">Sazlama rejimi</string>
   <string name="settings_share">COVID-19 virusunun yayılmasının qarşısını almağa yardım edin. Bu tətbiqi icmanızla paylaşın və yoluxma bildirişləri ilə özlərini daha yaxşı qorumalarına yardım edin.</string>
@@ -134,4 +137,10 @@
   <string name="share_error">Test nəticəsini paylaşmaq mümkün deyil. Sonra cəhd edin.</string>
   <string name="generic_error_message">Xəta baş verdi. Yenə cəhd edin.</string>
   <string name="code_error_already_submitted">Bu kod test nəticəsini paylaşmaq üçün artıq istifadə olunub</string>
+  <string name="settings_private_analytics_subtitle">Yoluxma Bildirişləri analitika paylaşımı</string>
+  <string name="private_analytics_title">Səhiyyə orqanına COVID-19 xəstəliyinin necə yayıldığını başa düşməyə kömək edin</string>
+  <string name="private_analytics_subtitle">Yoluxma Bildirişləri analitik məlumatlarını səhiyyə orqanı ilə paylaşın</string>
+  <string name="private_analytics_footer">Yaşadığınız ərazidə bildirişlərin sayı kimi bu analitik məlumatlar səhiyyə orqanına COVID-19 xəstəliyinin necə yayıldığını başa düşməyə kömək edin. Onlar Google tərəfindən oxuna bilməz və səhiyyə orqanı üçün toplanılır, beləcə telefonunuzla əlaqələndirilə bilməz. %1$s</string>
+  <string name="private_analytics_footer_onboarding">Bu analitik məlumatlar Google tərəfindən oxuna bilməz və səhiyyə orqanı üçün toplanılır, beləcə telefonunuzla əlaqələndirilə bilməz. %1$s</string>
+  <string name="private_analytics_footer_learn_more">Ətraflı məlumat</string>
 </resources>

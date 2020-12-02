@@ -16,6 +16,8 @@
   <string name="btn_save">Gem</string>
   <string name="btn_discard">Kassér</string>
   <string name="btn_verify">Bekræft</string>
+  <string name="btn_dont_share">Del ikke</string>
+  <string name="btn_share">Del</string>
   <string name="learn_more">Få flere oplysninger</string>
   <string name="home_tab_exposures_text">Eksponering</string>
   <string name="home_tab_notify_text">Giv andre besked</string>
@@ -31,7 +33,7 @@
     \n\nDatoen, varigheden og signalstyrken i forbindelse med en eksponering deles med appen.</string>
   <string name="onboarding_metrics_title">Hjælp med at forbedre denne app</string>
   <string name="onboarding_metrics_subtitle">Del data om appforbrug og -effektivitet med Google</string>
-  <string name="onboarding_metrics_detail">For at vedligeholde og forbedre appen deles visse begrænsede data om appforbrug og -effektivitet med Google. Der deles ingen personlige oplysninger. Du kan ikke identificeres ud fra disse data.</string>
+  <string name="onboarding_metrics_description">For at vedligeholde og forbedre appen deles visse begrænsede data om appforbrug og -effektivitet med Google. Der deles ingen personlige oplysninger. Disse data er ikke personhenførbare. %1$s</string>
   <string name="onboarding_confirm_later_title">Skal notifikationer om eksponeringer stadig være deaktiveret?</string>
   <string name="onboarding_confirm_later_detail">Du vil ikke få besked om mulig COVID-19-eksponering, før du aktiverer Notifikationer om eksponeringer</string>
   <string name="no_recent_exposure_subtitle">Ingen eksponeringer for nylig</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">Status</string>
   <string name="exposure_details_status_exposure">Mulig eksponering for COVID-19</string>
   <string name="exposure_details_date_exposed_subtitle">Dato for mulig eksponering</string>
-  <string name="exposure_details_expiring_subtitle">Eksponeringsrapporter gemmes i 14 dage fra eksponeringsdatoen</string>
+  <string name="exposure_details_expiring_subtitle">Eksponeringsrapporter gemmes i 14 dage fra den dato, hvor den mulige eksponering blev registreret</string>
   <string name="exposure_details_learn_more">Få flere oplysninger</string>
   <string name="exposure_details_new_badge">Nyt</string>
   <string name="share_test_result_title">Del dit COVID-19-testresultat, og beskyt folk omkring dig</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">Notifikationer om eksponering</string>
   <string name="settings_app_analytics_subtitle">Deling af appforbrug og -effektivitet</string>
   <string name="settings_privacy_policy">Privatlivspolitik</string>
+  <string name="settings_help_and_support">Om Exposure Notification Express</string>
   <string name="settings_legal_terms">Juridiske vilkår</string>
   <string name="settings_debug">Fejlretningstilstand</string>
   <string name="settings_share">Hjælp med at inddæmme spredningen af COVID-19. Del denne app med din omgangskreds, og hjælp dem med at beskytte sig bedre ved hjælp af notifikationer om eksponering.</string>
@@ -134,4 +137,10 @@
   <string name="share_error">Testresultatet kunne ikke deles. Prøv igen senere.</string>
   <string name="generic_error_message">Der opstod en fejl. Prøv igen.</string>
   <string name="code_error_already_submitted">Koden er allerede blevet brugt til at dele testresultater</string>
+  <string name="settings_private_analytics_subtitle">Deling af analysedata fra notifikationer om eksponering</string>
+  <string name="private_analytics_title">Hjælp sundhedsmyndighederne med at forstå spredningen af COVID-19</string>
+  <string name="private_analytics_subtitle">Del analysedata fra notifikationer om eksponering med sundhedsmyndighederne</string>
+  <string name="private_analytics_footer">Disse analysedata, f.eks. antallet af notifikationer i dit område, hjælper myndighederne med at forstå, hvordan COVID-19 spreder sig. Dataene bliver sammenlagt med andre brugeres data, inden de leveres til sundhedsmyndighederne, så dine data ikke kan knyttes til din telefon. %1$s</string>
+  <string name="private_analytics_footer_onboarding">Disse analysedata kan ikke læses af Google og bliver sammenlagt med andre brugeres data, inden de leveres til sundhedsmyndighederne, så dine data ikke kan knyttes til din telefon. %1$s</string>
+  <string name="private_analytics_footer_learn_more">Få flere oplysninger</string>
 </resources>

@@ -16,6 +16,8 @@
   <string name="btn_save">Zapisz</string>
   <string name="btn_discard">Odrzuć</string>
   <string name="btn_verify">Zweryfikuj</string>
+  <string name="btn_dont_share">Nie udostępniaj</string>
+  <string name="btn_share">Udostępnij</string>
   <string name="learn_more">Więcej</string>
   <string name="home_tab_exposures_text">Narażenie</string>
   <string name="home_tab_notify_text">Powiadom</string>
@@ -31,7 +33,7 @@
     \n\nData, czas trwania oraz siła sygnału związane z narażeniem na kontakt zostaną udostępnione aplikacji.</string>
   <string name="onboarding_metrics_title">Pomóż ulepszyć tę aplikację</string>
   <string name="onboarding_metrics_subtitle">Udostępnij Google dane o użyciu i wydajności aplikacji</string>
-  <string name="onboarding_metrics_detail">Do Google wysyłane są pewne dane o użyciu i wydajności aplikacji, co ma pomóc w jej utrzymaniu i ulepszaniu. Te informacje nie umożliwiają identyfikacji użytkownika – na ich podstawie nie można Cię rozpoznać.</string>
+  <string name="onboarding_metrics_description">Do Google wysyłane są pewne dane o użyciu i wydajności aplikacji, ponieważ pomaga to w utrzymywaniu i ulepszaniu aplikacji. Informacje te nie umożliwiają identyfikacji użytkownika. Na ich podstawie nie można Cię rozpoznać. %1$s</string>
   <string name="onboarding_confirm_later_title">Czy powiadomienia o narażeniu na kontakt mają być wyłączone?</string>
   <string name="onboarding_confirm_later_detail">Aby otrzymywać powiadomienia o narażeniu na kontakt, musisz je włączyć.</string>
   <string name="no_recent_exposure_subtitle">Brak narażenia na kontakt w ostatnim czasie</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">Stan</string>
   <string name="exposure_details_status_exposure">Możliwe narażenie na kontakt z koronawirusem</string>
   <string name="exposure_details_date_exposed_subtitle">Data możliwego narażenia na kontakt</string>
-  <string name="exposure_details_expiring_subtitle">Raporty o narażeniu są przechowywane przez 14 dni od wystąpienia ryzyka</string>
+  <string name="exposure_details_expiring_subtitle">Raporty o narażeniu są przechowywane przez 14 dni od daty narażenia na kontakt</string>
   <string name="exposure_details_learn_more">Więcej informacji</string>
   <string name="exposure_details_new_badge">Nowe</string>
   <string name="share_test_result_title">Chroń swoją społeczność, udostępnij wyniki testu na koronawirusa</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">Powiadomienia o narażeniu na kontakt</string>
   <string name="settings_app_analytics_subtitle">Udostępnianie danych o użyciu i wydajności</string>
   <string name="settings_privacy_policy">Polityka prywatności</string>
+  <string name="settings_help_and_support">Informacje o szybkich powiadomieniach o narażeniu na kontakt</string>
   <string name="settings_legal_terms">Warunki prawne</string>
   <string name="settings_debug">Tryb debugowania</string>
   <string name="settings_share">Pomóż ograniczyć rozprzestrzenianie się koronawirusa. Udostępnij tę aplikację swojej społeczności i pomóż jej członkom chronić się dzięki powiadomieniom o możliwym narażeniu na kontakt.</string>
@@ -134,4 +137,10 @@
   <string name="share_error">Nie można udostępnić wyniku testu. Spróbuj ponownie później.</string>
   <string name="generic_error_message">Coś poszło nie tak. Spróbuj ponownie.</string>
   <string name="code_error_already_submitted">Kod został już wykorzystany do udostępnienia wyniku testu</string>
+  <string name="settings_private_analytics_subtitle">Udostępnianie statystyk powiadomień o narażeniu</string>
+  <string name="private_analytics_title">Pomóż instytucji zdrowia publicznego zrozumieć, jak rozprzestrzenia się COVID-19</string>
+  <string name="private_analytics_subtitle">Udostępniaj instytucji zdrowia publicznego statystyki powiadomień o narażeniu na kontakt</string>
+  <string name="private_analytics_footer">Te statystyki, np. liczba powiadomień w regionie, pomagają instytucjom zdrowia publicznego zrozumieć, jak rozprzestrzenia się COVID-19. Google nie może ich odczytać, a dane są agregowane na potrzeby instytucji zdrowia publicznego, więc nie da się ich powiązać z Twoim telefonem. %1$s</string>
+  <string name="private_analytics_footer_onboarding">Google nie może odczytać tych statystyk, a dane są agregowane na potrzeby instytucji zdrowia publicznego, więc nie da się ich powiązać z Twoim telefonem. %1$s</string>
+  <string name="private_analytics_footer_learn_more">Więcej informacji</string>
 </resources>

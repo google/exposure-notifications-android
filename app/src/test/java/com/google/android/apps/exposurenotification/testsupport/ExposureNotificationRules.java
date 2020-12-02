@@ -18,10 +18,8 @@
 package com.google.android.apps.exposurenotification.testsupport;
 
 import static android.os.Looper.getMainLooper;
-import static com.google.common.truth.Truth.assertWithMessage;
 import static org.robolectric.Shadows.shadowOf;
 
-import androidx.annotation.Nullable;
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
 import dagger.hilt.android.testing.HiltAndroidRule;
 import org.junit.rules.RuleChain;

@@ -41,6 +41,9 @@
 
   <string name="onboarding_start_text">@string/enx_agencyMessage</string>
 
+  <!-- Displayed during the onboarding flow, showing the health authority's private analytics consent text. -->
+  <string name="onboarding_private_analytics_consent_text">@string/enx_enpaConsentText</string>
+
   <!-- Name of the agency shown in the text of the exposure about screen. -->
   <string name="exposure_about_agency">@string/enx_agencyDisplayName</string>
 
@@ -151,4 +154,7 @@
 
   <!-- Name of the agency shown to be put into error messages. -->
   <string name="error_agency_name">@string/enx_agencyDisplayName</string>
+
+  <!-- Text shown on the private analytics toggle consent page. -->
+  <string name="private_analytics_message">@string/enx_enpaConsentText</string>
 </resources>

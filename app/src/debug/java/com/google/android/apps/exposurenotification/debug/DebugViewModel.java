@@ -33,6 +33,7 @@ import androidx.work.WorkManager;
 import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.common.Qualifiers.LightweightExecutor;
 import com.google.android.apps.exposurenotification.common.SingleLiveEvent;
+import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.debug.VerificationCodeCreator.VerificationCode;
 import com.google.android.apps.exposurenotification.debug.VerificationCodeCreator.VerificationCodeCreateFailureException;
 import com.google.android.apps.exposurenotification.debug.VerificationCodeCreator.VerificationCodeCreateServerFailureException;
@@ -40,16 +41,27 @@ import com.google.android.apps.exposurenotification.debug.VerificationCodeCreato
 import com.google.android.apps.exposurenotification.keydownload.DownloadUriPair;
 import com.google.android.apps.exposurenotification.keydownload.Qualifiers.HomeDownloadUriPair;
 import com.google.android.apps.exposurenotification.keyupload.Qualifiers.UploadUri;
+import com.google.android.apps.exposurenotification.nearby.ExposureNotificationClientWrapper;
 import com.google.android.apps.exposurenotification.nearby.ProvideDiagnosisKeysWorker;
 import com.google.android.apps.exposurenotification.network.RequestQueueWrapper;
+import com.google.android.apps.exposurenotification.privateanalytics.PrivateAnalyticsDeviceAttestation;
+import com.google.android.apps.exposurenotification.privateanalytics.SubmitPrivateAnalyticsWorker;
+import com.google.android.apps.exposurenotification.privateanalytics.metrics.HistogramMetric;
+import com.google.android.apps.exposurenotification.privateanalytics.metrics.PeriodicExposureNotificationInteractionMetric;
+import com.google.android.apps.exposurenotification.privateanalytics.metrics.PeriodicExposureNotificationMetric;
 import com.google.android.apps.exposurenotification.storage.CountryRepository;
-import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.NetworkMode;
 import com.google.common.base.Splitter;
 import com.google.common.util.concurrent.FluentFuture;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import dagger.hilt.android.qualifiers.ApplicationContext;
+import java.io.IOException;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.cert.CertificateException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.regex.Pattern;
@@ -69,14 +81,12 @@ public class DebugViewModel extends ViewModel {
   private static SingleLiveEvent<String> snackbarLiveEvent = new SingleLiveEvent<>();
   private static MutableLiveData<NetworkMode> keySharingNetworkModeLiveData =
       new MutableLiveData<>(NetworkMode.DISABLED);
-  private static MutableLiveData<NetworkMode> verificationNetworkModeLiveData =
-      new MutableLiveData<>(NetworkMode.DISABLED);
   private final LiveData<List<WorkInfo>> provideDiagnosisKeysWorkLiveData;
   private static MutableLiveData<VerificationCode> verificationCodeLiveData =
       new MutableLiveData<>();
   private final MutableLiveData<ZonedDateTime> symptomOnSetDateLiveData = new MutableLiveData<>();
+  private final MutableLiveData<String> enModuleVersionLiveData = new MutableLiveData<>("");
 
-  private final ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
   private final CountryRepository countryRepository;
   private final VerificationCodeCreator codeCreator;
   private final WorkManager workManager;
@@ -84,28 +94,45 @@ public class DebugViewModel extends ViewModel {
   private final DownloadUriPair homeDownloadUris;
   private final Uri uploadUri;
   private final ExecutorService lightweightExecutor;
+  private final PrivateAnalyticsDeviceAttestation deviceAttestation;
+  private final Clock clock;
 
   @ViewModelInject
   public DebugViewModel(
       @ApplicationContext Context context,
-      ExposureNotificationSharedPreferences exposureNotificationSharedPreferences,
       CountryRepository countryRepository,
       RequestQueueWrapper requestQueueWrapper,
       WorkManager workManager,
       @HomeDownloadUriPair DownloadUriPair homeDownloadUris,
       @UploadUri Uri uploadUri,
-      @LightweightExecutor ExecutorService lightweightExecutor) {
-    this.exposureNotificationSharedPreferences = exposureNotificationSharedPreferences;
+      @LightweightExecutor ExecutorService lightweightExecutor,
+      PrivateAnalyticsDeviceAttestation privateAnalyticsDeviceAttestation,
+      Clock clock,
+      ExposureNotificationClientWrapper exposureNotificationClientWrapper) {
     this.countryRepository = countryRepository;
     this.workManager = workManager;
     this.homeDownloadUris = homeDownloadUris;
     this.uploadUri = uploadUri;
     this.lightweightExecutor = lightweightExecutor;
+    this.deviceAttestation = privateAnalyticsDeviceAttestation;
+    this.clock = clock;
     codeCreator = new VerificationCodeCreator(context, requestQueueWrapper);
     resources = context.getResources();
 
     provideDiagnosisKeysWorkLiveData =
         workManager.getWorkInfosForUniqueWorkLiveData(ProvideDiagnosisKeysWorker.WORKER_NAME);
+
+    exposureNotificationClientWrapper.getVersion()
+        .addOnSuccessListener(lightweightExecutor,
+            version -> enModuleVersionLiveData.postValue(Long.toString(version)))
+        .addOnCanceledListener(lightweightExecutor, () -> {
+          Log.w(TAG, "Cancelled fetching Version from EN API");
+          enModuleVersionLiveData.postValue("");
+        })
+        .addOnFailureListener(lightweightExecutor, (exception) -> {
+          Log.w(TAG, "Could not fetch Version from EN API");
+          enModuleVersionLiveData.postValue("");
+        });
   }
 
   public LiveData<List<WorkInfo>> getProvideDiagnosisKeysWorkLiveData() {
@@ -122,6 +149,10 @@ public class DebugViewModel extends ViewModel {
 
   public LiveData<VerificationCode> getVerificationCodeLiveData() {
     return verificationCodeLiveData;
+  }
+
+  public LiveData<String> getEnModuleVersionLiveData() {
+    return enModuleVersionLiveData;
   }
 
   public boolean hasDefaultUris() {
@@ -184,6 +215,41 @@ public class DebugViewModel extends ViewModel {
     workManager.enqueue(new OneTimeWorkRequest.Builder(ProvideDiagnosisKeysWorker.class).build());
   }
 
+  /**
+   * Triggers a one off submit private analytics job.
+   */
+  public void submitPrivateAnalytics() {
+    workManager.enqueue(new OneTimeWorkRequest.Builder(SubmitPrivateAnalyticsWorker.class).build());
+  }
+
+  /**
+   * Cleans the Keystore keys used for signing the private analytics.
+   */
+  public void clearKeyStore() {
+    // Delete key Alias
+    try {
+      // Add all the metrics
+      List<String> listOfMetrics = new ArrayList<>();
+      listOfMetrics.add(HistogramMetric.METRIC_NAME);
+      listOfMetrics.add(PeriodicExposureNotificationMetric.METRIC_NAME);
+      listOfMetrics.add(PeriodicExposureNotificationInteractionMetric.METRIC_NAME);
+
+      KeyStore keyStore = KeyStore.getInstance("AndroidKeyStore");
+      keyStore.load(null, null);
+
+      for (String metric : listOfMetrics) {
+        Log.d(TAG, "PrioPrivateAnalytics: deleting key for metric " + metric);
+        String keyAlias = deviceAttestation.getDailyAlias(metric);
+        if (keyStore.containsAlias(keyAlias)) {
+          keyStore.deleteEntry(keyAlias);
+        }
+      }
+    } catch (KeyStoreException | CertificateException | IOException | NoSuchAlgorithmException e) {
+      Log.w(TAG, "Error clearing keystore", e);
+    }
+  }
+
+
   public void markCountryCodesSeen(String countryCodesInput) {
     for (String countryCode : COMMA_SPLITER.split(countryCodesInput)) {
       if (countryCode.length() != 2) {
@@ -203,7 +269,7 @@ public class DebugViewModel extends ViewModel {
   }
 
   public void clearCountryCodes() {
-    FluentFuture.from(countryRepository.deleteObsoleteCountryCodesAsync(Instant.MAX))
+    FluentFuture.from(countryRepository.deleteObsoleteCountryCodesAsync(clock.now()))
         .catching(Exception.class, e -> {
           snackbarLiveEvent.postValue(
               resources.getString(R.string.debug_roaming_country_code_database_error));

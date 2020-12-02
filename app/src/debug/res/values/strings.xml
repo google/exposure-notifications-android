@@ -21,9 +21,9 @@
 
   <string name="debug_version_gms">Google Play services: %1$s</string>
 
-  <string name="debug_version_not_available">Not available</string>
+  <string name="debug_version_en">En module: %1$s</string>
 
-  <string name="debug_master_switch">Exposure Notifications API Master</string>
+  <string name="debug_version_not_available">Not available</string>
 
   <string name="debug_matching_manual_button_text">Provide Manually</string>
 
@@ -158,6 +158,14 @@
 
   <string name="home_tab_notify_debug_text">Debug</string>
 
+  <string name="debug_private_analytics_category">Private Analytics</string>
+
+  <string name="debug_submit_private_analytics_button_description">Submit private analytics to help health authorities assess the app\'s effectiveness.</string>
+
+  <string name="debug_submit_private_analytics_button_text">Submit Private Analytics</string>
+
+  <string name="debug_private_analytics_clear_key_store_text">Clear Keystore</string>
+
   <string name="debug_roaming_title">Roaming</string>
 
   <string name="debug_roaming_country_code_input_text">Two letter country codes (comma separated)</string>
@@ -170,4 +178,5 @@
 
   <string name="debug_roaming_country_code_database_error">Database error</string>
 
+  <string name="debug_sync_configs_private_analytics_button_text">Sync Remote Configs</string>
 </resources>

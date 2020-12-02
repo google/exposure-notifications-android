@@ -16,6 +16,8 @@
   <string name="btn_save">Ruaj</string>
   <string name="btn_discard">Hiq</string>
   <string name="btn_verify">Verifiko</string>
+  <string name="btn_dont_share">Mos e ndaj</string>
+  <string name="btn_share">Ndaj</string>
   <string name="learn_more">Mëso më shumë</string>
   <string name="home_tab_exposures_text">Ekspozimi</string>
   <string name="home_tab_notify_text">Njofto të tjerët</string>
@@ -31,7 +33,7 @@
     \n\nData, kohëzgjatja dhe fuqia e sinjalit në lidhje me një ekspozim do të ndahen me aplikacionin.</string>
   <string name="onboarding_metrics_title">Ndihmo në përmirësimin e këtij aplikacioni</string>
   <string name="onboarding_metrics_subtitle">Ndaj me Google të dhënat e përdorimit dhe të cilësisë së funksionimit të aplikacionit</string>
-  <string name="onboarding_metrics_detail">Për të ndihmuar në mirëmbajtjen dhe përmirësimin e aplikacionit, disa të dhëna të kufizuara të anonimizuara për cilësinë e funksionimit dhe përdorimin e aplikacionit ndahen me Google. Këto të dhëna nuk të identifikojnë ty.</string>
+  <string name="onboarding_metrics_description">Për të ndihmuar në mirëmbajtjen dhe përmirësimin e aplikacionit, disa të dhëna të kufizuara të anonimizuara për cilësinë e funksionimit dhe përdorimin e aplikacionit ndahen me Google. Këto të dhëna nuk të identifikojnë ty. %1$s</string>
   <string name="onboarding_confirm_later_title">Do ta mbash të çaktivizuar \"Njoftimin rreth ekspozimit\"?</string>
   <string name="onboarding_confirm_later_detail">Nuk do të njoftohesh për ekspozimin e mundshëm ndaj COVID-19 derisa të aktivizohen \"Njoftimet rreth ekspozimit\"</string>
   <string name="no_recent_exposure_subtitle">Nuk ka ekspozime së fundi</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">Statusi</string>
   <string name="exposure_details_status_exposure">Ekspozim i mundshëm ndaj COVID-19</string>
   <string name="exposure_details_date_exposed_subtitle">Data e mundshme e ekspozimit</string>
-  <string name="exposure_details_expiring_subtitle">Raportet e ekspozimit ruhen për 14 ditë nga data e ekspozimit</string>
+  <string name="exposure_details_expiring_subtitle">Raportet e ekspozimit ruhen për 14 ditë nga data e mundshme e ekspozimit</string>
   <string name="exposure_details_learn_more">Mëso më shumë</string>
   <string name="exposure_details_new_badge">E re</string>
   <string name="share_test_result_title">Mbro komunitetin tënd, ndaj rezultatin e testit për COVID-19</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">Njoftimet rreth ekspozimit</string>
   <string name="settings_app_analytics_subtitle">Ndarja e përdorimit dhe cilësisë së funksionimit të aplikacionit</string>
   <string name="settings_privacy_policy">Politika e privatësisë</string>
+  <string name="settings_help_and_support">Rreth \"Njoftimeve të shpejta rreth ekspozimit\"</string>
   <string name="settings_legal_terms">Kushtet ligjore</string>
   <string name="settings_debug">Modaliteti i korrigjimit</string>
   <string name="settings_share">Ndihmo në kufizimin e përhapjes së COVID-19. Ndaje këtë aplikacion me anëtarët e komunitetit tënd dhe ndihmoji ata të mbrohen më mirë me njoftimet rreth ekspozimit të mundshëm.</string>
@@ -134,4 +137,10 @@
   <string name="share_error">Rezultati i testit nuk mund të ndahet. Provo përsëri më vonë.</string>
   <string name="generic_error_message">Ndodhi një gabim. Provo përsëri.</string>
   <string name="code_error_already_submitted">Kodi është përdorur tashmë për të ndarë rezultatet e testit</string>
+  <string name="settings_private_analytics_subtitle">Ndarja e detajeve për \"Njoftimet rreth ekspozimit\"</string>
+  <string name="private_analytics_title">Ndihmo autoritetet shëndetësore të kuptojnë përhapjen e COVID-19</string>
+  <string name="private_analytics_subtitle">Ndaj me autoritetet shëndetësore të dhënat analitike për \"Njoftimet rreth ekspozimit\"</string>
+  <string name="private_analytics_footer">Këto të dhëna analitike, si p.sh. numri i njoftimeve në rajonin tënd, i ndihmojnë autoritetet shëndetësore të kuptojnë se si përhapet COVID-19. Ato nuk mund të lexohen nga Google dhe janë të përmbledhura për autoritetet shëndetësore, kështu që nuk mund të lidhen me telefonin tënd. %1$s</string>
+  <string name="private_analytics_footer_onboarding">Këto të dhëna analitike nuk mund të lexohen nga Google dhe janë të përmbledhura për autoritetet shëndetësore, kështu që nuk mund të lidhen me telefonin tënd. %1$s</string>
+  <string name="private_analytics_footer_learn_more">Mëso më shumë</string>
 </resources>

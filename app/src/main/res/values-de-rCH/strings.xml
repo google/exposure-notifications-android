@@ -16,6 +16,8 @@
   <string name="btn_save">Speichern</string>
   <string name="btn_discard">Verwerfen</string>
   <string name="btn_verify">Bestätigen</string>
+  <string name="btn_dont_share">Nicht teilen</string>
+  <string name="btn_share">Teilen</string>
   <string name="learn_more">Weitere Informationen</string>
   <string name="home_tab_exposures_text">Mögliche Begegnungen</string>
   <string name="home_tab_notify_text">Andere benachrichtigen</string>
@@ -31,18 +33,18 @@
     \n\nAn die App werden Datum, Dauer und Signalstärke des Kontakts übermittelt.</string>
   <string name="onboarding_metrics_title">Diese App noch besser machen</string>
   <string name="onboarding_metrics_subtitle">Teile Daten zur App-Nutzung und -Leistung mit Google</string>
-  <string name="onboarding_metrics_detail">Damit wir die App verwalten und weiter verbessern können, werden die Daten zur App-Leistung und -Nutzung in begrenztem Umfang und in einer Form mit Google geteilt, die keine Identifikation des Nutzers erlauben. Die Daten lassen also keinen Rückschluss auf deine Person zu.</string>
+  <string name="onboarding_metrics_description">Damit wir die App verwalten und weiter verbessern können, werden die Daten zur App-Leistung und -Nutzung in begrenztem Umfang und in einer Form mit Google geteilt, die keine Identifikation des Nutzers erlauben. Die Daten lassen also keinen Rückschluss auf deine Person zu. %1$s</string>
   <string name="onboarding_confirm_later_title">COVID-19-Benachrichtigungen deaktiviert lassen?</string>
   <string name="onboarding_confirm_later_detail">Du erhältst COVID-19-Benachrichtigungen nur dann, wenn du sie aktivierst.</string>
   <string name="no_recent_exposure_subtitle">Aktuell keine möglichen Begegnungen mit infizierten Personen</string>
   <string name="notifications_enabled_info">Derzeit sind für dich keine möglichen Begegnungen mit Personen gemeldet, die an COVID-19 erkrankt sind. Du wirst benachrichtigt, wenn du dich in der Nähe einer Person aufgehalten hast, die ein positives COVID-19-Testergebnis gemeldet hat.</string>
   <string name="exposure_notifications_are_turned_off">COVID-19-Benachrichtigungen sind deaktiviert</string>
   <string name="turn_on_exposure_notifications_action">COVID-19-Benachrichtigungen aktivieren</string>
-  <string name="recent_exposures_subtitle">Aktuelle mögliche Begegnung mit infizierter Person</string>
+  <string name="recent_exposures_subtitle">Aktuell:</string>
   <string name="exposure_details_status_subtitle">Status</string>
   <string name="exposure_details_status_exposure">Mögliche Begegnung mit infizierter Person</string>
   <string name="exposure_details_date_exposed_subtitle">Datum der möglichen Begegnung mit infizierter Person</string>
-  <string name="exposure_details_expiring_subtitle">Benachrichtigungen zu möglichen Begegnungen mit infizierten Personen werden ab dem Datum der Begegnung 14 Tage lang gespeichert</string>
+  <string name="exposure_details_expiring_subtitle">Benachrichtigungen zu möglichen Begegnungen mit infizierten Personen werden ab dem Datum der möglichen Begegnung 14 Tage lang gespeichert</string>
   <string name="exposure_details_learn_more">Weitere Informationen</string>
   <string name="exposure_details_new_badge">Neu</string>
   <string name="share_test_result_title">Schütze dein Umfeld, teile dein COVID-19-Testergebnis</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">COVID-19-Benachrichtigungen</string>
   <string name="settings_app_analytics_subtitle">App-Nutzung und -Leistung</string>
   <string name="settings_privacy_policy">Datenschutzerklärung</string>
+  <string name="settings_help_and_support">Express-COVID-19-Benachrichtigungen</string>
   <string name="settings_legal_terms">Rechtliche Bestimmungen</string>
   <string name="settings_debug">Fehlerbehebungsmodus</string>
   <string name="settings_share">Hilf mit, COVID-19 einzudämmen. Teile diese App mit anderen in deinem Umfeld, sodass auch sie über mögliche Begegnungen mit infizierten Personen benachrichtigt werden.</string>
@@ -134,4 +137,10 @@
   <string name="share_error">Das Testergebnis konnte nicht geteilt werden. Versuch es später noch einmal.</string>
   <string name="generic_error_message">Es gab ein Problem. Versuch es noch einmal.</string>
   <string name="code_error_already_submitted">Der Code wurde bereits verwendet, um ein Testergebnis zu teilen</string>
+  <string name="settings_private_analytics_subtitle">COVID-19-Benachrichtigungsanalyse teilen</string>
+  <string name="private_analytics_title">Gesundheitsbehörden bei der Eindämmung von COVID-19 unterstützen</string>
+  <string name="private_analytics_subtitle">Analysedaten der COVID-19-Benachrichtigungen mit Gesundheitsbehörden teilen</string>
+  <string name="private_analytics_footer">Diese Analysedaten, wie etwa die Anzahl der Benachrichtigungen in deiner Region, sind für die Gesundheitsbehörden sehr hilfreich. Google kann die Analysedaten nicht lesen. Sie werden ausschliesslich für die zuständigen Gesundheitsbehörden zusammengestellt und sind nicht mit deinem Smartphone verknüpft. %1$s</string>
+  <string name="private_analytics_footer_onboarding">Google kann diese Analysedaten nicht lesen. Sie werden ausschliesslich für die zuständigen Gesundheitsbehörden zusammengestellt und sind nicht mit deinem Smartphone verknüpft. %1$s</string>
+  <string name="private_analytics_footer_learn_more">Weitere Informationen</string>
 </resources>

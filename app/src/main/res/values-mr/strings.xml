@@ -16,6 +16,8 @@
   <string name="btn_save">सेव्ह करा</string>
   <string name="btn_discard">काढून टाका</string>
   <string name="btn_verify">पडताळणी करा</string>
+  <string name="btn_dont_share">शेअर करू नका</string>
+  <string name="btn_share">शेअर करा</string>
   <string name="learn_more">अधिक जाणून घ्या</string>
   <string name="home_tab_exposures_text">लागण</string>
   <string name="home_tab_notify_text">इतरांना सूचित करा</string>
@@ -31,7 +33,7 @@
     \n\nलागणीशी संबंधित तारीख, कालावधी आणि सिग्नलची क्षमता ॲपवरून शेअर केली जाईल.</string>
   <string name="onboarding_metrics_title">या ॲपमध्ये सुधारणा करण्यात मदत करा</string>
   <string name="onboarding_metrics_subtitle">Google सह ॲपचा वापर व परफॉर्मन्स डेटा शेअर करा</string>
-  <string name="onboarding_metrics_detail">ॲपच्या देखभालीत आणि सुधारणेत मदत करण्यासाठी ॲप परफॉर्मन्स व वापराबद्दलचा पडताळणी न केलेला काही मर्यादित डेटा Google सोबत शेअर केला जातो. हा डेटा तुमची ओळख उघड करत नाही.</string>
+  <string name="onboarding_metrics_description">ॲपच्या देखभाल आणि सुधारणेत मदतीसाठी ॲप परफॉर्मन्स व वापराबद्दलचा काही पडताळणी न केलेला मर्यादित डेटा Google सोबत शेअर केला जातो. हा डेटा तुमची ओळख उघड करत नाही. %1$s</string>
   <string name="onboarding_confirm_later_title">लागणीबद्दलची सूचना बंद ठेवायची आहे का?</string>
   <string name="onboarding_confirm_later_detail">लागणीविषयी सूचना सुरू करत नाही, ताेपर्यंत COVID-19 च्या संभाव्य लागणीबद्दल तुम्हाला सूचित केले जाणार नाही</string>
   <string name="no_recent_exposure_subtitle">अलीकडे कोणतीही लागण झालेली नाही</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">स्थिती</string>
   <string name="exposure_details_status_exposure">COVID-19 ची लागण झाल्याची संभाव्यता</string>
   <string name="exposure_details_date_exposed_subtitle">लागण होण्याच्या शक्यतेची संभाव्य तारीख</string>
-  <string name="exposure_details_expiring_subtitle">लागणीसंबंधित अहवाल हे लागण झाल्याच्या १४ दिवसांपासून स्टोअर केले जातात</string>
+  <string name="exposure_details_expiring_subtitle">लागणीबाबतचे अहवाल लागण झाल्याच्या संभाव्य तारखेपासून १४ दिवसांसाठी स्टोअर केले जातात</string>
   <string name="exposure_details_learn_more">अधिक जाणून घ्या</string>
   <string name="exposure_details_new_badge">नवीन</string>
   <string name="share_test_result_title">तुमचा COVID-19 चाचणीचा परिणाम शेअर करा आणि तुमच्या समुदायाचे संरक्षण करा</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">लागणीबद्दलच्या सूचना</string>
   <string name="settings_app_analytics_subtitle">ॲपचा वापर आणि परफॉर्मन्स शेअरिंग</string>
   <string name="settings_privacy_policy">गोपनीयता धोरण</string>
+  <string name="settings_help_and_support">लागणीबद्दलच्या सूचना एक्सप्रेस विषयी</string>
   <string name="settings_legal_terms">कायदेशीर अटी</string>
   <string name="settings_debug">डीबग मोड</string>
   <string name="settings_share">COVID-19 पसरण्यापासून रोखण्यासाठी मदत करा. हे ॲप तुमच्‍या समुदायासोबत शेअर करा आणि त्‍यांना संभाव्य लागणीबद्दलच्या सूचनांसह स्‍वतःचे चांगल्‍या प्रकारे संरक्षण करण्यात मदत करा.</string>
@@ -134,4 +137,10 @@
   <string name="share_error">चाचणीचा परिणाम शेअर करू शकत नाही. नंतर पुन्हा प्रयत्न करा.</string>
   <string name="generic_error_message">काहीतरी चूक झाली. पुन्हा प्रयत्न करा.</string>
   <string name="code_error_already_submitted">हा कोड चाचणीचा परिणाम शेअर करण्यासाठी आधी वापरला गेला आहे</string>
+  <string name="settings_private_analytics_subtitle">लागणीबद्दलच्या सूचना याबद्दलच्या विश्लेषणांचे शेअरिंग</string>
+  <string name="private_analytics_title">COVID-19 चा प्रसार समजून घेण्यात तुमच्या आरोग्य अधिकाऱ्याला मदत करा</string>
+  <string name="private_analytics_subtitle">तुमच्या आरोग्य अधिकाऱ्याशी लागणीबद्दलच्या सूचनांची विश्लेषणे शेअर करा</string>
+  <string name="private_analytics_footer">तुमच्या प्रदेशातील सूचनांची संख्या यांसारखी ही विश्लेषणे, आरोग्य अधिकाऱ्यांना COVID-19 कशाप्रकारे पसरत आहेत हे समजून घेण्यात मदत करतात. ती Google द्वारे वाचली जाऊ शकत नाहीत आणि तुमच्या आरोग्य अधिकाऱ्यासाठी एकत्रित केली जातात ज्यामुळे ती तुमच्या फोनशी लिंक केली जाऊ शकत नाहीत. %1$s</string>
+  <string name="private_analytics_footer_onboarding">ही विश्लेषणे Google द्वारे वाचली जाऊ शकत नाहीत आणि तुमच्या आरोग्य अधिकाऱ्यासाठी एकत्रित केली जातात ज्यामुळे ती तुमच्या फोनशी लिंक केली जाऊ शकत नाहीत. %1$s</string>
+  <string name="private_analytics_footer_learn_more">अधिक जाणून घ्या</string>
 </resources>

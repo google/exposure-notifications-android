@@ -19,10 +19,7 @@ package com.google.android.apps.exposurenotification.logging;
 
 import android.content.Context;
 import com.google.android.apps.exposurenotification.BuildConfig;
-import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.proto.EnxLogExtension;
-import com.google.android.apps.exposurenotification.storage.AnalyticsLoggingRepository;
-import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
 import com.google.android.datatransport.Encoding;
 import com.google.android.datatransport.Transport;
 import com.google.android.datatransport.TransportFactory;
@@ -35,25 +32,12 @@ import dagger.hilt.android.components.ApplicationComponent;
 import dagger.hilt.android.qualifiers.ApplicationContext;
 import javax.inject.Singleton;
 
-/** Provides AnalyticLogger depending on build configuration */
+/**
+ * Provides AnalyticLogger depending on build configuration
+ */
 @Module
 @InstallIn(ApplicationComponent.class)
-public class LoggingModule {
-
-  /**
-   * Get reference to Analytics logger, creating it on the first run
-   */
-  @Provides
-  @Singleton
-  public synchronized AnalyticsLogger provideAnalyticsLogger(@ApplicationContext Context context,
-      ExposureNotificationSharedPreferences preferences, Transport<EnxLogExtension> transport,
-      AnalyticsLoggingRepository repository, Clock clock) {
-    if (BuildConfig.LOGSOURCE_ID.isEmpty()) {
-      return new LogcatAnalyticsLogger(context);
-    } else {
-      return new FirelogAnalyticsLogger(context, preferences, transport, repository, clock);
-    }
-  }
+public class TransportModule {
 
   @Provides
   @Singleton

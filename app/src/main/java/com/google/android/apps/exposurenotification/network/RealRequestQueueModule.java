@@ -29,7 +29,7 @@ import javax.inject.Singleton;
 
 /**
  * Module to provide the real Volley {@link RequestQueue} (well, {@link RequestQueueWrapper} really)
- * so that tests can easily exclude it and provide a fake (see {@link FakeRequestQueue}).
+ * so that tests can easily exclude it and provide a fake.
  */
 @Module
 @InstallIn(ApplicationComponent.class)

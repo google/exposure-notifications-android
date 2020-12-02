@@ -33,7 +33,6 @@ import dagger.hilt.android.testing.HiltAndroidTest;
 import dagger.hilt.android.testing.HiltTestApplication;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 import org.robolectric.shadows.ShadowNotificationManager;
 
@@ -61,7 +60,8 @@ public class NotificationHelperTest {
         .isEqualTo(context.getString(R.string.exposure_notification_title_1));
     assertThat(shadowOf(notification).getContentText())
         .isEqualTo(context.getString(R.string.exposure_notification_message_1));
-    assertThat(notification.getSmallIcon().getResId()).isEqualTo(R.drawable.ic_notification);
+    assertThat(notification.getSmallIcon().getResId())
+        .isEqualTo(R.drawable.ic_exposure_notification);
     assertThat(notification.priority).isEqualTo(NotificationCompat.PRIORITY_MAX);
     assertThat(notification.flags & Notification.FLAG_AUTO_CANCEL)
         .isEqualTo(Notification.FLAG_AUTO_CANCEL);

@@ -33,8 +33,8 @@ import androidx.lifecycle.ViewModelProvider;
 import com.google.android.apps.exposurenotification.BuildConfig;
 import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.home.ExposureNotificationViewModel;
+import com.google.android.apps.exposurenotification.privateanalytics.PrivateAnalyticsSettingsUtil;
 import com.google.android.apps.exposurenotification.proto.UiInteraction.EventType;
-import com.google.android.material.snackbar.Snackbar;
 import com.mikepenz.aboutlibraries.Libs;
 import com.mikepenz.aboutlibraries.LibsBuilder;
 import dagger.hilt.android.AndroidEntryPoint;
@@ -59,6 +59,8 @@ public class SettingsHomeFragment extends Fragment {
         new ViewModelProvider(requireActivity()).get(ExposureNotificationViewModel.class);
     AppAnalyticsViewModel appAnalyticsViewModel =
         new ViewModelProvider(this).get(AppAnalyticsViewModel.class);
+    PrivateAnalyticsViewModel privateAnalyticsViewModel =
+        new ViewModelProvider(this).get(PrivateAnalyticsViewModel.class);
 
     View appAnalyticsLink = view.findViewById(R.id.app_analytics_link);
     appAnalyticsLink.setOnClickListener(v -> launchAppAnalytics());
@@ -67,6 +69,23 @@ public class SettingsHomeFragment extends Fragment {
         isEnabled ->
             appAnalyticsStatus.setText(
                 isEnabled ? R.string.settings_analytics_on : R.string.settings_analytics_off));
+
+    View privateAnalyticsLink = view.findViewById(R.id.private_analytics_link);
+    privateAnalyticsLink.setOnClickListener(v -> launchPrivateAnalytics());
+    TextView privateAnalyticsStatus = view.findViewById(R.id.private_analytics_status);
+    privateAnalyticsViewModel
+        .getPrivateAnalyticsLiveData()
+        .observe(
+            getViewLifecycleOwner(),
+            isEnabled ->
+                privateAnalyticsStatus.setText(
+                    isEnabled
+                        ? R.string.settings_analytics_on
+                        : R.string.settings_analytics_off));
+
+    privateAnalyticsLink
+        .setVisibility(
+            PrivateAnalyticsSettingsUtil.isPrivateAnalyticsSupported() ? View.VISIBLE : View.GONE);
 
     View agencyLink = view.findViewById(R.id.agency_link);
     agencyLink.setOnClickListener(v -> launchAgencyLink());
@@ -77,6 +96,9 @@ public class SettingsHomeFragment extends Fragment {
     View privacyPolicy = view.findViewById(R.id.privacy_policy_link);
     privacyPolicy.setOnClickListener(v -> launchPrivacyPolicyLink(view));
 
+    View helpAndSupport = view.findViewById(R.id.help_and_support_link);
+    helpAndSupport.setOnClickListener(v -> launchHelpAndSupport(view));
+
     View openSourceLicenses = view.findViewById(R.id.open_source_link);
     openSourceLicenses.setOnClickListener(v -> showOsLicenses());
 
@@ -84,6 +106,11 @@ public class SettingsHomeFragment extends Fragment {
     exposureNotificationsLink.setOnClickListener(v -> launchExposureNotificationsAboutActivity());
     TextView exposureNotificationsStatus = view.findViewById(R.id.exposure_notifications_status);
     ImageView exposureNotificationsError = view.findViewById(R.id.exposure_notifications_error);
+    exposureNotificationViewModel.getEnEnabledLiveData().observe(getViewLifecycleOwner(),
+        isEnabled -> exposureNotificationsStatus.setText(isEnabled
+            ? R.string.settings_exposure_notifications_on
+            : R.string.settings_exposure_notifications_off)
+        );
     exposureNotificationViewModel.getStateLiveData().observe(getViewLifecycleOwner(), status -> {
       switch (status) {
         case PAUSED_BLE:
@@ -91,15 +118,10 @@ public class SettingsHomeFragment extends Fragment {
         case PAUSED_LOCATION_BLE:
         case STORAGE_LOW:
           exposureNotificationsError.setVisibility(View.VISIBLE);
-          exposureNotificationsStatus.setText(R.string.settings_exposure_notifications_on);
           break;
         case ENABLED:
-          exposureNotificationsError.setVisibility(View.GONE);
-          exposureNotificationsStatus.setText(R.string.settings_exposure_notifications_on);
-          break;
         case DISABLED:
           exposureNotificationsError.setVisibility(View.GONE);
-          exposureNotificationsStatus.setText(R.string.settings_exposure_notifications_off);
           break;
       }
     });
@@ -124,6 +146,13 @@ public class SettingsHomeFragment extends Fragment {
   }
 
   /**
+   * Open the share private analytics screen.
+   */
+  private void launchPrivateAnalytics() {
+    startActivity(new Intent(requireContext(), PrivateAnalyticsActivity.class));
+  }
+
+  /**
    * Launches the agency screen.
    */
   private void launchAgencyLink() {
@@ -143,6 +172,14 @@ public class SettingsHomeFragment extends Fragment {
   private void launchPrivacyPolicyLink(View v) {
     startActivity(
         new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.enx_agencyPrivacyPolicy))));
+  }
+
+  /**
+   * Launches the help and support link in the device browser.
+   */
+  private void launchHelpAndSupport(View v) {
+    startActivity(
+        new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.help_and_support_link))));
   }
 
   /**

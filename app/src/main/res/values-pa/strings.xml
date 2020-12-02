@@ -16,6 +16,8 @@
   <string name="btn_save">ਰੱਖਿਅਤ ਕਰੋ</string>
   <string name="btn_discard">ਬਰਖਾਸਤ ਕਰੋ</string>
   <string name="btn_verify">ਪੁਸ਼ਟੀ ਕਰੋ</string>
+  <string name="btn_dont_share">ਸਾਂਝਾ ਨਾ ਕਰੋ</string>
+  <string name="btn_share">ਸਾਂਝਾ ਕਰੋ</string>
   <string name="learn_more">ਹੋਰ ਜਾਣੋ</string>
   <string name="home_tab_exposures_text">ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣਾ</string>
   <string name="home_tab_notify_text">ਹੋਰਾਂ ਨੂੰ ਸੂਚਿਤ ਕਰੋ</string>
@@ -31,7 +33,7 @@
     \n\nਕਿਸੇ ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਸੰਬੰਧੀ ਤਾਰੀਖ, ਸਮਾਂ ਅਤੇ ਸਿਗਨਲ ਦੀ ਤੀਬਰਤਾ ਨੂੰ ਇਸ ਐਪ ਨਾਲ ਸਾਂਝਾ ਕੀਤਾ ਜਾਵੇਗਾ।</string>
   <string name="onboarding_metrics_title">ਇਸ ਐਪ ਨੂੰ ਬਿਹਤਰ ਬਣਾਉਣ ਵਿੱਚ ਮਦਦ ਕਰੋ</string>
   <string name="onboarding_metrics_subtitle">Google ਦੇ ਨਾਲ ਐਪ ਵਰਤੋਂ ਅਤੇ ਕਾਰਗੁਜ਼ਾਰੀ ਸੰਬੰਧੀ ਡਾਟਾ ਸਾਂਝਾ ਕਰੋ</string>
-  <string name="onboarding_metrics_detail">ਐਪ ਨੂੰ ਬਣਾਈ ਰੱਖਣ ਅਤੇ ਬਿਹਤਰ ਬਣਾਉਣ ਵਿੱਚ ਮਦਦ ਕਰਨ ਲਈ, Google ਨਾਲ ਐਪ ਦੀ ਕਾਰਗੁਜ਼ਾਰੀ ਅਤੇ ਵਰਤੋਂ ਬਾਰੇ ਕੁਝ ਸੀਮਤ ਗੈਰ-ਪਛਾਣਯੋਗ ਡਾਟਾ ਸਾਂਝਾ ਕੀਤਾ ਗਿਆ ਹੈ। ਇਹ ਡਾਟਾ ਤੁਹਾਡੀ ਪਛਾਣ ਨਹੀਂ ਕਰਦਾ।</string>
+  <string name="onboarding_metrics_description">ਐਪ ਨੂੰ ਬਣਾਈ ਰੱਖਣ ਅਤੇ ਬਿਹਤਰ ਬਣਾਉਣ ਵਿੱਚ ਮਦਦ ਕਰਨ ਲਈ, Google ਨਾਲ ਐਪ ਦੀ ਕਾਰਗੁਜ਼ਾਰੀ ਅਤੇ ਵਰਤੋਂ ਬਾਰੇ ਕੁਝ ਸੀਮਤ ਗੈਰ-ਪਛਾਣਯੋਗ ਡਾਟਾ ਸਾਂਝਾ ਕੀਤਾ ਗਿਆ ਹੈ। ਇਹ ਡਾਟਾ ਤੁਹਾਡੀ ਪਛਾਣ ਨਹੀਂ ਕਰਦਾ ਹੈ। %1$s</string>
   <string name="onboarding_confirm_later_title">ਕੀ ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਦੀ ਸੂਚਨਾ ਨੂੰ ਬੰਦ ਰੱਖਣਾ ਹੈ?</string>
   <string name="onboarding_confirm_later_detail">ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਦੀਆਂ ਸੂਚਨਾਵਾਂ ਚਾਲੂ ਨਾ ਕੀਤੇ ਜਾਣ ਤੱਕ, ਤੁਹਾਨੂੰ COVID-19 ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਦੀ ਸੰਭਾਵਨਾ ਬਾਰੇ ਸੂਚਿਤ ਨਹੀਂ ਕੀਤਾ ਜਾਵੇਗਾ</string>
   <string name="no_recent_exposure_subtitle">ਹਾਲ ਵਿੱਚ ਕਿਸੇ ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਨਹੀਂ ਗਏ</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">ਸਥਿਤੀ</string>
   <string name="exposure_details_status_exposure">COVID-19 ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਸੰਬੰਧੀ ਸੰਭਾਵਨਾ</string>
   <string name="exposure_details_date_exposed_subtitle">ਸੰਭਾਵੀ ਤੌਰ \'ਤੇ ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਦੀ ਤਾਰੀਖ</string>
-  <string name="exposure_details_expiring_subtitle">ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਸੰਬੰਧੀ ਰਿਪੋਰਟਾਂ ਨੂੰ ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਦੀ ਤਾਰੀਖ ਤੋਂ 14 ਦਿਨਾਂ ਲਈ ਸਟੋਰ ਕੀਤਾ ਜਾਂਦਾ ਹੈ</string>
+  <string name="exposure_details_expiring_subtitle">ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਸੰਬੰਧੀ ਰਿਪੋਰਟਾਂ ਨੂੰ ਸੰਭਾਵੀ ਤੌਰ \'ਤੇ ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਦੀ ਤਾਰੀਖ ਤੋਂ 14 ਦਿਨਾਂ ਲਈ ਸਟੋਰ ਕੀਤਾ ਜਾਂਦਾ ਹੈ</string>
   <string name="exposure_details_learn_more">ਹੋਰ ਜਾਣੋ</string>
   <string name="exposure_details_new_badge">ਨਵਾਂ</string>
   <string name="share_test_result_title">ਆਪਣੇ ਭਾਈਚਾਰੇ ਦੀ ਰੱਖਿਆ ਕਰੋ, ਆਪਣੇ COVID-19 ਜਾਂਚ ਨਤੀਜੇ ਨੂੰ ਸਾਂਝਾ ਕਰੋ</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਦੀਆਂ ਸੂਚਨਾਵਾਂ</string>
   <string name="settings_app_analytics_subtitle">ਐਪ ਵਰਤੋਂ ਅਤੇ ਕਾਰਗੁਜ਼ਾਰੀ ਸਾਂਝਾਕਰਨ</string>
   <string name="settings_privacy_policy">ਪਰਦੇਦਾਰੀ ਨੀਤੀ</string>
+  <string name="settings_help_and_support">ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਦੀ ਸੂਚਨਾ ਦੇਣ ਬਾਰੇ</string>
   <string name="settings_legal_terms">ਕਨੂੰਨੀ ਨਿਯਮ</string>
   <string name="settings_debug">ਡੀਬੱਗ ਮੋਡ</string>
   <string name="settings_share">COVID-19 ਦੇ ਫੈਲਾਅ ਨੂੰ ਰੋਕਣ ਵਿੱਚ ਮਦਦ ਕਰੋ। ਆਪਣੇ ਭਾਈਚਾਰੇ ਨਾਲ ਇਸ ਐਪ ਨੂੰ ਸਾਂਝਾ ਕਰੋ ਅਤੇ ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਦੀਆਂ ਸੰਭਾਵੀ ਸੂਚਨਾਵਾਂ ਨਾਲ ਆਪਣੇ ਆਪ ਨੂੰ ਬਿਹਤਰ ਢੰਗ ਨਾਲ ਸੁਰੱਖਿਅਤ ਰੱਖਣ ਵਿੱਚ ਉਹਨਾਂ ਦੀ ਮਦਦ ਕਰੋ।</string>
@@ -134,4 +137,10 @@
   <string name="share_error">ਜਾਂਚ ਨਤੀਜਾ ਸਾਂਝਾ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਿਆ। ਬਾਅਦ ਵਿੱਚ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
   <string name="generic_error_message">ਕੋਈ ਗੜਬੜ ਹੋ ਗਈ। ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
   <string name="code_error_already_submitted">ਜਾਂਚ ਨਤੀਜੇ ਨੂੰ ਸਾਂਝਾ ਕਰਨ ਲਈ ਕੋਡ ਪਹਿਲਾਂ ਹੀ ਵਰਤ ਲਿਆ ਗਿਆ ਹੈ</string>
+  <string name="settings_private_analytics_subtitle">ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਦੀਆਂ ਸੂਚਨਾਵਾਂ ਸੰਬੰਧੀ ਵਿਸ਼ਲੇਸ਼ਕੀ ਸਾਂਝਾਕਰਨ</string>
+  <string name="private_analytics_title">COVID-19 ਦੇ ਫੈਲਾਅ ਨੂੰ ਸਮਝਣ ਵਿੱਚ ਆਪਣੇ ਸਿਹਤ ਅਧਿਕਾਰੀ ਦੀ ਮਦਦ ਕਰੋ</string>
+  <string name="private_analytics_subtitle">ਆਪਣੇ ਸਿਹਤ ਅਧਿਕਾਰੀ ਨਾਲ ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਦੀਆਂ ਸੂਚਨਾਵਾਂ ਸੰਬੰਧੀ ਵਿਸ਼ਲੇਸ਼ਕੀ ਨੂੰ ਸਾਂਝਾ ਕਰੋ</string>
+  <string name="private_analytics_footer">ਇਹ ਵਿਸ਼ਲੇਸ਼ਕੀਆਂ, ਜਿਵੇਂ ਕਿ ਤੁਹਾਡੇ ਖੇਤਰ ਵਿੱਚ ਸੂਚਨਾਵਾਂ ਦੀ ਗਿਣਤੀ, ਸਿਹਤ ਅਧਿਕਾਰੀਆਂ ਦੀ COVID-19 ਦੇ ਫੈਲਾਅ ਨੂੰ ਸਮਝਣ ਵਿੱਚ ਮਦਦ ਕਰਦੀਆਂ ਹਨ। ਇਹਨਾਂ ਨੂੰ Google ਨਹੀਂ ਪੜ੍ਹ ਸਕਦਾ ਅਤੇ ਇਹ ਤੁਹਾਡੇ ਸਿਹਤ ਅਧਿਕਾਰੀ ਲਈ ਇਕੱਤਰ ਕੀਤੀਆਂ ਜਾਂਦੀਆਂ ਹਨ, ਤਾਂ ਜੋ ਇਹਨਾਂ ਨੂੰ ਤੁਹਾਡੇ ਫ਼ੋਨ ਨਾਲ ਲਿੰਕ ਨਾ ਕੀਤਾ ਜਾ ਸਕੇ। %1$s</string>
+  <string name="private_analytics_footer_onboarding">ਇਹਨਾਂ ਵਿਸ਼ਲੇਸ਼ਕੀਆਂ ਨੂੰ Google ਨਹੀਂ ਪੜ੍ਹ ਸਕਦਾ ਅਤੇ ਇਹ ਤੁਹਾਡੇ ਸਿਹਤ ਅਧਿਕਾਰੀ ਲਈ ਇਕੱਤਰ ਕੀਤੀਆਂ ਜਾਂਦੀਆਂ ਹਨ, ਇਸ ਲਈ ਇਹਨਾਂ ਨੂੰ ਤੁਹਾਡੇ ਫ਼ੋਨ ਨਾਲ ਲਿੰਕ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ। %1$s</string>
+  <string name="private_analytics_footer_learn_more">ਹੋਰ ਜਾਣੋ</string>
 </resources>

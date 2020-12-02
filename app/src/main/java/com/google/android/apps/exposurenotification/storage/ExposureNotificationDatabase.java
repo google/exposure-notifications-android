@@ -26,6 +26,7 @@ import androidx.room.TypeConverters;
 import androidx.room.migration.Migration;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 import com.google.android.apps.exposurenotification.storage.Converters.HasSymptomsConverter;
+import com.google.android.apps.exposurenotification.storage.Converters.InstantConverter;
 import com.google.android.apps.exposurenotification.storage.Converters.LocalDateConverter;
 import com.google.android.apps.exposurenotification.storage.Converters.SharedConverter;
 import com.google.android.apps.exposurenotification.storage.Converters.TestResultConverter;
@@ -42,23 +43,26 @@ import com.google.android.apps.exposurenotification.storage.Converters.ZonedDate
  */
 @Database(
     entities = {
+        AnalyticsLoggingEntity.class,
         CountryEntity.class,
         DiagnosisEntity.class,
         DownloadServerEntity.class,
         ExposureEntity.class,
-        AnalyticsLoggingEntity.class
+        RevisionTokenEntity.class,
+        WorkerStatusEntity.class
     },
     exportSchema = true,
-    version = 38  // Do not increment without migration & tests.
+    version = 40  // Do not increment without migration & tests.
 )
 @TypeConverters({
-    ZonedDateTimeConverter.class,
-    LocalDateConverter.class,
-    TestResultConverter.class,
-    SharedConverter.class,
     HasSymptomsConverter.class,
+    InstantConverter.class,
+    LocalDateConverter.class,
+    SharedConverter.class,
+    TestResultConverter.class,
     TravelStatusConverter.class,
-    UriConverter.class
+    UriConverter.class,
+    ZonedDateTimeConverter.class,
 })
 @VisibleForTesting(otherwise = VisibleForTesting.PACKAGE_PRIVATE)
 public abstract class ExposureNotificationDatabase extends RoomDatabase {
@@ -96,7 +100,38 @@ public abstract class ExposureNotificationDatabase extends RoomDatabase {
     }
   };
 
-  static final Migration[] ALL_MIGRATIONS = new Migration[]{MIGRATION_35_36, MIGRATION_36_37, MIGRATION_37_38};
+  static final Migration MIGRATION_38_39 = new Migration(38, 39) {
+    @Override
+    public void migrate(SupportSQLiteDatabase database) {
+      database.execSQL(
+          "CREATE TABLE RevisionTokenEntity ("
+              + "id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "
+              + "createdTimestampMs INTEGER NOT NULL,"
+              + "revisionToken TEXT NOT NULL"
+              + ");");
+      database.execSQL("INSERT INTO RevisionTokenEntity"
+          + " (createdTimestampMs, revisionToken)"
+          + " SELECT createdTimestampMs, revisionToken FROM DiagnosisEntity;");
+    }
+  };
+
+
+  static final Migration MIGRATION_39_40 = new Migration(39, 40) {
+    @Override
+    public void migrate(SupportSQLiteDatabase database) {
+      database.execSQL(
+          "CREATE TABLE WorkerStatusEntity ("
+              + "workerTaskNameAndStatus TEXT NOT NULL, "
+              + "lastRunTimestampMillis INTEGER NOT NULL, "
+              + "PRIMARY KEY(workerTaskNameAndStatus)"
+              + ")");
+    }
+  };
+
+  static final Migration[] ALL_MIGRATIONS = new Migration[]{MIGRATION_35_36, MIGRATION_36_37,
+      MIGRATION_37_38, MIGRATION_38_39, MIGRATION_39_40};
+
+  abstract AnalyticsLoggingDao analyticsLoggingDao();
 
   abstract CountryDao countryDao();
 
@@ -106,7 +141,7 @@ public abstract class ExposureNotificationDatabase extends RoomDatabase {
 
   abstract ExposureDao exposureDao();
 
-  abstract AnalyticsLoggingDao analyticsLoggingDao();
+  abstract WorkerStatusDao workerStatusDao();
 
   public static ExposureNotificationDatabase buildDatabase(Context context) {
     // This will create a database in:

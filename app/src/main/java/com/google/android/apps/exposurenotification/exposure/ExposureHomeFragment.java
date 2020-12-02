@@ -83,15 +83,6 @@ public class ExposureHomeFragment extends Fragment {
         .getInFlightLiveData()
         .observe(getViewLifecycleOwner(), isInFlight -> startButton.setEnabled(!isInFlight));
 
-    exposureNotificationViewModel
-        .getApiErrorLiveEvent()
-        .observe(getViewLifecycleOwner(), unused -> {
-          View rootView = getView();
-          if (rootView != null) {
-            Snackbar.make(rootView, R.string.generic_error_message, Snackbar.LENGTH_LONG).show();
-          }
-        });
-
     view.findViewById(R.id.ble_settings_button).setOnClickListener(v -> launchEnSettings());
     view.findViewById(R.id.location_settings_button).setOnClickListener(v -> launchEnSettings());
     view.findViewById(R.id.location_ble_settings_button).setOnClickListener(v -> launchEnSettings());

@@ -16,6 +16,8 @@
   <string name="btn_save">Сохранить</string>
   <string name="btn_discard">Не сохранять</string>
   <string name="btn_verify">Подтвердить</string>
+  <string name="btn_dont_share">Не разрешать</string>
+  <string name="btn_share">Разрешить</string>
   <string name="learn_more">Подробнее…</string>
   <string name="home_tab_exposures_text">Риск инфицирования</string>
   <string name="home_tab_notify_text">Сообщить другим</string>
@@ -31,7 +33,7 @@
     \n\nВ приложение будут отправлены сведения о дате и продолжительности контакта между телефонами, а также о силе Bluetooth-сигнала.</string>
   <string name="onboarding_metrics_title">Помогите улучшить приложение</string>
   <string name="onboarding_metrics_subtitle">Включите отправку данных о приложении в Google.</string>
-  <string name="onboarding_metrics_detail">Чтобы улучшить работу приложения, Google собирает ограниченный набор анонимных данных об использовании и характеристиках приложения. По этим данным невозможно идентифицировать пользователя.</string>
+  <string name="onboarding_metrics_description">Чтобы улучшать и поддерживать работу приложения, Google собирает ограниченный набор анонимных данных о его использовании и производительности. Идентифицировать пользователя по этим данным невозможно. %1$s</string>
   <string name="onboarding_confirm_later_title">Продолжить без уведомлений о риске инфицирования?</string>
   <string name="onboarding_confirm_later_detail">Если вы не включите уведомления, то не сможете узнать о возможном риске инфицирования COVID-19.</string>
   <string name="no_recent_exposure_subtitle">Нет новых контактов</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">Статус</string>
   <string name="exposure_details_status_exposure">Возможный контакт с человеком, инфицированным COVID-19</string>
   <string name="exposure_details_date_exposed_subtitle">Дата возможного контакта</string>
-  <string name="exposure_details_expiring_subtitle">Сообщения о риске инфицирования хранятся в течение 14 дней с даты контакта.</string>
+  <string name="exposure_details_expiring_subtitle">Сообщения о риске инфицирования хранятся в течение 14 дней с даты возможного контакта.</string>
   <string name="exposure_details_learn_more">Подробнее</string>
   <string name="exposure_details_new_badge">Новое</string>
   <string name="share_test_result_title">Защитите окружающих: сообщите о результате теста на COVID-19</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">Уведомления о риске инфицирования</string>
   <string name="settings_app_analytics_subtitle">Отправка данных о приложении</string>
   <string name="settings_privacy_policy">Политика конфиденциальности</string>
+  <string name="settings_help_and_support">О передаче Уведомлений о риске инфицирования</string>
   <string name="settings_legal_terms">Юридические условия</string>
   <string name="settings_debug">Режим отладки</string>
   <string name="settings_share">Помогите предотвратить распространение COVID-19. Поделитесь этим приложением с другими пользователями, чтобы они могли получать уведомления о риске инфицирования и вовремя узнавать о возможных контактах.</string>
@@ -115,7 +118,7 @@
   <string name="exposure_turn_off_detail">Вы не будете получать уведомления о риске инфицирования коронавирусной инфекцией COVID-19.</string>
   <string name="app_analytics_title">Помогите улучшить приложение</string>
   <string name="app_analytics_toggle">Отправлять данные о приложении в Google</string>
-  <string name="app_analytics_detail">Чтобы улучшить работу приложения, Google собирает ограниченный набор анонимных данных об использовании и характеристиках приложения. По этим данным невозможно идентифицировать пользователя.</string>
+  <string name="app_analytics_detail">Чтобы улучшать и поддерживать работу приложения, Google собирает ограниченный набор анонимных данных о его использовании и производительности. Идентифицировать пользователя по этим данным невозможно.</string>
   <string name="agency_message_link">Подробнее:\n%1$s</string>
   <string name="exposure_notifications_are_inactive">Уведомления о риске инфицирования неактивны</string>
   <string name="exposure_notifications_currently_inactive">Сейчас Уведомления о риске инфицирования неактивны</string>
@@ -134,4 +137,10 @@
   <string name="share_error">Не удалось отправить результат теста. Повторите попытку позже.</string>
   <string name="generic_error_message">Произошла ошибка. Повторите попытку.</string>
   <string name="code_error_already_submitted">Этот код уже использовался для отправки результатов теста.</string>
+  <string name="settings_private_analytics_subtitle">Отправка данных системы уведомлений</string>
+  <string name="private_analytics_title">Помогите сотрудникам здравоохранения следить за распространением COVID-19</string>
+  <string name="private_analytics_subtitle">Разрешите отправлять данные, полученные от системы уведомлений о риске инфицирования, в организацию здравоохранения вашего региона.</string>
+  <string name="private_analytics_footer">Эти данные, например количество уведомлений в регионе, помогут организации здравоохранения отслеживать распространение COVID-19. Google эти данные недоступны, и их нельзя связать с вашим телефоном. %1$s</string>
+  <string name="private_analytics_footer_onboarding">Эти данные недоступны Google. Они собираются для организации здравоохранения таким образом, что их нельзя связать с вашим телефоном. %1$s</string>
+  <string name="private_analytics_footer_learn_more">Подробнее…</string>
 </resources>

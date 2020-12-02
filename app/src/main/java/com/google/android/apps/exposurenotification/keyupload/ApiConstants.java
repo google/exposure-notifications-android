@@ -46,7 +46,7 @@ public class ApiConstants {
     public static final String ERR_MESSAGE = "error";
     public static final String ERR_CODE = "code";
 
-    public class Error {
+    public static class Error {
 
       public static final String UNKNOWN_APP = "unknown_health_authority_id";
       public static final String HA_CONFIG_LOAD_FAIL = "unable_to_load_health_authority";
@@ -94,7 +94,7 @@ public class ApiConstants {
     public static final String ERR_MESSAGE = "error";
     public static final String ERR_CODE = "errorCode";
 
-    public class Error {
+    public static class Error {
 
       public static final String UNPARSEABLE = "unparsable_request";
       public static final String INTERNAL = "internal_server_error";

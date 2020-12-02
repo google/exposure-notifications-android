@@ -21,24 +21,24 @@ import android.content.Context;
 import android.net.Uri;
 import android.util.Log;
 import androidx.concurrent.futures.CallbackToFutureAdapter;
-import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Response;
 import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
 import com.google.android.apps.exposurenotification.common.Qualifiers.BackgroundExecutor;
 import com.google.android.apps.exposurenotification.common.Qualifiers.LightweightExecutor;
+import com.google.android.apps.exposurenotification.common.StringUtils;
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.keyupload.ApiConstants.UploadV1;
 import com.google.android.apps.exposurenotification.keyupload.Qualifiers.UploadUri;
 import com.google.android.apps.exposurenotification.keyupload.UploadController.KeysSubmitFailureException;
 import com.google.android.apps.exposurenotification.keyupload.UploadController.KeysSubmitServerFailureException;
 import com.google.android.apps.exposurenotification.logging.AnalyticsLogger;
-import com.google.android.apps.exposurenotification.proto.RpcCall.RpcCallType;
 import com.google.android.apps.exposurenotification.network.DiagnosisKey;
 import com.google.android.apps.exposurenotification.network.Padding;
 import com.google.android.apps.exposurenotification.network.RequestQueueWrapper;
 import com.google.android.apps.exposurenotification.network.RespondableJsonObjectRequest;
 import com.google.android.apps.exposurenotification.network.VolleyUtils;
+import com.google.android.apps.exposurenotification.proto.RpcCall.RpcCallType;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.io.BaseEncoding;
 import com.google.common.util.concurrent.FluentFuture;
@@ -127,12 +127,9 @@ class DiagnosisKeyUploader {
         // Submit to the key server.
         .transformAsync(
             payload -> submitToServer(payload, upload.isCoverTraffic()), backgroundExecutor)
-        // Extract the revision token from the server's response.
-        .transformAsync(this::captureRevisionToken, lightweightExecutor)
-        // Finally return the input Upload with revisionToken added from key server response
-        .transform(
-            revisionToken -> upload.toBuilder().setRevisionToken(revisionToken).build(),
-            lightweightExecutor);
+        // Extract the revision token from the response into the Upload object and return it.
+        .transformAsync(
+            response -> captureRevisionToken(response, upload), lightweightExecutor);
   }
 
   private ListenableFuture<JSONObject> createPayload(Upload upload) {
@@ -190,14 +187,14 @@ class DiagnosisKeyUploader {
         completer -> {
           Listener<JSONObject> responseListener =
               response -> {
-                logger.logRpcCallSuccess(RpcCallType.RPC_TYPE_KEYS_UPLOAD,
+                logger.logRpcCallSuccessAsync(RpcCallType.RPC_TYPE_KEYS_UPLOAD,
                     payload.toString().length());
                 completer.set(response);
               };
 
           ErrorListener errorListener =
               err -> {
-                logger.logRpcCallFailure(RpcCallType.RPC_TYPE_KEYS_UPLOAD, err);
+                logger.logRpcCallFailureAsync(RpcCallType.RPC_TYPE_KEYS_UPLOAD, err);
                 Log.d(TAG, VolleyUtils.getErrorBodyWithoutPadding(err).toString());
                 if (VolleyUtils.getHttpStatus(err) >= 500) {
                   completer.setException(new KeysSubmitServerFailureException(err));
@@ -217,15 +214,20 @@ class DiagnosisKeyUploader {
   }
 
   /**
-   * Extract the revision token from the server's response.
+   * Extract the revision token from the server's response, into the given {@link Upload}.
    *
    * <p>Returns a Future so it can act as an AsyncFunction which is allowed to throw an exception
    * whereas a regular Function may not.
    */
-  private ListenableFuture<String> captureRevisionToken(JSONObject response)
+  private ListenableFuture<Upload> captureRevisionToken(JSONObject response, Upload upload)
       throws KeysSubmitFailureException {
+    if (upload.isCoverTraffic()) {
+      return Futures.immediateFuture(upload);
+    }
     try {
-      return Futures.immediateFuture(response.getString(UploadV1.REVISION_TOKEN));
+      return Futures.immediateFuture(upload.toBuilder()
+          .setRevisionToken(response.getString(UploadV1.REVISION_TOKEN))
+          .build());
     } catch (JSONException e) {
       // "Server error" here is maybe a bit optimistic: it assumes that the response body was
       // incorrect, but it could be that the app's interpretation of the response is incorrect.
@@ -237,7 +239,6 @@ class DiagnosisKeyUploader {
    * Simple construction of a Diagnosis Keys submission.
    */
   private static class SubmitKeysRequest extends RespondableJsonObjectRequest {
-    private final boolean isCoverTraffic;
 
     SubmitKeysRequest(
         Uri endpoint,
@@ -246,9 +247,8 @@ class DiagnosisKeyUploader {
         Response.ErrorListener errorListener,
         Clock clock,
         boolean isCoverTraffic) {
-      super(endpoint.toString(), jsonRequest, listener, errorListener, clock);
-      setRetryPolicy(new DefaultRetryPolicy((int) TIMEOUT.toMillis(), MAX_RETRIES, RETRY_BACKOFF));
-      this.isCoverTraffic = isCoverTraffic;
+      super(Method.POST,
+          endpoint.toString(), jsonRequest, listener, errorListener, clock, isCoverTraffic);
     }
 
     @Override

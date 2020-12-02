@@ -79,13 +79,15 @@
       <include layout="@layout/horizontal_divider" />
 
       <TextView
+        android:id="@+id/share_review_travel_subtitle"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/padding_normal"
         android:layout_marginBottom="@dimen/padding_small"
         android:text="@string/share_review_travel_subtitle"
         android:textAppearance="?attr/textAppearanceBody2"
-        android:textAllCaps="true" />
+        android:textAllCaps="true"
+        android:visibility="gone" />
 
       <TextView
         android:id="@+id/share_review_travel"
@@ -93,7 +95,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/padding_normal"
         android:textAppearance="?attr/textAppearanceHeadline6"
-        android:textSize="@dimen/notify_review_text_size"/>
+        android:textSize="@dimen/notify_review_text_size"
+        android:visibility="gone" />
 
       <include layout="@layout/horizontal_divider" />
 

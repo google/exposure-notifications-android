@@ -141,7 +141,8 @@ public class ShareDiagnosisOnsetDateFragment extends Fragment {
                 nextButton.setOnClickListener(
                     v ->
                         viewModel.nextStep(
-                            ShareDiagnosisFlowHelper.getNextStep(Step.ONSET, diagnosisEntity)));
+                            ShareDiagnosisFlowHelper.getNextStep(
+                                Step.ONSET, diagnosisEntity, getContext())));
               } else {
                 nextButton.setEnabled(false);
               }
@@ -196,7 +197,8 @@ public class ShareDiagnosisOnsetDateFragment extends Fragment {
 
   private void previousAction(View view, DiagnosisEntity diagnosisEntity) {
     KeyboardHelper.maybeHideKeyboard(requireContext(), view);
-    viewModel.previousStep(ShareDiagnosisFlowHelper.getPreviousStep(Step.ONSET, diagnosisEntity));
+    viewModel.previousStep(
+        ShareDiagnosisFlowHelper.getPreviousStep(Step.ONSET, diagnosisEntity, getContext()));
   }
 
   private void closeAction() {

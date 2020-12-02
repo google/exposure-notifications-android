@@ -16,6 +16,8 @@
   <string name="btn_save">Spara</string>
   <string name="btn_discard">Släng</string>
   <string name="btn_verify">Verifiera</string>
+  <string name="btn_dont_share">Dela inte</string>
+  <string name="btn_share">Dela</string>
   <string name="learn_more">Läs mer</string>
   <string name="home_tab_exposures_text">Exponering</string>
   <string name="home_tab_notify_text">Meddela andra</string>
@@ -31,7 +33,7 @@
     \n\nDatum, varaktighet och signalstyrka i samband med en exponering delas med appen.</string>
   <string name="onboarding_metrics_title">Hjälp till att förbättra den här appen</string>
   <string name="onboarding_metrics_subtitle">Dela användnings- och prestandadata med Google</string>
-  <string name="onboarding_metrics_detail">En begränsad mängd avidentifierad data om appens prestanda och användningen av appen delas med Google i syfte att underhålla och förbättra appen. Det går inte att identifiera dig utifrån denna data.</string>
+  <string name="onboarding_metrics_description">En begränsad mängd avidentifierad data om appens prestanda och användningen av appen delas med Google i syfte att underhålla och förbättra appen. Det går inte att identifiera dig utifrån denna data. %1$s</string>
   <string name="onboarding_confirm_later_title">Vill du att Aviseringar om exponering ska vara inaktiverat?</string>
   <string name="onboarding_confirm_later_detail">Du får inga aviseringar om exponering för coivd-19 förrän Aviseringar om exponering har aktiverats</string>
   <string name="no_recent_exposure_subtitle">Inga nya exponeringar</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">Status</string>
   <string name="exposure_details_status_exposure">Möjlig exponering för covid-19</string>
   <string name="exposure_details_date_exposed_subtitle">Möjligt datum för exponering</string>
-  <string name="exposure_details_expiring_subtitle">Exponeringsrapporter lagras i 14 dagar från exponeringsdatumet</string>
+  <string name="exposure_details_expiring_subtitle">Exponeringsrapporter lagras i 14 dagar från datumet för den eventuella exponeringen</string>
   <string name="exposure_details_learn_more">Läs mer</string>
   <string name="exposure_details_new_badge">Ny</string>
   <string name="share_test_result_title">Skydda andra genom att dela ditt testresultat för covid-19</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">Aviseringar om exponering</string>
   <string name="settings_app_analytics_subtitle">Dela användnings- och prestandadata</string>
   <string name="settings_privacy_policy">Sekretesspolicy</string>
+  <string name="settings_help_and_support">Om Snabbaviseringar om exponering</string>
   <string name="settings_legal_terms">Juridiska villkor</string>
   <string name="settings_debug">Felsökningsläge</string>
   <string name="settings_share">Hjälp till att minska spridningen av covid-19. Dela den här appen med andra och hjälp dem att skydda sig själva bättre med aviseringar om möjlig exponering.</string>
@@ -134,4 +137,10 @@
   <string name="share_error">Det gick inte att dela testresultatet. Försök igen senare.</string>
   <string name="generic_error_message">Något gick fel. Försök igen.</string>
   <string name="code_error_already_submitted">Koden har redan använts till att dela testresultaten</string>
+  <string name="settings_private_analytics_subtitle">Dela analyser om exponering</string>
+  <string name="private_analytics_title">Hjälp hälsomyndigheten att kartlägga spridningen av covid-19</string>
+  <string name="private_analytics_subtitle">Dela analyser från Aviseringar om exponering med din hälsomyndighet</string>
+  <string name="private_analytics_footer">Myndigheterna kan se hur covid-19 sprids med hjälp av analyser av t.ex. antalet aviseringar i regionen. Google kan inte läsa dem och de sammanställs så att ingen kan koppla dem till din telefon. %1$s</string>
+  <string name="private_analytics_footer_onboarding">Google kan inte läsa analyserna och de sammanställs åt hälsomyndigheten så att de inte går att koppla till din telefon. %1$s</string>
+  <string name="private_analytics_footer_learn_more">Läs mer</string>
 </resources>

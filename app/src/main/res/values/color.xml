@@ -17,7 +17,8 @@
   -->
 
 <resources>
-  <color name="colorPrimary">@color/enx_agencyColor</color>
+  <color name="colorPrimary">#185ABC</color>
+  <color name="agencyColor">@color/enx_agencyColor</color>
   <color name="shared">#188038</color>
   <color name="not_shared">#B31412</color>
   <color name="delete">#B31412</color>
@@ -27,4 +28,7 @@
   <color name="watermark_color">#1A000000</color>
   <color name="navigation_bar_color">#29202020</color>
   <color name="bg_verify_begin_background_color">#F1F3F4</color>
+  <color name="notification_color">#EA4335</color>
+  <color name="code_verification_error">#D93025</color>
+  <color name="enx_agencyImageBackgroundColor">@android:color/transparent</color>
 </resources>

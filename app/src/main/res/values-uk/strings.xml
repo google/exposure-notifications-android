@@ -16,6 +16,8 @@
   <string name="btn_save">Зберегти</string>
   <string name="btn_discard">Відхилити</string>
   <string name="btn_verify">Підтвердити</string>
+  <string name="btn_dont_share">Не повідомляти</string>
+  <string name="btn_share">Повідомити</string>
   <string name="learn_more">Докладніше</string>
   <string name="home_tab_exposures_text">Контакт</string>
   <string name="home_tab_notify_text">Сповіщення</string>
@@ -31,7 +33,7 @@
     \n\nДодаток отримуватиме дані про дату й тривалість імовірного контактування, а також зафіксовану потужність сигналу від іншого пристрою.</string>
   <string name="onboarding_metrics_title">Допоможіть покращити цей додаток</string>
   <string name="onboarding_metrics_subtitle">Діліться даними про використання додатка</string>
-  <string name="onboarding_metrics_detail">Google отримає обмежений доступ до загальних даних про використання та продуктивність додатка, щоб підтримувати й покращувати його роботу. За цією інформацією неможливо встановити вашу особу.</string>
+  <string name="onboarding_metrics_description">Google отримає обмежений доступ до загальних даних про використання та продуктивність додатка, щоб підтримувати й покращувати його роботу. За цією інформацією неможливо встановити вашу особу. %1$s</string>
   <string name="onboarding_confirm_later_title">Не вмикати сповіщення про ризик зараження?</string>
   <string name="onboarding_confirm_later_detail">Поки сповіщення вимкнено, вас не повідомлятимуть про ризик зараження COVID-19</string>
   <string name="no_recent_exposure_subtitle">Немає контакту за останній час</string>
@@ -41,8 +43,8 @@
   <string name="recent_exposures_subtitle">Нещодавній контакт</string>
   <string name="exposure_details_status_subtitle">Статус</string>
   <string name="exposure_details_status_exposure">Можливе зараження COVID-19</string>
-  <string name="exposure_details_date_exposed_subtitle">Дата ймовірного контактування</string>
-  <string name="exposure_details_expiring_subtitle">Повідомлення про ризик зараження зберігаються протягом 14 днів з дати контакту</string>
+  <string name="exposure_details_date_exposed_subtitle">Дата ймовірного контакту</string>
+  <string name="exposure_details_expiring_subtitle">Повідомлення про ризик зараження зберігаються протягом 14 днів із дати ймовірного контакту</string>
   <string name="exposure_details_learn_more">Докладніше</string>
   <string name="exposure_details_new_badge">Нове</string>
   <string name="share_test_result_title">Повідомте про результат тесту на COVID-19, щоб захистити свою громаду</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">Сповіщення про ризик зараження</string>
   <string name="settings_app_analytics_subtitle">Використання та продуктивність додатка</string>
   <string name="settings_privacy_policy">Політика конфіденційності</string>
+  <string name="settings_help_and_support">Експрес-сповіщення про ризик зараження</string>
   <string name="settings_legal_terms">Юридичні умови</string>
   <string name="settings_debug">Режим налагодження</string>
   <string name="settings_share">Допоможіть стримати поширення COVID-19. Захистіть свою громаду: поділіться цим додатком з іншими, щоб вони могли отримувати сповіщення про ризик зараження.</string>
@@ -134,4 +137,10 @@
   <string name="share_error">Не вдалося повідомити результат тесту. Повторіть спробу пізніше.</string>
   <string name="generic_error_message">Сталася помилка. Повторіть спробу.</string>
   <string name="code_error_already_submitted">Цей код уже використовувався, щоб повідомити результат тесту</string>
+  <string name="settings_private_analytics_subtitle">Надсилання даних про ризик зараження</string>
+  <string name="private_analytics_title">Допоможіть державному органу охорони здоров\'я відстежувати поширення COVID-19</string>
+  <string name="private_analytics_subtitle">Надсилати дані про ризик зараження державному органу охорони здоров\'я</string>
+  <string name="private_analytics_footer">Дані, як-от число сповіщень у регіоні, допоможуть органам охорони здоров\'я відстежити поширення COVID-19. Google не має доступу до цих даних і надає зведену інформацію, яку не можна пов\'язати з телефоном.%1$s</string>
+  <string name="private_analytics_footer_onboarding">Google не має доступу до цих даних і передає в орган охорони здоров\'я зведену інформацію, яку не можна пов\'язати з телефоном. %1$s</string>
+  <string name="private_analytics_footer_learn_more">Докладніше</string>
 </resources>

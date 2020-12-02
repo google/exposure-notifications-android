@@ -84,6 +84,7 @@
               android:layout_marginEnd="@dimen/padding_normal"
               android:paddingVertical="@dimen/padding_normal"
               android:textAppearance="?attr/textAppearanceHeadline6"
+              android:textSize="@dimen/settings_page_switch_text_size"
               android:text="@string/exposure_about_toggle" />
 
           </LinearLayout>

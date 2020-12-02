@@ -16,6 +16,8 @@
   <string name="btn_save">ছেভ কৰক</string>
   <string name="btn_discard">বাতিল কৰক</string>
   <string name="btn_verify">সত্যাপন কৰক</string>
+  <string name="btn_dont_share">শ্বেয়াৰ নকৰিব</string>
+  <string name="btn_share">শ্বেয়াৰ কৰক</string>
   <string name="learn_more">অধিক জানক</string>
   <string name="home_tab_exposures_text">এক্সপ’জাৰ</string>
   <string name="home_tab_notify_text">আনক জনাওক</string>
@@ -31,7 +33,7 @@
     \n\nকোনো সংস্পৰ্শৰ ঘটনাৰ লগত জড়িত তাৰিখ, সময় অৱধি আৰু সংকেতৰ ক্ষমতা এপ্‌টোৰ সৈতে শ্বেয়াৰ কৰা হ’ব।</string>
   <string name="onboarding_metrics_title">এই এপ্‌টো অধিক ভাল কৰাত সহায় কৰক</string>
   <string name="onboarding_metrics_subtitle">Googleৰ সৈতে এপৰ ব্যৱহাৰ আৰু কাৰ্যদক্ষতাৰ ডেটা শ্বেয়াৰ কৰক</string>
-  <string name="onboarding_metrics_detail">এপ্‌টো চলাই ৰখা আৰু উন্নত কৰাত সহায় কৰিবলৈ, এপ্‌টোৰ কাৰ্যদক্ষতা আৰু ব্যৱহাৰ সম্পৰ্কীয় কিছুমান সীমিত ব্যক্তিগত তথ্য প্ৰকাশ নোপোৱা ডেটা Googleৰ সৈতে শ্বেয়াৰ কৰা হয়। এই ডেটাখিনিয়ে আপোনাক চিনাক্ত নকৰে।</string>
+  <string name="onboarding_metrics_description">এপ্‌টো চলাই ৰখা আৰু উন্নত কৰাত সহায় কৰিবলৈ, এপ্‌টোৰ কাৰ্যদক্ষতা আৰু ব্যৱহাৰ সম্পৰ্কীয় কিছুমান সীমিত ব্যক্তিগত তথ্য প্ৰকাশ নোপোৱা ডেটা Googleৰ সৈতে শ্বেয়াৰ কৰা হয়। এই ডেটাখিনিয়ে আপোনাক চিনাক্ত নকৰে। %1$s</string>
   <string name="onboarding_confirm_later_title">এক্সপ’জাৰ ন’টিফিকেশ্বন অফ কৰি ৰাখিবনে?</string>
   <string name="onboarding_confirm_later_detail">এক্সপ’জাৰ ন’টিফিকেশ্বন অন নকৰালৈকে আপোনাক COVID-19ৰ সম্ভাব্য এক্সপ’জাৰৰ বিষয়ে জাননী দিয়া নহ\'ব</string>
   <string name="no_recent_exposure_subtitle">কোনো শেহতীয়া এক্সপ’জাৰ নাই</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">স্থিতি</string>
   <string name="exposure_details_status_exposure">সম্ভাব্য COVID-19ৰ এক্সপ’জাৰ</string>
   <string name="exposure_details_date_exposed_subtitle">সম্ভাব্য এক্সপ’জাৰৰ তাৰিখ</string>
-  <string name="exposure_details_expiring_subtitle">এক্সপ’জাৰৰ ৰিপৰ্টসমূহ এক্সপ’জ হোৱাৰ তাৰিখটোৰ পৰা ১৪ দিনলৈ ষ্ট\'ৰ কৰি ৰখা হয়</string>
+  <string name="exposure_details_expiring_subtitle">এক্সপ’জাৰৰ ৰিপৰ্ট সম্ভাব্য এক্সপ’জাৰৰ তাৰিখটোৰ পৰা ১৪ দিনলৈ ষ্ট\'ৰ কৰি ৰখা হয়</string>
   <string name="exposure_details_learn_more">অধিক জানক</string>
   <string name="exposure_details_new_badge">নতুন</string>
   <string name="share_test_result_title">আপোনাৰ সম্প্ৰদায়টো সুৰক্ষিত কৰি ৰাখক, আপোনাৰ COVID-19ৰ পৰীক্ষাৰ ফলাফল শ্বেয়াৰ কৰক</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">এক্সপ’জাৰ ন’টিফিকেশ্বন</string>
   <string name="settings_app_analytics_subtitle">এপৰ ব্যৱহাৰ আৰু কাৰ্যদক্ষতা শ্বেয়াৰ কৰা</string>
   <string name="settings_privacy_policy">গোপনীয়তা নীতি</string>
+  <string name="settings_help_and_support">এক্সপ’জাৰ ন’টিফিকেশ্বন এক্সপ্ৰেছৰ বিষয়ে</string>
   <string name="settings_legal_terms">আইনী চৰ্তসমূহ</string>
   <string name="settings_debug">ডিবাগ ম’ড</string>
   <string name="settings_share">COVID-19ৰ সংক্ৰমণ নিয়ন্ত্ৰণ কৰাত সহায় কৰক। আপোনাৰ সম্প্ৰদায়ৰ সৈতে এই এপ্‌টো শ্বেয়াৰ কৰক আৰু সম্ভাব্য এক্সপ’জাৰ সম্পৰ্কে দিয়া জাননীৰ জৰিয়তে নিজকে ভালকৈ সুৰক্ষা দিয়াত তেওঁলোকক সহায় কৰক।</string>
@@ -134,4 +137,10 @@
   <string name="share_error">পৰীক্ষাৰ ফলাফলটো শ্বেয়াৰ কৰিব পৰা নগ’ল। পাছত পুনৰ চেষ্টা কৰক।</string>
   <string name="generic_error_message">কিবা ভুল হ’ল। পুনৰ চেষ্টা কৰক।</string>
   <string name="code_error_already_submitted">পৰীক্ষাৰ ফলাফল শ্বেয়াৰ কৰিবলৈ ক’ডটো ইতিমধ্যে ব্যৱহাৰ কৰা হৈছে</string>
+  <string name="settings_private_analytics_subtitle">এক্সপ’জাৰ ন’টিফিকেশ্বনৰ বিশ্লেষণাত্মক পৰিসংখ্যা শ্বেয়াৰ কৰা</string>
+  <string name="private_analytics_title">আপোনাৰ স্বাস্থ্য প্ৰাধিকৰণে COVID-19ৰ সংক্ৰমণৰ বিষয়ে বুজাত সহায় কৰক</string>
+  <string name="private_analytics_subtitle">আপোনাৰ স্বাস্থ্য প্ৰাধিকৰণৰ সৈতে এক্সপ’জাৰ ন’টিফিকেশ্বনৰ বিশ্লেষণাত্মক পৰিসংখ্যা শ্বেয়াৰ কৰক</string>
+  <string name="private_analytics_footer">আপোনাৰ অঞ্চলটোৰ জাননীৰ সংখ্যাৰ দৰে এই বিশ্লেষণাত্মক পৰিসংখ্যাই স্বাস্থ্য প্ৰাধিকৰণক COVID-19ৰ সংক্ৰমণ কেনেকৈ হয় সেয়া বুজাত সহায় কৰে। সেইবোৰ Googleএ পঢ়িব নোৱাৰে আৰু আপোনাৰ স্বাস্থ্য প্ৰাধিকৰণৰ বাবে একত্ৰিত কৰা হয় গতিকে সেইবোৰ আপোনাৰ ফ\'নৰ সৈতে লিংক কৰিব নোৱাৰি। %1$s</string>
+  <string name="private_analytics_footer_onboarding">এইবোৰ বিশ্লেষণাত্মক পৰিসংখ্যা Googleএ পঢ়িব নোৱাৰে আৰু এইবোৰ আপোনাৰ স্বাস্থ্য প্ৰাধিকৰণৰ বাবে একত্ৰিত কৰা হয় গতিকে সেয়া আপোনাৰ ফ\'নৰ সৈতে লিংক কৰিব নোৱাৰি।%1$s</string>
+  <string name="private_analytics_footer_learn_more">অধিক জানক</string>
 </resources>

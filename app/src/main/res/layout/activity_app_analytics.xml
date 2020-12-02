@@ -81,10 +81,11 @@
               android:id="@+id/app_analytics_switch"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:layout_marginEnd="@dimen/padding_extra_large"
+              android:layout_marginEnd="@dimen/padding_normal"
               android:paddingVertical="@dimen/padding_normal"
-              android:textAppearance="?attr/textAppearanceHeadline6"
-              android:text="@string/app_analytics_toggle" />
+              android:text="@string/app_analytics_toggle"
+              android:textSize="@dimen/settings_page_switch_text_size"
+              android:textAppearance="?attr/textAppearanceHeadline6" />
 
           </LinearLayout>
 

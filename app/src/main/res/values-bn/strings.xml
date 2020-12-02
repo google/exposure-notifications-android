@@ -16,6 +16,8 @@
   <string name="btn_save">সেভ করুন</string>
   <string name="btn_discard">বাতিল করুন</string>
   <string name="btn_verify">যাচাই করুন</string>
+  <string name="btn_dont_share">শেয়ার করতে চাই না</string>
+  <string name="btn_share">শেয়ার করুন</string>
   <string name="learn_more">আরও জানুন</string>
   <string name="home_tab_exposures_text">এক্সপোজার</string>
   <string name="home_tab_notify_text">অন্যদের জানান</string>
@@ -31,7 +33,7 @@
     \n\nএক্সপোজার সম্পর্কিত তথ্য যেমন, তারিখ, সময়কাল এবং সিগন্যালের ক্ষমতা অ্যাপের সাথে শেয়ার করা হবে।</string>
   <string name="onboarding_metrics_title">এই অ্যাপটি আরও উন্নত করতে সাহায্য করুন</string>
   <string name="onboarding_metrics_subtitle">Google-এর সাথে অ্যাপের ব্যবহার ও পারফর্ম্যান্স সংক্রান্ত ডেটা শেয়ার করুন</string>
-  <string name="onboarding_metrics_detail">অ্যাপের কাজ চালিয়ে যেতে ও আরও উন্নত করতে, অ্যাপের ব্যবহার ও পারফর্ম্যান্সের ব্যাপারে শনাক্ত করা হয়নি এমন অল্প কিছু সীমিত সংখ্যক ডেটা Google-এর সাথে শেয়ার করা হয়। এই ডেটা আপনাকে শনাক্ত করে না।</string>
+  <string name="onboarding_metrics_description">অ্যাপের গুনমান বজায় রাখতে ও তা আরও উন্নত করতে, অ্যাপের ব্যবহার ও পারফর্ম্যান্সের ব্যাপারে ব্যবহারকারীকে শনাক্ত করে না এমন কিছু সীমিত ডেটা Google-এর সাথে শেয়ার করা হয়। এই ডেটা আপনাকে শনাক্ত করে না। %1$s</string>
   <string name="onboarding_confirm_later_title">\'Exposure Notifications\' কি বন্ধ রাখবেন?</string>
   <string name="onboarding_confirm_later_detail">\'Exposure Notifications\' চালু করা না হলে, আপনি COVID-19-এর সম্ভাব্য এক্সপোজারের ব্যাপারে জানতে পারবেন না</string>
   <string name="no_recent_exposure_subtitle">সাম্প্রতিক কোনও এক্সপোজার হয়নি</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">স্ট্যাটাস</string>
   <string name="exposure_details_status_exposure">আপনার COVID-19-এর এক্সপোজারের সম্ভাবনা আছে</string>
   <string name="exposure_details_date_exposed_subtitle">সংক্রমিত ব্যক্তির এক্সপোজারে আসার সম্ভাব্য তারিখ</string>
-  <string name="exposure_details_expiring_subtitle">যেদিন এক্সপোজার হয়েছিল, সেদিন থেকে ১৪ দিন পর্যন্ত এক্সপোজার রিপোর্ট সংরক্ষণ করা হয়</string>
+  <string name="exposure_details_expiring_subtitle">সম্ভাব্য এক্সপোজার তারিখ থেকে ১৪ দিনের জন্য এক্সপোজার রিপোর্ট সেভ করা হয়</string>
   <string name="exposure_details_learn_more">আরও জানুন</string>
   <string name="exposure_details_new_badge">নতুন</string>
   <string name="share_test_result_title">আপনার কমিউনিটিকে বাঁচান, নিজের COVID-19-এর পরীক্ষার ফলাফল শেয়ার করুন</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">Exposure Notifications</string>
   <string name="settings_app_analytics_subtitle">অ্যাপের ব্যবহার ও পারফর্ম্যান্স সংক্রান্ত তথ্য শেয়ার করা</string>
   <string name="settings_privacy_policy">গোপনীয়তা নীতি</string>
+  <string name="settings_help_and_support">Exposure Notification Express সম্পর্কে</string>
   <string name="settings_legal_terms">আইনি শর্তাবলী</string>
   <string name="settings_debug">ডিবাগ মোড</string>
   <string name="settings_share">COVID-19-এর সংক্রমণ ছড়িয়ে পড়া প্রতিরোধ করতে সাহায্য করুন। আপনার কমিউনিটির সাথে এই অ্যাপটি শেয়ার করুন এবং সম্ভাব্য এক্সপোজার বিজ্ঞপ্তির মাধ্যমে তাদের সুরক্ষিত রাখতে সাহায্য করুন।</string>
@@ -134,4 +137,10 @@
   <string name="share_error">স্বাস্থ্য পরীক্ষার ফলাফল শেয়ার করা যায়নি। পরে আবার চেষ্টা করুন।</string>
   <string name="generic_error_message">কোনও সমস্যা হয়েছে। আবার চেষ্টা করুন।</string>
   <string name="code_error_already_submitted">পরীক্ষার ফলাফল শেয়ার করার জন্য আগেই কোডটি ব্যবহার করা হয়েছে</string>
+  <string name="settings_private_analytics_subtitle">Exposure Notifications অ্যানালিটিক্স শেয়ার করা</string>
+  <string name="private_analytics_title">COVID-19 কীভাবে ছড়িয়ে পড়ছে আপনার স্বাস্থ্য কর্তৃপক্ষকে তা বুঝতে সাহায্য করুন</string>
+  <string name="private_analytics_subtitle">আপনার স্বাস্থ্য কর্তৃপক্ষের সাথে Exposure Notifications অ্যানালিটিক্স শেয়ার করুন</string>
+  <string name="private_analytics_footer">আপনার অঞ্চলে বিজ্ঞপ্তির সংখ্যার মতো এইসব অ্যানালিটিক্স স্বাস্থ্য কর্তৃপক্ষকে এটি বুঝতে সাহায্য করে যে COVID-19 কীভাবে ছড়িয়ে পড়ছে। এগুলি Google পড়তে পারে না এবং আপনার স্বাস্থ্য কর্তৃপক্ষের কাছে একত্রিত করে পাঠানো হয় যাতে এগুলি আপনার ফোনের সাথে লিঙ্ক করা না যায়। %1$s</string>
+  <string name="private_analytics_footer_onboarding">এইসব অ্যানালিটিক্স Google পড়তে পারে না এবং আপনার স্বাস্থ্য কর্তৃপক্ষের কাছে একত্রিত করে পাঠানো হয় যাতে সেগুলি আপনার ফোনের সাথে লিঙ্ক করা না যায়। %1$s</string>
+  <string name="private_analytics_footer_learn_more">আরও জানুন</string>
 </resources>

@@ -16,6 +16,8 @@
   <string name="btn_save">Gorde</string>
   <string name="btn_discard">Baztertu</string>
   <string name="btn_verify">Egiaztatu</string>
+  <string name="btn_dont_share">Ez partekatu</string>
+  <string name="btn_share">Partekatu</string>
   <string name="learn_more">Lortu informazio gehiago</string>
   <string name="home_tab_exposures_text">Esposizioa</string>
   <string name="home_tab_notify_text">Jakinarazi besteei</string>
@@ -31,7 +33,7 @@
     \n\nEsposizioarekin erlazionatutako data, iraupena eta seinalearen intentsitatea partekatuko dira aplikazioarekin.</string>
   <string name="onboarding_metrics_title">Lagundu aplikazioa hobetzen</string>
   <string name="onboarding_metrics_subtitle">Partekatu Google-rekin aplikazioaren erabilera- eta errendimendu-datuak</string>
-  <string name="onboarding_metrics_detail">Aplikazioa mantentzen eta hobetzen laguntzeko, aplikazioaren errendimenduari eta erabilerari buruzko datu anonimoak partekatzen dira Google-rekin. Datuok ez zaituzte identifikatzen.</string>
+  <string name="onboarding_metrics_description">Aplikazioa mantentzen eta hobetzen laguntzeko, aplikazioaren errendimenduari eta erabilerari buruzko datu anonimoak partekatzen dira Google-rekin. Datuok ez zaituzte identifikatzen. %1$s</string>
   <string name="onboarding_confirm_later_title">Esposizioari buruzko jakinarazpenak desaktibatuta mantendu nahi dituzu?</string>
   <string name="onboarding_confirm_later_detail">Esposizioari buruzko jakinarazpenak aktibatzen ez dituzun bitartean, ez zaizu jakinaraziko COVID-19aren eraginpean egon zaren ala ez</string>
   <string name="no_recent_exposure_subtitle">Ez duzu esposiziorik izan azkenaldian</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">Egoera</string>
   <string name="exposure_details_status_exposure">COVID-19arekiko esposizio posiblea</string>
   <string name="exposure_details_date_exposed_subtitle">Esposizio posiblearen data</string>
-  <string name="exposure_details_expiring_subtitle">14 egunez gordetzen dira esposizio-txostenak, esposizio-datatik hasita</string>
+  <string name="exposure_details_expiring_subtitle">14 egunez gordetzen dira esposizio-txostenak, esposizio posiblearen datatik hasita</string>
   <string name="exposure_details_learn_more">Lortu informazio gehiago</string>
   <string name="exposure_details_new_badge">Berria</string>
   <string name="share_test_result_title">Partekatu COVID-19ren probaren emaitza zure komunitatea babesteko</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">Esposizioari buruzko jakinarazpenak</string>
   <string name="settings_app_analytics_subtitle">Aplikazioaren erabilera eta errendimendua partekatzeko aukera</string>
   <string name="settings_privacy_policy">Pribatutasun-gidalerroak</string>
+  <string name="settings_help_and_support">Esposizioari buruzko premiazko jakinarazpenei buruz</string>
   <string name="settings_legal_terms">Lege-baldintzak</string>
   <string name="settings_debug">Arazketa modua</string>
   <string name="settings_share">Lagundu COVID-19aren hedapenari aurre egiten. Partekatu aplikazioa zure komunitatearekin eta lagun iezaiozu koronabirusaren aurka hobeto babesten esposizioari buruzko jakinarazpenei esker.</string>
@@ -134,4 +137,10 @@
   <string name="share_error">Ezin izan da partekatu probaren emaitza. Saiatu berriro geroago.</string>
   <string name="generic_error_message">Arazoren bat izan da. Saiatu berriro.</string>
   <string name="code_error_already_submitted">Kodea dagoeneko erabili da probaren emaitza partekatzeko</string>
+  <string name="settings_private_analytics_subtitle">Jakinarazpenetako estatistikak partekatzeko aukera</string>
+  <string name="private_analytics_title">Lagundu osasun-agintariei COVID-19aren hedapena ulertzen</string>
+  <string name="private_analytics_subtitle">Partekatu esposizioari buruzko jakinarazpenetako estatistikak osasun-agintariekin</string>
+  <string name="private_analytics_footer">Datu horiei esker (adibidez, lurraldean zenbat jakinarazpen igorri diren), osasun-agintariek hobeto ulertuko dute COVID-19aren hedapena. Aitzitik, Google-k ezingo ditu irakurri estatistika horiek, eta osasun-agintariek multzokatuta jasoko dituzte, ezin izan ditzaten datuak telefonoekin erlazionatu. %1$s</string>
+  <string name="private_analytics_footer_onboarding">Google-k ezingo ditu irakurri estatistika horiek, eta osasun-agintariek multzokatuta jasoko dituzte, ezin izan ditzaten datuak telefonoekin erlazionatu. %1$s</string>
+  <string name="private_analytics_footer_learn_more">Lortu informazio gehiago</string>
 </resources>

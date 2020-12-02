@@ -16,6 +16,8 @@
   <string name="btn_save">שמירה</string>
   <string name="btn_discard">מחיקה</string>
   <string name="btn_verify">אימות</string>
+  <string name="btn_dont_share">אין לשתף</string>
+  <string name="btn_share">שיתוף</string>
   <string name="learn_more">מידע נוסף</string>
   <string name="home_tab_exposures_text">חשיפה לנגיף</string>
   <string name="home_tab_notify_text">הודעה לאחרים</string>
@@ -31,7 +33,7 @@
     \n\nהנתונים שישותפו עם האפליקציה הם התאריך, משך הזמן ועוצמת הקליטה שמשויכים לחשיפה.</string>
   <string name="onboarding_metrics_title">נשמח לעזרתך בשיפור האפליקציה</string>
   <string name="onboarding_metrics_subtitle">שיתוף נתוני שימוש וביצועים עם Google</string>
-  <string name="onboarding_metrics_detail">כדי לעזור בתחזוקה ובשיפור של האפליקציה, נתונים מסוימים ומוגבלים לגבי ביצועי האפליקציה והשימוש בה משותפים עם Google לאחר הסרת פרטי הזיהוי. לא ניתן לזהות אותך לפי הנתונים האלו.</string>
+  <string name="onboarding_metrics_description">כדי לעזור בתחזוקה ובשיפור של האפליקציה, נתונים מסוימים ומוגבלים לגבי ביצועי האפליקציה והשימוש בה משותפים עם Google לאחר הסרת פרטי הזיהוי. לא ניתן לזהות אותך לפי הנתונים האלו. %1$s</string>
   <string name="onboarding_confirm_later_title">בחרת שלא להפעיל את התראות החשיפה. להמשיך?</string>
   <string name="onboarding_confirm_later_detail">עד שהתראות החשיפה לא יופעלו, לא יישלחו לך התראות על חשיפה אפשרית לנגיף הקורונה (COVID-19)</string>
   <string name="no_recent_exposure_subtitle">אין חשיפות לנגיף מהזמן האחרון</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">סטטוס</string>
   <string name="exposure_details_status_exposure">חשיפה אפשרית לנגיף הקורונה (COVID-19)</string>
   <string name="exposure_details_date_exposed_subtitle">תאריך חשיפה אפשרי</string>
-  <string name="exposure_details_expiring_subtitle">דיווחי החשיפה לנגיף נשמרים למשך 14 ימים מתאריך החשיפה</string>
+  <string name="exposure_details_expiring_subtitle">דיווחי החשיפה לנגיף נשמרים למשך 14 ימים מתאריך החשיפה האפשרי</string>
   <string name="exposure_details_learn_more">מידע נוסף</string>
   <string name="exposure_details_new_badge">חדש</string>
   <string name="share_test_result_title">שיתוף התוצאה של בדיקת נגיף הקורונה (COVID-19) יעזור להגן על הקהילה</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">התראות חשיפה</string>
   <string name="settings_app_analytics_subtitle">שיתוף נתוני שימוש וביצועים של האפליקציה</string>
   <string name="settings_privacy_policy">מדיניות פרטיות</string>
+  <string name="settings_help_and_support">מידע על Exposure Notification Express</string>
   <string name="settings_legal_terms">תנאים משפטיים</string>
   <string name="settings_debug">מצב ניפוי באגים</string>
   <string name="settings_share">רוצה לסייע בבלימת ההתפשטות של נגיף הקורונה (COVID-19)? שיתוף האפליקציה הזו עם הקהילה שלך יוכל לעזור לאנשים להגן על עצמם באופן הטוב ביותר באמצעות התראות חשיפה.</string>
@@ -134,4 +137,10 @@
   <string name="share_error">לא ניתן לשתף את תוצאת הבדיקה. יש לנסות שוב מאוחר יותר.</string>
   <string name="generic_error_message">משהו השתבש. יש לנסות שוב.</string>
   <string name="code_error_already_submitted">כבר נעשה בעבר שימוש בקוד זה כדי לשתף תוצאות בדיקה</string>
+  <string name="settings_private_analytics_subtitle">שיתוף ניתוח הנתונים של התראות החשיפה</string>
+  <string name="private_analytics_title">ניתן לסייע לרשות לבריאות הציבור בהבנת אופן ההתפשטות של נגיף הקורונה (COVID-19)</string>
+  <string name="private_analytics_subtitle">רוצה לשתף את ניתוח הנתונים של התראות החשיפה עם הרשות לבריאות הציבור?</string>
+  <string name="private_analytics_footer">ניתוח הנתונים, וכן מספר ההתראות באזורך, יסייעו לרשויות לבריאות הציבור בהבנת אופן ההתפשטות של נגיף הקורונה (COVID-19). Google לא יכולה לקרוא את ניתוח הנתונים. המידע נצבר עבור הרשות לבריאות הציבור, ולכן לא יהיה ניתן לקשר אותו לטלפון שלך. %1$s</string>
+  <string name="private_analytics_footer_onboarding">Google לא יכולה לקרוא את ניתוח הנתונים. המידע נצבר עבור הרשות לבריאות הציבור, ולכן לא ניתן לקשר אותו לטלפון שלך. %1$s</string>
+  <string name="private_analytics_footer_learn_more">מידע נוסף</string>
 </resources>

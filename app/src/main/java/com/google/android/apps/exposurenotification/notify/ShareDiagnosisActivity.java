@@ -83,8 +83,8 @@ public class ShareDiagnosisActivity extends AppCompatActivity {
   public static Intent newIntentForViewFlow(Context context, DiagnosisEntity entity) {
     Intent intent = new Intent(context, ShareDiagnosisActivity.class);
     intent.putExtra(EXTRA_VIEW_POSITIVE_DIAGNOSIS_ID, entity.getId());
-    intent.putExtra(EXTRA_STEP,
-        ShareDiagnosisFlowHelper.getMaxStepForDiagnosisEntity(entity).name());
+    intent.putExtra(
+        EXTRA_STEP, ShareDiagnosisFlowHelper.getMaxStepForDiagnosisEntity(entity, context).name());
     return intent;
   }
 

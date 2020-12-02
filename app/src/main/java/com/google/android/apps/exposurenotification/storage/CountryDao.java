@@ -21,10 +21,8 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
-import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.common.util.concurrent.ListenableFuture;
 import java.util.List;
-import org.threeten.bp.Instant;
 
 @Dao
 abstract class CountryDao {
@@ -44,11 +42,11 @@ abstract class CountryDao {
   @Query("DELETE FROM CountryEntity WHERE lastSeenTimestampMillis < :earliestTimestampMillis")
   abstract ListenableFuture<Void> deleteObsoleteCountryCodesAsync(long earliestTimestampMillis);
 
-  public void markCountryCodeSeen(String countryCode, long whenSeenMillis) {
+  void markCountryCodeSeen(String countryCode, long whenSeenMillis) {
     upsert(CountryEntity.create(countryCode, whenSeenMillis));
   }
 
-  public ListenableFuture<Void> markCountryCodeSeenAsync(String countryCode, long whenSeenMillis) {
+  ListenableFuture<Void> markCountryCodeSeenAsync(String countryCode, long whenSeenMillis) {
     return upsertAsync(CountryEntity.create(countryCode, whenSeenMillis));
   }
 }

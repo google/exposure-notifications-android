@@ -36,30 +36,7 @@
       android:name=".debug.MatchingDebugActivity"
       android:label="@string/debug_matching_matching_title"
       android:windowSoftInputMode="stateHidden|adjustResize"
-      android:parentActivityName=".home.ExposureNotificationActivity">
-
-      <intent-filter>
-        <action android:name="android.intent.action.VIEW" />
-
-        <category android:name="android.intent.category.DEFAULT" />
-        <category android:name="android.intent.category.BROWSABLE" />
-
-        <data android:scheme="file" />
-        <data android:scheme="content" />
-        <data android:scheme="http" />
-        <data android:scheme="https" />
-        <data android:mimeType="application/zip" />
-      </intent-filter>
-
-      <intent-filter>
-        <action android:name="android.intent.action.SEND" />
-
-        <category android:name="android.intent.category.DEFAULT" />
-
-        <data android:mimeType="application/zip" />
-      </intent-filter>
-
-    </activity>
+      android:parentActivityName=".home.ExposureNotificationActivity"/>
 
     <activity
       android:name=".debug.DebugActivity"

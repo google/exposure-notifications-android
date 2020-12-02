@@ -21,7 +21,6 @@ import android.content.Context;
 import android.net.Uri;
 import android.util.Log;
 import androidx.concurrent.futures.CallbackToFutureAdapter;
-import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Response;
 import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
@@ -32,11 +31,13 @@ import com.google.android.apps.exposurenotification.keyupload.Qualifiers.Verific
 import com.google.android.apps.exposurenotification.keyupload.Qualifiers.VerificationCodeUri;
 import com.google.android.apps.exposurenotification.keyupload.UploadController.VerificationFailureException;
 import com.google.android.apps.exposurenotification.keyupload.UploadController.VerificationServerFailureException;
+import com.google.android.apps.exposurenotification.logging.AnalyticsLogger;
 import com.google.android.apps.exposurenotification.network.DiagnosisKey;
 import com.google.android.apps.exposurenotification.network.Padding;
 import com.google.android.apps.exposurenotification.network.RequestQueueWrapper;
 import com.google.android.apps.exposurenotification.network.RespondableJsonObjectRequest;
 import com.google.android.apps.exposurenotification.network.VolleyUtils;
+import com.google.android.apps.exposurenotification.proto.RpcCall.RpcCallType;
 import com.google.android.apps.exposurenotification.storage.DiagnosisEntity.TestResult;
 import com.google.common.base.Joiner;
 import com.google.common.base.Strings;
@@ -59,7 +60,6 @@ import javax.inject.Inject;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.threeten.bp.Duration;
 import org.threeten.bp.LocalDate;
 
 /**
@@ -86,6 +86,7 @@ class DiagnosisAttestor {
   private final RequestQueueWrapper queue;
   private final String apiKey;
   private final Clock clock;
+  private final AnalyticsLogger logger;
 
   @Inject
   DiagnosisAttestor(
@@ -93,25 +94,33 @@ class DiagnosisAttestor {
       @VerificationCodeUri Uri codeUri,
       @VerificationCertUri Uri certUri,
       RequestQueueWrapper queue,
-      Clock clock) {
+      Clock clock,
+      AnalyticsLogger logger) {
     this.codeUri = codeUri;
     this.certUri = certUri;
     this.queue = queue;
     this.clock = clock;
+    this.logger = logger;
     apiKey = context.getString(R.string.enx_testVerificationAPIKey);
   }
 
   ListenableFuture<Upload> submitCode(Upload upload) {
     Log.d(TAG, "Submitting verification code: " + upload);
     return CallbackToFutureAdapter.getFuture(completer -> {
+      JSONObject requestBody = verificationCodeRequestBody(upload);
+      Log.d(TAG, "Submitting verification code: " + requestBody);
+
       Listener<JSONObject> responseListener =
           response -> {
+            logger.logRpcCallSuccessAsync(RpcCallType.RPC_TYPE_VERIFICATION,
+                requestBody.toString().length());
             Log.d(TAG, "Verification code submission succeeded: " + response);
             completer.set(captureVerificationCodeResponse(upload, response));
           };
 
       ErrorListener errorListener =
           err -> {
+            logger.logRpcCallFailureAsync(RpcCallType.RPC_TYPE_VERIFICATION, err);
             String msg = VolleyUtils.getErrorMessage(err);
             Log.e(TAG, String.format("Verification code submission error: [%s]", msg));
             if (VolleyUtils.getHttpStatus(err) >= 500) {
@@ -120,9 +129,6 @@ class DiagnosisAttestor {
               completer.setException(new VerificationFailureException(err));
             }
           };
-
-      JSONObject requestBody = verificationCodeRequestBody(upload);
-      Log.d(TAG, "Submitting verification code: " + requestBody);
 
       VerificationRequest request =
           new VerificationRequest(
@@ -140,8 +146,11 @@ class DiagnosisAttestor {
   }
 
   private static Upload captureVerificationCodeResponse(Upload upload, JSONObject response) {
+    if (upload.isCoverTraffic()) {
+      // Ignore responses for cover traffic requests.
+      return upload;
+    }
     Upload.Builder withResponse = upload.toBuilder();
-    // TODO: Extract string keys to consts (here and elsewhere).
     try {
       if (response.has(VerifyV1.TEST_TYPE) &&
           !Strings.isNullOrEmpty(response.getString(VerifyV1.TEST_TYPE))) {
@@ -167,14 +176,20 @@ class DiagnosisAttestor {
   ListenableFuture<Upload> submitKeysForCert(Upload upload) {
     return CallbackToFutureAdapter.getFuture(
         completer -> {
+          JSONObject requestBody = certRequestBody(upload);
+          Log.d(TAG, "Submitting request for certificate: " + requestBody);
+
           Listener<JSONObject> responseListener =
               response -> {
+                logger.logRpcCallSuccessAsync(RpcCallType.RPC_TYPE_VERIFICATION,
+                    requestBody.toString().length());
                 Log.d(TAG, "Certificate obtained: " + response);
                 completer.set(captureCertResponse(upload, response));
               };
 
           ErrorListener errorListener =
               err -> {
+                logger.logRpcCallFailureAsync(RpcCallType.RPC_TYPE_VERIFICATION, err);
                 String msg = VolleyUtils.getErrorMessage(err);
                 Log.e(TAG, String.format("Certificate error: [%s]", msg));
                 if (VolleyUtils.getHttpStatus(err) >= 500) {
@@ -183,9 +198,6 @@ class DiagnosisAttestor {
                   completer.setException(new VerificationFailureException(err));
                 }
               };
-
-          JSONObject requestBody = certRequestBody(upload);
-          Log.d(TAG, "Submitting request for certificate: " + requestBody);
 
           VerificationRequest request =
               new VerificationRequest(
@@ -228,6 +240,10 @@ class DiagnosisAttestor {
   }
 
   private static Upload captureCertResponse(Upload upload, JSONObject response) {
+    if (upload.isCoverTraffic()) {
+      // Ignore responses for cover traffic requests.
+      return upload;
+    }
     Upload.Builder withResponse = upload.toBuilder();
     try {
       if (response.has(VerifyV1.CERT)
@@ -247,13 +263,7 @@ class DiagnosisAttestor {
    */
   private static class VerificationRequest extends RespondableJsonObjectRequest {
 
-    // TODO set these values appropriately
-    private static final Duration TIMEOUT = Duration.ofSeconds(30);
-    private static final int MAX_RETRIES = 3;
-    private static final float RETRY_BACKOFF = 1.0f;
-
     private final String apiKey;
-    private final boolean isCoverTraffic;
 
     VerificationRequest(
         String apiKey,
@@ -263,10 +273,9 @@ class DiagnosisAttestor {
         Response.ErrorListener errorListener,
         Clock clock,
         boolean isCoverTraffic) {
-      super(endpoint.toString(), jsonRequest, listener, errorListener, clock);
-      setRetryPolicy(new DefaultRetryPolicy((int) TIMEOUT.toMillis(), MAX_RETRIES, RETRY_BACKOFF));
+      super(Method.POST,
+          endpoint.toString(), jsonRequest, listener, errorListener, clock, isCoverTraffic);
       this.apiKey = apiKey;
-      this.isCoverTraffic = isCoverTraffic;
     }
 
     @Override

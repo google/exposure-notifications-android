@@ -18,14 +18,22 @@
 package com.google.android.apps.exposurenotification.home;
 
 import static com.google.common.truth.Truth.assertThat;
+import static org.mockito.Mockito.when;
 
 import androidx.test.core.app.ActivityScenario;
+import androidx.test.core.app.ApplicationProvider;
+import com.google.android.apps.exposurenotification.privateanalytics.PrivateAnalyticsRemoteConfig;
+import com.google.android.apps.exposurenotification.privateanalytics.RemoteConfigs;
 import com.google.android.apps.exposurenotification.testsupport.ExposureNotificationRules;
+import com.google.common.util.concurrent.Futures;
+import com.google.firebase.FirebaseApp;
+import dagger.hilt.android.testing.BindValue;
 import dagger.hilt.android.testing.HiltAndroidTest;
 import dagger.hilt.android.testing.HiltTestApplication;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 import org.robolectric.annotation.LooperMode;
@@ -39,11 +47,18 @@ import org.robolectric.annotation.LooperMode;
 @Config(application = HiltTestApplication.class)
 public class ExposureNotificationActivityTest {
 
+  @BindValue
+  @Mock
+  PrivateAnalyticsRemoteConfig privateAnalyticsRemoteConfig;
+
   @Rule
-  public ExposureNotificationRules rules = ExposureNotificationRules.forTest(this).build();
+  public ExposureNotificationRules rules = ExposureNotificationRules.forTest(this).withMocks().build();
 
   @Test
   public void setupActivity_isNotNull() {
+    FirebaseApp.initializeApp(ApplicationProvider.getApplicationContext());
+    when(privateAnalyticsRemoteConfig.fetchUpdatedConfigs()).thenReturn(Futures.immediateFuture(
+        RemoteConfigs.newBuilder().build()));
     ActivityScenario<ExposureNotificationActivity> scenario = ActivityScenario
         .launch(ExposureNotificationActivity.class);
     scenario.onActivity(activity -> assertThat(activity).isNotNull());

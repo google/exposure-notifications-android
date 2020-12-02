@@ -17,64 +17,87 @@
 
 package com.google.android.apps.exposurenotification.storage;
 
+import androidx.annotation.AnyThread;
+import androidx.annotation.WorkerThread;
 import androidx.lifecycle.LiveData;
+import com.google.android.apps.exposurenotification.common.Qualifiers.BackgroundExecutor;
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.common.base.Function;
+import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
 import javax.inject.Inject;
 
 /**
- * Abstracts database access to {@link DiagnosisDao} data source.
+ * Abstracts database access to {@link DiagnosisEntity} data and TEK revision tokens.
  */
 public class DiagnosisRepository {
 
   private final DiagnosisDao diagnosisDao;
+  private final ExecutorService backgroundExecutor;
   private final Clock clock;
 
   @Inject
   DiagnosisRepository(
       ExposureNotificationDatabase exposureNotificationDatabase,
+      @BackgroundExecutor ExecutorService backgroundExecutor,
       Clock clock) {
     diagnosisDao = exposureNotificationDatabase.diagnosisDao();
+    this.backgroundExecutor = backgroundExecutor;
     this.clock = clock;
   }
 
+  @AnyThread
   public LiveData<List<DiagnosisEntity>> getAllLiveData() {
     return diagnosisDao.getAllLiveData();
   }
 
-  public ListenableFuture<DiagnosisEntity> getById(long id) {
+  @AnyThread
+  public ListenableFuture<DiagnosisEntity> getByIdAsync(long id) {
     return diagnosisDao.getByIdAsync(id);
   }
 
+  @AnyThread
   public ListenableFuture<List<DiagnosisEntity>> getByVerificationCodeAsync(
       String verificationCode) {
     return diagnosisDao.getByVerificationCodeAsync(verificationCode);
   }
 
+  @AnyThread
   public ListenableFuture<String> getMostRecentRevisionTokenAsync() {
     return diagnosisDao.getMostRecentRevisionTokenAsync();
   }
 
+  @AnyThread
   public LiveData<DiagnosisEntity> getByIdLiveData(long id) {
     // TODO: cache this locally.
     return diagnosisDao.getByIdLiveData(id);
   }
 
+  @AnyThread
   public ListenableFuture<Long> upsertAsync(DiagnosisEntity entity) {
-    if (entity.getCreatedTimestampMs() < 1) {
-      entity = entity.toBuilder().setCreatedTimestampMs(clock.now().toEpochMilli()).build();
-    }
-    return diagnosisDao.upsertAsync(entity);
+    return Futures.submit(
+        () -> diagnosisDao.upsert(maybeSetCreationTime(entity)), backgroundExecutor);
   }
 
+  @AnyThread
   public ListenableFuture<Void> deleteByIdAsync(long id) {
     return diagnosisDao.deleteById(id);
   }
 
+  @WorkerThread
   public Long createOrMutateById(long id, Function<DiagnosisEntity, DiagnosisEntity> mutator) {
-    return diagnosisDao.createOrMutateById(id, mutator);
+    Function<DiagnosisEntity, DiagnosisEntity> mutateAndMaybeSetCreationTime =
+        entity -> maybeSetCreationTime(mutator.apply(entity));
+    return diagnosisDao.createOrMutateById(id, mutateAndMaybeSetCreationTime);
+  }
+
+  private DiagnosisEntity maybeSetCreationTime(DiagnosisEntity entity) {
+    if (entity.getCreatedTimestampMs() < 1) {
+      entity = entity.toBuilder().setCreatedTimestampMs(clock.now().toEpochMilli()).build();
+    }
+    return entity;
   }
 }
 

@@ -16,6 +16,8 @@
   <string name="btn_save">Simpan</string>
   <string name="btn_discard">Hapus</string>
   <string name="btn_verify">Verifikasi</string>
+  <string name="btn_dont_share">Jangan bagikan</string>
+  <string name="btn_share">Bagikan</string>
   <string name="learn_more">Pelajari lebih lanjut</string>
   <string name="home_tab_exposures_text">Paparan</string>
   <string name="home_tab_notify_text">Beri tahu yang lain</string>
@@ -31,7 +33,7 @@
     \n\nTanggal, durasi, dan kekuatan sinyal yang terkait dengan paparan akan dibagikan ke aplikasi.</string>
   <string name="onboarding_metrics_title">Bantu agar aplikasi ini menjadi lebih baik</string>
   <string name="onboarding_metrics_subtitle">Bagikan data penggunaan &amp; performa aplikasi kepada Google</string>
-  <string name="onboarding_metrics_detail">Untuk membantu memelihara dan menyempurnakan aplikasi, beberapa data terbatas yang tidak diidentifikasi tentang performa dan penggunaan aplikasi dibagikan kepada Google. Data ini tidak mengidentifikasikan Anda.</string>
+  <string name="onboarding_metrics_description">Untuk membantu memelihara dan menyempurnakan aplikasi, beberapa data terbatas yang tidak diidentifikasi tentang performa dan penggunaan aplikasi dibagikan kepada Google. Data ini tidak mengidentifikasikan Anda. %1$s</string>
   <string name="onboarding_confirm_later_title">Tetap nonaktifkan Notifikasi Paparan?</string>
   <string name="onboarding_confirm_later_detail">Hingga Notifikasi Paparan diaktifkan, Anda tidak akan menerima pemberitahuan tentang kemungkinan paparan COVID-19</string>
   <string name="no_recent_exposure_subtitle">Tidak ada paparan terbaru</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">Status</string>
   <string name="exposure_details_status_exposure">Kemungkinan paparan COVID-19</string>
   <string name="exposure_details_date_exposed_subtitle">Tanggal kemungkinan paparan</string>
-  <string name="exposure_details_expiring_subtitle">Laporan paparan tersimpan selama 14 hari dari tanggal paparan</string>
+  <string name="exposure_details_expiring_subtitle">Laporan paparan disimpan selama 14 hari dari tanggal kemungkinan paparan</string>
   <string name="exposure_details_learn_more">Pelajari lebih lanjut</string>
   <string name="exposure_details_new_badge">Baru</string>
   <string name="share_test_result_title">Lindungi masyarakat sekitar, bagikan hasil tes COVID-19 Anda</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">Notifikasi paparan</string>
   <string name="settings_app_analytics_subtitle">Berbagi penggunaan &amp; performa aplikasi</string>
   <string name="settings_privacy_policy">Kebijakan privasi</string>
+  <string name="settings_help_and_support">Tentang Notifikasi Paparan Ekspres</string>
   <string name="settings_legal_terms">Ketentuan hukum</string>
   <string name="settings_debug">Mode debug</string>
   <string name="settings_share">Bantu menekan penyebaran COVID-19. Bagikan aplikasi ini kepada masyarakat di sekitar Anda dan bantu mereka melindungi diri lebih baik dengan notifikasi kemungkinan paparan.</string>
@@ -134,4 +137,10 @@
   <string name="share_error">Tidak dapat membagikan hasil tes. Coba lagi nanti.</string>
   <string name="generic_error_message">Terjadi error. Coba lagi.</string>
   <string name="code_error_already_submitted">Kode sudah digunakan untuk membagikan hasil tes</string>
+  <string name="settings_private_analytics_subtitle">Berbagi analisis Notifikasi Paparan</string>
+  <string name="private_analytics_title">Bantu otoritas kesehatan Anda memahami penyebaran COVID-19</string>
+  <string name="private_analytics_subtitle">Bagikan analisis Notifikasi Paparan kepada otoritas kesehatan Anda</string>
+  <string name="private_analytics_footer">Analisis ini membantu otoritas kesehatan memahami cara penyebaran COVID-19. Analisis tidak dapat dibaca oleh Google dan digabungkan untuk otoritas kesehatan sehingga tidak dapat ditautkan ke ponsel. %1$s</string>
+  <string name="private_analytics_footer_onboarding">Analisis tidak dapat dibaca oleh Google dan digabungkan untuk otoritas kesehatan sehingga tidak dapat ditautkan ke ponsel. %1$s</string>
+  <string name="private_analytics_footer_learn_more">Pelajari lebih lanjut</string>
 </resources>

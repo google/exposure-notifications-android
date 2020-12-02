@@ -22,6 +22,7 @@ import static com.google.common.truth.Truth.assertThat;
 import android.net.Uri;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import com.google.android.apps.exposurenotification.storage.Converters.HasSymptomsConverter;
+import com.google.android.apps.exposurenotification.storage.Converters.InstantConverter;
 import com.google.android.apps.exposurenotification.storage.Converters.LocalDateConverter;
 import com.google.android.apps.exposurenotification.storage.Converters.SharedConverter;
 import com.google.android.apps.exposurenotification.storage.Converters.TestResultConverter;
@@ -36,8 +37,8 @@ import dagger.hilt.android.testing.HiltAndroidTest;
 import dagger.hilt.android.testing.HiltTestApplication;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
+import org.threeten.bp.Instant;
 import org.threeten.bp.LocalDate;
 import org.threeten.bp.ZoneId;
 import org.threeten.bp.ZonedDateTime;
@@ -184,5 +185,22 @@ public class TypeConvertersTest {
     assertThat(UriConverter.toUri(
         "https://example.com/path/file.txt?query#fragment"))
         .isEqualTo(Uri.parse("https://example.com/path/file.txt?query#fragment"));
+  }
+
+  @Test
+  public void fromInstant_null_returnsZero() {
+    assertThat(InstantConverter.fromInstant(null)).isEqualTo(0);
+  }
+
+  @Test
+  public void fromInstant_convertsToEpochMillis() {
+    assertThat(
+        InstantConverter.fromInstant(Instant.ofEpochMilli(1234567890L))).isEqualTo(1234567890L);
+  }
+
+  @Test
+  public void toInstant_convertsFromLong() {
+    assertThat(
+        InstantConverter.toInstant(1234567890L)).isEqualTo(Instant.ofEpochMilli(1234567890L));
   }
 }

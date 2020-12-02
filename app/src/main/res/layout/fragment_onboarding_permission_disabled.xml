@@ -118,7 +118,8 @@
         android:layout_marginVertical="@dimen/padding_large"
         android:layout_height="@dimen/onboarding_logo_size"
         android:importantForAccessibility="no"
-        app:srcCompat="@drawable/enx_agency_image" />
+        app:srcCompat="@drawable/enx_agency_image"
+        android:background="@color/enx_agencyImageBackgroundColor" />
 
       <LinearLayout
         android:layout_width="match_parent"
@@ -231,11 +232,11 @@
         </LinearLayout>
 
         <TextView
+          android:id="@+id/app_analytics_detail"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_marginStart="@dimen/onboarding_section_header_image_width"
           android:layout_marginVertical="@dimen/padding_small"
-          android:text="@string/onboarding_metrics_detail"
           android:textAppearance="?attr/textAppearanceBody2" />
 
         <LinearLayout
@@ -300,6 +301,7 @@
           android:layout_marginVertical="@dimen/padding_small"
           android:layout_marginStart="@dimen/onboarding_section_header_image_width"
           android:paddingBottom="@dimen/padding_small"
+          android:autoLink="web"
           android:text="@string/onboarding_legal_detail"
           android:textAppearance="?attr/textAppearanceBody2" />
 

@@ -19,11 +19,15 @@ package com.google.android.apps.exposurenotification.storage;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Transformations;
 import com.google.android.apps.exposurenotification.common.BooleanSharedPreferenceLiveData;
+import com.google.android.apps.exposurenotification.common.ContainsSharedPreferenceLiveData;
 import com.google.android.apps.exposurenotification.common.SharedPreferenceLiveData;
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.riskcalculation.ExposureClassification;
+import com.google.common.base.Optional;
 import org.threeten.bp.Instant;
 
 /**
@@ -35,6 +39,8 @@ import org.threeten.bp.Instant;
  */
 public class ExposureNotificationSharedPreferences {
 
+  private static final String TAG = "Preferences"; // Logging TAG
+
   private static final String SHARED_PREFERENCES_FILE =
       "ExposureNotificationSharedPreferences.SHARED_PREFERENCES_FILE";
 
@@ -42,6 +48,8 @@ public class ExposureNotificationSharedPreferences {
       "ExposureNotificationSharedPreferences.ONBOARDING_STATE_KEY";
   private static final String SHARE_ANALYTICS_KEY =
       "ExposureNotificationSharedPreferences.SHARE_ANALYTICS_KEY";
+  private static final String SHARE_PRIVATE_ANALYTICS_KEY =
+      "ExposureNotificationSharedPreferences.SHARE_PRIVATE_ANALYTICS_KEY";
   private static final String KEY_SHARING_NETWORK_MODE_KEY =
       "ExposureNotificationSharedPreferences.KEY_SHARING_NETWORK_MODE_KEY";
   private static final String IS_ENABLED_CACHE_KEY =
@@ -64,6 +72,14 @@ public class ExposureNotificationSharedPreferences {
       "ExposureNotificationSharedPreferences.EXPOSURE_CLASSIFICATION_IS_DATE_NEW_KEY";
   private static final String ANALYTICS_LOGGING_LAST_TIMESTAMP =
       "ExposureNotificationSharedPreferences.ANALYTICS_LOGGING_LAST_TIMESTAMP";
+  private static final String EXPOSURE_NOTIFICATION_LAST_SHOWN_TIME =
+      "ExposureNotificationSharedPreferences.EXPOSURE_NOTIFICATION_LAST_SHOWN_TIME_KEY";
+  private static final String EXPOSURE_NOTIFICATION_LAST_SHOWN_CLASSIFICATION =
+      "ExposureNotificationSharedPreferences.EXPOSURE_NOTIFICATION_LAST_SHOWN_CLASSIFICATION_KEY";
+  private static final String EXPOSURE_NOTIFICATION_LAST_INTERACTION_TIME =
+      "ExposureNotificationSharedPreferences.EXPOSURE_NOTIFICATION_ACTIVE_INTERACTION_TIME_KEY";
+  private static final String EXPOSURE_NOTIFICATION_LAST_INTERACTION_TYPE =
+      "ExposureNotificationSharedPreferences.EXPOSURE_NOTIFICATION_ACTIVE_INTERACTION_TYPE_KEY";
 
   private final SharedPreferences sharedPreferences;
   private final Clock clock;
@@ -140,6 +156,36 @@ public class ExposureNotificationSharedPreferences {
     DISABLED
   }
 
+  /**
+   * Enum for onboarding status.
+   */
+  public enum NotificationInteraction {
+    UNKNOWN(0),
+    CLICKED(1),
+    DISMISSED(2);
+
+    private final int value;
+
+    NotificationInteraction(int value) {
+      this.value = value;
+    }
+
+    public int value() {
+      return value;
+    }
+
+    public static NotificationInteraction fromValue(int value) {
+      switch (value) {
+        case 1:
+          return CLICKED;
+        case 2:
+          return DISMISSED;
+        default:
+          return UNKNOWN;
+      }
+    }
+  }
+
   ExposureNotificationSharedPreferences(Context context, Clock clock) {
     // These shared preferences are stored in {@value Context#MODE_PRIVATE} to be made only
     // accessible by the app.
@@ -158,6 +204,11 @@ public class ExposureNotificationSharedPreferences {
 
   public OnboardingStatus getOnboardedState() {
     return OnboardingStatus.fromValue(sharedPreferences.getInt(ONBOARDING_STATE_KEY, 0));
+  }
+
+  public LiveData<Boolean> isOnboardingStateSetLiveData() {
+    return Transformations.distinctUntilChanged(
+        new ContainsSharedPreferenceLiveData(sharedPreferences, ONBOARDING_STATE_KEY));
   }
 
   public LiveData<Boolean> getAppAnalyticsStateLiveData() {
@@ -179,26 +230,44 @@ public class ExposureNotificationSharedPreferences {
     return sharedPreferences.getBoolean(SHARE_ANALYTICS_KEY, false);
   }
 
-  public Instant getAnalyticsLoggingLastTimestamp() {
-    long timestamp = sharedPreferences.getLong(ANALYTICS_LOGGING_LAST_TIMESTAMP, 0L);
-    if (timestamp == 0) {
-      sharedPreferences.edit().putLong(ANALYTICS_LOGGING_LAST_TIMESTAMP, clock.now().toEpochMilli())
-          .commit();
-      return clock.now();
+  public Optional<Instant> maybeGetAnalyticsLoggingLastTimestamp() {
+    if (!sharedPreferences.contains(ANALYTICS_LOGGING_LAST_TIMESTAMP)) {
+      return Optional.absent();
     }
-    return Instant.ofEpochMilli(sharedPreferences.getLong(ANALYTICS_LOGGING_LAST_TIMESTAMP, 0L));
+    return Optional.of(
+        Instant.ofEpochMilli(sharedPreferences.getLong(ANALYTICS_LOGGING_LAST_TIMESTAMP, 0L)));
   }
 
-  public Instant getAndResetAnalyticsLoggingLastTimestamp() {
-    Instant lastTimestamp = Instant
-        .ofEpochMilli(sharedPreferences.getLong(ANALYTICS_LOGGING_LAST_TIMESTAMP, 0L));
+  public void resetAnalyticsLoggingLastTimestamp() {
     sharedPreferences.edit().putLong(ANALYTICS_LOGGING_LAST_TIMESTAMP, clock.now().toEpochMilli())
         .commit();
-    return lastTimestamp;
   }
 
   public boolean isAppAnalyticsSet() {
     return sharedPreferences.contains(SHARE_ANALYTICS_KEY);
+  }
+
+  public LiveData<Boolean> getPrivateAnalyticsStateLiveData() {
+    return new BooleanSharedPreferenceLiveData(sharedPreferences, SHARE_PRIVATE_ANALYTICS_KEY,
+        false);
+  }
+
+  public boolean getPrivateAnalyticState() {
+    return sharedPreferences.getBoolean(SHARE_PRIVATE_ANALYTICS_KEY, false);
+  }
+
+  public void setPrivateAnalyticsState(boolean isEnabled) {
+    Log.d(TAG, "PrivateAnalyticsState changed, isEnabled= " + isEnabled);
+    sharedPreferences.edit().putBoolean(SHARE_PRIVATE_ANALYTICS_KEY, isEnabled).commit();
+  }
+
+  public LiveData<Boolean> isPrivateAnalyticsStateSetLiveData() {
+    return Transformations.distinctUntilChanged(
+        new ContainsSharedPreferenceLiveData(sharedPreferences, SHARE_PRIVATE_ANALYTICS_KEY));
+  }
+
+  public boolean isPrivateAnalyticsStateSet() {
+    return sharedPreferences.contains(SHARE_PRIVATE_ANALYTICS_KEY);
   }
 
   public int getAttenuationThreshold1(int defaultThreshold) {
@@ -257,7 +326,8 @@ public class ExposureNotificationSharedPreferences {
       @Override
       protected void updateValue() {
         setValue(getExposureClassification());
-      }};
+      }
+    };
   }
 
   public void setIsExposureClassificationRevoked(boolean isRevoked) {
@@ -275,7 +345,61 @@ public class ExposureNotificationSharedPreferences {
 
   public void setIsExposureClassificationNewAsync(BadgeStatus badgeStatus) {
     sharedPreferences.edit()
-        .putInt(EXPOSURE_CLASSIFICATION_IS_CLASSIFICATION_NEW_KEY,badgeStatus.value()).apply();
+        .putInt(EXPOSURE_CLASSIFICATION_IS_CLASSIFICATION_NEW_KEY, badgeStatus.value()).apply();
+  }
+
+  public void setExposureNotificationLastShownClassification(Instant exposureNotificationTime,
+      int classificationIndex) {
+    if (getPrivateAnalyticState()) {
+      sharedPreferences.edit()
+          .putInt(EXPOSURE_NOTIFICATION_LAST_SHOWN_CLASSIFICATION, classificationIndex)
+          .putLong(EXPOSURE_NOTIFICATION_LAST_SHOWN_TIME, exposureNotificationTime.toEpochMilli())
+          .apply();
+    }
+  }
+
+  public int getExposureNotificationLastShownClassification() {
+    return sharedPreferences.getInt(EXPOSURE_NOTIFICATION_LAST_SHOWN_CLASSIFICATION, 0);
+  }
+
+  public Instant getExposureNotificationLastShownTime() {
+    return Instant
+        .ofEpochMilli(sharedPreferences.getLong(EXPOSURE_NOTIFICATION_LAST_SHOWN_TIME, 0L));
+  }
+
+  public void clearLastShownExposureNotification() {
+    sharedPreferences.edit()
+        .remove(EXPOSURE_NOTIFICATION_LAST_SHOWN_TIME)
+        .remove(EXPOSURE_NOTIFICATION_LAST_SHOWN_CLASSIFICATION)
+        .apply();
+  }
+
+  public void setExposureNotificationLastInteraction(Instant exposureNotificationInteractionTime,
+      NotificationInteraction interaction) {
+    if (getPrivateAnalyticState()) {
+      sharedPreferences.edit()
+          .putLong(EXPOSURE_NOTIFICATION_LAST_INTERACTION_TIME,
+              exposureNotificationInteractionTime.toEpochMilli())
+          .putInt(EXPOSURE_NOTIFICATION_LAST_INTERACTION_TYPE, interaction.value()).apply();
+    }
+  }
+
+  public Instant getExposureNotificationLastInteractionTime() {
+    return Instant
+        .ofEpochMilli(sharedPreferences.getLong(EXPOSURE_NOTIFICATION_LAST_INTERACTION_TIME, 0));
+  }
+
+  public NotificationInteraction getExposureNotificationLastInteractionType() {
+    return NotificationInteraction.fromValue(sharedPreferences.getInt(
+        EXPOSURE_NOTIFICATION_LAST_INTERACTION_TYPE,
+        NotificationInteraction.UNKNOWN.value()));
+  }
+
+  public void clearLastShownExposureNotificationInteraction() {
+    sharedPreferences.edit()
+        .remove(EXPOSURE_NOTIFICATION_LAST_INTERACTION_TIME)
+        .remove(EXPOSURE_NOTIFICATION_LAST_INTERACTION_TYPE)
+        .apply();
   }
 
   public BadgeStatus getIsExposureClassificationNew() {
@@ -290,7 +414,8 @@ public class ExposureNotificationSharedPreferences {
       @Override
       protected void updateValue() {
         setValue(getIsExposureClassificationNew());
-      }};
+      }
+    };
   }
 
   public void setIsExposureClassificationDateNewAsync(BadgeStatus badgeStatus) {
@@ -310,10 +435,13 @@ public class ExposureNotificationSharedPreferences {
       @Override
       protected void updateValue() {
         setValue(getIsExposureClassificationDateNew());
-      }};
+      }
+    };
   }
 
   public interface AnalyticsStateListener {
+
     void onChanged(boolean analyticsEnabled);
   }
+
 }

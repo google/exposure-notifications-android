@@ -16,6 +16,8 @@
   <string name="btn_save">Хадгалах</string>
   <string name="btn_discard">Болих</string>
   <string name="btn_verify">Бататгах</string>
+  <string name="btn_dont_share">Бүү хуваалц</string>
+  <string name="btn_share">Хуваалцах</string>
   <string name="learn_more">Нэмэлт мэдээлэл авах</string>
   <string name="home_tab_exposures_text">Өртөх</string>
   <string name="home_tab_notify_text">Бусдад мэдэгдэх</string>
@@ -31,7 +33,7 @@
     \n\nӨртөлттэй холбоотой огноо, үргэлжилсэн хугацаа болон дохионы хүчийг энэ апптай хуваалцана.</string>
   <string name="onboarding_metrics_title">Энэ аппыг илүү сайн болгоход туслах</string>
   <string name="onboarding_metrics_subtitle">Аппын ашиглалт, гүйцэтгэлийн өгөгдлийг Google-тай хуваалцаарай</string>
-  <string name="onboarding_metrics_detail">Аппыг хадгалах болон сайжруулахад туслахын тулд аппын гүйцэтгэл болон ашиглалтын талаарх зарим хязгаарлагдмал, танигдуулахгүй өгөгдлийг Google-тай хуваалцдаг. Энэ өгөгдөл таныг танигдуулахгүй.</string>
+  <string name="onboarding_metrics_description">Аппыг хадгалах болон сайжруулахад туслахын тулд аппын гүйцэтгэл болон ашиглалтын талаарх зарим хязгаарлагдмал, танигдуулахгүй өгөгдлийг Google-тай хуваалцдаг. Энэ өгөгдөл таныг танигдуулахгүй. %1$s</string>
   <string name="onboarding_confirm_later_title">Өртсөн тухай мэдэгдлийг унтраалттай хэвээр байлгах уу?</string>
   <string name="onboarding_confirm_later_detail">Өртсөн тухай мэдэгдэл асах хүртэл танд коронавируст халдвар (COVID-19)-т өртөж болзошгүй гэх мэдээг мэдэгдэхгүй</string>
   <string name="no_recent_exposure_subtitle">Саяхны өртсөн тухай мэдээ алга</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">Төлөв</string>
   <string name="exposure_details_status_exposure">Коронавируст халдвар (COVID-19)-т өртөж болзошгүй</string>
   <string name="exposure_details_date_exposed_subtitle">Өртсөн байж болзошгүй огноо</string>
-  <string name="exposure_details_expiring_subtitle">Өртсөн тайланг өртсөн огнооноос эхлэн 14 хоногийн турш хадгалдаг</string>
+  <string name="exposure_details_expiring_subtitle">Өртөлтийн тайланг өртсөн байж болзошгүй огнооноос эхлэн 14 хоногийн турш хадгалдаг</string>
   <string name="exposure_details_learn_more">Нэмэлт мэдээлэл авах</string>
   <string name="exposure_details_new_badge">Шинэ</string>
   <string name="share_test_result_title">Тухайн орон нутгаа хамгаалж, коронавируст халдвар (COVID-19)-ын шинжилгээний хариугаа хуваалцаарай</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">Өртсөн тухай мэдэгдэл</string>
   <string name="settings_app_analytics_subtitle">Аппын ашиглалт, гүйцэтгэлийг хуваалцах</string>
   <string name="settings_privacy_policy">Нууцлалын бодлого</string>
+  <string name="settings_help_and_support">Өртсөн тухай шуурхай мэдэгдлийн тухай</string>
   <string name="settings_legal_terms">Хуулийн нөхцөлүүд</string>
   <string name="settings_debug">Дебаг горим</string>
   <string name="settings_share">Коронавируст халдвар (COVID-19)-ын тархалтыг тогтоон барихад туслаарай. Энэ аппыг өөрийн орчин тойрон, орон нутгийнхантайгаа хуваалцаж, өртсөн байж болзошгүй тухай мэдэгдлийн тусламжтай өөрсдийгөө илүү сайн хамгаалахад нь туслаарай.</string>
@@ -134,4 +137,10 @@
   <string name="share_error">Шинжилгээний хариуг хуваалцах боломжгүй байна. Дараа дахин оролдоно уу.</string>
   <string name="generic_error_message">Алдаа гарлаа. Дахин оролдоно уу.</string>
   <string name="code_error_already_submitted">Кодыг туршилтын үр дүнг хуваалцахад аль хэдийн ашигласан</string>
+  <string name="settings_private_analytics_subtitle">Өртсөн тухай мэдэгдлийн задлан шинжлэлийг хуваалцах</string>
+  <string name="private_analytics_title">Эрүүл мэндийн байгууллагадаа Коронавируст халдвар (COVID-19)-ын тархалтыг ойлгоход туслаарай</string>
+  <string name="private_analytics_subtitle">Өртсөн тухай мэдэгдлийн задлан шинжлэлийг эрүүл мэндийн байгууллагатайгаа хуваалцах</string>
+  <string name="private_analytics_footer">Танай бүс нутгийн мэдэгдлийн тоо зэрэг анализ нь эрүүл мэндийн байгууллагуудад COVID-19-ын тархалтын талаар ойлгоход тусалдаг. Тэдгээрийг Google унших боломжгүй бa танай эрүүл мэндийн байгууллагад зориулж хуримтлуулсан тул таны утастай холбохгүй. %1$s</string>
+  <string name="private_analytics_footer_onboarding">Эдгээр задлан шинжлэлийг Google унших боломжгүй бөгөөд таны эрүүл мэндийн байгууллагад зориулж хуримтлуулсан тул таны утсанд холбох боломжгүй. %1$s</string>
+  <string name="private_analytics_footer_learn_more">Нэмэлт мэдээлэл авах</string>
 </resources>

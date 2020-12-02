@@ -16,6 +16,8 @@
   <string name="btn_save">Guardar</string>
   <string name="btn_discard">Descartar</string>
   <string name="btn_verify">Verificar</string>
+  <string name="btn_dont_share">No compartir</string>
+  <string name="btn_share">Compartir</string>
   <string name="learn_more">Más información</string>
   <string name="home_tab_exposures_text">Exposición</string>
   <string name="home_tab_notify_text">Notificar a otros</string>
@@ -30,8 +32,8 @@
     \n\nTu teléfono utiliza el Bluetooth para recoger y compartir ID aleatorios con otros teléfonos que estén cerca de forma segura.
     \n\nSe comparten con la aplicación la fecha, la duración y la intensidad de la señal asociadas a las exposiciones.</string>
   <string name="onboarding_metrics_title">Ayuda a mejorar esta aplicación</string>
-  <string name="onboarding_metrics_subtitle">Comparte con Google datos de rendimiento y de uso de la app</string>
-  <string name="onboarding_metrics_detail">Para ayudar a mantener y mejorar la aplicación, se comparten con Google algunos datos desidentificados sobre su uso y su rendimiento. Estos datos no sirven para identificarte.</string>
+  <string name="onboarding_metrics_subtitle">Comparte con Google datos de rendimiento y de uso de la aplicación</string>
+  <string name="onboarding_metrics_description">Para ayudar a mantener y mejorar esta aplicación, se comparten con Google algunos datos desidentificados sobre su uso y su rendimiento. Estos datos no te identifican. %1$s</string>
   <string name="onboarding_confirm_later_title">¿Mantener desactivadas las notificaciones de exposición?</string>
   <string name="onboarding_confirm_later_detail">No se te avisará de posibles exposiciones al COVID‑19 hasta que se activen estas notificaciones.</string>
   <string name="no_recent_exposure_subtitle">No hay exposiciones recientes</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">Estado</string>
   <string name="exposure_details_status_exposure">Posible exposición al COVID‑19</string>
   <string name="exposure_details_date_exposed_subtitle">Fecha de posible exposición</string>
-  <string name="exposure_details_expiring_subtitle">La información sobre la exposición se guarda durante 14 días a partir de la fecha de la exposición</string>
+  <string name="exposure_details_expiring_subtitle">La información sobre las exposiciones se guarda durante 14 días a partir de la fecha de la posible exposición</string>
   <string name="exposure_details_learn_more">Más información</string>
   <string name="exposure_details_new_badge">Nuevo</string>
   <string name="share_test_result_title">Protege a los demás compartiendo el resultado de tu prueba de COVID‑19</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">Notificaciones de exposición</string>
   <string name="settings_app_analytics_subtitle">Enviar datos de rendimiento y uso de la app</string>
   <string name="settings_privacy_policy">Política de privacidad</string>
+  <string name="settings_help_and_support">Notificaciones de exposición rápidas</string>
   <string name="settings_legal_terms">Términos legales</string>
   <string name="settings_debug">Modo de depuración</string>
   <string name="settings_share">Ayuda a contener la propagación del COVID‑19. Comparte esta aplicación con tu comunidad para que pueda protegerse mejor con notificaciones de posible exposición.</string>
@@ -115,7 +118,7 @@
   <string name="exposure_turn_off_detail">No se te avisará si te has expuesto al COVID‑19</string>
   <string name="app_analytics_title">Ayuda a mejorar esta aplicación</string>
   <string name="app_analytics_toggle">Compartir datos de rendimiento y uso con Google</string>
-  <string name="app_analytics_detail">Para ayudar a mantener y mejorar la aplicación, se comparten con Google algunos datos desidentificados sobre su uso y su rendimiento. Estos datos no sirven para identificarte.</string>
+  <string name="app_analytics_detail">Para ayudar a mantener y mejorar esta aplicación, se comparten con Google algunos datos desidentificados sobre su uso y su rendimiento. Estos datos no te identifican.</string>
   <string name="agency_message_link">Más información en\n%1$s</string>
   <string name="exposure_notifications_are_inactive">Las notificaciones de exposición no están activas</string>
   <string name="exposure_notifications_currently_inactive">Las notificaciones de exposición no están activas</string>
@@ -134,4 +137,10 @@
   <string name="share_error">No se ha podido compartir el resultado de la prueba. Inténtalo de nuevo más tarde.</string>
   <string name="generic_error_message">Se ha producido un error. Inténtalo de nuevo.</string>
   <string name="code_error_already_submitted">Este código ya se ha usado para compartir el resultado de una prueba</string>
+  <string name="settings_private_analytics_subtitle">Compartir analíticas de notificaciones de exposición</string>
+  <string name="private_analytics_title">Ayuda a las autoridades de salud pública de tu región a saber cómo se propaga el COVID‑19</string>
+  <string name="private_analytics_subtitle">Comparte analíticas de las notificaciones de exposición con las autoridades de salud pública de tu región</string>
+  <string name="private_analytics_footer">Con estas analíticas, las autoridades de salud pública de tu región pueden saber cómo se propaga el COVID-19. Google no puede leerlas. Los datos se agregan para que no puedan vincularse con tu teléfono. %1$s</string>
+  <string name="private_analytics_footer_onboarding">Google no puede leer estas analíticas, que se agregan antes de enviarlas a las autoridades de salud pública de tu región para que no puedan vincularse con tu teléfono. %1$s</string>
+  <string name="private_analytics_footer_learn_more">Más información</string>
 </resources>

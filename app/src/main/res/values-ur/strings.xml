@@ -16,6 +16,8 @@
   <string name="btn_save">محفوظ کریں</string>
   <string name="btn_discard">مسترد کریں</string>
   <string name="btn_verify">توثیق کریں</string>
+  <string name="btn_dont_share">اشتراک نہ کریں</string>
+  <string name="btn_share">اشتراک کریں</string>
   <string name="learn_more">مزید جانیں</string>
   <string name="home_tab_exposures_text">ایکسپوژر</string>
   <string name="home_tab_notify_text">دوسروں کو اطلاع دیں</string>
@@ -31,7 +33,7 @@
     \n\nایپ کے ساتھ ایکسپوژر سے وابستہ تاریخ، مدت اور سگنل کی قوت کا اشتراک کیا جائے گا۔</string>
   <string name="onboarding_metrics_title">اس ایپ کو بہتر بنانے میں مدد کریں</string>
   <string name="onboarding_metrics_subtitle">Google کے ساتھ ایپ کے استعمال اور کارکردگی کا اشتراک کریں</string>
-  <string name="onboarding_metrics_detail">ایپ کو برقرار رکھنے اور اسے بہتر بنانے میں مدد کیلئے، Google کے ساتھ ایپ کی کارکردگی اور استعمال سے متعلق کچھ محدود غیر شناخت کردہ ڈیٹا کا اشتراک کیا جاتا ہے۔ یہ ڈیٹا آپ کی شناخت نہیں کرتا ہے۔</string>
+  <string name="onboarding_metrics_description">ایپ کو برقرار رکھنے اور اسے بہتر بنانے میں مدد کیلئے، Google کے ساتھ ایپ کی کارکردگی اور استعمال سے متعلق کچھ محدود غیر شناخت کردہ ڈیٹا کا اشتراک کیا جاتا ہے۔ یہ ڈیٹا آپ کی شناخت نہیں کرتا ہے۔ %1$s</string>
   <string name="onboarding_confirm_later_title">ایکسپوژر نوٹیفیکیشنز آف رکھیں؟</string>
   <string name="onboarding_confirm_later_detail">ایکسپوژر نوٹیفیکیشنز آن ہونے تک، آپ کو COVID-19 کے ممکنہ ایکسپوژر سے مطلع نہیں کیا جائے گا</string>
   <string name="no_recent_exposure_subtitle">کوئی حالیہ ایکسپوژر نہیں</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">اسٹیٹس</string>
   <string name="exposure_details_status_exposure">ممکنہ COVID-19 ایکسپوژر</string>
   <string name="exposure_details_date_exposed_subtitle">ایکسپوژر کی ممکنہ تاریخ</string>
-  <string name="exposure_details_expiring_subtitle">ایکسپوژر رپورٹس کو ایکسپوژر کی تاریخ سے 14 دنوں کیلئے اسٹور کیا جاتا ہے</string>
+  <string name="exposure_details_expiring_subtitle">ایکسپوژر رپورٹس کو ایکسپوژر کی ممکنہ تاریخ سے 14 دنوں کیلئے اسٹور کیا جاتا ہے</string>
   <string name="exposure_details_learn_more">مزید جانیں</string>
   <string name="exposure_details_new_badge">نیا</string>
   <string name="share_test_result_title">اپنی کمیونٹی کو محفوظ رکھیں، اپنے COVID-19 ٹیسٹ کے نتیجے کا اشتراک کریں</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">ایکسپوژر نوٹیفیکیشنز</string>
   <string name="settings_app_analytics_subtitle">ایپ کے استعمال اور کارکردگی کا اشتراک</string>
   <string name="settings_privacy_policy">رازداری کی پالیسی</string>
+  <string name="settings_help_and_support">ایکسپوژر نوٹیفیکیشن ایکسپریس کے بارے میں</string>
   <string name="settings_legal_terms">قانونی شرائط</string>
   <string name="settings_debug">ڈیبگ وضع</string>
   <string name="settings_share">COVID-19 کے پھیلاؤ پر قابو پانے میں مدد کریں۔ اس ایپ کا اپنی کمیونٹی کے ساتھ اشتراک کریں اور ممکنہ ایکسپوژر سے متعلق نوٹیفیکیشنز کے ساتھ انہیں خود کی بہتر طریقے سے حفاظت کرنے میں مدد کریں۔</string>
@@ -134,4 +137,10 @@
   <string name="share_error">ٹیسٹ کے نتیجے کا اشتراک کرنے سے قاصر ہے۔ بعد میں دوبارہ کوشش کریں۔</string>
   <string name="generic_error_message">کچھ غلط ہو گیا۔ دوبارہ کوشش کریں۔</string>
   <string name="code_error_already_submitted">کوڈ پہلے ہی ٹیسٹ کے نتائج کو اشتراک کرنے کے لیے استعمال کیا جا چکا ہے</string>
+  <string name="settings_private_analytics_subtitle">ایکسپوژر نوٹیفیکیشنز اینالیٹکس کا اشتراک</string>
+  <string name="private_analytics_title">COVID-19 کے پھیلاؤ کو سمجھنے میں اپنی ہیلتھ اتھارٹی کی مدد کریں</string>
+  <string name="private_analytics_subtitle">اپنی ہیلتھ اتھارٹی کے ساتھ ایکسپوژر نوٹیفیکیشنز کے اینالیٹکس کا اشتراک کریں</string>
+  <string name="private_analytics_footer">آپ کے علاقے میں نوٹیفیکیشنز کی تعداد جیسے اینالیٹکس سے ہیلتھ اتھارٹیز کو یہ سمجھنے میں مدد ملتی ہے کہ COVID-19 کیسے پھیلتا ہے۔ انہیں Google نہیں پڑھ سکتا ہے اور انہیں آپ کی ہیلتھ اتھارٹی کے لیے جمع کیا جاتا ہے تاکہ وہ آپ کے فون سے لنک نہ ہو سکیں۔ %1$s</string>
+  <string name="private_analytics_footer_onboarding">ان اینالیٹکس کو Google نہیں پڑھ سکتا ہے اور انہیں آپ کی ہیلتھ اتھارٹی کے لیے جمع کیا جاتا ہے تاکہ وہ آپ کے فون سے لنک نہ ہو سکیں۔ %1$s</string>
+  <string name="private_analytics_footer_learn_more">مزید جانیں</string>
 </resources>

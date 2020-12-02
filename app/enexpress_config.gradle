@@ -21,7 +21,7 @@
 import groovy.json.JsonSlurper
 
 
-def getConfigPrefix(file) {
+static def getConfigPrefix(file) {
   return file.getName().split("\\.")[0]
 }
 

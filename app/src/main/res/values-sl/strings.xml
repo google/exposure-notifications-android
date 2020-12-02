@@ -16,6 +16,8 @@
   <string name="btn_save">Shrani</string>
   <string name="btn_discard">Zavrzi</string>
   <string name="btn_verify">Potrdi</string>
+  <string name="btn_dont_share">Ne deli</string>
+  <string name="btn_share">Deli</string>
   <string name="learn_more">Več o tem</string>
   <string name="home_tab_exposures_text">Izpostavljenost</string>
   <string name="home_tab_notify_text">Obvestite druge</string>
@@ -31,7 +33,7 @@
     \n\nZ aplikacijo bodo deljeni podatki o datumu, trajanju in moči signala, ko je do posamezne izpostavljenosti prišlo.</string>
   <string name="onboarding_metrics_title">Pomagajte izboljšati to aplikacijo</string>
   <string name="onboarding_metrics_subtitle">Delite podatke o uporabi in delovanju aplikacije z Googlom</string>
-  <string name="onboarding_metrics_detail">Za namene vzdrževanja in izboljševanja aplikacije je Googlu posredovan omejen nabor anonimnih podatkov o uporabi in delovanju aplikacije. S temi podatki ni mogoče ugotoviti vaše identitete.</string>
+  <string name="onboarding_metrics_description">Za namene vzdrževanja in izboljševanja aplikacije je Googlu posredovan omejen nabor anonimnih podatkov o uporabi in delovanju aplikacije. S temi podatki ni mogoče ugotoviti vaše identitete. %1$s</string>
   <string name="onboarding_confirm_later_title">Naj obveščanje o izpostavljenosti ostane izklopljeno?</string>
   <string name="onboarding_confirm_later_detail">Za prejemanje obvestil o morebitni izpostavljenosti bolezni COVID-19 mora biti obveščanje o izpostavljenosti vklopljeno</string>
   <string name="no_recent_exposure_subtitle">Ni nedavnih izpostavljenosti</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">Status</string>
   <string name="exposure_details_status_exposure">Morebitna izpostavljenost bolezni COVID-19</string>
   <string name="exposure_details_date_exposed_subtitle">Datum morebitne izpostavljenosti</string>
-  <string name="exposure_details_expiring_subtitle">Poročila o izpostavljenosti se hranijo 14 dni od datuma izpostavljenosti</string>
+  <string name="exposure_details_expiring_subtitle">Poročila o izpostavljenosti se hranijo 14 dni od datuma morebitne izpostavljenosti</string>
   <string name="exposure_details_learn_more">Več o tem</string>
   <string name="exposure_details_new_badge">Novo</string>
   <string name="share_test_result_title">Delite z drugimi svoj rezultat na testu za COVID-19, da zaščitite svojo skupnost</string>
@@ -95,8 +97,9 @@
   <string name="delete_test_result_confirmed">Rezultat testa je izbrisan</string>
   <string name="share_error_no_internet">Rezultatov testiranja ni mogoče deliti brez povezave. Preverite internetno povezavo in poskusite znova.</string>
   <string name="settings_exposure_notifications_subtitle">Obveščanje o izpostavljenosti</string>
-  <string name="settings_app_analytics_subtitle">Deljenje uporabe in delovanja aplikacije</string>
+  <string name="settings_app_analytics_subtitle">Posredovanje podatkov o uporabi in učinkovitosti aplikacije</string>
   <string name="settings_privacy_policy">Pravilnik o zasebnosti</string>
+  <string name="settings_help_and_support">O ekspresnem obveščanju o izpostavljenosti</string>
   <string name="settings_legal_terms">Pravna določila</string>
   <string name="settings_debug">Način za odpravljanje napak</string>
   <string name="settings_share">Pomagajte omejiti širjenje bolezni COVID-19. Delite to aplikacijo z ljudmi v svoji skupnosti, da bodo lahko z obveščanjem o morebitni izpostavljenosti bolje poskrbeli za svojo varnost.</string>
@@ -134,4 +137,10 @@
   <string name="share_error">Rezultata testiranja ni mogoče deliti. Poskusite znova pozneje.</string>
   <string name="generic_error_message">Prišlo je do napake. Poskusite znova.</string>
   <string name="code_error_already_submitted">Koda je že bila uporabljena za deljenje rezultata testiranja</string>
+  <string name="settings_private_analytics_subtitle">Deljenje analitike obveščanja o izpostavljenosti</string>
+  <string name="private_analytics_title">Pomagajte organu za javno zdravje razumeti razširjenost bolezni COVID-19</string>
+  <string name="private_analytics_subtitle">Delite analitiko obveščanja o izpostavljenosti z organom za javno zdravje</string>
+  <string name="private_analytics_footer">Ta analitika, npr. število obvestil v vaši regiji, organom za javno zdravje pomaga razumeti širjenje COVID-19. Google ne more brati analitike, poleg tega pa je organu za javno zdravje prikazana v združeni obliki in je ni mogoče povezati z vašim telefonom. %1$s</string>
+  <string name="private_analytics_footer_onboarding">Google ne more brati te analitike, poleg tega pa je organu za javno zdravje prikazana v združeni obliki in je ni mogoče povezati z vašim telefonom. %1$s</string>
+  <string name="private_analytics_footer_learn_more">Več o tem</string>
 </resources>

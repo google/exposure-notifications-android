@@ -118,6 +118,7 @@
             android:textAppearance="?attr/textAppearanceBody1"
             android:layout_marginBottom="@dimen/padding_normal"
             android:text="@string/notifications_enabled_info"
+            android:textColor="?attr/colorControlNormal"
             android:gravity="center"/>
 
         </LinearLayout>
@@ -288,6 +289,7 @@
           </LinearLayout>
 
           <include layout="@layout/horizontal_divider"/>
+
           <View
             android:layout_width="wrap_content"
             android:layout_height="@dimen/padding_normal"/>
@@ -312,6 +314,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?attr/textAppearanceBody2"
             android:paddingBottom="@dimen/padding_normal"
+            android:autoLink="web"
             android:text="@string/exposure_details_text_1" />
 
           <include layout="@layout/horizontal_divider"/>

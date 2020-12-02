@@ -16,6 +16,8 @@
   <string name="btn_save">සුරකින්න</string>
   <string name="btn_discard">ඉවත ලන්න</string>
   <string name="btn_verify">සත්‍යාපනය කරන්න</string>
+  <string name="btn_dont_share">බෙදා නොගන්න</string>
+  <string name="btn_share">බෙදා ගන්න</string>
   <string name="learn_more">තව දැන ගන්න</string>
   <string name="home_tab_exposures_text">නිරාවරණය</string>
   <string name="home_tab_notify_text">අන් අයට දැනුම් දෙන්න</string>
@@ -31,7 +33,7 @@
     \n\nනිරාවරණයක් සමග සම්බන්ධිත දිනය, කාල සීමාව සහ සංඥා ප්‍රබලතාව යෙදුම සමග බෙදා ගනු ඇත.</string>
   <string name="onboarding_metrics_title">මෙම යෙදුම වඩා යහපත් කිරීමට උදව් කරන්න</string>
   <string name="onboarding_metrics_subtitle">යෙදුම් භාවිතය සහ කාර්යසාධන දත්ත Google හා බෙදාගන්න</string>
-  <string name="onboarding_metrics_detail">යෙදුම නඩත්තු කිරීමට සහ වැඩිදියුණු කිරීමට උදව් කිරීම සඳහා, යෙදුම් ක්‍රියාකාරිත්වය සහ භාවිතය පිළිබඳ සීමිත හඳුනා නොගත් දත්ත Google සමඟ බෙදා ගනී. මෙම දත්ත ඔබව හඳුනා නොගනී.</string>
+  <string name="onboarding_metrics_description">යෙදුම නඩත්තු කිරීමට සහ වැඩිදියුණු කිරීමට උදව් කිරීම සඳහා, යෙදුම් ක්‍රියාකාරිත්වය සහ භාවිතය පිළිබඳ සීමිත හඳුනා නොගත් දත්ත Google සමඟ බෙදා ගනී. මෙම දත්ත ඔබව හඳුනා නොගනී. %1$s</string>
   <string name="onboarding_confirm_later_title">නිරාවරණ දැනුම්දීම් ක්‍රියාවිරහිතව තබා ගන්නද?</string>
   <string name="onboarding_confirm_later_detail">නිරාවරණ දැනුම්දීම් ක්‍රියාත්මක කරන තුරු, COVID-19 වෙත විය හැකි නිරාවරණයන් ඔබට දන්වනු නොලැබේ</string>
   <string name="no_recent_exposure_subtitle">මෑත නිරාවරණයන් නැත</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">තත්ත්වය</string>
   <string name="exposure_details_status_exposure">විය හැකි COVID-19 නිරාවරණය</string>
   <string name="exposure_details_date_exposed_subtitle">විය හැකි නිරාවරණ දිනය</string>
-  <string name="exposure_details_expiring_subtitle">නිරාවරණ වාර්තා නිරාවරණය වූ දින සිට දින 14ක් ගබඩා කරයි</string>
+  <string name="exposure_details_expiring_subtitle">නිරාවරණ වාර්තා විය හැකි නිරාවරණ දිනයේ සිට දින 14ක් සඳහා ගබඩා කරයි</string>
   <string name="exposure_details_learn_more">තව දැන ගන්න</string>
   <string name="exposure_details_new_badge">නව</string>
   <string name="share_test_result_title">ඔබේ ප්‍රජාව ආරක්ෂා කරන්න, ඔබේ COVID-19 පරීක්ෂණ ප්‍රතිඵලය බෙදා ගන්න</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">නිරාවරණ දැනුම් දීම්</string>
   <string name="settings_app_analytics_subtitle">යෙදුම් භාවිතය සහ කාර්ය සාධන බෙදා ගැනීම</string>
   <string name="settings_privacy_policy">රහස්‍යතා ප්‍රතිපත්තිය</string>
+  <string name="settings_help_and_support">නිරාවරණ දැනුම්දීම් එක්ස්ප්‍රස් ගැන</string>
   <string name="settings_legal_terms">නෛතික නියම</string>
   <string name="settings_debug">නිදොසීමේ ප්‍රකාරය</string>
   <string name="settings_share">COVID-19 පැතිරීම පාලනය කිරීමට උදවු වන්න. මෙම යෙදුම ඔබගේ ප්‍රජාව සමඟ බෙදා ගෙන විය හැකි නිරාවරණ දැනුම් දීම් සමඟ වඩා හොඳින් ආරක්ෂා වීමට ඔවුන්ට උදව් කරන්න.</string>
@@ -134,4 +137,10 @@
   <string name="share_error">පරීක්ෂණ ප්‍රඵලය බෙදා ගැනීමට නොහැකිය. පසුව නැවත උත්සාහ කරන්න.</string>
   <string name="generic_error_message">යම් දෙයක් වැරදිණි. නැවත උත්සාහ කරන්න.</string>
   <string name="code_error_already_submitted">පරීක්ෂණ ප්‍රතිඵල බෙදා ගැනීමට කේතය දැනටමත් භාවිතා කර ඇත</string>
+  <string name="settings_private_analytics_subtitle">නිරාවරණ දැනුම්දීම් විශ්ලේෂණ බෙදා ගැනීම</string>
+  <string name="private_analytics_title">COVID-19 පැතිරීම අවබෝධ කර ගැනීමට ඔබගේ සෞඛ්‍ය අධිකාරියට උදව් කරන්න</string>
+  <string name="private_analytics_subtitle">ඔබගේ සෞඛ්‍ය අධිකාරිය සමග නිරාවරණ දැනුම්දීම් විශ්ලේෂණ බෙදා ගන්න</string>
+  <string name="private_analytics_footer">ඔබේ කලාපයේ දැනුම්දීම් ගණන වැනි මෙම විශ්ලේෂණ COVID-19 පැතිරීම වටහා ගැනීමට සෞඛ්‍ය අධිකාරියට උදව් කරයි. ඒවා Google හට කියවිය නොහැකි අතර ඔබේ සෞඛ්‍ය අධිකාරියට රැස් කර ඇති නිසා ඔබේ දුරකථනයට සබැඳි කළ නොහැක. %1$s</string>
+  <string name="private_analytics_footer_onboarding">මෙම විශ්ලේෂණ Google විසින් කියවිය නොහැකි අතර ඒවා ඔබගේ සෞඛ්‍ය අධිකාරිය සඳහා එකතු කර ඇති බැවින් ඒවා ඔබගේ දුරකථනයට සම්බන්ධ කළ නොහැක. %1$s</string>
+  <string name="private_analytics_footer_learn_more">තව දැන ගන්න</string>
 </resources>

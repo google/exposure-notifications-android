@@ -22,7 +22,6 @@ import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.fail;
 
 import android.net.Uri;
-import androidx.annotation.Nullable;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import com.google.android.apps.exposurenotification.common.ExecutorsModule;
 import com.google.android.apps.exposurenotification.common.Qualifiers.BackgroundExecutor;
@@ -33,7 +32,6 @@ import com.google.android.apps.exposurenotification.keyupload.ApiConstants.Verif
 import com.google.android.apps.exposurenotification.keyupload.Qualifiers.UploadUri;
 import com.google.android.apps.exposurenotification.keyupload.Qualifiers.VerificationCertUri;
 import com.google.android.apps.exposurenotification.keyupload.Qualifiers.VerificationCodeUri;
-import com.google.android.apps.exposurenotification.keyupload.UploadController.KeysSubmitFailureException;
 import com.google.android.apps.exposurenotification.keyupload.UploadController.UploadException;
 import com.google.android.apps.exposurenotification.keyupload.UploadController.VerificationFailureException;
 import com.google.android.apps.exposurenotification.keyupload.UploadController.VerificationServerFailureException;
@@ -50,7 +48,7 @@ import dagger.hilt.android.testing.BindValue;
 import dagger.hilt.android.testing.HiltAndroidTest;
 import dagger.hilt.android.testing.HiltTestApplication;
 import dagger.hilt.android.testing.UninstallModules;
-import edu.emory.mathcs.backport.java.util.Arrays;
+import java.util.Arrays;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ScheduledExecutorService;
@@ -144,9 +142,31 @@ public class DiagnosisAttestorTest {
   }
 
   @Test
-  public void codeRequest_shouldHavePadding() throws Exception {
+  public void code_coverTrafficRequest_toleratesGarbageResponse() {
     // GIVEN
     Upload input = sampleUpload("code", sampleKey(1)).toBuilder().setIsCoverTraffic(true).build();
+    fakeQueue().addResponse(CODE_URI.toString(), 200, "Response not parsable as JSON.");
+
+    // WHEN
+    // If nothing is thrown here, we're happy.
+    diagnosisAttestor.submitCode(input);
+  }
+
+  @Test
+  public void cert_coverTrafficRequest_toleratesGarbageResponse() {
+    // GIVEN
+    Upload input = sampleUpload("code", sampleKey(1)).toBuilder().setIsCoverTraffic(true).build();
+    fakeQueue().addResponse(CERT_URI.toString(), 200, "Response not parsable as JSON.");
+
+    // WHEN
+    // If nothing is thrown here, we're happy.
+    diagnosisAttestor.submitKeysForCert(input);
+  }
+
+  @Test
+  public void codeRequest_shouldHavePadding() throws Exception {
+    // GIVEN
+    Upload input = sampleUpload("code", sampleKey(1)).toBuilder().build();
     setupSuccessfulCodeRpc("verification-token");
 
     // WHEN
@@ -160,7 +180,7 @@ public class DiagnosisAttestorTest {
   @Test
   public void certRequest_shouldHavePadding() throws Exception {
     // GIVEN
-    Upload input = sampleUpload("code", sampleKey(1)).toBuilder().setIsCoverTraffic(true).build();
+    Upload input = sampleUpload("code", sampleKey(1)).toBuilder().build();
     setupSuccessfulCertRpc("certificate");
 
     // WHEN
@@ -266,8 +286,7 @@ public class DiagnosisAttestorTest {
   }
 
   @Test
-  public void codeStatus400_emptyErrorCode_throwsVerificationFailureException_withAppError()
-      throws Exception {
+  public void codeStatus400_emptyErrorCode_throwsVerificationFailureException_withAppError() {
     doCodeErrorResponseTest(
         400,
         "", // No error code in response.
@@ -286,8 +305,7 @@ public class DiagnosisAttestorTest {
   }
 
   @Test
-  public void codeStatus401_anyErrorCode_throwsVerificationFailureException_withAppError()
-      throws Exception {
+  public void codeStatus401_anyErrorCode_throwsVerificationFailureException_withAppError() {
     doCodeErrorResponseTest(
         401,
         "", // Error code in response ignored.
@@ -306,8 +324,7 @@ public class DiagnosisAttestorTest {
   }
 
   @Test
-  public void codeStatus404_anyErrorCode_throwsVerificationFailureException_withAppError()
-      throws Exception {
+  public void codeStatus404_anyErrorCode_throwsVerificationFailureException_withAppError() {
     doCodeErrorResponseTest(
         404,
         "", // Error code in response ignored.
@@ -326,8 +343,7 @@ public class DiagnosisAttestorTest {
   }
 
   @Test
-  public void codeStatus405_anyErrorCode_throwsVerificationFailureException_withAppError()
-      throws Exception {
+  public void codeStatus405_anyErrorCode_throwsVerificationFailureException_withAppError() {
     doCodeErrorResponseTest(
         405,
         "", // Error code in response ignored.
@@ -346,8 +362,7 @@ public class DiagnosisAttestorTest {
   }
 
   @Test
-  public void codeStatus429_anyErrorCode_throwsVerificationFailureException_withRateLimitedError()
-      throws Exception {
+  public void codeStatus429_anyErrorCode_throwsVerificationFailureException_withRateLimitedError() {
     doCodeErrorResponseTest(
         429,
         "", // Error code in response ignored.
@@ -386,8 +401,7 @@ public class DiagnosisAttestorTest {
   }
 
   @Test
-  public void codeStatus500_noErrorCode_throwsVerificationServerFailureException_withServerError()
-      throws Exception {
+  public void codeStatus500_noErrorCode_throwsVerificationServerFailureException_withServerError() {
     doCodeErrorResponseTest(
         500,
         "", // No error code in response.
@@ -447,7 +461,7 @@ public class DiagnosisAttestorTest {
 
   private void doCertErrorResponseTest(
       int httpStatus, String responseBody, Class<? extends UploadException> thrownException,
-      UploadError expectedErrorCode) throws Exception {
+      UploadError expectedErrorCode) {
     // GIVEN
     Upload anyInput = sampleUpload("code", sampleKey(1));
     fakeQueue().addResponse(CERT_URI.toString(), httpStatus, responseBody);

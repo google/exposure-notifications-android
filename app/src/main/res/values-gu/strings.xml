@@ -16,6 +16,8 @@
   <string name="btn_save">સાચવો</string>
   <string name="btn_discard">કાઢી નાખો</string>
   <string name="btn_verify">ચકાસો</string>
+  <string name="btn_dont_share">શેર કરશો નહીં</string>
+  <string name="btn_share">શેર કરો</string>
   <string name="learn_more">વધુ જાણો</string>
   <string name="home_tab_exposures_text">એક્સપોઝર</string>
   <string name="home_tab_notify_text">બધાને સૂચિત કરો</string>
@@ -31,7 +33,7 @@
     \n\nએકસ્પોઝર સાથે સંકળાયેલી તારીખ, અવધિ અને સંકેતની પ્રબળતા ઍપ સાથે શેર કરવામાં આવશે.</string>
   <string name="onboarding_metrics_title">આ ઍપને બહેતર બનાવવામાં સહાય કરો</string>
   <string name="onboarding_metrics_subtitle">Google સાથે ઍપના વપરાશ અને કાર્યપ્રદર્શનનો ડેટા શેર કરો</string>
-  <string name="onboarding_metrics_detail">આ ઍપની જાળવણી તેમજ બહેતર બનાવવામાં સહાય કરવા માટે, Google સાથે ઍપના કાર્યપ્રદર્શન અને વપરાશ વિશેનો મર્યાદિત પ્રમાણમાં અમુક છુપાવેલી ઓળખાણવાળો ડેટા શેર કરવામાં આવે છે. આ ડેટા તમારી ઓળખ છતી કરી શકશે નહીં.</string>
+  <string name="onboarding_metrics_description">આ ઍપની જાળવણી તેમજ બહેતર બનાવવામાં સહાય કરવા માટે, Google સાથે ઍપના કાર્યપ્રદર્શન અને વપરાશ વિશેનો મર્યાદિત પ્રમાણમાં અમુક છુપાવેલી ઓળખાણવાળો ડેટા શેર કરવામાં આવે છે. આ ડેટા તમારી ઓળખ છતી કરી શકશે નહીં. %1$s</string>
   <string name="onboarding_confirm_later_title">શું એક્સપોઝર નોટિફિકેશનની સુવિધા બંધ રાખીએ?</string>
   <string name="onboarding_confirm_later_detail">એક્સપોઝર નોટિફિકેશન ચાલુ કર્યા વિના COVID-19ના સંભવિત એક્સપોઝરની તમને જાણ કરવામાં આવશે નહીં</string>
   <string name="no_recent_exposure_subtitle">તાજેતરના કોઈ એક્સપોઝર નથી</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">સ્ટેટસ</string>
   <string name="exposure_details_status_exposure">સંભવિત COVID-19 એક્સપોઝર</string>
   <string name="exposure_details_date_exposed_subtitle">સંભવિત એક્સપોઝરની તારીખ</string>
-  <string name="exposure_details_expiring_subtitle">એક્સપોઝરની તારીખથી 14 દિવસ માટે એક્સપોઝરના રિપોર્ટ સ્ટોર કરવામાં આવે છે</string>
+  <string name="exposure_details_expiring_subtitle">સંભવિત એક્સપોઝરની તારીખથી 14 દિવસ માટે એક્સપોઝરના રિપોર્ટ સ્ટોર કરવામાં આવે છે</string>
   <string name="exposure_details_learn_more">વધુ જાણો</string>
   <string name="exposure_details_new_badge">નવું</string>
   <string name="share_test_result_title">તમારા સમુદાયનું રક્ષણ કરો, COVID-19 પરીક્ષણનું તમારું પરિણામ શેર કરો</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">એક્સપોઝર નોટિફિકેશન</string>
   <string name="settings_app_analytics_subtitle">ઍપ વપરાશ અને કાર્યપ્રદર્શન શેરિંગ</string>
   <string name="settings_privacy_policy">પ્રાઇવસી પૉલિસી</string>
+  <string name="settings_help_and_support">એક્સપોઝર નોટિફિકેશન એક્સપ્રેસ વિશે</string>
   <string name="settings_legal_terms">કાનૂની શરતો</string>
   <string name="settings_debug">ડિબગ મોડ</string>
   <string name="settings_share">COVID-19નો ફેલાવો રોકવામાં સહાય કરો. તમારા સમુદાય સાથે આ શીટ શેર કરો અને સંભવિત એક્સપોઝર નોટિફિકેશન વડે તેમની પોતાની બહેતર રીતે સુરક્ષા કરવામાં સહાય કરો.</string>
@@ -134,4 +137,10 @@
   <string name="share_error">પરિક્ષણનું પરિણામ શેર કરી શકાતું નથી. થોડા સમય પછી ફરી પ્રયાસ કરો.</string>
   <string name="generic_error_message">કંઈક ખોટું થયું. ફરી પ્રયાસ કરો.</string>
   <string name="code_error_already_submitted">પરીક્ષણના પરિણામ શેર કરવા માટે કોડનો પહેલેથી જ ઉપયોગ કરવામાં આવ્યો છે</string>
+  <string name="settings_private_analytics_subtitle">એક્સપોઝર નોટિફિકેશનના વિશ્લેષણનું શેરિંગ</string>
+  <string name="private_analytics_title">તમારા આરોગ્ય અધિકારીને COVID-19ના ફેલાવાને સમજવામાં સહાય કરો</string>
+  <string name="private_analytics_subtitle">એક્સપોઝર નોટિફિકેશનના વિશ્લેષણને તમારા આરોગ્ય અધિકારી સાથે શેર કરો</string>
+  <string name="private_analytics_footer">તમારા પ્રદેશમાં નોટિફિકેશનની સંખ્યા જેવા વિશ્લેષણો COVID-19 ફેલાવાના કારણો સમજવામાં આરોગ્ય અધિકારીને સહાય કરે છે. Google તેને વાંચી શકતું નથી અને તેને તમારા આરોગ્ય અધિકારી માટે એકત્ર કરાય છે જેથી તેને તમારા ફોનથી લિંક ન કરાય. %1$s</string>
+  <string name="private_analytics_footer_onboarding">Google આ વિશ્લેષણનો વાંચી શકતું નથી અને તેને તમારા આરોગ્ય અધિકારી માટે એકત્ર કરાય છે જેથી તેને તમારા ફોનથી લિંક ન કરાય. %1$s</string>
+  <string name="private_analytics_footer_learn_more">વધુ જાણો</string>
 </resources>

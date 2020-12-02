@@ -80,13 +80,15 @@ public class ShareDiagnosisTravelStatusFragment extends Fragment {
                 changeRadioButtonStatusToChecked(mapTravelStatusToRadioButtonId(travelStatus));
                 // Next button should be enabled if travel status is selected
                 nextButton.setOnClickListener(v -> viewModel
-                    .nextStep(ShareDiagnosisFlowHelper.getNextStep(Step.TRAVEL_STATUS, diagnosis)));
+                    .nextStep(ShareDiagnosisFlowHelper.getNextStep(
+                        Step.TRAVEL_STATUS, diagnosis, getContext())));
                 nextButton.setEnabled(true);
               }
               previousButton.setOnClickListener((v) -> {
                 KeyboardHelper.maybeHideKeyboard(requireContext(), view);
                 viewModel.previousStep(
-                    ShareDiagnosisFlowHelper.getPreviousStep(Step.TRAVEL_STATUS, diagnosis));
+                    ShareDiagnosisFlowHelper.getPreviousStep(
+                        Step.TRAVEL_STATUS, diagnosis, getContext()));
               });
             });
 

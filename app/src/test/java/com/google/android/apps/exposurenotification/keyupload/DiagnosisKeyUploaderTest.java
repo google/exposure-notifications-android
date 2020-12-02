@@ -51,7 +51,7 @@ import dagger.hilt.android.testing.BindValue;
 import dagger.hilt.android.testing.HiltAndroidTest;
 import dagger.hilt.android.testing.HiltTestApplication;
 import dagger.hilt.android.testing.UninstallModules;
-import edu.emory.mathcs.backport.java.util.Arrays;
+import java.util.Arrays;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import javax.inject.Inject;
@@ -238,6 +238,17 @@ public final class DiagnosisKeyUploaderTest {
     // THEN
     Map<String, String> headers = fakeQueue().getLastRpcHeaders();
     assertThat(headers).containsEntry("X-Chaff", "1");
+  }
+
+  @Test
+  public void coverTrafficRequest_shouldTolerateGarbageResponse() throws Exception {
+    // GIVEN
+    Upload input = sampleUpload("code", sampleKey(1)).toBuilder().setIsCoverTraffic(true).build();
+    fakeQueue().addResponse(UPLOAD_URI.toString(), 200, "Response not parsable as JSON.");
+
+    // WHEN
+    // If nothing is thrown here we're happy.
+    keyUploader.upload(input).get();
   }
 
   @Test

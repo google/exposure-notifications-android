@@ -22,6 +22,12 @@
   <!-- App analytics page learn more hyperlink. [CHAR_LIMIT=NONE] -->
   <string name="app_analytics_link" translatable="false">https://support.google.com/android?p=enx_app_usage</string>
 
+  <!-- Help and support on settings page hyperlink. [CHAR_LIMIT=NONE] -->
+  <string name="help_and_support_link" translatable="false">https://support.google.com/android?p=enx_overview</string>
+
+  <!-- Private analytics learn more hyperlink. [CHAR_LIMIT=NONE] -->
+  <string name="private_analytics_link" translatable="false">https://support.google.com/android?p=en_analytics</string>
+
   <!-- Updated description for jsr250-api license. [CHAR_LIMIT=NONE] -->
   <string name="jsr_cddl_description" translatable="false">
     JSR-250 Reference Implementation by Glassfish.

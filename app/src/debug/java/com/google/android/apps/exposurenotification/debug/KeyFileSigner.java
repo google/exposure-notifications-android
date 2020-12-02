@@ -63,19 +63,17 @@ public class KeyFileSigner {
 
   private static KeyFileSigner INSTANCE;
 
-  private final Context context;
   private KeyPair keyPair;
 
   /** Private constructor with static creator method, for singleton operation. */
-  private KeyFileSigner(Context context) {
-    this.context = context;
+  private KeyFileSigner() {
     init();
   }
 
   /** Creator method used with private constructor, for singleton operation. */
-  public static KeyFileSigner get(Context context) {
+  public static KeyFileSigner get() {
     if (INSTANCE == null) {
-      INSTANCE = new KeyFileSigner(context);
+      INSTANCE = new KeyFileSigner();
     }
     return INSTANCE;
   }

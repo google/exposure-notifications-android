@@ -16,6 +16,8 @@
   <string name="btn_save">Londoloza</string>
   <string name="btn_discard">Lahla</string>
   <string name="btn_verify">Qinisekisa</string>
+  <string name="btn_dont_share">Ungabelani</string>
+  <string name="btn_share">Yabelana</string>
   <string name="learn_more">Funda kabanzi</string>
   <string name="home_tab_exposures_text">Ukuboniswa</string>
   <string name="home_tab_notify_text">Yazisa abanye</string>
@@ -31,7 +33,7 @@
     \n\nIdethi, ubude besikhathi, namandla esignali ahlobene nokudaluleka kuzokwabiwa nohlelo lokusebenza.</string>
   <string name="onboarding_metrics_title">Siza ukwenza lolu hlelo lokusebenza lube ngcono</string>
   <string name="onboarding_metrics_subtitle">Yabelana ngedatha yokusetshenziswa kohlelo neyokusebenza ne-Google</string>
-  <string name="onboarding_metrics_detail">Ukusiza ukugcina nokuthuthukisa uhlelo lokusebenza, enye idatha ehlonziwe enomkhawulo emayelana nokusebenza kohlelo lokusebenza nokusetshenziswa yabiwa ne-Google. Le datha ayikuhlonzi.</string>
+  <string name="onboarding_metrics_description">Ukusiza ukugcina nokuthuthukisa uhlelo lokusebenza, enye idatha ehlonziwe enomkhawulo emayelana nokusebenza kohlelo lokusebenza nokusetshenziswa yabiwa ne-Google. Le datha ayikuhlonzi. %1$s</string>
   <string name="onboarding_confirm_later_title">Gcina Isaziso Sokuhlangabezana sivaliwe?</string>
   <string name="onboarding_confirm_later_detail">Kuze kube yilapho Izaziso Zokuhlangabezana zivuliwe, ngeke wazise ngokuhlangabezana okungase kube khona kwe-COVID-19</string>
   <string name="no_recent_exposure_subtitle">Akukho ukuhlangabezana kwakamuva</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">Isimo</string>
   <string name="exposure_details_status_exposure">Ukuhlangabezana ne-COVID-19 okungaba khona</string>
   <string name="exposure_details_date_exposed_subtitle">Idethi yokuhlangabezana okungase kube khona</string>
-  <string name="exposure_details_expiring_subtitle">Imibiko yokuhlangabezana igcinwa izinsuku ezi-14 kusuka kudethi yokuhlangabezana</string>
+  <string name="exposure_details_expiring_subtitle">Imibiko yokuhlangabezana igcinwa izinsuku eziyi-14 kusuka kudethi yokuhlangabezana okungase kube khona.</string>
   <string name="exposure_details_learn_more">Funda kabanzi</string>
   <string name="exposure_details_new_badge">Kusha</string>
   <string name="share_test_result_title">Vikela umphakathi wakho, yabelana ngomphumela wakho wokuhlolwa we-COVID-19</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">Izaziso zokuhlangabezana</string>
   <string name="settings_app_analytics_subtitle">Ukusetshenziswa kohlelo lokusebenza nokwabelana kokusebenza</string>
   <string name="settings_privacy_policy">Inqubomgomo yobumfihlo</string>
+  <string name="settings_help_and_support">Mayelana Nesaziso Sokuhlangabezana se-Express</string>
   <string name="settings_legal_terms">Imigomo yomthetho</string>
   <string name="settings_debug">Imodi yokususa iphutha</string>
   <string name="settings_share">Siza ukuvimba ukubhebhetheka kwe-COVID-19. Yabelana ngalolu hlelo lokusebenza nomphakathi wakho futhi ubasize bazivikele kangcono ngezaziso zokuhlangabezana okungase kube khona.</string>
@@ -134,4 +137,10 @@
   <string name="share_error">Ayikwazi ukwabelana ngomphumela wokuhlola. Zama futhi emuva kwesikhathi.</string>
   <string name="generic_error_message">Kunento engahambanga kahle. Zama futhi.</string>
   <string name="code_error_already_submitted">Ikhodi isisetshenzisiwe kakade ukwabelana nomphumela wokuhlolwa</string>
+  <string name="settings_private_analytics_subtitle">Ukwabelana ngeezibalo Zokuhlangabezana</string>
+  <string name="private_analytics_title">Siza iziphathimandla zezempilo zangakini ziqonde ukubhebhetheka kwe-COVID-19</string>
+  <string name="private_analytics_subtitle">Yabelana Ngezibalo Zezaziso Zokuhlangabezana neziphathimandla zezempilo zangakini</string>
+  <string name="private_analytics_footer">Lezi zibalo, ezifana nenani lezaziso esifundeni sakini, zisiza iziphathimandla zezempilo ziqonde indlela i-COVID-19 ebhebhetheka ngayo. Azikwazi ukufundwa i-Google futhi zihlanganiswa iziphathimandla zezempilo zangakini ngakho azikwazi ukuxhunyaniswa nefoni yakho. %1$s</string>
+  <string name="private_analytics_footer_onboarding">Lezi zibalo azikwazi ukufundwa i-Google futhi zihlanganiswa iziphathimandla zezempilo zangakini ngakho azikwazi ukuxhunyaniswa nefoni yakho. %1$s</string>
+  <string name="private_analytics_footer_learn_more">Funda kabanzi</string>
 </resources>

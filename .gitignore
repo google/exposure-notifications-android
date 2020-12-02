@@ -41,6 +41,7 @@ captures/
 *.iml
 .idea/assetWizardSettings.xml
 .idea/caches
+.idea/compiler.xml
 .idea/dictionaries
 .idea/google-java-format.xml
 .idea/gradle.xml
@@ -75,3 +76,14 @@ gint/reports/
 # Ignore keys and extra configs
 app/configs/*.extra
 app/configs/*.p12
+
+# Ignore certificates in flavour directories
+app/src/*/res/raw/*.pem
+!app/src/main/res/raw/*.pem
+
+# Ignore native build output
+prioclient/.cxx
+
+# Ignore pre-built prioclient AAR
+app/libs/prioclient*.aar
+

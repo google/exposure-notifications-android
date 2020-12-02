@@ -20,12 +20,14 @@ package com.google.android.apps.exposurenotification;
 import android.app.Application;
 import android.util.Log;
 import androidx.annotation.Keep;
+import androidx.annotation.Nullable;
 import androidx.hilt.work.HiltWorkerFactory;
 import androidx.work.Configuration;
 import androidx.work.Configuration.Builder;
 import androidx.work.WorkManager;
 import com.google.android.apps.exposurenotification.home.ExposureNotificationActivity;
 import com.google.android.apps.exposurenotification.work.WorkScheduler;
+import com.google.firebase.FirebaseApp;
 import com.jakewharton.threetenabp.AndroidThreeTen;
 import dagger.hilt.android.HiltAndroidApp;
 import javax.inject.Inject;
@@ -53,6 +55,14 @@ public final class ExposureNotificationApplication extends Application implement
 
   @Inject
   WorkScheduler workScheduler;
+
+  /**
+   * Done to ensure firebase services are initialized properly.
+   */
+  @Keep
+  @Inject
+  @Nullable
+  FirebaseApp firebaseApp;
 
   @Override
   public void onCreate() {

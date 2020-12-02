@@ -29,7 +29,7 @@ import java.util.Arrays;
  */
 public class HAConfigObjects {
 
-  public static ClassificationThreshold[] CLASSIFICATION_THRESHOLDS_ARRAY =
+  public static final ClassificationThreshold[] CLASSIFICATION_THRESHOLDS_ARRAY =
       new ClassificationThreshold[] {
         new ClassificationThreshold(
             1,
@@ -73,7 +73,7 @@ public class HAConfigObjects {
             0),
     };
 
-  public static DailySummariesConfig DAILY_SUMMARIES_CONFIG = new DailySummariesConfigBuilder()
+  public static final DailySummariesConfig DAILY_SUMMARIES_CONFIG = new DailySummariesConfigBuilder()
         .setAttenuationBuckets(Arrays.asList(30, 50, 60), Arrays.asList(1.5, 1.0, 0.5, 0.0))
         .setInfectiousnessWeight(Infectiousness.STANDARD, 1.0)
         .setInfectiousnessWeight(Infectiousness.HIGH, 1.0)

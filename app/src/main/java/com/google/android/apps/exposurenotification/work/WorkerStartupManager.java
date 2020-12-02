@@ -28,7 +28,6 @@ import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 import javax.inject.Inject;
 import org.threeten.bp.Duration;
 
@@ -108,7 +107,7 @@ public class WorkerStartupManager {
         GET_PACKAGE_CONFIGURATION_TIMEOUT,
         scheduledExecutor))
         .transformAsync(packageConfiguration -> {
-          packageConfigurationHelper.maybeUpdateAppAnalyticsState(packageConfiguration);
+          packageConfigurationHelper.maybeUpdateAnalyticsState(packageConfiguration);
           return Futures.immediateVoidFuture();
         }, backgroundExecutor)
         .catchingAsync(Exception.class, t -> {

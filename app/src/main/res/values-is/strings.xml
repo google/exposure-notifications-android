@@ -16,6 +16,8 @@
   <string name="btn_save">Vista</string>
   <string name="btn_discard">Fleygja</string>
   <string name="btn_verify">Staðfesta</string>
+  <string name="btn_dont_share">Ekki deila</string>
+  <string name="btn_share">Deila</string>
   <string name="learn_more">Frekari upplýsingar</string>
   <string name="home_tab_exposures_text">Útsetning</string>
   <string name="home_tab_notify_text">Láta aðra vita</string>
@@ -31,7 +33,7 @@
     \n\nUpplýsingum um dagsetningu, lengd og sendistyrk sem tengjast útsetningunni verður deilt með forritinu.</string>
   <string name="onboarding_metrics_title">Hjálpaðu við að bæta þetta forrit</string>
   <string name="onboarding_metrics_subtitle">Deila forritanotkun og afkastagögnum með Google</string>
-  <string name="onboarding_metrics_detail">Til að hjálpa við að bæta og þróa forritið er ópersónugreinanlegum gögnum um afköst og notkun forritsins deilt með Google. Ekki eru borin kennsl á þig út frá þessum gögnum.</string>
+  <string name="onboarding_metrics_description">Til að hjálpa við að bæta og þróa forritið er ópersónugreinanlegum gögnum um afköst og notkun forritsins deilt með Google. Ekki eru borin kennsl á þig út frá þessum gögnum. %1$s</string>
   <string name="onboarding_confirm_later_title">Viltu hafa slökkt á tilkynningum um útsetningu?</string>
   <string name="onboarding_confirm_later_detail">Þér verður ekki tilkynnt um hugsanlega útsetningu fyrir COVID-19 fyrr en þú kveikir á tilkynningum um útsetningu</string>
   <string name="no_recent_exposure_subtitle">Engar nýlegar útsetningar</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">Staða</string>
   <string name="exposure_details_status_exposure">Möguleg útsetning fyrir COVID-19</string>
   <string name="exposure_details_date_exposed_subtitle">Dagsetning hugsanlegrar útsetningar</string>
-  <string name="exposure_details_expiring_subtitle">Útsetningartilkynningar eru vistaðar í 14 daga eftir útsetningu</string>
+  <string name="exposure_details_expiring_subtitle">Útsetningartilkynningar eru vistaðar í 14 daga eftir hugsanlega útsetningu</string>
   <string name="exposure_details_learn_more">Frekari upplýsingar</string>
   <string name="exposure_details_new_badge">Nýtt</string>
   <string name="share_test_result_title">Verndaðu samfélagið og deildu niðurstöðum COVID-19 prófsins</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">Tilkynningar um útsetningu</string>
   <string name="settings_app_analytics_subtitle">Deiling forritanotkunar og afkasta</string>
   <string name="settings_privacy_policy">Persónuverndarstefna</string>
+  <string name="settings_help_and_support">Um Tilkynningar um útsetningu Express</string>
   <string name="settings_legal_terms">Lagalegir skilmálar</string>
   <string name="settings_debug">Villuleitarstilling</string>
   <string name="settings_share">Hjálpaðu við að hindra útbreiðslu COVID-19. Deildu þessu forriti með þeim sem þú þekkir og hjálpaðu þeim að tryggja öryggi sitt með tilkynningum um hugsanlega útsetningu.</string>
@@ -134,4 +137,10 @@
   <string name="share_error">Ekki er hægt að deila prófniðurstöðunni. Reyndu aftur síðar.</string>
   <string name="generic_error_message">Eitthvað fór úrskeiðis. Reyndu aftur.</string>
   <string name="code_error_already_submitted">Kóðinn hefur þegar verið notaður til að deila prófniðurstöðum</string>
+  <string name="settings_private_analytics_subtitle">Greiningardeiling Tilkynninga um útsetningu</string>
+  <string name="private_analytics_title">Hjálpaðu heilbrigðisyfirvöldum að skilja útbreiðslu COVID-19</string>
+  <string name="private_analytics_subtitle">Deila greiningu á Tilkynningum um útsetningu með heilbrigðisyfirvöldum</string>
+  <string name="private_analytics_footer">Greiningar, t.d. tilkynningafjöldi á þínu svæði, auðvelda yfirvöldum að skilja útbreiðslu COVID-19. Google getur ekki lesið þær og þeim er safnað fyrir heilbrigðisyfirvöld svo þær er ekki hægt að tengja símanum þínum. %1$s</string>
+  <string name="private_analytics_footer_onboarding">Google getur ekki lesið greiningarnar og þar sem þeim er safnað fyrir heilbrigðisyfirvöld er ekki hægt að tengja þær símanum þínum. %1$s</string>
+  <string name="private_analytics_footer_learn_more">Frekari upplýsingar</string>
 </resources>

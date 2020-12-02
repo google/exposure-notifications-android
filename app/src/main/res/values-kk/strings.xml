@@ -16,6 +16,8 @@
   <string name="btn_save">Сақтау</string>
   <string name="btn_discard">Жабу</string>
   <string name="btn_verify">Растау</string>
+  <string name="btn_dont_share">Бөліспеу</string>
+  <string name="btn_share">Бөлісу</string>
   <string name="learn_more">Толығырақ</string>
   <string name="home_tab_exposures_text">Жұқтырғандармен байланыс</string>
   <string name="home_tab_notify_text">Басқаларға хабарлау</string>
@@ -31,7 +33,7 @@
     \n\nАуру жұқтырғандармен байланыс күні, оның ұзақтығы және сигнал күші осы қолданбамен бөлісіледі.</string>
   <string name="onboarding_metrics_title">Осы қолданбаны жақсартуға көмектесіңіз</string>
   <string name="onboarding_metrics_subtitle">Қолданбаның пайдаланылуы, жұмыс өнімділігі дерегін Google-мен бөлісіңіз.</string>
-  <string name="onboarding_metrics_detail">Қолданба күйін сақтауға және жақсартуға көмектесу үшін қолданбаның пайдаланылуы мен жұмыс өнімділігі туралы кейбір жеке бас мәліметі анықталмайтын деректер Google-мен бөлісіледі. Бұл деректе сіздің жеке басыңыз анықталмайды.</string>
+  <string name="onboarding_metrics_description">Қолданбаның жұмыс қалпын сақтап, ісін жақсартып отыру үшін оның пайдаланылуы мен жұмыс өнімділігі туралы кейбір деректер Google-мен бөлісіледі. Бұл деректерде жеке бас мәліметі анықталмайды. %1$s</string>
   <string name="onboarding_confirm_later_title">Байланыс туралы хабарландыру өшірулі тұрсын ба?</string>
   <string name="onboarding_confirm_later_detail">Ауру жұқтырғандармен байланыс туралы хабарландыру қосылмайынша, COVID-19 ауруын ықтимал жұқтыру туралы хабар алмайсыз.</string>
   <string name="no_recent_exposure_subtitle">Ауру жұқтырғандармен байланыс анықталмады</string>
@@ -42,7 +44,7 @@
   <string name="exposure_details_status_subtitle">Күйі</string>
   <string name="exposure_details_status_exposure">COVID-19 жұқтыру қаупі бар</string>
   <string name="exposure_details_date_exposed_subtitle">Ауру жұқтырғандармен байланыстың ықтимал күні</string>
-  <string name="exposure_details_expiring_subtitle">Ауру жұқтырғандармен байланыс есептері оқиғадан соң 14 күн сақталады.</string>
+  <string name="exposure_details_expiring_subtitle">Ауру жұқтырғандармен байланыс туралы есептер ықтимал оқиғадан бастап 14 күн бойы сақталады.</string>
   <string name="exposure_details_learn_more">Толығырақ</string>
   <string name="exposure_details_new_badge">Жаңа</string>
   <string name="share_test_result_title">COVID-19 сынағының нәтижесін бөлісіп, қауымдастығыңызды қорғаңыз.</string>
@@ -97,6 +99,7 @@
   <string name="settings_exposure_notifications_subtitle">Ауру жұқтырғандармен байланыс туралы хабарландыру</string>
   <string name="settings_app_analytics_subtitle">Қолданбаның пайдаланылуы мен өнімділік дерегін бөлісу</string>
   <string name="settings_privacy_policy">Құпиялылық саясаты</string>
+  <string name="settings_help_and_support">Ауру жұқтырғандармен байланыс туралы хабарландыру (жедел) туралы</string>
   <string name="settings_legal_terms">Құқықтық шарттар</string>
   <string name="settings_debug">Түзету режимі</string>
   <string name="settings_share">COVID-19 індетінің таралуына қарсы күреске көмектесіңіз. Осы қолданбаны басқа пайдаланушылармен бөлісіп, өздерін қорғауға және уақытында ауру жұқтырғандармен байланыс туралы хабарландыру алуға көмектесіңіз.</string>
@@ -115,7 +118,7 @@
   <string name="exposure_turn_off_detail">COVID-19 жұқтырғандармен байланыста болсаңыз, ол туралы сізге хабарланбайды.</string>
   <string name="app_analytics_title">Осы қолданбаны жақсартуға көмектесіңіз</string>
   <string name="app_analytics_toggle">Қолданбаның пайдаланылуы, жұмыс өнімділігі дерегін Google-мен бөлісіңіз.</string>
-  <string name="app_analytics_detail">Қолданба күйін сақтауға және жақсартуға көмектесу үшін қолданбаның пайдаланылуы мен жұмыс өнімділігі туралы кейбір жеке бас мәліметі анықталмайтын деректер Google-мен бөлісіледі. Бұл деректе сіздің жеке басыңыз анықталмайды.</string>
+  <string name="app_analytics_detail">Қолданбаның жұмыс қалпын сақтап, ісін жақсартып отыру үшін оның пайдаланылуы мен жұмыс өнімділігі туралы кейбір деректер Google-мен бөлісіледі. Бұл деректерде жеке бас мәліметі анықталмайды.</string>
   <string name="agency_message_link">Толығырақ:\n%1$s</string>
   <string name="exposure_notifications_are_inactive">Жұқтырғандармен байланыс туралы хабарландыру функциясы өшірулі</string>
   <string name="exposure_notifications_currently_inactive">Жұқтырғандармен байланыс туралы хабарландыру өшірулі</string>
@@ -134,4 +137,10 @@
   <string name="share_error">Сынақ нәтижесін бөлісу мүмкін болмады. Кейінірек қайталап көріңіз.</string>
   <string name="generic_error_message">Бірдеңе дұрыс болмады. Қайталап көріңіз.</string>
   <string name="code_error_already_submitted">Бұл код осыған дейін сынақ нәтижесін бөлісуге пайдаланылып қойған.</string>
+  <string name="settings_private_analytics_subtitle">Ауру жұқтырғандармен байланыс туралы хабарландырулар деректерін бөлісу</string>
+  <string name="private_analytics_title">Денсаулық сақтау мекемесіне COVID-19 ауруының таралуын түсінуге көмектесіңіз</string>
+  <string name="private_analytics_subtitle">Ауру жұқтырғандармен байланыс туралы хабарландырулар деректерін денсаулық сақтау мекемесімен бөлісу</string>
+  <string name="private_analytics_footer">Аймақтағы хабарландырулар саны сияқты мұндай талдаулар көмегімен денсаулық сақтау мекемелері COVID-19 ауруы қалай таралатынын түсіне алады. Бұларды Google оқи алмайды және олар телефоныңызбен байланыстырылмайтын етіп денсаулық сақтау мекемесі үшін топтастырылады. %1$s</string>
+  <string name="private_analytics_footer_onboarding">Бұл деректерді Google оқи алмайды, әрі олар телефоныңызбен байланыстырылмайтын етіп денсаулық сақтау мекемесі үшін топтастырылады. %1$s</string>
+  <string name="private_analytics_footer_learn_more">Толығырақ</string>
 </resources>

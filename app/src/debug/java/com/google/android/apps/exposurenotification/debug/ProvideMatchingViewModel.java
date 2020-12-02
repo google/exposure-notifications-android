@@ -17,8 +17,6 @@
 
 package com.google.android.apps.exposurenotification.debug;
 
-import static java.util.concurrent.TimeUnit.MILLISECONDS;
-
 import android.content.Context;
 import android.content.res.Resources;
 import android.util.Log;
@@ -36,7 +34,6 @@ import com.google.android.apps.exposurenotification.keydownload.KeyFile;
 import com.google.android.apps.exposurenotification.nearby.DiagnosisKeyFileSubmitter;
 import com.google.android.apps.exposurenotification.nearby.ExposureNotificationClientWrapper;
 import com.google.android.apps.exposurenotification.proto.SignatureInfo;
-import com.google.android.gms.nearby.exposurenotification.ExposureNotificationClient;
 import com.google.android.gms.nearby.exposurenotification.TemporaryExposureKey;
 import com.google.android.gms.nearby.exposurenotification.TemporaryExposureKey.TemporaryExposureKeyBuilder;
 import com.google.auto.value.AutoValue;
@@ -64,12 +61,10 @@ public class ProvideMatchingViewModel extends ViewModel {
   private static final BaseEncoding BASE16 = BaseEncoding.base16().lowerCase();
   private static final Duration IS_ENABLED_TIMEOUT = Duration.ofSeconds(10);
 
-  private final MutableLiveData<Integer> displayedChildLiveData;
   private final MutableLiveData<String> singleInputKeyLiveData;
   private final MutableLiveData<Integer> singleInputIntervalNumberLiveData;
   private final MutableLiveData<Integer> singleInputRollingPeriodLiveData;
   private final MutableLiveData<Integer> singleInputTransmissionRiskLevelLiveData;
-  private final MutableLiveData<File> fileInputLiveData;
 
   private static SingleLiveEvent<String> snackbarLiveEvent = new SingleLiveEvent<>();
 
@@ -97,28 +92,18 @@ public class ProvideMatchingViewModel extends ViewModel {
     this.backgroundExecutor = backgroundExecutor;
     this.lightweightExecutor = lightweightExecutor;
     this.scheduledExecutor = scheduledExecutor;
-    keyFileSigner = KeyFileSigner.get(context);
+    keyFileSigner = KeyFileSigner.get();
     keyFileWriter = new KeyFileWriter(context);
     resources = context.getResources();
     packageName = context.getPackageName();
 
-    displayedChildLiveData = new MutableLiveData<>(0);
     singleInputKeyLiveData = new MutableLiveData<>("");
     singleInputIntervalNumberLiveData = new MutableLiveData<>(0);
     singleInputRollingPeriodLiveData = new MutableLiveData<>(144);
     singleInputTransmissionRiskLevelLiveData = new MutableLiveData<>(0);
-    fileInputLiveData = new MutableLiveData<>(null);
     keyInfoLiveData = new MutableLiveData<>();
     // The keyfile signing key info doesn't change throughout the run of the app.
     setSigningKeyInfo();
-  }
-
-  public LiveData<Integer> getDisplayedChildLiveData() {
-    return displayedChildLiveData;
-  }
-
-  public void setDisplayedChild(int displayedChild) {
-    displayedChildLiveData.setValue(displayedChild);
   }
 
   public LiveData<String> getSingleInputKeyLiveData() {
@@ -153,14 +138,6 @@ public class ProvideMatchingViewModel extends ViewModel {
     singleInputTransmissionRiskLevelLiveData.setValue(transmissionRiskLevel);
   }
 
-  public LiveData<File> getFileInputLiveData() {
-    return fileInputLiveData;
-  }
-
-  public void setFileInput(File file) {
-    fileInputLiveData.setValue(file);
-  }
-
   public SingleLiveEvent<String> getSnackbarLiveEvent() {
     return snackbarLiveEvent;
   }
@@ -176,10 +153,6 @@ public class ProvideMatchingViewModel extends ViewModel {
         && temporaryExposureKey.getKeyData().length == 16
         && temporaryExposureKey.getRollingStartIntervalNumber() != 0
         && temporaryExposureKey.getRollingPeriod() != 0;
-  }
-
-  private boolean isFileInputValid(File file) {
-    return file != null;
   }
 
   public void provideSingleAction() {
@@ -221,18 +194,6 @@ public class ProvideMatchingViewModel extends ViewModel {
     provideFiles(keyFiles);
   }
 
-  public void provideFileAction() {
-    File file = getFileInputLiveData().getValue();
-    if (!isFileInputValid(file)) {
-      snackbarLiveEvent.postValue(resources.getString(R.string.debug_matching_file_error));
-      return;
-    }
-
-    List<KeyFile> files = Lists.newArrayList(KeyFile.createNonProd(file));
-
-    provideFiles(files);
-  }
-
   static class NotEnabledException extends Exception {
 
   }
@@ -256,8 +217,7 @@ public class ProvideMatchingViewModel extends ViewModel {
             },
             backgroundExecutor)
         .transformAsync(
-            fileList -> diagnosisKeyFileSubmitter
-                .submitFiles(fileList),
+            diagnosisKeyFileSubmitter::submitFiles,
             backgroundExecutor)
         .transform(
             done -> {

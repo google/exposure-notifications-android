@@ -43,7 +43,7 @@ public class RevocationDetector {
 
   private static final long DEFAULT_DAYS_SINCE_EXPOSURE_THRESHOLD = 14;
 
-  private DailySummariesConfig dailySummariesConfig;
+  private final DailySummariesConfig dailySummariesConfig;
 
   public RevocationDetector(DailySummariesConfig dailySummariesConfig) {
     this.dailySummariesConfig = dailySummariesConfig;

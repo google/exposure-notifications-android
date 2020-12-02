@@ -21,10 +21,13 @@ import static com.google.common.truth.Truth.assertThat;
 import static org.mockito.Mockito.when;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.support.test.espresso.core.internal.deps.guava.collect.ImmutableList;
+import android.text.TextUtils;
 import androidx.annotation.Nullable;
 import androidx.test.core.app.ApplicationProvider;
+import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.keyupload.ApiConstants.UploadV1;
 import com.google.android.apps.exposurenotification.keyupload.ApiConstants.VerifyV1;
 import com.google.android.apps.exposurenotification.keyupload.Qualifiers.UploadUri;
@@ -34,8 +37,10 @@ import com.google.android.apps.exposurenotification.keyupload.UploadController;
 import com.google.android.apps.exposurenotification.keyupload.UploadUrisModule;
 import com.google.android.apps.exposurenotification.nearby.ExposureNotificationClientWrapper;
 import com.google.android.apps.exposurenotification.nearby.ExposureNotificationsClientModule;
+import com.google.android.apps.exposurenotification.network.Connectivity;
 import com.google.android.apps.exposurenotification.network.RealRequestQueueModule;
 import com.google.android.apps.exposurenotification.network.RequestQueueWrapper;
+import com.google.android.apps.exposurenotification.notify.ShareDiagnosisViewModel.EnterCodeStepReturnValue;
 import com.google.android.apps.exposurenotification.notify.ShareDiagnosisViewModel.Step;
 import com.google.android.apps.exposurenotification.storage.DbModule;
 import com.google.android.apps.exposurenotification.storage.DiagnosisEntity;
@@ -64,6 +69,7 @@ import dagger.hilt.android.testing.HiltAndroidTest;
 import dagger.hilt.android.testing.HiltTestApplication;
 import dagger.hilt.android.testing.UninstallModules;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.AtomicReference;
 import javax.inject.Inject;
@@ -105,6 +111,9 @@ public class ShareDiagnosisViewModelTest {
   ExposureNotificationDatabase database = InMemoryDb.create();
   @BindValue
   RequestQueueWrapper queue = new FakeRequestQueue();
+  @BindValue
+  @Mock
+  Connectivity connectivity;
 
   @Module
   @InstallIn(ApplicationComponent.class)
@@ -139,9 +148,11 @@ public class ShareDiagnosisViewModelTest {
         uploadController,
         diagnosisRepository,
         exposureNotificationClient,
+        connectivity,
         MoreExecutors.newDirectExecutorService(),
         MoreExecutors.newDirectExecutorService(),
         TestingExecutors.sameThreadScheduledExecutor());
+    when(connectivity.hasInternet()).thenReturn(true);
   }
 
   @Test
@@ -156,9 +167,9 @@ public class ShareDiagnosisViewModelTest {
     AtomicLong observedDiagnosisId = observeDiagnosisId();
     queue().addResponse(CODE_URI.toString(), 200, codeResponse(/* onsetDate= */ null));
 
-    viewModel.submitCode("code", false);
+    viewModel.submitCode("code", false).get();
 
-    assertThat(diagnosisRepository.getById(observedDiagnosisId.get()).get()
+    assertThat(diagnosisRepository.getByIdAsync(observedDiagnosisId.get()).get()
         .getVerificationCode())
         .isEqualTo("code");
   }
@@ -169,11 +180,35 @@ public class ShareDiagnosisViewModelTest {
     AtomicLong observedDiagnosisId = observeDiagnosisId();
     queue().addResponse(CODE_URI.toString(), 200, codeResponse(/* onsetDate= */ null));
 
-    viewModel.submitCode("code", true);
+    viewModel.submitCode("code", true).get();
 
-    assertThat(diagnosisRepository.getById(observedDiagnosisId.get()).get()
+    assertThat(diagnosisRepository.getByIdAsync(observedDiagnosisId.get()).get()
         .getIsCodeFromLink())
         .isTrue();
+  }
+
+  @Test
+  public void submitCode_shouldSkipCodeStep() throws Exception {
+    AtomicBoolean observedRevealCodeStepEvent = observeRevealCodeStepEvent();
+    queue().addResponse(CODE_URI.toString(), 200, codeResponse(/* onsetDate= */ null));
+
+    viewModel.nextStep(Step.CODE);
+    viewModel.submitCode("code", true).get();
+
+    assertThat(observedRevealCodeStepEvent.get()).isFalse();
+    assertThat(observeFlowStep().get()).isEqualTo(Step.ONSET);
+  }
+
+  @Test
+  public void submitCode_shouldNotSkipCodeStepIfVerificationFailed() throws Exception {
+    AtomicBoolean observedRevealCodeStepEvent = observeRevealCodeStepEvent();
+    queue().addResponse(CODE_URI.toString(), 400, codeResponse(/* onsetDate= */ null));
+
+    viewModel.nextStep(Step.CODE);
+    viewModel.submitCode("code", true).get();
+
+    assertThat(observedRevealCodeStepEvent.get()).isTrue();
+    assertThat(observeFlowStep().get()).isEqualTo(Step.CODE);
   }
 
   @Test
@@ -182,9 +217,9 @@ public class ShareDiagnosisViewModelTest {
     AtomicLong observedDiagnosisId = observeDiagnosisId();
     queue().addResponse(CODE_URI.toString(), 200, codeResponse(ONSET_DATE));
 
-    viewModel.submitCode("code", false);
+    viewModel.submitCode("code", false).get();
 
-    assertThat(diagnosisRepository.getById(observedDiagnosisId.get()).get()
+    assertThat(diagnosisRepository.getByIdAsync(observedDiagnosisId.get()).get()
         .getOnsetDate())
         .isEqualTo(ONSET_DATE);
   }
@@ -196,9 +231,18 @@ public class ShareDiagnosisViewModelTest {
         .upsertAsync(DiagnosisEntity.newBuilder().setVerificationCode(existingCode).build()).get();
     AtomicLong observedDiagnosisId = observeDiagnosisId();
 
-    viewModel.submitCode(existingCode, false);
+    viewModel.submitCode(existingCode, false).get();
 
     assertThat(observedDiagnosisId.get()).isEqualTo(existingId);
+  }
+
+  @Test
+  public void submitCode_noConnectivity_shouldCancel() throws Exception {
+    when(connectivity.hasInternet()).thenReturn(false);
+
+    String code = "code";
+    viewModel.submitCode(code, false).get();
+    assertThat(queue().numRpcs()).isEqualTo(0);
   }
 
   @Test
@@ -207,13 +251,13 @@ public class ShareDiagnosisViewModelTest {
     // Start with a diagnosis that has its verification code (a precondition to onset date entry).
     AtomicLong observedDiagnosisId = observeDiagnosisId();
     queue().addResponse(CODE_URI.toString(), 200, codeResponse(/* onsetDate= */null));
-    viewModel.submitCode("code", false);
+    viewModel.submitCode("code", false).get();
 
     // WHEN
     viewModel.setHasSymptoms(HasSymptoms.NO);
 
     // THEN
-    DiagnosisEntity diagnosis = diagnosisRepository.getById(observedDiagnosisId.get()).get();
+    DiagnosisEntity diagnosis = diagnosisRepository.getByIdAsync(observedDiagnosisId.get()).get();
     assertThat(diagnosis.getHasSymptoms()).isEqualTo(HasSymptoms.NO);
     assertThat(diagnosis.getOnsetDate()).isNull();
   }
@@ -224,13 +268,13 @@ public class ShareDiagnosisViewModelTest {
     // Start with a diagnosis that has its verification code (a precondition to onset date entry).
     AtomicLong observedDiagnosisId = observeDiagnosisId();
     queue().addResponse(CODE_URI.toString(), 200, codeResponse(/* onsetDate= */null));
-    viewModel.submitCode("code", false);
+    viewModel.submitCode("code", false).get();
 
     // WHEN
     viewModel.setHasSymptoms(HasSymptoms.WITHHELD);
 
     // THEN
-    DiagnosisEntity diagnosis = diagnosisRepository.getById(observedDiagnosisId.get()).get();
+    DiagnosisEntity diagnosis = diagnosisRepository.getByIdAsync(observedDiagnosisId.get()).get();
     assertThat(diagnosis.getHasSymptoms()).isEqualTo(HasSymptoms.WITHHELD);
     assertThat(diagnosis.getOnsetDate()).isNull();
   }
@@ -241,16 +285,86 @@ public class ShareDiagnosisViewModelTest {
     // Start with a diagnosis that has its verification code (a precondition to onset date entry).
     AtomicLong observedDiagnosisId = observeDiagnosisId();
     queue().addResponse(CODE_URI.toString(), 200, codeResponse(/* onsetDate= */null));
-    viewModel.submitCode("code", false);
+    viewModel.submitCode("code", false).get();
 
     // WHEN
     LocalDate onset = LocalDate.of(2020, 4, 1);
     viewModel.setSymptomOnsetDate(onset);
 
     // THEN
-    DiagnosisEntity diagnosis = diagnosisRepository.getById(observedDiagnosisId.get()).get();
+    DiagnosisEntity diagnosis = diagnosisRepository.getByIdAsync(observedDiagnosisId.get()).get();
     assertThat(diagnosis.getOnsetDate()).isEqualTo(onset);
     assertThat(diagnosis.getHasSymptoms()).isEqualTo(HasSymptoms.YES);
+  }
+
+  @Test
+  public void enterCodeStep_shouldNotRevealStepIfCodeIsFromLink() {
+    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("ens://v?c=123"));
+    EnterCodeStepReturnValue returnValue = viewModel.enterCodeStep(intent);
+
+    assertThat(returnValue.revealPage()).isFalse();
+    assertThat(returnValue.verificationCodeToPrefill()).hasValue("123");
+  }
+
+  @Test
+  public void enterCodeStep_shouldRevealStepIfCodeIsNotFromLink() {
+    Intent intent = new Intent(Intent.ACTION_VIEW);
+    EnterCodeStepReturnValue returnValue = viewModel.enterCodeStep(intent);
+
+    assertThat(returnValue.revealPage()).isTrue();
+    assertThat(returnValue.verificationCodeToPrefill()).isAbsent();
+  }
+
+  @Test
+  public void enterCodeStep_shouldRevealStepIfCodeIsFromBadLink() {
+    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("ens://v?c="));
+    EnterCodeStepReturnValue returnValue = viewModel.enterCodeStep(intent);
+
+    assertThat(returnValue.revealPage()).isTrue();
+    assertThat(returnValue.verificationCodeToPrefill()).isAbsent();
+  }
+
+  public void nextStep_afterOnsetStep_shouldBeTravelStatusStep() throws Exception {
+    // GIVEN
+    // Imitate the submission of code with symptom onset date
+    AtomicLong observedDiagnosisId = observeDiagnosisId();
+    viewModel.nextStep(Step.CODE);
+    viewModel.submitCode("code", false).get();
+    viewModel.nextStep(Step.ONSET);
+    viewModel.setSymptomOnsetDate(LocalDate.parse("2020-04-01"));
+
+    // WHEN
+    DiagnosisEntity diagnosis = diagnosisRepository.getByIdAsync(observedDiagnosisId.get()).get();
+    String haConfig = context.getResources().getString(R.string.share_travel_detail);
+    viewModel.nextStep(ShareDiagnosisFlowHelper.getNextStep(Step.ONSET, diagnosis, context));
+
+    // THEN
+    // As the config for the Sample app contains traveledQuestionText, the next step after an Onset
+    // step should be a TravelStatus step.
+    assertThat(observeFlowStep().get()).isEqualTo(Step.TRAVEL_STATUS);
+  }
+
+  @Test
+  public void previousStep_beforeReviewStep_shouldBeTravelStatusStep() throws Exception {
+    // GIVEN
+    // Imitate the submission of code with symptom onset date
+    AtomicLong observedDiagnosisId = observeDiagnosisId();
+    viewModel.nextStep(Step.CODE);
+    viewModel.submitCode("code", false).get();
+    viewModel.nextStep(Step.ONSET);
+    viewModel.setSymptomOnsetDate(LocalDate.parse("2020-04-01"));
+    viewModel.nextStep(Step.REVIEW);
+
+    // WHEN
+    DiagnosisEntity diagnosis = diagnosisRepository.getByIdAsync(observedDiagnosisId.get()).get();
+    String haConfig = context.getResources().getString(R.string.share_travel_detail);
+    viewModel.previousStep(
+        ShareDiagnosisFlowHelper.getPreviousStep(Step.REVIEW, diagnosis, context));
+
+    // THEN
+    // As the config for the Sample app contains traveledQuestionText, the previous step before
+    // a Review step should be a TravelStatus step.
+    assertThat(observeFlowStep().get()).isEqualTo(Step.TRAVEL_STATUS);
   }
 
   // TODO: Lots more narrow tests of specific steps in the flow and specific expectations.
@@ -279,7 +393,7 @@ public class ShareDiagnosisViewModelTest {
 
     // WHEN
     // Starts with the verification code step
-    viewModel.submitCode("code", false);
+    viewModel.submitCode("code", false).get();
     // Next is the onset date step
     viewModel.setSymptomOnsetDate(LocalDate.parse("2020-04-01"));
     // Next is the travel status step
@@ -289,7 +403,7 @@ public class ShareDiagnosisViewModelTest {
 
     // THEN
     // And we should have stored numerous artifacts of the successful steps:
-    DiagnosisEntity diagnosis = diagnosisRepository.getById(observedDiagnosisId.get()).get();
+    DiagnosisEntity diagnosis = diagnosisRepository.getByIdAsync(observedDiagnosisId.get()).get();
     assertThat(diagnosis).isNotNull();
     assertThat(diagnosis.getVerificationCode()).isEqualTo("code");
     assertThat(diagnosis.getLongTermToken()).isEqualTo("token");
@@ -349,6 +463,12 @@ public class ShareDiagnosisViewModelTest {
     AtomicReference<Step> observedStep = new AtomicReference<>();
     viewModel.getCurrentStepLiveData().observeForever(observedStep::set);
     return observedStep;
+  }
+
+  private AtomicBoolean observeRevealCodeStepEvent() {
+    AtomicBoolean observedRevealCodeStepEvent = new AtomicBoolean();
+    viewModel.getRevealCodeStepEvent().observeForever(observedRevealCodeStepEvent::set);
+    return observedRevealCodeStepEvent;
   }
 
   private FakeRequestQueue queue() {

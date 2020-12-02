@@ -17,7 +17,10 @@
 
 package com.google.android.apps.exposurenotification.notify;
 
+import android.content.Context;
+import android.text.TextUtils;
 import androidx.annotation.Nullable;
+import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.notify.ShareDiagnosisViewModel.Step;
 import com.google.android.apps.exposurenotification.storage.DiagnosisEntity;
 import com.google.android.apps.exposurenotification.storage.DiagnosisEntity.HasSymptoms;
@@ -34,8 +37,11 @@ import com.google.android.apps.exposurenotification.storage.DiagnosisEntity.Trav
  * VIEW --------------\          \                 \
  *                    v          v                 v
  * BEGIN --> CODE --> ONSET --> TRAVEL_STATUS --> REVIEW --> SHARED
- *             \                  ^                  \
- *              \--------------- /                   \------> NOT_SHARED
+ *           \         \            ^               ^  \
+ *            \         \----------/---------------/    \
+ *             \                  /               /      \------> NOT_SHARED
+ *              \--------------- /               /
+ *               \------------------------------/
  * }</pre>
  */
 public class ShareDiagnosisFlowHelper {
@@ -48,20 +54,25 @@ public class ShareDiagnosisFlowHelper {
    * @return the previous step, null if there is no previous step
    */
   @Nullable
-  public static Step getPreviousStep(Step currentStep, DiagnosisEntity diagnosisEntity) {
+  public static Step getPreviousStep(
+      Step currentStep, DiagnosisEntity diagnosisEntity, Context context) {
     switch (currentStep) {
       case CODE:
         return Step.BEGIN;
       case ONSET:
-        return diagnosisEntity.getIsCodeFromLink() ? Step.BEGIN : Step.CODE;
+        return isCodeStepSkippable(diagnosisEntity) ? Step.BEGIN : Step.CODE;
       case TRAVEL_STATUS:
         if (diagnosisEntity.getIsServerOnsetDate()) {
-          return diagnosisEntity.getIsCodeFromLink() ? Step.BEGIN : Step.CODE;
+          return isCodeStepSkippable(diagnosisEntity) ? Step.BEGIN : Step.CODE;
         } else {
           return Step.ONSET;
         }
       case REVIEW:
-        return Step.TRAVEL_STATUS;
+        if (isTravelStatusStepSkippable(context)) {
+          return diagnosisEntity.getIsServerOnsetDate() ? Step.CODE : Step.ONSET;
+        } else {
+          return Step.TRAVEL_STATUS;
+        }
       case BEGIN:
       case SHARED:
       case NOT_SHARED:
@@ -79,22 +90,22 @@ public class ShareDiagnosisFlowHelper {
    * @return the next step, null if there is no next step
    */
   @Nullable
-  public static Step getNextStep(Step currentStep, DiagnosisEntity diagnosisEntity) {
+  public static Step getNextStep(
+      Step currentStep, DiagnosisEntity diagnosisEntity, Context context) {
     switch (currentStep) {
       case BEGIN:
-        if (!DiagnosisEntityHelper.hasVerified(diagnosisEntity) || !diagnosisEntity
-            .getIsCodeFromLink()) {
+        if (!isCodeStepSkippable(diagnosisEntity)) {
           return Step.CODE;
         }
         // Fall through to skip CODE step.
       case CODE:
         if (diagnosisEntity.getIsServerOnsetDate()) {
-          return Step.TRAVEL_STATUS;
+          return isTravelStatusStepSkippable(context) ? Step.REVIEW : Step.TRAVEL_STATUS;
         } else {
           return Step.ONSET;
         }
       case ONSET:
-        return Step.TRAVEL_STATUS;
+        return isTravelStatusStepSkippable(context) ? Step.REVIEW : Step.TRAVEL_STATUS;
       case TRAVEL_STATUS:
         return Step.REVIEW;
       case VIEW:
@@ -107,17 +118,35 @@ public class ShareDiagnosisFlowHelper {
   }
 
   /**
+   * Shall we skip CODE step for the given DiagnosisEntity.
+   */
+  public static boolean isCodeStepSkippable(DiagnosisEntity diagnosisEntity) {
+    return diagnosisEntity.getIsCodeFromLink()
+        && DiagnosisEntityHelper.hasVerified(diagnosisEntity)
+        && diagnosisEntity.getSharedStatus() != Shared.SHARED;
+  }
+
+  /**
+   * Shall we skip the TRAVEL_STATUS step depending on the HA's config value.
+   */
+  public static boolean isTravelStatusStepSkippable(Context context) {
+    return TextUtils.isEmpty(context.getResources().getString(R.string.share_travel_detail));
+  }
+
+  /**
    * Calculates the maximum step a given diagnosis entity can be in. Useful for resuming a flow at
    * the right point.
    */
-  public static Step getMaxStepForDiagnosisEntity(DiagnosisEntity diagnosisEntity) {
+  public static Step getMaxStepForDiagnosisEntity(
+      DiagnosisEntity diagnosisEntity, Context context) {
     if (Shared.SHARED.equals(diagnosisEntity.getSharedStatus())) {
       return Step.VIEW;
     } else if (HasSymptoms.UNSET.equals(diagnosisEntity.getHasSymptoms())
         || (HasSymptoms.YES.equals(diagnosisEntity.getHasSymptoms())
         && diagnosisEntity.getOnsetDate() == null)) {
       return Step.ONSET;
-    } else if (TravelStatus.NOT_ATTEMPTED.equals(diagnosisEntity.getTravelStatus())) {
+    } else if (!isTravelStatusStepSkippable(context)
+        && TravelStatus.NOT_ATTEMPTED.equals(diagnosisEntity.getTravelStatus())) {
       return Step.TRAVEL_STATUS;
     } else {
       return Step.REVIEW;

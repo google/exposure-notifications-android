@@ -19,9 +19,12 @@ package com.google.android.apps.exposurenotification.onboarding;
 
 import static com.google.common.truth.Truth.assertThat;
 
+import androidx.test.core.app.ApplicationProvider;
+import androidx.work.WorkManager;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.OnboardingStatus;
 import com.google.android.apps.exposurenotification.testsupport.ExposureNotificationRules;
+import com.google.firebase.FirebaseApp;
 import dagger.hilt.android.testing.HiltAndroidTest;
 import dagger.hilt.android.testing.HiltTestApplication;
 import javax.inject.Inject;
@@ -29,6 +32,7 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
@@ -46,12 +50,17 @@ public class OnboardingViewModelTest {
   @Inject
   ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
 
+  @Mock
+  WorkManager workManager;
+
   OnboardingViewModel onboardingViewModel;
 
   @Before
   public void setup() {
+    FirebaseApp.initializeApp(ApplicationProvider.getApplicationContext());
     rules.hilt().inject();
-    onboardingViewModel = new OnboardingViewModel(exposureNotificationSharedPreferences);
+    onboardingViewModel = new OnboardingViewModel(exposureNotificationSharedPreferences,
+        workManager);
   }
 
   @Test
