@@ -24,6 +24,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 import android.os.Parcel;
+import android.text.Editable;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -38,6 +39,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.work.WorkInfo.State;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.common.AbstractTextWatcher;
 import com.google.android.apps.exposurenotification.common.KeyboardHelper;
 import com.google.android.apps.exposurenotification.debug.VerificationCodeCreator.VerificationCode;
 import com.google.android.apps.exposurenotification.privateanalytics.PrivateAnalyticsSettingsUtil;
@@ -153,9 +155,14 @@ public final class DebugActivity extends AppCompatActivity {
     manualMatching.setOnClickListener(
         v -> startActivity(new Intent(this, MatchingDebugActivity.class)));
 
+    EditText keyHexToLog = findViewById(R.id.key_to_log);
+    debugViewModel.getProvidedDiagnosisKeyHexToLogLiveData()
+        .observe(this, keyHexToLog::setText);
+
     Button enqueueProvide = findViewById(R.id.debug_provide_now);
     enqueueProvide.setOnClickListener(
         v -> {
+          debugViewModel.setProvidedDiagnosisKeyHexToLog(keyHexToLog.getText().toString());
           debugViewModel.provideKeys();
           maybeShowSnackbar(getString(R.string.debug_provide_keys_enqueued));
         });

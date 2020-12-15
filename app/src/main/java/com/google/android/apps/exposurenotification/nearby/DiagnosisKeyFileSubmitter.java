@@ -28,6 +28,7 @@ import com.google.android.apps.exposurenotification.proto.TemporaryExposureKey;
 import com.google.android.apps.exposurenotification.proto.TemporaryExposureKeyExport;
 import com.google.android.apps.exposurenotification.storage.DownloadServerEntity;
 import com.google.android.apps.exposurenotification.storage.DownloadServerRepository;
+import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
 import com.google.common.collect.ImmutableList;
 import com.google.common.io.BaseEncoding;
 import com.google.common.util.concurrent.FutureCallback;
@@ -56,12 +57,13 @@ public class DiagnosisKeyFileSubmitter {
   private static final String TAG = "KeyFileSubmitter";
   // Use a very very long timeout, in case of a stress-test that supplies a very large number of
   // diagnosis key files.
-  private static final Duration PROVIDE_KEYS_TIMEOUT = Duration.ofMinutes(30);
+  private static final Duration PROVIDE_KEYS_TIMEOUT = Duration.ofMinutes(60);
   private static final BaseEncoding BASE16 = BaseEncoding.base16().lowerCase();
   private static final BaseEncoding BASE64 = BaseEncoding.base64();
 
   private final ExposureNotificationClientWrapper exposureNotificationClientWrapper;
   private final DownloadServerRepository downloadServerRepo;
+  private final ExposureNotificationSharedPreferences preferences;
   private final ExecutorService backgroundExecutor;
   private final ScheduledExecutorService scheduledExecutor;
 
@@ -69,10 +71,12 @@ public class DiagnosisKeyFileSubmitter {
   DiagnosisKeyFileSubmitter(
       ExposureNotificationClientWrapper exposureNotificationClientWrapper,
       DownloadServerRepository downloadServerRepo,
+      ExposureNotificationSharedPreferences preferences,
       @BackgroundExecutor ExecutorService backgroundExecutor,
       @ScheduledExecutor ScheduledExecutorService scheduledExecutor) {
     this.exposureNotificationClientWrapper = exposureNotificationClientWrapper;
     this.downloadServerRepo = downloadServerRepo;
+    this.preferences = preferences;
     this.backgroundExecutor = backgroundExecutor;
     this.scheduledExecutor = scheduledExecutor;
   }
@@ -94,7 +98,13 @@ public class DiagnosisKeyFileSubmitter {
     }
     Log.d(TAG, "Providing  " + keyFiles.size() + " diagnosis key files to google play services.");
 
-    logFiles(keyFiles);
+    // Log submitted keys only in debug and when debug settings are looking for a certain key.
+    if (!preferences.getProvidedDiagnosisKeyHexToLog().isEmpty()) {
+      Log.d(TAG, "Logging keyfiles; keys limited to those containing ["
+          + preferences.getProvidedDiagnosisKeyHexToLog() + "] (hex).");
+      logKeys(keyFiles, preferences.getProvidedDiagnosisKeyHexToLog());
+    }
+
     ListenableFuture<Void> allDone =
         TaskToFutureAdapter.getFutureWithTimeout(
             exposureNotificationClientWrapper.provideDiagnosisKeys(filesFrom(keyFiles)),
@@ -136,7 +146,7 @@ public class DiagnosisKeyFileSubmitter {
     return files;
   }
 
-  private void logFiles(ImmutableList<KeyFile> files) {
+  private void logKeys(ImmutableList<KeyFile> files, String keyHexToLog) {
     int filenum = 1;
     for (KeyFile f : files) {
       try {
@@ -144,10 +154,16 @@ public class DiagnosisKeyFileSubmitter {
         Log.d(TAG, "File " + filenum + " has signature:\n" + fc.signature);
         Log.d(TAG, "File " + filenum + " has [" + fc.export.getKeysCount() + "] keys.");
         for (TemporaryExposureKey k : fc.export.getKeysList()) {
+          // We don't log all keys. Sometimes that's too much to log. Log only keys matching a hex
+          // substring we're interested in for debug purposes.
+          String keyHex = BASE16.encode(k.getKeyData().toByteArray());
+          if (!keyHex.contains(keyHexToLog.toLowerCase())) {
+            continue;
+          }
           Log.d(
               TAG,
               "TEK hex:["
-                  + BASE16.encode(k.getKeyData().toByteArray())
+                  + keyHex
                   + "] base64:["
                   + BASE64.encode(k.getKeyData().toByteArray())
                   + "] interval_num:["

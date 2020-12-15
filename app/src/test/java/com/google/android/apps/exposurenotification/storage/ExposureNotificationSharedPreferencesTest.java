@@ -29,6 +29,7 @@ import dagger.hilt.android.testing.HiltAndroidTest;
 import dagger.hilt.android.testing.HiltTestApplication;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -198,5 +199,27 @@ public class ExposureNotificationSharedPreferencesTest {
     exposureNotificationSharedPreferences.resetAnalyticsLoggingLastTimestamp();
     instant = exposureNotificationSharedPreferences.maybeGetAnalyticsLoggingLastTimestamp();
     assertThat(instant.get()).isEqualTo(Instant.ofEpochMilli(4));
+  }
+
+  @Test
+  public void providedDiagnosisKeyToLog_isEmptyByDefault() {
+    assertThat(exposureNotificationSharedPreferences.getProvidedDiagnosisKeyHexToLog()).isEmpty();
+  }
+
+  @Test
+  public void shouldSetAndGetProvidedDiagnosisKeyToLog() {
+    exposureNotificationSharedPreferences.setProvidedDiagnosisKeyHexToLog("the-key");
+    assertThat(exposureNotificationSharedPreferences.getProvidedDiagnosisKeyHexToLog())
+        .isEqualTo("the-key");
+  }
+
+  @Test
+  public void shouldSetAndGetProvidedDiagnosisKeyToLogLiveData() {
+    AtomicReference<String> observer = new AtomicReference<>();
+    exposureNotificationSharedPreferences
+        .getProvidedDiagnosisKeyHexToLogLiveData().observeForever(observer::set);
+
+    exposureNotificationSharedPreferences.setProvidedDiagnosisKeyHexToLog("the-key");
+    assertThat(observer.get()).isEqualTo("the-key");
   }
 }

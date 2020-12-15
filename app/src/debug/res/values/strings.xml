@@ -132,6 +132,8 @@
 
   <string name="debug_provide_now_text">Enqueue provide job now</string>
 
+  <string name="debug_provided_key_to_log_hint">Downloaded key to log (hex) e.g. aabb1122</string>
+
   <string name="debug_job_status">Daily provide worker: %1$s</string>
 
   <string name="debug_job_status_error">Unknown error</string>

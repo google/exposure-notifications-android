@@ -80,10 +80,22 @@ public class ExposureNotificationSharedPreferences {
       "ExposureNotificationSharedPreferences.EXPOSURE_NOTIFICATION_ACTIVE_INTERACTION_TIME_KEY";
   private static final String EXPOSURE_NOTIFICATION_LAST_INTERACTION_TYPE =
       "ExposureNotificationSharedPreferences.EXPOSURE_NOTIFICATION_ACTIVE_INTERACTION_TYPE_KEY";
+  private static final String PROVIDED_DIAGNOSIS_KEY_HEX_TO_LOG_KEY =
+      "ExposureNotificationSharedPreferences.PROVIDE_DIAGNOSIS_KEY_TO_LOG_KEY";
 
   private final SharedPreferences sharedPreferences;
   private final Clock clock;
   private static AnalyticsStateListener analyticsStateListener;
+
+  private LiveData<Boolean> appAnalyticsStateLiveData;
+  private LiveData<Boolean> privateAnalyticsStateLiveData;
+  private LiveData<Boolean> isExposureClassificationRevokedLiveData;
+  private LiveData<Boolean> isOnboardingStateSetLiveData;
+  private LiveData<Boolean> isPrivateAnalyticsStateSetLiveData;
+  private LiveData<ExposureClassification> exposureClassificationLiveData;
+  private LiveData<BadgeStatus> isExposureClassificationNewLiveData;
+  private LiveData<BadgeStatus> isExposureClassificationDateNewLiveData;
+  private LiveData<String> providedDiagnosisKeyHexToLogLiveData;
 
   /**
    * Enum for onboarding status.
@@ -191,6 +203,57 @@ public class ExposureNotificationSharedPreferences {
     // accessible by the app.
     sharedPreferences = context.getSharedPreferences(SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE);
     this.clock = clock;
+
+    this.appAnalyticsStateLiveData =
+        new BooleanSharedPreferenceLiveData(sharedPreferences, SHARE_ANALYTICS_KEY, false);
+    this.privateAnalyticsStateLiveData =
+        new BooleanSharedPreferenceLiveData(sharedPreferences, SHARE_PRIVATE_ANALYTICS_KEY, false);
+    this.isExposureClassificationRevokedLiveData =
+        new BooleanSharedPreferenceLiveData(
+            sharedPreferences, EXPOSURE_CLASSIFICATION_IS_REVOKED_KEY, false);
+    this.isOnboardingStateSetLiveData =
+        new ContainsSharedPreferenceLiveData(sharedPreferences, ONBOARDING_STATE_KEY);
+    this.isPrivateAnalyticsStateSetLiveData =
+        new ContainsSharedPreferenceLiveData(sharedPreferences, SHARE_PRIVATE_ANALYTICS_KEY);
+
+    this.exposureClassificationLiveData =
+        new SharedPreferenceLiveData<ExposureClassification>(
+            this.sharedPreferences,
+            EXPOSURE_CLASSIFICATION_INDEX_KEY,
+            EXPOSURE_CLASSIFICATION_NAME_KEY,
+            EXPOSURE_CLASSIFICATION_DATE_KEY) {
+          @Override
+          protected void updateValue() {
+            setValue(getExposureClassification());
+          }
+        };
+
+    this.isExposureClassificationNewLiveData = new SharedPreferenceLiveData<BadgeStatus>(
+        this.sharedPreferences,
+        EXPOSURE_CLASSIFICATION_IS_CLASSIFICATION_NEW_KEY) {
+      @Override
+      protected void updateValue() {
+        setValue(getIsExposureClassificationNew());
+      }
+    };
+
+    this.isExposureClassificationDateNewLiveData = new SharedPreferenceLiveData<BadgeStatus>(
+        this.sharedPreferences,
+        EXPOSURE_CLASSIFICATION_IS_DATE_NEW_KEY) {
+      @Override
+      protected void updateValue() {
+        setValue(getIsExposureClassificationDateNew());
+      }
+    };
+
+    this.providedDiagnosisKeyHexToLogLiveData = new SharedPreferenceLiveData<String>(
+        this.sharedPreferences,
+        PROVIDED_DIAGNOSIS_KEY_HEX_TO_LOG_KEY) {
+      @Override
+      protected void updateValue() {
+        setValue(getProvidedDiagnosisKeyHexToLog());
+      }
+    };
   }
 
   public void setOnboardedState(boolean onboardedState) {
@@ -207,12 +270,11 @@ public class ExposureNotificationSharedPreferences {
   }
 
   public LiveData<Boolean> isOnboardingStateSetLiveData() {
-    return Transformations.distinctUntilChanged(
-        new ContainsSharedPreferenceLiveData(sharedPreferences, ONBOARDING_STATE_KEY));
+    return Transformations.distinctUntilChanged(isOnboardingStateSetLiveData);
   }
 
   public LiveData<Boolean> getAppAnalyticsStateLiveData() {
-    return new BooleanSharedPreferenceLiveData(sharedPreferences, SHARE_ANALYTICS_KEY, false);
+    return appAnalyticsStateLiveData;
   }
 
   public void setAppAnalyticsState(boolean isEnabled) {
@@ -248,8 +310,7 @@ public class ExposureNotificationSharedPreferences {
   }
 
   public LiveData<Boolean> getPrivateAnalyticsStateLiveData() {
-    return new BooleanSharedPreferenceLiveData(sharedPreferences, SHARE_PRIVATE_ANALYTICS_KEY,
-        false);
+    return privateAnalyticsStateLiveData;
   }
 
   public boolean getPrivateAnalyticState() {
@@ -262,8 +323,7 @@ public class ExposureNotificationSharedPreferences {
   }
 
   public LiveData<Boolean> isPrivateAnalyticsStateSetLiveData() {
-    return Transformations.distinctUntilChanged(
-        new ContainsSharedPreferenceLiveData(sharedPreferences, SHARE_PRIVATE_ANALYTICS_KEY));
+    return Transformations.distinctUntilChanged(isPrivateAnalyticsStateSetLiveData);
   }
 
   public boolean isPrivateAnalyticsStateSet() {
@@ -318,16 +378,7 @@ public class ExposureNotificationSharedPreferences {
   }
 
   public LiveData<ExposureClassification> getExposureClassificationLiveData() {
-    return new SharedPreferenceLiveData<ExposureClassification>(
-        this.sharedPreferences,
-        EXPOSURE_CLASSIFICATION_INDEX_KEY,
-        EXPOSURE_CLASSIFICATION_NAME_KEY,
-        EXPOSURE_CLASSIFICATION_DATE_KEY) {
-      @Override
-      protected void updateValue() {
-        setValue(getExposureClassification());
-      }
-    };
+    return exposureClassificationLiveData;
   }
 
   public void setIsExposureClassificationRevoked(boolean isRevoked) {
@@ -339,8 +390,7 @@ public class ExposureNotificationSharedPreferences {
   }
 
   public LiveData<Boolean> getIsExposureClassificationRevokedLiveData() {
-    return new BooleanSharedPreferenceLiveData(sharedPreferences,
-        EXPOSURE_CLASSIFICATION_IS_REVOKED_KEY, false);
+    return isExposureClassificationRevokedLiveData;
   }
 
   public void setIsExposureClassificationNewAsync(BadgeStatus badgeStatus) {
@@ -409,13 +459,7 @@ public class ExposureNotificationSharedPreferences {
   }
 
   public LiveData<BadgeStatus> getIsExposureClassificationNewLiveData() {
-    return new SharedPreferenceLiveData<BadgeStatus>(this.sharedPreferences,
-        EXPOSURE_CLASSIFICATION_IS_CLASSIFICATION_NEW_KEY) {
-      @Override
-      protected void updateValue() {
-        setValue(getIsExposureClassificationNew());
-      }
-    };
+    return isExposureClassificationNewLiveData;
   }
 
   public void setIsExposureClassificationDateNewAsync(BadgeStatus badgeStatus) {
@@ -430,13 +474,21 @@ public class ExposureNotificationSharedPreferences {
   }
 
   public LiveData<BadgeStatus> getIsExposureClassificationDateNewLiveData() {
-    return new SharedPreferenceLiveData<BadgeStatus>(this.sharedPreferences,
-        EXPOSURE_CLASSIFICATION_IS_DATE_NEW_KEY) {
-      @Override
-      protected void updateValue() {
-        setValue(getIsExposureClassificationDateNew());
-      }
-    };
+    return isExposureClassificationDateNewLiveData;
+  }
+
+  public void setProvidedDiagnosisKeyHexToLog(String keyHex) {
+    sharedPreferences.edit()
+        .putString(PROVIDED_DIAGNOSIS_KEY_HEX_TO_LOG_KEY, keyHex)
+        .commit();
+  }
+
+  public String getProvidedDiagnosisKeyHexToLog() {
+    return sharedPreferences.getString(PROVIDED_DIAGNOSIS_KEY_HEX_TO_LOG_KEY, "");
+  }
+
+  public LiveData<String> getProvidedDiagnosisKeyHexToLogLiveData() {
+    return providedDiagnosisKeyHexToLogLiveData;
   }
 
   public interface AnalyticsStateListener {

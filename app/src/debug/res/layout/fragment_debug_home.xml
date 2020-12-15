@@ -134,6 +134,23 @@
         android:layout_gravity="center_horizontal"
         android:text="@string/debug_provide_now_text" />
 
+      <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/padding_large"
+        android:layout_marginVertical="@dimen/padding_small"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+
+        <com.google.android.material.textfield.TextInputEditText
+          android:id="@+id/key_to_log"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:hint="@string/debug_provided_key_to_log_hint"
+          android:importantForAutofill="no"
+          tools:ignore="TextFields" />
+
+      </com.google.android.material.textfield.TextInputLayout>
+
       <include layout="@layout/horizontal_divider" />
 
       <include layout="@layout/horizontal_divider"/>

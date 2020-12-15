@@ -75,6 +75,9 @@ public final class ExposureNotificationActivity extends AppCompatActivity {
 
     setContentView(R.layout.activity_exposure_notification);
 
+
+    exposureNotificationViewModel =
+        new ViewModelProvider(this).get(ExposureNotificationViewModel.class);
     /*
      * On start of the app (but not on screen rotation, thus when savedInstanceState == null):
      * Dismiss "new" badges that have already been seen
@@ -86,11 +89,14 @@ public final class ExposureNotificationActivity extends AppCompatActivity {
           BadgeStatus.SEEN, BadgeStatus.DISMISSED);
       exposureHomeViewModel.tryTransitionExposureClassificationDateNew(
           BadgeStatus.SEEN, BadgeStatus.DISMISSED);
+
+      // If this was launched by a notification click
+      if (getIntent() != null && ACTION_LAUNCH_FROM_EXPOSURE_NOTIFICATION
+          .equals(getIntent().getAction())) {
+        exposureNotificationViewModel
+            .updateLastExposureNotificationLastClickedTime();
+      }
     }
-
-
-    exposureNotificationViewModel =
-        new ViewModelProvider(this).get(ExposureNotificationViewModel.class);
 
     exposureNotificationViewModel
         .getResolutionRequiredLiveEvent()
@@ -166,11 +172,11 @@ public final class ExposureNotificationActivity extends AppCompatActivity {
     for (Fragment fragment : getSupportFragmentManager().getFragments()) {
       if (fragment instanceof HomeFragment) {
         ((HomeFragment) fragment).setTab(HomeFragment.TAB_EXPOSURES);
-        if(ACTION_LAUNCH_FROM_EXPOSURE_NOTIFICATION.equals(intent.getAction())) {
-          exposureNotificationViewModel
-              .updateLastExposureNotificationLastClickedTime();
-        }
       }
+    }
+    if (ACTION_LAUNCH_FROM_EXPOSURE_NOTIFICATION.equals(intent.getAction())) {
+      exposureNotificationViewModel
+          .updateLastExposureNotificationLastClickedTime();
     }
   }
 

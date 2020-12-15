@@ -22,7 +22,7 @@ Two aggregation servers
   - A Facilitator helper server that assists with the computation
 - An ingestion server that runs device attestation and filters inputs so that only legitimate devices can contribute to the aggregate data.
   - Google will run an ingestion server.
-  - **The ingestion server only processes data encrypted with the PHA public key or the facilitator public key. The ingestion server cannot decrypt this data. **
+  - The ingestion server only processes data encrypted with the PHA public key or the facilitator public key. The ingestion server cannot decrypt this data.
   - The ingestion server discards IP addresses and does not log or share them with any other parties.
 
 Google’s role in enabling analytics is adding the capability to ENX, supporting third parties that will be deploying servers used for privacy preserving aggregation and deploying the ingestion server to check device attestation.

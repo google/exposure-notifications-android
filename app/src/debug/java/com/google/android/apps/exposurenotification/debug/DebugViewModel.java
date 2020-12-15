@@ -50,6 +50,7 @@ import com.google.android.apps.exposurenotification.privateanalytics.metrics.His
 import com.google.android.apps.exposurenotification.privateanalytics.metrics.PeriodicExposureNotificationInteractionMetric;
 import com.google.android.apps.exposurenotification.privateanalytics.metrics.PeriodicExposureNotificationMetric;
 import com.google.android.apps.exposurenotification.storage.CountryRepository;
+import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.NetworkMode;
 import com.google.common.base.Splitter;
 import com.google.common.util.concurrent.FluentFuture;
@@ -96,6 +97,7 @@ public class DebugViewModel extends ViewModel {
   private final ExecutorService lightweightExecutor;
   private final PrivateAnalyticsDeviceAttestation deviceAttestation;
   private final Clock clock;
+  private final ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
 
   @ViewModelInject
   public DebugViewModel(
@@ -108,7 +110,8 @@ public class DebugViewModel extends ViewModel {
       @LightweightExecutor ExecutorService lightweightExecutor,
       PrivateAnalyticsDeviceAttestation privateAnalyticsDeviceAttestation,
       Clock clock,
-      ExposureNotificationClientWrapper exposureNotificationClientWrapper) {
+      ExposureNotificationClientWrapper exposureNotificationClientWrapper,
+      ExposureNotificationSharedPreferences exposureNotificationSharedPreferences) {
     this.countryRepository = countryRepository;
     this.workManager = workManager;
     this.homeDownloadUris = homeDownloadUris;
@@ -116,6 +119,7 @@ public class DebugViewModel extends ViewModel {
     this.lightweightExecutor = lightweightExecutor;
     this.deviceAttestation = privateAnalyticsDeviceAttestation;
     this.clock = clock;
+    this.exposureNotificationSharedPreferences = exposureNotificationSharedPreferences;
     codeCreator = new VerificationCodeCreator(context, requestQueueWrapper);
     resources = context.getResources();
 
@@ -276,6 +280,14 @@ public class DebugViewModel extends ViewModel {
           Log.w(TAG, "Error clearing country code database", e);
           return null;
         }, lightweightExecutor);
+  }
+
+  public void setProvidedDiagnosisKeyHexToLog(String keyHex) {
+    exposureNotificationSharedPreferences.setProvidedDiagnosisKeyHexToLog(keyHex);
+  }
+
+  public LiveData<String> getProvidedDiagnosisKeyHexToLogLiveData() {
+    return exposureNotificationSharedPreferences.getProvidedDiagnosisKeyHexToLogLiveData();
   }
 
   private String convertTestTypeStrToServerValue(String testTypeStr) {
