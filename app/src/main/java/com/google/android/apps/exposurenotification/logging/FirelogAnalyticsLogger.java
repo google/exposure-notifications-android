@@ -343,16 +343,10 @@ public class FirelogAnalyticsLogger implements AnalyticsLogger {
   }
 
   private EnxLogExtension getRpcFailureLogEvent(RpcCallType rpcCallType, Throwable error) {
-    RpcCallResult rpcCallResult = RpcCallResult.RESULT_FAILED_UNKNOWN;
+    RpcCallResult rpcCallResult = VolleyUtils.getLoggableResult(error);
     int httpStatus = VolleyUtils.getHttpStatus(error);
     String errorCode = VolleyUtils.getErrorCode(error);
     String errorMessage = VolleyUtils.getErrorMessage(error);
-
-    if (httpStatus / 100 == 5) {
-      rpcCallResult = RpcCallResult.RESULT_FAILED_GENERIC_5XX;
-    } else if (httpStatus / 100 == 4) {
-      rpcCallResult = RpcCallResult.RESULT_FAILED_GENERIC_4XX;
-    }
 
     Log.e(tag, rpcCallType + " failed. "
         + " Result:[" + rpcCallResult + "]"

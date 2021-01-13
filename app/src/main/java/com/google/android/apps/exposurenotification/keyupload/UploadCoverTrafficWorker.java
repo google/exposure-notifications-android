@@ -101,8 +101,8 @@ public final class UploadCoverTrafficWorker extends ListenableWorker {
       return Futures.immediateFuture(Result.success());
     }
 
-    // First see if the API is enabled in the first place.
-    ListenableFuture<Result> listenableFuture = FluentFuture.from(
+    return FluentFuture.from(
+        // First see if the API is enabled in the first place.
         workerStartupManager.getIsEnabledWithStartupTasks())
         .transformAsync(
             isEnabled -> {
@@ -122,7 +122,6 @@ public final class UploadCoverTrafficWorker extends ListenableWorker {
         // Report success or failure.
         .transform(unused -> Result.success(), lightweightExecutor)
         .catching(Throwable.class, t -> Result.failure(), lightweightExecutor);
-    return listenableFuture;
   }
 
   private static Upload fakeCodeRequest() {

@@ -17,6 +17,7 @@ package com.google.android.apps.exposurenotification.privateanalytics;
 import android.util.Log;
 import com.google.android.apps.exposurenotification.proto.CreatePacketsParameters;
 import com.google.android.apps.exposurenotification.proto.CreatePacketsResponse;
+import com.google.android.apps.exposurenotification.proto.ResponseStatus;
 import com.google.android.apps.exposurenotification.proto.ResponseStatus.StatusCode;
 
 /**
@@ -26,10 +27,7 @@ import com.google.android.apps.exposurenotification.proto.ResponseStatus.StatusC
 public class PrioJni implements Prio {
 
   private static final String TAG = "PrioJni";
-
-  static {
-    System.loadLibrary("prioclient");
-  }
+  private static final Initializer INITIALIZER_INSTANCE = new Initializer();
 
   PrioJni() {
   }
@@ -38,18 +36,57 @@ public class PrioJni implements Prio {
 
   @Override
   public CreatePacketsResponse getPackets(CreatePacketsParameters params) {
-    byte[] responseBytes = createPackets(params.toByteArray());
-    try {
-      CreatePacketsResponse createPacketsResponse = CreatePacketsResponse.parseFrom(responseBytes);
-      Log.d(TAG, "Response Status: " + createPacketsResponse.getResponseStatus().getStatusCode());
-      if (createPacketsResponse.getResponseStatus().getStatusCode() != StatusCode.OK) {
-        Log.w(TAG, "Error when creating packets: " + createPacketsResponse.getResponseStatus()
-            .getErrorDetails());
+    ResponseStatus.Builder responseStatusBuilder = ResponseStatus.newBuilder();
+    if (INITIALIZER_INSTANCE.isAvailable()) {
+      byte[] responseBytes = createPackets(params.toByteArray());
+      try {
+        CreatePacketsResponse createPacketsResponse = CreatePacketsResponse
+            .parseFrom(responseBytes);
+        Log.d(TAG, "Response Status: " + createPacketsResponse.getResponseStatus().getStatusCode());
+        if (createPacketsResponse.getResponseStatus().getStatusCode() != StatusCode.OK) {
+          Log.w(TAG, "Error when creating packets: " + createPacketsResponse.getResponseStatus()
+              .getErrorDetails());
+        }
+        return createPacketsResponse;
+      } catch (Exception e) {
+        responseStatusBuilder.setStatusCode(StatusCode.UNKNOWN_FAILURE);
+        responseStatusBuilder.setErrorDetails("Unable to parse responseBytes");
+        Log.w(TAG, "Unable to parse responseBytes");
       }
-      return createPacketsResponse;
-    } catch (Exception e) {
-      Log.w(TAG, "Unable to parse responseBytes");
+    } else {
+      responseStatusBuilder.setStatusCode(StatusCode.LIBRARY_UNAVAILABLE);
+      responseStatusBuilder.setErrorDetails("Prio is not available.");
+      Log.e(TAG, "Prio is not available.");
     }
-    return null;
+    // Return a CreatePacketResponse with a non-OK status code.
+    CreatePacketsResponse createPacketsResponse = CreatePacketsResponse.newBuilder()
+        .setResponseStatus(responseStatusBuilder.build()).build();
+    return createPacketsResponse;
+  }
+
+  private static class Initializer {
+
+    private boolean hasInitializationSucceeded = false;
+    private boolean wasInitializationAttempted = false;
+
+    // Must be called at least once before any calls to JNI libraries.
+    synchronized boolean isAvailable() {
+      if (!wasInitializationAttempted) {
+        wasInitializationAttempted = true;
+        try {
+          Log.d(TAG, "Loading Prio native library");
+          System.loadLibrary("prioclient");
+          hasInitializationSucceeded = true;
+          Log.d(TAG, "Prio native library loaded successfully");
+        } catch (SecurityException | UnsatisfiedLinkError | NullPointerException e) {
+          hasInitializationSucceeded = false;
+          Log.e(TAG, "Prio native library load failed.", e);
+        }
+      } else {
+        Log.d(TAG, "Prio native library load skipped; already attempted with result="
+            + hasInitializationSucceeded);
+      }
+      return hasInitializationSucceeded;
+    }
   }
 }

@@ -25,6 +25,7 @@ import androidx.annotation.UiThread;
 import com.android.volley.VolleyError;
 import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.proto.ApiCall.ApiCallType;
+import com.google.android.apps.exposurenotification.proto.RpcCall.RpcCallResult;
 import com.google.android.apps.exposurenotification.proto.RpcCall.RpcCallType;
 import com.google.android.apps.exposurenotification.proto.UiInteraction.EventType;
 import com.google.android.apps.exposurenotification.proto.WorkManagerTask.Status;
@@ -102,12 +103,15 @@ class LogcatAnalyticsLogger implements AnalyticsLogger {
   @Override
   @AnyThread
   public void logRpcCallFailure(RpcCallType rpcCallType, Throwable error) {
+    RpcCallResult rpcCallResult = VolleyUtils.getLoggableResult(error);
     int httpStatus = VolleyUtils.getHttpStatus(error);
     String errorCode = VolleyUtils.getErrorCode(error);
     String errorMessage = VolleyUtils.getErrorMessage(error);
 
-    Log.e(tag, rpcCallType + " failed with server error " + httpStatus + ":" + errorCode + ":["
-        + errorMessage + "]");
+    Log.e(tag, rpcCallType + " failed. "
+        + " Result:[" + rpcCallResult + "]"
+        + " HTTP status:[" + httpStatus + "]"
+        + " Server error:[" + errorCode + ":" + errorMessage + "]");
   }
 
   @Override

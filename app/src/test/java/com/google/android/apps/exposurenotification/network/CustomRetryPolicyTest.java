@@ -21,6 +21,7 @@ import static com.google.common.truth.Truth.assertThat;
 import static org.junit.Assert.assertThrows;
 
 import com.android.volley.Header;
+import com.android.volley.NetworkError;
 import com.android.volley.NetworkResponse;
 import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
@@ -153,6 +154,16 @@ public class CustomRetryPolicyTest {
     // WHEN
     CustomRetryPolicy policy = new CustomRetryPolicy(clock);
     policy.retry(new TimeoutError());
+
+    // THEN
+    assertThat(policy.getCurrentRetryCount()).isEqualTo(1);
+  }
+
+  @Test
+  public void networkError_shouldRetry() throws Exception {
+    // WHEN
+    CustomRetryPolicy policy = new CustomRetryPolicy(clock);
+    policy.retry(new NetworkError());
 
     // THEN
     assertThat(policy.getCurrentRetryCount()).isEqualTo(1);

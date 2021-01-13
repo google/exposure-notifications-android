@@ -33,7 +33,7 @@ message PrioAlgorithmParameters {
 }
 
 message ResponseStatus {
-  // NEXT ID: 4
+  // NEXT ID: 5
   enum StatusCode {
     // Operation experienced an unknown failure
     UNKNOWN_FAILURE = 0;
@@ -46,6 +46,9 @@ message ResponseStatus {
 
     // Operation failed due to an invalid parameter error
     INVALID_PARAMETER_FAILURE = 3;
+
+    // Operation failed because the Prio library is not available
+    LIBRARY_UNAVAILABLE = 4;
   }
 
   // The status code of the response

@@ -44,6 +44,7 @@ public class RespondableJsonObjectRequest extends JsonObjectRequest {
       Response.ErrorListener errorListener, Clock clock, boolean isCoverTraffic) {
     super(method, url, jsonRequest, listener, errorListener);
     this.isCoverTraffic = isCoverTraffic;
+    setShouldRetryServerErrors(true);
     setRetryPolicy(new CustomRetryPolicy(clock));
   }
 

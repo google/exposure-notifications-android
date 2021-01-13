@@ -27,7 +27,11 @@ import static org.mockito.Mockito.verify;
 import android.content.Context;
 import android.support.test.espresso.core.internal.deps.guava.collect.ImmutableList;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
+import com.android.volley.NetworkError;
 import com.android.volley.NetworkResponse;
+import com.android.volley.NoConnectionError;
+import com.android.volley.ParseError;
+import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.google.android.apps.exposurenotification.BuildConfig;
 import com.google.android.apps.exposurenotification.R;
@@ -150,7 +154,8 @@ public class FirelogAnalyticsLoggerTest {
   }
 
   @Test
-  public void logApiSuccess_shouldWriteDbRecord_withApiCallTypeAndStatusZero() throws Exception {
+  public void logApiCallSuccess_shouldWriteDbRecord_withApiCallTypeAndStatusZero()
+      throws Exception {
     // WHEN
     logger.logApiCallSuccess(ApiCallType.CALL_IS_ENABLED);
 
@@ -164,7 +169,7 @@ public class FirelogAnalyticsLoggerTest {
   }
 
   @Test
-  public void logApiFail_shouldWriteDbRecord_withApiCallType_andStatusFromException()
+  public void logApiCallFailure_shouldWriteDbRecord_withApiCallType_andStatusFromException()
       throws Exception {
     // WHEN
     ApiException e = new ApiException(Status.RESULT_INTERNAL_ERROR);
@@ -180,7 +185,39 @@ public class FirelogAnalyticsLoggerTest {
   }
 
   @Test
-  public void logRpcSuccess_shouldWriteDbRecord_withRpcCallTypeAndPayloadSize() throws Exception {
+  public void logApiCallSuccessAsync_shouldWriteDbRecord_withApiCallTypeAndStatusZero()
+      throws Exception {
+    // WHEN
+    logger.logApiCallSuccessAsync(ApiCallType.CALL_IS_ENABLED).get();
+
+    // THEN
+    assertThat(storedLogs())
+        .containsExactly(EnxLogExtension.newBuilder()
+            .addApiCall(ApiCall.newBuilder()
+                .setApiCallType(ApiCallType.CALL_IS_ENABLED)
+                .setStatusCode(0))
+            .build());
+  }
+
+  @Test
+  public void logApiCallFailureAsync_shouldWriteDbRecord_withApiCallType_andStatusFromException()
+      throws Exception {
+    // WHEN
+    ApiException e = new ApiException(Status.RESULT_INTERNAL_ERROR);
+    logger.logApiCallFailureAsync(ApiCallType.CALL_IS_ENABLED, e).get();
+
+    // THEN
+    assertThat(storedLogs())
+        .containsExactly(EnxLogExtension.newBuilder()
+            .addApiCall(ApiCall.newBuilder()
+                .setApiCallType(ApiCallType.CALL_IS_ENABLED)
+                .setStatusCode(Status.RESULT_INTERNAL_ERROR.getStatusCode()))
+            .build());
+  }
+
+  @Test
+  public void logRpcCallSuccess_shouldWriteDbRecord_withRpcCallTypeAndPayloadSize()
+      throws Exception {
     // WHEN
     logger.logRpcCallSuccess(RpcCallType.RPC_TYPE_KEYS_DOWNLOAD, 123);
 
@@ -195,7 +232,7 @@ public class FirelogAnalyticsLoggerTest {
   }
 
   @Test
-  public void logRpcFail_shouldWriteDbRecord_withRpcCallType_andGeneric4xxHttpStatus()
+  public void logRpcCallFailure_shouldWriteDbRecord_withRpcCallType_andGeneric4xxHttpStatus()
       throws Exception {
     // WHEN
     VolleyError e = volleyErrorOf(456);
@@ -211,7 +248,7 @@ public class FirelogAnalyticsLoggerTest {
   }
 
   @Test
-  public void logRpcFail_shouldWriteDbRecord_withRpcCallType_andGeneric5xxHttpStatus()
+  public void logRpcCallFailure_shouldWriteDbRecord_withRpcCallType_andGeneric5xxHttpStatus()
       throws Exception {
     // WHEN
     VolleyError e = volleyErrorOf(567);
@@ -223,6 +260,178 @@ public class FirelogAnalyticsLoggerTest {
             .addRpcCall(RpcCall.newBuilder()
                 .setRpcCallType(RpcCallType.RPC_TYPE_KEYS_UPLOAD)
                 .setRpcCallResult(RpcCallResult.RESULT_FAILED_GENERIC_5XX))
+            .build());
+  }
+
+  @Test
+  public void logRpcFail_shouldWriteDbRecord_withRpcCallType_andTimeoutError() throws Exception {
+    // WHEN
+    VolleyError e = new TimeoutError();
+    logger.logRpcCallFailure(RpcCallType.RPC_TYPE_KEYS_UPLOAD, e);
+
+    // THEN
+    assertThat(storedLogs())
+        .containsExactly(EnxLogExtension.newBuilder()
+            .addRpcCall(RpcCall.newBuilder()
+                .setRpcCallType(RpcCallType.RPC_TYPE_KEYS_UPLOAD)
+                .setRpcCallResult(RpcCallResult.RESULT_FAILED_TIMEOUT))
+            .build());
+  }
+
+  @Test
+  public void logRpcFail_shouldWriteDbRecord_withRpcCallType_andParsingError() throws Exception {
+    // WHEN
+    VolleyError e = new ParseError();
+    logger.logRpcCallFailure(RpcCallType.RPC_TYPE_KEYS_UPLOAD, e);
+
+    // THEN
+    assertThat(storedLogs())
+        .containsExactly(EnxLogExtension.newBuilder()
+            .addRpcCall(RpcCall.newBuilder()
+                .setRpcCallType(RpcCallType.RPC_TYPE_KEYS_UPLOAD)
+                .setRpcCallResult(RpcCallResult.RESULT_FAILED_PARSING))
+            .build());
+  }
+
+  @Test
+  public void logRpcFail_shouldWriteDbRecord_withRpcCallType_andConnectionError() throws Exception {
+    // WHEN
+    VolleyError e = new NoConnectionError();
+    logger.logRpcCallFailure(RpcCallType.RPC_TYPE_KEYS_UPLOAD, e);
+
+    // THEN
+    assertThat(storedLogs())
+        .containsExactly(EnxLogExtension.newBuilder()
+            .addRpcCall(RpcCall.newBuilder()
+                .setRpcCallType(RpcCallType.RPC_TYPE_KEYS_UPLOAD)
+                .setRpcCallResult(RpcCallResult.RESULT_FAILED_NO_CONNECTION))
+            .build());
+  }
+
+  @Test
+  public void logRpcFail_shouldWriteDbRecord_withRpcCallType_andNetworkError() throws Exception {
+    // WHEN
+    VolleyError e = new NetworkError();
+    logger.logRpcCallFailure(RpcCallType.RPC_TYPE_KEYS_UPLOAD, e);
+
+    // THEN
+    assertThat(storedLogs())
+        .containsExactly(EnxLogExtension.newBuilder()
+            .addRpcCall(RpcCall.newBuilder()
+                .setRpcCallType(RpcCallType.RPC_TYPE_KEYS_UPLOAD)
+                .setRpcCallResult(RpcCallResult.RESULT_FAILED_NETWORK_ERROR))
+            .build());
+  }
+
+  @Test
+  public void logRpcCallSuccessAsync_shouldWriteDbRecord_withRpcCallTypeAndPayloadSize()
+      throws Exception {
+    // WHEN
+    logger.logRpcCallSuccessAsync(RpcCallType.RPC_TYPE_KEYS_DOWNLOAD, 123).get();
+
+    // THEN
+    assertThat(storedLogs())
+        .containsExactly(EnxLogExtension.newBuilder()
+            .addRpcCall(RpcCall.newBuilder()
+                .setRpcCallResult(RpcCallResult.RESULT_SUCCESS)
+                .setRpcCallType(RpcCallType.RPC_TYPE_KEYS_DOWNLOAD)
+                .setPayloadSize(123))
+            .build());
+  }
+
+  @Test
+  public void logRpcCallFailureAsync_shouldWriteDbRecord_withRpcCallType_andGeneric4xxHttpStatus()
+      throws Exception {
+    // WHEN
+    VolleyError e = volleyErrorOf(456);
+    logger.logRpcCallFailureAsync(RpcCallType.RPC_TYPE_KEYS_UPLOAD, e).get();
+
+    // THEN
+    assertThat(storedLogs())
+        .containsExactly(EnxLogExtension.newBuilder()
+            .addRpcCall(RpcCall.newBuilder()
+                .setRpcCallType(RpcCallType.RPC_TYPE_KEYS_UPLOAD)
+                .setRpcCallResult(RpcCallResult.RESULT_FAILED_GENERIC_4XX))
+            .build());
+  }
+
+  @Test
+  public void logRpcCallFailureAsync_shouldWriteDbRecord_withRpcCallType_andGeneric5xxHttpStatus()
+      throws Exception {
+    // WHEN
+    VolleyError e = volleyErrorOf(567);
+    logger.logRpcCallFailureAsync(RpcCallType.RPC_TYPE_KEYS_UPLOAD, e).get();
+
+    // THEN
+    assertThat(storedLogs())
+        .containsExactly(EnxLogExtension.newBuilder()
+            .addRpcCall(RpcCall.newBuilder()
+                .setRpcCallType(RpcCallType.RPC_TYPE_KEYS_UPLOAD)
+                .setRpcCallResult(RpcCallResult.RESULT_FAILED_GENERIC_5XX))
+            .build());
+  }
+
+  @Test
+  public void logRpcFailAsync_shouldWriteDbRecord_withRpcCallType_andTimeoutError()
+      throws Exception {
+    // WHEN
+    VolleyError e = new TimeoutError();
+    logger.logRpcCallFailureAsync(RpcCallType.RPC_TYPE_KEYS_UPLOAD, e);
+
+    // THEN
+    assertThat(storedLogs())
+        .containsExactly(EnxLogExtension.newBuilder()
+            .addRpcCall(RpcCall.newBuilder()
+                .setRpcCallType(RpcCallType.RPC_TYPE_KEYS_UPLOAD)
+                .setRpcCallResult(RpcCallResult.RESULT_FAILED_TIMEOUT))
+            .build());
+  }
+
+  @Test
+  public void logRpcFailAsync_shouldWriteDbRecord_withRpcCallType_andParsingError()
+      throws Exception {
+    // WHEN
+    VolleyError e = new ParseError();
+    logger.logRpcCallFailureAsync(RpcCallType.RPC_TYPE_KEYS_UPLOAD, e);
+
+    // THEN
+    assertThat(storedLogs())
+        .containsExactly(EnxLogExtension.newBuilder()
+            .addRpcCall(RpcCall.newBuilder()
+                .setRpcCallType(RpcCallType.RPC_TYPE_KEYS_UPLOAD)
+                .setRpcCallResult(RpcCallResult.RESULT_FAILED_PARSING))
+            .build());
+  }
+
+  @Test
+  public void logRpcFailAsync_shouldWriteDbRecord_withRpcCallType_andConnectionError()
+      throws Exception {
+    // WHEN
+    VolleyError e = new NoConnectionError();
+    logger.logRpcCallFailureAsync(RpcCallType.RPC_TYPE_KEYS_UPLOAD, e);
+
+    // THEN
+    assertThat(storedLogs())
+        .containsExactly(EnxLogExtension.newBuilder()
+            .addRpcCall(RpcCall.newBuilder()
+                .setRpcCallType(RpcCallType.RPC_TYPE_KEYS_UPLOAD)
+                .setRpcCallResult(RpcCallResult.RESULT_FAILED_NO_CONNECTION))
+            .build());
+  }
+
+  @Test
+  public void logRpcFailAsync_shouldWriteDbRecord_withRpcCallType_andNetworkError()
+      throws Exception {
+    // WHEN
+    VolleyError e = new NetworkError();
+    logger.logRpcCallFailureAsync(RpcCallType.RPC_TYPE_KEYS_UPLOAD, e);
+
+    // THEN
+    assertThat(storedLogs())
+        .containsExactly(EnxLogExtension.newBuilder()
+            .addRpcCall(RpcCall.newBuilder()
+                .setRpcCallType(RpcCallType.RPC_TYPE_KEYS_UPLOAD)
+                .setRpcCallResult(RpcCallResult.RESULT_FAILED_NETWORK_ERROR))
             .build());
   }
 

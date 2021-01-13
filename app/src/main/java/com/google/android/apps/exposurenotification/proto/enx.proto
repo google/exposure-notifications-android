@@ -1,4 +1,8 @@
-// DO NOT CHANGE - must comply with log ingestion pipeline proto format
+// #################################################################################################
+// IMPORTANT: Must be binary-compatible with log ingestion pipeline proto definition, so that data
+// serialised under one definition can be deserialised under the other. More precisely: field types
+// and numbers, and enum indices all must match.
+// #################################################################################################
 
 syntax = "proto2";
 package logs.proto.enx;
@@ -42,8 +46,20 @@ message RpcCall {
   enum RpcCallResult {
     RESULT_FAILED_UNKNOWN = 0;
     RESULT_SUCCESS = 1;
+    // When the response has any 400-class HTTP status.
     RESULT_FAILED_GENERIC_4XX = 2;
+    // When the response has any 500-class HTTP status.
     RESULT_FAILED_GENERIC_5XX = 3;
+    // Corresponds to Volley TimeoutError.
+    RESULT_FAILED_TIMEOUT = 4;
+    // Corresponds to Volley ParseError.
+    RESULT_FAILED_PARSING = 5;
+    // Corresponds to Volley NoConnectionError, when Volley fails to execute the
+    // HTTP request.
+    RESULT_FAILED_NO_CONNECTION = 6;
+    // Corresponds to Volley NetworkError, when Volley fails to capture a
+    // response from the network stream.
+    RESULT_FAILED_NETWORK_ERROR = 7;
   }
 
   // deprecated - use region identifier instead.

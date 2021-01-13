@@ -41,6 +41,7 @@ public class RespondableByteArrayRequest extends Request<byte[]> {
       Uri uri, Response.Listener<byte[]> listener, ErrorListener errorListener, Clock clock) {
     super(Method.GET, uri.toString(), errorListener);
     this.listener = listener;
+    setShouldRetryServerErrors(true);
     setRetryPolicy(new CustomRetryPolicy(clock));
   }
 

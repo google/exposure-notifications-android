@@ -34,6 +34,7 @@ public class RespondableStringRequest extends StringRequest {
   public RespondableStringRequest(
       String url, Listener<String> listener, Response.ErrorListener errorListener, Clock clock) {
     super(Method.GET, url, listener, errorListener);
+    setShouldRetryServerErrors(true);
     setRetryPolicy(new CustomRetryPolicy(clock));
   }
 

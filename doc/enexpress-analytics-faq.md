@@ -18,8 +18,8 @@ ENX may be updated to support additional metrics that are useful for health auth
 
 - The architecture that will enable analytics in ENX in a privacy-preserving manner includes:
 Two aggregation servers
-  - A public health authority server that receives the final aggregated data
-  - A Facilitator helper server that assists with the computation
+  - A public health authority server (run in the US by the National Cancer Institute in the National Institutes of Health and MITRE Corporation) that receives the final aggregated data
+  - A Facilitator server (run in the US by the Internet Security Research Group in partnership with Linux Foundation Public Health) that assists with the computation
 - An ingestion server that runs device attestation and filters inputs so that only legitimate devices can contribute to the aggregate data.
   - Google will run an ingestion server.
   - The ingestion server only processes data encrypted with the PHA public key or the facilitator public key. The ingestion server cannot decrypt this data.
