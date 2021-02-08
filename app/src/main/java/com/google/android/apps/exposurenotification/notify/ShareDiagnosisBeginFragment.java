@@ -21,14 +21,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ViewFlipper;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.databinding.FragmentShareDiagnosisBeginBinding;
 import com.google.android.apps.exposurenotification.home.ExposureNotificationViewModel;
 import com.google.android.apps.exposurenotification.notify.ShareDiagnosisViewModel.Step;
-import com.google.android.material.snackbar.Snackbar;
 import dagger.hilt.android.AndroidEntryPoint;
 
 /**
@@ -39,14 +37,13 @@ public class ShareDiagnosisBeginFragment extends Fragment {
 
   private static final String TAG = "ShareExposureBeginFrag";
 
-  private static final int EN_ENABLED_VIEWFLIPPER_ENABLED = 0;
-  private static final int EN_ENABLED_VIEWFLIPPER_DISABLED = 1;
-
+  private FragmentShareDiagnosisBeginBinding binding;
   ExposureNotificationViewModel exposureNotificationViewModel;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-    return inflater.inflate(R.layout.fragment_share_diagnosis_begin, parent, false);
+    binding = FragmentShareDiagnosisBeginBinding.inflate(inflater, parent, false);
+    return binding.getRoot();
   }
 
   @Override
@@ -56,33 +53,11 @@ public class ShareDiagnosisBeginFragment extends Fragment {
     exposureNotificationViewModel =
         new ViewModelProvider(requireActivity()).get(ExposureNotificationViewModel.class);
 
-    Button startApiButton = view.findViewById(R.id.start_api_button);
-    startApiButton.setOnClickListener(
-        v -> exposureNotificationViewModel.startExposureNotifications());
-
-    exposureNotificationViewModel
-        .getInFlightLiveData()
-        .observe(getViewLifecycleOwner(), isInFlight -> startApiButton.setEnabled(!isInFlight));
-
-    exposureNotificationViewModel
-        .getApiErrorLiveEvent()
-        .observe(getViewLifecycleOwner(), unused -> {
-          View rootView = getView();
-          if (rootView != null) {
-            Snackbar.make(rootView, R.string.generic_error_message, Snackbar.LENGTH_LONG).show();
-          }
-        });
-
     ShareDiagnosisViewModel viewModel =
         new ViewModelProvider(getActivity()).get(ShareDiagnosisViewModel.class);
 
-    View closeButton = view.findViewById(android.R.id.home);
-    Button nextButton = view.findViewById(R.id.share_next_button);
-
     viewModel.getCurrentDiagnosisLiveData().observe(getViewLifecycleOwner(), diagnosisEntity -> {
-      nextButton.setOnClickListener(v -> viewModel.nextStep(
-          ShareDiagnosisFlowHelper.getNextStep(Step.BEGIN, diagnosisEntity, getContext())));
-      closeButton.setOnClickListener(v -> {
+      binding.home.setOnClickListener(v -> {
         // Only show the dialog if has been verified.
         if (DiagnosisEntityHelper.hasVerified(diagnosisEntity)) {
           ShareDiagnosisActivity.showCloseWarningAlertDialog(requireActivity(), viewModel);
@@ -91,30 +66,10 @@ public class ShareDiagnosisBeginFragment extends Fragment {
         }
       });
     });
-    closeButton.setContentDescription(getString(R.string.btn_cancel));
+    binding.home.setContentDescription(getString(R.string.btn_cancel));
 
-    /*
-     * Make sure to only allow the user to continue if EN is enabled.
-     * If it is disabled, show warning and disable the continue button (independent of whether
-     * this was called from a deeplink)
-     *
-     * The IsEnabledLiveData is update every time onResume() is called, so the UI should always
-     * reflect the correct state.
-     */
-    ViewFlipper isEnabledFlipper = view.findViewById(R.id.en_enabled_flipper);
-    exposureNotificationViewModel
-        .getEnEnabledLiveData()
-        .observe(
-            getViewLifecycleOwner(),
-            isEnabled -> {
-              if (isEnabled) {
-                isEnabledFlipper.setDisplayedChild(EN_ENABLED_VIEWFLIPPER_ENABLED);
-                nextButton.setVisibility(View.VISIBLE);
-              } else {
-                isEnabledFlipper.setDisplayedChild(EN_ENABLED_VIEWFLIPPER_DISABLED);
-                nextButton.setVisibility(View.INVISIBLE);
-              }
-            });
+    viewModel.getNextStepLiveData(Step.BEGIN).observe(getViewLifecycleOwner(),
+        step -> binding.shareNextButton.setOnClickListener(v -> viewModel.nextStep(step)));
   }
 
   @Override
@@ -123,4 +78,9 @@ public class ShareDiagnosisBeginFragment extends Fragment {
     exposureNotificationViewModel.refreshState();
   }
 
+  @Override
+  public void onDestroyView() {
+    super.onDestroyView();
+    binding = null;
+  }
 }

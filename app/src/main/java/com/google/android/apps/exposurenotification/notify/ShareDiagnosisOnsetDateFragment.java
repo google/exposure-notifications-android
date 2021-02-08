@@ -24,7 +24,6 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import androidx.annotation.NonNull;
@@ -35,13 +34,13 @@ import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.common.AbstractTextWatcher;
 import com.google.android.apps.exposurenotification.common.KeyboardHelper;
 import com.google.android.apps.exposurenotification.common.time.Clock;
+import com.google.android.apps.exposurenotification.databinding.FragmentShareDiagnosisOnsetDateBinding;
 import com.google.android.apps.exposurenotification.notify.ShareDiagnosisViewModel.Step;
 import com.google.android.apps.exposurenotification.storage.DiagnosisEntity;
 import com.google.android.apps.exposurenotification.storage.DiagnosisEntity.HasSymptoms;
 import com.google.android.material.datepicker.CalendarConstraints;
 import com.google.android.material.datepicker.CalendarConstraints.DateValidator;
 import com.google.android.material.datepicker.MaterialDatePicker;
-import com.google.android.material.radiobutton.MaterialRadioButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.common.base.Function;
 import dagger.hilt.android.AndroidEntryPoint;
@@ -67,45 +66,40 @@ public class ShareDiagnosisOnsetDateFragment extends Fragment {
   @Inject
   Clock clock;
 
+  private FragmentShareDiagnosisOnsetDateBinding binding;
   private ShareDiagnosisViewModel viewModel;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-    return inflater.inflate(R.layout.fragment_share_diagnosis_onset_date, parent, false);
+    binding = FragmentShareDiagnosisOnsetDateBinding.inflate(inflater, parent, false);
+    return binding.getRoot();
   }
 
   @Override
   public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
     getActivity().setTitle(R.string.share_onset_title);
 
-    viewModel =
-        new ViewModelProvider(getActivity()).get(ShareDiagnosisViewModel.class);
-
-    RadioGroup hasSymptomsRadioGroup = view.findViewById(R.id.has_symptoms_radio_group);
-    EditText dateEditText = view.findViewById(R.id.share_test_date);
-    Button nextButton = view.findViewById(R.id.share_next_button);
-    Button previousButton = view.findViewById(R.id.share_previous_button);
-    View closeButton = view.findViewById(android.R.id.home);
+    viewModel = new ViewModelProvider(getActivity()).get(ShareDiagnosisViewModel.class);
 
     // Enabled next button when the user answers "have you had symptoms", but if it's "yes", require
     // that they enter a valid onset date.
-    nextButton.setEnabled(false);
+    binding.shareNextButton.setEnabled(false);
     // Let's also enable the date field only after the user checks yes (but retain its entry if they
     // change their mind, to save time if they change it back)
-    dateEditText.setEnabled(false);
-    hasSymptomsRadioGroup.setOnCheckedChangeListener(
+    binding.shareTestDate.setEnabled(false);
+    binding.hasSymptomsRadioGroup.setOnCheckedChangeListener(
         (radioGroup, checkedId) -> {
-          dateEditText.setEnabled(checkedId == R.id.has_symptoms_yes);
-          maybeSave(hasSymptomsRadioGroup, dateEditText);
+          binding.shareTestDate.setEnabled(checkedId == R.id.has_symptoms_yes);
+          maybeSave(binding.hasSymptomsRadioGroup, binding.shareTestDate);
         });
     // Must also watch the date entry to see when to enable the next button.
-    dateEditText.addTextChangedListener(new AbstractTextWatcher() {
+    binding.shareTestDate.addTextChangedListener(new AbstractTextWatcher() {
       @Override
       public void afterTextChanged(Editable var1) {
-        maybeSave(hasSymptomsRadioGroup, dateEditText);
+        maybeSave(binding.hasSymptomsRadioGroup, binding.shareTestDate);
       }
     });
-    dateEditText.setOnClickListener((v) -> maybeShowMaterialDatePicker());
+    binding.shareTestDate.setOnClickListener(v -> maybeShowMaterialDatePicker());
 
     // Keep input fields up to date with the diagnosis entity.
     viewModel
@@ -114,9 +108,10 @@ public class ShareDiagnosisOnsetDateFragment extends Fragment {
             getViewLifecycleOwner(),
             diagnosisEntity -> {
               if (diagnosisEntity.getOnsetDate() == null) {
-                dateEditText.setText("");
+                binding.shareTestDate.setText("");
               } else {
-                dateEditText.setText(getDateTimeFormatter().format(diagnosisEntity.getOnsetDate()));
+                binding.shareTestDate.setText(
+                    getDateTimeFormatter().format(diagnosisEntity.getOnsetDate()));
               }
               // Show the date picker if the symptom onset date is still not set and the user
               // answered that they had symptoms
@@ -126,32 +121,21 @@ public class ShareDiagnosisOnsetDateFragment extends Fragment {
 
               switch (diagnosisEntity.getHasSymptoms()) {
                 case NO:
-                  setRadioButtonChecked(view, R.id.has_symptoms_no, true);
+                  binding.hasSymptomsNo.setChecked(true);
                   break;
                 case YES:
-                  setRadioButtonChecked(view, R.id.has_symptoms_yes, true);
+                  binding.hasSymptomsYes.setChecked(true);
                   break;
                 case WITHHELD:
-                  setRadioButtonChecked(view, R.id.has_symptoms_withheld, true);
+                  binding.hasSymptomsWithheld.setChecked(true);
                   break;
               }
 
-              if (DiagnosisEntityHelper.hasCompletedOnset(diagnosisEntity, clock)) {
-                nextButton.setEnabled(true);
-                nextButton.setOnClickListener(
-                    v ->
-                        viewModel.nextStep(
-                            ShareDiagnosisFlowHelper.getNextStep(
-                                Step.ONSET, diagnosisEntity, getContext())));
-              } else {
-                nextButton.setEnabled(false);
-              }
-
-              previousButton.setOnClickListener(v -> previousAction(view, diagnosisEntity));
+              binding.shareNextButton.setEnabled(DiagnosisEntityHelper.hasCompletedOnset(diagnosisEntity, clock));
             });
 
-    closeButton.setContentDescription(getString(R.string.btn_cancel));
-    closeButton.setOnClickListener((v) -> closeAction());
+    binding.home.setContentDescription(getString(R.string.btn_cancel));
+    binding.home.setOnClickListener((v) -> closeAction());
 
     // If the date picker already exists upon view creation it means that view was just recreated
     // upon rotation. If so, its listeners need to be cleared and replaced as they hold references
@@ -162,6 +146,21 @@ public class ShareDiagnosisOnsetDateFragment extends Fragment {
       datePicker.clearOnPositiveButtonClickListeners();
       addOnPositiveButtonClickListener(datePicker);
     }
+
+    viewModel.getNextStepLiveData(Step.ONSET).observe(getViewLifecycleOwner(),
+        step -> binding.shareNextButton.setOnClickListener(v -> viewModel.nextStep(step)));
+
+    viewModel.getPreviousStepLiveData(Step.ONSET).observe(getViewLifecycleOwner(),
+        step -> binding.sharePreviousButton.setOnClickListener(v -> {
+          KeyboardHelper.maybeHideKeyboard(requireContext(), view);
+          viewModel.previousStep(step);
+        }));
+  }
+
+  @Override
+  public void onDestroyView() {
+    super.onDestroyView();
+    binding = null;
   }
 
   private void maybeSave(RadioGroup hasSymptomsRadioGroup, EditText dateEditText) {
@@ -179,10 +178,6 @@ public class ShareDiagnosisOnsetDateFragment extends Fragment {
     }
   }
 
-  private void setRadioButtonChecked(View view, int id, boolean isChecked) {
-    ((MaterialRadioButton) view.findViewById(id)).setChecked(isChecked);
-  }
-
   private HasSymptoms hasSymptomsFromButtonId(int checkedButtonId) {
     switch (checkedButtonId) {
       case R.id.has_symptoms_yes:
@@ -195,12 +190,6 @@ public class ShareDiagnosisOnsetDateFragment extends Fragment {
     return HasSymptoms.UNSET;
   }
 
-  private void previousAction(View view, DiagnosisEntity diagnosisEntity) {
-    KeyboardHelper.maybeHideKeyboard(requireContext(), view);
-    viewModel.previousStep(
-        ShareDiagnosisFlowHelper.getPreviousStep(Step.ONSET, diagnosisEntity, getContext()));
-  }
-
   private void closeAction() {
     ShareDiagnosisActivity.showCloseWarningAlertDialog(requireActivity(), viewModel);
   }
@@ -210,9 +199,7 @@ public class ShareDiagnosisOnsetDateFragment extends Fragment {
    * "yes" when asked about whether they had symptoms.
    */
   private void maybeShowMaterialDatePicker() {
-    RadioGroup hasSymptomsRadioGroup = getView().findViewById(R.id.has_symptoms_radio_group);
-    int checkedId =
-        hasSymptomsRadioGroup == null ? -1 : hasSymptomsRadioGroup.getCheckedRadioButtonId();
+    int checkedId = binding.hasSymptomsRadioGroup.getCheckedRadioButtonId();
     if (findMaterialDatePicker() != null || checkedId != R.id.has_symptoms_yes) {
       return;
     }
@@ -240,8 +227,7 @@ public class ShareDiagnosisOnsetDateFragment extends Fragment {
   private void addOnPositiveButtonClickListener(MaterialDatePicker<Long> dialog) {
     dialog.addOnPositiveButtonClickListener(
         selection -> {
-          EditText dateEditText = getView().findViewById(R.id.share_test_date);
-          dateEditText.setText(
+          binding.shareTestDate.setText(
               getDateTimeFormatter()
                   .format(Instant.ofEpochMilli(selection).atZone(ZoneOffset.UTC)));
           // Check if selected date is valid and if so show snackbar
@@ -254,10 +240,8 @@ public class ShareDiagnosisOnsetDateFragment extends Fragment {
    * symptom onset date they entered is not within the last 14 days.
    */
   private void showInvalidDateSnackbarIfNecessary() {
-    EditText dateEditText = getView().findViewById(R.id.share_test_date);
-    final String dateStr = dateEditText.getText().toString();
-    RadioGroup hasSymptomsRadioGroup = getView().findViewById(R.id.has_symptoms_radio_group);
-    if (!inputIsValidToProceed(hasSymptomsRadioGroup, dateStr)) {
+    final String dateStr = binding.shareTestDate.getText().toString();
+    if (!inputIsValidToProceed(binding.hasSymptomsRadioGroup, dateStr)) {
       if (!TextUtils.isEmpty(dateStr)
           && !isValidDate(
           dateStr, dateInMillis -> DiagnosisEntityHelper.isNotInFuture(clock, dateInMillis))) {

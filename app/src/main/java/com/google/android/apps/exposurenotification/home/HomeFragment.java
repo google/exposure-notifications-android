@@ -33,8 +33,8 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.widget.ViewPager2;
 import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.common.KeyboardHelper;
+import com.google.android.apps.exposurenotification.databinding.FragmentHomeBinding;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import dagger.hilt.android.AndroidEntryPoint;
 import java.lang.annotation.Retention;
@@ -71,6 +71,7 @@ public class HomeFragment extends Fragment {
 
   static final int TAB_DEFAULT = TAB_EXPOSURES;
 
+  private FragmentHomeBinding binding;
   private ViewPager2 viewPager;
   private ExposureNotificationViewModel exposureNotificationViewModel;
 
@@ -83,7 +84,8 @@ public class HomeFragment extends Fragment {
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-    return inflater.inflate(R.layout.fragment_home, parent, false);
+    binding = FragmentHomeBinding.inflate(inflater, parent, false);
+    return binding.getRoot();
   }
 
   private @TabName
@@ -103,7 +105,7 @@ public class HomeFragment extends Fragment {
     exposureNotificationViewModel =
         new ViewModelProvider(requireActivity()).get(ExposureNotificationViewModel.class);
 
-    viewPager = view.findViewById(R.id.view_pager);
+    viewPager = binding.viewPager;
     viewPager.setUserInputEnabled(false);
     viewPager.setOffscreenPageLimit(2);
     viewPager.setAdapter(fragmentStateAdapter);
@@ -128,8 +130,7 @@ public class HomeFragment extends Fragment {
       viewPager.setCurrentItem(getStartTab());
     }
 
-    TabLayout tabLayout = view.findViewById(R.id.tab_layout);
-    new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> {
+    new TabLayoutMediator(binding.tabLayout, viewPager, (tab, position) -> {
       switch (position) {
         case TAB_EXPOSURES:
           tab.setIcon(R.drawable.ic_bell);
@@ -146,7 +147,7 @@ public class HomeFragment extends Fragment {
       }
     }).attach();
 
-    tabLayout.addOnTabSelectedListener(
+    binding.tabLayout.addOnTabSelectedListener(
         KeyboardHelper.createOnTabSelectedMaybeHideKeyboardListener(requireContext(), view));
 
     exposureNotificationViewModel
@@ -163,6 +164,12 @@ public class HomeFragment extends Fragment {
   public void onSaveInstanceState(@NonNull Bundle outState) {
     super.onSaveInstanceState(outState);
     outState.putInt(SAVED_INSTANCE_STATE_CURRENT_ITEM, viewPager.getCurrentItem());
+  }
+
+  @Override
+  public void onDestroyView() {
+    super.onDestroyView();
+    binding = null;
   }
 
   /**
@@ -184,12 +191,10 @@ public class HomeFragment extends Fragment {
   }
 
   public void setTab(@TabName int tab) {
-    View rootView = getView();
-    if (rootView == null) {
+    if (getView() == null) {
       Log.w(TAG, "Unable to set the tab");
       return;
     }
-    ViewPager2 viewPager = rootView.findViewById(R.id.view_pager);
     viewPager.setCurrentItem(tab);
   }
 

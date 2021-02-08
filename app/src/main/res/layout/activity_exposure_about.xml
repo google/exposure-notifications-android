@@ -89,121 +89,13 @@
 
           </LinearLayout>
 
-          <ViewSwitcher
-            android:id="@+id/exposure_about_errors"
+          <FrameLayout
+            android:id="@+id/edge_case_fragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            >
-
-            <LinearLayout
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_marginTop="@dimen/padding_small"
-              android:orientation="horizontal">
-
-              <ImageView
-                android:layout_width="@dimen/settings_icon_field_width"
-                android:layout_height="24dp"
-                android:layout_gravity="center_horizontal"
-                android:src="@drawable/ic_error_outline" />
-
-              <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/padding_extra_large"
-                android:orientation="vertical">
-
-                <TextView
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:paddingBottom="@dimen/padding_small"
-                  android:text="@string/exposure_notifications_currently_inactive"
-                  android:textStyle="bold"
-                  android:textAppearance="?attr/textAppearanceBody2"
-                  android:textColor="?attr/colorControlNormal" />
-
-                <TextView
-                  android:id="@+id/error_loc_ble_text"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:text="@string/location_ble_off_warning"
-                  android:textAppearance="?attr/textAppearanceBody2"
-                  android:textColor="?attr/colorControlNormal" />
-
-                <Button
-                  android:id="@+id/exposure_about_device_settings"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:paddingHorizontal="0dp"
-                  android:text="@string/device_settings"
-                  style="@style/Widget.MaterialComponents.Button.TextButton" />
-
-              </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_marginTop="@dimen/padding_small"
-              android:orientation="horizontal">
-
-              <ImageView
-                android:layout_width="@dimen/settings_icon_field_width"
-                android:layout_height="24dp"
-                android:layout_gravity="center_horizontal"
-                android:src="@drawable/ic_error_outline" />
-
-              <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/padding_extra_large"
-                android:orientation="vertical">
-
-                <TextView
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:paddingBottom="@dimen/padding_small"
-                  android:text="@string/exposure_notifications_currently_inactive"
-                  android:textStyle="bold"
-                  android:textAppearance="?attr/textAppearanceBody2"
-                  android:textColor="?attr/colorControlNormal" />
-
-                <TextView
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:text="@string/storage_low_warning"
-                  android:textAppearance="?attr/textAppearanceBody2"
-                  android:textColor="?attr/colorControlNormal" />
-
-                <Button
-                  android:id="@+id/exposure_about_manage_storage"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:paddingHorizontal="0dp"
-                  android:text="@string/manage_storage"
-                  style="@style/Widget.MaterialComponents.Button.TextButton" />
-
-              </LinearLayout>
-
-            </LinearLayout>
-            
-          </ViewSwitcher>
-
-          <LinearLayout
-            android:id="@+id/exposure_about_error_divider"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/padding_normal"
-            android:layout_marginHorizontal="@dimen/padding_normal"
-            android:orientation="vertical"
-            android:visibility="gone">
-
-            <include layout="@layout/horizontal_divider"/>
-
-          </LinearLayout>
+            android:layout_marginTop="@dimen/padding_small"
+            android:orientation="horizontal"
+            android:animateLayoutChanges="false" />
 
           <LinearLayout
             android:id="@+id/exposure_about_detail_layout"

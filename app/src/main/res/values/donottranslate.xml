@@ -28,9 +28,7 @@
   <!-- Private analytics learn more hyperlink. [CHAR_LIMIT=NONE] -->
   <string name="private_analytics_link" translatable="false">https://support.google.com/android?p=en_analytics</string>
 
-  <!-- Updated description for jsr250-api license. [CHAR_LIMIT=NONE] -->
-  <string name="jsr_cddl_description" translatable="false">
-    JSR-250 Reference Implementation by Glassfish.
-    Full source available at https://repo1.maven.org/maven2/javax/annotation/jsr250-api/1.0
-  </string>
+  <!--How Exposure Notifications work hyperlink. [CHAR_LIMIT=NONE] -->
+  <string name="how_exposure_notifications_work_actual_link" translatable="false">https://www.google.com/covid19/exposurenotifications/</string>
+
 </resources>

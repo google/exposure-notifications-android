@@ -17,16 +17,18 @@
 
 package com.google.android.apps.exposurenotification.home;
 
-import android.bluetooth.BluetoothAdapter;
-import android.location.LocationManager;
-import android.os.Build.VERSION;
-import android.os.Build.VERSION_CODES;
-import android.os.StatFs;
+import android.app.Activity;
+import android.app.PendingIntent;
 import android.util.Log;
-import androidx.annotation.VisibleForTesting;
-import androidx.core.location.LocationManagerCompat;
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.IntentSenderRequest;
+import androidx.activity.result.contract.ActivityResultContracts.StartIntentSenderForResult;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.hilt.lifecycle.ViewModelInject;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import com.google.android.apps.exposurenotification.common.SingleLiveEvent;
@@ -39,7 +41,9 @@ import com.google.android.apps.exposurenotification.storage.ExposureNotification
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.NotificationInteraction;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.OnboardingStatus;
 import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.nearby.exposurenotification.ExposureNotificationStatus;
 import com.google.android.gms.nearby.exposurenotification.ExposureNotificationStatusCodes;
+import java.util.Set;
 
 /**
  * View model for the {@link ExposureNotificationActivity} and fragments.
@@ -48,10 +52,8 @@ public class ExposureNotificationViewModel extends ViewModel {
 
   private static final String TAG = "ExposureNotificationVM";
 
-  @VisibleForTesting
-  static final long MINIMUM_FREE_STORAGE_REQUIRED_BYTES = 1024L * 1024L * 100L;
-
-  private final MutableLiveData<ExposureNotificationState> stateLiveData;
+  private final MediatorLiveData<RefreshUiData> refreshUiLiveData = new MediatorLiveData<>();
+  private final MutableLiveData<ExposureNotificationState> stateLiveData = new MutableLiveData<>();
   private final MutableLiveData<Boolean> inFlightLiveData = new MutableLiveData<>(false);
   private final MutableLiveData<Boolean> inFlightResolutionLiveData = new MutableLiveData<>(false);
   private final MutableLiveData<Boolean> enEnabledLiveData;
@@ -61,14 +63,19 @@ public class ExposureNotificationViewModel extends ViewModel {
   private final SingleLiveEvent<ApiException> resolutionRequiredLiveEvent = new SingleLiveEvent<>();
 
   private final ExposureNotificationClientWrapper exposureNotificationClientWrapper;
-  private final LocationManager locationManager;
-  private final StatFs filesDirStat;
   private final AnalyticsLogger logger;
   private final PackageConfigurationHelper packageConfigurationHelper;
   private final Clock clock;
 
+  private final RefreshUiData refreshUiData;
   private boolean inFlightIsEnabled = false;
 
+  /**
+   * Enum to denote a status (i.e. state) of the EN service. This enum allows an easier handling of
+   * the EN service status on the UI as opposed to the set of {@link ExposureNotificationStatus}
+   * objects, which is returned by the EN module API. Currently, not all the statuses reported by
+   * the API are handled in the UI. So, the list of EN state values below is not exhaustive.
+   */
   public enum ExposureNotificationState {
     DISABLED,
     ENABLED,
@@ -78,26 +85,65 @@ public class ExposureNotificationViewModel extends ViewModel {
     STORAGE_LOW
   }
 
+  /**
+   * A simple helper object that holds the data about both the EN state and whether there is an API
+   * request in flight.
+   */
+  public static class RefreshUiData {
+
+    private ExposureNotificationState state;
+    private boolean isInFlight;
+
+    RefreshUiData(ExposureNotificationState state, boolean isInFlight) {
+      this.state = state;
+      this.isInFlight = isInFlight;
+    }
+
+    public ExposureNotificationState getState() {
+      return state;
+    }
+
+    public boolean isInFlight() {
+      return isInFlight;
+    }
+
+    public void setState(ExposureNotificationState state) {
+      this.state = state;
+    }
+
+    public void setInFlight(boolean inFlight) {
+      this.isInFlight = inFlight;
+    }
+  }
+
   @ViewModelInject
   public ExposureNotificationViewModel(
       ExposureNotificationSharedPreferences exposureNotificationSharedPreferences,
       ExposureNotificationClientWrapper exposureNotificationClientWrapper,
-      LocationManager locationManager,
-      StatFs statFs,
       AnalyticsLogger logger,
       PackageConfigurationHelper packageConfigurationHelper,
       Clock clock) {
     this.exposureNotificationSharedPreferences = exposureNotificationSharedPreferences;
     this.exposureNotificationClientWrapper = exposureNotificationClientWrapper;
-    this.locationManager = locationManager;
-    this.filesDirStat = statFs;
     this.logger = logger;
     this.packageConfigurationHelper = packageConfigurationHelper;
     this.clock = clock;
 
     boolean isEnabled = exposureNotificationSharedPreferences.getIsEnabledCache();
     enEnabledLiveData = new MutableLiveData<>(isEnabled);
-    stateLiveData = new MutableLiveData<>(getStateForIsEnabled(isEnabled));
+
+    // Instantiate this object with dummy values for now. Should be immediately updated with
+    // real values once refreshUiLiveData object is set properly.
+    refreshUiData = new RefreshUiData(null, false);
+    // Add source LiveData objects for refreshUiLiveData.
+    refreshUiLiveData.addSource(getStateLiveData(), state -> {
+      refreshUiData.setState(state);
+      refreshUiLiveData.setValue(refreshUiData);
+    });
+    refreshUiLiveData.addSource(getInFlightLiveData(), isInFlight -> {
+      refreshUiData.setInFlight(isInFlight);
+      refreshUiLiveData.setValue(refreshUiData);
+    });
   }
 
   /**
@@ -124,6 +170,14 @@ public class ExposureNotificationViewModel extends ViewModel {
   }
 
   /**
+   * Returns {@link LiveData} to observe changes in the EN state or in the 'in-flight' status of the
+   * API request as both these pieces of information may be needed to refresh the UI properly.
+   */
+  public LiveData<RefreshUiData> getRefreshUiLiveData() {
+    return refreshUiLiveData;
+  }
+
+  /**
    * An event that requests a resolution with the given {@link ApiException}.
    */
   public SingleLiveEvent<ApiException> getResolutionRequiredLiveEvent() {
@@ -142,7 +196,8 @@ public class ExposureNotificationViewModel extends ViewModel {
   }
 
   /**
-   * Refresh isEnabled state and getExposureWindows from Exposure Notification API.
+   * Refresh isEnabled state, EN service status, and getExposureWindows from Exposure Notification
+   * API.
    */
   public void refreshState() {
     maybeRefreshIsEnabled();
@@ -156,8 +211,9 @@ public class ExposureNotificationViewModel extends ViewModel {
     inFlightIsEnabled = true;
     exposureNotificationClientWrapper.isEnabled()
         .addOnSuccessListener(
-            (isEnabled) -> {
-              stateLiveData.setValue(getStateForIsEnabled(isEnabled));
+            isEnabled -> {
+              maybeRefreshStatus(isEnabled);
+              enEnabledLiveData.setValue(isEnabled);
               exposureNotificationSharedPreferences.setIsEnabledCache(isEnabled);
               inFlightIsEnabled = false;
             })
@@ -165,10 +221,28 @@ public class ExposureNotificationViewModel extends ViewModel {
           Log.i(TAG, "Call isEnabled is canceled");
           inFlightIsEnabled = false;
         })
-        .addOnFailureListener((t) -> {
-          inFlightIsEnabled = false;
-          stateLiveData.setValue(getStateForIsEnabled(false));
+        .addOnFailureListener(t -> {
+          maybeRefreshStatus(false);
+          enEnabledLiveData.setValue(false);
           exposureNotificationSharedPreferences.setIsEnabledCache(false);
+          inFlightIsEnabled = false;
+        });
+  }
+
+  private synchronized void maybeRefreshStatus(boolean isEnabled) {
+    inFlightLiveData.setValue(true);
+    exposureNotificationClientWrapper.getStatus()
+        .addOnSuccessListener(status -> {
+          stateLiveData.setValue(getStateForStatusAndIsEnabled(status, isEnabled));
+          inFlightLiveData.setValue(false);
+        })
+        .addOnCanceledListener(() -> {
+          Log.i(TAG, "Call getStatus is canceled");
+          inFlightLiveData.setValue(false);
+        })
+        .addOnFailureListener(t -> {
+          Log.e(TAG, "Error calling getStatus", t);
+          inFlightLiveData.setValue(false);
         });
   }
 
@@ -177,82 +251,103 @@ public class ExposureNotificationViewModel extends ViewModel {
         .addOnSuccessListener(
             packageConfigurationHelper::maybeUpdateAnalyticsState)
         .addOnCanceledListener(() -> Log.i(TAG, "Call getPackageConfiguration is canceled"))
-        .addOnFailureListener((t) -> Log.e(TAG, "Error calling getPackageConfiguration", t));
+        .addOnFailureListener(t -> Log.e(TAG, "Error calling getPackageConfiguration", t));
   }
 
-  private ExposureNotificationState getStateForIsEnabled(boolean isEnabled) {
-    enEnabledLiveData.setValue(isEnabled);
+  /**
+   * Returns a {@link ExposureNotificationState}, which is a 'mapping' for the given set of {@link
+   * ExposureNotificationStatus} objects.
+   * <p>
+   * We do the mapping as ExposureNotificationState object is easier to handle on the UI when
+   * compared to a set of ExposureNotificationStatus objects. The given set is retrieved by calling
+   * the EN module's getStatus() API. This set always contains at least one element.
+   *
+   * @param statusSet a set of ExposureNotificationStatus objects denoting the status of the EN API
+   * @param isEnabled a boolean to check if the EN module is enabled/disabled, irrespective of its
+   *                  operational state
+   * @return The enum state that denotes the status of the EN API.
+   */
+  private ExposureNotificationState getStateForStatusAndIsEnabled(
+      Set<ExposureNotificationStatus> statusSet, boolean isEnabled) {
     if (!isEnabled) {
       /*
-       * Show low-storage errors before telling the user that EN is disabled,
-       * as EN can only be (re)enabled with enough storage space available.
+       * The EN is disabled. However, if we also hit a Low Storage error, display it first, as EN
+       * can only be (re-)enabled with enough storage space available.
        */
-      if (freeStorageSpaceRequired()) {
+      if (statusSet.contains(ExposureNotificationStatus.LOW_STORAGE)) {
         return ExposureNotificationState.STORAGE_LOW;
       }
-
       return ExposureNotificationState.DISABLED;
     }
 
-    /*
-     * Go though the possible combinations of location/ble enabled states and set the
-     * ExposureNotificationState accordingly
-     */
-    boolean isLocationEnableRequired = isLocationEnableRequired();
-    boolean isBluetoothEnableRequired = isBluetoothEnableRequired();
-
-    if (isBluetoothEnableRequired && isLocationEnableRequired) {
-      return ExposureNotificationState.PAUSED_LOCATION_BLE;
+    if (statusSet.contains(ExposureNotificationStatus.ACTIVATED)) {
+      // The EN is enabled and operational.
+      return ExposureNotificationState.ENABLED;
+    } else if (statusSet.contains(ExposureNotificationStatus.INACTIVATED)) {
+      // The EN is enabled but non-operational.
+      if (statusSet.contains(ExposureNotificationStatus.LOW_STORAGE)) {
+        return ExposureNotificationState.STORAGE_LOW;
+      } else if (statusSet.contains(ExposureNotificationStatus.BLUETOOTH_DISABLED)
+          && statusSet.contains(ExposureNotificationStatus.LOCATION_DISABLED)) {
+        return ExposureNotificationState.PAUSED_LOCATION_BLE;
+      } else if (statusSet.contains(ExposureNotificationStatus.BLUETOOTH_DISABLED)) {
+        return ExposureNotificationState.PAUSED_BLE;
+      } else if (statusSet.contains(ExposureNotificationStatus.LOCATION_DISABLED)) {
+        return ExposureNotificationState.PAUSED_LOCATION;
+      }
     }
-
-    if (isBluetoothEnableRequired) {
-      return ExposureNotificationState.PAUSED_BLE;
-    }
-
-    if (isLocationEnableRequired) {
-      return ExposureNotificationState.PAUSED_LOCATION;
-    }
-
-    /*
-     * If everything else works, finally make sure that there is enough storage space
-     */
-    if (freeStorageSpaceRequired()) {
-      return ExposureNotificationState.STORAGE_LOW;
-    }
-
-    return ExposureNotificationState.ENABLED;
+    // For all the remaining scenarios, return the DISABLED state as this is the most suitable one
+    // among those currently supported in the app.
+    return ExposureNotificationState.DISABLED;
   }
 
   /**
-   * Check if the user needs more free storage space
+   * Helper methods to make it easy for activities and fragments to add resolution handling.
+   * <p>
+   * Instead of starting resolution handling with apiException.startResolutionForResult and
+   * listening for results in an Activity with onActivityResult, these methods create an AndroidX
+   * ActivityResultLauncher and attach it to a fragment/activity via registerForActivityResult.
    */
-  private boolean freeStorageSpaceRequired() {
-    /*
-     * DiagnosisKeyDownloader works with the App's private files dir, so check available space
-     * there
-     */
-    long freeStorage = filesDirStat.getAvailableBytes();
-    return (freeStorage <= MINIMUM_FREE_STORAGE_REQUIRED_BYTES);
+  public void registerResolutionForActivityResult(AppCompatActivity activity) {
+    ActivityResultLauncher<IntentSenderRequest> resolutionActivityResultLauncher =
+        activity.registerForActivityResult(
+            new StartIntentSenderForResult(), this::onResolutionComplete);
+
+    getResolutionRequiredLiveEvent()
+        .observe(
+            activity,
+            apiException -> startResolution(apiException, resolutionActivityResultLauncher));
   }
 
-  /**
-   * Check if the user needs to enable Bluetooth
-   */
-  private boolean isBluetoothEnableRequired() {
-    BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-    return (mBluetoothAdapter != null && !mBluetoothAdapter.isEnabled());
+  public void registerResolutionForActivityResult(Fragment fragment) {
+    ActivityResultLauncher<IntentSenderRequest> resolutionActivityResultLauncher =
+        fragment.registerForActivityResult(
+            new StartIntentSenderForResult(), this::onResolutionComplete);
+
+    getResolutionRequiredLiveEvent()
+        .observe(
+            fragment,
+            apiException -> startResolution(apiException, resolutionActivityResultLauncher));
   }
 
-  /**
-   * When it comes to Location and BLE, there are the following conditions: - Location on is only
-   * necessary to use bluetooth for Android M+. - Starting with Android S, there may be support for
-   * locationless BLE scanning => We only go into an error state if these conditions require us to
-   * have location on, but it is not activated on device.
-   */
-  private boolean isLocationEnableRequired() {
-    return (!exposureNotificationClientWrapper.deviceSupportsLocationlessScanning()
-        && VERSION.SDK_INT >= VERSION_CODES.M
-        && locationManager != null && !LocationManagerCompat.isLocationEnabled(locationManager));
+  public void onResolutionComplete(ActivityResult activityResult) {
+    Log.d(TAG, "onResolutionComplete");
+    if (activityResult.getResultCode() == Activity.RESULT_OK) {
+      startResolutionResultOk();
+    } else {
+      startResolutionResultNotOk();
+    }
+  }
+
+  private void startResolution(ApiException apiException,
+      ActivityResultLauncher<IntentSenderRequest> resolutionActivityResultLauncher) {
+    Log.d(TAG, "startResolutionForResult");
+    PendingIntent resolution = apiException.getStatus().getResolution();
+    if (resolution != null) {
+      IntentSenderRequest intentSenderRequest =
+          new IntentSenderRequest.Builder(resolution).build();
+      resolutionActivityResultLauncher.launch(intentSenderRequest);
+    }
   }
 
   /**
@@ -264,7 +359,8 @@ public class ExposureNotificationViewModel extends ViewModel {
         .start()
         .addOnSuccessListener(
             unused -> {
-              stateLiveData.setValue(getStateForIsEnabled(true));
+              maybeRefreshStatus(true);
+              enEnabledLiveData.setValue(true);
               inFlightLiveData.setValue(false);
               refreshState();
             })
@@ -302,7 +398,8 @@ public class ExposureNotificationViewModel extends ViewModel {
         .start()
         .addOnSuccessListener(
             unused -> {
-              stateLiveData.setValue(getStateForIsEnabled(true));
+              maybeRefreshStatus(true);
+              enEnabledLiveData.setValue(true);
               inFlightLiveData.setValue(false);
               refreshState();
             })
@@ -340,7 +437,12 @@ public class ExposureNotificationViewModel extends ViewModel {
   }
 
   public void updateLastExposureNotificationLastClickedTime() {
-    exposureNotificationSharedPreferences.setExposureNotificationLastInteraction(clock.now(), NotificationInteraction.CLICKED);
+    // We assume it clicked on the last notification received.
+    int classificationIndex = exposureNotificationSharedPreferences
+        .getExposureNotificationLastShownClassification();
+    exposureNotificationSharedPreferences
+        .setExposureNotificationLastInteraction(clock.now(), NotificationInteraction.CLICKED,
+            classificationIndex);
   }
 
   public void logUiInteraction(EventType event) {

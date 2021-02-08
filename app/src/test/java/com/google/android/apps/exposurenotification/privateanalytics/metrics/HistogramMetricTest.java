@@ -94,7 +94,7 @@ public class HistogramMetricTest {
     // WHEN
     when(exposureNotificationClientWrapper.getExposureWindows())
         .thenReturn(Tasks.forResult(windows));
-    ListenableFuture<List<Integer>> val = histogramMetric.getDataVector(null);
+    ListenableFuture<List<Integer>> val = histogramMetric.getDataVector();
 
     // THEN
     int[] emptyDurationVector = getEmptyDurationVector();
@@ -123,11 +123,15 @@ public class HistogramMetricTest {
     // WHEN
     when(exposureNotificationClientWrapper.getExposureWindows())
         .thenReturn(Tasks.forResult(windows));
-    ListenableFuture<List<Integer>> val = histogramMetric.getDataVector(null);
+    ListenableFuture<List<Integer>> val = histogramMetric.getDataVector();
     /**
-     * Attenuation is set to 70 -> falls under the 5th attenuation bin Infectiousness is set to 1 ->
-     * falls under the 2nd Infectiousness bin Duration is set to 400 -> falls under the 2nd duration
-     * bin Clock is now -> falls under 1st day bin
+     * Attenuation is set to 70 -> falls under the 5th attenuation bin
+     *
+     * Infectiousness is set to 1 -> falls under the 2nd Infectiousness bin
+     *
+     * Duration is set to 400 -> falls under the 2nd duration bin
+     *
+     * Clock is now -> falls under 1st day bin
      *
      * <p>(bin's are zero indexed so minus 1) We'd expect a given vector with (dayBin=0,
      * infectiousness=1, attenuation=3, duration=1) set to true and duration=0 for all other combos
@@ -137,9 +141,6 @@ public class HistogramMetricTest {
     // THEN
     // Start with an empty duration vector
     int[] emptyDurationVector = getEmptyDurationVector();
-    // Clear out the 0 duration bin for this tuple
-
-    emptyDurationVector = fillVectorWithDurationBin(emptyDurationVector, 1, 4, 0, 0, 0);
     // Fill in the 2nd duration bin for this tuple
     int[] expectedVector = fillVectorWithDurationBin(emptyDurationVector, 1, 4, 1, 0, 1);
     assertThat(val.get()).containsExactlyElementsIn(Ints.asList(expectedVector)).inOrder();
@@ -167,7 +168,37 @@ public class HistogramMetricTest {
     // WHEN
     when(exposureNotificationClientWrapper.getExposureWindows())
         .thenReturn(Tasks.forResult(windows));
-    ListenableFuture<List<Integer>> val = histogramMetric.getDataVector(null);
+    ListenableFuture<List<Integer>> val = histogramMetric.getDataVector();
+
+    // THEN
+    int[] emptyDurationVector = getEmptyDurationVector();
+    assertThat(val.get()).containsExactlyElementsIn(Ints.asList(emptyDurationVector)).inOrder();
+  }
+
+  // Ignore expositions of less than one minute (v2 of the metric)
+  @Test
+  public void getDataVector_fiftyNineSecondsExposure_ignored() throws Exception {
+    // GIVEN
+    List<ExposureWindow> windows = new ArrayList<>();
+    ScanInstance scanInstance =
+        new ScanInstance.Builder()
+            .setMinAttenuationDb(60)
+            .setSecondsSinceLastScan(59)
+            .setTypicalAttenuationDb(70)
+            .build();
+    ExposureWindow window =
+        new ExposureWindow.Builder()
+            .setDateMillisSinceEpoch(clock.now().toEpochMilli())
+            .setInfectiousness(1)
+            .setReportType(ReportType.RECURSIVE)
+            .setScanInstances(ImmutableList.of(scanInstance))
+            .build();
+    windows.add(window);
+
+    // WHEN
+    when(exposureNotificationClientWrapper.getExposureWindows())
+        .thenReturn(Tasks.forResult(windows));
+    ListenableFuture<List<Integer>> val = histogramMetric.getDataVector();
 
     // THEN
     int[] emptyDurationVector = getEmptyDurationVector();
@@ -202,11 +233,15 @@ public class HistogramMetricTest {
     // WHEN
     when(exposureNotificationClientWrapper.getExposureWindows())
         .thenReturn(Tasks.forResult(windows));
-    ListenableFuture<List<Integer>> val = histogramMetric.getDataVector(null);
+    ListenableFuture<List<Integer>> val = histogramMetric.getDataVector();
     /**
-     * Attenuation is set to 65 -> falls under the 4th attenuation bin Infectiousness is set to 1 ->
-     * falls under the 2nd Infectiousness bin Duration is set to 400 + 602 = 1002 -> falls under 4th
-     * duration bin Clock is now -> falls under 1st day bin
+     * Attenuation is set to 65 -> falls under the 4th attenuation bin
+     *
+     * Infectiousness is set to 1 -> falls under the 2nd Infectiousness bin
+     *
+     * Duration is set to 400 + 602 = 1002 -> falls under 4th duration bin
+     *
+     * Clock is now -> falls under 1st day bin
      *
      * <p>(bin's are zero indexed so minus 1) We'd expect a given vector with (dayBin=0,
      * infectiousness=1, attenuation=3, duration=3) set to true and duration=0 for all other combos
@@ -215,9 +250,6 @@ public class HistogramMetricTest {
     // THEN
     // Start with an empty duration vector
     int[] emptyDurationVector = getEmptyDurationVector();
-    // Clear out the 0 duration bin for this tuple
-
-    emptyDurationVector = fillVectorWithDurationBin(emptyDurationVector, 1, 3, 0, 0, 0);
     // Fill in the 5th duration bin for this tuple
     int[] expectedVector = fillVectorWithDurationBin(emptyDurationVector, 1, 3, 3, 0, 1);
     assertThat(val.get()).containsExactlyElementsIn(Ints.asList(expectedVector)).inOrder();
@@ -261,12 +293,17 @@ public class HistogramMetricTest {
     // WHEN
     when(exposureNotificationClientWrapper.getExposureWindows())
         .thenReturn(Tasks.forResult(windows));
-    ListenableFuture<List<Integer>> val = histogramMetric.getDataVector(null);
+    ListenableFuture<List<Integer>> val = histogramMetric.getDataVector();
     /**
-     * Attenuation is set to 70 -> falls under the 5th attenuation bin Infectiousness is set to 1 ->
-     * falls under the 2nd Infectiousness bin Duration is set to 400 -> falls under the 2nd duration
-     * bin Clock is now -> falls under 1st day bin, Clock is almost 2 days ago -> falls under 2nd
-     * day bin
+     * Attenuation is set to 70 -> falls under the 5th attenuation bin
+     *
+     * Infectiousness is set to 1 -> falls under the 2nd Infectiousness bin
+     *
+     * Duration is set to 400 -> falls under the 2nd duration bin
+     *
+     * Clock is now -> falls under 1st day bin,
+     *
+     * Clock is almost 2 days ago -> falls under 2nd day bin
      *
      * <p>(bin's are zero indexed so minus 1) We'd expect a given vector with (dayBin=0,
      * infectiousness=1, attenuation=3, duration=1) and (dayBin=1, infectiousness=1, attenuation=3,
@@ -277,11 +314,6 @@ public class HistogramMetricTest {
 
     // Start with an empty duration vector
     int[] emptyDurationVector = getEmptyDurationVector();
-    // Clear out the 0 duration bin for both tuples
-
-    emptyDurationVector = fillVectorWithDurationBin(emptyDurationVector, 1, 4, 0, 0, 0);
-    emptyDurationVector = fillVectorWithDurationBin(emptyDurationVector, 1, 4, 0, 1, 0);
-
     // Fill in the 2nd duration bin for these tuples
     int[] expectedVector = fillVectorWithDurationBin(emptyDurationVector, 1, 4, 1, 0, 1);
     expectedVector = fillVectorWithDurationBin(expectedVector, 1, 4, 1, 1, 1);
@@ -290,7 +322,8 @@ public class HistogramMetricTest {
 
   @Test
   public void testHammingWeight() {
-    assertThat(histogramMetric.getMetricHammingWeight()).isEqualTo(24 * 7);
+    // v2 of the metric does not have a constant Hamming weight. We should read 0.
+    assertThat(histogramMetric.getMetricHammingWeight()).isEqualTo(0);
   }
 
   /**
@@ -307,7 +340,7 @@ public class HistogramMetricTest {
     for (int i = 0; i < NUM_INFECTIOUSNESS_BINS; i++) {
       for (int j = 0; j < NUM_ATTENUATION_BINS; j++) {
         for (int k = 0; k < NUM_EXPOSURE_DAY_BINS; k++) {
-          uploadVector = fillVectorWithDurationBin(uploadVector, i, j, 0, k, 1);
+          uploadVector = fillVectorWithDurationBin(uploadVector, i, j, 0, k, 0);
         }
       }
     }

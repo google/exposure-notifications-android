@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">यो एप सञ्चालन गर्न तथा यसलाई सुधार्न Google लाई एपको कार्यसम्पादन तथा प्रयोगसम्बन्धी केही सीमित डेटा पठाइन्छ। ती डेटा Google लाई पठाउनुअघि ती डेटाबाट प्रयोगकर्ताको पहिचान खुलाउने विवरण हटाइन्छ। तसर्थ ती डेटाले तपाईंको पहिचान खुलाउँदैन। %1$s</string>
   <string name="onboarding_confirm_later_title">सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सूचना दिने प्रणाली अफ राख्ने हो?</string>
   <string name="onboarding_confirm_later_detail">तपाईंले सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सूचना दिने प्रणाली अन गरेपछि मात्र तपाईंलाई तपाईं सम्भवतः COVID-19 सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सूचना पठाइन्छ</string>
-  <string name="no_recent_exposure_subtitle">तपाईं हालसालै COVID-19 सङ्क्रमित व्यक्तिको सम्पर्कमा आएको कुनै जानकारी छैन</string>
-  <string name="notifications_enabled_info">हाल तपाईंसँग सम्पर्कमा आएका यो एप चलाउने कुनै पनि व्यक्तिले आफूलाई COVID-19 लागेको जानकारी पेस गरेका छैनन्। तपाईंसँग सम्पर्कमा आएका कुनै व्यक्तिले COVID-19 परीक्षणमा आफ्नो नतिजा पोजेटिभ देखिएको जानकारी पेस गर्नुभयो भने तपाईंलाई त्यसबारे सूचित गरिने छ।</string>
-  <string name="exposure_notifications_are_turned_off">सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सूचना दिने प्रणाली अफ गरिएको छ</string>
+  <string name="no_recent_exposure_subtitle">यो एप सक्रिय छ र यसले सम्भावित सङ्क्रमणको जाँच गर्दै छ…</string>
+  <string name="no_recent_exposure_indicator">हालसालै कोरोना सङ्क्रमित व्यक्तिको सम्पर्कमा आउनुभएको छैन</string>
+  <string name="app_active_info">तपाईंको एपले तपाईं कोरोनाबाट सङ्क्रमित कुनै व्यक्तिको सम्भावित रूपमा सम्पर्कमा आउनुभएको छ कि छैन भनी नियमित रूपमा जाँद गर्दै छ।</string>
+  <string name="notifications_enabled_info">तपाईं हाल कुनै पनि सङ्क्रमित व्यक्तिको सम्पर्कमा आउनुभएको छैन। तपाईंसँग सम्पर्कमा आएका कुनै व्यक्तिले COVID-19 परीक्षणमा आफ्नो नतिजा पोजेटिभ देखिएको जानकारी पेस गर्नुभयो भने तपाईंलाई त्यसबारे सूचित गरिने छ।</string>
+  <string name="how_exposure_notifications_work_link">कोरोनाबाट सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सूचना दिने प्रणालीले कम गर्ने तरिका</string>
+  <string name="recent_check_dialog_title">कोरोनाबाट सङ्क्रमित कुनै व्यक्तिसँग सम्भावित रूपमा सम्पर्कमा आए नआएको कुराको निगरानी गर्ने हालसालैका चेक इनको अभिलेख</string>
+  <string name="recent_check_dialog_see_more">थप हेर्नुहोस्</string>
+  <string name="recent_check_last_checked">पछिल्लो पटक जाँच गरिएको मिति: %1$s</string>
+  <string name="exposure_notifications_are_turned_off">कोरोनाबाट सङ्क्रमित व्यक्तिको सम्भावित रूपमा सम्पर्कमा आए नआएको कुराको जाँच गरिरहेको छैन</string>
   <string name="turn_on_exposure_notifications_action">सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सूचना दिने प्रणाली अन गर्नु…</string>
   <string name="recent_exposures_subtitle">हालसालै कोरोना भाइरस सङ्क्रमित व्यक्तिको सम्पर्कमा आएको</string>
   <string name="exposure_details_status_subtitle">स्थिति</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">COVID-19 परीक्षणको नतिजा नेगेटिभ देखिएको छ</string>
   <string name="positive_test_result_status_shared">सेयर गरिएको छ</string>
   <string name="positive_test_result_status_not_shared">सेयर गरिएको छैन</string>
-  <string name="notify_turn_on_exposure_notifications_header">तपाईं सम्भवतः COVID-19 सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सूचना पाउन तथा आफ्नो COVID-19 परीक्षणको नतिजा सेयर गर्न सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सूचना दिने प्रणाली अन गर्नुहोस्</string>
+  <string name="notify_turn_on_exposure_notifications_header">तपाईंको एपले हाल कोरोनाबाट सङ्क्रमित कुनै व्यक्तिको सम्भावित रूपमा सम्पर्कमा आए नआएको कुराको जाँच गरिरहेको छैन। तपाईं COVID-19 सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सम्भावना हुँदा यसको सूचना पाउन सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सूचना दिने प्रणाली अन गर्नुहोस्।</string>
   <string name="share_begin_title">आफ्नो समुदायमा सङ्क्रमण रोक्न मद्दत गर्नुहोस्</string>
   <string name="share_close_title">सेयर नगरिकन बाहिरिने हो?</string>
   <string name="share_close_detail">तपाईं आफ्नो परीक्षणको नतिजा जति चाँडो सेयर गर्नुहुन्छ तपाईंको समुदायलाई त्यति नै धेरै सहयोग पुग्छ। तथापि, तपाईंले आफ्नो परीक्षणको नतिजाको सम्बन्धमा अहिलेसम्म प्रविष्टि गर्नुभएको जानकारी यो एपमा सुरक्षित गरिन्छ। तपाईं पछि यो जानकारी सम्पादन गर्न जारी राख्न सक्नु हुने छ।</string>

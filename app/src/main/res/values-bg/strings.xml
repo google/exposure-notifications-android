@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">С цел поддръжка и подобряване на приложението с Google ще се споделят ограничени данни за ефективността и употребата му, непозволяващи лично идентифициране. Тази информация не ви идентифицира. %1$s</string>
   <string name="onboarding_confirm_later_title">Известията при опасност изключени ли да бъдат?</string>
   <string name="onboarding_confirm_later_detail">Няма да научавате за излагане на опасност от заразяване с COVID-19, докато не включите известията</string>
-  <string name="no_recent_exposure_subtitle">Няма скорошни излагания на опасност от заразяване</string>
-  <string name="notifications_enabled_info">Понастоящем няма информация за излагане на опасност от заразяване с COVID-19. Ще получите известие, ако човек, близо до когото сте били, е съобщил за положителен резултат от тест за COVID-19.</string>
-  <string name="exposure_notifications_are_turned_off">Известия за излагане на опасност от заразяване – изключени</string>
+  <string name="no_recent_exposure_subtitle">Активно и проверява…</string>
+  <string name="no_recent_exposure_indicator">Няма скорошно излагане на опасност от заразяване</string>
+  <string name="app_active_info">Приложението ви редовно проверява за възможни излагания на опасност от заразяване.</string>
+  <string name="notifications_enabled_info">Понастоящем няма информация да сте били изложени на опасност от заразяване с COVID-19. Ще получите известие, ако човек, близо до когото сте били, е съобщил за положителен резултат от тест за COVID-19.</string>
+  <string name="how_exposure_notifications_work_link">Как функционират известията за излагане на опасност от заразяване</string>
+  <string name="recent_check_dialog_title">Запис на скорошните проверки за възможно излагане на опасност от заразяване</string>
+  <string name="recent_check_dialog_see_more">Вижте още</string>
+  <string name="recent_check_last_checked">Последна проверка: %1$s</string>
+  <string name="exposure_notifications_are_turned_off">Не проверява за възможно излагане на опасност от заразяване</string>
   <string name="turn_on_exposure_notifications_action">Включване на известията</string>
   <string name="recent_exposures_subtitle">Скорошни излагания на опасност от заразяване</string>
   <string name="exposure_details_status_subtitle">Състояние</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">Отрицателен резултат за COVID-19</string>
   <string name="positive_test_result_status_shared">Споделено</string>
   <string name="positive_test_result_status_not_shared">Несподелено</string>
-  <string name="notify_turn_on_exposure_notifications_header">За да научавате за възможни излагания на опасност от заразяване с COVID-19 и да споделите резултата от теста си, включете известията за излагане на опасност от заразяване</string>
+  <string name="notify_turn_on_exposure_notifications_header">Понастоящем приложението ви не проверява за възможни излагания на опасност от заразяване с COVID-19. За да научавате за тях, включете съответните известия.</string>
   <string name="share_begin_title">Защитете общността си</string>
   <string name="share_close_title">Изход без споделяне?</string>
   <string name="share_close_detail">Ще помогнете най-много на общността си, ако по-рано споделите резултата от теста си. Въведената от вас информация до момента обаче е запазена в приложението и можете да я редактирате по-късно.</string>

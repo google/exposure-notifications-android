@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">En begränsad mängd avidentifierad data om appens prestanda och användningen av appen delas med Google i syfte att underhålla och förbättra appen. Det går inte att identifiera dig utifrån denna data. %1$s</string>
   <string name="onboarding_confirm_later_title">Vill du att Aviseringar om exponering ska vara inaktiverat?</string>
   <string name="onboarding_confirm_later_detail">Du får inga aviseringar om exponering för coivd-19 förrän Aviseringar om exponering har aktiverats</string>
-  <string name="no_recent_exposure_subtitle">Inga nya exponeringar</string>
-  <string name="notifications_enabled_info">Det finns ingen rapporterad exponeringsrisk för covid-19 för närvarande. Du får en avisering om någon du varit i närheten av rapporterar ett positivt testresultat för covid-19.</string>
-  <string name="exposure_notifications_are_turned_off">Aviseringar om exponering har inaktiverats</string>
+  <string name="no_recent_exposure_subtitle">Aktiv och söker …</string>
+  <string name="no_recent_exposure_indicator">Ingen ny exponering</string>
+  <string name="app_active_info">Appen söker regelbundet efter möjliga exponeringar.</string>
+  <string name="notifications_enabled_info">Det finns ingen rapporterad exponeringsrisk för covid-19 för dig just nu. Du får en avisering om någon du varit i närheten av rapporterar ett positivt testresultat för covid-19.</string>
+  <string name="how_exposure_notifications_work_link">Så här fungerar Aviseringar om exponering</string>
+  <string name="recent_check_dialog_title">Senaste sökningar efter möjlig exponering</string>
+  <string name="recent_check_dialog_see_more">Se mer</string>
+  <string name="recent_check_last_checked">Kontrollerades senast %1$s</string>
+  <string name="exposure_notifications_are_turned_off">Söker inte efter möjlig exponering</string>
   <string name="turn_on_exposure_notifications_action">Aktivera Aviseringar om exponering</string>
   <string name="recent_exposures_subtitle">Senaste exponering</string>
   <string name="exposure_details_status_subtitle">Status</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">Negativ för covid-19</string>
   <string name="positive_test_result_status_shared">Delad</string>
   <string name="positive_test_result_status_not_shared">Inte delad</string>
-  <string name="notify_turn_on_exposure_notifications_header">Aktivera Aviseringar om exponering om du vill bli meddelad om möjlig exponering för covid-19 och dela testresultat för covid-19</string>
+  <string name="notify_turn_on_exposure_notifications_header">Appen söker inte efter möjlig exponering för tillfället. Aktivera Aviseringar om exponering om du vill bli meddelad om möjlig exponering för covid-19.</string>
   <string name="share_begin_title">Hjälp till att skydda andra</string>
   <string name="share_close_title">Vill du avsluta utan att dela?</string>
   <string name="share_close_detail">Du hjälper andra bäst genom att dela testresultatet så tidigt som möjligt. Den information om testresultat som du har angett hittills sparas i appen så att du kan fortsätta att redigera den senare.</string>

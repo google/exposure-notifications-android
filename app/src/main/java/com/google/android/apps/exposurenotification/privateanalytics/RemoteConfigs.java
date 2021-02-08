@@ -21,7 +21,7 @@ import com.google.auto.value.AutoValue;
 
 
 /**
- * A value class for holding firebase remote configs.
+ * A value class for holding remote configs.
  */
 @AutoValue
 public abstract class RemoteConfigs {
@@ -31,13 +31,19 @@ public abstract class RemoteConfigs {
   private static final boolean DEFAULT_DEVICE_ATTESTATION_REQUIRED = true;
 
   private static final double DEFAULT_NOTIFICATION_COUNT_METRIC_SAMPLING_RATE = 1.0;
-  private static final double DEFAULT_NOTIFICATION_COUNT_METRIC_EPSILON = 12.0;
+  private static final double DEFAULT_NOTIFICATION_COUNT_METRIC_EPSILON = 8.0;
 
   private static final double DEFAULT_INTERACTION_COUNT_METRIC_SAMPLING_RATE = 1.0;
-  private static final double DEFAULT_INTERACTION_COUNT_METRIC_EPSILON = 12.0;
+  private static final double DEFAULT_INTERACTION_COUNT_METRIC_EPSILON = 8.0;
 
   private static final double DEFAULT_RISK_SCORE_METRIC_SAMPLING_RATE = 1.0;
-  private static final double DEFAULT_RISK_SCORE_COUNT_METRIC_EPSILON = 12.0;
+  private static final double DEFAULT_RISK_SCORE_COUNT_METRIC_EPSILON = 8.0;
+
+  private static final double DEFAULT_CODE_VERIFIED_METRIC_SAMPLING_RATE = 1.0;
+  private static final double DEFAULT_CODE_VERIFIED_METRIC_EPSILON = 8.0;
+
+  private static final double DEFAULT_KEYS_UPLOADED_METRIC_SAMPLING_RATE = 1.0;
+  private static final double DEFAULT_KEYS_UPLOADED_METRIC_EPSILON = 8.0;
 
   private static final String DEFAULT_PHA_CERTIFICATE = "dummy_cert";
   private static final String DEFAULT_FACILITATOR_CERTIFICATE = "dummy_cert";
@@ -62,6 +68,14 @@ public abstract class RemoteConfigs {
 
   public abstract double riskScorePrioSamplingRate();
 
+  public abstract double codeVerifiedPrioEpsilon();
+
+  public abstract double codeVerifiedPrioSamplingRate();
+
+  public abstract double keysUploadedPrioEpsilon();
+
+  public abstract double keysUploadedPrioSamplingRate();
+
   public abstract String phaCertificate();
 
   public abstract String facilitatorCertificate();
@@ -81,6 +95,10 @@ public abstract class RemoteConfigs {
         .setInteractionCountPrioEpsilon(DEFAULT_INTERACTION_COUNT_METRIC_EPSILON)
         .setRiskScorePrioSamplingRate(DEFAULT_RISK_SCORE_METRIC_SAMPLING_RATE)
         .setRiskScorePrioEpsilon(DEFAULT_RISK_SCORE_COUNT_METRIC_EPSILON)
+        .setCodeVerifiedPrioSamplingRate(DEFAULT_CODE_VERIFIED_METRIC_SAMPLING_RATE)
+        .setCodeVerifiedPrioEpsilon(DEFAULT_CODE_VERIFIED_METRIC_EPSILON)
+        .setKeysUploadedPrioSamplingRate(DEFAULT_KEYS_UPLOADED_METRIC_SAMPLING_RATE)
+        .setKeysUploadedPrioEpsilon(DEFAULT_KEYS_UPLOADED_METRIC_EPSILON)
         .setPhaCertificate(DEFAULT_PHA_CERTIFICATE)
         .setFacilitatorCertificate(DEFAULT_FACILITATOR_CERTIFICATE)
         .setPhaEncryptionKeyId(DEFAULT_PHA_ENCRYPTION_ID)
@@ -105,6 +123,14 @@ public abstract class RemoteConfigs {
     public abstract Builder setRiskScorePrioEpsilon(double value);
 
     public abstract Builder setRiskScorePrioSamplingRate(double value);
+
+    public abstract Builder setCodeVerifiedPrioEpsilon(double value);
+
+    public abstract Builder setCodeVerifiedPrioSamplingRate(double value);
+
+    public abstract Builder setKeysUploadedPrioEpsilon(double value);
+
+    public abstract Builder setKeysUploadedPrioSamplingRate(double value);
 
     public abstract Builder setPhaCertificate(String value);
 

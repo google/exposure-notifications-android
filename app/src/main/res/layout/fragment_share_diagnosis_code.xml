@@ -225,13 +225,13 @@
     android:background="@color/design_default_color_background"
     android:visibility="gone" />
 
-  <com.google.android.material.progressindicator.ProgressIndicator
+  <com.google.android.material.progressindicator.CircularProgressIndicator
     android:id="@+id/verify_progress_indicator"
-    style="@style/Widget.MaterialComponents.ProgressIndicator.Circular.Indeterminate"
-    android:layout_width="64dp"
-    android:layout_height="64dp"
+    android:indeterminate="true"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:layout_centerInParent="true"
-    app:circularRadius="32dp"
+    app:indicatorSize="68dp"
     app:indicatorColor="@color/enx_agencyColor"
     android:visibility="gone"/>
 

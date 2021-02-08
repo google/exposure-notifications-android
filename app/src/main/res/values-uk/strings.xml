@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">Google отримає обмежений доступ до загальних даних про використання та продуктивність додатка, щоб підтримувати й покращувати його роботу. За цією інформацією неможливо встановити вашу особу. %1$s</string>
   <string name="onboarding_confirm_later_title">Не вмикати сповіщення про ризик зараження?</string>
   <string name="onboarding_confirm_later_detail">Поки сповіщення вимкнено, вас не повідомлятимуть про ризик зараження COVID-19</string>
-  <string name="no_recent_exposure_subtitle">Немає контакту за останній час</string>
-  <string name="notifications_enabled_info">Наразі немає повідомлень про можливе зараження COVID-19. Ви отримаєте сповіщення, якщо людина, яка була поруч із вами, повідомить про позитивний тест на COVID-19.</string>
-  <string name="exposure_notifications_are_turned_off">Сповіщення про ризик зараження вимкнено</string>
+  <string name="no_recent_exposure_subtitle">Додаток активний і виконує перевірку…</string>
+  <string name="no_recent_exposure_indicator">Немає нещодавніх ризиків зараження</string>
+  <string name="app_active_info">Додаток регулярно перевіряє можливі ризики зараження.</string>
+  <string name="notifications_enabled_info">Наразі ризику зараження COVID-19 для вас не виявлено. Ви отримаєте сповіщення, якщо людина, яка була поруч із вами, повідомить про позитивний тест на COVID-19.</string>
+  <string name="how_exposure_notifications_work_link">Як працює Система сповіщення про ризик зараження</string>
+  <string name="recent_check_dialog_title">Список останніх перевірок можливих ризиків зараження</string>
+  <string name="recent_check_dialog_see_more">Показати більше</string>
+  <string name="recent_check_last_checked">Остання перевірка: %1$s</string>
+  <string name="exposure_notifications_are_turned_off">Перевірка можливих ризиків зараження не виконується</string>
   <string name="turn_on_exposure_notifications_action">Увімкнути сповіщення про ризик зараження</string>
   <string name="recent_exposures_subtitle">Нещодавній контакт</string>
   <string name="exposure_details_status_subtitle">Статус</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">Негативний тест на COVID-19</string>
   <string name="positive_test_result_status_shared">Повідомлено</string>
   <string name="positive_test_result_status_not_shared">Не повідомлено</string>
-  <string name="notify_turn_on_exposure_notifications_header">Щоб отримувати та ініціювати сповіщення про ризик зараження COVID-19, їх потрібно ввімкнути</string>
+  <string name="notify_turn_on_exposure_notifications_header">Додаток зараз не перевіряє можливі ризики зараження. Щоб отримувати сповіщення про ризик зараження COVID-19, їх потрібно ввімкнути.</string>
   <string name="share_begin_title">Захистіть свою громаду</string>
   <string name="share_close_title">Вийти, не повідомивши про результат?</string>
   <string name="share_close_detail">Що швидше ви повідомите про результат тесту, то краще для вашої громади. Однак уже введену інформацію буде збережено в додатку, і ви зможете продовжити пізніше.</string>

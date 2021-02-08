@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">Tətbiqin dəstəklənməsi və təkmilləşdirilməsinə kömək etmək üçün tətbiq məhsuldarlığı və istifadəsi barədə şəxsiyyəti müəyyənləşdirməyən bəzi məhdud məlumatlar Google ilə paylaşılır. Bu məlumatlar kimliyinizi müəyyənləşdirmir. %1$s</string>
   <string name="onboarding_confirm_later_title">Yoluxma Bildirişləri sönülü saxlanılsın?</string>
   <string name="onboarding_confirm_later_detail">Təmas Bildirişləri yandırılana qədər sizə mümkün COVID-19 ilə təmas barədə bildirilməyəcək</string>
-  <string name="no_recent_exposure_subtitle">Bu yaxınlarda təmas olmayıb</string>
-  <string name="notifications_enabled_info">Hazırda COVID-19 ilə təmas riskiniz barədə heç bir məlumat yoxdur. Yaxınlığınızda olan biri COVID-19 test nəticəsinin pozitiv olduğunu bildirsə, sizə xəbərdarlıq ediləcək.</string>
-  <string name="exposure_notifications_are_turned_off">Yoluxma bildirişləri sönülüdür</string>
+  <string name="no_recent_exposure_subtitle">Aktivdir və yoxlama aparılır …</string>
+  <string name="no_recent_exposure_indicator">Bu yaxınlarda yoluxma riski olmayıb</string>
+  <string name="app_active_info">Tətbiqiniz müntəzəm olaraq ehtimal yoluxma riskləri üzrə yoxlama aparır.</string>
+  <string name="notifications_enabled_info">Hazırda COVID-19 xəstəliyinə yoluxma riskiniz barədə heç bir məlumat yoxdur. Yaxınlığınızda olan biri COVID-19 test nəticəsinin pozitiv olduğunu bildirsə, sizə xəbərdarlıq ediləcək.</string>
+  <string name="how_exposure_notifications_work_link">Yoluxma Bildirişləri necə işləyir</string>
+  <string name="recent_check_dialog_title">Ehtimal yoluxma riski üzrə son giriş qeydləri</string>
+  <string name="recent_check_dialog_see_more">Daha çoxuna baxın</string>
+  <string name="recent_check_last_checked">Sonuncu yoxlama: %1$s</string>
+  <string name="exposure_notifications_are_turned_off">Ehtimal yoluxma riski üzrə yoxlama aparılmır</string>
   <string name="turn_on_exposure_notifications_action">Yoluxma Bildirişlərini yandırın</string>
   <string name="recent_exposures_subtitle">Sonuncu təmas</string>
   <string name="exposure_details_status_subtitle">Status</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">COVID-19 Neqativ</string>
   <string name="positive_test_result_status_shared">Paylaşılıb</string>
   <string name="positive_test_result_status_not_shared">Paylaşılmayıb</string>
-  <string name="notify_turn_on_exposure_notifications_header">Mümkün COVID-19 ilə təmas barədə məlumat almaq və COVID-19 test nəticənizi paylaşmaq üçün Yoluxma Bildirişlərini yandırın</string>
+  <string name="notify_turn_on_exposure_notifications_header">Tətbiqiniz hazırda ehtimal yoluxma riski üzrə yoxlama aparmır. Ehtimal COVID-19 yoluxma riskindən xəbər tutmaq üçün Yoluxma Bildirişlərini aktiv edin.</string>
   <string name="share_begin_title">İcmanızı qorumağa kömək edin</string>
   <string name="share_close_title">Paylaşmadan çıxırsınız?</string>
   <string name="share_close_detail">Test nəticənizi tezliklə paylaşsanız icmanıza daha çox yardım edərsiniz. Lakin indiyədək daxil etdiyiniz test nəticəsi məlumatınız sonra düzəliş etməniz üçün bu tətbiqdə saxlanacaq.</string>

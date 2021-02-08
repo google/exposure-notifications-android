@@ -40,6 +40,7 @@ import com.google.android.apps.exposurenotification.testsupport.FakeClock;
 import com.google.android.gms.tasks.Tasks;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListeningExecutorService;
+import com.google.common.util.concurrent.ListeningScheduledExecutorService;
 import com.google.common.util.concurrent.MoreExecutors;
 import com.google.common.util.concurrent.testing.TestingExecutors;
 import com.google.firebase.FirebaseApp;
@@ -109,6 +110,10 @@ public class PrivateAnalyticsSubmitterTest {
   @LightweightExecutor
   static final ExecutorService LIGHTWEIGHT_EXEC = MoreExecutors.newDirectExecutorService();
   @BindValue
+  @ScheduledExecutor
+  static final ScheduledExecutorService SCHEDULED_EXEC =
+      TestingExecutors.sameThreadScheduledExecutor();
+  @BindValue
   @BackgroundExecutor
   static final ListeningExecutorService BACKGROUND_LISTENING_EXEC =
       MoreExecutors.newDirectExecutorService();
@@ -118,7 +123,7 @@ public class PrivateAnalyticsSubmitterTest {
       MoreExecutors.newDirectExecutorService();
   @BindValue
   @ScheduledExecutor
-  static final ScheduledExecutorService SCHEDULED_EXEC =
+  static final ListeningScheduledExecutorService SCHEDULED_LISTENING_EXEC =
       TestingExecutors.sameThreadScheduledExecutor();
 
   @Captor
@@ -138,7 +143,7 @@ public class PrivateAnalyticsSubmitterTest {
   }
 
   @Test
-  public void testSubmitPackets_uploadsThreeShares()
+  public void testSubmitPackets_uploadsShares()
       throws ExecutionException, InterruptedException {
     CreatePacketsResponse createPacketsResponse = CreatePacketsResponse.newBuilder()
         .addShares(generateRandomByteString())
@@ -154,8 +159,9 @@ public class PrivateAnalyticsSubmitterTest {
     when(exposureNotificationClientWrapper.getExposureWindows())
         .thenReturn(Tasks.forResult(new ArrayList<>()));
 
+    // The following function should submit the _five_ metrics available.
     privateAnalyticsSubmitter.submitPackets().get();
-    verify(documentReference, times(3)).set(documentsCaptor.capture());
+    verify(documentReference, times(5)).set(documentsCaptor.capture());
   }
 
   private ByteString generateRandomByteString() {

@@ -18,7 +18,6 @@
 package com.google.android.apps.exposurenotification.storage;
 
 import android.content.Context;
-import android.os.StatFs;
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import dagger.Module;
 import dagger.Provides;
@@ -34,10 +33,5 @@ public class StorageModule {
   public ExposureNotificationSharedPreferences provideExposureNotificationSharedPreferences(
       @ApplicationContext Context context, Clock clock) {
     return new ExposureNotificationSharedPreferences(context, clock);
-  }
-
-  @Provides
-  public StatFs provideStatFs(@ApplicationContext Context context) {
-    return new StatFs(context.getFilesDir().toString());
   }
 }

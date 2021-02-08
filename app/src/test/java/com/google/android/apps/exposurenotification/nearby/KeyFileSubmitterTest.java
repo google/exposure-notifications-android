@@ -43,6 +43,7 @@ import com.google.common.base.Strings;
 import com.google.common.collect.ImmutableList;
 import com.google.common.primitives.Bytes;
 import com.google.common.util.concurrent.ListeningExecutorService;
+import com.google.common.util.concurrent.ListeningScheduledExecutorService;
 import com.google.common.util.concurrent.MoreExecutors;
 import com.google.common.util.concurrent.testing.TestingExecutors;
 import dagger.hilt.android.qualifiers.ApplicationContext;
@@ -87,6 +88,10 @@ public class KeyFileSubmitterTest {
   @LightweightExecutor
   static final ExecutorService LIGHTWEIGHT_EXEC = MoreExecutors.newDirectExecutorService();
   @BindValue
+  @ScheduledExecutor
+  static final ScheduledExecutorService SCHEDULED_EXEC =
+      TestingExecutors.sameThreadScheduledExecutor();
+  @BindValue
   @BackgroundExecutor
   static final ListeningExecutorService BACKGROUND_LISTENING_EXEC =
       MoreExecutors.newDirectExecutorService();
@@ -96,7 +101,7 @@ public class KeyFileSubmitterTest {
       MoreExecutors.newDirectExecutorService();
   @BindValue
   @ScheduledExecutor
-  static final ScheduledExecutorService SCHEDULED_EXEC =
+  static final ListeningScheduledExecutorService SCHEDULED_LISTENING_EXEC =
       TestingExecutors.sameThreadScheduledExecutor();
 
   @Rule

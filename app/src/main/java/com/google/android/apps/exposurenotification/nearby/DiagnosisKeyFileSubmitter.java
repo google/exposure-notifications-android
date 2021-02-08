@@ -21,6 +21,7 @@ import android.util.Log;
 import com.google.android.apps.exposurenotification.common.Qualifiers.BackgroundExecutor;
 import com.google.android.apps.exposurenotification.common.Qualifiers.ScheduledExecutor;
 import com.google.android.apps.exposurenotification.common.TaskToFutureAdapter;
+import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.keydownload.KeyFile;
 import com.google.android.apps.exposurenotification.keydownload.KeyFileConstants;
 import com.google.android.apps.exposurenotification.proto.TEKSignatureList;
@@ -28,6 +29,8 @@ import com.google.android.apps.exposurenotification.proto.TemporaryExposureKey;
 import com.google.android.apps.exposurenotification.proto.TemporaryExposureKeyExport;
 import com.google.android.apps.exposurenotification.storage.DownloadServerEntity;
 import com.google.android.apps.exposurenotification.storage.DownloadServerRepository;
+import com.google.android.apps.exposurenotification.storage.ExposureCheckEntity;
+import com.google.android.apps.exposurenotification.storage.ExposureCheckRepository;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
 import com.google.common.collect.ImmutableList;
 import com.google.common.io.BaseEncoding;
@@ -63,20 +66,26 @@ public class DiagnosisKeyFileSubmitter {
 
   private final ExposureNotificationClientWrapper exposureNotificationClientWrapper;
   private final DownloadServerRepository downloadServerRepo;
+  private final ExposureCheckRepository exposureCheckRepo;
   private final ExposureNotificationSharedPreferences preferences;
   private final ExecutorService backgroundExecutor;
   private final ScheduledExecutorService scheduledExecutor;
+  private final Clock clock;
 
   @Inject
   DiagnosisKeyFileSubmitter(
       ExposureNotificationClientWrapper exposureNotificationClientWrapper,
       DownloadServerRepository downloadServerRepo,
+      ExposureCheckRepository exposureCheckRepo,
       ExposureNotificationSharedPreferences preferences,
+      Clock clock,
       @BackgroundExecutor ExecutorService backgroundExecutor,
       @ScheduledExecutor ScheduledExecutorService scheduledExecutor) {
     this.exposureNotificationClientWrapper = exposureNotificationClientWrapper;
     this.downloadServerRepo = downloadServerRepo;
+    this.exposureCheckRepo = exposureCheckRepo;
     this.preferences = preferences;
+    this.clock = clock;
     this.backgroundExecutor = backgroundExecutor;
     this.scheduledExecutor = scheduledExecutor;
   }
@@ -121,9 +130,11 @@ public class DiagnosisKeyFileSubmitter {
                 "Mark last successful download [%s] for server [%s]", f.uri(), f.index()));
             downloadServerRepo.upsert(DownloadServerEntity.create(f.index(), f.uri()));
           }
-          // and delete all files locally.
+          // and delete all files locally...
           f.file().delete();
         }
+        // and, finally, capture time of the exposure check.
+        exposureCheckRepo.insertExposureCheck(ExposureCheckEntity.create(clock.now()));
       }
 
       @Override

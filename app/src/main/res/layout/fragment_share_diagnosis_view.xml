@@ -66,6 +66,7 @@
         android:layout_marginBottom="@dimen/padding_small"
         android:text="@string/share_review_status_subtitle"
         android:textAppearance="?attr/textAppearanceBody2"
+        android:textSize="@dimen/notify_review_subtitle_text_size"
         android:textAllCaps="true" />
 
       <TextView
@@ -86,6 +87,7 @@
         android:layout_marginBottom="@dimen/padding_small"
         android:text="@string/share_review_travel_subtitle"
         android:textAppearance="?attr/textAppearanceBody2"
+        android:textSize="@dimen/notify_review_subtitle_text_size"
         android:textAllCaps="true"
         android:visibility="gone" />
 
@@ -107,6 +109,7 @@
         android:layout_marginBottom="@dimen/padding_small"
         android:text="@string/share_review_onset_subtitle"
         android:textAppearance="?attr/textAppearanceBody2"
+        android:textSize="@dimen/notify_review_subtitle_text_size"
         android:textAllCaps="true" />
 
       <TextView
@@ -128,7 +131,7 @@
     android:orientation="horizontal">
 
     <Button
-      android:id="@+id/positive_diagnosis_delete_button"
+      android:id="@+id/diagnosis_delete_button"
       style="@style/Widget.MaterialComponents.Button.TextButton"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"

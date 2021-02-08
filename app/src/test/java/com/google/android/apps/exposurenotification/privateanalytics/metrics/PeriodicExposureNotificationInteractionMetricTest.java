@@ -24,7 +24,6 @@ import static com.google.common.truth.Truth.assertThat;
 
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.common.time.RealTimeModule;
-import com.google.android.apps.exposurenotification.privateanalytics.MetricsSnapshot;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.NotificationInteraction;
 import com.google.android.apps.exposurenotification.testsupport.ExposureNotificationRules;
@@ -34,7 +33,6 @@ import dagger.hilt.android.testing.BindValue;
 import dagger.hilt.android.testing.HiltAndroidTest;
 import dagger.hilt.android.testing.HiltTestApplication;
 import dagger.hilt.android.testing.UninstallModules;
-import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import javax.inject.Inject;
@@ -75,16 +73,18 @@ public class PeriodicExposureNotificationInteractionMetricTest {
   }
 
   @Test
-  public void testDailyExposureNotificationInRangeIgnored() throws Exception {
+  public void testDailyExposureNotificationNotInRange() throws Exception {
     // GIVEN
-    Instant oneDayAgo = clock.now().minus(Period.ofDays(1));
+    Instant workerTime = clock.now().minus(Period.ofDays(1));
+    Instant interactionTime = workerTime.minus(Period.ofDays(1));
 
+    exposureNotificationSharedPreferences
+        .setPrivateAnalyticsWorkerLastTime(workerTime);
     exposureNotificationSharedPreferences.setExposureNotificationLastInteraction(
-        oneDayAgo, NotificationInteraction.CLICKED);
+        interactionTime, NotificationInteraction.CLICKED, 1);
 
     // WHEN
-    List<Integer> vector = periodicExposureNotificationInteractionMetric.getDataVector(
-        getMetricsSnapshot()).get();
+    List<Integer> vector = periodicExposureNotificationInteractionMetric.getDataVector().get();
 
     // THEN
     assertThat(vector)
@@ -95,58 +95,42 @@ public class PeriodicExposureNotificationInteractionMetricTest {
   @Test
   public void testDailyExposureNotificationInRangeClicked() throws Exception {
     // GIVEN
-    Instant oneDayAgo = clock.now().minus(Period.ofDays(1));
-
+    Instant workerTime = clock.now().minus(Period.ofDays(2));
+    Instant interactionTime = workerTime.plus(Period.ofDays(1));
+    int classificationIndex = 1;
     exposureNotificationSharedPreferences
-        .setExposureNotificationLastShownClassification(oneDayAgo, /* classificationIndex= */ 1);
+        .setPrivateAnalyticsWorkerLastTime(workerTime);
     exposureNotificationSharedPreferences.setExposureNotificationLastInteraction(
-        clock.now(), NotificationInteraction.CLICKED);
+        interactionTime, NotificationInteraction.CLICKED, classificationIndex);
 
     // WHEN
-    List<Integer> vector = periodicExposureNotificationInteractionMetric.getDataVector(
-        getMetricsSnapshot()).get();
+    List<Integer> vector = periodicExposureNotificationInteractionMetric.getDataVector().get();
 
     // THEN
     assertThat(vector)
-        .containsExactlyElementsIn(buildInteractionVector(1, NotificationInteraction.CLICKED))
+        .containsExactlyElementsIn(
+            buildInteractionVector(classificationIndex, NotificationInteraction.CLICKED))
         .inOrder();
   }
 
   @Test
   public void testDailyExposureNotificationInRangeDismissed() throws Exception {
     // GIVEN
-    Instant oneDayAgo = clock.now().minus(Period.ofDays(1));
+    Instant workerTime = clock.now().minus(Period.ofDays(2));
+    Instant interactionTime = workerTime.plus(Period.ofDays(1));
+    int classificationIndex = 2;
     exposureNotificationSharedPreferences
-        .setExposureNotificationLastShownClassification(oneDayAgo, /* classificationIndex= */ 1);
+        .setPrivateAnalyticsWorkerLastTime(workerTime);
     exposureNotificationSharedPreferences.setExposureNotificationLastInteraction(
-        clock.now(), NotificationInteraction.DISMISSED);
+        interactionTime, NotificationInteraction.DISMISSED, classificationIndex);
 
     // WHEN
-    List<Integer> vector = periodicExposureNotificationInteractionMetric.getDataVector(
-        getMetricsSnapshot()).get();
+    List<Integer> vector = periodicExposureNotificationInteractionMetric.getDataVector().get();
 
     // THEN
     assertThat(vector)
-        .containsExactlyElementsIn(buildInteractionVector(1, NotificationInteraction.DISMISSED))
-        .inOrder();
-  }
-
-  @Test
-  public void testDailyExposureNotificationNotInRange() throws Exception {
-    // GIVEN
-    Instant twoDaysAgo = clock.now().minus(Period.ofDays(2));
-    exposureNotificationSharedPreferences
-        .setExposureNotificationLastShownClassification(twoDaysAgo, /* classificationIndex= */ 1);
-    exposureNotificationSharedPreferences.setExposureNotificationLastInteraction(
-        clock.now(), NotificationInteraction.DISMISSED);
-
-    // WHEN
-    List<Integer> vector = periodicExposureNotificationInteractionMetric.getDataVector(
-        getMetricsSnapshot()).get();
-
-    // THEN
-    assertThat(vector)
-        .containsExactlyElementsIn(buildInteractionVector(1, NotificationInteraction.DISMISSED))
+        .containsExactlyElementsIn(
+            buildInteractionVector(classificationIndex, NotificationInteraction.DISMISSED))
         .inOrder();
   }
 
@@ -161,9 +145,9 @@ public class PeriodicExposureNotificationInteractionMetricTest {
 
     Instant fiveHoursAgo = clock.now().minus(Duration.ofHours(5));
     exposureNotificationSharedPreferences
-        .setExposureNotificationLastShownClassification(fiveHoursAgo, /* classificationIndex= */ 1);
-    List<Integer> dataVector = periodicExposureNotificationInteractionMetric.getDataVector(
-        getMetricsSnapshot()).get();
+        .setExposureNotificationLastInteraction(fiveHoursAgo,
+            NotificationInteraction.CLICKED, /* classificationIndex= */ 1);
+    List<Integer> dataVector = periodicExposureNotificationInteractionMetric.getDataVector().get();
 
     // THEN
     assertThat(dataVector)
@@ -171,14 +155,9 @@ public class PeriodicExposureNotificationInteractionMetricTest {
         .inOrder();
   }
 
-  private MetricsSnapshot getMetricsSnapshot() {
-    return MetricsSnapshot.fromPreferences(exposureNotificationSharedPreferences);
-  }
-
   private static List<Integer> buildInteractionVector(
       int severity, NotificationInteraction interaction) {
     int[] retVector = new int[VECTOR_LENGTH];
-    Arrays.fill(retVector, 0);
     switch (interaction) {
       case UNKNOWN:
         retVector[NO_EXPOSURE_BIN_ID] = 1;

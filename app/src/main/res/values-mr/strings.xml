@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">ॲपच्या देखभाल आणि सुधारणेत मदतीसाठी ॲप परफॉर्मन्स व वापराबद्दलचा काही पडताळणी न केलेला मर्यादित डेटा Google सोबत शेअर केला जातो. हा डेटा तुमची ओळख उघड करत नाही. %1$s</string>
   <string name="onboarding_confirm_later_title">लागणीबद्दलची सूचना बंद ठेवायची आहे का?</string>
   <string name="onboarding_confirm_later_detail">लागणीविषयी सूचना सुरू करत नाही, ताेपर्यंत COVID-19 च्या संभाव्य लागणीबद्दल तुम्हाला सूचित केले जाणार नाही</string>
-  <string name="no_recent_exposure_subtitle">अलीकडे कोणतीही लागण झालेली नाही</string>
-  <string name="notifications_enabled_info">सध्या तुम्हाला COVID-19 च्या लागणीचा धोका नाही. तुम्ही COVID-19 चाचणीचा परिणाम पॉझिटीव्ह आला आहे अशा एखाद्या व्यक्तीच्या जवळपास असल्यास तुम्हाला सूचित केले जाईल.</string>
-  <string name="exposure_notifications_are_turned_off">लागणीबद्दलच्या सूचना बंद आहेत</string>
+  <string name="no_recent_exposure_subtitle">अ‍ॅक्टिव्ह आहे आणि तपासत आहे…</string>
+  <string name="no_recent_exposure_indicator">अलीकडे लागण झालेली नाही</string>
+  <string name="app_active_info">तुमचे ॲप हे लागण होण्याच्या शक्यतेची नियमितपणे तपासणी करत असते.</string>
+  <string name="notifications_enabled_info">सध्या तुम्हाला COVID-19 ची लागण होण्याचा धोका नाही. तुम्ही COVID-19 चाचणीचा परिणाम पॉझिटीव्ह आला आहे अशा एखाद्या व्यक्तीच्या जवळपास असल्यास, तुम्हाला सूचित केले जाईल.</string>
+  <string name="how_exposure_notifications_work_link">लागणीबद्दलच्या सूचना कशा काम करतात</string>
+  <string name="recent_check_dialog_title">लागण होण्याच्या शक्यतेसाठी अलीकडील चेक-इन केल्याचा रेकॉर्ड</string>
+  <string name="recent_check_dialog_see_more">आणखी पाहा</string>
+  <string name="recent_check_last_checked">शेवटची तपासणी: %1$s</string>
+  <string name="exposure_notifications_are_turned_off">लागण होण्याची शक्यता तपासत नाही</string>
   <string name="turn_on_exposure_notifications_action">लागणीबद्दलच्या सूचना सुरू करा</string>
   <string name="recent_exposures_subtitle">अलीकडे झालेली लागण</string>
   <string name="exposure_details_status_subtitle">स्थिती</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">COVID-19 निगेटीव्ह</string>
   <string name="positive_test_result_status_shared">शेअर केला</string>
   <string name="positive_test_result_status_not_shared">शेअर केला नाही</string>
-  <string name="notify_turn_on_exposure_notifications_header">COVID-19 च्या संभाव्य लागणीबद्दल सूचना मिळवण्यासाठी आणि तुमचा COVID-19 चाचणीचा परिणाम शेअर करण्यासाठी लागणीबद्दलच्या सूचना सुरू करा</string>
+  <string name="notify_turn_on_exposure_notifications_header">तुमचे ॲप हे लागण होण्याची शक्यता सध्या तपासत नाही. COVID-19 च्या संभाव्य लागणीबद्दल सूचना मिळवण्यासाठी लागणीबद्दलच्या सूचना सुरू करा.</string>
   <string name="share_begin_title">तुमच्या समुदायाचे संरक्षण करण्यास मदत करा</string>
   <string name="share_close_title">शेअर केल्याशिवाय बाहेर पडायचे आहे का?</string>
   <string name="share_close_detail">तुमच्या चाचणीचा परिणाम लवकरच शेअर केल्यास, समुदायाला चांगल्यारीतीने मदत करू शकता. नंतर पुन्हा संपादित करण्यासाठी तुम्ही आत्तापर्यंत एंटर केलेली चाचणीच्या परिणामाची माहिती या ॲपमध्ये सेव्ह केलेली आहे.</string>

@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">للمساعدة في الحفاظ على التطبيق وتحسينه، تتم مشاركة بعض البيانات المجهولة الهوية عن استخدام التطبيق وأدائه مع Google. وهذه المعلومات لا تحدّد هويتك. %1$s</string>
   <string name="onboarding_confirm_later_title">هل اخترت عدم تفعيل نظام \"إشعارات التعرّض لفيروس كورونا\"؟</string>
   <string name="onboarding_confirm_later_detail">في حال عدم تفعيله، لن تتلقّى إشعارات عن التعرّض المحتمل للفيروس.</string>
-  <string name="no_recent_exposure_subtitle">لم يتم رصد حالات تعرّض للفيروس مؤخرًا</string>
-  <string name="notifications_enabled_info">لم يتم رصد أي مخاطر تعرّض لفيروس كورونا المستجد حاليًا. سيتم تنبيهك إذا كنت بالقرب من شخص كانت نتيجة اختبار فيروس كورونا المستجد (كوفيد-19) الخاصة به إيجابية.</string>
-  <string name="exposure_notifications_are_turned_off">نظام \"إشعارات التعرّض لفيروس كورونا\" غير مفعَّل</string>
+  <string name="no_recent_exposure_subtitle">التطبيق نشط وجارٍ التحقّق …</string>
+  <string name="no_recent_exposure_indicator">لم يتم التعرّض للفيروس مؤخرًا.</string>
+  <string name="app_active_info">يتحقّق التطبيق بانتظام من حالات التعرّض المحتمل للفيروس.</string>
+  <string name="notifications_enabled_info">لم يتم حاليًا رصد أي مخاطر بشأن تعرّضك لفيروس كورونا المستجد (كوفيد-19). سيتم تنبيهك إذا كنت بالقرب من شخص كانت نتيجة اختبار فيروس كورونا المستجد الخاصة به إيجابية.</string>
+  <string name="how_exposure_notifications_work_link">آلية عمل نظام \"إشعارات التعرّض لفيروس كورونا\"</string>
+  <string name="recent_check_dialog_title">سجلّ الحالات الأخيرة للتحقّق من التعرّض المحتمل للفيروس</string>
+  <string name="recent_check_dialog_see_more">عرض المزيد</string>
+  <string name="recent_check_last_checked">تاريخ آخر تحقُّق: %1$s</string>
+  <string name="exposure_notifications_are_turned_off">لا يتم التحقّق من التعرّض المحتمل للفيروس</string>
   <string name="turn_on_exposure_notifications_action">تفعيل \"إشعارات التعرّض لفيروس كورونا\"</string>
   <string name="recent_exposures_subtitle">التعرّض للفيروس مؤخرًا</string>
   <string name="exposure_details_status_subtitle">الحالة</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">نتيجة سلبية لاختبار فيروس كورونا</string>
   <string name="positive_test_result_status_shared">تمت مشاركتها</string>
   <string name="positive_test_result_status_not_shared">لم تتم مشاركتها</string>
-  <string name="notify_turn_on_exposure_notifications_header">ليتم إشعارك في حال التعرّض لفيروس كورونا المستجد (كوفيد-19) ومشاركة نتيجة اختبار الفيروس، فعِّل نظام \"إشعارات التعرّض لفيروس كورونا\".</string>
+  <string name="notify_turn_on_exposure_notifications_header">لا يتحقّق التطبيق حاليًا من حالات التعرّض المحتمل للفيروس. يمكنك تفعيل \"نظام إشعارات التعرّض لفيروس كورونا\" ليتم إشعارك بالتعرّض المحتمل للفيروس.</string>
   <string name="share_begin_title">المساعدة في حماية المجتمع</string>
   <string name="share_close_title">هل تريد الخروج بدون مشاركة المعلومات؟</string>
   <string name="share_close_detail">أفضل مساعدة تقدّمها للمجتمع هي مشاركة نتائج الاختبار بسرعة. وإنّ معلومات نتيجة الاختبار التي أدخلتها إلى الآن تم حفظها في التطبيق لتتمكن من استئناف تعديلها لاحقًا.</string>

@@ -23,6 +23,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.databinding.FragmentShareDiagnosisNotSharedBinding;
 import dagger.hilt.android.AndroidEntryPoint;
 
 /**
@@ -34,15 +35,23 @@ public class ShareDiagnosisNotSharedFragment extends Fragment {
 
   private static final String TAG = "ShareExposureNotSharedFrag";
 
+  private FragmentShareDiagnosisNotSharedBinding binding;
+
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-    return inflater.inflate(R.layout.fragment_share_diagnosis_not_shared, parent, false);
+    binding = FragmentShareDiagnosisNotSharedBinding.inflate(inflater, parent, false);
+    return binding.getRoot();
   }
 
   @Override
   public void onViewCreated(View view, Bundle savedInstanceState) {
     getActivity().setTitle(R.string.not_shared_confirm_title);
-    view.findViewById(R.id.share_done_button).setOnClickListener(v -> requireActivity().finish());
+    binding.shareDoneButton.setOnClickListener(v -> requireActivity().finish());
   }
 
+  @Override
+  public void onDestroyView() {
+    super.onDestroyView();
+    binding = null;
+  }
 }

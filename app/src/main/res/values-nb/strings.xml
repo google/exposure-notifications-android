@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">For å vedlikeholde og forbedre appen deles noen begrensede, avidentifiserte data om appytelsen og -bruken med Google. Disse dataene identifiserer deg ikke. %1$s</string>
   <string name="onboarding_confirm_later_title">Vil du holde eksponeringsvarsler slått av?</string>
   <string name="onboarding_confirm_later_detail">Før eksponeringsvarsler slås på, blir du ikke varslet om mulig covid-19-eksponering</string>
-  <string name="no_recent_exposure_subtitle">Ingen nylig eksponering</string>
+  <string name="no_recent_exposure_subtitle">Aktiv og sjekker …</string>
+  <string name="no_recent_exposure_indicator">Ingen nylig eksponering</string>
+  <string name="app_active_info">Appen sjekker regelmessig for mulig eksponering.</string>
   <string name="notifications_enabled_info">Du har for øyeblikket ingen rapportert covid-19-eksponeringsrisiko. Du blir varslet om noen du har vært i nærheten av, rapporterer et positivt covid-19-testresultat.</string>
-  <string name="exposure_notifications_are_turned_off">Eksponeringsvarsler er slått av</string>
+  <string name="how_exposure_notifications_work_link">Slik fungerer eksponeringsvarsler</string>
+  <string name="recent_check_dialog_title">Oversikt over nylig sjekk av mulig eksponering</string>
+  <string name="recent_check_dialog_see_more">Se mer</string>
+  <string name="recent_check_last_checked">Sist kontrollert %1$s</string>
+  <string name="exposure_notifications_are_turned_off">Sjekker ikke for mulig eksponering</string>
   <string name="turn_on_exposure_notifications_action">Slå på eksponeringsvarsler</string>
   <string name="recent_exposures_subtitle">Nylig eksponering</string>
   <string name="exposure_details_status_subtitle">Status</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">Har ikke covid-19</string>
   <string name="positive_test_result_status_shared">Delt</string>
   <string name="positive_test_result_status_not_shared">Ikke delt</string>
-  <string name="notify_turn_on_exposure_notifications_header">For å bli varslet om mulig covid-19-eksponering og dele covid-19-testresultatet ditt, slå på eksponeringsvarsler</string>
+  <string name="notify_turn_on_exposure_notifications_header">Appen sjekker for øyeblikket ikke for mulig eksponering. For å bli varslet om mulig covid-19-eksponering, slå på eksponeringsvarsler.</string>
   <string name="share_begin_title">Bidra til å beskytte lokalsamfunnet</string>
   <string name="share_close_title">Vil du avslutte uten å dele?</string>
   <string name="share_close_detail">Du kan hjelpe lokalsamfunnet best ved å dele testresultatet ditt raskere. Informasjonen om testresultatet du har skrevet inn til nå, er lagret i appen, slik at du kan fortsette innskrivingen senere.</string>

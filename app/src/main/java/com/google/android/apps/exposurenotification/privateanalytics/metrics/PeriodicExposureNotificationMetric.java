@@ -18,15 +18,12 @@
 package com.google.android.apps.exposurenotification.privateanalytics.metrics;
 
 import androidx.annotation.VisibleForTesting;
-import com.google.android.apps.exposurenotification.privateanalytics.MetricsSnapshot;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
 import com.google.common.primitives.Ints;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
-import java.util.Arrays;
 import java.util.List;
 import javax.inject.Inject;
-import org.threeten.bp.Duration;
 import org.threeten.bp.Instant;
 
 /**
@@ -37,7 +34,6 @@ public class PeriodicExposureNotificationMetric implements PrivateAnalyticsMetri
 
   private static final String VERSION = "v1";
   public static final String METRIC_NAME = "PeriodicExposureNotification-" + VERSION;
-  private static final Duration ONE_DAY = Duration.ofDays(1);
   @VisibleForTesting
   static final int NO_EXPOSURE_BIN_ID = 0;
   @VisibleForTesting
@@ -54,22 +50,29 @@ public class PeriodicExposureNotificationMetric implements PrivateAnalyticsMetri
   }
 
   @Override
-  public ListenableFuture<List<Integer>> getDataVector(MetricsSnapshot metricsSnapshot) {
-    int index = metricsSnapshot.exposureNotificationLastShownClassification();
+  public ListenableFuture<List<Integer>> getDataVector() {
+    Instant exposureNotificationTime = exposureNotificationSharedPreferences
+        .getExposureNotificationLastShownTime();
+    Instant privateAnalyticsWorkerLastTime = exposureNotificationSharedPreferences
+        .getPrivateAnalyticsWorkerLastTime();
 
-    Instant exposureNotificationTime = metricsSnapshot.exposureNotificationLastShownTime();
-    if (exposureNotificationTime.equals(Instant.EPOCH) || index >= BIN_LENGTH || index < 0) {
+    int index = exposureNotificationSharedPreferences
+        .getExposureNotificationLastShownClassification();
+    if (exposureNotificationTime.equals(Instant.EPOCH)) {
+      // If Instant.EPOCH is returned, it means that no notification was shown.
+      index = NO_EXPOSURE_BIN_ID;
+    } else if (exposureNotificationTime.isBefore(privateAnalyticsWorkerLastTime)) {
+      // The notification should have been reported at the last Private Analytics worker run.
+      // We report no exposure.
+      index = NO_EXPOSURE_BIN_ID;
+    } else if (index >= BIN_LENGTH || index < 0) {
+      // The index is out of band, we set it to the NO_EXPOSURE_BIN.
       index = NO_EXPOSURE_BIN_ID;
     }
+
     int[] data = new int[BIN_LENGTH];
-    Arrays.fill(data, 0);
     data[index] = 1;
     return Futures.immediateFuture(Ints.asList(data));
-  }
-
-  @Override
-  public void resetData() {
-    exposureNotificationSharedPreferences.clearLastShownExposureNotification();
   }
 
   public String getMetricName() {

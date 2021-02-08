@@ -19,6 +19,7 @@ package com.google.android.apps.exposurenotification.riskcalculation;
 
 import com.google.android.gms.nearby.exposurenotification.DiagnosisKeysDataMapping;
 import com.google.android.gms.nearby.exposurenotification.DiagnosisKeysDataMapping.DiagnosisKeysDataMappingBuilder;
+import com.google.common.base.Strings;
 import com.google.common.io.BaseEncoding;
 import java.util.HashMap;
 import java.util.Map;
@@ -59,9 +60,20 @@ public class DiagnosisKeyDataMappingHelper {
    * <p>
    * To be able to extract its values, we convert it back to an integer/byte array where each entry
    * corresponds to two bits ("base4")
+   * <p>
+   * Note: The input is left-padded with zeros to match 16-characters in the string /
+   * 32 entries in the output integer-array.
+   * This means we interpret the input string "0x556aaa900000" as "0x0000556aaa900000"
    */
   private static int[] getDiagnosisKeyDataMappingStringBase4Rep(String mappingString) {
-    byte[] mappingBase16 = BaseEncoding.base16().decode(mappingString.substring(2).toUpperCase());
+    String strippedHexPrefix = mappingString.substring(2).toUpperCase();
+    /*
+     * We left-pad the input string with zeros to make sure it has length 16 (and thus we output
+     * an array with 32 entries). This is necessary before calling BaseEncoding.base16().decode(),
+     * as this method could otherwise fail on a zero-truncated string of uneven length.
+     */
+    String strippedHexPrefixLeftPadded = Strings.padStart(strippedHexPrefix, 16, '0');
+    byte[] mappingBase16 = BaseEncoding.base16().decode(strippedHexPrefixLeftPadded);
     int[] mappingBase4 = new int[mappingBase16.length * 4];
     for (int offset16 = mappingBase16.length - 1; offset16 >= 0; offset16--) {
       byte b = mappingBase16[offset16];

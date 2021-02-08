@@ -24,7 +24,6 @@
   <uses-feature android:name="android.hardware.camera.autofocus" />
 
   <uses-permission android:name="android.permission.CAMERA" />
-  <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
   <uses-permission android:name="android.permission.WAKE_LOCK" />
 
   <uses-sdk tools:overrideLibrary="com.google.zxing.client.android" />

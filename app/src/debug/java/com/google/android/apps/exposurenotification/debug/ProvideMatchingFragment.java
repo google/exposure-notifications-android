@@ -28,8 +28,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -37,12 +35,10 @@ import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.common.AbstractTextWatcher;
 import com.google.android.apps.exposurenotification.common.KeyboardHelper;
 import com.google.android.apps.exposurenotification.common.StringUtils;
+import com.google.android.apps.exposurenotification.databinding.FragmentMatchingProvideBinding;
 import com.google.android.apps.exposurenotification.debug.TemporaryExposureKeyEncodingHelper.DecodeException;
 import com.google.android.gms.nearby.exposurenotification.TemporaryExposureKey;
-import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 import com.google.common.io.BaseEncoding;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -61,11 +57,13 @@ public class ProvideMatchingFragment extends Fragment {
 
   private static final Duration INTERVAL_DURATION = Duration.ofMinutes(10);
 
+  private FragmentMatchingProvideBinding binding;
   private ProvideMatchingViewModel provideMatchingViewModel;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-    return inflater.inflate(R.layout.fragment_matching_provide, parent, false);
+    binding = FragmentMatchingProvideBinding.inflate(inflater, parent, false);
+    return binding.getRoot();
   }
 
   @Override
@@ -79,16 +77,14 @@ public class ProvideMatchingFragment extends Fragment {
         .observe(getViewLifecycleOwner(), this::maybeShowSnackbar);
 
     // Submit section
-    MaterialButton provideButton = view.findViewById(R.id.provide_button);
-    provideButton.setOnClickListener(
+    binding.provideButton.setOnClickListener(
         (v) -> {
           KeyboardHelper.maybeHideKeyboard(getContext(), view);
           provideMatchingViewModel.provideSingleAction();
         });
 
     // Single
-    EditText inputSingleKey = view.findViewById(R.id.input_single_key);
-    inputSingleKey.addTextChangedListener(
+    binding.inputSingleKey.addTextChangedListener(
         new AbstractTextWatcher() {
           @Override
           public void afterTextChanged(Editable s) {
@@ -98,18 +94,13 @@ public class ProvideMatchingFragment extends Fragment {
           }
         });
 
-    Button inputSingleScanButton = view.findViewById(R.id.scan_button);
-    inputSingleScanButton.setOnClickListener(
+    binding.scanButton.setOnClickListener(
         v -> IntentIntegrator.forSupportFragment(this)
             .setDesiredBarcodeFormats(IntentIntegrator.QR_CODE)
             .setOrientationLocked(false)
             .setBarcodeImageEnabled(false).initiateScan());
 
-    TextInputLayout inputSingleIntervalNumberLayout = view
-        .findViewById(R.id.input_single_interval_number_layout);
-    TextInputEditText inputSingleIntervalNumber = view
-        .findViewById(R.id.input_single_interval_number);
-    inputSingleIntervalNumber.addTextChangedListener(
+    binding.inputSingleIntervalNumber.addTextChangedListener(
         new AbstractTextWatcher() {
           @Override
           public void afterTextChanged(Editable s) {
@@ -124,17 +115,16 @@ public class ProvideMatchingFragment extends Fragment {
     provideMatchingViewModel.getSingleInputIntervalNumberLiveData().observe(getViewLifecycleOwner(),
         intervalNumber -> {
           if (intervalNumber == 0) {
-            inputSingleIntervalNumberLayout.setSuffixText("");
+            binding.inputSingleIntervalNumberLayout.setSuffixText("");
           } else {
-            inputSingleIntervalNumberLayout.setSuffixText(StringUtils
+            binding.inputSingleIntervalNumberLayout.setSuffixText(StringUtils
                 .epochTimestampToLongUTCDateTimeString(
                     intervalNumber * INTERVAL_DURATION.toMillis(),
                     requireContext().getResources().getConfiguration().locale));
           }
         });
 
-    EditText inputSingleRollingPeriod = view.findViewById(R.id.input_single_rolling_period);
-    inputSingleRollingPeriod.addTextChangedListener(
+    binding.inputSingleRollingPeriod.addTextChangedListener(
         new AbstractTextWatcher() {
           @Override
           public void afterTextChanged(Editable s) {
@@ -144,9 +134,7 @@ public class ProvideMatchingFragment extends Fragment {
           }
         });
 
-    EditText inputSingleTransmissionRiskLevel =
-        view.findViewById(R.id.input_single_transmission_risk_level);
-    inputSingleTransmissionRiskLevel.addTextChangedListener(
+    binding.inputSingleTransmissionRiskLevel.addTextChangedListener(
         new AbstractTextWatcher() {
           @Override
           public void afterTextChanged(Editable s) {
@@ -162,14 +150,10 @@ public class ProvideMatchingFragment extends Fragment {
         .observe(
             getViewLifecycleOwner(),
             keyInfo -> {
-              TextView signaturePublicKey = view.findViewById(R.id.keyfile_signature_public_key);
-              TextView signaturePackage = view.findViewById(R.id.keyfile_signature_package_name);
-              TextView signatureId = view.findViewById(R.id.keyfile_signature_id);
-              TextView signatureVersion = view.findViewById(R.id.keyfile_signature_version);
-              setTextAndCopyAction(signaturePublicKey, keyInfo.publicKeyBase64());
-              setTextAndCopyAction(signaturePackage, keyInfo.packageName());
-              setTextAndCopyAction(signatureId, keyInfo.keyId());
-              setTextAndCopyAction(signatureVersion, keyInfo.keyVersion());
+              setTextAndCopyAction(binding.keyfileSignaturePublicKey, keyInfo.publicKeyBase64());
+              setTextAndCopyAction(binding.keyfileSignaturePackageName, keyInfo.packageName());
+              setTextAndCopyAction(binding.keyfileSignatureId, keyInfo.keyId());
+              setTextAndCopyAction(binding.keyfileSignatureVersion, keyInfo.keyVersion());
             });
   }
 
@@ -201,17 +185,12 @@ public class ProvideMatchingFragment extends Fragment {
           TemporaryExposureKey temporaryExposureKey =
               TemporaryExposureKeyEncodingHelper.decodeSingle(result.getContents());
 
-          EditText key = requireView().findViewById(R.id.input_single_key);
-          EditText interValNumber = requireView().findViewById(R.id.input_single_interval_number);
-          EditText rollingPeriod = requireView().findViewById(R.id.input_single_rolling_period);
-          EditText transmissionRiskLevel =
-              requireView().findViewById(R.id.input_single_transmission_risk_level);
-
-          key.setText(BASE16.encode(temporaryExposureKey.getKeyData()));
-          interValNumber.setText(
+          binding.inputSingleKey.setText(BASE16.encode(temporaryExposureKey.getKeyData()));
+          binding.inputSingleIntervalNumber.setText(
               Integer.toString(temporaryExposureKey.getRollingStartIntervalNumber()));
-          rollingPeriod.setText(Integer.toString(temporaryExposureKey.getRollingPeriod()));
-          transmissionRiskLevel.setText(
+          binding.inputSingleRollingPeriod.setText(
+              Integer.toString(temporaryExposureKey.getRollingPeriod()));
+          binding.inputSingleTransmissionRiskLevel.setText(
               Integer.toString(temporaryExposureKey.getTransmissionRiskLevel()));
         } catch (DecodeException e) {
           Log.e(TAG, "Decode error", e);
@@ -222,6 +201,12 @@ public class ProvideMatchingFragment extends Fragment {
       Log.d(TAG, String.format("onActivityResult unknown requestCode=%d", requestCode));
     }
     super.onActivityResult(requestCode, resultCode, data);
+  }
+
+  @Override
+  public void onDestroyView() {
+    super.onDestroyView();
+    binding = null;
   }
 
   /**

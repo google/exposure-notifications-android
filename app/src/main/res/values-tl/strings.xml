@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">Para makatulong na mapanatili at mapahusay ang app, ibinabahagi sa Google ang ilang limitado at walang pagkakakilanlang data tungkol sa performance at paggamit ng app. Hindi ka makikilala sa data na ito. %1$s</string>
   <string name="onboarding_confirm_later_title">Panatilihing naka-off ang Notification sa Exposure?</string>
   <string name="onboarding_confirm_later_detail">Hanggang sa i-on ang Notification sa Exposure, hindi ka aabisuhan tungkol sa exposure sa COVID-19</string>
-  <string name="no_recent_exposure_subtitle">Walang kamakailang exposure</string>
-  <string name="notifications_enabled_info">Kasalukuyan kang walang iniulat na panganib sa exposure sa COVID-19. Aabisuhan ka kung mag-uulat ng positibong resulta ng COVID-19 test ang isang taong nalapitan mo.</string>
-  <string name="exposure_notifications_are_turned_off">Naka-off ang mga notification sa exposure</string>
+  <string name="no_recent_exposure_subtitle">Aktibo at nagsusuri …</string>
+  <string name="no_recent_exposure_indicator">Walang kamakailang exposure</string>
+  <string name="app_active_info">Regular na nagsusuri ang iyong app para sa mga posibleng exposure.</string>
+  <string name="notifications_enabled_info">Kasalukuyang walang naiulat na panganib ng exposure sa COVID-19 para sa iyo. Aabisuhan ka kung mag-uulat ng positibong resulta sa COVID-19 test ang isang taong nalapitan mo.</string>
+  <string name="how_exposure_notifications_work_link">Paano gumagana ang Mga Notification sa Exposure</string>
+  <string name="recent_check_dialog_title">Tala ng mga kamakailang pag-check in para sa posibleng exposure</string>
+  <string name="recent_check_dialog_see_more">Tumingin pa</string>
+  <string name="recent_check_last_checked">Huling nasuri noong %1$s</string>
+  <string name="exposure_notifications_are_turned_off">Hindi nagsusuri para sa posibleng exposure</string>
   <string name="turn_on_exposure_notifications_action">I-on ang Mga Notification sa Exposure</string>
   <string name="recent_exposures_subtitle">Kamakailang exposure</string>
   <string name="exposure_details_status_subtitle">Status</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">Negatibo sa COVID-19</string>
   <string name="positive_test_result_status_shared">Nakabahagi</string>
   <string name="positive_test_result_status_not_shared">Hindi nakabahagi</string>
-  <string name="notify_turn_on_exposure_notifications_header">Para maabisuhan tungkol sa posibleng exposure sa COVID-19 at maibahagi ang iyong resulta ng COVID-19 test, i-on ang Mga Notification sa Exposure</string>
+  <string name="notify_turn_on_exposure_notifications_header">Kasalukuyang hindi nagsusuri para sa mga posibleng exposure ang iyong app. Para maabisuhan tungkol sa posibleng exposure sa COVID-19, i-on ang Mga Notification sa Exposure.</string>
   <string name="share_begin_title">Tumulong na protektahan ang iyong komunidad</string>
   <string name="share_close_title">Lumabas nang hindi nagbabahagi?</string>
   <string name="share_close_detail">Makakatulong ka sa komunidad mo kung mas maaga mong ibabahagi ang iyong test result. Gayunpaman, na-save muna sa app ang impormasyon ng test result na nailagay mo na para ma-edit mo pa ito sa susunod.</string>

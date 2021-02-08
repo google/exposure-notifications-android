@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">Ukusiza ukugcina nokuthuthukisa uhlelo lokusebenza, enye idatha ehlonziwe enomkhawulo emayelana nokusebenza kohlelo lokusebenza nokusetshenziswa yabiwa ne-Google. Le datha ayikuhlonzi. %1$s</string>
   <string name="onboarding_confirm_later_title">Gcina Isaziso Sokuhlangabezana sivaliwe?</string>
   <string name="onboarding_confirm_later_detail">Kuze kube yilapho Izaziso Zokuhlangabezana zivuliwe, ngeke wazise ngokuhlangabezana okungase kube khona kwe-COVID-19</string>
-  <string name="no_recent_exposure_subtitle">Akukho ukuhlangabezana kwakamuva</string>
-  <string name="notifications_enabled_info">Okwamanje awunayo ingozi yokuhlangabezana ne-COVID-19 ebikiwe. Uzokwaziswa lapho othile okade useduze naye ebika umphumela wokuhlolwa wokuba ne-COVID-19.</string>
-  <string name="exposure_notifications_are_turned_off">Izaziso zokuhlangabezana zivaliwe</string>
+  <string name="no_recent_exposure_subtitle">Iyasebenza futhi iyahlola …</string>
+  <string name="no_recent_exposure_indicator">Akukho ukuhlangabezana kwakamuva</string>
+  <string name="app_active_info">Uhlelo lwakho lokusebenza luhlala luhlola ukuhlangabezana okungaba khona.</string>
+  <string name="notifications_enabled_info">Okwamanje abukho ubungozi bokuhlangabezana ne-COVID-19 obubikiwe ngawe. Uzokwaziswa lapho othile okade useduze naye ebika umphumela wokuhlolwa wokuba ne-COVID-19.</string>
+  <string name="how_exposure_notifications_work_link">Indlela Izaziso Zokuhlangabezana ezisebenza ngayo</string>
+  <string name="recent_check_dialog_title">Irekhodi lokungena kwakamuva kokuhlangabezana okungaba khona</string>
+  <string name="recent_check_dialog_see_more">Bona okuningi</string>
+  <string name="recent_check_last_checked">Kugcinwe ukuhlolwa ngomhla ka-%1$s</string>
+  <string name="exposure_notifications_are_turned_off">Ayihloli ukuhlangabezana okungaba khona</string>
   <string name="turn_on_exposure_notifications_action">Vula Izaziso Zokuhlangabezana</string>
   <string name="recent_exposures_subtitle">Ukuhlangabezana kwakamuva</string>
   <string name="exposure_details_status_subtitle">Isimo</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">Awunayo i-COVID-19</string>
   <string name="positive_test_result_status_shared">Kwabiwe</string>
   <string name="positive_test_result_status_not_shared">Akwabiwanga</string>
-  <string name="notify_turn_on_exposure_notifications_header">Ukuze waziswe ngokuhlangabezana ne-COVID-19 okungase kube khona futhi wabelane ngemiphumela yakho yokuhlolwa ye-COVID-19, vula Izaziso Zokuhlangabezana</string>
+  <string name="notify_turn_on_exposure_notifications_header">Uhlelo lwakho lokusebenza okwamanje aluhloli ukuhlangabezana okungaba khona. Ukuze waziswe ngokuhlangabezana ne-COVID-19 okungase kube khona, vula Izaziso Zokuhlangabezana.</string>
   <string name="share_begin_title">Siza ukuvikela umphakathi wakho</string>
   <string name="share_close_title">Phuma ngaphandle kokwabelana?</string>
   <string name="share_close_detail">Ungasiza abanye ngokuveza imiphumela ngokushesha. Nokho, ulwazi lomphumela wokuhlolwa olufakile kuze kube manje lulondolozwa kuhlelo lokusebenza ukuze uqhubeke nokuhlela ngemuva kwesikhathi.</string>

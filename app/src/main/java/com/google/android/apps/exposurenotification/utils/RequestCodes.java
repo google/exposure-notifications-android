@@ -19,8 +19,10 @@ package com.google.android.apps.exposurenotification.utils;
 
 public final class RequestCodes {
 
+  public static final int REQUEST_CODE_UNKNOWN = -1;
   public static final int REQUEST_CODE_START_EXPOSURE_NOTIFICATION = 1111;
   public static final int REQUEST_CODE_GET_TEMP_EXPOSURE_KEY_HISTORY = 2222;
+  public static final int REQUEST_CODE_PREAUTHORIZE_TEMP_EXPOSURE_KEY_RELEASE = 3333;
 
   private RequestCodes() {
   }

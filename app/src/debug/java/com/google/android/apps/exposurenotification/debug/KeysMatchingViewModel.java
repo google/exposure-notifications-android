@@ -40,11 +40,14 @@ public class KeysMatchingViewModel extends ViewModel {
 
   private MutableLiveData<List<TemporaryExposureKey>> temporaryExposureKeysLiveData;
 
-  private final MutableLiveData<Boolean> inFlightResolutionLiveData = new MutableLiveData<>(false);
+  private final MutableLiveData<InFlightResolution> inFlightResolutionLiveData
+      = new MutableLiveData<>(new InFlightResolution(false));
 
   private final SingleLiveEvent<Void> apiDisabledLiveEvent = new SingleLiveEvent<>();
   private final SingleLiveEvent<Void> apiErrorLiveEvent = new SingleLiveEvent<>();
-  private final SingleLiveEvent<ApiException> resolutionRequiredLiveEvent = new SingleLiveEvent<>();
+  private final SingleLiveEvent<ResolutionRequiredEvent> resolutionRequiredLiveEvent
+      = new SingleLiveEvent<>();
+  private final SingleLiveEvent<Void> waitForKeyBroadcastsEvent = new SingleLiveEvent<>();
 
   private final ExposureNotificationClientWrapper exposureNotificationClientWrapper;
 
@@ -59,7 +62,7 @@ public class KeysMatchingViewModel extends ViewModel {
   /**
    * An event that requests a resolution with the given {@link ApiException}.
    */
-  public SingleLiveEvent<ApiException> getResolutionRequiredLiveEvent() {
+  public SingleLiveEvent<ResolutionRequiredEvent> getResolutionRequiredLiveEvent() {
     return resolutionRequiredLiveEvent;
   }
 
@@ -78,9 +81,16 @@ public class KeysMatchingViewModel extends ViewModel {
   }
 
   /**
+   * An event that triggers when keys will be broadcast to the app.
+   */
+  public SingleLiveEvent<Void> getWaitForKeyBroadcastsEvent() {
+    return waitForKeyBroadcastsEvent;
+  }
+
+  /**
    * The {@link LiveData} representing if there is an in-flight resolution.
    */
-  public LiveData<Boolean> getInFlightResolutionLiveData() {
+  public LiveData<InFlightResolution> getInFlightResolutionLiveData() {
     return inFlightResolutionLiveData;
   }
 
@@ -118,11 +128,15 @@ public class KeysMatchingViewModel extends ViewModel {
               ApiException apiException = (ApiException) exception;
               if (apiException.getStatusCode()
                   == ExposureNotificationStatusCodes.RESOLUTION_REQUIRED) {
-                if (inFlightResolutionLiveData.getValue()) {
+                if (inFlightResolutionLiveData.getValue().hasInFlightResolution()) {
                   Log.e(TAG, "Error, has in flight resolution", exception);
                 } else {
-                  inFlightResolutionLiveData.setValue(true);
-                  resolutionRequiredLiveEvent.postValue(apiException);
+                  inFlightResolutionLiveData.setValue(
+                      new InFlightResolution(
+                          true, ResolutionType.GET_TEMPORARY_EXPOSURE_KEY_HISTORY));
+                  resolutionRequiredLiveEvent.postValue(
+                      new ResolutionRequiredEvent(
+                          apiException, ResolutionType.GET_TEMPORARY_EXPOSURE_KEY_HISTORY));
                 }
               } else {
                 Log.w(TAG, "No RESOLUTION_REQUIRED in result", apiException);
@@ -131,14 +145,93 @@ public class KeysMatchingViewModel extends ViewModel {
             });
   }
 
+  public void requestPreAuthorizationOfTemporaryExposureKeyHistory() {
+    exposureNotificationClientWrapper
+        .isEnabled()
+        .continueWithTask(
+            isEnabled -> {
+              if (isEnabled.getResult()) {
+                return
+                    exposureNotificationClientWrapper
+                        .requestPreAuthorizedTemporaryExposureKeyHistory();
+              } else {
+                apiDisabledLiveEvent.call();
+                return Tasks.forResult(null);
+              }
+            })
+        .addOnSuccessListener(
+            result -> inFlightResolutionLiveData.setValue(new InFlightResolution(false)))
+        .addOnFailureListener(
+            exception -> {
+              if (!(exception instanceof ApiException)) {
+                Log.e(TAG, "Unknown error when attempting to start API", exception);
+                apiErrorLiveEvent.call();
+                return;
+              }
+              ApiException apiException = (ApiException) exception;
+              if (apiException.getStatusCode()
+                  == ExposureNotificationStatusCodes.RESOLUTION_REQUIRED) {
+                if (inFlightResolutionLiveData.getValue().hasInFlightResolution()) {
+                  Log.e(TAG, "Error, has in flight resolution", exception);
+                } else {
+                  inFlightResolutionLiveData.setValue(
+                      new InFlightResolution(
+                          true,
+                          ResolutionType.PREAUTHORIZE_TEMPORARY_EXPOSURE_KEY_RELEASE));
+                  resolutionRequiredLiveEvent.postValue(
+                      new ResolutionRequiredEvent(
+                          apiException,
+                          ResolutionType.PREAUTHORIZE_TEMPORARY_EXPOSURE_KEY_RELEASE));
+                }
+              } else {
+                Log.w(TAG, "No RESOLUTION_REQUIRED in result", apiException);
+                apiErrorLiveEvent.call();
+              }
+            });
+  }
+
+  public void requestPreAuthorizedReleaseOfTemporaryExposureKeys() {
+    exposureNotificationClientWrapper
+        .isEnabled()
+        .continueWithTask(
+            isEnabled -> {
+              if (isEnabled.getResult()) {
+                return
+                    exposureNotificationClientWrapper
+                        .requestPreAuthorizedTemporaryExposureKeyRelease();
+              } else {
+                apiDisabledLiveEvent.call();
+                return Tasks.forResult(null);
+              }
+            })
+        .addOnSuccessListener(
+            result -> {
+              waitForKeyBroadcastsEvent.call();
+              inFlightResolutionLiveData.setValue(
+                  new InFlightResolution(
+                      true,
+                      ResolutionType.GET_PREAUTHORIZED_TEMPORARY_EXPOSURE_KEY_HISTORY));
+            })
+        .addOnFailureListener(
+            exception -> {
+              Log.e(TAG, "Unknown error when attempting to start API", exception);
+              apiErrorLiveEvent.call();
+            });
+  }
+
+  public void handleTemporaryExposureKeys(List<TemporaryExposureKey> temporaryExposureKeys) {
+    inFlightResolutionLiveData.setValue(new InFlightResolution(false));
+    temporaryExposureKeysLiveData.setValue(temporaryExposureKeys);
+  }
+
   /**
    * Handles {@value android.app.Activity#RESULT_OK} for a resolution. User chose to share keys.
    */
-  public void startResolutionResultOk() {
-    inFlightResolutionLiveData.setValue(false);
+  public void startResolutionResultGetHistoryOk() {
+    inFlightResolutionLiveData.setValue(new InFlightResolution(false));
     exposureNotificationClientWrapper
         .getTemporaryExposureKeyHistory()
-        .addOnSuccessListener(temporaryExposureKeysLiveData::setValue)
+        .addOnSuccessListener(this::handleTemporaryExposureKeys)
         .addOnFailureListener(
             exception -> {
               Log.e(TAG, "Error handling resolution", exception);
@@ -146,12 +239,65 @@ public class KeysMatchingViewModel extends ViewModel {
             });
   }
 
+  public void startResolutionResultPreauthorizationOk() {
+    inFlightResolutionLiveData.setValue(new InFlightResolution(false));
+  }
+
   /**
    * Handles not {@value android.app.Activity#RESULT_OK} for a resolution. User chose not to share
    * keys.
    */
   public void startResolutionResultNotOk() {
-    inFlightResolutionLiveData.setValue(false);
+    inFlightResolutionLiveData.setValue(new InFlightResolution(false));
   }
 
+  public enum ResolutionType {
+    UNKNOWN,
+    GET_TEMPORARY_EXPOSURE_KEY_HISTORY,
+    PREAUTHORIZE_TEMPORARY_EXPOSURE_KEY_RELEASE,
+    GET_PREAUTHORIZED_TEMPORARY_EXPOSURE_KEY_HISTORY,
+  }
+
+  public static class InFlightResolution {
+
+    private final boolean hasInFlightResolution;
+    private final ResolutionType resolutionType;
+
+    private InFlightResolution(boolean hasInFlightResolution) {
+      this(hasInFlightResolution, ResolutionType.UNKNOWN);
+    }
+
+    private InFlightResolution(
+        boolean hasInFlightResolution, ResolutionType resolutionType) {
+      this.hasInFlightResolution = hasInFlightResolution;
+      this.resolutionType = resolutionType;
+    }
+
+    public boolean hasInFlightResolution() {
+      return hasInFlightResolution;
+    }
+
+    public ResolutionType getResolutionType() {
+      return resolutionType;
+    }
+  }
+
+  public static class ResolutionRequiredEvent {
+
+    private final ApiException exception;
+    private final ResolutionType resolutionType;
+
+    private ResolutionRequiredEvent(ApiException exception, ResolutionType resolutionType) {
+      this.exception = exception;
+      this.resolutionType = resolutionType;
+    }
+
+    public ApiException getException() {
+      return exception;
+    }
+
+    public ResolutionType getResolutionType() {
+      return resolutionType;
+    }
+  }
 }

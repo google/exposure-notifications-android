@@ -20,9 +20,7 @@ package com.google.android.apps.exposurenotification.notify;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentSender.SendIntentException;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -32,10 +30,11 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.databinding.ActivityShareDiagnosisBinding;
+import com.google.android.apps.exposurenotification.edgecases.VerificationFlowEdgeCaseFragment;
 import com.google.android.apps.exposurenotification.home.ExposureNotificationViewModel;
 import com.google.android.apps.exposurenotification.notify.ShareDiagnosisViewModel.Step;
 import com.google.android.apps.exposurenotification.storage.DiagnosisEntity;
-import com.google.android.apps.exposurenotification.utils.RequestCodes;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import dagger.hilt.android.AndroidEntryPoint;
 
@@ -55,62 +54,50 @@ public class ShareDiagnosisActivity extends AppCompatActivity {
 
   private static final String TAG = "ShareDiagnosisActivity";
 
-  static final String SHARE_EXPOSURE_FRAGMENT_TAG =
-      "ShareExposureActivity.POSITIVE_TEST_FRAGMENT_TAG";
+  static final String SHARE_DIAGNOSIS_FRAGMENT_TAG =
+      "ShareDiagnosisActivity.POSITIVE_TEST_FRAGMENT_TAG";
   static final String ACTIVITY_START_INTENT = "ShareDiagnosisActivity.ACTIVITY_START_INTENT";
 
-  private static final String EXTRA_VIEW_POSITIVE_DIAGNOSIS_ID =
-      "ShareExposureActivity.EXTRA_VIEW_POSITIVE_DIAGNOSIS_ID";
-  private static final String EXTRA_STEP =
-      "ShareExposureActivity.EXTRA_STEP";
+  // Parameters that can be accepted as Intent extras to land in the View flow.
+  private static final String EXTRA_DIAGNOSIS_ID = "ShareDiagnosisActivity.EXTRA_DIAGNOSIS_ID";
+  private static final String EXTRA_STEP = "ShareDiagnosisActivity.EXTRA_STEP";
+
+  private static final int VIEWFLIPPER_EN_ENABLED = 0;
+  private static final int VIEWFLIPPER_EN_DISABLED = 1;
+
+  private ActivityShareDiagnosisBinding binding;
+  private ShareDiagnosisViewModel viewModel;
+  private ExposureNotificationViewModel exposureNotificationViewModel;
 
   /**
-   * Creates an intent for adding a positive diagnosis flow.
+   * Creates an intent for adding a diagnosis flow.
    */
   public static Intent newIntentForAddFlow(Context context) {
     return new Intent(context, ShareDiagnosisActivity.class);
   }
 
-  private ShareDiagnosisViewModel viewModel;
-
-  private ExposureNotificationViewModel exposureNotificationViewModel;
-
   /**
-   * Creates an intent for viewing a positive diagnosis flow.
+   * Creates an intent for viewing a diagnosis flow.
    *
    * @param entity the {@link DiagnosisEntity} to view
    */
   public static Intent newIntentForViewFlow(Context context, DiagnosisEntity entity) {
     Intent intent = new Intent(context, ShareDiagnosisActivity.class);
-    intent.putExtra(EXTRA_VIEW_POSITIVE_DIAGNOSIS_ID, entity.getId());
-    intent.putExtra(
-        EXTRA_STEP, ShareDiagnosisFlowHelper.getMaxStepForDiagnosisEntity(entity, context).name());
+    intent.putExtra(EXTRA_DIAGNOSIS_ID, entity.getId());
+    intent.putExtra(EXTRA_STEP,
+        ShareDiagnosisFlowHelper.getMaxStepForDiagnosisEntity(entity, context).name());
     return intent;
   }
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_share_diagnosis);
+
+    binding = ActivityShareDiagnosisBinding.inflate(getLayoutInflater());
+    setContentView(binding.getRoot());
 
     exposureNotificationViewModel =
         new ViewModelProvider(this).get(ExposureNotificationViewModel.class);
-
-    exposureNotificationViewModel
-        .getResolutionRequiredLiveEvent()
-        .observe(
-            this,
-            apiException -> {
-              try {
-                Log.d(TAG, "startResolutionForResult");
-                apiException
-                    .getStatus()
-                    .startResolutionForResult(
-                        this, RequestCodes.REQUEST_CODE_START_EXPOSURE_NOTIFICATION);
-              } catch (SendIntentException e) {
-                Log.w(TAG, "Error calling startResolutionForResult", apiException);
-              }
-            });
 
     viewModel = new ViewModelProvider(this).get(ShareDiagnosisViewModel.class);
 
@@ -119,11 +106,19 @@ public class ShareDiagnosisActivity extends AppCompatActivity {
     }
 
     if (savedInstanceState == null) {
-      if (getIntent().hasExtra(EXTRA_VIEW_POSITIVE_DIAGNOSIS_ID)) {
-        viewModel
-            .setCurrentDiagnosisId(getIntent().getLongExtra(EXTRA_VIEW_POSITIVE_DIAGNOSIS_ID, -1));
-        viewModel
-            .nextStepIrreversible(Step.valueOf(getIntent().getStringExtra(EXTRA_STEP)));
+      // This Activity can be created to share a new diagnosis or view an already existing one.
+      // Check for Intent extras to decide between the two options. Also, ensure that if there are
+      // Intent extras, they are valid and come from a trusted source.
+      String sourceComponent = this.getComponentName().getClassName();
+      String extraStepName =
+          getIntent() != null ? getIntent().getStringExtra(EXTRA_STEP) : null;
+      long diagnosisId =
+          getIntent() != null ? getIntent().getLongExtra(EXTRA_DIAGNOSIS_ID, -1) : -1;
+      if (diagnosisId > -1
+          && ShareDiagnosisViewModel.getStepNames().contains(extraStepName)
+          && sourceComponent.equals(ShareDiagnosisActivity.class.getName())) {
+        viewModel.setCurrentDiagnosisId(diagnosisId);
+        viewModel.nextStepIrreversible(Step.valueOf(extraStepName));
       } else {
         viewModel.nextStepIrreversible(Step.BEGIN);
       }
@@ -145,10 +140,38 @@ public class ShareDiagnosisActivity extends AppCompatActivity {
             .replace(
                 R.id.share_exposure_fragment,
                 fragment,
-                SHARE_EXPOSURE_FRAGMENT_TAG)
+                SHARE_DIAGNOSIS_FRAGMENT_TAG)
             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
             .commit();
         });
+
+    /*
+     * Make sure to prevent the user from continuing at any step in the diagnosis sharing flow
+     * if the EN is disabled.
+     */
+    exposureNotificationViewModel
+        .getEnEnabledLiveData()
+        .observe(
+            this,
+            isEnabled -> {
+              if (isEnabled) {
+                binding.enEnabledFlipper.setDisplayedChild(VIEWFLIPPER_EN_ENABLED);
+              } else {
+                binding.enEnabledFlipper.setDisplayedChild(VIEWFLIPPER_EN_DISABLED);
+              }
+            });
+
+    /*
+     * Attach the edge-case logic as a fragment
+     */
+    FragmentManager fragmentManager = getSupportFragmentManager();
+    if (fragmentManager.findFragmentById(R.id.edge_case_fragment) == null) {
+      Fragment verificationEdgeCaseFragment = VerificationFlowEdgeCaseFragment
+          .newInstance(/* handleApiErrorLiveEvents= */ true, /* handleResolutions= */ true);
+      fragmentManager.beginTransaction()
+          .replace(R.id.edge_case_fragment, verificationEdgeCaseFragment)
+          .commit();
+    }
   }
 
   @NonNull
@@ -189,7 +212,6 @@ public class ShareDiagnosisActivity extends AppCompatActivity {
     if (fragment != null) {
       fragment.onActivityResult(requestCode, resultCode, data);
     }
-    onResolutionComplete(requestCode, resultCode);
   }
 
   @Override
@@ -230,20 +252,4 @@ public class ShareDiagnosisActivity extends AppCompatActivity {
         .show();
   }
 
-  /**
-   * Called when opt-in resolution is completed by user.
-   *
-   * <p>Modeled after {@code Activity#onActivityResult} as that's how the API sends callback to
-   * apps.
-   */
-  public void onResolutionComplete(int requestCode, int resultCode) {
-    if (requestCode != RequestCodes.REQUEST_CODE_START_EXPOSURE_NOTIFICATION) {
-      return;
-    }
-    if (resultCode == Activity.RESULT_OK) {
-      exposureNotificationViewModel.startResolutionResultOk();
-    } else {
-      exposureNotificationViewModel.startResolutionResultNotOk();
-    }
-  }
 }

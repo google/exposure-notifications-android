@@ -48,10 +48,6 @@ public class ExposureNotificationSharedPreferences {
       "ExposureNotificationSharedPreferences.ONBOARDING_STATE_KEY";
   private static final String SHARE_ANALYTICS_KEY =
       "ExposureNotificationSharedPreferences.SHARE_ANALYTICS_KEY";
-  private static final String SHARE_PRIVATE_ANALYTICS_KEY =
-      "ExposureNotificationSharedPreferences.SHARE_PRIVATE_ANALYTICS_KEY";
-  private static final String KEY_SHARING_NETWORK_MODE_KEY =
-      "ExposureNotificationSharedPreferences.KEY_SHARING_NETWORK_MODE_KEY";
   private static final String IS_ENABLED_CACHE_KEY =
       "ExposureNotificationSharedPreferences.IS_ENABLED_CACHE_KEY";
   private static final String ATTENUATION_THRESHOLD_1_KEY =
@@ -72,6 +68,14 @@ public class ExposureNotificationSharedPreferences {
       "ExposureNotificationSharedPreferences.EXPOSURE_CLASSIFICATION_IS_DATE_NEW_KEY";
   private static final String ANALYTICS_LOGGING_LAST_TIMESTAMP =
       "ExposureNotificationSharedPreferences.ANALYTICS_LOGGING_LAST_TIMESTAMP";
+  private static final String PROVIDED_DIAGNOSIS_KEY_HEX_TO_LOG_KEY =
+      "ExposureNotificationSharedPreferences.PROVIDE_DIAGNOSIS_KEY_TO_LOG_KEY";
+
+  // Private analytics
+  private static final String SHARE_PRIVATE_ANALYTICS_KEY =
+      "ExposureNotificationSharedPreferences.SHARE_PRIVATE_ANALYTICS_KEY";
+  private static final String PRIVATE_ANALYTICS_LAST_WORKER_RUN_TIME =
+      "ExposureNotificationSharedPreferences.PRIVATE_ANALYTICS_LAST_WORKER_RUN_TIME";
   private static final String EXPOSURE_NOTIFICATION_LAST_SHOWN_TIME =
       "ExposureNotificationSharedPreferences.EXPOSURE_NOTIFICATION_LAST_SHOWN_TIME_KEY";
   private static final String EXPOSURE_NOTIFICATION_LAST_SHOWN_CLASSIFICATION =
@@ -80,22 +84,26 @@ public class ExposureNotificationSharedPreferences {
       "ExposureNotificationSharedPreferences.EXPOSURE_NOTIFICATION_ACTIVE_INTERACTION_TIME_KEY";
   private static final String EXPOSURE_NOTIFICATION_LAST_INTERACTION_TYPE =
       "ExposureNotificationSharedPreferences.EXPOSURE_NOTIFICATION_ACTIVE_INTERACTION_TYPE_KEY";
-  private static final String PROVIDED_DIAGNOSIS_KEY_HEX_TO_LOG_KEY =
-      "ExposureNotificationSharedPreferences.PROVIDE_DIAGNOSIS_KEY_TO_LOG_KEY";
+  private static final String EXPOSURE_NOTIFICATION_LAST_INTERACTION_CLASSIFICATION =
+      "ExposureNotificationSharedPreferences.EXPOSURE_NOTIFICATION_INTERACTION_CLASSIFICATION_KEY";
+  private static final String PRIVATE_ANALYTICS_VERIFICATION_CODE_TIME =
+      "ExposureNotificationSharedPreferences.PRIVATE_ANALYTICS_VERIFICATION_CODE_TIME";
+  private static final String PRIVATE_ANALYTICS_SUBMITTED_KEYS_TIME =
+      "ExposureNotificationSharedPreferences.PRIVATE_ANALYTICS_SUBMITTED_KEYS_TIME";
 
   private final SharedPreferences sharedPreferences;
   private final Clock clock;
   private static AnalyticsStateListener analyticsStateListener;
 
-  private LiveData<Boolean> appAnalyticsStateLiveData;
-  private LiveData<Boolean> privateAnalyticsStateLiveData;
-  private LiveData<Boolean> isExposureClassificationRevokedLiveData;
-  private LiveData<Boolean> isOnboardingStateSetLiveData;
-  private LiveData<Boolean> isPrivateAnalyticsStateSetLiveData;
-  private LiveData<ExposureClassification> exposureClassificationLiveData;
-  private LiveData<BadgeStatus> isExposureClassificationNewLiveData;
-  private LiveData<BadgeStatus> isExposureClassificationDateNewLiveData;
-  private LiveData<String> providedDiagnosisKeyHexToLogLiveData;
+  private final LiveData<Boolean> appAnalyticsStateLiveData;
+  private final LiveData<Boolean> privateAnalyticsStateLiveData;
+  private final LiveData<Boolean> isExposureClassificationRevokedLiveData;
+  private final LiveData<Boolean> isOnboardingStateSetLiveData;
+  private final LiveData<Boolean> isPrivateAnalyticsStateSetLiveData;
+  private final LiveData<ExposureClassification> exposureClassificationLiveData;
+  private final LiveData<BadgeStatus> isExposureClassificationNewLiveData;
+  private final LiveData<BadgeStatus> isExposureClassificationDateNewLiveData;
+  private final LiveData<String> providedDiagnosisKeyHexToLogLiveData;
 
   /**
    * Enum for onboarding status.
@@ -398,9 +406,10 @@ public class ExposureNotificationSharedPreferences {
         .putInt(EXPOSURE_CLASSIFICATION_IS_CLASSIFICATION_NEW_KEY, badgeStatus.value()).apply();
   }
 
+  // Notifications for Private Analytics.
   public void setExposureNotificationLastShownClassification(Instant exposureNotificationTime,
       int classificationIndex) {
-    if (getPrivateAnalyticState()) {
+    if (getPrivateAnalyticState() && classificationIndex > 0) {
       sharedPreferences.edit()
           .putInt(EXPOSURE_NOTIFICATION_LAST_SHOWN_CLASSIFICATION, classificationIndex)
           .putLong(EXPOSURE_NOTIFICATION_LAST_SHOWN_TIME, exposureNotificationTime.toEpochMilli())
@@ -409,7 +418,8 @@ public class ExposureNotificationSharedPreferences {
   }
 
   public int getExposureNotificationLastShownClassification() {
-    return sharedPreferences.getInt(EXPOSURE_NOTIFICATION_LAST_SHOWN_CLASSIFICATION, 0);
+    return sharedPreferences.getInt(EXPOSURE_NOTIFICATION_LAST_SHOWN_CLASSIFICATION,
+        ExposureClassification.NO_EXPOSURE_CLASSIFICATION_INDEX);
   }
 
   public Instant getExposureNotificationLastShownTime() {
@@ -417,20 +427,17 @@ public class ExposureNotificationSharedPreferences {
         .ofEpochMilli(sharedPreferences.getLong(EXPOSURE_NOTIFICATION_LAST_SHOWN_TIME, 0L));
   }
 
-  public void clearLastShownExposureNotification() {
-    sharedPreferences.edit()
-        .remove(EXPOSURE_NOTIFICATION_LAST_SHOWN_TIME)
-        .remove(EXPOSURE_NOTIFICATION_LAST_SHOWN_CLASSIFICATION)
-        .apply();
-  }
-
+  // Interaction for Private Analytics.
   public void setExposureNotificationLastInteraction(Instant exposureNotificationInteractionTime,
-      NotificationInteraction interaction) {
-    if (getPrivateAnalyticState()) {
+      NotificationInteraction interaction,
+      int classificationIndex) {
+    if (getPrivateAnalyticState() && classificationIndex > 0) {
       sharedPreferences.edit()
           .putLong(EXPOSURE_NOTIFICATION_LAST_INTERACTION_TIME,
               exposureNotificationInteractionTime.toEpochMilli())
-          .putInt(EXPOSURE_NOTIFICATION_LAST_INTERACTION_TYPE, interaction.value()).apply();
+          .putInt(EXPOSURE_NOTIFICATION_LAST_INTERACTION_TYPE, interaction.value())
+          .putInt(EXPOSURE_NOTIFICATION_LAST_INTERACTION_CLASSIFICATION, classificationIndex)
+          .apply();
     }
   }
 
@@ -445,11 +452,87 @@ public class ExposureNotificationSharedPreferences {
         NotificationInteraction.UNKNOWN.value()));
   }
 
-  public void clearLastShownExposureNotificationInteraction() {
+  public int getExposureNotificationLastInteractionClassification() {
+    return sharedPreferences.getInt(EXPOSURE_NOTIFICATION_LAST_INTERACTION_CLASSIFICATION,
+        ExposureClassification.NO_EXPOSURE_CLASSIFICATION_INDEX);
+  }
+
+  // Verification code time for Private Analytics.
+  public void setPrivateAnalyticsLastSubmittedCodeTime(Instant submittedCodeTime) {
+    if (getPrivateAnalyticState()) {
+      sharedPreferences.edit()
+          .putLong(PRIVATE_ANALYTICS_VERIFICATION_CODE_TIME,
+              submittedCodeTime.toEpochMilli()).apply();
+    }
+  }
+
+  public Instant getPrivateAnalyticsLastSubmittedCodeTime() {
+    return Instant
+        .ofEpochMilli(sharedPreferences.getLong(PRIVATE_ANALYTICS_VERIFICATION_CODE_TIME, 0));
+  }
+
+  // Submitted keys time for Private Analytics.
+  public void setPrivateAnalyticsLastSubmittedKeysTime(Instant submittedCodeTime) {
+    if (getPrivateAnalyticState()) {
+      sharedPreferences.edit()
+          .putLong(PRIVATE_ANALYTICS_SUBMITTED_KEYS_TIME,
+              submittedCodeTime.toEpochMilli()).apply();
+    }
+  }
+
+  public Instant getPrivateAnalyticsLastSubmittedKeysTime() {
+    return Instant
+        .ofEpochMilli(sharedPreferences.getLong(PRIVATE_ANALYTICS_SUBMITTED_KEYS_TIME, 0));
+  }
+
+  // Clear the Private Analytics fields.
+  public void clearPrivateAnalyticsFields() {
     sharedPreferences.edit()
         .remove(EXPOSURE_NOTIFICATION_LAST_INTERACTION_TIME)
         .remove(EXPOSURE_NOTIFICATION_LAST_INTERACTION_TYPE)
+        .remove(EXPOSURE_NOTIFICATION_LAST_INTERACTION_CLASSIFICATION)
+        .remove(EXPOSURE_NOTIFICATION_LAST_SHOWN_TIME)
+        .remove(EXPOSURE_NOTIFICATION_LAST_SHOWN_CLASSIFICATION)
+        .remove(PRIVATE_ANALYTICS_VERIFICATION_CODE_TIME)
+        .remove(PRIVATE_ANALYTICS_SUBMITTED_KEYS_TIME)
         .apply();
+  }
+
+  public void clearPrivateAnalyticsFieldsBefore(Instant date) {
+    SharedPreferences.Editor sharedPreferencesEditor = sharedPreferences.edit();
+    if (getExposureNotificationLastShownTime().isBefore(date)) {
+      sharedPreferencesEditor.remove(EXPOSURE_NOTIFICATION_LAST_SHOWN_TIME)
+          .remove(EXPOSURE_NOTIFICATION_LAST_SHOWN_CLASSIFICATION);
+    }
+    if (getExposureNotificationLastInteractionTime().isBefore(date)) {
+      sharedPreferencesEditor.remove(EXPOSURE_NOTIFICATION_LAST_INTERACTION_TIME)
+          .remove(EXPOSURE_NOTIFICATION_LAST_INTERACTION_TYPE)
+          .remove(EXPOSURE_NOTIFICATION_LAST_INTERACTION_CLASSIFICATION);
+    }
+    if (getPrivateAnalyticsLastSubmittedCodeTime().isBefore(date)) {
+      sharedPreferencesEditor.remove(PRIVATE_ANALYTICS_VERIFICATION_CODE_TIME);
+    }
+    if (getPrivateAnalyticsLastSubmittedKeysTime().isBefore(date)) {
+      sharedPreferencesEditor.remove(PRIVATE_ANALYTICS_SUBMITTED_KEYS_TIME);
+    }
+    sharedPreferencesEditor.apply();
+  }
+
+  // Last time the private analytics worker was run.
+  //
+  // NB: The existence of this value only means the private analytics are enabled in the configuration,
+  // and does not indicate whether the user enabled or disabled private analytics. It only captures
+  // when the worker has been running last (it aborts early when the user opted out of private analytics).
+  public void setPrivateAnalyticsWorkerLastTime(Instant privateAnalyticsWorkerTime) {
+    if (getPrivateAnalyticState()) {
+      sharedPreferences.edit().putLong(PRIVATE_ANALYTICS_LAST_WORKER_RUN_TIME,
+          privateAnalyticsWorkerTime.toEpochMilli()).apply();
+    }
+  }
+
+  public Instant getPrivateAnalyticsWorkerLastTime() {
+    return Instant
+        .ofEpochMilli(sharedPreferences.getLong(PRIVATE_ANALYTICS_LAST_WORKER_RUN_TIME, 0));
   }
 
   public BadgeStatus getIsExposureClassificationNew() {

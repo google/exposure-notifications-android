@@ -40,6 +40,7 @@ import com.google.android.apps.exposurenotification.privateanalytics.RemoteConfi
 import com.google.android.apps.exposurenotification.testsupport.ExposureNotificationRules;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListeningExecutorService;
+import com.google.common.util.concurrent.ListeningScheduledExecutorService;
 import com.google.common.util.concurrent.MoreExecutors;
 import com.google.common.util.concurrent.testing.TestingExecutors;
 import com.google.firebase.FirebaseApp;
@@ -99,6 +100,10 @@ public class WorkSchedulerTest {
   @LightweightExecutor
   static final ExecutorService LIGHTWEIGHT_EXEC = MoreExecutors.newDirectExecutorService();
   @BindValue
+  @ScheduledExecutor
+  static final ScheduledExecutorService SCHEDULED_EXEC =
+      TestingExecutors.sameThreadScheduledExecutor();
+  @BindValue
   @BackgroundExecutor
   static final ListeningExecutorService BACKGROUND_LISTENING_EXEC =
       MoreExecutors.newDirectExecutorService();
@@ -108,7 +113,7 @@ public class WorkSchedulerTest {
       MoreExecutors.newDirectExecutorService();
   @BindValue
   @ScheduledExecutor
-  static final ScheduledExecutorService SCHEDULED_EXEC =
+  static final ListeningScheduledExecutorService SCHEDULED_LISTENING_EXEC =
       TestingExecutors.sameThreadScheduledExecutor();
 
   @Before

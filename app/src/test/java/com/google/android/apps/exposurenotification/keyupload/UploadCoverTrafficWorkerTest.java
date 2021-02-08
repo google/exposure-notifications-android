@@ -32,17 +32,26 @@ import androidx.work.ListenableWorker.Result;
 import androidx.work.PeriodicWorkRequest;
 import androidx.work.WorkManager;
 import androidx.work.WorkerParameters;
+import com.google.android.apps.exposurenotification.common.time.Clock;
+import com.google.android.apps.exposurenotification.common.time.RealTimeModule;
 import com.google.android.apps.exposurenotification.nearby.ExposureNotificationClientWrapper;
 import com.google.android.apps.exposurenotification.nearby.PackageConfigurationHelper;
+import com.google.android.apps.exposurenotification.storage.DbModule;
+import com.google.android.apps.exposurenotification.storage.ExposureCheckRepository;
+import com.google.android.apps.exposurenotification.storage.ExposureNotificationDatabase;
 import com.google.android.apps.exposurenotification.testsupport.ExposureNotificationRules;
+import com.google.android.apps.exposurenotification.testsupport.FakeClock;
+import com.google.android.apps.exposurenotification.testsupport.InMemoryDb;
 import com.google.android.apps.exposurenotification.work.WorkerStartupManager;
 import com.google.android.gms.tasks.Tasks;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.MoreExecutors;
 import com.google.common.util.concurrent.testing.TestingExecutors;
 import com.jakewharton.threetenabp.AndroidThreeTen;
+import dagger.hilt.android.testing.BindValue;
 import dagger.hilt.android.testing.HiltAndroidTest;
 import dagger.hilt.android.testing.HiltTestApplication;
+import dagger.hilt.android.testing.UninstallModules;
 import java.security.SecureRandom;
 import java.util.concurrent.TimeUnit;
 import javax.inject.Inject;
@@ -58,6 +67,7 @@ import org.robolectric.annotation.Config;
 @HiltAndroidTest
 @RunWith(AndroidJUnit4.class)
 @Config(application = HiltTestApplication.class)
+@UninstallModules({DbModule.class, RealTimeModule.class})
 public class UploadCoverTrafficWorkerTest {
 
   @Rule
@@ -83,6 +93,13 @@ public class UploadCoverTrafficWorkerTest {
   ArgumentCaptor<PeriodicWorkRequest> periodicWorkRequestCaptor;
   @Inject
   PackageConfigurationHelper packageConfigurationHelper;
+  @Inject
+  ExposureCheckRepository exposureCheckRepository;
+
+  @BindValue
+  ExposureNotificationDatabase db = InMemoryDb.create();
+  @BindValue
+  Clock clock = new FakeClock();
 
   // The SUT.
   private UploadCoverTrafficWorker worker;
@@ -110,12 +127,15 @@ public class UploadCoverTrafficWorkerTest {
         uploadController,
         MoreExecutors.newDirectExecutorService(),
         MoreExecutors.newDirectExecutorService(),
+        TestingExecutors.sameThreadScheduledExecutor(),
         secureRandom,
         new WorkerStartupManager(
             exposureNotificationClientWrapper,
             MoreExecutors.newDirectExecutorService(),
             TestingExecutors.sameThreadScheduledExecutor(),
-            packageConfigurationHelper));
+            packageConfigurationHelper,
+            exposureCheckRepository,
+            clock));
   }
 
   @Test

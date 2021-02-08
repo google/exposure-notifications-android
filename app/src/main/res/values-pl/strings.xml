@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">Do Google wysyłane są pewne dane o użyciu i wydajności aplikacji, ponieważ pomaga to w utrzymywaniu i ulepszaniu aplikacji. Informacje te nie umożliwiają identyfikacji użytkownika. Na ich podstawie nie można Cię rozpoznać. %1$s</string>
   <string name="onboarding_confirm_later_title">Czy powiadomienia o narażeniu na kontakt mają być wyłączone?</string>
   <string name="onboarding_confirm_later_detail">Aby otrzymywać powiadomienia o narażeniu na kontakt, musisz je włączyć.</string>
-  <string name="no_recent_exposure_subtitle">Brak narażenia na kontakt w ostatnim czasie</string>
-  <string name="notifications_enabled_info">Aktualnie nie masz żadnych zgłoszonych przypadków narażenia na kontakt z koronawirusem. Powiadomimy Cię, kiedy znajdziesz się w pobliżu osoby, która zgłosiła pozytywny wynik testu na koronawirusa.</string>
-  <string name="exposure_notifications_are_turned_off">Powiadomienia o narażeniu na kontakt są wyłączone</string>
+  <string name="no_recent_exposure_subtitle">Aplikacja aktywna, sprawdzam…</string>
+  <string name="no_recent_exposure_indicator">Brak narażenia na kontakt w ostatnim czasie</string>
+  <string name="app_active_info">Aplikacja regularnie sprawdza ryzyko narażenia na kontakt.</string>
+  <string name="notifications_enabled_info">Nie ma obecnie zgłoszeń narażenia na kontakt z COVID-19, które oznaczałyby dla Ciebie ryzyko. Powiadomimy Cię, jeśli ktoś, kto był blisko Ciebie, zgłosi pozytywny wynik testu na koronawirusa.</string>
+  <string name="how_exposure_notifications_work_link">Jak działają powiadomienia o narażeniu na kontakt</string>
+  <string name="recent_check_dialog_title">Sprawdzanie niedawnych możliwych narażeń na kontakt</string>
+  <string name="recent_check_dialog_see_more">Pokaż więcej</string>
+  <string name="recent_check_last_checked">Ostatnio sprawdzono %1$s</string>
+  <string name="exposure_notifications_are_turned_off">Nie sprawdzam ryzyka narażenia na kontakt</string>
   <string name="turn_on_exposure_notifications_action">Włącz powiadomienia o narażeniu na kontakt</string>
   <string name="recent_exposures_subtitle">Narażenia na kontakt w ostatnim czasie</string>
   <string name="exposure_details_status_subtitle">Stan</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">Negatywny wynik testu na koronawirusa</string>
   <string name="positive_test_result_status_shared">Udostępniono</string>
   <string name="positive_test_result_status_not_shared">Nie udostępniono</string>
-  <string name="notify_turn_on_exposure_notifications_header">Włącz powiadomienia o narażeniu na kontakt, aby otrzymywać informacje o możliwym ryzyku kontaktu z koronawirusem</string>
+  <string name="notify_turn_on_exposure_notifications_header">Aplikacja nie sprawdza obecnie ryzyka narażenia na kontakt. Włącz powiadomienia o narażeniu na kontakt z koronawirusem, aby otrzymywać te informacje.</string>
   <string name="share_begin_title">Pomóż chronić swoją społeczność</string>
   <string name="share_close_title">Zakończyć bez udostępniania?</string>
   <string name="share_close_detail">Najlepiej pomożesz swojej społeczności, udostępniając wynik testu szybciej. Wpisane informacje o wyniku testu są zapisane w aplikacji. Możesz później wrócić do ich edytowania.</string>

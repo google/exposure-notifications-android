@@ -18,7 +18,6 @@
 package com.google.android.apps.exposurenotification.common;
 
 import android.content.Context;
-import android.location.LocationManager;
 import android.telephony.TelephonyManager;
 import dagger.Module;
 import dagger.Provides;
@@ -31,11 +30,6 @@ import javax.inject.Singleton;
 @Module
 @InstallIn(ApplicationComponent.class)
 public class CommonModule {
-
-  @Provides
-  public LocationManager provideLocationManager(@ApplicationContext Context context) {
-    return (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
-  }
 
   @Provides
   public TelephonyManager provideTelephonyManager(@ApplicationContext Context context) {

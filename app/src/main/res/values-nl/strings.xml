@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">Bepaalde beperkte, niet-persoonlijk herkenbare gegevens over app-prestaties en gebruik worden met Google gedeeld om de app te onderhouden en te verbeteren. Je bent niet te herkennen aan deze gegevens. %1$s</string>
   <string name="onboarding_confirm_later_title">Blootstellingsmeldingen uitgeschakeld laten?</string>
   <string name="onboarding_confirm_later_detail">Pas als je blootstellingsmeldingen inschakelt, krijg je meldingen over mogelijke blootstelling aan COVID-19</string>
-  <string name="no_recent_exposure_subtitle">Geen recente blootstellingen</string>
+  <string name="no_recent_exposure_subtitle">Actief en aan het checken…</string>
+  <string name="no_recent_exposure_indicator">Geen recente blootstelling</string>
+  <string name="app_active_info">Je app checkt regelmatig op mogelijke blootstelling.</string>
   <string name="notifications_enabled_info">Je hebt momenteel geen gemeld blootstellingsrisico voor COVID-19. Als iemand bij wie je in de buurt was een positief COVID-19-testresultaat rapporteert, krijg je een melding.</string>
-  <string name="exposure_notifications_are_turned_off">Blootstellingsmeldingen zijn uitgeschakeld</string>
+  <string name="how_exposure_notifications_work_link">Hoe blootstellingsmeldingen werken</string>
+  <string name="recent_check_dialog_title">Overzicht van recente checks-ins voor mogelijke blootstelling</string>
+  <string name="recent_check_dialog_see_more">Meer bekijken</string>
+  <string name="recent_check_last_checked">Laatst gecontroleerd: %1$s</string>
+  <string name="exposure_notifications_are_turned_off">Er wordt niet gecheckt op mogelijke blootstelling</string>
   <string name="turn_on_exposure_notifications_action">Blootstellingsmeldingen inschakelen</string>
   <string name="recent_exposures_subtitle">Recente blootstelling</string>
   <string name="exposure_details_status_subtitle">Status</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">COVID-19-diagnose: negatief</string>
   <string name="positive_test_result_status_shared">Gedeeld</string>
   <string name="positive_test_result_status_not_shared">Niet gedeeld</string>
-  <string name="notify_turn_on_exposure_notifications_header">Schakel blootstellingsmeldingen in om meldingen te ontvangen over mogelijke blootstelling aan COVID-19 en je eigen COVID-19-testresultaat te delen</string>
+  <string name="notify_turn_on_exposure_notifications_header">Je app checkt momenteel niet op mogelijke blootstelling. Zet blootstellingsmeldingen aan om een melding te krijgen van mogelijke blootstelling aan COVID-19</string>
   <string name="share_begin_title">Help je gemeenschap beschermen</string>
   <string name="share_close_title">Afsluiten zonder te delen?</string>
   <string name="share_close_detail">Hoe eerder je je testresultaten deelt, hoe beter. Je tot nu toe ingevoerde testresultaten zijn opgeslagen in de app zodat je ze later verder kunt bewerken.</string>

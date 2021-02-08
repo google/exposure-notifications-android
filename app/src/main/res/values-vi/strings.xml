@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">Nhằm giúp duy trì và cải tiến ứng dụng này, một số dữ liệu hạn chế về hiệu suất và mức sử dụng ứng dụng (đã loại bỏ thông tin nhận dạng cá nhân) sẽ được chia sẻ với Google. Dữ liệu này không xác định danh tính của bạn. %1$s</string>
   <string name="onboarding_confirm_later_title">Tiếp tục tắt Thông báo tiếp xúc?</string>
   <string name="onboarding_confirm_later_detail">Bạn sẽ không nhận được thông báo về khả năng tiếp xúc COVID-19 cho đến khi bật Thông báo tiếp xúc</string>
-  <string name="no_recent_exposure_subtitle">Không có lần tiếp xúc nào gần đây</string>
-  <string name="notifications_enabled_info">Hiện tại, bạn không có nguy cơ tiếp xúc với người đã báo cáo là bị mắc COVID-19 nào. Bạn sẽ nhận được thông báo nếu ai đó ở gần báo cáo kết quả xét nghiệm dương tính với COVID-19.</string>
-  <string name="exposure_notifications_are_turned_off">Thông báo tiếp xúc đang tắt</string>
+  <string name="no_recent_exposure_subtitle">Đang hoạt động và kiểm tra…</string>
+  <string name="no_recent_exposure_indicator">Không có lần tiếp xúc nào gần đây</string>
+  <string name="app_active_info">Ứng dụng của bạn đang thường xuyên kiểm tra để phát hiện nguy cơ tiếp xúc.</string>
+  <string name="notifications_enabled_info">Hiện tại, bạn không có nguy cơ tiếp xúc với người đã báo cáo là bị mắc COVID-19. Bạn sẽ nhận được thông báo nếu ai đó ở gần báo cáo kết quả xét nghiệm dương tính với COVID-19.</string>
+  <string name="how_exposure_notifications_work_link">Cách thức hoạt động của tính năng Thông báo tiếp xúc</string>
+  <string name="recent_check_dialog_title">Bản ghi những lần kiểm tra gần đây để phát hiện nguy cơ tiếp xúc</string>
+  <string name="recent_check_dialog_see_more">Xem thêm</string>
+  <string name="recent_check_last_checked">Lần kiểm tra gần đây nhất: %1$s</string>
+  <string name="exposure_notifications_are_turned_off">Chưa kiểm tra để phát hiện nguy cơ tiếp xúc</string>
   <string name="turn_on_exposure_notifications_action">Bật Thông báo tiếp xúc</string>
   <string name="recent_exposures_subtitle">Lần tiếp xúc gần đây</string>
   <string name="exposure_details_status_subtitle">Trạng thái</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">Âm tính với COVID-19</string>
   <string name="positive_test_result_status_shared">Đã chia sẻ</string>
   <string name="positive_test_result_status_not_shared">Chưa chia sẻ</string>
-  <string name="notify_turn_on_exposure_notifications_header">Để nhận thông báo về khả năng tiếp xúc COVID-19 và chia sẻ kết quả xét nghiệm COVID-19 của bạn, hãy bật Thông báo tiếp xúc</string>
+  <string name="notify_turn_on_exposure_notifications_header">Hiện tại, ứng dụng của bạn chưa kiểm tra để phát hiện nguy cơ tiếp xúc. Để nhận thông báo về khả năng tiếp xúc COVID-19, hãy bật Thông báo tiếp xúc.</string>
   <string name="share_begin_title">Giúp bảo vệ cộng đồng của bạn</string>
   <string name="share_close_title">Thoát mà không chia sẻ?</string>
   <string name="share_close_detail">Nếu bạn chia sẻ kết quả sớm thì sẽ giúp ích được rất nhiều cho cộng đồng. Tuy nhiên, thông tin kết quả xét nghiệm bạn đã nhập đến nay sẽ được lưu trong ứng dụng để bạn tiếp tục chỉnh sửa sau này.</string>

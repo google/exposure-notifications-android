@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">앱을 유지관리하고 개선하기 위해 앱 성능 및 사용과 관련된 일부 익명화된 데이터가 Google과 제한적으로 공유됩니다. 이 데이터로는 사용자 식별이 불가능합니다. %1$s</string>
   <string name="onboarding_confirm_later_title">노출 알림을 사용 중지된 상태로 유지하시겠습니까?</string>
   <string name="onboarding_confirm_later_detail">노출 알림이 켜질 때까지 코로나19에 노출되었을 가능성에 관한 알림이 전송되지 않습니다.</string>
-  <string name="no_recent_exposure_subtitle">최근 노출 없음</string>
-  <string name="notifications_enabled_info">지금까지는 코로나19 노출 가능성이 보고되지 않았습니다. 코로나19 검사 결과가 양성이라고 보고한 사람의 근처에 간 적이 있는 경우 알림이 전송됩니다.</string>
-  <string name="exposure_notifications_are_turned_off">노출 알림이 사용 중지됨</string>
+  <string name="no_recent_exposure_subtitle">활성화 및 확인 중 …</string>
+  <string name="no_recent_exposure_indicator">최근 노출 없음</string>
+  <string name="app_active_info">앱에서 노출 가능성을 정기적으로 확인합니다.</string>
+  <string name="notifications_enabled_info">현재 보고된 코로나19 노출이 가능성이 없습니다. 코로나19 검사 결과가 양성이라고 보고한 사람의 근처에 간 적이 있는 경우 알림이 전송됩니다.</string>
+  <string name="how_exposure_notifications_work_link">노출 알림 작동 원리</string>
+  <string name="recent_check_dialog_title">노출 가능성 최근 확인 기록</string>
+  <string name="recent_check_dialog_see_more">더보기</string>
+  <string name="recent_check_last_checked">마지막 검사 날짜: %1$s</string>
+  <string name="exposure_notifications_are_turned_off">노출 가능성을 확인하고 있지 않음</string>
   <string name="turn_on_exposure_notifications_action">노출 알림 사용 설정</string>
   <string name="recent_exposures_subtitle">최근 노출</string>
   <string name="exposure_details_status_subtitle">상태</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">코로나19 음성</string>
   <string name="positive_test_result_status_shared">공유됨</string>
   <string name="positive_test_result_status_not_shared">공유되지 않음</string>
-  <string name="notify_turn_on_exposure_notifications_header">코로나19 노출 가능성에 관해 알림을 받고 코로나19 검사 결과를 공유하려면 노출 알림을 사용 설정하세요.</string>
+  <string name="notify_turn_on_exposure_notifications_header">현재 앱이 노출 가능성을 확인하고 있지 않습니다. 코로나19 노출 가능성에 관해 알림을 받으려면 노출 알림을 사용 설정하세요.</string>
   <string name="share_begin_title">지역사회 보호하기</string>
   <string name="share_close_title">공유하지 않고 종료하시겠습니까?</string>
   <string name="share_close_detail">검사 결과를 빨리 공유하면 지역사회에 더 큰 도움이 됩니다. 지금까지 입력한 검사 결과 정보는 앱에 저장되어 나중에 수정할 수 있습니다.</string>

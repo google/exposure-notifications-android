@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">ایپ کو برقرار رکھنے اور اسے بہتر بنانے میں مدد کیلئے، Google کے ساتھ ایپ کی کارکردگی اور استعمال سے متعلق کچھ محدود غیر شناخت کردہ ڈیٹا کا اشتراک کیا جاتا ہے۔ یہ ڈیٹا آپ کی شناخت نہیں کرتا ہے۔ %1$s</string>
   <string name="onboarding_confirm_later_title">ایکسپوژر نوٹیفیکیشنز آف رکھیں؟</string>
   <string name="onboarding_confirm_later_detail">ایکسپوژر نوٹیفیکیشنز آن ہونے تک، آپ کو COVID-19 کے ممکنہ ایکسپوژر سے مطلع نہیں کیا جائے گا</string>
-  <string name="no_recent_exposure_subtitle">کوئی حالیہ ایکسپوژر نہیں</string>
-  <string name="notifications_enabled_info">فی الحال آپ کو COVID-19 ایکسپوژر کا کوئی خطرہ لاحق نہیں ہے۔ اگر آپ کسی ایسے شخص کے قریب رہے ہوں، جس نے COVID-19 ٹیسٹ کے مثبت نتیجے کی اطلاع دی ہو تو آپ کو مطلع کیا جائے گا۔</string>
-  <string name="exposure_notifications_are_turned_off">ایکسپوژر نوٹیفیکیشنز آف ہیں</string>
+  <string name="no_recent_exposure_subtitle">فعال ہے اور چیک کیا جا رہا ہے …</string>
+  <string name="no_recent_exposure_indicator">حالیہ کوئی ایکسپوژر نہیں ہے</string>
+  <string name="app_active_info">آپ کی ایپ ممکنہ ایکسپوژرز کو باقاعدگی سے چیک کر رہی ہے۔</string>
+  <string name="notifications_enabled_info">فی الحال آپ کیلئے COVID-19 ایکسپوژر کے خطرہ کی کوئی بھی اطلاع نہیں ہے۔ اگر آپ کسی ایسے شخص کے قریب رہے ہوں، جس نے COVID-19 ٹیسٹ کے مثبت نتیجے کی اطلاع دی ہو تو آپ کو مطلع کیا جائے گا۔</string>
+  <string name="how_exposure_notifications_work_link">ایکسپوژر نوٹیفیکیشنز کے کام کرنے کا طریقہ</string>
+  <string name="recent_check_dialog_title">ممکنہ ایکسپوژر کیلئے حالیہ چیک انز کا ریکارڈ</string>
+  <string name="recent_check_dialog_see_more">مزید دیکھیں</string>
+  <string name="recent_check_last_checked">آخری بار جرانچ کی %1$s</string>
+  <string name="exposure_notifications_are_turned_off">ممکنہ ایکسپوژر کو چیک نہیں کیا جا رہا ہے</string>
   <string name="turn_on_exposure_notifications_action">ایکسپوژر نوٹیفیکیشنز آن کریں</string>
   <string name="recent_exposures_subtitle">حالیہ ایکسپوژر</string>
   <string name="exposure_details_status_subtitle">اسٹیٹس</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">COVID-19 منفی</string>
   <string name="positive_test_result_status_shared">اشتراک کردہ</string>
   <string name="positive_test_result_status_not_shared">غیر اشتراک کردہ</string>
-  <string name="notify_turn_on_exposure_notifications_header">ممکنہ COVID-19 ایکسپوژر کی اطلاع حاصل کرنے اور اپنے COVID-19 ٹیسٹ کے نتیجے کا اشتراک کرنے کیلئے، ایکسپوژر نوٹیفیکیشنز آن کریں</string>
+  <string name="notify_turn_on_exposure_notifications_header">آپ کی ایپ فی الحال ممکنہ ایکسپوژرز کو چیک نہیں کر رہی ہے۔ ممکنہ COVID-19 ایکسپوژر کی اطلاع حاصل کرنے کیلئے، ایکسپوژر نوٹیفیکیشنز آن کریں۔</string>
   <string name="share_begin_title">اپنی کمیونٹی کی حفاظت میں مدد کریں</string>
   <string name="share_close_title">اشتراک کیے بغیر باہر نکلیں؟</string>
   <string name="share_close_detail">آپ جلدی اپنے ٹیسٹ کے نتیجے کا اشتراک کر کے اپنی کمیونٹی کی بہتر مدد کر سکتے ہیں۔ تاہم، ٹیسٹ نتیجے کی معلومات جو آپ نے اب تک درج کی ہے وہ بعد میں ترمیم دوبارہ شروع کرنے کیلئے آپ کیلئے ایپ میں محفوظ ہے۔</string>

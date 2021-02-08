@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">ដើម្បីជួយរក្សា និងកែលម្អ​កម្មវិធីនេះ ទិន្នន័យមានកំណត់មួយចំនួន​ដែលមិនបញ្ជាក់អត្តសញ្ញាណ​អំពីការប្រើប្រាស់ និងប្រតិបត្តិការ​កម្មវិធីត្រូវបាន​ចែករំលែកជាមួយ Google។ ទិន្នន័យនេះ​មិនកំណត់​អត្តសញ្ញាណអ្នកទេ។ %1$s</string>
   <string name="onboarding_confirm_later_title">បន្តបិទ​ការជូនដំណឹងអំពី​ការនៅជិតអ្នកមានផ្ទុក COVID-19 ឬ?</string>
   <string name="onboarding_confirm_later_detail">អ្នកនឹងមិនទទួលការជូនដំណឹងអំពីការប៉ះពាល់ទេ រហូតទាល់តែបើកការជូនដំណឹងអំពីការនៅជិតអ្នកមានផ្ទុក COVID-19។</string>
-  <string name="no_recent_exposure_subtitle">គ្មានការនៅជិតអ្នក​មានផ្ទុក COVID-19 នាពេលថ្មីៗទេ</string>
-  <string name="notifications_enabled_info">បច្ចុប្បន្ន អ្នកមិនមាន​ហានិភ័យនៃការនៅជិតអ្នកមានផ្ទុក COVID-19 ដែលបាន​រាយការណ៍ទេ។ អ្នកនឹងទទួលបាន​ការជូនដំណឹង ប្រសិនបើនរណាម្នាក់​ដែលអ្នកបាននៅជិត​រាយការណ៍អំពីលទ្ធផលតេស្ត COVID-19 វិជ្ជមាន។</string>
-  <string name="exposure_notifications_are_turned_off">ការជូនដំណឹងអំពី​ការនៅជិតអ្នក​មានផ្ទុក COVID-19 ត្រូវបានបិទ</string>
+  <string name="no_recent_exposure_subtitle">សកម្ម និងកំពុងពិនិត្យ …</string>
+  <string name="no_recent_exposure_indicator">គ្មានការនៅជិតអ្នក​មានផ្ទុក COVID-19 នាពេលថ្មីៗទេ</string>
+  <string name="app_active_info">កម្មវិធីរបស់អ្នកកំពុងពិនិត្យជាប្រចាំចំពោះការដែលអាចនៅជិត​អ្នកមានផ្ទុក COVID-19។</string>
+  <string name="notifications_enabled_info">បច្ចុប្បន្ន អ្នកមិនមានហានិភ័យនៃការនៅជិតអ្នកមានផ្ទុក COVID-19 ដែលបាន​រាយការណ៍ទេ។ អ្នកនឹងទទួលបាន​ការជូនដំណឹង ប្រសិនបើនរណាម្នាក់​ដែលអ្នកបាននៅជិត​រាយការណ៍ថាមានលទ្ធផលតេស្ត COVID-19 វិជ្ជមាន។</string>
+  <string name="how_exposure_notifications_work_link">របៀបដែលការជូនដំណឹងអំពី​ការនៅជិតអ្នកមានផ្ទុក COVID-19 ដំណើរការ</string>
+  <string name="recent_check_dialog_title">កំណត់ត្រានៃការចុះ​ឈ្មោះបញ្ជាក់ថ្មីៗ​អំពីការដែលអាចនៅជិត​អ្នកមានផ្ទុក COVID-19</string>
+  <string name="recent_check_dialog_see_more">​មើល​បន្ថែម​ទៀត</string>
+  <string name="recent_check_last_checked">បានពិនិត្យរកមើល​លើកចុងក្រោយ​នៅថ្ងៃទី %1$s។</string>
+  <string name="exposure_notifications_are_turned_off">មិនកំពុង​ពិនិត្យ​​ការដែលអាចនៅជិត​អ្នកមានផ្ទុក COVID-19 ទេ</string>
   <string name="turn_on_exposure_notifications_action">បើកការជូនដំណឹងអំពីការនៅជិតអ្នកមានផ្ទុក COVID-19</string>
   <string name="recent_exposures_subtitle">ការនៅជិតអ្នកមានផ្ទុក COVID-19 នាពេលថ្មីៗ</string>
   <string name="exposure_details_status_subtitle">ស្ថានភាព</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">COVID-19 អវិជ្ជមាន</string>
   <string name="positive_test_result_status_shared">បានចែករំលែក</string>
   <string name="positive_test_result_status_not_shared">មិនបានចែករំលែកទេ</string>
-  <string name="notify_turn_on_exposure_notifications_header">ដើម្បីទទួលបាន​ការជូនដំណឹងអំពី​ករណីអាច​នៃការនៅជិតអ្នកមានផ្ទុក COVID-19 និងចែករំលែកលទ្ធផលតេស្ត COVID-19 របស់អ្នក សូមបើក​ការជូនដំណឹងអំពី​ការនៅជិតអ្នកមានផ្ទុក COVID-19</string>
+  <string name="notify_turn_on_exposure_notifications_header">បច្ចុប្បន្ន កម្មវិធីរបស់អ្នកមិនកំពុង​ពិនិត្យ​ការដែលអាចនៅជិត​អ្នកមានផ្ទុក COVID-19 ទេ។ ដើម្បីទទួលបាន​ការជូនដំណឹងអំពី​ការដែលអាចនៅជិតអ្នកមានផ្ទុក COVID-19 សូមបើកការជូនដំណឹង​អំពីការនៅជិត​អ្នកមានផ្ទុក COVID-19។</string>
   <string name="share_begin_title">ជួយការពារ​សហគមន៍របស់អ្នក</string>
   <string name="share_close_title">ចាកចេញ​ដោយមិន​ចែករំលែកឬ?</string>
   <string name="share_close_detail">អ្នកអាចជួយសហគមន៍របស់អ្នកបានល្អបំផុត ប្រសិនបើអ្នកចែករំលែកលទ្ធផលតេស្តរបស់អ្នកកាន់តែឆាប់។ ប៉ុន្តែ ព័ត៌មានអំពីលទ្ធផលតេស្តដែលអ្នកបានបញ្ចូលកន្លងមកត្រូវបានរក្សាទុកនៅក្នុងកម្មវិធីសម្រាប់ឱ្យអ្នកបន្តកែនៅពេលក្រោយ។</string>

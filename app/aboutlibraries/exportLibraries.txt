@@ -6,7 +6,7 @@ Disabling task processSampleDebugGoogleServices
 Disabling task processSampleReleaseGoogleServices
 
 > Task :app:exportLibraries
-All dependencies.size=195
+All dependencies.size=196
 Read custom mapping file from: /usr/local/google/home/wtroberts/.gradle/daemon/6.5/app/aboutlibraries/custom_exclusion_list.prop
 --> Retrieved POM for: org_apache_maven__maven_artifact_manager from org.apache.maven:maven:2.2.1
 ----> Had to fallback to parent description for: org_apache_maven__maven_artifact_manager
@@ -28,9 +28,9 @@ Could not get the name for nekohtml__xercesMinimal, Using nekohtml:xercesMinimal
 ----> Had to fallback to parent authorWebsite for: com_google_guava__guava -- result: http://www.google.com
 ----> Had to fallback to parent version for: com_google_guava__guava -- result: 29.0-android
 ----> Found license from parent for: com_google_guava__guava -- result: Apache_2_0
+Could not get the name for androidx_databinding__viewbinding, Using androidx.databinding:viewbinding
 --> Skipping com_google_zxing__core
 --> Skipping com_journeyapps__zxing_android_embedded
---> Had to resolve license from custom mapping for: javax_annotation__jsr250_api as CDDL_1_0
 --> Retrieved POM for: org_hamcrest__hamcrest_library from org.hamcrest:hamcrest-parent:1.3
 ----> Had to fallback to parent author for: org_hamcrest__hamcrest_library -- result: Joe Walnes, Nat Pryce, Steve Freeman, Neil Dunn, Tom Denley
 ----> Had to fallback to parent version for: org_hamcrest__hamcrest_library -- result: 1.3
@@ -111,6 +111,7 @@ Could not get the name for org_apache_ant__ant_launcher, Using org.apache.ant:an
 ----> Found license from parent for: org_hamcrest__hamcrest_core -- result: BSD_3_Clause
 --> Retrieved POM for: org_apache_maven_wagon__wagon_http_lightweight from org.apache.maven.wagon:wagon-providers:1.0-beta-6
 ----> Had to fallback to parent version for: org_apache_maven_wagon__wagon_http_lightweight -- result: 1.0-beta-6
+--> Retrieved POM for: com_google_dagger__hilt_core from org.sonatype.oss:oss-parent:7
 --> Retrieved POM for: org_codehaus_plexus__plexus_utils from org.codehaus.plexus:plexus:2.0.2
 ----> Had to fallback to parent author for: org_codehaus_plexus__plexus_utils -- result: Jason van Zyl, Pete Kazmier, James Taylor, Dan Diephouse, Kasper Nielsen, Ben Walding, Mark Wilkinson, Michal Maczka, Emmanuel Venisse, Trygve Laugstøl, Kenney Westerhof, Carlos Sanchez, Brett Porter, John Casey, Andrew Williams, Rahul Thakur, Joakim Erdfelt, Olivier Lamy, Hervé Boutemy, Oleg Gusakov
 ----> Had to fallback to parent authorWebsite for: org_codehaus_plexus__plexus_utils -- result: http://www.codehaus.org/
@@ -238,8 +239,8 @@ Checker Qual;org.checkerframework:checker-compat-qual:2.5.5;[MIT]
 Checker Qual;org.checkerframework:checker-qual:2.11.1;[MIT]
 Collections Kotlin Extensions;androidx.collection:collection-ktx:1.1.0;[Apache_2_0]
 Core Kotlin Extensions;androidx.core:core-ktx:1.3.2;[Apache_2_0]
-Dagger Lint Rules AAR Distribution;com.google.dagger:dagger-lint-aar:2.28.3;[Apache_2_0]
-Dagger;com.google.dagger:dagger:2.28.3;[Apache_2_0]
+Dagger Lint Rules AAR Distribution;com.google.dagger:dagger-lint-aar:2.30;[Apache_2_0]
+Dagger;com.google.dagger:dagger:2.30;[Apache_2_0]
 Default Plexus Container;org.codehaus.plexus:plexus-container-default:1.0-alpha-9-stable-1;[]
 Experimental annotation;androidx.annotation:annotation-experimental:1.0.0;[Apache_2_0]
 FastAdapter Library;com.mikepenz:fastadapter:5.3.0;[Apache_2_0]
@@ -255,16 +256,16 @@ Guava: Google Core Libraries for Java;com.google.guava:guava:29.0-android;[Apach
 Hamcrest Core;org.hamcrest:hamcrest-core:1.3;[BSD_3_Clause]
 Hamcrest Integration;org.hamcrest:hamcrest-integration:1.3;[BSD_3_Clause]
 Hamcrest library;org.hamcrest:hamcrest-library:1.3;[BSD_3_Clause]
-Hilt Android Testing;com.google.dagger:hilt-android-testing:2.28.3-alpha;[Apache_2_0]
-Hilt Android;com.google.dagger:hilt-android:2.28.3-alpha;[Apache_2_0]
+Hilt Android Testing;com.google.dagger:hilt-android-testing:2.30-alpha;[Apache_2_0]
+Hilt Android;com.google.dagger:hilt-android:2.30-alpha;[Apache_2_0]
+Hilt Core;com.google.dagger:hilt-core:2.30-alpha;[Apache_2_0]
 ICU4J;com.ibm.icu:icu4j:53.1;[ICU]
 IntelliJ IDEA Annotations;org.jetbrains:annotations:13.0;[Apache_2_0]
 J2ObjC Annotations;com.google.j2objc:j2objc-annotations:1.3;[Apache_2_0]
-JSR-250 Common Annotations for the JavaTM Platform;javax.annotation:jsr250-api:1.0;[CDDL_1_0]
 JUnit;junit:junit:4.12;[EPL_1_0]
 JavaWriter;com.squareup:javawriter:2.1.1;[Apache_2_0]
 LiveData Core Kotlin Extensions;androidx.lifecycle:lifecycle-livedata-core-ktx:2.2.0;[Apache_2_0]
-Material Components for Android;com.google.android.material:material:1.3.0-alpha03;[Apache_2_0]
+Material Components for Android;com.google.android.material:material:1.3.0-rc01;[Apache_2_0]
 Maven Ant Tasks;org.apache.maven:maven-ant-tasks:2.1.3;[]
 Maven Artifact Manager;org.apache.maven:maven-artifact-manager:2.2.1;[]
 Maven Artifact;org.apache.maven:maven-artifact:2.2.1;[]
@@ -314,6 +315,7 @@ ThreeTen backport;org.threeten:threetenbp:1.4.4;[BSD_3_Clause]
 ThreeTenAbp;com.jakewharton.threetenabp:threetenabp:1.2.4;[Apache_2_0]
 Truth Core;com.google.truth:truth:1.0.1;[Apache_2_0]
 VersionedParcelable;androidx.versionedparcelable:versionedparcelable:1.1.0;[Apache_2_0]
+androidx.databinding:viewbinding;androidx.databinding:viewbinding:4.1.0;[Apache_2_0]
 annotations;org.robolectric:annotations:4.3.1;[MIT]
 asm-analysis;org.ow2.asm:asm-analysis:7.0;[BSD_3_Clause]
 asm-commons;org.ow2.asm:asm-commons:7.0;[BSD_3_Clause]
@@ -378,7 +380,6 @@ ASDKL;Android Software Development Kit License;https://spdx.org/licenses/ASDKL.h
 Apache-2.0;Apache License 2.0;https://spdx.org/licenses/Apache-2.0.html
 BSD-3-Clause;BSD 3-Clause "New" or "Revised" License;https://spdx.org/licenses/BSD-3-Clause.html
 CC-PDDC;Creative Commons Public Domain Dedication and Certification;https://spdx.org/licenses/CC-PDDC.html
-CDDL-1.0;Common Development and Distribution License 1.0;https://spdx.org/licenses/CDDL-1.0.html
 EPL-1.0;Eclipse Public License 1.0;https://spdx.org/licenses/EPL-1.0.html
 ICU;ICU License;https://spdx.org/licenses/ICU.html
 MIT;MIT License;https://spdx.org/licenses/MIT.html
@@ -393,5 +394,5 @@ Deprecated Gradle features were used in this build, making it incompatible with 
 Use '--warning-mode all' to show the individual deprecation warnings.
 See https://docs.gradle.org/6.5/userguide/command_line_interface.html#sec:command_line_warnings
 
-BUILD SUCCESSFUL in 1s
+BUILD SUCCESSFUL in 2s
 1 actionable task: 1 executed

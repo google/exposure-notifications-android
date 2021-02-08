@@ -42,20 +42,29 @@ public class DiagnosisEntityAdapter
   private static final String TAG = "DiagnosisEntityAdapter";
 
   private List<DiagnosisEntity> diagnosisEntities = Collections.emptyList();
+  private NotifyHomeViewModel notifyHomeViewModel;
 
   private final DateTimeFormatter dateTimeFormatter =
       DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM);
   private final DiagnosisClickListener onDiagnosisClickListener;
 
   public DiagnosisEntityAdapter(
-      DiagnosisClickListener onDiagnosisClickListener) {
+      DiagnosisClickListener onDiagnosisClickListener, NotifyHomeViewModel notifyHomeViewModel) {
     this.onDiagnosisClickListener = onDiagnosisClickListener;
+    this.notifyHomeViewModel = notifyHomeViewModel;
   }
 
   /** Updates the {@link DiagnosisEntity} to display. */
   public void setDiagnosisEntities(
       List<DiagnosisEntity> diagnosisEntities) {
     this.diagnosisEntities = diagnosisEntities;
+    notifyDataSetChanged();
+  }
+
+  /** Deletes the {@link DiagnosisEntity} at the given position. */
+  public void deleteDiagnosisEntity(int position) {
+    DiagnosisEntity diagnosis = diagnosisEntities.remove(position);
+    notifyHomeViewModel.deleteEntity(diagnosis);
     notifyDataSetChanged();
   }
 

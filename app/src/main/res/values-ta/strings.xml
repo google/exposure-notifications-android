@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">ஆப்ஸை நிர்வகிக்கவும் மேம்படுத்தவும் உதவ, ஆப்ஸின் செயல்திறன் மற்றும் பயன்பாடு குறித்த சில வரையறுக்கப்பட்ட, அடையாளம் நீக்கிய தகவல்கள் Googleளுடன் பகிரப்படுகின்றன. இந்தத் தரவின் மூலம் உங்களை அடையாளம் காணமுடியாது. %1$s</string>
   <string name="onboarding_confirm_later_title">COVID-19 தொற்று சாத்திய எச்சரிக்கைகளை முடக்கியே வைக்கவா?</string>
   <string name="onboarding_confirm_later_detail">இவை இயக்கப்படும்வரை தொற்று சாத்திய எச்சரிக்கைகள் வராது</string>
-  <string name="no_recent_exposure_subtitle">தொற்றின் சாத்தியம் சமீபத்தில் எதுவுமில்லை</string>
+  <string name="no_recent_exposure_subtitle">செயல்படுத்தித் தேடுகிறது …</string>
+  <string name="no_recent_exposure_indicator">சமீபத்திய தொற்று சாத்தியம் ஏதுமில்லை</string>
+  <string name="app_active_info">உங்கள் ஆப்ஸ் நோய்த் தொற்றின் சாத்தியங்கள் உள்ளனவா எனத் தொடர்ந்து தேடிக்கொண்டிருக்கும்.</string>
   <string name="notifications_enabled_info">உங்களுக்குத் தற்போது COVID-19 தொற்றின் சாத்தியம் குறித்த ஆபத்து எதுவுமில்லை. தனக்கு COVID-19 நோய்த் தொற்று இருக்கிறது என்று தெரிவித்திருக்கும் யாருக்கேனும் அருகில் நீங்கள் இருந்திருந்தால் அது குறித்து உங்களுக்குத் தெரிவிக்கப்படும்.</string>
-  <string name="exposure_notifications_are_turned_off">COVID-19 தொற்று சாத்திய எச்சரிக்கைகள் முடக்கப்பட்டுள்ளன</string>
+  <string name="how_exposure_notifications_work_link">தொற்றின் சாத்தியத்தை எச்சரிக்கும் அறிவிப்புகள் எப்படி வேலை செய்கின்றன</string>
+  <string name="recent_check_dialog_title">சமீபத்தில் நோய்த் தொற்றின் சாத்தியங்களைப் பதிவு செய்த நேரங்கள்</string>
+  <string name="recent_check_dialog_see_more">மேலும் காட்டு</string>
+  <string name="recent_check_last_checked">கடைசியாகச் சரிபார்த்தது: %1$s</string>
+  <string name="exposure_notifications_are_turned_off">தற்போது நோய்த் தொற்றின் சாத்தியங்களைத் தேடவில்லை</string>
   <string name="turn_on_exposure_notifications_action">தொற்று சாத்திய எச்சரிக்கைகளை இயக்கு</string>
   <string name="recent_exposures_subtitle">சமீபத்திய தொற்று சாத்தியம்</string>
   <string name="exposure_details_status_subtitle">நிலை</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">COVID-19 நெகட்டிவ்</string>
   <string name="positive_test_result_status_shared">பகிரப்பட்டது</string>
   <string name="positive_test_result_status_not_shared">பகிரப்படவில்லை</string>
-  <string name="notify_turn_on_exposure_notifications_header">COVID-19 தொற்றின் சாத்தியம் குறித்து உங்களுக்கு அறிவிக்கவும், உங்கள் COVID-19 பரிசோதனை முடிவைப் பிறருடன் பகிரவும், தொற்று சாத்திய எச்சரிக்கைகளை இயக்குங்கள்</string>
+  <string name="notify_turn_on_exposure_notifications_header">உங்கள் ஆப்ஸ் தற்போது நோய்த் தொற்றின் சாத்தியங்களைத் தேடவில்லை. COVID-19 தொற்றின் சாத்தியம் குறித்து நீங்கள் தெரிந்துகொள்ள, தொற்று சாத்திய எச்சரிக்கைகளை இயக்கவும்.</string>
   <string name="share_begin_title">உங்கள் சமூகத்தைப் பாதுகாக்க உதவுங்கள்</string>
   <string name="share_close_title">பகிராமல் வெளியேறவா?</string>
   <string name="share_close_detail">உங்கள் பரிசோதனை முடிவை விரைவில் பகிர்ந்தால் அது சமூகத்திற்குச் சிறப்பாக உதவலாம். எனினும் பின்னர் மீண்டும் திருத்த, பரிசோதனை முடிவு குறித்து இதுவரை நீங்கள் உள்ளிட்ட தகவல் இந்த ஆப்ஸில் சேமிக்கப்படும்.</string>

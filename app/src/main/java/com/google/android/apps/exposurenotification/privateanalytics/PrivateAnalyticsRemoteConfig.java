@@ -70,9 +70,21 @@ public class PrivateAnalyticsRemoteConfig {
 
   // Metric "Histogram"
   private static final String CONFIG_METRIC_RISK_HISTOGRAM_SAMPLING_PROB_KEY =
-      "enpa_metric_risk_histogram_v1_sampling_prob";
+      "enpa_metric_risk_histogram_v2_sampling_prob";
   private static final String CONFIG_METRIC_RISK_HISTOGRAM_PRIO_EPSILON_KEY =
-      "enpa_metric_risk_histogram_v1_prio_epsilon";
+      "enpa_metric_risk_histogram_v2_prio_epsilon";
+
+  // Metric "Code Verified"
+  private static final String CONFIG_METRIC_CODE_VERIFIED_SAMPLING_PROB_KEY =
+      "enpa_metric_code_verified_v1_sampling_prob";
+  private static final String CONFIG_METRIC_CODE_VERIFIED_PRIO_EPSILON_KEY =
+      "enpa_metric_code_verified_v1_prio_epsilon";
+
+  // Metric "Keys Uploaded"
+  private static final String CONFIG_METRIC_KEYS_UPLOADED_SAMPLING_PROB_KEY =
+      "enpa_metric_keys_uploaded_v1_sampling_prob";
+  private static final String CONFIG_METRIC_KEYS_UPLOADED_PRIO_EPSILON_KEY =
+      "enpa_metric_keys_uploaded_v1_prio_epsilon";
 
   // Other flags
   private static final String CONFIG_DEVICE_ATTESTATION_REQUIRED_KEY =
@@ -110,7 +122,12 @@ public class PrivateAnalyticsRemoteConfig {
 
   public ListenableFuture<RemoteConfigs> fetchUpdatedConfigs() {
     return FluentFuture.from(fetchUpdatedConfigsJson())
-        .transform(this::convertToRemoteConfig, lightweightExecutor);
+        .transform(this::convertToRemoteConfig, lightweightExecutor)
+        .catching(Exception.class, e -> {
+          // Output the default RemoteConfigs for any exception thrown.
+          Log.e(TAG, "Failed to fetch or convert remote configuration.", e);
+          return DEFAULT_REMOTE_CONFIGS;
+        }, lightweightExecutor);
   }
 
   private ListenableFuture<JSONObject> fetchUpdatedConfigsJson() {
@@ -187,6 +204,26 @@ public class PrivateAnalyticsRemoteConfig {
       if (jsonObject.has(CONFIG_METRIC_RISK_HISTOGRAM_PRIO_EPSILON_KEY)) {
         remoteConfigBuilder.setRiskScorePrioEpsilon(
             jsonObject.getDouble(CONFIG_METRIC_RISK_HISTOGRAM_PRIO_EPSILON_KEY));
+      }
+
+      // Code verified metric params
+      if (jsonObject.has(CONFIG_METRIC_CODE_VERIFIED_SAMPLING_PROB_KEY)) {
+        remoteConfigBuilder.setCodeVerifiedPrioSamplingRate(
+            jsonObject.getDouble(CONFIG_METRIC_CODE_VERIFIED_SAMPLING_PROB_KEY));
+      }
+      if (jsonObject.has(CONFIG_METRIC_CODE_VERIFIED_PRIO_EPSILON_KEY)) {
+        remoteConfigBuilder.setCodeVerifiedPrioEpsilon(
+            jsonObject.getDouble(CONFIG_METRIC_CODE_VERIFIED_PRIO_EPSILON_KEY));
+      }
+
+      // Keys uploaded metric params
+      if (jsonObject.has(CONFIG_METRIC_KEYS_UPLOADED_SAMPLING_PROB_KEY)) {
+        remoteConfigBuilder.setKeysUploadedPrioSamplingRate(
+            jsonObject.getDouble(CONFIG_METRIC_KEYS_UPLOADED_SAMPLING_PROB_KEY));
+      }
+      if (jsonObject.has(CONFIG_METRIC_KEYS_UPLOADED_PRIO_EPSILON_KEY)) {
+        remoteConfigBuilder.setKeysUploadedPrioEpsilon(
+            jsonObject.getDouble(CONFIG_METRIC_KEYS_UPLOADED_PRIO_EPSILON_KEY));
       }
 
       // Certificates

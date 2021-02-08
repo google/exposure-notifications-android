@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">為協助維護及改善此應用程式，部分有關應用程式效能和使用情況的去識別化資料將會與 Google 共用。請放心，這些資料無法識別您的身分。%1$s</string>
   <string name="onboarding_confirm_later_title">保持關閉「接觸通知」嗎？</string>
   <string name="onboarding_confirm_later_detail">您需要開啟「接觸通知」，系統才能通知您可能接觸到 COVID-19 的情況。</string>
-  <string name="no_recent_exposure_subtitle">最近沒有接觸記錄</string>
-  <string name="notifications_enabled_info">您目前沒有已報告的 COVID-19 接觸風險。如您接近過報稱 COVID-19 檢測呈陽性的人士，您便會收到通知。</string>
-  <string name="exposure_notifications_are_turned_off">接觸通知已關閉</string>
+  <string name="no_recent_exposure_subtitle">已啟用並檢查中…</string>
+  <string name="no_recent_exposure_indicator">最近沒有接觸記錄</string>
+  <string name="app_active_info">您的應用程式會定期檢查可能接觸到 COVID-19 的情況。</string>
+  <string name="notifications_enabled_info">您目前沒有報稱 COVID-19 接觸風險。如您接近過報稱 COVID-19 測試呈陽性的人士，您便會收到通知。</string>
+  <string name="how_exposure_notifications_work_link">「接觸通知」功能如何運作</string>
+  <string name="recent_check_dialog_title">最近可能接觸到 COVID-19 的時間記錄</string>
+  <string name="recent_check_dialog_see_more">查看更多</string>
+  <string name="recent_check_last_checked">上次檢查時間：%1$s</string>
+  <string name="exposure_notifications_are_turned_off">未檢查可能接觸到 COVID-19 的情況</string>
   <string name="turn_on_exposure_notifications_action">開啟「接觸通知」</string>
   <string name="recent_exposures_subtitle">近期接觸記錄</string>
   <string name="exposure_details_status_subtitle">狀態</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">COVID-19 陰性</string>
   <string name="positive_test_result_status_shared">已分享</string>
   <string name="positive_test_result_status_not_shared">未分享</string>
-  <string name="notify_turn_on_exposure_notifications_header">如要接收可能接觸到 COVID-19 的情況通知，請分享 COVID-19 檢測結果並開啟「接觸通知」</string>
+  <string name="notify_turn_on_exposure_notifications_header">您的應用程式目前未檢查可能接觸到 COVID-19 的情況。如要讓系統通知您可能接觸到 COVID-19 的情況，請開啟「接觸通知」。</string>
   <string name="share_begin_title">協助保護所在社區</string>
   <string name="share_close_title">不分享檢疫資訊並離開嗎？</string>
   <string name="share_close_detail">盡早分享檢疫結果，可以有效保護您的社區居民。您目前為止輸入的檢測結果資料已儲存在此應用程式中，方便您日後繼續編輯。</string>

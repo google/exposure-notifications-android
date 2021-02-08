@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">За одржување и подобрување на апликацијата, некои ограничени податоци за изведбата и користењето на апликацијата коишто не содржат податоци за лична идентификација се споделуваат со Google. Овие податоци не ве идентификуваат. %1$s</string>
   <string name="onboarding_confirm_later_title">Да останат исклучени „Известувањата за изложеност“?</string>
   <string name="onboarding_confirm_later_detail">Со исклучени „Известувања за изложеност“ нема да добивате известувања за можна изложеност на COVID-19</string>
-  <string name="no_recent_exposure_subtitle">Нема неодамнешна изложеност</string>
+  <string name="no_recent_exposure_subtitle">Активна и проверува…</string>
+  <string name="no_recent_exposure_indicator">Нема неодамнешна изложеност</string>
+  <string name="app_active_info">Апликацијата редовно проверува за можна изложеност.</string>
   <string name="notifications_enabled_info">Во моментов немате пријавен ризик од изложеност на COVID-19. Ќе ве известиме ако некој што бил во ваша близина пријави позитивен резултат од тестирањето за COVID-19.</string>
-  <string name="exposure_notifications_are_turned_off">„Известувањата за изложеност“ се исклучени</string>
+  <string name="how_exposure_notifications_work_link">Како функционираат известувањата за изложеност</string>
+  <string name="recent_check_dialog_title">Евиденција на скорешни пријавувања за можна изложеност</string>
+  <string name="recent_check_dialog_see_more">Видете повеќе</string>
+  <string name="recent_check_last_checked">Последен пат проверено: %1$s</string>
+  <string name="exposure_notifications_are_turned_off">Не се проверува за можна изложеност</string>
   <string name="turn_on_exposure_notifications_action">Вклучете „Известувања за изложеност“</string>
   <string name="recent_exposures_subtitle">Неодамнешна изложеност</string>
   <string name="exposure_details_status_subtitle">Статус</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">Негативен на COVID-19</string>
   <string name="positive_test_result_status_shared">Споделено</string>
   <string name="positive_test_result_status_not_shared">Не е споделено</string>
-  <string name="notify_turn_on_exposure_notifications_header">За да добивате известувања за можна изложеност на COVID-19 и да го споделите вашиот резултат од тестирањето за COVID-19, вклучете „Известувања за изложеност“</string>
+  <string name="notify_turn_on_exposure_notifications_header">Во моментов апликацијата не проверува можна изложеност. За да добивате известувања за можна изложеност на COVID-19, вклучете „Известувања за изложеност“.</string>
   <string name="share_begin_title">Помогнете во заштитата на вашата заедница</string>
   <string name="share_close_title">Сакате да излезете без да споделите?</string>
   <string name="share_close_detail">На заедницата најдобро ќе ѝ помогнете ако побрзо ги споделите резултатите од тестот. Сепак, досега внесените податоци се зачувани во апликацијата за да може подоцна да продолжите со изменувањето.</string>

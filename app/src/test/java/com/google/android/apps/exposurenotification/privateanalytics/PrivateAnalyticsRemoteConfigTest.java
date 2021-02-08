@@ -72,6 +72,15 @@ public class PrivateAnalyticsRemoteConfigTest extends TestCase {
   PrivateAnalyticsRemoteConfig privateAnalyticsRemoteConfig;
 
   @Test
+  public void successfullyFetchConfigFromServer_badJSON() throws Exception {
+    String jsonResponse = "{ \"enpa_collection_frequency\": invalid value here }";
+    fakeQueue().addResponse(REMOTE_CONFIG_URI.toString(), 200, jsonResponse);
+
+    RemoteConfigs configs = privateAnalyticsRemoteConfig.fetchUpdatedConfigs().get();
+    assertThat(configs).isEqualTo(DEFAULT_REMOTE_CONFIGS);
+  }
+
+  @Test
   public void failedToFetchConfigFromServer_defaultConfigsReturned() throws Exception {
     fakeQueue().addResponse(REMOTE_CONFIG_URI.toString(), 404, "any-response");
 

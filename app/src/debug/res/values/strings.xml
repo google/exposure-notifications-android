@@ -87,9 +87,18 @@
 
   <string name="debug_matching_view_rejected">Unable to get keys</string>
 
+  <string name="debug_matching_view_preauthorization_rejected">Unable to preauthorize key
+    release</string>
+
   <string name="debug_matching_view_api_not_enabled">API must be enabled</string>
 
   <string name="debug_matching_view_get_keys_button_text">Request keys</string>
+
+  <string name="debug_matching_view_get_keys_preauthorize_button_text">Preauthorize key
+    release</string>
+
+  <string name="debug_matching_view_get_keys_preauthorize_get_button_text">Get preauthorized
+    keys</string>
 
   <string name="debug_matching_provide_scan_error">Error parsing QR data</string>
 
@@ -167,6 +176,10 @@
   <string name="debug_submit_private_analytics_button_text">Submit Private Analytics</string>
 
   <string name="debug_private_analytics_clear_key_store_text">Clear Keystore</string>
+
+  <string name="debug_private_analytics_metric_values">Private Analytics Metric Values</string>
+
+  <string name="debug_private_analytics_metric">Metric</string>
 
   <string name="debug_roaming_title">Roaming</string>
 

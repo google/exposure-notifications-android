@@ -21,7 +21,6 @@ import static com.google.common.truth.Truth.assertThat;
 
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.common.time.RealTimeModule;
-import com.google.android.apps.exposurenotification.privateanalytics.MetricsSnapshot;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
 import com.google.android.apps.exposurenotification.testsupport.ExposureNotificationRules;
 import com.google.android.apps.exposurenotification.testsupport.FakeClock;
@@ -71,7 +70,7 @@ public class PeriodicExposureNotificationMetricTest {
     exposureNotificationSharedPreferences
         .setExposureNotificationLastShownClassification(fiveHoursAgo, /* classificationIndex= */ 1);
     List<Integer> dataVector = periodicExposureNotificationTracker
-        .getDataVector(getMetricsSnapshot()).get();
+        .getDataVector().get();
 
     assertThat(dataVector).containsExactly(0, 1, 0, 0, 0).inOrder();
   }
@@ -83,7 +82,7 @@ public class PeriodicExposureNotificationMetricTest {
         .setExposureNotificationLastShownClassification(fiveDaysAgo, /* classificationIndex= */ 1);
 
     List<Integer> dataVector = periodicExposureNotificationTracker
-        .getDataVector(getMetricsSnapshot()).get();
+        .getDataVector().get();
 
     assertThat(dataVector).containsExactly(0, 1, 0, 0, 0).inOrder();
   }
@@ -101,12 +100,8 @@ public class PeriodicExposureNotificationMetricTest {
     exposureNotificationSharedPreferences
         .setExposureNotificationLastShownClassification(fiveHoursAgo, /* classificationIndex= */ 1);
     List<Integer> dataVector = periodicExposureNotificationTracker
-        .getDataVector(getMetricsSnapshot()).get();
+        .getDataVector().get();
 
     assertThat(dataVector).containsExactly(1, 0, 0, 0, 0).inOrder();
-  }
-
-  private MetricsSnapshot getMetricsSnapshot() {
-    return MetricsSnapshot.fromPreferences(exposureNotificationSharedPreferences);
   }
 }

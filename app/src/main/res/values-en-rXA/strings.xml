@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">[Ţö ĥéļþ måîñţåîñ åñð îmþŕövé ţĥé åþþ, šömé ļîmîţéð ðé-îðéñţîƒîéð ðåţå åбöûţ åþþ þéŕƒöŕmåñçé åñð ûšåĝé îš šĥåŕéð ŵîţĥ Ĝööĝļé. Ţĥîš ðåţå ðöéš ñöţ îðéñţîƒý ýöû. ᐅ%1$sᐊ one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty twentyone twentytwo twentythree]</string>
   <string name="onboarding_confirm_later_title">[Ķééþ Éxþöšûŕé Ñöţîƒîçåţîöñ ţûŕñéð öƒƒ¿ one two three four five six seven eight]</string>
   <string name="onboarding_confirm_later_detail">[Ûñţîļ Éxþöšûŕé Ñöţîƒîçåţîöñš åŕé ţûŕñéð öñ, ýöû ŵöñ’ţ бé ñöţîƒîéð öƒ þöššîбļé éxþöšûŕé ţö ÇÖVÎÐ-19 one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen]</string>
-  <string name="no_recent_exposure_subtitle">[Ñö ŕéçéñţ éxþöšûŕéš one two three]</string>
-  <string name="notifications_enabled_info">[Ýöû çûŕŕéñţļý ĥåvé ñö ŕéþöŕţéð ÇÖVÎÐ-19 éxþöšûŕé ŕîšķ. Ýöû\’ļļ бé ñöţîƒîéð îƒ šöméöñé ýöû ŵéŕé ñéåŕ ŕéþöŕţš å þöšîţîvé ÇÖVÎÐ-19 ţéšţ ŕéšûļţ. one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty twentyone]</string>
-  <string name="exposure_notifications_are_turned_off">[Éxþöšûŕé ñöţîƒîçåţîöñš åŕé ţûŕñéð öƒƒ one two three four five six seven eight]</string>
+  <string name="no_recent_exposure_subtitle">[Åçţîvé åñð çĥéçķîñĝ … one two three four five]</string>
+  <string name="no_recent_exposure_indicator">[Ñö ŕéçéñţ éxþöšûŕé one two three]</string>
+  <string name="app_active_info">[Ýöûŕ åþþ îš ŕéĝûļåŕļý çĥéçķîñĝ ƒöŕ þöššîбļé éxþöšûŕéš. one two three four five six seven eight nine ten eleven]</string>
+  <string name="notifications_enabled_info">[Ţĥéŕé îš çûŕŕéñţļý ñö ŕéþöŕţéð ÇÖVÎÐ-19 éxþöšûŕé ŕîšķ ƒöŕ ýöû. Ýöû\'ļļ бé ñöţîƒîéð îƒ šöméöñé ýöû ŵéŕé ñéåŕ ŕéþöŕţš å þöšîţîvé ÇÖVÎÐ-19 ţéšţ ŕéšûļţ. one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty twentyone twentytwo]</string>
+  <string name="how_exposure_notifications_work_link">[Ĥöŵ Éxþöšûŕé Ñöţîƒîçåţîöñš ŵöŕķ one two three four five six seven]</string>
+  <string name="recent_check_dialog_title">[Ŕéçöŕð öƒ ŕéçéñţ çĥéçķ-îñš ƒöŕ þöššîбļé éxþöšûŕé one two three four five six seven eight nine ten]</string>
+  <string name="recent_check_dialog_see_more">[Šéé möŕé one]</string>
+  <string name="recent_check_last_checked">[Ļåšţ çĥéçķéð ᐅ%1$sᐊ one two three four]</string>
+  <string name="exposure_notifications_are_turned_off">[Ñöţ çĥéçķîñĝ ƒöŕ þöššîбļé éxþöšûŕé one two three four five six seven]</string>
   <string name="turn_on_exposure_notifications_action">[Ţûŕñ öñ Éxþöšûŕé Ñöţîƒîçåţîöñš one two three four five six seven]</string>
   <string name="recent_exposures_subtitle">[Ŕéçéñţ éxþöšûŕé one two]</string>
   <string name="exposure_details_status_subtitle">[Šţåţûš one]</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">[ÇÖVÎÐ-19 Ñéĝåţîvé one two three]</string>
   <string name="positive_test_result_status_shared">[Šĥåŕéð one]</string>
   <string name="positive_test_result_status_not_shared">[Ñöţ šĥåŕéð one two]</string>
-  <string name="notify_turn_on_exposure_notifications_header">[Ţö бé ñöţîƒîéð öƒ þöššîбļé ÇÖVÎÐ-19 éxþöšûŕé &amp; šĥåŕé ýöûŕ ÇÖVÎÐ-19 ţéšţ ŕéšûļţ, ţûŕñ öñ Éxþöšûŕé Ñöţîƒîçåţîöñš one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen]</string>
+  <string name="notify_turn_on_exposure_notifications_header">[Ýöûŕ åþþ îšñ\'ţ çûŕŕéñţļý çĥéçķîñĝ ƒöŕ þöššîбļé éxþöšûŕéš. Ţö бé ñöţîƒîéð öƒ þöššîбļé ÇÖVÎÐ-19 éxþöšûŕé, ţûŕñ öñ Éxþöšûŕé Ñöţîƒîçåţîöñš. one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty twentyone]</string>
   <string name="share_begin_title">[Ĥéļþ þŕöţéçţ ýöûŕ çömmûñîţý one two three four five six]</string>
   <string name="share_close_title">[Éxîţ ŵîţĥöûţ šĥåŕîñĝ¿ one two three]</string>
   <string name="share_close_detail">[Ýöû çåñ бéšţ ĥéļþ ýöûŕ çömmûñîţý îƒ ýöû šĥåŕé ýöûŕ ţéšţ ŕéšûļţ šööñéŕ. Ĥöŵévéŕ, ţĥé ţéšţ ŕéšûļţ îñƒöŕmåţîöñ ýöû\'vé éñţéŕéð šö ƒåŕ îš šåvéð îñ ţĥé åþþ ƒöŕ ýöû ţö ŕéšûmé éðîţîñĝ ļåţéŕ. one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty twentyone twentytwo twentythree twentyfour twentyfive]</string>

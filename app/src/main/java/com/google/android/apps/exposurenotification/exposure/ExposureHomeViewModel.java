@@ -21,19 +21,32 @@ import androidx.hilt.lifecycle.ViewModelInject;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 import com.google.android.apps.exposurenotification.riskcalculation.ExposureClassification;
+import com.google.android.apps.exposurenotification.storage.ExposureCheckEntity;
+import com.google.android.apps.exposurenotification.storage.ExposureCheckRepository;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.BadgeStatus;
+import java.util.List;
 
 /**
  * View model for the {@link ExposureHomeFragment}.
  */
 public class ExposureHomeViewModel extends ViewModel {
 
+  // Number of exposure checks we want to display.
+  private static final int NUM_CHECKS_TO_DISPLAY = 5;
+
   private final ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
+  private final LiveData<List<ExposureCheckEntity>> getExposureChecksLiveData;
+  private final ExposureCheckRepository exposureCheckRepository;
 
   @ViewModelInject
-  public ExposureHomeViewModel(ExposureNotificationSharedPreferences exposureNotificationSharedPreferences) {
+  public ExposureHomeViewModel(
+      ExposureNotificationSharedPreferences exposureNotificationSharedPreferences,
+      ExposureCheckRepository exposureCheckRepository) {
     this.exposureNotificationSharedPreferences = exposureNotificationSharedPreferences;
+    this.exposureCheckRepository = exposureCheckRepository;
+    getExposureChecksLiveData =
+        exposureCheckRepository.getLastXExposureChecksLiveData(NUM_CHECKS_TO_DISPLAY);
   }
 
   public LiveData<ExposureClassification> getExposureClassificationLiveData() {
@@ -68,6 +81,13 @@ public class ExposureHomeViewModel extends ViewModel {
         == from) {
       exposureNotificationSharedPreferences.setIsExposureClassificationDateNewAsync(to);
     }
+  }
+
+  /**
+   * A {@link LiveData} to track the list of exposure checks to display.
+   */
+  public LiveData<List<ExposureCheckEntity>> getExposureChecksLiveData() {
+    return getExposureChecksLiveData;
   }
 
 }

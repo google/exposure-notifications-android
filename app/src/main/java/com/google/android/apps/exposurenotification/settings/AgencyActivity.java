@@ -22,10 +22,9 @@ import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.text.style.URLSpan;
-import android.view.View;
-import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.databinding.ActivityAgencyBinding;
 import dagger.hilt.android.AndroidEntryPoint;
 
 /**
@@ -35,16 +34,17 @@ import dagger.hilt.android.AndroidEntryPoint;
 public class AgencyActivity extends AppCompatActivity {
 
   private static final String TAG = "AgencyActivity";
+  private ActivityAgencyBinding binding;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
-    setContentView(R.layout.activity_agency);
+    binding = ActivityAgencyBinding.inflate(getLayoutInflater());
+    setContentView(binding.getRoot());
 
-    View upButton = findViewById(android.R.id.home);
-    upButton.setContentDescription(getString(R.string.navigate_up));
-    upButton.setOnClickListener((v) -> onBackPressed());
+    binding.home.setContentDescription(getString(R.string.navigate_up));
+    binding.home.setOnClickListener((v) -> onBackPressed());
 
     String websiteUrl = getString(R.string.health_authority_website_url);
     URLSpan linkClickableSpan = new URLSpan(websiteUrl);
@@ -54,9 +54,9 @@ public class AgencyActivity extends AppCompatActivity {
     agencyMessageLinkSpannableString
         .setSpan(linkClickableSpan, websiteUrlStart, websiteUrlStart + websiteUrl.length(),
             Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-    TextView linkTextView = findViewById(R.id.agency_message_link);
-    linkTextView.setText(agencyMessageLinkSpannableString);
-    linkTextView.setMovementMethod(LinkMovementMethod.getInstance());
+
+    binding.agencyMessageLink.setText(agencyMessageLinkSpannableString);
+    binding.agencyMessageLink.setMovementMethod(LinkMovementMethod.getInstance());
   }
 
 }

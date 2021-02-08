@@ -38,29 +38,82 @@
         android:layout_height="wrap_content"
         android:measureAllChildren="false">
 
-        <RelativeLayout
+        <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
+          android:orientation="vertical"
           android:layout_marginVertical="@dimen/padding_normal">
 
-          <Button
-            android:id="@+id/debug_matching_view_request_keys_button"
+          <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/padding_normal"
-            android:text="@string/debug_matching_view_get_keys_button_text"
-            android:elevation="0dp"/>
+            android:layout_height="wrap_content">
 
-          <ProgressBar
-            android:id="@+id/debug_matching_view_request_key_progress_bar"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_centerInParent="true"
-            android:indeterminateTint="@android:color/white"
-            android:elevation="10dp"
-            android:visibility="invisible"/>
+            <Button
+              android:id="@+id/debug_matching_view_request_keys_button"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginHorizontal="@dimen/padding_normal"
+              android:text="@string/debug_matching_view_get_keys_button_text"
+              android:elevation="0dp" />
 
-        </RelativeLayout>
+            <ProgressBar
+              android:id="@+id/debug_matching_view_request_key_progress_bar"
+              android:layout_width="24dp"
+              android:layout_height="24dp"
+              android:layout_centerInParent="true"
+              android:indeterminateTint="@android:color/white"
+              android:elevation="10dp"
+              android:visibility="invisible" />
+
+          </RelativeLayout>
+
+          <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+              android:id="@+id/debug_matching_view_request_keys_preauthorization_button"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginHorizontal="@dimen/padding_normal"
+              android:text="@string/debug_matching_view_get_keys_preauthorize_button_text"
+              android:elevation="0dp" />
+
+            <ProgressBar
+              android:id="@+id/debug_matching_view_request_keys_preauthorization_progress_bar"
+              android:layout_width="24dp"
+              android:layout_height="24dp"
+              android:layout_centerInParent="true"
+              android:indeterminateTint="@android:color/white"
+              android:elevation="10dp"
+              android:visibility="invisible" />
+
+          </RelativeLayout>
+
+          <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+              android:id="@+id/debug_matching_view_request_keys_preauthorization_get_button"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginHorizontal="@dimen/padding_normal"
+              android:text="@string/debug_matching_view_get_keys_preauthorize_get_button_text"
+              android:elevation="0dp" />
+
+            <ProgressBar
+              android:id="@+id/debug_matching_view_request_keys_preauthorization_get_progress_bar"
+              android:layout_width="24dp"
+              android:layout_height="24dp"
+              android:layout_centerInParent="true"
+              android:indeterminateTint="@android:color/white"
+              android:elevation="10dp"
+              android:visibility="invisible" />
+
+          </RelativeLayout>
+
+        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
           android:id="@+id/temporary_exposure_key_recycler_view"

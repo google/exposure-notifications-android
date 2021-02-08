@@ -33,6 +33,7 @@ import androidx.work.WorkManager;
 import androidx.work.WorkerParameters;
 import com.google.android.apps.exposurenotification.common.Qualifiers.BackgroundExecutor;
 import com.google.android.apps.exposurenotification.common.Qualifiers.LightweightExecutor;
+import com.google.android.apps.exposurenotification.common.Qualifiers.ScheduledExecutor;
 import com.google.android.apps.exposurenotification.common.StringUtils;
 import com.google.android.apps.exposurenotification.network.DiagnosisKey;
 import com.google.android.apps.exposurenotification.work.WorkerStartupManager;
@@ -41,34 +42,40 @@ import com.google.common.collect.ImmutableList.Builder;
 import com.google.common.util.concurrent.FluentFuture;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
+import com.google.common.util.concurrent.ListeningScheduledExecutorService;
 import java.security.SecureRandom;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
+import org.threeten.bp.Duration;
 import org.threeten.bp.LocalDate;
 
 /**
  * A worker that uploads a random number of fake Diagnosis Key uploads each day.
  *
- * <p>Somewhat random operation is achieved two ways: using WorkManager's flex interval to operate
- * within a loose time period, and by skipping some executions at random.
+ * <p>Somewhat random operation is achieved by skipping some executions at random.
  */
 public final class UploadCoverTrafficWorker extends ListenableWorker {
 
   private static final String TAG = "UploadCoverTrafficWrk";
+  private static final TimeUnit REPEAT_INTERVAL_UNITS = TimeUnit.HOURS;
+  private static final int KEY_SIZE_BYTES = 16;
+  private static final int FAKE_INTERVAL_NUM = 2650847; // Only size matters here, not the value.
+  // The upper bound of the range for the randomly generated sleep time (in milliseconds) to mimic
+  // delay in user interaction between submitting the verification code and submitting the keys.
+  private static final int MIMIC_USER_DELAY_SLEEP_MILLIS_BOUND = 3000;
+
   @VisibleForTesting
   static final String WORKER_NAME = "UploadCoverTrafficWorker";
   @VisibleForTesting
   static final int REPEAT_INTERVAL = 4;
-  private static final TimeUnit REPEAT_INTERVAL_UNITS = TimeUnit.HOURS;
   @VisibleForTesting
   static final double EXECUTION_PROBABILITY = 1.0d / 12.0d;
-  private static final int KEY_SIZE_BYTES = 16;
-  private static final int FAKE_INTERVAL_NUM = 2650847; // Only size matters here, not the value.
 
   private final UploadController uploadController;
   private final ExecutorService backgroundExecutor;
   private final ExecutorService lightweightExecutor;
+  private final ListeningScheduledExecutorService scheduledExecutor;
   private final SecureRandom secureRandom;
   private final WorkerStartupManager workerStartupManager;
 
@@ -83,12 +90,14 @@ public final class UploadCoverTrafficWorker extends ListenableWorker {
       UploadController uploadController,
       @BackgroundExecutor ExecutorService backgroundExecutor,
       @LightweightExecutor ExecutorService lightweightExecutor,
+      @ScheduledExecutor ListeningScheduledExecutorService scheduledExecutor,
       SecureRandom secureRandom,
       WorkerStartupManager workerStartupManager) {
     super(appContext, workerParams);
     this.uploadController = uploadController;
     this.backgroundExecutor = backgroundExecutor;
     this.lightweightExecutor = lightweightExecutor;
+    this.scheduledExecutor = scheduledExecutor;
     this.secureRandom = secureRandom;
     this.workerStartupManager = workerStartupManager;
   }
@@ -112,7 +121,12 @@ public final class UploadCoverTrafficWorker extends ListenableWorker {
               }
               return FluentFuture.from(uploadController.submitCode(fakeCodeRequest()))
                   .transformAsync(
-                      upload -> uploadController.submitKeysForCert(fakeCertRequest()),
+                      upload -> scheduledExecutor
+                          .schedule(() -> uploadController.submitKeysForCert(fakeCertRequest()),
+                              Duration.ofMillis(
+                                  secureRandom.nextInt(MIMIC_USER_DELAY_SLEEP_MILLIS_BOUND + 1))
+                                  .toMillis(),
+                              TimeUnit.MILLISECONDS),
                       backgroundExecutor)
                   .transformAsync(
                       upload -> uploadController.upload(fakeKeyUpload()),

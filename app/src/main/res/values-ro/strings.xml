@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">Pentru a ne ajuta să întreținem și să îmbunătățim aplicația, anumite date limitate cu informațiile de identificare eliminate despre performanța și utilizarea aplicației se trimit la Google. Aceste date nu vă identifică. %1$s</string>
   <string name="onboarding_confirm_later_title">Păstrați Notificările privind expunerea dezactivate?</string>
   <string name="onboarding_confirm_later_detail">Dacă da, nu veți fi anunțat(ă) de posibila expunere la COVID-19</string>
-  <string name="no_recent_exposure_subtitle">Nicio expunere recentă</string>
-  <string name="notifications_enabled_info">Momentan, nu aveți un risc de expunere la COVID-19 raportat. Veți fi notificat(ă) dacă o persoană de care v-ați apropiat raportează un rezultat pozitiv la testul pentru COVID-19.</string>
-  <string name="exposure_notifications_are_turned_off">Notificările privind expunerea sunt dezactivate</string>
+  <string name="no_recent_exposure_subtitle">Aplicația este activă și verifică…</string>
+  <string name="no_recent_exposure_indicator">Nicio expunere recentă</string>
+  <string name="app_active_info">Aplicația verifică periodic posibile expuneri.</string>
+  <string name="notifications_enabled_info">Momentan, nu aveți un risc de expunere la COVID-19 raportat. Veți primi o notificare dacă o persoană de care v-ați apropiat semnalează un rezultat pozitiv al testului pentru COVID-19.</string>
+  <string name="how_exposure_notifications_work_link">Cum funcționează Notificările privind expunerea</string>
+  <string name="recent_check_dialog_title">Evidența celor mai recente verificări pentru posibile expuneri</string>
+  <string name="recent_check_dialog_see_more">Vedeți mai multe</string>
+  <string name="recent_check_last_checked">Ultima verificare: %1$s</string>
+  <string name="exposure_notifications_are_turned_off">Nu verifică dacă există posibile expuneri</string>
   <string name="turn_on_exposure_notifications_action">Activați Notificările privind expunerea</string>
   <string name="recent_exposures_subtitle">Expunerea recentă</string>
   <string name="exposure_details_status_subtitle">Stare</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">COVID-19 Negativ</string>
   <string name="positive_test_result_status_shared">Trimis</string>
   <string name="positive_test_result_status_not_shared">Netrimis</string>
-  <string name="notify_turn_on_exposure_notifications_header">Ca să primiți notificări cu privire la posibila expunere la COVID-19 și să trimiteți rezultatul testului dvs. COVID-19, activați Notificările privind expunerea</string>
+  <string name="notify_turn_on_exposure_notifications_header">Momentan, aplicația nu verifică dacă există posibile expuneri. Ca să primiți notificări privind posibila expunere la COVID-19, activați Notificările privind expunerea.</string>
   <string name="share_begin_title">Protejați-vă comunitatea</string>
   <string name="share_close_title">Ieșiți fără să trimiteți?</string>
   <string name="share_close_detail">Protejați comunitatea trimițând rapid rezultatul testului. Informațiile privind rezultatul testului pe care le-ați introdus până acum sunt salvate în aplicație ca să puteți relua mai târziu editarea.</string>

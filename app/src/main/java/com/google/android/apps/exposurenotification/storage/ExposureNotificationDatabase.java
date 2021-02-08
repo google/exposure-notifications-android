@@ -49,10 +49,11 @@ import com.google.android.apps.exposurenotification.storage.Converters.ZonedDate
         DownloadServerEntity.class,
         ExposureEntity.class,
         RevisionTokenEntity.class,
-        WorkerStatusEntity.class
+        WorkerStatusEntity.class,
+        ExposureCheckEntity.class
     },
     exportSchema = true,
-    version = 40  // Do not increment without migration & tests.
+    version = 41  // Do not increment without migration & tests.
 )
 @TypeConverters({
     HasSymptomsConverter.class,
@@ -111,7 +112,8 @@ public abstract class ExposureNotificationDatabase extends RoomDatabase {
               + ");");
       database.execSQL("INSERT INTO RevisionTokenEntity"
           + " (createdTimestampMs, revisionToken)"
-          + " SELECT createdTimestampMs, revisionToken FROM DiagnosisEntity;");
+          + " SELECT createdTimestampMs, revisionToken FROM DiagnosisEntity"
+          + " WHERE revisionToken IS NOT NULL;");
     }
   };
 
@@ -128,8 +130,20 @@ public abstract class ExposureNotificationDatabase extends RoomDatabase {
     }
   };
 
+
+  static final Migration MIGRATION_40_41 = new Migration(40, 41) {
+    @Override
+    public void migrate(SupportSQLiteDatabase database) {
+      database.execSQL(
+          "CREATE TABLE ExposureCheckEntity ("
+              + "checkTime INTEGER NOT NULL, "
+              + "PRIMARY KEY(checkTime)"
+              + ")");
+    }
+  };
+
   static final Migration[] ALL_MIGRATIONS = new Migration[]{MIGRATION_35_36, MIGRATION_36_37,
-      MIGRATION_37_38, MIGRATION_38_39, MIGRATION_39_40};
+      MIGRATION_37_38, MIGRATION_38_39, MIGRATION_39_40, MIGRATION_40_41};
 
   abstract AnalyticsLoggingDao analyticsLoggingDao();
 
@@ -142,6 +156,8 @@ public abstract class ExposureNotificationDatabase extends RoomDatabase {
   abstract ExposureDao exposureDao();
 
   abstract WorkerStatusDao workerStatusDao();
+
+  abstract ExposureCheckDao exposureCheckDao();
 
   public static ExposureNotificationDatabase buildDatabase(Context context) {
     // This will create a database in:

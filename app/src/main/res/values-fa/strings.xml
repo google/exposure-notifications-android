@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">برای کمک به نگهداری و بهبود برنامه، برخی داده‌هایی محدود و غیرقابل‌شناسایی درباره عملکرد و استفاده از برنامه، با Google هم‌رسانی می‌شود. این داده‌ها هویت شما را فاش نمی‌کند. %1$s</string>
   <string name="onboarding_confirm_later_title">«اعلان تماس‌های پرخطر» خاموش بماند؟</string>
   <string name="onboarding_confirm_later_detail">اگر «اعلان تماس‌های پرخطر» را روشن نکنید، از تماس پرخطر احتمالی کووید-۱۹ مطلع نمی‌شوید</string>
-  <string name="no_recent_exposure_subtitle">تماس پرخطر جدیدی وجود ندارد</string>
-  <string name="notifications_enabled_info">درحال‌حاضر هیچ احتمالی برای تماس پرخطر کووید-۱۹ گزارش نشده است. اگر نتیجه آزمایش کووید-۱۹ یکی از افرادی که نزدیک شما قرار داشته است مثبت گزارش شود مطلع خواهید شد.</string>
-  <string name="exposure_notifications_are_turned_off">اعلان تماس‌های پرخطر خاموش است</string>
+  <string name="no_recent_exposure_subtitle">فعال و درحال بررسی …</string>
+  <string name="no_recent_exposure_indicator">تماس پرخطر جدیدی وجود ندارد</string>
+  <string name="app_active_info">برنامه‌تان به‌طور مرتب درحال بررسی است تا تماس‌های پرخطر احتمالی را پیدا کند.</string>
+  <string name="notifications_enabled_info">درحال‌حاضر هیچ گزارشی مبنی بر تماس پرخطر با کووید-۱۹ برای شما وجود ندارد. اگر نتیجه آزمایش کووید-۱۹ یکی از افرادی که نزدیک شما بوده‌اند مثبت گزارش شود مطلع خواهید شد.</string>
+  <string name="how_exposure_notifications_work_link">نحوه عملکرد «اعلان تماس‌های پرخطر»</string>
+  <string name="recent_check_dialog_title">سابقه بررسی‌های اخیر برای تماس‌های پرخطر احتمالی</string>
+  <string name="recent_check_dialog_see_more">دیدن موارد بیشتر</string>
+  <string name="recent_check_last_checked">آخرین بررسی: %1$s</string>
+  <string name="exposure_notifications_are_turned_off">تماس پرخطر احتمالی بررسی نمی‌شود</string>
   <string name="turn_on_exposure_notifications_action">روشن کردن اعلان تماس‌های پرخطر</string>
   <string name="recent_exposures_subtitle">تماس پرخطر اخیر</string>
   <string name="exposure_details_status_subtitle">وضعیت</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">کووید-۱۹ منفی</string>
   <string name="positive_test_result_status_shared">هم‌رسانی‌شده</string>
   <string name="positive_test_result_status_not_shared">هم‌رسانی‌نشده</string>
-  <string name="notify_turn_on_exposure_notifications_header">برای اینکه از تماس پرخطر احتمالی با کووید-۱۹ مطلع شوید و نتیجه آزمایش کووید-۱۹ خود را هم‌رسانی کنید، «اعلان تماس‌های پرخطر» را روشن کنید</string>
+  <string name="notify_turn_on_exposure_notifications_header">برنامه‌تان درحال‌حاضر تماس‌های پرخطر احتمالی را بررسی نمی‌کند. برای اینکه از تماس‌های پرخطر احتمالی با کووید-۱۹ مطلع شوید، «اعلان تماس‌های پرخطر» را روشن کنید.</string>
   <string name="share_begin_title">به محافظت از جامعه کمک کنید</string>
   <string name="share_close_title">بدون هم‌رسانی خارج می‌شوید؟</string>
   <string name="share_close_detail">با هم‌رسانی سریع‌تر نتیجه آزمایشتان، می‌توانید به بهترین نحو به جامعه‌تان کمک کنید. بااین‌حال اطلاعات نتیجه آزمایش که تاکنون وارد کرده‌اید در برنامه ذخیره می‌شود تا بتوانید بعداً ویرایش آن را ازسر بگیرید.</string>

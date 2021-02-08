@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">Untuk membantu penyenggaraan dan peningkatan apl, beberapa data yang dinyahkenal pasti tentang prestasi dan penggunaan apl dikongsikan dengan Google. Data ini tidak mengenal pasti anda. %1$s</string>
   <string name="onboarding_confirm_later_title">Pemberitahuan Pendedahan kekal dimatikan?</string>
   <string name="onboarding_confirm_later_detail">Tiada pemberitahuan kemungkinan pendedahan COVID-19 sehingga Pemberitahuan Pendedahan dihidupkan</string>
-  <string name="no_recent_exposure_subtitle">Tiada pendedahan baru-baru ini</string>
-  <string name="notifications_enabled_info">Anda tiada risiko pendedahan COVID-19 yang dilaporkan pada masa ini. Anda akan diberitahu jika seseorang berdekatan anda melaporkan keputusan ujian COVID-19 yang positif.</string>
-  <string name="exposure_notifications_are_turned_off">Pemberitahuan pendedahan dimatikan</string>
+  <string name="no_recent_exposure_subtitle">Aktif dan sedang menyemak …</string>
+  <string name="no_recent_exposure_indicator">Tiada pendedahan baru-baru ini</string>
+  <string name="app_active_info">Apl anda sentiasa menyemak kemungkinan pendedahan.</string>
+  <string name="notifications_enabled_info">Tiada risiko pendedahan COVID-19 yang dilaporkan pada masa ini untuk anda. Anda akan diberitahu jika seseorang berdekatan anda melaporkan keputusan ujian COVID-19 yang positif.</string>
+  <string name="how_exposure_notifications_work_link">Cara Pemberitahuan Pendedahan berfungsi</string>
+  <string name="recent_check_dialog_title">Rekod daftar masuk baru-baru ini untuk kemungkinan pendedahan</string>
+  <string name="recent_check_dialog_see_more">Lihat lagi</string>
+  <string name="recent_check_last_checked">Terakhir disemak %1$s</string>
+  <string name="exposure_notifications_are_turned_off">Tidak menyemak kemungkinan pendedahan</string>
   <string name="turn_on_exposure_notifications_action">Hidupkan Pemberitahuan Pendedahan</string>
   <string name="recent_exposures_subtitle">Pendedahan baru-baru ini</string>
   <string name="exposure_details_status_subtitle">Status</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">Negatif COVID-19</string>
   <string name="positive_test_result_status_shared">Dikongsi</string>
   <string name="positive_test_result_status_not_shared">Tidak dikongsi</string>
-  <string name="notify_turn_on_exposure_notifications_header">Untuk mendapatkan pemberitahuan tentang kemungkinan pendedahan COVID-19 &amp; berkongsi keputusan ujian COVID-19 anda, hidupkan Pemberitahuan Pendedahan</string>
+  <string name="notify_turn_on_exposure_notifications_header">Apl anda tidak menyemak kemungkinan pendedahan pada masa ini. Untuk diberitahu tentang kemungkinan pendedahan COVID-19, hidupkan Pemberitahuan Pendedahan.</string>
   <string name="share_begin_title">Lindungi komuniti anda</string>
   <string name="share_close_title">Keluar tanpa berkongsi?</string>
   <string name="share_close_detail">Anda memberikan bantuan terbaik kepada komuniti jika berkongsi keputusan ujian lebih awal. Namun, maklumat keputusan ujian yang dimasukkan setakat ini disimpan dalam apl untuk anda sambung edit nanti.</string>

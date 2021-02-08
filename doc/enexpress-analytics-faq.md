@@ -10,7 +10,12 @@ The cryptographic protocol implemented as part of analytics in ENX is designed t
 
 ### What analytics will be enabled?
 
-Initially, ENX will support three types of metrics: the number of exposure notifications sent in a public health authority’s region, the number of user interactions (e.g. taps, dismissals) with exposure notifications, and histograms of the risk scores computed for users of the Exposure Notifications System in their region.
+ENX currently supports five types of metrics:
+1. the number of exposure notifications sent in a public health authority’s region,
+2. the number of user interactions (e.g., taps, dismissals) with exposure notifications in the region,
+3. histograms of the risk scores computed for users of the Exposure Notifications System in the region,
+4. the number of exposure notifications sent in the past 14 days when verification codes are used in the region,
+5. the number of exposure notifications sent in the past 14 days when temporary exposure keys are shared in the region.
 
 ENX may be updated to support additional metrics that are useful for health authorities. This FAQ will be updated if any new metrics become supported.
 

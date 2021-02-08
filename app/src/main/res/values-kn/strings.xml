@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">ಆ್ಯಪ್ ಅನ್ನು ನಿರ್ವಹಿಸಲು ಮತ್ತು ಸುಧಾರಿಸಲು, ಆ್ಯಪ್ ಕಾರ್ಯಕ್ಷಮತೆ ಮತ್ತು ಬಳಕೆಯ ಕುರಿತು ಕೆಲವು ಸೀಮಿತ, ಗುರುತಿಸದ ಡೇಟಾವನ್ನು Google ಜೊತೆಗೆ ಹಂಚಿಕೊಳ್ಳಲಾಗುತ್ತದೆ. ಈ ಡೇಟಾ ನಿಮ್ಮನ್ನು ಗುರುತಿಸುವುದಿಲ್ಲ. %1$s</string>
   <string name="onboarding_confirm_later_title">ಎಕ್ಸ್‌ಪೋಶರ್ ಅಧಿಸೂಚನೆಗಳನ್ನು ಆಫ್‌ ಮಾಡಿ ಇಡಬೇಕೇ?</string>
   <string name="onboarding_confirm_later_detail">ಎಕ್ಸ್‌ಪೋಶರ್ ಅಧಿಸೂಚನೆಗಳನ್ನು ಆನ್ ಮಾಡುವವರೆಗೆ COVID-19 ನ ಸಂಭವನೀಯ ಸಂಪರ್ಕಕ್ಕೆ ಬಂದಿರುವ ಕುರಿತು ನಿಮಗೆ ಸೂಚಿಸಲಾಗುವುದಿಲ್ಲ</string>
-  <string name="no_recent_exposure_subtitle">ಇತ್ತೀಚಿನ ಯಾವುದೇ ಎಕ್ಸ್‌ಪೋಶರ್‌ಗಳಿಲ್ಲ</string>
-  <string name="notifications_enabled_info">ನೀವು ಪ್ರಸ್ತುತ ವರದಿ ಮಾಡಿದ COVID-19 ಸಂಪರ್ಕಕ್ಕೆ ಬಂದಿರುವ ಅಪಾಯವಿಲ್ಲ. ನಿಮ್ಮ ಸಮೀಪದಲ್ಲಿದ್ದ ಯಾರಾದರೂ ಪಾಸಿಟಿವ್ COVID-19 ಪರೀಕ್ಷಾ ಫಲಿತಾಂಶವನ್ನು ವರದಿ ಮಾಡಿದರೆ, ನಿಮಗೆ ಸೂಚಿಸಲಾಗುವುದು.</string>
-  <string name="exposure_notifications_are_turned_off">ಎಕ್ಸ್‌ಪೋಶರ್ ಅಧಿಸೂಚನೆಗಳನ್ನು ಆಫ್ ಮಾಡಲಾಗಿದೆ</string>
+  <string name="no_recent_exposure_subtitle">ಸಕ್ರಿಯವಾಗಿದೆ ಮತ್ತು ಪರಿಶೀಲಿಸುತ್ತಿದೆ …</string>
+  <string name="no_recent_exposure_indicator">ಇತ್ತೀಚೆಗೆ ಸಂಪರ್ಕಕ್ಕೆ ಬಂದಿಲ್ಲ</string>
+  <string name="app_active_info">ನಿಮ್ಮ ಆ್ಯಪ್ ಸಂಭವನೀಯ ಸಂಪರ್ಕಕ್ಕೆ ಬಂದಿರುವಿಕೆಯನ್ನು ನಿಯಮಿತವಾಗಿ ಪರಿಶೀಲಿಸುತ್ತಿದೆ.</string>
+  <string name="notifications_enabled_info">ಪ್ರಸ್ತುತ ನೀವು ವರದಿ ಮಾಡಿದ COVID-19 ಸೋಂಕಿನ ಸಂಪರ್ಕಕ್ಕೆ ಬಂದಿರುವ ಅಪಾಯವಿಲ್ಲ. ನಿಮ್ಮ ಸಮೀಪದಲ್ಲಿದ್ದ ಯಾರಾದರೂ ಪಾಸಿಟಿವ್ COVID-19 ಪರೀಕ್ಷಾ ಫಲಿತಾಂಶ ಬಂದಿರುವ ಕುರಿತು ವರದಿ ಮಾಡಿದರೆ, ನಿಮಗೆ ಸೂಚಿಸಲಾಗುತ್ತದೆ.</string>
+  <string name="how_exposure_notifications_work_link">ಎಕ್ಸ್‌ಪೋಶರ್ ಅಧಿಸೂಚನೆಗಳು ಯಾವ ರೀತಿ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತವೆ</string>
+  <string name="recent_check_dialog_title">ಸಂಭವನೀಯ ಸಂಪರ್ಕಕ್ಕೆ ಬಂದಿರುವಿಕೆಯ ಇತ್ತೀಚಿನ ಚೆಕ್ ಇನ್‌ಗಳ ದಾಖಲೆ</string>
+  <string name="recent_check_dialog_see_more">ಇನ್ನಷ್ಟು ನೋಡಿ</string>
+  <string name="recent_check_last_checked">ಕೊನೆಯದಾಗಿ ಪರಿಶೀಲಿಸಿದ ದಿನಾಂಕ %1$s</string>
+  <string name="exposure_notifications_are_turned_off">ಸಂಭವನೀಯ ಸಂಪರ್ಕಕ್ಕೆ ಬಂದಿರುವಿಕೆಯನ್ನು ಪರಿಶೀಲಿಸುತ್ತಿಲ್ಲ</string>
   <string name="turn_on_exposure_notifications_action">ಎಕ್ಸ್‌ಪೋಶರ್ ಅಧಿಸೂಚನೆಗಳನ್ನು ಆನ್ ಮಾಡಿ</string>
   <string name="recent_exposures_subtitle">ಇತ್ತೀಚೆಗೆ ಸಂಪರ್ಕಕ್ಕೆ ಬಂದಿರುವುದು</string>
   <string name="exposure_details_status_subtitle">ಸ್ಥಿತಿ</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">COVID-19 ನೆಗೆಟಿವ್</string>
   <string name="positive_test_result_status_shared">ಹಂಚಿಕೊಳ್ಳಲಾಗಿದೆ</string>
   <string name="positive_test_result_status_not_shared">ಹಂಚಿಕೊಳ್ಳದಿರುವುದು</string>
-  <string name="notify_turn_on_exposure_notifications_header">ಸಂಭವನೀಯ COVID-19 ಸಂಪರ್ಕಕ್ಕೆ ಬಂದಿರುವ ಕುರಿತು ಸೂಚನೆ ಪಡೆಯಲು ಮತ್ತು ನಿಮ್ಮ COVID-19 ಪರೀಕ್ಷಾ ಫಲಿತಾಂಶವನ್ನು ಹಂಚಿಕೊಳ್ಳಲು, ಎಕ್ಸ್‌ಪೋಶರ್ ಅಧಿಸೂಚನೆಗಳನ್ನು ಆನ್ ಮಾಡಿ</string>
+  <string name="notify_turn_on_exposure_notifications_header">ನಿಮ್ಮ ಆ್ಯಪ್ ಪ್ರಸ್ತುತ ಸಂಭವನೀಯ ಸಂಪರ್ಕಕ್ಕೆ ಬಂದಿರುವಿಕೆಗಳನ್ನು ಪರಿಶೀಲಿಸುತ್ತಿಲ್ಲ. ಸಂಭವನೀಯ COVID-19 ಸಂಪರ್ಕಕ್ಕೆ ಬಂದಿರುವಿಕೆಯ ಕುರಿತು ಸೂಚನೆ ಪಡೆಯಲು, ಎಕ್ಸ್‌ಪೋಶರ್ ಅಧಿಸೂಚನೆಗಳನ್ನು ಆನ್ ಮಾಡಿ.</string>
   <string name="share_begin_title">ನಿಮ್ಮ ಸಮುದಾಯವನ್ನು ಸುರಕ್ಷಿತವಾಗಿರಿಸಲು ಸಹಾಯ ಮಾಡಿ</string>
   <string name="share_close_title">ಹಂಚಿಕೊಳ್ಳದೆಯೇ ನಿರ್ಗಮಿಸಬೇಕೆ?</string>
   <string name="share_close_detail">ಪರೀಕ್ಷಾ ಫಲಿತಾಂಶವನ್ನು ನೀವು ಬೇಗ ಹಂಚಿಕೊಂಡರೆ, ನಿಮ್ಮ ಸಮುದಾಯಕ್ಕೆ ಉತ್ತಮವಾಗಿ ಸಹಾಯ ಮಾಡಬಹುದು. ಆದರೆ ಇಲ್ಲಿಯವರೆಗೆ ನಮೂದಿಸಿದ ಫಲಿತಾಂಶ ಮಾಹಿತಿಯನ್ನು ಆ್ಯಪ್‌ನಲ್ಲಿ ಉಳಿಸಲಾಗಿದೆ, ನಂತರ ಇದನ್ನು ಎಡಿಟ್ ಮಾಡುವುದನ್ನು ಪುನರಾರಂಭಿಸಬಹುದು.</string>

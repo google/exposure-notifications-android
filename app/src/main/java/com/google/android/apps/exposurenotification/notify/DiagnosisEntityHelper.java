@@ -18,6 +18,10 @@
 package com.google.android.apps.exposurenotification.notify;
 
 import android.text.TextUtils;
+import android.view.View;
+import android.widget.TextView;
+import androidx.viewbinding.ViewBinding;
+import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.storage.DiagnosisEntity;
 import org.threeten.bp.LocalDate;
@@ -69,6 +73,76 @@ public final class DiagnosisEntityHelper {
   /** Returns true if the entered epoch time in millis is not in the future, false otherwise. */
   public static boolean isNotInFuture(Clock clock, long timeInMillis) {
     return timeInMillis <= clock.currentTimeMillis();
+  }
+
+  /**
+   * Populates a given {@link ViewBinding} from the "Share Diagnosis" flow with the relevant
+   * DiagnosisEntity field values.
+   */
+  public static void populateViewBinding(ViewBinding binding, DiagnosisEntity diagnosisEntity,
+      String onsetDate, boolean skipTravelStatusStep) {
+    View rootView = binding.getRoot();
+
+    TextView shareReviewStatus = rootView.findViewById(R.id.share_review_status);
+    TextView shareReviewDate = rootView.findViewById(R.id.share_review_date);
+    TextView shareReviewTravel = rootView.findViewById(R.id.share_review_travel);
+    TextView shareReviewTravelSubtitle = rootView.findViewById(R.id.share_review_travel_subtitle);
+
+    if (diagnosisEntity.getTestResult() != null) {
+      switch (diagnosisEntity.getTestResult()) {
+        case LIKELY:
+          shareReviewStatus.setText(R.string.share_review_status_likely);
+          break;
+        case NEGATIVE:
+          shareReviewStatus.setText(R.string.share_review_status_negative);
+          break;
+        case CONFIRMED:
+        default:
+          shareReviewStatus.setText(R.string.share_review_status_confirmed);
+          break;
+      }
+    } else {
+      // We "shouldn't" get here, but in case, default to the most likely value rather
+      // than fail.
+      shareReviewStatus.setText(R.string.share_review_status_confirmed);
+    }
+
+    if (!skipTravelStatusStep) {
+      shareReviewTravel.setVisibility(View.VISIBLE);
+      shareReviewTravelSubtitle.setVisibility(View.VISIBLE);
+
+      if (diagnosisEntity.getTravelStatus() != null) {
+        switch (diagnosisEntity.getTravelStatus()) {
+          case TRAVELED:
+            shareReviewTravel.setText(R.string.share_review_travel_confirmed);
+            break;
+          case NOT_TRAVELED:
+            shareReviewTravel.setText(R.string.share_review_travel_no_travel);
+            break;
+          case NO_ANSWER:
+          case NOT_ATTEMPTED:
+          default:
+            shareReviewTravel.setText(R.string.share_review_travel_no_answer);
+        }
+      } else {
+        shareReviewTravel.setText(R.string.share_review_travel_no_answer);
+      }
+    }
+
+    // HasSymptoms cannot be null.
+    switch (diagnosisEntity.getHasSymptoms()) {
+      case YES:
+        shareReviewDate.setText(onsetDate);
+        break;
+      case NO:
+        shareReviewDate.setText(R.string.share_review_onset_no_symptoms);
+        break;
+      case WITHHELD:
+      case UNSET:
+      default:
+        shareReviewDate.setText(R.string.share_review_onset_no_answer);
+        break;
+    }
   }
 
   private static boolean isWithinLast14Days(Clock clock, LocalDate localDate) {

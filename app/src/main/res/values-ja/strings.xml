@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">アプリの保守と改善のため、アプリのパフォーマンスと使用状況に関するデータの一部が、匿名化されたうえで Google と共有されます。このデータから個人が特定されることはありません。%1$s</string>
   <string name="onboarding_confirm_later_title">このまま接触通知システムを無効にしますか？</string>
   <string name="onboarding_confirm_later_detail">接触通知システムを有効にするまで、COVID-19 陽性者との接触の可能性は通知されません</string>
-  <string name="no_recent_exposure_subtitle">最近の陽性者との接触の可能性はありません</string>
-  <string name="notifications_enabled_info">現在のところ、COVID-19 陽性者との接触リスクは報告されていません。近くにいた人が、COVID-19 の検査結果が陽性だったと報告した場合は通知されます。</string>
-  <string name="exposure_notifications_are_turned_off">接触通知システムは OFF です</string>
+  <string name="no_recent_exposure_subtitle">アクティブ（稼働中）</string>
+  <string name="no_recent_exposure_indicator">最近の陽性者との接触はありません</string>
+  <string name="app_active_info">お使いのアプリは陽性者との接触の可能性を定期的に確認しています。</string>
+  <string name="notifications_enabled_info">現在のところ、COVID-19（新型コロナウイルス感染症）の陽性者との接触のリスクは報告されていません。近くにいた人が、COVID-19 の検査結果が陽性だったと報告した場合は通知されます。</string>
+  <string name="how_exposure_notifications_work_link">接触通知システムの仕組み</string>
+  <string name="recent_check_dialog_title">陽性者との接触の可能性がある最近のチェックインの記録</string>
+  <string name="recent_check_dialog_see_more">詳細</string>
+  <string name="recent_check_last_checked">最終確認日: %1$s</string>
+  <string name="exposure_notifications_are_turned_off">陽性者との接触の可能性を確認していません</string>
   <string name="turn_on_exposure_notifications_action">接触通知システムを有効にする</string>
   <string name="recent_exposures_subtitle">最近の陽性者との接触</string>
   <string name="exposure_details_status_subtitle">状態</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">COVID-19 陰性</string>
   <string name="positive_test_result_status_shared">共有済み</string>
   <string name="positive_test_result_status_not_shared">未共有</string>
-  <string name="notify_turn_on_exposure_notifications_header">接触通知システムを有効にすると、COVID-19 陽性者との接触の可能性がある場合に通知を受け取ることができます。また COVID-19 の検査結果を共有することもできます。</string>
+  <string name="notify_turn_on_exposure_notifications_header">お使いのアプリは陽性者との接触の可能性を確認していません。COVID-19（新型コロナウイルス感染症）の陽性者との接触の可能性が通知されるようにするには、接触通知システムを有効にしてください。</string>
   <string name="share_begin_title">地域社会を守りましょう</string>
   <string name="share_close_title">共有せずに終了しますか？</string>
   <string name="share_close_detail">検査結果をいち早く共有することが、地域社会の感染拡大防止につながります。なお、これまでに入力した検査結果情報はこのアプリに保存されるため、後で編集を再開することもできます。</string>

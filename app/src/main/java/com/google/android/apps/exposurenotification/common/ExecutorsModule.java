@@ -78,6 +78,17 @@ public class ExecutorsModule {
   }
 
   @Provides
+  @ScheduledExecutor
+  @Singleton
+  public ListeningScheduledExecutorService provideScheduledListeningExecutor() {
+    return createScheduled(
+        "Scheduled",
+        backgroundThreadCount(),
+        Process.THREAD_PRIORITY_BACKGROUND,
+        BACKGROUND_POLICY);
+  }
+
+  @Provides
   @BackgroundExecutor
   @Singleton
   public ExecutorService provideBackgroundExecutor(
@@ -96,12 +107,9 @@ public class ExecutorsModule {
   @Provides
   @ScheduledExecutor
   @Singleton
-  public ScheduledExecutorService provideScheduledExecutor() {
-    return createScheduled(
-        "Scheduled",
-        backgroundThreadCount(),
-        Process.THREAD_PRIORITY_BACKGROUND,
-        BACKGROUND_POLICY);
+  public ScheduledExecutorService provideScheduledExecutor(
+      @ScheduledExecutor ListeningScheduledExecutorService scheduledExecutorService) {
+    return scheduledExecutorService;
   }
 
   private static ListeningExecutorService createFixed(

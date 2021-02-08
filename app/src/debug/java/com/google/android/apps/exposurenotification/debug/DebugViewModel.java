@@ -46,13 +46,17 @@ import com.google.android.apps.exposurenotification.nearby.ProvideDiagnosisKeysW
 import com.google.android.apps.exposurenotification.network.RequestQueueWrapper;
 import com.google.android.apps.exposurenotification.privateanalytics.PrivateAnalyticsDeviceAttestation;
 import com.google.android.apps.exposurenotification.privateanalytics.SubmitPrivateAnalyticsWorker;
+import com.google.android.apps.exposurenotification.privateanalytics.metrics.CodeVerifiedMetric;
 import com.google.android.apps.exposurenotification.privateanalytics.metrics.HistogramMetric;
+import com.google.android.apps.exposurenotification.privateanalytics.metrics.KeysUploadedMetric;
 import com.google.android.apps.exposurenotification.privateanalytics.metrics.PeriodicExposureNotificationInteractionMetric;
 import com.google.android.apps.exposurenotification.privateanalytics.metrics.PeriodicExposureNotificationMetric;
+import com.google.android.apps.exposurenotification.privateanalytics.metrics.PrivateAnalyticsMetric;
 import com.google.android.apps.exposurenotification.storage.CountryRepository;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.NetworkMode;
 import com.google.common.base.Splitter;
+import com.google.common.collect.Lists;
 import com.google.common.util.concurrent.FluentFuture;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
@@ -79,11 +83,11 @@ public class DebugViewModel extends ViewModel {
   private static final Pattern DEFAULT_URI_PATTERN = Pattern.compile(".*example\\.com.*");
   private static final Splitter COMMA_SPLITER = Splitter.on(",");
 
-  private static SingleLiveEvent<String> snackbarLiveEvent = new SingleLiveEvent<>();
-  private static MutableLiveData<NetworkMode> keySharingNetworkModeLiveData =
+  private static final SingleLiveEvent<String> snackbarLiveEvent = new SingleLiveEvent<>();
+  private static final MutableLiveData<NetworkMode> keySharingNetworkModeLiveData =
       new MutableLiveData<>(NetworkMode.DISABLED);
   private final LiveData<List<WorkInfo>> provideDiagnosisKeysWorkLiveData;
-  private static MutableLiveData<VerificationCode> verificationCodeLiveData =
+  private static final MutableLiveData<VerificationCode> verificationCodeLiveData =
       new MutableLiveData<>();
   private final MutableLiveData<ZonedDateTime> symptomOnSetDateLiveData = new MutableLiveData<>();
   private final MutableLiveData<String> enModuleVersionLiveData = new MutableLiveData<>("");
@@ -98,6 +102,7 @@ public class DebugViewModel extends ViewModel {
   private final PrivateAnalyticsDeviceAttestation deviceAttestation;
   private final Clock clock;
   private final ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
+  private final List<PrivateAnalyticsMetric> privateAnalyticsMetrics;
 
   @ViewModelInject
   public DebugViewModel(
@@ -109,6 +114,10 @@ public class DebugViewModel extends ViewModel {
       @UploadUri Uri uploadUri,
       @LightweightExecutor ExecutorService lightweightExecutor,
       PrivateAnalyticsDeviceAttestation privateAnalyticsDeviceAttestation,
+      PeriodicExposureNotificationMetric periodicExposureNotificationMetric,
+      PeriodicExposureNotificationInteractionMetric periodicExposureNotificationInteractionMetric,
+      CodeVerifiedMetric codeVerifiedMetric,
+      KeysUploadedMetric keysUploadedMetric,
       Clock clock,
       ExposureNotificationClientWrapper exposureNotificationClientWrapper,
       ExposureNotificationSharedPreferences exposureNotificationSharedPreferences) {
@@ -120,6 +129,8 @@ public class DebugViewModel extends ViewModel {
     this.deviceAttestation = privateAnalyticsDeviceAttestation;
     this.clock = clock;
     this.exposureNotificationSharedPreferences = exposureNotificationSharedPreferences;
+    this.privateAnalyticsMetrics = Lists.newArrayList(periodicExposureNotificationMetric,
+        periodicExposureNotificationInteractionMetric, codeVerifiedMetric, keysUploadedMetric);
     codeCreator = new VerificationCodeCreator(context, requestQueueWrapper);
     resources = context.getResources();
 
@@ -237,6 +248,8 @@ public class DebugViewModel extends ViewModel {
       listOfMetrics.add(HistogramMetric.METRIC_NAME);
       listOfMetrics.add(PeriodicExposureNotificationMetric.METRIC_NAME);
       listOfMetrics.add(PeriodicExposureNotificationInteractionMetric.METRIC_NAME);
+      listOfMetrics.add(CodeVerifiedMetric.METRIC_NAME);
+      listOfMetrics.add(KeysUploadedMetric.METRIC_NAME);
 
       KeyStore keyStore = KeyStore.getInstance("AndroidKeyStore");
       keyStore.load(null, null);
@@ -253,6 +266,9 @@ public class DebugViewModel extends ViewModel {
     }
   }
 
+  public List<PrivateAnalyticsMetric> getPrivateAnalyticsMetrics() {
+    return privateAnalyticsMetrics;
+  }
 
   public void markCountryCodesSeen(String countryCodesInput) {
     for (String countryCode : COMMA_SPLITER.split(countryCodesInput)) {

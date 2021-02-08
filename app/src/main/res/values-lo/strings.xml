@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">ເພື່ອຊ່ວຍບຳລຸງຮັກສາ ແລະ ປັບປຸງແອັບ, ຂໍ້ມູນທີ່ບໍ່ສາມາດລະບຸຕົວຕົນທີ່ຈຳກັດໄວ້ບາງຢ່າງກ່ຽວກັບປະສິດທິພາບ ແລະ ການນຳໃຊ້ແອັບຈະຖືກແບ່ງປັນໃຫ້ກັບ Google. ຂໍ້ມູນນີ້ຈະບໍ່ລະບຸຕົວຕົນຂອງທ່ານ. %1$s</string>
   <string name="onboarding_confirm_later_title">ປິດການແຈ້ງເຕືອນຄວາມສ່ຽງຕິດເຊື້ອໄວ້ຕໍ່ໄປບໍ?</string>
   <string name="onboarding_confirm_later_detail">ຈົນກວ່າຈະເປີດການແຈ້ງເຕືອນຄວາມສ່ຽງຕິດເຊື້ອ, ທ່ານຈະບໍ່ໄດ້ຮັບການແຈ້ງເຕືອນຄວາມສ່ຽງໃນການຕິດເຊື້ອ COVID-19.</string>
-  <string name="no_recent_exposure_subtitle">ບໍ່ມີຄວາມສ່ຽງຕິດເຊື້ອຫຼ້າສຸດ</string>
-  <string name="notifications_enabled_info">ຕອນນີ້ທ່ານລາຍງານວ່າບໍ່ມີຄວາມສ່ຽງໃນການຕິດເຊື້ອ COVID-19. ທ່ານຈະຖືກແຈ້ງເຕືອນຫາກທ່ານເຄີຍຢູ່ໃກ້ຄົນທີ່ລາຍງານວ່າມີຜົນກວດ COVID-19 ເປັນບວກ.</string>
-  <string name="exposure_notifications_are_turned_off">ປິດການແຈ້ງເຕືອນຄວາມສ່ຽງຕິດເຊື້ອແລ້ວ</string>
+  <string name="no_recent_exposure_subtitle">ເປີດໃຊ້ຢູ່ ແລະ ກຳລັງກວດສອບ …</string>
+  <string name="no_recent_exposure_indicator">ບໍ່ມີຄວາມສ່ຽງຕິດເຊື້ອຫຼ້າສຸດ</string>
+  <string name="app_active_info">ແອັບຂອງທ່ານມີການກວດສອບຄວາມສ່ຽງຕິດເຊື້ອທີ່ເປັນໄປໄດ້ເປັນປະຈຳ.</string>
+  <string name="notifications_enabled_info">ຕອນນີ້ບໍ່ມີລາຍງານຄວາມສ່ຽງຕິດເຊື້ອ COVID-19 ສຳລັບທ່ານ. ທ່ານຈະຖືກແຈ້ງເຕືອນຫາກທ່ານເຄີຍຢູ່ໃກ້ຄົນທີ່ລາຍງານວ່າມີຜົນກວດ COVID-19 ເປັນບວກ.</string>
+  <string name="how_exposure_notifications_work_link">ການແຈ້ງເຕືອນຄວາມສ່ຽງຕິດເຊື້ອເຮັດວຽກແນວໃດ</string>
+  <string name="recent_check_dialog_title">ບັນທຶກສຳລັບການເຊັກອິນຫຼ້າສຸດຄວາມສ່ຽງຕິດເຊື້ອທີ່ເປັນໄປໄດ້</string>
+  <string name="recent_check_dialog_see_more">ເບິ່ງເພີ່ມເຕີມ</string>
+  <string name="recent_check_last_checked">ກວດສອບຫຼ້າສຸດ %1$s</string>
+  <string name="exposure_notifications_are_turned_off">ບໍ່ໄດ້ກວດສອບຄວາມສ່ຽງຕິດເຊື້ອທີ່ເປັນໄປໄດ້</string>
   <string name="turn_on_exposure_notifications_action">ເປີດໃຊ້ການແຈ້ງເຕືອນຄວາມສ່ຽງຕິດເຊື້ອ</string>
   <string name="recent_exposures_subtitle">ຄວາມສ່ຽງຕິດເຊື້ອຫຼ້າສຸດ</string>
   <string name="exposure_details_status_subtitle">ສະຖານະ</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">COVID-19 ຜົນລົບ</string>
   <string name="positive_test_result_status_shared">ແບ່ງປັນແລ້ວ</string>
   <string name="positive_test_result_status_not_shared">ຍັງບໍ່ໄດ້ແບ່ງປັນເທື່ອ</string>
-  <string name="notify_turn_on_exposure_notifications_header">ເພື່ອຮັບການແຈ້ງເຕືອນຄວາມສ່ຽງຕິດເຊື້ອ COVID-19 ທີ່ເປັນໄປໄດ້ ແລະ ແບ່ງປັນຜົນກວດ COVID-19 ຂອງທ່ານ, ກະລຸນາເປີດໃຊ້ການແຈ້ງເຕືອນຄວາມສ່ຽງຕິດເຊື້ອກ່ອນ</string>
+  <string name="notify_turn_on_exposure_notifications_header">ຕອນນີ້ແອັບຂອງທ່ານບໍ່ຮອງຮັບການກວດສອບຄວາມສ່ຽງຕິດເຊື້ອທີ່ເປັນໄປໄດ້. ເພື່ອຮັບການແຈ້ງເຕືອນຄວາມສ່ຽງຕິດເຊື້ອ COVID-19 ທີ່ເປັນໄປໄດ້, ກະລຸນາເປີດໃຊ້ການແຈ້ງເຕືອນຄວາມສ່ຽງຕິດເຊື້ອ.</string>
   <string name="share_begin_title">ຊ່ວຍປົກປ້ອງຊຸມຊົນຂອງທ່ານ</string>
   <string name="share_close_title">ອອກໂດຍບໍ່ແບ່ງປັນບໍ?</string>
   <string name="share_close_detail">ທ່ານສາມາດຊ່ວຍຊຸມຊົນຂອງທ່ານໄດ້ດີທີ່ສຸດຫາກທ່ານແບ່ງປັນຜົນກວດຂອງທ່ານໄວຂຶ້ນ. ຢ່າງໃດກໍຕາມ, ຂໍ້ມູນການກວດທີ່ທ່ານລະບຸໄວ້ນັ້ນຖືກບັນທຶກໄວ້ໃນແອັບເພື່ອໃຫ້ທ່ານສືບຕໍ່ແກ້ໄຂໃນພາຍຫຼັງແລ້ວ.</string>

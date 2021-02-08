@@ -33,8 +33,10 @@ import androidx.work.WorkManager;
 import androidx.work.WorkRequest;
 import androidx.work.WorkerParameters;
 import com.google.android.apps.exposurenotification.common.Qualifiers.BackgroundExecutor;
+import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.logging.AnalyticsLogger;
 import com.google.android.apps.exposurenotification.proto.WorkManagerTask.WorkerTask;
+import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
 import com.google.android.apps.exposurenotification.work.WorkerStartupManager;
 import com.google.common.util.concurrent.FluentFuture;
 import com.google.common.util.concurrent.Futures;
@@ -58,6 +60,8 @@ public class SubmitPrivateAnalyticsWorker extends ListenableWorker {
   private final AnalyticsLogger analyticsLogger;
   private final WorkerStartupManager workerStartupManager;
   private static final Duration MINIMAL_ENPA_TASK_INTERVAL = Duration.ofDays(1);
+  private final ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
+  private final Clock clock;
 
   @WorkerInject
   public SubmitPrivateAnalyticsWorker(
@@ -66,12 +70,16 @@ public class SubmitPrivateAnalyticsWorker extends ListenableWorker {
       PrivateAnalyticsSubmitter privateAnalyticsSubmitter,
       @BackgroundExecutor ExecutorService backgroundExecutor,
       WorkerStartupManager workerStartupManager,
-      AnalyticsLogger analyticsLogger) {
+      AnalyticsLogger analyticsLogger,
+      Clock clock,
+      ExposureNotificationSharedPreferences exposureNotificationSharedPreferences) {
     super(context, workerParams);
     this.privateAnalyticsSubmitter = privateAnalyticsSubmitter;
     this.backgroundExecutor = backgroundExecutor;
     this.workerStartupManager = workerStartupManager;
     this.analyticsLogger = analyticsLogger;
+    this.clock = clock;
+    this.exposureNotificationSharedPreferences = exposureNotificationSharedPreferences;
   }
 
   @NonNull
@@ -82,24 +90,29 @@ public class SubmitPrivateAnalyticsWorker extends ListenableWorker {
         .transformAsync(
             (isEnabled) -> {
               analyticsLogger.logWorkManagerTaskStarted(WorkerTask.TASK_SUBMIT_PRIVATE_ANALYTICS);
-              // Only continue if it is enabled.
               if (isEnabled && PrivateAnalyticsDeviceAttestation.isDeviceAttestationAvailable()) {
                 Log.d(TAG, "Private analytics enabled and device attestation available.");
+                // Clear data older than two weeks.
+                exposureNotificationSharedPreferences
+                    .clearPrivateAnalyticsFieldsBefore(clock.now().minus(Duration.ofDays(14)));
+                // Attempt to submit packets. Note this this will return early is private analytics
+                // are remotely disabled or toggled off.
                 return privateAnalyticsSubmitter.submitPackets();
               } else {
-                Log.d(TAG, "Private analytics not enabled or device attestation unavailable.");
-                // Stop here because things aren't enabled. Will still return successful though.
+                Log.d(TAG, "API not enabled or device attestation unavailable.");
+                // Stop here because things are not enabled. Will still return successful though.
                 return Futures.immediateFailedFuture(new NotEnabledException());
               }
             },
             backgroundExecutor)
         .transform(done -> {
+          exposureNotificationSharedPreferences.setPrivateAnalyticsWorkerLastTime(clock.now());
           return Result.success();
         }, backgroundExecutor)
         .catching(
             NotEnabledException.class,
             x -> {
-              // Not enabled. Return as success.
+              exposureNotificationSharedPreferences.setPrivateAnalyticsWorkerLastTime(clock.now());
               return Result.success();
             },
             backgroundExecutor)
@@ -107,6 +120,9 @@ public class SubmitPrivateAnalyticsWorker extends ListenableWorker {
             Exception.class,
             x -> {
               Log.e(TAG, "Failure to submit private analytics", x);
+              // Even if we observe an Exception, we store the last time the worker run.
+              // Note that this will prevent older data to be uploaded.
+              exposureNotificationSharedPreferences.setPrivateAnalyticsWorkerLastTime(clock.now());
               return Result.failure();
             },
             backgroundExecutor);

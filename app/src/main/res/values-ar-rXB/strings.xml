@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">‏‮To‬‏ ‏‮help‬‏ ‏‮maintain‬‏ ‏‮and‬‏ ‏‮improve‬‏ ‏‮the‬‏ ‏‮app‬‏, ‏‮some‬‏ ‏‮limited‬‏ ‏‮de‬‏-‏‮identified‬‏ ‏‮data‬‏ ‏‮about‬‏ ‏‮app‬‏ ‏‮performance‬‏ ‏‮and‬‏ ‏‮usage‬‏ ‏‮is‬‏ ‏‮shared‬‏ ‏‮with‬‏ ‏‮Google‬‏. ‏‮This‬‏ ‏‮data‬‏ ‏‮does‬‏ ‏‮not‬‏ ‏‮identify‬‏ ‏‮you‬‏. %1$s</string>
   <string name="onboarding_confirm_later_title">‏‮Keep‬‏ ‏‮Exposure‬‏ ‏‮Notification‬‏ ‏‮turned‬‏ ‏‮off‬‏?</string>
   <string name="onboarding_confirm_later_detail">‏‮Until‬‏ ‏‮Exposure‬‏ ‏‮Notifications‬‏ ‏‮are‬‏ ‏‮turned‬‏ ‏‮on‬‏, ‏‮you‬‏ ‏‮won‬‏’‏‮t‬‏ ‏‮be‬‏ ‏‮notified‬‏ ‏‮of‬‏ ‏‮possible‬‏ ‏‮exposure‬‏ ‏‮to‬‏ ‏‮COVID‬‏-19</string>
-  <string name="no_recent_exposure_subtitle">‏‮No‬‏ ‏‮recent‬‏ ‏‮exposures‬‏</string>
-  <string name="notifications_enabled_info">‏‮You‬‏ ‏‮currently‬‏ ‏‮have‬‏ ‏‮no‬‏ ‏‮reported‬‏ ‏‮COVID‬‏-19 ‏‮exposure‬‏ ‏‮risk‬‏. ‏‮You‬‏\’‏‮ll‬‏ ‏‮be‬‏ ‏‮notified‬‏ ‏‮if‬‏ ‏‮someone‬‏ ‏‮you‬‏ ‏‮were‬‏ ‏‮near‬‏ ‏‮reports‬‏ ‏‮a‬‏ ‏‮positive‬‏ ‏‮COVID‬‏-19 ‏‮test‬‏ ‏‮result‬‏.</string>
-  <string name="exposure_notifications_are_turned_off">‏‮Exposure‬‏ ‏‮notifications‬‏ ‏‮are‬‏ ‏‮turned‬‏ ‏‮off‬‏</string>
+  <string name="no_recent_exposure_subtitle">‏‮Active‬‏ ‏‮and‬‏ ‏‮checking‬‏ …</string>
+  <string name="no_recent_exposure_indicator">‏‮No‬‏ ‏‮recent‬‏ ‏‮exposure‬‏</string>
+  <string name="app_active_info">‏‮Your‬‏ ‏‮app‬‏ ‏‮is‬‏ ‏‮regularly‬‏ ‏‮checking‬‏ ‏‮for‬‏ ‏‮possible‬‏ ‏‮exposures‬‏.</string>
+  <string name="notifications_enabled_info">‏‮There‬‏ ‏‮is‬‏ ‏‮currently‬‏ ‏‮no‬‏ ‏‮reported‬‏ ‏‮COVID‬‏-19 ‏‮exposure‬‏ ‏‮risk‬‏ ‏‮for‬‏ ‏‮you‬‏. ‏‮You‬‏\'‏‮ll‬‏ ‏‮be‬‏ ‏‮notified‬‏ ‏‮if‬‏ ‏‮someone‬‏ ‏‮you‬‏ ‏‮were‬‏ ‏‮near‬‏ ‏‮reports‬‏ ‏‮a‬‏ ‏‮positive‬‏ ‏‮COVID‬‏-19 ‏‮test‬‏ ‏‮result‬‏.</string>
+  <string name="how_exposure_notifications_work_link">‏‮How‬‏ ‏‮Exposure‬‏ ‏‮Notifications‬‏ ‏‮work‬‏</string>
+  <string name="recent_check_dialog_title">‏‮Record‬‏ ‏‮of‬‏ ‏‮recent‬‏ ‏‮check‬‏-‏‮ins‬‏ ‏‮for‬‏ ‏‮possible‬‏ ‏‮exposure‬‏</string>
+  <string name="recent_check_dialog_see_more">‏‮See‬‏ ‏‮more‬‏</string>
+  <string name="recent_check_last_checked">‏‮Last‬‏ ‏‮checked‬‏ %1$s</string>
+  <string name="exposure_notifications_are_turned_off">‏‮Not‬‏ ‏‮checking‬‏ ‏‮for‬‏ ‏‮possible‬‏ ‏‮exposure‬‏</string>
   <string name="turn_on_exposure_notifications_action">‏‮Turn‬‏ ‏‮on‬‏ ‏‮Exposure‬‏ ‏‮Notifications‬‏</string>
   <string name="recent_exposures_subtitle">‏‮Recent‬‏ ‏‮exposure‬‏</string>
   <string name="exposure_details_status_subtitle">‏‮Status‬‏</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">‏‮COVID‬‏-19 ‏‮Negative‬‏</string>
   <string name="positive_test_result_status_shared">‏‮Shared‬‏</string>
   <string name="positive_test_result_status_not_shared">‏‮Not‬‏ ‏‮shared‬‏</string>
-  <string name="notify_turn_on_exposure_notifications_header">‏‮To‬‏ ‏‮be‬‏ ‏‮notified‬‏ ‏‮of‬‏ ‏‮possible‬‏ ‏‮COVID‬‏-19 ‏‮exposure‬‏ &amp; ‏‮share‬‏ ‏‮your‬‏ ‏‮COVID‬‏-19 ‏‮test‬‏ ‏‮result‬‏, ‏‮turn‬‏ ‏‮on‬‏ ‏‮Exposure‬‏ ‏‮Notifications‬‏</string>
+  <string name="notify_turn_on_exposure_notifications_header">‏‮Your‬‏ ‏‮app‬‏ ‏‮isn‬‏\'‏‮t‬‏ ‏‮currently‬‏ ‏‮checking‬‏ ‏‮for‬‏ ‏‮possible‬‏ ‏‮exposures‬‏. ‏‮To‬‏ ‏‮be‬‏ ‏‮notified‬‏ ‏‮of‬‏ ‏‮possible‬‏ ‏‮COVID‬‏-19 ‏‮exposure‬‏, ‏‮turn‬‏ ‏‮on‬‏ ‏‮Exposure‬‏ ‏‮Notifications‬‏.</string>
   <string name="share_begin_title">‏‮Help‬‏ ‏‮protect‬‏ ‏‮your‬‏ ‏‮community‬‏</string>
   <string name="share_close_title">‏‮Exit‬‏ ‏‮without‬‏ ‏‮sharing‬‏?</string>
   <string name="share_close_detail">‏‮You‬‏ ‏‮can‬‏ ‏‮best‬‏ ‏‮help‬‏ ‏‮your‬‏ ‏‮community‬‏ ‏‮if‬‏ ‏‮you‬‏ ‏‮share‬‏ ‏‮your‬‏ ‏‮test‬‏ ‏‮result‬‏ ‏‮sooner‬‏. ‏‮However‬‏, ‏‮the‬‏ ‏‮test‬‏ ‏‮result‬‏ ‏‮information‬‏ ‏‮you‬‏\'‏‮ve‬‏ ‏‮entered‬‏ ‏‮so‬‏ ‏‮far‬‏ ‏‮is‬‏ ‏‮saved‬‏ ‏‮in‬‏ ‏‮the‬‏ ‏‮app‬‏ ‏‮for‬‏ ‏‮you‬‏ ‏‮to‬‏ ‏‮resume‬‏ ‏‮editing‬‏ ‏‮later‬‏.</string>

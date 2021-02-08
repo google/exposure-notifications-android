@@ -21,6 +21,7 @@ import static com.google.common.truth.Truth.assertThat;
 
 import androidx.lifecycle.LiveData;
 import androidx.test.core.app.ApplicationProvider;
+import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.NotificationInteraction;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.OnboardingStatus;
 import com.google.android.apps.exposurenotification.testsupport.ExposureNotificationRules;
 import com.google.android.apps.exposurenotification.testsupport.FakeClock;
@@ -79,16 +80,220 @@ public class ExposureNotificationSharedPreferencesTest {
   public void exposureNotificationLastShownClassification() {
     exposureNotificationSharedPreferences.setPrivateAnalyticsState(true);
     Instant notificationTime = Instant.ofEpochMilli(123L);
+    int classificationIndex = 1;
     exposureNotificationSharedPreferences
-        .setExposureNotificationLastShownClassification(notificationTime, /* classificationIndex= */
-            1);
+        .setExposureNotificationLastShownClassification(notificationTime, classificationIndex);
 
     assertThat(
         exposureNotificationSharedPreferences.getExposureNotificationLastShownClassification())
-        .isEqualTo(1);
+        .isEqualTo(classificationIndex);
     assertThat(exposureNotificationSharedPreferences.getExposureNotificationLastShownTime())
         .isEqualTo(notificationTime);
   }
+
+  @Test
+  public void exposureNotificationLastInteraction() {
+    exposureNotificationSharedPreferences.setPrivateAnalyticsState(true);
+    Instant interactionTime = Instant.ofEpochMilli(123L);
+    NotificationInteraction interaction = NotificationInteraction.DISMISSED;
+    int classificationIndex = 2;
+    exposureNotificationSharedPreferences
+        .setExposureNotificationLastInteraction(interactionTime, interaction, classificationIndex);
+
+    assertThat(
+        exposureNotificationSharedPreferences.getExposureNotificationLastInteractionTime())
+        .isEqualTo(interactionTime);
+    assertThat(exposureNotificationSharedPreferences.getExposureNotificationLastInteractionType())
+        .isEqualTo(interaction);
+    assertThat(
+        exposureNotificationSharedPreferences
+            .getExposureNotificationLastInteractionClassification())
+        .isEqualTo(classificationIndex);
+  }
+
+  @Test
+  public void exposureNotificationLastTimes() {
+    exposureNotificationSharedPreferences.setPrivateAnalyticsState(true);
+    Instant workerTime = Instant.ofEpochMilli(123L);
+    Instant codeMetricTime = Instant.ofEpochMilli(124L);
+    Instant keysMetricTime = Instant.ofEpochMilli(125L);
+    exposureNotificationSharedPreferences.setPrivateAnalyticsWorkerLastTime(workerTime);
+    exposureNotificationSharedPreferences.setPrivateAnalyticsLastSubmittedCodeTime(codeMetricTime);
+    exposureNotificationSharedPreferences.setPrivateAnalyticsLastSubmittedKeysTime(keysMetricTime);
+
+    assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsWorkerLastTime())
+        .isEqualTo(workerTime);
+    assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsLastSubmittedCodeTime())
+        .isEqualTo(codeMetricTime);
+    assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsLastSubmittedKeysTime())
+        .isEqualTo(keysMetricTime);
+  }
+
+  @Test
+  public void clearPrivateAnalyticsFields() {
+    exposureNotificationSharedPreferences.setPrivateAnalyticsState(true);
+    Instant zeroTime = Instant.ofEpochMilli(0L);
+    Instant time = Instant.ofEpochMilli(123L);
+    exposureNotificationSharedPreferences.setPrivateAnalyticsWorkerLastTime(time);
+    exposureNotificationSharedPreferences.setPrivateAnalyticsLastSubmittedCodeTime(time);
+    exposureNotificationSharedPreferences.setPrivateAnalyticsLastSubmittedKeysTime(time);
+    exposureNotificationSharedPreferences
+        .setExposureNotificationLastShownClassification(time, /* classificationIndex= */
+            1);
+    exposureNotificationSharedPreferences
+        .setExposureNotificationLastInteraction(time, NotificationInteraction.CLICKED, 2);
+
+    assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsWorkerLastTime())
+        .isEqualTo(time);
+    assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsLastSubmittedCodeTime())
+        .isEqualTo(time);
+    assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsLastSubmittedKeysTime())
+        .isEqualTo(time);
+    assertThat(exposureNotificationSharedPreferences.getExposureNotificationLastShownTime())
+        .isEqualTo(time);
+    assertThat(
+        exposureNotificationSharedPreferences.getExposureNotificationLastShownClassification())
+        .isEqualTo(1);
+    assertThat(exposureNotificationSharedPreferences.getExposureNotificationLastInteractionTime())
+        .isEqualTo(time);
+    assertThat(exposureNotificationSharedPreferences.getExposureNotificationLastInteractionType())
+        .isEqualTo(NotificationInteraction.CLICKED);
+    assertThat(
+        exposureNotificationSharedPreferences
+            .getExposureNotificationLastInteractionClassification())
+        .isEqualTo(2);
+
+    // Clear all the Private Analytics fields.
+    exposureNotificationSharedPreferences.clearPrivateAnalyticsFields();
+
+    assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsLastSubmittedCodeTime())
+        .isEqualTo(zeroTime);
+    assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsLastSubmittedKeysTime())
+        .isEqualTo(zeroTime);
+    assertThat(exposureNotificationSharedPreferences.getExposureNotificationLastShownTime())
+        .isEqualTo(zeroTime);
+    assertThat(
+        exposureNotificationSharedPreferences.getExposureNotificationLastShownClassification())
+        .isEqualTo(0);
+    assertThat(exposureNotificationSharedPreferences.getExposureNotificationLastInteractionTime())
+        .isEqualTo(zeroTime);
+    assertThat(exposureNotificationSharedPreferences.getExposureNotificationLastInteractionType())
+        .isEqualTo(NotificationInteraction.UNKNOWN);
+    assertThat(
+        exposureNotificationSharedPreferences.getExposureNotificationLastShownClassification())
+        .isEqualTo(0);
+
+    // The worker time is the only field not cleared.
+    assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsWorkerLastTime())
+        .isEqualTo(time);
+  }
+
+  @Test
+  public void clearValidPrivateAnalyticsFieldsFails() {
+    Instant time = clock.now().minus(Duration.ofDays(2));
+    Instant validTime = time.plusSeconds(900);
+
+    exposureNotificationSharedPreferences.setPrivateAnalyticsState(true);
+
+    // Set valid private analytics times
+    exposureNotificationSharedPreferences.setPrivateAnalyticsLastSubmittedCodeTime(validTime);
+    exposureNotificationSharedPreferences.setPrivateAnalyticsLastSubmittedKeysTime(validTime);
+    exposureNotificationSharedPreferences
+        .setExposureNotificationLastShownClassification(validTime, /* classificationIndex= */
+            1);
+    exposureNotificationSharedPreferences
+        .setExposureNotificationLastInteraction(validTime, NotificationInteraction.CLICKED, 2);
+
+    // Clear all the expired Private Analytics fields.
+    exposureNotificationSharedPreferences.clearPrivateAnalyticsFieldsBefore(time);
+
+    // Valid times should be recovered.
+    assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsLastSubmittedCodeTime())
+        .isEqualTo(validTime);
+    assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsLastSubmittedKeysTime())
+        .isEqualTo(validTime);
+    assertThat(exposureNotificationSharedPreferences.getExposureNotificationLastShownTime())
+        .isEqualTo(validTime);
+    assertThat(
+        exposureNotificationSharedPreferences.getExposureNotificationLastShownClassification())
+        .isEqualTo(1);
+    assertThat(exposureNotificationSharedPreferences.getExposureNotificationLastInteractionTime())
+        .isEqualTo(validTime);
+    assertThat(exposureNotificationSharedPreferences.getExposureNotificationLastInteractionType())
+        .isEqualTo(NotificationInteraction.CLICKED);
+    assertThat(
+        exposureNotificationSharedPreferences
+            .getExposureNotificationLastInteractionClassification())
+        .isEqualTo(2);
+  }
+
+  @Test
+  public void clearExpiredPrivateAnalyticsFieldsSuceeds() {
+    Instant time = clock.now().minus(Duration.ofDays(2));
+    Instant expiredTime = time.minusSeconds(900);
+    Instant zeroTime = Instant.EPOCH;
+
+    exposureNotificationSharedPreferences.setPrivateAnalyticsState(true);
+
+    // Set valid private analytics times
+    exposureNotificationSharedPreferences.setPrivateAnalyticsLastSubmittedCodeTime(expiredTime);
+    exposureNotificationSharedPreferences.setPrivateAnalyticsLastSubmittedKeysTime(expiredTime);
+    exposureNotificationSharedPreferences
+        .setExposureNotificationLastShownClassification(expiredTime, /* classificationIndex= */
+            1);
+    exposureNotificationSharedPreferences
+        .setExposureNotificationLastInteraction(expiredTime, NotificationInteraction.CLICKED, 2);
+
+    // Clear all the expired Private Analytics fields.
+    exposureNotificationSharedPreferences.clearPrivateAnalyticsFieldsBefore(time);
+
+    // Default values should be recovered.
+    assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsLastSubmittedCodeTime())
+        .isEqualTo(zeroTime);
+    assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsLastSubmittedKeysTime())
+        .isEqualTo(zeroTime);
+    assertThat(exposureNotificationSharedPreferences.getExposureNotificationLastShownTime())
+        .isEqualTo(zeroTime);
+    assertThat(
+        exposureNotificationSharedPreferences.getExposureNotificationLastShownClassification())
+        .isEqualTo(0);
+    assertThat(exposureNotificationSharedPreferences.getExposureNotificationLastInteractionTime())
+        .isEqualTo(zeroTime);
+    assertThat(exposureNotificationSharedPreferences.getExposureNotificationLastInteractionType())
+        .isEqualTo(NotificationInteraction.UNKNOWN);
+    assertThat(
+        exposureNotificationSharedPreferences.getExposureNotificationLastShownClassification())
+        .isEqualTo(0);
+  }
+
+  @Test
+  public void classificationIndexMustBePositive() {
+    exposureNotificationSharedPreferences.setPrivateAnalyticsState(true);
+    Instant zeroTime = Instant.EPOCH;
+
+    Instant time = Instant.ofEpochSecond(123L);
+    int classificationIndex = 0;
+    exposureNotificationSharedPreferences
+        .setExposureNotificationLastShownClassification(time, classificationIndex);
+    exposureNotificationSharedPreferences
+        .setExposureNotificationLastInteraction(time, NotificationInteraction.CLICKED,
+            classificationIndex);
+
+    // Default values should be recovered.
+    assertThat(exposureNotificationSharedPreferences.getExposureNotificationLastShownTime())
+        .isEqualTo(Instant.EPOCH);
+    assertThat(
+        exposureNotificationSharedPreferences.getExposureNotificationLastShownClassification())
+        .isEqualTo(0);
+    assertThat(exposureNotificationSharedPreferences.getExposureNotificationLastInteractionTime())
+        .isEqualTo(Instant.EPOCH);
+    assertThat(exposureNotificationSharedPreferences.getExposureNotificationLastInteractionType())
+        .isEqualTo(NotificationInteraction.UNKNOWN);
+    assertThat(
+        exposureNotificationSharedPreferences.getExposureNotificationLastShownClassification())
+        .isEqualTo(0);
+  }
+
 
   @Test
   public void onboardedState_onboarded() {

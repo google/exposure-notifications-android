@@ -24,7 +24,9 @@ import android.util.Log;
 import androidx.annotation.RequiresApi;
 import androidx.work.ListenableWorker.Result;
 import com.google.android.apps.exposurenotification.common.Qualifiers.BackgroundExecutor;
+import com.google.android.apps.exposurenotification.privateanalytics.metrics.CodeVerifiedMetric;
 import com.google.android.apps.exposurenotification.privateanalytics.metrics.HistogramMetric;
+import com.google.android.apps.exposurenotification.privateanalytics.metrics.KeysUploadedMetric;
 import com.google.android.apps.exposurenotification.privateanalytics.metrics.PeriodicExposureNotificationInteractionMetric;
 import com.google.android.apps.exposurenotification.privateanalytics.metrics.PeriodicExposureNotificationMetric;
 import com.google.android.apps.exposurenotification.privateanalytics.metrics.PrivateAnalyticsMetric;
@@ -69,6 +71,8 @@ public class PrivateAnalyticsSubmitter {
   private final PeriodicExposureNotificationMetric periodicExposureNotificationMetric;
   private final PeriodicExposureNotificationInteractionMetric
       periodicExposureNotificationInteractionMetric;
+  private final CodeVerifiedMetric codeVerifiedMetric;
+  private final KeysUploadedMetric keysUploadedMetric;
 
   @Inject
   PrivateAnalyticsSubmitter(
@@ -76,20 +80,24 @@ public class PrivateAnalyticsSubmitter {
       SecureRandom secureRandom,
       HistogramMetric histogramMetric,
       PeriodicExposureNotificationMetric periodicExposureNotificationMetric,
+      PeriodicExposureNotificationInteractionMetric periodicExposureNotificationInteractionMetric,
+      CodeVerifiedMetric codeVerifiedMetric,
+      KeysUploadedMetric keysUploadedMetric,
       PrivateAnalyticsRemoteConfig privateAnalyticsRemoteConfig,
       PrivateAnalyticsFirestoreRepository privateAnalyticsFirestoreRepository,
       ExposureNotificationSharedPreferences exposureNotificationSharedPreferences,
-      PeriodicExposureNotificationInteractionMetric periodicExposureNotificationInteractionMetric,
       Prio prio) {
     this.backgroundExecutor = backgroundExecutor;
     this.secureRandom = secureRandom;
     this.histogramMetric = histogramMetric;
     this.periodicExposureNotificationMetric = periodicExposureNotificationMetric;
+    this.periodicExposureNotificationInteractionMetric =
+        periodicExposureNotificationInteractionMetric;
+    this.codeVerifiedMetric = codeVerifiedMetric;
+    this.keysUploadedMetric = keysUploadedMetric;
     this.privateAnalyticsRemoteConfig = privateAnalyticsRemoteConfig;
     this.privateAnalyticsFirestoreRepository = privateAnalyticsFirestoreRepository;
     this.exposureNotificationSharedPreferences = exposureNotificationSharedPreferences;
-    this.periodicExposureNotificationInteractionMetric =
-        periodicExposureNotificationInteractionMetric;
     this.prio = prio;
   }
 
@@ -104,8 +112,10 @@ public class PrivateAnalyticsSubmitter {
           double riskScoreEpsilon = remoteConfigs.riskScorePrioEpsilon();
           double interactionCountSamplingRate = remoteConfigs.interactionCountPrioSamplingRate();
           double interactionCountEpsilon = remoteConfigs.interactionCountPrioEpsilon();
-          MetricsSnapshot metricsSnapshot = MetricsSnapshot
-              .fromPreferences(exposureNotificationSharedPreferences);
+          double codeVerifiedSamplingRate = remoteConfigs.codeVerifiedPrioSamplingRate();
+          double codeVerifiedEpsilon = remoteConfigs.codeVerifiedPrioEpsilon();
+          double keysUploadedSamplingRate = remoteConfigs.keysUploadedPrioSamplingRate();
+          double keysUploadedEpsilon = remoteConfigs.keysUploadedPrioEpsilon();
 
           if (!remoteEnabled) {
             Log.i(TAG, "Private analytics not enabled");
@@ -121,25 +131,39 @@ public class PrivateAnalyticsSubmitter {
 
           List<ListenableFuture<Result>> submitMetricFutures = new ArrayList<>();
 
-          if (sampleWithRate(notificationCountSampleRate)) {
+          if (sampleWithRate(periodicExposureNotificationMetric, notificationCountSampleRate)) {
             submitMetricFutures
-                .add(generateAndSubmitMetric(periodicExposureNotificationMetric, metricsSnapshot,
+                .add(generateAndSubmitMetric(periodicExposureNotificationMetric,
                     notificationCountEpsilon, remoteConfigs));
           }
 
-          if (sampleWithRate(riskScoreSampleRate)) {
+          if (sampleWithRate(histogramMetric, riskScoreSampleRate)) {
             submitMetricFutures
-                .add(generateAndSubmitMetric(histogramMetric, metricsSnapshot, riskScoreEpsilon,
+                .add(generateAndSubmitMetric(histogramMetric, riskScoreEpsilon,
                     remoteConfigs));
           }
 
-          if (sampleWithRate(interactionCountSamplingRate)) {
+          if (sampleWithRate(periodicExposureNotificationInteractionMetric,
+              interactionCountSamplingRate)) {
             submitMetricFutures
                 .add(generateAndSubmitMetric(
-                    periodicExposureNotificationInteractionMetric, metricsSnapshot,
+                    periodicExposureNotificationInteractionMetric,
                     interactionCountEpsilon,
                     remoteConfigs));
           }
+
+          if (sampleWithRate(codeVerifiedMetric, codeVerifiedSamplingRate)) {
+            submitMetricFutures
+                .add(generateAndSubmitMetric(codeVerifiedMetric, codeVerifiedEpsilon,
+                    remoteConfigs));
+          }
+
+          if (sampleWithRate(keysUploadedMetric, keysUploadedSamplingRate)) {
+            submitMetricFutures
+                .add(generateAndSubmitMetric(keysUploadedMetric, keysUploadedEpsilon,
+                    remoteConfigs));
+          }
+
           return FluentFuture.from(Futures.successfulAsList(submitMetricFutures))
               .transform(ImmutableList::copyOf, backgroundExecutor);
         }, backgroundExecutor);
@@ -148,11 +172,11 @@ public class PrivateAnalyticsSubmitter {
 
   @RequiresApi(api = VERSION_CODES.N)
   public ListenableFuture<Result> generateAndSubmitMetric(PrivateAnalyticsMetric privateMetric,
-      MetricsSnapshot metricsSnapshot, double epsilon, RemoteConfigs remoteConfigs) {
+      double epsilon, RemoteConfigs remoteConfigs) {
     String metricName = privateMetric.getMetricName();
 
     return FluentFuture
-        .from(privateMetric.getDataVector(metricsSnapshot))
+        .from(privateMetric.getDataVector())
         .transform(
             dataVector ->
                 generatePacketsParameters(dataVector, epsilon, remoteConfigs.phaCertificate(),
@@ -174,7 +198,6 @@ public class PrivateAnalyticsSubmitter {
             backgroundExecutor)
         .transform(
             unused -> {
-              privateMetric.resetData();
               Log.d(TAG,
                   String.format("Workflow for metric %s finished successfully.", metricName));
               return Result.success();
@@ -188,9 +211,11 @@ public class PrivateAnalyticsSubmitter {
             backgroundExecutor);
   }
 
-  private boolean sampleWithRate(double sampleRate) {
+  private boolean sampleWithRate(PrivateAnalyticsMetric privateMetric, double sampleRate) {
     if (secureRandom.nextDouble() > sampleRate) {
-      Log.i(TAG, "Skipping sample. samplingRate=" + sampleRate);
+      Log.d(TAG,
+          "Skipping sample for metric " + privateMetric.getMetricName() + ". samplingRate="
+              + sampleRate);
       return false;
     }
     return true;
@@ -198,29 +223,22 @@ public class PrivateAnalyticsSubmitter {
 
   private CreatePacketsParameters generatePacketsParameters(List<Integer> data, double epsilon,
       String phaCert, String facilitatorCert) {
-    PrioAlgorithmParameters.Builder prioParamsBuilder =
-        PrioAlgorithmParameters.newBuilder()
-            .setBins(data.size())
-            .setEpsilon(epsilon)
-            .setNumberServers(NUMBER_SERVERS)
-            .setPrime(PRIME);
-
-    PrioAlgorithmParameters prioParams = prioParamsBuilder.build();
-    Log.i(
+    PrioAlgorithmParameters prioParams = PrioAlgorithmParameters.newBuilder()
+        .setBins(data.size())
+        .setEpsilon(epsilon)
+        .setNumberServers(NUMBER_SERVERS)
+        .setPrime(PRIME).build();
+    Log.d(
         TAG,
         "Generating packets w/ params: bins="
             + prioParams.getBins()
             + " epsilon="
             + prioParams.getEpsilon());
-    if (prioParams.hasHammingWeight()) {
-      Log.i(TAG, "Hamming weight specified =" + prioParams.getHammingWeight());
-    }
 
     // Construct the CreatePacketsParameters
     CreatePacketsParameters.Builder createParamsBuilder = CreatePacketsParameters.newBuilder();
     createParamsBuilder.addAllDataBits(data);
     createParamsBuilder.setPrioParameters(prioParams);
-
     createParamsBuilder.addPublicKeys(phaCert);
     createParamsBuilder.addPublicKeys(facilitatorCert);
     return createParamsBuilder.build();

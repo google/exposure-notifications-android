@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">Niektoré obmedzené údaje o výkonnosti a používaní aplikácie, ktoré neumožňujú osobnú identifikáciu, sú zdieľané s Googlom, aby sme ju mohli udržiavať v chode a zlepšovať. Podľa týchto údajov vás nie je možné identifikovať. %1$s</string>
   <string name="onboarding_confirm_later_title">Chcete nechať upozornenia na kontakt vypnuté?</string>
   <string name="onboarding_confirm_later_detail">Ak nezapnete upozornenia na kontakt, nedostanete upozornenie na kontakt s ochorením COVID‑19</string>
-  <string name="no_recent_exposure_subtitle">Žiadne nedávne kontakty</string>
-  <string name="notifications_enabled_info">Momentálne nemáte žiadne hlásené riziko kontaktov s ochorením COVID‑19. V prípade, že ste sa ocitli v blízkosti osoby, ktorá nahlásila pozitívny výsledok testu na ochorenie COVID‑19, dostanete upozornenie.</string>
-  <string name="exposure_notifications_are_turned_off">Upozornenia na kontakt sú vypnuté</string>
+  <string name="no_recent_exposure_subtitle">Aktívne a kontrolujte sa…</string>
+  <string name="no_recent_exposure_indicator">Žiadny nedávny kontakt</string>
+  <string name="app_active_info">Vaša aplikácia pravidelne kontroluje, či ste neprišli do možného kontaktu.</string>
+  <string name="notifications_enabled_info">Momentálne nemáte žiadne hlásené riziko kontaktov s ochorením COVID‑19. Ak ste sa ocitli v blízkosti osoby, ktorá nahlásila pozitívny výsledok testu na ochorenie COVID‑19, dostanete upozornenie.</string>
+  <string name="how_exposure_notifications_work_link">Ako fungujú upozornenia na kontakt</string>
+  <string name="recent_check_dialog_title">Záznam nedávnych príjazdov z dôvodu možného kontaktu</string>
+  <string name="recent_check_dialog_see_more">Zobraziť viac</string>
+  <string name="recent_check_last_checked">Naposledy skontrolované %1$s</string>
+  <string name="exposure_notifications_are_turned_off">Možné kontakty sa nekontrolujú</string>
   <string name="turn_on_exposure_notifications_action">Zapnúť upozornenia na kontakt</string>
   <string name="recent_exposures_subtitle">Nedávny kontakt</string>
   <string name="exposure_details_status_subtitle">Stav</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">Negatívny test na COVID‑19</string>
   <string name="positive_test_result_status_shared">Zdieľané</string>
   <string name="positive_test_result_status_not_shared">Nezdieľané</string>
-  <string name="notify_turn_on_exposure_notifications_header">Ak chcete dostávať upozornenia na možný kontakt s ochorením COVID‑19 a zdieľať výsledok testu na toto ochorenie, zapnite upozornenia na kontakt</string>
+  <string name="notify_turn_on_exposure_notifications_header">Vaša aplikácia momentálne nekontroluje možné kontakty. Ak chcete dostávať upozornenia na možný kontakt s ochorením COVID‑19, zapnite upozornenia na kontakt.</string>
   <string name="share_begin_title">Pomôžte chrániť svoje okolie</string>
   <string name="share_close_title">Chcete odísť bez zdieľania?</string>
   <string name="share_close_detail">Čím skôr budete výsledok testu zdieľať, tým viac pomôžete svojej komunite. Informácie o výsledku testu, ktoré ste zadali, budú uložené v tejto aplikácii, kde môžete neskôr pokračovať v ich upravovaní.</string>
@@ -134,7 +140,7 @@
   <string name="network_error_code_expired">Overovací kód je zastaraný. Kontaktujte úrad %1$s a požiadajte ho o nový.</string>
   <string name="network_error_server_error">Vyskytol sa problém. Skúste to znova.</string>
   <string name="network_error_unsupported_test_type">Overovací kód sa nedá použiť v tejto verzii aplikácie. Inovujte ju a skúste to znova.</string>
-  <string name="share_error">Výsledok testu sa nedá zdieľať. Skúste to znova neskôr.</string>
+  <string name="share_error">Výsledok testu sa nedá zdieľať. Skúste to neskôr.</string>
   <string name="generic_error_message">Vyskytol sa problém. Skúste to znova.</string>
   <string name="code_error_already_submitted">Pomocou tohto kódu už bol zdieľaný výsledok testu</string>
   <string name="settings_private_analytics_subtitle">Zdieľanie štatistík upozornení na kontakt</string>

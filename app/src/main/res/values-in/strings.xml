@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">Untuk membantu memelihara dan menyempurnakan aplikasi, beberapa data terbatas yang tidak diidentifikasi tentang performa dan penggunaan aplikasi dibagikan kepada Google. Data ini tidak mengidentifikasikan Anda. %1$s</string>
   <string name="onboarding_confirm_later_title">Tetap nonaktifkan Notifikasi Paparan?</string>
   <string name="onboarding_confirm_later_detail">Hingga Notifikasi Paparan diaktifkan, Anda tidak akan menerima pemberitahuan tentang kemungkinan paparan COVID-19</string>
-  <string name="no_recent_exposure_subtitle">Tidak ada paparan terbaru</string>
-  <string name="notifications_enabled_info">Saat ini tidak ada risiko paparan COVID-19 yang dilaporkan. Anda akan mendapatkan pemberitahuan jika ada orang di dekat Anda yang melaporkan hasil tes positif COVID-19.</string>
-  <string name="exposure_notifications_are_turned_off">Notifikasi paparan dinonaktifkan</string>
+  <string name="no_recent_exposure_subtitle">Aktif dan memeriksa …</string>
+  <string name="no_recent_exposure_indicator">Tidak ada paparan terkini</string>
+  <string name="app_active_info">Aplikasi Anda memeriksa kemungkinan paparan secara berkala.</string>
+  <string name="notifications_enabled_info">Saat ini, tidak ada risiko paparan COVID-19 yang dilaporkan untuk Anda. Anda akan mendapatkan notifikasi jika seseorang yang berada di dekat Anda melaporkan hasil tes positif COVID-19.</string>
+  <string name="how_exposure_notifications_work_link">Cara kerja Notifikasi Paparan</string>
+  <string name="recent_check_dialog_title">Data histori terbaru kemungkinan paparan</string>
+  <string name="recent_check_dialog_see_more">Lihat lebih banyak</string>
+  <string name="recent_check_last_checked">Terakhir diperiksa %1$s</string>
+  <string name="exposure_notifications_are_turned_off">Tidak memeriksa kemungkinan paparan</string>
   <string name="turn_on_exposure_notifications_action">Aktifkan Notifikasi Paparan</string>
   <string name="recent_exposures_subtitle">Paparan terkini</string>
   <string name="exposure_details_status_subtitle">Status</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">Negatif COVID-19</string>
   <string name="positive_test_result_status_shared">Dibagikan</string>
   <string name="positive_test_result_status_not_shared">Tidak dibagikan</string>
-  <string name="notify_turn_on_exposure_notifications_header">Untuk mendapatkan pemberitahuan mengenai kemungkinan paparan COVID-19 dan membagikan hasil tes COVID-19 Anda, aktifkan Notifikasi Paparan</string>
+  <string name="notify_turn_on_exposure_notifications_header">Aplikasi Anda saat ini tidak memeriksa kemungkinan paparan. Untuk mendapatkan notifikasi kemungkinan paparan COVID-19, aktifkan Notifikasi Paparan.</string>
   <string name="share_begin_title">Bantu lindungi masyarakat sekitar</string>
   <string name="share_close_title">Keluar tanpa berbagi?</string>
   <string name="share_close_detail">Anda dapat membantu komunitas Anda dengan membagikan hasil tes secepatnya. Namun, informasi hasil tes yang Anda masukkan sejauh ini disimpan di aplikasi agar Anda dapat melanjutkan pengeditan nanti.</string>

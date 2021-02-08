@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">এপ্‌টো চলাই ৰখা আৰু উন্নত কৰাত সহায় কৰিবলৈ, এপ্‌টোৰ কাৰ্যদক্ষতা আৰু ব্যৱহাৰ সম্পৰ্কীয় কিছুমান সীমিত ব্যক্তিগত তথ্য প্ৰকাশ নোপোৱা ডেটা Googleৰ সৈতে শ্বেয়াৰ কৰা হয়। এই ডেটাখিনিয়ে আপোনাক চিনাক্ত নকৰে। %1$s</string>
   <string name="onboarding_confirm_later_title">এক্সপ’জাৰ ন’টিফিকেশ্বন অফ কৰি ৰাখিবনে?</string>
   <string name="onboarding_confirm_later_detail">এক্সপ’জাৰ ন’টিফিকেশ্বন অন নকৰালৈকে আপোনাক COVID-19ৰ সম্ভাব্য এক্সপ’জাৰৰ বিষয়ে জাননী দিয়া নহ\'ব</string>
-  <string name="no_recent_exposure_subtitle">কোনো শেহতীয়া এক্সপ’জাৰ নাই</string>
-  <string name="notifications_enabled_info">বৰ্তমান আপোনাৰ COVID-19ৰ এক্সপ’জাৰৰ বিপদাশংকা থকা কোনো ৰিপৰ্ট অহা নাই। আপুনি পূৰ্বতে কাষলৈ অহা কোনো লোকৰ COVID-19ৰ পৰীক্ষাৰ ফলাফল ধনাত্মক বুলি ৰিপ’ৰ্ট আহিলে আপোনাক জাননী দিয়া হ\'ব।</string>
-  <string name="exposure_notifications_are_turned_off">এক্সপ’জাৰ ন’টিফিকেশ্বন অফ কৰা আছে</string>
+  <string name="no_recent_exposure_subtitle">সক্ৰিয় হৈ আছে আৰু পৰীক্ষা কৰি থকা হৈছে …</string>
+  <string name="no_recent_exposure_indicator">কোনো শেহতীয়া সংস্পৰ্শ নাই</string>
+  <string name="app_active_info">আপোনাৰ এপ্‌টোৱে নিয়মিতভাৱে সম্ভাব্য সংস্পৰ্শৰ বাবে পৰীক্ষা কৰি আছে।</string>
+  <string name="notifications_enabled_info">বৰ্তমান আপোনাৰ COVID-19ৰ সংস্পৰ্শৰ বিপদাশংকা থকা কোনো ৰিপ’ৰ্ট অহা নাই। আপুনি পূৰ্বতে কাষলৈ অহা কোনো লোকৰ COVID-19ৰ পৰীক্ষাৰ ফলাফল ধনাত্মক বুলি ৰিপ’ৰ্ট আহিলে আপোনাক জাননী দিয়া হ’ব।</string>
+  <string name="how_exposure_notifications_work_link">এক্সপ’জাৰ ন’টিফিকেশ্বনে কেনেকৈ কাম কৰে</string>
+  <string name="recent_check_dialog_title">সম্ভাব্য সংস্পৰ্শৰ বাবে শেহতীয়া চেক-ইনৰ ৰেকৰ্ড</string>
+  <string name="recent_check_dialog_see_more">অধিক চাওক</string>
+  <string name="recent_check_last_checked">অন্তিমবাৰ %1$sত পৰীক্ষা কৰা হৈছিল</string>
+  <string name="exposure_notifications_are_turned_off">সম্ভাব্য সংস্পৰ্শৰ বাবে পৰীক্ষা কৰি থকা নাই</string>
   <string name="turn_on_exposure_notifications_action">এক্সপ’জাৰ ন’টিফিকেশ্বন অন কৰক</string>
   <string name="recent_exposures_subtitle">শেহতীয়া এক্সপ’জাৰ</string>
   <string name="exposure_details_status_subtitle">স্থিতি</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">COVID-19ৰ পৰীক্ষাৰ ফলাফল ঋণাত্মক</string>
   <string name="positive_test_result_status_shared">শ্বেয়াৰ কৰা</string>
   <string name="positive_test_result_status_not_shared">শ্বেয়াৰ কৰা হোৱা নাই</string>
-  <string name="notify_turn_on_exposure_notifications_header">সম্ভাব্য COVID-19ৰ এক্সপ’জাৰৰ বিষয়ে জাননী পাবলৈ আৰু আপোনাৰ COVID-19ৰ ফলাফল শ্বেয়াৰ কৰিবলৈ এক্সপ’জাৰ ন’টিফিকেশ্বন অন কৰক</string>
+  <string name="notify_turn_on_exposure_notifications_header">আপোনাৰ এপ্‌টোৱে বৰ্তমান সম্ভাব্য সংস্পৰ্শৰ বাবে পৰীক্ষা কৰি থকা নাই। সম্ভাব্য COVID-19ৰ সংস্পৰ্শৰ বিষয়ে জাননী পাবলৈ এক্সপ’জাৰ ন’টিফিকেশ্বন অন কৰক।</string>
   <string name="share_begin_title">আপোনাৰ সম্প্ৰদায়টো সুৰক্ষিত কৰাত সহায় কৰক</string>
   <string name="share_close_title">শ্বেয়াৰ নকৰাকৈ বাহিৰ হ’বনে?</string>
   <string name="share_close_detail">আপুনি নিজৰ পৰীক্ষাৰ ফলাফল সোনকালে শ্বেয়াৰ কৰি নিজৰ সম্প্ৰদায়টোক সহায় কৰিব পাৰে। কিন্তু, আপুনি পাছত সম্পাদনা কৰা পুনৰ আৰম্ভ কৰিব পৰাকৈ আপুনি এতিয়ালৈকে দিয়া পৰীক্ষাৰ ফলাফলৰ তথ্য এপ্‌টোত ছেভ কৰা হৈছে।</string>

@@ -18,26 +18,32 @@
 package com.google.android.apps.exposurenotification.debug;
 
 import static android.app.Activity.RESULT_OK;
+import static com.google.android.gms.nearby.exposurenotification.ExposureNotificationClient.ACTION_PRE_AUTHORIZE_RELEASE_PHONE_UNLOCKED;
+import static com.google.android.gms.nearby.exposurenotification.ExposureNotificationClient.EXTRA_TEMPORARY_EXPOSURE_KEY_LIST;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.IntentSender.SendIntentException;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ProgressBar;
-import android.widget.ViewSwitcher;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.databinding.FragmentMatchingViewBinding;
+import com.google.android.apps.exposurenotification.debug.KeysMatchingViewModel.ResolutionRequiredEvent;
+import com.google.android.apps.exposurenotification.debug.KeysMatchingViewModel.ResolutionType;
 import com.google.android.apps.exposurenotification.utils.RequestCodes;
+import com.google.android.gms.nearby.exposurenotification.TemporaryExposureKey;
 import com.google.android.material.snackbar.Snackbar;
 import dagger.hilt.android.AndroidEntryPoint;
+import java.util.List;
 
 /**
  * Fragment for the view tab in {@link MatchingDebugActivity}.
@@ -47,11 +53,13 @@ public class KeysMatchingFragment extends Fragment {
 
   private static final String TAG = "ViewKeysFragment";
 
+  private FragmentMatchingViewBinding binding;
   private KeysMatchingViewModel keysMatchingViewModel;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-    return inflater.inflate(R.layout.fragment_matching_view, parent, false);
+    binding = FragmentMatchingViewBinding.inflate(inflater, parent, false);
+    return binding.getRoot();
   }
 
   @Override
@@ -62,36 +70,29 @@ public class KeysMatchingFragment extends Fragment {
 
     TemporaryExposureKeyAdapter temporaryExposureKeyAdapter = new TemporaryExposureKeyAdapter();
     final LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-    RecyclerView recyclerView = view.findViewById(R.id.temporary_exposure_key_recycler_view);
-    recyclerView.setLayoutManager(layoutManager);
-    recyclerView.setAdapter(temporaryExposureKeyAdapter);
+    binding.temporaryExposureKeyRecyclerView.setLayoutManager(layoutManager);
+    binding.temporaryExposureKeyRecyclerView.setAdapter(temporaryExposureKeyAdapter);
 
-    ViewSwitcher viewSwitcher = view.findViewById(R.id.debug_matching_view_keys_switcher);
     keysMatchingViewModel
         .getTemporaryExposureKeysLiveData()
         .observe(
             getViewLifecycleOwner(),
-            temporaryExposureKeys -> {
-              temporaryExposureKeyAdapter.setTemporaryExposureKeys(temporaryExposureKeys);
-              if (temporaryExposureKeys.isEmpty()) {
-                viewSwitcher.setDisplayedChild(0);
-              } else {
-                viewSwitcher.setDisplayedChild(1);
-              }
-            });
+            temporaryExposureKeys ->
+                displayTemporaryExposureKeys(temporaryExposureKeys, temporaryExposureKeyAdapter));
 
     keysMatchingViewModel
         .getResolutionRequiredLiveEvent()
         .observe(
             this,
-            apiException -> {
+            event -> {
               try {
-                apiException
+                event
+                    .getException()
                     .getStatus()
                     .startResolutionForResult(
-                        getActivity(), RequestCodes.REQUEST_CODE_GET_TEMP_EXPOSURE_KEY_HISTORY);
+                        getActivity(), getRequestCodeForResolutionRequiredEvent(event));
               } catch (SendIntentException e) {
-                Log.w(TAG, "Error calling startResolutionForResult", apiException);
+                Log.w(TAG, "Error calling startResolutionForResult", event.getException());
               }
             });
 
@@ -107,24 +108,104 @@ public class KeysMatchingFragment extends Fragment {
             getViewLifecycleOwner(),
             unused -> maybeShowSnackbar(getString(R.string.debug_matching_view_api_not_enabled)));
 
-    Button requestKeys = view.findViewById(R.id.debug_matching_view_request_keys_button);
-    ProgressBar progressBar = view.findViewById(R.id.debug_matching_view_request_key_progress_bar);
     keysMatchingViewModel
         .getInFlightResolutionLiveData()
         .observe(
             getViewLifecycleOwner(),
-            hasInFlightResolution -> {
-              if (hasInFlightResolution) {
-                requestKeys.setEnabled(false);
-                requestKeys.setText("");
-                progressBar.setVisibility(View.VISIBLE);
+            inFlightResolution -> {
+              if (inFlightResolution.hasInFlightResolution()) {
+                if (inFlightResolution.getResolutionType()
+                    == ResolutionType.GET_TEMPORARY_EXPOSURE_KEY_HISTORY) {
+                  binding.debugMatchingViewRequestKeysButton.setEnabled(false);
+                  binding.debugMatchingViewRequestKeysButton.setText("");
+                  binding.debugMatchingViewRequestKeyProgressBar.setVisibility(View.VISIBLE);
+                } else if (inFlightResolution.getResolutionType()
+                    == ResolutionType.PREAUTHORIZE_TEMPORARY_EXPOSURE_KEY_RELEASE) {
+                  binding.debugMatchingViewRequestKeysPreauthorizationButton.setEnabled(false);
+                  binding.debugMatchingViewRequestKeysPreauthorizationButton.setText("");
+                  binding.debugMatchingViewRequestKeysPreauthorizationProgressBar
+                      .setVisibility(View.VISIBLE);
+                } else if (inFlightResolution.getResolutionType()
+                    == ResolutionType.GET_PREAUTHORIZED_TEMPORARY_EXPOSURE_KEY_HISTORY) {
+                  binding.debugMatchingViewRequestKeysPreauthorizationGetButton.setEnabled(false);
+                  binding.debugMatchingViewRequestKeysPreauthorizationGetButton.setText("");
+                  binding.debugMatchingViewRequestKeysPreauthorizationGetProgressBar
+                      .setVisibility(View.VISIBLE);
+                }
               } else {
-                requestKeys.setEnabled(true);
-                requestKeys.setText(R.string.debug_matching_view_get_keys_button_text);
-                progressBar.setVisibility(View.INVISIBLE);
+                binding.debugMatchingViewRequestKeysButton.setEnabled(true);
+                binding.debugMatchingViewRequestKeysButton.setText(
+                    R.string.debug_matching_view_get_keys_button_text);
+                binding.debugMatchingViewRequestKeyProgressBar.setVisibility(View.INVISIBLE);
+
+                binding.debugMatchingViewRequestKeysPreauthorizationButton.setEnabled(true);
+                binding.debugMatchingViewRequestKeysPreauthorizationButton.setText(
+                    R.string.debug_matching_view_get_keys_preauthorize_button_text);
+                binding.debugMatchingViewRequestKeysPreauthorizationProgressBar
+                    .setVisibility(View.INVISIBLE);
+
+                binding.debugMatchingViewRequestKeysPreauthorizationGetButton.setEnabled(true);
+                binding.debugMatchingViewRequestKeysPreauthorizationGetButton.setText(
+                    R.string.debug_matching_view_get_keys_preauthorize_get_button_text);
+                binding.debugMatchingViewRequestKeysPreauthorizationGetProgressBar
+                    .setVisibility(View.INVISIBLE);
               }
             });
-    requestKeys.setOnClickListener(v -> keysMatchingViewModel.updateTemporaryExposureKeys());
+    keysMatchingViewModel
+        .getWaitForKeyBroadcastsEvent()
+        .observe(
+            getViewLifecycleOwner(),
+            unused -> {
+              if (getContext() != null) {
+                getContext()
+                    .registerReceiver(
+                        new BroadcastReceiver() {
+                          @Override
+                          public void onReceive(Context context, Intent intent) {
+                            if (intent.hasExtra(EXTRA_TEMPORARY_EXPOSURE_KEY_LIST)) {
+                              keysMatchingViewModel.handleTemporaryExposureKeys(
+                                  intent.getParcelableArrayListExtra(
+                                      EXTRA_TEMPORARY_EXPOSURE_KEY_LIST));
+                            }
+                            if (getContext() != null) {
+                              getContext().unregisterReceiver(this);
+                            }
+                          }
+                        }, new IntentFilter(ACTION_PRE_AUTHORIZE_RELEASE_PHONE_UNLOCKED));
+              }
+            });
+    binding.debugMatchingViewRequestKeysButton.setOnClickListener(
+        v -> keysMatchingViewModel.updateTemporaryExposureKeys());
+    binding.debugMatchingViewRequestKeysPreauthorizationButton.setOnClickListener(
+        v -> keysMatchingViewModel.requestPreAuthorizationOfTemporaryExposureKeyHistory());
+    binding.debugMatchingViewRequestKeysPreauthorizationGetButton.setOnClickListener(
+        v -> keysMatchingViewModel.requestPreAuthorizedReleaseOfTemporaryExposureKeys());
+  }
+
+  private void displayTemporaryExposureKeys(
+      List<TemporaryExposureKey> keys, TemporaryExposureKeyAdapter adapter) {
+    adapter.setTemporaryExposureKeys(keys);
+    if (keys.isEmpty()) {
+      binding.debugMatchingViewKeysSwitcher.setDisplayedChild(0);
+    } else {
+      binding.debugMatchingViewKeysSwitcher.setDisplayedChild(1);
+    }
+  }
+
+  @Override
+  public void onDestroyView() {
+    super.onDestroyView();
+    binding = null;
+  }
+
+  private int getRequestCodeForResolutionRequiredEvent(ResolutionRequiredEvent event) {
+    if (event.getResolutionType() == ResolutionType.GET_TEMPORARY_EXPOSURE_KEY_HISTORY) {
+      return RequestCodes.REQUEST_CODE_GET_TEMP_EXPOSURE_KEY_HISTORY;
+    } else if (event.getResolutionType()
+        == ResolutionType.PREAUTHORIZE_TEMPORARY_EXPOSURE_KEY_RELEASE) {
+      return RequestCodes.REQUEST_CODE_PREAUTHORIZE_TEMP_EXPOSURE_KEY_RELEASE;
+    }
+    return RequestCodes.REQUEST_CODE_UNKNOWN;
   }
 
   @Override
@@ -132,10 +213,17 @@ public class KeysMatchingFragment extends Fragment {
     if (requestCode == RequestCodes.REQUEST_CODE_GET_TEMP_EXPOSURE_KEY_HISTORY) {
       if (resultCode == RESULT_OK) {
         // Resolution completed. Submit data again.
-        keysMatchingViewModel.startResolutionResultOk();
+        keysMatchingViewModel.startResolutionResultGetHistoryOk();
       } else {
         keysMatchingViewModel.startResolutionResultNotOk();
         maybeShowSnackbar(getString(R.string.debug_matching_view_rejected));
+      }
+    } else if (requestCode == RequestCodes.REQUEST_CODE_PREAUTHORIZE_TEMP_EXPOSURE_KEY_RELEASE) {
+      if (resultCode == RESULT_OK) {
+        keysMatchingViewModel.startResolutionResultPreauthorizationOk();
+      } else {
+        keysMatchingViewModel.startResolutionResultNotOk();
+        maybeShowSnackbar(getString(R.string.debug_matching_view_preauthorization_rejected));
       }
     }
   }

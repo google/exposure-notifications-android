@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">Чтобы улучшать и поддерживать работу приложения, Google собирает ограниченный набор анонимных данных о его использовании и производительности. Идентифицировать пользователя по этим данным невозможно. %1$s</string>
   <string name="onboarding_confirm_later_title">Продолжить без уведомлений о риске инфицирования?</string>
   <string name="onboarding_confirm_later_detail">Если вы не включите уведомления, то не сможете узнать о возможном риске инфицирования COVID-19.</string>
-  <string name="no_recent_exposure_subtitle">Нет новых контактов</string>
-  <string name="notifications_enabled_info">У вас нет новых сообщений о риске инфицирования COVID-19. Если кто-то из тех, с кем вы были рядом, сообщит о положительном тесте на COVID-19, вы получите уведомление.</string>
-  <string name="exposure_notifications_are_turned_off">Уведомления отключены</string>
+  <string name="no_recent_exposure_subtitle">Приложение активно и выполняет проверку</string>
+  <string name="no_recent_exposure_indicator">Нет недавних контактов</string>
+  <string name="app_active_info">Приложение постоянно отслеживает риск инфицирования.</string>
+  <string name="notifications_enabled_info">В настоящее время нет новых сообщений о риске инфицирования COVID-19. Если кто-то из тех, с кем вы были рядом, сообщит о положительном тесте на COVID-19, вы получите уведомление.</string>
+  <string name="how_exposure_notifications_work_link">Как работают Уведомления о риске инфицирования</string>
+  <string name="recent_check_dialog_title">Список недавних отметок о проверке риска инфицирования</string>
+  <string name="recent_check_dialog_see_more">Ещё</string>
+  <string name="recent_check_last_checked">Последняя проверка: %1$s.</string>
+  <string name="exposure_notifications_are_turned_off">Проверка риска инфицирования не выполняется</string>
   <string name="turn_on_exposure_notifications_action">Включить уведомления</string>
   <string name="recent_exposures_subtitle">Недавний контакт</string>
   <string name="exposure_details_status_subtitle">Статус</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">Отрицательный тест на COVID-19</string>
   <string name="positive_test_result_status_shared">Отправлено</string>
   <string name="positive_test_result_status_not_shared">Не отправлено</string>
-  <string name="notify_turn_on_exposure_notifications_header">Чтобы получать сообщения о возможных контактах с инфицированными COVID-19 и отправлять результаты своих тестов на COVID-19, включите уведомления о риске инфицирования.</string>
+  <string name="notify_turn_on_exposure_notifications_header">В настоящее время приложение не отслеживает риск инфицирования. Чтобы получать сообщения о возможных контактах с зараженными COVID-19, включите Уведомления о риске инфицирования.</string>
   <string name="share_begin_title">Помогите защитить окружающих</string>
   <string name="share_close_title">Выйти, не отправляя результаты анализа?</string>
   <string name="share_close_detail">Если вы отправите их сейчас, то поможете сдержать распространение COVID-19 в своем регионе. Информация, которую вы ввели ранее, сохранена в приложении. Изменить эти данные можно позже.</string>

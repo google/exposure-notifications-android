@@ -17,28 +17,24 @@
 
 package com.google.android.apps.exposurenotification.home;
 
-import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.IntentSender.SendIntentException;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.databinding.ActivityExposureNotificationBinding;
 import com.google.android.apps.exposurenotification.exposure.ExposureHomeViewModel;
 import com.google.android.apps.exposurenotification.proto.UiInteraction.EventType;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.BadgeStatus;
-import com.google.android.apps.exposurenotification.utils.RequestCodes;
 import dagger.hilt.android.AndroidEntryPoint;
 import java.util.Objects;
 
@@ -67,14 +63,15 @@ public final class ExposureNotificationActivity extends AppCompatActivity {
 
   public static final String HOME_FRAGMENT_TAG = "ExposureNotificationActivity.HOME_FRAGMENT_TAG";
 
+  private ActivityExposureNotificationBinding binding;
   private ExposureNotificationViewModel exposureNotificationViewModel;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
-    setContentView(R.layout.activity_exposure_notification);
-
+    binding = ActivityExposureNotificationBinding.inflate(getLayoutInflater());
+    setContentView(binding.getRoot());
 
     exposureNotificationViewModel =
         new ViewModelProvider(this).get(ExposureNotificationViewModel.class);
@@ -98,21 +95,9 @@ public final class ExposureNotificationActivity extends AppCompatActivity {
       }
     }
 
-    exposureNotificationViewModel
-        .getResolutionRequiredLiveEvent()
-        .observe(
-            this,
-            apiException -> {
-              try {
-                Log.d(TAG, "startResolutionForResult");
-                apiException
-                    .getStatus()
-                    .startResolutionForResult(
-                        this, RequestCodes.REQUEST_CODE_START_EXPOSURE_NOTIFICATION);
-              } catch (SendIntentException e) {
-                Log.w(TAG, "Error calling startResolutionForResult", apiException);
-              }
-            });
+    // Handle resolutions directly in the activity, since Onboarding makes non-edgecase calls to EN
+    exposureNotificationViewModel.registerResolutionForActivityResult(this);
+
 
     if (savedInstanceState != null) {
       // If this is a configuration change such as rotation, restore the HomeFragment that was
@@ -177,29 +162,6 @@ public final class ExposureNotificationActivity extends AppCompatActivity {
     if (ACTION_LAUNCH_FROM_EXPOSURE_NOTIFICATION.equals(intent.getAction())) {
       exposureNotificationViewModel
           .updateLastExposureNotificationLastClickedTime();
-    }
-  }
-
-  @Override
-  protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-    super.onActivityResult(requestCode, resultCode, data);
-    onResolutionComplete(requestCode, resultCode);
-  }
-
-  /**
-   * Called when opt-in resolution is completed by user.
-   *
-   * <p>Modeled after {@code Activity#onActivityResult} as that's how the API sends callback to
-   * apps.
-   */
-  public void onResolutionComplete(int requestCode, int resultCode) {
-    if (requestCode != RequestCodes.REQUEST_CODE_START_EXPOSURE_NOTIFICATION) {
-      return;
-    }
-    if (resultCode == Activity.RESULT_OK) {
-      exposureNotificationViewModel.startResolutionResultOk();
-    } else {
-      exposureNotificationViewModel.startResolutionResultNotOk();
     }
   }
 

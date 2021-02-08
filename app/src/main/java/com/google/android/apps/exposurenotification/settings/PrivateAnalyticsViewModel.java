@@ -37,9 +37,7 @@ public class PrivateAnalyticsViewModel extends ViewModel {
 
   public void setPrivateAnalyticsState(boolean isEnabled) {
     // Reset metrics on state changes
-    exposureNotificationSharedPreferences.clearLastShownExposureNotification();
-    exposureNotificationSharedPreferences.clearLastShownExposureNotificationInteraction();
-
+    exposureNotificationSharedPreferences.clearPrivateAnalyticsFields();
     exposureNotificationSharedPreferences.setPrivateAnalyticsState(isEnabled);
   }
 

@@ -45,6 +45,10 @@
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
+      <intent-filter>
+        <action android:name="com.google.android.exposurenotification.ACTION_LAUNCH_HOME" />
+        <category android:name="android.intent.category.DEFAULT" />
+      </intent-filter>
     </activity>
 
     <activity
@@ -56,9 +60,15 @@
 
     <activity
       android:name=".notify.ShareDiagnosisActivity"
-      android:exported="true"
+      android:exported="false"
       android:windowSoftInputMode="stateHidden|adjustResize"
       android:parentActivityName=".home.ExposureNotificationActivity">
+    </activity>
+
+    <activity-alias
+      android:name=".ENNotifyOthers"
+      android:exported="true"
+      android:targetActivity=".notify.ShareDiagnosisActivity">
       <intent-filter>
         <action android:name="android.intent.action.VIEW" />
         <category android:name="android.intent.category.DEFAULT" />
@@ -71,7 +81,11 @@
         <category android:name="android.intent.category.BROWSABLE" />
         <data android:scheme="https" android:host="${appLinkHost}" />
       </intent-filter>
-    </activity>
+      <intent-filter>
+        <action android:name="com.google.android.exposurenotification.ACTION_SHARE_DIAGNOSIS" />
+        <category android:name="android.intent.category.DEFAULT" />
+      </intent-filter>
+    </activity-alias>
 
     <activity
       android:name=".settings.AppAnalyticsActivity"

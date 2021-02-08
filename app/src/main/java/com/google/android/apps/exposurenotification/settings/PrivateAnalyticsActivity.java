@@ -22,12 +22,10 @@ import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.text.style.URLSpan;
-import android.view.View;
-import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import com.google.android.apps.exposurenotification.R;
-import com.google.android.material.switchmaterial.SwitchMaterial;
+import com.google.android.apps.exposurenotification.databinding.ActivityPrivateAnalyticsBinding;
 import dagger.hilt.android.AndroidEntryPoint;
 
 /**
@@ -38,24 +36,26 @@ public class PrivateAnalyticsActivity extends AppCompatActivity {
 
   private static final String TAG = "PrivateAnalyticsActivity";
 
+  private ActivityPrivateAnalyticsBinding binding;
+
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_private_analytics);
+
+    binding = ActivityPrivateAnalyticsBinding.inflate(getLayoutInflater());
+    setContentView(binding.getRoot());
 
     PrivateAnalyticsViewModel privateAnalyticsViewModel =
         new ViewModelProvider(this).get(PrivateAnalyticsViewModel.class);
 
-    View upButton = findViewById(android.R.id.home);
-    upButton.setContentDescription(getString(R.string.navigate_up));
-    upButton.setOnClickListener((v) -> onBackPressed());
+    binding.home.setContentDescription(getString(R.string.navigate_up));
+    binding.home.setOnClickListener((v) -> onBackPressed());
 
-    SwitchMaterial toggle = findViewById(R.id.private_analytics_switch);
-    toggle.setText(getString(R.string.private_analytics_subtitle));
+    binding.privateAnalyticsSwitch.setText(getString(R.string.private_analytics_subtitle));
     privateAnalyticsViewModel.getPrivateAnalyticsLiveData().observe(this, isEnabled -> {
-      toggle.setOnCheckedChangeListener(null);
-      toggle.setChecked(isEnabled);
-      toggle.setOnCheckedChangeListener(
+      binding.privateAnalyticsSwitch.setOnCheckedChangeListener(null);
+      binding.privateAnalyticsSwitch.setChecked(isEnabled);
+      binding.privateAnalyticsSwitch.setOnCheckedChangeListener(
           (v, checked) -> privateAnalyticsViewModel.setPrivateAnalyticsState(checked));
     });
 
@@ -67,9 +67,9 @@ public class PrivateAnalyticsActivity extends AppCompatActivity {
     footerSpannableString
         .setSpan(learnMoreClickableSpan, learnMoreStart, learnMoreStart + learnMore.length(),
             Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-    TextView footerTextView = findViewById(R.id.private_analytics_footer);
-    footerTextView.setText(footerSpannableString);
-    footerTextView.setMovementMethod(LinkMovementMethod.getInstance());
+
+    binding.privateAnalyticsFooter.setText(footerSpannableString);
+    binding.privateAnalyticsFooter.setMovementMethod(LinkMovementMethod.getInstance());
   }
 
 }

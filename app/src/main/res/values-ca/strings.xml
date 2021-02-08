@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">Per ajudar a mantenir i millorar l\'aplicació, es comparteixen amb Google algunes dades limitades i sense identificar sobre l\'ús i el rendiment de l\'aplicació. Aquestes dades no permeten identificar-te. %1$s</string>
   <string name="onboarding_confirm_later_title">Vols mantenir les notificacions d\'exposició desactivades?</string>
   <string name="onboarding_confirm_later_detail">No se\'t notificaran possibles exposicions a la COVID-19 fins que no activis aquestes notificacions</string>
-  <string name="no_recent_exposure_subtitle">No hi ha exposicions recents</string>
+  <string name="no_recent_exposure_subtitle">Aplicació activa i comprovant…</string>
+  <string name="no_recent_exposure_indicator">No hi ha cap exposició recent</string>
+  <string name="app_active_info">L\'aplicació comprova de manera regular les possibles exposicions.</string>
   <string name="notifications_enabled_info">Actualment no s\'ha informat que tinguis cap risc d\'exposició a la COVID-19. Se\'t notificarà si algú que ha estat a prop teu indica que ha donat positiu en una prova de la COVID-19.</string>
-  <string name="exposure_notifications_are_turned_off">Les notificacions d\'exposició estan desactivades</string>
+  <string name="how_exposure_notifications_work_link">Com funcionen les notificacions d\'exposició</string>
+  <string name="recent_check_dialog_title">Registre de comprovacions recents de possibles exposicions</string>
+  <string name="recent_check_dialog_see_more">Mostra\'n més</string>
+  <string name="recent_check_last_checked">Darrera comprovació: %1$s</string>
+  <string name="exposure_notifications_are_turned_off">No s\'estan comprovant les possibles exposicions</string>
   <string name="turn_on_exposure_notifications_action">Activa les notificacions d\'exposició</string>
   <string name="recent_exposures_subtitle">Exposició recent</string>
   <string name="exposure_details_status_subtitle">Estat</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">Negatiu de COVID-19</string>
   <string name="positive_test_result_status_shared">Compartit</string>
   <string name="positive_test_result_status_not_shared">No compartit</string>
-  <string name="notify_turn_on_exposure_notifications_header">Per rebre notificacions sobre possibles exposicions a la COVID-19 i compartir el resultat de la prova de la COVID-19, activa les notificacions d\'exposició</string>
+  <string name="notify_turn_on_exposure_notifications_header">Actualment la teva aplicació no està comprovant les possibles exposicions. Per rebre notificacions sobre possibles exposicions a la COVID-19, activa les notificacions d\'exposició.</string>
   <string name="share_begin_title">Ajuda a protegir la teva comunitat</string>
   <string name="share_close_title">Vols sortir sense compartir-lo?</string>
   <string name="share_close_detail">Ajudaràs millor la comunitat com més aviat comparteixis el resultat de la prova. Les dades que has introduït fins ara sobre el resultat de la prova s\'han desat a l\'app perquè puguis editar-les més tard.</string>

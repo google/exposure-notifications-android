@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">Колдонмону жакшыртып, бир калыпта иштешин камсыз кылуу үчүн Google анын колдонулушу жана иштеши тууралуу айрым маалыматты чогултуп турат. Мындай маалыматтын негизинде колдонуучунун ким экенин аныктоого болбойт. %1$s</string>
   <string name="onboarding_confirm_later_title">Жугузуп алуу коркунучу тууралуу билдирмелерсиз улантасызбы?</string>
   <string name="onboarding_confirm_later_detail">Билдирмелерди иштетпесеңиз, COVID-19 вирусун жугузуп алуу коркунучу тууралуу кабар албайсыз</string>
-  <string name="no_recent_exposure_subtitle">Ооруну жугузуп алуу коркунучу тууралуу билдирмелер жок</string>
-  <string name="notifications_enabled_info">Азырынча жаңы билдирмелер жок. Эгер сиз менен жакын аралыкта болгон адамдар COVID-19 оорусун жугузуп алганын кабарласа, ал жөнүндө билдирме аласыз.</string>
-  <string name="exposure_notifications_are_turned_off">Ооруну жугузуп алуу коркунучу тууралуу билдирмелер өчүк</string>
+  <string name="no_recent_exposure_subtitle">Активдүү жана текшерүүдө…</string>
+  <string name="no_recent_exposure_indicator">Ооруну жугузуп алуу коркунучу жок</string>
+  <string name="app_active_info">Колдонмоңуз ооруну жугузуп алуу коркунучуна көз салып жатат.</string>
+  <string name="notifications_enabled_info">Азырынча COVID-19 оорусун жугузуп алуу коркунучу катталган жок. COVID-19 тестинин жыйынтыгы оң чыккан адам тууралуу кабар аласыз.</string>
+  <string name="how_exposure_notifications_work_link">Ооруну жугузуп алуу коркунучу тууралуу билдирмелер кантип иштейт</string>
+  <string name="recent_check_dialog_title">Соңку ооруну жугузуп алуу коркунучтарынын катталышы</string>
+  <string name="recent_check_dialog_see_more">Дагы көрүү</string>
+  <string name="recent_check_last_checked">Акыркы жолу качан текшерилген: %1$s</string>
+  <string name="exposure_notifications_are_turned_off">Ооруну жугузуп алуу коркунучу текшерилген жок</string>
   <string name="turn_on_exposure_notifications_action">Ооруну жугузуп алуу коркунучу тууралуу билдирмелерди күйгүзүү</string>
   <string name="recent_exposures_subtitle">Ооруну жугузуп алуу коркунучу тууралуу соңку билдирме</string>
   <string name="exposure_details_status_subtitle">Статусу</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">COVID-19: Терс</string>
   <string name="positive_test_result_status_shared">Бөлүшүлдү</string>
   <string name="positive_test_result_status_not_shared">Бөлүшүлгөн жок</string>
-  <string name="notify_turn_on_exposure_notifications_header">COVID-19 менен ооруган адамдарга жакындаганыңызды билүү жана COVID-19 оорусуна тапшырган анализиңиздин жыйынтыгын бөлүшүү үчүн ооруну жугузуп алуу коркунучу тууралуу билдирмелерди күйгүзүңүз</string>
+  <string name="notify_turn_on_exposure_notifications_header">Учурда колдонмоңуз ооруну жугузуп алуу коркунучуна көз салып жатат. COVID-19 менен ооруган адамдарга жакындаганыңызды билүү үчүн ооруну жугузуп алуу коркунучу тууралуу билдирмелерди күйгүзүңүз.</string>
   <string name="share_begin_title">Тегерегиңиздеги адамдарды коргоого жардам бериңиз</string>
   <string name="share_close_title">Бөлүшпөй туруп чыгасызбы?</string>
   <string name="share_close_detail">Анализиңиздин жыйынтыгын бөлүшсөңүз, өз аймагыңызда COVID-19 жайылышын ооздуктаганга жардам бере аласыз. Буга чейин бөлүшкөн маалыматыңыз колдонмодо сакталып турат. Аны кийинчерээк өзгөртө аласыз.</string>

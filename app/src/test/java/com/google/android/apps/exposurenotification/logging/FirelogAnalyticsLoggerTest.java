@@ -69,6 +69,7 @@ import com.google.common.base.Optional;
 import com.google.common.io.BaseEncoding;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.common.util.concurrent.ListeningExecutorService;
+import com.google.common.util.concurrent.ListeningScheduledExecutorService;
 import com.google.common.util.concurrent.MoreExecutors;
 import com.google.common.util.concurrent.testing.TestingExecutors;
 import dagger.hilt.android.qualifiers.ApplicationContext;
@@ -108,6 +109,10 @@ public class FirelogAnalyticsLoggerTest {
   @LightweightExecutor
   static final ExecutorService LIGHTWEIGHT_EXEC = MoreExecutors.newDirectExecutorService();
   @BindValue
+  @ScheduledExecutor
+  static final ScheduledExecutorService SCHEDULED_EXEC =
+      TestingExecutors.sameThreadScheduledExecutor();
+  @BindValue
   @BackgroundExecutor
   static final ListeningExecutorService BACKGROUND_LISTENING_EXEC =
       MoreExecutors.newDirectExecutorService();
@@ -117,7 +122,7 @@ public class FirelogAnalyticsLoggerTest {
       MoreExecutors.newDirectExecutorService();
   @BindValue
   @ScheduledExecutor
-  static final ScheduledExecutorService SCHEDULED_EXEC =
+  static final ListeningScheduledExecutorService SCHEDULED_LISTENING_EXEC =
       TestingExecutors.sameThreadScheduledExecutor();
 
   @Rule

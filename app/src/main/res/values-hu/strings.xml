@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">Az alkalmazás karbantartásának és fejlesztésének segítése érdekében bizonyos azonosításra nem alkalmas adatokat oszt meg az alkalmazás a teljesítményéről és a használatáról a Google-lal. Ezek az adatok nem használhatók az Ön azonosítására. %1$s</string>
   <string name="onboarding_confirm_later_title">Kikapcsolva tartja a Kitettséget jelző értesítéseket?</string>
   <string name="onboarding_confirm_later_detail">A Kitettséget jelző értesítések bekapcsolásáig nem értesül a lehetséges COVID-19-kitettségről.</string>
-  <string name="no_recent_exposure_subtitle">Nem észlelt a rendszer kitettséget a közelmúltban</string>
+  <string name="no_recent_exposure_subtitle">Az ellenőrzés aktív…</string>
+  <string name="no_recent_exposure_indicator">Nem észlelt a rendszer kitettséget a közelmúltban</string>
+  <string name="app_active_info">Az alkalmazás rendszeresen ellenőrzi a lehetséges kitettséget.</string>
   <string name="notifications_enabled_info">Jelenleg nincsenek olyan bejelentések, amelyek alapján fennáll Önnél a COVID-19-nek való kitettség. Értesítést kap, ha valaki, aki az Ön közelében tartózkodott, pozitív COVID-19-teszteredményt jelent be.</string>
-  <string name="exposure_notifications_are_turned_off">A Kitettséget jelző értesítések funkció ki van kapcsolva</string>
+  <string name="how_exposure_notifications_work_link">A kitettséget jelző értesítések működése</string>
+  <string name="recent_check_dialog_title">A lehetséges kitettségre vonatkozó legutóbbi ellenőrzések listája</string>
+  <string name="recent_check_dialog_see_more">Továbbiak</string>
+  <string name="recent_check_last_checked">Legutóbb ellenőrizve: %1$s</string>
+  <string name="exposure_notifications_are_turned_off">A lehetséges kitettség ellenőrzése leállítva</string>
   <string name="turn_on_exposure_notifications_action">Kitettséget jelző értesítések bekapcsolása</string>
   <string name="recent_exposures_subtitle">Kitettség a közelmúltban</string>
   <string name="exposure_details_status_subtitle">Állapot</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">Negatív COVID-19-teszteredmény</string>
   <string name="positive_test_result_status_shared">Megosztva</string>
   <string name="positive_test_result_status_not_shared">Nincs megosztva</string>
-  <string name="notify_turn_on_exposure_notifications_header">Kapcsolja be a Kitettséget jelző értesítéseket, hogy értesítést kaphasson a lehetséges COVID-19-kitettségről, és megoszthassa COVID-19-teszteredményét.</string>
+  <string name="notify_turn_on_exposure_notifications_header">Az alkalmazás jelenleg nem ellenőrzi a lehetséges kitettséget. Kapcsolja be a kitettséget jelző értesítéseket, hogy értesítést kaphasson a lehetséges COVID-19-kitettségről.</string>
   <string name="share_begin_title">Segítsen a közössége védelmében</string>
   <string name="share_close_title">Kilép megosztás nélkül?</string>
   <string name="share_close_detail">Minél hamarabb megosztja a teszteredményét, annál hatásosabban segíthet a közösségén. Az Ön által megadott teszteredményt azonban elmentettük az alkalmazásba, így később is szerkesztheti.</string>

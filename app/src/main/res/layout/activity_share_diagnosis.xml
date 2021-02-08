@@ -21,10 +21,28 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent" >
 
-  <FrameLayout
-    android:id="@+id/share_exposure_fragment"
+  <!-- Switch between share-diagnosis-flow and edge-case fragments -->
+  <ViewFlipper
+    android:id="@+id/en_enabled_flipper"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" />
+    android:layout_height="match_parent"
+    android:measureAllChildren="false">
+
+    <!-- 1. Step in a share-diagnosis flow -->
+    <FrameLayout
+      android:id="@+id/share_exposure_fragment"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent" />
+
+    <!-- 2. Edge case -->
+    <FrameLayout
+      android:id="@+id/edge_case_fragment"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:animateLayoutChanges="false" />
+
+  </ViewFlipper>
 
   <TextView
     android:textStyle="bold"

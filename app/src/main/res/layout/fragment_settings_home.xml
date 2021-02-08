@@ -28,6 +28,7 @@
     android:layout_height="wrap_content">
 
     <TextView
+      android:id="@+id/settings_fragment_title"
       android:layout_width="match_parent"
       android:layout_height="?attr/actionBarSize"
       android:text="@string/home_tab_settings_text"

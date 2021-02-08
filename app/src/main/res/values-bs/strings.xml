@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">Radi pomoći u održavanju i poboljšanju aplikacije, s Googleom se dijele neki podaci o radu i korištenju aplikacije bez informacija o identitetu. Ti podaci ne otkrivaju vaš identitet. %1$s</string>
   <string name="onboarding_confirm_later_title">Ostaviti Obavještenja o izloženosti isključenim?</string>
   <string name="onboarding_confirm_later_detail">Nećete biti obaviješteni o mogućoj izloženosti virusu COVID-19 dok se ne uključe Obavještenja o izloženosti</string>
-  <string name="no_recent_exposure_subtitle">Nema nedavnih izloženosti</string>
+  <string name="no_recent_exposure_subtitle">Aplikacija je aktivna i provjerava …</string>
+  <string name="no_recent_exposure_indicator">Nema nedavne izloženosti</string>
+  <string name="app_active_info">Aplikacija redovno provjerava ima li mogućih izloženosti.</string>
   <string name="notifications_enabled_info">Trenutno nemate nijedan prijavljeni rizik od izloženosti virusu COVID-19. Bit ćete obaviješteni ako neko, u čijoj ste blizini bili, prijavi pozitivan rezultat testa na COVID-19.</string>
-  <string name="exposure_notifications_are_turned_off">Obavještenja o izloženosti su isključena</string>
+  <string name="how_exposure_notifications_work_link">Kako Obavještenja o izloženosti funkcioniraju</string>
+  <string name="recent_check_dialog_title">Evidencija nedavnih provjera moguće izloženosti</string>
+  <string name="recent_check_dialog_see_more">Prikaži više</string>
+  <string name="recent_check_last_checked">Posljednja provjera: %1$s.</string>
+  <string name="exposure_notifications_are_turned_off">Aplikacija ne provjerava moguću izloženost</string>
   <string name="turn_on_exposure_notifications_action">Uključi Obavještenja o izloženosti</string>
   <string name="recent_exposures_subtitle">Nedavna izloženost</string>
   <string name="exposure_details_status_subtitle">Status</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">Negativni na COVID-19</string>
   <string name="positive_test_result_status_shared">Dijeljeno</string>
   <string name="positive_test_result_status_not_shared">Nije dijeljeno</string>
-  <string name="notify_turn_on_exposure_notifications_header">Uključite Obavještenja o izloženosti da dobijate obavještenja o mogućoj izloženosti virusu COVID-19 i da dijelite rezultate testa na COVID-19</string>
+  <string name="notify_turn_on_exposure_notifications_header">Aplikacija trenutno ne provjerava ima li mogućih izloženosti. Da primite obavještenja o mogućoj izloženosti virusu COVID-19, uključite Obavještenja o izloženosti.</string>
   <string name="share_begin_title">Pomozite u zaštiti zajednice</string>
   <string name="share_close_title">Izaći bez dijeljenja?</string>
   <string name="share_close_detail">Zajednici možete najbolje pomoći ako što prije podijelite rezultat testa. Podaci o rezultatu testa koje ste do sada unijeli su pohranjeni u aplikaciji da kasnije možete nastaviti s uređivanjem.</string>

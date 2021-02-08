@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">Selleks et aidata rakendust hallata ja täiustada, jagatakse Google\'iga teatud piiratud ning isikustamata andmeid rakenduse toimivuse ja kasutamise kohta. Nende andmete põhjal ei saa teid tuvastada. %1$s</string>
   <string name="onboarding_confirm_later_title">Kas jätta kokkupuute märguanded väljalülitatuks?</string>
   <string name="onboarding_confirm_later_detail">Seni, kuni kokkupuute märguandeid pole sisse lülitatud, ei teavitata teid võimalikust kokkupuutest COVID-19-ga</string>
-  <string name="no_recent_exposure_subtitle">Hiljutisi kokkupuuteid pole</string>
-  <string name="notifications_enabled_info">Praegu ei ole teie puhul COVID-19-ga kokkupuute ohust teavitatud. Teid teavitatakse, kui keegi, kelle läheduses olete viibinud, teavitab COVID-19 positiivsest testitulemusest.</string>
-  <string name="exposure_notifications_are_turned_off">Kokkupuute märguanded on välja lülitatud</string>
+  <string name="no_recent_exposure_subtitle">Aktiivne ja kontrollib …</string>
+  <string name="no_recent_exposure_indicator">Hiljutisi kokkupuuteid pole</string>
+  <string name="app_active_info">Teie rakendus kontrollib pidevalt võimalikke kokkupuuteid.</string>
+  <string name="notifications_enabled_info">Teie puhul pole praegu teavitatud COVID-19-ga kokkupuute ohust. Teid teavitatakse, kui keegi, kelle läheduses olete viibinud, teavitab COVID-19 positiivsest testitulemusest.</string>
+  <string name="how_exposure_notifications_work_link">Kuidas kokkupuute märguanded toimivad?</string>
+  <string name="recent_check_dialog_title">Võimalike kokkupuudete hiljutiste registreerimiste loend</string>
+  <string name="recent_check_dialog_see_more">Lisateave</string>
+  <string name="recent_check_last_checked">Viimati kontrolliti %1$s</string>
+  <string name="exposure_notifications_are_turned_off">Võimalikke kokkupuuteid ei kontrollita</string>
   <string name="turn_on_exposure_notifications_action">Kokkupuute märguannete sisselülitamine</string>
   <string name="recent_exposures_subtitle">Hiljutine kokkupuude</string>
   <string name="exposure_details_status_subtitle">Olek</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">COVID-19 – negatiivne</string>
   <string name="positive_test_result_status_shared">Jagatud</string>
   <string name="positive_test_result_status_not_shared">Pole jagatud</string>
-  <string name="notify_turn_on_exposure_notifications_header">Selleks et saada märguandeid võimaliku kokkupuute kohta COVID-19-ga ja jagada oma COVID-19 testitulemust, lülitage kokkupuute märguanded sisse</string>
+  <string name="notify_turn_on_exposure_notifications_header">Teie rakendus ei kontrolli praegu võimalikke kokkupuuteid. Selleks et saada märguandeid võimaliku kokkupuute kohta COVID-19-ga, lülitage kokkupuute märguanded sisse.</string>
   <string name="share_begin_title">Aidake kaitsta oma kogukonda</string>
   <string name="share_close_title">Soovite väljuda jagamata?</string>
   <string name="share_close_detail">Teie kogukonna jaoks on kõige kasulikum, kui jagate oma testitulemust varem. Testitulemuste teave, mille olete seni sisestanud, salvestatakse aga rakendusse, et saaksite seda hiljem muuta.</string>

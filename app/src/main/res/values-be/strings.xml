@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">Дзеля падтрымкі і ўдасканалення нашай праграмы частка інфармацыі пра яе прадукцыйнасць і выкарыстанне будзе ананімна абагульвацца з Google. Гэтыя даныя не дазволяць вызначыць вашу асобу. %1$s</string>
   <string name="onboarding_confirm_later_title">Не ўключаць Апавяшчэнні пра рызыку заражэння?</string>
   <string name="onboarding_confirm_later_detail">З выключанымі Апавяшчэннямі вы не даведаецеся пра рызыку</string>
-  <string name="no_recent_exposure_subtitle">Рызыкі заражэння ў апошні час не было</string>
-  <string name="notifications_enabled_info">На гэты момант у вас няма звестак пры рызыку заражэння COVID-19. Вы атрымаеце апавяшчэнне, калі асоба, якая была паблізу ад вас, паведаміць пра станоўчы вынік тэсту на COVID-19.</string>
-  <string name="exposure_notifications_are_turned_off">Апавяшчэнні пра рызыку заражэння выключаны</string>
+  <string name="no_recent_exposure_subtitle">Праграма выконвае адсочванне…</string>
+  <string name="no_recent_exposure_indicator">Няма нядаўніх кантактаў з заражанымі людзьмі</string>
+  <string name="app_active_info">Праграма пастаянна адсочвае рызыку заражэння.</string>
+  <string name="notifications_enabled_info">На гэты момант няма звестак пра рызыку вашага заражэння COVID-19. Вы атрымаеце апавяшчэнне, калі асоба, якая была паблізу ад вас, паведаміць пра станоўчы вынік тэсту на COVID-19.</string>
+  <string name="how_exposure_notifications_work_link">Як працуюць Апавяшчэнні пра рызыку заражэння</string>
+  <string name="recent_check_dialog_title">Апошнія вынікі адсочвання рызыкі заражэння</string>
+  <string name="recent_check_dialog_see_more">Яшчэ</string>
+  <string name="recent_check_last_checked">Апошняя праверка: %1$s</string>
+  <string name="exposure_notifications_are_turned_off">Адсочванне рызыкі заражэння не выконваецца</string>
   <string name="turn_on_exposure_notifications_action">Уключыць Апавяшчэнні пра рызыку</string>
   <string name="recent_exposures_subtitle">Рызыка заражэння за апошні час</string>
   <string name="exposure_details_status_subtitle">Стан</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">Адмоўны тэст на COVID-19</string>
   <string name="positive_test_result_status_shared">Абагулена</string>
   <string name="positive_test_result_status_not_shared">Не абагулена</string>
-  <string name="notify_turn_on_exposure_notifications_header">Каб атрымліваць апавяшчэнні пра рызыку заражэння і абагульваць свае вынікі тэсту на COVID-19, уключыце Апавяшчэнні пра рызыку заражэння</string>
+  <string name="notify_turn_on_exposure_notifications_header">На гэты момант праграма не адсочвае рызыку заражэння. Каб атрымліваць апавяшчэнні пра рызыку заражэння COVID-19, уключыце Апавяшчэнні пра рызыку заражэння.</string>
   <string name="share_begin_title">Дапамажыце абараніць іншых людзей</string>
   <string name="share_close_title">Выйсці без абагульвання?</string>
   <string name="share_close_detail">Чым хутчэй вы абагуліце інфармацыю пра вынікі тэста, тым большую карысць прынесяце людзям з вашай супольнасці. Дадзеная вамі інфармацыя захавана ў гэтай праграме, і вы можаце змяніць яе пазней.</string>

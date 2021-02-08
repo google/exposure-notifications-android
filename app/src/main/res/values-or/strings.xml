@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">ଆପକୁ ପରିଚାଳନା କରିବା ଏବଂ ଉନ୍ନତ କରିବାରେ ସାହାଯ୍ୟ କରିବା ପାଇଁ, ଆପର କାର୍ଯ୍ୟଦକ୍ଷତା ଏବଂ ବ୍ୟବହାର ବିଷୟରେ ବ୍ୟକ୍ତିଗତ ଚିହ୍ନଟକାରୀ ସୂଚନା-ବିନା କିଛି ସୀମିତ ଡାଟା Google ସହ ସେୟାର୍ କରାଯାଏ। ଏହି ଡାଟା ଆପଣଙ୍କୁ ଚିହ୍ନଟ କରେ ନାହିଁ। %1$s</string>
   <string name="onboarding_confirm_later_title">ସଂକ୍ରମଣ ବିଜ୍ଞପ୍ତିଗୁଡ଼ିକ ବନ୍ଦ ରଖିବେ?</string>
   <string name="onboarding_confirm_later_detail">ସଂକ୍ରମଣ ବିଜ୍ଞପ୍ତିଗୁଡ଼ିକ ଚାଲୁ ନହେବା ପର୍ଯ୍ୟନ୍ତ, COVID-19ର ସମ୍ଭାବ୍ୟ ସଂକ୍ରମଣ ବିଷୟରେ ଆପଣଙ୍କୁ ସୂଚିତ କରାଯିବ ନାହିଁ</string>
-  <string name="no_recent_exposure_subtitle">ବର୍ତ୍ତମାନ ସଂକ୍ରମଣ ହୋଇନାହିଁ</string>
+  <string name="no_recent_exposure_subtitle">ସକ୍ରିୟ ଏବଂ ଯାଞ୍ଚ କରାଯାଉଛି…</string>
+  <string name="no_recent_exposure_indicator">କୌଣସି ବର୍ତ୍ତମାନର ସଂକ୍ରମଣ ନାହିଁ</string>
+  <string name="app_active_info">ଆପଣଙ୍କ ଆପ୍ ନିୟମିତ ଭାବେ ସମ୍ଭାବ୍ୟ ସଂକ୍ରମଣର ଯାଞ୍ଚ କରୁୁୁୁଛି।</string>
   <string name="notifications_enabled_info">ବର୍ତ୍ତମାନ ଆପଣଙ୍କ ପାଇଁ କୌଣସି ରିପୋର୍ଟ କରାଯାଇଥିବା COVID-19 ସଂକ୍ରମଣର ବିପଦ ନାହିଁ। ଯଦି ଆପଣ COVID-19 ଟେଷ୍ଟ ରିପୋର୍ଟରେ ପଜିଟିଭ୍ ଆସିଥିବା କୌଣସି ବ୍ୟକ୍ତିଙ୍କ ନିକଟରେ ଥିଲେ ତେବେ ଆପଣଙ୍କୁ ସୂଚିତ କରାଯିବ।</string>
-  <string name="exposure_notifications_are_turned_off">ସଂକ୍ରମଣ ବିଜ୍ଞପ୍ତିଗୁଡ଼ିକ ବନ୍ଦ କରାଯାଇଛି</string>
+  <string name="how_exposure_notifications_work_link">ସଂକ୍ରମଣ ବିଜ୍ଞପ୍ତିଗୁଡ଼ିକ କିପରି କାର୍ଯ୍ୟ କରେ</string>
+  <string name="recent_check_dialog_title">ସମ୍ଭାବ୍ୟ ସଂକ୍ରମଣ ପାଇଁ ବର୍ତ୍ତମାନର ଚେକ୍-ଇନଗୁଡ଼ିକର ରେକର୍ଡ</string>
+  <string name="recent_check_dialog_see_more">ଅଧିକ ଦେଖନ୍ତୁ</string>
+  <string name="recent_check_last_checked">ଗତଥର ଯାଞ୍ଚ କରାଯାଇଛି %1$s</string>
+  <string name="exposure_notifications_are_turned_off">ସମ୍ଭାବ୍ୟ ସଂକ୍ରମଣ ପାଇଁ ଯାଞ୍ଚ କରାଯାଉ ନାହିଁ</string>
   <string name="turn_on_exposure_notifications_action">ସଂକ୍ରମଣ ବିଜ୍ଞପ୍ତିଗୁଡ଼ିକ ଚାଲୁ କରନ୍ତୁ</string>
   <string name="recent_exposures_subtitle">ବର୍ତ୍ତମାନ ହୋଇଥିବା ସଂକ୍ରମଣ</string>
   <string name="exposure_details_status_subtitle">ସ୍ଥିତି</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">COVID-19 ନେଗେଟିଭ୍</string>
   <string name="positive_test_result_status_shared">ସେୟାର୍ କରାଯାଇଛି</string>
   <string name="positive_test_result_status_not_shared">ସେୟାର୍ କରାଯାଇନାହିଁ</string>
-  <string name="notify_turn_on_exposure_notifications_header">ସମ୍ଭାବ୍ୟ COVID-19 ସଂକ୍ରମଣ ବିଷୟରେ ଜାଣିବା ପାଇଁ ଏବଂ ଆପଣଙ୍କର COVID-19 ଟେଷ୍ଟ ରିପୋର୍ଟ ସେୟାର୍ କରିବା ପାଇଁ, ସଂକ୍ରମଣ ବିଜ୍ଞପ୍ତିଗୁଡ଼ିକ ଚାଲୁ କରନ୍ତୁ</string>
+  <string name="notify_turn_on_exposure_notifications_header">ଆପଣଙ୍କ ଆପ୍ ବର୍ତ୍ତମାନ ସମ୍ଭାବ୍ୟ ସଂକ୍ରମଣ ପାଇଁ ଯାଞ୍ଚ କରୁନାହିଁ। ସମ୍ଭାବ୍ୟ COVID-19 ସଂକ୍ରମଣ ବିଷୟରେ ଜାଣିବା ପାଇଁ ସଂକ୍ରମଣ ବିଜ୍ଞପ୍ତିଗୁଡ଼ିକ ଚାଲୁ କରନ୍ତୁ।</string>
   <string name="share_begin_title">ଆପଣଙ୍କ କମ୍ୟୁନିଟୀକୁ ସୁରକ୍ଷିତ ରଖିବାରେ ସାହାଯ୍ୟ କରନ୍ତୁ</string>
   <string name="share_close_title">ସେୟାର୍ ନକରି ବାହାରିଯିବେ?</string>
   <string name="share_close_detail">ଆପଣ ଆପଣଙ୍କ ଟେଷ୍ଟ ରିପୋର୍ଟ ଶୀଘ୍ର ସେୟାର୍ କଲେ ଆପଣ ଆପଣଙ୍କ କମ୍ୟୁନିଟୀକୁ ଭଲ ଭାବରେ ସାହାଯ୍ୟ କରିପାରିବେ। ତଥାପି, ଆପଣ ପରେ ପୁଣି ଏଡିଟିଂ ଆରମ୍ଭ କରିବା ପାଇଁ ଏପର୍ଯ୍ୟନ୍ତ ଲେଖିଥିବା ଟେଷ୍ଟ ରିପୋର୍ଟ ସୂଚନା ଆପରେ ସେଭ୍ କରାଯାଏ।</string>

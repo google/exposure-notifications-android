@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">Հավելվածի պատշաճ աշխատանքն ապահովելու և այն կատարելագործելու նպատակով հավելվածի աշխատանքի և օգտագործման մասին որոշ անանուն տվյալներ կուղարկվեն Google-ին։ Այդ տվյալները չեն նույնականացնի ձեզ։ %1$s</string>
   <string name="onboarding_confirm_later_title">Անջատված թողնե՞լ ծանուցումները</string>
   <string name="onboarding_confirm_later_detail">Եթե չմիացնեք, դուք չեք ծանուցվի COVID-19-ի վարակակիրների հետ հնարավոր շփումների մասին։</string>
-  <string name="no_recent_exposure_subtitle">Վերջերս վարակակիրների հետ շփումներ չեն եղել</string>
-  <string name="notifications_enabled_info">COVID-19-ով վարակման նոր վտանգ չի գրանցվել։ Դուք ծանուցում կստանաք, եթե անձը, որին մոտ եք գտնվել, հաղորդի COVID-19-ի իր թեստի դրական արդյունքի մասին։</string>
-  <string name="exposure_notifications_are_turned_off">Վարակման վտանգի մասին ծանուցումներն անջատված են</string>
+  <string name="no_recent_exposure_subtitle">Հավելվածն ակտիվ է և հետագծում է շփումները</string>
+  <string name="no_recent_exposure_indicator">Վերջերս վարակակիրների հետ շփումներ չեն եղել</string>
+  <string name="app_active_info">Հավելվածը մշտապես հետագծում է վարակակիրների հետ հնարավոր շփումները։</string>
+  <string name="notifications_enabled_info">Այս պահին COVID-19-ով վարակման նոր վտանգ ձեզ համար չի գրանցվել։ Դուք ծանուցում կստանաք, եթե անձը, որին մոտ եք գտնվել, հաղորդի COVID-19-ի իր թեստի դրական արդյունքի մասին։</string>
+  <string name="how_exposure_notifications_work_link">Ինչպես են աշխատում վարակման վտանգի մասին ծանուցումները</string>
+  <string name="recent_check_dialog_title">Վարակակիրների հետ շփման հետագծման մասին վերջին գրանցումներ</string>
+  <string name="recent_check_dialog_see_more">Տեսնել ավելին</string>
+  <string name="recent_check_last_checked">Վերջին ստուգումը՝ %1$s</string>
+  <string name="exposure_notifications_are_turned_off">Վարակակիրների հետ հնարավոր շփումները չեն հետագծվում</string>
   <string name="turn_on_exposure_notifications_action">Միացնել վարակման վտանգի մասին ծանուցումները</string>
   <string name="recent_exposures_subtitle">Վերջին շփումը վարակակրի հետ</string>
   <string name="exposure_details_status_subtitle">Կարգավիճակ</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">COVID-19 բացասական</string>
   <string name="positive_test_result_status_shared">Ուղարկված է</string>
   <string name="positive_test_result_status_not_shared">Ուղարկված չէ</string>
-  <string name="notify_turn_on_exposure_notifications_header">COVID-19-ի վարակակիրների հետ հնարավոր շփումների մասին ծանուցումներ ստանալու և COVID-19-ի ձեր թեստի արդյունքի մասին հաղորդելու համար միացրեք վարակման վտանգի մասին ծանուցումները</string>
+  <string name="notify_turn_on_exposure_notifications_header">Հավելվածն այս պահին չի հետագծում վարակակիրների հետ հնարավոր շփումները։ COVID-19-ի վարակակիրների հետ հնարավոր շփումների մասին ծանուցումներ ստանալու համար միացրեք վարակման վտանգի մասին ծանուցումները։</string>
   <string name="share_begin_title">Օգնեք պաշտպանել ձեր համայնքը</string>
   <string name="share_close_title">Դուրս գա՞լ առանց կիսվելու</string>
   <string name="share_close_detail">Օգնեք ձեր համայնքին՝ հնարավորինս շուտ կիսվելով ձեր թեստի արդյունքներով։ Թեստի արդյունքների մասին ձեր մուտքագրած տվյալները կպահվեն այս հավելվածում, որպեսզի դուք կարողանաք փոխել դրանք ավելի ուշ։</string>

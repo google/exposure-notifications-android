@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">Damit wir die App verwalten und weiter verbessern können, werden die Daten zur App-Leistung und -Nutzung in begrenztem Umfang und in einer Form mit Google geteilt, die keine Identifikation des Nutzers erlauben. Die Daten lassen also keinen Rückschluss auf deine Person zu. %1$s</string>
   <string name="onboarding_confirm_later_title">COVID-19-Benachrichtigungen deaktiviert lassen?</string>
   <string name="onboarding_confirm_later_detail">Du erhältst COVID-19-Benachrichtigungen nur dann, wenn du sie aktivierst.</string>
-  <string name="no_recent_exposure_subtitle">Aktuell keine möglichen Begegnungen mit infizierten Personen</string>
+  <string name="no_recent_exposure_subtitle">Aktiv – regelmäßige Prüfung…</string>
+  <string name="no_recent_exposure_indicator">Keine kürzlichen möglichen Begegnungen mit infizierten Personen</string>
+  <string name="app_active_info">Deine App prüft regelmäßig mögliche Begegnungen mit infizierten Personen.</string>
   <string name="notifications_enabled_info">Derzeit sind für dich keine möglichen Begegnungen mit Personen gemeldet, die an COVID-19 erkrankt sind. Du wirst benachrichtigt, wenn du dich in der Nähe einer Person aufgehalten hast, die ein positives COVID-19-Testergebnis gemeldet hat.</string>
-  <string name="exposure_notifications_are_turned_off">COVID-19-Benachrichtigungen sind deaktiviert</string>
+  <string name="how_exposure_notifications_work_link">So funktionieren COVID-19-Benachrichtigungen</string>
+  <string name="recent_check_dialog_title">Verlauf von kürzlichen Prüfungen möglicher Begegnungen mit infizierten Personen</string>
+  <string name="recent_check_dialog_see_more">Mehr anzeigen</string>
+  <string name="recent_check_last_checked">Letzte Überprüfung: %1$s</string>
+  <string name="exposure_notifications_are_turned_off">Mögliche Begegnungen mit infizierten Personen werden nicht geprüft</string>
   <string name="turn_on_exposure_notifications_action">COVID-19-Benachrichtigungen aktivieren</string>
   <string name="recent_exposures_subtitle">Aktuell:</string>
   <string name="exposure_details_status_subtitle">Status</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">COVID-19 – negativ</string>
   <string name="positive_test_result_status_shared">Geteilt</string>
   <string name="positive_test_result_status_not_shared">Nicht geteilt</string>
-  <string name="notify_turn_on_exposure_notifications_header">Aktiviere die COVID-19-Benachrichtigungen, um zu erfahren, ob du Kontakt mit einer Person hattest, die positiv auf COVID-19 getestet wurde, und um dein Testergebnis zu teilen</string>
+  <string name="notify_turn_on_exposure_notifications_header">Deine App prüft mögliche Begegnungen mit infizierten Personen momentan nicht. Aktiviere die COVID-19-Benachrichtigungen, um zu erfahren, ob du möglicherweise Kontakt mit einer Person hattest, die positiv auf COVID-19 getestet wurde.</string>
   <string name="share_begin_title">Schütze dein Umfeld</string>
   <string name="share_close_title">Schließen, ohne das Ergebnis zu teilen?</string>
   <string name="share_close_detail">Je schneller du dein Testergebnis teilst, desto besser schützt du dein Umfeld. Die von dir eingegebenen Testergebnisinformationen werden in der App gespeichert. Du kannst sie später weiter bearbeiten.</string>

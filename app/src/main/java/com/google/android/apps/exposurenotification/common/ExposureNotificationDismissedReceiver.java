@@ -45,8 +45,11 @@ public class ExposureNotificationDismissedReceiver extends
   public void onReceive(Context context, Intent intent) {
     super.onReceive(context, intent);
     if (NOTIFICATION_DISMISSED_ACTION_ID.equals(intent.getAction())) {
+      // We assume it dismissed the last notification received.
+      int classificationIndex = exposureNotificationSharedPreferences
+          .getExposureNotificationLastShownClassification();
       exposureNotificationSharedPreferences.setExposureNotificationLastInteraction(
-          clock.now(), NotificationInteraction.DISMISSED);
+          clock.now(), NotificationInteraction.DISMISSED, classificationIndex);
     }
   }
 }

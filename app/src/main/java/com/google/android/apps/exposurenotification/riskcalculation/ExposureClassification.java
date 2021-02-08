@@ -44,7 +44,8 @@ public abstract class ExposureClassification {
 
   public static ExposureClassification create(int classificationIndex,
       String classificationName, long classificationDate) {
-    return new AutoValue_ExposureClassification(classificationIndex, classificationName, classificationDate);
+    return new AutoValue_ExposureClassification(classificationIndex, classificationName,
+        classificationDate);
   }
 
 }

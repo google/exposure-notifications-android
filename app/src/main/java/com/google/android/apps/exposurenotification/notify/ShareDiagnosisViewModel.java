@@ -35,12 +35,10 @@ import com.google.android.apps.exposurenotification.common.Qualifiers.Lightweigh
 import com.google.android.apps.exposurenotification.common.Qualifiers.ScheduledExecutor;
 import com.google.android.apps.exposurenotification.common.SingleLiveEvent;
 import com.google.android.apps.exposurenotification.common.TaskToFutureAdapter;
+import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.keyupload.Upload;
 import com.google.android.apps.exposurenotification.keyupload.UploadController;
-import com.google.android.apps.exposurenotification.keyupload.UploadController.KeysSubmitFailureException;
-import com.google.android.apps.exposurenotification.keyupload.UploadController.KeysSubmitServerFailureException;
-import com.google.android.apps.exposurenotification.keyupload.UploadController.VerificationFailureException;
-import com.google.android.apps.exposurenotification.keyupload.UploadController.VerificationServerFailureException;
+import com.google.android.apps.exposurenotification.keyupload.UploadController.UploadException;
 import com.google.android.apps.exposurenotification.nearby.ExposureNotificationClientWrapper;
 import com.google.android.apps.exposurenotification.network.Connectivity;
 import com.google.android.apps.exposurenotification.network.DiagnosisKey;
@@ -50,6 +48,7 @@ import com.google.android.apps.exposurenotification.storage.DiagnosisEntity.Shar
 import com.google.android.apps.exposurenotification.storage.DiagnosisEntity.TestResult;
 import com.google.android.apps.exposurenotification.storage.DiagnosisEntity.TravelStatus;
 import com.google.android.apps.exposurenotification.storage.DiagnosisRepository;
+import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.nearby.exposurenotification.ExposureNotificationStatusCodes;
 import com.google.android.gms.nearby.exposurenotification.TemporaryExposureKey;
@@ -64,7 +63,9 @@ import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 import dagger.hilt.android.qualifiers.ApplicationContext;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.Stack;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ScheduledExecutorService;
@@ -98,6 +99,8 @@ public class ShareDiagnosisViewModel extends ViewModel {
   private final ExposureNotificationClientWrapper exposureNotificationClientWrapper;
   private final Resources resources;
   private final Connectivity connectivity;
+  private final ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
+  private final Clock clock;
 
   private final MutableLiveData<Long> currentDiagnosisId = new MutableLiveData<>(NO_EXISTING_ID);
 
@@ -142,6 +145,8 @@ public class ShareDiagnosisViewModel extends ViewModel {
       UploadController uploadController,
       DiagnosisRepository diagnosisRepository,
       ExposureNotificationClientWrapper exposureNotificationClientWrapper,
+      ExposureNotificationSharedPreferences exposureNotificationSharedPreferences,
+      Clock clock,
       Connectivity connectivity,
       @BackgroundExecutor ExecutorService backgroundExecutor,
       @LightweightExecutor ExecutorService lightweightExecutor,
@@ -150,11 +155,21 @@ public class ShareDiagnosisViewModel extends ViewModel {
     this.uploadController = uploadController;
     this.diagnosisRepository = diagnosisRepository;
     this.exposureNotificationClientWrapper = exposureNotificationClientWrapper;
+    this.exposureNotificationSharedPreferences = exposureNotificationSharedPreferences;
+    this.clock = clock;
     this.connectivity = connectivity;
     this.backgroundExecutor = backgroundExecutor;
     this.lightweightExecutor = lightweightExecutor;
     this.scheduledExecutor = scheduledExecutor;
     this.resources = context.getResources();
+  }
+
+  public static Set<String> getStepNames() {
+    HashSet<String> stepNames = new HashSet<>();
+    for (Step step : Step.values()) {
+      stepNames.add(step.name());
+    }
+    return stepNames;
   }
 
   public void setCurrentDiagnosisId(long id) {
@@ -185,6 +200,25 @@ public class ShareDiagnosisViewModel extends ViewModel {
    */
   public LiveData<Step> getCurrentStepLiveData() {
     return Transformations.distinctUntilChanged(currentStepLiveData);
+  }
+
+  /**
+   * Tells what is the next step of the flow depending on the current step and current diagnosis.
+   */
+  public LiveData<Step> getNextStepLiveData(Step currentStep) {
+    return Transformations.map(
+        getCurrentDiagnosisLiveData(),
+        diagnosis -> ShareDiagnosisFlowHelper.getNextStep(currentStep, diagnosis, context));
+  }
+
+  /**
+   * Tells what is the previous step of the flow depending on the current step and current
+   * diagnosis.
+   */
+  public LiveData<Step> getPreviousStepLiveData(Step currentStep) {
+    return Transformations.map(
+        getCurrentDiagnosisLiveData(),
+        diagnosis -> ShareDiagnosisFlowHelper.getPreviousStep(currentStep, diagnosis, context));
   }
 
   /**
@@ -352,45 +386,38 @@ public class ShareDiagnosisViewModel extends ViewModel {
   public ListenableFuture<?> uploadKeys() {
     inFlightLiveData.postValue(true);
 
-    ListenableFuture<?> getKeysAndSubmitToService =
-        FluentFuture.from(getRecentKeys())
-            .transform(
-                this::toDiagnosisKeysWithTransmissionRisk, lightweightExecutor)
-            .transformAsync(this::getCertAndUploadKeys, backgroundExecutor);
-
-    Futures.addCallback(
-        getKeysAndSubmitToService,
-        new FutureCallback<Object>() {
-          @Override
-          public void onSuccess(Object shared) {
-            inFlightLiveData.postValue(false);
+    return FluentFuture.from(getRecentKeys())
+        .transform(
+            this::toDiagnosisKeysWithTransmissionRisk, lightweightExecutor)
+        .transformAsync(
+            this::getCertAndUploadKeys, backgroundExecutor)
+        .transform(
+            unused -> {
+              inFlightLiveData.postValue(false);
+              return null;
+            },
+            lightweightExecutor)
+        .catching(UploadException.class, ex -> {
+          snackbarLiveEvent.postValue(ex.getUploadError().getErrorMessage(resources));
+          inFlightLiveData.postValue(false);
+          return null;
+        }, lightweightExecutor)
+        .catching(ApiException.class, ex -> {
+          if (ex.getStatusCode() == ExposureNotificationStatusCodes.RESOLUTION_REQUIRED) {
+            resolutionRequiredLiveEvent.postValue(ex);
+            return null;
+          } else {
+            Log.w(TAG, "No RESOLUTION_REQUIRED in result", ex);
           }
-
-          @Override
-          public void onFailure(@NonNull Throwable ex) {
-            String snackBarErrorMessage = resources.getString(R.string.generic_error_message);
-            if (ex instanceof KeysSubmitServerFailureException) {
-              snackBarErrorMessage =
-                  resources.getString(R.string.network_error_server_error);
-            } else if (ex instanceof KeysSubmitFailureException) {
-              snackBarErrorMessage = resources.getString(R.string.generic_error_message);
-            } else if (ex instanceof ApiException) {
-              ApiException apiException = (ApiException) ex;
-              if (apiException.getStatusCode()
-                  == ExposureNotificationStatusCodes.RESOLUTION_REQUIRED) {
-                resolutionRequiredLiveEvent.postValue(apiException);
-                return;
-              } else {
-                Log.w(TAG, "No RESOLUTION_REQUIRED in result", apiException);
-              }
-            }
-            snackbarLiveEvent.postValue(snackBarErrorMessage);
-            inFlightLiveData.postValue(false);
-          }
-        },
-        lightweightExecutor);
-
-    return getKeysAndSubmitToService;
+          snackbarLiveEvent.postValue(resources.getString(R.string.generic_error_message));
+          inFlightLiveData.postValue(false);
+          return null;
+        }, lightweightExecutor)
+        .catching(Exception.class, ex -> {
+          snackbarLiveEvent.postValue(resources.getString(R.string.generic_error_message));
+          inFlightLiveData.postValue(false);
+          return null;
+        }, lightweightExecutor);
   }
 
   /**
@@ -509,6 +536,9 @@ public class ShareDiagnosisViewModel extends ViewModel {
               if (verifiedUpload.testType() != null) {
                 builder.setTestResult(TestResult.of(verifiedUpload.testType()));
               }
+              // Store in the preferences that a verification code has been successfully uploaded.
+              exposureNotificationSharedPreferences
+                  .setPrivateAnalyticsLastSubmittedCodeTime(clock.now());
               return diagnosisRepository.upsertAsync(builder.build());
             },
             backgroundExecutor)
@@ -552,18 +582,17 @@ public class ShareDiagnosisViewModel extends ViewModel {
           revealCodeStepEvent.postValue(true);
           return null;
         }, lightweightExecutor)
+        .catching(UploadException.class, ex -> {
+          inFlightLiveData.postValue(false);
+          revealCodeStepEvent.postValue(true);
+          verificationErrorLiveData.postValue(ex.getUploadError().getErrorMessage(resources));
+          return null;
+        }, lightweightExecutor)
         .catching(Exception.class, ex -> {
           Log.e(TAG, "Failed to submit verification code.", ex);
           inFlightLiveData.postValue(false);
           revealCodeStepEvent.postValue(true);
-          String codeVerificationErrorMsg = resources.getString(R.string.generic_error_message);
-          if (ex instanceof VerificationServerFailureException) {
-            codeVerificationErrorMsg = resources.getString(R.string.network_error_server_error);
-          } else if (ex instanceof VerificationFailureException) {
-            codeVerificationErrorMsg = ((VerificationFailureException) ex).getUploadError()
-                .getErrorMessage(resources);
-          }
-          verificationErrorLiveData.postValue(codeVerificationErrorMsg);
+          verificationErrorLiveData.postValue(resources.getString(R.string.generic_error_message));
           return null;
         }, lightweightExecutor);
   }
@@ -592,7 +621,9 @@ public class ShareDiagnosisViewModel extends ViewModel {
   /**
    * An {@link Exception} thrown when there is no internet connectivity during code submission.
    */
-  private static class NoInternetException extends Exception {}
+  private static class NoInternetException extends Exception {
+
+  }
 
   /**
    * Submits TEKs and our diagnosis for sharing to other EN participating devices.
@@ -653,6 +684,9 @@ public class ShareDiagnosisViewModel extends ViewModel {
                       .setSharedStatus(Shared.SHARED)
                       .build());
               sharedLiveEvent.postValue(true);
+              // Store in the preferences that keys have been successfully uploaded.
+              exposureNotificationSharedPreferences
+                  .setPrivateAnalyticsLastSubmittedKeysTime(clock.now());
               return Shared.SHARED;
             },
             lightweightExecutor)
@@ -733,5 +767,9 @@ public class ShareDiagnosisViewModel extends ViewModel {
 
   public boolean isCodeFromLinkUsed() {
     return isCodeFromLinkUsed;
+  }
+
+  public boolean isTravelStatusStepSkippable() {
+    return ShareDiagnosisFlowHelper.isTravelStatusStepSkippable(context);
   }
 }

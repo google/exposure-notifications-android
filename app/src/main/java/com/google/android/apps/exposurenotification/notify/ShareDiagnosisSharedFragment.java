@@ -21,8 +21,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.databinding.FragmentShareDiagnosisSharedBinding;
 import dagger.hilt.android.AndroidEntryPoint;
 
 /**
@@ -34,15 +36,23 @@ public class ShareDiagnosisSharedFragment extends Fragment {
 
   private static final String TAG = "ShareExposureSharedFrag";
 
+  private FragmentShareDiagnosisSharedBinding binding;
+
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-    return inflater.inflate(R.layout.fragment_share_diagnosis_shared, parent, false);
+    binding = FragmentShareDiagnosisSharedBinding.inflate(inflater, parent, false);
+    return binding.getRoot();
   }
 
   @Override
-  public void onViewCreated(View view, Bundle savedInstanceState) {
+  public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
     getActivity().setTitle(R.string.share_confirm_title);
-    view.findViewById(R.id.share_done_button).setOnClickListener(v -> requireActivity().finish());
+    binding.shareDoneButton.setOnClickListener(v -> requireActivity().finish());
   }
 
+  @Override
+  public void onDestroyView() {
+    super.onDestroyView();
+    binding = null;
+  }
 }

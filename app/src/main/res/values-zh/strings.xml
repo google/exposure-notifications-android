@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">为帮助维护和改进该应用，系统会将少量与应用性能和使用情况有关的数据（去除了可用于识别个人身份的信息）提供给 Google。这些数据不会泄露您的身份。%1$s</string>
   <string name="onboarding_confirm_later_title">要让接触史通知保持关闭状态吗？</string>
   <string name="onboarding_confirm_later_detail">您需要开启接触史通知，系统才能在您可能接触到了新冠肺炎 (COVID-19) 患者时发出通知</string>
-  <string name="no_recent_exposure_subtitle">无近期接触史</string>
+  <string name="no_recent_exposure_subtitle">已启用并且正在检查…</string>
+  <string name="no_recent_exposure_indicator">无近期接触史</string>
+  <string name="app_active_info">您的应用会定期检查可能的接触情况。</string>
   <string name="notifications_enabled_info">目前没有您可能接触过新冠肺炎 (COVID-19) 患者的报告。如果您与已报告 COVID-19 检测结果呈阳性的人员有过近距离接触，您会收到通知。</string>
-  <string name="exposure_notifications_are_turned_off">接触史通知已关闭</string>
+  <string name="how_exposure_notifications_work_link">接触史通知的工作原理</string>
+  <string name="recent_check_dialog_title">最近的潜在接触情况检查记录</string>
+  <string name="recent_check_dialog_see_more">查看更多</string>
+  <string name="recent_check_last_checked">上次检查时间：%1$s</string>
+  <string name="exposure_notifications_are_turned_off">目前未检查可能的接触情况</string>
   <string name="turn_on_exposure_notifications_action">开启接触史通知</string>
   <string name="recent_exposures_subtitle">近期接触史</string>
   <string name="exposure_details_status_subtitle">状况</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">COVID-19 检测结果为阴性</string>
   <string name="positive_test_result_status_shared">已分享</string>
   <string name="positive_test_result_status_not_shared">未分享</string>
-  <string name="notify_turn_on_exposure_notifications_header">若想在可能接触过新冠肺炎 (COVID-19) 患者时收到通知，并分享您的 COVID-19 检测结果，请开启接触史通知</string>
+  <string name="notify_turn_on_exposure_notifications_header">您的应用目前未检查可能的接触情况。若想在可能接触过新冠肺炎 (COVID-19) 患者时收到通知，请开启接触史通知。</string>
   <string name="share_begin_title">帮助保护社区成员</string>
   <string name="share_close_title">不分享检测结果并退出？</string>
   <string name="share_close_detail">尽早分享您的检测结果，可以更好地保护社区成员。您之前输入的检测结果信息都会保存在该应用中，以便您日后继续修改。</string>

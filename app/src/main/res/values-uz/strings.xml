@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">Ilovaning ishlashini yaxshilash uchun Google ilovadan foydalanish va uning xususiyatlari haqida qatʼiy cheklangan anonim axborotlarni jamlaydi. Bu axborotlarda siz haqingizda maʼlumot boʻlmaydi. %1$s</string>
   <string name="onboarding_confirm_later_title">Ehtimoliy zararlanish bildirishnomalari oʻchiq qolsinmi?</string>
   <string name="onboarding_confirm_later_detail">Bildirishnomalar yoqilmasa, ehtimoliy zararlanish bildirishnomalari kelmaydi</string>
-  <string name="no_recent_exposure_subtitle">Yangi kontaktlar mavjud emas</string>
-  <string name="notifications_enabled_info">Sizda COVID-19 infeksiyasidan ehtimoliy zararlanish haqida xabarlar mavjud emas. Agar siz yaqinlashgan odamning COVID-19 uchun test natijasi musbat chiqsa, sizga xabar beriladi.</string>
-  <string name="exposure_notifications_are_turned_off">Ehtimoliy zararlanish bildirishnomalari oʻchiq</string>
+  <string name="no_recent_exposure_subtitle">Faol va tekshirilmoqda…</string>
+  <string name="no_recent_exposure_indicator">Ehtimoliy zararlanish haqida oxirgi axborot topilmadi</string>
+  <string name="app_active_info">Ilovangiz muntazam ehtimoliy zararlanishlarni tekshirib turadi.</string>
+  <string name="notifications_enabled_info">Siz uchun COVID-19 bilan ehtimoliy zararlanish haqida xabar topilmadi. Agar siz yaqinlashgan odamning COVID-19 uchun tahlil natijasi musbat chiqsa, sizga xabar beriladi.</string>
+  <string name="how_exposure_notifications_work_link">Ehtimoliy zararlanish bildirishnomalari qanday ishlaydi</string>
+  <string name="recent_check_dialog_title">Ehtimoliy zararlanish uchun oxirgi qaydlarni yozib boring</string>
+  <string name="recent_check_dialog_see_more">Yana</string>
+  <string name="recent_check_last_checked">Oxirgi marta %1$s da tekshirilgan</string>
+  <string name="exposure_notifications_are_turned_off">Ehtimoliy zararlanish tekshirilmayapti</string>
   <string name="turn_on_exposure_notifications_action">Ehtimoliy zararlanish bildirishnomalarini yoqish</string>
   <string name="recent_exposures_subtitle">Oxirgi kontakt</string>
   <string name="exposure_details_status_subtitle">Holati</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">COVID-19 test natijasi manfiy</string>
   <string name="positive_test_result_status_shared">Yuborilgan</string>
   <string name="positive_test_result_status_not_shared">Yuborilmagan</string>
-  <string name="notify_turn_on_exposure_notifications_header">COVID-19 infeksiyasidan ehtimoliy zararlanish bildirishnomalarini olish va test natijangizni ulashish uchun Ehtimoliy zararlanish bildirishnomalarini yoqing</string>
+  <string name="notify_turn_on_exposure_notifications_header">Ilovangiz hozirda ehtimoliy zararlanishlarni tekshirmayapti. COVID-19 bilan ehtimoliy zararlanish bildirishnomalarini olish uchun Ehtimoliy zararlanish bildirishnomalarini yoqing.</string>
   <string name="share_begin_title">Atrofingizdagilarni himoyalashda yordam bering</string>
   <string name="share_close_title">Ulashmasdan chiqasizmi?</string>
   <string name="share_close_detail">Test natijasini qancha tez ulashsangiz, atrofdagilarga shuncha yordam berasiz. Test natijasi ushbu ilovaga saqlandi va uni keyinroq tahrirlashingiz mumkin.</string>

@@ -19,15 +19,17 @@ package com.google.android.apps.exposurenotification.notify;
 
 import static com.google.common.truth.Truth.assertThat;
 import static org.mockito.Mockito.when;
+import static org.robolectric.Shadows.shadowOf;
 
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.test.espresso.core.internal.deps.guava.collect.ImmutableList;
-import android.text.TextUtils;
 import androidx.annotation.Nullable;
 import androidx.test.core.app.ApplicationProvider;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.common.time.Clock;
+import com.google.android.apps.exposurenotification.common.time.RealTimeModule;
 import com.google.android.apps.exposurenotification.keyupload.ApiConstants.UploadV1;
 import com.google.android.apps.exposurenotification.keyupload.ApiConstants.VerifyV1;
 import com.google.android.apps.exposurenotification.keyupload.Qualifiers.UploadUri;
@@ -50,8 +52,11 @@ import com.google.android.apps.exposurenotification.storage.DiagnosisEntity.Test
 import com.google.android.apps.exposurenotification.storage.DiagnosisEntity.TravelStatus;
 import com.google.android.apps.exposurenotification.storage.DiagnosisRepository;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationDatabase;
+import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
 import com.google.android.apps.exposurenotification.testsupport.ExposureNotificationRules;
+import com.google.android.apps.exposurenotification.testsupport.FakeClock;
 import com.google.android.apps.exposurenotification.testsupport.FakeRequestQueue;
+import com.google.android.apps.exposurenotification.testsupport.FakeShadowResources;
 import com.google.android.apps.exposurenotification.testsupport.InMemoryDb;
 import com.google.android.gms.nearby.exposurenotification.ReportType;
 import com.google.android.gms.nearby.exposurenotification.TemporaryExposureKey;
@@ -85,9 +90,9 @@ import org.threeten.bp.LocalDate;
 
 @HiltAndroidTest
 @RunWith(RobolectricTestRunner.class)
-@Config(application = HiltTestApplication.class)
+@Config(application = HiltTestApplication.class, shadows = {FakeShadowResources.class})
 @UninstallModules({DbModule.class, RealRequestQueueModule.class, UploadUrisModule.class,
-    ExposureNotificationsClientModule.class})
+    ExposureNotificationsClientModule.class, RealTimeModule.class})
 public class ShareDiagnosisViewModelTest {
 
   private static final Uri UPLOAD_URI = Uri.parse("http://sampleurls.com/upload");
@@ -114,6 +119,10 @@ public class ShareDiagnosisViewModelTest {
   @BindValue
   @Mock
   Connectivity connectivity;
+  @Inject
+  ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
+  @BindValue
+  Clock clock = new FakeClock();
 
   @Module
   @InstallIn(ApplicationComponent.class)
@@ -148,6 +157,8 @@ public class ShareDiagnosisViewModelTest {
         uploadController,
         diagnosisRepository,
         exposureNotificationClient,
+        exposureNotificationSharedPreferences,
+        clock,
         connectivity,
         MoreExecutors.newDirectExecutorService(),
         MoreExecutors.newDirectExecutorService(),
@@ -324,8 +335,14 @@ public class ShareDiagnosisViewModelTest {
     assertThat(returnValue.verificationCodeToPrefill()).isAbsent();
   }
 
-  public void nextStep_afterOnsetStep_shouldBeTravelStatusStep() throws Exception {
+  @Test
+  public void nextStep_afterOnsetStepAndTravelQuestionEnabled_shouldBeTravelStatusStep()
+      throws Exception {
     // GIVEN
+    // Enable travel step by providing a non-empty value for the share_travel_detail string,
+    // which is an optional health authority config field
+    FakeShadowResources resources = (FakeShadowResources) shadowOf(context.getResources());
+    resources.addFakeResource(R.string.share_travel_detail, "Sample travel question");
     // Imitate the submission of code with symptom onset date
     AtomicLong observedDiagnosisId = observeDiagnosisId();
     viewModel.nextStep(Step.CODE);
@@ -334,19 +351,46 @@ public class ShareDiagnosisViewModelTest {
     viewModel.setSymptomOnsetDate(LocalDate.parse("2020-04-01"));
 
     // WHEN
-    DiagnosisEntity diagnosis = diagnosisRepository.getByIdAsync(observedDiagnosisId.get()).get();
-    String haConfig = context.getResources().getString(R.string.share_travel_detail);
-    viewModel.nextStep(ShareDiagnosisFlowHelper.getNextStep(Step.ONSET, diagnosis, context));
+    Step nextStep = observeNextStep(Step.ONSET).get();
+    viewModel.nextStep(nextStep);
 
     // THEN
-    // As the config for the Sample app contains traveledQuestionText, the next step after an Onset
-    // step should be a TravelStatus step.
+    // As Travel step is enabled, the next step after an Onset step should be a Travel Status step.
     assertThat(observeFlowStep().get()).isEqualTo(Step.TRAVEL_STATUS);
   }
 
   @Test
-  public void previousStep_beforeReviewStep_shouldBeTravelStatusStep() throws Exception {
+  public void nextStep_afterOnsetStepAndTravelQuestionDisabled_shouldBeReviewStep()
+      throws Exception {
     // GIVEN
+    // Disable travel step by providing an empty value for the share_travel_detail string,
+    // which is an optional health authority config field
+    FakeShadowResources resources = (FakeShadowResources) shadowOf(context.getResources());
+    resources.addFakeResource(R.string.share_travel_detail, "");
+    // Imitate the submission of code with symptom onset date
+    AtomicLong observedDiagnosisId = observeDiagnosisId();
+    viewModel.nextStep(Step.CODE);
+    viewModel.submitCode("code", false).get();
+    viewModel.nextStep(Step.ONSET);
+    viewModel.setSymptomOnsetDate(LocalDate.parse("2020-04-01"));
+
+    // WHEN
+    Step nextStep = observeNextStep(Step.ONSET).get();
+    viewModel.nextStep(nextStep);
+
+    // THEN
+    // As Travel step is disabled, the next step after an Onset step should be a Review step.
+    assertThat(observeFlowStep().get()).isEqualTo(Step.REVIEW);
+  }
+
+  @Test
+  public void previousStep_beforeReviewStepAndTravelQuestionEnabled_shouldBeTravelStatusStep()
+      throws Exception {
+    // GIVEN
+    // Enable travel step by providing a non-empty value for the share_travel_detail string,
+    // which is an optional health authority config field
+    FakeShadowResources resources = (FakeShadowResources) shadowOf(context.getResources());
+    resources.addFakeResource(R.string.share_travel_detail, "Sample travel question");
     // Imitate the submission of code with symptom onset date
     AtomicLong observedDiagnosisId = observeDiagnosisId();
     viewModel.nextStep(Step.CODE);
@@ -356,15 +400,38 @@ public class ShareDiagnosisViewModelTest {
     viewModel.nextStep(Step.REVIEW);
 
     // WHEN
-    DiagnosisEntity diagnosis = diagnosisRepository.getByIdAsync(observedDiagnosisId.get()).get();
-    String haConfig = context.getResources().getString(R.string.share_travel_detail);
-    viewModel.previousStep(
-        ShareDiagnosisFlowHelper.getPreviousStep(Step.REVIEW, diagnosis, context));
+    Step previousStep = observePreviousStep(Step.REVIEW).get();
+    viewModel.previousStep(previousStep);
 
     // THEN
-    // As the config for the Sample app contains traveledQuestionText, the previous step before
-    // a Review step should be a TravelStatus step.
+    // As Travel step is enabled, the previous step before a Review step should be a Travel Status
+    // step.
     assertThat(observeFlowStep().get()).isEqualTo(Step.TRAVEL_STATUS);
+  }
+
+  @Test
+  public void previousStep_beforeReviewStepAndTravelQuestionDisabled_shouldBeOnsetStep()
+      throws Exception {
+    // GIVEN
+    // Disable travel step by providing an empty value for the share_travel_detail string,
+    // which is an optional health authority config field
+    FakeShadowResources resources = (FakeShadowResources) shadowOf(context.getResources());
+    resources.addFakeResource(R.string.share_travel_detail, "");
+    // Imitate the submission of code with symptom onset date
+    AtomicLong observedDiagnosisId = observeDiagnosisId();
+    viewModel.nextStep(Step.CODE);
+    viewModel.submitCode("code", false).get();
+    viewModel.nextStep(Step.ONSET);
+    viewModel.setSymptomOnsetDate(LocalDate.parse("2021-04-01"));
+    viewModel.nextStep(Step.REVIEW);
+
+    // WHEN
+    Step previousStep = observePreviousStep(Step.REVIEW).get();
+    viewModel.previousStep(previousStep);
+
+    // THEN
+    // As Travel step is disabled, the previous step before a Review step should be an Onset step.
+    assertThat(observeFlowStep().get()).isEqualTo(Step.ONSET);
   }
 
   // TODO: Lots more narrow tests of specific steps in the flow and specific expectations.
@@ -469,6 +536,18 @@ public class ShareDiagnosisViewModelTest {
     AtomicBoolean observedRevealCodeStepEvent = new AtomicBoolean();
     viewModel.getRevealCodeStepEvent().observeForever(observedRevealCodeStepEvent::set);
     return observedRevealCodeStepEvent;
+  }
+
+  private AtomicReference<Step> observeNextStep(Step currentStep) {
+    AtomicReference<Step> observedNextStep = new AtomicReference<>();
+    viewModel.getNextStepLiveData(currentStep).observeForever(observedNextStep::set);
+    return observedNextStep;
+  }
+
+  private AtomicReference<Step> observePreviousStep(Step previousStep) {
+    AtomicReference<Step> observedPreviousStep = new AtomicReference<>();
+    viewModel.getPreviousStepLiveData(previousStep).observeForever(observedPreviousStep::set);
+    return observedPreviousStep;
   }
 
   private FakeRequestQueue queue() {

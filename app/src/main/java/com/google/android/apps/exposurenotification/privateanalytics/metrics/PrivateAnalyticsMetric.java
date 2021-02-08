@@ -17,7 +17,6 @@
 
 package com.google.android.apps.exposurenotification.privateanalytics.metrics;
 
-import com.google.android.apps.exposurenotification.privateanalytics.MetricsSnapshot;
 import com.google.common.util.concurrent.ListenableFuture;
 import java.util.List;
 
@@ -50,13 +49,7 @@ public interface PrivateAnalyticsMetric {
   /**
    * Generates the data vector associated with this metric. The vector will be represented as a
    * binary set of 0 and 1s.
-   *
-   * @param metricsSnapshot a snapshot of the current metrics data
    **/
-  ListenableFuture<List<Integer>> getDataVector(MetricsSnapshot metricsSnapshot);
+  ListenableFuture<List<Integer>> getDataVector();
 
-  /**
-   * Resets the data after a successful submission
-   */
-  default void resetData() {}
 }

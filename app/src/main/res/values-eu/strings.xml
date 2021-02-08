@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">Aplikazioa mantentzen eta hobetzen laguntzeko, aplikazioaren errendimenduari eta erabilerari buruzko datu anonimoak partekatzen dira Google-rekin. Datuok ez zaituzte identifikatzen. %1$s</string>
   <string name="onboarding_confirm_later_title">Esposizioari buruzko jakinarazpenak desaktibatuta mantendu nahi dituzu?</string>
   <string name="onboarding_confirm_later_detail">Esposizioari buruzko jakinarazpenak aktibatzen ez dituzun bitartean, ez zaizu jakinaraziko COVID-19aren eraginpean egon zaren ala ez</string>
-  <string name="no_recent_exposure_subtitle">Ez duzu esposiziorik izan azkenaldian</string>
-  <string name="notifications_enabled_info">Une honetan ez duzu COVID-19arekiko esposizio-arriskurik. Inguruko norbaitek COVID-19aren proba positiboa duela adieraziz gero, jakinarazpen bat bidaliko dizugu.</string>
-  <string name="exposure_notifications_are_turned_off">Esposizioari buruzko jakinarazpenak desaktibatuta daude</string>
+  <string name="no_recent_exposure_subtitle">Aktibo eta egiaztatzen…</string>
+  <string name="no_recent_exposure_indicator">Ez duzu esposiziorik izan azkenaldian</string>
+  <string name="app_active_info">Aplikazioak esposizio posibleak bilatzen ditu etengabe</string>
+  <string name="notifications_enabled_info">Oraingoz ez da jakinarazi COVID-19arekiko esposizio-arriskurik izan duzunik. Inguruko norbaitek COVID-19aren proba positiboa duela adieraziz gero, jakinarazpen bat bidaliko dizugu.</string>
+  <string name="how_exposure_notifications_work_link">Nola funtzionatzen dute esposizioari buruzko jakinarazpenek?</string>
+  <string name="recent_check_dialog_title">Esposizio posibleak hautemateko erabiltzen diren azkenaldiko hartu-emanen erregistroa</string>
+  <string name="recent_check_dialog_see_more">Ikusi gehiago</string>
+  <string name="recent_check_last_checked">Azken egiaztatze-data: %1$s</string>
+  <string name="exposure_notifications_are_turned_off">Ez da ari egiaztatzen ea esposizio posiblerik izan duzun</string>
   <string name="turn_on_exposure_notifications_action">Aktibatu</string>
   <string name="recent_exposures_subtitle">Azken esposizioa</string>
   <string name="exposure_details_status_subtitle">Egoera</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">COVID-19aren proba negatiboa</string>
   <string name="positive_test_result_status_shared">Partekatu da</string>
   <string name="positive_test_result_status_not_shared">Ez da partekatu</string>
-  <string name="notify_turn_on_exposure_notifications_header">COVID-19arekiko esposizio posiblea jakinarazteko eta COVID-19aren probaren emaitza partekatzeko, aktibatu esposizioari buruzko jakinarazpenak</string>
+  <string name="notify_turn_on_exposure_notifications_header">Une honetan, aplikazioa ez da ari egiaztatzen ea esposizio posiblerik izan duzun. COVID-19aren eraginpean egon zaren jakiteko, aktibatu esposizioari buruzko jakinarazpenak</string>
   <string name="share_begin_title">Lagundu zure komunitatea babesten</string>
   <string name="share_close_title">Partekatu gabe irten nahi duzu?</string>
   <string name="share_close_detail">Komunitateari lagun diezaiokezu probaren emaitza lehenago partekatuz gero. Proben emaitzen inguruan orain arte idatzi duzun informazioa aplikazioan gordeko da, geroago berrekin diezaiozun editatzeari.</string>

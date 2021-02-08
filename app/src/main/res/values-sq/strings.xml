@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">Për të ndihmuar në mirëmbajtjen dhe përmirësimin e aplikacionit, disa të dhëna të kufizuara të anonimizuara për cilësinë e funksionimit dhe përdorimin e aplikacionit ndahen me Google. Këto të dhëna nuk të identifikojnë ty. %1$s</string>
   <string name="onboarding_confirm_later_title">Do ta mbash të çaktivizuar \"Njoftimin rreth ekspozimit\"?</string>
   <string name="onboarding_confirm_later_detail">Nuk do të njoftohesh për ekspozimin e mundshëm ndaj COVID-19 derisa të aktivizohen \"Njoftimet rreth ekspozimit\"</string>
-  <string name="no_recent_exposure_subtitle">Nuk ka ekspozime së fundi</string>
-  <string name="notifications_enabled_info">Aktualisht nuk raportohet asnjë rrezik nga ekspozimi ndaj COVID-19. Do të njoftohesh nëse dikush pranë të cilit ke qenë raporton një rezultat pozitiv nga testi për COVID-19.</string>
-  <string name="exposure_notifications_are_turned_off">\"Njoftimet rreth ekspozimit\" janë çaktivizuar</string>
+  <string name="no_recent_exposure_subtitle">Aktiv dhe duke kontrolluar…</string>
+  <string name="no_recent_exposure_indicator">Nuk ka ekspozim të kohëve të fundit</string>
+  <string name="app_active_info">Aplikacioni yt kontrollon rregullisht për ekspozime të mundshme.</string>
+  <string name="notifications_enabled_info">Aktualisht nuk ka raportuar rrezik ekspozimi ndaj COVID-19 për ty. Do të njoftohesh nëse dikush pranë të cilit ke qenë raporton një rezultat pozitiv nga testi për COVID-19.</string>
+  <string name="how_exposure_notifications_work_link">Si funksionojnë njoftimet e ekspozimit</string>
+  <string name="recent_check_dialog_title">Regjistri i kontrolleve të fundit për ekspozim të mundshëm</string>
+  <string name="recent_check_dialog_see_more">Shiko më shumë</string>
+  <string name="recent_check_last_checked">Kontrolli i fundit: %1$s</string>
+  <string name="exposure_notifications_are_turned_off">Nuk kontrollon për ekspozim të mundshëm</string>
   <string name="turn_on_exposure_notifications_action">Aktivizo \"Njoftimet rreth ekspozimit\"</string>
   <string name="recent_exposures_subtitle">Ekspozimi së fundi</string>
   <string name="exposure_details_status_subtitle">Statusi</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">COVID-19: negativ</string>
   <string name="positive_test_result_status_shared">Ndarë</string>
   <string name="positive_test_result_status_not_shared">Nuk është ndarë</string>
-  <string name="notify_turn_on_exposure_notifications_header">Për t\'u njoftuar për ekspozimin e mundshëm ndaj COVID-19 dhe për të ndarë rezultatin tënd të testit për COVID-19, aktivizo \"Njoftimet rreth ekspozimit\"</string>
+  <string name="notify_turn_on_exposure_notifications_header">Aplikacioni yt nuk po kontrollon aktualisht për ekspozime të mundshme. Për t\'u njoftuar për ekspozimin e mundshëm ndaj COVID-19, aktivizo \"Njoftimet rreth ekspozimit\".</string>
   <string name="share_begin_title">Ndihmo në mbrojtjen e komunitetit tënd</string>
   <string name="share_close_title">Të dilet pa e ndarë?</string>
   <string name="share_close_detail">Mund ta ndihmosh më mirë komunitetin tënd nëse e ndan sa më shpejt rezultatin e testit tënd. Sidoqoftë, informacionet e rezultatit të testit që ke futur deri tani janë ruajtur në aplikacion që t\'i redaktosh më vonë.</string>

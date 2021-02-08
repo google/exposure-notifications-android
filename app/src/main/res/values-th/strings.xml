@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">ระบบจะแชร์ข้อมูลเกี่ยวกับประสิทธิภาพและการใช้งานแอปเพียงบางอย่างที่ลบการระบุตัวตนแล้วกับ Google เพื่อช่วยคงฟังก์ชันการทำงานและปรับปรุงแอป ข้อมูลนี้ไม่ได้ระบุตัวตนของคุณ %1$s</string>
   <string name="onboarding_confirm_later_title">ปิดการแจ้งเตือนความเสี่ยงต่อการติดเชื้อต่อไปใช่ไหม</string>
   <string name="onboarding_confirm_later_detail">คุณจะไม่ได้รับการแจ้งเตือนความเสี่ยงต่อการติดเชื้อโควิด-19 จนกว่าจะเปิดการแจ้งเตือนนี้</string>
-  <string name="no_recent_exposure_subtitle">ยังไม่มีความเสี่ยงต่อการติดเชื้อ</string>
-  <string name="notifications_enabled_info">ตอนนี้ยังไม่มีรายงานว่าคุณมีความเสี่ยงต่อการติดเชื้อโควิด-19 คุณจะได้รับการแจ้งเตือนหากเคยอยู่ใกล้กับผู้ที่รายงานผลตรวจว่าตนติดเชื้อโควิด-19</string>
-  <string name="exposure_notifications_are_turned_off">การแจ้งเตือนความเสี่ยงต่อการติดเชื้อปิดอยู่</string>
+  <string name="no_recent_exposure_subtitle">ใช้งานอยู่และกำลังตรวจสอบ …</string>
+  <string name="no_recent_exposure_indicator">ยังไม่มีความเสี่ยงต่อการติดเชื้อ</string>
+  <string name="app_active_info">แอปตรวจหาความเสี่ยงต่อการติดเชื้ออยู่เสมอ</string>
+  <string name="notifications_enabled_info">ตอนนี้ยังไม่มีรายงานความเสี่ยงต่อการติดเชื้อโควิด-19 สำหรับคุณ คุณจะได้รับการแจ้งเตือนหากเคยอยู่ใกล้กับผู้ที่รายงานผลตรวจว่าตนติดเชื้อโควิด-19</string>
+  <string name="how_exposure_notifications_work_link">วิธีการทำงานของการแจ้งเตือนความเสี่ยงต่อการติดเชื้อ</string>
+  <string name="recent_check_dialog_title">บันทึกการเช็คอินล่าสุดเพื่อตรวจหาความเสี่ยงต่อการติดเชื้อ</string>
+  <string name="recent_check_dialog_see_more">ดูเพิ่มเติม</string>
+  <string name="recent_check_last_checked">ตรวจสอบล่าสุดเมื่อ %1$s</string>
+  <string name="exposure_notifications_are_turned_off">ไม่ได้ตรวจหาความเสี่ยงต่อการติดเชื้อ</string>
   <string name="turn_on_exposure_notifications_action">เปิดการแจ้งเตือนความเสี่ยงต่อการติดเชื้อ</string>
   <string name="recent_exposures_subtitle">ความเสี่ยงต่อการติดเชื้อล่าสุด</string>
   <string name="exposure_details_status_subtitle">สถานะ</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">ไม่ติดเชื้อโควิด-19</string>
   <string name="positive_test_result_status_shared">แชร์แล้ว</string>
   <string name="positive_test_result_status_not_shared">ยังไม่แชร์</string>
-  <string name="notify_turn_on_exposure_notifications_header">หากต้องการรับการแจ้งเตือนความเสี่ยงต่อการติดเชื้อโควิด-19 ที่อาจเกิดขึ้นได้และแชร์ผลการตรวจเชื้อโควิด-19 ของคุณ ให้เปิดการแจ้งเตือนความเสี่ยงต่อการติดเชื้อ</string>
+  <string name="notify_turn_on_exposure_notifications_header">ตอนนี้แอปยังไม่ได้ตรวจหาความเสี่ยงต่อการติดเชื้อ เปิดการแจ้งเตือนความเสี่ยงต่อการติดเชื้อเพื่อรับการแจ้งเตือนความเสี่ยงต่อการติดเชื้อโควิด-19</string>
   <string name="share_begin_title">ช่วยปกป้องชุมชน</string>
   <string name="share_close_title">ออกโดยไม่แชร์ใช่ไหม</string>
   <string name="share_close_detail">คุณจะช่วยเหลือชุมชนได้ดีที่สุดหากแชร์ผลตรวจให้เร็วขึ้น อย่างไรก็ตาม ข้อมูลผลตรวจที่คุณป้อนไว้แล้วจะบันทึกอยู่ในแอปเพื่อให้คุณแก้ไขได้ในภายหลัง</string>

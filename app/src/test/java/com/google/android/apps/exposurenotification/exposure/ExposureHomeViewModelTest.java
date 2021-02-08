@@ -21,11 +21,20 @@ import static com.google.common.truth.Truth.assertThat;
 
 import androidx.lifecycle.LiveData;
 import com.google.android.apps.exposurenotification.riskcalculation.ExposureClassification;
+import com.google.android.apps.exposurenotification.storage.DbModule;
+import com.google.android.apps.exposurenotification.storage.ExposureCheckEntity;
+import com.google.android.apps.exposurenotification.storage.ExposureCheckRepository;
+import com.google.android.apps.exposurenotification.storage.ExposureNotificationDatabase;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.BadgeStatus;
 import com.google.android.apps.exposurenotification.testsupport.ExposureNotificationRules;
+import com.google.android.apps.exposurenotification.testsupport.InMemoryDb;
+import dagger.hilt.android.testing.BindValue;
 import dagger.hilt.android.testing.HiltAndroidTest;
 import dagger.hilt.android.testing.HiltTestApplication;
+import dagger.hilt.android.testing.UninstallModules;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 import javax.inject.Inject;
 import org.junit.Before;
@@ -34,10 +43,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
+import org.threeten.bp.Instant;
 
 @HiltAndroidTest
 @RunWith(RobolectricTestRunner.class)
 @Config(application = HiltTestApplication.class)
+@UninstallModules({DbModule.class})
 public class ExposureHomeViewModelTest {
 
   @Rule
@@ -46,13 +57,19 @@ public class ExposureHomeViewModelTest {
   @Inject
   ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
 
+  @Inject
+  ExposureCheckRepository exposureCheckRepository;
+
+  @BindValue
+  ExposureNotificationDatabase database = InMemoryDb.create();
+
   private ExposureHomeViewModel exposureHomeViewModel;
 
   @Before
   public void setup() {
     rules.hilt().inject();
     exposureHomeViewModel = new ExposureHomeViewModel(
-        exposureNotificationSharedPreferences);
+        exposureNotificationSharedPreferences, exposureCheckRepository);
   }
 
   @Test
@@ -164,5 +181,22 @@ public class ExposureHomeViewModelTest {
 
     assertThat(exposureNotificationSharedPreferences.getIsExposureClassificationDateNew())
         .isEqualTo(BadgeStatus.NEW);
+  }
+
+  @Test
+  public void exposureCheckRepository_insertChecks_deliversChecksToObserver() {
+    // GIVEN
+    List<ExposureCheckEntity> exposureChecks = new ArrayList<>();
+    exposureCheckRepository
+        .insertExposureCheck(ExposureCheckEntity.create(Instant.ofEpochMilli(12345L)));
+    exposureCheckRepository
+        .insertExposureCheck(ExposureCheckEntity.create(Instant.ofEpochMilli(23456L)));
+
+    // WHEN
+    exposureHomeViewModel.getExposureChecksLiveData().observeForever(exposureChecks::addAll);
+
+    // THEN
+    assertThat(exposureChecks).hasSize(2);
+    assertThat(exposureChecks.get(0).getCheckTime()).isEqualTo(Instant.ofEpochMilli(23456L));
   }
 }

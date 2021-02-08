@@ -59,7 +59,7 @@ public class PrivateAnalyticsViewModelTest {
   @Inject
   ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
 
-  private Context context = ApplicationProvider.getApplicationContext();
+  private final Context context = ApplicationProvider.getApplicationContext();
 
   private PrivateAnalyticsViewModel privateAnalyticsViewModel;
 
@@ -67,7 +67,8 @@ public class PrivateAnalyticsViewModelTest {
   public void setup() {
     FirebaseApp.initializeApp(context);
     rules.hilt().inject();
-    privateAnalyticsViewModel = new PrivateAnalyticsViewModel(exposureNotificationSharedPreferences);
+    privateAnalyticsViewModel = new PrivateAnalyticsViewModel(
+        exposureNotificationSharedPreferences);
   }
 
   @Test
@@ -106,22 +107,40 @@ public class PrivateAnalyticsViewModelTest {
     // Generate a metric
     privateAnalyticsViewModel.setPrivateAnalyticsState(true);
     Instant notificationTime = clock.now();
+    int classificationIndex = 1;
     exposureNotificationSharedPreferences
-        .setExposureNotificationLastShownClassification(notificationTime, /* classificationIndex= */ 1);
+        .setExposureNotificationLastShownClassification(notificationTime, classificationIndex);
     exposureNotificationSharedPreferences
-        .setExposureNotificationLastInteraction(notificationTime, NotificationInteraction.CLICKED);
+        .setExposureNotificationLastInteraction(notificationTime, NotificationInteraction.CLICKED,
+            classificationIndex);
 
-    assertThat(exposureNotificationSharedPreferences.getExposureNotificationLastShownTime()).isEqualTo(notificationTime);
-    assertThat(exposureNotificationSharedPreferences.getExposureNotificationLastInteractionTime()).isEqualTo(notificationTime);
-    assertThat(exposureNotificationSharedPreferences.getExposureNotificationLastInteractionType()).isEqualTo(NotificationInteraction.CLICKED);
+    assertThat(exposureNotificationSharedPreferences.getExposureNotificationLastShownTime())
+        .isEqualTo(notificationTime);
+    assertThat(exposureNotificationSharedPreferences.getExposureNotificationLastInteractionTime())
+        .isEqualTo(notificationTime);
+    assertThat(exposureNotificationSharedPreferences.getExposureNotificationLastInteractionType())
+        .isEqualTo(NotificationInteraction.CLICKED);
+    assertThat(exposureNotificationSharedPreferences
+        .getExposureNotificationLastInteractionClassification()).isEqualTo(classificationIndex);
+    assertThat(
+        exposureNotificationSharedPreferences.getExposureNotificationLastShownClassification())
+        .isEqualTo(classificationIndex);
 
     // Toggle off
     privateAnalyticsViewModel.setPrivateAnalyticsState(false);
 
     // Metric is cleared
-    assertThat(exposureNotificationSharedPreferences.getExposureNotificationLastShownTime().getEpochSecond()).isEqualTo(0);
-    assertThat(exposureNotificationSharedPreferences.getExposureNotificationLastInteractionTime().getEpochSecond()).isEqualTo(0);
-    assertThat(exposureNotificationSharedPreferences.getExposureNotificationLastInteractionType()).isEqualTo(NotificationInteraction.UNKNOWN);
+    assertThat(exposureNotificationSharedPreferences.getExposureNotificationLastShownTime()
+    ).isEqualTo(Instant.EPOCH);
+    assertThat(exposureNotificationSharedPreferences.getExposureNotificationLastInteractionTime()
+    ).isEqualTo(Instant.EPOCH);
+    assertThat(exposureNotificationSharedPreferences.getExposureNotificationLastInteractionType())
+        .isEqualTo(NotificationInteraction.UNKNOWN);
+    assertThat(exposureNotificationSharedPreferences
+        .getExposureNotificationLastInteractionClassification()).isEqualTo(0);
+    assertThat(
+        exposureNotificationSharedPreferences.getExposureNotificationLastShownClassification())
+        .isEqualTo(0);
   }
 
 }

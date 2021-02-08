@@ -172,5 +172,45 @@ public class DiagnosisKeyDataMappingHelperTest {
             .build());
   }
 
+  /**
+   * Make sure that createDiagnosisKeysDataMapping can handle non-full-length inputs.
+   */
+  @Test
+  public void createDiagnosisKeysDataMapping_shorterInput_createCorrectMapping() {
+    String inputShort = "0x556aaa900000";
+    String inputFull = "0x0000556aaa900000";
+
+    DiagnosisKeysDataMapping resultShort = DiagnosisKeyDataMappingHelper
+        .createDiagnosisKeysDataMapping(inputShort, ReportType.CONFIRMED_TEST);
+    DiagnosisKeysDataMapping resultFull = DiagnosisKeyDataMappingHelper
+        .createDiagnosisKeysDataMapping(inputFull, ReportType.CONFIRMED_TEST);
+
+    assertThat(resultShort).isEqualTo(resultFull);
+  }
+
+  /*
+   * Test 0x0 input string - this is especially interesting because it's a hex-string of uneven
+   * length
+   */
+  @Test
+  public void createDiagnosisKeysDataMapping_singleZeroString_createAllNoneMapping() {
+    String input = "0x0";
+
+    DiagnosisKeysDataMapping result = DiagnosisKeyDataMappingHelper
+        .createDiagnosisKeysDataMapping(input, ReportType.CONFIRMED_TEST);
+
+    Map<Integer, Integer> daysSinceOnsetToInfectiousness = new HashMap<>();
+    for (int day = -14; day <= 14; day++) {
+      daysSinceOnsetToInfectiousness.put(day, 0);
+    }
+
+    assertThat(result)
+        .isEqualTo(new DiagnosisKeysDataMappingBuilder()
+            .setReportTypeWhenMissing(ReportType.CONFIRMED_TEST)
+            .setInfectiousnessWhenDaysSinceOnsetMissing(0)
+            .setDaysSinceOnsetToInfectiousness(daysSinceOnsetToInfectiousness)
+            .build());
+  }
+
 
 }

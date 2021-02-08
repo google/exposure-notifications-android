@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">యాప్ నిర్వహణ, మెరుగుదలలో సహాయపడటానికి యాప్ పనితీరు, వినియోగం గురించి పరిమిత పరిధిలో అనామకంగా మార్చిన కొంత డేటా Googleతో షేర్ చేయబడుతుంది. ఈ డేటా మిమ్మల్ని గుర్తించేదిగా ఉండదు. %1$s</string>
   <string name="onboarding_confirm_later_title">వ్యాధి సోకగల అవకాశాన్ని తెలిపే నోటిఫికేషన్‌లు ఆఫ్‌లో ఉంచాలా?</string>
   <string name="onboarding_confirm_later_detail">వ్యాధి సోకగల అవకాశాన్ని తెలిపే నోటిఫికేషన్‌లు ఆన్ చేసే తప్ప, ఆ నోటిఫికేషన్‌లు మీకు COVID-19 సోకగల అవకాశం గురించి తెలియజేయవు</string>
-  <string name="no_recent_exposure_subtitle">ఇటీవల వ్యాధి సోకగలిగిన సందర్భాలు ఎదురుకాలేదు</string>
-  <string name="notifications_enabled_info">మీకు ప్రస్తుతం COVID-19 వ్యాధి సోకే అవకాశం గురించి ఏదీ రిపోర్ట్ కాలేదు. మీకు సమీపంలో ఉన్న ఎవరైనా వ్యక్తి పాజిటివ్ COVID-19 పరీక్షా ఫలితం గురించి రిపోర్ట్ చేస్తే మీకు తెలియజేయబడుతుంది.</string>
-  <string name="exposure_notifications_are_turned_off">వ్యాధి సోకగల అవకాశాన్ని తెలిపే నోటిఫికేషన్‌లు ఆఫ్ చేయబడ్డాయి</string>
+  <string name="no_recent_exposure_subtitle">యాక్టివ్‌గా ఉంది, చెక్ చేస్తోంది …</string>
+  <string name="no_recent_exposure_indicator">వ్యాధి సోకే అవకాశం ఉన్న తాజా సంఘటనలేవీ లేవు</string>
+  <string name="app_active_info">వ్యాధి సోకే అవకాశం ఉన్న సంఘటనల కోసం మీ యాప్ తరచుగా చెక్ చేస్తోంది.</string>
+  <string name="notifications_enabled_info">ప్రస్తుతం మీకు COVID-19 వ్యాధి సోకే ప్రమాదం లేదు. COVID-19 పరీక్ష ఫలితంలో పాజిటివ్ వచ్చిన వ్యక్తికి మీరు దగ్గరలో ఉన్నట్లయితే, మీకు తెలియజేయబడుతుంది.</string>
+  <string name="how_exposure_notifications_work_link">వ్యాధి సోకగల అవకాశాన్ని తెలిపే నోటిఫికేషన్‌లు ఎలా పని చేస్తాయి</string>
+  <string name="recent_check_dialog_title">వ్యాధి సోకే అవకాశం ఉన్న వారు, ఇటీవల చేసిన చెక్ ఇన్‌ల రికార్డ్‌లు</string>
+  <string name="recent_check_dialog_see_more">మరిన్ని చూడండి</string>
+  <string name="recent_check_last_checked">చివరిగా చెక్ చేసిన సమయం  %1$s</string>
+  <string name="exposure_notifications_are_turned_off">వ్యాధి సోకే అవకాశం కోసం చెక్ చేయడం లేదు</string>
   <string name="turn_on_exposure_notifications_action">వ్యాధి సోకగల అవకాశాన్ని తెలిపే నోటిఫికేషన్‌లు ఆన్ చేయండి</string>
   <string name="recent_exposures_subtitle">ఇటీవలి వ్యాధి సోకే అవకాశం</string>
   <string name="exposure_details_status_subtitle">స్టేటస్</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">COVID-19 నెగెటివ్</string>
   <string name="positive_test_result_status_shared">షేర్ చేయబడింది</string>
   <string name="positive_test_result_status_not_shared">షేర్ చేయలేదు</string>
-  <string name="notify_turn_on_exposure_notifications_header">COVID-19 వ్యాధి సోకే అవకాశం గురించి నోటిఫికేషన్ పొందడానికి, అలాగే మీ COVID-19 పరీక్ష ఫలితం షేర్ చేయడానికి, వ్యాధి సోకగల అవకాశాన్ని తెలిపే నోటిఫికేషన్‌లు ఆన్ చేయండి</string>
+  <string name="notify_turn_on_exposure_notifications_header">మీ యాప్ ప్రస్తుతం వ్యాధి సోకే అవకాశం కోసం చెక్ చేయడం లేదు. COVID-19 వ్యాధి సోకే అవకాశం గురించి నోటిఫికేషన్ పొందడానికి, వ్యాధి సోకగల అవకాశాన్ని తెలిపే నోటిఫికేషన్‌లను ఆన్ చేయండి.</string>
   <string name="share_begin_title">మీ కమ్యూనిటీని కాపాడటంలో సహాయపడండి</string>
   <string name="share_close_title">షేర్ చేయకుండా నిష్క్రమించాలా?</string>
   <string name="share_close_detail">ఎంత త్వరగా మీ పరీక్ష ఫలితాన్ని షేర్ చేస్తే, కమ్యూనిటీకి అంత ఉత్తమ సహాయం చేసినవారవుతారు. అయితే, ఇంతవరకూ ఎంటర్ చేసిన పరీక్షా ఫలితాల సమాచారం, తర్వాత మీరు ఎడిటింగ్ కొనసాగించడం కోసం యాప్‌లో సేవ్ చేయబడింది.</string>

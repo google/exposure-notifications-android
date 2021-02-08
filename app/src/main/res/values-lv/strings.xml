@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">Lai palīdzētu uzturēt un uzlabot lietotni, ar uzņēmumu Google tiek kopīgoti noteikti anonimizēti dati par lietotnes veiktspēju un izmantojumu. Šos datus nevar izmantot, lai jūs identificētu. %1$s</string>
   <string name="onboarding_confirm_later_title">Vai paziņojumiem par saskari arī turpmāk jābūt izslēgtiem?</string>
   <string name="onboarding_confirm_later_detail">Ja paziņojumi par saskari nav ieslēgti, jūs netiekat informēts par iespējamu saskari ar Covid-19</string>
-  <string name="no_recent_exposure_subtitle">Pēdējā laikā nav iespējamas saskares gadījumu</string>
-  <string name="notifications_enabled_info">Pagaidām nav ziņots, ka jūs varētu būt saskāries ar Covid-19. Ja kāda persona, kuras tuvumā uzturējāties, ziņos par pozitīvu Covid-19 testa rezultātu, jūs saņemsiet paziņojumu.</string>
-  <string name="exposure_notifications_are_turned_off">Paziņojumi par saskari ir izslēgti</string>
+  <string name="no_recent_exposure_subtitle">Lietotne ir aktīva un veic pārbaudi…</string>
+  <string name="no_recent_exposure_indicator">Pēdējā laikā nav saskares gadījumu</string>
+  <string name="app_active_info">Jūsu lietotne regulāri pārbauda iespējamas saskares gadījumus.</string>
+  <string name="notifications_enabled_info">Pašlaik nav ziņots, ka jūs varētu būt saskāries ar Covid-19. Ja kāda persona, kuras tuvumā uzturējāties, ziņos par pozitīvu Covid-19 testa rezultātu, jūs saņemsiet paziņojumu.</string>
+  <string name="how_exposure_notifications_work_link">Kā darbojas sistēma paziņojumiem par saskari</string>
+  <string name="recent_check_dialog_title">Nesen reģistrētie ziņojumi par iespējamu saskari</string>
+  <string name="recent_check_dialog_see_more">Skatīt vairāk</string>
+  <string name="recent_check_last_checked">Pārbaude pēdējoreiz veikta: %1$s</string>
+  <string name="exposure_notifications_are_turned_off">Netiek pārbaudīta iespējama saskare</string>
   <string name="turn_on_exposure_notifications_action">Ieslēgt paziņojumus par saskari</string>
   <string name="recent_exposures_subtitle">Iespējama saskare pēdējā laikā</string>
   <string name="exposure_details_status_subtitle">Statuss</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">Covid-19 negatīvs</string>
   <string name="positive_test_result_status_shared">Kopīgots</string>
   <string name="positive_test_result_status_not_shared">Nav kopīgots</string>
-  <string name="notify_turn_on_exposure_notifications_header">Lai tiktu informēts par iespējamu saskari ar Covid-19 un kopīgotu savu Covid-19 testa rezultātu, ieslēdziet paziņojumus par saskari</string>
+  <string name="notify_turn_on_exposure_notifications_header">Jūsu lietotne pašlaik nepārbauda iespējamas saskares gadījumus. Lai tiktu informēts par iespējamu saskari ar Covid-19, ieslēdziet paziņojumus par saskari.</string>
   <string name="share_begin_title">Jūsu iespēja aizsargāt apkārtējos</string>
   <string name="share_close_title">Vai iziet, neveicot kopīgošanu?</string>
   <string name="share_close_detail">Savai kopienai vislabāk varat palīdzēt, ātrāk kopīgojot savu testa rezultātu. Jūsu līdz šim ievadītā informācija par testa rezultātu ir saglabāta lietotnē, lai jūs vēlāk varētu atsākt rediģēšanu.</string>

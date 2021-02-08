@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">Ili kusaidia kudumisha na kuboresha programu, data fulani isiyomtambulisha mtu kuhusu matumizi na utendaji wa programu hushirikiwa na Google. Data hii haikutambulishi. %1$s</string>
   <string name="onboarding_confirm_later_title">Ungependa kuzima Arifa Kuhusu Kukaribia Aliye na COVID-19?</string>
   <string name="onboarding_confirm_later_detail">Hadi utakapowasha Arifa Kuhusu Kukaribia Aliye na COVID-19, hutaarifiwa unapomkaribia mtu aliye na COVID-19.</string>
-  <string name="no_recent_exposure_subtitle">Hujakuwa karibu na yeyote aliyeambukizwa</string>
-  <string name="notifications_enabled_info">Kwa sasa huna ripoti kuhusu hatari ya kukaribia aliyeambukizwa COVID-19. Utaarifiwa iwapo mtu uliyemkaribia ataripoti matokeo yanayothibitisha kuwa ameambukizwa COVID-19.</string>
-  <string name="exposure_notifications_are_turned_off">Umezima arifa kuhusu kukaribia aliye na COVID-19</string>
+  <string name="no_recent_exposure_subtitle">Inatumika na inakagua …</string>
+  <string name="no_recent_exposure_indicator">Hakuna tukio la hivi majuzi la kukaribia aliyeambukizwa</string>
+  <string name="app_active_info">Programu yako inakagua mara kwa mara ili kubaini matukio ya kukaribia aliyeambukizwa.</string>
+  <string name="notifications_enabled_info">Kwa sasa hakuna ripoti kuhusu hatari ya kukaribia aliyeambukizwa COVID-19. Utaarifiwa iwapo mtu uliyemkaribia ataripoti matokeo yanayothibitisha kuwa ameambukizwa COVID-19.</string>
+  <string name="how_exposure_notifications_work_link">Jinsi Arifa Kuhusu Kukaribia Aliye na COVID-19 zinavyofanya kazi</string>
+  <string name="recent_check_dialog_title">Rekodi ya ukaguzi wa hivi majuzi wa matukio ya kukaribia aliyeambukizwa</string>
+  <string name="recent_check_dialog_see_more">Angalia zaidi</string>
+  <string name="recent_check_last_checked">Ilikagua mwisho %1$s</string>
+  <string name="exposure_notifications_are_turned_off">Haikagui iwapo kuna matukio ya kukaribia aliyeambukizwa</string>
   <string name="turn_on_exposure_notifications_action">Washa Arifa Kuhusu Kukaribia Aliye na COVID-19</string>
   <string name="recent_exposures_subtitle">Hali ya hivi majuzi ya kukaribia aliyeambukizwa</string>
   <string name="exposure_details_status_subtitle">Hali</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">Hujaambukizwa COVID-19</string>
   <string name="positive_test_result_status_shared">Umeyashiriki</string>
   <string name="positive_test_result_status_not_shared">Hujayashiriki</string>
-  <string name="notify_turn_on_exposure_notifications_header">Ili ushiriki matokeo ya COVID-19 na uarifiwe unapomkaribia aliyeambukizwa COVID-19, washa Arifa Kuhusu Kukaribia Aliye na COVID-19</string>
+  <string name="notify_turn_on_exposure_notifications_header">Kwa sasa programu yako haikagui iwapo kuna matukio ya kukaribia aliyeambukizwa. Ili uarifiwe unapomkaribia mtu aliyeambukizwa COVID-19 , washa Arifa Kuhusu Kukaribia Aliye na COVID-19.</string>
   <string name="share_begin_title">Saidia kulinda jumuiya yako</string>
   <string name="share_close_title">Ungependa kuondoka bila kushiriki?</string>
   <string name="share_close_detail">Utaisaidia jamii yako ukishiriki matokeo yako ya COVID-19 mapema zaidi. Hata hivyo, matokeo ya kipimo cha COVID-19 uliyoweka hadi sasa yamehifadhiwa katika programu ili uendelee kubadilisha baadaye.</string>

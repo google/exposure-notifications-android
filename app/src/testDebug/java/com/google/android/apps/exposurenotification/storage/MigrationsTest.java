@@ -22,6 +22,7 @@ import static com.google.android.apps.exposurenotification.storage.ExposureNotif
 import static com.google.android.apps.exposurenotification.storage.ExposureNotificationDatabase.MIGRATION_37_38;
 import static com.google.android.apps.exposurenotification.storage.ExposureNotificationDatabase.MIGRATION_38_39;
 import static com.google.android.apps.exposurenotification.storage.ExposureNotificationDatabase.MIGRATION_39_40;
+import static com.google.android.apps.exposurenotification.storage.ExposureNotificationDatabase.MIGRATION_40_41;
 import static com.google.common.truth.Truth.assertThat;
 
 import android.database.Cursor;
@@ -128,11 +129,46 @@ public class MigrationsTest {
   }
 
   @Test
+  public void migrate38To39_backfillShouldSkipDiagnosesWithNullRevisionTokens() throws Exception {
+    // GIVEN
+    // Set up a version 38 database with two diagnoses, one of which has a NULL revisionToken.
+    SupportSQLiteDatabase db = helper.createDatabase(TEST_DB, 38);
+    db.execSQL("INSERT INTO DiagnosisEntity"
+        + " (id, createdTimestampMs, revisionToken, isServerOnsetDate, hasSymptoms, isCodeFromLink)"
+        + " VALUES (1, 100, 'revision-token-1', 0, 'NO', 0)");
+    db.execSQL("INSERT INTO DiagnosisEntity"
+        + " (id, createdTimestampMs, revisionToken, isServerOnsetDate, hasSymptoms, isCodeFromLink)"
+        + " VALUES (2, 200, NULL, 0, 'NO', 0)");
+
+    // WHEN
+    // Now upgrade the database
+    helper.runMigrationsAndValidate(TEST_DB, 39, true, MIGRATION_38_39);
+
+    // THEN
+    // The non-null revision token should be available in the revision token table.
+    try (Cursor c = db.query(
+        "SELECT revisionToken FROM RevisionTokenEntity"
+            + " WHERE revisionToken IS NOT NULL"
+            + " ORDER BY createdTimestampMs DESC LIMIT 1")) {
+      assertThat(c.moveToNext()).isTrue();
+      assertThat(c.getString(0)).isEqualTo("revision-token-1");
+    }
+  }
+
+  @Test
   public void migrate39To40() throws IOException {
     SupportSQLiteDatabase db = helper.createDatabase(TEST_DB, 39);
     db.close();
     // MigrationTestHelper automatically verifies the schema changes.
-    db = helper.runMigrationsAndValidate(TEST_DB, 40, true, MIGRATION_39_40);
+    helper.runMigrationsAndValidate(TEST_DB, 40, true, MIGRATION_39_40);
+  }
+
+  @Test
+  public void migrate40to41() throws IOException {
+    SupportSQLiteDatabase db = helper.createDatabase(TEST_DB, 40);
+    db.close();
+    // MigrationTestHelper automatically verifies the schema changes.
+    helper.runMigrationsAndValidate(TEST_DB, 41, true, MIGRATION_40_41);
   }
 
   private ExposureNotificationDatabase createAppDatabase() {

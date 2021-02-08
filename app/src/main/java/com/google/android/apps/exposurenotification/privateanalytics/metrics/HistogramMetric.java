@@ -22,7 +22,6 @@ import com.google.android.apps.exposurenotification.common.Qualifiers.ScheduledE
 import com.google.android.apps.exposurenotification.common.TaskToFutureAdapter;
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.nearby.ExposureNotificationClientWrapper;
-import com.google.android.apps.exposurenotification.privateanalytics.MetricsSnapshot;
 import com.google.android.gms.nearby.exposurenotification.DailySummariesConfig;
 import com.google.android.gms.nearby.exposurenotification.ExposureWindow;
 import com.google.android.gms.nearby.exposurenotification.ScanInstance;
@@ -45,13 +44,14 @@ import org.threeten.bp.Instant;
  */
 public class HistogramMetric implements PrivateAnalyticsMetric {
 
-  private static final String VERSION = "v1";
+  private static final String VERSION = "v2";
   public static final String METRIC_NAME = "histogramMetric-" + VERSION;
   private static final ImmutableList<Double> attenuationBinLowerEdges =
       ImmutableList.of(50.1, 55.1, 60.1, 65.1, 70.1, 75.1, 80.1);
   // Note +1 in bin edges is to just be unambiguous about where integer values like 5 minutes fall
   private static final ImmutableList<Double> durationBinLowerEdges =
       ImmutableList.of(
+          1.0,  // 1 second
           5 * 60 + 1.0,
           10 * 60 + 1.0,
           15 * 60 + 1.0,
@@ -69,7 +69,7 @@ public class HistogramMetric implements PrivateAnalyticsMetric {
           Duration.ofDays(12));
   @VisibleForTesting static final int NUM_ATTENUATION_BINS = attenuationBinLowerEdges.size() + 1;
   @VisibleForTesting static final int NUM_EXPOSURE_DAY_BINS = exposureDayBinLowerEdges.size() + 1;
-  @VisibleForTesting static final int NUM_DURATION_BINS = durationBinLowerEdges.size() + 1;
+  @VisibleForTesting static final int NUM_DURATION_BINS = durationBinLowerEdges.size();
   @VisibleForTesting static final int NUM_INFECTIOUSNESS_BINS = 3;
   // 0 →  INFECTIOUS_NONE 1 → STANDARD 2 → HIGH
   // these are defined in API
@@ -97,7 +97,7 @@ public class HistogramMetric implements PrivateAnalyticsMetric {
   }
 
   @Override
-  public ListenableFuture<List<Integer>> getDataVector(MetricsSnapshot metricsSnapshot) {
+  public ListenableFuture<List<Integer>> getDataVector() {
     // Compute total durations in each [infectiousnessBin, attenuationBin] pair
     // Now go over all exposureWindows, and put durations into corresponding bins
     return FluentFuture.from(
@@ -107,17 +107,10 @@ public class HistogramMetric implements PrivateAnalyticsMetric {
                 scheduledExecutor))
         .transformAsync(
             windowList -> {
-              // First initialize a 2D array to 0s
+              // First initialize a 3D array to 0s
               double[][][] totalDurations =
                   new double[NUM_EXPOSURE_DAY_BINS][NUM_INFECTIOUSNESS_BINS]
                       [NUM_ATTENUATION_BINS];
-              for (int i = 0; i < NUM_EXPOSURE_DAY_BINS; i++) {
-                for (int j = 0; j < NUM_INFECTIOUSNESS_BINS; j++) {
-                  for (int k = 0; k < NUM_ATTENUATION_BINS; k++) {
-                    totalDurations[i][j][k] = 0;
-                  }
-                }
-              }
               for (ExposureWindow exposureWindow : windowList) {
                 if (reportToWeightMapping.get(exposureWindow.getReportType()) == 0.0) {
                   continue;
@@ -151,12 +144,14 @@ public class HistogramMetric implements PrivateAnalyticsMetric {
                 for (int j = 0; j < NUM_INFECTIOUSNESS_BINS; j++) {
                   for (int l = 0; l < NUM_ATTENUATION_BINS; l++) {
                     int k = computeDurationBin(totalDurations[i][j][l]);
-                    uploadVector[
-                            i * NUM_INFECTIOUSNESS_BINS * NUM_ATTENUATION_BINS * NUM_DURATION_BINS
-                                + j * NUM_ATTENUATION_BINS * NUM_DURATION_BINS
-                                + l * NUM_DURATION_BINS
-                                + k] =
-                        1;
+                    if (k >= 0) {
+                      uploadVector[
+                          i * NUM_INFECTIOUSNESS_BINS * NUM_ATTENUATION_BINS * NUM_DURATION_BINS
+                              + j * NUM_ATTENUATION_BINS * NUM_DURATION_BINS
+                              + l * NUM_DURATION_BINS
+                              + k] =
+                          1;
+                    }
                   }
                 }
               }
@@ -174,9 +169,14 @@ public class HistogramMetric implements PrivateAnalyticsMetric {
     return i;
   }
 
+  // Returns -1 if the result should not be reported in any bin.
   private static int computeDurationBin(double duration) {
+    if (duration < durationBinLowerEdges.get(0)) {
+      return -1;
+    }
+
     int i = 0;
-    while (i < NUM_DURATION_BINS - 1 && duration > durationBinLowerEdges.get(i)) {
+    while (i < NUM_DURATION_BINS - 1 && duration > durationBinLowerEdges.get(i + 1)) {
       i++;
     }
     return i;
@@ -196,8 +196,9 @@ public class HistogramMetric implements PrivateAnalyticsMetric {
     return METRIC_NAME;
   }
 
+  // v2 of the metric does not have a constant Hamming weight. We therefore return 0.
   @Override
   public int getMetricHammingWeight() {
-    return NUM_EXPOSURE_DAY_BINS * NUM_INFECTIOUSNESS_BINS * NUM_ATTENUATION_BINS;
+    return 0;
   }
 }

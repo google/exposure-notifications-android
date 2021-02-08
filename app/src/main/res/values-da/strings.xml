@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">For at vedligeholde og forbedre appen deles visse begrænsede data om appforbrug og -effektivitet med Google. Der deles ingen personlige oplysninger. Disse data er ikke personhenførbare. %1$s</string>
   <string name="onboarding_confirm_later_title">Skal notifikationer om eksponeringer stadig være deaktiveret?</string>
   <string name="onboarding_confirm_later_detail">Du vil ikke få besked om mulig COVID-19-eksponering, før du aktiverer Notifikationer om eksponeringer</string>
-  <string name="no_recent_exposure_subtitle">Ingen eksponeringer for nylig</string>
-  <string name="notifications_enabled_info">Der er i øjeblikket ikke rapporteret nogen risiko for COVID-19-eksponering for dig. Du får besked, hvis nogen, du har været i nærheden af, rapporterer om et positivt COVID-19-testresultat.</string>
-  <string name="exposure_notifications_are_turned_off">Notifikationer om eksponering er deaktiveret</string>
+  <string name="no_recent_exposure_subtitle">Aktiv og tjekker…</string>
+  <string name="no_recent_exposure_indicator">Ingen ny eksponering</string>
+  <string name="app_active_info">Din app tjekker løbende for mulig eksponering.</string>
+  <string name="notifications_enabled_info">Der er i øjeblikket ikke rapporteret nogen risiko for, at du har været eksponeret for COVID-19. Du får besked, hvis nogen, du har været i nærheden af, rapporterer om et positivt COVID-19-testresultat.</string>
+  <string name="how_exposure_notifications_work_link">Sådan fungerer notifikationer om eksponering</string>
+  <string name="recent_check_dialog_title">Oversigt over seneste tjek for mulig eksponering</string>
+  <string name="recent_check_dialog_see_more">Se mere</string>
+  <string name="recent_check_last_checked">Senest tjekket %1$s</string>
+  <string name="exposure_notifications_are_turned_off">Der tjekkes ikke for mulig eksponering</string>
   <string name="turn_on_exposure_notifications_action">Aktivér notifikationer om eksponering</string>
   <string name="recent_exposures_subtitle">Nylig eksponering</string>
   <string name="exposure_details_status_subtitle">Status</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">COVID-19-negativ</string>
   <string name="positive_test_result_status_shared">Delt</string>
   <string name="positive_test_result_status_not_shared">Ikke delt</string>
-  <string name="notify_turn_on_exposure_notifications_header">Hvis du vil have besked om mulig eksponering for COVID-19 og dele dit COVID-19-testresultat, skal du aktivere Notifikationer om eksponering</string>
+  <string name="notify_turn_on_exposure_notifications_header">Din app tjekker i øjeblikket ikke for mulig eksponering. Hvis du vil have notifikationer om mulig eksponering for COVID-19, skal du aktivere notifikationer om eksponering.</string>
   <string name="share_begin_title">Hjælp med at beskytte folk omkring dig</string>
   <string name="share_close_title">Vil du afslutte uden at dele?</string>
   <string name="share_close_detail">Jo hurtigere du deler dine testresultater, desto bedre hjælper du andre. De testresultater, du har angivet indtil videre, gemmes dog i appen, så du kan fortsætte redigeringen senere.</string>

@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">આ ઍપની જાળવણી તેમજ બહેતર બનાવવામાં સહાય કરવા માટે, Google સાથે ઍપના કાર્યપ્રદર્શન અને વપરાશ વિશેનો મર્યાદિત પ્રમાણમાં અમુક છુપાવેલી ઓળખાણવાળો ડેટા શેર કરવામાં આવે છે. આ ડેટા તમારી ઓળખ છતી કરી શકશે નહીં. %1$s</string>
   <string name="onboarding_confirm_later_title">શું એક્સપોઝર નોટિફિકેશનની સુવિધા બંધ રાખીએ?</string>
   <string name="onboarding_confirm_later_detail">એક્સપોઝર નોટિફિકેશન ચાલુ કર્યા વિના COVID-19ના સંભવિત એક્સપોઝરની તમને જાણ કરવામાં આવશે નહીં</string>
-  <string name="no_recent_exposure_subtitle">તાજેતરના કોઈ એક્સપોઝર નથી</string>
-  <string name="notifications_enabled_info">હાલમાં તમે COVID-19 એક્સપોઝરનું કોઈ જોખમ ધરાવતા નથી. જો તમે COVID-19 પરીક્ષણનું પરિણામ પૉઝિટિવ આવ્યું હોય તેવી કોઈ વ્યક્તિના સંપર્કમાં આવ્યા હો, તો તમને સૂચિત કરવામાં આવશે.</string>
-  <string name="exposure_notifications_are_turned_off">એક્સપોઝર નોટિફિકેશન બંધ કરવામાં આવ્યા છે</string>
+  <string name="no_recent_exposure_subtitle">સક્રિય છે અને ચેક કરી રહી છે …</string>
+  <string name="no_recent_exposure_indicator">તાજેતરના કોઈ એક્સપોઝર નથી</string>
+  <string name="app_active_info">તમારી ઍપ સંભવિત એક્સપોઝર માટે નિયમિત રીતે ચેક કરી રહી છે.</string>
+  <string name="notifications_enabled_info">હાલમાં તમારા માટે COVID-19 એક્સપોઝરનું કોઈ જોખમ નથી. જો તમે COVID-19 પરીક્ષણનું પરિણામ પૉઝિટિવ આવ્યું હોય તેવી કોઈ વ્યક્તિના સંપર્કમાં આવ્યા હો, તો તમને સૂચિત કરવામાં આવશે.</string>
+  <string name="how_exposure_notifications_work_link">એક્સપોઝર નોટિફિકેશન કેવી રીતે કાર્ય કરે છે</string>
+  <string name="recent_check_dialog_title">સંભવિત એક્સપોઝરનો તાજેતરનો ચેક-ઇન રેકોર્ડ</string>
+  <string name="recent_check_dialog_see_more">વધુ જુઓ</string>
+  <string name="recent_check_last_checked">છેલ્લે ચેક કરાયાની તારીખ: %1$s</string>
+  <string name="exposure_notifications_are_turned_off">સંભવિત એક્સપોઝર માટે ચેક કરી રહી નથી</string>
   <string name="turn_on_exposure_notifications_action">એક્સપોઝર નોટિફિકેશન ચાલુ કરો</string>
   <string name="recent_exposures_subtitle">તાજેતરના એક્સપોઝર</string>
   <string name="exposure_details_status_subtitle">સ્ટેટસ</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">COVID-19 નેગેટિવ</string>
   <string name="positive_test_result_status_shared">શેર કરેલું</string>
   <string name="positive_test_result_status_not_shared">શેર કરવાનું બાકી</string>
-  <string name="notify_turn_on_exposure_notifications_header">COVID-19ના સંભવિત એક્સપોઝર માટે સુચના મેળવવા અને COVID-19 પરીક્ષણનું તમારું પરિણામ શેર કરવા માટે, એક્સપોઝર નોટિફિકેશન ચાલુ કરો</string>
+  <string name="notify_turn_on_exposure_notifications_header">તમારી ઍપ હાલમાં સંભવિત એક્સપોઝર માટે ચેક કરી રહી નથી. COVID-19ના સંભવિત એક્સપોઝરની સૂચના મેળવવા માટે, એક્સપોઝર નોટિફિકેશન ચાલુ કરો.</string>
   <string name="share_begin_title">તમારા સમુદાયની રક્ષા માટે સહાય કરો</string>
   <string name="share_close_title">શેર કર્યા વિના બહાર નીકળીએ?</string>
   <string name="share_close_detail">પરીક્ષણનું પરિણામ જલ્દી શેર કરીને તમારા સમુદાયની ઉત્તમ સહાય કરશો. જો કે, અત્યાર સુધીમાં તમે દાખલ કરેલી પરીક્ષણના પરિણામની માહિતી આ ઍપમાં સાચવી છે, જેથી તમે પછીથી તેમાં ફેરફાર કરવાનું ફરી શરૂ કરી શકો.</string>

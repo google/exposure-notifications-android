@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">መተግበሪያውን ጠብቆ ለማቆየት እና ለማሻሻል ለማገዝ ስለመተግበሪያ አፈፃፀም እና አጠቃቀም አንዳንድ የተወሰነ ማንነት እንዳይገለጽ የሚከለክል ውሂብ ዕውቅና ለGoogle ይጋራል። ይህ ውሂብ እርስዎን ለይቶ አያውቀዎትም። %1$s</string>
   <string name="onboarding_confirm_later_title">የተጋላጭነት ማስታወቂያ እንደጠፋ ይቆይ?</string>
   <string name="onboarding_confirm_later_detail">የተጋላጭነት ማስታወቂያዎች እስኪበሩ ድረስ፣ የኮቪድ-19 ሊሆን ለሚችል ተጋላጭነት እንዲያውቁ አይደረጉም</string>
-  <string name="no_recent_exposure_subtitle">ምንም የቅርብ ጊዜ ተጋላጭነቶች የሉም</string>
-  <string name="notifications_enabled_info">በአሁኑ ወቅት ሪፖርት የተደረገ የኮቪድ-19 ተጋላጭነት አደጋ የለዎትም። እርስዎ አጠገቡ የነበሩ አንድ ሰው ፖዘቲቭ የኮቪድ-19 ምርመራ ውጤት ሪፖርት ካደረገ እርስዎ እንዲያውቁ ይደረጋሉ።</string>
-  <string name="exposure_notifications_are_turned_off">የተጋላጭነት ማስታወቂያዎች ጠፍተዋል</string>
+  <string name="no_recent_exposure_subtitle">ንቁ እና በመፈተሽ ላይ…</string>
+  <string name="no_recent_exposure_indicator">የቅርብ ጊዜ ተጋላጭነት የለም</string>
+  <string name="app_active_info">የእርስዎ መተግበሪያ ሊኖሩ የሚችሉ ተጋላጭነቶችን በመደበኛነት እየፈተሸ ነው።</string>
+  <string name="notifications_enabled_info">በአሁኑ ጊዜ ለእርስዎ ሪፖርት የተደረገው የCOVID-19 ተጋላጭነት አደጋ የለም። እርስዎ አጠገቡ የነበሩ አንድ ሰው ፖዘቲቭ የኮቪድ-19 ምርመራ ውጤት ሪፖርት ካደረገ እርስዎ እንዲያውቁ ይደረጋሉ።</string>
+  <string name="how_exposure_notifications_work_link">የተጋላጭነት ማሳወቂያዎች እንዴት እንደሚሠሩ</string>
+  <string name="recent_check_dialog_title">ሊኖር ለሚችል ተጋላጭነትን የቅርብ ጊዜ ተመዝግቦ የመግባቶች መዝገብ</string>
+  <string name="recent_check_dialog_see_more">ተጨማሪ ይመልከቱ</string>
+  <string name="recent_check_last_checked">መጨረሻ የተፈተሸው %1$s</string>
+  <string name="exposure_notifications_are_turned_off">ሊኖር የሚችል ተጋላጭነትንን አለመፈተሽ</string>
   <string name="turn_on_exposure_notifications_action">የተጋላጭነት ማስታወቂያዎችን አብራ</string>
   <string name="recent_exposures_subtitle">የቅርብ ጊዜ ተጋላጭነት</string>
   <string name="exposure_details_status_subtitle">ሁኔታ</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">ኮቪድ-19 ነገቲቭ</string>
   <string name="positive_test_result_status_shared">የተጋራ</string>
   <string name="positive_test_result_status_not_shared">ያልተጋራ</string>
-  <string name="notify_turn_on_exposure_notifications_header">ሊከሰት ስለሚችል የኮቪድ-19 ተጋላጭነት እንድያውቁ እና የኮቪድ-19 ምርመራ ውጤትዎን ለማጋራት፣ የተጋላጭነት ማስታወቂያዎችን ያብሩ</string>
+  <string name="notify_turn_on_exposure_notifications_header">የእርስዎ መተግበሪያ ሊኖሩ የሚችሉ ተጋላጭነቶችን በአሁኑ ጊዜ እየፈተሸ አይደለም። ስለ ኮቪድ-19 ሊኖሩ የሚችሉ ተጋላጭነት ማሳወቂያ እንዲደርስዎት፣ የተጋላጭነት ማስታወቂያዎችን ያብሩ።</string>
   <string name="share_begin_title">ማህበረሰብዎን ለመጠበቅ ያግዙ</string>
   <string name="share_close_title">ሳያጋሩ ይወጣሉ?</string>
   <string name="share_close_detail">የእርስዎን የምርመራ ውጤት በቅርቡ የሚያጋሩ ከሆነ የእርስዎን ማኅበረሰብ በይበልጥ በተሻለ ሁኔታ ማገዝ ይችላሉ። ይሁንና፣ እስካሁን ያስገቡት የምርመራ ውጤት መረጃ በኋላ ላይ እርስዎ አርትዖት ካቆሙበት መቀጠል እንዲችሉ በመተግበሪያው ውስጥ ተቀምጦልዎለታል።</string>

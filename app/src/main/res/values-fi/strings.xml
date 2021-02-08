@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">Sovelluksen ylläpitoa ja kehittämistä varten Googlelle voidaan lähettää jotakin rajoitettua ja nimetöntä dataa sovelluksen toiminnasta ja käytöstä. Tästä datasta ei voi tunnistaa sinua. %1$s</string>
   <string name="onboarding_confirm_later_title">Pidetäänkö altistumisilmoitukset pois päältä?</string>
   <string name="onboarding_confirm_later_detail">Jos nämä ovat pois päältä, et saa ilmoitusta altistumisesta</string>
-  <string name="no_recent_exposure_subtitle">Ei viimeaikaisia altistumisia</string>
+  <string name="no_recent_exposure_subtitle">Aktiivinen ja tekee tarkistuksia…</string>
+  <string name="no_recent_exposure_indicator">Ei viimeaikaisia altistumisia</string>
+  <string name="app_active_info">Sovelluksesi tarkistaa säännöllisesti mahdolliset altistumiset.</string>
   <string name="notifications_enabled_info">Ilmoitusten mukaan sinulla ei tällä hetkellä ole COVID-19-altistumisvaaraa. Saat ilmoituksen, jos joku lähelläsi ollut ilmoittaa positiivisesta COVID-19-testituloksesta.</string>
-  <string name="exposure_notifications_are_turned_off">Altistumisilmoitukset ovat poissa päältä</string>
+  <string name="how_exposure_notifications_work_link">Miten altistumisilmoitukset toimivat</string>
+  <string name="recent_check_dialog_title">Tiedot viimeaikaisista altistumistarkistuksista</string>
+  <string name="recent_check_dialog_see_more">Katso lisää</string>
+  <string name="recent_check_last_checked">Tarkistettu viimeksi %1$s</string>
+  <string name="exposure_notifications_are_turned_off">Mahdollisia altistumisia ei tarkisteta</string>
   <string name="turn_on_exposure_notifications_action">Laita altistumisilmoitukset päälle</string>
   <string name="recent_exposures_subtitle">Viimeaikainen altistuminen</string>
   <string name="exposure_details_status_subtitle">Tila</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">Negatiivinen COVID-19-tulos</string>
   <string name="positive_test_result_status_shared">Jaettu</string>
   <string name="positive_test_result_status_not_shared">Ei jaettu</string>
-  <string name="notify_turn_on_exposure_notifications_header">Jos haluat saada ilmoituksen mahdollisesta COVID-19-altistumisesta ja jakaa oman COVID-19-testituloksesi, laita altistumisilmoitukset päälle</string>
+  <string name="notify_turn_on_exposure_notifications_header">Sovelluksesi ei tällä hetkellä tarkista mahdollisia altistumisia. Jos haluat saada ilmoituksen mahdollisesta COVID-19-altistumisesta, laita altistumisilmoitukset päälle.</string>
   <string name="share_begin_title">Auta suojelemaan muita</string>
   <string name="share_close_title">Poistutaanko jakamatta?</string>
   <string name="share_close_detail">Autat muita parhaiten jakamalla testituloksesi mahdollisimman pian. Tähän mennessä ilmoittamasi testitulostiedot tallennetaan kuitenkin sovellukseen, jotta voit jatkaa niiden muokkaamista myöhemmin.</string>

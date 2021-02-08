@@ -25,6 +25,7 @@ import com.google.android.apps.exposurenotification.storage.DiagnosisRepository;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationDatabase;
 import com.google.android.apps.exposurenotification.testsupport.ExposureNotificationRules;
 import com.google.android.apps.exposurenotification.testsupport.InMemoryDb;
+import com.google.common.util.concurrent.MoreExecutors;
 import dagger.hilt.android.testing.BindValue;
 import dagger.hilt.android.testing.HiltAndroidTest;
 import dagger.hilt.android.testing.HiltTestApplication;
@@ -59,7 +60,8 @@ public class NotifyHomeViewModelTest {
   @Before
   public void setup() {
     rules.hilt().inject();
-    notifyHomeViewModel = new NotifyHomeViewModel(diagnosisRepository);
+    notifyHomeViewModel = new NotifyHomeViewModel(diagnosisRepository,
+        MoreExecutors.newDirectExecutorService());
   }
 
   @Test

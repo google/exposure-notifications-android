@@ -45,8 +45,16 @@
   <dimen name="settings_page_switch_text_size">14sp</dimen>
 
   <dimen name="exposure_icon_field_min_height">72dp</dimen>
-  <dimen name="exposure_icon_size">48dp</dimen>
+  <dimen name="exposure_icon_size">36dp</dimen>
 
+  <dimen name="notify_review_subtitle_text_size">12sp</dimen>
   <dimen name="notify_review_text_size">16sp</dimen>
+
+  <dimen name="delete_icon_height">24dp</dimen>
+  <dimen name="delete_icon_margin">18dp</dimen>
+  <dimen name="delete_item_view_corner_radius">4dp</dimen>
+
+  <dimen name="no_exposure_check_size">24dp</dimen>
+  <dimen name="pulsation_circle_size">24dp</dimen>
 
 </resources>

@@ -21,13 +21,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.databinding.FragmentShareDiagnosisViewBinding;
 import com.google.android.apps.exposurenotification.storage.DiagnosisEntity;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import dagger.hilt.android.AndroidEntryPoint;
@@ -43,107 +42,54 @@ public class ShareDiagnosisViewFragment extends Fragment {
 
   private static final String TAG = "ShareDiagnosisViewFrag";
 
-  private static final String STATE_DELETE_OPEN = "DebugFragment.STATE_DELETE_OPEN";
-
   private final DateTimeFormatter dateTimeFormatter =
       DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM);
 
+  private FragmentShareDiagnosisViewBinding binding;
   private ShareDiagnosisViewModel shareDiagnosisViewModel;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-    return inflater.inflate(R.layout.fragment_share_diagnosis_view, parent, false);
+    binding = FragmentShareDiagnosisViewBinding.inflate(inflater, parent, false);
+    return binding.getRoot();
   }
 
   @Override
   public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+    getActivity().setTitle(R.string.status_shared_detail_title);
+
     shareDiagnosisViewModel =
         new ViewModelProvider(getActivity()).get(ShareDiagnosisViewModel.class);
 
-    TextView covidStatus = view.findViewById(R.id.share_review_status);
-    TextView travelStatusSubtitle = view.findViewById(R.id.share_review_travel_subtitle);
-    TextView travelStatus = view.findViewById(R.id.share_review_travel);
-    TextView date = view.findViewById(R.id.share_review_date);
-    Button deleteButton = view.findViewById(R.id.positive_diagnosis_delete_button);
-    View closeButton = view.findViewById(android.R.id.home);
-
-    getActivity().setTitle(R.string.status_shared_detail_title);
+    binding.home.setContentDescription(getString(R.string.navigate_up));
+    binding.home.setOnClickListener(v -> closeAction());
 
     shareDiagnosisViewModel
         .getCurrentDiagnosisLiveData()
         .observe(
             getViewLifecycleOwner(),
-            diagnosis -> {
-              if (diagnosis != null) {
-                // TODO: this is all duplicated from ShareDiagnosisReviewFragment. Refactor.
-                if (diagnosis.getTestResult() != null) {
-                  switch (diagnosis.getTestResult()) {
-                    case LIKELY:
-                      covidStatus.setText(R.string.share_review_status_likely);
-                      break;
-                    case NEGATIVE:
-                      covidStatus.setText(R.string.share_review_status_negative);
-                      break;
-                    case CONFIRMED:
-                    default:
-                      covidStatus.setText(R.string.share_review_status_confirmed);
-                      break;
-                  }
-                } else {
-                  // We "shouldn't" get here, but in case, default to the most likely value rather
-                  // than fail.
-                  covidStatus.setText(R.string.share_review_status_confirmed);
-                }
-
-                if (!ShareDiagnosisFlowHelper.isTravelStatusStepSkippable(getContext())) {
-                  travelStatusSubtitle.setVisibility(View.VISIBLE);
-                  travelStatus.setVisibility(View.VISIBLE);
-
-                  if (diagnosis.getTravelStatus() != null) {
-                    switch (diagnosis.getTravelStatus()) {
-                      case TRAVELED:
-                        travelStatus.setText(R.string.share_review_travel_confirmed);
-                        break;
-                      case NOT_TRAVELED:
-                        travelStatus.setText(R.string.share_review_travel_no_travel);
-                        break;
-                      case NO_ANSWER:
-                      case NOT_ATTEMPTED:
-                      default:
-                        travelStatus.setText(R.string.share_review_travel_no_answer);
-                    }
-                  } else {
-                    travelStatus.setText(R.string.share_review_travel_no_answer);
-                  }
-                }
-
-                // HasSymptoms cannot be null.
-                // TODO make the other enums like this.
-                switch (diagnosis.getHasSymptoms()) {
-                  case YES:
-                    date.setText(
-                        requireContext()
-                            .getString(
-                                R.string.share_review_onset_date,
-                                dateTimeFormatter
-                                    .withLocale(getResources().getConfiguration().locale)
-                                    .format(diagnosis.getOnsetDate())));
-                    break;
-                  case NO:
-                    date.setText(R.string.share_review_onset_no_symptoms);
-                    break;
-                  case WITHHELD:
-                  case UNSET:
-                  default:
-                    date.setText(R.string.share_review_onset_no_answer);
-                    break;
-                }
-                deleteButton.setOnClickListener(v -> deleteAction(diagnosis));
-
-                if (shareDiagnosisViewModel.isDeleteOpen()) {
-                  deleteAction(diagnosis);
-                }
+            diagnosisEntity -> {
+              // Can become null during the delete case.
+              if (diagnosisEntity == null) {
+                return;
               }
+
+              binding.diagnosisDeleteButton.setOnClickListener(
+                  v -> deleteAction(diagnosisEntity));
+              if (shareDiagnosisViewModel.isDeleteOpen()) {
+                deleteAction(diagnosisEntity);
+              }
+
+              String onsetDate = "";
+              if (diagnosisEntity.getOnsetDate() != null) {
+                onsetDate = requireContext()
+                    .getString(R.string.share_review_onset_date,
+                        dateTimeFormatter.withLocale(getResources().getConfiguration().locale)
+                            .format(diagnosisEntity.getOnsetDate()));
+              }
+              boolean skipTravelStatusStep = shareDiagnosisViewModel.isTravelStatusStepSkippable();
+              DiagnosisEntityHelper.populateViewBinding(
+                  binding, diagnosisEntity, onsetDate, skipTravelStatusStep);
             });
 
     shareDiagnosisViewModel
@@ -157,9 +103,12 @@ public class ShareDiagnosisViewFragment extends Fragment {
                 getActivity().finish();
               }
             });
+  }
 
-    closeButton.setContentDescription(getString(R.string.navigate_up));
-    closeButton.setOnClickListener((v) -> closeAction());
+  @Override
+  public void onDestroyView() {
+    super.onDestroyView();
+    binding = null;
   }
 
   private void deleteAction(DiagnosisEntity diagnosis) {
@@ -167,6 +116,7 @@ public class ShareDiagnosisViewFragment extends Fragment {
     new MaterialAlertDialogBuilder(requireContext())
         .setTitle(R.string.delete_test_result_title)
         .setMessage(R.string.delete_test_result_detail)
+        .setCancelable(true)
         .setPositiveButton(
             R.string.btn_delete,
             (d, w) -> {
@@ -175,8 +125,8 @@ public class ShareDiagnosisViewFragment extends Fragment {
             })
         .setNegativeButton(R.string.btn_cancel,
             (d, w) -> shareDiagnosisViewModel.setDeleteOpen(false))
-        .setOnDismissListener((d) -> shareDiagnosisViewModel.setDeleteOpen(false))
-        .setOnCancelListener((d) -> shareDiagnosisViewModel.setDeleteOpen(false))
+        .setOnDismissListener(d -> shareDiagnosisViewModel.setDeleteOpen(false))
+        .setOnCancelListener(d -> shareDiagnosisViewModel.setDeleteOpen(false))
         .show();
   }
 

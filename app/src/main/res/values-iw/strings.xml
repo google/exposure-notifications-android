@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">כדי לעזור בתחזוקה ובשיפור של האפליקציה, נתונים מסוימים ומוגבלים לגבי ביצועי האפליקציה והשימוש בה משותפים עם Google לאחר הסרת פרטי הזיהוי. לא ניתן לזהות אותך לפי הנתונים האלו. %1$s</string>
   <string name="onboarding_confirm_later_title">בחרת שלא להפעיל את התראות החשיפה. להמשיך?</string>
   <string name="onboarding_confirm_later_detail">עד שהתראות החשיפה לא יופעלו, לא יישלחו לך התראות על חשיפה אפשרית לנגיף הקורונה (COVID-19)</string>
-  <string name="no_recent_exposure_subtitle">אין חשיפות לנגיף מהזמן האחרון</string>
+  <string name="no_recent_exposure_subtitle">האפליקציה פעילה ומתבצעת בדיקה…</string>
+  <string name="no_recent_exposure_indicator">אין חשיפה לנגיף מהזמן האחרון</string>
+  <string name="app_active_info">האפליקציה בודקת באופן קבוע מקרי חשיפה פוטנציאליים לנגיף.</string>
   <string name="notifications_enabled_info">אין לך כרגע דיווחים על סיכוני חשיפה לנגיף הקורונה (COVID-19). תישלח לך התראה אם מישהו ששהית בקרבתו ידווח על תוצאה חיובית של בדיקת נגיף הקורונה (COVID-19).</string>
-  <string name="exposure_notifications_are_turned_off">התראות החשיפה מושבתות</string>
+  <string name="how_exposure_notifications_work_link">איך פועלות התראות החשיפה</string>
+  <string name="recent_check_dialog_title">רשומה של הבדיקות האחרונות לחשיפה פוטנציאלית</string>
+  <string name="recent_check_dialog_see_more">עוד</string>
+  <string name="recent_check_last_checked">בדיקה אחרונה: %1$s</string>
+  <string name="exposure_notifications_are_turned_off">לא מתבצעת בדיקה לחשיפה פוטנציאלית</string>
   <string name="turn_on_exposure_notifications_action">הפעלת התראות החשיפה</string>
   <string name="recent_exposures_subtitle">חשיפה לנגיף בזמן האחרון</string>
   <string name="exposure_details_status_subtitle">סטטוס</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">תוצאה שלילית לנגיף הקורונה (COVID-19)</string>
   <string name="positive_test_result_status_shared">בשיתוף</string>
   <string name="positive_test_result_status_not_shared">לא בשיתוף</string>
-  <string name="notify_turn_on_exposure_notifications_header">כדי לקבל התראות על חשיפה אפשרית לנגיף הקורונה (COVID-19) ולשתף את התוצאה של בדיקת הקורונה, יש להפעיל את התראות החשיפה</string>
+  <string name="notify_turn_on_exposure_notifications_header">האפליקציה לא בודקת מקרי חשיפה פוטנציאליים. כדי לקבל התראה על חשיפה פוטנציאלית לנגיף הקורונה (COVID-19), יש להפעיל את התראות החשיפה.</string>
   <string name="share_begin_title">עזרה בהגנה על הקהילה</string>
   <string name="share_close_title">לצאת בלי לשתף?</string>
   <string name="share_close_detail">שיתוף תוצאת הבדיקה שלך בהקדם יספק את העזרה הטובה ביותר לקהילה שלך. עם זאת, המידע על תוצאת הבדיקה שהזנת עד כה נשמר באפליקציה, וניתן יהיה להמשיך לערוך אותו בהמשך.</string>

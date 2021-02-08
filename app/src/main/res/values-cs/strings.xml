@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">Za účelem údržby a vylepšování aplikace jsou s Googlem sdílena omezená data o využití a výkonu aplikace. Tato data neumožňují identifikaci uživatele. %1$s</string>
   <string name="onboarding_confirm_later_title">Nechat oznámení o možném kontaktu vypnutá?</string>
   <string name="onboarding_confirm_later_detail">Pokud je nezapnete, nebudete informováni o možném kontaktu s COVID-19</string>
-  <string name="no_recent_exposure_subtitle">Žádný nedávný kontakt</string>
-  <string name="notifications_enabled_info">Momentálně pro vás není nahlášeno žádné riziko kontaktu s COVID-19. Pokud někdo ve vašem okolí nahlásí pozitivní výsledek testu, budete o tom informováni.</string>
-  <string name="exposure_notifications_are_turned_off">Oznámení o možném kontaktu jsou vypnutá</string>
+  <string name="no_recent_exposure_subtitle">Aktivní kontrola…</string>
+  <string name="no_recent_exposure_indicator">Žádný nedávný kontakt</string>
+  <string name="app_active_info">Aplikace pravidelně kontroluje, zda nedošlo ke kontaktu.</string>
+  <string name="notifications_enabled_info">Momentálně pro vás není nahlášeno žádné riziko kontaktu s covidem-19. Pokud někdo ve vašem okolí nahlásí pozitivní výsledek testu, budete o tom informováni.</string>
+  <string name="how_exposure_notifications_work_link">Jak fungují oznámení o možném kontaktu</string>
+  <string name="recent_check_dialog_title">Záznam nedávných příjezdů kvůli možnému kontaktu</string>
+  <string name="recent_check_dialog_see_more">Zobrazit více</string>
+  <string name="recent_check_last_checked">Poslední kontrola: %1$s</string>
+  <string name="exposure_notifications_are_turned_off">Kontrola možného kontaktu neprobíhá</string>
   <string name="turn_on_exposure_notifications_action">Zapněte oznámení o možném kontaktu</string>
   <string name="recent_exposures_subtitle">Nedávný kontakt</string>
   <string name="exposure_details_status_subtitle">Stav</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">Negativní na COVID-19</string>
   <string name="positive_test_result_status_shared">Sdíleno</string>
   <string name="positive_test_result_status_not_shared">Nesdíleno</string>
-  <string name="notify_turn_on_exposure_notifications_header">Chcete-li být informováni o možném kontaktu s COVID-19 a sdílet výsledek testu, zapněte oznámení o možném kontaktu</string>
+  <string name="notify_turn_on_exposure_notifications_header">Aplikace teď nekontroluje, zda nedošlo ke kontaktu. Pokud chcete být informováni o možném kontaktu s covidem-19, zapněte oznámení o možném kontaktu</string>
   <string name="share_begin_title">Pomozte chránit své okolí</string>
   <string name="share_close_title">Ukončit bez sdílení?</string>
   <string name="share_close_detail">Čím dříve budete výsledek testu sdílet, tím více své komunitě pomůžete. Zadané informace o výsledku testu se však uloží do aplikace, abyste v editování mohli pokračovat později.</string>

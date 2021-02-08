@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">Para axudar a manter e mellorar a aplicación, compártense con Google algúns datos limitados e anónimos sobre o rendemento e o uso da aplicación. Estes datos non permiten identificarte. %1$s</string>
   <string name="onboarding_confirm_later_title">Queres manter desactivadas as notificacións por exposición?</string>
   <string name="onboarding_confirm_later_detail">Mentres non as actives, non recibirás notificacións sobre as posibles exposicións á COVID-19</string>
-  <string name="no_recent_exposure_subtitle">Non te expuxeches recentemente</string>
+  <string name="no_recent_exposure_subtitle">Aplicación activa e realizando comprobacións…</string>
+  <string name="no_recent_exposure_indicator">Non te expuxeches recentemente</string>
+  <string name="app_active_info">A aplicación comproba de forma habitual as posibles exposicións.</string>
   <string name="notifications_enabled_info">Non se nos informou de que correses risco de exposición á COVID-19. Se alguén que estivese preto de ti nos informa de que deu positivo nunha proba da COVID-19, notificarémoscho.</string>
-  <string name="exposure_notifications_are_turned_off">As notificacións por exposición están desactivadas</string>
+  <string name="how_exposure_notifications_work_link">Como funciona o sistema Notificacións por exposición?</string>
+  <string name="recent_check_dialog_title">Rexistro de comprobacións recentes de posibles exposicións</string>
+  <string name="recent_check_dialog_see_more">Ver máis</string>
+  <string name="recent_check_last_checked">Comprobouse por última vez o: %1$s</string>
+  <string name="exposure_notifications_are_turned_off">Non se están comprobando as posibles exposicións</string>
   <string name="turn_on_exposure_notifications_action">Activar as notificacións por exposición</string>
   <string name="recent_exposures_subtitle">Expuxécheste recentemente</string>
   <string name="exposure_details_status_subtitle">Estado</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">COVID-19: negativo</string>
   <string name="positive_test_result_status_shared">Compartido</string>
   <string name="positive_test_result_status_not_shared">Non compartido</string>
-  <string name="notify_turn_on_exposure_notifications_header">Para recibir notificacións sobre as posibles exposicións á COVID-19 e compartir o resultado da túa proba da COVID-19, activa as notificacións por exposición</string>
+  <string name="notify_turn_on_exposure_notifications_header">A aplicación non está a comprobar as posibles exposicións. Para recibir notificacións sobre as posibles exposicións á COVID-19, activa Notificacións por exposición.</string>
   <string name="share_begin_title">Axuda a protexer a túa comunidade</string>
   <string name="share_close_title">Queres saír sen compartir a información?</string>
   <string name="share_close_detail">Canto antes compartas os resultados da túa proba, máis axudarás á túa comunidade. A información que indicaches ata agora gardouse na aplicación para que poidas continuar modificándoa máis tarde.</string>

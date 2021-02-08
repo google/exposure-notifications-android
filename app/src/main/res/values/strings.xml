@@ -136,13 +136,31 @@
   <!-- EXPOSURES SCREENS -->
 
   <!-- Title of the exposures home page, shown when there have been no COVID-19 exposures detected. [CHAR_LIMIT=60] -->
-  <string name="no_recent_exposure_subtitle">No recent exposures</string>
+  <string name="no_recent_exposure_subtitle">Active and checking … </string>
+
+  <!-- Pill displayed on the exposures home page, shown when there have been no COVID-19 exposures detected. [CHAR_LIMIT=60] -->
+  <string name="no_recent_exposure_indicator">No recent exposure</string>
 
   <!-- Text displayed on the exposures home page, shown when there have been no COVID-19 exposures detected. [CHAR_LIMIT=NONE] -->
-  <string name="notifications_enabled_info">You currently have no reported COVID-19 exposure risk. You\’ll be notified if someone you were near reports a positive COVID-19 test result.</string>
+  <string name="app_active_info">Your app is regularly checking for possible exposures.</string>
+
+  <!-- Text displayed on the exposures home page, shown when there have been no COVID-19 exposures detected. [CHAR_LIMIT=NONE] -->
+  <string name="notifications_enabled_info">There is currently no reported COVID-19 exposure risk for you. You\'ll be notified if someone you were near reports a positive COVID-19 test result.</string>
+
+  <!-- Link displayed at the bottom of the exposures home page, shown when there have been no COVID-19 exposures detected. [CHAR_LIMIT=100] -->
+  <string name="how_exposure_notifications_work_link">How Exposure Notifications work</string>
+
+  <!-- Title of the dialog showing the most recent exposure check ins that have occurred. [CHAR_LIMIT=100] -->
+  <string name="recent_check_dialog_title">Record of recent check-ins for possible exposure</string>
+
+  <!-- Link at the bottom of the dialog showing the most recent exposure check ins that have occurred. Links out to the gmscore page of all exposure checks that have happened in the last 14 days. [CHAR_LIMIT=60] -->
+  <string name="recent_check_dialog_see_more">See more</string>
+
+  <!-- Text on the home page indicating when the last exposure check was performed. [CHAR_LIMIT=60] -->
+  <string name="recent_check_last_checked">Last checked <xliff:g id="date" example="February 2, 10:30 AM">%1$s</xliff:g></string>
 
   <!-- Title of both the notify others and exposures home pages, shown when the user lands on the page and exposure notifications is currently disabled. [CHAR_LIMIT=60] -->
-  <string name="exposure_notifications_are_turned_off">Exposure notifications are turned off</string>
+  <string name="exposure_notifications_are_turned_off">Not checking for possible exposure</string>
 
   <!-- Button text on the notify others and exposure home pages to allow the user to turn on exposure notifications when it is currently disabled. [CHAR_LIMIT=40] -->
   <string name="turn_on_exposure_notifications_action">Turn on Exposure Notifications</string>
@@ -197,7 +215,7 @@
   <string name="positive_test_result_status_not_shared">Not shared</string>
 
   <!-- Body text of the notify others home page, shown when the user clicks the notify others tab and exposure notifications is currently disabled [CHAR_LIMIT=NONE] -->
-  <string name="notify_turn_on_exposure_notifications_header">To be notified of possible COVID-19 exposure &amp; share your COVID-19 test result, turn on Exposure Notifications</string>
+  <string name="notify_turn_on_exposure_notifications_header">Your app isn\'t currently checking for possible exposures. To be notified of possible COVID-19 exposure, turn on Exposure Notifications.</string>
 
   <!-- Title of the first screen in the notify others flow for uploading your COVID-19 diagnosis. [CHAR_LIMIT=100] -->
   <string name="share_begin_title">Help protect your community</string>
@@ -465,4 +483,5 @@
 
   <!-- Learn more link text in the onboarding / settings page footer text. [CHAR_LIMIT=40] -->
   <string name="private_analytics_footer_learn_more">Learn more</string>
+
 </resources>

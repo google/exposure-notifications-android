@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">အက်ပ်ကို ကူညီထိန်းသိမ်းရန်နှင့် ပိုမိုကောင်းမွန်စေရန် အက်ပ်စွမ်းဆောင်ရည်၊ အသုံးပြုမှုတို့နှင့်ပတ်သက်သော အမည်ခွဲခြားမသိနိုင်သည့် ဒေတာအချို့ကို Google အားမျှဝေသည်။ ဤဒေတာသည် သင် မည်သူမည်ဝါဖြစ်ကြောင်း ထုတ်ဖော်မည်မဟုတ်ပါ။ %1$s</string>
   <string name="onboarding_confirm_later_title">\'ထိတွေ့မှု အကြောင်းကြားချက်များ\' ကို ပိတ်ထားမလား။</string>
   <string name="onboarding_confirm_later_detail">\'ထိတွေ့မှု အကြောင်းကြားချက်များ\' မဖွင့်မချင်း ဖြစ်နိုင်ခြေရှိသော COVID-19 ထိတွေ့မှုအသိပေးချက် မရရှိနိုင်ပါ</string>
-  <string name="no_recent_exposure_subtitle">လတ်တလောထိတွေ့မှုမရှိပါ</string>
-  <string name="notifications_enabled_info">သင့်တွင် လတ်တလော COVID-19 ထိတွေ့မှုအန္တရာယ်မရှိပါ။ COVID-19 ရှိကြောင်း စစ်ဆေးမှုရလဒ်ကို သတင်းပို့ထားသူအနီးသို့ သင်ရောက်ရှိခဲ့ပါက သင့်ကို အကြောင်းကြားပါမည်။</string>
-  <string name="exposure_notifications_are_turned_off">\'ထိတွေ့မှု အကြောင်းကြားချက်များ\' ကို ပိတ်ထားသည်</string>
+  <string name="no_recent_exposure_subtitle">ဖွင့်ထားပြီး စစ်ဆေးနေသည် …</string>
+  <string name="no_recent_exposure_indicator">မကြာသေးမီက ထိတွေ့မှုမရှိပါ</string>
+  <string name="app_active_info">သင့်အက်ပ်က ထိတွေ့နိုင်ခြေများကို ပုံမှန်စစ်ဆေးနေသည်။</string>
+  <string name="notifications_enabled_info">လတ်တလောတွင် သင့်အတွက် သတင်းပို့ထားသော COVID-19 ထိတွေ့မှုအန္တရာယ်မရှိပါ။ COVID-19 ရှိကြောင်း စစ်ဆေးမှုရလဒ်ကို သတင်းပို့ထားသူအနီးသို့ သင်ရောက်ရှိခဲ့ပါက သင့်ကို အကြောင်းကြားပါမည်။</string>
+  <string name="how_exposure_notifications_work_link">\'ထိတွေ့မှု အကြောင်းကြားချက်များ\' အလုပ်လုပ်ပုံ</string>
+  <string name="recent_check_dialog_title">ထိတွေ့နိုင်ခြေအတွက် မကြာသေးမီက အကြောင်းကြားချက်များ မှတ်တမ်း</string>
+  <string name="recent_check_dialog_see_more">ပိုပြရန်</string>
+  <string name="recent_check_last_checked">%1$s တွင် နောက်ဆုံး စစ်ဆေးခဲ့သည်</string>
+  <string name="exposure_notifications_are_turned_off">ထိတွေ့နိုင်ခြေကို စစ်ဆေးခြင်းမရှိပါ</string>
   <string name="turn_on_exposure_notifications_action">\'ထိတွေ့မှု အကြောင်းကြားချက်များ\' ကို ဖွင့်ပါ</string>
   <string name="recent_exposures_subtitle">လတ်တလောထိတွေ့မှု</string>
   <string name="exposure_details_status_subtitle">အခြေအနေ</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">COVID-19 ကူးစက်ခံထားရခြင်းမရှိပါ</string>
   <string name="positive_test_result_status_shared">မျှဝေထားသည်</string>
   <string name="positive_test_result_status_not_shared">မျှဝေမထားပါ</string>
-  <string name="notify_turn_on_exposure_notifications_header">COVID-19 ထိတွေ့နိုင်ခြေအကြောင်း အသိပေးချက်ရယူရန်နှင့် သင်၏ COVID-19 စစ်ဆေးမှုရလဒ်ကို မျှဝေရန် \'ထိတွေ့မှု အကြောင်းကြားချက်များ\' ကို ဖွင့်ပါ</string>
+  <string name="notify_turn_on_exposure_notifications_header">သင့်အက်ပ်သည် လတ်တလောတွင် ထိတွေ့နိုင်ခြေများကို စစ်ဆေးခြင်းမရှိပါ။ COVID-19 ထိတွေ့နိုင်ခြေကို အကြောင်းကြားချက် ရယူရန် \'ထိတွေ့မှု အကြောင်းကြားချက်များ\' ကို ဖွင့်ပါ။</string>
   <string name="share_begin_title">သင်၏ကွန်မြူနတီကို ကူညီကာကွယ်ပါ</string>
   <string name="share_close_title">မျှဝေခြင်းမပြုဘဲ ထွက်မလား။</string>
   <string name="share_close_detail">သင့်စစ်ဆေးမှုရလဒ်ကို စောစောမျှဝေလျှင် ကွန်မြူနတီကိုအကောင်းဆုံး ကူညီနိုင်သည်။ သင် ယခုအချိန်အထိ ထည့်သွင်းထားသော စစ်ဆေးမှုရလဒ် အချက်အလက်များကို နောင်တွင် ပြန်လည်တည်းဖြတ်နိုင်ရန် ဤအက်ပ်တွင် သိမ်းထားပါသည်။</string>

@@ -23,14 +23,12 @@ import android.view.MenuItem;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.viewpager.widget.ViewPager;
 import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.common.KeyboardHelper;
-import com.google.android.material.tabs.TabLayout;
+import com.google.android.apps.exposurenotification.databinding.ActivityMatchingBinding;
 import dagger.hilt.android.AndroidEntryPoint;
 
 /**
@@ -41,27 +39,28 @@ public final class MatchingDebugActivity extends AppCompatActivity {
 
   public static final String TAB_EXTRA = "TAB_EXTRA";
 
+  private ActivityMatchingBinding binding;
+
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
-    setContentView(R.layout.activity_matching);
+    binding = ActivityMatchingBinding.inflate(getLayoutInflater());
+    setContentView(binding.getRoot());
 
-    Toolbar toolbar = findViewById(R.id.toolbar);
-    setSupportActionBar(toolbar);
+    setSupportActionBar(binding.toolbar);
     if (getSupportActionBar() != null) {
       getSupportActionBar().setDisplayShowTitleEnabled(false);
       getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-    TabLayout tabLayout = findViewById(R.id.tab_layout);
-    ViewPager viewPager = findViewById(R.id.view_pager);
     FragmentPagerAdapter fragmentPagerAdapter =
         new TemporaryExposureKeyViewPagerAdapter(getSupportFragmentManager());
-    viewPager.setAdapter(fragmentPagerAdapter);
-    tabLayout.setupWithViewPager(viewPager);
-    tabLayout.addOnTabSelectedListener(
-        KeyboardHelper.createOnTabSelectedMaybeHideKeyboardListener(this, toolbar.getRootView()));
+    binding.viewPager.setAdapter(fragmentPagerAdapter);
+    binding.tabLayout.setupWithViewPager(binding.viewPager);
+    binding.tabLayout.addOnTabSelectedListener(
+        KeyboardHelper.createOnTabSelectedMaybeHideKeyboardListener(
+            this, binding.toolbar.getRootView()));
 
     Intent intent = getIntent();
     int page;
@@ -70,7 +69,7 @@ public final class MatchingDebugActivity extends AppCompatActivity {
     } else {
       page = intent.getIntExtra(TAB_EXTRA, 0);
     }
-    viewPager.setCurrentItem(page);
+    binding.viewPager.setCurrentItem(page);
   }
 
   @Override

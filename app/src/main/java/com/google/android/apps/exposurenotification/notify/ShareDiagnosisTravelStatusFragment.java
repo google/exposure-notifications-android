@@ -26,14 +26,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.common.KeyboardHelper;
+import com.google.android.apps.exposurenotification.databinding.FragmentShareDiagnosisTravelStatusBinding;
 import com.google.android.apps.exposurenotification.notify.ShareDiagnosisViewModel.Step;
 import com.google.android.apps.exposurenotification.storage.DiagnosisEntity.TravelStatus;
 import dagger.hilt.android.AndroidEntryPoint;
@@ -47,11 +46,13 @@ public class ShareDiagnosisTravelStatusFragment extends Fragment {
 
   private static final String TAG = "ShareExposureEditFrag";
 
+  private FragmentShareDiagnosisTravelStatusBinding binding;
   private ShareDiagnosisViewModel viewModel;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-    return inflater.inflate(R.layout.fragment_share_diagnosis_travel_status, parent, false);
+    binding = FragmentShareDiagnosisTravelStatusBinding.inflate(inflater, parent, false);
+    return binding.getRoot();
   }
 
   @Override
@@ -61,13 +62,8 @@ public class ShareDiagnosisTravelStatusFragment extends Fragment {
     viewModel =
         new ViewModelProvider(getActivity()).get(ShareDiagnosisViewModel.class);
 
-    RadioGroup travelStatusRadioGroup = view.findViewById(R.id.hasTraveledRadioGroup);
-    Button nextButton = view.findViewById(R.id.share_next_button);
-    Button previousButton = view.findViewById(R.id.share_previous_button);
-    View closeButton = view.findViewById(android.R.id.home);
-
     // "Next" button should be disabled until the travel status is selected
-    nextButton.setEnabled(false);
+    binding.shareNextButton.setEnabled(false);
 
     // Keep input fields up to date with the diagnosis entity.
     viewModel
@@ -78,29 +74,34 @@ public class ShareDiagnosisTravelStatusFragment extends Fragment {
               TravelStatus travelStatus = diagnosis.getTravelStatus();
               if (!NOT_ATTEMPTED.equals(travelStatus)) {
                 changeRadioButtonStatusToChecked(mapTravelStatusToRadioButtonId(travelStatus));
-                // Next button should be enabled if travel status is selected
-                nextButton.setOnClickListener(v -> viewModel
-                    .nextStep(ShareDiagnosisFlowHelper.getNextStep(
-                        Step.TRAVEL_STATUS, diagnosis, getContext())));
-                nextButton.setEnabled(true);
+                binding.shareNextButton.setEnabled(true);
               }
-              previousButton.setOnClickListener((v) -> {
-                KeyboardHelper.maybeHideKeyboard(requireContext(), view);
-                viewModel.previousStep(
-                    ShareDiagnosisFlowHelper.getPreviousStep(
-                        Step.TRAVEL_STATUS, diagnosis, getContext()));
-              });
             });
 
-    travelStatusRadioGroup.setOnCheckedChangeListener((radioGroup, checkedId) -> {
+    binding.hasTraveledRadioGroup.setOnCheckedChangeListener((radioGroup, checkedId) -> {
       // Enabled next button only when the travel status is selected
       TravelStatus travelStatus =
           mapRadioButtonIdToTravelStatus(checkedId);
       viewModel.setTravelStatus(travelStatus);
     });
 
-    closeButton.setContentDescription(getString(R.string.navigate_up));
-    closeButton.setOnClickListener((v) -> closeAction());
+    binding.home.setContentDescription(getString(R.string.navigate_up));
+    binding.home.setOnClickListener((v) -> closeAction());
+
+    viewModel.getNextStepLiveData(Step.TRAVEL_STATUS).observe(getViewLifecycleOwner(),
+        step -> binding.shareNextButton.setOnClickListener(v -> viewModel.nextStep(step)));
+
+    viewModel.getPreviousStepLiveData(Step.TRAVEL_STATUS).observe(getViewLifecycleOwner(),
+        step -> binding.sharePreviousButton.setOnClickListener(v -> {
+          KeyboardHelper.maybeHideKeyboard(requireContext(), view);
+          viewModel.previousStep(step);
+        }));
+  }
+
+  @Override
+  public void onDestroyView() {
+    super.onDestroyView();
+    binding = null;
   }
 
   private void closeAction() {

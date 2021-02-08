@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">Siekiant padėti tvarkyti ir tobulinti programą, su „Google“ bendrinami tam tikri riboti anonimizuoti duomenys apie programos našumą ir naudojimą. Pagal šiuos duomenis negalima jūsų identifikuoti. %1$s</string>
   <string name="onboarding_confirm_later_title">Išjungti pranešimus apie galimą kontaktą su užsikr. asmeniu?</string>
   <string name="onboarding_confirm_later_detail">Jei ši funkcija bus išjungta, negausite pranešimų apie galimą kontaktą su COVID-19 užsikr. asmeniu</string>
-  <string name="no_recent_exposure_subtitle">Pastaruoju metu galimo kontakto su užsikrėt. asmeniu nebuvo</string>
+  <string name="no_recent_exposure_subtitle">Suaktyvinama ir tikrinama…</string>
+  <string name="no_recent_exposure_indicator">Nustatyta jokių galimų kontaktų su užsikrėtusiu asmeniu</string>
+  <string name="app_active_info">Programa reguliariai tikrina, ar buvo galimų kontaktų su užsikrėtusiais asmenimis.</string>
   <string name="notifications_enabled_info">Šiuo metu nėra jokių pranešimų apie galimą kontaktą su COVID-19 užsikrėtusiu asmeniu. Gausite pranešimą, jei buvote netoli asmens, pranešusio, kad jo COVID-19 testo rezultatas buvo teigiamas.</string>
-  <string name="exposure_notifications_are_turned_off">Pranešimai apie galimą kontaktą su užsikr. asmeniu išjungti</string>
+  <string name="how_exposure_notifications_work_link">Kaip veikia pranešimai apie galimą kontaktą su užsikrėtusiu asmeniu</string>
+  <string name="recent_check_dialog_title">Naujausių tikrinimų dėl galimo kontakto su užsikrėtusiu asmeniu įrašas</string>
+  <string name="recent_check_dialog_see_more">Žr. daugiau</string>
+  <string name="recent_check_last_checked">Paskutinį kartą tikrinta: %1$s</string>
+  <string name="exposure_notifications_are_turned_off">Netikrinama, ar buvo galimas kontaktas su užsikr. asmeniu</string>
   <string name="turn_on_exposure_notifications_action">Įj. praneš. apie gal. kont. su užs. asm.</string>
   <string name="recent_exposures_subtitle">Nustatytas galimas kontaktas su užsikrėtusiu asmeniu</string>
   <string name="exposure_details_status_subtitle">Būsena</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">COVID-19 – neigiamas</string>
   <string name="positive_test_result_status_shared">Bendrinama</string>
   <string name="positive_test_result_status_not_shared">Nebendrinama</string>
-  <string name="notify_turn_on_exposure_notifications_header">Kad galėtumėte gauti pranešimus apie galimą kontaktą su COVID-19 užsikrėtusiu asmeniu ir bendrinti savo COVID-19 testo rezultatą, įjunkite pranešimus apie galimą kontaktą su užsikrėtusiu asmeniu</string>
+  <string name="notify_turn_on_exposure_notifications_header">Programa šiuo metu netikrina, ar buvo galimų kontaktų su užsikrėtusiais asmenimis. Jei norite būti informuoti apie galimą kontaktą su COVID-19 užsikrėtusiu asmeniu, įjunkite pranešimus apie galimą kontaktą su užsikrėtusiu asmeniu</string>
   <string name="share_begin_title">Padėkite apsaugoti savo bendruomenę</string>
   <string name="share_close_title">Išeiti nebendrinant?</string>
   <string name="share_close_detail">Padėsite bendruomenei, jei greičiau bendrinsite testo rezultatą. Įvesta testo rezultato informacija yra išsaugota programoje, kad vėliau galėtumėte ją redaguoti.</string>

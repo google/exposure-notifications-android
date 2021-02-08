@@ -44,13 +44,10 @@ import com.google.android.apps.exposurenotification.storage.ExposureNotification
 import com.google.android.apps.exposurenotification.storage.ExposureRepository;
 import com.google.android.gms.nearby.exposurenotification.DailySummariesConfig;
 import com.google.common.util.concurrent.FluentFuture;
-import com.google.common.util.concurrent.FutureCallback;
-import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ScheduledExecutorService;
-import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 import org.threeten.bp.Duration;
 
 /**

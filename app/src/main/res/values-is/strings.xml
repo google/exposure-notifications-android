@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">Til að hjálpa við að bæta og þróa forritið er ópersónugreinanlegum gögnum um afköst og notkun forritsins deilt með Google. Ekki eru borin kennsl á þig út frá þessum gögnum. %1$s</string>
   <string name="onboarding_confirm_later_title">Viltu hafa slökkt á tilkynningum um útsetningu?</string>
   <string name="onboarding_confirm_later_detail">Þér verður ekki tilkynnt um hugsanlega útsetningu fyrir COVID-19 fyrr en þú kveikir á tilkynningum um útsetningu</string>
-  <string name="no_recent_exposure_subtitle">Engar nýlegar útsetningar</string>
-  <string name="notifications_enabled_info">Ekki hefur verið greint frá áhættu á COVID-19 útsetningu hjá þér eins og er. Þú færð tilkynningu ef einhver sem þú varst nálægt tilkynnir um jákvæðar niðurstöður úr COVID-19 prófi.</string>
-  <string name="exposure_notifications_are_turned_off">Slökkt er á tilkynningum um útsetningu</string>
+  <string name="no_recent_exposure_subtitle">Virkt og leitar …</string>
+  <string name="no_recent_exposure_indicator">Engin nýleg útsetning</string>
+  <string name="app_active_info">Forritið leitar reglulega að mögulegri útsetningu.</string>
+  <string name="notifications_enabled_info">Sem stendur hefur ekki verið greint frá neinni áhættu á COVID-19-útsetningu hjá þér. Þú færð tilkynningu ef einhver sem þú varst nálægt tilkynnir jákvæða niðurstöðu COVID-19-prófs.</string>
+  <string name="how_exposure_notifications_work_link">Kynntu þér hvernig tilkynningar um útsetningu virka</string>
+  <string name="recent_check_dialog_title">Skrá yfir nýlegar tilkynningar um mögulega útsetningu</string>
+  <string name="recent_check_dialog_see_more">Sjá meira</string>
+  <string name="recent_check_last_checked">Síðast athugað %1$s</string>
+  <string name="exposure_notifications_are_turned_off">Leitar ekki að mögulegri útsetningu</string>
   <string name="turn_on_exposure_notifications_action">Kveikja á tilkynningum um útsetningu</string>
   <string name="recent_exposures_subtitle">Nýleg útsetning</string>
   <string name="exposure_details_status_subtitle">Staða</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">COVID-19 - smit er ekki til staðar</string>
   <string name="positive_test_result_status_shared">Deilt</string>
   <string name="positive_test_result_status_not_shared">Ekki deilt</string>
-  <string name="notify_turn_on_exposure_notifications_header">Til að fá tilkynningar um hugsanlega útsetningu fyrir COVID-19 og til að deila niðurstöðum COVID-19 prófsins þíns skaltu kveikja á tilkynningum um útsetningu</string>
+  <string name="notify_turn_on_exposure_notifications_header">Forritið leitar ekki að mögulegri útsetningu eins og er. Til að fá tilkynningar um mögulega útsetningu fyrir COVID-19 skaltu kveikja á tilkynningum um útsetningu.</string>
   <string name="share_begin_title">Hjálpaðu við að vernda samfélagið þitt</string>
   <string name="share_close_title">Hætta án þess að deila?</string>
   <string name="share_close_detail">Samfélagið græðir mest á því að þú deilir prófniðurstöðum sem fyrst. Prófniðurstöðurnar sem þú hefur slegið inn hingað til verða vistaðar í forritinu svo þú getir haldið áfram að breyta þeim síðar.</string>

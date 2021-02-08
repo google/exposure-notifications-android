@@ -74,7 +74,16 @@
         android:layout_height="wrap_content"
         android:measureAllChildren="false">
 
-        <include layout="@layout/viewflipper_children_error_cases" />
+        <!-- Insert edge-case handling via sub-fragment-->
+        <FrameLayout
+          android:id="@+id/edge_case_fragment"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:paddingVertical="@dimen/padding_normal"
+          android:paddingStart="@dimen/padding_large"
+          android:paddingEnd="@dimen/padding_large"
+          android:orientation="vertical"
+          android:animateLayoutChanges="false" />
 
         <LinearLayout
           android:layout_width="match_parent"

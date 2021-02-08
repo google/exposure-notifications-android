@@ -28,13 +28,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.databinding.FragmentOnboardingPrivateAnalyticsBinding;
 import com.google.android.apps.exposurenotification.home.HomeFragment;
 import dagger.hilt.android.AndroidEntryPoint;
 
@@ -46,21 +45,23 @@ public class OnboardingPrivateAnalyticsFragment extends Fragment {
 
   private static final String TAG = "PrioOnboarding";
 
+  private FragmentOnboardingPrivateAnalyticsBinding binding;
   private OnboardingViewModel onboardingViewModel;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-    return inflater.inflate(R.layout.fragment_onboarding_private_analytics, parent, false);
+    binding = FragmentOnboardingPrivateAnalyticsBinding.inflate(inflater, parent, false);
+    return binding.getRoot();
   }
 
   @Override
   public void onViewCreated(View view, Bundle savedInstanceState) {
     onboardingViewModel = new ViewModelProvider(this).get(OnboardingViewModel.class);
 
-    Button noThanksButton = view.findViewById(R.id.private_analytics_dismiss);
-    noThanksButton.setOnClickListener(v -> onboardingViewModel.setPrivateAnalyticsState(false));
-    Button shareButton = view.findViewById(R.id.private_analytics_accept);
-    shareButton.setOnClickListener(v -> onboardingViewModel.setPrivateAnalyticsState(true));
+    binding.privateAnalyticsDismiss.setOnClickListener(
+        v -> onboardingViewModel.setPrivateAnalyticsState(false));
+    binding.privateAnalyticsAccept.setOnClickListener(
+        v -> onboardingViewModel.setPrivateAnalyticsState(true));
 
     onboardingViewModel.isPrivateAnalyticsStateSetLiveData()
         .observe(getViewLifecycleOwner(), hasPrivateAnalyticsSet -> {
@@ -80,9 +81,15 @@ public class OnboardingPrivateAnalyticsFragment extends Fragment {
     footerSpannableString
         .setSpan(learnMoreClickableSpan, learnMoreStart, learnMoreStart + learnMore.length(),
             Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-    TextView footerTextView = view.findViewById(R.id.private_analytics_footer);
-    footerTextView.setText(footerSpannableString);
-    footerTextView.setMovementMethod(LinkMovementMethod.getInstance());
+
+    binding.privateAnalyticsFooter.setText(footerSpannableString);
+    binding.privateAnalyticsFooter.setMovementMethod(LinkMovementMethod.getInstance());
+  }
+
+  @Override
+  public void onDestroyView() {
+    super.onDestroyView();
+    binding = null;
   }
 
   /**

@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">ਐਪ ਨੂੰ ਬਣਾਈ ਰੱਖਣ ਅਤੇ ਬਿਹਤਰ ਬਣਾਉਣ ਵਿੱਚ ਮਦਦ ਕਰਨ ਲਈ, Google ਨਾਲ ਐਪ ਦੀ ਕਾਰਗੁਜ਼ਾਰੀ ਅਤੇ ਵਰਤੋਂ ਬਾਰੇ ਕੁਝ ਸੀਮਤ ਗੈਰ-ਪਛਾਣਯੋਗ ਡਾਟਾ ਸਾਂਝਾ ਕੀਤਾ ਗਿਆ ਹੈ। ਇਹ ਡਾਟਾ ਤੁਹਾਡੀ ਪਛਾਣ ਨਹੀਂ ਕਰਦਾ ਹੈ। %1$s</string>
   <string name="onboarding_confirm_later_title">ਕੀ ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਦੀ ਸੂਚਨਾ ਨੂੰ ਬੰਦ ਰੱਖਣਾ ਹੈ?</string>
   <string name="onboarding_confirm_later_detail">ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਦੀਆਂ ਸੂਚਨਾਵਾਂ ਚਾਲੂ ਨਾ ਕੀਤੇ ਜਾਣ ਤੱਕ, ਤੁਹਾਨੂੰ COVID-19 ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਦੀ ਸੰਭਾਵਨਾ ਬਾਰੇ ਸੂਚਿਤ ਨਹੀਂ ਕੀਤਾ ਜਾਵੇਗਾ</string>
-  <string name="no_recent_exposure_subtitle">ਹਾਲ ਵਿੱਚ ਕਿਸੇ ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਨਹੀਂ ਗਏ</string>
+  <string name="no_recent_exposure_subtitle">ਕਿਰਿਆਸ਼ੀਲ ਹੈ ਅਤੇ ਜਾਂਚ ਹੋ ਰਹੀ ਹੈ …</string>
+  <string name="no_recent_exposure_indicator">ਹਾਲ ਵਿੱਚ ਕੋਈ ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਨਹੀਂ</string>
+  <string name="app_active_info">ਤੁਹਾਡੀ ਐਪ ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਸੰਬੰਧੀ ਸੰਭਾਵਨਾ ਲਈ ਨਿਯਮਿਤ ਤੌਰ \'ਤੇ ਜਾਂਚ ਕਰ ਰਹੀ ਹੈ।</string>
   <string name="notifications_enabled_info">ਫ਼ਿਲਹਾਲ ਤੁਹਾਨੂੰ COVID-19 ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਦਾ ਕੋਈ ਜੋਖਮ ਨਹੀਂ ਹੈ। ਕਿਸੇ COVID-19 ਪ੍ਰਭਾਵਿਤ ਵਿਅਕਤੀ ਦੇ ਨੇੜੇ ਜਾਣ \'ਤੇ ਤੁਹਾਨੂੰ ਸੂਚਿਤ ਕੀਤਾ ਜਾਵੇਗਾ।</string>
-  <string name="exposure_notifications_are_turned_off">ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਦੀਆਂ ਸੂਚਨਾਵਾਂ ਬੰਦ ਹਨ</string>
+  <string name="how_exposure_notifications_work_link">ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਦੀਆਂ ਸੂਚਨਾਵਾਂ ਦੇ ਕੰਮ ਕਰਨ ਦਾ ਤਰੀਕਾ</string>
+  <string name="recent_check_dialog_title">ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਸੰਬੰਧੀ ਸੰਭਾਵਨਾ ਬਾਰੇ ਕੀਤੀ ਹਾਲੀਆ ਜਾਂਚ ਦਾ ਰਿਕਾਰਡ</string>
+  <string name="recent_check_dialog_see_more">ਹੋਰ ਦੇਖੋ</string>
+  <string name="recent_check_last_checked">ਪਿਛਲੀ ਵਾਰ %1$s ਨੂੰ ਜਾਂਚ ਕੀਤੀ ਗਈ</string>
+  <string name="exposure_notifications_are_turned_off">ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਸੰਬੰਧੀ ਸੰਭਾਵਨਾ ਲਈ ਜਾਂਚ ਨਹੀਂ ਕਰ ਰਹੀ ਹੈ</string>
   <string name="turn_on_exposure_notifications_action">ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਦੀਆਂ ਸੂਚਨਾਵਾਂ ਚਾਲੂ ਕਰੋ</string>
   <string name="recent_exposures_subtitle">ਹਾਲ ਵਿੱਚ ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣਾ</string>
   <string name="exposure_details_status_subtitle">ਸਥਿਤੀ</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">COVID-19 ਨਕਾਰਾਤਮਕ</string>
   <string name="positive_test_result_status_shared">ਸਾਂਝਾ ਕੀਤਾ ਗਿਆ</string>
   <string name="positive_test_result_status_not_shared">ਸਾਂਝਾ ਨਹੀਂ ਕੀਤਾ ਗਿਆ</string>
-  <string name="notify_turn_on_exposure_notifications_header">COVID-19 ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਸੰਬੰਧੀ ਸੰਭਾਵਨਾ ਬਾਰੇ ਸੂਚਿਤ ਹੋਣ ਅਤੇ ਆਪਣਾ COVID-19 ਟੈਸਟ ਨਤੀਜਾ ਸਾਂਝਾ ਕਰਨ ਲਈ, ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਦੀਆਂ ਸੂਚਨਾਵਾਂ ਚਾਲੂ ਕਰੋ</string>
+  <string name="notify_turn_on_exposure_notifications_header">ਤੁਹਾਡੀ ਐਪ ਫ਼ਿਲਹਾਲ ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਸੰਬੰਧੀ ਸੰਭਾਵਨਾ ਲਈ ਜਾਂਚ ਨਹੀਂ ਕਰ ਰਹੀ ਹੈ। COVID-19 ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਸੰਬੰਧੀ ਸੰਭਾਵਨਾ ਬਾਰੇ ਸੂਚਿਤ ਹੋਣ ਲਈ, ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਦੀਆਂ ਸੂਚਨਾਵਾਂ ਚਾਲੂ ਕਰੋ।</string>
   <string name="share_begin_title">ਆਪਣੇ ਭਾਈਚਾਰੇ ਦੀ ਰੱਖਿਆ ਕਰਨ ਵਿੱਚ ਮਦਦ ਕਰੋ</string>
   <string name="share_close_title">ਕੀ ਸਾਂਝਾ ਕੀਤੇ ਬਿਨਾਂ ਬਾਹਰ ਜਾਣਾ ਹੈ?</string>
   <string name="share_close_detail">ਆਪਣੀ ਜਾਂਚ ਦਾ ਨਤੀਜਾ ਜਲਦੀ ਸਾਂਝਾ ਕਰਕੇ ਤੁਸੀਂ ਆਪਣੇ ਭਾਈਚਾਰੇ ਦੀ ਮਦਦ ਕਰ ਸਕਦੇ ਹੋ। ਹਾਲਾਂਕਿ, ਤੁਹਾਡੀ ਦਾਖਲ ਕੀਤੀ ਜਾਂਚ ਨਤੀਜੇ ਦੀ ਜਾਣਕਾਰੀ ਨੂੰ ਐਪ ਵਿੱਚ ਰੱਖਿਅਤ ਕੀਤਾ ਗਿਆ ਹੈ, ਤਾਂ ਜੋ ਤੁਸੀਂ ਬਾਅਦ ਵਿੱਚ ਫਿਰ ਸੰਪਾਦਨ ਕਰ ਸਕੋ।</string>

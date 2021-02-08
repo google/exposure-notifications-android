@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">აპის გამართულად მუშაობისა და გაუმჯობესებისთვის ზოგიერთი შეზღუდული, არამაიდენტიფიცირებელი ინფორმაცია აპის შესრულებისა და მოხმარების შესახებ გაზიარდება Google-თან. ამ მონაცემებით თქვენი იდენტიფიკაცია არ ხდება. %1$s</string>
   <string name="onboarding_confirm_later_title">კონტაქტის შეტყობინ. გამორთული დარჩეს?</string>
   <string name="onboarding_confirm_later_detail">ჩართვამდე COVID-19-თან პოტენციურ კონტაქტზე არ გაცნობებენ</string>
-  <string name="no_recent_exposure_subtitle">ბოლოდროინდელი შემთხვევები არ გამოვლენილა</string>
-  <string name="notifications_enabled_info">ამჟამად შეტყობინებული COVID-19-ის გამოვლენის რისკი არ გაქვთ. გაცნობებენ, თუ ისეთ ადამიანთან ახლოს იმყოფებოდით, რომელმაც COVID-19-ის ტესტის დადებითი შედეგი მიუთითა.</string>
-  <string name="exposure_notifications_are_turned_off">კონტაქტის შეტყობინებები გამორთულია</string>
+  <string name="no_recent_exposure_subtitle">აქტიურია და მოწმდება…</string>
+  <string name="no_recent_exposure_indicator">ბოლოდროინდელი კონტაქტი არ ფიქსირდება</string>
+  <string name="app_active_info">თქვენი აპი რეგულარულად ამოწმებს შესაძლო კონტაქტებს.</string>
+  <string name="notifications_enabled_info">ამჟამად თქვენთვის COVID-19-თან კონტაქტის რისკი არ ფიქსირდება. თუ ისეთ ადამიანთან ახლოს იმყოფებოდით, რომელმაც COVID-19-ის ტესტის დადებითი შედეგი მიუთითა, შეტყობინებას მიიღებთ.</string>
+  <string name="how_exposure_notifications_work_link">როგორ მუშაობს კონტაქტის შეტყობინებები</string>
+  <string name="recent_check_dialog_title">ახლახან რეგისტრირებული შესაძლო კონტაქტების ჩანაწერი</string>
+  <string name="recent_check_dialog_see_more">მეტის ნახვა</string>
+  <string name="recent_check_last_checked">ბოლო შემოწმება: %1$s</string>
+  <string name="exposure_notifications_are_turned_off">შესაძლო კონტაქტი არ რეგისტრირდება</string>
   <string name="turn_on_exposure_notifications_action">კონტაქტის შეტყობინებების ჩართვა</string>
   <string name="recent_exposures_subtitle">გამოვლენილი ბოლოდროინდელი შემთხვევები</string>
   <string name="exposure_details_status_subtitle">სტატუსი</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">უარყოფითი COVID-19</string>
   <string name="positive_test_result_status_shared">გაზიარებული</string>
   <string name="positive_test_result_status_not_shared">გაზიარებული არ არის</string>
-  <string name="notify_turn_on_exposure_notifications_header">ჩართეთ კონტაქტის შეტყობინებები COVID-19-თან პოტენციური კონტაქტის შესახებ ინფორმაციის მისაღებად და COVID-19-ის თქვენი ტესტის შედეგის გასაზიარებლად</string>
+  <string name="notify_turn_on_exposure_notifications_header">თქვენი აპი ამჟამად არ არეგისტრირებს შესაძლო კონტაქტებს. COVID-19-თან შესაძლო კონტაქტის შესახებ შეტყობინებების მისაღებად ჩართეთ კონტაქტის შეტყობინებები.</string>
   <string name="share_begin_title">დახმარება საზოგადოების დასაცავად</string>
   <string name="share_close_title">გახვალთ გაზიარების გარეშე?</string>
   <string name="share_close_detail">საზოგადოებას უფრო დაეხმარებით, თუ თქვენი ტესტის შედეგს მალე გააზიარებთ. თუმცა, თქვენ მიერ აქამდე შეყვანილი ინფორმაცია ტესტის შედეგების შესახებ შენახულია აპში, რათა მოგვიანებით განაგრძოთ რედაქტირება.</string>

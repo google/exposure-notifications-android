@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">Uygulamayı sürdürmek ve iyileştirmek için uygulama performansı ve kullanımı ile ilgili bazı sınırlı, kimlik bilgilerinden arındırılmış veriler Google\'la paylaşılır. Bu veriler kimlik bilgilerinizi tanımlamaz. %1$s</string>
   <string name="onboarding_confirm_later_title">Temas Bildirimleri kapalı mı tutulsun?</string>
   <string name="onboarding_confirm_later_detail">Temas Bildirimleri açılana kadar COVID-19 ile olası temas hakkında bilgilendirilmeyeceksiniz</string>
-  <string name="no_recent_exposure_subtitle">Yakın tarihli temas yok</string>
-  <string name="notifications_enabled_info">Şu anda bildirilmiş COVID-19 ile temas riskiniz yok. Yakınında bulunduğunuz birisi pozitif COVID-19 test sonucu bildirirse bilgilendirilirsiniz.</string>
-  <string name="exposure_notifications_are_turned_off">Temas bildirimleri kapalı</string>
+  <string name="no_recent_exposure_subtitle">Etkin ve kontrol ediyor…</string>
+  <string name="no_recent_exposure_indicator">Yakın zamanda temas yok</string>
+  <string name="app_active_info">Uygulamanız olası temasları düzenli olarak kontrol ediyor.</string>
+  <string name="notifications_enabled_info">Şu anda bildirilmiş bir COVID-19 ile temas riskiniz bulunmamaktadır. Yakınında bulunduğunuz birisi pozitif COVID-19 test sonucu bildirirse size bildirim gönderilir.</string>
+  <string name="how_exposure_notifications_work_link">Temas Bildirimleri\'nin işleyişi</string>
+  <string name="recent_check_dialog_title">Olası temaslarla ilgili son check-in\'lerin kaydı</string>
+  <string name="recent_check_dialog_see_more">Daha fazla göster</string>
+  <string name="recent_check_last_checked">Son kontrol zamanı: %1$s</string>
+  <string name="exposure_notifications_are_turned_off">Olası temaslar kontrol edilmiyor</string>
   <string name="turn_on_exposure_notifications_action">Temas Bildirimleri\'ni aç</string>
   <string name="recent_exposures_subtitle">Son temas</string>
   <string name="exposure_details_status_subtitle">Durum</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">COVID-19 Negatif</string>
   <string name="positive_test_result_status_shared">Paylaşıldı</string>
   <string name="positive_test_result_status_not_shared">Paylaşılmadı</string>
-  <string name="notify_turn_on_exposure_notifications_header">Olası COVID-19 temas durumu ile ilgili bilgilendirilmek ve COVID-19 test sonucunuzu paylaşmak için Temas Bildirimleri\'ni açın</string>
+  <string name="notify_turn_on_exposure_notifications_header">Uygulamanız şu anda olası temasları kontrol etmiyor. Olası COVID-19 temas durumu ile ilgili bildirim almak için Temas Bildirimleri\'ni açın.</string>
   <string name="share_begin_title">Topluluğunuzu korumaya yardımcı olun</string>
   <string name="share_close_title">Paylaşmadan çıkış yapılsın mı?</string>
   <string name="share_close_detail">Çevrenizdekilere en iyi şekilde yardımcı olmak için test sonucunu hemen paylaşın. Şu ana kadar girdiğiniz test sonucu bilgileri, daha sonra düzenlemeye devam edebilmeniz için uygulamaya kaydedildi.</string>

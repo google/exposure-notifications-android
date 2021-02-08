@@ -24,31 +24,29 @@ import android.content.Intent;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 import android.os.Parcel;
-import android.text.Editable;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.work.WorkInfo.State;
 import com.google.android.apps.exposurenotification.R;
-import com.google.android.apps.exposurenotification.common.AbstractTextWatcher;
 import com.google.android.apps.exposurenotification.common.KeyboardHelper;
+import com.google.android.apps.exposurenotification.databinding.FragmentDebugHomeBinding;
 import com.google.android.apps.exposurenotification.debug.VerificationCodeCreator.VerificationCode;
 import com.google.android.apps.exposurenotification.privateanalytics.PrivateAnalyticsSettingsUtil;
+import com.google.android.apps.exposurenotification.privateanalytics.metrics.PrivateAnalyticsMetric;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.material.datepicker.CalendarConstraints;
 import com.google.android.material.datepicker.CalendarConstraints.DateValidator;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.snackbar.Snackbar;
 import dagger.hilt.android.AndroidEntryPoint;
+import java.util.List;
 import java.util.Locale;
 import org.threeten.bp.Instant;
 import org.threeten.bp.LocalDate;
@@ -67,18 +65,19 @@ public final class DebugActivity extends AppCompatActivity {
   private static final DateTimeFormatter SYMPTOM_ONSET_DATE_FORMATTER =
       DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM);
 
+  private FragmentDebugHomeBinding binding;
   private DebugViewModel debugViewModel;
 
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
-    setContentView(R.layout.fragment_debug_home);
+    binding = FragmentDebugHomeBinding.inflate(getLayoutInflater());
+    setContentView(binding.getRoot());
 
-    View upButton = findViewById(android.R.id.home);
-    upButton.setContentDescription(getString(R.string.navigate_up));
-    upButton.setOnClickListener((v) -> {
-      KeyboardHelper.maybeHideKeyboard(getApplicationContext(), upButton);
+    binding.home.setContentDescription(getString(R.string.navigate_up));
+    binding.home.setOnClickListener((v) -> {
+      KeyboardHelper.maybeHideKeyboard(getApplicationContext(), binding.home);
       onBackPressed();
     });
 
@@ -89,6 +88,13 @@ public final class DebugActivity extends AppCompatActivity {
     setupMatchingControls();
     setupVerificationCodeControls();
     setupRoamingControls();
+    setupPrivateAnalyticsControls();
+  }
+
+  @Override
+  protected void onDestroy() {
+    super.onDestroy();
+    binding = null;
   }
 
   private void setupViewModels() {
@@ -103,7 +109,6 @@ public final class DebugActivity extends AppCompatActivity {
   }
 
   private void setupTestTypeDropDown() {
-    AutoCompleteTextView testTypeDropDown = findViewById(R.id.test_type_dropdown);
     String[] testTypesArray =
         new String[]{
             getResources().getString(R.string.debug_test_type_confirmed),
@@ -112,62 +117,54 @@ public final class DebugActivity extends AppCompatActivity {
         };
     ArrayAdapter<CharSequence> adapter =
         new ArrayAdapter<>(this, R.layout.item_input_mode, testTypesArray);
-    testTypeDropDown.setAdapter(adapter);
-    testTypeDropDown.setText(testTypesArray[0], false);
+    binding.testTypeDropdown.setAdapter(adapter);
+    binding.testTypeDropdown.setText(testTypesArray[0], false);
   }
 
   private void setupSymptomOnSetDatePicker() {
-    EditText symptomOnSetDateEditText = findViewById(R.id.symptom_onset_date);
     debugViewModel
         .getSymptomOnSetDateLiveData()
         .observe(
             this,
             timestamp ->
-                symptomOnSetDateEditText.setText(
+                binding.symptomOnsetDate.setText(
                     timestamp != null ? SYMPTOM_ONSET_DATE_FORMATTER.format(timestamp) : ""));
-    symptomOnSetDateEditText.setOnClickListener((v) -> showMaterialDatePicker());
+    binding.symptomOnsetDate.setOnClickListener(v -> showMaterialDatePicker());
   }
 
   private void setupVersionInfo() {
-    TextView appVersion = findViewById(R.id.debug_app_version);
-    appVersion.setText(
+    binding.debugAppVersion.setText(
         getString(R.string.debug_version_app,
             getVersionNameForPackage(getPackageName())));
 
-    TextView gmsVersion = findViewById(R.id.debug_gms_version);
-    gmsVersion.setText(getString(R.string.debug_version_gms,
+    binding.debugGmsVersion.setText(getString(R.string.debug_version_gms,
         getVersionNameForPackage(GoogleApiAvailability.GOOGLE_PLAY_SERVICES_PACKAGE)));
 
-    TextView enVersion = findViewById(R.id.debug_en_version);
     debugViewModel.getEnModuleVersionLiveData()
         .observe(this, version -> {
           if (TextUtils.isEmpty(version)) {
-            enVersion.setVisibility(View.GONE);
+            binding.debugEnVersion.setVisibility(View.GONE);
           } else {
-            enVersion.setText(getString(R.string.debug_version_en, version));
-            enVersion.setVisibility(View.VISIBLE);
+            binding.debugEnVersion.setText(getString(R.string.debug_version_en, version));
+            binding.debugEnVersion.setVisibility(View.VISIBLE);
           }
         });
   }
 
   private void setupMatchingControls() {
-    Button manualMatching = findViewById(R.id.debug_matching_manual_button);
-    manualMatching.setOnClickListener(
+    binding.debugMatchingManualButton.setOnClickListener(
         v -> startActivity(new Intent(this, MatchingDebugActivity.class)));
 
-    EditText keyHexToLog = findViewById(R.id.key_to_log);
     debugViewModel.getProvidedDiagnosisKeyHexToLogLiveData()
-        .observe(this, keyHexToLog::setText);
+        .observe(this, binding.keyToLog::setText);
 
-    Button enqueueProvide = findViewById(R.id.debug_provide_now);
-    enqueueProvide.setOnClickListener(
+    binding.debugProvideNow.setOnClickListener(
         v -> {
-          debugViewModel.setProvidedDiagnosisKeyHexToLog(keyHexToLog.getText().toString());
+          debugViewModel.setProvidedDiagnosisKeyHexToLog(binding.keyToLog.getText().toString());
           debugViewModel.provideKeys();
           maybeShowSnackbar(getString(R.string.debug_provide_keys_enqueued));
         });
 
-    TextView jobStatus = findViewById(R.id.debug_matching_job_status);
     debugViewModel
         .getProvideDiagnosisKeysWorkLiveData()
         .observe(
@@ -175,7 +172,7 @@ public final class DebugActivity extends AppCompatActivity {
             workInfos -> {
               if (workInfos == null) {
                 Log.e(TAG, "workInfos is null");
-                jobStatus.setText(getString(R.string.debug_job_status,
+                binding.debugMatchingJobStatus.setText(getString(R.string.debug_job_status,
                     getString(R.string.debug_job_status_error)));
                 return;
               }
@@ -204,49 +201,53 @@ public final class DebugActivity extends AppCompatActivity {
                       R.string.debug_job_status, getString(R.string.debug_job_status_error));
                   break;
               }
-              jobStatus.setText(jobStatusText);
+              binding.debugMatchingJobStatus.setText(jobStatusText);
             });
+  }
 
-    Button submitPrivateAnalytics = findViewById(R.id.debug_submit_private_analytics_button);
-    submitPrivateAnalytics.setOnClickListener(
-        v -> {
-          debugViewModel.submitPrivateAnalytics();
-          maybeShowSnackbar(getString(R.string.debug_provide_keys_enqueued));
-        });
+  private void setupPrivateAnalyticsControls() {
+    if (PrivateAnalyticsSettingsUtil.isPrivateAnalyticsSupported()) {
+      binding.debugSubmitPrivateAnalyticsButton.setOnClickListener(
+          v -> {
+            debugViewModel.submitPrivateAnalytics();
+            maybeShowSnackbar(getString(R.string.debug_provide_keys_enqueued));
+          });
 
-    Button clearKeyStoreButton = findViewById(R.id.debug_private_analytics_clear_key_store_button);
-    clearKeyStoreButton.setOnClickListener(
-        v -> {
-          debugViewModel.clearKeyStore();
-          maybeShowSnackbar(getString(R.string.debug_provide_keys_enqueued));
-        });
+      binding.debugPrivateAnalyticsClearKeyStoreButton.setOnClickListener(
+          v -> {
+            debugViewModel.clearKeyStore();
+            maybeShowSnackbar(getString(R.string.debug_provide_keys_enqueued));
+          });
 
-    View privateAnalyticsContainer = findViewById(R.id.debug_private_analytics_container);
-    privateAnalyticsContainer.setVisibility(
-        PrivateAnalyticsSettingsUtil.isPrivateAnalyticsSupported() ? TextView.VISIBLE
-            : TextView.GONE);
+      binding.debugPrivateAnalyticsContainer.setVisibility(View.VISIBLE);
+      PrivateAnalyticsMetricAdapter privateAnalyticsMetricAdapter =
+          new PrivateAnalyticsMetricAdapter();
+      List<PrivateAnalyticsMetric> privateAnalytics = debugViewModel
+          .getPrivateAnalyticsMetrics();
+      privateAnalyticsMetricAdapter.setPrivateAnalyticsMetrics(privateAnalytics);
+      binding.debugPrivateAnalyticsMetricsRecycler
+          .setLayoutManager(new LinearLayoutManager(getBaseContext()));
+      binding.debugPrivateAnalyticsMetricsRecycler.setAdapter(privateAnalyticsMetricAdapter);
+    }
   }
 
   private void setupVerificationCodeControls() {
-    Button createVerificationCode = findViewById(R.id.debug_create_verification_code_button);
-    createVerificationCode.setOnClickListener(x -> {
-      AutoCompleteTextView testTypeDropDown = findViewById(R.id.test_type_dropdown);
-      debugViewModel.createVerificationCode(testTypeDropDown.getText().toString());
+    binding.debugCreateVerificationCodeButton.setOnClickListener(x -> {
+      debugViewModel.createVerificationCode(binding.testTypeDropdown.getText().toString());
     });
-    View codeContainer = findViewById(R.id.debug_verification_code_container);
-    TextView code = findViewById(R.id.debug_verification_code);
-    TextView expiry = findViewById(R.id.debug_verification_code_expiry);
-    code.setOnClickListener(
+
+    binding.debugVerificationCode.setOnClickListener(
         v -> {
           ClipboardManager clipboard =
               (ClipboardManager) v.getContext().getSystemService(Context.CLIPBOARD_SERVICE);
-          ClipData clip = ClipData.newPlainText(code.getText(), code.getText());
+          ClipData clip = ClipData.newPlainText(
+              binding.debugVerificationCode.getText(), binding.debugVerificationCode.getText());
           clipboard.setPrimaryClip(clip);
           Snackbar.make(
               v,
               getString(
                   R.string.debug_snackbar_copied_text,
-                  code.getText()),
+                  binding.debugVerificationCode.getText()),
               Snackbar.LENGTH_SHORT)
               .show();
         });
@@ -258,24 +259,23 @@ public final class DebugActivity extends AppCompatActivity {
             return;
           }
           if (verificationCode.equals(VerificationCode.EMPTY)) {
-            codeContainer.setVisibility(View.GONE);
+            binding.debugVerificationCodeContainer.setVisibility(View.GONE);
             return;
           }
-          codeContainer.setVisibility(View.VISIBLE);
-          code.setText(verificationCode.code());
-          expiry.setText(getApplicationContext()
+          binding.debugVerificationCodeContainer.setVisibility(View.VISIBLE);
+          binding.debugVerificationCode.setText(verificationCode.code());
+          binding.debugVerificationCodeExpiry.setText(getApplicationContext()
               .getString(R.string.debug_verification_code_expiry,
                   CODE_EXPIRY_FORMAT.format(verificationCode.expiry())));
         });
   }
 
   private void setupRoamingControls() {
-    EditText countryCodeEditText = findViewById(R.id.debug_roaming_country_code_input);
-    Button insertButton = findViewById(R.id.debug_roaming_country_code_insert_button);
-    insertButton.setOnClickListener(
-        (v) -> debugViewModel.markCountryCodesSeen(countryCodeEditText.getText().toString()));
-    Button clearButton = findViewById(R.id.debug_roaming_country_code_clear_button);
-    clearButton.setOnClickListener((v) -> debugViewModel.clearCountryCodes());
+    binding.debugRoamingCountryCodeInsertButton.setOnClickListener(
+        v -> debugViewModel.markCountryCodesSeen(
+            binding.debugRoamingCountryCodeInput.getText().toString()));
+    binding.debugRoamingCountryCodeClearButton.setOnClickListener(
+        v -> debugViewModel.clearCountryCodes());
   }
 
   /**

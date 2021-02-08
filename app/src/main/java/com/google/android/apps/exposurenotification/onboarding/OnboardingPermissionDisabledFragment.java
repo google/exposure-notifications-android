@@ -29,20 +29,17 @@ import android.view.ViewTreeObserver;
 import android.view.accessibility.AccessibilityEvent;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.ViewSwitcher;
 import androidx.annotation.NonNull;
 import androidx.core.widget.NestedScrollView;
 import androidx.core.widget.NestedScrollView.OnScrollChangeListener;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.databinding.FragmentOnboardingPermissionDisabledBinding;
 import com.google.android.apps.exposurenotification.home.ExposureNotificationViewModel;
 import com.google.android.apps.exposurenotification.home.HomeFragment;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.common.base.Optional;
 import dagger.hilt.android.AndroidEntryPoint;
 
@@ -55,6 +52,7 @@ public class OnboardingPermissionDisabledFragment extends Fragment {
   private static final String SAVED_INSTANCE_STATE_SKIP_DIALOG_SHOWN =
       "OnboardingPermissionDisabledFragment.SAVED_INSTANCE_STATE_SKIP_DIALOG_SHOWN";
 
+  private FragmentOnboardingPermissionDisabledBinding binding;
   private ExposureNotificationViewModel exposureNotificationViewModel;
   private OnboardingViewModel onboardingViewModel;
 
@@ -63,14 +61,13 @@ public class OnboardingPermissionDisabledFragment extends Fragment {
   private NestedScrollView scroller;
 
   private boolean skipDialogShown = false;
-
   private boolean shouldShowPrivateAnalyticsOnboarding = false;
-
   private Optional<Boolean> lastUpdateAtBottom = Optional.absent();
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-    return inflater.inflate(R.layout.fragment_onboarding_permission_disabled, parent, false);
+    binding = FragmentOnboardingPermissionDisabledBinding.inflate(inflater, parent, false);
+    return binding.getRoot();
   }
 
   @Override
@@ -90,16 +87,11 @@ public class OnboardingPermissionDisabledFragment extends Fragment {
     spannableString
         .setSpan(learnMoreClickableSpan, learnMoreStart, learnMoreStart + learnMore.length(),
             Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-    TextView appAnalyticsDetail = view.findViewById(R.id.app_analytics_detail);
-    appAnalyticsDetail.setText(spannableString);
-    appAnalyticsDetail.setMovementMethod(LinkMovementMethod.getInstance());
 
-    ViewSwitcher onboardingButtonsLoadingSwitcher =
-        view.findViewById(R.id.onboarding_buttons_loading_switcher);
-    SwitchMaterial analyticsSwitch = view.findViewById(R.id.onboarding_app_analytics_switch);
-    TextView onboardingDetail = view.findViewById(R.id.onboarding_exposure_notifications_detail);
+    binding.appAnalyticsDetail.setText(spannableString);
+    binding.appAnalyticsDetail.setMovementMethod(LinkMovementMethod.getInstance());
 
-    onboardingDetail.setText(
+    binding.onboardingExposureNotificationsDetail.setText(
         getString(R.string.onboarding_exposure_notifications_detail, getString(R.string.app_name)));
 
     exposureNotificationViewModel
@@ -108,12 +100,13 @@ public class OnboardingPermissionDisabledFragment extends Fragment {
             getViewLifecycleOwner(),
             isEnabled -> {
               if (isEnabled) {
-                onboardingViewModel.setAppAnalyticsState(analyticsSwitch.isChecked());
-                onboardingButtonsLoadingSwitcher.setDisplayedChild(1);
+                onboardingViewModel.setAppAnalyticsState(
+                    binding.onboardingAppAnalyticsSwitch.isChecked());
+                binding.onboardingButtonsLoadingSwitcher.setDisplayedChild(1);
                 onboardingViewModel.setOnboardedState(true);
                 transitionNext();
               } else {
-                onboardingButtonsLoadingSwitcher.setDisplayedChild(0);
+                binding.onboardingButtonsLoadingSwitcher.setDisplayedChild(0);
               }
             });
 
@@ -126,9 +119,9 @@ public class OnboardingPermissionDisabledFragment extends Fragment {
           }
         });
 
-    onboardingButtons = view.findViewById(R.id.onboarding_buttons);
-    nextButton = view.findViewById(R.id.onboarding_next_button);
-    scroller = view.findViewById(R.id.onboarding_scroll);
+    onboardingButtons = binding.onboardingButtons;
+    nextButton = binding.onboardingNextButton;
+    scroller = binding.onboardingScroll;
 
     updateAtBottom(false);
     scroller.setOnScrollChangeListener(
@@ -148,22 +141,19 @@ public class OnboardingPermissionDisabledFragment extends Fragment {
       }
     });
 
-    Button dismissButton = view.findViewById(R.id.onboarding_no_thanks_button);
-    dismissButton.setOnClickListener(v -> skipOnboarding());
+    binding.onboardingNoThanksButton.setOnClickListener(v -> skipOnboarding());
     if (savedInstanceState != null) {
       if (savedInstanceState.getBoolean(SAVED_INSTANCE_STATE_SKIP_DIALOG_SHOWN, false)) {
         skipOnboarding();
       }
     }
 
-    ProgressBar progressBar = view.findViewById(R.id.onboarding_progress_bar);
-
     exposureNotificationViewModel
         .getInFlightLiveData()
         .observe(getViewLifecycleOwner(), inFlight -> {
           nextButton.setEnabled(!inFlight);
-          dismissButton.setEnabled(!inFlight);
-          progressBar.setVisibility(inFlight ? View.VISIBLE : View.INVISIBLE);
+          binding.onboardingNoThanksButton.setEnabled(!inFlight);
+          binding.onboardingProgressBar.setVisibility(inFlight ? View.VISIBLE : View.INVISIBLE);
           nextButton.setVisibility(inFlight ? View.INVISIBLE : View.VISIBLE);
         });
 
@@ -178,6 +168,12 @@ public class OnboardingPermissionDisabledFragment extends Fragment {
   public void onSaveInstanceState(@NonNull Bundle outState) {
     super.onSaveInstanceState(outState);
     outState.putBoolean(SAVED_INSTANCE_STATE_SKIP_DIALOG_SHOWN, skipDialogShown);
+  }
+
+  @Override
+  public void onDestroyView() {
+    super.onDestroyView();
+    binding = null;
   }
 
   /**
@@ -200,7 +196,8 @@ public class OnboardingPermissionDisabledFragment extends Fragment {
     }
     if (nextButton.isAccessibilityFocused()) {
       // Let accessibility service announce when button text change.
-      nextButton.sendAccessibilityEvent(AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED);
+      nextButton.sendAccessibilityEvent(
+          AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED);
     }
   }
 

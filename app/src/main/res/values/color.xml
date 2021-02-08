@@ -31,4 +31,5 @@
   <color name="notification_color">#EA4335</color>
   <color name="code_verification_error">#D93025</color>
   <color name="enx_agencyImageBackgroundColor">@android:color/transparent</color>
+  <color name="pulse_color">#4285F4</color>
 </resources>

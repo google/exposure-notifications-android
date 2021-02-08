@@ -61,25 +61,53 @@
           android:padding="@dimen/padding_normal"
           app:srcCompat="@drawable/ic_banner_notification" />
 
-        <ImageView
+        <FrameLayout
           android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:adjustViewBounds="true"
-          android:padding="@dimen/padding_normal"
-          app:srcCompat="@drawable/ic_banner_watering_can" />
+          android:layout_height="wrap_content">
+
+          <ImageView
+            android:id="@+id/pulse_small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/pulsation_circle" />
+
+          <ImageView
+            android:id="@+id/pulse_medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/pulsation_circle" />
+
+          <ImageView
+            android:id="@+id/pulse_large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/pulsation_circle" />
+
+          <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:padding="@dimen/padding_small"
+            android:adjustViewBounds="true"
+            app:srcCompat="@drawable/ic_active_and_scanning" />
+
+        </FrameLayout>
 
       </ViewFlipper>
 
-      <ViewFlipper
-        android:id="@+id/edge_case_flipper"
+      <!-- Insert edge-case handling via sub-fragment-->
+      <FrameLayout
+        android:id="@+id/edge_case_fragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:measureAllChildren="false"
-        android:visibility="gone">
-
-        <include layout="@layout/viewflipper_children_error_cases" />
-
-      </ViewFlipper>
+        android:paddingVertical="@dimen/padding_normal"
+        android:paddingStart="@dimen/padding_large"
+        android:paddingEnd="@dimen/padding_large"
+        android:orientation="vertical"
+        android:animateLayoutChanges="false" />
 
       <LinearLayout
         android:id="@+id/view_flipper_divider"
@@ -99,24 +127,87 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_marginVertical="@dimen/padding_normal"
-          android:paddingStart="@dimen/padding_large"
-          android:paddingEnd="@dimen/padding_large"
+          android:paddingHorizontal="@dimen/padding_normal"
           android:orientation="vertical">
 
           <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?attr/textAppearanceHeadline5"
-            android:layout_marginTop="@dimen/padding_extra_large"
-            android:layout_marginBottom="@dimen/padding_normal"
+            android:layout_marginTop="@dimen/padding_normal"
             android:text="@string/no_recent_exposure_subtitle"
             android:gravity="center" />
+
+          <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/padding_large"
+            android:paddingBottom="@dimen/padding_normal" >
+
+            <LinearLayout
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center"
+              android:orientation="horizontal">
+
+              <ImageView
+                android:layout_width="@dimen/no_exposure_check_size"
+                android:layout_height="@dimen/no_exposure_check_size"
+                android:layout_marginStart="@dimen/padding_small"
+                android:layout_marginEnd="@dimen/padding_micro"
+                android:contentDescription="@string/no_recent_exposure_indicator"
+                app:srcCompat="@drawable/ic_no_exposure_check" />
+
+              <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_micro"
+                android:layout_marginEnd="@dimen/padding_small"
+                android:text="@string/no_recent_exposure_indicator"
+                android:textAppearance="?attr/textAppearanceBody1"
+                android:textStyle="bold"/>
+
+            </LinearLayout>
+
+            <TextView
+              android:id="@+id/last_checked"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center"
+              android:layout_marginVertical="@dimen/padding_small"
+              android:text="@string/recent_check_last_checked"
+              android:textAppearance="?attr/textAppearanceBody2"
+              android:visibility="gone"/>
+
+            <Button
+              android:id="@+id/see_more_button"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center"
+              android:text="@string/recent_check_dialog_see_more"
+              app:strokeColor="@color/horizontal_divider_color"
+              style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+              android:visibility="gone" />
+
+          </LinearLayout>
+
+          <include layout="@layout/horizontal_divider" />
 
           <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?attr/textAppearanceBody1"
-            android:layout_marginBottom="@dimen/padding_normal"
+            android:textAppearance="?attr/textAppearanceBody2"
+            android:layout_marginVertical="@dimen/padding_normal"
+            android:text="@string/app_active_info"
+            android:textColor="?attr/colorControlNormal"
+            android:gravity="center"/>
+
+          <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?attr/textAppearanceBody2"
             android:text="@string/notifications_enabled_info"
             android:textColor="?attr/colorControlNormal"
             android:gravity="center"/>
@@ -329,6 +420,40 @@
             android:text="@string/exposure_details_expiring_subtitle" />
 
         </LinearLayout>
+
+      </ViewFlipper>
+
+      <LinearLayout
+        android:id="@+id/how_en_works_horizontal_divider"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/padding_normal"
+        android:layout_gravity="center">
+        <include layout="@layout/horizontal_divider" />
+      </LinearLayout>
+
+      <ViewFlipper
+        android:id="@+id/how_en_work_button_flipper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/padding_normal"
+        android:measureAllChildren="false">
+
+        <Button
+          android:id="@+id/how_en_work_button_no_exposure"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center_horizontal"
+          android:text="@string/how_exposure_notifications_work_link"
+          style="@style/Widget.MaterialComponents.Button.TextButton" />
+
+        <Button
+          android:id="@+id/how_en_work_button_exposure"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="start"
+          android:text="@string/how_exposure_notifications_work_link"
+          style="@style/Widget.MaterialComponents.Button.TextButton"/>
 
       </ViewFlipper>
 

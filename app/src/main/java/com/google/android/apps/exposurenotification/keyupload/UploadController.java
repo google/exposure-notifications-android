@@ -148,7 +148,7 @@ public final class UploadController {
    * Base class for exceptions thrown when we get error responses from either the verification
    * server or the keyserver.
    */
-  abstract static class UploadException extends Exception {
+  abstract public static class UploadException extends Exception {
 
     private final UploadError uploadError;
 

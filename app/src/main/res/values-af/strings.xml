@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">Sekere beperkte, gedeïdentifiseerde data oor programwerkverrigting en -gebruik sal met Google gedeel word om te help om die program te onderhou en beter te maak. Hierdie data identifiseer jou nie. %1$s</string>
   <string name="onboarding_confirm_later_title">Hou Blootstellingkennisgewings afgeskakel?</string>
   <string name="onboarding_confirm_later_detail">Jy sal nie oor moontlike blootstelling aan COVID-19 in kennis gestel word voordat Blootstellingkennisgewings aangeskakel word nie</string>
-  <string name="no_recent_exposure_subtitle">Geen onlangse blootstellings nie</string>
-  <string name="notifications_enabled_info">Jy het tans geen aangemelde COVID-19-blootstellingrisiko nie. Jy sal in kennis gestel word as iemand naby wie jy was \'n positiewe COVID-19-toetsuitslag aanmeld.</string>
-  <string name="exposure_notifications_are_turned_off">Blootstellingkennisgewings is afgeskakel</string>
+  <string name="no_recent_exposure_subtitle">Aktief en kyk tans …</string>
+  <string name="no_recent_exposure_indicator">Geen onlangse blootstelling nie</string>
+  <string name="app_active_info">Jou program kyk gereeld vir moontlike blootstellings.</string>
+  <string name="notifications_enabled_info">Daar is tans geen gerapporteerde COVID-19-blootstellingrisiko vir jou nie. Jy sal in kennis gestel word as iemand naby wie jy was \'n positiewe COVID-19-toetsuitslag aanmeld.</string>
+  <string name="how_exposure_notifications_work_link">Só werk Blootstellingkennisgewings</string>
+  <string name="recent_check_dialog_title">Rekord van onlangse kontrolerings vir moontlike blootstelling</string>
+  <string name="recent_check_dialog_see_more">Sien meer</string>
+  <string name="recent_check_last_checked">%1$s laas gekontroleer</string>
+  <string name="exposure_notifications_are_turned_off">Kyk nie tans vir moontlike blootstelling nie</string>
   <string name="turn_on_exposure_notifications_action">Skakel Blootstellingkennisgewings aan</string>
   <string name="recent_exposures_subtitle">Onlangse blootstelling</string>
   <string name="exposure_details_status_subtitle">Status</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">COVID-19-negatief</string>
   <string name="positive_test_result_status_shared">Gedeel</string>
   <string name="positive_test_result_status_not_shared">Nie gedeel nie</string>
-  <string name="notify_turn_on_exposure_notifications_header">Skakel Blootstellingkennisgewings aan om in kennis gestel te word van moontlik COVID-19-blootstelling en om jou COVID-19-toetsuitslag te deel</string>
+  <string name="notify_turn_on_exposure_notifications_header">Jou program kyk nie tans vir moontlike blootstellings nie. Skakel Blootstellingkennisgewings aan om in kennis gestel te word van moontlike COVID-19-blootstelling.</string>
   <string name="share_begin_title">Help om jou gemeenskap te beskerm</string>
   <string name="share_close_title">Gaan uit sonder om te deel?</string>
   <string name="share_close_detail">Jy kan jou gemeenskap beter help deur jou toetsuitslag gouer te deel. Die toetsuitslaginligting wat jy sover ingedien het, word egter in die program gestoor sodat jy dit later verder kan wysig</string>

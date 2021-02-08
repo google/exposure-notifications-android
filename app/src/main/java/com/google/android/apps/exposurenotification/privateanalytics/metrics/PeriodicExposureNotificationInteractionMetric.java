@@ -17,14 +17,12 @@
 
 package com.google.android.apps.exposurenotification.privateanalytics.metrics;
 
-import com.google.android.apps.exposurenotification.privateanalytics.MetricsSnapshot;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.NotificationInteraction;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.primitives.Ints;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
-import java.util.Arrays;
 import java.util.List;
 import javax.inject.Inject;
 import org.threeten.bp.Instant;
@@ -59,26 +57,33 @@ public class PeriodicExposureNotificationInteractionMetric implements PrivateAna
   private final ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
 
   @Inject
-  public PeriodicExposureNotificationInteractionMetric(
+  PeriodicExposureNotificationInteractionMetric(
       ExposureNotificationSharedPreferences exposureNotificationSharedPreferences) {
     this.exposureNotificationSharedPreferences = exposureNotificationSharedPreferences;
   }
 
   // returns the index of the bin id which can be either one of the 9 bins
-  private int getExposureBinId(MetricsSnapshot metricsSnapshot) {
-    Instant exposureNotificationTime = metricsSnapshot.exposureNotificationLastShownTime();
+  private int getExposureBinId() {
+    Instant interactionLastTime = exposureNotificationSharedPreferences
+        .getExposureNotificationLastInteractionTime();
+    Instant privateAnalyticsWorkerLastTime = exposureNotificationSharedPreferences
+        .getPrivateAnalyticsWorkerLastTime();
 
-    Instant interactionTime = metricsSnapshot.exposureNotificationLastInteractionTime();
-    if (exposureNotificationTime.equals(Instant.EPOCH)
-        || interactionTime.isBefore(exposureNotificationTime)) {
+    if (interactionLastTime.equals(Instant.EPOCH)) {
+      // If Instant.EPOCH is returned, it means that no interaction was performed.
+      return NO_EXPOSURE_BIN_ID;
+    } else if (interactionLastTime.isBefore(privateAnalyticsWorkerLastTime)) {
+      // The interaction should have been reported at the last Private Analytics worker run.
+      // We report no exposure.
       return NO_EXPOSURE_BIN_ID;
     }
 
-    int notificationLastShownClassification = metricsSnapshot
-        .exposureNotificationLastShownClassification();
-    NotificationInteraction interaction = metricsSnapshot.exposureNotificationLastInteractionType();
+    int notificationLastInteractionClassification = exposureNotificationSharedPreferences
+        .getExposureNotificationLastInteractionClassification();
+    NotificationInteraction interaction = exposureNotificationSharedPreferences
+        .getExposureNotificationLastInteractionType();
 
-    int binId = (notificationLastShownClassification * INTERACTION_TYPE_COUNT +
+    int binId = (notificationLastInteractionClassification * INTERACTION_TYPE_COUNT +
         interactionToExposureBinOffset(interaction)) - 1;
     if (binId < 0 || binId >= VECTOR_LENGTH) {
       return NO_EXPOSURE_BIN_ID;
@@ -97,20 +102,10 @@ public class PeriodicExposureNotificationInteractionMetric implements PrivateAna
   }
 
   @Override
-  public void resetData() {
-    exposureNotificationSharedPreferences.clearLastShownExposureNotificationInteraction();
-  }
-
-  @Override
-  public ListenableFuture<List<Integer>> getDataVector(MetricsSnapshot metricsSnapshot) {
-    int index = getExposureBinId(metricsSnapshot);
-    if (index >= VECTOR_LENGTH) {
-      index = NO_EXPOSURE_BIN_ID;
-    }
+  public ListenableFuture<List<Integer>> getDataVector() {
+    int index = getExposureBinId();
     int[] data = new int[VECTOR_LENGTH];
-    Arrays.fill(data, 0);
     data[index] = 1;
-
     return Futures.immediateFuture(Ints.asList(data));
   }
 

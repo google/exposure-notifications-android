@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">Қолданбаның жұмыс қалпын сақтап, ісін жақсартып отыру үшін оның пайдаланылуы мен жұмыс өнімділігі туралы кейбір деректер Google-мен бөлісіледі. Бұл деректерде жеке бас мәліметі анықталмайды. %1$s</string>
   <string name="onboarding_confirm_later_title">Байланыс туралы хабарландыру өшірулі тұрсын ба?</string>
   <string name="onboarding_confirm_later_detail">Ауру жұқтырғандармен байланыс туралы хабарландыру қосылмайынша, COVID-19 ауруын ықтимал жұқтыру туралы хабар алмайсыз.</string>
-  <string name="no_recent_exposure_subtitle">Ауру жұқтырғандармен байланыс анықталмады</string>
-  <string name="notifications_enabled_info">Әзірге сізде COVID-19 ауруын жұқтырғандармен байланыста болу қаупі анықталмаған. COVID-19 сынағы нәтижесі оң болып шыққаны мәлім болған адамға жақындаған жағдайда, сізге хабарландыру жіберіледі.</string>
-  <string name="exposure_notifications_are_turned_off">Ауру жұқтырғандармен байланыс туралы хабарландыру өшірулі</string>
+  <string name="no_recent_exposure_subtitle">Қосулы және тексерілуде…</string>
+  <string name="no_recent_exposure_indicator">Жақын арада ауру жұқтырғандармен байланыс болмады</string>
+  <string name="app_active_info">Қолданба ауру жұқтырғандармен ықтимал байланысты тексеріп тұрады.</string>
+  <string name="notifications_enabled_info">Қазір сізде COVID-19 ауруын жұқтырғандармен байланыста болу қаупі анықталмаған. COVID-19 сынағы нәтижесі оң болып шыққаны мәлім болған адамға жақындаған жағдайда, сізге хабарландыру жіберіледі.</string>
+  <string name="how_exposure_notifications_work_link">Ауру жұқтырғандармен байланыс туралы хабарландыру функциясының жұмыс істеу әдісі</string>
+  <string name="recent_check_dialog_title">Соңғы кезде болған ауру жұқтырғандармен ықтимал байланысты тіркеу жазбасы</string>
+  <string name="recent_check_dialog_see_more">Басқаларын көру</string>
+  <string name="recent_check_last_checked">Соңғы рет тексерілді: %1$s.</string>
+  <string name="exposure_notifications_are_turned_off">Ауру жұқтырғандармен ықтимал байланыс тексеріліп жатқан жоқ</string>
   <string name="turn_on_exposure_notifications_action">Ауру жұқтырғандармен байланыс туралы хабарландыруды қосу</string>
   <string name="recent_exposures_subtitle">Жақын арадағы ауру жұқтырғандармен байланыс</string>
   <string name="exposure_details_status_subtitle">Күйі</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">COVID-19 ауруын жұқтырмаған.</string>
   <string name="positive_test_result_status_shared">Бөлісілген</string>
   <string name="positive_test_result_status_not_shared">Бөлісілмеген</string>
-  <string name="notify_turn_on_exposure_notifications_header">COVID-19 ауруын жұқтырғандармен ықтимал байланыс туралы хабарландыру алып, COVID-19 сынақ нәтижеңізді бөлісу үшін ауру жұқтырғандармен байланыс туралы хабарландыруды қосып қойыңыз.</string>
+  <string name="notify_turn_on_exposure_notifications_header">Қолданба ауру жұқтырғандармен ықтимал байланысты тексеріп жатқан жоқ. COVID-19 ауруын жұқтырғандармен ықтимал байланыс туралы хабарландыру алу үшін ауру жұқтырғандармен байланыс туралы хабарландыруды қосып қойыңыз.</string>
   <string name="share_begin_title">Қауымдастығыңызды қорғауға көмектесіңіз</string>
   <string name="share_close_title">Бөліспестен шығасыз ба?</string>
   <string name="share_close_detail">Неғұрлым тезірек сынақ нәтижесін бөліссеңіз, соғұрлым аурудың таралуын тоқтатасыз. Сынақ нәтижесі туралы ақпарат осы қолданбада сақталады. Оны кейінірек өзгертуге болады.</string>

@@ -30,6 +30,7 @@ import androidx.core.widget.NestedScrollView.OnScrollChangeListener;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.databinding.FragmentOnboardingPermissionEnabledBinding;
 import com.google.android.apps.exposurenotification.home.HomeFragment;
 import dagger.hilt.android.AndroidEntryPoint;
 
@@ -39,6 +40,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class OnboardingPermissionEnabledFragment extends Fragment {
 
+  private FragmentOnboardingPermissionEnabledBinding binding;
   private OnboardingViewModel onboardingViewModel;
 
   private RelativeLayout onboardingButtons;
@@ -49,16 +51,17 @@ public class OnboardingPermissionEnabledFragment extends Fragment {
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-    return inflater.inflate(R.layout.fragment_onboarding_permission_enabled, parent, false);
+    binding = FragmentOnboardingPermissionEnabledBinding.inflate(inflater, parent, false);
+    return binding.getRoot();
   }
 
   @Override
   public void onViewCreated(View view, Bundle savedInstanceState) {
     onboardingViewModel = new ViewModelProvider(this).get(OnboardingViewModel.class);
 
-    onboardingButtons = view.findViewById(R.id.onboarding_buttons);
-    nextButton = view.findViewById(R.id.onboarding_next_button);
-    scroller = view.findViewById(R.id.onboarding_scroll);
+    onboardingButtons = binding.onboardingButtons;
+    nextButton = binding.onboardingNextButton;
+    scroller = binding.onboardingScroll;
 
     // Set to false, this will be overridden by scroll events or if not scrollable.
     updateAtBottom(false);
@@ -83,6 +86,12 @@ public class OnboardingPermissionEnabledFragment extends Fragment {
         .observe(getViewLifecycleOwner(),
             shouldShowPrivateAnalyticsOnboarding ->
                 this.shouldShowPrivateAnalyticsOnboarding = shouldShowPrivateAnalyticsOnboarding);
+  }
+
+  @Override
+  public void onDestroyView() {
+    super.onDestroyView();
+    binding = null;
   }
 
   /**

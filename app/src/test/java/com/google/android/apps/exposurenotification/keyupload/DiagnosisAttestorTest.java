@@ -42,6 +42,7 @@ import com.google.android.apps.exposurenotification.testsupport.ExposureNotifica
 import com.google.android.apps.exposurenotification.testsupport.FakeRequestQueue;
 import com.google.common.collect.ImmutableList;
 import com.google.common.util.concurrent.ListeningExecutorService;
+import com.google.common.util.concurrent.ListeningScheduledExecutorService;
 import com.google.common.util.concurrent.MoreExecutors;
 import com.google.common.util.concurrent.testing.TestingExecutors;
 import dagger.hilt.android.testing.BindValue;
@@ -87,6 +88,10 @@ public class DiagnosisAttestorTest {
   @LightweightExecutor
   static final ExecutorService LIGHTWEIGHT_EXEC = MoreExecutors.newDirectExecutorService();
   @BindValue
+  @ScheduledExecutor
+  static final ScheduledExecutorService SCHEDULED_EXEC =
+      TestingExecutors.sameThreadScheduledExecutor();
+  @BindValue
   @BackgroundExecutor
   static final ListeningExecutorService BACKGROUND_LISTENING_EXEC =
       MoreExecutors.newDirectExecutorService();
@@ -96,7 +101,7 @@ public class DiagnosisAttestorTest {
       MoreExecutors.newDirectExecutorService();
   @BindValue
   @ScheduledExecutor
-  static final ScheduledExecutorService SCHEDULED_EXEC =
+  static final ListeningScheduledExecutorService SCHEDULED_LISTENING_EXEC =
       TestingExecutors.sameThreadScheduledExecutor();
 
   @BindValue

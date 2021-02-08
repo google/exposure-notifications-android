@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">යෙදුම නඩත්තු කිරීමට සහ වැඩිදියුණු කිරීමට උදව් කිරීම සඳහා, යෙදුම් ක්‍රියාකාරිත්වය සහ භාවිතය පිළිබඳ සීමිත හඳුනා නොගත් දත්ත Google සමඟ බෙදා ගනී. මෙම දත්ත ඔබව හඳුනා නොගනී. %1$s</string>
   <string name="onboarding_confirm_later_title">නිරාවරණ දැනුම්දීම් ක්‍රියාවිරහිතව තබා ගන්නද?</string>
   <string name="onboarding_confirm_later_detail">නිරාවරණ දැනුම්දීම් ක්‍රියාත්මක කරන තුරු, COVID-19 වෙත විය හැකි නිරාවරණයන් ඔබට දන්වනු නොලැබේ</string>
-  <string name="no_recent_exposure_subtitle">මෑත නිරාවරණයන් නැත</string>
-  <string name="notifications_enabled_info">ඔබට දැනට වාර්තා වී ඇති COVID-19 නිරාවරණ අවදානමක් නොමැත. ඔබ අසල සිටි අයෙකු පොසිටිව් COVID-19 පරීක්ෂණ ප්‍රති .ලයක් වාර්තා කළහොත් ඔබට දන්වනු ලැබේ.</string>
-  <string name="exposure_notifications_are_turned_off">නිරාවරණ දැනුම්දීම් ක්‍රියාවිරහිත කර ඇත</string>
+  <string name="no_recent_exposure_subtitle">සක්‍රිය සහ පරීක්ෂා කරමින් …</string>
+  <string name="no_recent_exposure_indicator">මෑත නිරාවරණයක් නැත</string>
+  <string name="app_active_info">ඔබගේ යෙදුම නිතරම විය හැකි නිරාවරණ සඳහා පරීක්ෂා කරයි.</string>
+  <string name="notifications_enabled_info">ඔබට දැනට වාර්තා වී ඇති COVID-19 නිරාවරණ අවදානමක් නොමැත. ඔබ අසල සිටි අයෙකු පොසිටිව් COVID-19 පරීක්ෂණ ප්‍රතිඵලයක් වාර්තා කළහොත් ඔබට දන්වනු ඇත.</string>
+  <string name="how_exposure_notifications_work_link">නිරාවරණ දැනුම්දීම් ක්‍රියා කරන ආකාරය</string>
+  <string name="recent_check_dialog_title">විය හැකි නිරාවරණය සඳහා මෑතකාලීන ඇතුළත්වීම්වල වාර්තාව</string>
+  <string name="recent_check_dialog_see_more">තව බලන්න</string>
+  <string name="recent_check_last_checked">අවසානයට පරික්ෂා කරේ %1$s</string>
+  <string name="exposure_notifications_are_turned_off">විය හැකි නිරාවරණ සඳහා පරීක්ෂා නොකරමින්</string>
   <string name="turn_on_exposure_notifications_action">නිරාවරණ දැනුම්දීම් ක්‍රියාත්මක කරන්න</string>
   <string name="recent_exposures_subtitle">මෑත නිරාවරණය</string>
   <string name="exposure_details_status_subtitle">තත්ත්වය</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">COVID-19 නෙගටිව්</string>
   <string name="positive_test_result_status_shared">බෙදා ගත්</string>
   <string name="positive_test_result_status_not_shared">බෙදා නොගත්</string>
-  <string name="notify_turn_on_exposure_notifications_header">විය හැකි COVID-19 නිරාවරණය දැනුම් දීමට සහ ඔබේ COVID-19 පරීක්ෂණ ප්‍රතිඵලය බෙදා ගැනීමට, නිරාවරණ දැනුම්දීම් ක්‍රියාත්මක කරන්න</string>
+  <string name="notify_turn_on_exposure_notifications_header">ඔබගේ යෙදුම දැනට විය හැකි නිරාවරණ සඳහා පරීක්ෂා නොකරයි. විය හැකි COVID-19 නිරාවරණය දැනුම් දීමට, නිරාවරණ දැනුම්දීම් ක්‍රියාත්මක කරන්න.</string>
   <string name="share_begin_title">ඔබගේ ප්‍රජාව ආරක්ෂා කිරීමට උදව් කරන්න</string>
   <string name="share_close_title">බෙදා ගැනීමෙන් තොරව පිට වන්නද?</string>
   <string name="share_close_detail">ඔබගේ පරීක්ෂණ ප්‍රතිඵල ඉක්මනින් බෙදා ගන්නේ නම් ඔබට ඔබේ ප්‍රජාවට වඩාත් හොඳින් උදව් කළ හැකිය. කෙසේ වෙතත්, ඔබ මෙතෙක් ඇතුළු කළ පරීක්ෂණ ප්‍රතිඵල තතු පසුව සංස්කරණය කිරීම නැවත පටන් ගැනීමට යෙදුම තුළ සුරකිනු ඇත</string>

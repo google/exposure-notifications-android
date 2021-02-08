@@ -23,24 +23,21 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import com.google.android.apps.exposurenotification.BuildConfig;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.databinding.FragmentSettingsHomeBinding;
 import com.google.android.apps.exposurenotification.home.ExposureNotificationViewModel;
 import com.google.android.apps.exposurenotification.privateanalytics.PrivateAnalyticsSettingsUtil;
 import com.google.android.apps.exposurenotification.proto.UiInteraction.EventType;
-import com.mikepenz.aboutlibraries.Libs;
 import com.mikepenz.aboutlibraries.LibsBuilder;
 import dagger.hilt.android.AndroidEntryPoint;
 
 /**
- * Fragment for Exposures tab on home screen.
+ * Fragment for Settings tab on home screen.
  */
 @AndroidEntryPoint
 public class SettingsHomeFragment extends Fragment {
@@ -48,9 +45,16 @@ public class SettingsHomeFragment extends Fragment {
   private static final String TAG = "SettingsFragment";
   private static ExposureNotificationViewModel exposureNotificationViewModel;
 
+  public static SettingsHomeFragment newInstance() {
+    return new SettingsHomeFragment();
+  }
+
+  private FragmentSettingsHomeBinding binding;
+
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-    return inflater.inflate(R.layout.fragment_settings_home, parent, false);
+    binding = FragmentSettingsHomeBinding.inflate(inflater, parent, false);
+    return binding.getRoot();
   }
 
   @Override
@@ -62,52 +66,37 @@ public class SettingsHomeFragment extends Fragment {
     PrivateAnalyticsViewModel privateAnalyticsViewModel =
         new ViewModelProvider(this).get(PrivateAnalyticsViewModel.class);
 
-    View appAnalyticsLink = view.findViewById(R.id.app_analytics_link);
-    appAnalyticsLink.setOnClickListener(v -> launchAppAnalytics());
-    TextView appAnalyticsStatus = view.findViewById(R.id.app_analytics_status);
+    binding.appAnalyticsLink.setOnClickListener(v -> launchAppAnalytics());
     appAnalyticsViewModel.getAppAnalyticsLiveData().observe(getViewLifecycleOwner(),
         isEnabled ->
-            appAnalyticsStatus.setText(
+            binding.appAnalyticsStatus.setText(
                 isEnabled ? R.string.settings_analytics_on : R.string.settings_analytics_off));
 
-    View privateAnalyticsLink = view.findViewById(R.id.private_analytics_link);
-    privateAnalyticsLink.setOnClickListener(v -> launchPrivateAnalytics());
-    TextView privateAnalyticsStatus = view.findViewById(R.id.private_analytics_status);
+    binding.privateAnalyticsLink.setOnClickListener(v -> launchPrivateAnalytics());
     privateAnalyticsViewModel
         .getPrivateAnalyticsLiveData()
         .observe(
             getViewLifecycleOwner(),
             isEnabled ->
-                privateAnalyticsStatus.setText(
+                binding.privateAnalyticsStatus.setText(
                     isEnabled
                         ? R.string.settings_analytics_on
                         : R.string.settings_analytics_off));
 
-    privateAnalyticsLink
+    binding.privateAnalyticsLink
         .setVisibility(
             PrivateAnalyticsSettingsUtil.isPrivateAnalyticsSupported() ? View.VISIBLE : View.GONE);
 
-    View agencyLink = view.findViewById(R.id.agency_link);
-    agencyLink.setOnClickListener(v -> launchAgencyLink());
+    binding.agencyLink.setOnClickListener(v -> launchAgencyLink());
+    binding.legalLink.setOnClickListener(v -> launchLegalLink());
+    binding.privacyPolicyLink.setOnClickListener(v -> launchPrivacyPolicyLink());
+    binding.helpAndSupportLink.setOnClickListener(v -> launchHelpAndSupport());
+    binding.openSourceLink.setOnClickListener(v -> showOsLicenses());
+    binding.exposureNotificationsLink.setOnClickListener(
+        v -> launchExposureNotificationsAboutActivity());
 
-    View legalLink = view.findViewById(R.id.legal_link);
-    legalLink.setOnClickListener(v -> launchLegalLink());
-
-    View privacyPolicy = view.findViewById(R.id.privacy_policy_link);
-    privacyPolicy.setOnClickListener(v -> launchPrivacyPolicyLink(view));
-
-    View helpAndSupport = view.findViewById(R.id.help_and_support_link);
-    helpAndSupport.setOnClickListener(v -> launchHelpAndSupport(view));
-
-    View openSourceLicenses = view.findViewById(R.id.open_source_link);
-    openSourceLicenses.setOnClickListener(v -> showOsLicenses());
-
-    View exposureNotificationsLink = view.findViewById(R.id.exposure_notifications_link);
-    exposureNotificationsLink.setOnClickListener(v -> launchExposureNotificationsAboutActivity());
-    TextView exposureNotificationsStatus = view.findViewById(R.id.exposure_notifications_status);
-    ImageView exposureNotificationsError = view.findViewById(R.id.exposure_notifications_error);
     exposureNotificationViewModel.getEnEnabledLiveData().observe(getViewLifecycleOwner(),
-        isEnabled -> exposureNotificationsStatus.setText(isEnabled
+        isEnabled -> binding.exposureNotificationsStatus.setText(isEnabled
             ? R.string.settings_exposure_notifications_on
             : R.string.settings_exposure_notifications_off)
         );
@@ -117,25 +106,27 @@ public class SettingsHomeFragment extends Fragment {
         case PAUSED_LOCATION:
         case PAUSED_LOCATION_BLE:
         case STORAGE_LOW:
-          exposureNotificationsError.setVisibility(View.VISIBLE);
+          binding.exposureNotificationsError.setVisibility(View.VISIBLE);
           break;
         case ENABLED:
         case DISABLED:
-          exposureNotificationsError.setVisibility(View.GONE);
+          binding.exposureNotificationsError.setVisibility(View.GONE);
           break;
       }
     });
 
-    View debugMode = view.findViewById(R.id.debug_mode_link);
     if (BuildConfig.DEBUG) {
-      debugMode.setVisibility(View.VISIBLE);
-      debugMode.setOnClickListener(v -> launchDebugScreen());
+      binding.debugModeLink.setVisibility(View.VISIBLE);
+      binding.debugModeLink.setOnClickListener(v -> launchDebugScreen());
     }
 
-    Button shareButton = view.findViewById(R.id.share_app_button);
-    shareButton.setOnClickListener((v) -> launchShareApp());
+    binding.shareAppButton.setOnClickListener(v -> launchShareApp());
+  }
 
-    super.onViewCreated(view, savedInstanceState);
+  @Override
+  public void onDestroyView() {
+    super.onDestroyView();
+    binding = null;
   }
 
   /**
@@ -169,7 +160,7 @@ public class SettingsHomeFragment extends Fragment {
   /**
    * Launches the privacy policy link in the device browser.
    */
-  private void launchPrivacyPolicyLink(View v) {
+  private void launchPrivacyPolicyLink() {
     startActivity(
         new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.enx_agencyPrivacyPolicy))));
   }
@@ -177,7 +168,7 @@ public class SettingsHomeFragment extends Fragment {
   /**
    * Launches the help and support link in the device browser.
    */
-  private void launchHelpAndSupport(View v) {
+  private void launchHelpAndSupport() {
     startActivity(
         new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.help_and_support_link))));
   }
@@ -212,10 +203,6 @@ public class SettingsHomeFragment extends Fragment {
   private void showOsLicenses() {
     new LibsBuilder()
         .withFields(R.string.class.getFields())
-        .withLibraryModification(
-            "javax_annotation__jsr250_api",
-            Libs.LibraryFields.LIBRARY_DESCRIPTION,
-            getString(R.string.jsr_cddl_description))
         .withLicenseShown(true)
         .start(getActivity());
   }

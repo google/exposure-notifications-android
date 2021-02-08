@@ -19,16 +19,14 @@ package com.google.android.apps.exposurenotification.nearby;
 
 import android.util.Log;
 import com.google.android.apps.exposurenotification.logging.AnalyticsLogger;
-import com.google.android.apps.exposurenotification.proto.ApiCall.ApiCallType;
 import com.google.android.apps.exposurenotification.nearby.DailySummaryWrapper.ExposureSummaryDataWrapper;
+import com.google.android.apps.exposurenotification.proto.ApiCall.ApiCallType;
 import com.google.android.gms.nearby.exposurenotification.DailySummariesConfig;
 import com.google.android.gms.nearby.exposurenotification.DailySummary;
-import com.google.android.gms.nearby.exposurenotification.DiagnosisKeyFileProvider;
 import com.google.android.gms.nearby.exposurenotification.DailySummary.ExposureSummaryData;
 import com.google.android.gms.nearby.exposurenotification.DiagnosisKeysDataMapping;
-import com.google.android.gms.nearby.exposurenotification.ExposureInformation;
 import com.google.android.gms.nearby.exposurenotification.ExposureNotificationClient;
-import com.google.android.gms.nearby.exposurenotification.ExposureSummary;
+import com.google.android.gms.nearby.exposurenotification.ExposureNotificationStatus;
 import com.google.android.gms.nearby.exposurenotification.ExposureWindow;
 import com.google.android.gms.nearby.exposurenotification.PackageConfiguration;
 import com.google.android.gms.nearby.exposurenotification.ReportType;
@@ -39,6 +37,7 @@ import com.google.common.collect.ImmutableList;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Wrapper around {@link com.google.android.gms.nearby.Nearby} APIs.
@@ -76,6 +75,10 @@ public class ExposureNotificationClientWrapper {
         .addOnSuccessListener(aVoid -> logger.logApiCallSuccessAsync(ApiCallType.CALL_IS_ENABLED));
   }
 
+  public Task<Set<ExposureNotificationStatus>> getStatus() {
+    return exposureNotificationClient.getStatus();
+  }
+
   public Task<List<TemporaryExposureKey>> getTemporaryExposureKeyHistory() {
     return exposureNotificationClient.getTemporaryExposureKeyHistory();
   }
@@ -92,22 +95,8 @@ public class ExposureNotificationClientWrapper {
     return task;
   }
 
-  /**
-   * Gets the {@link ExposureSummary} using the stable token.
-   */
-  public Task<ExposureSummary> getExposureSummary(String token) {
-    return exposureNotificationClient.getExposureSummary(token);
-  }
-
   public Task<List<ExposureWindow>> getExposureWindows() {
     return exposureNotificationClient.getExposureWindows();
-  }
-
-  /**
-   * Gets the {@link List} of {@link ExposureInformation} using the stable token.
-   */
-  public Task<List<ExposureInformation>> getExposureInformation(String token) {
-    return exposureNotificationClient.getExposureInformation(token);
   }
 
   public Task<Void> setDiagnosisKeysDataMapping(DiagnosisKeysDataMapping diagnosisKeysDataMapping) {
@@ -181,12 +170,16 @@ public class ExposureNotificationClientWrapper {
     });
   }
 
-  public boolean deviceSupportsLocationlessScanning() {
-    return exposureNotificationClient.deviceSupportsLocationlessScanning();
-  }
-
   public Task<Long> getVersion() {
     return exposureNotificationClient.getVersion();
+  }
+
+  public Task<Void> requestPreAuthorizedTemporaryExposureKeyHistory() {
+    return exposureNotificationClient.requestPreAuthorizedTemporaryExposureKeyHistory();
+  }
+
+  public Task<Void> requestPreAuthorizedTemporaryExposureKeyRelease() {
+    return exposureNotificationClient.requestPreAuthorizedTemporaryExposureKeyRelease();
   }
 
   /**

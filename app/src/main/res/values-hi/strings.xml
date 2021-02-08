@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">ऐप्लिकेशन को बेहतर बनाने और इसके रखरखाव में मदद के लिए, ऐप्लिकेशन की परफ़ॉर्मेंस और इसके इस्तेमाल से जुड़ा कुछ सीमित डेटा, Google के साथ शेयर किया जाता है. इस डेटा से आपकी पहचान से जुड़ी जानकारी हटा दी जाती है. %1$s</string>
   <string name="onboarding_confirm_later_title">एक्सपोज़र नोटिफ़िकेशन पाने की सुविधा को बंद रखें?</string>
   <string name="onboarding_confirm_later_detail">\'एक्सपोज़र नोटिफ़िकेशन\' चालू होने पर ही, आपको संभावित COVID-19 संक्रमण की सूचना मिलेगी</string>
-  <string name="no_recent_exposure_subtitle">COVID-19 से संक्रमित होने की संभावना नहीं है</string>
-  <string name="notifications_enabled_info">आप अब तक COVID-19 से संक्रमित किसी व्यक्ति के संपर्क में नहीं आए हैं. अगर आपके संपर्क (आस-पास) में आया कोई व्यक्ति पॉजिटिव पाया जाता है, तो हम आपको इसकी सूचना देंगे.</string>
-  <string name="exposure_notifications_are_turned_off">एक्सपोज़र नोटिफ़िकेशन पाने की सुविधा बंद है</string>
+  <string name="no_recent_exposure_subtitle">चालू है और जांच की जा रही है …</string>
+  <string name="no_recent_exposure_indicator">हाल में किसी संक्रमित व्यक्ति से संपर्क नहीं हुआ</string>
+  <string name="app_active_info">आपका ऐप्लिकेशन संभावित संक्रमण की नियमित रूप से जांच कर रहा है.</string>
+  <string name="notifications_enabled_info">फ़िलहाल, आप COVID-19 से संक्रमित किसी व्यक्ति के संपर्क में नहीं आए हैं. अगर आप किसी ऐसे व्यक्ति के आस-पास थे जिसको COVID-19 संक्रमण है, तो आपको इसकी सूचना दी जाएगी.</string>
+  <string name="how_exposure_notifications_work_link">एक्सपोज़र नोटिफ़िकेशन की सुविधा कैसे काम करती है</string>
+  <string name="recent_check_dialog_title">हाल का चेक-इन रिकॉर्ड जो बताता है कि आप कब-कब संक्रमित लोगों के संपर्क में आए</string>
+  <string name="recent_check_dialog_see_more">ज़्यादा देखें</string>
+  <string name="recent_check_last_checked">%1$s पर आखिरी बार जांचा गया</string>
+  <string name="exposure_notifications_are_turned_off">संभावित संक्रमण की जांच नहीं की जा रही है</string>
   <string name="turn_on_exposure_notifications_action">\'एक्सपोज़र नोटिफ़िकेशन\' चालू करें</string>
   <string name="recent_exposures_subtitle">हाल ही में किसी संक्रमित व्यक्ति से हुआ संपर्क</string>
   <string name="exposure_details_status_subtitle">संक्रमण की स्थिति</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">COVID-19 पॉज़िटिव नहीं पाए गए</string>
   <string name="positive_test_result_status_shared">शेयर की गई</string>
   <string name="positive_test_result_status_not_shared">शेयर नहीं की गई</string>
-  <string name="notify_turn_on_exposure_notifications_header">COVID-19 से संक्रमित किसी व्यक्ति के संपर्क में आने और अपनी जांच का नतीजा शेयर करने के लिए, एक्सपोज़र नोटिफ़िकेशन की सुविधा चालू करें</string>
+  <string name="notify_turn_on_exposure_notifications_header">फ़िलहाल, आपका ऐप्लिकेशन संभावित संक्रमण की जांच नहीं कर रहा है. संभावित COVID-19 संक्रमण की सूचना पाने के लिए, एक्सपोज़र नोटिफ़िकेशन की सुविधा चालू करें.</string>
   <string name="share_begin_title">अपने समुदाय को सुरक्षित रखने में हमारी मदद करें</string>
   <string name="share_close_title">शेयर किए बिना बाहर निकलना चाहते हैं?</string>
   <string name="share_close_detail">जांच के नतीजे जल्दी शेयर करके, आप अपनी कम्यूनिटी की मदद कर सकते हैं. आपने जांच के नतीजे से जुड़ी जो जानकारी डाली है, वह इस ऐप में सेव कर ली गई है. इससे, आप बाद में भी इस जानकारी में बदलाव कर सकेंगे.</string>

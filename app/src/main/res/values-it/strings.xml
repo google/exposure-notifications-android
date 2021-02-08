@@ -36,9 +36,15 @@
   <string name="onboarding_metrics_description">Per contribuire a gestire e migliorare l\'app, alcuni dati anonimizzati e limitati relativi alle prestazioni e all\'utilizzo dell\'app vengono condivisi con Google. Questi dati non consentono la tua identificazione. %1$s</string>
   <string name="onboarding_confirm_later_title">Vuoi mantenere disattivate le Notifiche di esposizione?</string>
   <string name="onboarding_confirm_later_detail">Finché non attiverai le Notifiche di esposizione, non riceverai notifiche relative alla possibile esposizione al COVID-19</string>
-  <string name="no_recent_exposure_subtitle">Nessuna esposizione recente</string>
-  <string name="notifications_enabled_info">Al momento non ci sono segnalazioni relative al rischio di esposizione al COVID-19. Riceverai una notifica se una persona con cui hai avuto contatti ravvicinati segnala di essere risultata positiva al test per il COVID-19.</string>
-  <string name="exposure_notifications_are_turned_off">Notifiche di esposizione non attive</string>
+  <string name="no_recent_exposure_subtitle">App attiva e controllo in corso…</string>
+  <string name="no_recent_exposure_indicator">Nessuna esposizione recente</string>
+  <string name="app_active_info">L\'app controlla regolarmente le possibili esposizioni.</string>
+  <string name="notifications_enabled_info">Al momento non ci sono segnalazioni relative al rischio di esposizione al COVID-19 per te. Riceverai una notifica se una persona con cui hai avuto contatti ravvicinati segnala un risultato positivo al test del COVID-19.</string>
+  <string name="how_exposure_notifications_work_link">Come funzionano le Notifiche di esposizione</string>
+  <string name="recent_check_dialog_title">Record dei controlli recenti della possibile esposizione</string>
+  <string name="recent_check_dialog_see_more">Altro</string>
+  <string name="recent_check_last_checked">Ultimo controllo: %1$s</string>
+  <string name="exposure_notifications_are_turned_off">Controllo della possibile esposizione non attivo</string>
   <string name="turn_on_exposure_notifications_action">Attiva le Notifiche di esposizione</string>
   <string name="recent_exposures_subtitle">Esposizione recente</string>
   <string name="exposure_details_status_subtitle">Stato</string>
@@ -55,7 +61,7 @@
   <string name="test_result_type_negative">Risultato negativo al COVID-19</string>
   <string name="positive_test_result_status_shared">Diagnosi condivisa</string>
   <string name="positive_test_result_status_not_shared">Diagnosi non condiv.</string>
-  <string name="notify_turn_on_exposure_notifications_header">Attiva le Notifiche di esposizione per ricevere notifiche relative alla possibile esposizione al COVID-19 e condividere il tuo risultato al test del COVID-19</string>
+  <string name="notify_turn_on_exposure_notifications_header">Al momento l\'app non controlla le possibili esposizioni. Attiva la funzionalità Notifiche di esposizione per ricevere notifiche relative alla possibile esposizione al COVID-19.</string>
   <string name="share_begin_title">Contribuisci a tutelare la tua comunità</string>
   <string name="share_close_title">Vuoi uscire senza condividere?</string>
   <string name="share_close_detail">Per aiutare meglio la comunità, condivi quanto prima il risultato del test. Le informazioni sul risultato del test inserite finora vengono salvate nell\'app per poter riprendere la modifica più tardi.</string>

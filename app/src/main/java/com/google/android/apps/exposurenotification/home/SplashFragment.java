@@ -31,6 +31,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.common.time.Clock;
+import com.google.android.apps.exposurenotification.databinding.FragmentOnboardingStartBinding;
 import dagger.hilt.android.AndroidEntryPoint;
 import javax.inject.Inject;
 import org.threeten.bp.Duration;
@@ -51,6 +52,7 @@ public class SplashFragment extends Fragment {
   private long startTime;
   private CountDownTimer countdownTimer = null;
 
+  private FragmentOnboardingStartBinding binding;
   private ExposureNotificationViewModel exposureNotificationViewModel;
   private SplashViewModel splashViewModel;
 
@@ -60,7 +62,8 @@ public class SplashFragment extends Fragment {
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-    return inflater.inflate(R.layout.fragment_onboarding_start, parent, false);
+    binding = FragmentOnboardingStartBinding.inflate(inflater, parent, false);
+    return binding.getRoot();
   }
 
   @Override
@@ -98,6 +101,12 @@ public class SplashFragment extends Fragment {
     if (countdownTimer != null) {
       countdownTimer.cancel();
     }
+  }
+
+  @Override
+  public void onDestroyView() {
+    super.onDestroyView();
+    binding = null;
   }
 
   void startTimer() {

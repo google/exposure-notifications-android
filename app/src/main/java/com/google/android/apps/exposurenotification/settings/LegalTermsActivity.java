@@ -18,9 +18,9 @@
 package com.google.android.apps.exposurenotification.settings;
 
 import android.os.Bundle;
-import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.databinding.ActivityLegalTermsBinding;
 import dagger.hilt.android.AndroidEntryPoint;
 
 /**
@@ -31,15 +31,17 @@ public class LegalTermsActivity extends AppCompatActivity {
 
   private static final String TAG = "LegalTermsActivity";
 
+  private ActivityLegalTermsBinding binding;
+
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
-    setContentView(R.layout.activity_legal_terms);
+    binding = ActivityLegalTermsBinding.inflate(getLayoutInflater());
+    setContentView(binding.getRoot());
 
-    View upButton = findViewById(android.R.id.home);
-    upButton.setContentDescription(getString(R.string.navigate_up));
-    upButton.setOnClickListener((v) -> onBackPressed());
+    binding.home.setContentDescription(getString(R.string.navigate_up));
+    binding.home.setOnClickListener(v -> onBackPressed());
   }
 
 }

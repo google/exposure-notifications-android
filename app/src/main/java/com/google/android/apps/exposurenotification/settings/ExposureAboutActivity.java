@@ -19,36 +19,29 @@ package com.google.android.apps.exposurenotification.settings;
 
 import static com.google.android.gms.nearby.exposurenotification.ExposureNotificationClient.ACTION_EXPOSURE_NOTIFICATION_SETTINGS;
 
-import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.IntentSender.SendIntentException;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.ViewSwitcher;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 import com.google.android.apps.exposurenotification.R;
-import com.google.android.apps.exposurenotification.common.StorageManagementHelper;
+import com.google.android.apps.exposurenotification.databinding.ActivityExposureAboutBinding;
+import com.google.android.apps.exposurenotification.edgecases.AboutEdgeCaseFragment;
 import com.google.android.apps.exposurenotification.home.ExposureNotificationViewModel;
 import com.google.android.apps.exposurenotification.home.ExposureNotificationViewModel.ExposureNotificationState;
-import com.google.android.apps.exposurenotification.proto.UiInteraction.EventType;
-import com.google.android.apps.exposurenotification.utils.RequestCodes;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.switchmaterial.SwitchMaterial;
 import dagger.hilt.android.AndroidEntryPoint;
 
 /**
@@ -61,6 +54,7 @@ public class ExposureAboutActivity extends AppCompatActivity {
 
   private static final String STATE_TURN_OFF_OPEN = "STATE_TURN_OFF_OPEN";
 
+  private ActivityExposureAboutBinding binding;
   private ExposureNotificationViewModel exposureNotificationViewModel;
 
   boolean isTurnOffOpen = false;
@@ -69,7 +63,8 @@ public class ExposureAboutActivity extends AppCompatActivity {
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
-    setContentView(R.layout.activity_exposure_about);
+    binding = ActivityExposureAboutBinding.inflate(getLayoutInflater());
+    setContentView(binding.getRoot());
 
     exposureNotificationViewModel =
         new ViewModelProvider(this).get(ExposureNotificationViewModel.class);
@@ -83,50 +78,43 @@ public class ExposureAboutActivity extends AppCompatActivity {
 
     exposureNotificationViewModel
         .getStateLiveData()
-        .observe(this, this::refreshUiForState);
+        .observe(this, this::refreshUiTextVisibilityForState);
+    exposureNotificationViewModel
+        .getEnEnabledLiveData()
+        .observe(this, this::refreshUiSwitchForIsEnabled);
     exposureNotificationViewModel
         .getApiErrorLiveEvent()
         .observe(
             this,
             unused -> maybeShowSnackbar(getString(R.string.generic_error_message)));
-    exposureNotificationViewModel
-        .getResolutionRequiredLiveEvent()
-        .observe(
-            this,
-            apiException -> {
-              try {
-                Log.d(TAG, "startResolutionForResult");
-                apiException
-                    .getStatus()
-                    .startResolutionForResult(
-                        this, RequestCodes.REQUEST_CODE_START_EXPOSURE_NOTIFICATION);
-              } catch (SendIntentException e) {
-                Log.w(TAG, "Error calling startResolutionForResult", apiException);
-              }
-            });
 
-    TextView exposureAboutDetail = findViewById(R.id.exposure_about_detail);
-    exposureAboutDetail.setText(
+    exposureNotificationViewModel.registerResolutionForActivityResult(this);
+
+    binding.exposureAboutDetail.setText(
         getString(R.string.exposure_about_detail, getString(R.string.exposure_about_agency)));
 
-    View upButton = findViewById(android.R.id.home);
-    upButton.setContentDescription(getString(R.string.navigate_up));
-    upButton.setOnClickListener((v) -> onBackPressed());
+    binding.home.setContentDescription(getString(R.string.navigate_up));
+    binding.home.setOnClickListener((v) -> onBackPressed());
 
-    Button settingsButton = findViewById(R.id.exposure_about_settings_button);
-    settingsButton.setOnClickListener(v -> settingsAction());
-
-    Button errorSettingsButton = findViewById(R.id.exposure_about_device_settings);
-    errorSettingsButton.setOnClickListener(v -> settingsAction());
-
-    Button manageStorageButton = findViewById(R.id.exposure_about_manage_storage);
-    manageStorageButton
-        .setOnClickListener(v -> StorageManagementHelper.launchStorageManagement(this));
+    binding.exposureAboutSettingsButton.setOnClickListener(v -> settingsAction());
 
     IntentFilter intentFilter = new IntentFilter();
     intentFilter.addAction(LocationManager.PROVIDERS_CHANGED_ACTION);
     intentFilter.addAction(BluetoothAdapter.ACTION_STATE_CHANGED);
     registerReceiver(refreshBroadcastReceiver, intentFilter);
+
+    /*
+     * Attach the edge-case logic as a fragment
+     */
+    FragmentManager fragmentManager = getSupportFragmentManager();
+    if (fragmentManager.findFragmentById(R.id.edge_case_fragment) == null) {
+      Fragment aboutEdgeCaseFragment = AboutEdgeCaseFragment
+          .newInstance(/* handleApiErrorLiveEvents= */ false, /* handleResolutions= */ false);
+      fragmentManager.beginTransaction()
+          .replace(R.id.edge_case_fragment, aboutEdgeCaseFragment)
+          .commit();
+    }
+
   }
 
   private final BroadcastReceiver refreshBroadcastReceiver = new BroadcastReceiver() {
@@ -177,75 +165,27 @@ public class ExposureAboutActivity extends AppCompatActivity {
   }
 
   /**
-   * Update UI to match Exposure Notifications state.
-   *
+   * Make explanatory text (in)visible depending on the Exposure Notifications state.
    * @param state the {@link ExposureNotificationState} of the API
    */
-  private void refreshUiForState(ExposureNotificationState state) {
-    SwitchMaterial exposureNotificationToggle = findViewById(R.id.exposure_notification_toggle);
-    /*
-     * Set OnCheckedChangeListener to null to while changing switch state to avoid unwanted calls
-     * to enSwitchChangeListener.
-     */
-    exposureNotificationToggle.setOnCheckedChangeListener(null);
-    exposureNotificationToggle
-        .setChecked(exposureNotificationViewModel.getEnEnabledLiveData().getValue());
-    exposureNotificationToggle.setOnCheckedChangeListener(enSwitchChangeListener);
-
-    ViewSwitcher errorSwitcher = findViewById(R.id.exposure_about_errors);
-    View errorDivider = findViewById(R.id.exposure_about_error_divider);
-    TextView errorBleLocText = findViewById(R.id.error_loc_ble_text);
-    LinearLayout exposureAboutDetailLayout = findViewById(R.id.exposure_about_detail_layout);
-
-    switch (state) {
-      case ENABLED:
-        errorSwitcher.setVisibility(View.GONE);
-        errorDivider.setVisibility(View.GONE);
-        exposureAboutDetailLayout.setVisibility(View.VISIBLE);
-        break;
-      case PAUSED_LOCATION_BLE:
-        errorSwitcher.setDisplayedChild(0);
-        errorDivider.setVisibility(View.VISIBLE);
-        errorSwitcher.setVisibility(View.VISIBLE);
-        errorBleLocText.setText(R.string.location_ble_off_warning);
-        exposureAboutDetailLayout.setVisibility(View.GONE);
-        exposureNotificationViewModel.logUiInteraction(EventType.LOCATION_PERMISSION_WARNING_SHOWN);
-        exposureNotificationViewModel.logUiInteraction(EventType.BLUETOOTH_DISABLED_WARNING_SHOWN);
-        break;
-      case PAUSED_BLE:
-        errorSwitcher.setDisplayedChild(0);
-        errorDivider.setVisibility(View.VISIBLE);
-        errorSwitcher.setVisibility(View.VISIBLE);
-        errorBleLocText.setText(R.string.ble_off_warning);
-        exposureAboutDetailLayout.setVisibility(View.GONE);
-        exposureNotificationViewModel.logUiInteraction(EventType.BLUETOOTH_DISABLED_WARNING_SHOWN);
-        break;
-      case PAUSED_LOCATION:
-        errorSwitcher.setDisplayedChild(0);
-        errorDivider.setVisibility(View.VISIBLE);
-        errorSwitcher.setVisibility(View.VISIBLE);
-        errorBleLocText.setText(R.string.location_off_warning);
-        exposureAboutDetailLayout.setVisibility(View.GONE);
-        exposureNotificationViewModel.logUiInteraction(EventType.LOCATION_PERMISSION_WARNING_SHOWN);
-        break;
-      case STORAGE_LOW:
-        errorSwitcher.setDisplayedChild(1);
-        errorDivider.setVisibility(View.VISIBLE);
-        errorSwitcher.setVisibility(View.VISIBLE);
-        exposureAboutDetailLayout.setVisibility(View.GONE);
-        Button manageStorageButton = findViewById(R.id.exposure_about_manage_storage);
-        manageStorageButton.setVisibility(
-            StorageManagementHelper.isStorageManagementAvailable(this)
-                ? Button.VISIBLE : Button.GONE);
-        exposureNotificationViewModel.logUiInteraction(EventType.LOW_STORAGE_WARNING_SHOWN);
-        break;
-      case DISABLED:
-      default:
-        errorDivider.setVisibility(View.GONE);
-        errorSwitcher.setVisibility(View.GONE);
-        exposureAboutDetailLayout.setVisibility(View.VISIBLE);
-        break;
+  private void refreshUiTextVisibilityForState(ExposureNotificationState state) {
+    LinearLayout exposureAboutDetailLayout = binding.exposureAboutDetailLayout;
+    if (state == ExposureNotificationState.ENABLED || state == ExposureNotificationState.DISABLED) {
+      exposureAboutDetailLayout.setVisibility(View.VISIBLE);
+    } else {
+      exposureAboutDetailLayout.setVisibility(View.GONE);
     }
+  }
+
+  /**
+   * Make sure the on/off switch reflects the live-data
+   */
+  private void refreshUiSwitchForIsEnabled(boolean isEnabled) {
+    // Set OnCheckedChangeListener to null while changing the switch state to avoid unwanted calls
+    // to enSwitchChangeListener.
+    binding.exposureNotificationToggle.setOnCheckedChangeListener(null);
+    binding.exposureNotificationToggle.setChecked(isEnabled);
+    binding.exposureNotificationToggle.setOnCheckedChangeListener(enSwitchChangeListener);
   }
 
   private void maybeShowSnackbar(String message) {
@@ -256,32 +196,9 @@ public class ExposureAboutActivity extends AppCompatActivity {
   }
 
   @Override
-  protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-    super.onActivityResult(requestCode, resultCode, data);
-    onResolutionComplete(requestCode, resultCode);
-  }
-
-  @Override
   public void onSaveInstanceState(@NonNull Bundle bundle) {
     super.onSaveInstanceState(bundle);
     bundle.putBoolean(STATE_TURN_OFF_OPEN, isTurnOffOpen);
-  }
-
-  /**
-   * Called when opt-in resolution is completed by user.
-   *
-   * <p>Modeled after {@code Activity#onActivityResult} as that's how the API sends callback to
-   * apps.
-   */
-  public void onResolutionComplete(int requestCode, int resultCode) {
-    if (requestCode != RequestCodes.REQUEST_CODE_START_EXPOSURE_NOTIFICATION) {
-      return;
-    }
-    if (resultCode == Activity.RESULT_OK) {
-      exposureNotificationViewModel.startResolutionResultOk();
-    } else {
-      exposureNotificationViewModel.startResolutionResultNotOk();
-    }
   }
 
   private void showTurnOffDialog() {
