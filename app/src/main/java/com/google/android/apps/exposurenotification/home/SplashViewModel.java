@@ -23,8 +23,8 @@ import androidx.hilt.lifecycle.ViewModelInject;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-import com.google.android.apps.exposurenotification.privateanalytics.PrivateAnalyticsSettingsUtil;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
+import com.google.android.libraries.privateanalytics.PrivateAnalyticsEnabledProvider;
 
 /**
  * View model for the {@link SplashFragment}.
@@ -32,11 +32,14 @@ import com.google.android.apps.exposurenotification.storage.ExposureNotification
 public class SplashViewModel extends ViewModel {
 
   private final ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
+  private final PrivateAnalyticsEnabledProvider privateAnalyticsEnabledProvider;
 
   @ViewModelInject
   public SplashViewModel(
-      ExposureNotificationSharedPreferences exposureNotificationSharedPreferences) {
+      ExposureNotificationSharedPreferences exposureNotificationSharedPreferences,
+      PrivateAnalyticsEnabledProvider privateAnalyticsEnabledProvider) {
     this.exposureNotificationSharedPreferences = exposureNotificationSharedPreferences;
+    this.privateAnalyticsEnabledProvider = privateAnalyticsEnabledProvider;
   }
 
   public LiveData<Fragment> getNextFragmentLiveData(
@@ -47,7 +50,8 @@ public class SplashViewModel extends ViewModel {
         enEnabledLiveData,
         exposureNotificationSharedPreferences.isOnboardingStateSetLiveData(),
         exposureNotificationSharedPreferences.isPrivateAnalyticsStateSetLiveData(),
-        new MutableLiveData<>(PrivateAnalyticsSettingsUtil.isPrivateAnalyticsSupported()));
+        new MutableLiveData<>(privateAnalyticsEnabledProvider.isSupportedByApp()),
+        exposureNotificationSharedPreferences.getIsEnabledNewUXFlow());
   }
 
 }

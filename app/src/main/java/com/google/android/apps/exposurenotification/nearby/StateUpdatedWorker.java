@@ -29,7 +29,6 @@ import androidx.work.WorkerParameters;
 import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.common.NotificationHelper;
 import com.google.android.apps.exposurenotification.common.Qualifiers.BackgroundExecutor;
-import com.google.android.apps.exposurenotification.common.Qualifiers.LightweightExecutor;
 import com.google.android.apps.exposurenotification.common.Qualifiers.ScheduledExecutor;
 import com.google.android.apps.exposurenotification.common.TaskToFutureAdapter;
 import com.google.android.apps.exposurenotification.common.time.Clock;
@@ -68,7 +67,6 @@ public class StateUpdatedWorker extends ListenableWorker {
   private final DailySummaryRiskCalculator dailySummaryRiskCalculator;
   private final NotificationHelper notificationHelper;
   private final ExecutorService backgroundExecutor;
-  private final ExecutorService lightweightExecutor;
   private final ScheduledExecutorService scheduledExecutor;
   private final AnalyticsLogger logger;
   private final Clock clock;
@@ -87,7 +85,6 @@ public class StateUpdatedWorker extends ListenableWorker {
       DailySummaryRiskCalculator dailySummaryRiskCalculator,
       NotificationHelper notificationHelper,
       @BackgroundExecutor ExecutorService backgroundExecutor,
-      @LightweightExecutor ExecutorService lightweightExecutor,
       @ScheduledExecutor ScheduledExecutorService scheduledExecutor,
       AnalyticsLogger logger,
       Clock clock) {
@@ -101,7 +98,6 @@ public class StateUpdatedWorker extends ListenableWorker {
     this.dailySummaryRiskCalculator = dailySummaryRiskCalculator;
     this.notificationHelper = notificationHelper;
     this.backgroundExecutor = backgroundExecutor;
-    this.lightweightExecutor = lightweightExecutor;
     this.scheduledExecutor = scheduledExecutor;
     this.logger = logger;
     this.clock = clock;
@@ -246,7 +242,7 @@ public class StateUpdatedWorker extends ListenableWorker {
           context, notificationTitleResource, notificationMessageResource);
       exposureNotificationSharedPreferences
           .setExposureNotificationLastShownClassification(clock.now(),
-              currentClassification.getClassificationIndex());
+              currentClassification);
       Log.d(TAG, "Notifying user: "
           + context.getResources().getString(notificationTitleResource) + " - "
           + context.getResources().getString(notificationMessageResource));

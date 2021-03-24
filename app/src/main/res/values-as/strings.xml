@@ -36,7 +36,7 @@
   <string name="onboarding_metrics_description">এপ্‌টো চলাই ৰখা আৰু উন্নত কৰাত সহায় কৰিবলৈ, এপ্‌টোৰ কাৰ্যদক্ষতা আৰু ব্যৱহাৰ সম্পৰ্কীয় কিছুমান সীমিত ব্যক্তিগত তথ্য প্ৰকাশ নোপোৱা ডেটা Googleৰ সৈতে শ্বেয়াৰ কৰা হয়। এই ডেটাখিনিয়ে আপোনাক চিনাক্ত নকৰে। %1$s</string>
   <string name="onboarding_confirm_later_title">এক্সপ’জাৰ ন’টিফিকেশ্বন অফ কৰি ৰাখিবনে?</string>
   <string name="onboarding_confirm_later_detail">এক্সপ’জাৰ ন’টিফিকেশ্বন অন নকৰালৈকে আপোনাক COVID-19ৰ সম্ভাব্য এক্সপ’জাৰৰ বিষয়ে জাননী দিয়া নহ\'ব</string>
-  <string name="no_recent_exposure_subtitle">সক্ৰিয় হৈ আছে আৰু পৰীক্ষা কৰি থকা হৈছে …</string>
+  <string name="no_recent_exposure_subtitle">সক্ৰিয় হৈ আছে আৰু পৰীক্ষা কৰি থকা হৈছে</string>
   <string name="no_recent_exposure_indicator">কোনো শেহতীয়া সংস্পৰ্শ নাই</string>
   <string name="app_active_info">আপোনাৰ এপ্‌টোৱে নিয়মিতভাৱে সম্ভাব্য সংস্পৰ্শৰ বাবে পৰীক্ষা কৰি আছে।</string>
   <string name="notifications_enabled_info">বৰ্তমান আপোনাৰ COVID-19ৰ সংস্পৰ্শৰ বিপদাশংকা থকা কোনো ৰিপ’ৰ্ট অহা নাই। আপুনি পূৰ্বতে কাষলৈ অহা কোনো লোকৰ COVID-19ৰ পৰীক্ষাৰ ফলাফল ধনাত্মক বুলি ৰিপ’ৰ্ট আহিলে আপোনাক জাননী দিয়া হ’ব।</string>
@@ -134,6 +134,16 @@
   <string name="ble_off_warning">সম্ভাব্য COVID-19ৰ এক্সপ’জাৰৰ বিষয়ে জাননী পাই থাকিবলৈ আৰু আপোনাৰ COVID-19ৰ পৰীক্ষাৰ ফলাফল শ্বেয়াৰ কৰিবলৈ ব্লুটুথ অন কৰক</string>
   <string name="location_ble_off_warning">সম্ভাব্য COVID-19ৰ এক্সপ’জাৰৰ বিষয়ে জাননী পাই থাকিবলৈ আৰু আপোনাৰ COVID-19ৰ পৰীক্ষাৰ ফলাফল শ্বেয়াৰ কৰিবলৈ ব্লুটুথ আৰু ডিভাইচটোৰ অৱস্থানৰ ছেটিং অন কৰক</string>
   <string name="storage_low_warning">সম্ভাব্য COVID-19ৰ এক্সপ’জাৰৰ বিষয়ে জাননী পাই থাকিবলৈ আৰু আপোনাৰ COVID-19ৰ পৰীক্ষাৰ ফলাফল শ্বেয়াৰ কৰিবলৈ আপোনাৰ ফ’নত ষ্ট’ৰেজৰ ঠাই খালী কৰক।</string>
+  <string name="not_in_allowlist_warning">এই এপ্‌টোত অনুমোদন জনোৱা হোৱা নাই। আপোনাৰ অঞ্চলত থকা %1$s চাওক।</string>
+  <string name="approved_apps_link_text">অনুমোদিত এপ্‌সমূহ</string>
+  <string name="hw_not_supported_warning">এই ডিভাইচটোৱে এক্সপ’জাৰ ন’টিফিকেশ্বন সমৰ্থন নকৰে। %1$s চাওক।</string>
+  <string name="device_requirements_link_text">ডিভাইচৰ আৱশ্যকতাসমূহ</string>
+  <string name="switch_app_for_exposure_notifications">এক্সপ’জাৰ ন’টিফিকেশ্বনৰ বাবে এপ্‌ সলনি কৰিবনে?</string>
+  <string name="focus_lost_warning">আপুনি নিজৰ ডিভাইচত এবাৰত মাত্ৰ এটা এক্সপ’জাৰ ন’টিফিকেশ্বনৰ এপ্‌ ব্যৱহাৰ কৰিব পাৰিব।\n\nআপুনি %1$s এপ্‌টোলৈ সলনি কৰিব বিচাৰেনে?</string>
+  <string name="switch_app_for_exposure_notifications_action">এপ্‌টো সলনি কৰক</string>
+  <string name="en_not_supported_warning">এক্সপ’জাৰ ন’টিফিকেশ্বন আৰু উপলব্ধ হৈ থকা নাই। %1$s</string>
+  <string name="user_profile_not_supported_warning">আপোনাৰ কৰ্মস্থানৰ প্ৰ’ফাইলত এক্সপ’জাৰ ন’টিফিকেশ্বন উপলব্ধ নহয়। আপোনাৰ ব্যক্তিগত প্ৰ’ফাইলত পুনৰ চেষ্টা কৰক।</string>
+  <string name="onboarding_free_up_storage_title">ষ্ট’ৰেজত ঠাই খালী কৰক</string>
   <string name="input_error_onset_date_past">দিয়া তাৰিখটো আজিৰ তাৰিখৰ পৰা যোৱা %1$s দিনৰ ভিতৰত হ’ব লাগিব</string>
   <string name="input_error_onset_date_future">দিয়া তাৰিখটো ভৱিষ্যতৰ তাৰিখ</string>
   <string name="network_error_code_invalid">সত্যাপনৰ ক’ডটো মিলা নাই। পুনৰ চেষ্টা কৰক।</string>

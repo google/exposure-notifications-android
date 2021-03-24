@@ -37,6 +37,8 @@ public class TemporaryExposureKeyEncodingHelper {
   private static final String ROLLING_START_NUMBER = "rollingStartIntervalNumber";
   private static final String ROLLING_PERIOD = "rollingPeriod";
   private static final String TRANSMISSION_RISK_LEVEL = "transmissionRiskLevel";
+  private static final String DAYS_SINCE_ONSET_OF_SYMPTOMS = "daysSinceOnsetOfSymptoms";
+  private static final String REPORT_TYPE = "reportType";
 
   /**
    * Encodes a {@link List} of {@link TemporaryExposureKey} as a JSON array string.
@@ -105,12 +107,19 @@ public class TemporaryExposureKeyEncodingHelper {
 
   private static TemporaryExposureKey decodeObject(JSONObject jsonObject)
       throws JSONException, IllegalArgumentException {
-    return new TemporaryExposureKeyBuilder()
+    TemporaryExposureKeyBuilder temporaryExposureKeyBuilder = new TemporaryExposureKeyBuilder()
         .setKeyData(BASE64.decode(jsonObject.getString(KEY_DATA)))
         .setRollingStartIntervalNumber(jsonObject.getInt(ROLLING_START_NUMBER))
         .setRollingPeriod(jsonObject.getInt(ROLLING_PERIOD))
-        .setTransmissionRiskLevel(jsonObject.getInt(TRANSMISSION_RISK_LEVEL))
-        .build();
+        .setTransmissionRiskLevel(jsonObject.getInt(TRANSMISSION_RISK_LEVEL));
+    if (jsonObject.has(DAYS_SINCE_ONSET_OF_SYMPTOMS)) {
+      temporaryExposureKeyBuilder
+          .setDaysSinceOnsetOfSymptoms(jsonObject.getInt(DAYS_SINCE_ONSET_OF_SYMPTOMS));
+    }
+    if (jsonObject.has(REPORT_TYPE)) {
+      temporaryExposureKeyBuilder.setReportType(jsonObject.getInt(REPORT_TYPE));
+    }
+    return temporaryExposureKeyBuilder.build();
   }
 
   public static class EncodeException extends JSONException {

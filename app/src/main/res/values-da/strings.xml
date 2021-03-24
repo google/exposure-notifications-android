@@ -36,7 +36,7 @@
   <string name="onboarding_metrics_description">For at vedligeholde og forbedre appen deles visse begrænsede data om appforbrug og -effektivitet med Google. Der deles ingen personlige oplysninger. Disse data er ikke personhenførbare. %1$s</string>
   <string name="onboarding_confirm_later_title">Skal notifikationer om eksponeringer stadig være deaktiveret?</string>
   <string name="onboarding_confirm_later_detail">Du vil ikke få besked om mulig COVID-19-eksponering, før du aktiverer Notifikationer om eksponeringer</string>
-  <string name="no_recent_exposure_subtitle">Aktiv og tjekker…</string>
+  <string name="no_recent_exposure_subtitle">Aktiv og tjekker</string>
   <string name="no_recent_exposure_indicator">Ingen ny eksponering</string>
   <string name="app_active_info">Din app tjekker løbende for mulig eksponering.</string>
   <string name="notifications_enabled_info">Der er i øjeblikket ikke rapporteret nogen risiko for, at du har været eksponeret for COVID-19. Du får besked, hvis nogen, du har været i nærheden af, rapporterer om et positivt COVID-19-testresultat.</string>
@@ -134,6 +134,16 @@
   <string name="ble_off_warning">Hvis du fortsat vil modtage notifikationer om mulig COVID-19-eksponering og dele dit COVID-19-testresultat, skal du aktivere Bluetooth</string>
   <string name="location_ble_off_warning">Du skal aktivere Bluetooth og enhedens placeringsindstilling, hvis du vil fortsætte med at modtage notifikationer om mulig COVID-19-eksponering og dele dit COVID-19-testresultat</string>
   <string name="storage_low_warning">Hvis du fortsat vil modtage notifikationer om eksponering og dele dit COVID-19-testresultat, skal du frigøre lagerplads på din telefon.</string>
+  <string name="not_in_allowlist_warning">Appen er ikke godkendt. Se %1$s i dit område.</string>
+  <string name="approved_apps_link_text">godkendte apps</string>
+  <string name="hw_not_supported_warning">Enheden understøtter ikke notifikationer om eksponering. Se %1$s.</string>
+  <string name="device_requirements_link_text">krav til enheden</string>
+  <string name="switch_app_for_exposure_notifications">Vil du have notifikationer om eksponering fra en anden app?</string>
+  <string name="focus_lost_warning">Du kan kun bruge én app ad gangen til notifikationer om eksponering på din enhed.\n\nVil du skifte den app, du modtager notifikationer om eksponering fra, til appen %1$s?</string>
+  <string name="switch_app_for_exposure_notifications_action">Skift app</string>
+  <string name="en_not_supported_warning">Notifikationer om eksponering er ikke længere tilgængelige. %1$s</string>
+  <string name="user_profile_not_supported_warning">Notifikationer om eksponering er ikke tilgængelige på din arbejdsprofil. Prøv igen via din personlige profil.</string>
+  <string name="onboarding_free_up_storage_title">Frigør lagerplads</string>
   <string name="input_error_onset_date_past">Du skal angive en dato, der ligger inden for %1$s dage fra dags dato</string>
   <string name="input_error_onset_date_future">Du har angivet en fremtidig dato</string>
   <string name="network_error_code_invalid">Bekræftelseskoden er forkert. Prøv igen.</string>

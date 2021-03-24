@@ -20,13 +20,19 @@ package com.google.android.apps.exposurenotification.testsupport;
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import org.threeten.bp.Duration;
 import org.threeten.bp.Instant;
+import org.threeten.bp.ZoneId;
+import org.threeten.bp.ZonedDateTime;
 
 /**
- * A very simple fake {@link Clock} providing values in place of
- * {@link System#currentTimeMillis()} or {@link Instant#now()}.
+ * A very simple fake {@link Clock} providing values in place of {@link System#currentTimeMillis()},
+ * {@link Instant#now()} or {@link ZonedDateTime#now()}.
  */
 public class FakeClock implements Clock {
+
+  private static final ZoneId ECT_TIME_ZONE = ZoneId.of("Europe/Paris");
+
   private Instant now;
+  private ZoneId zoneId = ECT_TIME_ZONE;
 
   public FakeClock() {
     this(Instant.ofEpochMilli(100_000_000_000L));
@@ -46,6 +52,11 @@ public class FakeClock implements Clock {
     return now;
   }
 
+  @Override
+  public ZonedDateTime zonedNow() {
+    return now.atZone(zoneId);
+  }
+
   public void advance() {
     advanceBy(Duration.ofMillis(1));
   }
@@ -53,8 +64,12 @@ public class FakeClock implements Clock {
   public void advanceBy(Duration increment) {
     now = now.plus(increment);
   }
-    
+
   public void set(Instant time) {
     now = time;
+  }
+
+  public void setZoneId(ZoneId zoneId) {
+    this.zoneId = zoneId;
   }
 }

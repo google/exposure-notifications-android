@@ -25,7 +25,6 @@ import androidx.lifecycle.MutableLiveData;
 import com.google.android.apps.exposurenotification.onboarding.OnboardingPermissionDisabledFragment;
 import com.google.android.apps.exposurenotification.onboarding.OnboardingPermissionEnabledFragment;
 import com.google.android.apps.exposurenotification.onboarding.OnboardingPrivateAnalyticsFragment;
-import com.google.android.apps.exposurenotification.privateanalytics.PrivateAnalyticsFirebaseModule;
 import com.google.android.apps.exposurenotification.testsupport.ExposureNotificationRules;
 import com.google.common.collect.Sets;
 import dagger.hilt.android.testing.HiltAndroidTest;
@@ -60,6 +59,7 @@ public class SplashNextFragmentLiveDataTest {
         /* isOnboardingStateSetStates= */ Sets.newHashSet(false),
         /* isPrivateAnalyticsSetStates= */ Sets.newHashSet(true, false),
         /* isPrivateAnalyticsSupportedAndConfiguredStates= */ Sets.newHashSet(true, false),
+        /* isEnabledNewUXFlow= */ false,
         /* expected= */ OnboardingPermissionEnabledFragment.class);
   }
 
@@ -70,6 +70,7 @@ public class SplashNextFragmentLiveDataTest {
         /* isOnboardingStateSetStates= */ Sets.newHashSet(false),
         /* isPrivateAnalyticsSetStates= */ Sets.newHashSet(true, false),
         /* isPrivateAnalyticsSupportedAndConfiguredStates= */ Sets.newHashSet(true, false),
+        /* isEnabledNewUXFlow= */ false,
         /* expected= */ OnboardingPermissionDisabledFragment.class);
   }
 
@@ -80,6 +81,7 @@ public class SplashNextFragmentLiveDataTest {
         /* isOnboardingStateSetStates= */ Sets.newHashSet(true),
         /* isPrivateAnalyticsSetStates= */ Sets.newHashSet(false),
         /* isPrivateAnalyticsSupportedAndConfiguredStates= */ Sets.newHashSet(true),
+        /* isEnabledNewUXFlow= */ false,
         /* expected= */ OnboardingPrivateAnalyticsFragment.class);
   }
 
@@ -90,7 +92,19 @@ public class SplashNextFragmentLiveDataTest {
         /* isOnboardingStateSetStates= */ Sets.newHashSet(true),
         /* isPrivateAnalyticsSetStates= */ Sets.newHashSet(true, false),
         /* isPrivateAnalyticsSupportedAndConfiguredStates= */ Sets.newHashSet(true, false),
+        /* isEnabledNewUXFlow= */ false,
         /* expected= */ HomeFragment.class);
+  }
+
+  @Test
+  public void nullAction_notEnabled_onboardingStateSet_newUxEnabled_nextFragmentIsNewHomeFragment() {
+    assertEnumeratedCases(null,
+        /* isEnabledStates= */ Sets.newHashSet(false),
+        /* isOnboardingStateSetStates= */ Sets.newHashSet(true),
+        /* isPrivateAnalyticsSetStates= */ Sets.newHashSet(true, false),
+        /* isPrivateAnalyticsSupportedAndConfiguredStates= */ Sets.newHashSet(true, false),
+        /* isEnabledNewUXFlow= */ true,
+        /* expected= */ SinglePageHomeFragment.class);
   }
 
   @Test
@@ -100,7 +114,19 @@ public class SplashNextFragmentLiveDataTest {
         /* isOnboardingStateSetStates= */ Sets.newHashSet(true),
         /* isPrivateAnalyticsSetStates= */ Sets.newHashSet(true),
         /* isPrivateAnalyticsSupportedAndConfiguredStates= */ Sets.newHashSet(true),
+        /* isEnabledNewUXFlow= */ false,
         /* expected= */ HomeFragment.class);
+  }
+
+  @Test
+  public void nullAction_enabled_onboardingStateSet_privateAnalyticsSet_newUxEnabled_privateAnalyticsNotSupportedAndConfigured_nextFragmentIsNewHomeFragment() {
+    assertEnumeratedCases(null,
+        /* isEnabledStates= */ Sets.newHashSet(true),
+        /* isOnboardingStateSetStates= */ Sets.newHashSet(true),
+        /* isPrivateAnalyticsSetStates= */ Sets.newHashSet(true),
+        /* isPrivateAnalyticsSupportedAndConfiguredStates= */ Sets.newHashSet(true),
+        /* isEnabledNewUXFlow= */ true,
+        /* expected= */ SinglePageHomeFragment.class);
   }
 
   @Test
@@ -110,7 +136,20 @@ public class SplashNextFragmentLiveDataTest {
         /* isOnboardingStateSetStates= */ Sets.newHashSet(true),
         /* isPrivateAnalyticsSetStates= */ Sets.newHashSet(true, false),
         /* isPrivateAnalyticsSupportedAndConfiguredStates= */ Sets.newHashSet(false),
+        /* isEnabledNewUXFlow= */ false,
         /* expected= */ HomeFragment.class);
+  }
+
+
+  @Test
+  public void nullAction_enabled_onboardingStateSet_newUxEnabled_privateAnalyticsNotSupportedAndConfigured_nextFragmentIsNewHomeFragment() {
+    assertEnumeratedCases(null,
+        /* isEnabledStates= */ Sets.newHashSet(true),
+        /* isOnboardingStateSetStates= */ Sets.newHashSet(true),
+        /* isPrivateAnalyticsSetStates= */ Sets.newHashSet(true, false),
+        /* isPrivateAnalyticsSupportedAndConfiguredStates= */ Sets.newHashSet(false),
+        /* isEnabledNewUXFlow= */ true,
+        /* expected= */ SinglePageHomeFragment.class);
   }
 
   @Test
@@ -120,6 +159,7 @@ public class SplashNextFragmentLiveDataTest {
         /* isOnboardingStateSetStates= */ Sets.newHashSet(false),
         /* isPrivateAnalyticsSetStates= */ Sets.newHashSet(true, false),
         /* isPrivateAnalyticsSupportedAndConfiguredStates= */ Sets.newHashSet(true, false),
+        /* isEnabledNewUXFlow= */ false,
         /* expected= */ OnboardingPermissionEnabledFragment.class);
   }
 
@@ -130,6 +170,7 @@ public class SplashNextFragmentLiveDataTest {
         /* isOnboardingStateSetStates= */ Sets.newHashSet(false),
         /* isPrivateAnalyticsSetStates= */ Sets.newHashSet(true, false),
         /* isPrivateAnalyticsSupportedAndConfiguredStates= */ Sets.newHashSet(true, false),
+        /* isEnabledNewUXFlow= */ false,
         /* expected= */ OnboardingPermissionDisabledFragment.class);
   }
 
@@ -140,6 +181,7 @@ public class SplashNextFragmentLiveDataTest {
         /* isOnboardingStateSetStates= */ Sets.newHashSet(true),
         /* isPrivateAnalyticsSetStates= */ Sets.newHashSet(false),
         /* isPrivateAnalyticsSupportedAndConfiguredStates= */ Sets.newHashSet(true),
+        /* isEnabledNewUXFlow= */ false,
         /* expected= */ OnboardingPrivateAnalyticsFragment.class);
   }
 
@@ -150,7 +192,19 @@ public class SplashNextFragmentLiveDataTest {
         /* isOnboardingStateSetStates= */ Sets.newHashSet(true),
         /* isPrivateAnalyticsSetStates= */ Sets.newHashSet(true, false),
         /* isPrivateAnalyticsSupportedAndConfiguredStates= */ Sets.newHashSet(true, false),
+        /* isEnabledNewUXFlow= */ false,
         /* expected= */ HomeFragment.class);
+  }
+
+  @Test
+  public void unknownAction_notEnabled_onboardingStateSet_newUxEnabled_nextFragmentIsNewHomeFragment() {
+    assertEnumeratedCases("unknown",
+        /* isEnabledStates= */ Sets.newHashSet(false),
+        /* isOnboardingStateSetStates= */ Sets.newHashSet(true),
+        /* isPrivateAnalyticsSetStates= */ Sets.newHashSet(true, false),
+        /* isPrivateAnalyticsSupportedAndConfiguredStates= */ Sets.newHashSet(true, false),
+        /* isEnabledNewUXFlow= */ true,
+        /* expected= */ SinglePageHomeFragment.class);
   }
 
   @Test
@@ -160,7 +214,19 @@ public class SplashNextFragmentLiveDataTest {
         /* isOnboardingStateSetStates= */ Sets.newHashSet(true),
         /* isPrivateAnalyticsSetStates= */ Sets.newHashSet(true),
         /* isPrivateAnalyticsSupportedAndConfiguredStates= */ Sets.newHashSet(true),
+        /* isEnabledNewUXFlow= */ false,
         /* expected= */ HomeFragment.class);
+  }
+
+  @Test
+  public void unknownAction_enabled_onboardingStateSet_privateAnalyticsSet_newUxEnabled_privateAnalyticsNotSupportedAndConfigured_nextFragmentIsNewHomeFragment() {
+    assertEnumeratedCases("unknown",
+        /* isEnabledStates= */ Sets.newHashSet(true),
+        /* isOnboardingStateSetStates= */ Sets.newHashSet(true),
+        /* isPrivateAnalyticsSetStates= */ Sets.newHashSet(true),
+        /* isPrivateAnalyticsSupportedAndConfiguredStates= */ Sets.newHashSet(true),
+        /* isEnabledNewUXFlow= */ true,
+        /* expected= */ SinglePageHomeFragment.class);
   }
 
   @Test
@@ -170,7 +236,19 @@ public class SplashNextFragmentLiveDataTest {
         /* isOnboardingStateSetStates= */ Sets.newHashSet(true),
         /* isPrivateAnalyticsSetStates= */ Sets.newHashSet(true, false),
         /* isPrivateAnalyticsSupportedAndConfiguredStates= */ Sets.newHashSet(false),
+        /* isEnabledNewUXFlow= */ false,
         /* expected= */ HomeFragment.class);
+  }
+
+  @Test
+  public void unknownAction_enabled_onboardingStateSet_newUxEnabled_privateAnalyticsNotSupportedAndConfigured_nextFragmentIsNewHomeFragment() {
+    assertEnumeratedCases("unknown",
+        /* isEnabledStates= */ Sets.newHashSet(true),
+        /* isOnboardingStateSetStates= */ Sets.newHashSet(true),
+        /* isPrivateAnalyticsSetStates= */ Sets.newHashSet(true, false),
+        /* isPrivateAnalyticsSupportedAndConfiguredStates= */ Sets.newHashSet(false),
+        /* isEnabledNewUXFlow= */ true,
+        /* expected= */ SinglePageHomeFragment.class);
   }
 
   @Test
@@ -180,22 +258,44 @@ public class SplashNextFragmentLiveDataTest {
         /* isOnboardingStateSetStates= */ Sets.newHashSet(true, false),
         /* isPrivateAnalyticsSetStates= */ Sets.newHashSet(true, false),
         /* isPrivateAnalyticsSupportedAndConfiguredStates= */ Sets.newHashSet(true, false),
+        /* isEnabledNewUXFlow= */ false,
         /* expected= */ HomeFragment.class);
   }
 
+  /*
+   * This method checks if the next fragment after SplashFragment is as expected using Sets of
+   * booleans to test many scenarios under which SplashNextFragmentLiveData is created.
+   *
+   * There is one flag, which indicates what is the current UX flow, that is passed here as
+   * a boolean primitive: isEnabledNewUXFlow flag. This is because SplashNextFragmentLiveData
+   * does not expose setters for this flag, so we can set this flag only once when creating
+   * the SplashNextFragmentLiveData object. This is contrary to other flags that are added
+   * as source LiveData objects and thus can update the SplashNextFragmentLiveData object after
+   * it has been created.
+   *
+   * isEnabledNewUXFlow flag is the only boolean primitive flag used to create
+   * SplashNextFragmentLiveData because this is the only flag whose value is guaranteed
+   * not to change while SplashNextFragment determines its next fragment. This flag's value
+   * can be changed only in debug mode and after this the whole app restarts.
+   *
+   * This shouldn't limit the number of scenarios tested because we have 'twin' methods to test
+   * SplashNextFragmentLiveData for both UX flows (with isEnabledNewUXFlow either true or false).
+   */
   private void assertEnumeratedCases(
       String action,
       Set<Boolean> isEnabledStates,
       Set<Boolean> isOnboardingStateSetStates,
       Set<Boolean> isPrivateAnalyticsSetStates,
       Set<Boolean> isPrivateAnalyticsSupportedAndConfiguredStates,
+      boolean isEnabledNewUXFlow,
       Class expected) {
     SplashNextFragmentLiveData splashNextFragmentLiveData = SplashNextFragmentLiveData.create(
         action,
         isEnabledLiveData,
         isOnboardingStateSetLiveData,
         isPrivateAnalyticsSetLiveData,
-        isPrivateAnalyticsSupportedAndConfiguredLiveData);
+        isPrivateAnalyticsSupportedAndConfiguredLiveData,
+        isEnabledNewUXFlow);
     AtomicReference<Fragment> current = new AtomicReference<>();
     splashNextFragmentLiveData.observeForever(current::set);
 

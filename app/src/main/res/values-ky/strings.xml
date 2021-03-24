@@ -36,7 +36,7 @@
   <string name="onboarding_metrics_description">Колдонмону жакшыртып, бир калыпта иштешин камсыз кылуу үчүн Google анын колдонулушу жана иштеши тууралуу айрым маалыматты чогултуп турат. Мындай маалыматтын негизинде колдонуучунун ким экенин аныктоого болбойт. %1$s</string>
   <string name="onboarding_confirm_later_title">Жугузуп алуу коркунучу тууралуу билдирмелерсиз улантасызбы?</string>
   <string name="onboarding_confirm_later_detail">Билдирмелерди иштетпесеңиз, COVID-19 вирусун жугузуп алуу коркунучу тууралуу кабар албайсыз</string>
-  <string name="no_recent_exposure_subtitle">Активдүү жана текшерүүдө…</string>
+  <string name="no_recent_exposure_subtitle">Активдүү жана текшерүүдө</string>
   <string name="no_recent_exposure_indicator">Ооруну жугузуп алуу коркунучу жок</string>
   <string name="app_active_info">Колдонмоңуз ооруну жугузуп алуу коркунучуна көз салып жатат.</string>
   <string name="notifications_enabled_info">Азырынча COVID-19 оорусун жугузуп алуу коркунучу катталган жок. COVID-19 тестинин жыйынтыгы оң чыккан адам тууралуу кабар аласыз.</string>
@@ -134,6 +134,16 @@
   <string name="ble_off_warning">COVID-19 менен ооруган адамдарга жакындаганыңызды билүү жана COVID-19 оорусуна тапшырган анализиңиздин жыйынтыгын бөлүшүү үчүн Bluetooth\'ду күйгүзүңүз</string>
   <string name="location_ble_off_warning">COVID-19 менен ооруган адамдарга жакындаганыңызды билүү жана COVID-19 оорусуна тапшырган анализиңиздин жыйынтыгын бөлүшүү үчүн Bluetooth менен жайгашкан жерди аныктоо функциясын күйгүзүңүз</string>
   <string name="storage_low_warning">COVID-19 менен ооруган адамдарга жакындаганыңызды билүү жана COVID-19 оорусуна тапшырган анализиңиздин жыйынтыгын бөлүшүү үчүн телефонуңуздун сактагычында орун бошотуңуз.</string>
+  <string name="not_in_allowlist_warning">Бул колдонмо ырасталган эмес. Регионуңуздагы %1$s карап көрүңүз.</string>
+  <string name="approved_apps_link_text">ырасталган колдонмолорду</string>
+  <string name="hw_not_supported_warning">Бул түзмөктө ооруну жугузуп алуу коркунучу тууралуу кабарлоо колдоого алынбайт. %1$s карап көрүңүз.</string>
+  <string name="device_requirements_link_text">Түзмөккө коюлган талаптарды</string>
+  <string name="switch_app_for_exposure_notifications">Ооруну жугузуп алуу коркунучу тууралуу кабарлаган колдонмону өзгөртөсүзбү?</string>
+  <string name="focus_lost_warning">Бул түзмөктө бир эле маалда ооруну жугузуп алуу коркунучу тууралуу кабарлаган бир колдонмону гана пайдалана аласыз.\n\n%1$s колдонмосуна которуласызбы?</string>
+  <string name="switch_app_for_exposure_notifications_action">Колдонмого которулуу</string>
+  <string name="en_not_supported_warning">Ооруну жугузуп алуу коркунучу тууралуу кабарлоо мындан ары жеткиликсиз. %1$s</string>
+  <string name="user_profile_not_supported_warning">Ооруну жугузуп алуу коркунучу тууралуу кабарлоо жумуш профилиңизде жеткиликсиз. Жеке профилиңизде кайталап көрүңүз.</string>
+  <string name="onboarding_free_up_storage_title">Сактагычтан орун бошотуңуз</string>
   <string name="input_error_onset_date_past">Акыркы %1$s күндүн ичиндеги күндү көрсөтүү керек</string>
   <string name="input_error_onset_date_future">Келечектеги күн көрсөтүлдү</string>
   <string name="network_error_code_invalid">Текшерүү коду дал келген жок. Кайталап көрүңүз.</string>

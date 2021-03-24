@@ -22,12 +22,11 @@ import static org.mockito.Mockito.when;
 
 import androidx.test.core.app.ActivityScenario;
 import androidx.test.core.app.ApplicationProvider;
-import com.google.android.apps.exposurenotification.privateanalytics.PrivateAnalyticsRemoteConfig;
-import com.google.android.apps.exposurenotification.privateanalytics.RemoteConfigs;
+import com.google.android.libraries.privateanalytics.PrivateAnalyticsRemoteConfig;
+import com.google.android.libraries.privateanalytics.RemoteConfigs;
 import com.google.android.apps.exposurenotification.testsupport.ExposureNotificationRules;
 import com.google.common.util.concurrent.Futures;
 import com.google.firebase.FirebaseApp;
-import dagger.hilt.android.testing.BindValue;
 import dagger.hilt.android.testing.HiltAndroidTest;
 import dagger.hilt.android.testing.HiltTestApplication;
 import org.junit.Rule;
@@ -47,7 +46,6 @@ import org.robolectric.annotation.LooperMode;
 @Config(application = HiltTestApplication.class)
 public class ExposureNotificationActivityTest {
 
-  @BindValue
   @Mock
   PrivateAnalyticsRemoteConfig privateAnalyticsRemoteConfig;
 

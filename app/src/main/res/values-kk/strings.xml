@@ -36,7 +36,7 @@
   <string name="onboarding_metrics_description">Қолданбаның жұмыс қалпын сақтап, ісін жақсартып отыру үшін оның пайдаланылуы мен жұмыс өнімділігі туралы кейбір деректер Google-мен бөлісіледі. Бұл деректерде жеке бас мәліметі анықталмайды. %1$s</string>
   <string name="onboarding_confirm_later_title">Байланыс туралы хабарландыру өшірулі тұрсын ба?</string>
   <string name="onboarding_confirm_later_detail">Ауру жұқтырғандармен байланыс туралы хабарландыру қосылмайынша, COVID-19 ауруын ықтимал жұқтыру туралы хабар алмайсыз.</string>
-  <string name="no_recent_exposure_subtitle">Қосулы және тексерілуде…</string>
+  <string name="no_recent_exposure_subtitle">Қосулы және тексерілуде</string>
   <string name="no_recent_exposure_indicator">Жақын арада ауру жұқтырғандармен байланыс болмады</string>
   <string name="app_active_info">Қолданба ауру жұқтырғандармен ықтимал байланысты тексеріп тұрады.</string>
   <string name="notifications_enabled_info">Қазір сізде COVID-19 ауруын жұқтырғандармен байланыста болу қаупі анықталмаған. COVID-19 сынағы нәтижесі оң болып шыққаны мәлім болған адамға жақындаған жағдайда, сізге хабарландыру жіберіледі.</string>
@@ -134,6 +134,16 @@
   <string name="ble_off_warning">COVID-19 жұқтырғандармен байланыс туралы хабарландыруларды бұдан былай да алу және COVID-19 сынағының нәтижесін бөлісу үшін Bluetooth қосыңыз.</string>
   <string name="location_ble_off_warning">COVID-19 жұқтырғандармен байланыс туралы хабарландыруларды бұдан былай да алу және COVID-19 сынағының нәтижесін бөлісу үшін Bluetooth және құрылғының орналасу параметрін қосыңыз.</string>
   <string name="storage_low_warning">Ауру жұқтырғандармен байланыс туралы хабарландыру алу және COVID-19 сынағының нәтижесін бөлісу үшін телефоныңыздың жадын тазалаңыз.</string>
+  <string name="not_in_allowlist_warning">Бұл қолданба мақұлданбаған. Аймағыңыздағы %1$s қараңыз.</string>
+  <string name="approved_apps_link_text">мақұлданған қолданбаларды</string>
+  <string name="hw_not_supported_warning">Бұл құрылғы ауру жұқтырғандармен байланыс туралы хабарландыруды қолдамайды. %1$s қараңыз.</string>
+  <string name="device_requirements_link_text">Құрылғыға қойылатын талаптарды</string>
+  <string name="switch_app_for_exposure_notifications">Ауру жұқтырғандармен байланыс туралы хабарландыру қолданбасы ауыстырылсын ба?</string>
+  <string name="focus_lost_warning">Бір мезетте құрылғыңызда ауру жұқтырғандармен байланыс туралы хабарландыруға арналған тек бір қолданбаны пайдалана аласыз.\n\n%1$s қолданбасына ауысқыңыз келе ме?</string>
+  <string name="switch_app_for_exposure_notifications_action">Қолданбаны ауыстыру</string>
+  <string name="en_not_supported_warning">Ауру жұқтырғандармен байланыс туралы хабарландыру бұдан былай қолжетімді емес. %1$s</string>
+  <string name="user_profile_not_supported_warning">Жұмыс профиліңізде ауру жұқтырғандармен байланыс туралы хабарландыру қолжетімді емес. Әрекетті жеке профиліңізде қайталап көріңіз.</string>
+  <string name="onboarding_free_up_storage_title">Жадта орын босатыңыз</string>
   <string name="input_error_onset_date_past">Күн соңғы %1$s күннің бірі болуы керек.</string>
   <string name="input_error_onset_date_future">Күн болашақта көрсетілген.</string>
   <string name="network_error_code_invalid">Растау коды сәйкес келмейді. Қайталап көріңіз.</string>

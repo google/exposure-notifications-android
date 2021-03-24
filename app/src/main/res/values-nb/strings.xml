@@ -36,7 +36,7 @@
   <string name="onboarding_metrics_description">For å vedlikeholde og forbedre appen deles noen begrensede, avidentifiserte data om appytelsen og -bruken med Google. Disse dataene identifiserer deg ikke. %1$s</string>
   <string name="onboarding_confirm_later_title">Vil du holde eksponeringsvarsler slått av?</string>
   <string name="onboarding_confirm_later_detail">Før eksponeringsvarsler slås på, blir du ikke varslet om mulig covid-19-eksponering</string>
-  <string name="no_recent_exposure_subtitle">Aktiv og sjekker …</string>
+  <string name="no_recent_exposure_subtitle">Aktiv og sjekker</string>
   <string name="no_recent_exposure_indicator">Ingen nylig eksponering</string>
   <string name="app_active_info">Appen sjekker regelmessig for mulig eksponering.</string>
   <string name="notifications_enabled_info">Du har for øyeblikket ingen rapportert covid-19-eksponeringsrisiko. Du blir varslet om noen du har vært i nærheten av, rapporterer et positivt covid-19-testresultat.</string>
@@ -134,6 +134,16 @@
   <string name="ble_off_warning">For å fortsette å få varsler om mulig covid-19-eksponering og dele covid-19-testresultatet ditt, slå på Bluetooth</string>
   <string name="location_ble_off_warning">For å fortsette å få varsler om mulig covid-19-eksponering og dele covid-19-testresultatet ditt, slå på Bluetooth og innstillingen for enhetsposisjon</string>
   <string name="storage_low_warning">For å fortsette å få eksponeringsvarsler og dele covid-19-testresultatet ditt, frigjør lagringsplass på telefonen.</string>
+  <string name="not_in_allowlist_warning">Denne appen er ikke godkjent. Se %1$s i regionen din.</string>
+  <string name="approved_apps_link_text">godkjente apper</string>
+  <string name="hw_not_supported_warning">Denne enheten støtter ikke eksponeringsvarsler. Se %1$s.</string>
+  <string name="device_requirements_link_text">enhetskravene</string>
+  <string name="switch_app_for_exposure_notifications">Vil du bytte app for eksponeringsvarsler?</string>
+  <string name="focus_lost_warning">Du kan bare bruke én app for eksponeringsvarsler om gangen på enheten.\n\nVil du bytte til %1$s?</string>
+  <string name="switch_app_for_exposure_notifications_action">Bytt app</string>
+  <string name="en_not_supported_warning">Eksponeringsvarsler er ikke tilgjengelig lenger. %1$s</string>
+  <string name="user_profile_not_supported_warning">Eksponeringsvarsler er ikke tilgjengelige på jobbprofilen. Prøv igjen på den personlige profilen.</string>
+  <string name="onboarding_free_up_storage_title">Frigjør lagringsplass</string>
   <string name="input_error_onset_date_past">Datoen skal være innen de siste %1$s dagene fra dagens dato</string>
   <string name="input_error_onset_date_future">Datoen er i fremtiden</string>
   <string name="network_error_code_invalid">Bekreftelseskoden samsvarer ikke. Prøv på nytt.</string>

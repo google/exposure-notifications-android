@@ -36,7 +36,7 @@
   <string name="onboarding_metrics_description">အက်ပ်ကို ကူညီထိန်းသိမ်းရန်နှင့် ပိုမိုကောင်းမွန်စေရန် အက်ပ်စွမ်းဆောင်ရည်၊ အသုံးပြုမှုတို့နှင့်ပတ်သက်သော အမည်ခွဲခြားမသိနိုင်သည့် ဒေတာအချို့ကို Google အားမျှဝေသည်။ ဤဒေတာသည် သင် မည်သူမည်ဝါဖြစ်ကြောင်း ထုတ်ဖော်မည်မဟုတ်ပါ။ %1$s</string>
   <string name="onboarding_confirm_later_title">\'ထိတွေ့မှု အကြောင်းကြားချက်များ\' ကို ပိတ်ထားမလား။</string>
   <string name="onboarding_confirm_later_detail">\'ထိတွေ့မှု အကြောင်းကြားချက်များ\' မဖွင့်မချင်း ဖြစ်နိုင်ခြေရှိသော COVID-19 ထိတွေ့မှုအသိပေးချက် မရရှိနိုင်ပါ</string>
-  <string name="no_recent_exposure_subtitle">ဖွင့်ထားပြီး စစ်ဆေးနေသည် …</string>
+  <string name="no_recent_exposure_subtitle">ဖွင့်ထားပြီး စစ်ဆေးနေသည်</string>
   <string name="no_recent_exposure_indicator">မကြာသေးမီက ထိတွေ့မှုမရှိပါ</string>
   <string name="app_active_info">သင့်အက်ပ်က ထိတွေ့နိုင်ခြေများကို ပုံမှန်စစ်ဆေးနေသည်။</string>
   <string name="notifications_enabled_info">လတ်တလောတွင် သင့်အတွက် သတင်းပို့ထားသော COVID-19 ထိတွေ့မှုအန္တရာယ်မရှိပါ။ COVID-19 ရှိကြောင်း စစ်ဆေးမှုရလဒ်ကို သတင်းပို့ထားသူအနီးသို့ သင်ရောက်ရှိခဲ့ပါက သင့်ကို အကြောင်းကြားပါမည်။</string>
@@ -134,6 +134,16 @@
   <string name="ble_off_warning">COVID-19 ထိတွေ့နိုင်ခြေ အကြောင်းကြားချက်များ ဆက်လက်ရယူရန်နှင့် သင်၏ COVID-19 စစ်ဆေးမှုရလဒ်ကို မျှဝေရန် ဘလူးတုသ် ဖွင့်ထားပါ</string>
   <string name="location_ble_off_warning">COVID-19 ထိတွေ့မှုရှိနိုင်ခြေ အကြောင်းကြားချက်များ ဆက်လက်ရယူရန်နှင့် သင်၏ COVID-19 စစ်ဆေးမှုရလဒ်ကို မျှဝေရန် ဘလူးတုသ်နှင့် စက်၏ တည်နေရာပြ ဆက်တင်ကို ဖွင့်ထားပါ</string>
   <string name="storage_low_warning">COVID-19 ထိတွေ့မှုအကြောင်းကြားချက်များ ဆက်လက်ရယူရန်နှင့် သင်၏ COVID-19 စစ်ဆေးမှုရလဒ်ကို မျှဝေရန် သင့်ဖုန်း၏ သိုလှောင်ခန်းတွင် နေရာလွတ် ပြုလုပ်ပါ။</string>
+  <string name="not_in_allowlist_warning">ဤအက်ပ်ကို အတည်ပြုမထားပါ။ သင့်ဒေသတွင် %1$s ကို ကြည့်ပါ။</string>
+  <string name="approved_apps_link_text">အတည်ပြုထားသော အက်ပ်များ</string>
+  <string name="hw_not_supported_warning">ဤစက်ပစ္စည်းက ‘ထိတွေ့မှု အကြောင်းကြားချက်များ’ ကို ပံ့ပိုးမထားပါ။ %1$s ကို ကြည့်ပါ။</string>
+  <string name="device_requirements_link_text">စက်ပစ္စည်းလိုအပ်ချက်များ</string>
+  <string name="switch_app_for_exposure_notifications">‘ထိတွေ့မှု အကြောင်းကြားချက်များ’ အတွက် အက်ပ်ပြောင်းမလား။</string>
+  <string name="focus_lost_warning">သင့်စက်ပစ္စည်းတွင် တစ်ကြိမ်လျှင် ‘ထိတွေ့မှု အကြောင်းကြားချက်များ’ အက်ပ်တစ်ခုကိုသာ သုံးနိုင်သည်။\n\n%1$s အက်ပ်ကို ပြောင်းလိုသလား။</string>
+  <string name="switch_app_for_exposure_notifications_action">အက်ပ်ပြောင်းရန်</string>
+  <string name="en_not_supported_warning">‘ထိတွေ့မှု အကြောင်းကြားချက်များ’ ကို မရနိုင်တော့ပါ။ %1$s</string>
+  <string name="user_profile_not_supported_warning">သင့်အလုပ်ပရိုဖိုင်တွင် ‘ထိတွေ့မှု အကြောင်းကြားချက်များ’ ကို မရနိုင်ပါ။ သင့်ကိုယ်ပိုင်ပရိုဖိုင်တွင် ထပ်စမ်းကြည့်ပါ။</string>
+  <string name="onboarding_free_up_storage_title">သိုလှောင်ခန်းတွင် နေရာလွတ် ပြုလုပ်ပါ</string>
   <string name="input_error_onset_date_past">ရက်စွဲသည် ယနေ့မှ နောက်ဆုံး %1$s ရက်အတောအတွင်း ဖြစ်ရမည်။</string>
   <string name="input_error_onset_date_future">ထည့်သွင်းထားသော ရက်စွဲသည် မှန်ကန်သော ရက်အပိုင်းအခြားထက် ကျော်လွန်နေသည်။</string>
   <string name="network_error_code_invalid">အတည်ပြုကုဒ် တူညီမှုမရှိပါ။ ထပ်စမ်းကြည့်ပါ။</string>

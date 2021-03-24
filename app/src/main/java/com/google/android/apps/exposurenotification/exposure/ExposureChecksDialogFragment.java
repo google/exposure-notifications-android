@@ -28,16 +28,23 @@ import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import com.google.android.apps.exposurenotification.R;
-import com.google.android.apps.exposurenotification.databinding.ExposureChecksDialogBinding;
+import com.google.android.apps.exposurenotification.common.time.Clock;
+import com.google.android.apps.exposurenotification.databinding.FragmentExposureChecksDialogBinding;
+import dagger.hilt.android.AndroidEntryPoint;
+import javax.inject.Inject;
 
 /**
  * Simple custom dialog to display list of the exposure checks.
  */
+@AndroidEntryPoint
 public class ExposureChecksDialogFragment extends DialogFragment {
 
   public static String TAG = "ExposureChecksDialogFragment";
 
-  private ExposureChecksDialogBinding binding;
+  private FragmentExposureChecksDialogBinding binding;
+
+  @Inject
+  Clock clock;
 
   public static ExposureChecksDialogFragment newInstance() {
     return new ExposureChecksDialogFragment();
@@ -46,7 +53,7 @@ public class ExposureChecksDialogFragment extends DialogFragment {
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup parent,
       Bundle savedInstanceState) {
-    binding = ExposureChecksDialogBinding.inflate(inflater, parent, false);
+    binding = FragmentExposureChecksDialogBinding.inflate(inflater, parent, false);
 
     if (getDialog() != null) {
       getDialog().setTitle(getString(R.string.recent_check_dialog_title));
@@ -66,7 +73,7 @@ public class ExposureChecksDialogFragment extends DialogFragment {
         .get(ExposureHomeViewModel.class);
 
     ExposureCheckEntityAdapter exposureCheckEntityAdapter =
-        new ExposureCheckEntityAdapter(requireContext());
+        new ExposureCheckEntityAdapter(requireContext(), clock);
     final LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext());
     binding.checksRecyclerView.setLayoutManager(layoutManager);
     binding.checksRecyclerView.setAdapter(exposureCheckEntityAdapter);
@@ -76,8 +83,16 @@ public class ExposureChecksDialogFragment extends DialogFragment {
     exposureHomeViewModel
         .getExposureChecksLiveData()
         .observe(
-            getViewLifecycleOwner(),
-            exposureCheckEntityAdapter::setExposureChecks);
+            getViewLifecycleOwner(), exposureChecks -> {
+              if (exposureChecks.isEmpty()) {
+                binding.dialogTitle.setText(getString(R.string.no_recent_exposure_checks));
+                binding.checksRecyclerView.setVisibility(View.GONE);
+              } else {
+                binding.dialogTitle.setText(getString(R.string.recent_check_dialog_title));
+                binding.checksRecyclerView.setVisibility(View.VISIBLE);
+              }
+              exposureCheckEntityAdapter.setExposureChecks(exposureChecks);
+            });
   }
 
   @Override

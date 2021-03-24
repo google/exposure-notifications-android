@@ -21,17 +21,18 @@ import android.content.Context;
 import androidx.work.WorkManager;
 import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.common.Qualifiers.LightweightExecutor;
-import com.google.android.apps.exposurenotification.privateanalytics.PrivateAnalyticsRemoteConfig;
+import com.google.android.libraries.privateanalytics.PrivateAnalyticsEnabledProvider;
+import com.google.android.libraries.privateanalytics.PrivateAnalyticsRemoteConfig;
 import com.google.common.util.concurrent.ListeningExecutorService;
 import dagger.Module;
 import dagger.Provides;
 import dagger.hilt.InstallIn;
-import dagger.hilt.android.components.ApplicationComponent;
 import dagger.hilt.android.qualifiers.ApplicationContext;
+import dagger.hilt.components.SingletonComponent;
 import org.threeten.bp.Duration;
 
 @Module
-@InstallIn(ApplicationComponent.class)
+@InstallIn(SingletonComponent.class)
 public class WorkModule {
 
   @Provides
@@ -39,11 +40,12 @@ public class WorkModule {
       @ApplicationContext Context context,
       WorkManager workManager,
       @LightweightExecutor ListeningExecutorService lightweightExecutor,
+      PrivateAnalyticsEnabledProvider privateAnalyticsEnabledProvider,
       PrivateAnalyticsRemoteConfig privateAnalyticsRemoteConfig) {
     Duration tekPublishInterval =
         Duration.ofHours(context.getResources().getInteger(R.integer.enx_tekPublishInterval));
     return new WorkScheduler(workManager, lightweightExecutor, tekPublishInterval,
-        privateAnalyticsRemoteConfig);
+        privateAnalyticsEnabledProvider, privateAnalyticsRemoteConfig);
   }
 
   @Provides

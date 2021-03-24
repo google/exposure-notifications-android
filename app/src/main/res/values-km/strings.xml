@@ -36,7 +36,7 @@
   <string name="onboarding_metrics_description">ដើម្បីជួយរក្សា និងកែលម្អ​កម្មវិធីនេះ ទិន្នន័យមានកំណត់មួយចំនួន​ដែលមិនបញ្ជាក់អត្តសញ្ញាណ​អំពីការប្រើប្រាស់ និងប្រតិបត្តិការ​កម្មវិធីត្រូវបាន​ចែករំលែកជាមួយ Google។ ទិន្នន័យនេះ​មិនកំណត់​អត្តសញ្ញាណអ្នកទេ។ %1$s</string>
   <string name="onboarding_confirm_later_title">បន្តបិទ​ការជូនដំណឹងអំពី​ការនៅជិតអ្នកមានផ្ទុក COVID-19 ឬ?</string>
   <string name="onboarding_confirm_later_detail">អ្នកនឹងមិនទទួលការជូនដំណឹងអំពីការប៉ះពាល់ទេ រហូតទាល់តែបើកការជូនដំណឹងអំពីការនៅជិតអ្នកមានផ្ទុក COVID-19។</string>
-  <string name="no_recent_exposure_subtitle">សកម្ម និងកំពុងពិនិត្យ …</string>
+  <string name="no_recent_exposure_subtitle">សកម្ម និង​កំពុងពិនិត្យ</string>
   <string name="no_recent_exposure_indicator">គ្មានការនៅជិតអ្នក​មានផ្ទុក COVID-19 នាពេលថ្មីៗទេ</string>
   <string name="app_active_info">កម្មវិធីរបស់អ្នកកំពុងពិនិត្យជាប្រចាំចំពោះការដែលអាចនៅជិត​អ្នកមានផ្ទុក COVID-19។</string>
   <string name="notifications_enabled_info">បច្ចុប្បន្ន អ្នកមិនមានហានិភ័យនៃការនៅជិតអ្នកមានផ្ទុក COVID-19 ដែលបាន​រាយការណ៍ទេ។ អ្នកនឹងទទួលបាន​ការជូនដំណឹង ប្រសិនបើនរណាម្នាក់​ដែលអ្នកបាននៅជិត​រាយការណ៍ថាមានលទ្ធផលតេស្ត COVID-19 វិជ្ជមាន។</string>
@@ -134,6 +134,16 @@
   <string name="ble_off_warning">ដើម្បីបន្តទទួលបានការជូនដំណឹង​អំពី​ករណី​អាច​នៃការនៅជិត​អ្នកមានផ្ទុក COVID-19 និងចែករំលែកលទ្ធផលតេស្ត COVID-19 របស់អ្នក សូមបើកប៊្លូធូស</string>
   <string name="location_ble_off_warning">ដើម្បីបន្តទទួលបានការជូនដំណឹង​អំពី​ការនៅជិត​អ្នកមានផ្ទុក COVID-19 ដែលអាចកើតមាន និងចែករំលែកលទ្ធផលតេស្ត COVID-19 របស់អ្នក សូមបើកប៊្លូធូស និងការកំណត់ទីតាំង​ឧបករណ៍</string>
   <string name="storage_low_warning">ដើម្បីបន្តទទួលបានការជូនដំណឹង​អំពី​ការនៅជិត​អ្នកមានផ្ទុក COVID-19 និងចែករំលែកលទ្ធផលតេស្ត COVID-19 របស់អ្នក សូមបង្កើនទំហំ​ផ្ទុកទំនេរនៅលើទូរសព្ទរបស់អ្នក។</string>
+  <string name="not_in_allowlist_warning">កម្មវិធីនេះ​មិនមាន​ការអនុញ្ញាតទេ។ សូមមើល %1$s នៅក្នុងតំបន់​របស់អ្នក។</string>
+  <string name="approved_apps_link_text">កម្មវិធីដែល​មានការអនុញ្ញាត</string>
+  <string name="hw_not_supported_warning">ឧបករណ៍នេះ​មិនស្គាល់​ការជូនដំណឹង​អំពី​ការនៅជិត​អ្នកមានផ្ទុក COVID-19 ទេ។ សូមមើល %1$s។</string>
+  <string name="device_requirements_link_text">លក្ខខណ្ឌតម្រូវ​សម្រាប់​ឧបករណ៍</string>
+  <string name="switch_app_for_exposure_notifications">ប្ដូរកម្មវិធីសម្រាប់ការជូនដំណឹងអំពីការនៅជិតអ្នកមានផ្ទុក COVID-19 ដែរទេ?</string>
+  <string name="focus_lost_warning">អ្នកអាច​ប្រើបានតែ​កម្មវិធីជូនដំណឹង​អំពីការនៅជិត​អ្នកមានផ្ទុក COVID-19 មួយប៉ុណ្ណោះ​ក្នុងមួយលើក​នៅលើឧបករណ៍​របស់អ្នក។\n\nតើអ្នក​ចង់ប្ដូរទៅ​កម្មវិធី %1$s ដែរទេ?</string>
+  <string name="switch_app_for_exposure_notifications_action">ប្ដូរ​កម្មវិធី</string>
+  <string name="en_not_supported_warning">ការជូនដំណឹង​អំពី​ការនៅជិត​អ្នកមានផ្ទុក COVID-19 លែងអាច​ប្រើបាន​ទៀតហើយ។ %1$s</string>
+  <string name="user_profile_not_supported_warning">ការជូនដំណឹង​អំពី​ការនៅជិត​អ្នកមានផ្ទុក COVID-19 មិនអាចប្រើ​នៅលើកម្រងព័ត៌មាន​ការងារ​របស់អ្នក​បានទេ។ សូម​ព្យាយាមម្ដងទៀត​នៅលើ​កម្រងព័ត៌មាន​ផ្ទាល់ខ្លួន​របស់អ្នក។</string>
+  <string name="onboarding_free_up_storage_title">បង្កើនទំហំ​ផ្ទុកទំនេរ</string>
   <string name="input_error_onset_date_past">កាលបរិច្ឆេទគួរតែស្ថិតក្នុងរយៈពេល %1$s ថ្ងៃចុងក្រោយនៃកាលបរិច្ឆេទថ្ងៃនេះ</string>
   <string name="input_error_onset_date_future">កាលបរិច្ឆទស្ថិតនៅពេលអនាគត</string>
   <string name="network_error_code_invalid">លេខកូដ​ផ្ទៀងផ្ទាត់​មិនត្រូវគ្នាទេ។ សូមព្យាយាមម្ដងទៀត។</string>

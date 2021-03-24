@@ -38,13 +38,15 @@ public class SplashNextFragmentLiveData extends MediatorLiveData<Fragment> {
   private boolean isOnboardingStateSet = false;
   private boolean isPrivateAnalyticsSet = false;
   private boolean isPrivateAnalyticsSupported = false;
+  private boolean isEnabledNewUXFlow = false;
 
   public static SplashNextFragmentLiveData create(
       @Nullable String action,
       LiveData<Boolean> enEnabledLiveData,
       LiveData<Boolean> isOnboardingStateSetLiveData,
       LiveData<Boolean> isPrivateAnalyticsSetLiveData,
-      LiveData<Boolean> isPrivateAnalyticsSupportedLiveData) {
+      LiveData<Boolean> isPrivateAnalyticsSupportedLiveData,
+      boolean isEnabledNewUXFlow) {
     SplashNextFragmentLiveData splashNextFragmentLiveData = new SplashNextFragmentLiveData(action);
     splashNextFragmentLiveData
         .addSource(enEnabledLiveData, splashNextFragmentLiveData::setIsEnabled);
@@ -56,6 +58,7 @@ public class SplashNextFragmentLiveData extends MediatorLiveData<Fragment> {
     splashNextFragmentLiveData
         .addSource(isPrivateAnalyticsSupportedLiveData,
             splashNextFragmentLiveData::setIsPrivateAnalyticsSupported);
+    splashNextFragmentLiveData.setIsEnabledNewUXFlow(isEnabledNewUXFlow);
     return splashNextFragmentLiveData;
   }
 
@@ -66,7 +69,11 @@ public class SplashNextFragmentLiveData extends MediatorLiveData<Fragment> {
   private void update() {
     // Always go to the home fragment if a notification was the intent.
     if (ACTION_LAUNCH_FROM_EXPOSURE_NOTIFICATION.equals(action)) {
-      setValue(new HomeFragment());
+      if (isEnabledNewUXFlow) {
+        setValue((new SinglePageHomeFragment()));
+      } else {
+        setValue(new HomeFragment());
+      }
       return;
     }
     if (!isOnboardingStateSet) {
@@ -82,7 +89,11 @@ public class SplashNextFragmentLiveData extends MediatorLiveData<Fragment> {
         // private analytics promo
         setValue(new OnboardingPrivateAnalyticsFragment());
       } else {
-        setValue(new HomeFragment());
+        if (isEnabledNewUXFlow) {
+          setValue((new SinglePageHomeFragment()));
+        } else {
+          setValue(new HomeFragment());
+        }
       }
     }
   }
@@ -104,6 +115,11 @@ public class SplashNextFragmentLiveData extends MediatorLiveData<Fragment> {
 
   private void setIsPrivateAnalyticsSupported(boolean isPrivateAnalyticsSupported) {
     this.isPrivateAnalyticsSupported = isPrivateAnalyticsSupported;
+    update();
+  }
+
+  private void setIsEnabledNewUXFlow(boolean isEnabledNewUXFlow) {
+    this.isEnabledNewUXFlow = isEnabledNewUXFlow;
     update();
   }
 }

@@ -36,7 +36,7 @@
   <string name="onboarding_metrics_description">ایپ کو برقرار رکھنے اور اسے بہتر بنانے میں مدد کیلئے، Google کے ساتھ ایپ کی کارکردگی اور استعمال سے متعلق کچھ محدود غیر شناخت کردہ ڈیٹا کا اشتراک کیا جاتا ہے۔ یہ ڈیٹا آپ کی شناخت نہیں کرتا ہے۔ %1$s</string>
   <string name="onboarding_confirm_later_title">ایکسپوژر نوٹیفیکیشنز آف رکھیں؟</string>
   <string name="onboarding_confirm_later_detail">ایکسپوژر نوٹیفیکیشنز آن ہونے تک، آپ کو COVID-19 کے ممکنہ ایکسپوژر سے مطلع نہیں کیا جائے گا</string>
-  <string name="no_recent_exposure_subtitle">فعال ہے اور چیک کیا جا رہا ہے …</string>
+  <string name="no_recent_exposure_subtitle">فعال ہے اور چیک کیا جا رہا ہے</string>
   <string name="no_recent_exposure_indicator">حالیہ کوئی ایکسپوژر نہیں ہے</string>
   <string name="app_active_info">آپ کی ایپ ممکنہ ایکسپوژرز کو باقاعدگی سے چیک کر رہی ہے۔</string>
   <string name="notifications_enabled_info">فی الحال آپ کیلئے COVID-19 ایکسپوژر کے خطرہ کی کوئی بھی اطلاع نہیں ہے۔ اگر آپ کسی ایسے شخص کے قریب رہے ہوں، جس نے COVID-19 ٹیسٹ کے مثبت نتیجے کی اطلاع دی ہو تو آپ کو مطلع کیا جائے گا۔</string>
@@ -134,6 +134,16 @@
   <string name="ble_off_warning">ممکنہ COVID-19 ایکسپوژر نوٹیفیکیشنز حاصل کرنا جاری رکھنے اور اپنے COVID-19 ٹیسٹ کے نتیجے کا اشتراک کرنے کے لیے، بلوٹوتھ آن کریں</string>
   <string name="location_ble_off_warning">ممکنہ COVID-19 ایکسپوژر نوٹیفیکیشنز حاصل کرنا جاری رکھنے اور اپنے COVID-19 ٹیسٹ کے نتیجے کا اشتراک کرنے کے لیے، بلوٹوتھ اور آلے کے مقام کی ترتیب کو آن کریں</string>
   <string name="storage_low_warning">ایکسپوژر نوٹیفیکیشنز حاصل کرنا جاری رکھنے اور اپنے COVID-19 ٹیسٹ کے نتیجے کا اشتراک کرنے کے لیے، اپنے فون پر اسٹوریج کی جگہ خالی کریں۔</string>
+  <string name="not_in_allowlist_warning">اس ایپ کو منظوری نہیں دی گئی ہے۔ اپنے علاقے میں موجود %1$s کو دیکھیں۔</string>
+  <string name="approved_apps_link_text">منظور شدہ ایپس</string>
+  <string name="hw_not_supported_warning">یہ آلہ ایکسپوژر نوٹیفیکیشنز کو سپورٹ نہیں کرتا ہے۔ %1$s دیکھیں۔</string>
+  <string name="device_requirements_link_text">آلہ کے تقاضے</string>
+  <string name="switch_app_for_exposure_notifications">ایکسپوژر نوٹیفیکیشنز کیلئے ایپ سوئچ کریں؟</string>
+  <string name="focus_lost_warning">آپ اپنے آلہ پر ایک وقت میں صرف ایک ہی ایکسپوژر نوٹیفیکیشنز ایپ کا استعمال کر سکتے ہیں۔‎\n\n کیا آپ %1$s ایپ پر سوئچ کرنا چاہتے ہیں؟</string>
+  <string name="switch_app_for_exposure_notifications_action">ایپ سوئچ کریں</string>
+  <string name="en_not_supported_warning">ایکسپوژر نوٹیفیکیشنز اب دستیاب نہیں ہے۔ %1$s</string>
+  <string name="user_profile_not_supported_warning">ایکسپوژر نوٹیفیکیشنز آپ کی دفتری پروفائل پر دستیاب نہیں ہے۔ اپنی ذاتی پروفائل پر دوبارہ کوشش کریں۔</string>
+  <string name="onboarding_free_up_storage_title">اسٹوریج کی جگہ خالی کریں</string>
   <string name="input_error_onset_date_past">تاریخ آج کی تاریخ سے گزشتہ %1$s دن کے اندر کی ہونی چاہیے</string>
   <string name="input_error_onset_date_future">تاریخ مستقبل کی ہے</string>
   <string name="network_error_code_invalid">توثیقی کوڈ مماثل نہیں ہے۔ دوبارہ کوشش کریں۔</string>

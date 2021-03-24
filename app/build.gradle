@@ -82,6 +82,7 @@ android {
 
         release {
             minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -155,21 +156,20 @@ hilt {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
-    if (!file('libs/prioclient-release.aar').exists()) {
-      implementation project(':prioclient')
-    }
+    implementation project(':privateanalytics')
 
     annotationProcessor 'androidx.hilt:hilt-compiler:1.0.0-alpha02'
     annotationProcessor 'androidx.room:room-compiler:2.2.5'
     annotationProcessor 'com.google.auto.value:auto-value:1.7.3'
     annotationProcessor 'com.google.dagger:hilt-android-compiler:2.30-alpha'
 
-    debugImplementation 'androidx.fragment:fragment-testing:1.2.5'
+    debugImplementation 'androidx.fragment:fragment-testing:1.3.0'
 
     implementation 'androidx.appcompat:appcompat:1.3.0-alpha02'
+    implementation "androidx.cardview:cardview:1.0.0"
     implementation 'androidx.concurrent:concurrent-futures:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
-    implementation 'androidx.fragment:fragment:1.2.5'
+    implementation 'androidx.fragment:fragment:1.3.0'
     implementation 'androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha02'
     implementation 'androidx.hilt:hilt-work:1.0.0-alpha02'
     implementation 'androidx.lifecycle:lifecycle-viewmodel:2.2.0'
@@ -203,7 +203,7 @@ dependencies {
     testImplementation 'org.mockito:mockito-core:2.25.0'
     testImplementation 'org.mockito:mockito-inline:2.25.0'
     //noinspection FragmentGradleConfiguration
-    testImplementation 'androidx.fragment:fragment-testing:1.2.5'
+    testImplementation 'androidx.fragment:fragment-testing:1.3.0'
     testImplementation 'androidx.room:room-testing:2.2.5'
     testImplementation 'androidx.test.ext:junit:1.1.2-rc01'
     testImplementation 'androidx.test:core:1.3.0-rc01'
@@ -216,6 +216,9 @@ dependencies {
     testImplementation 'junit:junit:4.13'
     testImplementation 'org.robolectric:robolectric:4.3.1'
     testImplementation 'androidx.arch.core:core-testing:2.1.0'
+    testImplementation ('org.threeten:threetenbp:1.2.4'){
+        exclude group:'com.jakewharton.threetenabp', module:'threetenabp'
+    }
     testAnnotationProcessor 'com.google.dagger:hilt-android-compiler:2.30-alpha'
 
     // Instrumented test dependencies

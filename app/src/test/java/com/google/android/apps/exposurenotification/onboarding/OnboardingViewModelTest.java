@@ -24,6 +24,7 @@ import androidx.work.WorkManager;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.OnboardingStatus;
 import com.google.android.apps.exposurenotification.testsupport.ExposureNotificationRules;
+import com.google.android.libraries.privateanalytics.PrivateAnalyticsEnabledProvider;
 import com.google.firebase.FirebaseApp;
 import dagger.hilt.android.testing.HiltAndroidTest;
 import dagger.hilt.android.testing.HiltTestApplication;
@@ -51,6 +52,9 @@ public class OnboardingViewModelTest {
   ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
 
   @Mock
+  PrivateAnalyticsEnabledProvider privateAnalyticsEnabledProvider;
+
+  @Mock
   WorkManager workManager;
 
   OnboardingViewModel onboardingViewModel;
@@ -60,6 +64,7 @@ public class OnboardingViewModelTest {
     FirebaseApp.initializeApp(ApplicationProvider.getApplicationContext());
     rules.hilt().inject();
     onboardingViewModel = new OnboardingViewModel(exposureNotificationSharedPreferences,
+        privateAnalyticsEnabledProvider,
         workManager);
   }
 

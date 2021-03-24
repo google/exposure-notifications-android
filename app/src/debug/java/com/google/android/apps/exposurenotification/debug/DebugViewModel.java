@@ -44,29 +44,26 @@ import com.google.android.apps.exposurenotification.keyupload.Qualifiers.UploadU
 import com.google.android.apps.exposurenotification.nearby.ExposureNotificationClientWrapper;
 import com.google.android.apps.exposurenotification.nearby.ProvideDiagnosisKeysWorker;
 import com.google.android.apps.exposurenotification.network.RequestQueueWrapper;
-import com.google.android.apps.exposurenotification.privateanalytics.PrivateAnalyticsDeviceAttestation;
 import com.google.android.apps.exposurenotification.privateanalytics.SubmitPrivateAnalyticsWorker;
 import com.google.android.apps.exposurenotification.privateanalytics.metrics.CodeVerifiedMetric;
+import com.google.android.apps.exposurenotification.privateanalytics.metrics.DateExposureMetric;
 import com.google.android.apps.exposurenotification.privateanalytics.metrics.HistogramMetric;
 import com.google.android.apps.exposurenotification.privateanalytics.metrics.KeysUploadedMetric;
 import com.google.android.apps.exposurenotification.privateanalytics.metrics.PeriodicExposureNotificationInteractionMetric;
 import com.google.android.apps.exposurenotification.privateanalytics.metrics.PeriodicExposureNotificationMetric;
-import com.google.android.apps.exposurenotification.privateanalytics.metrics.PrivateAnalyticsMetric;
 import com.google.android.apps.exposurenotification.storage.CountryRepository;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.NetworkMode;
+import com.google.android.libraries.privateanalytics.PrivateAnalyticsDeviceAttestation;
+import com.google.android.libraries.privateanalytics.PrivateAnalyticsEnabledProvider;
+import com.google.android.libraries.privateanalytics.PrivateAnalyticsMetric;
 import com.google.common.base.Splitter;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.google.common.util.concurrent.FluentFuture;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import dagger.hilt.android.qualifiers.ApplicationContext;
-import java.io.IOException;
-import java.security.KeyStore;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.security.cert.CertificateException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.regex.Pattern;
@@ -103,6 +100,7 @@ public class DebugViewModel extends ViewModel {
   private final Clock clock;
   private final ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
   private final List<PrivateAnalyticsMetric> privateAnalyticsMetrics;
+  private final PrivateAnalyticsEnabledProvider privateAnalyticsEnabledProvider;
 
   @ViewModelInject
   public DebugViewModel(
@@ -118,9 +116,11 @@ public class DebugViewModel extends ViewModel {
       PeriodicExposureNotificationInteractionMetric periodicExposureNotificationInteractionMetric,
       CodeVerifiedMetric codeVerifiedMetric,
       KeysUploadedMetric keysUploadedMetric,
+      DateExposureMetric dateExposureMetric,
       Clock clock,
       ExposureNotificationClientWrapper exposureNotificationClientWrapper,
-      ExposureNotificationSharedPreferences exposureNotificationSharedPreferences) {
+      ExposureNotificationSharedPreferences exposureNotificationSharedPreferences,
+      PrivateAnalyticsEnabledProvider privateAnalyticsEnabledProvider) {
     this.countryRepository = countryRepository;
     this.workManager = workManager;
     this.homeDownloadUris = homeDownloadUris;
@@ -129,8 +129,10 @@ public class DebugViewModel extends ViewModel {
     this.deviceAttestation = privateAnalyticsDeviceAttestation;
     this.clock = clock;
     this.exposureNotificationSharedPreferences = exposureNotificationSharedPreferences;
+    this.privateAnalyticsEnabledProvider = privateAnalyticsEnabledProvider;
     this.privateAnalyticsMetrics = Lists.newArrayList(periodicExposureNotificationMetric,
-        periodicExposureNotificationInteractionMetric, codeVerifiedMetric, keysUploadedMetric);
+        periodicExposureNotificationInteractionMetric, codeVerifiedMetric, keysUploadedMetric,
+        dateExposureMetric);
     codeCreator = new VerificationCodeCreator(context, requestQueueWrapper);
     resources = context.getResources();
 
@@ -230,6 +232,10 @@ public class DebugViewModel extends ViewModel {
     workManager.enqueue(new OneTimeWorkRequest.Builder(ProvideDiagnosisKeysWorker.class).build());
   }
 
+  boolean shouldDisplayPrivateAnalyticsControls() {
+    return privateAnalyticsEnabledProvider.isSupportedByApp();
+  }
+
   /**
    * Triggers a one off submit private analytics job.
    */
@@ -241,29 +247,14 @@ public class DebugViewModel extends ViewModel {
    * Cleans the Keystore keys used for signing the private analytics.
    */
   public void clearKeyStore() {
-    // Delete key Alias
-    try {
-      // Add all the metrics
-      List<String> listOfMetrics = new ArrayList<>();
-      listOfMetrics.add(HistogramMetric.METRIC_NAME);
-      listOfMetrics.add(PeriodicExposureNotificationMetric.METRIC_NAME);
-      listOfMetrics.add(PeriodicExposureNotificationInteractionMetric.METRIC_NAME);
-      listOfMetrics.add(CodeVerifiedMetric.METRIC_NAME);
-      listOfMetrics.add(KeysUploadedMetric.METRIC_NAME);
-
-      KeyStore keyStore = KeyStore.getInstance("AndroidKeyStore");
-      keyStore.load(null, null);
-
-      for (String metric : listOfMetrics) {
-        Log.d(TAG, "PrioPrivateAnalytics: deleting key for metric " + metric);
-        String keyAlias = deviceAttestation.getDailyAlias(metric);
-        if (keyStore.containsAlias(keyAlias)) {
-          keyStore.deleteEntry(keyAlias);
-        }
-      }
-    } catch (KeyStoreException | CertificateException | IOException | NoSuchAlgorithmException e) {
-      Log.w(TAG, "Error clearing keystore", e);
-    }
+    deviceAttestation.clearData(ImmutableList.of(
+        HistogramMetric.METRIC_NAME,
+        PeriodicExposureNotificationMetric.METRIC_NAME,
+        PeriodicExposureNotificationInteractionMetric.METRIC_NAME,
+        CodeVerifiedMetric.METRIC_NAME,
+        KeysUploadedMetric.METRIC_NAME,
+        DateExposureMetric.METRIC_NAME
+    ));
   }
 
   public List<PrivateAnalyticsMetric> getPrivateAnalyticsMetrics() {
@@ -296,6 +287,14 @@ public class DebugViewModel extends ViewModel {
           Log.w(TAG, "Error clearing country code database", e);
           return null;
         }, lightweightExecutor);
+  }
+
+  public LiveData<Boolean> getUxFlowLiveData() {
+    return exposureNotificationSharedPreferences.getIsEnabledNewUXFlowLiveData();
+  }
+
+  public void setIsEnabledNewUxFlow(boolean isEnabled) {
+    exposureNotificationSharedPreferences.setIsEnabledNewUxFlow(isEnabled);
   }
 
   public void setProvidedDiagnosisKeyHexToLog(String keyHex) {

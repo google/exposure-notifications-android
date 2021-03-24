@@ -34,7 +34,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 import javax.inject.Singleton;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -108,7 +107,6 @@ import org.json.JSONObject;
  * }
  * }</pre>
  */
-// TODO: Support headers, capture and interrogate request bodies.
 @Singleton
 public class FakeRequestQueue extends RequestQueueWrapper {
 

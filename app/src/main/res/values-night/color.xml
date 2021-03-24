@@ -28,6 +28,7 @@
   <color name="copyable_textview_border_color">#aFFFFFFF</color>
   <color name="horizontal_divider_color">#8FFFFFFF</color>
   <color name="watermark_color">#1AFFFFFF</color>
+  <color name="material_error_color">#F28B82</color>
 
   <color name="bg_verify_begin_background_color">#515151</color>
 </resources>

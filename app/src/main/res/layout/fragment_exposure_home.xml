@@ -63,28 +63,29 @@
 
         <FrameLayout
           android:layout_width="match_parent"
-          android:layout_height="wrap_content">
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/touch_area_min_size">
 
           <ImageView
             android:id="@+id/pulse_small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            app:srcCompat="@drawable/pulsation_circle" />
+            app:srcCompat="@drawable/pulsation_circle_old" />
 
           <ImageView
             android:id="@+id/pulse_medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            app:srcCompat="@drawable/pulsation_circle" />
+            app:srcCompat="@drawable/pulsation_circle_old" />
 
           <ImageView
             android:id="@+id/pulse_large"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            app:srcCompat="@drawable/pulsation_circle" />
+            app:srcCompat="@drawable/pulsation_circle_old" />
 
           <ImageView
             android:layout_width="wrap_content"
@@ -147,10 +148,13 @@
             android:paddingBottom="@dimen/padding_normal" >
 
             <LinearLayout
+              android:id="@+id/no_recent_exposure_check"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:layout_gravity="center"
-              android:orientation="horizontal">
+              android:orientation="horizontal"
+              android:visibility="invisible"
+              android:animateLayoutChanges="true">
 
               <ImageView
                 android:layout_width="@dimen/no_exposure_check_size"
@@ -158,7 +162,7 @@
                 android:layout_marginStart="@dimen/padding_small"
                 android:layout_marginEnd="@dimen/padding_micro"
                 android:contentDescription="@string/no_recent_exposure_indicator"
-                app:srcCompat="@drawable/ic_no_exposure_check" />
+                app:srcCompat="@drawable/ic_no_exposure_checkmark" />
 
               <TextView
                 android:layout_width="wrap_content"
@@ -179,7 +183,7 @@
               android:layout_marginVertical="@dimen/padding_small"
               android:text="@string/recent_check_last_checked"
               android:textAppearance="?attr/textAppearanceBody2"
-              android:visibility="gone"/>
+              android:visibility="gone" />
 
             <Button
               android:id="@+id/see_more_button"
@@ -227,6 +231,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/recent_exposures_subtitle"
+            android:textSize="12sp"
             android:textAppearance="?attr/textAppearanceOverline" />
 
           <!-- Exposure status -->
@@ -253,8 +258,8 @@
               <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceListItemSecondary"
-                android:textSize="14sp"
+                android:textAppearance="?attr/textAppearanceBody2"
+                android:textAllCaps="true"
                 android:textColor="?android:attr/textColorSecondary"
                 android:text="@string/exposure_details_status_subtitle"/>
 
@@ -262,7 +267,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:textAppearance="?android:attr/textAppearanceListItem"
+                android:textAppearance="?attr/textAppearanceSubtitle2"
                 android:text="@string/exposure_details_status_exposure"/>
 
             </LinearLayout>
@@ -298,8 +303,8 @@
                 <TextView
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
-                  android:textAppearance="?android:attr/textAppearanceListItemSecondary"
-                  android:textSize="14sp"
+                  android:textAppearance="?attr/textAppearanceBody2"
+                  android:textAllCaps="true"
                   android:textColor="?android:attr/textColorSecondary"
                   android:text="@string/exposure_details_date_exposed_subtitle"
                   android:layout_weight="1"/>
@@ -326,7 +331,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:textAppearance="?android:attr/textAppearanceListItem" />
+                android:textAppearance="?attr/textAppearanceSubtitle2"/>
 
             </LinearLayout>
 
@@ -357,29 +362,25 @@
               <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceListItemSecondary"
-                android:textSize="14sp"
+                android:textAppearance="?attr/textAppearanceBody2"
+                android:textAllCaps="true"
                 android:textColor="?android:attr/textColorSecondary"
                 android:text="@string/exposure_details_learn_more"/>
 
-              <TextView
-                android:id="@+id/exposure_details_url_text"
-                android:clickable="true"
-                android:focusable="true"
+              <Button
+                android:id="@+id/exposure_details_url_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:minWidth="@dimen/touch_area_min_size"
-                android:minHeight="@dimen/touch_area_min_size"
+                android:text="@string/exposure_details_url_1"
                 android:textSize="16sp"
-                android:textColor="?android:attr/textColorLink"
-                android:textAppearance="?android:attr/textAppearanceListItem"
-                android:text="@string/exposure_details_url_1"/>
+                android:textAppearance="?attr/textAppearanceSubtitle2"
+                android:gravity="start"
+                android:paddingHorizontal="0dp"
+                style="@style/Widget.MaterialComponents.Button.TextButton"/>
 
             </LinearLayout>
 
           </LinearLayout>
-
-          <include layout="@layout/horizontal_divider"/>
 
           <View
             android:layout_width="wrap_content"
@@ -423,15 +424,6 @@
 
       </ViewFlipper>
 
-      <LinearLayout
-        android:id="@+id/how_en_works_horizontal_divider"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/padding_normal"
-        android:layout_gravity="center">
-        <include layout="@layout/horizontal_divider" />
-      </LinearLayout>
-
       <ViewFlipper
         android:id="@+id/how_en_work_button_flipper"
         android:layout_width="match_parent"
@@ -439,13 +431,23 @@
         android:layout_marginHorizontal="@dimen/padding_normal"
         android:measureAllChildren="false">
 
-        <Button
-          android:id="@+id/how_en_work_button_no_exposure"
-          android:layout_width="wrap_content"
+        <LinearLayout
+          android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:layout_gravity="center_horizontal"
-          android:text="@string/how_exposure_notifications_work_link"
-          style="@style/Widget.MaterialComponents.Button.TextButton" />
+          android:layout_gravity="center"
+          android:orientation="vertical">
+
+          <include layout="@layout/horizontal_divider" />
+
+          <Button
+            android:id="@+id/how_en_work_button_no_exposure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/how_exposure_notifications_work_link"
+            style="@style/Widget.MaterialComponents.Button.TextButton" />
+
+        </LinearLayout>
 
         <Button
           android:id="@+id/how_en_work_button_exposure"

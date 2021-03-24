@@ -24,20 +24,29 @@ import static org.mockito.Mockito.when;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import com.google.android.apps.exposurenotification.common.ExecutorsModule;
-import com.google.android.apps.exposurenotification.common.Qualifiers.BackgroundExecutor;
-import com.google.android.apps.exposurenotification.common.Qualifiers.LightweightExecutor;
-import com.google.android.apps.exposurenotification.common.Qualifiers.ScheduledExecutor;
+import com.google.android.apps.exposurenotification.common.Qualifiers;
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.common.time.RealTimeModule;
 import com.google.android.apps.exposurenotification.nearby.ExposureNotificationClientWrapper;
 import com.google.android.apps.exposurenotification.nearby.ExposureNotificationsClientModule;
-import com.google.android.apps.exposurenotification.proto.CreatePacketsResponse;
-import com.google.android.apps.exposurenotification.proto.ResponseStatus;
-import com.google.android.apps.exposurenotification.proto.ResponseStatus.StatusCode;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
 import com.google.android.apps.exposurenotification.testsupport.ExposureNotificationRules;
 import com.google.android.apps.exposurenotification.testsupport.FakeClock;
 import com.google.android.gms.tasks.Tasks;
+import com.google.android.libraries.privateanalytics.Executors;
+import com.google.android.libraries.privateanalytics.Prio;
+import com.google.android.libraries.privateanalytics.PrivateAnalyticsDeviceAttestation;
+import com.google.android.libraries.privateanalytics.PrivateAnalyticsEnabledProvider;
+import com.google.android.libraries.privateanalytics.PrivateAnalyticsEventListener;
+import com.google.android.libraries.privateanalytics.PrivateAnalyticsFirestoreRepository;
+import com.google.android.libraries.privateanalytics.PrivateAnalyticsRemoteConfig;
+import com.google.android.libraries.privateanalytics.PrivateAnalyticsSubmitter;
+import com.google.android.libraries.privateanalytics.PrivateAnalyticsSubmitter.PrioDataPointsProvider;
+import com.google.android.libraries.privateanalytics.RemoteConfigs;
+import com.google.android.libraries.privateanalytics.proto.CreatePacketsResponse;
+import com.google.android.libraries.privateanalytics.proto.ResponseStatus;
+import com.google.android.libraries.privateanalytics.proto.ResponseStatus.StatusCode;
+import com.google.common.base.Optional;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.common.util.concurrent.ListeningScheduledExecutorService;
@@ -71,7 +80,7 @@ import org.robolectric.annotation.Config;
 @HiltAndroidTest
 @Config(application = HiltTestApplication.class)
 @UninstallModules({ExecutorsModule.class, ExposureNotificationsClientModule.class,
-    PrivateAnalyticsFirebaseModule.class, PrioModule.class, RealTimeModule.class})
+    PrivateAnalyticsFirebaseModule.class, RealTimeModule.class, PrivateAnalyticsModule.class})
 public class PrivateAnalyticsSubmitterTest {
 
   @Rule
@@ -81,8 +90,10 @@ public class PrivateAnalyticsSubmitterTest {
   Clock clock = new FakeClock();
   @BindValue
   @Mock
-  PrivateAnalyticsRemoteConfig privateAnalyticsRemoteConfig;
+  PrivateAnalyticsMetricsRemoteConfig appRemoteConfig;
   @BindValue
+  @Mock
+  PrivateAnalyticsRemoteConfig sdkRemoteConfig;
   @Mock
   Prio prio;
   @BindValue
@@ -98,31 +109,54 @@ public class PrivateAnalyticsSubmitterTest {
   @Mock
   @BindValue
   ExposureNotificationClientWrapper exposureNotificationClientWrapper;
+  @BindValue
+  Optional<PrivateAnalyticsEventListener> listener = Optional.absent();
+  @BindValue
+  PrivateAnalyticsEnabledProvider privateAnalyticsEnabledProvider = new PrivateAnalyticsEnabledProvider() {
+    @Override
+    public boolean isSupportedByApp() {
+      return true;
+    }
+
+    @Override
+    public boolean isEnabledForUser() {
+      return true;
+    }
+  };
+
+  @BindValue
+  @Mock
+  PrivateAnalyticsDeviceAttestation deviceAttestation;
   @Inject
   ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
   @Inject
+  PrioDataPointsProvider prioDataPointsProvider;
+  @Inject
+  PrivateAnalyticsFirestoreRepository firestoreRepository;
+
+
   PrivateAnalyticsSubmitter privateAnalyticsSubmitter;
 
   @BindValue
-  @BackgroundExecutor
+  @Qualifiers.BackgroundExecutor
   static final ExecutorService BACKGROUND_EXEC = MoreExecutors.newDirectExecutorService();
   @BindValue
-  @LightweightExecutor
+  @Qualifiers.LightweightExecutor
   static final ExecutorService LIGHTWEIGHT_EXEC = MoreExecutors.newDirectExecutorService();
   @BindValue
-  @ScheduledExecutor
+  @Qualifiers.ScheduledExecutor
   static final ScheduledExecutorService SCHEDULED_EXEC =
       TestingExecutors.sameThreadScheduledExecutor();
   @BindValue
-  @BackgroundExecutor
+  @Qualifiers.BackgroundExecutor
   static final ListeningExecutorService BACKGROUND_LISTENING_EXEC =
       MoreExecutors.newDirectExecutorService();
   @BindValue
-  @LightweightExecutor
+  @Qualifiers.LightweightExecutor
   static final ListeningExecutorService LIGHTWEIGHT_LISTENING_EXEC =
       MoreExecutors.newDirectExecutorService();
   @BindValue
-  @ScheduledExecutor
+  @Qualifiers.ScheduledExecutor
   static final ListeningScheduledExecutorService SCHEDULED_LISTENING_EXEC =
       TestingExecutors.sameThreadScheduledExecutor();
 
@@ -130,16 +164,29 @@ public class PrivateAnalyticsSubmitterTest {
   ArgumentCaptor<Object> documentsCaptor;
 
   @Before
-  public void setUp() {
-    rules.hilt().inject();
-    exposureNotificationSharedPreferences.setPrivateAnalyticsState(true);
-
+  public void setUp() throws Exception {
+    when(appRemoteConfig.fetchUpdatedConfigs())
+        .thenReturn(Futures.immediateFuture(
+            MetricsRemoteConfigs.newBuilder()
+                .build()));
     RemoteConfigs remoteConfig = RemoteConfigs.newBuilder()
         .setEnabled(true)
         .setDeviceAttestationRequired(false)
         .build();
-    when(privateAnalyticsRemoteConfig.fetchUpdatedConfigs())
+    when(sdkRemoteConfig.fetchUpdatedConfigs())
         .thenReturn(Futures.immediateFuture(remoteConfig));
+
+    Executors.setBackgroundListeningExecutor(MoreExecutors.newDirectExecutorService());
+    Executors.setLightweightListeningExecutor(MoreExecutors.newDirectExecutorService());
+    Executors.setScheduledExecutor(TestingExecutors.sameThreadScheduledExecutor());
+
+    // The appRemoteConfig needs to be mocked properly before we trigger Hilt injection, since one
+    // of the modules provides method needs the mock's output.
+    rules.hilt().inject();
+
+    privateAnalyticsSubmitter = new PrivateAnalyticsSubmitter(prioDataPointsProvider,
+        sdkRemoteConfig, firestoreRepository, privateAnalyticsEnabledProvider);
+    exposureNotificationSharedPreferences.setPrivateAnalyticsState(true);
   }
 
   @Test
@@ -150,6 +197,7 @@ public class PrivateAnalyticsSubmitterTest {
         .addShares(generateRandomByteString())
         .setResponseStatus(ResponseStatus.newBuilder().setStatusCode(StatusCode.OK))
         .build();
+    privateAnalyticsSubmitter.setPrio(prio);
     when(prio.getPackets(any())).thenReturn(createPacketsResponse);
 
     when(firebaseFirestore.collection(any())).thenReturn(collectionReference);
@@ -161,7 +209,7 @@ public class PrivateAnalyticsSubmitterTest {
 
     // The following function should submit the _five_ metrics available.
     privateAnalyticsSubmitter.submitPackets().get();
-    verify(documentReference, times(5)).set(documentsCaptor.capture());
+    verify(documentReference, times(6)).set(documentsCaptor.capture());
   }
 
   private ByteString generateRandomByteString() {

@@ -36,7 +36,7 @@
   <string name="onboarding_metrics_description">Za namene vzdrževanja in izboljševanja aplikacije je Googlu posredovan omejen nabor anonimnih podatkov o uporabi in delovanju aplikacije. S temi podatki ni mogoče ugotoviti vaše identitete. %1$s</string>
   <string name="onboarding_confirm_later_title">Naj obveščanje o izpostavljenosti ostane izklopljeno?</string>
   <string name="onboarding_confirm_later_detail">Za prejemanje obvestil o morebitni izpostavljenosti bolezni COVID-19 mora biti obveščanje o izpostavljenosti vklopljeno</string>
-  <string name="no_recent_exposure_subtitle">Je aktivna in preverja …</string>
+  <string name="no_recent_exposure_subtitle">Je aktivna in preverja</string>
   <string name="no_recent_exposure_indicator">Ni nedavnih izpostavljenosti</string>
   <string name="app_active_info">Aplikacija redno preverja morebitne izpostavljenosti.</string>
   <string name="notifications_enabled_info">Trenutno za vas ni nobenega poročila o morebitni izpostavljenosti bolezni COVID-19. Obveščeni boste, če bo oseba, v bližini katere ste bili, sporočila, da je bila pozitivna na testu za COVID-19.</string>
@@ -134,6 +134,16 @@
   <string name="ble_off_warning">Če želite še naprej prejemati obvestila o morebitni izpostavljenosti bolezni COVID-19 in deliti svoj rezultat testiranja za COVID-19, vklopite Bluetooth.</string>
   <string name="location_ble_off_warning">Če želite še naprej prejemati obvestila o morebitni izpostavljenosti bolezni COVID-19 in deliti svoj rezultat testiranja za COVID-19, vklopite Bluetooth in nastavitev lokacije naprave.</string>
   <string name="storage_low_warning">Če želite še naprej prejemati obvestila o izpostavljenosti in deliti svoj rezultat testiranja za COVID-19, sprostite prostor za shranjevanje v telefonu.</string>
+  <string name="not_in_allowlist_warning">Ta aplikacija ni odobrena. Oglejte si %1$s v svoji regiji.</string>
+  <string name="approved_apps_link_text">odobrene aplikacije</string>
+  <string name="hw_not_supported_warning">Ta naprava ne podpira obveščanja o izpostavljenosti. Oglejte si %1$s.</string>
+  <string name="device_requirements_link_text">zahteve za napravo</string>
+  <string name="switch_app_for_exposure_notifications">Želite zamenjati aplikacijo za obvestila o izpostavljenosti?</string>
+  <string name="focus_lost_warning">V napravi lahko uporabljate samo eno aplikacijo za obvestila o izpostavljenosti naenkrat.\n\nAli želite preklopiti na aplikacijo %1$s?</string>
+  <string name="switch_app_for_exposure_notifications_action">Preklopi aplikacijo</string>
+  <string name="en_not_supported_warning">Obveščanje o izpostavljenosti ni več na voljo. %1$s</string>
+  <string name="user_profile_not_supported_warning">Obveščanje o izpostavljenosti ni na voljo v delovnem profilu. Poskusite znova v osebnem profilu.</string>
+  <string name="onboarding_free_up_storage_title">Sprostite prostor v shrambi</string>
   <string name="input_error_onset_date_past">Datum mora biti znotraj zadnjih toliko dni od današnjega datuma: %1$s</string>
   <string name="input_error_onset_date_future">Datum je v prihodnosti</string>
   <string name="network_error_code_invalid">Potrditvena koda se ne ujema. Poskusite znova.</string>

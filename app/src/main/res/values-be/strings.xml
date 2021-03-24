@@ -36,7 +36,7 @@
   <string name="onboarding_metrics_description">Дзеля падтрымкі і ўдасканалення нашай праграмы частка інфармацыі пра яе прадукцыйнасць і выкарыстанне будзе ананімна абагульвацца з Google. Гэтыя даныя не дазволяць вызначыць вашу асобу. %1$s</string>
   <string name="onboarding_confirm_later_title">Не ўключаць Апавяшчэнні пра рызыку заражэння?</string>
   <string name="onboarding_confirm_later_detail">З выключанымі Апавяшчэннямі вы не даведаецеся пра рызыку</string>
-  <string name="no_recent_exposure_subtitle">Праграма выконвае адсочванне…</string>
+  <string name="no_recent_exposure_subtitle">Праграма выконвае адсочванне</string>
   <string name="no_recent_exposure_indicator">Няма нядаўніх кантактаў з заражанымі людзьмі</string>
   <string name="app_active_info">Праграма пастаянна адсочвае рызыку заражэння.</string>
   <string name="notifications_enabled_info">На гэты момант няма звестак пра рызыку вашага заражэння COVID-19. Вы атрымаеце апавяшчэнне, калі асоба, якая была паблізу ад вас, паведаміць пра станоўчы вынік тэсту на COVID-19.</string>
@@ -134,6 +134,16 @@
   <string name="ble_off_warning">Каб надалей атрымліваць магчымыя апавяшчэнні пра рызыку заражэння COVID-19 і абагульваць вынікі тэсту на COVID-19, уключыце Bluetooth</string>
   <string name="location_ble_off_warning">Каб надалей атрымліваць магчымыя апавяшчэнні пра рызыку заражэння COVID-19 і абагульваць вынікі тэсту на COVID-19, уключыце Bluetooth і наладу вызначэння месцазнаходжання прылады</string>
   <string name="storage_low_warning">Каб надалей атрымліваць апавяшчэнні пра рызыку заражэння і абагульваць вынікі вашага тэсту на COVID-19, вызваліце месца ў сховішчы тэлефона.</string>
+  <string name="not_in_allowlist_warning">Гэта праграма не ўхвалена. Глядзіце %1$s для вашага рэгіёна.</string>
+  <string name="approved_apps_link_text">ўхваленыя праграмы</string>
+  <string name="hw_not_supported_warning">Гэта прылада не падтрымлівае Апавяшчэнні пра рызыку заражэння. Глядзіце %1$s.</string>
+  <string name="device_requirements_link_text">патрабаванні да прылад</string>
+  <string name="switch_app_for_exposure_notifications">Змяніць праграму для Апавяшчэнняў пра рызыку заражэння?</string>
+  <string name="focus_lost_warning">Адначасова на прыладзе можна выкарыстоўваць толькі адну праграму для Апавяшчэнняў пра рызыку заражэння.\n\nПераключыцца на праграму \"%1$s\"?</string>
+  <string name="switch_app_for_exposure_notifications_action">Пераключыцца</string>
+  <string name="en_not_supported_warning">Апавяшчэнні пра рызыку заражэння больш не падтрымліваюцца. %1$s</string>
+  <string name="user_profile_not_supported_warning">Апавяшчэнні пра рызыку заражэння недаступныя ў працоўным профілі. Паўтарыце спробу ў вашым асабістым профілі.</string>
+  <string name="onboarding_free_up_storage_title">Вызваліце месца ў сховішчы</string>
   <string name="input_error_onset_date_past">Выберыце дату на працягу апошніх %1$s сут з сённяшняга дня</string>
   <string name="input_error_onset_date_future">Дата выбрана ў будучыні</string>
   <string name="network_error_code_invalid">Код спраўджання не супадае. Паўтарыце спробу.</string>

@@ -35,7 +35,7 @@ import org.robolectric.annotation.Config;
 @Config(application = HiltTestApplication.class)
 public class ExposureNotificationDatabaseTest {
 
-  private ExposureNotificationDatabase database = InMemoryDb.create();
+  private final ExposureNotificationDatabase database = InMemoryDb.create();
 
   @Test
   public void testDatabase() {

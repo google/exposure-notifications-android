@@ -23,10 +23,12 @@ import android.content.Context;
 import androidx.test.core.app.ApplicationProvider;
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.common.time.RealTimeModule;
+import com.google.android.apps.exposurenotification.riskcalculation.ExposureClassification;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.NotificationInteraction;
 import com.google.android.apps.exposurenotification.testsupport.ExposureNotificationRules;
 import com.google.android.apps.exposurenotification.testsupport.FakeClock;
+import com.google.android.libraries.privateanalytics.PrivateAnalyticsEnabledProvider;
 import com.google.firebase.FirebaseApp;
 import dagger.hilt.android.testing.BindValue;
 import dagger.hilt.android.testing.HiltAndroidTest;
@@ -34,13 +36,16 @@ import dagger.hilt.android.testing.HiltTestApplication;
 import dagger.hilt.android.testing.UninstallModules;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import javax.inject.Inject;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
+import org.threeten.bp.Duration;
 import org.threeten.bp.Instant;
 
 @HiltAndroidTest
@@ -58,6 +63,8 @@ public class PrivateAnalyticsViewModelTest {
 
   @Inject
   ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
+  @Mock
+  PrivateAnalyticsEnabledProvider privateAnalyticsEnabledProvider;
 
   private final Context context = ApplicationProvider.getApplicationContext();
 
@@ -67,8 +74,8 @@ public class PrivateAnalyticsViewModelTest {
   public void setup() {
     FirebaseApp.initializeApp(context);
     rules.hilt().inject();
-    privateAnalyticsViewModel = new PrivateAnalyticsViewModel(
-        exposureNotificationSharedPreferences);
+    privateAnalyticsViewModel = new PrivateAnalyticsViewModel(exposureNotificationSharedPreferences,
+        privateAnalyticsEnabledProvider);
   }
 
   @Test
@@ -108,8 +115,11 @@ public class PrivateAnalyticsViewModelTest {
     privateAnalyticsViewModel.setPrivateAnalyticsState(true);
     Instant notificationTime = clock.now();
     int classificationIndex = 1;
+    long exposureDay = (notificationTime.getEpochSecond() / TimeUnit.DAYS.toSeconds(1)) - 2;
+    ExposureClassification exposureClassification = ExposureClassification
+        .create(classificationIndex, "", exposureDay);
     exposureNotificationSharedPreferences
-        .setExposureNotificationLastShownClassification(notificationTime, classificationIndex);
+        .setExposureNotificationLastShownClassification(notificationTime, exposureClassification);
     exposureNotificationSharedPreferences
         .setExposureNotificationLastInteraction(notificationTime, NotificationInteraction.CLICKED,
             classificationIndex);
@@ -125,6 +135,8 @@ public class PrivateAnalyticsViewModelTest {
     assertThat(
         exposureNotificationSharedPreferences.getExposureNotificationLastShownClassification())
         .isEqualTo(classificationIndex);
+    assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsLastExposureTime())
+        .isEqualTo(Instant.EPOCH.plus(Duration.ofDays(exposureDay)));
 
     // Toggle off
     privateAnalyticsViewModel.setPrivateAnalyticsState(false);
@@ -141,6 +153,8 @@ public class PrivateAnalyticsViewModelTest {
     assertThat(
         exposureNotificationSharedPreferences.getExposureNotificationLastShownClassification())
         .isEqualTo(0);
+    assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsLastExposureTime())
+        .isEqualTo(Instant.EPOCH);
   }
 
 }

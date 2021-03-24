@@ -33,7 +33,6 @@ import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.common.StorageManagementHelper;
 import com.google.android.apps.exposurenotification.home.ExposureNotificationViewModel;
 import com.google.android.apps.exposurenotification.home.ExposureNotificationViewModel.ExposureNotificationState;
-import com.google.android.apps.exposurenotification.home.ExposureNotificationViewModel.RefreshUiData;
 import com.google.android.apps.exposurenotification.proto.UiInteraction.EventType;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -179,7 +178,8 @@ public abstract class AbstractEdgeCaseFragment extends Fragment {
      * both these pieces of information to refresh the UI.
      */
     exposureNotificationViewModel
-        .getRefreshUiLiveData().observe(getViewLifecycleOwner(), this::refreshUiForData);
+        .getStateWithInFlightLiveData()
+        .observe(getViewLifecycleOwner(), this::refreshUiForStateAndInFlight);
 
     // Handle ApiErrors automatically
     if (isHandleApiErrorLiveEvents()) {
@@ -220,11 +220,14 @@ public abstract class AbstractEdgeCaseFragment extends Fragment {
   }
 
   /**
-   * Update UI to match the Exposure Notifications state and beware of the in flight API requests.
+   * Update UI to match Exposure Notifications state and beware of the in flight API requests.
+   *
+   * @param state      the {@link ExposureNotificationState} of the API.
+   * @param isInFlight boolean indicating if there is an in-flight API request.
    */
-  private void refreshUiForData(RefreshUiData refreshUiData) {
+  private void refreshUiForStateAndInFlight(ExposureNotificationState state, boolean isInFlight) {
     View rootView = getView();
-    if (rootView == null || refreshUiData.getState() == null) {
+    if (rootView == null || state == null) {
       return;
     }
 
@@ -236,7 +239,7 @@ public abstract class AbstractEdgeCaseFragment extends Fragment {
     View containerView = (View) rootView.getParent();
 
     // Delegate the actual content filling to the child classes.
-    fillUIContent(rootView, containerView, refreshUiData.getState(), refreshUiData.isInFlight());
+    fillUIContent(rootView, containerView, state, isInFlight);
   }
 
 }

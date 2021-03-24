@@ -21,12 +21,24 @@ import static com.google.android.apps.exposurenotification.common.StringUtils.EL
 import static com.google.common.truth.Truth.assertThat;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
+import com.google.android.apps.exposurenotification.common.time.Clock;
+import com.google.android.apps.exposurenotification.common.time.RealTimeModule;
+import com.google.android.apps.exposurenotification.testsupport.ExposureNotificationRules;
+import com.google.android.apps.exposurenotification.testsupport.FakeClock;
+import dagger.hilt.android.testing.BindValue;
 import dagger.hilt.android.testing.HiltAndroidTest;
 import dagger.hilt.android.testing.HiltTestApplication;
+import dagger.hilt.android.testing.UninstallModules;
 import java.util.Locale;
+import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.annotation.Config;
+import org.threeten.bp.Duration;
+import org.threeten.bp.Instant;
+import org.threeten.bp.ZoneId;
+import org.threeten.bp.ZonedDateTime;
 
 /**
  * Tests for {@link StringUtils} utility function helper class.
@@ -34,9 +46,22 @@ import org.robolectric.annotation.Config;
 @RunWith(AndroidJUnit4.class)
 @HiltAndroidTest
 @Config(application = HiltTestApplication.class)
+@UninstallModules({RealTimeModule.class})
 public class StringUtilsTest {
 
   private static final long TIMESTAMP_APR_10_MS = 1586476800000L;
+
+  @Rule
+  public ExposureNotificationRules rules = ExposureNotificationRules.forTest(this).withMocks()
+      .build();
+
+  @BindValue
+  Clock clock = new FakeClock();
+
+  @Before
+  public void setup() {
+    rules.hilt().inject();
+  }
 
   @Test
   public void epochTimestampToMediumUTCDateString_localeUS() {
@@ -70,6 +95,49 @@ public class StringUtilsTest {
     assertThat(formattedDate).isEqualTo("2020年4月10日");
   }
 
+  @Test
+  public void calculateTransitionResolutionMs_zonePST() {
+    // GIVEN
+    ((FakeClock) clock).setZoneId(ZoneId.of("America/Los_Angeles"));
+    Instant now = clock.now(); // Mar 3, 1973 at 09:46:40 (UTC date & time)
+    ZonedDateTime zonedNow = clock.zonedNow(); // Mar 3, 1973 at 01:46:40 (PST date & time, UTC-08)
+    /*
+     * StringUtils.calculateTransitionResolutionMs() returns transition resolution, which is time
+     * elapsed since yesterday's midnight (in ms) for a given zone. So, as for the PST zone (UTC-08)
+     * the current time is 01:46:40, the transition resolution is 24 hours (time elapsed for
+     * yesterday) plus 1 hour, 46 minutes, and 40 seconds (time elapsed for today).
+     */
+    long expectedTransitionResolutionMs =
+        Duration.ofHours(25).plus(Duration.ofMinutes(46)).plus(Duration.ofSeconds(40)).toMillis();
+
+    // WHEN
+    long transitionResolutionMs = StringUtils.calculateTransitionResolutionMs(now, zonedNow);
+
+    // THEN
+    assertThat(transitionResolutionMs).isEqualTo(expectedTransitionResolutionMs);
+  }
+
+  @Test
+  public void calculateTransitionResolutionMs_zoneJST() {
+    // GIVEN
+    ((FakeClock) clock).setZoneId(ZoneId.of("Asia/Tokyo"));
+    Instant now = clock.now(); // Mar 3, 1973 at 09:46:40 (UTC date & time)
+    ZonedDateTime zonedNow = clock.zonedNow(); // Mar 3, 1973 at 18:46:40 (JST date & time, UTC+09)
+    /*
+     * StringUtils.calculateTransitionResolutionMs() returns transition resolution, which is time
+     * elapsed since yesterday's midnight (in ms) for a given zone. So, as for the JST zone (UTC+09)
+     * the current time is 18:46:40, the transition resolution is 24 hours (time elapsed for
+     * yesterday) plus 18 hours, 46 minutes, and 40 seconds (time elapsed for today).
+     */
+    long expectedTransitionResolutionMs =
+        Duration.ofHours(42).plus(Duration.ofMinutes(46)).plus(Duration.ofSeconds(40)).toMillis();
+
+    // WHEN
+    long transitionResolutionMs = StringUtils.calculateTransitionResolutionMs(now, zonedNow);
+
+    // THEN
+    assertThat(transitionResolutionMs).isEqualTo(expectedTransitionResolutionMs);
+  }
 
   @Test
   public void randomBase64Data_zeroLength() {

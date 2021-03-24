@@ -30,6 +30,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.common.PairLiveData;
 import com.google.android.apps.exposurenotification.databinding.ActivityShareDiagnosisBinding;
 import com.google.android.apps.exposurenotification.edgecases.VerificationFlowEdgeCaseFragment;
 import com.google.android.apps.exposurenotification.home.ExposureNotificationViewModel;
@@ -68,6 +69,9 @@ public class ShareDiagnosisActivity extends AppCompatActivity {
   private ActivityShareDiagnosisBinding binding;
   private ShareDiagnosisViewModel viewModel;
   private ExposureNotificationViewModel exposureNotificationViewModel;
+  // Both the shared status of the diagnosis and isEnabled state of the EN service determine if we
+  // need to display an edge case when viewing individual diagnoses.
+  private PairLiveData<DiagnosisEntity, Boolean> displayEdgeCaseForDiagnosisLiveData;
 
   /**
    * Creates an intent for adding a diagnosis flow.
@@ -101,6 +105,10 @@ public class ShareDiagnosisActivity extends AppCompatActivity {
 
     viewModel = new ViewModelProvider(this).get(ShareDiagnosisViewModel.class);
 
+    displayEdgeCaseForDiagnosisLiveData = PairLiveData.of(
+        viewModel.getCurrentDiagnosisLiveData(),
+        exposureNotificationViewModel.getEnEnabledLiveData());
+
     if (viewModel.isCloseOpen()) {
       ShareDiagnosisActivity.showCloseWarningAlertDialog(this, viewModel);
     }
@@ -124,10 +132,6 @@ public class ShareDiagnosisActivity extends AppCompatActivity {
       }
     }
 
-    // This line can be removed once the fix to flickering issue
-    // https://issuetracker.google.com/166155034 is in the androidx.fragment release.
-    FragmentManager.enableNewStateManager(false);
-
     viewModel.getCurrentStepLiveData()
         .observe(this, step -> {
           Bundle fragmentArguments = new Bundle();
@@ -146,15 +150,14 @@ public class ShareDiagnosisActivity extends AppCompatActivity {
         });
 
     /*
-     * Make sure to prevent the user from continuing at any step in the diagnosis sharing flow
-     * if the EN is disabled.
+     * Make sure to prevent users from continuing at any step in the diagnosis sharing flow if the
+     * EN is disabled as they won't be able to share their keys in that case. But never prevent
+     * users from viewing diagnoses they've already shared.
      */
-    exposureNotificationViewModel
-        .getEnEnabledLiveData()
-        .observe(
-            this,
-            isEnabled -> {
-              if (isEnabled) {
+    displayEdgeCaseForDiagnosisLiveData
+        .observe(this,
+            (currentDiagnosis, isEnabled) -> {
+              if (isEnabled || DiagnosisEntityHelper.hasBeenShared(currentDiagnosis)) {
                 binding.enEnabledFlipper.setDisplayedChild(VIEWFLIPPER_EN_ENABLED);
               } else {
                 binding.enEnabledFlipper.setDisplayedChild(VIEWFLIPPER_EN_DISABLED);

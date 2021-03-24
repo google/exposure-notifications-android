@@ -36,7 +36,7 @@
   <string name="onboarding_metrics_description">Për të ndihmuar në mirëmbajtjen dhe përmirësimin e aplikacionit, disa të dhëna të kufizuara të anonimizuara për cilësinë e funksionimit dhe përdorimin e aplikacionit ndahen me Google. Këto të dhëna nuk të identifikojnë ty. %1$s</string>
   <string name="onboarding_confirm_later_title">Do ta mbash të çaktivizuar \"Njoftimin rreth ekspozimit\"?</string>
   <string name="onboarding_confirm_later_detail">Nuk do të njoftohesh për ekspozimin e mundshëm ndaj COVID-19 derisa të aktivizohen \"Njoftimet rreth ekspozimit\"</string>
-  <string name="no_recent_exposure_subtitle">Aktiv dhe duke kontrolluar…</string>
+  <string name="no_recent_exposure_subtitle">Aktiv dhe duke kontrolluar</string>
   <string name="no_recent_exposure_indicator">Nuk ka ekspozim të kohëve të fundit</string>
   <string name="app_active_info">Aplikacioni yt kontrollon rregullisht për ekspozime të mundshme.</string>
   <string name="notifications_enabled_info">Aktualisht nuk ka raportuar rrezik ekspozimi ndaj COVID-19 për ty. Do të njoftohesh nëse dikush pranë të cilit ke qenë raporton një rezultat pozitiv nga testi për COVID-19.</string>
@@ -134,6 +134,16 @@
   <string name="ble_off_warning">Për të vazhduar të marrësh njoftime për ekspozimin e mundshëm ndaj COVID-19 dhe për të ndarë rezultatin e testit të COVID-19, aktivizo Bluetooth-in</string>
   <string name="location_ble_off_warning">Për të vazhduar të marrësh njoftime për ekspozimin e mundshëm ndaj COVID-19 dhe për të ndarë rezultatin e testit të COVID-19, aktivizo Bluetooth-in dhe cilësimin e vendndodhjes së pajisjes</string>
   <string name="storage_low_warning">Për të vazhduar të marrësh \"Njoftimet rreth ekspozimit\" dhe për të ndarë rezultatin e testit të COVID-19, liro hapësirë ruajtëse në telefon.</string>
+  <string name="not_in_allowlist_warning">Ky aplikacion nuk është miratuar Shiko %1$s në rajonin tënd.</string>
+  <string name="approved_apps_link_text">aplikacionet e miratuara</string>
+  <string name="hw_not_supported_warning">Kjo pajisje nuk mbështet \"Njoftimet rreth ekspozimit\". Shiko %1$s.</string>
+  <string name="device_requirements_link_text">kërkesat e pajisjes</string>
+  <string name="switch_app_for_exposure_notifications">Dëshiron ta ndërrosh aplikacionin për \"Njoftimet rreth ekspozimit\"?</string>
+  <string name="focus_lost_warning">Mund të përdorësh vetëm një aplikacion të \"Njoftimeve rreth ekspozimit\" në pajisjen tënde njëkohësisht.\n\nDëshiron të kalosh tek aplikacioni %1$s?</string>
+  <string name="switch_app_for_exposure_notifications_action">Kalo në aplikacion tjetër</string>
+  <string name="en_not_supported_warning">\"Njoftimet rreth ekspozimeve\" nuk është më i disponueshëm. %1$s</string>
+  <string name="user_profile_not_supported_warning">\"Njoftimet rreth ekspozimeve\" nuk është më i disponueshëm në profilin tënd. Provo përsëri në profilin tënd personal.</string>
+  <string name="onboarding_free_up_storage_title">Liro hapësirë ruajtëse</string>
   <string name="input_error_onset_date_past">Data duhet të jetë brenda %1$s ditëve të fundit nga data e sotme</string>
   <string name="input_error_onset_date_future">Data është në të ardhmen</string>
   <string name="network_error_code_invalid">Kodi i verifikimit nuk përputhet. Provo përsëri.</string>

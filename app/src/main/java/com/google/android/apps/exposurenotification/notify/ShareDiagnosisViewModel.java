@@ -558,6 +558,7 @@ public class ShareDiagnosisViewModel extends ViewModel {
                 skipCodeStep(diagnosisEntity);
               } else {
                 revealCodeStepEvent.postValue(true);
+                nextStep(ShareDiagnosisFlowHelper.getNextStep(Step.CODE, diagnosisEntity, context));
               }
               return null;
             }, lightweightExecutor)

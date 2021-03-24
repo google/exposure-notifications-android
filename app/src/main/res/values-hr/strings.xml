@@ -36,7 +36,7 @@
   <string name="onboarding_metrics_description">Radi održavanja i poboljšavanja aplikacije s Googleom se dijele određeni ograničeni podaci o izvedbi i upotrebi aplikacije bez podataka o identitetu. Ti podaci ne otkrivaju vaš identitet. %1$s</string>
   <string name="onboarding_confirm_later_title">Ostaviti obavijesti o izloženosti isključene?</string>
   <string name="onboarding_confirm_later_detail">Dok ne uključite obavješćivanje o izloženosti, nećete dobivati obavijesti o mogućoj izloženosti bolesti COVID-19.</string>
-  <string name="no_recent_exposure_subtitle">Aplikacija je aktivna i provjerava…</string>
+  <string name="no_recent_exposure_subtitle">Aplikacija je aktivna i provjerava</string>
   <string name="no_recent_exposure_indicator">U posljednje vrijeme niste bili izloženi</string>
   <string name="app_active_info">Aplikacija redovito provjerava jeste li bili u neposrednoj blizini zaražene osobe.</string>
   <string name="notifications_enabled_info">Trenutačno za vas nije zabilježen rizik od izloženosti bolesti COVID-19. Dobit ćete obavijest ako neka osoba koja je bila u vašoj blizini prijavi pozitivan rezultat testiranja na bolest COVID-19.</string>
@@ -134,6 +134,16 @@
   <string name="ble_off_warning">Da biste i dalje primali obavijesti o mogućoj izloženosti bolesti COVID-19 i dijelili rezultate svojeg testiranja na COVID-19, uključite Bluetooth</string>
   <string name="location_ble_off_warning">Da biste i dalje primali obavijesti o mogućoj izloženosti bolesti COVID-19 i dijelili rezultate svojeg testiranja na COVID-19, uključite Bluetooth i postavke lokacije uređaja</string>
   <string name="storage_low_warning">Da biste i dalje primali obavijesti o izloženosti i dijelili rezultate svojeg testa na COVID-19, oslobodite prostor za pohranu na telefonu.</string>
+  <string name="not_in_allowlist_warning">Ova aplikacija nije odobrena. Pogledajte %1$s u svojoj regiji.</string>
+  <string name="approved_apps_link_text">odobrene aplikacije</string>
+  <string name="hw_not_supported_warning">Ovaj uređaj ne podržava Obavješćivanje o izloženosti. Pročitajte %1$s.</string>
+  <string name="device_requirements_link_text">zahtjeve za uređaje</string>
+  <string name="switch_app_for_exposure_notifications">Promijeniti aplikaciju za Obavješćivanje o izloženosti?</string>
+  <string name="focus_lost_warning">Na uređaju možete koristiti samo jednu aplikaciju za Obavješćivanje o izloženosti istodobno.\n\nŽelite li prijeći na aplikaciju %1$s?</string>
+  <string name="switch_app_for_exposure_notifications_action">Promijeni aplikaciju</string>
+  <string name="en_not_supported_warning">Obavješćivanje o izloženosti više nije dostupno. %1$s</string>
+  <string name="user_profile_not_supported_warning">Obavješćivanje o izloženosti nije dostupno na vašem poslovnom profilu. Pokušajte ponovo na osobnom profilu.</string>
+  <string name="onboarding_free_up_storage_title">Oslobađanje prostora za pohranu</string>
   <string name="input_error_onset_date_past">Podaci ne bi trebali biti stariji od %1$s dana prije današnjeg datuma</string>
   <string name="input_error_onset_date_future">Podaci se odnose na budućnost</string>
   <string name="network_error_code_invalid">Kontrolni se kôd ne podudara. Pokušajte ponovo.</string>

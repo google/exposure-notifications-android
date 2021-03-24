@@ -36,7 +36,7 @@
   <string name="onboarding_metrics_description">ಆ್ಯಪ್ ಅನ್ನು ನಿರ್ವಹಿಸಲು ಮತ್ತು ಸುಧಾರಿಸಲು, ಆ್ಯಪ್ ಕಾರ್ಯಕ್ಷಮತೆ ಮತ್ತು ಬಳಕೆಯ ಕುರಿತು ಕೆಲವು ಸೀಮಿತ, ಗುರುತಿಸದ ಡೇಟಾವನ್ನು Google ಜೊತೆಗೆ ಹಂಚಿಕೊಳ್ಳಲಾಗುತ್ತದೆ. ಈ ಡೇಟಾ ನಿಮ್ಮನ್ನು ಗುರುತಿಸುವುದಿಲ್ಲ. %1$s</string>
   <string name="onboarding_confirm_later_title">ಎಕ್ಸ್‌ಪೋಶರ್ ಅಧಿಸೂಚನೆಗಳನ್ನು ಆಫ್‌ ಮಾಡಿ ಇಡಬೇಕೇ?</string>
   <string name="onboarding_confirm_later_detail">ಎಕ್ಸ್‌ಪೋಶರ್ ಅಧಿಸೂಚನೆಗಳನ್ನು ಆನ್ ಮಾಡುವವರೆಗೆ COVID-19 ನ ಸಂಭವನೀಯ ಸಂಪರ್ಕಕ್ಕೆ ಬಂದಿರುವ ಕುರಿತು ನಿಮಗೆ ಸೂಚಿಸಲಾಗುವುದಿಲ್ಲ</string>
-  <string name="no_recent_exposure_subtitle">ಸಕ್ರಿಯವಾಗಿದೆ ಮತ್ತು ಪರಿಶೀಲಿಸುತ್ತಿದೆ …</string>
+  <string name="no_recent_exposure_subtitle">ಸಕ್ರಿಯವಾಗಿದೆ ಮತ್ತು ಪರಿಶೀಲಿಸುತ್ತಿದೆ</string>
   <string name="no_recent_exposure_indicator">ಇತ್ತೀಚೆಗೆ ಸಂಪರ್ಕಕ್ಕೆ ಬಂದಿಲ್ಲ</string>
   <string name="app_active_info">ನಿಮ್ಮ ಆ್ಯಪ್ ಸಂಭವನೀಯ ಸಂಪರ್ಕಕ್ಕೆ ಬಂದಿರುವಿಕೆಯನ್ನು ನಿಯಮಿತವಾಗಿ ಪರಿಶೀಲಿಸುತ್ತಿದೆ.</string>
   <string name="notifications_enabled_info">ಪ್ರಸ್ತುತ ನೀವು ವರದಿ ಮಾಡಿದ COVID-19 ಸೋಂಕಿನ ಸಂಪರ್ಕಕ್ಕೆ ಬಂದಿರುವ ಅಪಾಯವಿಲ್ಲ. ನಿಮ್ಮ ಸಮೀಪದಲ್ಲಿದ್ದ ಯಾರಾದರೂ ಪಾಸಿಟಿವ್ COVID-19 ಪರೀಕ್ಷಾ ಫಲಿತಾಂಶ ಬಂದಿರುವ ಕುರಿತು ವರದಿ ಮಾಡಿದರೆ, ನಿಮಗೆ ಸೂಚಿಸಲಾಗುತ್ತದೆ.</string>
@@ -134,6 +134,16 @@
   <string name="ble_off_warning">ಸಂಭವನೀಯ COVID-19 ಎಕ್ಸ್‌ಪೋಶರ್ ಅಧಿಸೂಚನೆಗಳನ್ನು ಪಡೆಯುವುದನ್ನು ಮುಂದುವರಿಸಲು ಮತ್ತು ನಿಮ್ಮ COVID-19 ಪರೀಕ್ಷೆಯ ಫಲಿತಾಂಶವನ್ನು ಹಂಚಿಕೊಳ್ಳಲು, ಬ್ಲೂಟೂತ್ ಅನ್ನು ಆನ್ ಮಾಡಿ</string>
   <string name="location_ble_off_warning">ಸಂಭವನೀಯ COVID-19 ಎಕ್ಸ್‌ಪೋಶರ್ ಅಧಿಸೂಚನೆಗಳನ್ನು ಪಡೆಯುವುದನ್ನು ಮುಂದುವರಿಸಲು ಮತ್ತು ನಿಮ್ಮ COVID-19 ಪರೀಕ್ಷೆಯ ಫಲಿತಾಂಶವನ್ನು ಹಂಚಿಕೊಳ್ಳಲು, ಬ್ಲೂಟೂತ್ ಮತ್ತು ಸಾಧನದ ಸ್ಥಳದ ಸೆಟ್ಟಿಂಗ್ ಅನ್ನು ಆನ್ ಮಾಡಿ</string>
   <string name="storage_low_warning">ಎಕ್ಸ್‌ಪೋಶರ್ ಅಧಿಸೂಚನೆಗಳನ್ನು ಪಡೆಯುವುದನ್ನು ಮುಂದುವರಿಸಲು ಮತ್ತು ನಿಮ್ಮ COVID-19 ಪರೀಕ್ಷೆಯ ಫಲಿತಾಂಶವನ್ನು ಹಂಚಿಕೊಳ್ಳಲು, ನಿಮ್ಮ ಫೋನ್‌ನಲ್ಲಿ ಸಂಗ್ರಹಣೆಯ ಸ್ಥಳವನ್ನು ತೆರೆವುಗೊಳಿಸಿ.</string>
+  <string name="not_in_allowlist_warning">ಈ ಆ್ಯಪ್ ಅನ್ನು ಅನುಮೋದಿಸಲಾಗಿಲ್ಲ. ನಿಮ್ಮ ಸ್ಥಳದಲ್ಲಿರುವ %1$s ಅನ್ನು ನೋಡಿ.</string>
+  <string name="approved_apps_link_text">ಅನುಮೋದಿತ ಆ್ಯಪ್‌ಗಳು</string>
+  <string name="hw_not_supported_warning">ಈ ಸಾಧನವು ಎಕ್ಸ್‌ಪೋಶರ್ ಅಧಿಸೂಚನೆಗಳನ್ನು ಬೆಂಬಲಿಸುವುದಿಲ್ಲ. %1$s ನೋಡಿ.</string>
+  <string name="device_requirements_link_text">ಸಾಧನದ ಅಗತ್ಯತೆಗಳು</string>
+  <string name="switch_app_for_exposure_notifications">ಎಕ್ಸ್‌ಪೋಶರ್ ಅಧಿಸೂಚನೆಗಳ ಆ್ಯಪ್ ಅನ್ನು ಬದಲಿಸಬೇಕೇ?</string>
+  <string name="focus_lost_warning">ನಿಮ್ಮ ಸಾಧನದಲ್ಲಿ ನೀವು ಒಂದು ಬಾರಿಗೆ ಒಂದು ಎಕ್ಸ್‌ಪೋಶರ್ ಅಧಿಸೂಚನೆಗಳ ಆ್ಯಪ್ ಅನ್ನು ಮಾತ್ರ ಬಳಸಬಹುದು.\n\nನೀವು %1$s ಆ್ಯಪ್‌ಗೆ ಬದಲಿಸಲು ಬಯಸುತ್ತೀರಾ?</string>
+  <string name="switch_app_for_exposure_notifications_action">ಆ್ಯಪ್ ಬದಲಿಸಿ</string>
+  <string name="en_not_supported_warning">ಎಕ್ಸ್‌ಪೋಶರ್ ಅಧಿಸೂಚನೆಗಳು ಇನ್ನು ಮುಂದೆ ಲಭ್ಯವಿಲ್ಲ. %1$s</string>
+  <string name="user_profile_not_supported_warning">ನಿಮ್ಮ ಉದ್ಯೋಗದ ಪ್ರೊಫೈಲ್‌ನಲ್ಲಿ ಎಕ್ಸ್‌ಪೋಶರ್ ಅಧಿಸೂಚನೆಗಳು ಲಭ್ಯವಿಲ್ಲ. ನಿಮ್ಮ ವೈಯಕ್ತಿಕ ಪ್ರೊಫೈಲ್‌ನಲ್ಲಿ ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.</string>
+  <string name="onboarding_free_up_storage_title">ಸಂಗ್ರಹಣೆಯ ಸ್ಥಳವನ್ನು ಮುಕ್ತಗೊಳಿಸಿ</string>
   <string name="input_error_onset_date_past">ಕಳೆದ %1$s ದಿನಗಳ ಒಳಗಿನ ದಿನಾಂಕವನ್ನು ನಮೂದಿಸಬೇಕು</string>
   <string name="input_error_onset_date_future">ಇದು ಭವಿಷ್ಯದ ದಿನಾಂಕವಾಗಿದೆ</string>
   <string name="network_error_code_invalid">ಪರಿಶೀಲನೆಯ ಕೋಡ್ ಹೊಂದಾಣಿಕೆಯಾಗುತ್ತಿಲ್ಲ. ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.</string>

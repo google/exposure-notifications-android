@@ -33,11 +33,12 @@ import com.google.android.apps.exposurenotification.common.ExecutorsModule;
 import com.google.android.apps.exposurenotification.common.Qualifiers.BackgroundExecutor;
 import com.google.android.apps.exposurenotification.common.Qualifiers.LightweightExecutor;
 import com.google.android.apps.exposurenotification.common.Qualifiers.ScheduledExecutor;
-import com.google.android.apps.exposurenotification.privateanalytics.PrivateAnalyticsDeviceAttestation;
 import com.google.android.apps.exposurenotification.privateanalytics.PrivateAnalyticsFirebaseModule;
-import com.google.android.apps.exposurenotification.privateanalytics.PrivateAnalyticsRemoteConfig;
-import com.google.android.apps.exposurenotification.privateanalytics.RemoteConfigs;
 import com.google.android.apps.exposurenotification.testsupport.ExposureNotificationRules;
+import com.google.android.libraries.privateanalytics.DefaultPrivateAnalyticsDeviceAttestation;
+import com.google.android.libraries.privateanalytics.PrivateAnalyticsRemoteConfig;
+import com.google.android.libraries.privateanalytics.PrivateAnalyticsEnabledProvider;
+import com.google.android.libraries.privateanalytics.RemoteConfigs;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.common.util.concurrent.ListeningScheduledExecutorService;
@@ -64,7 +65,7 @@ import org.threeten.bp.Duration;
 @Config(application = HiltTestApplication.class)
 @UninstallModules({
     ExecutorsModule.class,
-    PrivateAnalyticsFirebaseModule.class
+    PrivateAnalyticsFirebaseModule.class,
 })
 public class WorkSchedulerTest {
 
@@ -77,7 +78,9 @@ public class WorkSchedulerTest {
   @Mock
   WorkManager workManager;
 
-  @BindValue
+  @Mock
+  PrivateAnalyticsEnabledProvider privateAnalyticsEnabledProvider;
+
   @Mock
   PrivateAnalyticsRemoteConfig privateAnalyticsRemoteConfig;
 
@@ -121,9 +124,11 @@ public class WorkSchedulerTest {
     FirebaseApp.initializeApp(ApplicationProvider.getApplicationContext());
     rules.hilt().inject();
     workScheduler = new WorkScheduler(workManager, MoreExecutors.newDirectExecutorService(),
-        TEK_PUBLISH_INTERVAL, privateAnalyticsRemoteConfig);
+        TEK_PUBLISH_INTERVAL, privateAnalyticsEnabledProvider, privateAnalyticsRemoteConfig);
     when(privateAnalyticsRemoteConfig.fetchUpdatedConfigs()).thenReturn(Futures.immediateFuture(
         RemoteConfigs.newBuilder().build()));
+    when(privateAnalyticsEnabledProvider.isSupportedByApp())
+        .thenReturn(BuildConfig.PRIVATE_ANALYTICS_SUPPORTED);
   }
 
   @Test
@@ -139,7 +144,7 @@ public class WorkSchedulerTest {
     workScheduler.schedule();
 
     int expectedWork = BuildConfig.PRIVATE_ANALYTICS_SUPPORTED &&
-        PrivateAnalyticsDeviceAttestation.isDeviceAttestationAvailable() ? 5 : 4;
+        DefaultPrivateAnalyticsDeviceAttestation.isDeviceAttestationAvailable() ? 5 : 4;
     verify(workManager, times(expectedWork)).enqueueUniquePeriodicWork(any(), any(), any());
   }
 

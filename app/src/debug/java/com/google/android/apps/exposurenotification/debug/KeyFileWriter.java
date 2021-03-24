@@ -17,12 +17,16 @@
 
 package com.google.android.apps.exposurenotification.debug;
 
+import static com.google.android.gms.nearby.exposurenotification.TemporaryExposureKey.DAYS_SINCE_ONSET_OF_SYMPTOMS_UNKNOWN;
+
 import android.content.Context;
 import androidx.annotation.Nullable;
 import com.google.android.apps.exposurenotification.keydownload.KeyFileConstants;
 import com.google.android.apps.exposurenotification.proto.SignatureInfo;
 import com.google.android.apps.exposurenotification.proto.TEKSignature;
 import com.google.android.apps.exposurenotification.proto.TEKSignatureList;
+import com.google.android.apps.exposurenotification.proto.TemporaryExposureKey.Builder;
+import com.google.android.apps.exposurenotification.proto.TemporaryExposureKey.ReportType;
 import com.google.android.apps.exposurenotification.proto.TemporaryExposureKeyExport;
 import com.google.android.gms.nearby.exposurenotification.TemporaryExposureKey;
 import com.google.common.base.Strings;
@@ -162,13 +166,19 @@ public class KeyFileWriter {
     List<com.google.android.apps.exposurenotification.proto.TemporaryExposureKey> protos =
         new ArrayList<>();
     for (TemporaryExposureKey k : keys) {
-      protos.add(
-          com.google.android.apps.exposurenotification.proto.TemporaryExposureKey.newBuilder()
-              .setKeyData(ByteString.copyFrom(k.getKeyData()))
-              .setRollingStartIntervalNumber(k.getRollingStartIntervalNumber())
-              .setRollingPeriod(k.getRollingPeriod())
-              .setTransmissionRiskLevel(k.getTransmissionRiskLevel())
-              .build());
+      Builder temporaryExposureKeyBuilder = com.google.android.apps.exposurenotification.proto.TemporaryExposureKey
+          .newBuilder();
+      temporaryExposureKeyBuilder.setKeyData(ByteString.copyFrom(k.getKeyData()));
+      temporaryExposureKeyBuilder.setRollingStartIntervalNumber(k.getRollingStartIntervalNumber());
+      temporaryExposureKeyBuilder.setRollingPeriod(k.getRollingPeriod());
+      temporaryExposureKeyBuilder.setTransmissionRiskLevel(k.getTransmissionRiskLevel());
+      if (k.getReportType() != ReportType.REPORT_TYPE_UNKNOWN_VALUE) {
+        temporaryExposureKeyBuilder.setReportType(ReportType.forNumber(k.getReportType()));
+      }
+      if (k.getDaysSinceOnsetOfSymptoms() != DAYS_SINCE_ONSET_OF_SYMPTOMS_UNKNOWN) {
+        temporaryExposureKeyBuilder.setDaysSinceOnsetOfSymptoms(k.getDaysSinceOnsetOfSymptoms());
+      }
+      protos.add(temporaryExposureKeyBuilder.build());
     }
     return protos;
   }

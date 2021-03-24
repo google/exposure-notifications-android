@@ -57,7 +57,7 @@ import org.robolectric.annotation.Config;
     DbModule.class})
 public final class KeyFileUriResolverTest {
 
-  private static Joiner NEWLINE_JOINER = Joiner.on("\n");
+  private static final Joiner NEWLINE_JOINER = Joiner.on("\n");
   private static final AtomicInteger UNIQUE_INT = new AtomicInteger(1);
 
   @Rule

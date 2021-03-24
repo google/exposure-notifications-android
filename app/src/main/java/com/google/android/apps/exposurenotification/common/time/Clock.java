@@ -17,9 +17,11 @@
 package com.google.android.apps.exposurenotification.common.time;
 
 import org.threeten.bp.Instant;
+import org.threeten.bp.ZonedDateTime;
 
 /**
- * Wrapper for times to use in place of {@link System#currentTimeMillis()} or {@link Instant#now()}
+ * Wrapper for times to use in place of {@link System#currentTimeMillis()}, {@link Instant#now()}
+ * or {@link ZonedDateTime#now()}.
  */
 public interface Clock {
   /**
@@ -31,5 +33,10 @@ public interface Clock {
    * Replacement for {@link Instant#now()}
    */
   Instant now();
+
+  /**
+   * Replacement for {@link ZonedDateTime#now()}
+   */
+  ZonedDateTime zonedNow();
 
 }

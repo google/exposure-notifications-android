@@ -26,7 +26,6 @@ import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
 import com.google.android.apps.exposurenotification.common.Qualifiers.BackgroundExecutor;
 import com.google.android.apps.exposurenotification.common.Qualifiers.LightweightExecutor;
-import com.google.android.apps.exposurenotification.common.StringUtils;
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.keyupload.ApiConstants.UploadV1;
 import com.google.android.apps.exposurenotification.keyupload.Qualifiers.UploadUri;

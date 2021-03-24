@@ -214,7 +214,7 @@ public class NotifyHomeFragment extends Fragment {
     private final int deleteIconHeightPx;
     private final int deleteIconMarginPx;
 
-    private DiagnosisEntityAdapter adapter;
+    private final DiagnosisEntityAdapter adapter;
 
     public SwipeDeleteCallback(Context context, DiagnosisEntityAdapter adapter) {
       super(0, ItemTouchHelper.LEFT);

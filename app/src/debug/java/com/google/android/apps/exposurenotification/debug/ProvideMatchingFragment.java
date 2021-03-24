@@ -28,6 +28,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -43,6 +44,7 @@ import com.google.common.io.BaseEncoding;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import dagger.hilt.android.AndroidEntryPoint;
+import java.util.ArrayList;
 import org.threeten.bp.Duration;
 
 /**
@@ -145,6 +147,38 @@ public class ProvideMatchingFragment extends Fragment {
           }
         });
 
+    binding.inputSingleOnsetDayDropdown.addTextChangedListener(
+        new AbstractTextWatcher() {
+          @Override
+          public void afterTextChanged(Editable s) {
+            if (!TextUtils.isEmpty(s.toString())) {
+              provideMatchingViewModel.setSingleInputDaysSinceOnsetOfSymptomsLiveData(
+                  tryParseInteger(s.toString()));
+            }
+          }
+        });
+
+    binding.inputSingleReportTypeDropdown.addTextChangedListener(
+        new AbstractTextWatcher() {
+          @Override
+          public void afterTextChanged(Editable s) {
+            if (!TextUtils.isEmpty(s.toString())) {
+              int reportType = 1;
+              if (getResources().getString(R.string.debug_test_type_confirmed)
+                  .equals(s.toString())) {
+                reportType = 1;
+              } else if (getResources().getString(R.string.debug_test_type_likely)
+                  .equals(s.toString())) {
+                reportType = 2;
+              } else if (getResources().getString(R.string.debug_test_type_negative)
+                  .equals(s.toString())) {
+                reportType = 5;
+              }
+              provideMatchingViewModel.setSingleInputReportTypeLiveData(reportType);
+            }
+          }
+        });
+
     provideMatchingViewModel
         .getSigningKeyInfoLiveData()
         .observe(
@@ -155,6 +189,32 @@ public class ProvideMatchingFragment extends Fragment {
               setTextAndCopyAction(binding.keyfileSignatureId, keyInfo.keyId());
               setTextAndCopyAction(binding.keyfileSignatureVersion, keyInfo.keyVersion());
             });
+    setupReportTypeDropDown();
+    setupDaysSinceOnsetOfSymptoms();
+  }
+
+  private void setupReportTypeDropDown() {
+    String[] testTypesArray =
+        new String[]{
+            getResources().getString(R.string.debug_test_type_confirmed),
+            getResources().getString(R.string.debug_test_type_likely),
+            getResources().getString(R.string.debug_test_type_negative)
+        };
+    ArrayAdapter<CharSequence> adapter =
+        new ArrayAdapter<>(this.getActivity(), R.layout.item_input_mode, testTypesArray);
+    binding.inputSingleReportTypeDropdown.setAdapter(adapter);
+    binding.inputSingleReportTypeDropdown.setText(testTypesArray[0], false);
+  }
+
+  private void setupDaysSinceOnsetOfSymptoms() {
+    ArrayList<CharSequence> days = new ArrayList<>();
+    for (int i = -14; i <= 14; i++) {
+      days.add(Integer.toString(i));
+    }
+    ArrayAdapter<CharSequence> adapter =
+        new ArrayAdapter<>(this.getActivity(), R.layout.item_input_mode, days);
+    binding.inputSingleOnsetDayDropdown.setAdapter(adapter);
+    binding.inputSingleOnsetDayDropdown.setText("0", false);
   }
 
   private void setTextAndCopyAction(TextView view, String text) {

@@ -37,14 +37,12 @@ public class ExposureHomeViewModel extends ViewModel {
 
   private final ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
   private final LiveData<List<ExposureCheckEntity>> getExposureChecksLiveData;
-  private final ExposureCheckRepository exposureCheckRepository;
 
   @ViewModelInject
   public ExposureHomeViewModel(
       ExposureNotificationSharedPreferences exposureNotificationSharedPreferences,
       ExposureCheckRepository exposureCheckRepository) {
     this.exposureNotificationSharedPreferences = exposureNotificationSharedPreferences;
-    this.exposureCheckRepository = exposureCheckRepository;
     getExposureChecksLiveData =
         exposureCheckRepository.getLastXExposureChecksLiveData(NUM_CHECKS_TO_DISPLAY);
   }

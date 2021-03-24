@@ -36,7 +36,7 @@
   <string name="onboarding_metrics_description">Аппыг хадгалах болон сайжруулахад туслахын тулд аппын гүйцэтгэл болон ашиглалтын талаарх зарим хязгаарлагдмал, танигдуулахгүй өгөгдлийг Google-тай хуваалцдаг. Энэ өгөгдөл таныг танигдуулахгүй. %1$s</string>
   <string name="onboarding_confirm_later_title">Өртсөн тухай мэдэгдлийг унтраалттай хэвээр байлгах уу?</string>
   <string name="onboarding_confirm_later_detail">Өртсөн тухай мэдэгдэл асах хүртэл танд коронавируст халдвар (COVID-19)-т өртөж болзошгүй гэх мэдээг мэдэгдэхгүй</string>
-  <string name="no_recent_exposure_subtitle">Идэвхтэй бөгөөд шалгаж байна …</string>
+  <string name="no_recent_exposure_subtitle">Идэвхтэй бөгөөд шалгаж байна</string>
   <string name="no_recent_exposure_indicator">Саяхны өртөлт байхгүй байна</string>
   <string name="app_active_info">Таны апп өртсөн байж болзошгүй мэдээллийг тогтмол шалгаж байна.</string>
   <string name="notifications_enabled_info">Танд одоогоор мэдээлсэн коронавируст халдвар (COVID-19)-т өртсөн байж болох эрсдэл байхгүй байна. Хэрэв тантай ойр байсан хэн нэгний коронавируст халдвар (COVID-19)-ын шинжилгээний хариу эерэг гарсан гэж мэдээлбэл танд мэдэгдэнэ.</string>
@@ -134,6 +134,16 @@
   <string name="ble_off_warning">Коронавируст халдвар (COVID-19)-т өртсөн байж болзошгүй тухай мэдэгдлийг үргэлжлүүлэн авч, коронавируст халдвар (COVID-19)-ын шинжилгээний хариугаа хуваалцахын тулд Bluetooth-г асаана уу</string>
   <string name="location_ble_off_warning">Коронавируст халдвар (COVID-19)-т өртсөн байж болзошгүй тухай мэдэгдлийг үргэлжлүүлэн авч, коронавируст халдвар (COVID-19)-ын шинжилгээний хариугаа хуваалцахын тулд Bluetooth болон төхөөрөмжийн байршлын тохиргоог асаана уу</string>
   <string name="storage_low_warning">Өртсөн байж болзошгүй тухай мэдэгдлийг үргэлжлүүлэн авч, коронавируст халдвар (COVID-19)-ын шинжилгээний хариугаа хуваалцахын тулд утсан дээрх хадгалах сангийн зайгаа суллана уу.</string>
+  <string name="not_in_allowlist_warning">Энэ аппыг зөвшөөрөөгүй байна Танай бүс нутаг дахь %1$s-г харна уу.</string>
+  <string name="approved_apps_link_text">зөвшөөрөлтэй аппууд</string>
+  <string name="hw_not_supported_warning">Энэ төхөөрөмж Өртсөн тухай мэдэгдлийг дэмждэггүй. %1$s-г харна уу.</string>
+  <string name="device_requirements_link_text">төхөөрөмжийн шаардлага</string>
+  <string name="switch_app_for_exposure_notifications">Өртсөн тухай мэдэгдлийн аппыг сэлгэх үү?</string>
+  <string name="focus_lost_warning">Та төхөөрөмж дээрээ нэг удаад зөвхөн нэг Өртсөн тухай мэдэгдлийн аппыг ашиглах боломжтой.\n\n%1$s апп руу сэлгэхийг хүсэж байна уу?</string>
+  <string name="switch_app_for_exposure_notifications_action">Аппыг сэлгэх</string>
+  <string name="en_not_supported_warning">Өртсөн тухай мэдэгдэл цаашид боломжгүй. %1$s</string>
+  <string name="user_profile_not_supported_warning">Өртсөн тухай мэдэгдэл таны ажлын профайл дээр боломжгүй байна. Хувийн профайл дээрээ дахин туршина уу.</string>
+  <string name="onboarding_free_up_storage_title">Хадгалах сангийн зай гаргана уу</string>
   <string name="input_error_onset_date_past">Огноо өнөөдрийн огнооноос сүүлийн %1$s өдөрт байх хэрэгтэй</string>
   <string name="input_error_onset_date_future">Огноо ирээдүйд байна</string>
   <string name="network_error_code_invalid">Баталгаажуулах код таарахгүй байна. Дахин оролдоно уу.</string>

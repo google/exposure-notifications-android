@@ -21,6 +21,7 @@ import androidx.hilt.lifecycle.ViewModelInject;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
+import com.google.android.libraries.privateanalytics.PrivateAnalyticsEnabledProvider;
 
 /**
  * View model for {@link PrivateAnalyticsActivity}.
@@ -28,11 +29,14 @@ import com.google.android.apps.exposurenotification.storage.ExposureNotification
 public class PrivateAnalyticsViewModel extends ViewModel {
 
   private final ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
+  private final PrivateAnalyticsEnabledProvider privateAnalyticsEnabledProvider;
 
   @ViewModelInject
   public PrivateAnalyticsViewModel(
-      ExposureNotificationSharedPreferences exposureNotificationSharedPreferences) {
+      ExposureNotificationSharedPreferences exposureNotificationSharedPreferences,
+      PrivateAnalyticsEnabledProvider privateAnalyticsEnabledProvider) {
     this.exposureNotificationSharedPreferences = exposureNotificationSharedPreferences;
+    this.privateAnalyticsEnabledProvider = privateAnalyticsEnabledProvider;
   }
 
   public void setPrivateAnalyticsState(boolean isEnabled) {
@@ -43,5 +47,9 @@ public class PrivateAnalyticsViewModel extends ViewModel {
 
   public LiveData<Boolean> getPrivateAnalyticsLiveData() {
     return exposureNotificationSharedPreferences.getPrivateAnalyticsStateLiveData();
+  }
+
+  public boolean showPrivateAnalyticsSection() {
+    return privateAnalyticsEnabledProvider.isSupportedByApp();
   }
 }

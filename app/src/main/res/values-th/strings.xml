@@ -36,7 +36,7 @@
   <string name="onboarding_metrics_description">ระบบจะแชร์ข้อมูลเกี่ยวกับประสิทธิภาพและการใช้งานแอปเพียงบางอย่างที่ลบการระบุตัวตนแล้วกับ Google เพื่อช่วยคงฟังก์ชันการทำงานและปรับปรุงแอป ข้อมูลนี้ไม่ได้ระบุตัวตนของคุณ %1$s</string>
   <string name="onboarding_confirm_later_title">ปิดการแจ้งเตือนความเสี่ยงต่อการติดเชื้อต่อไปใช่ไหม</string>
   <string name="onboarding_confirm_later_detail">คุณจะไม่ได้รับการแจ้งเตือนความเสี่ยงต่อการติดเชื้อโควิด-19 จนกว่าจะเปิดการแจ้งเตือนนี้</string>
-  <string name="no_recent_exposure_subtitle">ใช้งานอยู่และกำลังตรวจสอบ …</string>
+  <string name="no_recent_exposure_subtitle">ใช้งานอยู่และกำลังตรวจสอบ</string>
   <string name="no_recent_exposure_indicator">ยังไม่มีความเสี่ยงต่อการติดเชื้อ</string>
   <string name="app_active_info">แอปตรวจหาความเสี่ยงต่อการติดเชื้ออยู่เสมอ</string>
   <string name="notifications_enabled_info">ตอนนี้ยังไม่มีรายงานความเสี่ยงต่อการติดเชื้อโควิด-19 สำหรับคุณ คุณจะได้รับการแจ้งเตือนหากเคยอยู่ใกล้กับผู้ที่รายงานผลตรวจว่าตนติดเชื้อโควิด-19</string>
@@ -134,6 +134,16 @@
   <string name="ble_off_warning">หากต้องการรับการแจ้งเตือนความเสี่ยงต่อการติดเชื้อโควิด-19 ที่อาจเกิดขึ้นได้และแชร์ผลการตรวจหาเชื้อโควิด-19 ของคุณต่อไป ให้เปิดบลูทูธ</string>
   <string name="location_ble_off_warning">หากต้องการรับการแจ้งเตือนความเสี่ยงต่อการติดเชื้อโควิด-19 ที่อาจเกิดขึ้นได้และแชร์ผลการตรวจหาเชื้อโควิด-19 ของคุณต่อไป ให้เปิดบลูทูธและการตั้งค่าตำแหน่งของอุปกรณ์</string>
   <string name="storage_low_warning">หากต้องการรับการแจ้งเตือนความเสี่ยงต่อการติดเชื้อ และแชร์ผลการตรวจหาเชื้อไวรัสโควิด-19 ของคุณต่อไป ให้เพิ่มพื้นที่เก็บข้อมูลในโทรศัพท์</string>
+  <string name="not_in_allowlist_warning">แอปนี้ไม่ได้รับอนุมัติ ดู%1$sในภูมิภาคของคุณ</string>
+  <string name="approved_apps_link_text">แอปที่ได้รับอนุมัติ</string>
+  <string name="hw_not_supported_warning">อุปกรณ์นี้ไม่รองรับการแจ้งเตือนความเสี่ยงต่อการติดเชื้อ ดู%1$s</string>
+  <string name="device_requirements_link_text">ข้อกำหนดของอุปกรณ์</string>
+  <string name="switch_app_for_exposure_notifications">เปลี่ยนแอปสำหรับการแจ้งเตือนความเสี่ยงต่อการติดเชื้อไหม</string>
+  <string name="focus_lost_warning">คุณใช้แอปการแจ้งเตือนความเสี่ยงต่อการติดเชื้อในอุปกรณ์ได้ทีละ 1 แอปเท่านั้น\n\nต้องการเปลี่ยนไปใช้แอป %1$s ไหม</string>
+  <string name="switch_app_for_exposure_notifications_action">เปลี่ยนแอป</string>
+  <string name="en_not_supported_warning">การแจ้งเตือนความเสี่ยงต่อการติดเชื้อไม่มีให้บริการแล้ว %1$s</string>
+  <string name="user_profile_not_supported_warning">การแจ้งเตือนความเสี่ยงต่อการติดเชื้อใช้ไม่ได้ในโปรไฟล์งาน โปรดลองอีกครั้งในโปรไฟล์ส่วนตัว</string>
+  <string name="onboarding_free_up_storage_title">เพิ่มพื้นที่เก็บข้อมูล</string>
   <string name="input_error_onset_date_past">วันที่ควรอยู่ในช่วง %1$s วันที่ผ่านมานับจากวันนี้</string>
   <string name="input_error_onset_date_future">วันที่ป้อนเป็นวันที่ในอนาคต</string>
   <string name="network_error_code_invalid">รหัสยืนยันไม่ตรงกัน โปรดลองอีกครั้ง</string>

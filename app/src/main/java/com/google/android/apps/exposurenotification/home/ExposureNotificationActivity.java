@@ -37,6 +37,7 @@ import com.google.android.apps.exposurenotification.proto.UiInteraction.EventTyp
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.BadgeStatus;
 import dagger.hilt.android.AndroidEntryPoint;
 import java.util.Objects;
+import javax.annotation.Nullable;
 
 /**
  * Main Activity for the Exposure Notification Application.
@@ -65,6 +66,9 @@ public final class ExposureNotificationActivity extends AppCompatActivity {
 
   private ActivityExposureNotificationBinding binding;
   private ExposureNotificationViewModel exposureNotificationViewModel;
+
+  @Nullable
+  private BroadcastReceiver refreshStateBroadcastReceiver = null;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -118,30 +122,35 @@ public final class ExposureNotificationActivity extends AppCompatActivity {
       fragmentTransaction.commit();
       exposureNotificationViewModel.logUiInteraction(EventType.APP_OPENED);
     }
-
-    IntentFilter intentFilter = new IntentFilter();
-    intentFilter.addAction(LocationManager.PROVIDERS_CHANGED_ACTION);
-    intentFilter.addAction(BluetoothAdapter.ACTION_STATE_CHANGED);
-    registerReceiver(refreshBroadcastReceiver, intentFilter);
   }
-
-  private final BroadcastReceiver refreshBroadcastReceiver = new BroadcastReceiver() {
-    @Override
-    public void onReceive(Context context, Intent intent) {
-      refreshState();
-    }
-  };
 
   @Override
   public void onResume() {
     super.onResume();
     refreshState();
+    if (refreshStateBroadcastReceiver == null) {
+      IntentFilter intentFilter = new IntentFilter();
+      intentFilter.addAction(LocationManager.PROVIDERS_CHANGED_ACTION);
+      intentFilter.addAction(BluetoothAdapter.ACTION_STATE_CHANGED);
+
+      refreshStateBroadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+          refreshState();
+        }
+      };
+
+      registerReceiver(refreshStateBroadcastReceiver, intentFilter);
+    }
   }
 
   @Override
-  public void onDestroy() {
-    super.onDestroy();
-    unregisterReceiver(refreshBroadcastReceiver);
+  public void onPause() {
+    super.onPause();
+    if (refreshStateBroadcastReceiver != null) {
+      unregisterReceiver(refreshStateBroadcastReceiver);
+      refreshStateBroadcastReceiver = null;
+    }
   }
 
   private void refreshState() {

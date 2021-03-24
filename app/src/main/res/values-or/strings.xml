@@ -36,7 +36,7 @@
   <string name="onboarding_metrics_description">ଆପକୁ ପରିଚାଳନା କରିବା ଏବଂ ଉନ୍ନତ କରିବାରେ ସାହାଯ୍ୟ କରିବା ପାଇଁ, ଆପର କାର୍ଯ୍ୟଦକ୍ଷତା ଏବଂ ବ୍ୟବହାର ବିଷୟରେ ବ୍ୟକ୍ତିଗତ ଚିହ୍ନଟକାରୀ ସୂଚନା-ବିନା କିଛି ସୀମିତ ଡାଟା Google ସହ ସେୟାର୍ କରାଯାଏ। ଏହି ଡାଟା ଆପଣଙ୍କୁ ଚିହ୍ନଟ କରେ ନାହିଁ। %1$s</string>
   <string name="onboarding_confirm_later_title">ସଂକ୍ରମଣ ବିଜ୍ଞପ୍ତିଗୁଡ଼ିକ ବନ୍ଦ ରଖିବେ?</string>
   <string name="onboarding_confirm_later_detail">ସଂକ୍ରମଣ ବିଜ୍ଞପ୍ତିଗୁଡ଼ିକ ଚାଲୁ ନହେବା ପର୍ଯ୍ୟନ୍ତ, COVID-19ର ସମ୍ଭାବ୍ୟ ସଂକ୍ରମଣ ବିଷୟରେ ଆପଣଙ୍କୁ ସୂଚିତ କରାଯିବ ନାହିଁ</string>
-  <string name="no_recent_exposure_subtitle">ସକ୍ରିୟ ଏବଂ ଯାଞ୍ଚ କରାଯାଉଛି…</string>
+  <string name="no_recent_exposure_subtitle">ସକ୍ରିୟ ଏବଂ ଯାଞ୍ଚ କରାଯାଉଛି</string>
   <string name="no_recent_exposure_indicator">କୌଣସି ବର୍ତ୍ତମାନର ସଂକ୍ରମଣ ନାହିଁ</string>
   <string name="app_active_info">ଆପଣଙ୍କ ଆପ୍ ନିୟମିତ ଭାବେ ସମ୍ଭାବ୍ୟ ସଂକ୍ରମଣର ଯାଞ୍ଚ କରୁୁୁୁଛି।</string>
   <string name="notifications_enabled_info">ବର୍ତ୍ତମାନ ଆପଣଙ୍କ ପାଇଁ କୌଣସି ରିପୋର୍ଟ କରାଯାଇଥିବା COVID-19 ସଂକ୍ରମଣର ବିପଦ ନାହିଁ। ଯଦି ଆପଣ COVID-19 ଟେଷ୍ଟ ରିପୋର୍ଟରେ ପଜିଟିଭ୍ ଆସିଥିବା କୌଣସି ବ୍ୟକ୍ତିଙ୍କ ନିକଟରେ ଥିଲେ ତେବେ ଆପଣଙ୍କୁ ସୂଚିତ କରାଯିବ।</string>
@@ -134,6 +134,16 @@
   <string name="ble_off_warning">ସମ୍ଭାବ୍ୟ COVID-19 ସଂକ୍ରମଣ ବିଜ୍ଞପ୍ତିଗୁଡ଼ିକ ପାଇବା ଏବଂ ଆପଣଙ୍କର COVID-19 ଟେଷ୍ଟ ଫଳାଫଳ ସେୟାର୍ କରିବା ଜାରି ରଖିବାକୁ, ବ୍ଲୁଟୁଥ୍ ଚାଲୁ କରନ୍ତୁ</string>
   <string name="location_ble_off_warning">ସମ୍ଭାବ୍ୟ COVID-19 ସଂକ୍ରମଣ ବିଜ୍ଞପ୍ତିଗୁଡ଼ିକ ପାଇବା ଏବଂ ଆପଣଙ୍କର COVID-19 ଟେଷ୍ଟ ଫଳାଫଳ ସେୟାର୍ କରିବା ଜାରି ରଖିବାକୁ, ବ୍ଲୁଟୁଥ୍ ଏବଂ ଡିଭାଇସର ଲୋକେସନ୍ ସେଟିଂ ଚାଲୁ କରନ୍ତୁ</string>
   <string name="storage_low_warning">ସଂକ୍ରମଣ ବିଜ୍ଞପ୍ତିଗୁଡ଼ିକ ପାଇବା ଏବଂ ଆପଣଙ୍କର COVID-19 ଟେଷ୍ଟ ଫଳାଫଳ ସେୟାର୍ କରିବା ଜାରି ରଖିବାକୁ, ଆପଣଙ୍କ ଫୋନରେ ଷ୍ଟୋରେଜ୍ ସ୍ପେସ୍ ଖାଲି କରନ୍ତୁ।</string>
+  <string name="not_in_allowlist_warning">ଏହି ଆପକୁ ଅନୁମୋଦନ ଦିଅଯାଇନାହିଁ। ଆପଣଙ୍କ ଅଞ୍ଚଳରେ %1$s ଦେଖନ୍ତୁ।</string>
+  <string name="approved_apps_link_text">ଅନୁମୋଦିତ ଆପ୍ସ</string>
+  <string name="hw_not_supported_warning">ଏହି ଡିଭାଇସ୍ ସଂକ୍ରମଣ ବିଜ୍ଞପ୍ତିଗୁଡ଼ିକୁ ସମର୍ଥନ କରେ ନାହିଁ। %1$s ଦେଖନ୍ତୁ।</string>
+  <string name="device_requirements_link_text">ଡିଭାଇସ୍ ଆବଶ୍ୟକତାଗୁଡ଼ିକ</string>
+  <string name="switch_app_for_exposure_notifications">ସଂକ୍ରମଣ ବିଜ୍ଞପ୍ତିଗୁଡ଼ିକ ପାଇଁ ଆପ୍ ସ୍ୱିଚ୍ କରିବେ?</string>
+  <string name="focus_lost_warning">ଆପଣ ଆପଣଙ୍କ ଡିଭାଇସରେ ଥରକେ କେବଳ ଗୋଟିଏ ସଂକ୍ରମଣ ବିଜ୍ଞପ୍ତି ଆପ୍ ବ୍ୟବହାର କରିପାରିବେ।\n\nଆପଣ %1$s ଆପକୁ ସ୍ୱିଚ୍ କରିବାକୁ ଚାହୁଁଛନ୍ତି କି?</string>
+  <string name="switch_app_for_exposure_notifications_action">ଆପ୍ ସ୍ୱିଚ୍ କରନ୍ତୁ</string>
+  <string name="en_not_supported_warning">ସଂକ୍ରମଣ ବିଜ୍ଞପ୍ତି ଆଉ ଉପଲବ୍ଧ ନାହିଁ। %1$s</string>
+  <string name="user_profile_not_supported_warning">ଆପଣଙ୍କ ୱାର୍କ ପ୍ରୋଫାଇଲରେ ସଂକ୍ରମଣ ବିଜ୍ଞପ୍ତି ଉପଲବ୍ଧ ନାହିଁ। ଆପଣଙ୍କ ବ୍ୟକ୍ତିଗତ ପ୍ରୋଫାଇଲରେ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।</string>
+  <string name="onboarding_free_up_storage_title">ଷ୍ଟୋରେଜ୍ ସ୍ପେସ୍ ଖାଲି କରନ୍ତୁ</string>
   <string name="input_error_onset_date_past">ଦିଆଯାଇଥିବା ତାରିଖ ଆଜିର ତାରିଖରୁ ଗତ %1$s ଦିନ ମଧ୍ୟରେ ହେବା ଉଚିତ</string>
   <string name="input_error_onset_date_future">ଦିଆଯାଇଥିବା ତାରିଖ ଭବିଷ୍ୟତରେ ଅଛି</string>
   <string name="network_error_code_invalid">ଯାଞ୍ଚକରଣ କୋଡ୍ ମେଳ ହେଉନାହିଁ। ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।</string>

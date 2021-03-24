@@ -36,7 +36,7 @@
   <string name="onboarding_metrics_description">መተግበሪያውን ጠብቆ ለማቆየት እና ለማሻሻል ለማገዝ ስለመተግበሪያ አፈፃፀም እና አጠቃቀም አንዳንድ የተወሰነ ማንነት እንዳይገለጽ የሚከለክል ውሂብ ዕውቅና ለGoogle ይጋራል። ይህ ውሂብ እርስዎን ለይቶ አያውቀዎትም። %1$s</string>
   <string name="onboarding_confirm_later_title">የተጋላጭነት ማስታወቂያ እንደጠፋ ይቆይ?</string>
   <string name="onboarding_confirm_later_detail">የተጋላጭነት ማስታወቂያዎች እስኪበሩ ድረስ፣ የኮቪድ-19 ሊሆን ለሚችል ተጋላጭነት እንዲያውቁ አይደረጉም</string>
-  <string name="no_recent_exposure_subtitle">ንቁ እና በመፈተሽ ላይ…</string>
+  <string name="no_recent_exposure_subtitle">ንቁ እና በመፈተሽ ላይ</string>
   <string name="no_recent_exposure_indicator">የቅርብ ጊዜ ተጋላጭነት የለም</string>
   <string name="app_active_info">የእርስዎ መተግበሪያ ሊኖሩ የሚችሉ ተጋላጭነቶችን በመደበኛነት እየፈተሸ ነው።</string>
   <string name="notifications_enabled_info">በአሁኑ ጊዜ ለእርስዎ ሪፖርት የተደረገው የCOVID-19 ተጋላጭነት አደጋ የለም። እርስዎ አጠገቡ የነበሩ አንድ ሰው ፖዘቲቭ የኮቪድ-19 ምርመራ ውጤት ሪፖርት ካደረገ እርስዎ እንዲያውቁ ይደረጋሉ።</string>
@@ -134,6 +134,16 @@
   <string name="ble_off_warning">የኮቪድ 19 ተጋላጭነት ማሳወቂያዎችን ማግኘቱን መቀጠል እና የእርስዎን የኮቪድ 19 ምርመራ ውጤትዎን ማጋራት እንዲችሉ ብሉቱዝን ያብሩ</string>
   <string name="location_ble_off_warning">የኮቪድ-19 ተጋላጭነት ማሳወቂያዎችን ማግኘቱን መቀጠል እና የእርስዎን የኮቪድ-19 ውጤት ማጋራት እንዲችሉ በዚህ መሣሪያ ላይ የአካባቢ ቅንብርን ያብሩ</string>
   <string name="storage_low_warning">የኮቪድ 19 ተጋላጭነት ማሳወቂያዎችን ማግኘትን መቀጠል እና የእርስዎን የኮቪድ 19 ምርመራ ውጤትዎን ማጋራት እንዲችሉ በእርስዎ ስልክ ላይ የማከማቻ ቦታ ያስለቅቁ።</string>
+  <string name="not_in_allowlist_warning">ይህ መተግበሪያ አልጸደቀም። %1$sን በክልልዎ ውስጥ ይመልከቱ።</string>
+  <string name="approved_apps_link_text">የጸደቁ መተግበሪያዎች</string>
+  <string name="hw_not_supported_warning">ይህ መሣሪያ የተጋላጭነት ማሳወቂያዎችን አይደግፍም። %1$sን ይመልከቱ።</string>
+  <string name="device_requirements_link_text">የመሳሪያ መስፈርቶች</string>
+  <string name="switch_app_for_exposure_notifications">ለተጋላጭነት ማሳወቂያዎች መተግበሪያ ይቀየር?</string>
+  <string name="focus_lost_warning">በአንድ ጊዜ በመሣሪያዎ ላይ አንድ የተጋላጭነት ማሳወቂያ መተግበሪያን ብቻ ነው መጠቀም የሚችሉት።\n\nወደ %1$s መተግበሪያ መቀየር ይፈልጋሉ?</string>
+  <string name="switch_app_for_exposure_notifications_action">መተግበሪያን ቀይር</string>
+  <string name="en_not_supported_warning">የተጋላጭነት ማሳወቂያዎች ከአሁን በኋላ አይገኙም። %1$s</string>
+  <string name="user_profile_not_supported_warning">የተጋላጭነት ማሳወቂያዎች በሥራ መገለጫዎ ላይ አይገኙም። በግል መገለጫዎ ላይ እንደገና ይሞክሩ።</string>
+  <string name="onboarding_free_up_storage_title">የማከማቻ ቦታ ያስለቅቁ</string>
   <string name="input_error_onset_date_past">ቀን ከዛሬው ቀን ጀምሮ ባለፉት %1$s ቀናት ውስጥ የነበረ መሆን አለበት</string>
   <string name="input_error_onset_date_future">ቀን የወደፊት ነው</string>
   <string name="network_error_code_invalid">ማረጋገጫ ኮዱ አይዛመድም። እንደገና ይሞክሩ።</string>

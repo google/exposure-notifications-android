@@ -36,7 +36,7 @@
   <string name="onboarding_metrics_description">ஆப்ஸை நிர்வகிக்கவும் மேம்படுத்தவும் உதவ, ஆப்ஸின் செயல்திறன் மற்றும் பயன்பாடு குறித்த சில வரையறுக்கப்பட்ட, அடையாளம் நீக்கிய தகவல்கள் Googleளுடன் பகிரப்படுகின்றன. இந்தத் தரவின் மூலம் உங்களை அடையாளம் காணமுடியாது. %1$s</string>
   <string name="onboarding_confirm_later_title">COVID-19 தொற்று சாத்திய எச்சரிக்கைகளை முடக்கியே வைக்கவா?</string>
   <string name="onboarding_confirm_later_detail">இவை இயக்கப்படும்வரை தொற்று சாத்திய எச்சரிக்கைகள் வராது</string>
-  <string name="no_recent_exposure_subtitle">செயல்படுத்தித் தேடுகிறது …</string>
+  <string name="no_recent_exposure_subtitle">ஆப்ஸைச் செயல்படுத்தி தொற்றின் சாத்தியத்தைத் தேடுகிறது</string>
   <string name="no_recent_exposure_indicator">சமீபத்திய தொற்று சாத்தியம் ஏதுமில்லை</string>
   <string name="app_active_info">உங்கள் ஆப்ஸ் நோய்த் தொற்றின் சாத்தியங்கள் உள்ளனவா எனத் தொடர்ந்து தேடிக்கொண்டிருக்கும்.</string>
   <string name="notifications_enabled_info">உங்களுக்குத் தற்போது COVID-19 தொற்றின் சாத்தியம் குறித்த ஆபத்து எதுவுமில்லை. தனக்கு COVID-19 நோய்த் தொற்று இருக்கிறது என்று தெரிவித்திருக்கும் யாருக்கேனும் அருகில் நீங்கள் இருந்திருந்தால் அது குறித்து உங்களுக்குத் தெரிவிக்கப்படும்.</string>
@@ -134,6 +134,16 @@
   <string name="ble_off_warning">COVID-19 தொற்றின் சாத்தியத்தை எச்சரிக்கும் அறிவிப்புகளைத் தொடர்ந்து பெறவும், உங்கள் COVID-19 பரிசோதனை முடிவைப் பிறருடன் பகிரவும், புளூடூத்தை இயக்குங்கள்</string>
   <string name="location_ble_off_warning">COVID-19 தொற்றின் சாத்தியத்தை எச்சரிக்கும் அறிவிப்புகளைத் தொடர்ந்து பெறவும், உங்கள் COVID-19 பரிசோதனை முடிவைப் பிறருடன் பகிரவும், புளூடூத்தையும் சாதனத்தின் இருப்பிட அமைப்பையும் இயக்குங்கள்</string>
   <string name="storage_low_warning">COVID-19 தொற்றின் சாத்தியத்தை எச்சரிக்கும் அறிவிப்புகளைத் தொடர்ந்து பெறவும், உங்கள் COVID-19 பரிசோதனை முடிவைப் பிறருடன் பகிரவும், உங்கள் மொபைல் சேமிப்பிடத்தைச் சற்று காலியாக்குங்கள்.</string>
+  <string name="not_in_allowlist_warning">இந்த ஆப்ஸ் அங்கீகரிக்கப்படவில்லை. உங்கள் பிராந்தியத்திற்கென %1$s பார்க்கவும்.</string>
+  <string name="approved_apps_link_text">அங்கீகரிக்கப்பட்ட ஆப்ஸைப்</string>
+  <string name="hw_not_supported_warning">COVID-19 தொற்று சாத்தியத்தை எச்சரிக்கும் அறிவிப்புகளை இந்தச் சாதனம் ஆதரிக்காது. %1$s பார்க்கவும்.</string>
+  <string name="device_requirements_link_text">சாதனத் தேவைகள்</string>
+  <string name="switch_app_for_exposure_notifications">COVID-19 தொற்று சாத்தியத்தை எச்சரிக்க வேறு ஆப்ஸுக்கு மாறவா?</string>
+  <string name="focus_lost_warning">உங்கள் சாதனத்தில் ஒரே நேரத்தில் ஒன்றுக்கு மேற்பட்ட \'COVID-19 தொற்று சாத்தியத்தை எச்சரிக்கும் அறிவிப்புகள்\' ஆப்ஸைப் பயன்படுத்த முடியாது.\n\n%1$s ஆப்ஸுக்கு மாற விரும்புகிறீர்களா?</string>
+  <string name="switch_app_for_exposure_notifications_action">ஆப்ஸை மாற்று</string>
+  <string name="en_not_supported_warning">COVID-19 தொற்று சாத்தியத்தை எச்சரிக்கும் அறிவிப்புகள் இனி கிடைக்காது. %1$s</string>
+  <string name="user_profile_not_supported_warning">COVID-19 தொற்று சாத்தியத்தை எச்சரிக்கும் அறிவிப்புகள் உங்கள் பணிக் கணக்கில் இல்லை. உங்கள் தனிப்பட்ட கணக்கில் மீண்டும் முயலவும்.</string>
+  <string name="onboarding_free_up_storage_title">சேமிப்பிடத்தைக் காலியாக்குங்கள்</string>
   <string name="input_error_onset_date_past">கடந்த %1$s நாட்களுக்குள் ஒரு தேதியை உள்ளிடவும்</string>
   <string name="input_error_onset_date_future">தேதி எதிர்காலத்தில் இருக்கக்கூடாது</string>
   <string name="network_error_code_invalid">சரிபார்ப்புக் குறியீடு பொருந்தவில்லை. மீண்டும் முயலவும்.</string>

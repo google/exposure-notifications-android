@@ -36,7 +36,7 @@
   <string name="onboarding_metrics_description">Uygulamayı sürdürmek ve iyileştirmek için uygulama performansı ve kullanımı ile ilgili bazı sınırlı, kimlik bilgilerinden arındırılmış veriler Google\'la paylaşılır. Bu veriler kimlik bilgilerinizi tanımlamaz. %1$s</string>
   <string name="onboarding_confirm_later_title">Temas Bildirimleri kapalı mı tutulsun?</string>
   <string name="onboarding_confirm_later_detail">Temas Bildirimleri açılana kadar COVID-19 ile olası temas hakkında bilgilendirilmeyeceksiniz</string>
-  <string name="no_recent_exposure_subtitle">Etkin ve kontrol ediyor…</string>
+  <string name="no_recent_exposure_subtitle">Etkin ve kontrol ediyor</string>
   <string name="no_recent_exposure_indicator">Yakın zamanda temas yok</string>
   <string name="app_active_info">Uygulamanız olası temasları düzenli olarak kontrol ediyor.</string>
   <string name="notifications_enabled_info">Şu anda bildirilmiş bir COVID-19 ile temas riskiniz bulunmamaktadır. Yakınında bulunduğunuz birisi pozitif COVID-19 test sonucu bildirirse size bildirim gönderilir.</string>
@@ -134,6 +134,16 @@
   <string name="ble_off_warning">Olası COVID-19 temas bildirimlerini almaya devam etmek ve COVID-19 test sonucunuzu paylaşmak için Bluetooth\'u açın</string>
   <string name="location_ble_off_warning">Olası COVID-19 temas bildirimlerini almaya devam etmek ve COVID-19 test sonucunuzu paylaşmak için hem Bluetooth\'u hem de cihaz konum ayarlarını açın</string>
   <string name="storage_low_warning">Temas Bildirimleri\'ni almaya devam etmek ve COVID-19 test sonucunuzu paylaşmak için telefonunuzun depolama alanında yer açın.</string>
+  <string name="not_in_allowlist_warning">Bu uygulama onaylanmadı. Bölgenizdeki %1$s bakın.</string>
+  <string name="approved_apps_link_text">onaylı uygulamalara</string>
+  <string name="hw_not_supported_warning">Bu cihaz, Temas Bildirimleri\'ni desteklemiyor. %1$s bakın.</string>
+  <string name="device_requirements_link_text">Cihaz gereksinimlerine</string>
+  <string name="switch_app_for_exposure_notifications">Temas Bildirimleri için kullanılan uygulama değiştirilsin mi?</string>
+  <string name="focus_lost_warning">Cihazınızda aynı anda yalnızca bir Temas Bildirimleri uygulaması kullanabilirsiniz.\n\n %1$s uygulamasına geçmek istiyor musunuz?</string>
+  <string name="switch_app_for_exposure_notifications_action">Uygulama değiştir</string>
+  <string name="en_not_supported_warning">Temas Bildirimleri artık kullanılamıyor. %1$s</string>
+  <string name="user_profile_not_supported_warning">Temas Bildirimleri, iş profilinizde kullanılamıyor. Kişisel profilinizde tekrar deneyin.</string>
+  <string name="onboarding_free_up_storage_title">Depolama alanını boşaltın</string>
   <string name="input_error_onset_date_past">Belirti başlama tarihi, bugünün tarihinden itibaren son %1$s gün içinde olmalıdır</string>
   <string name="input_error_onset_date_future">Belirti başlama tarihi gelecekte</string>
   <string name="network_error_code_invalid">Doğrulama kodu eşleşmiyor. Tekrar deneyin.</string>

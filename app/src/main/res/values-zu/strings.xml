@@ -36,7 +36,7 @@
   <string name="onboarding_metrics_description">Ukusiza ukugcina nokuthuthukisa uhlelo lokusebenza, enye idatha ehlonziwe enomkhawulo emayelana nokusebenza kohlelo lokusebenza nokusetshenziswa yabiwa ne-Google. Le datha ayikuhlonzi. %1$s</string>
   <string name="onboarding_confirm_later_title">Gcina Isaziso Sokuhlangabezana sivaliwe?</string>
   <string name="onboarding_confirm_later_detail">Kuze kube yilapho Izaziso Zokuhlangabezana zivuliwe, ngeke wazise ngokuhlangabezana okungase kube khona kwe-COVID-19</string>
-  <string name="no_recent_exposure_subtitle">Iyasebenza futhi iyahlola …</string>
+  <string name="no_recent_exposure_subtitle">Iyasebenza futhi iyahlola</string>
   <string name="no_recent_exposure_indicator">Akukho ukuhlangabezana kwakamuva</string>
   <string name="app_active_info">Uhlelo lwakho lokusebenza luhlala luhlola ukuhlangabezana okungaba khona.</string>
   <string name="notifications_enabled_info">Okwamanje abukho ubungozi bokuhlangabezana ne-COVID-19 obubikiwe ngawe. Uzokwaziswa lapho othile okade useduze naye ebika umphumela wokuhlolwa wokuba ne-COVID-19.</string>
@@ -134,6 +134,16 @@
   <string name="ble_off_warning">Ukuze uqhubeke nokuthola Izaziso Zokuhlangabezana ze-COVID-19 okungase kube khona futhi wabelane ngomphumela wakho we-COVID-19, vula i-Bluetooth</string>
   <string name="location_ble_off_warning">Ukuze uqhubeke nokuthola Izaziso Zokuhlangabezana ze-COVID-19 okungase kube khona futhi wabelane ngomphumela wakho we-COVID-19, vula i-Bluetooth nesethingi yendawo yedivayisi</string>
   <string name="storage_low_warning">Ukuze uqhubeke nokuthola Izaziso Zokuhlangabezana ze-COVID-19 futhi wabelane ngomphumela wakho we-COVID-19, vula isikhala sokulondoloza efonini yakho.</string>
+  <string name="not_in_allowlist_warning">Le app ayigunyazwanga. Bona i-%1$s esifundeni sakho.</string>
+  <string name="approved_apps_link_text">ama-app avunyelwe</string>
+  <string name="hw_not_supported_warning">Le divayisi ayisekeli Izaziso Zokuhlangabezana. Bona i-%1$s.</string>
+  <string name="device_requirements_link_text">izimfuneko zedivayisi</string>
+  <string name="switch_app_for_exposure_notifications">Shintsha i-app Yezaziso Zokudalulwa?</string>
+  <string name="focus_lost_warning">Ungasebenzisa i-app Yezaziso Zokuhlangabezana eyodwa kuphela ngesikhathi kudivayisi yakho.\n\nIngabe ufuna ukushintshela ku-app ye-%1$s?</string>
+  <string name="switch_app_for_exposure_notifications_action">Shintsha i-app</string>
+  <string name="en_not_supported_warning">Izaziso Zokuhlangabezana azisatholakali. %1$s</string>
+  <string name="user_profile_not_supported_warning">Izaziso Zokuhlangabezana azitholakali kwiphrofayela yakho yomsebenzi. Zama futhi kwiphrofayela yakho yomuntu siqu.</string>
+  <string name="onboarding_free_up_storage_title">Khulula isikhala sesitoreji</string>
   <string name="input_error_onset_date_past">Idethi kufanele yenzeke phakathi nezinsuku zokugcina ezingu-%1$s zedethi yanamuhla</string>
   <string name="input_error_onset_date_future">Idethi yenzeka esikhathini esizayo</string>
   <string name="network_error_code_invalid">Ikhodi yokuqinisekisa ayifani. Zama futhi.</string>

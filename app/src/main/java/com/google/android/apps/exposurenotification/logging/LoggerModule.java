@@ -21,14 +21,14 @@ import com.google.android.apps.exposurenotification.BuildConfig;
 import dagger.Module;
 import dagger.Provides;
 import dagger.hilt.InstallIn;
-import dagger.hilt.android.components.ApplicationComponent;
+import dagger.hilt.components.SingletonComponent;
 import javax.inject.Singleton;
 
 /**
  * Provides AnalyticLogger depending on build configuration
  */
 @Module
-@InstallIn(ApplicationComponent.class)
+@InstallIn(SingletonComponent.class)
 public class LoggerModule {
 
   /**

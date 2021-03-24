@@ -35,9 +35,12 @@ import androidx.core.widget.NestedScrollView.OnScrollChangeListener;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.common.StorageManagementHelper;
 import com.google.android.apps.exposurenotification.databinding.FragmentOnboardingPermissionDisabledBinding;
 import com.google.android.apps.exposurenotification.home.ExposureNotificationViewModel;
+import com.google.android.apps.exposurenotification.home.ExposureNotificationViewModel.ExposureNotificationState;
 import com.google.android.apps.exposurenotification.home.HomeFragment;
+import com.google.android.apps.exposurenotification.home.SinglePageHomeFragment;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.common.base.Optional;
@@ -51,16 +54,20 @@ public class OnboardingPermissionDisabledFragment extends Fragment {
 
   private static final String SAVED_INSTANCE_STATE_SKIP_DIALOG_SHOWN =
       "OnboardingPermissionDisabledFragment.SAVED_INSTANCE_STATE_SKIP_DIALOG_SHOWN";
+  private static final String SAVED_INSTANCE_STATE_MANAGE_STORAGE_DIALOG_SHOWN =
+      "OnboardingPermissionDisabledFragment.SAVED_INSTANCE_STATE_MANAGE_STORAGE_DIALOG_SHOWN";
 
   private FragmentOnboardingPermissionDisabledBinding binding;
   private ExposureNotificationViewModel exposureNotificationViewModel;
   private OnboardingViewModel onboardingViewModel;
+  private ExposureNotificationState state;
 
   private LinearLayout onboardingButtons;
   private Button nextButton;
   private NestedScrollView scroller;
 
   private boolean skipDialogShown = false;
+  private boolean manageStorageDialogShown = false;
   private boolean shouldShowPrivateAnalyticsOnboarding = false;
   private Optional<Boolean> lastUpdateAtBottom = Optional.absent();
 
@@ -119,6 +126,10 @@ public class OnboardingPermissionDisabledFragment extends Fragment {
           }
         });
 
+    exposureNotificationViewModel
+        .getStateLiveData()
+        .observe(getViewLifecycleOwner(), state -> this.state = state);
+
     onboardingButtons = binding.onboardingButtons;
     nextButton = binding.onboardingNextButton;
     scroller = binding.onboardingScroll;
@@ -146,6 +157,9 @@ public class OnboardingPermissionDisabledFragment extends Fragment {
       if (savedInstanceState.getBoolean(SAVED_INSTANCE_STATE_SKIP_DIALOG_SHOWN, false)) {
         skipOnboarding();
       }
+      if (savedInstanceState.getBoolean(SAVED_INSTANCE_STATE_MANAGE_STORAGE_DIALOG_SHOWN, false)) {
+        manageStorage();
+      }
     }
 
     exposureNotificationViewModel
@@ -168,6 +182,7 @@ public class OnboardingPermissionDisabledFragment extends Fragment {
   public void onSaveInstanceState(@NonNull Bundle outState) {
     super.onSaveInstanceState(outState);
     outState.putBoolean(SAVED_INSTANCE_STATE_SKIP_DIALOG_SHOWN, skipDialogShown);
+    outState.putBoolean(SAVED_INSTANCE_STATE_MANAGE_STORAGE_DIALOG_SHOWN, manageStorageDialogShown);
   }
 
   @Override
@@ -217,20 +232,54 @@ public class OnboardingPermissionDisabledFragment extends Fragment {
         .setPositiveButton(R.string.btn_yes_continue, (dialog, i) -> {
           skipDialogShown = false;
           onboardingViewModel.setOnboardedState(false);
-          HomeFragment.transitionToHomeFragment(this);
+          if (onboardingViewModel.isNewUxFlowEnabled()) {
+            SinglePageHomeFragment.transitionToSinglePageHomeFragment(this);
+          } else {
+            HomeFragment.transitionToHomeFragment(this);
+          }
         })
-        .setOnCancelListener((dialog) -> skipDialogShown = false).show();
+        .setOnCancelListener(dialog -> skipDialogShown = false).show();
   }
 
   private void nextAction() {
-    exposureNotificationViewModel.startExposureNotifications();
+    if (ExposureNotificationState.STORAGE_LOW.equals(this.state)) {
+      manageStorage();
+    } else {
+      exposureNotificationViewModel.startExposureNotifications();
+    }
+  }
+
+  private void manageStorage() {
+    if (manageStorageDialogShown) {
+      return;
+    }
+    manageStorageDialogShown = true;
+    new MaterialAlertDialogBuilder(requireContext())
+        .setTitle(R.string.onboarding_free_up_storage_title)
+        .setMessage(R.string.storage_low_warning)
+        .setCancelable(true)
+        .setNegativeButton(R.string.btn_cancel, (dialog, i) -> {
+          manageStorageDialogShown = false;
+          dialog.cancel();
+        })
+        .setPositiveButton(R.string.manage_storage,
+            (dialog, i) -> {
+              manageStorageDialogShown = false;
+              StorageManagementHelper.launchStorageManagement(getContext());
+            })
+        .setOnCancelListener(dialog -> manageStorageDialogShown = false)
+        .show();
   }
 
   private void transitionNext() {
     if (shouldShowPrivateAnalyticsOnboarding) {
       OnboardingPrivateAnalyticsFragment.transitionToOnboardingPrivateAnalyticsFragment(this);
     } else {
-      HomeFragment.transitionToHomeFragment(this);
+      if (onboardingViewModel.isNewUxFlowEnabled()) {
+        SinglePageHomeFragment.transitionToSinglePageHomeFragment(this);
+      } else {
+        HomeFragment.transitionToHomeFragment(this);
+      }
     }
   }
 

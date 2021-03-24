@@ -36,7 +36,7 @@
   <string name="onboarding_metrics_description">यो एप सञ्चालन गर्न तथा यसलाई सुधार्न Google लाई एपको कार्यसम्पादन तथा प्रयोगसम्बन्धी केही सीमित डेटा पठाइन्छ। ती डेटा Google लाई पठाउनुअघि ती डेटाबाट प्रयोगकर्ताको पहिचान खुलाउने विवरण हटाइन्छ। तसर्थ ती डेटाले तपाईंको पहिचान खुलाउँदैन। %1$s</string>
   <string name="onboarding_confirm_later_title">सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सूचना दिने प्रणाली अफ राख्ने हो?</string>
   <string name="onboarding_confirm_later_detail">तपाईंले सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सूचना दिने प्रणाली अन गरेपछि मात्र तपाईंलाई तपाईं सम्भवतः COVID-19 सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सूचना पठाइन्छ</string>
-  <string name="no_recent_exposure_subtitle">यो एप सक्रिय छ र यसले सम्भावित सङ्क्रमणको जाँच गर्दै छ…</string>
+  <string name="no_recent_exposure_subtitle">यो एप सक्रिय छ र यसले सम्भावित सङ्क्रमणको जाँच गर्दै छ</string>
   <string name="no_recent_exposure_indicator">हालसालै कोरोना सङ्क्रमित व्यक्तिको सम्पर्कमा आउनुभएको छैन</string>
   <string name="app_active_info">तपाईंको एपले तपाईं कोरोनाबाट सङ्क्रमित कुनै व्यक्तिको सम्भावित रूपमा सम्पर्कमा आउनुभएको छ कि छैन भनी नियमित रूपमा जाँद गर्दै छ।</string>
   <string name="notifications_enabled_info">तपाईं हाल कुनै पनि सङ्क्रमित व्यक्तिको सम्पर्कमा आउनुभएको छैन। तपाईंसँग सम्पर्कमा आएका कुनै व्यक्तिले COVID-19 परीक्षणमा आफ्नो नतिजा पोजेटिभ देखिएको जानकारी पेस गर्नुभयो भने तपाईंलाई त्यसबारे सूचित गरिने छ।</string>
@@ -134,6 +134,16 @@
   <string name="ble_off_warning">आफू COVID-19 सङ्क्रमित व्यक्तिको सम्पर्कमा आएको हुन सक्नेबारे सूचना पाइराख्न र आफ्नो COVID-19 को परीक्षणको नतिजा सेयर गर्न ब्लुटुथ अन गर्नुहोस्</string>
   <string name="location_ble_off_warning">आफू COVID-19 सङ्क्रमित व्यक्तिको सम्पर्कमा आएको हुन सक्नेबारे सूचना पाइराख्न र आफ्नो COVID-19 को परीक्षणको नतिजा सेयर गर्न ब्लुटुथ र यन्त्रका स्थानसम्बन्धी सेटिङ अन गर्नुहोस्</string>
   <string name="storage_low_warning">आफू COVID-19 सङ्क्रमित व्यक्तिको सम्पर्कमा आएको हुन सक्नेबारे सूचना पाइराख्न र आफ्नो COVID-19 को परीक्षणको नतिजा सेयर गर्न आफ्नो फोनको भण्डारणमा ठाउँ खाली गर्नुहोस्।</string>
+  <string name="not_in_allowlist_warning">यो एप अनुमोदन गरिएको छैन। तपाईंको क्षेत्रमा प्रयोगका निम्ति %1$s हेर्नुहोस्।</string>
+  <string name="approved_apps_link_text">अनुमोदन गरिएका एपहरू</string>
+  <string name="hw_not_supported_warning">यो यन्त्रमा सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सूचना दिने प्रणाली प्रयोग गर्न मिल्दैन। %1$s हेर्नुहोस्।</string>
+  <string name="device_requirements_link_text">यन्त्रसम्बन्धी मापदण्डहरू</string>
+  <string name="switch_app_for_exposure_notifications">आफू सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सूचना पाउन यो एप प्रयोग गर्न थाल्ने हो?</string>
+  <string name="focus_lost_warning">तपाईं आफ्नो यन्त्रमा एक पटकमा एउटा मात्र \'सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सूचना दिने प्रणाली\' प्रयोग गर्न सक्नुहुन्छ।\n\nतपाईं %1$s एप प्रयोग गर्न थाल्न चाहनुहुन्छ?</string>
+  <string name="switch_app_for_exposure_notifications_action">एप बदल्नुहोस्</string>
+  <string name="en_not_supported_warning">सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सूचना दिने प्रणाली अब उप्रान्त उपलब्ध छैन। %1$s</string>
+  <string name="user_profile_not_supported_warning">तपाईंको कार्य प्रोफाइलमा सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सूचना दिने प्रणाली उपलब्ध छैन। आफ्नो व्यक्तिगत प्रोफाइलमा यो सुविधा प्रयोग गरी हेर्नुहोस्।</string>
+  <string name="onboarding_free_up_storage_title">भण्डारणमा ठाउँ खाली गर्नुहोस्</string>
   <string name="input_error_onset_date_past">लक्षण देखिन थाल्ने मिति आजदेखि %1$s दिन भित्रको मिति हुनु पर्छ</string>
   <string name="input_error_onset_date_future">लक्षण देखिन थाल्ने मिति भविष्यको मिति हुन्छ</string>
   <string name="network_error_code_invalid">पुष्टि कोड मिलेन। फेरि प्रयास गर्नुहोस्।</string>

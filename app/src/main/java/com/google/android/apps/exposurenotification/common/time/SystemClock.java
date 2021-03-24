@@ -18,6 +18,7 @@
 package com.google.android.apps.exposurenotification.common.time;
 
 import org.threeten.bp.Instant;
+import org.threeten.bp.ZonedDateTime;
 
 /**
  * Default implementation of {@link Clock} for use in prod builds, but not in tests.
@@ -31,5 +32,10 @@ class SystemClock implements Clock {
   @Override
   public Instant now() {
     return Instant.now();
+  }
+
+  @Override
+  public ZonedDateTime zonedNow() {
+    return ZonedDateTime.now();
   }
 }

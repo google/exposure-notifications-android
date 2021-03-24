@@ -36,7 +36,7 @@
   <string name="onboarding_metrics_description">En begränsad mängd avidentifierad data om appens prestanda och användningen av appen delas med Google i syfte att underhålla och förbättra appen. Det går inte att identifiera dig utifrån denna data. %1$s</string>
   <string name="onboarding_confirm_later_title">Vill du att Aviseringar om exponering ska vara inaktiverat?</string>
   <string name="onboarding_confirm_later_detail">Du får inga aviseringar om exponering för coivd-19 förrän Aviseringar om exponering har aktiverats</string>
-  <string name="no_recent_exposure_subtitle">Aktiv och söker …</string>
+  <string name="no_recent_exposure_subtitle">Aktiv och söker</string>
   <string name="no_recent_exposure_indicator">Ingen ny exponering</string>
   <string name="app_active_info">Appen söker regelbundet efter möjliga exponeringar.</string>
   <string name="notifications_enabled_info">Det finns ingen rapporterad exponeringsrisk för covid-19 för dig just nu. Du får en avisering om någon du varit i närheten av rapporterar ett positivt testresultat för covid-19.</string>
@@ -134,6 +134,16 @@
   <string name="ble_off_warning">Aktivera Bluetooth om du vill fortsätta att få aviseringar om möjlig exponering för covid-19 och dela ditt testresultat för covid-19</string>
   <string name="location_ble_off_warning">Aktivera Bluetooth och enhetens platsinställning om du vill fortsätta att få aviseringar om möjlig exponering för covid-19 och dela ditt testresultat för covid-19</string>
   <string name="storage_low_warning">Frigör lagringsutrymme på telefonen om du vill fortsätta att få aviseringar om exponering och dela ditt testresultat för covid-19.</string>
+  <string name="not_in_allowlist_warning">Den här appen är inte godkänd. Se %1$s i din region.</string>
+  <string name="approved_apps_link_text">godkända appar</string>
+  <string name="hw_not_supported_warning">Den här appen har inte stöd för Aviseringar om exponering. Se %1$s.</string>
+  <string name="device_requirements_link_text">enhetskrav</string>
+  <string name="switch_app_for_exposure_notifications">Vill du använda en annan app för aviseringar om exponering?</string>
+  <string name="focus_lost_warning">Du kan bara använda en app för aviseringar om exponering på enheten åt gången.\n\nVill du byta till appen %1$s?</string>
+  <string name="switch_app_for_exposure_notifications_action">Byt app</string>
+  <string name="en_not_supported_warning">Aviseringar om exponering är inte längre tillgängligt. %1$s</string>
+  <string name="user_profile_not_supported_warning">Aviseringar om exponering är inte tillgängligt i jobbprofilen Försök igen i den privata profilen.</string>
+  <string name="onboarding_free_up_storage_title">Frigör lagringsutrymme</string>
   <string name="input_error_onset_date_past">Datumet får vara högst %1$s dagar bakåt i tiden från i dag</string>
   <string name="input_error_onset_date_future">Datumet har inte varit än</string>
   <string name="network_error_code_invalid">Verifieringskoden stämmer inte. Försök igen.</string>

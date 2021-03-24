@@ -46,11 +46,11 @@ import com.google.common.io.BaseEncoding;
 import dagger.Module;
 import dagger.Provides;
 import dagger.hilt.InstallIn;
-import dagger.hilt.android.components.ApplicationComponent;
 import dagger.hilt.android.testing.BindValue;
 import dagger.hilt.android.testing.HiltAndroidTest;
 import dagger.hilt.android.testing.HiltTestApplication;
 import dagger.hilt.android.testing.UninstallModules;
+import dagger.hilt.components.SingletonComponent;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
@@ -89,7 +89,7 @@ public final class DiagnosisKeyUploaderTest {
   DiagnosisKeyUploader keyUploader;
 
   @Module
-  @InstallIn(ApplicationComponent.class)
+  @InstallIn(SingletonComponent.class)
   static class SampleUrisModule {
 
     @Provides

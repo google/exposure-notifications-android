@@ -48,42 +48,61 @@
       android:layout_height="wrap_content"
       android:orientation="vertical">
 
+      <TextView
+        android:id="@+id/settings_activity_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/padding_large"
+        android:paddingHorizontal="@dimen/padding_large"
+        android:gravity="center"
+        android:text="@string/home_tab_settings_text"
+        android:textAppearance="?attr/textAppearanceHeadline6"
+        android:visibility="gone" />
+
       <LinearLayout
+        android:id="@+id/share_this_app"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="@dimen/settings_icon_field_width"
-        android:paddingRight="@dimen/padding_normal"
-        android:paddingTop="@dimen/padding_small"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
-        <ImageView
-          android:layout_width="@dimen/settings_icon_field_width"
-          android:layout_height="@dimen/settings_icon_height"
-          app:srcCompat="@drawable/ic_share"
-          android:layout_gravity="center_horizontal" />
-
-        <TextView
-          android:layout_width="0dp"
+        <LinearLayout
+          android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:layout_weight="1"
-          android:layout_gravity="center_vertical"
-          android:textSize="16sp"
-          android:textAppearance="?attr/textAppearanceBody2"
-          android:text="@string/settings_share"
-          android:textColor="?attr/colorControlNormal" />
+          android:minHeight="@dimen/settings_icon_field_width"
+          android:paddingEnd="@dimen/padding_normal"
+          android:paddingTop="@dimen/padding_small"
+          android:orientation="horizontal">
+
+          <ImageView
+            android:layout_width="@dimen/settings_icon_field_width"
+            android:layout_height="@dimen/settings_icon_height"
+            app:srcCompat="@drawable/ic_share"
+            android:layout_gravity="center_horizontal" />
+
+          <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            android:textSize="16sp"
+            android:textAppearance="?attr/textAppearanceBody2"
+            android:text="@string/settings_share"
+            android:textColor="?attr/colorControlNormal" />
+
+        </LinearLayout>
+
+        <Button
+          android:id="@+id/share_app_button"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginHorizontal="@dimen/settings_icon_field_width"
+          android:layout_marginTop="@dimen/padding_micro"
+          android:layout_marginBottom="@dimen/padding_normal"
+          android:text="@string/btn_share_this_app" />
+
+        <include layout="@layout/horizontal_divider"/>
 
       </LinearLayout>
-
-      <Button
-        android:id="@+id/share_app_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/settings_icon_field_width"
-        android:layout_marginTop="@dimen/padding_micro"
-        android:layout_marginBottom="@dimen/padding_normal"
-        android:text="@string/btn_share_this_app" />
-
-      <include layout="@layout/horizontal_divider"/>
 
       <LinearLayout
         android:id="@+id/exposure_notifications_link"
@@ -91,7 +110,7 @@
         android:layout_height="wrap_content"
         android:minHeight="@dimen/settings_row_min_height"
         android:paddingVertical="@dimen/padding_small"
-        android:paddingRight="@dimen/padding_normal"
+        android:paddingEnd="@dimen/padding_normal"
         android:background="?attr/selectableItemBackground"
         android:orientation="horizontal">
 
@@ -141,7 +160,7 @@
         android:layout_height="wrap_content"
         android:minHeight="@dimen/settings_row_min_height"
         android:paddingVertical="@dimen/padding_small"
-        android:paddingRight="@dimen/padding_normal"
+        android:paddingEnd="@dimen/padding_normal"
         android:background="?attr/selectableItemBackground"
         android:orientation="horizontal">
 
@@ -184,7 +203,7 @@
         android:layout_height="wrap_content"
         android:minHeight="@dimen/settings_row_min_height"
         android:paddingVertical="@dimen/padding_small"
-        android:paddingRight="@dimen/padding_normal"
+        android:paddingEnd="@dimen/padding_normal"
         android:background="?attr/selectableItemBackground"
         android:orientation="horizontal">
 
@@ -227,7 +246,7 @@
         android:layout_height="wrap_content"
         android:minHeight="@dimen/settings_row_min_height"
         android:paddingVertical="@dimen/padding_small"
-        android:paddingRight="@dimen/padding_normal"
+        android:paddingEnd="@dimen/padding_normal"
         android:background="?attr/selectableItemBackground"
         android:orientation="horizontal">
 
@@ -254,7 +273,7 @@
         android:layout_height="wrap_content"
         android:minHeight="@dimen/settings_row_min_height"
         android:paddingVertical="@dimen/padding_small"
-        android:paddingRight="@dimen/padding_normal"
+        android:paddingEnd="@dimen/padding_normal"
         android:background="?attr/selectableItemBackground"
         android:orientation="horizontal">
 
@@ -281,7 +300,7 @@
         android:layout_height="wrap_content"
         android:minHeight="@dimen/settings_row_min_height"
         android:paddingVertical="@dimen/padding_small"
-        android:paddingRight="@dimen/padding_normal"
+        android:paddingEnd="@dimen/padding_normal"
         android:background="?attr/selectableItemBackground"
         android:orientation="horizontal">
 
@@ -313,7 +332,7 @@
         android:layout_height="wrap_content"
         android:minHeight="@dimen/settings_row_min_height"
         android:paddingVertical="@dimen/padding_small"
-        android:paddingRight="@dimen/padding_normal"
+        android:paddingEnd="@dimen/padding_normal"
         android:background="?attr/selectableItemBackground"
         android:orientation="horizontal">
 
@@ -346,7 +365,7 @@
         android:layout_height="wrap_content"
         android:minHeight="@dimen/settings_row_min_height"
         android:paddingVertical="@dimen/padding_small"
-        android:paddingRight="@dimen/padding_normal"
+        android:paddingEnd="@dimen/padding_normal"
         android:background="?attr/selectableItemBackground"
         android:orientation="horizontal">
 
@@ -373,7 +392,7 @@
         android:layout_height="wrap_content"
         android:minHeight="@dimen/settings_row_min_height"
         android:paddingVertical="@dimen/padding_small"
-        android:paddingRight="@dimen/padding_normal"
+        android:paddingEnd="@dimen/padding_normal"
         android:background="?attr/selectableItemBackground"
         android:orientation="horizontal">
 

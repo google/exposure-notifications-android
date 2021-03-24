@@ -114,6 +114,8 @@
           <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:importantForAccessibility="no"
+            android:contentDescription="@null"
             app:srcCompat="@drawable/ic_error_outline"
             android:layout_gravity="center_vertical"/>
 
@@ -124,7 +126,8 @@
             android:layout_height="wrap_content"
             android:textAppearance="?attr/textAppearanceBody1"
             android:layout_gravity="center_vertical"
-            android:textColor="@color/code_verification_error"/>
+            android:textColor="@color/material_error_color"
+            android:accessibilityLiveRegion="polite" />
 
         </LinearLayout>
 
@@ -151,7 +154,8 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginVertical="@dimen/padding_normal"
-      android:orientation="horizontal">
+      android:orientation="horizontal"
+      android:baselineAligned="false">
 
       <LinearLayout
         android:layout_width="0dp"

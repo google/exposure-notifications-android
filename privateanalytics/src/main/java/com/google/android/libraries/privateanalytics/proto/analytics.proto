@@ -1,0 +1,103 @@
+/*
+ * Copyright 2021 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
+syntax = "proto2";
+
+option java_package = "com.google.android.libraries.privateanalytics.proto";
+option java_multiple_files = true;
+
+// Parameters for the Prio algorithm https://crypto.stanford.edu/prio/
+message PrioAlgorithmParameters {
+  // Number of bins for this aggregation.
+  optional int32 bins = 1;
+
+  optional double epsilon = 2;
+
+  // The value of prime p used in this aggregation. The prime needs to be
+  // congruent to 1 modulo 2 * next_power_two(bins + 1) to support Fourier
+  // transform.
+  // The aggregation will be performed modulo this prime number. Usually, the
+  // is chosen large enough so that the aggregation happens over the integers.
+  //
+  optional uint64 prime = 3;
+  // The number of servers that will be involved in the aggregation.
+  //
+  // Currently, the library only supports two servers.
+  optional int32 number_servers = 4;
+
+  // If specified, the Hamming weight of the vector will be verified during the
+  // validity check on the server. Furthermore, the differential privacy noise
+  // be selected by replacing the input with a random "hamming_weight"-hot
+  // vector with probability 1/(1+e^epsilon).
+  // If not specified, the input will be randomized element-wise.
+  optional int32 hamming_weight = 5;
+}
+
+message ResponseStatus {
+  // NEXT ID: 5
+  enum StatusCode {
+    // Operation experienced an unknown failure
+    UNKNOWN_FAILURE = 0;
+
+    // Operation finished successfully
+    OK = 1;
+
+    // Operation was cancelled
+    CANCELLED_FAILURE = 2;
+
+    // Operation failed due to an invalid parameter error
+    INVALID_PARAMETER_FAILURE = 3;
+
+    // Operation failed because the Prio library is not available
+    LIBRARY_UNAVAILABLE = 4;
+  }
+
+  // The status code of the response
+  optional StatusCode status_code = 1 [default = UNKNOWN_FAILURE];
+
+  // Detailed error message
+  optional string error_details = 2;
+}
+
+// Response message for packet creation
+message CreatePacketsResponse {
+  // Status of the response
+  optional ResponseStatus response_status = 1;
+
+  // A list of datashares to be dispatched to server(s).
+  repeated bytes shares = 2;
+}
+
+// Parameters for packet creation
+message CreatePacketsParameters {
+  // Parameters for Prio.
+  optional PrioAlgorithmParameters prio_parameters = 1;
+
+  // Public keys of the servers, represented as a Base64 encoded string.
+  repeated string public_keys = 2;
+
+  // Input data. Represented as an array of binary bits in an uint32 array.
+  repeated uint32 data_bits = 3;
+}
+
+message Payload {
+  optional string uuid = 1;
+  optional string created = 2 [deprecated = true];
+  optional PrioAlgorithmParameters prio_params = 3;
+  optional int32 schema_version = 4;
+  optional CreatePacketsResponse packets_response = 5;
+}

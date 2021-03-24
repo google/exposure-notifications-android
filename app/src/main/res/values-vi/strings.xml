@@ -36,7 +36,7 @@
   <string name="onboarding_metrics_description">Nhằm giúp duy trì và cải tiến ứng dụng này, một số dữ liệu hạn chế về hiệu suất và mức sử dụng ứng dụng (đã loại bỏ thông tin nhận dạng cá nhân) sẽ được chia sẻ với Google. Dữ liệu này không xác định danh tính của bạn. %1$s</string>
   <string name="onboarding_confirm_later_title">Tiếp tục tắt Thông báo tiếp xúc?</string>
   <string name="onboarding_confirm_later_detail">Bạn sẽ không nhận được thông báo về khả năng tiếp xúc COVID-19 cho đến khi bật Thông báo tiếp xúc</string>
-  <string name="no_recent_exposure_subtitle">Đang hoạt động và kiểm tra…</string>
+  <string name="no_recent_exposure_subtitle">Đang hoạt động và kiểm tra</string>
   <string name="no_recent_exposure_indicator">Không có lần tiếp xúc nào gần đây</string>
   <string name="app_active_info">Ứng dụng của bạn đang thường xuyên kiểm tra để phát hiện nguy cơ tiếp xúc.</string>
   <string name="notifications_enabled_info">Hiện tại, bạn không có nguy cơ tiếp xúc với người đã báo cáo là bị mắc COVID-19. Bạn sẽ nhận được thông báo nếu ai đó ở gần báo cáo kết quả xét nghiệm dương tính với COVID-19.</string>
@@ -134,6 +134,16 @@
   <string name="ble_off_warning">Để tiếp tục nhận thông báo về khả năng tiếp xúc COVID-19 và chia sẻ kết quả xét nghiệm COVID-19 của bạn, hãy bật Bluetooth</string>
   <string name="location_ble_off_warning">Để tiếp tục nhận thông báo về khả năng tiếp xúc COVID-19 và chia sẻ kết quả xét nghiệm COVID-19 của bạn, hãy bật Bluetooth và tùy chọn cài đặt vị trí trên thiết bị</string>
   <string name="storage_low_warning">Để tiếp tục nhận Thông báo tiếp xúc và chia sẻ kết quả xét nghiệm COVID-19 của bạn, hãy giải phóng không gian lưu trữ trên điện thoại.</string>
+  <string name="not_in_allowlist_warning">Ứng dụng này chưa được phê duyệt. Hãy xem %1$s trong khu vực của bạn.</string>
+  <string name="approved_apps_link_text">các ứng dụng đã được phê duyệt</string>
+  <string name="hw_not_supported_warning">Thiết bị này không hỗ trợ tính năng Thông báo tiếp xúc. Hãy xem %1$s.</string>
+  <string name="device_requirements_link_text">yêu cầu về thiết bị</string>
+  <string name="switch_app_for_exposure_notifications">Chuyển đổi ứng dụng gửi thông báo tiếp xúc?</string>
+  <string name="focus_lost_warning">Tại mỗi thời điểm, bạn chỉ có thể dùng một ứng dụng Thông báo tiếp xúc trên thiết bị.\n\nBạn có muốn chuyển đổi sang ứng dụng %1$s không?</string>
+  <string name="switch_app_for_exposure_notifications_action">Chuyển đổi ứng dụng</string>
+  <string name="en_not_supported_warning">Tính năng Thông báo tiếp xúc không còn hoạt động nữa. %1$s</string>
+  <string name="user_profile_not_supported_warning">Tính năng Thông báo tiếp xúc không hoạt động trên hồ sơ công việc. Hãy thử lại trên hồ sơ cá nhân của bạn.</string>
+  <string name="onboarding_free_up_storage_title">Giải phóng dung lượng bộ nhớ</string>
   <string name="input_error_onset_date_past">Ngày này phải cách hôm nay tối đa %1$s ngày</string>
   <string name="input_error_onset_date_future">Ngày diễn ra trong tương lai</string>
   <string name="network_error_code_invalid">Mã xác minh không trùng khớp. Hãy thử lại.</string>

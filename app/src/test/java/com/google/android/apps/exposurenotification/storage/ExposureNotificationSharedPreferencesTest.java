@@ -21,6 +21,7 @@ import static com.google.common.truth.Truth.assertThat;
 
 import androidx.lifecycle.LiveData;
 import androidx.test.core.app.ApplicationProvider;
+import com.google.android.apps.exposurenotification.riskcalculation.ExposureClassification;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.NotificationInteraction;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.OnboardingStatus;
 import com.google.android.apps.exposurenotification.testsupport.ExposureNotificationRules;
@@ -30,6 +31,7 @@ import dagger.hilt.android.testing.HiltAndroidTest;
 import dagger.hilt.android.testing.HiltTestApplication;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
 import org.junit.Before;
 import org.junit.Rule;
@@ -79,16 +81,21 @@ public class ExposureNotificationSharedPreferencesTest {
   @Test
   public void exposureNotificationLastShownClassification() {
     exposureNotificationSharedPreferences.setPrivateAnalyticsState(true);
-    Instant notificationTime = Instant.ofEpochMilli(123L);
+    Instant notificationTime = Instant.ofEpochMilli(123123123L);
     int classificationIndex = 1;
+    long exposureDay = (notificationTime.getEpochSecond() / TimeUnit.DAYS.toSeconds(1)) - 10;
+    ExposureClassification exposureClassification = ExposureClassification
+        .create(classificationIndex, "", exposureDay);
     exposureNotificationSharedPreferences
-        .setExposureNotificationLastShownClassification(notificationTime, classificationIndex);
+        .setExposureNotificationLastShownClassification(notificationTime, exposureClassification);
 
     assertThat(
         exposureNotificationSharedPreferences.getExposureNotificationLastShownClassification())
         .isEqualTo(classificationIndex);
     assertThat(exposureNotificationSharedPreferences.getExposureNotificationLastShownTime())
         .isEqualTo(notificationTime);
+    assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsLastExposureTime())
+        .isEqualTo(Instant.EPOCH.plus(Duration.ofDays(exposureDay)));
   }
 
   @Test
@@ -132,14 +139,16 @@ public class ExposureNotificationSharedPreferencesTest {
   @Test
   public void clearPrivateAnalyticsFields() {
     exposureNotificationSharedPreferences.setPrivateAnalyticsState(true);
-    Instant zeroTime = Instant.ofEpochMilli(0L);
-    Instant time = Instant.ofEpochMilli(123L);
+    Instant time = Instant.ofEpochMilli(123456789L);
+    int classificationIndex = 1;
+    long exposureDay = (time.getEpochSecond() / TimeUnit.DAYS.toSeconds(1)) - 10;
+    ExposureClassification exposureClassification = ExposureClassification
+        .create(classificationIndex, "", exposureDay);
     exposureNotificationSharedPreferences.setPrivateAnalyticsWorkerLastTime(time);
     exposureNotificationSharedPreferences.setPrivateAnalyticsLastSubmittedCodeTime(time);
     exposureNotificationSharedPreferences.setPrivateAnalyticsLastSubmittedKeysTime(time);
     exposureNotificationSharedPreferences
-        .setExposureNotificationLastShownClassification(time, /* classificationIndex= */
-            1);
+        .setExposureNotificationLastShownClassification(time, exposureClassification);
     exposureNotificationSharedPreferences
         .setExposureNotificationLastInteraction(time, NotificationInteraction.CLICKED, 2);
 
@@ -153,7 +162,7 @@ public class ExposureNotificationSharedPreferencesTest {
         .isEqualTo(time);
     assertThat(
         exposureNotificationSharedPreferences.getExposureNotificationLastShownClassification())
-        .isEqualTo(1);
+        .isEqualTo(classificationIndex);
     assertThat(exposureNotificationSharedPreferences.getExposureNotificationLastInteractionTime())
         .isEqualTo(time);
     assertThat(exposureNotificationSharedPreferences.getExposureNotificationLastInteractionType())
@@ -162,26 +171,30 @@ public class ExposureNotificationSharedPreferencesTest {
         exposureNotificationSharedPreferences
             .getExposureNotificationLastInteractionClassification())
         .isEqualTo(2);
+    assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsLastExposureTime())
+        .isEqualTo(Instant.EPOCH.plus(Duration.ofDays(exposureDay)));
 
     // Clear all the Private Analytics fields.
     exposureNotificationSharedPreferences.clearPrivateAnalyticsFields();
 
     assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsLastSubmittedCodeTime())
-        .isEqualTo(zeroTime);
+        .isEqualTo(Instant.EPOCH);
     assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsLastSubmittedKeysTime())
-        .isEqualTo(zeroTime);
+        .isEqualTo(Instant.EPOCH);
     assertThat(exposureNotificationSharedPreferences.getExposureNotificationLastShownTime())
-        .isEqualTo(zeroTime);
+        .isEqualTo(Instant.EPOCH);
     assertThat(
         exposureNotificationSharedPreferences.getExposureNotificationLastShownClassification())
         .isEqualTo(0);
     assertThat(exposureNotificationSharedPreferences.getExposureNotificationLastInteractionTime())
-        .isEqualTo(zeroTime);
+        .isEqualTo(Instant.EPOCH);
     assertThat(exposureNotificationSharedPreferences.getExposureNotificationLastInteractionType())
         .isEqualTo(NotificationInteraction.UNKNOWN);
     assertThat(
         exposureNotificationSharedPreferences.getExposureNotificationLastShownClassification())
         .isEqualTo(0);
+    assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsLastExposureTime())
+        .isEqualTo(Instant.EPOCH);
 
     // The worker time is the only field not cleared.
     assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsWorkerLastTime())
@@ -192,6 +205,10 @@ public class ExposureNotificationSharedPreferencesTest {
   public void clearValidPrivateAnalyticsFieldsFails() {
     Instant time = clock.now().minus(Duration.ofDays(2));
     Instant validTime = time.plusSeconds(900);
+    int classificationIndex = 2;
+    long exposureDay = (time.getEpochSecond() / TimeUnit.DAYS.toSeconds(1)) - 10;
+    ExposureClassification exposureClassification = ExposureClassification
+        .create(classificationIndex, "", exposureDay);
 
     exposureNotificationSharedPreferences.setPrivateAnalyticsState(true);
 
@@ -199,10 +216,10 @@ public class ExposureNotificationSharedPreferencesTest {
     exposureNotificationSharedPreferences.setPrivateAnalyticsLastSubmittedCodeTime(validTime);
     exposureNotificationSharedPreferences.setPrivateAnalyticsLastSubmittedKeysTime(validTime);
     exposureNotificationSharedPreferences
-        .setExposureNotificationLastShownClassification(validTime, /* classificationIndex= */
-            1);
+        .setExposureNotificationLastShownClassification(validTime, exposureClassification);
     exposureNotificationSharedPreferences
-        .setExposureNotificationLastInteraction(validTime, NotificationInteraction.CLICKED, 2);
+        .setExposureNotificationLastInteraction(validTime, NotificationInteraction.CLICKED,
+            classificationIndex);
 
     // Clear all the expired Private Analytics fields.
     exposureNotificationSharedPreferences.clearPrivateAnalyticsFieldsBefore(time);
@@ -216,7 +233,9 @@ public class ExposureNotificationSharedPreferencesTest {
         .isEqualTo(validTime);
     assertThat(
         exposureNotificationSharedPreferences.getExposureNotificationLastShownClassification())
-        .isEqualTo(1);
+        .isEqualTo(classificationIndex);
+    assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsLastExposureTime())
+        .isEqualTo(Instant.EPOCH.plus(Duration.ofDays(exposureDay)));
     assertThat(exposureNotificationSharedPreferences.getExposureNotificationLastInteractionTime())
         .isEqualTo(validTime);
     assertThat(exposureNotificationSharedPreferences.getExposureNotificationLastInteractionType())
@@ -224,14 +243,17 @@ public class ExposureNotificationSharedPreferencesTest {
     assertThat(
         exposureNotificationSharedPreferences
             .getExposureNotificationLastInteractionClassification())
-        .isEqualTo(2);
+        .isEqualTo(classificationIndex);
   }
 
   @Test
-  public void clearExpiredPrivateAnalyticsFieldsSuceeds() {
+  public void clearExpiredPrivateAnalyticsFieldsSucceeds() {
     Instant time = clock.now().minus(Duration.ofDays(2));
-    Instant expiredTime = time.minusSeconds(900);
-    Instant zeroTime = Instant.EPOCH;
+    Instant expiredTime = time.minusSeconds(100000L);
+    int classificationIndex = 2;
+    long exposureDay = 1;
+    ExposureClassification exposureClassification = ExposureClassification
+        .create(classificationIndex, "", exposureDay);
 
     exposureNotificationSharedPreferences.setPrivateAnalyticsState(true);
 
@@ -239,26 +261,28 @@ public class ExposureNotificationSharedPreferencesTest {
     exposureNotificationSharedPreferences.setPrivateAnalyticsLastSubmittedCodeTime(expiredTime);
     exposureNotificationSharedPreferences.setPrivateAnalyticsLastSubmittedKeysTime(expiredTime);
     exposureNotificationSharedPreferences
-        .setExposureNotificationLastShownClassification(expiredTime, /* classificationIndex= */
-            1);
+        .setExposureNotificationLastShownClassification(expiredTime, exposureClassification);
     exposureNotificationSharedPreferences
-        .setExposureNotificationLastInteraction(expiredTime, NotificationInteraction.CLICKED, 2);
+        .setExposureNotificationLastInteraction(expiredTime, NotificationInteraction.CLICKED,
+            classificationIndex);
 
     // Clear all the expired Private Analytics fields.
     exposureNotificationSharedPreferences.clearPrivateAnalyticsFieldsBefore(time);
 
     // Default values should be recovered.
     assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsLastSubmittedCodeTime())
-        .isEqualTo(zeroTime);
+        .isEqualTo(Instant.EPOCH);
     assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsLastSubmittedKeysTime())
-        .isEqualTo(zeroTime);
+        .isEqualTo(Instant.EPOCH);
     assertThat(exposureNotificationSharedPreferences.getExposureNotificationLastShownTime())
-        .isEqualTo(zeroTime);
+        .isEqualTo(Instant.EPOCH);
+    assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsLastExposureTime())
+        .isEqualTo(Instant.EPOCH);
     assertThat(
         exposureNotificationSharedPreferences.getExposureNotificationLastShownClassification())
         .isEqualTo(0);
     assertThat(exposureNotificationSharedPreferences.getExposureNotificationLastInteractionTime())
-        .isEqualTo(zeroTime);
+        .isEqualTo(Instant.EPOCH);
     assertThat(exposureNotificationSharedPreferences.getExposureNotificationLastInteractionType())
         .isEqualTo(NotificationInteraction.UNKNOWN);
     assertThat(
@@ -269,15 +293,17 @@ public class ExposureNotificationSharedPreferencesTest {
   @Test
   public void classificationIndexMustBePositive() {
     exposureNotificationSharedPreferences.setPrivateAnalyticsState(true);
-    Instant zeroTime = Instant.EPOCH;
-
-    Instant time = Instant.ofEpochSecond(123L);
+    Instant time = clock.now();
     int classificationIndex = 0;
+    long exposureDay = (time.getEpochSecond() / TimeUnit.DAYS.toSeconds(1)) - 10;
+    ExposureClassification exposureClassification = ExposureClassification
+        .create(classificationIndex, "", exposureDay);
+
     exposureNotificationSharedPreferences
-        .setExposureNotificationLastShownClassification(time, classificationIndex);
+        .setExposureNotificationLastShownClassification(time, exposureClassification);
     exposureNotificationSharedPreferences
         .setExposureNotificationLastInteraction(time, NotificationInteraction.CLICKED,
-            classificationIndex);
+            exposureClassification.getClassificationIndex());
 
     // Default values should be recovered.
     assertThat(exposureNotificationSharedPreferences.getExposureNotificationLastShownTime())
@@ -292,8 +318,9 @@ public class ExposureNotificationSharedPreferencesTest {
     assertThat(
         exposureNotificationSharedPreferences.getExposureNotificationLastShownClassification())
         .isEqualTo(0);
+    assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsLastExposureTime())
+        .isEqualTo(Instant.EPOCH);
   }
-
 
   @Test
   public void onboardedState_onboarded() {

@@ -36,7 +36,7 @@
   <string name="onboarding_metrics_description">[Ţö ĥéļþ måîñţåîñ åñð îmþŕövé ţĥé åþþ, šömé ļîmîţéð ðé-îðéñţîƒîéð ðåţå åбöûţ åþþ þéŕƒöŕmåñçé åñð ûšåĝé îš šĥåŕéð ŵîţĥ Ĝööĝļé. Ţĥîš ðåţå ðöéš ñöţ îðéñţîƒý ýöû. ᐅ%1$sᐊ one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty twentyone twentytwo twentythree]</string>
   <string name="onboarding_confirm_later_title">[Ķééþ Éxþöšûŕé Ñöţîƒîçåţîöñ ţûŕñéð öƒƒ¿ one two three four five six seven eight]</string>
   <string name="onboarding_confirm_later_detail">[Ûñţîļ Éxþöšûŕé Ñöţîƒîçåţîöñš åŕé ţûŕñéð öñ, ýöû ŵöñ’ţ бé ñöţîƒîéð öƒ þöššîбļé éxþöšûŕé ţö ÇÖVÎÐ-19 one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen]</string>
-  <string name="no_recent_exposure_subtitle">[Åçţîvé åñð çĥéçķîñĝ … one two three four five]</string>
+  <string name="no_recent_exposure_subtitle">[Åçţîvé åñð çĥéçķîñĝ one two three]</string>
   <string name="no_recent_exposure_indicator">[Ñö ŕéçéñţ éxþöšûŕé one two three]</string>
   <string name="app_active_info">[Ýöûŕ åþþ îš ŕéĝûļåŕļý çĥéçķîñĝ ƒöŕ þöššîбļé éxþöšûŕéš. one two three four five six seven eight nine ten eleven]</string>
   <string name="notifications_enabled_info">[Ţĥéŕé îš çûŕŕéñţļý ñö ŕéþöŕţéð ÇÖVÎÐ-19 éxþöšûŕé ŕîšķ ƒöŕ ýöû. Ýöû\'ļļ бé ñöţîƒîéð îƒ šöméöñé ýöû ŵéŕé ñéåŕ ŕéþöŕţš å þöšîţîvé ÇÖVÎÐ-19 ţéšţ ŕéšûļţ. one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty twentyone twentytwo]</string>
@@ -134,6 +134,16 @@
   <string name="ble_off_warning">[Ţö çöñţîñûé ţö ĝéţ þöššîбļé ÇÖVÎÐ-19 éxþöšûŕé ñöţîƒîçåţîöñš &amp; šĥåŕé ýöûŕ ÇÖVÎÐ-19 ţéšţ ŕéšûļţ, ţûŕñ öñ Бļûéţööţĥ one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen]</string>
   <string name="location_ble_off_warning">[Ţö çöñţîñûé ţö ĝéţ þöššîбļé ÇÖVÎÐ-19 éxþöšûŕé ñöţîƒîçåţîöñš &amp; šĥåŕé ýöûŕ ÇÖVÎÐ-19 ţéšţ ŕéšûļţ, ţûŕñ öñ Бļûéţööţĥ åñð ţĥé ðévîçé ļöçåţîöñ šéţţîñĝ one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty twentyone twentytwo]</string>
   <string name="storage_low_warning">[Ţö çöñţîñûé ţö ĝéţ Éxþöšûŕé Ñöţîƒîçåţîöñš &amp; šĥåŕé ýöûŕ ÇÖVÎÐ-19 ţéšţ ŕéšûļţ, ƒŕéé ûþ šţöŕåĝé šþåçé öñ ýöûŕ þĥöñé. one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen]</string>
+  <string name="not_in_allowlist_warning">[Ţĥîš åþþ îšñ\’ţ åþþŕövéð. Šéé ᐅ%1$sᐊ îñ ýöûŕ ŕéĝîöñ. one two three four five six seven eight nine ten]</string>
+  <string name="approved_apps_link_text">[åþþŕövéð åþþš one two]</string>
+  <string name="hw_not_supported_warning">[Ţĥîš ðévîçé ðöéšñ\’ţ šûþþöŕţ Éxþöšûŕé Ñöţîƒîçåţîöñš. Šéé ᐅ%1$sᐊ. one two three four five six seven eight nine ten eleven twelve]</string>
+  <string name="device_requirements_link_text">[ðévîçé ŕéqûîŕéméñţš one two three]</string>
+  <string name="switch_app_for_exposure_notifications">[Šŵîţçĥ åþþ ƒöŕ Éxþöšûŕé Ñöţîƒîçåţîöñš¿ one two three four five six seven eight]</string>
+  <string name="focus_lost_warning">[Ýöû çåñ ûšé öñļý öñé Éxþöšûŕé Ñöţîƒîçåţîöñš åþþ öñ ýöûŕ ðévîçé åţ å ţîmé.\ñ\ñÐö ýöû ŵåñţ ţö šŵîţçĥ ţö ţĥé ᐅ%1$sᐊ åþþ¿ one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen]</string>
+  <string name="switch_app_for_exposure_notifications_action">[Šŵîţçĥ åþþ one two]</string>
+  <string name="en_not_supported_warning">[Éxþöšûŕé Ñöţîƒîçåţîöñš îš ñö ļöñĝéŕ åvåîļåбļé. ᐅ%1$sᐊ one two three four five six seven eight nine ten eleven]</string>
+  <string name="user_profile_not_supported_warning">[Éxþöšûŕé Ñöţîƒîçåţîöñš îšñ\’ţ åvåîļåбļé öñ ýöûŕ ŵöŕķ þŕöƒîļé. Ţŕý åĝåîñ öñ ýöûŕ þéŕšöñåļ þŕöƒîļé. one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen]</string>
+  <string name="onboarding_free_up_storage_title">[Fŕéé ûþ šţöŕåĝé šþåçé one two three four five]</string>
   <string name="input_error_onset_date_past">[Ðåţé šĥöûļð öççûŕ ŵîţĥîñ ļåšţ ᐅ%1$sᐊ ðåýš öƒ ţöðåý\’š ðåţé one two three four five six seven eight nine ten eleven]</string>
   <string name="input_error_onset_date_future">[Ðåţé öççûŕš îñ ţĥé ƒûţûŕé one two three four five six]</string>
   <string name="network_error_code_invalid">[Ţĥé véŕîƒîçåţîöñ çöðé ðöéšñ’ţ måţçĥ. Ţŕý åĝåîñ. one two three four five six seven eight nine ten]</string>

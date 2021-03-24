@@ -36,7 +36,7 @@
   <string name="onboarding_metrics_description">Google отримає обмежений доступ до загальних даних про використання та продуктивність додатка, щоб підтримувати й покращувати його роботу. За цією інформацією неможливо встановити вашу особу. %1$s</string>
   <string name="onboarding_confirm_later_title">Не вмикати сповіщення про ризик зараження?</string>
   <string name="onboarding_confirm_later_detail">Поки сповіщення вимкнено, вас не повідомлятимуть про ризик зараження COVID-19</string>
-  <string name="no_recent_exposure_subtitle">Додаток активний і виконує перевірку…</string>
+  <string name="no_recent_exposure_subtitle">Додаток активний і виконує перевірку</string>
   <string name="no_recent_exposure_indicator">Немає нещодавніх ризиків зараження</string>
   <string name="app_active_info">Додаток регулярно перевіряє можливі ризики зараження.</string>
   <string name="notifications_enabled_info">Наразі ризику зараження COVID-19 для вас не виявлено. Ви отримаєте сповіщення, якщо людина, яка була поруч із вами, повідомить про позитивний тест на COVID-19.</string>
@@ -134,6 +134,16 @@
   <string name="ble_off_warning">Щоб отримувати та ініціювати сповіщення про ризик зараження COVID-19, увімкніть Bluetooth</string>
   <string name="location_ble_off_warning">Щоб отримувати та ініціювати сповіщення про ризик зараження COVID-19, увімкніть Bluetooth і доступ до геоданих пристрою</string>
   <string name="storage_low_warning">Щоб отримувати та ініціювати сповіщення про ризик зараження COVID-19, звільніть пам\'ять на телефоні.</string>
+  <string name="not_in_allowlist_warning">Додаток не схвалено. Перегляньте %1$s для свого регіону.</string>
+  <string name="approved_apps_link_text">схвалені додатки</string>
+  <string name="hw_not_supported_warning">Цей пристрій не підтримує сповіщення про ризик зараження. Перегляньте %1$s.</string>
+  <string name="device_requirements_link_text">вимоги до пристроїв</string>
+  <string name="switch_app_for_exposure_notifications">Вибрати інший додаток для сповіщень про ризик зараження?</string>
+  <string name="focus_lost_warning">Ви не можете використовувати на пристрої одночасно кілька додатків для сповіщень про ризик зараження.\n\nВикористовувати додаток %1$s?</string>
+  <string name="switch_app_for_exposure_notifications_action">Вибрати додаток</string>
+  <string name="en_not_supported_warning">Система сповіщення про ризик зараження більше не доступна. %1$s</string>
+  <string name="user_profile_not_supported_warning">Система сповіщення про ризик зараження недоступна у вашому робочому профілі. Повторіть спробу в особистому профілі.</string>
+  <string name="onboarding_free_up_storage_title">Звільніть місце в пам\'яті</string>
   <string name="input_error_onset_date_past">Дата має перебувати в діапазоні %1$s дн. від сьогоднішньої</string>
   <string name="input_error_onset_date_future">Указана дата ще не настала</string>
   <string name="network_error_code_invalid">Код підтвердження не збігається. Повторіть спробу.</string>

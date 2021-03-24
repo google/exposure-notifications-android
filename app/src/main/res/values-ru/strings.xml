@@ -134,6 +134,16 @@
   <string name="ble_off_warning">Чтобы получать сообщения о возможных контактах с инфицированными COVID-19 и отправлять результаты своих тестов на COVID-19, включите Bluetooth.</string>
   <string name="location_ble_off_warning">Чтобы получать сообщения о возможных контактах с инфицированными COVID-19 и отправлять результаты своих тестов на COVID-19, включите Bluetooth и геолокацию на устройстве.</string>
   <string name="storage_low_warning">Чтобы получать сообщения о возможных контактах с инфицированными COVID-19 и отправлять результаты своих анализов на COVID-19, освободите пространство в хранилище устройства.</string>
+  <string name="not_in_allowlist_warning">Это приложение не одобрено. Посмотрите %1$s для вашего региона.</string>
+  <string name="approved_apps_link_text">одобренные приложения</string>
+  <string name="hw_not_supported_warning">Уведомления о риске инфицирования не поддерживаются на этом устройстве. Посмотрите %1$s.</string>
+  <string name="device_requirements_link_text">требования к устройству</string>
+  <string name="switch_app_for_exposure_notifications">Изменить приложение \"Уведомления о риске инфицирования\"?</string>
+  <string name="focus_lost_warning">На устройстве нельзя использовать больше одного приложения \"Уведомления о риске инфицирования\".\n\nХотите переключиться на приложение \"%1$s\"?</string>
+  <string name="switch_app_for_exposure_notifications_action">Переключиться</string>
+  <string name="en_not_supported_warning">Уведомления о риске инфицирования больше не доступны. %1$s</string>
+  <string name="user_profile_not_supported_warning">Уведомления о риске инфицирования недоступны в рабочем профиле. Попробуйте ещё раз из личного профиля.</string>
+  <string name="onboarding_free_up_storage_title">Освободите хранилище</string>
   <string name="input_error_onset_date_past">Дата должна быть в пределах последних %1$s дн. от сегодняшней.</string>
   <string name="input_error_onset_date_future">Выберите дату, которая уже наступила.</string>
   <string name="network_error_code_invalid">Код подтверждения не совпадает. Повторите попытку.</string>

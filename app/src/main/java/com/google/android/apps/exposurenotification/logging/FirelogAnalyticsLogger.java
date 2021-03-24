@@ -20,15 +20,14 @@ package com.google.android.apps.exposurenotification.logging;
 import android.content.Context;
 import android.util.Log;
 import androidx.annotation.AnyThread;
-import androidx.annotation.Nullable;
 import androidx.annotation.UiThread;
 import androidx.annotation.WorkerThread;
 import androidx.concurrent.futures.CallbackToFutureAdapter;
-import com.android.volley.VolleyError;
 import com.google.android.apps.exposurenotification.BuildConfig;
 import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.common.Qualifiers.BackgroundExecutor;
 import com.google.android.apps.exposurenotification.common.time.Clock;
+import com.google.android.apps.exposurenotification.network.VolleyUtils;
 import com.google.android.apps.exposurenotification.proto.ApiCall;
 import com.google.android.apps.exposurenotification.proto.ApiCall.ApiCallType;
 import com.google.android.apps.exposurenotification.proto.EnxLogExtension;
@@ -40,7 +39,6 @@ import com.google.android.apps.exposurenotification.proto.UiInteraction.EventTyp
 import com.google.android.apps.exposurenotification.proto.WorkManagerTask;
 import com.google.android.apps.exposurenotification.proto.WorkManagerTask.Status;
 import com.google.android.apps.exposurenotification.proto.WorkManagerTask.WorkerTask;
-import com.google.android.apps.exposurenotification.network.VolleyUtils;
 import com.google.android.apps.exposurenotification.storage.AnalyticsLoggingEntity;
 import com.google.android.apps.exposurenotification.storage.AnalyticsLoggingRepository;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
@@ -62,7 +60,9 @@ import javax.inject.Inject;
 import org.threeten.bp.Duration;
 import org.threeten.bp.Instant;
 
-/** Analytics logger which logs through Firelog transport and logcat */
+/**
+ * Analytics logger which logs through Firelog transport and logcat
+ */
 public class FirelogAnalyticsLogger implements AnalyticsLogger {
 
   private final String healthAuthorityCode;

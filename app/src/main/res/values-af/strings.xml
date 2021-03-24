@@ -36,7 +36,7 @@
   <string name="onboarding_metrics_description">Sekere beperkte, gedeïdentifiseerde data oor programwerkverrigting en -gebruik sal met Google gedeel word om te help om die program te onderhou en beter te maak. Hierdie data identifiseer jou nie. %1$s</string>
   <string name="onboarding_confirm_later_title">Hou Blootstellingkennisgewings afgeskakel?</string>
   <string name="onboarding_confirm_later_detail">Jy sal nie oor moontlike blootstelling aan COVID-19 in kennis gestel word voordat Blootstellingkennisgewings aangeskakel word nie</string>
-  <string name="no_recent_exposure_subtitle">Aktief en kyk tans …</string>
+  <string name="no_recent_exposure_subtitle">Aktief en kyk tans</string>
   <string name="no_recent_exposure_indicator">Geen onlangse blootstelling nie</string>
   <string name="app_active_info">Jou program kyk gereeld vir moontlike blootstellings.</string>
   <string name="notifications_enabled_info">Daar is tans geen gerapporteerde COVID-19-blootstellingrisiko vir jou nie. Jy sal in kennis gestel word as iemand naby wie jy was \'n positiewe COVID-19-toetsuitslag aanmeld.</string>
@@ -134,6 +134,16 @@
   <string name="ble_off_warning">Skakel Bluetooth aan om aan te hou om kennisgewings oor moontlike COVID-19-blootstelling te kry en jou COVID-19-toetsuitslag te deel</string>
   <string name="location_ble_off_warning">Skakel Bluetooth en die toestel se ligginginstelling aan om aan te hou om kennisgewings oor moontlike COVID-19-blootstelling te kry en jou COVID-19-toetsuitslag te deel</string>
   <string name="storage_low_warning">Maak bergingspasie op jou foon beskikbaar om aan te hou om Blootstellingkenisgewings te kry en jou COVID-19-toetsuitslag te deel.</string>
+  <string name="not_in_allowlist_warning">Hierdie program is nie goedgekeur nie. Sien %1$s in jou streek.</string>
+  <string name="approved_apps_link_text">goedgekeurde programme</string>
+  <string name="hw_not_supported_warning">Hierdie toestel steun nie Blootstellingkennisgewings nie. Raadpleeg %1$s.</string>
+  <string name="device_requirements_link_text">toestelvereistes</string>
+  <string name="switch_app_for_exposure_notifications">Wissel program vir Blootstellingkennisgewings?</string>
+  <string name="focus_lost_warning">Jy kan net een Blootstellingkennisgewings-program op \'n slag op jou toestel gebruik.\n\nWil jy na die %1$s-program toe oorskakel?</string>
+  <string name="switch_app_for_exposure_notifications_action">Wissel program</string>
+  <string name="en_not_supported_warning">Blootstellingkennisgewings is nie meer beskikbaar nie. %1$s</string>
+  <string name="user_profile_not_supported_warning">Blootstellingkennisgewings is nie op jou werkprofiel beskikbaar nie. Probeer weer op jou persoonlike profiel.</string>
+  <string name="onboarding_free_up_storage_title">Maak bergingspasie beskikbaar</string>
   <string name="input_error_onset_date_past">Datum moet binne %1$s dae voor vandag se datum wees</string>
   <string name="input_error_onset_date_future">Datum is in die toekoms</string>
   <string name="network_error_code_invalid">Die verifikasiekode stem nie ooreen nie. Probeer weer.</string>

@@ -81,7 +81,7 @@ import org.robolectric.annotation.Config;
     DbModule.class})
 public class DiagnosisKeyDownloaderTest {
 
-  private static Joiner NEWLINE_JOINER = Joiner.on("\n");
+  private static final Joiner NEWLINE_JOINER = Joiner.on("\n");
   private static final AtomicInteger UNIQUE_INT = new AtomicInteger(1);
 
   // Having uninstalled some modules above (@UninstallModules), we need to provide everything they

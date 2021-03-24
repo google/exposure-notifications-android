@@ -36,7 +36,7 @@
   <string name="onboarding_metrics_description">برای کمک به نگهداری و بهبود برنامه، برخی داده‌هایی محدود و غیرقابل‌شناسایی درباره عملکرد و استفاده از برنامه، با Google هم‌رسانی می‌شود. این داده‌ها هویت شما را فاش نمی‌کند. %1$s</string>
   <string name="onboarding_confirm_later_title">«اعلان تماس‌های پرخطر» خاموش بماند؟</string>
   <string name="onboarding_confirm_later_detail">اگر «اعلان تماس‌های پرخطر» را روشن نکنید، از تماس پرخطر احتمالی کووید-۱۹ مطلع نمی‌شوید</string>
-  <string name="no_recent_exposure_subtitle">فعال و درحال بررسی …</string>
+  <string name="no_recent_exposure_subtitle">فعال و درحال بررسی</string>
   <string name="no_recent_exposure_indicator">تماس پرخطر جدیدی وجود ندارد</string>
   <string name="app_active_info">برنامه‌تان به‌طور مرتب درحال بررسی است تا تماس‌های پرخطر احتمالی را پیدا کند.</string>
   <string name="notifications_enabled_info">درحال‌حاضر هیچ گزارشی مبنی بر تماس پرخطر با کووید-۱۹ برای شما وجود ندارد. اگر نتیجه آزمایش کووید-۱۹ یکی از افرادی که نزدیک شما بوده‌اند مثبت گزارش شود مطلع خواهید شد.</string>
@@ -134,6 +134,16 @@
   <string name="ble_off_warning">برای ادامه دریافت اعلان‌های تماس پرخطر احتمالی با کووید-۱۹ و هم‌رسانی کردن نتیجه آزمایش کووید-۱۹ خود، بلوتوث را روشن کنید</string>
   <string name="location_ble_off_warning">برای ادامه دریافت اعلان‌های تماس پرخطر احتمالی با کووید-۱۹ و هم‌رسانی کردن نتیجه آزمایش کووید-۱۹ خود، بلوتوث و تنظیم مکان دستگاه را روشن کنید</string>
   <string name="storage_low_warning">برای ادامه دریافت «اعلان تماس‌های پرخطر کووید-۱۹» احتمالی و هم‌رسانی کردن نتیجه آزمایش کووید-۱۹ خود، فضای ذخیره‌سازی در تلفنتان آزاد کنید.</string>
+  <string name="not_in_allowlist_warning">این برنامه تأیید نشده است. %1$s در منطقه‌تان را ببینید.</string>
+  <string name="approved_apps_link_text">برنامه‌های تأییدشده</string>
+  <string name="hw_not_supported_warning">این دستگاه از «اعلان تماس‌های پرخطر» پشتیبانی نمی‌کند. %1$s را ببینید.</string>
+  <string name="device_requirements_link_text">شرایط لازم دستگاه</string>
+  <string name="switch_app_for_exposure_notifications">برنامه مربوط به «اعلان تماس‌های پرخطر» عوض شود؟</string>
+  <string name="focus_lost_warning">در هر زمان، فقط می‌توانید از یک برنامه «اعلان تماس‌های پرخطر» در دستگاهتان استفاده کنید.\n\nآیا می‌خواهید به‌جای برنامه فعلی از برنامه %1$s استفاده شود؟</string>
+  <string name="switch_app_for_exposure_notifications_action">عوض کردن برنامه</string>
+  <string name="en_not_supported_warning">«اعلان تماس‌های پرخطر» دیگر دردسترس نیست. %1$s</string>
+  <string name="user_profile_not_supported_warning">«اعلان تماس‌های پرخطر» در نمایه کاری‌تان دردسترس نیست. در نمایه شخصی‌تان دوباره امتحان کنید.</string>
+  <string name="onboarding_free_up_storage_title">آزاد کردن فضای ذخیره‌سازی</string>
   <string name="input_error_onset_date_past">تاریخ باید بین تاریخ امروز و %1$s روز گذشته باشد</string>
   <string name="input_error_onset_date_future">تاریخ در آینده است</string>
   <string name="network_error_code_invalid">کد راستی‌آزمایی مطابقت ندارد. دوباره امتحان کنید.</string>

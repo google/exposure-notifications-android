@@ -36,7 +36,7 @@
   <string name="onboarding_metrics_description">Para axudar a manter e mellorar a aplicación, compártense con Google algúns datos limitados e anónimos sobre o rendemento e o uso da aplicación. Estes datos non permiten identificarte. %1$s</string>
   <string name="onboarding_confirm_later_title">Queres manter desactivadas as notificacións por exposición?</string>
   <string name="onboarding_confirm_later_detail">Mentres non as actives, non recibirás notificacións sobre as posibles exposicións á COVID-19</string>
-  <string name="no_recent_exposure_subtitle">Aplicación activa e realizando comprobacións…</string>
+  <string name="no_recent_exposure_subtitle">Aplicación activa e realizando comprobacións</string>
   <string name="no_recent_exposure_indicator">Non te expuxeches recentemente</string>
   <string name="app_active_info">A aplicación comproba de forma habitual as posibles exposicións.</string>
   <string name="notifications_enabled_info">Non se nos informou de que correses risco de exposición á COVID-19. Se alguén que estivese preto de ti nos informa de que deu positivo nunha proba da COVID-19, notificarémoscho.</string>
@@ -134,6 +134,16 @@
   <string name="ble_off_warning">Para continuar recibindo notificacións por posible exposición á COVID-19 e compartir o resultado da túa proba da COVID-19, activa o Bluetooth</string>
   <string name="location_ble_off_warning">Para continuar recibindo notificacións por posible exposición á COVID-19 e compartir o resultado da túa proba, activa o Bluetooth e a configuración de localización do dispositivo</string>
   <string name="storage_low_warning">Para continuar recibindo notificacións por exposición e compartir o resultado da túa proba da COVID-19, libera espazo de almacenamento no teu teléfono.</string>
+  <string name="not_in_allowlist_warning">Esta aplicación non está aprobada. Consulta as %1$s para a túa rexión.</string>
+  <string name="approved_apps_link_text">aplicacións aprobadas</string>
+  <string name="hw_not_supported_warning">Este dispositivo non é compatible con Notificacións por exposición. Consulta os %1$s.</string>
+  <string name="device_requirements_link_text">requisitos dos dispositivos</string>
+  <string name="switch_app_for_exposure_notifications">Queres cambiar de app para recibir estas notificacións?</string>
+  <string name="focus_lost_warning">Non se poden usar varias aplicacións de Notificacións por exposición no mesmo dispositivo á vez.\n\nQueres cambiar á aplicación %1$s?</string>
+  <string name="switch_app_for_exposure_notifications_action">Cambiar de aplicación</string>
+  <string name="en_not_supported_warning">Notificacións por exposición xa non está dispoñible. %1$s</string>
+  <string name="user_profile_not_supported_warning">Notificacións por exposición non está dispoñible no teu perfil de traballo. Téntao de novo desde o teu perfil persoal.</string>
+  <string name="onboarding_free_up_storage_title">Libera espazo de almacenamento</string>
   <string name="input_error_onset_date_past">A data debe corresponder aos últimos %1$s días anteriores a hoxe</string>
   <string name="input_error_onset_date_future">A data pertence ao futuro</string>
   <string name="network_error_code_invalid">O código de verificación non coincide. Téntao de novo.</string>

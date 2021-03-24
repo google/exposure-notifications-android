@@ -77,7 +77,6 @@ public class HistogramMetricTest {
   public void setup() {
     this.histogramMetric =
         new HistogramMetric(
-            context,
             sameThreadScheduledExecutorService,
             exposureNotificationClientWrapper,
             HAConfigObjects.DAILY_SUMMARIES_CONFIG,
@@ -124,18 +123,18 @@ public class HistogramMetricTest {
     when(exposureNotificationClientWrapper.getExposureWindows())
         .thenReturn(Tasks.forResult(windows));
     ListenableFuture<List<Integer>> val = histogramMetric.getDataVector();
-    /**
-     * Attenuation is set to 70 -> falls under the 5th attenuation bin
-     *
-     * Infectiousness is set to 1 -> falls under the 2nd Infectiousness bin
-     *
-     * Duration is set to 400 -> falls under the 2nd duration bin
-     *
-     * Clock is now -> falls under 1st day bin
-     *
-     * <p>(bin's are zero indexed so minus 1) We'd expect a given vector with (dayBin=0,
-     * infectiousness=1, attenuation=3, duration=1) set to true and duration=0 for all other combos
-     * of infectiousness, attenuation and dayBin set to true
+    /*
+      Attenuation is set to 70 -> falls under the 5th attenuation bin
+
+      Infectiousness is set to 1 -> falls under the 2nd Infectiousness bin
+
+      Duration is set to 400 -> falls under the 2nd duration bin
+
+      Clock is now -> falls under 1st day bin
+
+      <p>(bin's are zero indexed so minus 1) We'd expect a given vector with (dayBin=0,
+      infectiousness=1, attenuation=3, duration=1) set to true and duration=0 for all other combos
+      of infectiousness, attenuation and dayBin set to true
      */
 
     // THEN
@@ -234,18 +233,18 @@ public class HistogramMetricTest {
     when(exposureNotificationClientWrapper.getExposureWindows())
         .thenReturn(Tasks.forResult(windows));
     ListenableFuture<List<Integer>> val = histogramMetric.getDataVector();
-    /**
-     * Attenuation is set to 65 -> falls under the 4th attenuation bin
-     *
-     * Infectiousness is set to 1 -> falls under the 2nd Infectiousness bin
-     *
-     * Duration is set to 400 + 602 = 1002 -> falls under 4th duration bin
-     *
-     * Clock is now -> falls under 1st day bin
-     *
-     * <p>(bin's are zero indexed so minus 1) We'd expect a given vector with (dayBin=0,
-     * infectiousness=1, attenuation=3, duration=3) set to true and duration=0 for all other combos
-     * of infectiousness, attenuation and dayBin set to true
+    /*
+      Attenuation is set to 65 -> falls under the 4th attenuation bin
+
+      Infectiousness is set to 1 -> falls under the 2nd Infectiousness bin
+
+      Duration is set to 400 + 602 = 1002 -> falls under 4th duration bin
+
+      Clock is now -> falls under 1st day bin
+
+      <p>(bin's are zero indexed so minus 1) We'd expect a given vector with (dayBin=0,
+      infectiousness=1, attenuation=3, duration=3) set to true and duration=0 for all other combos
+      of infectiousness, attenuation and dayBin set to true
      */
     // THEN
     // Start with an empty duration vector
@@ -294,21 +293,21 @@ public class HistogramMetricTest {
     when(exposureNotificationClientWrapper.getExposureWindows())
         .thenReturn(Tasks.forResult(windows));
     ListenableFuture<List<Integer>> val = histogramMetric.getDataVector();
-    /**
-     * Attenuation is set to 70 -> falls under the 5th attenuation bin
-     *
-     * Infectiousness is set to 1 -> falls under the 2nd Infectiousness bin
-     *
-     * Duration is set to 400 -> falls under the 2nd duration bin
-     *
-     * Clock is now -> falls under 1st day bin,
-     *
-     * Clock is almost 2 days ago -> falls under 2nd day bin
-     *
-     * <p>(bin's are zero indexed so minus 1) We'd expect a given vector with (dayBin=0,
-     * infectiousness=1, attenuation=3, duration=1) and (dayBin=1, infectiousness=1, attenuation=3,
-     * duration=1) set to true and duration=0 for all other combos of infectiousness and attenuation
-     * and dayBin set to true
+    /*
+      Attenuation is set to 70 -> falls under the 5th attenuation bin
+
+      Infectiousness is set to 1 -> falls under the 2nd Infectiousness bin
+
+      Duration is set to 400 -> falls under the 2nd duration bin
+
+      Clock is now -> falls under 1st day bin,
+
+      Clock is almost 2 days ago -> falls under 2nd day bin
+
+      <p>(bin's are zero indexed so minus 1) We'd expect a given vector with (dayBin=0,
+      infectiousness=1, attenuation=3, duration=1) and (dayBin=1, infectiousness=1, attenuation=3,
+      duration=1) set to true and duration=0 for all other combos of infectiousness and attenuation
+      and dayBin set to true
      */
     // THEN
 

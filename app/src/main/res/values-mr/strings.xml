@@ -36,7 +36,7 @@
   <string name="onboarding_metrics_description">ॲपच्या देखभाल आणि सुधारणेत मदतीसाठी ॲप परफॉर्मन्स व वापराबद्दलचा काही पडताळणी न केलेला मर्यादित डेटा Google सोबत शेअर केला जातो. हा डेटा तुमची ओळख उघड करत नाही. %1$s</string>
   <string name="onboarding_confirm_later_title">लागणीबद्दलची सूचना बंद ठेवायची आहे का?</string>
   <string name="onboarding_confirm_later_detail">लागणीविषयी सूचना सुरू करत नाही, ताेपर्यंत COVID-19 च्या संभाव्य लागणीबद्दल तुम्हाला सूचित केले जाणार नाही</string>
-  <string name="no_recent_exposure_subtitle">अ‍ॅक्टिव्ह आहे आणि तपासत आहे…</string>
+  <string name="no_recent_exposure_subtitle">अ‍ॅक्टिव्ह आहे आणि तपासत आहे</string>
   <string name="no_recent_exposure_indicator">अलीकडे लागण झालेली नाही</string>
   <string name="app_active_info">तुमचे ॲप हे लागण होण्याच्या शक्यतेची नियमितपणे तपासणी करत असते.</string>
   <string name="notifications_enabled_info">सध्या तुम्हाला COVID-19 ची लागण होण्याचा धोका नाही. तुम्ही COVID-19 चाचणीचा परिणाम पॉझिटीव्ह आला आहे अशा एखाद्या व्यक्तीच्या जवळपास असल्यास, तुम्हाला सूचित केले जाईल.</string>
@@ -134,6 +134,16 @@
   <string name="ble_off_warning">COVID-19 च्या संभाव्य लागणीबद्दलच्या सूचना मिळवणे आणि तुमच्या COVID-19 चाचणीचा परिणाम शेअर करणे सुरू ठेवण्यासाठी, ब्लूटूथ सुरू करा</string>
   <string name="location_ble_off_warning">COVID-19 च्या संभाव्य लागणीबद्दलच्या सूचना मिळवणे आणि तुमच्या COVID-19 चाचणीचा परिणाम शेअर करणे सुरू ठेवण्यासाठी, ब्लूटूथ आणि डिव्हाइसचे स्थान सेटिंग सुरू करा</string>
   <string name="storage_low_warning">लागणीबद्दलच्या सूचना मिळवणे आणि तुमच्या COVID-19 चाचणीचा परिणाम शेअर करणे सुरू ठेवण्यासाठी, तुमच्या फोनमधील स्टोरेज जागा मोकळी करा.</string>
+  <string name="not_in_allowlist_warning">या ॲपला मंजूरी नाही. तुमच्या प्रदेशामधील %1$s पाहा.</string>
+  <string name="approved_apps_link_text">मंजूर केलेली अ‍ॅप्स</string>
+  <string name="hw_not_supported_warning">हे डिव्हाइस लागणीबद्दलच्या सूचना ला सपोर्ट करत नाही. %1$s पाहा.</string>
+  <string name="device_requirements_link_text">डिव्हाइसच्या आवश्यकता</string>
+  <string name="switch_app_for_exposure_notifications">लागणीबद्दलच्या सूचना साठी ॲप स्विच करायचे आहे का?</string>
+  <string name="focus_lost_warning">तुम्ही तुमच्या डिव्हाइसवर एका वेळी लागणीबद्दलच्या सूचना चे फक्त एक ॲप वापरू शकता.\n\nतुम्हाला %1$s ॲपवर स्विच करायचे आहे का?</string>
+  <string name="switch_app_for_exposure_notifications_action">ॲप स्विच करा</string>
+  <string name="en_not_supported_warning">लागणीबद्दलच्या सूचना यापुढे उपलब्ध नाही. %1$s</string>
+  <string name="user_profile_not_supported_warning">लागणीबद्दलच्या सूचना तुमच्या कार्य प्रोफाइलवर उपलब्ध नाही. तुमच्या वैयक्तिक प्रोफाइलवर पुन्हा प्रयत्न करा.</string>
+  <string name="onboarding_free_up_storage_title">स्टोरेजची जागा मोकळी करा</string>
   <string name="input_error_onset_date_past">आजच्या तारखेपासून मागील %1$s दिवसांच्या आतील तारीख असणे आवश्यक आहे</string>
   <string name="input_error_onset_date_future">तारीख भविष्यातील आहे</string>
   <string name="network_error_code_invalid">पडताळणी कोड जुळत नाही. पुन्हा प्रयत्न करा.</string>

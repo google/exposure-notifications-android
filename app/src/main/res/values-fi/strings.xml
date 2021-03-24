@@ -36,7 +36,7 @@
   <string name="onboarding_metrics_description">Sovelluksen ylläpitoa ja kehittämistä varten Googlelle voidaan lähettää jotakin rajoitettua ja nimetöntä dataa sovelluksen toiminnasta ja käytöstä. Tästä datasta ei voi tunnistaa sinua. %1$s</string>
   <string name="onboarding_confirm_later_title">Pidetäänkö altistumisilmoitukset pois päältä?</string>
   <string name="onboarding_confirm_later_detail">Jos nämä ovat pois päältä, et saa ilmoitusta altistumisesta</string>
-  <string name="no_recent_exposure_subtitle">Aktiivinen ja tekee tarkistuksia…</string>
+  <string name="no_recent_exposure_subtitle">Aktiivinen ja tekee tarkistuksia</string>
   <string name="no_recent_exposure_indicator">Ei viimeaikaisia altistumisia</string>
   <string name="app_active_info">Sovelluksesi tarkistaa säännöllisesti mahdolliset altistumiset.</string>
   <string name="notifications_enabled_info">Ilmoitusten mukaan sinulla ei tällä hetkellä ole COVID-19-altistumisvaaraa. Saat ilmoituksen, jos joku lähelläsi ollut ilmoittaa positiivisesta COVID-19-testituloksesta.</string>
@@ -134,6 +134,16 @@
   <string name="ble_off_warning">Jos haluat jatkossakin saada ilmoituksen mahdollisesta COVID-19-altistumisesta ja jakaa oman COVID-19-testituloksesi, laita Bluetooth päälle</string>
   <string name="location_ble_off_warning">Jos haluat jatkossakin saada ilmoituksen mahdollisesta COVID-19-altistumisesta ja jakaa oman COVID-19-testituloksesi, laita Bluetooth ja laitteen sijaintiasetus päälle</string>
   <string name="storage_low_warning">Jos haluat jatkossakin saada altistumisilmoituksia ja jakaa oman COVID-19-testituloksesi, vapauta tallennustilaa puhelimestasi.</string>
+  <string name="not_in_allowlist_warning">Sovellusta ei ole hyväksytty. Katso %1$s alueellasi.</string>
+  <string name="approved_apps_link_text">hyväksytyt sovellukset</string>
+  <string name="hw_not_supported_warning">Tämä laite ei tue altistumisilmoituksia. Katso %1$s.</string>
+  <string name="device_requirements_link_text">laitevaatimukset</string>
+  <string name="switch_app_for_exposure_notifications">Vaihdetaanko altistumisilmoitusten sovellusta?</string>
+  <string name="focus_lost_warning">Voit käyttää laitteellasi vain yhtä altistumisilmoitussovellusta kerrallaan.\n\nOtetaanko %1$s käyttöön?</string>
+  <string name="switch_app_for_exposure_notifications_action">Vaihda sovellusta</string>
+  <string name="en_not_supported_warning">Altistumisilmoitukset eivät ole enää saatavilla. %1$s</string>
+  <string name="user_profile_not_supported_warning">Altistumisilmoitukset eivät ole saatavilla työprofiilissasi. Yritä uudelleen henkilökohtaisella profiilillasi.</string>
+  <string name="onboarding_free_up_storage_title">Vapauta tallennustilaa</string>
   <string name="input_error_onset_date_past">Päivämäärän on oltava %1$s päivän sisällä tästä päivästä</string>
   <string name="input_error_onset_date_future">Päivämäärä on tulevaisuudessa</string>
   <string name="network_error_code_invalid">Todennuskoodi ei täsmää. Yritä uudelleen.</string>

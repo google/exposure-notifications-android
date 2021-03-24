@@ -21,7 +21,8 @@
 buildscript {
   repositories {
     google()
-      jcenter()
+    mavenCentral()
+    jcenter()
   }
   dependencies {
     classpath "com.android.tools:sdk-common:27.0.1"
@@ -231,6 +232,19 @@ static def writeBackground(outDrawablePath) {
 ''')
 }
 
+def produceAdaptiveIcon(config, outDir, outDrawablePath, iconForegroundKey, iconBackgroundKey) {
+  def (fg, fgPNG) = downloadImages(config, iconForegroundKey)
+  writeImage(fg, outDrawablePath + "/ic_launcher_foreground")
+  if (config.containsKey(iconBackgroundKey) && config[iconBackgroundKey] != "") {
+    def (bg, bgPNG) = downloadImages(config, iconBackgroundKey)
+    writeImage(bg, outDrawablePath + "/ic_launcher_background")
+    generateIconSizes(fgPNG, bgPNG, null, outDir, "ic_launcher")
+  } else {
+    generateIconSizes(fgPNG, null, null, outDir, "ic_launcher")
+    writeBackground(outDrawablePath)
+  }
+}
+
 def emitDrawablesLightMode(config, outDir) {
   // Emit agencyImage drawables
   def outDrawablePath = outDir + "/drawable"
@@ -238,25 +252,14 @@ def emitDrawablesLightMode(config, outDir) {
   def (img, imgPNG) = downloadImages(config, "agencyImage")
   writeImage(img, outDrawablePath + "/enx_agency_image")
 
-  if (config.containsKey("agencyIconForeground") &&
-      config["agencyIconForeground"] != "") {
-    // Produce an adaptive icon
-    def (fg, fgPNG) = downloadImages(config, "agencyIconForeground")
-    writeImage(fg, outDrawablePath + "/ic_launcher_foreground")
-    if (config.containsKey("agencyIconBackground") &&
-        config["agencyIconBackground"] != "") {
-      def (bg, bgPNG) = downloadImages(config, "agencyIconBackground")
-      writeImage(bg, outDrawablePath + "/ic_launcher_background")
-      generateIconSizes(fgPNG, bgPNG, null, outDir, "ic_launcher")
-    } else {
-      generateIconSizes(fgPNG, null, null, outDir, "ic_launcher")
-      writeImage(fg, outDrawablePath + "/ic_launcher_background")
-      writeBackground(outDrawablePath)
-    }
+  if (config.containsKey("agencyIconForeground") && config["agencyIconForeground"] != "") {
+    // Produce an adaptive icon from icon resources
+    produceAdaptiveIcon(
+            config, outDir, outDrawablePath,
+            "agencyIconForeground", "agencyIconBackground")
   } else {
-    // Synthesize icon from agencyImage
-    generateIconSizes(imgPNG, null, config["agencyColor"],
-                      outDir, "ic_launcher")
+    // If there are no icon resources, synthesize icon from agencyImage
+    generateIconSizes(imgPNG, null, config["agencyColor"], outDir, "ic_launcher")
     writeImage(img, outDrawablePath + "/ic_launcher_foreground")
     writeBackground(outDrawablePath)
   }
@@ -294,23 +297,18 @@ def emitDrawablesDarkMode(config, outDir) {
 
   if (config.containsKey("agencyIconForegroundDarkMode") &&
           config["agencyIconForegroundDarkMode"] != "") {
-    // Produce an adaptive icon
-    def (fg, fgPNG) = downloadImages(config, "agencyIconForegroundDarkMode")
-    writeImage(fg, outDrawablePath + "/ic_launcher_foreground")
-    if (config.containsKey("agencyIconBackgroundDarkMode") &&
-            config["agencyIconBackgroundDarkMode"] != "") {
-      def (bg, bgPNG) = downloadImages(config, "agencyIconBackgroundDarkMode")
-      writeImage(bg, outDrawablePath + "/ic_launcher_background")
-      generateIconSizes(fgPNG, bgPNG, null, outDir, "ic_launcher")
-    } else {
-      generateIconSizes(fgPNG, null, null, outDir, "ic_launcher")
-      writeImage(fg, outDrawablePath + "/ic_launcher_background")
-      writeBackground(outDrawablePath)
-    }
+    // Produce an adaptive icon from dark mode icon resources
+    produceAdaptiveIcon(
+            config, outDir, outDrawablePath,
+            "agencyIconForegroundDarkMode", "agencyIconBackgroundDarkMode")
+  } else if (config.containsKey("agencyIconForeground") && config["agencyIconForeground"] != "") {
+    // If there are no dark mode icon resources, produce icon from regular icon resources
+    produceAdaptiveIcon(
+            config, outDir, outDrawablePath,
+            "agencyIconForeground", "agencyIconBackground")
   } else {
-    // Synthesize icon from agencyImage
-    generateIconSizes(imgPNG, null, config["agencyColor"],
-            outDir, "ic_launcher")
+    // Else, synthesize icon from agencyImage
+    generateIconSizes(imgPNG, null, config["agencyColor"], outDir, "ic_launcher")
     writeImage(img, outDrawablePath + "/ic_launcher_foreground")
     writeBackground(outDrawablePath)
   }

@@ -36,7 +36,7 @@
   <string name="onboarding_metrics_description">Az alkalmazás karbantartásának és fejlesztésének segítése érdekében bizonyos azonosításra nem alkalmas adatokat oszt meg az alkalmazás a teljesítményéről és a használatáról a Google-lal. Ezek az adatok nem használhatók az Ön azonosítására. %1$s</string>
   <string name="onboarding_confirm_later_title">Kikapcsolva tartja a Kitettséget jelző értesítéseket?</string>
   <string name="onboarding_confirm_later_detail">A Kitettséget jelző értesítések bekapcsolásáig nem értesül a lehetséges COVID-19-kitettségről.</string>
-  <string name="no_recent_exposure_subtitle">Az ellenőrzés aktív…</string>
+  <string name="no_recent_exposure_subtitle">Az ellenőrzés aktív</string>
   <string name="no_recent_exposure_indicator">Nem észlelt a rendszer kitettséget a közelmúltban</string>
   <string name="app_active_info">Az alkalmazás rendszeresen ellenőrzi a lehetséges kitettséget.</string>
   <string name="notifications_enabled_info">Jelenleg nincsenek olyan bejelentések, amelyek alapján fennáll Önnél a COVID-19-nek való kitettség. Értesítést kap, ha valaki, aki az Ön közelében tartózkodott, pozitív COVID-19-teszteredményt jelent be.</string>
@@ -134,6 +134,16 @@
   <string name="ble_off_warning">Kapcsolja be a Bluetooth-t, hogy továbbra is értesítést kaphasson a lehetséges COVID-19-kitettségről, és megoszthassa COVID-19-teszteredményét.</string>
   <string name="location_ble_off_warning">Kapcsolja be a Bluetooth-t és az eszköz helyadatokra vonatkozó beállítását, hogy továbbra is értesítést kaphasson a lehetséges COVID-19-kitettségről, és megoszthassa COVID-19-teszteredményét.</string>
   <string name="storage_low_warning">Szabadítson fel tárhelyet a telefonján, hogy továbbra is értesítést kaphasson a lehetséges COVID-19-kitettségről, és megoszthassa COVID-19-teszteredményét.</string>
+  <string name="not_in_allowlist_warning">Ez az alkalmazás nincs jóváhagyva. Tekintse meg a régiójában %1$s.</string>
+  <string name="approved_apps_link_text">jóváhagyott alkalmazásokat</string>
+  <string name="hw_not_supported_warning">Ez az eszköz nem támogatja a kitettséget jelző értesítéseket. %1$s megtekintése.</string>
+  <string name="device_requirements_link_text">Eszközkövetelmények</string>
+  <string name="switch_app_for_exposure_notifications">Le szeretné váltani a Kitettséget jelző értesítéseket-appot?</string>
+  <string name="focus_lost_warning">Egyszerre csak egy Kitettséget jelző értesítések-alkalmazást használhat az eszközén.\n\nÁt szeretne váltani az %1$s alkalmazásra?</string>
+  <string name="switch_app_for_exposure_notifications_action">Alkalmazásváltás</string>
+  <string name="en_not_supported_warning">A Kitettséget jelző értesítések a továbbiakban nem hozzáférhető. %1$s</string>
+  <string name="user_profile_not_supported_warning">A Kitettséget jelző értesítések nem hozzáférhető a munkaprofiljában. Próbálja meg a személyes profiljával.</string>
+  <string name="onboarding_free_up_storage_title">Szabadítson fel tárhelyet!</string>
   <string name="input_error_onset_date_past">A dátumnak az elmúlt %1$s napon belülre kell esnie</string>
   <string name="input_error_onset_date_future">Jövőbeli dátum</string>
   <string name="network_error_code_invalid">Nem egyezik az ellenőrző kód. Próbálkozzon újra.</string>

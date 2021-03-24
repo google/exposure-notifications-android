@@ -134,6 +134,16 @@
   <string name="ble_off_warning">Per continuare a ricevere notifiche di possibile esposizione al COVID-19 e condividere il tuo risultato al test del COVID-19, attiva il Bluetooth</string>
   <string name="location_ble_off_warning">Per continuare a ricevere notifiche di possibile esposizione al COVID-19 e condividere il tuo risultato al test del COVID-19, attiva il Bluetooth e la geolocalizzazione del dispositivo</string>
   <string name="storage_low_warning">Per continuare a ricevere le notifiche di esposizione e condividere il tuo risultato al test del COVID-19, libera spazio di archiviazione sul telefono.</string>
+  <string name="not_in_allowlist_warning">Questa app non è approvata. Scopri le %1$s nella tua area geografica.</string>
+  <string name="approved_apps_link_text">app approvate</string>
+  <string name="hw_not_supported_warning">Questo dispositivo non supporta le Notifiche di esposizione. Leggi i %1$s.</string>
+  <string name="device_requirements_link_text">requisiti dei dispositivi</string>
+  <string name="switch_app_for_exposure_notifications">Vuoi cambiare app per le Notifiche di esposizione?</string>
+  <string name="focus_lost_warning">Puoi usare una sola app Notifiche di esposizione alla volta sul dispositivo.\n\nVuoi passare all\'app %1$s?</string>
+  <string name="switch_app_for_exposure_notifications_action">Cambia app</string>
+  <string name="en_not_supported_warning">Il sistema Notifiche di esposizione non è più disponibile. %1$s</string>
+  <string name="user_profile_not_supported_warning">Il sistema Notifiche di esposizione non è disponibile nel tuo profilo di lavoro. Riprova nel tuo profilo personale.</string>
+  <string name="onboarding_free_up_storage_title">Libera spazio di archiviazione</string>
   <string name="input_error_onset_date_past">La data dovrebbe rientrare negli ultimi %1$s giorni dalla data odierna</string>
   <string name="input_error_onset_date_future">La data è nel futuro</string>
   <string name="network_error_code_invalid">Il codice di verifica non corrisponde. Riprova.</string>

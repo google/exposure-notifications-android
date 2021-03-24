@@ -25,6 +25,7 @@ import dagger.Module;
 import dagger.Provides;
 import dagger.hilt.InstallIn;
 import dagger.hilt.android.components.ApplicationComponent;
+import dagger.hilt.components.SingletonComponent;
 import javax.inject.Singleton;
 
 /**
@@ -32,7 +33,7 @@ import javax.inject.Singleton;
  * so that tests can easily exclude it and provide a fake.
  */
 @Module
-@InstallIn(ApplicationComponent.class)
+@InstallIn(SingletonComponent.class)
 public final class RealRequestQueueModule {
 
   @Singleton

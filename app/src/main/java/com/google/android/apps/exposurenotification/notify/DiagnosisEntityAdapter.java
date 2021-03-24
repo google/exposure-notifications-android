@@ -42,7 +42,7 @@ public class DiagnosisEntityAdapter
   private static final String TAG = "DiagnosisEntityAdapter";
 
   private List<DiagnosisEntity> diagnosisEntities = Collections.emptyList();
-  private NotifyHomeViewModel notifyHomeViewModel;
+  private final NotifyHomeViewModel notifyHomeViewModel;
 
   private final DateTimeFormatter dateTimeFormatter =
       DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM);

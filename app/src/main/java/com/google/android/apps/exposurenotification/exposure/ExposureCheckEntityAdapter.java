@@ -17,10 +17,7 @@
 
 package com.google.android.apps.exposurenotification.exposure;
 
-import static android.text.format.DateUtils.DAY_IN_MILLIS;
-
 import android.content.Context;
-import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +25,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.common.StringUtils;
+import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.exposure.ExposureCheckEntityAdapter.ExposureCheckViewHolder;
 import com.google.android.apps.exposurenotification.storage.ExposureCheckEntity;
 import java.util.Collections;
@@ -41,10 +40,12 @@ public class ExposureCheckEntityAdapter extends RecyclerView.Adapter<ExposureChe
   private static final String TAG = "ExposureCheckEntityAdapter";
 
   private final Context context;
+  private final Clock clock;
   private List<ExposureCheckEntity> exposureChecks = Collections.emptyList();
 
-  public ExposureCheckEntityAdapter(Context context) {
+  public ExposureCheckEntityAdapter(Context context, Clock clock) {
     this.context = context;
+    this.clock = clock;
   }
 
   /**
@@ -86,9 +87,8 @@ public class ExposureCheckEntityAdapter extends RecyclerView.Adapter<ExposureChe
     }
 
     void bind(final ExposureCheckEntity entity) {
-      CharSequence relativeTimestamp = DateUtils
-          .getRelativeDateTimeString(context, entity.getCheckTime().toEpochMilli(),
-              DAY_IN_MILLIS, 2 * DAY_IN_MILLIS, 0);
+      String relativeTimestamp = StringUtils.epochTimestampToRelativeZonedDateTimeString(
+          entity.getCheckTime().toEpochMilli(), clock.now(), clock.zonedNow(), context);
       exposureCheckTimestamp.setText(relativeTimestamp);
     }
   }

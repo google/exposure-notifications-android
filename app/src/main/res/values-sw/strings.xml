@@ -36,7 +36,7 @@
   <string name="onboarding_metrics_description">Ili kusaidia kudumisha na kuboresha programu, data fulani isiyomtambulisha mtu kuhusu matumizi na utendaji wa programu hushirikiwa na Google. Data hii haikutambulishi. %1$s</string>
   <string name="onboarding_confirm_later_title">Ungependa kuzima Arifa Kuhusu Kukaribia Aliye na COVID-19?</string>
   <string name="onboarding_confirm_later_detail">Hadi utakapowasha Arifa Kuhusu Kukaribia Aliye na COVID-19, hutaarifiwa unapomkaribia mtu aliye na COVID-19.</string>
-  <string name="no_recent_exposure_subtitle">Inatumika na inakagua …</string>
+  <string name="no_recent_exposure_subtitle">Inatumika na inakagua</string>
   <string name="no_recent_exposure_indicator">Hakuna tukio la hivi majuzi la kukaribia aliyeambukizwa</string>
   <string name="app_active_info">Programu yako inakagua mara kwa mara ili kubaini matukio ya kukaribia aliyeambukizwa.</string>
   <string name="notifications_enabled_info">Kwa sasa hakuna ripoti kuhusu hatari ya kukaribia aliyeambukizwa COVID-19. Utaarifiwa iwapo mtu uliyemkaribia ataripoti matokeo yanayothibitisha kuwa ameambukizwa COVID-19.</string>
@@ -134,6 +134,16 @@
   <string name="ble_off_warning">Ili uendelee kupokea arifa unapomkaribia aliye na COVID-19 na kushiriki matokeo yako ya kipimo cha COVID-19 , washa Bluetooth</string>
   <string name="location_ble_off_warning">Ili uendelee kupokea arifa unapomkaribia aliye na COVID-19 na kushiriki matokeo yako ya kipimo cha COVID-19 , washa Bluetooth na mipangilio ya mahali ya kifaa</string>
   <string name="storage_low_warning">Ili uendelee kupokea Arifa Kuhusu Kukaribia Aliye na COVID-19 na kushiriki matokeo yako ya kipimo cha COVID-19, futa faili upate nafasi ya kuhifadhi kwenye simu yako.</string>
+  <string name="not_in_allowlist_warning">Programu hii haijaidhinishwa. Angalia %1$s katika eneo lako.</string>
+  <string name="approved_apps_link_text">programu ulizoidhinisha</string>
+  <string name="hw_not_supported_warning">Arifa Kuhusu Kukaribia Aliye na COVID-19 hazitumiki kwenye kifaa hiki. Angalia %1$s.</string>
+  <string name="device_requirements_link_text">masharti ya kifaa</string>
+  <string name="switch_app_for_exposure_notifications">Ungependa kutumia programu ya Arifa Kuhusu Kukaribia Aliyeambukizwa?</string>
+  <string name="focus_lost_warning">Unaweza tu kutumia programu moja ya Arifa Kuhusu Kukaribia Aliye na COVID-19 kwenye kifaa chako kwa wakati mmoja.\n\nUngependa kutumia programu ya %1$s ?</string>
+  <string name="switch_app_for_exposure_notifications_action">Badilisha programu</string>
+  <string name="en_not_supported_warning">Arifa Kuhusu Kukaribia Aliye na COVID-19 haipatikani tena. %1$s</string>
+  <string name="user_profile_not_supported_warning">Arifa Kuhusu Kukaribia Aliye na COVID-19 haipatikani kwenye wasifu wako wa kazini. Jaribu tena kwenye wasifu wako binafsi.</string>
+  <string name="onboarding_free_up_storage_title">Futa ili upate nafasi ya kuhifadhi</string>
   <string name="input_error_onset_date_past">Tarehe inafaa kutokea ndani ya siku %1$s za mwisho kabla ya tarehe ya leo</string>
   <string name="input_error_onset_date_future">Tarehe hutokea katika siku zijazo</string>
   <string name="network_error_code_invalid">Nambari hii ya kuthibitisha hailingani. Jaribu tena.</string>

@@ -36,7 +36,7 @@
   <string name="onboarding_metrics_description">Untuk membantu penyenggaraan dan peningkatan apl, beberapa data yang dinyahkenal pasti tentang prestasi dan penggunaan apl dikongsikan dengan Google. Data ini tidak mengenal pasti anda. %1$s</string>
   <string name="onboarding_confirm_later_title">Pemberitahuan Pendedahan kekal dimatikan?</string>
   <string name="onboarding_confirm_later_detail">Tiada pemberitahuan kemungkinan pendedahan COVID-19 sehingga Pemberitahuan Pendedahan dihidupkan</string>
-  <string name="no_recent_exposure_subtitle">Aktif dan sedang menyemak …</string>
+  <string name="no_recent_exposure_subtitle">Aktif dan sedang menyemak</string>
   <string name="no_recent_exposure_indicator">Tiada pendedahan baru-baru ini</string>
   <string name="app_active_info">Apl anda sentiasa menyemak kemungkinan pendedahan.</string>
   <string name="notifications_enabled_info">Tiada risiko pendedahan COVID-19 yang dilaporkan pada masa ini untuk anda. Anda akan diberitahu jika seseorang berdekatan anda melaporkan keputusan ujian COVID-19 yang positif.</string>
@@ -134,6 +134,16 @@
   <string name="ble_off_warning">Untuk terus mendapat pemberitahuan kemungkinan pendedahan COVID-19 &amp; berkongsi keputusan ujian COVID-19 anda, hidupkan Bluetooth</string>
   <string name="location_ble_off_warning">Untuk terus mendapat pemberitahuan kemungkinan pendedahan COVID-19 &amp; berkongsi keputusan ujian COVID-19 anda, hidupkan Bluetooth dan tetapan lokasi peranti</string>
   <string name="storage_low_warning">Untuk terus mendapat Pemberitahuan Pendedahan &amp; berkongsi keputusan ujian COVID-19 anda, kosongkan ruang storan pada telefon anda.</string>
+  <string name="not_in_allowlist_warning">Apl ini tidak diluluskan. Lihat %1$s di rantau anda.</string>
+  <string name="approved_apps_link_text">apl yang diluluskan</string>
+  <string name="hw_not_supported_warning">Peranti ini tidak menyokong Pemberitahuan Pendedahan. Lihat %1$s.</string>
+  <string name="device_requirements_link_text">keperluan peranti</string>
+  <string name="switch_app_for_exposure_notifications">Tukar apl untuk Pemberitahuan Pendedahan?</string>
+  <string name="focus_lost_warning">Anda hanya boleh menggunakan satu apl Pemberitahuan Pendedahan pada peranti anda dalam satu masa.\n\nAdakah anda mahu menukar kepada apl %1$s?</string>
+  <string name="switch_app_for_exposure_notifications_action">Tukar apl</string>
+  <string name="en_not_supported_warning">Pemberitahuan Pendedahan tidak lagi tersedia. %1$s</string>
+  <string name="user_profile_not_supported_warning">Pemberitahuan Pendedahan tidak tersedia pada profil kerja anda. Cuba lagi pada profil peribadi anda.</string>
+  <string name="onboarding_free_up_storage_title">Kosongkan ruang storan</string>
   <string name="input_error_onset_date_past">Tarikh sepatutnya berlaku dalam %1$s hari lalu dari tarikh hari ini</string>
   <string name="input_error_onset_date_future">Tarikh berlaku pada masa hadapan</string>
   <string name="network_error_code_invalid">Kod pengesahan tidak sepadan. Cuba lagi.</string>

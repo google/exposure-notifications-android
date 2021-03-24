@@ -17,24 +17,23 @@
 
 package com.google.android.apps.exposurenotification.privateanalytics.metrics;
 
-import static com.google.android.apps.exposurenotification.privateanalytics.metrics.PeriodicExposureNotificationInteractionMetric.INTERACTION_TYPE_COUNT;
-import static com.google.android.apps.exposurenotification.privateanalytics.metrics.PeriodicExposureNotificationInteractionMetric.NO_EXPOSURE_BIN_ID;
-import static com.google.android.apps.exposurenotification.privateanalytics.metrics.PeriodicExposureNotificationInteractionMetric.VECTOR_LENGTH;
 import static com.google.common.truth.Truth.assertThat;
 
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.common.time.RealTimeModule;
+import com.google.android.apps.exposurenotification.riskcalculation.ExposureClassification;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.NotificationInteraction;
 import com.google.android.apps.exposurenotification.testsupport.ExposureNotificationRules;
 import com.google.android.apps.exposurenotification.testsupport.FakeClock;
-import com.google.common.primitives.Ints;
+import com.google.common.collect.Lists;
 import dagger.hilt.android.testing.BindValue;
 import dagger.hilt.android.testing.HiltAndroidTest;
 import dagger.hilt.android.testing.HiltTestApplication;
 import dagger.hilt.android.testing.UninstallModules;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 import javax.inject.Inject;
 import org.junit.Before;
 import org.junit.Rule;
@@ -44,7 +43,6 @@ import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 import org.threeten.bp.Duration;
 import org.threeten.bp.Instant;
-import org.threeten.bp.Period;
 
 /**
  * Tests of {@link PeriodicExposureNotificationMetric}.
@@ -72,66 +70,66 @@ public class PeriodicExposureNotificationInteractionMetricTest {
     exposureNotificationSharedPreferences.setPrivateAnalyticsState(true);
   }
 
+  // When the last worker was run before the last interaction, the metric reports
+  // the output according to the test vectors.
   @Test
-  public void testDailyExposureNotificationNotInRange() throws Exception {
-    // GIVEN
-    Instant workerTime = clock.now().minus(Period.ofDays(1));
-    Instant interactionTime = workerTime.minus(Period.ofDays(1));
+  public void testVectorsWhenWorkerBeforeInteraction() throws Exception {
+    for (TestVector testVector : getTestVectors()) {
+      // GIVEN
+      Instant workerTime = testVector.interactionTime.minus(Duration.ofDays(1));
+      exposureNotificationSharedPreferences.setPrivateAnalyticsWorkerLastTime(workerTime);
+      exposureNotificationSharedPreferences
+          .setExposureNotificationLastInteraction(testVector.interactionTime,
+              testVector.notificationInteraction,
+              testVector.exposureClassification.getClassificationIndex());
 
-    exposureNotificationSharedPreferences
-        .setPrivateAnalyticsWorkerLastTime(workerTime);
-    exposureNotificationSharedPreferences.setExposureNotificationLastInteraction(
-        interactionTime, NotificationInteraction.CLICKED, 1);
+      // WHEN
+      List<Integer> data = periodicExposureNotificationInteractionMetric.getDataVector().get();
 
-    // WHEN
-    List<Integer> vector = periodicExposureNotificationInteractionMetric.getDataVector().get();
-
-    // THEN
-    assertThat(vector)
-        .containsExactlyElementsIn(buildInteractionVector(1, NotificationInteraction.UNKNOWN))
-        .inOrder();
+      // THEN
+      assertThat(data).containsExactlyElementsIn(testVector.data).inOrder();
+    }
   }
 
+  // When the last worker was run after the last interaction, the metric reports
+  // no interaction.
   @Test
-  public void testDailyExposureNotificationInRangeClicked() throws Exception {
-    // GIVEN
-    Instant workerTime = clock.now().minus(Period.ofDays(2));
-    Instant interactionTime = workerTime.plus(Period.ofDays(1));
-    int classificationIndex = 1;
-    exposureNotificationSharedPreferences
-        .setPrivateAnalyticsWorkerLastTime(workerTime);
-    exposureNotificationSharedPreferences.setExposureNotificationLastInteraction(
-        interactionTime, NotificationInteraction.CLICKED, classificationIndex);
+  public void testVectorsWhenWorkerAfterInteraction() throws Exception {
+    for (TestVector testVector : getTestVectors()) {
+      // GIVEN
+      Instant workerTime = testVector.interactionTime.plus(Duration.ofDays(1));
+      exposureNotificationSharedPreferences.setPrivateAnalyticsWorkerLastTime(workerTime);
+      exposureNotificationSharedPreferences
+          .setExposureNotificationLastInteraction(testVector.interactionTime,
+              testVector.notificationInteraction,
+              testVector.exposureClassification.getClassificationIndex());
 
-    // WHEN
-    List<Integer> vector = periodicExposureNotificationInteractionMetric.getDataVector().get();
+      // WHEN
+      List<Integer> data = periodicExposureNotificationInteractionMetric.getDataVector().get();
 
-    // THEN
-    assertThat(vector)
-        .containsExactlyElementsIn(
-            buildInteractionVector(classificationIndex, NotificationInteraction.CLICKED))
-        .inOrder();
+      // THEN
+      assertThat(data).containsExactly(1, 0, 0, 0, 0, 0, 0, 0, 0).inOrder();
+    }
   }
 
+  // When private analytics are disabled, the metric reports no interaction.
   @Test
-  public void testDailyExposureNotificationInRangeDismissed() throws Exception {
-    // GIVEN
-    Instant workerTime = clock.now().minus(Period.ofDays(2));
-    Instant interactionTime = workerTime.plus(Period.ofDays(1));
-    int classificationIndex = 2;
-    exposureNotificationSharedPreferences
-        .setPrivateAnalyticsWorkerLastTime(workerTime);
-    exposureNotificationSharedPreferences.setExposureNotificationLastInteraction(
-        interactionTime, NotificationInteraction.DISMISSED, classificationIndex);
+  public void testVectorsNotCachedWhenNotEnabled() throws Exception {
+    for (TestVector testVector : getTestVectors()) {
+      // GIVEN
+      Instant workerTime = testVector.interactionTime.plus(Duration.ofDays(1));
+      exposureNotificationSharedPreferences.setPrivateAnalyticsWorkerLastTime(workerTime);
+      exposureNotificationSharedPreferences
+          .setExposureNotificationLastInteraction(testVector.interactionTime,
+              testVector.notificationInteraction,
+              testVector.exposureClassification.getClassificationIndex());
 
-    // WHEN
-    List<Integer> vector = periodicExposureNotificationInteractionMetric.getDataVector().get();
+      // WHEN
+      List<Integer> data = periodicExposureNotificationInteractionMetric.getDataVector().get();
 
-    // THEN
-    assertThat(vector)
-        .containsExactlyElementsIn(
-            buildInteractionVector(classificationIndex, NotificationInteraction.DISMISSED))
-        .inOrder();
+      // THEN
+      assertThat(data).containsExactly(1, 0, 0, 0, 0, 0, 0, 0, 0).inOrder();
+    }
   }
 
   @Test
@@ -139,37 +137,88 @@ public class PeriodicExposureNotificationInteractionMetricTest {
     assertThat(periodicExposureNotificationInteractionMetric.getMetricHammingWeight()).isEqualTo(1);
   }
 
-  @Test
-  public void testDataNotCachedWhenNotEnabled() throws ExecutionException, InterruptedException {
-    exposureNotificationSharedPreferences.setPrivateAnalyticsState(false);
+  // Test vectors
+  private List<PeriodicExposureNotificationInteractionMetricTest.TestVector> getTestVectors() {
+    List<PeriodicExposureNotificationInteractionMetricTest.TestVector> ret = new ArrayList<>();
+    Instant interactionTime;
+    long exposureDay;
+    ExposureClassification exposureClassification;
 
-    Instant fiveHoursAgo = clock.now().minus(Duration.ofHours(5));
-    exposureNotificationSharedPreferences
-        .setExposureNotificationLastInteraction(fiveHoursAgo,
-            NotificationInteraction.CLICKED, /* classificationIndex= */ 1);
-    List<Integer> dataVector = periodicExposureNotificationInteractionMetric.getDataVector().get();
+    // Notification of type 1
+    interactionTime = Instant.ofEpochMilli(1000000000L);
+    exposureDay = (interactionTime.getEpochSecond() / TimeUnit.DAYS.toSeconds(1)) - 1;
+    exposureClassification = ExposureClassification.create(1, "", exposureDay);
+    // Clicked
+    ret.add(new PeriodicExposureNotificationInteractionMetricTest.TestVector(interactionTime,
+        exposureClassification, NotificationInteraction.CLICKED,
+        Lists.newArrayList(0, 1, 0, 0, 0, 0, 0, 0, 0)));
+    // Dismissed
+    ret.add(new PeriodicExposureNotificationInteractionMetricTest.TestVector(interactionTime,
+        exposureClassification, NotificationInteraction.DISMISSED,
+        Lists.newArrayList(0, 0, 1, 0, 0, 0, 0, 0, 0)));
 
-    // THEN
-    assertThat(dataVector)
-        .containsExactlyElementsIn(buildInteractionVector(1, NotificationInteraction.UNKNOWN))
-        .inOrder();
+    // Notification of type 2
+    interactionTime = Instant.ofEpochMilli(1100000000L);
+    exposureDay = (interactionTime.getEpochSecond() / TimeUnit.DAYS.toSeconds(1)) - 2;
+    exposureClassification = ExposureClassification.create(2, "", exposureDay);
+    // Clicked
+    ret.add(new PeriodicExposureNotificationInteractionMetricTest.TestVector(interactionTime,
+        exposureClassification, NotificationInteraction.CLICKED,
+        Lists.newArrayList(0, 0, 0, 1, 0, 0, 0, 0, 0)));
+    // Dismissed
+    ret.add(new PeriodicExposureNotificationInteractionMetricTest.TestVector(interactionTime,
+        exposureClassification, NotificationInteraction.DISMISSED,
+        Lists.newArrayList(0, 0, 0, 0, 1, 0, 0, 0, 0)));
+
+    // Notification of type 3
+    interactionTime = Instant.ofEpochMilli(900000000L);
+    exposureDay = (interactionTime.getEpochSecond() / TimeUnit.DAYS.toSeconds(1)) - 4;
+    exposureClassification = ExposureClassification.create(3, "", exposureDay);
+    // Clicked
+    ret.add(new PeriodicExposureNotificationInteractionMetricTest.TestVector(interactionTime,
+        exposureClassification, NotificationInteraction.CLICKED,
+        Lists.newArrayList(0, 0, 0, 0, 0, 1, 0, 0, 0)));
+    // Dismissed
+    ret.add(new PeriodicExposureNotificationInteractionMetricTest.TestVector(interactionTime,
+        exposureClassification, NotificationInteraction.DISMISSED,
+        Lists.newArrayList(0, 0, 0, 0, 0, 0, 1, 0, 0)));
+
+    // Notification of type 4
+    interactionTime = Instant.ofEpochMilli(1200000000L);
+    exposureDay = (interactionTime.getEpochSecond() / TimeUnit.DAYS.toSeconds(1));
+    exposureClassification = ExposureClassification.create(4, "", exposureDay);
+    // Clicked
+    ret.add(new PeriodicExposureNotificationInteractionMetricTest.TestVector(interactionTime,
+        exposureClassification, NotificationInteraction.CLICKED,
+        Lists.newArrayList(0, 0, 0, 0, 0, 0, 0, 1, 0)));
+    // Dismissed
+    ret.add(new PeriodicExposureNotificationInteractionMetricTest.TestVector(interactionTime,
+        exposureClassification, NotificationInteraction.DISMISSED,
+        Lists.newArrayList(0, 0, 0, 0, 0, 0, 0, 0, 1)));
+
+    return ret;
   }
 
-  private static List<Integer> buildInteractionVector(
-      int severity, NotificationInteraction interaction) {
-    int[] retVector = new int[VECTOR_LENGTH];
-    switch (interaction) {
-      case UNKNOWN:
-        retVector[NO_EXPOSURE_BIN_ID] = 1;
-        break;
-      case CLICKED:
-        retVector[severity * INTERACTION_TYPE_COUNT - 1] = 1;
-        break;
-      case DISMISSED:
-        retVector[severity * INTERACTION_TYPE_COUNT] = 1;
-        break;
+
+  static class TestVector {
+
+    // Input
+    public Instant interactionTime;
+    public ExposureClassification exposureClassification;
+    public NotificationInteraction notificationInteraction;
+    // Output
+    public List<Integer> data;
+
+    // Constructor
+    TestVector(Instant interactionTime, ExposureClassification exposureClassification,
+        NotificationInteraction notificationInteraction,
+        List<Integer> data) {
+      this.interactionTime = interactionTime;
+      this.exposureClassification = exposureClassification;
+      this.notificationInteraction = notificationInteraction;
+      this.data = data;
     }
-    return Ints.asList(retVector);
   }
+
 
 }

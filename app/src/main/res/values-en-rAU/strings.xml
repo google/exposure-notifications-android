@@ -36,7 +36,7 @@
   <string name="onboarding_metrics_description">To help maintain and improve the app, some limited de-identified data about app performance and usage is shared with Google. This data does not identify you. %1$s</string>
   <string name="onboarding_confirm_later_title">Keep Exposure Notifications turned off?</string>
   <string name="onboarding_confirm_later_detail">Until Exposure Notifications are turned on, you won’t be notified of possible exposure to COVID-19</string>
-  <string name="no_recent_exposure_subtitle">Active and checking…</string>
+  <string name="no_recent_exposure_subtitle">Active and checking</string>
   <string name="no_recent_exposure_indicator">No recent exposure</string>
   <string name="app_active_info">Your app is regularly checking for possible exposures.</string>
   <string name="notifications_enabled_info">There is currently no reported COVID-19 exposure risk for you. You\'ll be notified if someone you were near reports a positive COVID-19 test result.</string>
@@ -134,6 +134,16 @@
   <string name="ble_off_warning">To continue to get possible COVID-19 Exposure Notifications and share your COVID-19 test result, turn on Bluetooth</string>
   <string name="location_ble_off_warning">To continue to get possible COVID-19 Exposure Notifications and share your COVID-19 test result, turn on Bluetooth and the device location setting</string>
   <string name="storage_low_warning">To continue to get Exposure Notifications and share your COVID-19 test result, free up storage space on your phone.</string>
+  <string name="not_in_allowlist_warning">This app isn\’t approved. See %1$s in your region.</string>
+  <string name="approved_apps_link_text">approved apps</string>
+  <string name="hw_not_supported_warning">This device doesn\’t support Exposure Notifications. See %1$s.</string>
+  <string name="device_requirements_link_text">device requirements</string>
+  <string name="switch_app_for_exposure_notifications">Switch app for Exposure Notifications?</string>
+  <string name="focus_lost_warning">You can use only one Exposure Notifications app on your device at a time.\n\nDo you want to switch to the %1$s app?</string>
+  <string name="switch_app_for_exposure_notifications_action">Switch app</string>
+  <string name="en_not_supported_warning">Exposure Notifications is no longer available. %1$s</string>
+  <string name="user_profile_not_supported_warning">Exposure Notifications isn\’t available on your work profile. Try again on your personal profile.</string>
+  <string name="onboarding_free_up_storage_title">Free up storage space</string>
   <string name="input_error_onset_date_past">Date should occur within last %1$s days of today\’s date</string>
   <string name="input_error_onset_date_future">Date occurs in the future</string>
   <string name="network_error_code_invalid">The verification code doesn’t match. Try again.</string>

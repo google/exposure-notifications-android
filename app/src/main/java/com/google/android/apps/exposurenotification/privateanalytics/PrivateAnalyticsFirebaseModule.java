@@ -19,24 +19,26 @@ package com.google.android.apps.exposurenotification.privateanalytics;
 
 import android.content.Context;
 import androidx.annotation.Nullable;
+import com.google.android.libraries.privateanalytics.PrivateAnalyticsEnabledProvider;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.firestore.FirebaseFirestore;
 import dagger.Module;
 import dagger.Provides;
 import dagger.hilt.InstallIn;
-import dagger.hilt.android.components.ApplicationComponent;
 import dagger.hilt.android.qualifiers.ApplicationContext;
+import dagger.hilt.components.SingletonComponent;
 import javax.inject.Singleton;
 
 @Module
-@InstallIn(ApplicationComponent.class)
+@InstallIn(SingletonComponent.class)
 public class PrivateAnalyticsFirebaseModule {
 
   @Provides
   @Nullable
   @Singleton
-  public FirebaseApp provideFirebaseApp(@ApplicationContext Context context) {
-    if (!PrivateAnalyticsSettingsUtil.isPrivateAnalyticsSupported()) {
+  public FirebaseApp provideFirebaseApp(@ApplicationContext Context context,
+      PrivateAnalyticsEnabledProvider privateAnalyticsEnabledProvider) {
+    if (!privateAnalyticsEnabledProvider.isSupportedByApp()) {
       return null;
     }
     //This call is idempotent

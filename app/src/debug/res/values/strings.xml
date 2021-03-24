@@ -155,6 +155,10 @@
 
   <string name="debug_test_type">Test Type</string>
 
+  <string name="debug_report_type">Report Type</string>
+
+  <string name="debug_days_since_onset">Days Since Onset</string>
+
   <string name="debug_test_type_confirmed">Positive</string>
 
   <string name="debug_test_type_likely">Likely</string>
@@ -194,4 +198,17 @@
   <string name="debug_roaming_country_code_database_error">Database error</string>
 
   <string name="debug_sync_configs_private_analytics_button_text">Sync Remote Configs</string>
+
+  <string name="debug_ux_flows">UX flows</string>
+
+  <string name="debug_ux_flow_toggle">Turn on new UX flow (Apollo app v2.2)</string>
+
+  <string name="switch_ux_flow_dialog_title">Switch the UX flow?</string>
+
+  <string name="switch_ux_flow_dialog_message">This will restart the application. Note that the new UX is under development and may be buggy or not fully functional.</string>
+
+  <string name="btn_switch_ux">Switch UX</string>
+
+  <string name="debug_version">Version</string>
+
 </resources>

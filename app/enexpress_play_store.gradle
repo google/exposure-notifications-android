@@ -21,6 +21,7 @@ apply from: 'enexpress_locales.gradle'
 buildscript {
   repositories {
     google()
+    mavenCentral()
     jcenter()
   }
   dependencies {

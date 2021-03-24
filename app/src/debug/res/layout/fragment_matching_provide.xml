@@ -122,6 +122,48 @@
 
       </com.google.android.material.textfield.TextInputLayout>
 
+      <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/padding_large"
+        android:layout_marginVertical="@dimen/padding_small"
+        android:hint="@string/debug_report_type">
+
+        <AutoCompleteTextView
+          android:id="@+id/input_single_report_type_dropdown"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:inputType="none"
+          android:clickable="false"
+          android:cursorVisible="false"
+          android:focusable="false"
+          android:focusableInTouchMode="false"
+          android:saveEnabled="false" />
+
+      </com.google.android.material.textfield.TextInputLayout>
+
+      <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/padding_large"
+        android:layout_marginVertical="@dimen/padding_small"
+        android:hint="@string/debug_days_since_onset">
+
+        <AutoCompleteTextView
+          android:id="@+id/input_single_onset_day_dropdown"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:inputType="none"
+          android:clickable="false"
+          android:cursorVisible="false"
+          android:focusable="false"
+          android:focusableInTouchMode="false"
+          android:saveEnabled="false" />
+
+      </com.google.android.material.textfield.TextInputLayout>
+
       <include layout="@layout/horizontal_divider" />
 
       <TextView

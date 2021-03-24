@@ -36,7 +36,7 @@
   <string name="onboarding_metrics_description">Bepaalde beperkte, niet-persoonlijk herkenbare gegevens over app-prestaties en gebruik worden met Google gedeeld om de app te onderhouden en te verbeteren. Je bent niet te herkennen aan deze gegevens. %1$s</string>
   <string name="onboarding_confirm_later_title">Blootstellingsmeldingen uitgeschakeld laten?</string>
   <string name="onboarding_confirm_later_detail">Pas als je blootstellingsmeldingen inschakelt, krijg je meldingen over mogelijke blootstelling aan COVID-19</string>
-  <string name="no_recent_exposure_subtitle">Actief en aan het checken…</string>
+  <string name="no_recent_exposure_subtitle">Actief en aan het checken</string>
   <string name="no_recent_exposure_indicator">Geen recente blootstelling</string>
   <string name="app_active_info">Je app checkt regelmatig op mogelijke blootstelling.</string>
   <string name="notifications_enabled_info">Je hebt momenteel geen gemeld blootstellingsrisico voor COVID-19. Als iemand bij wie je in de buurt was een positief COVID-19-testresultaat rapporteert, krijg je een melding.</string>
@@ -134,6 +134,16 @@
   <string name="ble_off_warning">Schakel bluetooth in als je mogelijke blootstellingsmeldingen voor COVID-19 wilt blijven ontvangen en je COVID-19-testresultaat wilt delen</string>
   <string name="location_ble_off_warning">Schakel bluetooth en de locatie-instellingen op het apparaat in als je mogelijke blootstellingsmeldingen voor COVID-19 wilt blijven ontvangen en je COVID-19-testresultaat wilt delen</string>
   <string name="storage_low_warning">Maak opslagruimte vrij op je telefoon als je blootstellingsmeldingen wilt blijven ontvangen en je COVID-19-testresultaat wilt delen.</string>
+  <string name="not_in_allowlist_warning">Deze app is niet goedgekeurd. Bekijk %1$s in jouw regio.</string>
+  <string name="approved_apps_link_text">goedgekeurde apps</string>
+  <string name="hw_not_supported_warning">Dit apparaat biedt geen ondersteuning voor blootstellingsmeldingen. Zie %1$s.</string>
+  <string name="device_requirements_link_text">apparaatvereisten</string>
+  <string name="switch_app_for_exposure_notifications">App voor blootstellingsmeldingen wisselen?</string>
+  <string name="focus_lost_warning">Je kunt maar 1 app voor blootstellingsmeldingen tegelijk op je apparaat gebruiken.\n\nWil je overschakelen naar de app %1$s?</string>
+  <string name="switch_app_for_exposure_notifications_action">Van app wisselen</string>
+  <string name="en_not_supported_warning">Blootstellingsmeldingen zijn niet meer beschikbaar. %1$s</string>
+  <string name="user_profile_not_supported_warning">Blootstellingsmeldingen zijn niet beschikbaar voor je werkprofiel. Probeer het opnieuw voor je persoonlijke profiel.</string>
+  <string name="onboarding_free_up_storage_title">Maak opslagruimte vrij</string>
   <string name="input_error_onset_date_past">Datum moet binnen %1$s dagen van vandaag vallen</string>
   <string name="input_error_onset_date_future">Datum is in de toekomst</string>
   <string name="network_error_code_invalid">De verificatiecode komt niet overeen. Probeer het nog eens.</string>

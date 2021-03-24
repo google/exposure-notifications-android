@@ -36,7 +36,7 @@
   <string name="onboarding_metrics_description">Siekiant padėti tvarkyti ir tobulinti programą, su „Google“ bendrinami tam tikri riboti anonimizuoti duomenys apie programos našumą ir naudojimą. Pagal šiuos duomenis negalima jūsų identifikuoti. %1$s</string>
   <string name="onboarding_confirm_later_title">Išjungti pranešimus apie galimą kontaktą su užsikr. asmeniu?</string>
   <string name="onboarding_confirm_later_detail">Jei ši funkcija bus išjungta, negausite pranešimų apie galimą kontaktą su COVID-19 užsikr. asmeniu</string>
-  <string name="no_recent_exposure_subtitle">Suaktyvinama ir tikrinama…</string>
+  <string name="no_recent_exposure_subtitle">Suaktyvinama ir tikrinama</string>
   <string name="no_recent_exposure_indicator">Nustatyta jokių galimų kontaktų su užsikrėtusiu asmeniu</string>
   <string name="app_active_info">Programa reguliariai tikrina, ar buvo galimų kontaktų su užsikrėtusiais asmenimis.</string>
   <string name="notifications_enabled_info">Šiuo metu nėra jokių pranešimų apie galimą kontaktą su COVID-19 užsikrėtusiu asmeniu. Gausite pranešimą, jei buvote netoli asmens, pranešusio, kad jo COVID-19 testo rezultatas buvo teigiamas.</string>
@@ -134,6 +134,16 @@
   <string name="ble_off_warning">Kad ir toliau galėtumėte gauti pranešimus apie galimą kontaktą su COVID-19 užsikrėtusiu asmeniu bei bendrinti savo COVID-19 testo rezultatą, įjunkite „Bluetooth“</string>
   <string name="location_ble_off_warning">Kad ir toliau galėtumėte gauti pranešimus apie galimą kontaktą su COVID-19 užsikrėtusiu asmeniu bei bendrinti savo COVID-19 testo rezultatą, įjunkite „Bluetooth“ ir įrenginio vietovės nustatymą</string>
   <string name="storage_low_warning">Kad ir toliau galėtumėte gauti pranešimus apie galimą kontaktą su COVID-19 užsikrėtusiu asmeniu bei bendrinti savo COVID-19 testo rezultatą, atlaisvinkite vietos telefono saugykloje.</string>
+  <string name="not_in_allowlist_warning">Ši programa nepatvirtinta. Žr. %1$s savo regione.</string>
+  <string name="approved_apps_link_text">patvirtintas programas</string>
+  <string name="hw_not_supported_warning">Šis įrenginys nepalaiko pranešimų apie galimą kontaktą su užsikrėtusiu asmeniu. Žr. %1$s.</string>
+  <string name="device_requirements_link_text">įrenginio reikalavimus</string>
+  <string name="switch_app_for_exposure_notifications">Perjungti pranešimų apie galimą kontaktą su užsikrėtusiu asmeniu programą?</string>
+  <string name="focus_lost_warning">Įrenginyje vienu metu galite naudoti tik vieną pranešimų apie galimą kontaktą su užsikrėtusiu asmeniu programą.\n\nAr norite perjungti į programą „%1$s“?</string>
+  <string name="switch_app_for_exposure_notifications_action">Perjungti programas</string>
+  <string name="en_not_supported_warning">Pranešimai apie galimą kontaktą su užsikrėtusiu asmeniu nebepasiekiami. %1$s</string>
+  <string name="user_profile_not_supported_warning">Pranešimai apie galimą kontaktą su užsikrėtusiu asmeniu nepasiekiami naudojantis darbo profiliu. Bandykite dar kartą, naudodamiesi asmeniniu profiliu.</string>
+  <string name="onboarding_free_up_storage_title">Saugyklos vietos atlaisvinimas</string>
   <string name="input_error_onset_date_past">Data negali būti vėlesnė nei pastarosios %1$s d. nuo šiandien</string>
   <string name="input_error_onset_date_future">Įvesta data yra ateityje</string>
   <string name="network_error_code_invalid">Patvirtinimo kodas neatitinka. Bandykite dar kartą.</string>

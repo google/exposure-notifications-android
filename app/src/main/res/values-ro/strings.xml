@@ -36,7 +36,7 @@
   <string name="onboarding_metrics_description">Pentru a ne ajuta să întreținem și să îmbunătățim aplicația, anumite date limitate cu informațiile de identificare eliminate despre performanța și utilizarea aplicației se trimit la Google. Aceste date nu vă identifică. %1$s</string>
   <string name="onboarding_confirm_later_title">Păstrați Notificările privind expunerea dezactivate?</string>
   <string name="onboarding_confirm_later_detail">Dacă da, nu veți fi anunțat(ă) de posibila expunere la COVID-19</string>
-  <string name="no_recent_exposure_subtitle">Aplicația este activă și verifică…</string>
+  <string name="no_recent_exposure_subtitle">Aplicația este activă și verifică</string>
   <string name="no_recent_exposure_indicator">Nicio expunere recentă</string>
   <string name="app_active_info">Aplicația verifică periodic posibile expuneri.</string>
   <string name="notifications_enabled_info">Momentan, nu aveți un risc de expunere la COVID-19 raportat. Veți primi o notificare dacă o persoană de care v-ați apropiat semnalează un rezultat pozitiv al testului pentru COVID-19.</string>
@@ -134,6 +134,16 @@
   <string name="ble_off_warning">Ca să primiți în continuare notificări cu privire la posibila expunere la COVID-19 și să trimiteți rezultatul testului dvs. COVID-19, activați Bluetooth</string>
   <string name="location_ble_off_warning">Ca să primiți în continuare notificări cu privire la posibila expunere la COVID-19 și să trimiteți rezultatul testului dvs. COVID-19, activați Bluetooth și setarea privind locația dispozitivului</string>
   <string name="storage_low_warning">Ca să primiți în continuare notificări privind expunerea și să trimiteți rezultatul testului dvs. COVID-19, eliberați spațiu de stocare pe telefon</string>
+  <string name="not_in_allowlist_warning">Aplicația nu este aprobată. Vedeți %1$s în regiunea dvs.</string>
+  <string name="approved_apps_link_text">aplicațiile aprobate</string>
+  <string name="hw_not_supported_warning">Dispozitivul nu este compatibil cu Notificările privind expunerea. Consultați %1$s.</string>
+  <string name="device_requirements_link_text">cerințele pentru dispozitive</string>
+  <string name="switch_app_for_exposure_notifications">Schimbați aplicația pentru notificări privind expunerea?</string>
+  <string name="focus_lost_warning">Puteți folosi o singură aplicație cu Notificări privind expunerea pe dispozitiv odată.\n\nDoriți să treceți la aplicația %1$s?</string>
+  <string name="switch_app_for_exposure_notifications_action">Schimbați aplicația</string>
+  <string name="en_not_supported_warning">Notificările privind expunerea nu mai sunt disponibile. %1$s</string>
+  <string name="user_profile_not_supported_warning">Notificările privind expunerea nu sunt disponibile în profilul dvs. de serviciu. Încercați din nou în profilul personal.</string>
+  <string name="onboarding_free_up_storage_title">Eliberați spațiu de stocare</string>
   <string name="input_error_onset_date_past">Data ar trebui să se încadreze în ultimele %1$s zile</string>
   <string name="input_error_onset_date_future">Data este în viitor</string>
   <string name="network_error_code_invalid">Codul de verificare nu corespunde. Încercați din nou.</string>

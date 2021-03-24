@@ -65,8 +65,10 @@ public class ProvideMatchingViewModel extends ViewModel {
   private final MutableLiveData<Integer> singleInputIntervalNumberLiveData;
   private final MutableLiveData<Integer> singleInputRollingPeriodLiveData;
   private final MutableLiveData<Integer> singleInputTransmissionRiskLevelLiveData;
+  private final MutableLiveData<Integer> singleInputReportTypeLiveData;
+  private final MutableLiveData<Integer> singleInputDaysSinceOnsetOfSymptomsLiveData;
 
-  private static SingleLiveEvent<String> snackbarLiveEvent = new SingleLiveEvent<>();
+  private final SingleLiveEvent<String> snackbarLiveEvent = new SingleLiveEvent<>();
 
   private final MutableLiveData<SigningKeyInfo> keyInfoLiveData;
 
@@ -101,6 +103,8 @@ public class ProvideMatchingViewModel extends ViewModel {
     singleInputIntervalNumberLiveData = new MutableLiveData<>(0);
     singleInputRollingPeriodLiveData = new MutableLiveData<>(144);
     singleInputTransmissionRiskLevelLiveData = new MutableLiveData<>(0);
+    singleInputDaysSinceOnsetOfSymptomsLiveData = new MutableLiveData<>(0);
+    singleInputReportTypeLiveData = new MutableLiveData<>(0);
     keyInfoLiveData = new MutableLiveData<>();
     // The keyfile signing key info doesn't change throughout the run of the app.
     setSigningKeyInfo();
@@ -138,6 +142,22 @@ public class ProvideMatchingViewModel extends ViewModel {
     singleInputTransmissionRiskLevelLiveData.setValue(transmissionRiskLevel);
   }
 
+  public LiveData<Integer> getSingleInputDaysSinceOnsetOfSymptomsLiveData() {
+    return singleInputDaysSinceOnsetOfSymptomsLiveData;
+  }
+
+  public void setSingleInputDaysSinceOnsetOfSymptomsLiveData(int daysSinceOnsetOfSymptoms) {
+    singleInputDaysSinceOnsetOfSymptomsLiveData.setValue(daysSinceOnsetOfSymptoms);
+  }
+
+  public LiveData<Integer> getSingleInputReportTypeLiveData() {
+    return singleInputReportTypeLiveData;
+  }
+
+  public void setSingleInputReportTypeLiveData(int reportType) {
+    singleInputReportTypeLiveData.setValue(reportType);
+  }
+
   public SingleLiveEvent<String> getSnackbarLiveEvent() {
     return snackbarLiveEvent;
   }
@@ -167,6 +187,9 @@ public class ProvideMatchingViewModel extends ViewModel {
               .setRollingPeriod(getSingleInputRollingPeriodLiveData().getValue())
               .setTransmissionRiskLevel(getSingleInputTransmissionRiskLevelLiveData().getValue())
               .setRollingStartIntervalNumber(getSingleInputIntervalNumberLiveData().getValue())
+              .setDaysSinceOnsetOfSymptoms(
+                  getSingleInputDaysSinceOnsetOfSymptomsLiveData().getValue())
+              .setReportType(getSingleInputReportTypeLiveData().getValue())
               .build();
     } catch (IllegalArgumentException e) {
       Log.e(TAG, "Error creating TemporaryExposureKey", e);

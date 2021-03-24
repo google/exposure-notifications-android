@@ -30,7 +30,7 @@ import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import dagger.Module;
 import dagger.Provides;
 import dagger.hilt.InstallIn;
-import dagger.hilt.android.components.ApplicationComponent;
+import dagger.hilt.components.SingletonComponent;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -45,7 +45,7 @@ import javax.inject.Singleton;
  * TestingExecutors.sameThreadScheduledExecutor().
  */
 @Module
-@InstallIn(ApplicationComponent.class)
+@InstallIn(SingletonComponent.class)
 public class ExecutorsModule {
 
   // Number of lightweight executor threads is dynamic. See #lightweightThreadCount()

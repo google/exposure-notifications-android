@@ -36,7 +36,7 @@
   <string name="onboarding_metrics_description">යෙදුම නඩත්තු කිරීමට සහ වැඩිදියුණු කිරීමට උදව් කිරීම සඳහා, යෙදුම් ක්‍රියාකාරිත්වය සහ භාවිතය පිළිබඳ සීමිත හඳුනා නොගත් දත්ත Google සමඟ බෙදා ගනී. මෙම දත්ත ඔබව හඳුනා නොගනී. %1$s</string>
   <string name="onboarding_confirm_later_title">නිරාවරණ දැනුම්දීම් ක්‍රියාවිරහිතව තබා ගන්නද?</string>
   <string name="onboarding_confirm_later_detail">නිරාවරණ දැනුම්දීම් ක්‍රියාත්මක කරන තුරු, COVID-19 වෙත විය හැකි නිරාවරණයන් ඔබට දන්වනු නොලැබේ</string>
-  <string name="no_recent_exposure_subtitle">සක්‍රිය සහ පරීක්ෂා කරමින් …</string>
+  <string name="no_recent_exposure_subtitle">සක්‍රිය සහ පරීක්ෂා කරමින්</string>
   <string name="no_recent_exposure_indicator">මෑත නිරාවරණයක් නැත</string>
   <string name="app_active_info">ඔබගේ යෙදුම නිතරම විය හැකි නිරාවරණ සඳහා පරීක්ෂා කරයි.</string>
   <string name="notifications_enabled_info">ඔබට දැනට වාර්තා වී ඇති COVID-19 නිරාවරණ අවදානමක් නොමැත. ඔබ අසල සිටි අයෙකු පොසිටිව් COVID-19 පරීක්ෂණ ප්‍රතිඵලයක් වාර්තා කළහොත් ඔබට දන්වනු ඇත.</string>
@@ -134,6 +134,16 @@
   <string name="ble_off_warning">විය හැකි COVID-19 නිරාවරණ දැනුම්දීම් දිගටම ලබා ගැනීමට සහ ඔබේ COVID-19 පරීක්ෂණ ප්‍රතිඵල බෙදා ගැනීමට, බ්ලූටූත් ක්‍රියාත්මක කරන්න</string>
   <string name="location_ble_off_warning">විය හැකි COVID-19 නිරාවරණ දැනුම්දීම් දිගටම ලබා ගැනීමට සහ ඔබේ COVID-19 පරීක්ෂණ ප්‍රතිඵල බෙදා ගැනීමට, බ්ලූටූත් සහ උපාංගයේ ස්ථාන සැකසීම ක්‍රියාත්මක කරන්න</string>
   <string name="storage_low_warning">විය හැකි COVID-19 නිරාවරණ දැනුම්දීම් දිගටම ලබා ගැනීමට සහ ඔබේ COVID-19 පරීක්ෂණ ප්‍රතිඵල බෙදා ගැනීමට, ඔබගේ දුරකථනයේ ගබඩා ඉඩ නිදහස් කර ගන්න.</string>
+  <string name="not_in_allowlist_warning">මෙම යෙදුම අනුමත කර නැත. ඔබගේ කලාපයෙහි %1$s බලන්න.</string>
+  <string name="approved_apps_link_text">අනුමත යෙදුම්</string>
+  <string name="hw_not_supported_warning">මෙම උපාංගය නිරාවරණ දැනුම්දීම්වලට සහාය නොදක්වයි. %1$s බලන්න.</string>
+  <string name="device_requirements_link_text">උපාංග අවශ්‍යතා</string>
+  <string name="switch_app_for_exposure_notifications">නිරාවරණ දැනුම් දීම් සඳහා යෙදුම මාරු කරන්නද?</string>
+  <string name="focus_lost_warning">ඔබට වරකට ඔබගේ උපාංගයේ එක් නිරාවරණ දැනුම්දීම් යෙදුමක් පමණක් භාවිත කළ හැකිය.\n\nඔබට %1$s යෙදුමට මාරු වීමට අවශ්‍යද?</string>
+  <string name="switch_app_for_exposure_notifications_action">යෙදුම මාරු කරන්න</string>
+  <string name="en_not_supported_warning">නිරාවරණ දැනුම්දීම් තවදුරටත් ලබා ගත නොහැකිය. %1$s</string>
+  <string name="user_profile_not_supported_warning">ඔබගේ කාර්යාල පැතිකඩෙහි නිරාවරණ දැනුම්දීම් ලබා ගත නොහැකිය. ඔබගේ පුද්ගලික පැතිකඩෙහි නැවත උත්සාහ කරන්න.</string>
+  <string name="onboarding_free_up_storage_title">ගබඩා ඉඩ නිදහස් කර ගන්න</string>
   <string name="input_error_onset_date_past">දිනය අද දිනයෙන් පසු අවසන් දින %1$s තුළ විය යුතුය</string>
   <string name="input_error_onset_date_future">දිනය අනාගතයෙහි එකකි</string>
   <string name="network_error_code_invalid">සත්‍යාපන කේතය නොගැළපෙයි. නැවත උත්සාහ කරන්න.</string>

@@ -38,7 +38,7 @@ public class KeysMatchingViewModel extends ViewModel {
 
   private static final String TAG = "ViewKeysViewModel";
 
-  private MutableLiveData<List<TemporaryExposureKey>> temporaryExposureKeysLiveData;
+  private final MutableLiveData<List<TemporaryExposureKey>> temporaryExposureKeysLiveData;
 
   private final MutableLiveData<InFlightResolution> inFlightResolutionLiveData
       = new MutableLiveData<>(new InFlightResolution(false));

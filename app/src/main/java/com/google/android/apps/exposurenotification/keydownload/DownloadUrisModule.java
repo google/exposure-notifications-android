@@ -25,8 +25,8 @@ import com.google.android.apps.exposurenotification.keydownload.Qualifiers.Trave
 import dagger.Module;
 import dagger.Provides;
 import dagger.hilt.InstallIn;
-import dagger.hilt.android.components.ApplicationComponent;
 import dagger.hilt.android.qualifiers.ApplicationContext;
+import dagger.hilt.components.SingletonComponent;
 import java.util.List;
 import java.util.Map;
 
@@ -36,7 +36,7 @@ import java.util.Map;
  * <p>Tests that do file downloads may want to exclude this module and supply their own URIs.
  */
 @Module
-@InstallIn(ApplicationComponent.class)
+@InstallIn(SingletonComponent.class)
 public class DownloadUrisModule {
 
   @Provides

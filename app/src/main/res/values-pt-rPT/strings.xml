@@ -134,6 +134,16 @@
   <string name="ble_off_warning">Para continuar a receber notificações acerca da possível exposição à COVID-19 e partilhar o resultado do seu teste à COVID-19, ative o Bluetooth.</string>
   <string name="location_ble_off_warning">Para continuar a receber notificações acerca da possível exposição à COVID-19 e partilhar o resultado do seu teste à COVID-19, ative o Bluetooth e a definição de localização do dispositivo.</string>
   <string name="storage_low_warning">Para continuar a receber Notificações de Exposição e partilhar o resultado do seu teste à COVID-19, liberte espaço de armazenamento no telemóvel.</string>
+  <string name="not_in_allowlist_warning">Esta app não está aprovada. Veja as %1$s na sua região.</string>
+  <string name="approved_apps_link_text">apps aprovadas</string>
+  <string name="hw_not_supported_warning">Este dispositivo não suporta as Notificações de exposição. Consulte os %1$s.</string>
+  <string name="device_requirements_link_text">requisitos de dispositivos</string>
+  <string name="switch_app_for_exposure_notifications">Mudar de app para receber Notificações de exposição?</string>
+  <string name="focus_lost_warning">Só pode utilizar uma app de Notificações de exposição de cada vez no seu dispositivo.\n\nPretende mudar para a app %1$s?</string>
+  <string name="switch_app_for_exposure_notifications_action">Mudar de app</string>
+  <string name="en_not_supported_warning">As Notificações de exposição já não estão disponíveis. %1$s</string>
+  <string name="user_profile_not_supported_warning">As Notificações de exposição não estão disponíveis no seu perfil de trabalho. Tente novamente no seu perfil pessoal.</string>
+  <string name="onboarding_free_up_storage_title">Liberte espaço de armazenamento</string>
   <string name="input_error_onset_date_past">A data tem de estar entre os últimos %1$s dias.</string>
   <string name="input_error_onset_date_future">A data é no futuro.</string>
   <string name="network_error_code_invalid">O código de validação não corresponde. Tente novamente.</string>

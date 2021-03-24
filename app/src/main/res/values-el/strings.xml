@@ -36,7 +36,7 @@
   <string name="onboarding_metrics_description">Για να συμβάλετε στη διατήρηση και τη βελτίωση της εφαρμογής, ορισμένα περιορισμένα δεδομένα που έχουν καταστεί μη ταυτοποιήσιμα και τα οποία αφορούν την απόδοση και τη χρήση της εφαρμογής, θα κοινοποιηθούν στην Google. Αυτά τα δεδομένα δεν σας ταυτοποιούν. %1$s</string>
   <string name="onboarding_confirm_later_title">Να παραμείνουν απενεργοποιημένες οι Ειδοποιήσεις έκθεσης;</string>
   <string name="onboarding_confirm_later_detail">Εάν δεν ενεργοπ. τις Ειδοποιήσεις έκθεσης, δεν θα ειδοποιηθείτε για πιθανή έκθεσή σας στον COVID-19.</string>
-  <string name="no_recent_exposure_subtitle">Ενεργοποίηση και έλεγχος…</string>
+  <string name="no_recent_exposure_subtitle">Είναι ενεργοποιημένη και ελέγχει</string>
   <string name="no_recent_exposure_indicator">Δεν υπάρχει πρόσφατη έκθεση</string>
   <string name="app_active_info">Η εφαρμογή σας ελέγχει τακτικά για πιθανές εκθέσεις.</string>
   <string name="notifications_enabled_info">Προς το παρόν δεν υπάρχουν αναφορές κινδύνου έκθεσης COVID-19 για εσάς. Θα ειδοποιηθείτε σε περίπτωση που βρεθήκατε κοντά σε κάποιο άτομο που ανέφερε θετικό αποτέλεσμα εξέτασης COVID-19.</string>
@@ -134,6 +134,16 @@
   <string name="ble_off_warning">Για να συνεχίσετε να λαμβάνετε ειδοποιήσεις πιθανής έκθεσης στην ασθένεια COVID-19 και να κοινοποιείτε το αποτέλεσμα του τεστ για COVID-19, ενεργοποιήστε το Bluetooth.</string>
   <string name="location_ble_off_warning">Για να συνεχίσετε να λαμβάνετε ειδοποιήσεις πιθανής έκθεσης στην ασθένεια COVID-19 και να κοινοποιείτε το αποτέλεσμα του τεστ για COVID-19, ενεργοποιήστε το Bluetooth και τη ρύθμιση τοποθεσίας της συσκευής.</string>
   <string name="storage_low_warning">Για να συνεχίσετε να λαμβάνετε Ειδοποιήσεις έκθεσης και να μοιραστείτε το αποτέλεσμα του τεστ σας για COVID-19, ελευθερώστε αποθηκευτικό χώρο στο τηλέφωνό σας.</string>
+  <string name="not_in_allowlist_warning">Αυτή η εφαρμογή δεν έχει εγκριθεί. Δείτε %1$s στην περιοχή σας.</string>
+  <string name="approved_apps_link_text">εγκεκριμένες εφαρμογές</string>
+  <string name="hw_not_supported_warning">Αυτή η συσκευή δεν υποστηρίζει Ειδοποιήσεις έκθεσης. Ανατρέξτε στην ενότητα %1$s.</string>
+  <string name="device_requirements_link_text">απαιτήσεις συσκευής</string>
+  <string name="switch_app_for_exposure_notifications">Εναλλαγή εφαρμογής για Ειδοποιήσεις έκθεσης;</string>
+  <string name="focus_lost_warning">Μπορείτε να χρησιμοποιείτε μόνο μία εφαρμογή Ειδοποιήσεων έκθεσης στη συσκευή σας τη φορά.\n\nΘέλετε να κάνετε εναλλαγή στην εφαρμογή %1$s;</string>
+  <string name="switch_app_for_exposure_notifications_action">Εναλλαγή εφαρμογής</string>
+  <string name="en_not_supported_warning">Οι Ειδοποιήσεις έκθεσης δεν είναι πλέον διαθέσιμες. %1$s</string>
+  <string name="user_profile_not_supported_warning">Οι Ειδοποιήσεις έκθεσης δεν είναι διαθέσιμες στο προφίλ εργασίας σας. Δοκιμάστε ξανά στο προσωπικό σας προφίλ.</string>
+  <string name="onboarding_free_up_storage_title">Απελευθερώστε αποθηκευτικό χώρο</string>
   <string name="input_error_onset_date_past">Η ημερομηνία πρέπει να είναι εντός των τελευταίων %1$s ημερών από τη σημερινή ημερομηνία.</string>
   <string name="input_error_onset_date_future">Η ημερομηνία είναι στο μέλλον</string>
   <string name="network_error_code_invalid">Ο κωδικός επαλήθευσης δεν ταιριάζει. Δοκιμάστε ξανά.</string>

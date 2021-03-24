@@ -20,25 +20,27 @@ package com.google.android.apps.exposurenotification.logging;
 import android.content.Context;
 import android.util.Log;
 import androidx.annotation.AnyThread;
-import androidx.annotation.Nullable;
 import androidx.annotation.UiThread;
-import com.android.volley.VolleyError;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.network.VolleyUtils;
 import com.google.android.apps.exposurenotification.proto.ApiCall.ApiCallType;
 import com.google.android.apps.exposurenotification.proto.RpcCall.RpcCallResult;
 import com.google.android.apps.exposurenotification.proto.RpcCall.RpcCallType;
 import com.google.android.apps.exposurenotification.proto.UiInteraction.EventType;
 import com.google.android.apps.exposurenotification.proto.WorkManagerTask.Status;
 import com.google.android.apps.exposurenotification.proto.WorkManagerTask.WorkerTask;
-import com.google.android.apps.exposurenotification.network.VolleyUtils;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.nearby.exposurenotification.ExposureNotificationStatusCodes;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 import dagger.hilt.android.qualifiers.ApplicationContext;
 import java.util.concurrent.TimeoutException;
 import javax.inject.Inject;
 
-/** Analytics logger which logs to Logcat only */
-class LogcatAnalyticsLogger implements AnalyticsLogger {
+/**
+ * Analytics logger which logs to Logcat only
+ */
+public class LogcatAnalyticsLogger implements AnalyticsLogger {
 
   private final String healthAuthorityCode;
   private final String tag;
@@ -70,6 +72,13 @@ class LogcatAnalyticsLogger implements AnalyticsLogger {
   @Override
   @AnyThread
   public void logApiCallFailure(ApiCallType apiCallType, Exception exception) {
+    if (exception instanceof ApiException) {
+      if (((ApiException) exception).getStatusCode()
+            == ExposureNotificationStatusCodes.RESOLUTION_REQUIRED) {
+        Log.i(tag, apiCallType + " requires resolution");
+        return;
+      }
+    }
     Log.e(tag, apiCallType + " failed.", exception);
   }
 

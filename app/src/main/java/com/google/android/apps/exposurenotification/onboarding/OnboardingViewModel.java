@@ -23,9 +23,9 @@ import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkManager;
-import com.google.android.apps.exposurenotification.privateanalytics.PrivateAnalyticsSettingsUtil;
 import com.google.android.apps.exposurenotification.privateanalytics.SubmitPrivateAnalyticsWorker;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
+import com.google.android.libraries.privateanalytics.PrivateAnalyticsEnabledProvider;
 
 /**
  * View model for onboarding related actions.
@@ -33,13 +33,16 @@ import com.google.android.apps.exposurenotification.storage.ExposureNotification
 public class OnboardingViewModel extends ViewModel {
 
   private final ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
+  private final PrivateAnalyticsEnabledProvider privateAnalyticsEnabledProvider;
   private final WorkManager workManager;
 
   @ViewModelInject
   public OnboardingViewModel(
       ExposureNotificationSharedPreferences exposureNotificationSharedPreferences,
+      PrivateAnalyticsEnabledProvider privateAnalyticsEnabledProvider,
       WorkManager workManager) {
     this.exposureNotificationSharedPreferences = exposureNotificationSharedPreferences;
+    this.privateAnalyticsEnabledProvider = privateAnalyticsEnabledProvider;
     this.workManager = workManager;
   }
 
@@ -57,8 +60,8 @@ public class OnboardingViewModel extends ViewModel {
 
   public LiveData<Boolean> shouldShowPrivateAnalyticsOnboardingLiveData() {
     return Transformations.map(isPrivateAnalyticsStateSetLiveData(),
-        (isPrivateAnalyticsStateSet) -> !isPrivateAnalyticsStateSet && PrivateAnalyticsSettingsUtil
-            .isPrivateAnalyticsSupported());
+        (isPrivateAnalyticsStateSet) -> !isPrivateAnalyticsStateSet
+            && privateAnalyticsEnabledProvider.isSupportedByApp());
   }
 
   public void setPrivateAnalyticsState(boolean isEnabled) {
@@ -70,5 +73,12 @@ public class OnboardingViewModel extends ViewModel {
    */
   public void submitPrivateAnalytics() {
     workManager.enqueue(new OneTimeWorkRequest.Builder(SubmitPrivateAnalyticsWorker.class).build());
+  }
+
+  /**
+   * Returns whether a new UX Flow is enabled or not.
+   */
+  public boolean isNewUxFlowEnabled() {
+    return exposureNotificationSharedPreferences.getIsEnabledNewUXFlow();
   }
 }

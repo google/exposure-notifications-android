@@ -23,12 +23,12 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import android.os.Bundle;
+import android.util.Pair;
 import com.google.android.apps.exposurenotification.common.Qualifiers.BackgroundExecutor;
 import com.google.android.apps.exposurenotification.common.Qualifiers.LightweightExecutor;
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.common.time.RealTimeModule;
 import com.google.android.apps.exposurenotification.home.ExposureNotificationViewModel.ExposureNotificationState;
-import com.google.android.apps.exposurenotification.home.ExposureNotificationViewModel.RefreshUiData;
 import com.google.android.apps.exposurenotification.logging.AnalyticsLogger;
 import com.google.android.apps.exposurenotification.nearby.ExposureNotificationClientWrapper;
 import com.google.android.apps.exposurenotification.nearby.PackageConfigurationHelper;
@@ -197,15 +197,15 @@ public class ExposureNotificationViewModelTest {
     assertThat(exposureNotificationSharedPreferences.getIsEnabledCache()).isFalse();
   }
 
-
   @Test
   public void refreshState_stateEnabled_notInFlight_refreshUiLiveDataUpdated() {
     // GIVEN
-    AtomicReference<RefreshUiData> refreshUiData = new AtomicReference<>(
-        new RefreshUiData(ExposureNotificationState.DISABLED, /* isInFlight= */ true));
+    AtomicReference<Pair<ExposureNotificationState, Boolean>> refreshUiData = new AtomicReference<>(
+        Pair.create(ExposureNotificationState.DISABLED, /* isInFlight= */ true));
     when(exposureNotificationClientWrapper.isEnabled()).thenReturn(TASK_FOR_RESULT_TRUE);
     when(exposureNotificationClientWrapper.getStatus()).thenReturn(TASK_FOR_ACTIVATED);
-    exposureNotificationViewModel.getRefreshUiLiveData().observeForever(refreshUiData::set);
+    exposureNotificationViewModel.getStateWithInFlightLiveData()
+        .observeForever(refreshUiData::set);
 
     // WHEN
     exposureNotificationViewModel.refreshState();
@@ -213,18 +213,19 @@ public class ExposureNotificationViewModelTest {
     // THEN
     verify(exposureNotificationClientWrapper).isEnabled();
     verify(exposureNotificationClientWrapper).getStatus();
-    assertThat(refreshUiData.get().getState()).isEqualTo(ExposureNotificationState.ENABLED);
-    assertThat(refreshUiData.get().isInFlight()).isFalse();
+    assertThat(refreshUiData.get().first).isEqualTo(ExposureNotificationState.ENABLED);
+    assertThat(refreshUiData.get().second).isFalse();
   }
 
   @Test
   public void refreshState_stateDisabled_notInFlight_refreshUiLiveDataUpdated() {
     // GIVEN
-    AtomicReference<RefreshUiData> refreshUiData = new AtomicReference<>(
-        new RefreshUiData(ExposureNotificationState.ENABLED, /* isInFlight= */ true));
+    AtomicReference<Pair<ExposureNotificationState, Boolean>> refreshUiData = new AtomicReference<>(
+        Pair.create(ExposureNotificationState.ENABLED, /* isInFlight= */ true));
     when(exposureNotificationClientWrapper.isEnabled()).thenReturn(TASK_FOR_RESULT_FALSE);
     when(exposureNotificationClientWrapper.getStatus()).thenReturn(TASK_FOR_INACTIVATED);
-    exposureNotificationViewModel.getRefreshUiLiveData().observeForever(refreshUiData::set);
+    exposureNotificationViewModel.getStateWithInFlightLiveData()
+        .observeForever(refreshUiData::set);
 
     // WHEN
     exposureNotificationViewModel.refreshState();
@@ -232,8 +233,8 @@ public class ExposureNotificationViewModelTest {
     // THEN
     verify(exposureNotificationClientWrapper).isEnabled();
     verify(exposureNotificationClientWrapper).getStatus();
-    assertThat(refreshUiData.get().getState()).isEqualTo(ExposureNotificationState.DISABLED);
-    assertThat(refreshUiData.get().isInFlight()).isFalse();
+    assertThat(refreshUiData.get().first).isEqualTo(ExposureNotificationState.DISABLED);
+    assertThat(refreshUiData.get().second).isFalse();
   }
 
 
@@ -340,19 +341,20 @@ public class ExposureNotificationViewModelTest {
         new AtomicReference<>(ExposureNotificationState.DISABLED);
     AtomicReference<Boolean> inFlight =
         new AtomicReference<>(true);
-    AtomicReference<RefreshUiData> refreshUiData = new AtomicReference<>(
-        new RefreshUiData(ExposureNotificationState.DISABLED, /* isInFlight= */ true));
+    AtomicReference<Pair<ExposureNotificationState, Boolean>> refreshUiData = new AtomicReference<>(
+        Pair.create(ExposureNotificationState.DISABLED, /* isInFlight= */ true));
     exposureNotificationViewModel.getStateLiveData().observeForever(exposureNotificationState::set);
     exposureNotificationViewModel.getInFlightLiveData().observeForever(inFlight::set);
-    exposureNotificationViewModel.getRefreshUiLiveData().observeForever(refreshUiData::set);
+    exposureNotificationViewModel.getStateWithInFlightLiveData()
+        .observeForever(refreshUiData::set);
 
     exposureNotificationViewModel.startExposureNotifications();
 
     verify(exposureNotificationClientWrapper).start();
     assertThat(inFlight.get()).isFalse();
     assertThat(exposureNotificationState.get()).isEqualTo(ExposureNotificationState.ENABLED);
-    assertThat(refreshUiData.get().getState()).isEqualTo(ExposureNotificationState.ENABLED);
-    assertThat(refreshUiData.get().isInFlight()).isFalse();
+    assertThat(refreshUiData.get().first).isEqualTo(ExposureNotificationState.ENABLED);
+    assertThat(refreshUiData.get().second).isFalse();
   }
 
   @Test
@@ -428,18 +430,19 @@ public class ExposureNotificationViewModelTest {
     AtomicBoolean inFlight = new AtomicBoolean(true);
     AtomicReference<ExposureNotificationState> exposureNotificationState =
         new AtomicReference<>(ExposureNotificationState.DISABLED);
-    AtomicReference<RefreshUiData> refreshUiData = new AtomicReference<>(
-        new RefreshUiData(ExposureNotificationState.DISABLED, /* isInFlight= */ true));
+    AtomicReference<Pair<ExposureNotificationState, Boolean>> refreshUiData = new AtomicReference<>(
+        Pair.create(ExposureNotificationState.DISABLED, /* isInFlight= */ true));
     exposureNotificationViewModel.getStateLiveData().observeForever(exposureNotificationState::set);
     exposureNotificationViewModel.getInFlightLiveData().observeForever(inFlight::set);
-    exposureNotificationViewModel.getRefreshUiLiveData().observeForever(refreshUiData::set);
+    exposureNotificationViewModel.getStateWithInFlightLiveData()
+        .observeForever(refreshUiData::set);
 
     exposureNotificationViewModel.startResolutionResultOk();
 
     assertThat(inFlight.get()).isFalse();
     assertThat(exposureNotificationState.get()).isEqualTo(ExposureNotificationState.ENABLED);
-    assertThat(refreshUiData.get().getState()).isEqualTo(ExposureNotificationState.ENABLED);
-    assertThat(refreshUiData.get().isInFlight()).isFalse();
+    assertThat(refreshUiData.get().first).isEqualTo(ExposureNotificationState.ENABLED);
+    assertThat(refreshUiData.get().second).isFalse();
   }
 
   @Test

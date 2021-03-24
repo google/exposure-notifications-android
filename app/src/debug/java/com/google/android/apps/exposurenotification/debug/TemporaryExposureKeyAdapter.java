@@ -37,7 +37,6 @@ import com.google.android.apps.exposurenotification.debug.TemporaryExposureKeyAd
 import com.google.android.apps.exposurenotification.debug.TemporaryExposureKeyEncodingHelper.EncodeException;
 import com.google.android.gms.nearby.exposurenotification.TemporaryExposureKey;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.common.collect.Lists;
 import com.google.common.io.BaseEncoding;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;

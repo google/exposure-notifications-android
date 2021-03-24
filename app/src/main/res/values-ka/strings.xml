@@ -36,7 +36,7 @@
   <string name="onboarding_metrics_description">აპის გამართულად მუშაობისა და გაუმჯობესებისთვის ზოგიერთი შეზღუდული, არამაიდენტიფიცირებელი ინფორმაცია აპის შესრულებისა და მოხმარების შესახებ გაზიარდება Google-თან. ამ მონაცემებით თქვენი იდენტიფიკაცია არ ხდება. %1$s</string>
   <string name="onboarding_confirm_later_title">კონტაქტის შეტყობინ. გამორთული დარჩეს?</string>
   <string name="onboarding_confirm_later_detail">ჩართვამდე COVID-19-თან პოტენციურ კონტაქტზე არ გაცნობებენ</string>
-  <string name="no_recent_exposure_subtitle">აქტიურია და მოწმდება…</string>
+  <string name="no_recent_exposure_subtitle">აქტიურია და მოწმდება</string>
   <string name="no_recent_exposure_indicator">ბოლოდროინდელი კონტაქტი არ ფიქსირდება</string>
   <string name="app_active_info">თქვენი აპი რეგულარულად ამოწმებს შესაძლო კონტაქტებს.</string>
   <string name="notifications_enabled_info">ამჟამად თქვენთვის COVID-19-თან კონტაქტის რისკი არ ფიქსირდება. თუ ისეთ ადამიანთან ახლოს იმყოფებოდით, რომელმაც COVID-19-ის ტესტის დადებითი შედეგი მიუთითა, შეტყობინებას მიიღებთ.</string>
@@ -134,6 +134,16 @@
   <string name="ble_off_warning">COVID-19-ით ინფიცირებულ პირთან სავარაუდო კონტაქტის შესახებ შეტყობინებების მისაღებად და COVID-19-ის ტესტის შედეგების გასაგზავნად ჩართეთ Bluetooth</string>
   <string name="location_ble_off_warning">COVID-19-ით ინფიცირებულ პირთან სავარაუდო კონტაქტის შესახებ შეტყობინებების მისაღებად და COVID-19-ის ტესტის შედეგების გასაგზავნად ჩართეთ Bluetooth და მოწყობილობის მდებარეობის პარამეტრები</string>
   <string name="storage_low_warning">COVID-19-ით ინფიცირებულ პირთან სავარაუდო კონტაქტის შესახებ შეტყობინებების მისაღებად და COVID-19-ის ტესტის შედეგების გასაგზავნად გაათავისუფლეთ სივრცე თქვენს ტელეფონში.</string>
+  <string name="not_in_allowlist_warning">ეს აპი არ არის დადასტურებული. იხილეთ %1$s თქვენს რეგიონში.</string>
+  <string name="approved_apps_link_text">დადასტურებული აპები</string>
+  <string name="hw_not_supported_warning">ამ მოწყობილობას არ აქვს კონტაქტის შეტყობინებების მხარდაჭერა. იხილეთ %1$s.</string>
+  <string name="device_requirements_link_text">მოწყობილობის მოთხოვნები</string>
+  <string name="switch_app_for_exposure_notifications">გსურთ, გადართოთ აპი კონტაქტის შეტყობინებების მისაღებად?</string>
+  <string name="focus_lost_warning">თქვენს მოწყობილობაზე ყოველ ჯერზე კონტაქტის შეტყობინებების მხოლოდ ერთი აპის გამოყენება შეგიძლიათ.\n\nგსურთ, გადაერთოთ %1$s აპზე?</string>
+  <string name="switch_app_for_exposure_notifications_action">აპის გადართვა</string>
+  <string name="en_not_supported_warning">კონტაქტის შეტყობინებები აღარ არის ხელმისაწვდომი. %1$s</string>
+  <string name="user_profile_not_supported_warning">კონტაქტის შეტყობინებები არ არის ხელმისაწვდომი თქვენს სამსახურის პროფილში. ცადეთ ხელახლა თქვენს პირადი პროფილში.</string>
+  <string name="onboarding_free_up_storage_title">გაათავისუფლეთ მეხსიერება</string>
   <string name="input_error_onset_date_past">მითითებული თარიღი დღეიდან %1$s დღის ფარგლებში უნდა იყოს</string>
   <string name="input_error_onset_date_future">მითითებულია მომავალი თარიღი</string>
   <string name="network_error_code_invalid">დამადასტურებელი კოდი არასწორია. ცადეთ ხელახლა.</string>

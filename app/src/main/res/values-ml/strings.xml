@@ -36,7 +36,7 @@
   <string name="onboarding_metrics_description">ആപ്പ് മെയിന്റെയിൻ ചെയ്യാനും മെച്ചപ്പെടുത്താനും സഹായിക്കുന്നതിന് ആപ്പ് പ്രകടനത്തെയും ഉപയോഗത്തെയും കുറിച്ചുള്ള, തിരിച്ചറിയാനുതകുന്ന വിവരങ്ങൾ എടുത്തുമാറ്റിയ പരിമിതമായ ചില ഡാറ്റ Google-മായി പങ്കിടുന്നു. ഈ ഡാറ്റ നിങ്ങളെ തിരിച്ചറിയുന്നില്ല. %1$s</string>
   <string name="onboarding_confirm_later_title">എക്സ്പോഷർ അറിയിപ്പുകൾ ഓഫാക്കി വയ്ക്കണോ?</string>
   <string name="onboarding_confirm_later_detail">എക്സ്പോഷർ അറിയിപ്പുകൾ ഓണാക്കുന്നതു വരെ കോവിഡ്19 എക്സ്പോഷർ സാധ്യതയെക്കുറിച്ചുള്ള അറിയിപ്പ് നേടാനാകില്ല</string>
-  <string name="no_recent_exposure_subtitle">സജീവമാണ്, പരിശോധിക്കുന്നു …</string>
+  <string name="no_recent_exposure_subtitle">സജീവമാണ്, പരിശോധിക്കുന്നു</string>
   <string name="no_recent_exposure_indicator">അടുത്തിടെ എക്സ്പോഷറൊന്നുമില്ല</string>
   <string name="app_active_info">നിങ്ങളുടെ ആപ്പ് പതിവായി എക്സ്പോഷർ സാധ്യതകൾ പരിശോധിക്കുന്നു.</string>
   <string name="notifications_enabled_info">നിങ്ങൾക്ക് നിലവിൽ റിപ്പോർട്ട് ചെയ്‌തിട്ടുള്ള കോവിഡ്-19 എക്സ്പോഷർ അപകടസാധ്യതകളൊന്നുമില്ല. നിങ്ങൾക്ക് സമീപമുണ്ടായിരുന്ന ആർക്കെങ്കിലും കോവിഡ്-19 പരിശോധനാ ഫലം പോസിറ്റീവാണെന്ന് റിപ്പോർട്ട് ചെയ്‌താൽ അത് നിങ്ങളെ അറിയിക്കും.</string>
@@ -134,6 +134,16 @@
   <string name="ble_off_warning">കോവിഡ്-19 എക്സ്പോഷർ സാധ്യതയെക്കുറിച്ച് അറിയിപ്പ് നേടുന്നതും നിങ്ങളുടെ കോവിഡ്-19 പരിശോധനാ ഫലം പങ്കിടുന്നതും തുടരാൻ, Bluetooth ഓണാക്കുക</string>
   <string name="location_ble_off_warning">കോവിഡ്-19 എക്സ്പോഷർ സാധ്യതയെക്കുറിച്ച് അറിയിപ്പ് നേടുന്നതും നിങ്ങളുടെ കോവിഡ്-19 പരിശോധനാ ഫലം പങ്കിടുന്നതും തുടരാൻ, Bluetooth, ഉപകരണത്തിന്റെ ലൊക്കേഷൻ ക്രമീകരണം എന്നിവ ഓണാക്കുക</string>
   <string name="storage_low_warning">കോവിഡ്-19 എക്സ്പോഷർ സാധ്യതയെക്കുറിച്ച് അറിയിപ്പ് നേടുന്നതും നിങ്ങളുടെ കോവിഡ്-19 പരിശോധനാ ഫലം പങ്കിടുന്നതും തുടരാൻ, ഫോണിൽ സ്‌റ്റോറേജ് സ്‌പെയ്‌സ് സൃഷ്‌ടിക്കുക.</string>
+  <string name="not_in_allowlist_warning">ഈ ആപ്പിന് അംഗീകാരമില്ല. നിങ്ങളുടെ പ്രദേശത്തെ %1$s കാണുക.</string>
+  <string name="approved_apps_link_text">അംഗീകരിച്ച ആപ്പുകൾ</string>
+  <string name="hw_not_supported_warning">ഈ ഉപകരണം എക്‌സ്പോഷർ അറിയിപ്പുകളെ പിന്തുണയ്ക്കുന്നില്ല. %1$s കാണുക.</string>
+  <string name="device_requirements_link_text">ഉപകരണ ആവശ്യകതകൾ</string>
+  <string name="switch_app_for_exposure_notifications">എക്സ്പോഷർ അറിയിപ്പുകൾക്ക് ആപ്പ് മാറണോ?</string>
+  <string name="focus_lost_warning">നിങ്ങളുടെ ഉപകരണത്തിൽ ഒരേ സമയം ഒരു എക്‌സ്പോഷർ അറിയിപ്പുകൾ ആപ്പ് മാത്രമേ ഉപയോഗിക്കാനാകൂ.\n\nനിങ്ങൾക്ക് %1$s ആപ്പിലേക്ക് മാറണമെന്നുണ്ടോ?</string>
+  <string name="switch_app_for_exposure_notifications_action">ആപ്പ് മാറുക</string>
+  <string name="en_not_supported_warning">എക്‌സ്പോഷർ അറിയിപ്പുകൾ ഇനി ലഭ്യമല്ല. %1$s</string>
+  <string name="user_profile_not_supported_warning">നിങ്ങളുടെ ഔദ്യോഗിക പ്രൊഫൈലിൽ എക്‌സ്പോഷർ അറിയിപ്പുകൾ ലഭ്യമല്ല. നിങ്ങളുടെ വ്യക്തിപരമായ പ്രൊഫൈലിൽ വീണ്ടും ശ്രമിക്കുക.</string>
+  <string name="onboarding_free_up_storage_title">സ്‌റ്റോറേജ് സ്‌പെയ്‌സ് സൃഷ്‌ടിക്കുക</string>
   <string name="input_error_onset_date_past">കഴിഞ്ഞ %1$s ദിവസത്തിനുള്ളിലെ ഒരു തീയതി ആയിരിക്കണം</string>
   <string name="input_error_onset_date_future">വരാനിരിക്കുന്ന തീയതിയാണ്</string>
   <string name="network_error_code_invalid">പരിശോധനാ കോഡ് പൊരുത്തപ്പെടുന്നില്ല. വീണ്ടും ശ്രമിക്കുക.</string>

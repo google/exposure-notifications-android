@@ -134,6 +134,16 @@
   <string name="ble_off_warning">Pour continuer de recevoir des notifications en cas d\'exposition possible à la COVID-19 et partager votre résultat au test, activez le Bluetooth</string>
   <string name="location_ble_off_warning">Pour continuer de recevoir des notifications en cas d\'exposition possible à la COVID-19 et partager votre résultat au test, activez le Bluetooth et le paramètre de localisation de l\'appareil</string>
   <string name="storage_low_warning">Pour continuer de recevoir des notifications d\'exposition à la COVID-19 et partager votre résultat de test, libérez de l\'espace de stockage sur votre téléphone.</string>
+  <string name="not_in_allowlist_warning">Cette application n\'a pas été approuvée. Découvrez les %1$s dans votre région.</string>
+  <string name="approved_apps_link_text">applications approuvées</string>
+  <string name="hw_not_supported_warning">Cet appareil n\'est pas compatible avec les notifications d\'exposition. Consultez la %1$s.</string>
+  <string name="device_requirements_link_text">configuration requise de l\'appareil</string>
+  <string name="switch_app_for_exposure_notifications">Changer d\'application pour les notifications d\'exposition ?</string>
+  <string name="focus_lost_warning">Vous ne pouvez utiliser qu\'une seule application de notifications d\'exposition à la fois sur votre appareil.\n\nVoulez-vous passer à l\'application %1$s ?</string>
+  <string name="switch_app_for_exposure_notifications_action">Changer d\'application</string>
+  <string name="en_not_supported_warning">Les notifications d\'exposition ne sont plus disponibles. %1$s</string>
+  <string name="user_profile_not_supported_warning">Les notifications d\'exposition ne sont pas disponibles sur votre profil professionnel. Veuillez réessayer sur votre profil personnel.</string>
+  <string name="onboarding_free_up_storage_title">Libérez de l\'espace de stockage</string>
   <string name="input_error_onset_date_past">La date doit se situer dans les %1$s derniers jours</string>
   <string name="input_error_onset_date_future">La date a lieu dans le futur</string>
   <string name="network_error_code_invalid">Le code de validation ne correspond pas. Veuillez réessayer.</string>

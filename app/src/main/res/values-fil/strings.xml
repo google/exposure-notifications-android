@@ -36,7 +36,7 @@
   <string name="onboarding_metrics_description">Para makatulong na mapanatili at mapahusay ang app, ibinabahagi sa Google ang ilang limitado at walang pagkakakilanlang data tungkol sa performance at paggamit ng app. Hindi ka makikilala sa data na ito. %1$s</string>
   <string name="onboarding_confirm_later_title">Panatilihing naka-off ang Notification sa Exposure?</string>
   <string name="onboarding_confirm_later_detail">Hanggang sa i-on ang Notification sa Exposure, hindi ka aabisuhan tungkol sa exposure sa COVID-19</string>
-  <string name="no_recent_exposure_subtitle">Aktibo at nagsusuri …</string>
+  <string name="no_recent_exposure_subtitle">Aktibo at nagsusuri</string>
   <string name="no_recent_exposure_indicator">Walang kamakailang exposure</string>
   <string name="app_active_info">Regular na nagsusuri ang iyong app para sa mga posibleng exposure.</string>
   <string name="notifications_enabled_info">Kasalukuyang walang naiulat na panganib ng exposure sa COVID-19 para sa iyo. Aabisuhan ka kung mag-uulat ng positibong resulta sa COVID-19 test ang isang taong nalapitan mo.</string>
@@ -134,6 +134,16 @@
   <string name="ble_off_warning">Para patuloy na makatanggap ng mga notification sa posibleng exposure sa COVID-19 at maibahagi ang resulta ng iyong pagsusuri sa COVID-19, i-on ang Bluetooth</string>
   <string name="location_ble_off_warning">Para patuloy na makatanggap ng mga notification sa posibleng exposure sa COVID-19 at maibahagi ang resulta ng iyong pagsusuri sa COVID-19, i-on ang Bluetooth at setting ng lokasyon ng device</string>
   <string name="storage_low_warning">Para patuloy na makatanggap ng Mga Notification sa Exposure at maibahagi ang resulta ng iyong pagsusuri sa COVID-19, magbakante ng storage space sa telepono mo.</string>
+  <string name="not_in_allowlist_warning">Hindi naaprubahan ang app na ito. Tingnan ang %1$s sa iyong rehiyon.</string>
+  <string name="approved_apps_link_text">mga naaprubahang app</string>
+  <string name="hw_not_supported_warning">Hindi sinusuportahan ng device na ito ang Mga Notification sa Exposure. Tingnan ang %1$s.</string>
+  <string name="device_requirements_link_text">mga kinakailangan sa device</string>
+  <string name="switch_app_for_exposure_notifications">Magpalit ng app para sa Mga Notification sa Exposure?</string>
+  <string name="focus_lost_warning">Isang app ng Mga Notification sa Exposure lang ang puwede mong gamitin sa iyong device sa bawat pagkakataon.\n\nGusto mo bang lumipat sa %1$s app?</string>
+  <string name="switch_app_for_exposure_notifications_action">Lumipat ng app</string>
+  <string name="en_not_supported_warning">Hindi na available ang Mga Notification sa Exposure. %1$s</string>
+  <string name="user_profile_not_supported_warning">Hindi available sa iyong profile sa trabaho ang Mga Notification sa Exposure. Subukan ulit sa iyong personal na profile.</string>
+  <string name="onboarding_free_up_storage_title">Magbakante ng storage space</string>
   <string name="input_error_onset_date_past">Ang petsa ay dapat nasa loob ng %1$s (na) araw mula sa petsa ngayon</string>
   <string name="input_error_onset_date_future">Nasa hinaharap ang petsa</string>
   <string name="network_error_code_invalid">Hindi tumutugma ang code sa pag-verify. Subukan ulit.</string>

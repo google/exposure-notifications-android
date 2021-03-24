@@ -47,7 +47,6 @@ import com.google.android.gms.tasks.Tasks;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.MoreExecutors;
 import com.google.common.util.concurrent.testing.TestingExecutors;
-import com.jakewharton.threetenabp.AndroidThreeTen;
 import dagger.hilt.android.testing.BindValue;
 import dagger.hilt.android.testing.HiltAndroidTest;
 import dagger.hilt.android.testing.HiltTestApplication;
@@ -108,7 +107,6 @@ public class UploadCoverTrafficWorkerTest {
   public void setUp() {
     rules.hilt().inject();
     Context context = ApplicationProvider.getApplicationContext();
-    AndroidThreeTen.init(context);
     // Randoms below probability result in execution. It's not great for the test to know the
     // internal implementation of the SUT like this. TODO: is there a better way to test?
     when(secureRandom.nextDouble())

@@ -27,7 +27,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.debug.PrivateAnalyticsMetricAdapter.PrivateAnalyticsMetricViewHolder;
-import com.google.android.apps.exposurenotification.privateanalytics.metrics.PrivateAnalyticsMetric;
+import com.google.android.libraries.privateanalytics.PrivateAnalyticsMetric;
 import java.util.Collections;
 import java.util.List;
 

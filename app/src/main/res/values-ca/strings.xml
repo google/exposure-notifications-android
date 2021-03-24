@@ -36,7 +36,7 @@
   <string name="onboarding_metrics_description">Per ajudar a mantenir i millorar l\'aplicació, es comparteixen amb Google algunes dades limitades i sense identificar sobre l\'ús i el rendiment de l\'aplicació. Aquestes dades no permeten identificar-te. %1$s</string>
   <string name="onboarding_confirm_later_title">Vols mantenir les notificacions d\'exposició desactivades?</string>
   <string name="onboarding_confirm_later_detail">No se\'t notificaran possibles exposicions a la COVID-19 fins que no activis aquestes notificacions</string>
-  <string name="no_recent_exposure_subtitle">Aplicació activa i comprovant…</string>
+  <string name="no_recent_exposure_subtitle">Activa i comprovant</string>
   <string name="no_recent_exposure_indicator">No hi ha cap exposició recent</string>
   <string name="app_active_info">L\'aplicació comprova de manera regular les possibles exposicions.</string>
   <string name="notifications_enabled_info">Actualment no s\'ha informat que tinguis cap risc d\'exposició a la COVID-19. Se\'t notificarà si algú que ha estat a prop teu indica que ha donat positiu en una prova de la COVID-19.</string>
@@ -134,6 +134,16 @@
   <string name="ble_off_warning">Per continuar rebent notificacions sobre possibles exposicions a la COVID-19 i compartir el resultat de la prova, activa el Bluetooth</string>
   <string name="location_ble_off_warning">Per continuar rebent notificacions sobre possibles exposicions a la COVID-19 i compartir el resultat de la prova, activa el Bluetooth i la configuració d\'ubicació del dispositiu</string>
   <string name="storage_low_warning">Per continuar rebent notificacions d\'exposició i compartir el resultat de la prova de la COVID-19, allibera espai d\'emmagatzematge del telèfon</string>
+  <string name="not_in_allowlist_warning">Aquesta aplicació no està aprovada. Consulta les %1$s a la teva regió.</string>
+  <string name="approved_apps_link_text">aplicacions aprovades</string>
+  <string name="hw_not_supported_warning">Aquest dispositiu no és compatible amb les notificacions d\'exposició. Consulta els %1$s.</string>
+  <string name="device_requirements_link_text">requisits del dispositiu</string>
+  <string name="switch_app_for_exposure_notifications">Vols canviar l\'aplicació per a les notificacions d\'exposició?</string>
+  <string name="focus_lost_warning">Només pots utilitzar una aplicació de notificacions d\'exposició al teu dispositiu alhora.\n\nVols canviar a l\'aplicació %1$s?</string>
+  <string name="switch_app_for_exposure_notifications_action">Canvia d\'aplicació</string>
+  <string name="en_not_supported_warning">Les notificacions d\'exposició ja no estan disponibles. %1$s</string>
+  <string name="user_profile_not_supported_warning">Les notificacions d\'exposició ja no estan disponibles al teu perfil de treball. Torna-ho a provar al teu perfil personal.</string>
+  <string name="onboarding_free_up_storage_title">Allibera espai d\'emmagatzematge</string>
   <string name="input_error_onset_date_past">La data ha de ser entre avui i els %1$s darrers dies</string>
   <string name="input_error_onset_date_future">La data ha de ser en el futur</string>
   <string name="network_error_code_invalid">El codi de verificació no coincideix. Torna-ho a provar.</string>

@@ -17,7 +17,6 @@
 
 package com.google.android.apps.exposurenotification.debug;
 
-import android.content.Context;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.security.keystore.KeyGenParameterSpec.Builder;

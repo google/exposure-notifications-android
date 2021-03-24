@@ -28,6 +28,7 @@ import com.google.android.apps.exposurenotification.common.SharedPreferenceLiveD
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.riskcalculation.ExposureClassification;
 import com.google.common.base.Optional;
+import org.threeten.bp.Duration;
 import org.threeten.bp.Instant;
 
 /**
@@ -68,6 +69,8 @@ public class ExposureNotificationSharedPreferences {
       "ExposureNotificationSharedPreferences.EXPOSURE_CLASSIFICATION_IS_DATE_NEW_KEY";
   private static final String ANALYTICS_LOGGING_LAST_TIMESTAMP =
       "ExposureNotificationSharedPreferences.ANALYTICS_LOGGING_LAST_TIMESTAMP";
+  private static final String IS_ENABLED_NEW_UX_FLOW_KEY =
+      "ExposureNotificationSharedPreferences.IS_ENABLED_NEW_UX_FLOW_KEY";
   private static final String PROVIDED_DIAGNOSIS_KEY_HEX_TO_LOG_KEY =
       "ExposureNotificationSharedPreferences.PROVIDE_DIAGNOSIS_KEY_TO_LOG_KEY";
 
@@ -90,11 +93,14 @@ public class ExposureNotificationSharedPreferences {
       "ExposureNotificationSharedPreferences.PRIVATE_ANALYTICS_VERIFICATION_CODE_TIME";
   private static final String PRIVATE_ANALYTICS_SUBMITTED_KEYS_TIME =
       "ExposureNotificationSharedPreferences.PRIVATE_ANALYTICS_SUBMITTED_KEYS_TIME";
+  private static final String PRIVATE_ANALYTICS_LAST_EXPOSURE_TIME =
+      "ExposureNotificationSharedPreferences.PRIVATE_ANALYTICS_LAST_EXPOSURE_TIME";
 
   private final SharedPreferences sharedPreferences;
   private final Clock clock;
   private static AnalyticsStateListener analyticsStateListener;
 
+  private final LiveData<Boolean> isEnabledNewUxFlowLiveData;
   private final LiveData<Boolean> appAnalyticsStateLiveData;
   private final LiveData<Boolean> privateAnalyticsStateLiveData;
   private final LiveData<Boolean> isExposureClassificationRevokedLiveData;
@@ -212,6 +218,8 @@ public class ExposureNotificationSharedPreferences {
     sharedPreferences = context.getSharedPreferences(SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE);
     this.clock = clock;
 
+    this.isEnabledNewUxFlowLiveData =
+        new BooleanSharedPreferenceLiveData(sharedPreferences, IS_ENABLED_NEW_UX_FLOW_KEY, false);
     this.appAnalyticsStateLiveData =
         new BooleanSharedPreferenceLiveData(sharedPreferences, SHARE_ANALYTICS_KEY, false);
     this.privateAnalyticsStateLiveData =
@@ -262,6 +270,18 @@ public class ExposureNotificationSharedPreferences {
         setValue(getProvidedDiagnosisKeyHexToLog());
       }
     };
+  }
+
+  public void setIsEnabledNewUxFlow(boolean isEnabledNewUxFlow) {
+    sharedPreferences.edit().putBoolean(IS_ENABLED_NEW_UX_FLOW_KEY, isEnabledNewUxFlow).apply();
+  }
+
+  public boolean getIsEnabledNewUXFlow() {
+    return sharedPreferences.getBoolean(IS_ENABLED_NEW_UX_FLOW_KEY, false);
+  }
+
+  public LiveData<Boolean> getIsEnabledNewUXFlowLiveData() {
+    return Transformations.distinctUntilChanged(isEnabledNewUxFlowLiveData);
   }
 
   public void setOnboardedState(boolean onboardedState) {
@@ -408,11 +428,14 @@ public class ExposureNotificationSharedPreferences {
 
   // Notifications for Private Analytics.
   public void setExposureNotificationLastShownClassification(Instant exposureNotificationTime,
-      int classificationIndex) {
-    if (getPrivateAnalyticState() && classificationIndex > 0) {
+      ExposureClassification exposureClassification) {
+    if (getPrivateAnalyticState() && exposureClassification.getClassificationIndex() > 0) {
       sharedPreferences.edit()
-          .putInt(EXPOSURE_NOTIFICATION_LAST_SHOWN_CLASSIFICATION, classificationIndex)
+          .putInt(EXPOSURE_NOTIFICATION_LAST_SHOWN_CLASSIFICATION,
+              exposureClassification.getClassificationIndex())
           .putLong(EXPOSURE_NOTIFICATION_LAST_SHOWN_TIME, exposureNotificationTime.toEpochMilli())
+          .putLong(PRIVATE_ANALYTICS_LAST_EXPOSURE_TIME,
+              exposureClassification.getClassificationDate())
           .apply();
     }
   }
@@ -425,6 +448,12 @@ public class ExposureNotificationSharedPreferences {
   public Instant getExposureNotificationLastShownTime() {
     return Instant
         .ofEpochMilli(sharedPreferences.getLong(EXPOSURE_NOTIFICATION_LAST_SHOWN_TIME, 0L));
+  }
+
+  public Instant getPrivateAnalyticsLastExposureTime() {
+    // The date of exposure is stored at a day granularity
+    return Instant.EPOCH
+        .plus(Duration.ofDays(sharedPreferences.getLong(PRIVATE_ANALYTICS_LAST_EXPOSURE_TIME, 0L)));
   }
 
   // Interaction for Private Analytics.
@@ -493,6 +522,7 @@ public class ExposureNotificationSharedPreferences {
         .remove(EXPOSURE_NOTIFICATION_LAST_INTERACTION_CLASSIFICATION)
         .remove(EXPOSURE_NOTIFICATION_LAST_SHOWN_TIME)
         .remove(EXPOSURE_NOTIFICATION_LAST_SHOWN_CLASSIFICATION)
+        .remove(PRIVATE_ANALYTICS_LAST_EXPOSURE_TIME)
         .remove(PRIVATE_ANALYTICS_VERIFICATION_CODE_TIME)
         .remove(PRIVATE_ANALYTICS_SUBMITTED_KEYS_TIME)
         .apply();
@@ -502,7 +532,8 @@ public class ExposureNotificationSharedPreferences {
     SharedPreferences.Editor sharedPreferencesEditor = sharedPreferences.edit();
     if (getExposureNotificationLastShownTime().isBefore(date)) {
       sharedPreferencesEditor.remove(EXPOSURE_NOTIFICATION_LAST_SHOWN_TIME)
-          .remove(EXPOSURE_NOTIFICATION_LAST_SHOWN_CLASSIFICATION);
+          .remove(EXPOSURE_NOTIFICATION_LAST_SHOWN_CLASSIFICATION)
+          .remove(PRIVATE_ANALYTICS_LAST_EXPOSURE_TIME);
     }
     if (getExposureNotificationLastInteractionTime().isBefore(date)) {
       sharedPreferencesEditor.remove(EXPOSURE_NOTIFICATION_LAST_INTERACTION_TIME)

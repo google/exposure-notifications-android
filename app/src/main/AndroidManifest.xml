@@ -23,6 +23,7 @@
   <uses-feature android:name="android.hardware.bluetooth_le" android:required="true" />
   <uses-feature android:name="android.hardware.bluetooth" />
 
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
   <uses-permission android:name="android.permission.INTERNET" />
   <uses-permission android:name="android.permission.BLUETOOTH" />
 
@@ -110,6 +111,20 @@
     <activity
       android:name=".settings.LegalTermsActivity"
       android:label="@string/settings_legal_terms"
+      android:exported="false"
+      android:windowSoftInputMode="stateHidden|adjustResize"
+      android:parentActivityName=".home.ExposureNotificationActivity" />
+
+    <activity
+      android:name=".settings.SettingsActivity"
+      android:label="@string/settings_activity_title"
+      android:exported="false"
+      android:windowSoftInputMode="stateHidden|adjustResize"
+      android:parentActivityName=".home.ExposureNotificationActivity" />
+
+    <activity
+      android:name=".exposure.PossibleExposureActivity"
+      android:label="@string/possible_exposure_activity_title"
       android:exported="false"
       android:windowSoftInputMode="stateHidden|adjustResize"
       android:parentActivityName=".home.ExposureNotificationActivity" />

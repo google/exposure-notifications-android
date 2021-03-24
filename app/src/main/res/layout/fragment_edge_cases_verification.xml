@@ -33,43 +33,53 @@
       android:layout_width="?attr/actionBarSize"
       android:layout_height="match_parent"
       android:background="?attr/selectableItemBackgroundBorderless"
-      app:srcCompat="@drawable/ic_close" />
+      app:srcCompat="@drawable/ic_close"
+      android:contentDescription="@string/btn_cancel" />
 
   </LinearLayout>
 
-  <LinearLayout
+  <androidx.core.widget.NestedScrollView
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="@dimen/padding_normal"
-    android:animateLayoutChanges="false">
+    android:layout_height="0dp"
+    android:layout_weight="1"
+    android:isScrollContainer="false"
+    android:fillViewport="true">
 
-    <TextView
-      android:id="@+id/edgecase_main_title"
+    <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:paddingBottom="@dimen/padding_normal"
-      android:textAppearance="?attr/textAppearanceHeadline5"
-      android:text="@string/exposure_notifications_are_turned_off"
-      android:gravity="center" />
+      android:orientation="vertical"
+      android:padding="@dimen/padding_normal"
+      android:animateLayoutChanges="false">
 
-    <TextView
-      android:id="@+id/edgecase_main_text"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:paddingBottom="@dimen/padding_normal"
-      android:textAppearance="?attr/textAppearanceBody1"
-      android:text="@string/notify_turn_on_exposure_notifications_header"
-      android:textColor="?attr/colorControlNormal"
-      android:gravity="center" />
+      <TextView
+        android:id="@+id/edgecase_main_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/padding_normal"
+        android:textAppearance="?attr/textAppearanceHeadline5"
+        android:text="@string/exposure_notifications_are_turned_off"
+        android:gravity="center" />
 
-    <Button
-      android:id="@+id/edgecase_main_button"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_gravity="center_horizontal"
-      android:text="@string/turn_on_exposure_notifications_action" />
+      <TextView
+        android:id="@+id/edgecase_main_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/padding_normal"
+        android:textAppearance="?attr/textAppearanceBody1"
+        android:text="@string/notify_turn_on_exposure_notifications_header"
+        android:textColor="?attr/colorControlNormal"
+        android:gravity="center" />
 
-  </LinearLayout>
+      <Button
+        android:id="@+id/edgecase_main_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/turn_on_exposure_notifications_action" />
+
+    </LinearLayout>
+
+  </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>

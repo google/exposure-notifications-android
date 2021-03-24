@@ -84,6 +84,7 @@ app/src/*/res/raw/*.pem
 # Ignore native build output
 prioclient/.cxx
 
-# Ignore pre-built prioclient AAR
+# Ignore potential locations for the pre-built prioclient AAR
 app/libs/prioclient*.aar
+privateanalytics/libs/prioclient*.aar
 

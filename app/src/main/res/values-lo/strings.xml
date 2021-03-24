@@ -36,7 +36,7 @@
   <string name="onboarding_metrics_description">ເພື່ອຊ່ວຍບຳລຸງຮັກສາ ແລະ ປັບປຸງແອັບ, ຂໍ້ມູນທີ່ບໍ່ສາມາດລະບຸຕົວຕົນທີ່ຈຳກັດໄວ້ບາງຢ່າງກ່ຽວກັບປະສິດທິພາບ ແລະ ການນຳໃຊ້ແອັບຈະຖືກແບ່ງປັນໃຫ້ກັບ Google. ຂໍ້ມູນນີ້ຈະບໍ່ລະບຸຕົວຕົນຂອງທ່ານ. %1$s</string>
   <string name="onboarding_confirm_later_title">ປິດການແຈ້ງເຕືອນຄວາມສ່ຽງຕິດເຊື້ອໄວ້ຕໍ່ໄປບໍ?</string>
   <string name="onboarding_confirm_later_detail">ຈົນກວ່າຈະເປີດການແຈ້ງເຕືອນຄວາມສ່ຽງຕິດເຊື້ອ, ທ່ານຈະບໍ່ໄດ້ຮັບການແຈ້ງເຕືອນຄວາມສ່ຽງໃນການຕິດເຊື້ອ COVID-19.</string>
-  <string name="no_recent_exposure_subtitle">ເປີດໃຊ້ຢູ່ ແລະ ກຳລັງກວດສອບ …</string>
+  <string name="no_recent_exposure_subtitle">ເປີດໃຊ້ຢູ່ ແລະ ກຳລັງກວດສອບ</string>
   <string name="no_recent_exposure_indicator">ບໍ່ມີຄວາມສ່ຽງຕິດເຊື້ອຫຼ້າສຸດ</string>
   <string name="app_active_info">ແອັບຂອງທ່ານມີການກວດສອບຄວາມສ່ຽງຕິດເຊື້ອທີ່ເປັນໄປໄດ້ເປັນປະຈຳ.</string>
   <string name="notifications_enabled_info">ຕອນນີ້ບໍ່ມີລາຍງານຄວາມສ່ຽງຕິດເຊື້ອ COVID-19 ສຳລັບທ່ານ. ທ່ານຈະຖືກແຈ້ງເຕືອນຫາກທ່ານເຄີຍຢູ່ໃກ້ຄົນທີ່ລາຍງານວ່າມີຜົນກວດ COVID-19 ເປັນບວກ.</string>
@@ -134,6 +134,16 @@
   <string name="ble_off_warning">ເພື່ອສືບຕໍ່ຮັບການແຈ້ງເຕືອນຄວາມສ່ຽງຕິດເຊື້ອ COVID-19 ທີ່ເປັນໄປໄດ້ ແລະ ແບ່ງປັນຜົນກວດ COVID-19 ຂອງທ່ານ, ໃຫ້ເປີດໃຊ້ Bluetooth</string>
   <string name="location_ble_off_warning">ເພື່ອສືບຕໍ່ຮັບການແຈ້ງເຕືອນຄວາມສ່ຽງຕິດເຊື້ອ COVID-19 ທີ່ເປັນໄປໄດ້ ແລະ ແບ່ງປັນຜົນກວດ COVID-19 ຂອງທ່ານ, ໃຫ້ເປີດໃຊ້ Bluetooth ແລະ ການຕັ້ງຄ່າສະຖານທີ່ອຸປະກອນ</string>
   <string name="storage_low_warning">ເພື່ອສືບຕໍ່ຮັບການແຈ້ງເຕືອນຄວາມສ່ຽງຕິດເຊື້ອ COVID-19 ແລະ ແບ່ງປັນຜົນກວດ COVID-19 ຂອງທ່ານ, ໃຫ້ສ້າງພື້ນທີ່ຫວ່າງຢູ່ໂທລະສັບຂອງທ່ານ.</string>
+  <string name="not_in_allowlist_warning">ແອັບນີ້ບໍ່ໄດ້ຮັບອະນຸມັດ. ເບິ່ງ %1$s ໃນພາກພື້ນຂອງທ່ານ.</string>
+  <string name="approved_apps_link_text">ແອັບທີ່ອະນຸມັດແລ້ວ</string>
+  <string name="hw_not_supported_warning">ອຸປະກອນນີ້ບໍ່ຮອງຮັບການແຈ້ງເຕືອນຄວາມສ່ຽງຕິດເຊື້ອ. ເບິ່ງ %1$s.</string>
+  <string name="device_requirements_link_text">ຄວາມຕ້ອງການອຸປະກອນ</string>
+  <string name="switch_app_for_exposure_notifications">ສະຫຼັບແອັບສຳລັບການແຈ້ງເຕືອນຄວາມສ່ຽງຕໍ່ການຕິດເຊື້ອບໍ?</string>
+  <string name="focus_lost_warning">ທ່ານສາມາດໃຊ້ແອັບການແຈ້ງເຕືອນຄວາມສ່ຽງຕິດເຊື້ອຢູ່ອຸປະກອນຂອງທ່ານໄດ້ເທື່ອລະແອັບເທົ່ານັ້ນ.\n\nທ່ານຕ້ອງການສະຫຼັບໄປໃຊ້ແອັບ %1$s ບໍ່?</string>
+  <string name="switch_app_for_exposure_notifications_action">ສະຫຼັບແອັບ</string>
+  <string name="en_not_supported_warning">ບໍ່ສາມາດໃຊ້ການແຈ້ງເຕືອນຄວາມສ່ຽງຕິດເຊື້ອໄດ້ອີກຕໍ່ໄປແລ້ວ. %1$s</string>
+  <string name="user_profile_not_supported_warning">ບໍ່ສາມາດໃຊ້ການແຈ້ງເຕືອນຄວາມສ່ຽງຕິດເຊື້ອຢູ່ໂປຣໄຟລ໌ບ່ອນເຮັດວຽກຂອງທ່ານໄດ້. ກະລຸນາລອງໃໝ່ຢູ່ໂປຣໄຟລ໌ສ່ວນຕົວຂອງທ່ານ.</string>
+  <string name="onboarding_free_up_storage_title">ສ້າງພື້ນທີ່ຈັດເກັບຂໍ້ມູນເພີ່ມເຕີມ</string>
   <string name="input_error_onset_date_past">ວັນທີຄວນເກີດຂຶ້ນພາຍໃນ %1$s ມື້ຫຼ້າສຸດຂອງວັນທີມື້ນີ້</string>
   <string name="input_error_onset_date_future">ວັນທີເກີດຂຶ້ນໃນອະນາຄົດ</string>
   <string name="network_error_code_invalid">ລະຫັດການຢັ້ງຢືນບໍ່ກົງກັນ ກະລຸນາລອງໃໝ່.</string>

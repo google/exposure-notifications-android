@@ -36,7 +36,7 @@
   <string name="onboarding_metrics_description">ਐਪ ਨੂੰ ਬਣਾਈ ਰੱਖਣ ਅਤੇ ਬਿਹਤਰ ਬਣਾਉਣ ਵਿੱਚ ਮਦਦ ਕਰਨ ਲਈ, Google ਨਾਲ ਐਪ ਦੀ ਕਾਰਗੁਜ਼ਾਰੀ ਅਤੇ ਵਰਤੋਂ ਬਾਰੇ ਕੁਝ ਸੀਮਤ ਗੈਰ-ਪਛਾਣਯੋਗ ਡਾਟਾ ਸਾਂਝਾ ਕੀਤਾ ਗਿਆ ਹੈ। ਇਹ ਡਾਟਾ ਤੁਹਾਡੀ ਪਛਾਣ ਨਹੀਂ ਕਰਦਾ ਹੈ। %1$s</string>
   <string name="onboarding_confirm_later_title">ਕੀ ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਦੀ ਸੂਚਨਾ ਨੂੰ ਬੰਦ ਰੱਖਣਾ ਹੈ?</string>
   <string name="onboarding_confirm_later_detail">ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਦੀਆਂ ਸੂਚਨਾਵਾਂ ਚਾਲੂ ਨਾ ਕੀਤੇ ਜਾਣ ਤੱਕ, ਤੁਹਾਨੂੰ COVID-19 ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਦੀ ਸੰਭਾਵਨਾ ਬਾਰੇ ਸੂਚਿਤ ਨਹੀਂ ਕੀਤਾ ਜਾਵੇਗਾ</string>
-  <string name="no_recent_exposure_subtitle">ਕਿਰਿਆਸ਼ੀਲ ਹੈ ਅਤੇ ਜਾਂਚ ਹੋ ਰਹੀ ਹੈ …</string>
+  <string name="no_recent_exposure_subtitle">ਕਿਰਿਆਸ਼ੀਲ ਹੈ ਅਤੇ ਜਾਂਚ ਹੋ ਰਹੀ ਹੈ</string>
   <string name="no_recent_exposure_indicator">ਹਾਲ ਵਿੱਚ ਕੋਈ ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਨਹੀਂ</string>
   <string name="app_active_info">ਤੁਹਾਡੀ ਐਪ ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਸੰਬੰਧੀ ਸੰਭਾਵਨਾ ਲਈ ਨਿਯਮਿਤ ਤੌਰ \'ਤੇ ਜਾਂਚ ਕਰ ਰਹੀ ਹੈ।</string>
   <string name="notifications_enabled_info">ਫ਼ਿਲਹਾਲ ਤੁਹਾਨੂੰ COVID-19 ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਦਾ ਕੋਈ ਜੋਖਮ ਨਹੀਂ ਹੈ। ਕਿਸੇ COVID-19 ਪ੍ਰਭਾਵਿਤ ਵਿਅਕਤੀ ਦੇ ਨੇੜੇ ਜਾਣ \'ਤੇ ਤੁਹਾਨੂੰ ਸੂਚਿਤ ਕੀਤਾ ਜਾਵੇਗਾ।</string>
@@ -134,6 +134,16 @@
   <string name="ble_off_warning">COVID-19 ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਸੰਬੰਧੀ ਸੰਭਾਵਨਾ ਬਾਰੇ ਸੂਚਨਾਵਾਂ ਪ੍ਰਾਪਤ ਕਰਨਾ ਜਾਰੀ ਰੱਖਣ ਅਤੇ ਆਪਣਾ COVID-19 ਜਾਂਚ ਨਤੀਜਾ ਸਾਂਝਾ ਕਰਨ ਲਈ, ਬਲੂਟੁੱਥ ਚਾਲੂ ਕਰੋ</string>
   <string name="location_ble_off_warning">COVID-19 ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਸੰਬੰਧੀ ਸੰਭਾਵਨਾ ਬਾਰੇ ਸੂਚਨਾਵਾਂ ਪ੍ਰਾਪਤ ਕਰਨਾ ਜਾਰੀ ਰੱਖਣ ਅਤੇ ਆਪਣਾ COVID-19 ਜਾਂਚ ਨਤੀਜਾ ਸਾਂਝਾ ਕਰਨ ਲਈ, ਬਲੂਟੁੱਥ ਅਤੇ ਡੀਵਾਈਸ ਟਿਕਾਣਾ ਸੈਟਿੰਗ ਚਾਲੂ ਕਰੋ</string>
   <string name="storage_low_warning">\'ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਦੀਆਂ ਸੂਚਨਾਵਾਂ\' ਪ੍ਰਾਪਤ ਕਰਨਾ ਜਾਰੀ ਰੱਖਣ ਅਤੇ ਆਪਣਾ COVID-19 ਜਾਂਚ ਨਤੀਜਾ ਸਾਂਝਾ ਕਰਨ ਲਈ, ਆਪਣੇ ਫ਼ੋਨ \'ਤੇ ਸਟੋਰੇਜ ਦੀ ਜਗ੍ਹਾ ਖਾਲੀ ਕਰੋ।</string>
+  <string name="not_in_allowlist_warning">ਇਹ ਐਪ ਮਨਜ਼ੂਰਸ਼ੁਦਾ ਨਹੀਂ ਹੈ। ਆਪਣੇ ਖੇਤਰ ਵਿੱਚ %1$s ਦੇਖੋ।</string>
+  <string name="approved_apps_link_text">ਮਨਜ਼ੂਰਸ਼ੁਦਾ ਐਪਾਂ</string>
+  <string name="hw_not_supported_warning">ਇਹ ਡੀਵਾਈਸ ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਦੀਆਂ ਸੂਚਨਾਵਾਂ ਦਾ ਸਮਰਥਨ ਨਹੀਂ ਕਰਦਾ। %1$s ਦੇਖੋ।</string>
+  <string name="device_requirements_link_text">ਡੀਵਾਈਸ ਦੀਆਂ ਲੋੜਾਂ</string>
+  <string name="switch_app_for_exposure_notifications">ਕੀ ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਦੀਆਂ ਸੂਚਨਾਵਾਂ ਲਈ ਐਪ ਨੂੰ ਬਦਲਣਾ ਹੈ?</string>
+  <string name="focus_lost_warning">ਤੁਸੀਂ ਇੱਕ ਸਮੇਂ \'ਤੇ ਆਪਣੇ ਡੀਵਾਈਸ \'ਤੇ ਸਿਰਫ਼ ਇੱਕ \'ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਦੀਆਂ ਸੂਚਨਾਵਾਂ\' ਐਪ ਦੀ ਵਰਤੋਂ ਕਰ ਸਕਦੇ ਹੋ।\n\nਕੀ ਤੁਸੀਂ %1$s ਐਪ ਦੀ ਵਰਤੋਂ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
+  <string name="switch_app_for_exposure_notifications_action">ਐਪ ਬਦਲੋ</string>
+  <string name="en_not_supported_warning">ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਦੀਆਂ ਸੂਚਨਾਵਾਂ ਹੁਣ ਉਪਲਬਧ ਨਹੀਂ ਹਨ। %1$s</string>
+  <string name="user_profile_not_supported_warning">ਤੁਹਾਡੇ ਕਾਰਜ ਪ੍ਰੋਫਾਈਲ \'ਤੇ ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਦੀਆਂ ਸੂਚਨਾਵਾਂ ਉਪਲਬਧ ਨਹੀਂ ਹਨ। ਆਪਣੇ ਨਿੱਜੀ ਪ੍ਰੋਫਾਈਲ \'ਤੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
+  <string name="onboarding_free_up_storage_title">ਸਟੋਰੇਜ ਜਗ੍ਹਾ ਖਾਲੀ ਕਰੋ</string>
   <string name="input_error_onset_date_past">ਤਾਰੀਖ ਅੱਜ ਦੀ ਤਾਰੀਖ ਤੋਂ ਪਿਛਲੇ %1$s ਦਿਨਾਂ ਦੇ ਅੰਦਰ ਦੀ ਹੋਣੀ ਚਾਹੀਦੀ ਹੈ</string>
   <string name="input_error_onset_date_future">ਤਾਰੀਖ ਭਵਿੱਖੀ ਹੈ</string>
   <string name="network_error_code_invalid">ਪੁਸ਼ਟੀਕਰਨ ਕੋਡ ਮੇਲ ਨਹੀਂ ਖਾਂਦਾ। ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>

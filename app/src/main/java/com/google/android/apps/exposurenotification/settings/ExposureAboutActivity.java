@@ -36,6 +36,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.common.StorageManagementHelper;
 import com.google.android.apps.exposurenotification.databinding.ActivityExposureAboutBinding;
 import com.google.android.apps.exposurenotification.edgecases.AboutEdgeCaseFragment;
 import com.google.android.apps.exposurenotification.home.ExposureNotificationViewModel;
@@ -43,6 +44,7 @@ import com.google.android.apps.exposurenotification.home.ExposureNotificationVie
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 import dagger.hilt.android.AndroidEntryPoint;
+import javax.annotation.Nullable;
 
 /**
  * Activity for information about exposure notifications in general.
@@ -53,11 +55,17 @@ public class ExposureAboutActivity extends AppCompatActivity {
   private static final String TAG = "ExposureAboutActivity";
 
   private static final String STATE_TURN_OFF_OPEN = "STATE_TURN_OFF_OPEN";
+  private static final String STATE_MANAGE_STORAGE_OPEN = "STATE_MANAGE_STORAGE_OPEN";
 
   private ActivityExposureAboutBinding binding;
   private ExposureNotificationViewModel exposureNotificationViewModel;
+  private ExposureNotificationState state;
+
+  @Nullable
+  private BroadcastReceiver refreshUiBroadcastReceiver = null;
 
   boolean isTurnOffOpen = false;
+  boolean manageStorageDialogOpen = false;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -71,14 +79,20 @@ public class ExposureAboutActivity extends AppCompatActivity {
 
     if (savedInstanceState != null) {
       isTurnOffOpen = savedInstanceState.getBoolean(STATE_TURN_OFF_OPEN, false);
+      manageStorageDialogOpen = savedInstanceState.getBoolean(STATE_MANAGE_STORAGE_OPEN, false);
     }
+
+    // Ensure we keep the open dialogs open upon rotations.
     if (isTurnOffOpen) {
       showTurnOffDialog();
+    }
+    if (manageStorageDialogOpen) {
+      showManageStorageDialog();
     }
 
     exposureNotificationViewModel
         .getStateLiveData()
-        .observe(this, this::refreshUiTextVisibilityForState);
+        .observe(this, this::refreshUiForState);
     exposureNotificationViewModel
         .getEnEnabledLiveData()
         .observe(this, this::refreshUiSwitchForIsEnabled);
@@ -98,11 +112,6 @@ public class ExposureAboutActivity extends AppCompatActivity {
 
     binding.exposureAboutSettingsButton.setOnClickListener(v -> settingsAction());
 
-    IntentFilter intentFilter = new IntentFilter();
-    intentFilter.addAction(LocationManager.PROVIDERS_CHANGED_ACTION);
-    intentFilter.addAction(BluetoothAdapter.ACTION_STATE_CHANGED);
-    registerReceiver(refreshBroadcastReceiver, intentFilter);
-
     /*
      * Attach the edge-case logic as a fragment
      */
@@ -114,26 +123,35 @@ public class ExposureAboutActivity extends AppCompatActivity {
           .replace(R.id.edge_case_fragment, aboutEdgeCaseFragment)
           .commit();
     }
-
-  }
-
-  private final BroadcastReceiver refreshBroadcastReceiver = new BroadcastReceiver() {
-    @Override
-    public void onReceive(Context context, Intent intent) {
-      refreshUi();
-    }
-  };
-
-  @Override
-  public void onDestroy() {
-    super.onDestroy();
-    unregisterReceiver(refreshBroadcastReceiver);
   }
 
   @Override
   public void onResume() {
     super.onResume();
     refreshUi();
+    if (refreshUiBroadcastReceiver == null) {
+      IntentFilter intentFilter = new IntentFilter();
+      intentFilter.addAction(LocationManager.PROVIDERS_CHANGED_ACTION);
+      intentFilter.addAction(BluetoothAdapter.ACTION_STATE_CHANGED);
+
+      refreshUiBroadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+          refreshUi();
+        }
+      };
+
+      registerReceiver(refreshUiBroadcastReceiver, intentFilter);
+    }
+  }
+
+  @Override
+  public void onPause() {
+    super.onPause();
+    if (refreshUiBroadcastReceiver != null) {
+      unregisterReceiver(refreshUiBroadcastReceiver);
+      refreshUiBroadcastReceiver = null;
+    }
   }
 
   private final OnCheckedChangeListener enSwitchChangeListener =
@@ -145,7 +163,11 @@ public class ExposureAboutActivity extends AppCompatActivity {
           buttonView.setChecked(!isChecked);
           buttonView.setOnCheckedChangeListener(enSwitchChangeListener);
           if (isChecked) {
-            exposureNotificationViewModel.startExposureNotifications();
+            if (state == ExposureNotificationState.STORAGE_LOW) {
+              showManageStorageDialog();
+            } else {
+              exposureNotificationViewModel.startExposureNotifications();
+            }
           } else {
             showTurnOffDialog();
           }
@@ -165,15 +187,31 @@ public class ExposureAboutActivity extends AppCompatActivity {
   }
 
   /**
-   * Make explanatory text (in)visible depending on the Exposure Notifications state.
+   * Update UI to match the current Exposure Notifications state.
+   *
    * @param state the {@link ExposureNotificationState} of the API
    */
-  private void refreshUiTextVisibilityForState(ExposureNotificationState state) {
+  private void refreshUiForState(ExposureNotificationState state) {
+    this.state = state;
+
     LinearLayout exposureAboutDetailLayout = binding.exposureAboutDetailLayout;
-    if (state == ExposureNotificationState.ENABLED || state == ExposureNotificationState.DISABLED) {
+    if (state == ExposureNotificationState.ENABLED || state == ExposureNotificationState.DISABLED
+        || state == ExposureNotificationState.FOCUS_LOST) {
       exposureAboutDetailLayout.setVisibility(View.VISIBLE);
+      binding.exposureNotificationToggle.setEnabled(true);
     } else {
       exposureAboutDetailLayout.setVisibility(View.GONE);
+
+      // Disable the toggle button switching from off to on as we cannot turn on EN from the app
+      // when hitting one of these states.
+      if ((state == ExposureNotificationState.PAUSED_NOT_IN_ALLOWLIST
+          || state == ExposureNotificationState.PAUSED_EN_NOT_SUPPORT
+          || state == ExposureNotificationState.PAUSED_USER_PROFILE_NOT_SUPPORT)
+          && !binding.exposureNotificationToggle.isChecked()) {
+        binding.exposureNotificationToggle.setEnabled(false);
+      } else {
+        binding.exposureNotificationToggle.setEnabled(true);
+      }
     }
   }
 
@@ -199,6 +237,7 @@ public class ExposureAboutActivity extends AppCompatActivity {
   public void onSaveInstanceState(@NonNull Bundle bundle) {
     super.onSaveInstanceState(bundle);
     bundle.putBoolean(STATE_TURN_OFF_OPEN, isTurnOffOpen);
+    bundle.putBoolean(STATE_MANAGE_STORAGE_OPEN, manageStorageDialogOpen);
   }
 
   private void showTurnOffDialog() {
@@ -221,4 +260,22 @@ public class ExposureAboutActivity extends AppCompatActivity {
         .show();
   }
 
+  private void showManageStorageDialog() {
+    manageStorageDialogOpen = true;
+    new MaterialAlertDialogBuilder(ExposureAboutActivity.this)
+        .setTitle(R.string.onboarding_free_up_storage_title)
+        .setMessage(R.string.storage_low_warning)
+        .setCancelable(true)
+        .setNegativeButton(R.string.btn_cancel, (dialog, i) -> {
+          manageStorageDialogOpen = false;
+          dialog.cancel();
+        })
+        .setPositiveButton(R.string.manage_storage,
+            (dialog, i) -> {
+              manageStorageDialogOpen = false;
+              StorageManagementHelper.launchStorageManagement(ExposureAboutActivity.this);
+            })
+        .setOnCancelListener(dialog -> manageStorageDialogOpen = false)
+        .show();
+  }
 }

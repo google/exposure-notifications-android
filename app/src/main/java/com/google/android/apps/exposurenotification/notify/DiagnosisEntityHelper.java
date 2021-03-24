@@ -20,10 +20,12 @@ package com.google.android.apps.exposurenotification.notify;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
+import androidx.annotation.Nullable;
 import androidx.viewbinding.ViewBinding;
 import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.storage.DiagnosisEntity;
+import com.google.android.apps.exposurenotification.storage.DiagnosisEntity.Shared;
 import org.threeten.bp.LocalDate;
 import org.threeten.bp.ZoneOffset;
 
@@ -38,6 +40,13 @@ public final class DiagnosisEntityHelper {
   public static boolean hasVerified(DiagnosisEntity diagnosisEntity) {
     return !TextUtils.isEmpty(diagnosisEntity.getVerificationCode()) && !TextUtils
         .isEmpty(diagnosisEntity.getLongTermToken());
+  }
+
+  /**
+   * Check if the diagnosis has been shared.
+   */
+  public static boolean hasBeenShared(@Nullable DiagnosisEntity diagnosisEntity) {
+    return diagnosisEntity != null && Shared.SHARED.equals(diagnosisEntity.getSharedStatus());
   }
 
   /**

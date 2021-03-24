@@ -19,6 +19,7 @@ package com.google.android.apps.exposurenotification.privateanalytics.metrics;
 
 import androidx.annotation.VisibleForTesting;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
+import com.google.android.libraries.privateanalytics.PrivateAnalyticsMetric;
 import com.google.common.primitives.Ints;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;

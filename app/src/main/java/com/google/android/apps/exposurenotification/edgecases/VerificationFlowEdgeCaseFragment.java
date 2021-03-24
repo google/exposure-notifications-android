@@ -18,6 +18,8 @@
 package com.google.android.apps.exposurenotification.edgecases;
 
 import android.os.Bundle;
+import android.text.method.LinkMovementMethod;
+import android.text.style.URLSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +28,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProvider;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.common.StringUtils;
 import com.google.android.apps.exposurenotification.databinding.FragmentEdgeCasesVerificationBinding;
 import com.google.android.apps.exposurenotification.home.ExposureNotificationViewModel.ExposureNotificationState;
 import com.google.android.apps.exposurenotification.notify.DiagnosisEntityHelper;
@@ -65,16 +68,21 @@ public class VerificationFlowEdgeCaseFragment extends AbstractEdgeCaseFragment {
       boolean isInFlight) {
     ShareDiagnosisViewModel viewModel =
         new ViewModelProvider(getActivity()).get(ShareDiagnosisViewModel.class);
-    viewModel.getCurrentDiagnosisLiveData().observe(getViewLifecycleOwner(), diagnosisEntity ->
-        binding.home.setOnClickListener(v -> {
-          // Only show a warning dialog if the entity has been verified.
-          if (DiagnosisEntityHelper.hasVerified(diagnosisEntity)) {
-            ShareDiagnosisActivity.showCloseWarningAlertDialog(requireActivity(), viewModel);
-          } else {
-            requireActivity().finish();
-          }
-        }));
-    binding.home.setContentDescription(getString(R.string.btn_cancel));
+    viewModel.getCurrentDiagnosisLiveData().observe(getViewLifecycleOwner(), diagnosisEntity -> {
+      // No need to display edge case errors for already shared diagnoses.
+      if (DiagnosisEntityHelper.hasBeenShared(diagnosisEntity)) {
+        setContainerVisibility(containerView, false);
+      }
+
+      binding.home.setOnClickListener(v -> {
+        // Only show a warning dialog if the entity has been verified.
+        if (DiagnosisEntityHelper.hasVerified(diagnosisEntity)) {
+          ShareDiagnosisActivity.showCloseWarningAlertDialog(requireActivity(), viewModel);
+        } else {
+          requireActivity().finish();
+        }
+      });
+    });
 
     TextView title = binding.edgecaseMainTitle;
     TextView text = binding.edgecaseMainText;
@@ -82,20 +90,65 @@ public class VerificationFlowEdgeCaseFragment extends AbstractEdgeCaseFragment {
     button.setEnabled(true);
 
     switch (state) {
-      case ENABLED:
-      case PAUSED_LOCATION_BLE:
-      case PAUSED_BLE:
-      case PAUSED_LOCATION:
-      case STORAGE_LOW:
-      default:
-        setContainerVisibility(containerView, false);
-        break;
       case DISABLED:
         setContainerVisibility(containerView, true);
         title.setText(R.string.exposure_notifications_are_turned_off);
         text.setText(R.string.notify_turn_on_exposure_notifications_header);
         button.setText(R.string.turn_on_exposure_notifications_action);
         configureButtonForStartEn(button, isInFlight);
+        break;
+      case FOCUS_LOST:
+        setContainerVisibility(containerView, true);
+        title.setText(R.string.switch_app_for_exposure_notifications);
+        text.setText(getString(R.string.focus_lost_warning,
+            StringUtils.getApplicationName(requireContext())));
+        button.setText(R.string.switch_app_for_exposure_notifications_action);
+        configureButtonForStartEn(button, isInFlight);
+        break;
+      case PAUSED_USER_PROFILE_NOT_SUPPORT:
+        setContainerVisibility(containerView, true);
+        title.setText(R.string.exposure_notifications_are_inactive);
+        text.setText(R.string.user_profile_not_supported_warning);
+        button.setVisibility(View.GONE);
+        break;
+      case PAUSED_NOT_IN_ALLOWLIST:
+        String approvedAppsLinkText = getString(R.string.approved_apps_link_text);
+
+        setContainerVisibility(containerView, true);
+        title.setText(R.string.exposure_notifications_are_inactive);
+        text.setText(StringUtils.generateTextWithHyperlink(
+            new URLSpan(getString(R.string.allowlisted_en_apps_link)),
+            getString(R.string.not_in_allowlist_warning, approvedAppsLinkText),
+            approvedAppsLinkText));
+        text.setMovementMethod(LinkMovementMethod.getInstance());
+        button.setVisibility(View.GONE);
+        break;
+      case PAUSED_HW_NOT_SUPPORT:
+        String deviceRequirementsLinkText = getString(R.string.device_requirements_link_text);
+
+        setContainerVisibility(containerView, true);
+        title.setText(R.string.exposure_notifications_are_inactive);
+        text.setText(StringUtils.generateTextWithHyperlink(
+            new URLSpan(getString(R.string.device_requirements_link)),
+            getString(R.string.hw_not_supported_warning, deviceRequirementsLinkText),
+            deviceRequirementsLinkText));
+        text.setMovementMethod(LinkMovementMethod.getInstance());
+        button.setVisibility(View.GONE);
+        break;
+      case PAUSED_EN_NOT_SUPPORT:
+        String learnMoreLinkText = getString(R.string.learn_more);
+
+        setContainerVisibility(containerView, true);
+        title.setText(R.string.exposure_notifications_are_inactive);
+        text.setText(StringUtils.generateTextWithHyperlink(
+            new URLSpan(getString(R.string.en_info_main_page_link)),
+            getString(R.string.en_not_supported_warning, learnMoreLinkText),
+            learnMoreLinkText));
+        text.setMovementMethod(LinkMovementMethod.getInstance());
+        button.setVisibility(View.GONE);
+        break;
+      default:
+        setContainerVisibility(containerView, false);
         break;
     }
   }

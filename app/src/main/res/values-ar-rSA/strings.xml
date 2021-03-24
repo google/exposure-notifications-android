@@ -36,7 +36,7 @@
   <string name="onboarding_metrics_description">للمساعدة في الحفاظ على التطبيق وتحسينه، تتم مشاركة بعض البيانات المجهولة الهوية عن استخدام التطبيق وأدائه مع Google. وهذه المعلومات لا تحدّد هويتك. %1$s</string>
   <string name="onboarding_confirm_later_title">هل اخترت عدم تفعيل نظام \"إشعارات التعرّض لفيروس كورونا\"؟</string>
   <string name="onboarding_confirm_later_detail">في حال عدم تفعيله، لن تتلقّى إشعارات عن التعرّض المحتمل للفيروس.</string>
-  <string name="no_recent_exposure_subtitle">التطبيق نشط وجارٍ التحقّق …</string>
+  <string name="no_recent_exposure_subtitle">التطبيق نشط ويتم التحقّق</string>
   <string name="no_recent_exposure_indicator">لم يتم التعرّض للفيروس مؤخرًا.</string>
   <string name="app_active_info">يتحقّق التطبيق بانتظام من حالات التعرّض المحتمل للفيروس.</string>
   <string name="notifications_enabled_info">لم يتم حاليًا رصد أي مخاطر بشأن تعرّضك لفيروس كورونا المستجد (كوفيد-19). سيتم تنبيهك إذا كنت بالقرب من شخص كانت نتيجة اختبار فيروس كورونا المستجد الخاصة به إيجابية.</string>
@@ -134,6 +134,16 @@
   <string name="ble_off_warning">لمواصلة تلقّي إشعارات التعرّض لفيروس كورونا المستجد ومشاركة نتيجة فحص الفيروس، عليك تفعيل البلوتوث.</string>
   <string name="location_ble_off_warning">لمواصلة تلقّي إشعارات التعرّض لفيروس كورونا المستجد ومشاركة نتيجة فحص الفيروس، عليك تفعيل البلوتوث وإعدادات الموقع الجغرافي على جهازك.</string>
   <string name="storage_low_warning">لمواصلة تلقّي إشعارات التعرّض لفيروس كورونا المستجد ومشاركة نتيجة فحص الفيروس، عليك إخلاء مساحة تخزين على هاتفك.</string>
+  <string name="not_in_allowlist_warning">هذا التطبيق غير معتمد. يمكنك الاطّلاع على %1$s في منطقتك.</string>
+  <string name="approved_apps_link_text">التطبيقات المعتمدة</string>
+  <string name="hw_not_supported_warning">لا يتوافق هذا الجهاز مع نظام \"إشعارات التعرّض لفيروس كورونا\". الاطّلاع على %1$s.</string>
+  <string name="device_requirements_link_text">متطلبات الجهاز</string>
+  <string name="switch_app_for_exposure_notifications">هل تريد تبديل التطبيق المخصص لـ \"إشعارات التعرض لفيروس كورونا\"؟</string>
+  <string name="focus_lost_warning">يمكنك استخدام تطبيق واحد فقط مع نظام \"إشعارات التعرّض لفيروس كورونا\" على جهازك في كل مرة.\n\n هل تريد التبديل إلى تطبيق %1$s؟</string>
+  <string name="switch_app_for_exposure_notifications_action">تبديل التطبيق</string>
+  <string name="en_not_supported_warning">لم يعد نظام \"إشعارات التعرّض لفيروس كورونا\" متاحًا. %1$s</string>
+  <string name="user_profile_not_supported_warning">نظام \"إشعارات التعرّض لفيروس كورونا\" غير متاح في ملفك الشخصي للعمل. يُرجى إعادة المحاولة باستخدام ملفك الشخصي.</string>
+  <string name="onboarding_free_up_storage_title">يُرجى إخلاء مساحة تخزين.</string>
   <string name="input_error_onset_date_past">من المفترض أن يقع التاريخ خلال آخر %1$s يوم قبل تاريخ اليوم.</string>
   <string name="input_error_onset_date_future">يقع هذا التاريخ في المستقبل.</string>
   <string name="network_error_code_invalid">رمز التحقّق غير مطابق. يُرجى إعادة المحاولة.</string>

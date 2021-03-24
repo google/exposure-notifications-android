@@ -36,7 +36,7 @@
   <string name="onboarding_metrics_description">ऐप्लिकेशन को बेहतर बनाने और इसके रखरखाव में मदद के लिए, ऐप्लिकेशन की परफ़ॉर्मेंस और इसके इस्तेमाल से जुड़ा कुछ सीमित डेटा, Google के साथ शेयर किया जाता है. इस डेटा से आपकी पहचान से जुड़ी जानकारी हटा दी जाती है. %1$s</string>
   <string name="onboarding_confirm_later_title">एक्सपोज़र नोटिफ़िकेशन पाने की सुविधा को बंद रखें?</string>
   <string name="onboarding_confirm_later_detail">\'एक्सपोज़र नोटिफ़िकेशन\' चालू होने पर ही, आपको संभावित COVID-19 संक्रमण की सूचना मिलेगी</string>
-  <string name="no_recent_exposure_subtitle">चालू है और जांच की जा रही है …</string>
+  <string name="no_recent_exposure_subtitle">ऐप्लिकेशन चालू है और जांच की जा रही है</string>
   <string name="no_recent_exposure_indicator">हाल में किसी संक्रमित व्यक्ति से संपर्क नहीं हुआ</string>
   <string name="app_active_info">आपका ऐप्लिकेशन संभावित संक्रमण की नियमित रूप से जांच कर रहा है.</string>
   <string name="notifications_enabled_info">फ़िलहाल, आप COVID-19 से संक्रमित किसी व्यक्ति के संपर्क में नहीं आए हैं. अगर आप किसी ऐसे व्यक्ति के आस-पास थे जिसको COVID-19 संक्रमण है, तो आपको इसकी सूचना दी जाएगी.</string>
@@ -134,6 +134,16 @@
   <string name="ble_off_warning">COVID-19 से संक्रमित किसी व्यक्ति के संपर्क में संभावित रूप से आने पर इसकी सूचना पाने और अपनी जांच का नतीजा शेयर करने के लिए, ब्लूटूथ चालू करें</string>
   <string name="location_ble_off_warning">COVID-19 से संक्रमित किसी व्यक्ति के संपर्क में संभावित रूप से आने पर इसकी सूचना पाने और अपनी जांच का नतीजा शेयर करने के लिए, डिवाइस की जगह की जानकारी की सेटिंग और ब्लूटूथ चालू करें</string>
   <string name="storage_low_warning">COVID-19 से जुड़े एक्सपोज़र नोटिफ़िकेशन पाने और अपनी जांच का नतीजा शेयर करने के लिए, फ़ोन में मेमोरी खाली करें.</string>
+  <string name="not_in_allowlist_warning">इस ऐप्लिकेशन को अनुमति नहीं दी गई है. अपने इलाके के लिए, %1$s देखें.</string>
+  <string name="approved_apps_link_text">ऐसे ऐप्लिकेशन जिन्हें अनुमति दी जा चुकी है</string>
+  <string name="hw_not_supported_warning">इस डिवाइस पर एक्सपोज़र नोटिफ़िकेशन की सुविधा काम नहीं करती है. %1$s देखें.</string>
+  <string name="device_requirements_link_text">डिवाइस से जुड़ी ज़रूरी शर्तें</string>
+  <string name="switch_app_for_exposure_notifications">एक्सपोज़र नोटिफ़िकेशन की सुविधा चालू करने के लिए, किसी दूसरे ऐप का इस्तेमाल करना चाहते हैं?</string>
+  <string name="focus_lost_warning">आप अपने डिवाइस पर, एक बार में एक ही एक्सपोज़र नोटिफ़िकेशन ऐप्लिकेशन इस्तेमाल कर सकते हैं.\n\nक्या आप %1$s ऐप्लिकेशन का इस्तेमाल करना चाहते हैं?</string>
+  <string name="switch_app_for_exposure_notifications_action">एक ऐप्लिकेशन से दूसरे पर जाएं</string>
+  <string name="en_not_supported_warning">एक्सपोज़र नोटिफ़िकेशन की सुविधा अब उपलब्ध नहीं है. %1$s</string>
+  <string name="user_profile_not_supported_warning">आपकी वर्क प्रोफ़ाइल में, एक्सपोज़र नोटिफ़िकेशन की सुविधा उपलब्ध नहीं है. अपनी निजी प्रोफ़ाइल का इस्तेमाल करके, फिर से कोशिश करें.</string>
+  <string name="onboarding_free_up_storage_title">स्टोरेज के लिए जगह खाली करें</string>
   <string name="input_error_onset_date_past">लक्षण शुरू होने की तारीख, आज से पिछले %1$s दिनों के अंदर होनी चाहिए</string>
   <string name="input_error_onset_date_future">लक्षण शुरू होने की तारीख, आज के बाद की नहीं होनी चाहिए</string>
   <string name="network_error_code_invalid">पुष्टि करने के लिए डाला गया कोड गलत है. फिर से कोशिश करें.</string>

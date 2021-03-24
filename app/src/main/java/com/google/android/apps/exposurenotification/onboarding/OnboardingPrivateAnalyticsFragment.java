@@ -35,6 +35,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.databinding.FragmentOnboardingPrivateAnalyticsBinding;
 import com.google.android.apps.exposurenotification.home.HomeFragment;
+import com.google.android.apps.exposurenotification.home.SinglePageHomeFragment;
 import dagger.hilt.android.AndroidEntryPoint;
 
 /**
@@ -69,7 +70,11 @@ public class OnboardingPrivateAnalyticsFragment extends Fragment {
             Log.d(TAG, "Onboarding complete: private analytics enabled.");
             // Trigger a one-time submit
             onboardingViewModel.submitPrivateAnalytics();
-            HomeFragment.transitionToHomeFragment(this);
+            if (onboardingViewModel.isNewUxFlowEnabled()) {
+              SinglePageHomeFragment.transitionToSinglePageHomeFragment(this);
+            } else {
+              HomeFragment.transitionToHomeFragment(this);
+            }
           }
         });
 

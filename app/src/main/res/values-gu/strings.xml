@@ -36,7 +36,7 @@
   <string name="onboarding_metrics_description">આ ઍપની જાળવણી તેમજ બહેતર બનાવવામાં સહાય કરવા માટે, Google સાથે ઍપના કાર્યપ્રદર્શન અને વપરાશ વિશેનો મર્યાદિત પ્રમાણમાં અમુક છુપાવેલી ઓળખાણવાળો ડેટા શેર કરવામાં આવે છે. આ ડેટા તમારી ઓળખ છતી કરી શકશે નહીં. %1$s</string>
   <string name="onboarding_confirm_later_title">શું એક્સપોઝર નોટિફિકેશનની સુવિધા બંધ રાખીએ?</string>
   <string name="onboarding_confirm_later_detail">એક્સપોઝર નોટિફિકેશન ચાલુ કર્યા વિના COVID-19ના સંભવિત એક્સપોઝરની તમને જાણ કરવામાં આવશે નહીં</string>
-  <string name="no_recent_exposure_subtitle">સક્રિય છે અને ચેક કરી રહી છે …</string>
+  <string name="no_recent_exposure_subtitle">સક્રિય છે અને ચેક કરી રહ્યાં છીએ</string>
   <string name="no_recent_exposure_indicator">તાજેતરના કોઈ એક્સપોઝર નથી</string>
   <string name="app_active_info">તમારી ઍપ સંભવિત એક્સપોઝર માટે નિયમિત રીતે ચેક કરી રહી છે.</string>
   <string name="notifications_enabled_info">હાલમાં તમારા માટે COVID-19 એક્સપોઝરનું કોઈ જોખમ નથી. જો તમે COVID-19 પરીક્ષણનું પરિણામ પૉઝિટિવ આવ્યું હોય તેવી કોઈ વ્યક્તિના સંપર્કમાં આવ્યા હો, તો તમને સૂચિત કરવામાં આવશે.</string>
@@ -134,6 +134,16 @@
   <string name="ble_off_warning">COVID-19ના સંભવિત એક્સપોઝર માટે નોટિફિકેશન મેળવવાનું ચાલુ રાખવા અને COVID-19 પરીક્ષણનું તમારું પરિણામ શેર કરવા માટે, બ્લૂટૂથ ચાલુ કરો</string>
   <string name="location_ble_off_warning">COVID-19ના સંભવિત એક્સપોઝર માટે નોટિફિકેશન મેળવવાનું ચાલુ રાખવા અને COVID-19 પરીક્ષણનું તમારું પરિણામ શેર કરવા માટે, બ્લૂટૂથ અને ડિવાઇસનું સ્થાન સેટિંગ ચાલુ કરો</string>
   <string name="storage_low_warning">એક્સપોઝર નોટિફિકેશન મેળવવાનું ચાલુ રાખવા અને COVID-19 પરીક્ષણનું તમારું પરિણામ શેર કરવા માટે, તમારા ફોનમાં સ્ટોરેજ સ્પેસ ખાલી કરો.</string>
+  <string name="not_in_allowlist_warning">આ ઍપ મંજૂર કરેલી નથી. તમારા પ્રદેશમાં %1$s જુઓ.</string>
+  <string name="approved_apps_link_text">મંજૂર કરેલી ઍપ</string>
+  <string name="hw_not_supported_warning">આ ડિવાઇસ એક્સપોઝર નોટિફિકેશનને સપોર્ટ કરતું નથી. %1$s જુઓ.</string>
+  <string name="device_requirements_link_text">ડિવાઇસની આવશ્યકતાઓ</string>
+  <string name="switch_app_for_exposure_notifications">એક્સપોઝર નોટિફિકેશન માટે ઍપ સ્વિચ કરીએ?</string>
+  <string name="focus_lost_warning">તમે તમારા ડિવાઇસ પર એક સમયે માત્ર એક જ એક્સપોઝર નોટિફિકેશન ઍપનો ઉપયોગ કરી શકો છો.\n\nશું તમે %1$s ઍપ પર સ્વિચ કરવા માગો છો?</string>
+  <string name="switch_app_for_exposure_notifications_action">ઍપ સ્વિચ કરો</string>
+  <string name="en_not_supported_warning">એક્સપોઝર નોટિફિકેશન હવેથી ઉપલબ્ધ નથી. %1$s</string>
+  <string name="user_profile_not_supported_warning">તમારી ઑફિસની પ્રોફાઇલ પર એક્સપોઝર નોટિફિકેશન ઉપલબ્ધ નથી. તમારી વ્યક્તિગત પ્રોફાઇલમાં ફરી પ્રયાસ કરો.</string>
+  <string name="onboarding_free_up_storage_title">સ્ટોરેજ સ્પેસ ખાલી કરો</string>
   <string name="input_error_onset_date_past">આજની તારીખથી છેલ્લા %1$s દિવસની અંદરની તારીખ હોવી જોઈએ</string>
   <string name="input_error_onset_date_future">આ ભવિષ્યમાં આવનારી તારીખ છે</string>
   <string name="network_error_code_invalid">ચકાસણી કોડ મેળ ખાતો નથી. ફરી પ્રયાસ કરો.</string>

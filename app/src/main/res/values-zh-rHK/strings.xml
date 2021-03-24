@@ -36,7 +36,7 @@
   <string name="onboarding_metrics_description">為協助維護及改善此應用程式，部分有關應用程式效能和使用情況的去識別化資料將會與 Google 共用。請放心，這些資料無法識別您的身分。%1$s</string>
   <string name="onboarding_confirm_later_title">保持關閉「接觸通知」嗎？</string>
   <string name="onboarding_confirm_later_detail">您需要開啟「接觸通知」，系統才能通知您可能接觸到 COVID-19 的情況。</string>
-  <string name="no_recent_exposure_subtitle">已啟用並檢查中…</string>
+  <string name="no_recent_exposure_subtitle">已啟用並檢查中</string>
   <string name="no_recent_exposure_indicator">最近沒有接觸記錄</string>
   <string name="app_active_info">您的應用程式會定期檢查可能接觸到 COVID-19 的情況。</string>
   <string name="notifications_enabled_info">您目前沒有報稱 COVID-19 接觸風險。如您接近過報稱 COVID-19 測試呈陽性的人士，您便會收到通知。</string>
@@ -134,6 +134,16 @@
   <string name="ble_off_warning">如要繼續接收可能接觸到 COVID-19 的情況通知並分享 COVID-19 檢測結果，請開啟藍牙</string>
   <string name="location_ble_off_warning">如要繼續接收可能接觸到 COVID-19 的情況通知並分享 COVID-19 檢測結果，請開啟藍牙和裝置位置設定</string>
   <string name="storage_low_warning">要繼續接收「接觸通知」並分享您的 COVID-19 檢測結果，請釋出手機儲存空間</string>
+  <string name="not_in_allowlist_warning">此應用程式未獲核准。請參閱您所在地區%1$s。</string>
+  <string name="approved_apps_link_text">已核准的應用程式</string>
+  <string name="hw_not_supported_warning">此裝置不支援「接觸通知」。請參閲%1$s。</string>
+  <string name="device_requirements_link_text">裝置要求</string>
+  <string name="switch_app_for_exposure_notifications">要切換傳送「接觸通知」的應用程式嗎？</string>
+  <string name="focus_lost_warning">您同一時間只能在裝置上使用一個「接觸通知」應用程式。\n\n您是否要切換至「%1$s」應用程式？</string>
+  <string name="switch_app_for_exposure_notifications_action">切換應用程式</string>
+  <string name="en_not_supported_warning">「接觸通知」已無法使用。%1$s</string>
+  <string name="user_profile_not_supported_warning">您的工作設定檔不支援「接觸通知」。請在個人設定檔再試一次。</string>
+  <string name="onboarding_free_up_storage_title">騰出儲存空間</string>
   <string name="input_error_onset_date_past">日期必須在今天前 %1$s 天之內</string>
   <string name="input_error_onset_date_future">輸入的日期在未來</string>
   <string name="network_error_code_invalid">驗證碼不符。請再試一次。</string>

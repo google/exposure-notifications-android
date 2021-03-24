@@ -145,7 +145,6 @@ public class ExposureNotificationsIntegrationTest {
 
     // Use testing versions for all the threading dependencies
     ExecutorService backgroundExecutor = MoreExecutors.newDirectExecutorService();
-    ExecutorService lightweightExecutor = MoreExecutors.newDirectExecutorService();
     ScheduledExecutorService scheduledExecutor = TestingExecutors.sameThreadScheduledExecutor();
 
     /*
@@ -159,7 +158,7 @@ public class ExposureNotificationsIntegrationTest {
     stateUpdatedWorker = new StateUpdatedWorker(context, workerParameters, exposureRepository,
         exposureNotificationClientWrapper, exposureNotificationSharedPreferences,
         revocationDetector, dailySummariesConfig, dailySummaryRiskCalculator, notificationHelper,
-        backgroundExecutor, lightweightExecutor, scheduledExecutor, analyticsLogger, clock);
+        backgroundExecutor, scheduledExecutor, analyticsLogger, clock);
   }
 
 
@@ -429,7 +428,7 @@ public class ExposureNotificationsIntegrationTest {
 
   @Test
   public void
-    edge_stateUpdateWorker_confirmedShortAddConfirmedShort_sameDay_additionalLongNotification()
+  edge_stateUpdateWorker_confirmedShortAddConfirmedShort_sameDay_additionalLongNotification()
       throws Exception {
     // Confirmed exposure that stays under the "long" threshold of 2700 and thus qualifies as short
     exposuresHelper
@@ -482,7 +481,7 @@ public class ExposureNotificationsIntegrationTest {
 
   @Test
   public void
-    edge_stateUpdateWorker_confirmedThenAddConfirmed_previousDay_noAdditionalNotification()
+  edge_stateUpdateWorker_confirmedThenAddConfirmed_previousDay_noAdditionalNotification()
       throws Exception {
     // Confirmed exposure today
     exposuresHelper

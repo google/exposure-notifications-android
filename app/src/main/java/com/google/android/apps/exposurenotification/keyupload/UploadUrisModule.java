@@ -26,8 +26,8 @@ import com.google.android.apps.exposurenotification.keyupload.Qualifiers.Verific
 import dagger.Module;
 import dagger.Provides;
 import dagger.hilt.InstallIn;
-import dagger.hilt.android.components.ApplicationComponent;
 import dagger.hilt.android.qualifiers.ApplicationContext;
+import dagger.hilt.components.SingletonComponent;
 
 /**
  * Module providing production locations of the keyserver and verification server.
@@ -35,7 +35,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext;
  * <p>Tests that make RPCs may want to exclude this module and supply their own URIs.
  */
 @Module
-@InstallIn(ApplicationComponent.class)
+@InstallIn(SingletonComponent.class)
 public class UploadUrisModule {
 
   @Provides

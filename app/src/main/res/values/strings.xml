@@ -136,7 +136,7 @@
   <!-- EXPOSURES SCREENS -->
 
   <!-- Title of the exposures home page, shown when there have been no COVID-19 exposures detected. [CHAR_LIMIT=60] -->
-  <string name="no_recent_exposure_subtitle">Active and checking … </string>
+  <string name="no_recent_exposure_subtitle">Active and checking</string>
 
   <!-- Pill displayed on the exposures home page, shown when there have been no COVID-19 exposures detected. [CHAR_LIMIT=60] -->
   <string name="no_recent_exposure_indicator">No recent exposure</string>
@@ -434,6 +434,36 @@
 
   <!-- Displayed in three locations (exposures home, notify others home, settings) when the device is low on storage, causing exposure notifications to be inactive. [CHAR_LIMIT=NONE] -->
   <string name="storage_low_warning">To continue to get Exposure Notifications &amp; share your COVID-19 test result, free up storage space on your phone.</string>
+
+  <!-- Displayed in three locations (exposures home, notify others home, settings) when the current app is not in the list of approved apps, causing Exposure Notifications to be inactive for the current app. The placeholder string is an "approved apps" link to Help Center's page with approved apps. [CHAR_LIMIT=NONE] -->
+  <string name="not_in_allowlist_warning">This app isn\’t approved. See <xliff:g id="approved_apps_link" example="approved apps">%1$s</xliff:g> in your region.</string>
+
+  <!-- "approved apps" link text displayed as part of the explanatory text when exposure notifications is inactive because the current app is not approved. [CHAR_LIMIT=NONE] -->
+  <string name="approved_apps_link_text">approved apps</string>
+
+  <!-- Displayed in three locations (exposures home, notify others home, settings) if the user device does not support Exposure Notifications on a hardware level, causing Exposure Notifications to be inactive. The placeholder string is a "device requirements" link to Help Center's page on device requirements. [CHAR_LIMIT=NONE] -->
+  <string name="hw_not_supported_warning">This device doesn\’t support Exposure Notifications. See <xliff:g id="device_requirements_link" example="device requirements">%1$s</xliff:g>.</string>
+
+  <!-- "device requirements" link text displayed as part of the explanatory text when exposure notifications is inactive because the current device does not support exposure notifications. [CHAR_LIMIT=NONE] -->
+  <string name="device_requirements_link_text">device requirements</string>
+
+  <!-- Title of both the notify others and exposures home pages, shown when the user lands on the page and Exposure Notifications is inactive for the current app because it has been turned on for another app. [CHAR_LIMIT=60] -->
+  <string name="switch_app_for_exposure_notifications">Switch app for Exposure Notifications?</string>
+
+  <!-- Displayed in three locations (exposures home, notify others home, settings) if the user has turned on Exposure Notifications for another client app, causing Exposure Notifications to be inactive for the current app. The placeholder string is the app name. [CHAR_LIMIT=NONE] -->
+  <string name="focus_lost_warning">You can use only one Exposure Notifications app on your device at a time.\n\nDo you want to switch to the <xliff:g id="currently_open_app_name" example="ENSample">%1$s</xliff:g> app?</string>
+
+  <!-- Button text on the notify others and exposure home pages to allow the user to switch to using current app for Exposure Notifications. [CHAR_LIMIT=40] -->
+  <string name="switch_app_for_exposure_notifications_action">Switch app</string>
+
+  <!-- Displayed in three locations (exposures home, notify others home, settings) if the Exposure Notifications is no longer supported. The placeholder string is a "Learn more" link to page with more information on exposure notifications. [CHAR_LIMIT=NONE] -->
+  <string name="en_not_supported_warning">Exposure Notifications is no longer available. <xliff:g id="learn_more_link" example="Learn more">%1$s</xliff:g></string>
+
+  <!-- Displayed in three locations (exposures home, notify others home, settings) if the user is attempting to use Exposure Notifications with a work profile, which is not supported. [CHAR_LIMIT=NONE] -->
+  <string name="user_profile_not_supported_warning">Exposure Notifications isn\’t available on your work profile. Try again on your personal profile.</string>
+
+  <!-- Title of the dialog prompting user to free up storage to turn on Exposure Notifications. This dialog is shown in onboarding when the user attempts to turn on Exposure Notifications but cannot do so because of low storage. [CHAR_LIMIT=60] -->
+  <string name="onboarding_free_up_storage_title">Free up storage space</string>
 
   <!-- ERROR MESSAGE -->
 

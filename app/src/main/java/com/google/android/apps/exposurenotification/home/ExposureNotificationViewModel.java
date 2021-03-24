@@ -28,15 +28,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.hilt.lifecycle.ViewModelInject;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+import com.google.android.apps.exposurenotification.common.PairLiveData;
 import com.google.android.apps.exposurenotification.common.SingleLiveEvent;
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.logging.AnalyticsLogger;
 import com.google.android.apps.exposurenotification.nearby.ExposureNotificationClientWrapper;
 import com.google.android.apps.exposurenotification.nearby.PackageConfigurationHelper;
 import com.google.android.apps.exposurenotification.proto.UiInteraction.EventType;
+import com.google.android.apps.exposurenotification.riskcalculation.ExposureClassification;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.NotificationInteraction;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.OnboardingStatus;
@@ -52,12 +53,14 @@ public class ExposureNotificationViewModel extends ViewModel {
 
   private static final String TAG = "ExposureNotificationVM";
 
-  private final MediatorLiveData<RefreshUiData> refreshUiLiveData = new MediatorLiveData<>();
   private final MutableLiveData<ExposureNotificationState> stateLiveData = new MutableLiveData<>();
   private final MutableLiveData<Boolean> inFlightLiveData = new MutableLiveData<>(false);
   private final MutableLiveData<Boolean> inFlightResolutionLiveData = new MutableLiveData<>(false);
   private final MutableLiveData<Boolean> enEnabledLiveData;
   private final ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
+  private final PairLiveData<ExposureNotificationState, Boolean> stateWithInFlightLiveData;
+  private final PairLiveData<ExposureNotificationState, ExposureClassification>
+      stateWithExposureClassificationLiveData;
 
   private final SingleLiveEvent<Void> apiErrorLiveEvent = new SingleLiveEvent<>();
   private final SingleLiveEvent<ApiException> resolutionRequiredLiveEvent = new SingleLiveEvent<>();
@@ -67,14 +70,12 @@ public class ExposureNotificationViewModel extends ViewModel {
   private final PackageConfigurationHelper packageConfigurationHelper;
   private final Clock clock;
 
-  private final RefreshUiData refreshUiData;
   private boolean inFlightIsEnabled = false;
 
   /**
    * Enum to denote a status (i.e. state) of the EN service. This enum allows an easier handling of
    * the EN service status on the UI as opposed to the set of {@link ExposureNotificationStatus}
-   * objects, which is returned by the EN module API. Currently, not all the statuses reported by
-   * the API are handled in the UI. So, the list of EN state values below is not exhaustive.
+   * objects, which is returned by the EN module API.
    */
   public enum ExposureNotificationState {
     DISABLED,
@@ -82,38 +83,12 @@ public class ExposureNotificationViewModel extends ViewModel {
     PAUSED_BLE,
     PAUSED_LOCATION,
     PAUSED_LOCATION_BLE,
-    STORAGE_LOW
-  }
-
-  /**
-   * A simple helper object that holds the data about both the EN state and whether there is an API
-   * request in flight.
-   */
-  public static class RefreshUiData {
-
-    private ExposureNotificationState state;
-    private boolean isInFlight;
-
-    RefreshUiData(ExposureNotificationState state, boolean isInFlight) {
-      this.state = state;
-      this.isInFlight = isInFlight;
-    }
-
-    public ExposureNotificationState getState() {
-      return state;
-    }
-
-    public boolean isInFlight() {
-      return isInFlight;
-    }
-
-    public void setState(ExposureNotificationState state) {
-      this.state = state;
-    }
-
-    public void setInFlight(boolean inFlight) {
-      this.isInFlight = inFlight;
-    }
+    STORAGE_LOW,
+    PAUSED_EN_NOT_SUPPORT,
+    FOCUS_LOST,
+    PAUSED_HW_NOT_SUPPORT,
+    PAUSED_NOT_IN_ALLOWLIST,
+    PAUSED_USER_PROFILE_NOT_SUPPORT
   }
 
   @ViewModelInject
@@ -132,18 +107,10 @@ public class ExposureNotificationViewModel extends ViewModel {
     boolean isEnabled = exposureNotificationSharedPreferences.getIsEnabledCache();
     enEnabledLiveData = new MutableLiveData<>(isEnabled);
 
-    // Instantiate this object with dummy values for now. Should be immediately updated with
-    // real values once refreshUiLiveData object is set properly.
-    refreshUiData = new RefreshUiData(null, false);
-    // Add source LiveData objects for refreshUiLiveData.
-    refreshUiLiveData.addSource(getStateLiveData(), state -> {
-      refreshUiData.setState(state);
-      refreshUiLiveData.setValue(refreshUiData);
-    });
-    refreshUiLiveData.addSource(getInFlightLiveData(), isInFlight -> {
-      refreshUiData.setInFlight(isInFlight);
-      refreshUiLiveData.setValue(refreshUiData);
-    });
+    stateWithInFlightLiveData = PairLiveData.of(getStateLiveData(), getInFlightLiveData());
+    stateWithExposureClassificationLiveData = PairLiveData.of(
+        getStateLiveData(),
+        exposureNotificationSharedPreferences.getExposureClassificationLiveData());
   }
 
   /**
@@ -170,11 +137,27 @@ public class ExposureNotificationViewModel extends ViewModel {
   }
 
   /**
-   * Returns {@link LiveData} to observe changes in the EN state or in the 'in-flight' status of the
-   * API request as both these pieces of information may be needed to refresh the UI properly.
+   * Returns {@link LiveData} to observe whether a new UX Flow has been turned on/off. Should be
+   * used to switch between home screens.
    */
-  public LiveData<RefreshUiData> getRefreshUiLiveData() {
-    return refreshUiLiveData;
+  public LiveData<Boolean> getNewUxFlowEnabledLiveData() {
+    return exposureNotificationSharedPreferences.getIsEnabledNewUXFlowLiveData();
+  }
+
+  /**
+   * Returns {@link PairLiveData} to observe changes both in the {@link ExposureNotificationState}
+   * and 'in-flight' status of the API request.
+   */
+  public PairLiveData<ExposureNotificationState, Boolean> getStateWithInFlightLiveData() {
+    return stateWithInFlightLiveData;
+  }
+
+  /**
+   * Returns {@link PairLiveData} to observe changes both in {@link ExposureNotificationState} and
+   * {@link ExposureClassification}.
+   */
+  public PairLiveData<ExposureNotificationState, ExposureClassification> getStateWithExposureClassificationLiveData() {
+    return stateWithExposureClassificationLiveData;
   }
 
   /**
@@ -260,22 +243,35 @@ public class ExposureNotificationViewModel extends ViewModel {
    * <p>
    * We do the mapping as ExposureNotificationState object is easier to handle on the UI when
    * compared to a set of ExposureNotificationStatus objects. The given set is retrieved by calling
-   * the EN module's getStatus() API. This set always contains at least one element.
+   * the EN module's {@code getStatus()} API. This set always contains at least one element.
    *
-   * @param statusSet a set of ExposureNotificationStatus objects denoting the status of the EN API
-   * @param isEnabled a boolean to check if the EN module is enabled/disabled, irrespective of its
-   *                  operational state
+   * @param statusSet a set of ExposureNotificationStatus objects denoting the status of the EN API.
+   * @param isEnabled a boolean indicating whether contact tracing is running for the current
+   *                  requesting app.
    * @return The enum state that denotes the status of the EN API.
    */
   private ExposureNotificationState getStateForStatusAndIsEnabled(
       Set<ExposureNotificationStatus> statusSet, boolean isEnabled) {
     if (!isEnabled) {
       /*
-       * The EN is disabled. However, if we also hit a Low Storage error, display it first, as EN
-       * can only be (re-)enabled with enough storage space available.
+       * The EN is not enabled for the current app. In this case, if we also hit a Low Storage
+       * error, always display it first, as EN can only be (re-)enabled with enough storage space
+       * available.
        */
       if (statusSet.contains(ExposureNotificationStatus.LOW_STORAGE)) {
         return ExposureNotificationState.STORAGE_LOW;
+      } else if (statusSet.contains(ExposureNotificationStatus.NO_CONSENT)) {
+        return ExposureNotificationState.DISABLED;
+      } else if (statusSet.contains(ExposureNotificationStatus.HW_NOT_SUPPORT)) {
+        return ExposureNotificationState.PAUSED_HW_NOT_SUPPORT;
+      } else if (statusSet.contains(ExposureNotificationStatus.FOCUS_LOST)) {
+        return ExposureNotificationState.FOCUS_LOST;
+      } else if (statusSet.contains(ExposureNotificationStatus.USER_PROFILE_NOT_SUPPORT)) {
+        return ExposureNotificationState.PAUSED_USER_PROFILE_NOT_SUPPORT;
+      } else if (statusSet.contains(ExposureNotificationStatus.EN_NOT_SUPPORT)) {
+        return ExposureNotificationState.PAUSED_EN_NOT_SUPPORT;
+      } else if (statusSet.contains(ExposureNotificationStatus.NOT_IN_ALLOWLIST)) {
+        return ExposureNotificationState.PAUSED_NOT_IN_ALLOWLIST;
       }
       return ExposureNotificationState.DISABLED;
     }
@@ -287,17 +283,19 @@ public class ExposureNotificationViewModel extends ViewModel {
       // The EN is enabled but non-operational.
       if (statusSet.contains(ExposureNotificationStatus.LOW_STORAGE)) {
         return ExposureNotificationState.STORAGE_LOW;
-      } else if (statusSet.contains(ExposureNotificationStatus.BLUETOOTH_DISABLED)
-          && statusSet.contains(ExposureNotificationStatus.LOCATION_DISABLED)) {
+      } else if (statusSet.contains(ExposureNotificationStatus.LOCATION_DISABLED)
+          && (statusSet.contains(ExposureNotificationStatus.BLUETOOTH_DISABLED)
+              || statusSet.contains(ExposureNotificationStatus.BLUETOOTH_SUPPORT_UNKNOWN))) {
         return ExposureNotificationState.PAUSED_LOCATION_BLE;
-      } else if (statusSet.contains(ExposureNotificationStatus.BLUETOOTH_DISABLED)) {
+      } else if (statusSet.contains(ExposureNotificationStatus.BLUETOOTH_DISABLED)
+          || statusSet.contains(ExposureNotificationStatus.BLUETOOTH_SUPPORT_UNKNOWN)) {
         return ExposureNotificationState.PAUSED_BLE;
       } else if (statusSet.contains(ExposureNotificationStatus.LOCATION_DISABLED)) {
         return ExposureNotificationState.PAUSED_LOCATION;
       }
     }
-    // For all the remaining scenarios, return the DISABLED state as this is the most suitable one
-    // among those currently supported in the app.
+
+    // We should not get here but in case for some reason we do, return the DISABLED state.
     return ExposureNotificationState.DISABLED;
   }
 

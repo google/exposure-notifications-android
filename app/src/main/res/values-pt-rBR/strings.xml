@@ -36,7 +36,7 @@
   <string name="onboarding_metrics_description">Para ajudar a manter e melhorar o app, alguns dados sem identificação sobre o uso e desempenho do app são enviados ao Google. Não é possível usar esses dados para identificar você. %1$s</string>
   <string name="onboarding_confirm_later_title">Manter as Notificações de Exposição desativadas?</string>
   <string name="onboarding_confirm_later_detail">Até ativar as Notificações de Exposição, você não receberá notificações de possível exposição à COVID-19</string>
-  <string name="no_recent_exposure_subtitle">Ativado e verificando…</string>
+  <string name="no_recent_exposure_subtitle">Ativo e verificando</string>
   <string name="no_recent_exposure_indicator">Nenhuma exposição recente</string>
   <string name="app_active_info">O app verifica regularmente se houve possíveis exposições.</string>
   <string name="notifications_enabled_info">No momento, você não tem registros de risco de exposição à COVID-19. Caso alguém que tenha estado perto de você relate um resultado positivo de COVID-19, você receberá uma notificação.</string>
@@ -134,6 +134,16 @@
   <string name="ble_off_warning">Para continuar a receber notificações de possíveis exposições à COVID-19 e compartilhar o resultado do seu teste, ative o Bluetooth</string>
   <string name="location_ble_off_warning">Para continuar a receber notificações de possíveis exposições à COVID-19 e compartilhar o resultado do seu teste, ative o Bluetooth e a configuração de localização do dispositivo</string>
   <string name="storage_low_warning">Para continuar a receber Notificações de Exposição e compartilhar o resultado do seu teste de COVID-19, libere espaço de armazenamento no smartphone.</string>
+  <string name="not_in_allowlist_warning">Este app não foi aprovado. Veja os %1$s na sua região.</string>
+  <string name="approved_apps_link_text">apps aprovados</string>
+  <string name="hw_not_supported_warning">Este dispositivo não é compatível com as Notificações de Exposição. Consulte os %1$s.</string>
+  <string name="device_requirements_link_text">requisitos de dispositivo</string>
+  <string name="switch_app_for_exposure_notifications">Mudar o app para as Notificações de Exposição?</string>
+  <string name="focus_lost_warning">É possível usar apenas um app por vez com as Notificações de Exposição no dispositivo.\n\nVocê quer trocar para o app %1$s?</string>
+  <string name="switch_app_for_exposure_notifications_action">Trocar de app</string>
+  <string name="en_not_supported_warning">As Notificações de Exposição não estão mais disponíveis. %1$s</string>
+  <string name="user_profile_not_supported_warning">As Notificações de Exposição não estão disponíveis para seu perfil de trabalho. Tente novamente no perfil pessoal.</string>
+  <string name="onboarding_free_up_storage_title">Liberar espaço de armazenamento</string>
   <string name="input_error_onset_date_past">A data precisa estar entre os últimos %1$s dias</string>
   <string name="input_error_onset_date_future">Data no futuro</string>
   <string name="network_error_code_invalid">Código de verificação incorreto. Tente novamente.</string>

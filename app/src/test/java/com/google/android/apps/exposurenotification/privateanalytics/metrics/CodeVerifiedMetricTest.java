@@ -26,6 +26,7 @@ import static org.threeten.bp.temporal.ChronoUnit.MINUTES;
 
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.common.time.RealTimeModule;
+import com.google.android.apps.exposurenotification.riskcalculation.ExposureClassification;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
 import com.google.android.apps.exposurenotification.testsupport.ExposureNotificationRules;
 import com.google.android.apps.exposurenotification.testsupport.FakeClock;
@@ -97,14 +98,17 @@ public class CodeVerifiedMetricTest {
     Instant workerRunTime = clock.now().minus(Duration.ofDays(2));
     // notification shown 13 days and 23h earlier than submitted code
     Instant notificationTime = submittedCodeTime.minus(13, DAYS).minus(23, HOURS);
+    Instant exposureTime = notificationTime.minus(Duration.ofDays(2));
 
     exposureNotificationSharedPreferences.setPrivateAnalyticsWorkerLastTime(workerRunTime);
     exposureNotificationSharedPreferences
         .setPrivateAnalyticsLastSubmittedCodeTime(submittedCodeTime);
 
     for (int classificationIndex = 1; classificationIndex <= 4; classificationIndex++) {
+      ExposureClassification exposureClassification = ExposureClassification
+          .create(classificationIndex, "", exposureTime.toEpochMilli());
       exposureNotificationSharedPreferences
-          .setExposureNotificationLastShownClassification(notificationTime, classificationIndex);
+          .setExposureNotificationLastShownClassification(notificationTime, exposureClassification);
 
       // WHEN
       List<Integer> vector = codeVerifiedMetric.getDataVector().get();
@@ -123,14 +127,17 @@ public class CodeVerifiedMetricTest {
     Instant workerRunTime = clock.now().minus(Duration.ofDays(2));
     // notification shown 14 days and 1 minute earlier than submitted code
     Instant notificationTime = submittedCodeTime.minus(14, DAYS).minus(1, MINUTES);
+    Instant exposureTime = notificationTime.minus(Duration.ofDays(2));
 
     exposureNotificationSharedPreferences.setPrivateAnalyticsWorkerLastTime(workerRunTime);
     exposureNotificationSharedPreferences
         .setPrivateAnalyticsLastSubmittedCodeTime(submittedCodeTime);
 
     for (int classificationIndex = 1; classificationIndex <= 4; classificationIndex++) {
+      ExposureClassification exposureClassification = ExposureClassification
+          .create(classificationIndex, "", exposureTime.toEpochMilli());
       exposureNotificationSharedPreferences
-          .setExposureNotificationLastShownClassification(notificationTime, classificationIndex);
+          .setExposureNotificationLastShownClassification(notificationTime, exposureClassification);
 
       // WHEN
       List<Integer> vector = codeVerifiedMetric.getDataVector().get();

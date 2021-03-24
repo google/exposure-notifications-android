@@ -36,7 +36,7 @@
   <string name="onboarding_metrics_description">앱을 유지관리하고 개선하기 위해 앱 성능 및 사용과 관련된 일부 익명화된 데이터가 Google과 제한적으로 공유됩니다. 이 데이터로는 사용자 식별이 불가능합니다. %1$s</string>
   <string name="onboarding_confirm_later_title">노출 알림을 사용 중지된 상태로 유지하시겠습니까?</string>
   <string name="onboarding_confirm_later_detail">노출 알림이 켜질 때까지 코로나19에 노출되었을 가능성에 관한 알림이 전송되지 않습니다.</string>
-  <string name="no_recent_exposure_subtitle">활성화 및 확인 중 …</string>
+  <string name="no_recent_exposure_subtitle">활성화 및 확인 중</string>
   <string name="no_recent_exposure_indicator">최근 노출 없음</string>
   <string name="app_active_info">앱에서 노출 가능성을 정기적으로 확인합니다.</string>
   <string name="notifications_enabled_info">현재 보고된 코로나19 노출이 가능성이 없습니다. 코로나19 검사 결과가 양성이라고 보고한 사람의 근처에 간 적이 있는 경우 알림이 전송됩니다.</string>
@@ -134,6 +134,16 @@
   <string name="ble_off_warning">계속해서 코로나19 노출 가능성에 관해 알림을 받고 코로나19 검사 결과를 공유하려면 블루투스를 사용 설정하세요.</string>
   <string name="location_ble_off_warning">계속해서 코로나19 노출 가능성에 관해 알림을 받고 코로나19 검사 결과를 공유하려면 블루투스와 기기 위치 정보를 사용 설정하세요.</string>
   <string name="storage_low_warning">계속해서 노출 알림을 받고 코로나19 검사 결과를 공유하려면 휴대전화의 저장공간을 확보하세요.</string>
+  <string name="not_in_allowlist_warning">승인된 앱이 아닙니다. 거주 지역의 %1$s을 확인하세요.</string>
+  <string name="approved_apps_link_text">승인된 앱</string>
+  <string name="hw_not_supported_warning">이 기기는 노출 알림을 지원하지 않습니다. %1$s을 참고하세요.</string>
+  <string name="device_requirements_link_text">기기 요구사항</string>
+  <string name="switch_app_for_exposure_notifications">노출 알림용 앱을 전환하시겠습니까?</string>
+  <string name="focus_lost_warning">기기에서 한 번에 하나의 노출 알림 앱만 사용할 수 있습니다.\n\n%1$s 앱으로 전환하시겠습니까?</string>
+  <string name="switch_app_for_exposure_notifications_action">앱 전환</string>
+  <string name="en_not_supported_warning">노출 알림을 더 이상 사용할 수 없습니다. %1$s</string>
+  <string name="user_profile_not_supported_warning">직장 프로필에서는 노출 알림을 사용할 수 없습니다. 개인 프로필로 다시 시도하세요.</string>
+  <string name="onboarding_free_up_storage_title">여유 공간 확보하기</string>
   <string name="input_error_onset_date_past">날짜는 오늘을 기준으로 지난 %1$s일 이내여야 합니다.</string>
   <string name="input_error_onset_date_future">미래 날짜입니다.</string>
   <string name="network_error_code_invalid">인증 코드가 일치하지 않습니다. 다시 시도해 보세요.</string>

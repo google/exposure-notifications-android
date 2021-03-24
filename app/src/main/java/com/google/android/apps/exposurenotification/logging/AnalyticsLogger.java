@@ -17,8 +17,6 @@
 
 package com.google.android.apps.exposurenotification.logging;
 
-import androidx.annotation.Nullable;
-import com.android.volley.VolleyError;
 import com.google.android.apps.exposurenotification.proto.ApiCall.ApiCallType;
 import com.google.android.apps.exposurenotification.proto.RpcCall.RpcCallType;
 import com.google.android.apps.exposurenotification.proto.UiInteraction.EventType;

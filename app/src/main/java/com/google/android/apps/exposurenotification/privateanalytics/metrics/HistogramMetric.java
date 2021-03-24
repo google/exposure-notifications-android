@@ -16,7 +16,6 @@
  */
 package com.google.android.apps.exposurenotification.privateanalytics.metrics;
 
-import android.content.Context;
 import androidx.annotation.VisibleForTesting;
 import com.google.android.apps.exposurenotification.common.Qualifiers.ScheduledExecutor;
 import com.google.android.apps.exposurenotification.common.TaskToFutureAdapter;
@@ -25,12 +24,12 @@ import com.google.android.apps.exposurenotification.nearby.ExposureNotificationC
 import com.google.android.gms.nearby.exposurenotification.DailySummariesConfig;
 import com.google.android.gms.nearby.exposurenotification.ExposureWindow;
 import com.google.android.gms.nearby.exposurenotification.ScanInstance;
+import com.google.android.libraries.privateanalytics.PrivateAnalyticsMetric;
 import com.google.common.collect.ImmutableList;
 import com.google.common.primitives.Ints;
 import com.google.common.util.concurrent.FluentFuture;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
-import dagger.hilt.android.qualifiers.ApplicationContext;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ScheduledExecutorService;
@@ -85,7 +84,6 @@ public class HistogramMetric implements PrivateAnalyticsMetric {
 
   @Inject
   HistogramMetric(
-      @ApplicationContext Context context,
       @ScheduledExecutor ScheduledExecutorService scheduledExecutor,
       ExposureNotificationClientWrapper exposureNotificationClientWrapper,
       DailySummariesConfig dailySummariesConfig,
@@ -101,10 +99,10 @@ public class HistogramMetric implements PrivateAnalyticsMetric {
     // Compute total durations in each [infectiousnessBin, attenuationBin] pair
     // Now go over all exposureWindows, and put durations into corresponding bins
     return FluentFuture.from(
-            TaskToFutureAdapter.getFutureWithTimeout(
-                exposureNotificationClientWrapper.getExposureWindows(),
-                API_TIMEOUT,
-                scheduledExecutor))
+        TaskToFutureAdapter.getFutureWithTimeout(
+            exposureNotificationClientWrapper.getExposureWindows(),
+            API_TIMEOUT,
+            scheduledExecutor))
         .transformAsync(
             windowList -> {
               // First initialize a 3D array to 0s

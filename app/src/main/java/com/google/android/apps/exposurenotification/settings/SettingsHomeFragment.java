@@ -31,7 +31,6 @@ import com.google.android.apps.exposurenotification.BuildConfig;
 import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.databinding.FragmentSettingsHomeBinding;
 import com.google.android.apps.exposurenotification.home.ExposureNotificationViewModel;
-import com.google.android.apps.exposurenotification.privateanalytics.PrivateAnalyticsSettingsUtil;
 import com.google.android.apps.exposurenotification.proto.UiInteraction.EventType;
 import com.mikepenz.aboutlibraries.LibsBuilder;
 import dagger.hilt.android.AndroidEntryPoint;
@@ -52,7 +51,8 @@ public class SettingsHomeFragment extends Fragment {
   private FragmentSettingsHomeBinding binding;
 
   @Override
-  public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
+  public View onCreateView(
+      @NonNull LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
     binding = FragmentSettingsHomeBinding.inflate(inflater, parent, false);
     return binding.getRoot();
   }
@@ -85,7 +85,7 @@ public class SettingsHomeFragment extends Fragment {
 
     binding.privateAnalyticsLink
         .setVisibility(
-            PrivateAnalyticsSettingsUtil.isPrivateAnalyticsSupported() ? View.VISIBLE : View.GONE);
+            privateAnalyticsViewModel.showPrivateAnalyticsSection() ? View.VISIBLE : View.GONE);
 
     binding.agencyLink.setOnClickListener(v -> launchAgencyLink());
     binding.legalLink.setOnClickListener(v -> launchLegalLink());
@@ -121,6 +121,17 @@ public class SettingsHomeFragment extends Fragment {
     }
 
     binding.shareAppButton.setOnClickListener(v -> launchShareApp());
+
+    exposureNotificationViewModel
+        .getNewUxFlowEnabledLiveData()
+        .observe(getViewLifecycleOwner(), enabled -> {
+          if (enabled) {
+            binding.shareThisApp.setVisibility(View.GONE);
+            // Ensure consistency with v2.2 mocks
+            binding.settingsFragmentTitle.setText("");
+            binding.settingsActivityTitle.setVisibility(View.VISIBLE);
+          }
+        });
   }
 
   @Override

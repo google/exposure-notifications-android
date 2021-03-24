@@ -36,7 +36,7 @@
   <string name="onboarding_metrics_description">Til að hjálpa við að bæta og þróa forritið er ópersónugreinanlegum gögnum um afköst og notkun forritsins deilt með Google. Ekki eru borin kennsl á þig út frá þessum gögnum. %1$s</string>
   <string name="onboarding_confirm_later_title">Viltu hafa slökkt á tilkynningum um útsetningu?</string>
   <string name="onboarding_confirm_later_detail">Þér verður ekki tilkynnt um hugsanlega útsetningu fyrir COVID-19 fyrr en þú kveikir á tilkynningum um útsetningu</string>
-  <string name="no_recent_exposure_subtitle">Virkt og leitar …</string>
+  <string name="no_recent_exposure_subtitle">Virkt og leitar</string>
   <string name="no_recent_exposure_indicator">Engin nýleg útsetning</string>
   <string name="app_active_info">Forritið leitar reglulega að mögulegri útsetningu.</string>
   <string name="notifications_enabled_info">Sem stendur hefur ekki verið greint frá neinni áhættu á COVID-19-útsetningu hjá þér. Þú færð tilkynningu ef einhver sem þú varst nálægt tilkynnir jákvæða niðurstöðu COVID-19-prófs.</string>
@@ -134,6 +134,16 @@
   <string name="ble_off_warning">Til að halda áfram að fá tilkynningar um mögulega útsetningu fyrir COVID-19 og deila niðurstöðum úr COVID-19-prófinu þínu skaltu kveikja á Bluetooth</string>
   <string name="location_ble_off_warning">Til að halda áfram að fá tilkynningar um mögulega útsetningu fyrir COVID-19 og deila niðurstöðum úr COVID-19-prófinu þínu skaltu kveikja á Bluetooth og staðsetningarstillingum tækisins</string>
   <string name="storage_low_warning">Til að fá áfram tilkynningar um útsetningu og deila niðurstöðum úr COVID-19-skimun þarftu að losa um geymslurými í símanum.</string>
+  <string name="not_in_allowlist_warning">Þetta forrit er ekki samþykkt. Skoðaðu %1$s á þínu svæði.</string>
+  <string name="approved_apps_link_text">samþykkt forrit</string>
+  <string name="hw_not_supported_warning">Þetta tæki styður ekki tilkynningar um útsetningu. Sjá %1$s.</string>
+  <string name="device_requirements_link_text">tækjakröfur</string>
+  <string name="switch_app_for_exposure_notifications">Viltu skipta um forrit fyrir tilkynningar um útsetningu?</string>
+  <string name="focus_lost_warning">Aðeins er hægt að nota eitt forrit í einu fyrir tilkynningar um útsetningu í tækinu.\n\nViltu skipta yfir í forritið %1$s?</string>
+  <string name="switch_app_for_exposure_notifications_action">Skipta um forrit</string>
+  <string name="en_not_supported_warning">Tilkynningar um útsetningu eru ekki lengur í boði. %1$s</string>
+  <string name="user_profile_not_supported_warning">Tilkynningar um útsetningu eru ekki í boði á vinnusniði. Reyndu aftur á eigin sniði.</string>
+  <string name="onboarding_free_up_storage_title">Losaðu geymslurými</string>
   <string name="input_error_onset_date_past">Dagsetning þarf að vera innan %1$s daga frá deginum í dag</string>
   <string name="input_error_onset_date_future">Dagsetning er í framtíðinni</string>
   <string name="network_error_code_invalid">Staðfestingarkóðinn passar ekki. Reyndu aftur.</string>

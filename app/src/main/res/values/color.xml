@@ -29,7 +29,11 @@
   <color name="navigation_bar_color">#29202020</color>
   <color name="bg_verify_begin_background_color">#F1F3F4</color>
   <color name="notification_color">#EA4335</color>
-  <color name="code_verification_error">#D93025</color>
+  <color name="material_error_color">#D93025</color>
   <color name="enx_agencyImageBackgroundColor">@android:color/transparent</color>
-  <color name="pulse_color">#4285F4</color>
+  <color name="pulse_color_old">#4285F4</color>
+
+  <!-- New UX Flow -->
+  <color name="pulse_color">#1E8E3E</color>
+  <color name="not_checking_for_exposure_color">#BDC1C6</color>
 </resources>

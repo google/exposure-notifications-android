@@ -134,6 +134,16 @@
   <string name="ble_off_warning">引き続き COVID-19 陽性者との接触通知を取得し COVID-19 の検査結果を共有するには、Bluetooth を ON にしてください</string>
   <string name="location_ble_off_warning">引き続き COVID-19 陽性者との接触通知を取得し COVID-19 の検査結果を共有するには、Bluetooth とデバイスの位置情報の設定を ON にしてください</string>
   <string name="storage_low_warning">引き続き陽性者との接触通知を取得し、COVID-19 の検査結果を共有するには、スマートフォンの空き容量を増やしてください。</string>
+  <string name="not_in_allowlist_warning">このアプリは承認されていません。お住まいの地域の%1$sをご確認ください。</string>
+  <string name="approved_apps_link_text">承認済みアプリ</string>
+  <string name="hw_not_supported_warning">このデバイスは接触通知システムに対応していません。%1$sをご確認ください。</string>
+  <string name="device_requirements_link_text">デバイスの要件</string>
+  <string name="switch_app_for_exposure_notifications">接触通知に使うアプリを切り替えますか？</string>
+  <string name="focus_lost_warning">デバイスで一度に使用できる接触通知アプリは 1 つだけです。\n\n%1$s アプリに切り替えますか？</string>
+  <string name="switch_app_for_exposure_notifications_action">アプリを切り替える</string>
+  <string name="en_not_supported_warning">接触通知システムはご利用いただけなくなりました。%1$s</string>
+  <string name="user_profile_not_supported_warning">仕事用プロファイルでは接触通知システムは利用できません。個人用プロファイルでもう一度お試しください。</string>
+  <string name="onboarding_free_up_storage_title">空き容量を増やしてください</string>
   <string name="input_error_onset_date_past">今日から過去 %1$s 日以内の日付を設定してください</string>
   <string name="input_error_onset_date_future">設定した日付が過去ではありません</string>
   <string name="network_error_code_invalid">確認コードが一致しません。もう一度お試しください。</string>

@@ -24,7 +24,6 @@ import androidx.annotation.NonNull;
 import androidx.concurrent.futures.CallbackToFutureAdapter;
 import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
-import com.android.volley.VolleyError;
 import com.google.android.apps.exposurenotification.common.Qualifiers.BackgroundExecutor;
 import com.google.android.apps.exposurenotification.common.Qualifiers.LightweightExecutor;
 import com.google.android.apps.exposurenotification.common.Qualifiers.ScheduledExecutor;
@@ -209,7 +208,7 @@ public class DiagnosisKeyDownloader {
     return BASE32.encode(bytes);
   }
 
-  private FutureCallback<ImmutableList<KeyFile>> LOG_OUTCOME =
+  private final FutureCallback<ImmutableList<KeyFile>> LOG_OUTCOME =
       new FutureCallback<ImmutableList<KeyFile>>() {
         @Override
         public void onSuccess(@NullableDecl ImmutableList<KeyFile> files) {

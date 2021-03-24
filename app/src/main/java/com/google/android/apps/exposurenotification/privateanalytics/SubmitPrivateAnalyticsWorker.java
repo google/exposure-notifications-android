@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Google LLC
+ * Copyright 2021 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,10 +34,12 @@ import androidx.work.WorkRequest;
 import androidx.work.WorkerParameters;
 import com.google.android.apps.exposurenotification.common.Qualifiers.BackgroundExecutor;
 import com.google.android.apps.exposurenotification.common.time.Clock;
-import com.google.android.apps.exposurenotification.logging.AnalyticsLogger;
-import com.google.android.apps.exposurenotification.proto.WorkManagerTask.WorkerTask;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
 import com.google.android.apps.exposurenotification.work.WorkerStartupManager;
+import com.google.android.libraries.privateanalytics.DefaultPrivateAnalyticsDeviceAttestation;
+import com.google.android.libraries.privateanalytics.PrivateAnalyticsEventListener;
+import com.google.android.libraries.privateanalytics.PrivateAnalyticsSubmitter;
+import com.google.common.base.Optional;
 import com.google.common.util.concurrent.FluentFuture;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
@@ -55,13 +57,13 @@ public class SubmitPrivateAnalyticsWorker extends ListenableWorker {
 
   public static final String WORKER_NAME = "SubmitPrivateAnalyticsWorker";
 
+  private static final Duration MINIMAL_ENPA_TASK_INTERVAL = Duration.ofDays(1);
   private final PrivateAnalyticsSubmitter privateAnalyticsSubmitter;
   private final ExecutorService backgroundExecutor;
-  private final AnalyticsLogger analyticsLogger;
-  private final WorkerStartupManager workerStartupManager;
-  private static final Duration MINIMAL_ENPA_TASK_INTERVAL = Duration.ofDays(1);
   private final ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
   private final Clock clock;
+  private final WorkerStartupManager workerStartupManager;
+  private final Optional<PrivateAnalyticsEventListener> analyticsListener;
 
   @WorkerInject
   public SubmitPrivateAnalyticsWorker(
@@ -70,16 +72,16 @@ public class SubmitPrivateAnalyticsWorker extends ListenableWorker {
       PrivateAnalyticsSubmitter privateAnalyticsSubmitter,
       @BackgroundExecutor ExecutorService backgroundExecutor,
       WorkerStartupManager workerStartupManager,
-      AnalyticsLogger analyticsLogger,
       Clock clock,
-      ExposureNotificationSharedPreferences exposureNotificationSharedPreferences) {
+      ExposureNotificationSharedPreferences exposureNotificationSharedPreferences,
+      Optional<PrivateAnalyticsEventListener> analyticsListener) {
     super(context, workerParams);
     this.privateAnalyticsSubmitter = privateAnalyticsSubmitter;
     this.backgroundExecutor = backgroundExecutor;
-    this.workerStartupManager = workerStartupManager;
-    this.analyticsLogger = analyticsLogger;
     this.clock = clock;
     this.exposureNotificationSharedPreferences = exposureNotificationSharedPreferences;
+    this.workerStartupManager = workerStartupManager;
+    this.analyticsListener = analyticsListener;
   }
 
   @NonNull
@@ -89,8 +91,11 @@ public class SubmitPrivateAnalyticsWorker extends ListenableWorker {
     return FluentFuture.from(workerStartupManager.getIsEnabledWithStartupTasks())
         .transformAsync(
             (isEnabled) -> {
-              analyticsLogger.logWorkManagerTaskStarted(WorkerTask.TASK_SUBMIT_PRIVATE_ANALYTICS);
-              if (isEnabled && PrivateAnalyticsDeviceAttestation.isDeviceAttestationAvailable()) {
+              if (analyticsListener.isPresent()) {
+                analyticsListener.get().onPrivateAnalyticsWorkerTaskStarted();
+              }
+              if (isEnabled && DefaultPrivateAnalyticsDeviceAttestation
+                  .isDeviceAttestationAvailable()) {
                 Log.d(TAG, "Private analytics enabled and device attestation available.");
                 // Clear data older than two weeks.
                 exposureNotificationSharedPreferences

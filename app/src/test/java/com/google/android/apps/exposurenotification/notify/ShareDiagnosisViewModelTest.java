@@ -68,11 +68,11 @@ import com.google.common.util.concurrent.testing.TestingExecutors;
 import dagger.Module;
 import dagger.Provides;
 import dagger.hilt.InstallIn;
-import dagger.hilt.android.components.ApplicationComponent;
 import dagger.hilt.android.testing.BindValue;
 import dagger.hilt.android.testing.HiltAndroidTest;
 import dagger.hilt.android.testing.HiltTestApplication;
 import dagger.hilt.android.testing.UninstallModules;
+import dagger.hilt.components.SingletonComponent;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicLong;
@@ -125,7 +125,7 @@ public class ShareDiagnosisViewModelTest {
   Clock clock = new FakeClock();
 
   @Module
-  @InstallIn(ApplicationComponent.class)
+  @InstallIn(SingletonComponent.class)
   static class SampleUrisModule {
 
     @Provides
@@ -173,9 +173,10 @@ public class ShareDiagnosisViewModelTest {
   }
 
   @Test
-  public void submitCode_shouldSaveCodeInCurrentDiagnosis() throws Exception {
+  public void submitCode_shouldSaveCodeInCurrentDiagnosisAndAdvanceStep() throws Exception {
     // Later we'll need the diagnosis ID to read it from the DB, so observe and capture it.
     AtomicLong observedDiagnosisId = observeDiagnosisId();
+    AtomicReference<Step> observedStep = observeFlowStep();
     queue().addResponse(CODE_URI.toString(), 200, codeResponse(/* onsetDate= */ null));
 
     viewModel.submitCode("code", false).get();
@@ -183,6 +184,7 @@ public class ShareDiagnosisViewModelTest {
     assertThat(diagnosisRepository.getByIdAsync(observedDiagnosisId.get()).get()
         .getVerificationCode())
         .isEqualTo("code");
+    assertThat(observedStep.get()).isEqualTo(Step.ONSET);
   }
 
   @Test

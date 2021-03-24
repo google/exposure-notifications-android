@@ -134,6 +134,16 @@
   <string name="ble_off_warning">Որպեսզի այսուհետ ևս կարողանաք COVID-19-ով վարակման վտանգի մասին ծանուցումներ ստանալ և COVID-19-ի ձեր թեստի արդյունքի մասին հաղորդել, միացրեք Bluetooth-ը։</string>
   <string name="location_ble_off_warning">Որպեսզի այսուհետ ևս կարողանաք COVID-19-ով վարակման վտանգի մասին ծանուցումներ ստանալ և COVID-19-ի ձեր թեստի արդյունքի մասին հաղորդել, միացրեք Bluetooth-ը և սարքի տեղորոշումը։</string>
   <string name="storage_low_warning">Որպեսզի այսուհետ ևս կարողանաք վարակման վտանգի մասին ծանուցումներ ստանալ և COVID-19-ի ձեր թեստի արդյունքի մասին հաղորդել, ձեր հեռախոսում տարածք ազատեք։</string>
+  <string name="not_in_allowlist_warning">Այս հավելվածը թույլատրված չէ։ Դիտեք ձեր տարածաշրջանում %1$sի ցանկը։</string>
+  <string name="approved_apps_link_text">թույլատրված հավելվածներ</string>
+  <string name="hw_not_supported_warning">Այս սարքում Վարակման վտանգի մասին ծանուցումների համակարգը չի աջակցվում։ Դիտեք %1$sը։</string>
+  <string name="device_requirements_link_text">սարքի պահանջներ</string>
+  <string name="switch_app_for_exposure_notifications">Ստանա՞լ վարակման վտանգի մասին ծանուցումներ այս հավելվածով</string>
+  <string name="focus_lost_warning">Վարակման վտանգի մասին ծանուցումներ ստանալու համար ձեր սարքում կարող եք օգտագործել միայն մեկ հավելված։\n\nՈւզո՞ւմ եք օգտագործել %1$s հավելվածը։</string>
+  <string name="switch_app_for_exposure_notifications_action">Օգտագործել</string>
+  <string name="en_not_supported_warning">Վարակման վտանգի մասին ծանուցումների համակարգն այլևս հասանելի չէ։ %1$s</string>
+  <string name="user_profile_not_supported_warning">Վարակման վտանգի մասին ծանուցումների համակարգը հասանելի չէ ձեր աշխատանքային պրոֆիլի համար։ Փորձեք օգտագործել ձեր անձնական պրոֆիլով։</string>
+  <string name="onboarding_free_up_storage_title">Տարածք ազատեք</string>
   <string name="input_error_onset_date_past">Ամսաթիվը պետք է լինի վերջին %1$s օրվա միջակայքում՝ այսօրվա ամսաթվից հաշված։</string>
   <string name="input_error_onset_date_future">Ամսաթիվը ապագայում է</string>
   <string name="network_error_code_invalid">Հաստատման կոդը չի համընկնում։ Նորից փորձեք։</string>

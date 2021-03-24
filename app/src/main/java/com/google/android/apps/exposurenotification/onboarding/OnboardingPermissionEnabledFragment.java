@@ -32,6 +32,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.databinding.FragmentOnboardingPermissionEnabledBinding;
 import com.google.android.apps.exposurenotification.home.HomeFragment;
+import com.google.android.apps.exposurenotification.home.SinglePageHomeFragment;
 import dagger.hilt.android.AndroidEntryPoint;
 
 /**
@@ -121,7 +122,11 @@ public class OnboardingPermissionEnabledFragment extends Fragment {
     if (shouldShowPrivateAnalyticsOnboarding) {
       OnboardingPrivateAnalyticsFragment.transitionToOnboardingPrivateAnalyticsFragment(this);
     } else {
-      HomeFragment.transitionToHomeFragment(this);
+      if (onboardingViewModel.isNewUxFlowEnabled()) {
+        SinglePageHomeFragment.transitionToSinglePageHomeFragment(this);
+      } else {
+        HomeFragment.transitionToHomeFragment(this);
+      }
     }
   }
 

@@ -36,7 +36,7 @@
   <string name="onboarding_metrics_description">Aplikazioa mantentzen eta hobetzen laguntzeko, aplikazioaren errendimenduari eta erabilerari buruzko datu anonimoak partekatzen dira Google-rekin. Datuok ez zaituzte identifikatzen. %1$s</string>
   <string name="onboarding_confirm_later_title">Esposizioari buruzko jakinarazpenak desaktibatuta mantendu nahi dituzu?</string>
   <string name="onboarding_confirm_later_detail">Esposizioari buruzko jakinarazpenak aktibatzen ez dituzun bitartean, ez zaizu jakinaraziko COVID-19aren eraginpean egon zaren ala ez</string>
-  <string name="no_recent_exposure_subtitle">Aktibo eta egiaztatzen…</string>
+  <string name="no_recent_exposure_subtitle">Aktibo eta egiaztatzen</string>
   <string name="no_recent_exposure_indicator">Ez duzu esposiziorik izan azkenaldian</string>
   <string name="app_active_info">Aplikazioak esposizio posibleak bilatzen ditu etengabe</string>
   <string name="notifications_enabled_info">Oraingoz ez da jakinarazi COVID-19arekiko esposizio-arriskurik izan duzunik. Inguruko norbaitek COVID-19aren proba positiboa duela adieraziz gero, jakinarazpen bat bidaliko dizugu.</string>
@@ -134,6 +134,16 @@
   <string name="ble_off_warning">Aktibatu Bluetooth bidezko konexioa COVID-19arekiko esposizio posibleari buruzko jakinarazpenak jasotzen jarraitzeko eta COVID-19aren probaren emaitza partekatzeko</string>
   <string name="location_ble_off_warning">Aktibatu Bluetooth bidezko konexioa eta gailuaren kokapen-ezarpena COVID-19arekiko esposizio posibleari buruzko jakinarazpenak jasotzen jarraitzeko eta COVID-19aren probaren emaitza partekatzeko</string>
   <string name="storage_low_warning">Egin biltegiratzeko tokia telefonoan COVID-19arekiko esposizio posibleari buruzko jakinarazpenak jasotzen jarraitzeko eta COVID-19aren probaren emaitza partekatzeko.</string>
+  <string name="not_in_allowlist_warning">Aplikazioa ez dago onartuta. Ikusi zure herrialdean %1$s.</string>
+  <string name="approved_apps_link_text">onartutako aplikazioak</string>
+  <string name="hw_not_supported_warning">Gailu honek ez ditu onartzen esposizioari buruzko jakinarazpenak. Ikusi %1$s.</string>
+  <string name="device_requirements_link_text">gailuaren eskakizunak</string>
+  <string name="switch_app_for_exposure_notifications">Beste aplikazio bat erabili nahi duzu esposizioari buruzko jakinarazpenak jasotzeko?</string>
+  <string name="focus_lost_warning">Aldiko aplikazio bakarra erabil dezakezu esposizioari buruzko jakinarazpenak jasotzeko.\n\n%1$s aplikaziora aldatu nahi duzu?</string>
+  <string name="switch_app_for_exposure_notifications_action">Aldatu aplikazioa</string>
+  <string name="en_not_supported_warning">Jada ez daude erabilgarri esposizioari buruzko jakinarazpenak. %1$s</string>
+  <string name="user_profile_not_supported_warning">Laneko profilean ez daude erabilgarri esposizioari buruzko jakinarazpenak. Saiatu berriro profil pertsonalean.</string>
+  <string name="onboarding_free_up_storage_title">Egin biltegiratzeko tokia</string>
   <string name="input_error_onset_date_past">Idatzi duzun datak azken %1$s egunetakoa izan behar du</string>
   <string name="input_error_onset_date_future">Etorkizuneko data da hori</string>
   <string name="network_error_code_invalid">Egiaztapen-kodea ez dator bat. Saiatu berriro.</string>

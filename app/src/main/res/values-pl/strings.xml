@@ -36,7 +36,7 @@
   <string name="onboarding_metrics_description">Do Google wysyłane są pewne dane o użyciu i wydajności aplikacji, ponieważ pomaga to w utrzymywaniu i ulepszaniu aplikacji. Informacje te nie umożliwiają identyfikacji użytkownika. Na ich podstawie nie można Cię rozpoznać. %1$s</string>
   <string name="onboarding_confirm_later_title">Czy powiadomienia o narażeniu na kontakt mają być wyłączone?</string>
   <string name="onboarding_confirm_later_detail">Aby otrzymywać powiadomienia o narażeniu na kontakt, musisz je włączyć.</string>
-  <string name="no_recent_exposure_subtitle">Aplikacja aktywna, sprawdzam…</string>
+  <string name="no_recent_exposure_subtitle">Aplikacja aktywna, sprawdzam</string>
   <string name="no_recent_exposure_indicator">Brak narażenia na kontakt w ostatnim czasie</string>
   <string name="app_active_info">Aplikacja regularnie sprawdza ryzyko narażenia na kontakt.</string>
   <string name="notifications_enabled_info">Nie ma obecnie zgłoszeń narażenia na kontakt z COVID-19, które oznaczałyby dla Ciebie ryzyko. Powiadomimy Cię, jeśli ktoś, kto był blisko Ciebie, zgłosi pozytywny wynik testu na koronawirusa.</string>
@@ -134,6 +134,16 @@
   <string name="ble_off_warning">Aby nadal otrzymywać powiadomienia o możliwym narażeniu na kontakt z COVID-19 i udostępniać swój wynik testu, włącz Bluetooth</string>
   <string name="location_ble_off_warning">Aby nadal otrzymywać powiadomienia o możliwym narażeniu na kontakt z COVID-19 i udostępniać swój wynik testu, włącz Bluetooth i ustawienie lokalizacji urządzenia</string>
   <string name="storage_low_warning">Aby nadal otrzymywać powiadomienia o narażeniu na kontakt i udostępniać swój wynik testu na COVID-19, zwolnij miejsce na telefonie.</string>
+  <string name="not_in_allowlist_warning">Ta aplikacja nie jest zatwierdzona. Zobacz %1$s w swoim regionie.</string>
+  <string name="approved_apps_link_text">zatwierdzone aplikacje</string>
+  <string name="hw_not_supported_warning">To urządzenie nie obsługuje powiadomień o narażeniu na kontakt. Zobacz %1$s.</string>
+  <string name="device_requirements_link_text">wymagania dotyczące urządzeń</string>
+  <string name="switch_app_for_exposure_notifications">Przełączyć aplikację do powiadomień o narażeniu na kontakt?</string>
+  <string name="focus_lost_warning">Nie można używać jednocześnie różnych aplikacji do powiadomień o narażeniu na kontakt.\n\nCzy chcesz przełączyć się na aplikację %1$s?</string>
+  <string name="switch_app_for_exposure_notifications_action">Przełącz aplikację</string>
+  <string name="en_not_supported_warning">Powiadomienia o narażeniu na kontakt nie są już dostępne. %1$s</string>
+  <string name="user_profile_not_supported_warning">Powiadomienia o narażeniu na kontakt nie są dostępne na Twoim profilu służbowym. Spróbuj jeszcze raz na profilu osobistym.</string>
+  <string name="onboarding_free_up_storage_title">Zwolnij miejsce na dane</string>
   <string name="input_error_onset_date_past">Data powinna przypadać w okresie ostatnich %1$s dni od dzisiaj</string>
   <string name="input_error_onset_date_future">Data przypada w przyszłości</string>
   <string name="network_error_code_invalid">Kod weryfikacyjny się nie zgadza. Spróbuj ponownie.</string>
