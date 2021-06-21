@@ -1,0 +1,27 @@
+<!--
+  ~ Copyright 2021 Google LLC
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      https://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  ~
+  -->
+
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="20dp"
+    android:height="24dp"
+    android:viewportWidth="20"
+    android:viewportHeight="24">
+  <path
+      android:pathData="M17.0001,10.8346V17.8346H19.3334V20.168H12.7767H12.3334H0.6667V17.8346H3.0001V10.8346C3.0001,7.2413 4.9134,4.2546 8.2501,3.4613V2.668C8.2501,1.6996 9.0317,0.918 10.0001,0.918C10.9684,0.918 11.7501,1.6996 11.7501,2.668V3.4613C15.0984,4.2546 17.0001,7.253 17.0001,10.8346ZM11.1667,7.3346V12.0013H8.8334V7.3346H11.1667ZM8.8334,14.3346H11.1667V16.668H8.8334V14.3346ZM14.6667,17.8346H5.3334V10.8346C5.3334,7.9413 7.0951,5.5846 10.0001,5.5846C12.9051,5.5846 14.6667,7.9413 14.6667,10.8346V17.8346ZM12.3334,21.3346C12.3334,22.618 11.2834,23.668 10.0001,23.668C8.7168,23.668 7.6667,22.618 7.6667,21.3346H12.3334Z"
+      android:fillColor="@color/material_error_color"
+      android:fillType="evenOdd"/>
+</vector>

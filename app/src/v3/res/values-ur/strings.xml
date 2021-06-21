@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="onboarding_activity_title">آن بورڈنگ</string>
+  <string name="share_history_activity_title">اشتراک کی سرگزشت دیکھیں</string>
+  <string name="remove_region_link_title">علاقہ ہٹائيں</string>
+  <string name="delete_shared_diagnosis">اشتراک کردہ ٹیسٹ کا نتیجہ حذف کریں</string>
+  <string name="active_region_subtitle">ایکسپوژر نوٹیفیکیشنز کے لیے %1$s فی الحال آپ کے فعال علاقے کے بطور سیٹ ہے</string>
+  <string name="active_region_subtitle_en_off">%1$s آپ کے فعال علاقے کے بطور سیٹ ہے لیکن آپ کے فون کے لیے ایکسپوژر نوٹیفیکیشنز آف ہیں</string>
+  <string name="remove_region_title">علاقہ ہٹائيں</string>
+  <string name="remove_region_detail">آپ کے علاقے کو ہٹانے سے ایکسپوژر نوٹیفیکیشنز آف ہو جائے گا۔ آپ اس علاقے کو کسی بھی وقت واپس شامل کر سکتے ہیں۔</string>
+  <string name="btn_remove">ہٹائیں</string>
+  <string name="exposure_notifications_is_off">ایکسپوژر نوٹیفیکیشنز آف ہے</string>
+  <string name="possible_exposure">ممکنہ ایکسپوژر</string>
+  <string name="share_history_delete_test_result_title">اس ٹیسٹ کے نتیجے کو حذف کریں؟</string>
+  <string name="share_history_delete_test_result_detail">آپ کا COVID-19 ٹیسٹ کا نتیجہ %1$s سے آپ کے فون سے حذف ہو جائے گا۔</string>
+</resources>

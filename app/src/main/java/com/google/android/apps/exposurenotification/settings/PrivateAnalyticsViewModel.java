@@ -24,7 +24,7 @@ import com.google.android.apps.exposurenotification.storage.ExposureNotification
 import com.google.android.libraries.privateanalytics.PrivateAnalyticsEnabledProvider;
 
 /**
- * View model for {@link PrivateAnalyticsActivity}.
+ * View model for {@link PrivateAnalyticsFragment}.
  */
 public class PrivateAnalyticsViewModel extends ViewModel {
 

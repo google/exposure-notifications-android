@@ -1,0 +1,69 @@
+/*
+ * Copyright 2021 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
+package com.google.android.apps.exposurenotification.privateanalytics;
+
+import static com.google.common.truth.Truth.assertThat;
+
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+import dagger.hilt.android.testing.HiltAndroidTest;
+import dagger.hilt.android.testing.HiltTestApplication;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.robolectric.annotation.Config;
+
+@RunWith(AndroidJUnit4.class)
+@HiltAndroidTest
+@Config(application = HiltTestApplication.class)
+public class MetricsRemoteConfigsTest {
+
+  private static final double DEFAULT_SAMPING_RATE = 1.0;
+  private static final double DEFAULT_METRIC_EPSILON = 8.0;
+
+  @Test
+  public void testDefaultRemoteConfigValues() {
+    MetricsRemoteConfigs metricsRemoteConfigs = MetricsRemoteConfigs.newBuilder()
+        .build();
+
+    assertThat(metricsRemoteConfigs.notificationCountPrioSamplingRate())
+        .isEqualTo(DEFAULT_SAMPING_RATE);
+    assertThat(metricsRemoteConfigs.notificationCountPrioEpsilon())
+        .isEqualTo(DEFAULT_METRIC_EPSILON);
+
+    assertThat(metricsRemoteConfigs.interactionCountPrioSamplingRate())
+        .isEqualTo(DEFAULT_SAMPING_RATE);
+    assertThat(metricsRemoteConfigs.interactionCountPrioEpsilon())
+        .isEqualTo(DEFAULT_METRIC_EPSILON);
+
+    assertThat(metricsRemoteConfigs.riskScorePrioSamplingRate()).isEqualTo(DEFAULT_SAMPING_RATE);
+    assertThat(metricsRemoteConfigs.riskScorePrioEpsilon()).isEqualTo(DEFAULT_METRIC_EPSILON);
+
+    assertThat(metricsRemoteConfigs.codeVerifiedPrioSamplingRate()).isEqualTo(DEFAULT_SAMPING_RATE);
+    assertThat(metricsRemoteConfigs.codeVerifiedPrioEpsilon()).isEqualTo(DEFAULT_METRIC_EPSILON);
+
+    assertThat(metricsRemoteConfigs.keysUploadedPrioSamplingRate()).isEqualTo(DEFAULT_SAMPING_RATE);
+    assertThat(metricsRemoteConfigs.keysUploadedPrioEpsilon()).isEqualTo(DEFAULT_METRIC_EPSILON);
+
+    assertThat(metricsRemoteConfigs.dateExposurePrioSamplingRate()).isEqualTo(DEFAULT_SAMPING_RATE);
+    assertThat(metricsRemoteConfigs.dateExposurePrioEpsilon()).isEqualTo(DEFAULT_METRIC_EPSILON);
+
+    assertThat(metricsRemoteConfigs.keysUploadedVaccineStatusPrioSamplingRate())
+        .isEqualTo(DEFAULT_SAMPING_RATE);
+    assertThat(metricsRemoteConfigs.keysUploadedVaccineStatusPrioEpsilon())
+        .isEqualTo(DEFAULT_METRIC_EPSILON);
+  }
+}

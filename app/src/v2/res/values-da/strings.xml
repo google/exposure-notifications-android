@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">Appen er aktiv og udfører tjek</string>
+  <string name="app_active_and_checking_info">Denne app tjekker for mulig eksponering. Når du bruger notifikationer om eksponering hjælper du med at beskytte andre – også selvom du er blevet vaccineret.</string>
+  <string name="possible_exposure_title">Du er muligvis blevet eksponeret</string>
+  <string name="share_test_result_home_screen_title">Del dit testresultat</string>
+  <string name="have_questions">Har du nogen spørgsmål?</string>
+  <string name="check_exposure_status">Tjek din eksponeringsstatus</string>
+  <string name="en_active">Aktivt</string>
+  <string name="en_inactive">Inaktivt</string>
+  <string name="exposure_checks_activity_title">Historik over seneste tjek</string>
+  <string name="sharing_history_activity_title">Del historik</string>
+  <string name="no_recent_exposure_card_content_no_checks">Der er ikke rapporteret nogen risiko for, at du har været eksponeret for COVID-19.</string>
+  <string name="no_recent_exposure_card_content">Der er ikke rapporteret nogen risiko for, at du har været eksponeret for COVID-19. Senest tjekket %1$s</string>
+  <string name="see_recent_checks_button">Se seneste tjek</string>
+  <string name="possible_exposure_card_title">Der er rapporteret mulig eksponering</string>
+  <string name="possible_exposure_card_contents">Nogen, du har været i nærheden af, er testet positiv for COVID-19</string>
+  <string name="see_details_button">Få flere oplysninger</string>
+  <string name="share_test_result_card_title">Hjælp med at bekæmpe COVID-19 i dit lokalsamfund</string>
+  <string name="share_test_result_card_content">Når nogen deler et positivt testresultat, kan dette være med til at forhindre, at en ny person smittes med COVID-19. Din identitet oplyses ikke til andre, når du deler dit testresultat.</string>
+  <string name="see_history_button">Se historik</string>
+  <string name="share_positive_diagnosis_card_content">Del dit testresultat for at hjælpe med at bekæmpe spredningen af COVID-19</string>
+  <string name="share_app_card_content">Del denne app for at hjælpe med at beskytte dit lokalsamfund</string>
+  <string name="how_en_works_card_content">Få flere oplysninger om, hvordan notifikationer om eksponering fungerer</string>
+</resources>

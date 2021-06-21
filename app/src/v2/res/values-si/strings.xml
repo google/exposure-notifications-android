@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">යෙදුම සක්‍රිය සහ පරීක්ෂා කරමින්</string>
+  <string name="app_active_and_checking_info">මෙම යෙදුම විය හැකි නිරාවරණ පිළිබඳව පරීක්ෂා කරමින්. නිරාවරණ දැනුම්දීම් භාවිත කිරීම ඔබට ඔබගේ ප්‍රජාව ආරක්ෂා කිරීමට උපකාරී වේ - ඔබට එන්නත ලබා දී තිබියදී පවා.</string>
+  <string name="possible_exposure_title">ඔබ නිරාවරණය තිබිය හැකිය</string>
+  <string name="share_test_result_home_screen_title">ඔබගේ පරීක්ෂණ ප්‍රතිඵල බෙදා ගන්න</string>
+  <string name="have_questions">ප්‍රශ්න තිබේද?</string>
+  <string name="check_exposure_status">ඔබගේ නිරාවරණ තත්ත්වය පරීක්ෂා කරන්න</string>
+  <string name="en_active">සක්‍රිය</string>
+  <string name="en_inactive">අක්‍රිය</string>
+  <string name="exposure_checks_activity_title">මෑතකදී ගිය තැන්වල වාර්තාව</string>
+  <string name="sharing_history_activity_title">ඉතිහාසය බෙදා ගන්න</string>
+  <string name="no_recent_exposure_card_content_no_checks">වාර්තා වූ COVID-19 නිරාවරණ අවදානමක් හමු නොවීය.</string>
+  <string name="no_recent_exposure_card_content">වාර්තා වූ COVID-19 නිරාවරණ අවදානමක් හමු නොවීය. අවසානයට පරීක්ෂා කළේ %1$s</string>
+  <string name="see_recent_checks_button">මෑත පරීක්ෂා බලන්න</string>
+  <string name="possible_exposure_card_title">විය හැකි නිරාවරණය වාර්තා විය</string>
+  <string name="possible_exposure_card_contents">ඔබ අසල සිටි යම් කෙනෙක් COVID-19 සඳහා පොසිටිව් බව පරීක්ෂා කර ඇත</string>
+  <string name="see_details_button">විස්තර බලන්න</string>
+  <string name="share_test_result_card_title">ඔබගේ ප්‍රජාවෙහි COVID-19 වැළැක්වීමට උදවු වන්න</string>
+  <string name="share_test_result_card_content">කිසියම් කෙනෙක් පොසිටිව් පරීක්ෂණ ප්‍රතිඵලයක් බෙදා ගන්නා සෑම අවස්ථාවකම, COVID-19 හි තවත් සිද්ධියක් නැවැත්වීමට එය උපකාරී වේ. ඔබගේ පරීක්ෂණ ප්‍රතිඵලය බෙදා ගැනීමෙන් ඔබව අන් අයට හඳුනා ගත නොහැකිය.</string>
+  <string name="see_history_button">ඉතිහාසය බලන්න</string>
+  <string name="share_positive_diagnosis_card_content">COVID-19 පැතිරීම නැවැත්වීමට ඔබගේ පරීක්ෂණ ප්‍රතිඵලය බෙදා ගන්න</string>
+  <string name="share_app_card_content">ඔබගේ ප්‍රජාව වඩා හොඳින් ආරක්ෂා කිරීමට මෙම යෙදුම බෙදා ගන්න</string>
+  <string name="how_en_works_card_content">නිරාවරණ දැනුම්දීම් ක්‍රියා කරන ආකාරය ගැන තව දැන ගන්න</string>
+</resources>

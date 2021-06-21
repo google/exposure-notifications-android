@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">ઍપ સક્રિય છે અને ચેક કરી રહી છે</string>
+  <string name="app_active_and_checking_info">આ ઍપ સંભવિત એક્સપોઝર ચેક કરી રહી છે. એક્સપોઝર નોટિફિકેશનનો ઉપયોગ કરવાથી તમને તમારા સમુદાયનું રક્ષણ કરવામાં સહાય મળે છે - તમે રસી મુકાવી હોય તો પણ.</string>
+  <string name="possible_exposure_title">તમે એક્સપોઝરનો સામનો કર્યો હોઈ શકે છે</string>
+  <string name="share_test_result_home_screen_title">તમારા પરીક્ષણનું પરિણામ શેર કરો</string>
+  <string name="have_questions">શું કોઈ પ્રશ્ન છે?</string>
+  <string name="check_exposure_status">તમારા એક્સપોઝરનું સ્ટેટસ ચેક કરો</string>
+  <string name="en_active">સક્રિય</string>
+  <string name="en_inactive">નિષ્ક્રિય</string>
+  <string name="exposure_checks_activity_title">તાજેતરનાં ચેક ઇનનો રેકોર્ડ</string>
+  <string name="sharing_history_activity_title">ઇતિહાસ શેર કરો</string>
+  <string name="no_recent_exposure_card_content_no_checks">COVID-19ના એક્સપોઝર સંબંધિત કોઈ જોખમ મળ્યાની જાણ કરવામાં આવી નથી.</string>
+  <string name="no_recent_exposure_card_content">COVID-19ના એક્સપોઝર સંબંધિત કોઈ જોખમ મળ્યાની જાણ કરવામાં આવી નથી. છેલ્લે ચેક થયાની તારીખ %1$s</string>
+  <string name="see_recent_checks_button">તાજેતરની તપાસ જુઓ</string>
+  <string name="possible_exposure_card_title">સંભવિત એક્સપોઝરની જાણ કરવામાં આવી છે</string>
+  <string name="possible_exposure_card_contents">તમારી નજીકની કોઈ વ્યક્તિના COVID-19 માટેના પરીક્ષણનું પરિણામ પૉઝિટિવ આવ્યું છે</string>
+  <string name="see_details_button">વિગતો જુઓ</string>
+  <string name="share_test_result_card_title">તમારા સમુદાયમાં COVID-19 અટકાવવામાં સહાય કરો</string>
+  <string name="share_test_result_card_content">જ્યારે પણ કોઈ વ્યક્તિ પરીક્ષણનું પૉઝિટિવ પરિણામ શેર કરે ત્યારે તે COVID-19નો બીજો કેસ અટકાવાવામાં સહાય કરી શકે છે. પરીક્ષણનું પરિણામ શેર કરવાથી બીજા લોકો સમક્ષ તમારી ઓળખ છતી નહીં થાય.</string>
+  <string name="see_history_button">ઇતિહાસ જુઓ</string>
+  <string name="share_positive_diagnosis_card_content">COVID-19નો ફેલાવો રોકવામાં સહાય કરવા માટે તમારા પરીક્ષણનું પરિણામ શેર કરો</string>
+  <string name="share_app_card_content">તમારા સમુદાયની વધુ સારી સુરક્ષા માટે આ ઍપ શેર કરો</string>
+  <string name="how_en_works_card_content">એક્સપોઝર નોટિફિકેશનની કાર્ય કરવાની રીત વિશે વધુ જાણો</string>
+</resources>

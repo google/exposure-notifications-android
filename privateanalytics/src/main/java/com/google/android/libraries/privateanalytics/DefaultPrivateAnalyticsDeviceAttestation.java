@@ -31,6 +31,7 @@ import android.security.keystore.KeyProperties;
 import android.util.Log;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.VisibleForTesting;
+import com.google.android.libraries.privateanalytics.Qualifiers.PackageName;
 import com.google.android.libraries.privateanalytics.proto.CreatePacketsResponse;
 import com.google.android.libraries.privateanalytics.proto.Payload;
 import com.google.android.libraries.privateanalytics.proto.PrioAlgorithmParameters;
@@ -80,11 +81,14 @@ public class DefaultPrivateAnalyticsDeviceAttestation implements PrivateAnalytic
   private static final BaseEncoding BASE64 = BaseEncoding.base64();
 
   private final Context context;
+  private final String packageName;
   private Clock clock = Instant::now;
 
   @Inject
-  public DefaultPrivateAnalyticsDeviceAttestation(Context context) {
+  public DefaultPrivateAnalyticsDeviceAttestation(Context context,
+      @PackageName String packageName) {
     this.context = context;
+    this.packageName = packageName;
   }
 
   // Device attestation is only available on Android N and above.
@@ -227,12 +231,12 @@ public class DefaultPrivateAnalyticsDeviceAttestation implements PrivateAnalytic
    */
   public String getDailyAlias(String metricName) throws NoSuchAlgorithmException {
     return BASE64.encode(
-        generateSHA256Hash("ENPA::alias", context.getPackageName(), metricName,
+        generateSHA256Hash("ENPA::alias", packageName, metricName,
             getFormattedDate()));
   }
 
   private byte[] getDailyAttestation(String metricName) throws NoSuchAlgorithmException {
-    return generateSHA256Hash("ENPA::attestation", context.getPackageName(), metricName,
+    return generateSHA256Hash("ENPA::attestation", packageName, metricName,
         getFormattedDate());
   }
 

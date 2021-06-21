@@ -17,9 +17,10 @@
   -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:orientation="vertical">
 
   <LinearLayout
     android:layout_width="match_parent"
@@ -31,14 +32,14 @@
       android:id="@+id/qr_code"
       android:layout_width="200dp"
       android:layout_height="200dp"
-      android:src="@drawable/ic_info"/>
+      app:srcCompat="@drawable/ic_info"/>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:orientation="vertical"
-        android:layout_gravity="center">
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_margin="4dp"
+      android:orientation="vertical"
+      android:layout_gravity="center">
 
       <TextView
         android:id="@+id/temporary_exposure_key_date"
@@ -49,11 +50,11 @@
         android:textSize="12sp" />
 
       <TextView
-          android:id="@+id/temporary_exposure_key_key"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_margin="2dp"
-          android:textSize="12sp" />
+        android:id="@+id/temporary_exposure_key_key"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:textSize="12sp" />
 
       <TextView
         android:id="@+id/temporary_exposure_key_interval_number"

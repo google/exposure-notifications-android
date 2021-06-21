@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">แอปทำงานอยู่และกำลังตรวจหา</string>
+  <string name="app_active_and_checking_info">แอปนี้กำลังตรวจหาความเสี่ยงต่อการติดเชื้อ การใช้การแจ้งเตือนความเสี่ยงต่อการติดเชื้อช่วยปกป้องชุมชน แม้ว่าคุณจะฉีดวัคซีนแล้วก็ตาม</string>
+  <string name="possible_exposure_title">คุณอาจมีความเสี่ยงต่อการติดเชื้อ</string>
+  <string name="share_test_result_home_screen_title">แชร์ผลตรวจของคุณ</string>
+  <string name="have_questions">หากคุณมีข้อสงสัย</string>
+  <string name="check_exposure_status">ดูสถานะความเสี่ยงต่อการติดเชื้อ</string>
+  <string name="en_active">ทำงานอยู่</string>
+  <string name="en_inactive">ไม่ได้ทำงานอยู่</string>
+  <string name="exposure_checks_activity_title">บันทึกการเช็คอินครั้งล่าสุด</string>
+  <string name="sharing_history_activity_title">แชร์ประวัติ</string>
+  <string name="no_recent_exposure_card_content_no_checks">ไม่พบรายงานความเสี่ยงต่อการติดเชื้อโควิด-19</string>
+  <string name="no_recent_exposure_card_content">ไม่พบรายงานความเสี่ยงต่อการติดเชื้อโควิด-19 ตรวจหาครั้งล่าสุดเมื่อ %1$s</string>
+  <string name="see_recent_checks_button">ดูการตรวจหาครั้งล่าสุด</string>
+  <string name="possible_exposure_card_title">มีการรายงานความเสี่ยงต่อการติดเชื้อ</string>
+  <string name="possible_exposure_card_contents">บุคคลที่เคยอยู่ใกล้คุณมีการตรวจพบว่าติดเชื้อโควิด-19</string>
+  <string name="see_details_button">ดูรายละเอียด</string>
+  <string name="share_test_result_card_title">ช่วยป้องกันโควิด-19 ในชุมชน</string>
+  <string name="share_test_result_card_content">เมื่อมีผู้แชร์ผลตรวจว่าติดเชื้อในแต่ละครั้งจะช่วยหยุดไม่ให้มีผู้ป่วยโควิด-19 รายอื่น โดยการแชร์ผลตรวจจะไม่ระบุตัวตนของคุณให้ผู้อื่นทราบ</string>
+  <string name="see_history_button">ดูประวัติ</string>
+  <string name="share_positive_diagnosis_card_content">แชร์ผลตรวจของคุณเพื่อช่วยหยุดการแพร่กระจายของโควิด-19</string>
+  <string name="share_app_card_content">แชร์แอปนี้เพื่อปกป้องชุมชนได้ดีขึ้น</string>
+  <string name="how_en_works_card_content">ดูข้อมูลเพิ่มเติมเกี่ยวกับวิธีการทำงานของการแจ้งเตือนความเสี่ยงต่อการติดเชื้อ</string>
+</resources>

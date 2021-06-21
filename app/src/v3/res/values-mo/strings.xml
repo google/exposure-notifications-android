@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="onboarding_activity_title">Înscriere</string>
+  <string name="share_history_activity_title">Vedeți istoricul trimiterilor</string>
+  <string name="remove_region_link_title">Eliminați regiunea</string>
+  <string name="delete_shared_diagnosis">Ștergeți rezultatul testului trimis</string>
+  <string name="active_region_subtitle">Momentan, %1$s este setată ca regiune activă pentru Notificări privind expunerea</string>
+  <string name="active_region_subtitle_en_off">%1$s este setată ca regiune activă, dar Notificările privind expunerea sunt dezactivate pe telefon</string>
+  <string name="remove_region_title">Eliminați regiunea</string>
+  <string name="remove_region_detail">Dacă eliminați regiunea dvs., Notificările privind expunerea vor fi dezactivate. Puteți adăuga din nou regiunea oricând.</string>
+  <string name="btn_remove">Eliminați</string>
+  <string name="exposure_notifications_is_off">Notificările privind expunerea sunt dezactivate</string>
+  <string name="possible_exposure">Expunere posibilă</string>
+  <string name="share_history_delete_test_result_title">Ștergeți rezultatul testului?</string>
+  <string name="share_history_delete_test_result_detail">Rezultatul testului pentru COVID-19 de pe %1$s va fi șters de pe telefon.</string>
+</resources>

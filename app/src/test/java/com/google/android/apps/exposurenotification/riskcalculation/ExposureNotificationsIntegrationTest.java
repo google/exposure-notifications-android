@@ -179,7 +179,8 @@ public class ExposureNotificationsIntegrationTest {
   @Test
   public void stateUpdateWorker_functioningExposureNotificationClientWrapper_returnsSuccess()
       throws Exception {
-    exposuresHelper.commit();
+    exposuresHelper.addExposure(TODAY, ReportType.CONFIRMED_TEST, 3000.0)
+        .commit();
 
     Result result = stateUpdatedWorker.startWork().get();
 

@@ -12,11 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# This allows proguard to strip isLoggable() blocks containing only <=INFO log
-# code from release builds.
+# This allows proguard to strip logcat logging from release builds.
 -assumenosideeffects class android.util.Log {
   static *** d(...);
   static *** v(...);
+  static *** i(...);
+  static *** w(...);
+  static *** e(...);
+  static *** wtf(...);
   static *** isLoggable(...);
 }
 

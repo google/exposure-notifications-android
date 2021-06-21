@@ -49,6 +49,7 @@ import com.google.android.apps.exposurenotification.privateanalytics.metrics.Cod
 import com.google.android.apps.exposurenotification.privateanalytics.metrics.DateExposureMetric;
 import com.google.android.apps.exposurenotification.privateanalytics.metrics.HistogramMetric;
 import com.google.android.apps.exposurenotification.privateanalytics.metrics.KeysUploadedMetric;
+import com.google.android.apps.exposurenotification.privateanalytics.metrics.KeysUploadedVaccineStatusMetric;
 import com.google.android.apps.exposurenotification.privateanalytics.metrics.PeriodicExposureNotificationInteractionMetric;
 import com.google.android.apps.exposurenotification.privateanalytics.metrics.PeriodicExposureNotificationMetric;
 import com.google.android.apps.exposurenotification.storage.CountryRepository;
@@ -79,6 +80,7 @@ public class DebugViewModel extends ViewModel {
   private static final String TAG = "DebugViewModel";
   private static final Pattern DEFAULT_URI_PATTERN = Pattern.compile(".*example\\.com.*");
   private static final Splitter COMMA_SPLITER = Splitter.on(",");
+  private static final String WORKMANAGER_DEBUG_PROVIDE_TAG = "provide_debug";
 
   private static final SingleLiveEvent<String> snackbarLiveEvent = new SingleLiveEvent<>();
   private static final MutableLiveData<NetworkMode> keySharingNetworkModeLiveData =
@@ -117,6 +119,7 @@ public class DebugViewModel extends ViewModel {
       CodeVerifiedMetric codeVerifiedMetric,
       KeysUploadedMetric keysUploadedMetric,
       DateExposureMetric dateExposureMetric,
+      KeysUploadedVaccineStatusMetric keysUploadedVaccineStatusMetric,
       Clock clock,
       ExposureNotificationClientWrapper exposureNotificationClientWrapper,
       ExposureNotificationSharedPreferences exposureNotificationSharedPreferences,
@@ -132,7 +135,7 @@ public class DebugViewModel extends ViewModel {
     this.privateAnalyticsEnabledProvider = privateAnalyticsEnabledProvider;
     this.privateAnalyticsMetrics = Lists.newArrayList(periodicExposureNotificationMetric,
         periodicExposureNotificationInteractionMetric, codeVerifiedMetric, keysUploadedMetric,
-        dateExposureMetric);
+        dateExposureMetric, keysUploadedVaccineStatusMetric);
     codeCreator = new VerificationCodeCreator(context, requestQueueWrapper);
     resources = context.getResources();
 
@@ -229,7 +232,17 @@ public class DebugViewModel extends ViewModel {
    * Triggers a one off provide keys job.
    */
   public void provideKeys() {
-    workManager.enqueue(new OneTimeWorkRequest.Builder(ProvideDiagnosisKeysWorker.class).build());
+    OneTimeWorkRequest oneTimeWorkRequest =
+        new OneTimeWorkRequest.Builder(ProvideDiagnosisKeysWorker.class)
+            .addTag(WORKMANAGER_DEBUG_PROVIDE_TAG).build();
+    workManager.enqueue(oneTimeWorkRequest);
+  }
+
+  /**
+   * Get state LiveData of the one-off provide keys job by tag.
+   */
+  public LiveData<List<WorkInfo>> getDebugProvideStateLiveData() {
+    return workManager.getWorkInfosByTagLiveData(WORKMANAGER_DEBUG_PROVIDE_TAG);
   }
 
   boolean shouldDisplayPrivateAnalyticsControls() {
@@ -253,7 +266,8 @@ public class DebugViewModel extends ViewModel {
         PeriodicExposureNotificationInteractionMetric.METRIC_NAME,
         CodeVerifiedMetric.METRIC_NAME,
         KeysUploadedMetric.METRIC_NAME,
-        DateExposureMetric.METRIC_NAME
+        DateExposureMetric.METRIC_NAME,
+        KeysUploadedVaccineStatusMetric.METRIC_NAME
     ));
   }
 
@@ -287,14 +301,6 @@ public class DebugViewModel extends ViewModel {
           Log.w(TAG, "Error clearing country code database", e);
           return null;
         }, lightweightExecutor);
-  }
-
-  public LiveData<Boolean> getUxFlowLiveData() {
-    return exposureNotificationSharedPreferences.getIsEnabledNewUXFlowLiveData();
-  }
-
-  public void setIsEnabledNewUxFlow(boolean isEnabled) {
-    exposureNotificationSharedPreferences.setIsEnabledNewUxFlow(isEnabled);
   }
 
   public void setProvidedDiagnosisKeyHexToLog(String keyHex) {

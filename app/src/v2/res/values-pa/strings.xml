@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">ਐਪ ਕਿਰਿਆਸ਼ੀਲ ਹੈ ਅਤੇ ਜਾਂਚ ਕਰ ਰਹੀ ਹੈ</string>
+  <string name="app_active_and_checking_info">ਐਪ ਸੰਭਾਵੀ ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਵਾਲਿਆਂ ਦੀ ਜਾਂਚ ਕਰ ਰਹੀ ਹੈ। ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਦੀਆਂ ਸੂਚਨਾਵਾਂ ਨੂੰ ਵਰਤਣ ਨਾਲ ਤੁਹਾਡੇ ਭਾਈਚਾਰੇ ਦੀ ਸੁਰੱਖਿਆ ਕਰਨ ਵਿੱਚ ਮਦਦ ਹੁੰਦੀ ਹੈ - ਭਾਵੇਂ ਤੁਹਾਨੂੰ ਟੀਕਾ ਲੱਗ ਗਿਆ ਹੋਵੇ।</string>
+  <string name="possible_exposure_title">ਸ਼ਾਇਦ ਤੁਸੀਂ ਪ੍ਰਭਾਵਿਤ ਦੇ ਨੇੜੇ ਗਏ ਹੋ</string>
+  <string name="share_test_result_home_screen_title">ਆਪਣੇ ਜਾਂਚ ਨਤੀਜੇ ਸਾਂਝੇ ਕਰੋ</string>
+  <string name="have_questions">ਕੀ ਕੋਈ ਸਵਾਲ ਹੈ?</string>
+  <string name="check_exposure_status">ਆਪਣੇ ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਦੀ ਸਥਿਤੀ ਦੀ ਜਾਂਚ ਕਰੋ</string>
+  <string name="en_active">ਕਿਰਿਆਸ਼ੀਲ</string>
+  <string name="en_inactive">ਅਕਿਰਿਆਸ਼ੀਲ</string>
+  <string name="exposure_checks_activity_title">ਹਾਲੀਆ ਚੈੱਕ-ਇਨ ਦਾ ਰਿਕਾਰਡ</string>
+  <string name="sharing_history_activity_title">ਸਾਂਝਾਕਰਨ ਇਤਿਹਾਸ</string>
+  <string name="no_recent_exposure_card_content_no_checks">ਤੁਸੀਂ COVID-19 ਨਾਲ ਪ੍ਰਭਾਵਿਤ ਰਿਪੋਰਟ ਕੀਤੇ ਕਿਸੇ ਵਿਅਕਤੀ ਦੇ ਨੇੜੇ ਨਹੀਂ ਗਏ ਹੋ।</string>
+  <string name="no_recent_exposure_card_content">ਤੁਸੀਂ COVID-19 ਨਾਲ ਪ੍ਰਭਾਵਿਤ ਰਿਪੋਰਟ ਕੀਤੇ ਕਿਸੇ ਵਿਅਕਤੀ ਦੇ ਨੇੜੇ ਨਹੀਂ ਗਏ ਹੋ। ਪਿਛਲੀ ਵਾਰ %1$s ਨੂੰ ਜਾਂਚ ਕੀਤੀ ਗਈ</string>
+  <string name="see_recent_checks_button">ਹਾਲ ਹੀ ਵਿੱਚ ਕੀਤੀਆਂ ਜਾਂਚਾਂ ਨੂੰ ਦੇਖੋ</string>
+  <string name="possible_exposure_card_title">ਕਿਸੇ ਸੰਭਾਵੀ ਪ੍ਰਭਾਵਿਤ ਵਿਅਕਤੀ ਦੇ ਨੇੜੇ ਹੋਣ ਨੂੰ ਰਿਪੋਰਟ ਕੀਤਾ ਗਿਆ</string>
+  <string name="possible_exposure_card_contents">ਤੁਹਾਡੇ ਨੇੜੇ ਆਇਆ ਕੋਈ ਵਿਅਕਤੀ COVID-19 ਸਕਾਰਾਤਮਕ ਪਾਇਆ ਗਿਆ ਹੈ</string>
+  <string name="see_details_button">ਵੇਰਵੇ ਦੇਖੋ</string>
+  <string name="share_test_result_card_title">ਆਪਣੇ ਭਾਈਚਾਰੇ ਵਿੱਚ COVID-19 ਨੂੰ ਰੋਕਣ ਵਿੱਚ ਮਦਦ ਕਰੋ</string>
+  <string name="share_test_result_card_content">ਹਰੇਕ ਵਾਰ ਜਦੋਂ ਕੋਈ ਸਕਾਰਾਤਮਕ ਜਾਂਚ ਦੇ ਨਤੀਜੇ ਨੂੰ ਸਾਂਝਾ ਕਰਦਾ ਹੈ, ਤਾਂ ਇਸ ਨਾਲ COVID-19 ਦੇ ਹੋਰ ਮਾਮਲੇ ਨੂੰ ਰੋਕਣ ਵਿੱਚ ਮਦਦ ਮਿਲ ਸਕਦੀ ਹੈ। ਤੁਹਾਡੇ ਜਾਂਚ ਨਤੀਜੇ ਨੂੰ ਸਾਂਝਾ ਕਰਨ ਨਾਲ ਹੋਰ ਲੋਕ ਤੁਹਾਨੂੰ ਪਛਾਣ ਨਹੀਂ ਸਕਣਗੇ।</string>
+  <string name="see_history_button">ਇਤਿਹਾਸ ਦੇਖੋ</string>
+  <string name="share_positive_diagnosis_card_content">COVID-19 ਨੂੰ ਫੈਲਣ ਤੋਂ ਰੋਕਣ ਵਿੱਚ ਮਦਦ ਲਈ ਆਪਣੇ ਜਾਂਚ ਨਤੀਜੇ ਸਾਂਝੇ ਕਰੋ</string>
+  <string name="share_app_card_content">ਆਪਣੇ ਭਾਈਚਾਰੇ ਨੂੰ ਬਿਹਤਰ ਢੰਗ ਨਾਲ ਸੁਰੱਖਿਅਤ ਰੱਖਣ ਲਈ ਇਸ ਐਪ ਨੂੰ ਸਾਂਝਾ ਕਰੋ</string>
+  <string name="how_en_works_card_content">ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਦੀਆਂ ਸੂਚਨਾਵਾਂ ਦੇ ਕੰਮ ਕਰਨ ਦੇ ਤਰੀਕੇ ਬਾਰੇ ਹੋਰ ਜਾਣੋ</string>
+</resources>

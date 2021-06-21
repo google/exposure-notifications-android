@@ -90,4 +90,17 @@ public class OnboardingViewModelTest {
         .isEqualTo(OnboardingStatus.SKIPPED);
   }
 
+  @Test
+  public void isResultOkSet_returnsFalseInitially_returnsTrueWhenUpdated() {
+    onboardingViewModel.setResultOk(true);
+
+    assertThat(onboardingViewModel.isResultOkSet()).isTrue();
+
+    onboardingViewModel = new OnboardingViewModel(exposureNotificationSharedPreferences,
+        privateAnalyticsEnabledProvider,
+        workManager);
+
+    assertThat(onboardingViewModel.isResultOkSet()).isFalse();
+  }
+
 }

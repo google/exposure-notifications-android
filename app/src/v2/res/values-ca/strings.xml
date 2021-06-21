@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">L\'aplicació està activa i fent comprovacions</string>
+  <string name="app_active_and_checking_info">L\'aplicació està comprovant les possibles exposicions. Notificacions d\'exposició t\'ajuda a protegir la teva comunitat, encara que t\'hagis vacunat.</string>
+  <string name="possible_exposure_title">És possible que hi hagis estat exposat</string>
+  <string name="share_test_result_home_screen_title">Comparteix el resultat de la prova</string>
+  <string name="have_questions">Tens cap pregunta?</string>
+  <string name="check_exposure_status">Consulta el teu estat d\'exposició</string>
+  <string name="en_active">Actiu</string>
+  <string name="en_inactive">Inactiu</string>
+  <string name="exposure_checks_activity_title">Registre de les comprovacions recents</string>
+  <string name="sharing_history_activity_title">Historial de compartició</string>
+  <string name="no_recent_exposure_card_content_no_checks">No s\'ha trobat cap risc d\'exposició a la COVID-19.</string>
+  <string name="no_recent_exposure_card_content">No s\'ha trobat cap risc d\'exposició a la COVID-19. Darrera comprovació: %1$s</string>
+  <string name="see_recent_checks_button">Mostra les comprovacions recents</string>
+  <string name="possible_exposure_card_title">S\'ha informat d\'una possible exposició</string>
+  <string name="possible_exposure_card_contents">Algú que ha estat a prop teu ha donat positiu en una prova de la COVID-19</string>
+  <string name="see_details_button">Mostra els detalls</string>
+  <string name="share_test_result_card_title">Ajuda a prevenir la COVID-19 a la teva comunitat</string>
+  <string name="share_test_result_card_content">Cada vegada que algú comparteix un resultat positiu d\'una prova, pot ajudar a prevenir un altre cas de COVID-19. Compartir el resultat de la prova no revela la teva identitat a ningú.</string>
+  <string name="see_history_button">Consulta l\'historial</string>
+  <string name="share_positive_diagnosis_card_content">Comparteix el resultat de la prova per ajudar a aturar la propagació de la COVID-19</string>
+  <string name="share_app_card_content">Comparteix aquesta aplicació per protegir millor la teva comunitat</string>
+  <string name="how_en_works_card_content">Més informació sobre com funciona el sistema Notificacions d\'exposició</string>
+</resources>

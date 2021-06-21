@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">Aplikacioni është aktiv dhe po kontrollon</string>
+  <string name="app_active_and_checking_info">Ky aplikacion po kontrollon për ekspozimet e mundshme. Përdorimi i \"Njoftimeve rreth ekspozimit\" të ndihmon të mbrosh komunitetin tënd, edhe nëse je vaksinuar.</string>
+  <string name="possible_exposure_title">Mund të jesh ekspozuar</string>
+  <string name="share_test_result_home_screen_title">Ndaj rezultatin e testit tënd</string>
+  <string name="have_questions">Ke pyetje?</string>
+  <string name="check_exposure_status">Kontrollo statusin tënd të ekspozimit</string>
+  <string name="en_active">Aktive</string>
+  <string name="en_inactive">Joaktive</string>
+  <string name="exposure_checks_activity_title">Regjistri i kontrolleve të fundit</string>
+  <string name="sharing_history_activity_title">Historiku i ndarjes</string>
+  <string name="no_recent_exposure_card_content_no_checks">Nuk u gjet asnjë rrezik i raportuar për ekspozimin ndaj COVID-19.</string>
+  <string name="no_recent_exposure_card_content">Nuk u gjet asnjë rrezik i raportuar për ekspozimin ndaj COVID-19. Kontrolli i fundit: %1$s</string>
+  <string name="see_recent_checks_button">Shiko kontrollet e fundit</string>
+  <string name="possible_exposure_card_title">U raportua një ekspozim i mundshëm</string>
+  <string name="possible_exposure_card_contents">Dikush pranë të cilit ke qenë ka rezultuar pozitiv për COVID-19</string>
+  <string name="see_details_button">Shiko detajet</string>
+  <string name="share_test_result_card_title">Ndihmo për të parandaluar COVID-19 në komunitetin tënd</string>
+  <string name="share_test_result_card_content">Sa herë që dikush ndan rezultatin e një testi pozitiv, kjo mund të ndihmojë për të ndaluar një rast tjetër të COVID-19. Ndarja e rezultatit të testit tënd nuk do të të identifikojë te të tjerët.</string>
+  <string name="see_history_button">Shiko historikun</string>
+  <string name="share_positive_diagnosis_card_content">Ndaj rezultatin e testit tënd për të ndihmuar në ndalimin e përhapjes së COVID-19</string>
+  <string name="share_app_card_content">Ndaje këtë aplikacion për të mbrojtur më mirë komunitetin tënd</string>
+  <string name="how_en_works_card_content">Mëso më shumë se si funksionojnë \"Njoftimet rreth ekspozimit\"</string>
+</resources>

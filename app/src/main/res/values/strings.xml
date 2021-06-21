@@ -43,13 +43,10 @@
   <!-- Title of the button used on the delete test result confirmation dialog. [CHAR_LIMIT=40] -->
   <string name="btn_delete">Delete</string>
 
-  <!-- Title of the button on the settings page, allowing the user to share this app with others. [CHAR_LIMIT=40] -->
-  <string name="btn_share_this_app">Share this app</string>
-
-  <!-- Button on the dialog shown when the user chooses not to turn on Exposure Notifications -->
+  <!-- Button on the dialog shown when the user chooses not to turn on Exposure Notifications [CHAR_LIMIT=40] -->
   <string name="btn_no_go_back">No, go back</string>
 
-  <!-- Button on the dialog shown when the user chooses not to turn on Exposure Notifications -->
+  <!-- Button on the dialog shown when the user chooses not to turn on Exposure Notifications [CHAR_LIMIT=40] -->
   <string name="btn_yes_continue">Yes, continue</string>
 
   <!-- Text shown on the button to start the process of sharing a positive COVID-19 test result with others. [CHAR_LIMIT=40] -->
@@ -59,31 +56,19 @@
   <string name="btn_done">Done</string>
 
   <!-- Button text shown on the notify others flow to go back to the previous screen in the flow. [CHAR_LIMIT=40] -->
-  <string name="btn_back">Back</string>
-
-  <!-- Button text shown on the notify others save progress dialog. Clicking save will store a snapshot of all the information the user has entered about their diagnosis and allow them to continue the process of submitting it later. [CHAR_LIMIT=40] -->
-  <string name="btn_save">Save</string>
-
-  <!-- Button text shown on the notify others save progress dialog. Clicking discard will remove all information entered about the diagnosis. [CHAR_LIMIT=40] -->
-  <string name="btn_discard">Discard</string>
+  <string name="btn_previous">Previous</string>
 
   <!-- Button text shown on the notify others flow. Clicking will attempt to verify their test result. [CHAR_LIMIT=40] -->
   <string name="btn_verify">Verify</string>
 
   <!-- Button text shown on the onboarding flow. Clicking will opt-out to private analytics to help contain the spread of COVID-19. [CHAR_LIMIT=40] -->
-  <string name="btn_dont_share">Don\'t share</string>
+  <string name="btn_dont_share">Continue without sharing</string>
 
   <!-- Button text shown on the onboarding flow. Clicking will opt-in to private analytics to help contain the spread of COVID-19. [CHAR_LIMIT=40] -->
   <string name="btn_share">Share</string>
 
   <!-- Link title to more information about a topic where the link is displayed. [CHAR_LIMIT=100] -->
   <string name="learn_more">Learn more</string>
-
-  <!-- Name displayed on the exposures tab in the bottom tabbed layout. This also gets displayed as a title when on that tab. [CHAR_LIMIT=20] -->
-  <string name="home_tab_exposures_text">Exposure</string>
-
-  <!-- Name displayed on the notify others tab in the bottom tabbed layout. This also gets displayed as a title when on that tab. [CHAR_LIMIT=20] -->
-  <string name="home_tab_notify_text">Notify others</string>
 
   <!-- Name displayed on the settings tab in the bottom tabbed layout. This also gets displayed as a title when on that tab. [CHAR_LIMIT=20] -->
   <string name="home_tab_settings_text">Settings</string>
@@ -97,23 +82,37 @@
   <!-- Text associated with the back arrow button shown on some screens in the app, allowing the user to go back to the previous page. The text isn't displayed but is present for accessibility reasons. [CHAR_LIMIT=NONE] -->
   <string name="navigate_up">Go back to previous screen</string>
 
+  <!-- Text associated with the close button shown on some screens in the app, allowing the user to close the screen (e.g. in the "Share diagnosis" flow, allowing the user to close the flow). The text isn't displayed but is present for accessibility reasons. [CHAR_LIMIT=NONE] -->
+  <string name="btn_close_label">Close</string>
+
+  <!-- Notification title shown when permissions are disabled so that EN does not run. This informs the user that either location or bluetooth is disabled and therefore the service is disabled and not checking if the user has come into contact with (eg, had an exposure with) other users. [CHAR_LIMIT=200] -->
+  <string name="updated_permission_disabled_notification_title">Unable to check for exposures</string>
+
+  <!-- Notification content used when asking a user to re-enable the bluetooth and location settings. This is the summary for the notification with updated_permission_disabled_notification_title notification and will be displayed when a user turns off bluetooth and location, which stops exposure notifications from running. [CHAR_LIMIT=240] -->
+  <string name="updated_bluetooth_location_state_notification">To continue checking for possible exposure, turn on Bluetooth and device location setting</string>
+
+  <!-- Notification content used when asking a user to re-enable the Bluetooth setting. This is the summary for the notification with updated_permission_disabled_notification_title notification and will be displayed when a user turns off Bluetooth, which stops exposure notifications from running. [CHAR_LIMIT=240] -->
+  <string name="updated_bluetooth_state_notification">To continue checking for possible exposure, turn on Bluetooth.</string>
+
+  <!-- Notification content used when asking a user to re-enable the location setting. This is the summary for the notification with updated_permission_disabled_notification_title notification and will be displayed when a user turns off location, which stops exposure notifications from running. [CHAR_LIMIT=240] -->
+  <string name="updated_location_state_notification">To continue checking for possible exposure, turn on device location setting</string>
 
   <!-- ONBOARDING SCREENS -->
 
   <!-- Title of the onboarding screen reached when the user has not previously been through accepting the exposure notification permissions. This title is not shown on the page but needed for accessibility purposes. [CHAR_LIMIT=NONE] -->
-  <string name="onboarding_opt_in_title">Permissions needed to install and optimally use this app</string>
+  <string name="onboarding_opt_in_title">Permissions needed to enable Exposure Notifications</string>
 
   <!-- Title of the onboarding screen reached when the user has accepted the exposure notification permissions, but is coming into the app for the first time. This title is not shown on the page but needed for accessibility purposes. [CHAR_LIMIT=NONE] -->
-  <string name="onboarding_finish_title">Continuation of permissions needed to install and optimally use this app</string>
+  <string name="onboarding_finish_title">Continuation of permissions needed to enable Exposure Notifications</string>
 
   <!-- Title of the exposure notification section on the onboarding screen explaining that exposure notifications will be turned on. This screen is shown on first use of the app when not previously enabled. [CHAR_LIMIT=60] -->
   <string name="onboarding_exposure_notifications_title">Turn on Exposure Notifications</string>
 
   <!-- Text of the exposure notification section on the onboarding screen explaining that exposure notifications will be turned on. This screen is shown on first use of the app when not previously enabled. The placeholder string is the app name. [CHAR_LIMIT=NONE] -->
   <string name="onboarding_exposure_notifications_detail">
-    Turn on Exposure Notifications so that %1$s can notify you if you\'ve been near someone who reported having COVID-19.
+    Get notified if you\'ve been near someone who reported having COVID-19.
     \n\nYour phone uses Bluetooth to securely collect and share random IDs with other phones that are nearby.
-    \n\nThe date, duration, and signal strength associated with an exposure will be shared with the app.
+    \n\nThe date, duration, and signal strength associated with a possible exposure will be used to determine whether you will be notified based on parameters set by your public health authority.
   </string>
 
   <!-- Title of the metric sharing section on the onboarding screen explaining that choosing to share metrics will help improve the app. This screen is shown on first use of the app when not previously enabled. [CHAR_LIMIT=60] -->
@@ -127,46 +126,25 @@
     To help maintain and improve the app, some limited de-identified data about app performance and usage is shared with Google. This data does not identify you. <xliff:g id="learn_more" example="Learn more">%1$s</xliff:g>
   </string>
 
-  <!-- Title of the dialog shown in onboarding when the user chooses not to turn on exposure notifications. [CHAR_LIMIT=60] -->
-  <string name="onboarding_confirm_later_title">Keep Exposure Notification turned off?</string>
+  <!-- Title of the dialog shown in onboarding when the user chooses not to turn on exposure notifications. [CHAR_LIMIT=60] [BACKUP_MESSAGE_ID=1247024365104702354] -->
+  <string name="onboarding_confirm_later_title">Keep Exposure Notifications turned off?</string>
 
-  <!-- Detail text of the dialog shown in onboarding when the user chooses not to turn on exposure notifications. [CHAR_LIMIT=200] -->
-  <string name="onboarding_confirm_later_detail">Until Exposure Notifications are turned on, you won’t be notified of possible exposure to COVID-19</string>
+  <!-- Detail text of the dialog shown in onboarding when the user chooses not to turn on exposure notifications. [CHAR_LIMIT=200] [BACKUP_MESSAGE_ID=6529903517457532093] -->
+  <string name="onboarding_confirm_later_detail">Until Exposure Notifications is turned on, you won’t be notified of possible exposure to COVID-19</string>
 
   <!-- EXPOSURES SCREENS -->
-
-  <!-- Title of the exposures home page, shown when there have been no COVID-19 exposures detected. [CHAR_LIMIT=60] -->
-  <string name="no_recent_exposure_subtitle">Active and checking</string>
 
   <!-- Pill displayed on the exposures home page, shown when there have been no COVID-19 exposures detected. [CHAR_LIMIT=60] -->
   <string name="no_recent_exposure_indicator">No recent exposure</string>
 
-  <!-- Text displayed on the exposures home page, shown when there have been no COVID-19 exposures detected. [CHAR_LIMIT=NONE] -->
-  <string name="app_active_info">Your app is regularly checking for possible exposures.</string>
-
-  <!-- Text displayed on the exposures home page, shown when there have been no COVID-19 exposures detected. [CHAR_LIMIT=NONE] -->
-  <string name="notifications_enabled_info">There is currently no reported COVID-19 exposure risk for you. You\'ll be notified if someone you were near reports a positive COVID-19 test result.</string>
-
-  <!-- Link displayed at the bottom of the exposures home page, shown when there have been no COVID-19 exposures detected. [CHAR_LIMIT=100] -->
-  <string name="how_exposure_notifications_work_link">How Exposure Notifications work</string>
-
-  <!-- Title of the dialog showing the most recent exposure check ins that have occurred. [CHAR_LIMIT=100] -->
-  <string name="recent_check_dialog_title">Record of recent check-ins for possible exposure</string>
-
-  <!-- Link at the bottom of the dialog showing the most recent exposure check ins that have occurred. Links out to the gmscore page of all exposure checks that have happened in the last 14 days. [CHAR_LIMIT=60] -->
-  <string name="recent_check_dialog_see_more">See more</string>
-
-  <!-- Text on the home page indicating when the last exposure check was performed. [CHAR_LIMIT=60] -->
-  <string name="recent_check_last_checked">Last checked <xliff:g id="date" example="February 2, 10:30 AM">%1$s</xliff:g></string>
+  <!-- Content of the "Record of recent check-ins for possible exposure" dialog (or screen) when there haven't been any exposure check-ins yet. [CHAR_LIMIT=200] -->
+  <string name="no_recent_exposure_checks">As Exposure Notifications checks for exposures, recent checks appear below.</string>
 
   <!-- Title of both the notify others and exposures home pages, shown when the user lands on the page and exposure notifications is currently disabled. [CHAR_LIMIT=60] -->
-  <string name="exposure_notifications_are_turned_off">Not checking for possible exposure</string>
+  <string name="exposure_notifications_are_turned_off">Exposure Notifications is turned off</string>
 
-  <!-- Button text on the notify others and exposure home pages to allow the user to turn on exposure notifications when it is currently disabled. [CHAR_LIMIT=40] -->
+  <!-- Button text on the home screen to allow the user to turn on exposure notifications when it is currently disabled. [CHAR_LIMIT=40] [BACKUP_MESSAGE_ID=4318016711427032767] -->
   <string name="turn_on_exposure_notifications_action">Turn on Exposure Notifications</string>
-
-  <!-- Subtitle on the exposures home page, shown above the exposure details when there has been a possible COVID-19 exposure detected. [CHAR_LIMIT=60] -->
-  <string name="recent_exposures_subtitle">Recent exposure</string>
 
   <!-- Subtitle shown above the COVID-19 status on the exposure details page. [CHAR_LIMIT=60] -->
   <string name="exposure_details_status_subtitle">Status</string>
@@ -186,27 +164,28 @@
   <!-- Small badge shown next to aspects of the exposure notification that have changed on the exposure details page. [CHAR_LIMIT=15] -->
   <string name="exposure_details_new_badge">New</string>
 
+  <!-- Title of the PossibleExposuresActivity. [CHAR_LIMIT=60] -->
+  <string name="possible_exposures_activity_title">Possible exposure</string>
 
+  <!-- Subtitle shown at the bottom of the COVID-19 exposure page linking to an explanation of exposure notifications [CHAR_LIMIT=120] -->
+  <string name="exposure_details_explanation_link">See how Exposure Notifications works</string>
+
+  <!-- Details on the days from the start of exposure, shown in Possible Exposure Activity. The number of days can never be zero (String for quantity="zero" not required) . [CHAR_LIMIT=60]-->
+  <plurals name="days_from_start_of_exposure">
+    <item quantity="one"><xliff:g id="days" example="1">%1$d</xliff:g> day ago</item>
+    <item quantity="other"><xliff:g id="days" example="11">%1$d</xliff:g> days ago</item>
+  </plurals>
 
   <!-- NOTIFY OTHERS SCREENS -->
 
-  <!-- Subtitle of the notify others home page, shown when the user clicks the notify others tab. -->
-  <string name="share_test_result_title">Protect your community, share your COVID-19 test result</string>
-
-  <!-- Body text of the notify others home page, explaining the importance of sharing a positive COVID-19 diagnosis. [CHAR_LIMIT=NONE] -->
-  <string name="share_test_result_description">Sharing your COVID-19 test result, especially if you have tested positive, will help notify others who may have been exposed. It will let others in your community monitor for symptoms.</string>
-
-  <!-- Subtitle shown for the COVID-19 test status section that shows all previous diagnosis. [CHAR_LIMIT=40] -->
-  <string name="test_result_subtitle">COVID-19 Status</string>
-
   <!-- Text shown for the COVID-19 test status when the diagnosis was confirmed as positive. [CHAR_LIMIT=40] -->
-  <string name="test_result_type_confirmed">COVID-19 Positive</string>
+  <string name="test_result_type_confirmed">COVID-19 positive</string>
 
   <!-- Text shown for the COVID-19 test status when the diagnosis was confirmed as likely. [CHAR_LIMIT=40] -->
-  <string name="test_result_type_likely">COVID-19 Likely</string>
+  <string name="test_result_type_likely">COVID-19 likely</string>
 
   <!-- Text shown for the COVID-19 test status when the diagnosis was confirmed as negative. [CHAR_LIMIT=40] -->
-  <string name="test_result_type_negative">COVID-19 Negative</string>
+  <string name="test_result_type_negative">COVID-19 negative</string>
 
   <!-- Text shown next to a COVID-19 diagnosis that was previously entered and shared. [CHAR_LIMIT=20] -->
   <string name="positive_test_result_status_shared">Shared</string>
@@ -214,8 +193,11 @@
   <!-- Text shown next to a COVID-19 diagnosis that was previously entered but not yet shared. [CHAR_LIMIT=20] -->
   <string name="positive_test_result_status_not_shared">Not shared</string>
 
-  <!-- Body text of the notify others home page, shown when the user clicks the notify others tab and exposure notifications is currently disabled [CHAR_LIMIT=NONE] -->
-  <string name="notify_turn_on_exposure_notifications_header">Your app isn\'t currently checking for possible exposures. To be notified of possible COVID-19 exposure, turn on Exposure Notifications.</string>
+  <!-- Body text of the notify others home page, shown when the user clicks the notify others tab and exposure notifications is currently disabled. Placeholder string is a string informing user that using Exposure Notifications helps even if they've been vaccinated. [CHAR_LIMIT=NONE] -->
+  <string name="notify_turn_on_exposure_notifications_header">To get notified of possible COVID-19 exposure, turn on Exposure Notifications. <xliff:g id="using_en_helps_even_if_vaccinated" example="Using this service helps you protect your community - even if you've been vaccinated.">%1$s</xliff:g></string>
+
+  <!-- Additional body text informing user that using Exposure Notifications helps even if they've been vaccinated. This text is appended to other texts that prompt users to turn on Exposure Notifications. [CHAR_LIMIT=NONE] -->
+  <string name="using_en_helps_even_if_vaccinated">Using this service helps you protect your community - even if you\'ve been vaccinated.</string>
 
   <!-- Title of the first screen in the notify others flow for uploading your COVID-19 diagnosis. [CHAR_LIMIT=100] -->
   <string name="share_begin_title">Help protect your community</string>
@@ -235,23 +217,23 @@
   <!-- Shown on the second screen in the notify others flow, prompt requesting the COVID-19 test verification PIN number the user received from their health authority. [CHAR_LIMIT=40] -->
   <string name="enter_your_test_identifier">Verification code</string>
 
-  <!-- Shown on the second screen in the notify others flow, text describing what the requested COVID-19 verification code is. [CHAR_LIMIT=NONE]-->
-  <string name="share_test_identifier_help">This one-time code is used to verify your test result &amp; can\'t be used again.</string>
+  <!-- Shown on the second screen in the notify others flow, text describing what the requested COVID-19 verification code is. [CHAR_LIMIT=NONE] [BACKUP_MESSAGE_ID=5723597171401693016] -->
+  <string name="share_test_identifier_help">This one-time code is used to verify your test result.</string>
 
   <!-- Shown on the second screen in the notify others flow, this text appears under the disabled verification code checkbox after the verification code has been validated. [CHAR_LIMIT=100]-->
-  <string name="share_test_identifier_verified">Your code has been verified</string>
+  <string name="share_test_identifier_verified">Code verified</string>
 
   <!-- Shown at the bottom of the second screen in the notify others flow, providing a link to the health authority website to get more information about exposure notifications. The placeholder in the string is the health authority's name. [CHAR_LIMIT=NONE]-->
-  <string name="share_test_identifier_link">Learn more at %1$s</string>
+  <string name="share_test_identifier_link">Learn more at <xliff:g id="health_authority_url" example="covid19.heartland.com">%1$s</xliff:g></string>
 
   <!-- Title displayed on the third screen in the notify others flow, requesting the date of COVID-19 symptom onset. [CHAR_LIMIT=60] -->
   <string name="share_onset_title">Have you had symptoms?</string>
 
-  <!-- Subtitle displayed on the third screen in the notify others flow, requesting the date of COVID-19 symptom onset. [CHAR_LIMIT=60] -->
-  <string name="share_onset_subtitle">Helps the app determine when you may have been infectious and notify the right people of possible exposure.</string>
+  <!-- Subtitle displayed on the third screen in the notify others flow, requesting the date of COVID-19 symptom onset. [CHAR_LIMIT=200] -->
+  <string name="share_onset_subtitle">Helps the health authority determine when you may have been infectious and notify the right people of possible exposure.</string>
 
   <!-- Shown on the third screen in the notify others flow, prompt requesting the date of COVID-19 symptom onset. [CHAR_LIMIT=40] -->
-  <string name="test_date_label">Symptom start date</string>
+  <string name="test_date_label">Date symptoms started</string>
 
   <!-- Shown on the third screen in the notify others flow, one of three options asking whether the user has had COVID-19 symptoms. [CHAR_LIMIT=40] -->
   <string name="share_onset_symptoms">Yes</string>
@@ -314,13 +296,13 @@
   <string name="share_review_travel_no_answer">Not answered</string>
 
   <!-- Title of the page shown after sharing in the notify others flow. [CHAR_LIMIT=NONE] -->
-  <string name="share_confirm_title">Thank you for sharing your COVID-19 status and helping your community stay safe</string>
+  <string name="share_confirm_title">Thank you for sharing your COVID-19 status</string>
 
   <!-- Title of the page shown after choosing not to share in the notify others flow. [CHAR_LIMIT=60] -->
-  <string name="not_shared_confirm_title">COVID-19 status not shared</string>
+  <string name="not_shared_confirm_title">Your test result wasn\'t shared</string>
 
   <!-- Body text of the page shown after choosing not to share in the notify others flow. [CHAR_LIMIT=NONE] -->
-  <string name="not_shared_confirm_detail">Your COVID-19 status wasn\'t shared but is saved in the app. You can share or delete your status at any time.</string>
+  <string name="not_shared_confirm_detail">Your COVID-19 test result wasn\'t shared. Please try again.</string>
 
   <!-- Title of the shared status detail page. [CHAR_LIMIT=60] -->
   <string name="status_shared_detail_title">Shared COVID-19 status</string>
@@ -337,10 +319,28 @@
   <!-- Error message telling the user to connect to the internet before sharing their diagnosis. [CHAR_LIMIT=NONE] -->
   <string name="share_error_no_internet">Can\’t share test results offline. Check your internet connection &amp; try again.</string>
 
+  <!-- Title of the vaccination question section of the fifth screen in the notify others flow (confirmation screen). [CHAR_LIMIT=60] -->
+  <string name="share_vaccination_title">Have you been vaccinated against Covid-19\?</string>
+
+  <!-- Description text of the vaccination question section of the fifth screen in the notify others flow (confirmation screen). [CHAR_LIMIT=NONE] -->
+  <string name="share_vaccination_description">You can help even more. Without sharing your identity, you can help <xliff:g id="pha" example="Sample Health Authority">%1$s</xliff:g> better understand the spread of Covid-19 by sharing if you\'ve been vaccinated. <xliff:g id="pha" example="Sample Health Authority">%1$s</xliff:g> receives this data in aggregate form to protect your privacy.</string>
+
+  <!-- Learn more link of the vaccination question section of the fifth screen in the notify others flow (confirmation screen). [CHAR_LIMIT=60] -->
+  <string name="share_vaccination_learn_more">Learn more</string>
+
+  <!-- Shown on the fifth screen in the notify others flow, one of three possible options in response to the question: Have you been vaccinated against Covid-19? [CHAR_LIMIT=100] -->
+  <string name="share_vaccination_vaccinated">Yes, I\'ve been vaccinated</string>
+
+  <!-- Shown on the fifth screen in the notify others flow, one of three possible options in response to the question: Have you been vaccinated against Covid-19? [CHAR_LIMIT=100] -->
+  <string name="share_vaccination_not_vaccinated">No</string>
+
+  <!-- Shown on the fifth screen in the notify others flow, one of three possible options in response to the question: Have you been vaccinated against Covid-19? [CHAR_LIMIT=100] -->
+  <string name="share_vaccination_unknown">Prefer not to answer</string>
+
   <!-- SETTINGS SCREENS -->
 
-  <!-- Text displayed on the link going to the exposure notifications about page and displayed above the current exposure notification on / off status.  This is displayed on the settings tab home page. [CHAR_LIMIT=40] -->
-  <string name="settings_exposure_notifications_subtitle">Exposure notifications</string>
+  <!-- Text displayed on the link going to the exposure notifications about page and displayed above the current exposure notification on / off status.  This is displayed on the settings tab home page. [CHAR_LIMIT=40] [BACKUP_MESSAGE_ID=3785392145357451432] -->
+  <string name="settings_exposure_notifications_subtitle">Exposure Notifications</string>
 
   <!-- Text displayed on the link going to the app analytics settings page and displayed above the current setting status.  This is displayed on the settings tab home page. [CHAR_LIMIT=40] -->
   <string name="settings_app_analytics_subtitle">App usage &amp; performance sharing</string>
@@ -349,7 +349,7 @@
   <string name="settings_privacy_policy">Privacy policy</string>
 
   <!-- Text displayed on the link going to the help and support website.  This is displayed on the settings tab home page. [CHAR_LIMIT=40] -->
-  <string name="settings_help_and_support">About Exposure Notification Express</string>
+  <string name="settings_help_and_support">About Exposure Notifications Express</string>
 
   <!-- Text displayed on the link going to the legal terms.  This is displayed on the settings tab home page. [CHAR_LIMIT=40] -->
   <string name="settings_legal_terms">Legal terms</string>
@@ -378,11 +378,11 @@
   <!-- Displayed on the settings tab home page to indicate app analytics sharing is turned off. [CHAR_LIMIT=40] -->
   <string name="settings_analytics_off">Off</string>
 
-  <!-- Title of the exposure notifications about page, where the user is able to get more information about what exposure notifications is and can find the system settings page. [CHAR_LIMIT=60] -->
-  <string name="exposure_about_title">Exposure notifications</string>
+  <!-- Title of the exposure notifications about page, where the user is able to get more information about what exposure notifications is and can find the system settings page. [CHAR_LIMIT=60] [BACKUP_MESSAGE_ID=3331809739334735023] -->
+  <string name="exposure_about_title">Exposure Notifications</string>
 
-  <!-- Text shown on the exposure notifications about page. It appears next to the toggle that turns on or off the exposure notification system. [CHAR_LIMIT=40] -->
-  <string name="exposure_about_toggle">Use exposure notifications</string>
+  <!-- Text shown on the exposure notifications about page. It appears next to the toggle that turns on or off the exposure notification system. [CHAR_LIMIT=40] [BACKUP_MESSAGE_ID=497555767917752977] -->
+  <string name="exposure_about_toggle">Use Exposure Notifications</string>
 
   <!-- The body of text shown on the exposure notifications about page. This describes how exposure notifications work. [CHAR_LIMIT=NONE] -->
   <string name="exposure_about_detail">
@@ -391,8 +391,8 @@
     \n\nThe date, duration, and signal strength associated with an exposure will be shared with the app.
   </string>
 
-  <!-- Title of the dialog that appears when turning off exposure notifications. [CHAR_LIMIT=60] -->
-  <string name="exposure_turn_off_title">Turn off Exposure notifications?</string>
+  <!-- Title of the dialog that appears when turning off exposure notifications. [CHAR_LIMIT=60] [BACKUP_MESSAGE_ID=720244511397391417] -->
+  <string name="exposure_turn_off_title">Turn off Exposure Notifications?</string>
 
   <!-- Body text of the dialog that appears when turning off exposure notifications. [CHAR_LIMIT=200] -->
   <string name="exposure_turn_off_detail">You won\'t be notified if you\'re exposed to COVID-19</string>
@@ -411,11 +411,8 @@
 
   <!-- EDGE CASES -->
 
-  <!-- Title of both the notify others and exposures home pages, shown when the user lands on the page and exposure notifications are on but not running because bluetooth or device location are disabled. [CHAR_LIMIT=60] -->
-  <string name="exposure_notifications_are_inactive">Exposure notifications are inactive</string>
-
-  <!-- Title of both the page, shown when the user lands on the page and exposure notifications are on but not running because bluetooth or device location are disabled. [CHAR_LIMIT=60] -->
-  <string name="exposure_notifications_currently_inactive">Exposure notifications are currently inactive</string>
+  <!-- Title of both the notify others and exposures home pages, shown when the user lands on the page and exposure notifications are on but not running because bluetooth or device location are disabled. [CHAR_LIMIT=60] [BACKUP_MESSAGE_ID=8642771878163741629] -->
+  <string name="exposure_notifications_are_inactive">Exposure Notifications is inactive</string>
 
   <!-- Displayed on the button when the user needs to go to the device settings page to correct location / bluetooth off. [CHAR_LIMIT=40] -->
   <string name="device_settings">Device settings</string>
@@ -423,23 +420,20 @@
   <!-- Displayed on the button when the user needs to free up space to continue to use exposure notifications. [CHAR_LIMIT=40] -->
   <string name="manage_storage">Manage storage</string>
 
-  <!-- Displayed in three locations (exposures home, notify others home, settings) when the user has device location off, causing exposure notifications to be inactive. [CHAR_LIMIT=NONE] -->
-  <string name="location_off_warning">To continue to get possible COVID-19 exposure notifications &amp; share your COVID-19 test result, turn on the device location setting</string>
+  <!-- Displayed on the home screen and on the Settings page when the user has device location off, causing exposure notifications to be inactive. [CHAR_LIMIT=NONE] -->
+  <string name="location_off_warning">Turn on your device\'s location setting to get notified of possible exposure to COVID-19.</string>
 
-  <!-- Displayed in three locations (exposures home, notify others home, settings) when the user has Bluetooth off, causing exposure notifications to be inactive. [CHAR_LIMIT=NONE] -->
-  <string name="ble_off_warning">To continue to get possible COVID-19 exposure notifications &amp; share your COVID-19 test result, turn on Bluetooth</string>
+  <!-- Displayed on the home screen and on the Settings page when the user has Bluetooth off, causing exposure notifications to be inactive. [CHAR_LIMIT=NONE] -->
+  <string name="ble_off_warning">Turn on Bluetooth to get notified of possible exposure to COVID-19.</string>
 
-  <!-- Displayed in three locations (exposures home, notify others home, settings) when the user has both Bluetooth and device location off, causing exposure notifications to be inactive. [CHAR_LIMIT=NONE] -->
-  <string name="location_ble_off_warning">To continue to get possible COVID-19 exposure notifications &amp; share your COVID-19 test result, turn on Bluetooth and the device location setting</string>
+  <!-- Displayed on the home screen and on the Settings page when the user has both Bluetooth and device location off, causing exposure notifications to be inactive. [CHAR_LIMIT=NONE] -->
+  <string name="location_ble_off_warning">To get notified of possible exposure to COVID-19, turn on Bluetooth &amp; your device\'s location setting.</string>
 
-  <!-- Displayed in three locations (exposures home, notify others home, settings) when the device is low on storage, causing exposure notifications to be inactive. [CHAR_LIMIT=NONE] -->
-  <string name="storage_low_warning">To continue to get Exposure Notifications &amp; share your COVID-19 test result, free up storage space on your phone.</string>
+  <!-- Displayed on the home screen and on the Settings page when the device is low on storage, causing exposure notifications to be inactive. [CHAR_LIMIT=NONE] -->
+  <string name="storage_low_warning">Free up storage on your phone to get notified of possible exposure to COVID-19.</string>
 
-  <!-- Displayed in three locations (exposures home, notify others home, settings) when the current app is not in the list of approved apps, causing Exposure Notifications to be inactive for the current app. The placeholder string is an "approved apps" link to Help Center's page with approved apps. [CHAR_LIMIT=NONE] -->
-  <string name="not_in_allowlist_warning">This app isn\’t approved. See <xliff:g id="approved_apps_link" example="approved apps">%1$s</xliff:g> in your region.</string>
-
-  <!-- "approved apps" link text displayed as part of the explanatory text when exposure notifications is inactive because the current app is not approved. [CHAR_LIMIT=NONE] -->
-  <string name="approved_apps_link_text">approved apps</string>
+  <!-- Displayed in three locations (exposures home, notify others home, settings) when the current app is not in the list of approved apps, causing Exposure Notifications to be inactive for the current app. [CHAR_LIMIT=NONE] -->
+  <string name="not_in_allowlist_warning">Exposure Notifications is no longer available in your region.</string>
 
   <!-- Displayed in three locations (exposures home, notify others home, settings) if the user device does not support Exposure Notifications on a hardware level, causing Exposure Notifications to be inactive. The placeholder string is a "device requirements" link to Help Center's page on device requirements. [CHAR_LIMIT=NONE] -->
   <string name="hw_not_supported_warning">This device doesn\’t support Exposure Notifications. See <xliff:g id="device_requirements_link" example="device requirements">%1$s</xliff:g>.</string>
@@ -465,6 +459,12 @@
   <!-- Title of the dialog prompting user to free up storage to turn on Exposure Notifications. This dialog is shown in onboarding when the user attempts to turn on Exposure Notifications but cannot do so because of low storage. [CHAR_LIMIT=60] -->
   <string name="onboarding_free_up_storage_title">Free up storage space</string>
 
+  <!-- Subject of the notification prompting user to reactivate exposure notifications app 24 hours after a backup restore is complete. We will like to keep the notification title to a maximum of 28 characters as longer strings may be truncated. [CHAR_LIMIT=29] -->
+  <string name="reactivate_exposure_notification_app_subject">Get COVID-19 exposure alerts</string>
+
+  <!-- Body of the notification prompting user to reactivate exposure notifications app 24 hours after a backup restore is complete. The placeholder string is the health authority name. [CHAR_LIMIT=80] -->
+  <string name="reactivate_exposure_notification_app_body"><xliff:g id="ha" example="Heartland Public Health">%1$s</xliff:g> can notify you of potential exposure to COVID-19</string>
+
   <!-- ERROR MESSAGE -->
 
   <!-- Displayed in the notify others flow when the symptom onset date enterred by the user is too far in the past and not in the valid date range. [CHAR_LIMIT=NONE] -->
@@ -483,9 +483,9 @@
   <string name="network_error_server_error">Something went wrong. Try again.</string>
 
   <!-- Displayed during the notify others flow when the provided verification code is for a diagnosis type not supported by the app. The only potential fix is to update the app, if a newer version of the app has added support for that diagnosis type. [CHAR_LIMIT=NONE] -->
-  <string name="network_error_unsupported_test_type">Verification code can\’t be used in this version of the app. Upgrade the app &amp; try again.</string>
+  <string name="network_error_unsupported_test_type">This verification code can\'t be used at this time.</string>
 
-  <!-- Displayed when unable to retrieve the user's keys from gmscore at the time of sharing a diangosis with the server. [CHAR_LIMIT=NONE] -->
+  <!-- Displayed when unable to retrieve the user's keys from gmscore at the time of sharing a diagnosis with the server. [CHAR_LIMIT=NONE] -->
   <string name="share_error">Unable to share the test result. Try again later. </string>
 
   <!-- General error message displayed when an unknown error has happened and there is no more known ot share with the user. [CHAR_LIMIT=NONE] -->
@@ -493,6 +493,12 @@
 
   <!-- Error message when a user tries to submit the same verification code that has already been used and submitted. [CHAR_LIMIT=NONE] -->
   <string name="code_error_already_submitted">Code has already been used to share test result</string>
+
+  <!-- Error message when a user doesn't have Google Play services available. [CHAR_LIMIT=NONE] -->
+  <string name="gms_unavailable_error">Exposure Notifications requires the latest version of Google Play services.</string>
+
+  <!-- Error message when a user tries to open a hyperlink when there is no browser available on the device. [CHAR_LIMIT=NONE] -->
+  <string name="browser_unavailable_error">To view this content, make sure you have a recent browser installed on your device.</string>
 
   <!-- PRIVATE ANALYTICS -->
 
@@ -513,5 +519,13 @@
 
   <!-- Learn more link text in the onboarding / settings page footer text. [CHAR_LIMIT=40] -->
   <string name="private_analytics_footer_learn_more">Learn more</string>
+
+  <!-- SHARE HISTORY SCREEN -->
+
+  <!-- Template for subtitles of diagnosis items in the share history page. At runtime, <xliff:g id="is_shared"/> will be replaced with "shared"/"not shared" and <xliff:g id="shared_date"/> with a date. Example: "Shared on Mar 10, 2021". [CHAR_LIMIT=60] -->
+  <string name="diagnosis_subtitle_template"><xliff:g id="is_shared" example="Shared">%1$s</xliff:g> on <xliff:g id="shared_date" example="Mar 10, 2021">%2$s</xliff:g></string>
+
+  <!-- Body text of the share history page if no diagnoses were shared. [CHAR_LIMIT=40] -->
+  <string name="empty_share_history_body">No sharing history</string>
 
 </resources>

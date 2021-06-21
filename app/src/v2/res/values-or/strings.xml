@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">ଆପ୍ ସକ୍ରିୟ ଅଛି ଏବଂ ଯାଞ୍ଚ କରାଯାଉଛି</string>
+  <string name="app_active_and_checking_info">ଏହି ଆପ୍ ସମ୍ଭାବ୍ୟ ସଂକ୍ରମଣର ଯାଞ୍ଚ କରୁଛି। ସଂକ୍ରମଣ ବିଜ୍ଞପ୍ତି ବ୍ୟବହାର କରିବା ଆପଣଙ୍କୁ ଆପଣଙ୍କ କମ୍ୟୁନିଟୀକୁ ସୁରକ୍ଷା ଦେବାରେ ସାହାଯ୍ୟ କରେ - ଯଦିଓ ଆପଣଙ୍କୁ ଟିକାକରଣ କରାଯାଇଛି।</string>
+  <string name="possible_exposure_title">ଆପଣ ସଂକ୍ରମିତ ହୋଇଥାଇପାରନ୍ତି</string>
+  <string name="share_test_result_home_screen_title">ଆପଣଙ୍କ ଟେଷ୍ଟ ରିପୋର୍ଟ ସେୟାର୍ କରନ୍ତୁ</string>
+  <string name="have_questions">କିଛି ପ୍ରଶ୍ନ ଅଛି କି?</string>
+  <string name="check_exposure_status">ଆପଣଙ୍କ ସଂକ୍ରମଣ ସ୍ଥିତି ଯାଞ୍ଚ କରନ୍ତୁ</string>
+  <string name="en_active">ସକ୍ରିୟ</string>
+  <string name="en_inactive">ନିଷ୍କ୍ରିୟ</string>
+  <string name="exposure_checks_activity_title">ବର୍ତ୍ତମାନର ଚେକ୍-ଇନଗୁଡ଼ିକର ରେକର୍ଡ</string>
+  <string name="sharing_history_activity_title">ଇତିହାସ ସେୟାର୍ କରନ୍ତୁ</string>
+  <string name="no_recent_exposure_card_content_no_checks">କୌଣସି ରିପୋର୍ଟ କରାଯାଇଥିବା COVID-19 ସଂକ୍ରମଣର ବିପଦ ମିଳିଲା ନାହିଁ।</string>
+  <string name="no_recent_exposure_card_content">କୌଣସି ରିପୋର୍ଟ କରାଯାଇଥିବା COVID-19 ସଂକ୍ରମଣର ବିପଦ ମିଳିଲା ନାହିଁ। %1$sରେ ଗତ ଥର ଯାଞ୍ଚ କରାଯାଇଛି</string>
+  <string name="see_recent_checks_button">ବର୍ତ୍ତମାନର ଯାଞ୍ଚଗୁଡ଼ିକୁ ଦେଖନ୍ତୁ</string>
+  <string name="possible_exposure_card_title">ସମ୍ଭାବ୍ୟ ସଂକ୍ରମଣ ରିପୋର୍ଟ କରାଯାଇଛି</string>
+  <string name="possible_exposure_card_contents">ଆପଣ COVID-19 ପାଇଁ ଟେଷ୍ଟ ରିପୋର୍ଟରେ ପଜିଟିଭ୍ ଆସିଥିବା କୌଣସି ବ୍ୟକ୍ତିଙ୍କ ନିକଟରେ ଥିଲେ</string>
+  <string name="see_details_button">ବିବରଣୀ ଦେଖନ୍ତୁ</string>
+  <string name="share_test_result_card_title">ଆପଣଙ୍କ କମ୍ୟୁନିଟୀରେ COVID-19କୁ ପ୍ରତିରୋଧ କରିବାରେ ସାହାଯ୍ୟ କରନ୍ତୁ</string>
+  <string name="share_test_result_card_content">ପ୍ରତ୍ୟେକ ଥର କେହି ଜଣେ ପଜିଟିଭ୍ ଟେଷ୍ଟ ରିପୋର୍ଟ ସେୟାର୍ କଲେ, ଏହା COVID-19ର ଅନ୍ୟ ଏକ ମାମଲାକୁ ରୋକିବାରେ ସାହାଯ୍ୟ କରିପାରିବ। ଆପଣଙ୍କ ଟେଷ୍ଟ ରିପୋର୍ଟ ସେୟାର୍ କରିବା ଦ୍ୱାରା ଅନ୍ୟ ଲୋକମାନେ ଆପଣଙ୍କୁ ଚିହ୍ନଟ କରିପାରିବେ ନାହିଁ।</string>
+  <string name="see_history_button">ଇତିହାସ ଦେଖନ୍ତୁ</string>
+  <string name="share_positive_diagnosis_card_content">COVID-19ର ସଂକ୍ରମଣ ବ୍ୟାପିବାକୁ ରୋକିବାରେ ସାହାଯ୍ୟ କରିବାକୁ ଆପଣଙ୍କ ଟେଷ୍ଟ ରିପୋର୍ଟ ସେୟାର୍ କରନ୍ତୁ</string>
+  <string name="share_app_card_content">ଆପଣଙ୍କ କମ୍ୟୁନିଟୀକୁ ଆହୁରି ଭଲ ଭାବେ ସୁରକ୍ଷା ଦେବା ପାଇଁ ଏହି ଆପ୍ ସେୟାର୍ କରନ୍ତୁ</string>
+  <string name="how_en_works_card_content">ସଂକ୍ରମଣ ବିଜ୍ଞପ୍ତି କିପରି କାର୍ଯ୍ୟ କରେ ସେ ବିଷୟରେ ଅଧିକ ଜାଣନ୍ତୁ</string>
+</resources>

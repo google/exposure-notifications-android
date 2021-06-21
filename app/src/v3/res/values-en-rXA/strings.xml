@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="onboarding_activity_title">[Öñбöåŕðîñĝ one two]</string>
+  <string name="share_history_activity_title">[Šéé šĥåŕîñĝ ĥîšţöŕý one two three]</string>
+  <string name="remove_region_link_title">[Ŕémövé ŕéĝîöñ one two]</string>
+  <string name="delete_shared_diagnosis">[Ðéļéţé šĥåŕéð ţéšţ ŕéšûļţ one two three four five six]</string>
+  <string name="active_region_subtitle">[ᐅ%1$sᐊ îš çûŕŕéñţļý šéţ åš ýöûŕ åçţîvé ŕéĝîöñ ƒöŕ Éxþöšûŕé Ñöţîƒîçåţîöñš one two three four five six seven eight nine ten eleven twelve thirteen]</string>
+  <string name="active_region_subtitle_en_off">[ᐅ%1$sᐊ îš šéţ åš ýöûŕ åçţîvé ŕéĝîöñ бûţ Éxþöšûŕé Ñöţîƒîçåţîöñš îš öƒƒ ƒöŕ ýöûŕ þĥöñé one two three four five six seven eight nine ten eleven twelve thirteen fourteen]</string>
+  <string name="remove_region_title">[Ŕémövé ŕéĝîöñ one two]</string>
+  <string name="remove_region_detail">[Ŕémövîñĝ ýöûŕ ŕéĝîöñ ŵîļļ ţûŕñ öƒƒ Éxþöšûŕé Ñöţîƒîçåţîöñš. Ýöû çåñ åðð ţĥîš ŕéĝîöñ бåçķ åţ åñý ţîmé. one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen]</string>
+  <string name="btn_remove">[Ŕémövé one]</string>
+  <string name="exposure_notifications_is_off">[Éxþöšûŕé Ñöţîƒîçåţîöñš îš öƒƒ one two three four five six seven]</string>
+  <string name="possible_exposure">[Þöššîбļé éxþöšûŕé one two three]</string>
+  <string name="share_history_delete_test_result_title">[Ðéļéţé ţĥîš ţéšţ ŕéšûļţ¿ one two three four five]</string>
+  <string name="share_history_delete_test_result_detail">[Ýöûŕ ÇÖVÎÐ-19 ţéšţ ŕéšûļţ ƒŕöm ᐅ%1$sᐊ ŵîļļ ĝéţ ðéļéţéð ƒŕöm ýöûŕ þĥöñé. one two three four five six seven eight nine ten eleven twelve thirteen]</string>
+</resources>

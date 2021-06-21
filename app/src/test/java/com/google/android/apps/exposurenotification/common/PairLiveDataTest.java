@@ -40,7 +40,7 @@ public class PairLiveDataTest {
   public ExposureNotificationRules rules = ExposureNotificationRules.forTest(this).build();
 
   @Test
-  public void setOneSourceValue_pairLiveDataDoesNotReact() {
+  public void oneSourceValueIsNull_pairLiveDataDoesNotReact() {
     // GIVEN
     List<String> values = new ArrayList<>();
     MutableLiveData<String> firstLiveData = new MutableLiveData<>();

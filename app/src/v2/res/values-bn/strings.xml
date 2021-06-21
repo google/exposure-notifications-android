@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">অ্যাপ চালু আছে এবং চেক করছে</string>
+  <string name="app_active_and_checking_info">এই অ্যাপ সম্ভাব্য সংক্রমণ চেক করছে। Exposure Notifications আপনার কমিউনিটিকে সুরক্ষিত রাখতে সাহায্য করে - এমনকি আপনি যদি টিকা নিয়েও থাকেন।</string>
+  <string name="possible_exposure_title">আপনি হয়ত সংক্রমিত ব্যক্তির সংস্পর্শে এসেছেন</string>
+  <string name="share_test_result_home_screen_title">আপনার পরীক্ষার ফলাফল শেয়ার করুন</string>
+  <string name="have_questions">প্রশ্ন করতে চান?</string>
+  <string name="check_exposure_status">আপনি সংক্রমিত ব্যক্তির সংস্পর্শে এসেছেন কিনা সেই স্ট্যাটাস চেক করুন</string>
+  <string name="en_active">অ্যাক্টিভ আছে</string>
+  <string name="en_inactive">অ্যাক্টিভ নেই</string>
+  <string name="exposure_checks_activity_title">সাম্প্রতিক যেসব চেক করা হয়েছে তার রেকর্ড</string>
+  <string name="sharing_history_activity_title">ইতিহাস শেয়ার করুন</string>
+  <string name="no_recent_exposure_card_content_no_checks">আপনি COVID-19 সংক্রমিত কোনও ব্যক্তির সংস্পর্শে আসেননি।</string>
+  <string name="no_recent_exposure_card_content">আপনি COVID-19 সংক্রমিত কোনও ব্যক্তির সংস্পর্শে আসেননি। %1$s-এ শেষবার চেক করা হয়েছে</string>
+  <string name="see_recent_checks_button">সম্প্রতি করা পরীক্ষা দেখুন</string>
+  <string name="possible_exposure_card_title">এটি জানা গেছে যে, আপনি এমন কোনও ব্যক্তির সংস্পর্শে এসেছেন যার সংক্রমণ হয়েছে</string>
+  <string name="possible_exposure_card_contents">আপনি এমন কোনও ব্যক্তির সংস্পর্শে এসেছেন যার COVID-19 সংক্রমণ হয়েছে</string>
+  <string name="see_details_button">বিস্তারিত দেখুন</string>
+  <string name="share_test_result_card_title">আপনার কমিউনিটিতে COVID-19 প্রতিরোধ করতে সাহায্য করুন</string>
+  <string name="share_test_result_card_content">প্রতিবার যখনই কেউ COVID-19-এ সংক্রমিত হওয়ার তথ্য শেয়ার করে, তখন অন্য কারোর সংক্রমিত হওয়া আটকাতে সাহায্য করে। আপনার পরীক্ষার ফলাফল শেয়ার করলেও, অন্যদের সাথে পরিচয় শেয়ার করা হবে না।</string>
+  <string name="see_history_button">ইতিহাস দেখুন</string>
+  <string name="share_positive_diagnosis_card_content">আপনার পরীক্ষার ফলাফল শেয়ার করে COVID-19 আটকাতে সাহায্য করুন</string>
+  <string name="share_app_card_content">আপনার কমিউনিটিকে আরও ভালভাবে সুরক্ষিত রাখতে এই অ্যাপ শেয়ার করুন</string>
+  <string name="how_en_works_card_content">Exposure Notifications কীভাবে কাজ করে সেই সম্পর্কে আরও জানুন</string>
+</resources>

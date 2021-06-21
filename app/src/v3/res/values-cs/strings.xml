@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="onboarding_activity_title">Registrace</string>
+  <string name="share_history_activity_title">Zobrazit historii sdílení</string>
+  <string name="remove_region_link_title">Odebrat oblast</string>
+  <string name="delete_shared_diagnosis">Smazat sdílený výsledek testu</string>
+  <string name="active_region_subtitle">Oblast %1$s je nastavena jako aktivní region pro oznámení o možném kontaktu</string>
+  <string name="active_region_subtitle_en_off">Oblast %1$s je nastavena jako aktivní region, ale oznámení o možném kontaktu jsou v telefonu vypnutá</string>
+  <string name="remove_region_title">Odebrat oblast</string>
+  <string name="remove_region_detail">Odstraněním oblasti vypnete oznámení o možném kontaktu. Oblast můžete kdykoli přidat zpět.</string>
+  <string name="btn_remove">Odstranit</string>
+  <string name="exposure_notifications_is_off">Oznámení o možném kontaktu jsou vypnutá</string>
+  <string name="possible_exposure">Možný kontakt</string>
+  <string name="share_history_delete_test_result_title">Smazat tento výsledek?</string>
+  <string name="share_history_delete_test_result_detail">Váš test na covid-19 z %1$s bude z telefonu smazán.</string>
+</resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="onboarding_activity_title">Incorporación</string>
+  <string name="share_history_activity_title">Ver historial de datos compartidos</string>
+  <string name="remove_region_link_title">Quitar región</string>
+  <string name="delete_shared_diagnosis">Eliminar resultado de prueba compartido</string>
+  <string name="active_region_subtitle">%1$s es la región donde tienes activadas las notificaciones de exposición</string>
+  <string name="active_region_subtitle_en_off">%1$s es la región que tienes activa, pero las notificaciones de exposición están desactivadas en tu teléfono</string>
+  <string name="remove_region_title">Quitar región</string>
+  <string name="remove_region_detail">Si quitas tu región, se desactivarán las notificaciones de exposición. Puedes volver a añadir esta región en cualquier momento.</string>
+  <string name="btn_remove">Quitar</string>
+  <string name="exposure_notifications_is_off">Las notificaciones de exposición están desactivadas</string>
+  <string name="possible_exposure">Posible exposición</string>
+  <string name="share_history_delete_test_result_title">¿Eliminar este resultado de prueba?</string>
+  <string name="share_history_delete_test_result_detail">El resultado de tu prueba de COVID-19 del %1$s se eliminará de tu teléfono.</string>
+</resources>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">Aplikazioa aktibatuta dago eta egiaztatzen ari da</string>
+  <string name="app_active_and_checking_info">Aplikazioa esposizio posibleak egiaztatzen ari da. Esposizioari buruzko jakinarazpenak erabiliz zure komunitatea babesten lagunduko duzu (baita txertoa jaso baduzu ere).</string>
+  <string name="possible_exposure_title">Baliteke COVID-19a duen norbaitengandik hurbil egon izana</string>
+  <string name="share_test_result_home_screen_title">Partekatu probaren emaitza</string>
+  <string name="have_questions">Zalantzarik duzu?</string>
+  <string name="check_exposure_status">Egiaztatu esposizioaren egoera</string>
+  <string name="en_active">Aktibo</string>
+  <string name="en_inactive">Inaktibo</string>
+  <string name="exposure_checks_activity_title">Azkenaldiko hartu-emanen erregistroa</string>
+  <string name="sharing_history_activity_title">Partekatu historia</string>
+  <string name="no_recent_exposure_card_content_no_checks">Ez da aurkitu COVID-19arekiko esposizio-arriskurik.</string>
+  <string name="no_recent_exposure_card_content">Ez da aurkitu COVID-19arekiko esposizio-arriskurik. Azken egiaztatze-data: %1$s.</string>
+  <string name="see_recent_checks_button">Ikusi azken egiaztapenak</string>
+  <string name="possible_exposure_card_title">Esposizio posiblea jakinarazi da</string>
+  <string name="possible_exposure_card_contents">Inguruko norbaitek emaitza positiboa izan du COVID-19aren proban</string>
+  <string name="see_details_button">Ikusi xehetasunak</string>
+  <string name="share_test_result_card_title">Lagundu zure komunitatean COVID-19aren hedapena galarazten</string>
+  <string name="share_test_result_card_content">Norbaitek COVID-19aren probaren emaitza positiboa partekatzen duen bakoitzean, kasu berri bat galaraz dezake. Probaren emaitza partekatzean, besteek ez zaituzte identifikatuko.</string>
+  <string name="see_history_button">Ikusi historia</string>
+  <string name="share_positive_diagnosis_card_content">Partekatu probaren emaitza COVID-19aren hedapena gelditzen laguntzeko</string>
+  <string name="share_app_card_content">Partekatu aplikazio hau zure komunitatea hobeto babesteko</string>
+  <string name="how_en_works_card_content">Lortu informazio gehiago esposizioari buruzko jakinarazpenen funtzionamenduari buruz</string>
+</resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="onboarding_activity_title">Aurkezpena</string>
+  <string name="share_history_activity_title">Ikusi partekatze-historia</string>
+  <string name="remove_region_link_title">Kendu lurraldea</string>
+  <string name="delete_shared_diagnosis">Ezabatu partekatutako probaren emaitza</string>
+  <string name="active_region_subtitle">Une honetan, %1$s dago ezarrita lurralde aktibo gisa esposizioari buruzko jakinarazpenetarako</string>
+  <string name="active_region_subtitle_en_off">%1$s dago ezarrita lurralde aktibo gisa, baina esposizioari buruzko jakinarazpenak desaktibatuta daude zure telefonorako</string>
+  <string name="remove_region_title">Kendu lurraldea</string>
+  <string name="remove_region_detail">Lurraldea kentzeak desaktibatu egingo ditu esposizioari buruzko jakinarazpenak. Noiznahi gehi dezakezu berriro lurraldea.</string>
+  <string name="btn_remove">Kendu</string>
+  <string name="exposure_notifications_is_off">Esposizioari buruzko jakinarazpenak desaktibatuta daude</string>
+  <string name="possible_exposure">Esposizio posiblea</string>
+  <string name="share_history_delete_test_result_title">Probaren emaitza ezabatu nahi duzu?</string>
+  <string name="share_history_delete_test_result_detail">COVID-19aren probaren emaitza (%1$s) ezabatu egingo da telefonotik.</string>
+</resources>

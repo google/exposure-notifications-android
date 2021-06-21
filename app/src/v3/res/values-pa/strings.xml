@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="onboarding_activity_title">ਆਨਬੋਰਡਿੰਗ</string>
+  <string name="share_history_activity_title">ਸਾਂਝਾਕਰਨ ਇਤਿਹਾਸ ਦੇਖੋ</string>
+  <string name="remove_region_link_title">ਖੇਤਰ ਹਟਾਓ</string>
+  <string name="delete_shared_diagnosis">ਸਾਂਝਾ ਕੀਤਾ ਜਾਂਚ ਨਤੀਜਾ ਮਿਟਾਓ</string>
+  <string name="active_region_subtitle">%1$s ਫ਼ਿਲਹਾਲ ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਦੀਆਂ ਸੂਚਨਾਵਾਂ ਲਈ ਤੁਹਾਡੇ ਕਿਰਿਆਸ਼ੀਲ ਖੇਤਰ ਵਜੋਂ ਸੈੱਟ ਹੈ</string>
+  <string name="active_region_subtitle_en_off">%1$s ਤੁਹਾਡੇ ਕਿਰਿਆਸ਼ੀਲ ਖੇਤਰ ਵਜੋਂ ਸੈੱਟ ਹੈ ਪਰ ਤੁਹਾਡੇ ਫ਼ੋਨ \'ਤੇ ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਦੀਆਂ ਸੂਚਨਾਵਾਂ ਬੰਦ ਹਨ</string>
+  <string name="remove_region_title">ਖੇਤਰ ਹਟਾਓ</string>
+  <string name="remove_region_detail">ਤੁਹਾਡੇ ਖੇਤਰ ਨੂੰ ਹਟਾਉਣ ਨਾਲ ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਦੀਆਂ ਸੂਚਨਾਵਾਂ ਦੀ ਸੁਵਿਧਾ ਬੰਦ ਹੋ ਜਾਵੇਗੀ। ਤੁਸੀਂ ਕਿਸੇ ਵੀ ਸਮੇਂ ਇਸ ਖੇਤਰ ਨੂੰ ਵਾਪਸ ਸ਼ਾਮਲ ਕਰ ਸਕਦੇ ਹੋ।</string>
+  <string name="btn_remove">ਹਟਾਓ</string>
+  <string name="exposure_notifications_is_off">ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਦੀਆਂ ਸੂਚਨਾਵਾਂ ਬੰਦ ਹਨ</string>
+  <string name="possible_exposure">ਸੰਭਾਵੀ ਤੌਰ \'ਤੇ ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣਾ</string>
+  <string name="share_history_delete_test_result_title">ਕੀ ਇਸ ਜਾਂਚ ਨਤੀਜੇ ਨੂੰ ਮਿਟਾਉਣਾ ਹੈ?</string>
+  <string name="share_history_delete_test_result_detail">ਤੁਹਾਡੇ ਫ਼ੋਨ ਤੋਂ %1$s ਦੇ ਤੁਹਾਡੇ COVID-19 ਜਾਂਚ ਨਤੀਜੇ ਨੂੰ ਮਿਟਾ ਦਿੱਤਾ ਜਾਵੇਗਾ।</string>
+</resources>

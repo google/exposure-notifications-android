@@ -25,6 +25,7 @@ import android.content.Context;
 import android.net.Uri;
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
+import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.common.time.RealTimeModule;
 import com.google.android.apps.exposurenotification.keyupload.ApiConstants.UploadV1;
@@ -190,7 +191,8 @@ public final class DiagnosisKeyUploaderTest {
     int expectedOnsetIntervalNum = DiagnosisKey.instantToInterval(
         input.symptomOnset().atStartOfDay(ZoneOffset.UTC).toInstant());
     assertThat(requestBody.getBoolean(UploadV1.TRAVELER)).isEqualTo(true);
-    assertThat(requestBody.getString(UploadV1.APP_PACKAGE)).isEqualTo(context.getPackageName());
+    assertThat(requestBody.getString(UploadV1.APP_PACKAGE))
+        .isEqualTo(context.getString(R.string.enx_healthAuthorityID));
     assertThat(requestBody.getString(UploadV1.HMAC_KEY)).isEqualTo(input.hmacKeyBase64());
     assertThat(requestBody.getInt(UploadV1.ONSET)).isEqualTo(expectedOnsetIntervalNum);
     assertThat(requestBody.getString(UploadV1.VERIFICATION_CERT)).isEqualTo(input.certificate());

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">Program is aktief en besig om te kontroleer</string>
+  <string name="app_active_and_checking_info">Hierdie program kontroleer tans vir moontlike blootstellings. As jy Blootstellingkennisgewings gebruik, help dit jou om jou gemeenskap te beskerm – selfs al is jy ingeënt.</string>
+  <string name="possible_exposure_title">Jy is dalk blootgestel</string>
+  <string name="share_test_result_home_screen_title">Deel jou toetsresultaat</string>
+  <string name="have_questions">Het jy vrae?</string>
+  <string name="check_exposure_status">Gaan jou blootstellingstatus na</string>
+  <string name="en_active">Aktief</string>
+  <string name="en_inactive">Onaktief</string>
+  <string name="exposure_checks_activity_title">Rekord van onlangse aanmeldings</string>
+  <string name="sharing_history_activity_title">Deel geskiedenis</string>
+  <string name="no_recent_exposure_card_content_no_checks">Geen aangemelde COVID-19-blootstellingrisiko gevind nie.</string>
+  <string name="no_recent_exposure_card_content">Geen aangemelde COVID-19-blootstellingrisiko gevind nie. %1$s laas gekontroleer</string>
+  <string name="see_recent_checks_button">Sien onlangse kontrolerings</string>
+  <string name="possible_exposure_card_title">Moontlike blootstelling aangemeld</string>
+  <string name="possible_exposure_card_contents">Iemand naby wie jy was, het positief getoets vir COVID-19</string>
+  <string name="see_details_button">Sien besonderhede</string>
+  <string name="share_test_result_card_title">Help om COVID-19 in jou gemeenskap te voorkom</string>
+  <string name="share_test_result_card_content">Elke keer wanneer iemand \'n resultaat van \'n positiewe toets deel, kan dit help om nog \'n geval van COVID-19 te keer. Ander sal nie weet wie jy is wanneer jy jou toetsresultaat deel nie.</string>
+  <string name="see_history_button">Sien geskiedenis</string>
+  <string name="share_positive_diagnosis_card_content">Deel jou toetsresultaat om die verspreiding van COVID-19 te help bekamp</string>
+  <string name="share_app_card_content">Deel hierdie program om jou gemeenskap beter te beskerm</string>
+  <string name="how_en_works_card_content">Kom meer te wete oor hoe Blootstellingkennisgewings werk</string>
+</resources>

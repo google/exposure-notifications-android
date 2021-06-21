@@ -37,6 +37,7 @@
         android:layout_width="?attr/actionBarSize"
         android:layout_height="match_parent"
         android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/btn_close_label"
         app:srcCompat="@drawable/ic_close" />
 
     </LinearLayout>
@@ -70,14 +71,15 @@
           android:hint="@string/enter_your_test_identifier"
           android:textColorHint="?android:attr/textColorPrimary">
 
-          <com.google.android.material.textfield.TextInputEditText
+          <com.google.android.apps.exposurenotification.common.ui.NoAutofillTextInputEditText
             android:id="@+id/share_test_identifier"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="@dimen/touch_area_min_size"
             android:importantForAutofill="no"
             android:maxLength="32"
-            android:inputType="text" />
+            android:inputType="text"
+            android:imeOptions="actionDone"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -169,7 +171,7 @@
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_marginHorizontal="@dimen/padding_normal"
-          android:text="@string/btn_back" />
+          android:text="@string/btn_previous" />
 
       </LinearLayout>
 

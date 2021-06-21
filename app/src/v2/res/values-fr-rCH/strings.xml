@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">Appli active, contrôles d\'exposition en cours</string>
+  <string name="app_active_and_checking_info">L\'appli recherche actuellement les expositions potentielles. En utilisant les notifications d\'exposition, vous aidez à protéger les autres, même si vous êtes vacciné.</string>
+  <string name="possible_exposure_title">Exposition possible à la COVID-19</string>
+  <string name="share_test_result_home_screen_title">Partager le résultat de votre test</string>
+  <string name="have_questions">Vous avez des questions ?</string>
+  <string name="check_exposure_status">Vérifier votre risque d\'exposition à la COVID-19</string>
+  <string name="en_active">Active</string>
+  <string name="en_inactive">Inactive</string>
+  <string name="exposure_checks_activity_title">Contrôles d\'exposition récents</string>
+  <string name="sharing_history_activity_title">Historique de partage</string>
+  <string name="no_recent_exposure_card_content_no_checks">Aucun risque d\'exposition à la COVID-19 n\'a été signalé.</string>
+  <string name="no_recent_exposure_card_content">Aucun risque d\'exposition à la COVID-19 n\'a été signalé. Dernier contrôle : %1$s</string>
+  <string name="see_recent_checks_button">Afficher les contrôles récents</string>
+  <string name="possible_exposure_card_title">Risque potentiel signalé</string>
+  <string name="possible_exposure_card_contents">Vous avez croisé une personne testée positive à la COVID-19</string>
+  <string name="see_details_button">En savoir plus</string>
+  <string name="share_test_result_card_title">Contribuer à la lutte contre la COVID-19 dans votre communauté</string>
+  <string name="share_test_result_card_content">Chaque fois qu\'une personne partage un résultat de test positif, elle contribue à lutter contre la COVID-19. Votre identité ne sera pas révélée.</string>
+  <string name="see_history_button">Afficher l\'historique</string>
+  <string name="share_positive_diagnosis_card_content">Partagez vos résultats de dépistage pour aider à lutter contre la COVID-19</string>
+  <string name="share_app_card_content">Partagez cette appli pour aider à protéger les autres</string>
+  <string name="how_en_works_card_content">En savoir plus sur le fonctionnement des notifications d\'exposition</string>
+</resources>

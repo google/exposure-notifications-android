@@ -19,6 +19,10 @@
 
   <string name="app_name">@string/enx_appTitle</string>
 
+  <string name="health_authority_id">@string/enx_healthAuthorityID</string>
+
+  <string name="health_authority_name">@string/enx_agencyDisplayName</string>
+
   <!-- Health authority name displayed on app first open. -->
   <string name="onboarding_agency_name">@string/enx_agencyDisplayName</string>
 
@@ -124,6 +128,9 @@
 
   <!-- Text displayed on the fourth screen in the notify others flow, describing the question of whether the user has traveled. -->
   <string name="share_travel_detail">@string/enx_traveledQuestionText</string>
+
+  <!-- Text displayed on the fifth screen in the notify others flow, describing the question of whether the user has been vaccinated. -->
+  <string name="share_vaccination_detail">@string/enx_vaccinationQuestionText</string>
 
   <!-- Name for public health authority website link. -->
   <string name="health_authority_website_name">@string/enx_agencyDisplayName</string>

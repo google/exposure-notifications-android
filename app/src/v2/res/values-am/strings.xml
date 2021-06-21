@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">መተግበሪያ ንቁ እና በመፈተሽ ላይ ነው</string>
+  <string name="app_active_and_checking_info">ይህ መተግበሪያ ሊኖሩ የሚችሉ ተጋላጭነቶችን በመፈተሽ ላይ ነው። የተጋላጭነት ማሳወቂያዎችን መጠቀም ማህበረሰብዎን እንዲጠብቁ ይረዳዎታል - ክትባት ቢወስዱም እንኳ።</string>
+  <string name="possible_exposure_title">ተጋልጠው ሊሆኑ ይችላል</string>
+  <string name="share_test_result_home_screen_title">የምርመራ ውጤትዎን ያጋሩ</string>
+  <string name="have_questions">ጥያቄዎች አሉዎት?</string>
+  <string name="check_exposure_status">የእርስዎን የተጋላጭነት ሁኔታ ይፈትሹ</string>
+  <string name="en_active">ንቁ</string>
+  <string name="en_inactive">የቦዘነ</string>
+  <string name="exposure_checks_activity_title">የቅርብ ጊዜ የተመዝግቦ መግባቶች መዝገብ</string>
+  <string name="sharing_history_activity_title">ታሪክን ያጋሩ</string>
+  <string name="no_recent_exposure_card_content_no_checks">ሪፖርት የተደረገ የኮቪድ-19 ተጋላጭነት ስጋት የለም።</string>
+  <string name="no_recent_exposure_card_content">ሪፖርት የተደረገ የኮቪድ-19 ተጋላጭነት ስጋት የለም። መጨረሻ የተፈተሸው %1$s</string>
+  <string name="see_recent_checks_button">የቅርብ ጊዜ ፍተሻዎችን ይመልከቱ</string>
+  <string name="possible_exposure_card_title">ሊኖር የሚችል ተጋላጭነት ሪፖርት ተደርጓል</string>
+  <string name="possible_exposure_card_contents">በአቅራቢያዎ የነበሩ አንድ ሰው ለኮቪድ-19 ተመርምረው ፖዘቲቭ ሆነዋል</string>
+  <string name="see_details_button">ዝርዝሮችን ይመልከቱ</string>
+  <string name="share_test_result_card_title">በማህበረሰብዎ ውስጥ ኮቪድ-19ን ለመከላከል ያግዙ</string>
+  <string name="share_test_result_card_content">አንድ ሰው ፖዘቲቭ የምርመራ ውጤትን ባጋራ ቁጥር ሌላ የኮቪድ-19 መከሰትን ለማቆም ሊረዳ ይችላል። የምርመራዎን ውጤት ማጋራት ሌሎች እርስዎን ለይተው እንዲያውቁ አያደርግም።</string>
+  <string name="see_history_button">ታሪክን ይመልከቱ</string>
+  <string name="share_positive_diagnosis_card_content">የኮቪድ-19 ስርጭትን ለማስቆም የምርመራዎን ውጤት ያጋሩ</string>
+  <string name="share_app_card_content">ማህበረሰብዎን በተሻለ ሁኔታ ለመጠበቅ ይህን መተግበሪያ ያጋሩ</string>
+  <string name="how_en_works_card_content">የተጋላጭነት ማሳወቂያዎች እንዴት እንደሚሠሩ የበለጠ ይወቁ</string>
+</resources>

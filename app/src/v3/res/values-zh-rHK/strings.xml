@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="onboarding_activity_title">新手入門</string>
+  <string name="share_history_activity_title">查看分享記錄</string>
+  <string name="remove_region_link_title">移除地區資料</string>
+  <string name="delete_shared_diagnosis">刪除已分享的檢測結果</string>
+  <string name="active_region_subtitle">目前已將%1$s設定為您所在的地區，以作「接觸通知」用途</string>
+  <string name="active_region_subtitle_en_off">已將%1$s設定為您所在的地區，但您的手機並未啟用「接觸通知」</string>
+  <string name="remove_region_title">移除地區資料</string>
+  <string name="remove_region_detail">移除啟用地區資料將會停用「接觸通知」。您可隨時重新加入此資料。</string>
+  <string name="btn_remove">移除</string>
+  <string name="exposure_notifications_is_off">「接觸通知」已停用</string>
+  <string name="possible_exposure">可能接觸到 COVID-19</string>
+  <string name="share_history_delete_test_result_title">要刪除此檢測結果嗎？</string>
+  <string name="share_history_delete_test_result_detail">您在 %1$s的 COVID-19 檢測結果將從手機中刪除。</string>
+</resources>

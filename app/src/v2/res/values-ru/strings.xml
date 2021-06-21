@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">Приложение работает</string>
+  <string name="app_active_and_checking_info">Это приложение отслеживает возможные контакты с инфицированными. Используйте его, чтобы предотвратить распространение заболевания, даже если вы сделали прививку.</string>
+  <string name="possible_exposure_title">Возможный контакт с инфицированным</string>
+  <string name="share_test_result_home_screen_title">Сообщите результат теста</string>
+  <string name="have_questions">Есть вопросы?</string>
+  <string name="check_exposure_status">Узнайте о возможных контактах с инфицированным</string>
+  <string name="en_active">Активно</string>
+  <string name="en_inactive">Неактивно</string>
+  <string name="exposure_checks_activity_title">Сведения о последних проверках</string>
+  <string name="sharing_history_activity_title">История отправки</string>
+  <string name="no_recent_exposure_card_content_no_checks">Нет новых сообщений о контактах с зараженными COVID-19.</string>
+  <string name="no_recent_exposure_card_content">Нет новых сообщений о контактах с зараженными COVID-19. Последняя проверка: %1$s.</string>
+  <string name="see_recent_checks_button">Посмотреть последние проверки</string>
+  <string name="possible_exposure_card_title">Сообщение о возможном контакте</string>
+  <string name="possible_exposure_card_contents">Кто-то из тех, с кем вы были рядом, сообщил о положительном тесте на COVID-19.</string>
+  <string name="see_details_button">Подробнее</string>
+  <string name="share_test_result_card_title">Помогите предотвратить распространение COVID-19</string>
+  <string name="share_test_result_card_content">Любой, кто делится положительным результатом теста на COVID-19, помогает предотвратить новые случаи заболевания. При этом личные данные инфицированного никому не сообщаются.</string>
+  <string name="see_history_button">Посмотреть историю</string>
+  <string name="share_positive_diagnosis_card_content">Поделитесь результатом теста и помогите остановить распространение COVID-19.</string>
+  <string name="share_app_card_content">Расскажите об этом приложении, чтобы предотвратить распространение болезни.</string>
+  <string name="how_en_works_card_content">Узнайте, как работают Уведомления о риске инфицирования.</string>
+</resources>

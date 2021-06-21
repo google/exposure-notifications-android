@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">ಆ್ಯಪ್ ಸಕ್ರಿಯವಾಗಿದೆ ಮತ್ತು ಪರಿಶೀಲಿಸುತ್ತಿದೆ</string>
+  <string name="app_active_and_checking_info">ಸಂಭವನೀಯ ಸಂಪರ್ಕಕ್ಕೆ ಬಂದಿರುವ ಕುರಿತು ಈ ಆ್ಯಪ್ ಪರಿಶೀಲಿಸುತ್ತಿದೆ. ಎಕ್ಸ್‌ಪೋಶರ್ ಅಧಿಸೂಚನೆಗಳನ್ನು ಬಳಸುವುದು ನಿಮ್ಮ ಸಮುದಾಯವನ್ನು ರಕ್ಷಿಸಲು ಸಹಾಯ ಮಾಡುತ್ತದೆ - ನಿಮಗೆ ಲಸಿಕೆ ನೀಡಿದ್ದರೂ ಸಹ.</string>
+  <string name="possible_exposure_title">ನೀವು ಸಂಭವನೀಯ ಸಂಪರ್ಕಕ್ಕೆ ಬಂದಿರಬಹುದು</string>
+  <string name="share_test_result_home_screen_title">ನಿಮ್ಮ ಪರೀಕ್ಷಾ ಫಲಿತಾಂಶವನ್ನು ಹಂಚಿಕೊಳ್ಳಿ</string>
+  <string name="have_questions">ಪ್ರಶ್ನೆಗಳಿವೆಯೇ?</string>
+  <string name="check_exposure_status">ನೀವು ಸಂಪರ್ಕಕ್ಕೆ ಬಂದಿರುವ ಕುರಿತು ಸ್ಥಿತಿಯನ್ನು ಪರಿಶೀಲಿಸಿ</string>
+  <string name="en_active">ಸಕ್ರಿಯವಾಗಿದೆ</string>
+  <string name="en_inactive">ನಿಷ್ಕ್ರಿಯವಾಗಿದೆ</string>
+  <string name="exposure_checks_activity_title">ಇತ್ತೀಚಿನ ಚೆಕ್-ಇನ್‌ಗಳ ರೆಕಾರ್ಡ್</string>
+  <string name="sharing_history_activity_title">ಇತಿಹಾಸವನ್ನು ಹಂಚಿಕೊಳ್ಳಿ</string>
+  <string name="no_recent_exposure_card_content_no_checks">ವರದಿಯಾದ COVID-19 ನ ಸಂಪರ್ಕಕ್ಕೆ ಬಂದಿರುವ ಕುರಿತು ಅಪಾಯ ಕಂಡುಬಂದಿಲ್ಲ.</string>
+  <string name="no_recent_exposure_card_content">ವರದಿಯಾದ COVID-19 ನ ಸಂಪರ್ಕಕ್ಕೆ ಬಂದಿರುವ ಕುರಿತು ಅಪಾಯ ಕಂಡುಬಂದಿಲ್ಲ. ಕೊನೆಯದಾಗಿ ಪರಿಶೀಲಿಸಿದ ದಿನಾಂಕ %1$s</string>
+  <string name="see_recent_checks_button">ಇತ್ತೀಚಿನ ಪರಿಶೀಲನೆಗಳನ್ನು ನೋಡಿ</string>
+  <string name="possible_exposure_card_title">ಸಂಭವನೀಯ ಸಂಪರ್ಕಕ್ಕೆ ಬಂದಿರುವ ಕುರಿತು ವರದಿಯಾಗಿದೆ</string>
+  <string name="possible_exposure_card_contents">ನಿಮ್ಮ ಸಮೀಪದಲ್ಲಿದ್ದ ಯಾರೋ ಒಬ್ಬರು COVID-19 ಸೋಂಕಿತರಾಗಿದ್ದಾರೆ</string>
+  <string name="see_details_button">ವಿವರಗಳನ್ನು ನೋಡಿ</string>
+  <string name="share_test_result_card_title">ನಿಮ್ಮ ಸಮುದಾಯದಲ್ಲಿ COVID-19 ಅನ್ನು ತಡೆಯಲು ಸಹಾಯ ಮಾಡಿ</string>
+  <string name="share_test_result_card_content">ಪ್ರತಿ ಬಾರಿ ಯಾರಾದರೂ ಪಾಸಿಟಿವ್ ಪರೀಕ್ಷಾ ಫಲಿತಾಂಶವನ್ನು ಹಂಚಿಕೊಂಡಾಗ, ಇದು COVID-19 ನ ಮತ್ತೊಂದು ಪ್ರಕರಣವನ್ನು ನಿಲ್ಲಿಸಲು ಸಹಾಯ ಮಾಡುತ್ತದೆ. ನಿಮ್ಮ ಪರೀಕ್ಷಾ ಫಲಿತಾಂಶ ಹಂಚಿಕೊಳ್ಳುವುದರಿಂದ ನಿಮ್ಮ ಗುರುತು ಇತರರಿಗೆ ತಿಳಿಸುವುದಿಲ್ಲ.</string>
+  <string name="see_history_button">ಇತಿಹಾಸವನ್ನು ವೀಕ್ಷಿಸಿ</string>
+  <string name="share_positive_diagnosis_card_content">COVID-19 ನ ಹರಡುವಿಕೆಯನ್ನು ನಿಲ್ಲಿಸಲು ಸಹಾಯ ಮಾಡಲು ನಿಮ್ಮ ಪರೀಕ್ಷಾ ಫಲಿತಾಂಶವನ್ನು ಹಂಚಿಕೊಳ್ಳಿ</string>
+  <string name="share_app_card_content">ನಿಮ್ಮ ಸಮುದಾಯವನ್ನು ಉತ್ತಮವಾಗಿ ರಕ್ಷಿಸಲು ಈ ಆ್ಯಪ್ ಅನ್ನು ಹಂಚಿಕೊಳ್ಳಿ</string>
+  <string name="how_en_works_card_content">ಎಕ್ಸ್‌ಪೋಶರ್ ಅಧಿಸೂಚನೆಗಳು ಹೇಗೆ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತವೆ ಎಂಬುದರ ಕುರಿತು ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</string>
+</resources>

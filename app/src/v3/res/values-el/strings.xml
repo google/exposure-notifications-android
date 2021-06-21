@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="onboarding_activity_title">Ενσωμάτωση</string>
+  <string name="share_history_activity_title">Εμφάνιση ιστορικού κοινοποίησης</string>
+  <string name="remove_region_link_title">Κατάργηση περιοχής</string>
+  <string name="delete_shared_diagnosis">Διαγραφή κοινοποιημένου αποτελέσματος εξέτασης</string>
+  <string name="active_region_subtitle">Η περιοχή %1$s έχει ρυθμιστεί ως η ενεργή περιοχή σας για τις Ειδοποιήσεις έκθεσης</string>
+  <string name="active_region_subtitle_en_off">Η περιοχή %1$s έχει ρυθμιστεί ως η ενεργή περιοχή σας, αλλά οι Ειδοποιήσεις έκθεσης είναι ανενεργές για το τηλέφωνό σας</string>
+  <string name="remove_region_title">Κατάργηση περιοχής</string>
+  <string name="remove_region_detail">Με την κατάργηση της περιοχής σας θα απενεργοποιηθούν οι Ειδοποιήσεις έκθεσης. Μπορείτε να προσθέσετε ξανά αυτήν την περιοχή ανά πάσα στιγμή.</string>
+  <string name="btn_remove">Κατάργηση</string>
+  <string name="exposure_notifications_is_off">Οι Ειδοποιήσεις έκθεσης έχουν απενεργοποιηθεί</string>
+  <string name="possible_exposure">Πιθανή έκθεση</string>
+  <string name="share_history_delete_test_result_title">Διαγραφή αποτελέσματος εξέτασης;</string>
+  <string name="share_history_delete_test_result_detail">Το αποτέλεσμα της εξέτασής σας COVID-19 από τις %1$s θα διαγραφεί από το τηλέφωνό σας.</string>
+</resources>

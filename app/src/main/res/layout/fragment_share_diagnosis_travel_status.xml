@@ -33,6 +33,7 @@
       android:layout_width="?attr/actionBarSize"
       android:layout_height="match_parent"
       android:background="?attr/selectableItemBackgroundBorderless"
+      android:contentDescription="@string/btn_close_label"
       app:srcCompat="@drawable/ic_close" />
 
   </LinearLayout>
@@ -117,7 +118,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/padding_normal"
-        android:text="@string/btn_back" />
+        android:text="@string/btn_previous" />
 
     </LinearLayout>
 

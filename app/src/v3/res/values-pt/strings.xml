@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="onboarding_activity_title">Integração</string>
+  <string name="share_history_activity_title">Ver o histórico de compartilhamento</string>
+  <string name="remove_region_link_title">Remover região</string>
+  <string name="delete_shared_diagnosis">Excluir o resultado de teste compartilhado</string>
+  <string name="active_region_subtitle">No momento, a região %1$s está definida como ativa para as Notificações de Exposição</string>
+  <string name="active_region_subtitle_en_off">A região %1$s está definida como ativa, mas as Notificações de Exposição estão desativadas no smartphone</string>
+  <string name="remove_region_title">Remover região</string>
+  <string name="remove_region_detail">Se você remover a região, as Notificações de Exposição serão desativadas. Você pode adicioná-la novamente a qualquer momento.</string>
+  <string name="btn_remove">Remover</string>
+  <string name="exposure_notifications_is_off">O recurso Notificações de Exposição está desativado</string>
+  <string name="possible_exposure">Possível exposição</string>
+  <string name="share_history_delete_test_result_title">Excluir o resultado do teste?</string>
+  <string name="share_history_delete_test_result_detail">O resultado do seu teste de COVID-19 de %1$s será excluído do smartphone.</string>
+</resources>

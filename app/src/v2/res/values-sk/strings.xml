@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">Aplikácia je aktívna a kontroluje výskyt</string>
+  <string name="app_active_and_checking_info">Táto aplikácia kontroluje výskyt možných kontaktov. Používaním upozornení na kontakt pomáhate chrániť svoju komunitu, dokonca aj keď ste už zaočkovaný/-á.</string>
+  <string name="possible_exposure_title">Zrejme ste prišli do kontaktu</string>
+  <string name="share_test_result_home_screen_title">Zdieľajte výsledok testu</string>
+  <string name="have_questions">Máte otázky?</string>
+  <string name="check_exposure_status">Skontrolujte, či ste boli v kontakte</string>
+  <string name="en_active">Aktívne</string>
+  <string name="en_inactive">Neaktívne</string>
+  <string name="exposure_checks_activity_title">Záznam nedávnych kontrol</string>
+  <string name="sharing_history_activity_title">História zdieľania</string>
+  <string name="no_recent_exposure_card_content_no_checks">Nebolo nájdené žiadne nahlásené riziko kontaktu s ochorením COVID‑19.</string>
+  <string name="no_recent_exposure_card_content">Nebolo nájdené žiadne nahlásené riziko kontaktu s ochorením COVID‑19. Naposledy skontrolované %1$s</string>
+  <string name="see_recent_checks_button">Zobraziť nedávne kontroly</string>
+  <string name="possible_exposure_card_title">Bol nahlásený možný kontakt</string>
+  <string name="possible_exposure_card_contents">Osoba, v ktorej blízkosti ste boli, má pozitívny výsledok testu na COVID‑19</string>
+  <string name="see_details_button">Zobraziť podrobnosti</string>
+  <string name="share_test_result_card_title">Pomôžte predchádzať ochoreniu COVID‑19 vo vašej komunite</string>
+  <string name="share_test_result_card_content">Keď niekto zdieľa pozitívny výsledok testu, môže to pomôcť predísť ďalšiemu prípadu ochorenia COVID‑19. Zdieľanie výsledku testu neumožňuje ostatným zistiť vašu totožnosť.</string>
+  <string name="see_history_button">Zobraziť históriu</string>
+  <string name="share_positive_diagnosis_card_content">Zdieľajte výsledok testu a pomôžte zastaviť šírenie ochorenia COVID‑19</string>
+  <string name="share_app_card_content">Zdieľajte túto aplikáciu a lepšie tak chráňte svoju komunitu</string>
+  <string name="how_en_works_card_content">Ako upozornenia na kontakt fungujú</string>
+</resources>

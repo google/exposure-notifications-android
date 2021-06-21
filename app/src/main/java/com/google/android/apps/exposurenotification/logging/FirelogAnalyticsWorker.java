@@ -28,10 +28,10 @@ import androidx.work.PeriodicWorkRequest;
 import androidx.work.WorkManager;
 import androidx.work.WorkerParameters;
 import com.google.android.apps.exposurenotification.common.Qualifiers.BackgroundExecutor;
+import com.google.android.apps.exposurenotification.logging.AnalyticsLogger.NotEnabledException;
 import com.google.android.apps.exposurenotification.proto.WorkManagerTask.WorkerTask;
 import com.google.android.apps.exposurenotification.work.WorkerStartupManager;
 import com.google.common.util.concurrent.FluentFuture;
-import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -41,6 +41,7 @@ import org.threeten.bp.Duration;
  * A worker that uploads analytical logs through firelog.
  */
 public class FirelogAnalyticsWorker extends ListenableWorker {
+  private static final String TAG = "FirelogAnalyticsWorker";
 
   public static final String WORKER_NAME = "FirelogAnalyticsUploadWorker";
   public static final Duration JOB_INTERVAL = Duration.ofHours(4).plusMinutes(30);
@@ -68,17 +69,11 @@ public class FirelogAnalyticsWorker extends ListenableWorker {
   @NonNull
   @Override
   public ListenableFuture<Result> startWork() {
-    return FluentFuture.from(
+    return
+
+        FluentFuture.from(
         workerStartupManager.getIsEnabledWithStartupTasks())
-        .transformAsync(
-            isEnabled -> {
-              logger.logWorkManagerTaskStarted(WorkerTask.TASK_FIRELOG_ANALYTICS);
-              if (!isEnabled) {
-                // If the API is not enabled, do not attempt sending logs.
-                return Futures.immediateFailedFuture(new NotEnabledException());
-              }
-              return logger.sendLoggingBatchIfEnabled();
-            },
+        .transformAsync(logger::sendLoggingBatchIfConsented,
             backgroundExecutor)
         // Report success or failure.
         .transform(unused -> {
@@ -111,7 +106,4 @@ public class FirelogAnalyticsWorker extends ListenableWorker {
         .enqueueUniquePeriodicWork(WORKER_NAME, ExistingPeriodicWorkPolicy.KEEP, workRequest);
   }
 
-  private static class NotEnabledException extends Exception {
-
-  }
 }

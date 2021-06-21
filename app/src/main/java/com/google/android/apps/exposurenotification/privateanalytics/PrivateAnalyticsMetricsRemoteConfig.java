@@ -19,6 +19,7 @@ package com.google.android.apps.exposurenotification.privateanalytics;
 
 import android.net.Uri;
 import android.util.Log;
+import androidx.annotation.VisibleForTesting;
 import androidx.concurrent.futures.CallbackToFutureAdapter;
 import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
@@ -47,42 +48,63 @@ public class PrivateAnalyticsMetricsRemoteConfig {
   private static final String TAG = "ENPARemoteConfig";
 
   // Metric "Periodic Exposure Interaction"
-  private static final String CONFIG_METRIC_INTERACTION_COUNT_SAMPLING_PROB_KEY =
+  @VisibleForTesting
+  static final String CONFIG_METRIC_INTERACTION_COUNT_SAMPLING_PROB_KEY =
       "enpa_metric_interaction_count_v1_sampling_prob";
-  private static final String CONFIG_METRIC_INTERACTION_COUNT_PRIO_EPSILON_KEY =
+  @VisibleForTesting
+  static final String CONFIG_METRIC_INTERACTION_COUNT_PRIO_EPSILON_KEY =
       "enpa_metric_interaction_count_v1_prio_epsilon";
 
   // Metric "Periodic Exposure Notification"
-  private static final String CONFIG_METRIC_NOTIFICATION_COUNT_SAMPLING_PROB_KEY =
+  @VisibleForTesting
+  static final String CONFIG_METRIC_NOTIFICATION_COUNT_SAMPLING_PROB_KEY =
       "enpa_metric_notification_count_v1_sampling_prob";
-  private static final String CONFIG_METRIC_NOTIFICATION_COUNT_PRIO_EPSILON_KEY =
+  @VisibleForTesting
+  static final String CONFIG_METRIC_NOTIFICATION_COUNT_PRIO_EPSILON_KEY =
       "enpa_metric_notification_count_v1_prio_epsilon";
 
   // Metric "Histogram"
-  private static final String CONFIG_METRIC_RISK_HISTOGRAM_SAMPLING_PROB_KEY =
+  @VisibleForTesting
+  static final String CONFIG_METRIC_RISK_HISTOGRAM_SAMPLING_PROB_KEY =
       "enpa_metric_risk_histogram_v2_sampling_prob";
-  private static final String CONFIG_METRIC_RISK_HISTOGRAM_PRIO_EPSILON_KEY =
+  @VisibleForTesting
+  static final String CONFIG_METRIC_RISK_HISTOGRAM_PRIO_EPSILON_KEY =
       "enpa_metric_risk_histogram_v2_prio_epsilon";
 
   // Metric "Code Verified"
-  private static final String CONFIG_METRIC_CODE_VERIFIED_SAMPLING_PROB_KEY =
+  @VisibleForTesting
+  static final String CONFIG_METRIC_CODE_VERIFIED_SAMPLING_PROB_KEY =
       "enpa_metric_code_verified_v1_sampling_prob";
-  private static final String CONFIG_METRIC_CODE_VERIFIED_PRIO_EPSILON_KEY =
+  @VisibleForTesting
+  static final String CONFIG_METRIC_CODE_VERIFIED_PRIO_EPSILON_KEY =
       "enpa_metric_code_verified_v1_prio_epsilon";
 
   // Metric "Keys Uploaded"
-  private static final String CONFIG_METRIC_KEYS_UPLOADED_SAMPLING_PROB_KEY =
+  @VisibleForTesting
+  static final String CONFIG_METRIC_KEYS_UPLOADED_SAMPLING_PROB_KEY =
       "enpa_metric_keys_uploaded_v1_sampling_prob";
-  private static final String CONFIG_METRIC_KEYS_UPLOADED_PRIO_EPSILON_KEY =
+  @VisibleForTesting
+  static final String CONFIG_METRIC_KEYS_UPLOADED_PRIO_EPSILON_KEY =
       "enpa_metric_keys_uploaded_v1_prio_epsilon";
 
   // Metric "Date Exposure"
-  private static final String CONFIG_METRIC_DATE_EXPOSURE_SAMPLING_PROB_KEY =
+  @VisibleForTesting
+  static final String CONFIG_METRIC_DATE_EXPOSURE_SAMPLING_PROB_KEY =
       "enpa_metric_date_exposure_v1_sampling_prob";
-  private static final String CONFIG_METRIC_DATE_EXPOSURE_PRIO_EPSILON_KEY =
+  @VisibleForTesting
+  static final String CONFIG_METRIC_DATE_EXPOSURE_PRIO_EPSILON_KEY =
       "enpa_metric_date_exposure_v1_prio_epsilon";
 
-  private final static MetricsRemoteConfigs DEFAULT_REMOTE_CONFIGS = MetricsRemoteConfigs.newBuilder().build();
+  // Metric "Keys Uploaded Vaccine Status"
+  @VisibleForTesting
+  static final String CONFIG_METRIC_KEYS_UPLOADED_VACCINE_STATUS_SAMPLING_PROB_KEY =
+      "enpa_metric_keys_uploaded_vaccine_status_v1_sampling_prob";
+  @VisibleForTesting
+  static final String CONFIG_METRIC_KEYS_UPLOADED_VACCINE_STATUS_PRIO_EPSILON_KEY =
+      "enpa_metric_keys_uploaded_vaccine_status_v1_prio_epsilon";
+
+  private final static MetricsRemoteConfigs DEFAULT_REMOTE_CONFIGS = MetricsRemoteConfigs
+      .newBuilder().build();
 
   private final ListeningExecutorService lightweightExecutor;
   private final Uri remoteConfigUri;
@@ -149,7 +171,8 @@ public class PrivateAnalyticsMetricsRemoteConfig {
             + VolleyUtils.getErrorBody(err).toString());
   }
 
-  private MetricsRemoteConfigs convertToRemoteConfig(JSONObject jsonObject) {
+  @VisibleForTesting
+  MetricsRemoteConfigs convertToRemoteConfig(JSONObject jsonObject) {
     if (jsonObject == null) {
       Log.e(TAG, "Invalid jsonObj, using default remote configs");
       return DEFAULT_REMOTE_CONFIGS;
@@ -188,7 +211,6 @@ public class PrivateAnalyticsMetricsRemoteConfig {
             jsonObject.getDouble(CONFIG_METRIC_RISK_HISTOGRAM_PRIO_EPSILON_KEY));
       }
 
-
       // Code verified metric params
       if (jsonObject.has(CONFIG_METRIC_CODE_VERIFIED_SAMPLING_PROB_KEY)) {
         remoteConfigBuilder.setCodeVerifiedPrioSamplingRate(
@@ -217,6 +239,16 @@ public class PrivateAnalyticsMetricsRemoteConfig {
       if (jsonObject.has(CONFIG_METRIC_DATE_EXPOSURE_PRIO_EPSILON_KEY)) {
         remoteConfigBuilder.setDateExposurePrioEpsilon(
             jsonObject.getDouble(CONFIG_METRIC_DATE_EXPOSURE_PRIO_EPSILON_KEY));
+      }
+
+      // Keys uploaded vaccine status metric params
+      if (jsonObject.has(CONFIG_METRIC_KEYS_UPLOADED_VACCINE_STATUS_SAMPLING_PROB_KEY)) {
+        remoteConfigBuilder.setKeysUploadedVaccineStatusPrioSamplingRate(
+            jsonObject.getDouble(CONFIG_METRIC_KEYS_UPLOADED_VACCINE_STATUS_SAMPLING_PROB_KEY));
+      }
+      if (jsonObject.has(CONFIG_METRIC_KEYS_UPLOADED_VACCINE_STATUS_PRIO_EPSILON_KEY)) {
+        remoteConfigBuilder.setKeysUploadedVaccineStatusPrioEpsilon(
+            jsonObject.getDouble(CONFIG_METRIC_KEYS_UPLOADED_VACCINE_STATUS_PRIO_EPSILON_KEY));
       }
 
     } catch (JSONException e) {

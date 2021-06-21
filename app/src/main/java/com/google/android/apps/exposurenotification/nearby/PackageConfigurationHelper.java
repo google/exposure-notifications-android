@@ -31,6 +31,7 @@ public class PackageConfigurationHelper {
 
   public static final String APP_ANALYTICS_OPT_IN = "METRICS_OPT_IN";
   public static final String PRIVATE_ANALYTICS_OPT_IN = "APPA_OPT_IN";
+  public static final String CHECK_BOX_API_KEY = "check_box_api";
 
   private final ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
 
@@ -99,5 +100,23 @@ public class PackageConfigurationHelper {
     }
     return Optional.of(values.getBoolean(PRIVATE_ANALYTICS_OPT_IN));
   }
+
+  /**
+   * Fetches the checkbox consent from a {@link PackageConfiguration} if it exists. Otherwise
+   * returns false.
+   */
+  public static boolean getCheckboxConsentFromPackageConfiguration(
+      @Nullable PackageConfiguration packageConfiguration) {
+    if (packageConfiguration == null) {
+      return false;
+    }
+
+    Bundle values = packageConfiguration.getValues();
+    if (values != null) {
+      return values.getBoolean(CHECK_BOX_API_KEY, false);
+    }
+    return false;
+  }
+
 
 }

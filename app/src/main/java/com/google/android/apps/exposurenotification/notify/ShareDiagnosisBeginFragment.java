@@ -21,11 +21,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
+import androidx.annotation.NonNull;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.common.PairLiveData;
 import com.google.android.apps.exposurenotification.databinding.FragmentShareDiagnosisBeginBinding;
-import com.google.android.apps.exposurenotification.home.ExposureNotificationViewModel;
 import com.google.android.apps.exposurenotification.notify.ShareDiagnosisViewModel.Step;
 import dagger.hilt.android.AndroidEntryPoint;
 
@@ -33,49 +32,50 @@ import dagger.hilt.android.AndroidEntryPoint;
  * A preamble to the diagnosis flow, showing some info for the user.
  */
 @AndroidEntryPoint
-public class ShareDiagnosisBeginFragment extends Fragment {
+public class ShareDiagnosisBeginFragment extends ShareDiagnosisBaseFragment {
 
   private static final String TAG = "ShareExposureBeginFrag";
 
   private FragmentShareDiagnosisBeginBinding binding;
-  ExposureNotificationViewModel exposureNotificationViewModel;
 
   @Override
-  public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
+  public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup parent,
+      Bundle savedInstanceState) {
     binding = FragmentShareDiagnosisBeginBinding.inflate(inflater, parent, false);
     return binding.getRoot();
   }
 
   @Override
-  public void onViewCreated(View view, Bundle savedInstanceState) {
-    getActivity().setTitle(R.string.share_begin_title);
+  public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+    super.onViewCreated(view, savedInstanceState);
 
-    exposureNotificationViewModel =
-        new ViewModelProvider(requireActivity()).get(ExposureNotificationViewModel.class);
+    requireActivity().setTitle(R.string.share_begin_title);
 
-    ShareDiagnosisViewModel viewModel =
-        new ViewModelProvider(getActivity()).get(ShareDiagnosisViewModel.class);
+    shareDiagnosisViewModel.getCurrentDiagnosisLiveData().observe(
+        getViewLifecycleOwner(), diagnosisEntity -> binding.home.setOnClickListener(v -> {
+          // Only show the dialog if has been verified.
+          if (DiagnosisEntityHelper.hasVerified(diagnosisEntity)) {
+            showCloseWarningAlertDialog();
+          } else {
+            closeShareDiagnosisFlow();
+          }
+        }));
 
-    viewModel.getCurrentDiagnosisLiveData().observe(getViewLifecycleOwner(), diagnosisEntity -> {
-      binding.home.setOnClickListener(v -> {
-        // Only show the dialog if has been verified.
-        if (DiagnosisEntityHelper.hasVerified(diagnosisEntity)) {
-          ShareDiagnosisActivity.showCloseWarningAlertDialog(requireActivity(), viewModel);
-        } else {
-          requireActivity().finish();
+    // Determine the next step
+    PairLiveData<Step, Boolean> nextStepAndIsCodeInvalidLiveData = PairLiveData.of(
+        shareDiagnosisViewModel.getNextStepLiveData(Step.BEGIN),
+        shareDiagnosisViewModel.isCodeInvalidForCodeStepLiveData());
+    nextStepAndIsCodeInvalidLiveData.observe(
+        this, (step, isCodeInvalid) -> {
+          if (isCodeInvalid) {
+            // Never skip the Code step if user has previously input an invalid code.
+            binding.shareNextButton.setOnClickListener(
+                v -> shareDiagnosisViewModel.nextStep(Step.CODE));
+          } else {
+            binding.shareNextButton.setOnClickListener(v -> shareDiagnosisViewModel.nextStep(step));
+          }
         }
-      });
-    });
-    binding.home.setContentDescription(getString(R.string.btn_cancel));
-
-    viewModel.getNextStepLiveData(Step.BEGIN).observe(getViewLifecycleOwner(),
-        step -> binding.shareNextButton.setOnClickListener(v -> viewModel.nextStep(step)));
-  }
-
-  @Override
-  public void onResume() {
-    super.onResume();
-    exposureNotificationViewModel.refreshState();
+    );
   }
 
   @Override
@@ -83,4 +83,5 @@ public class ShareDiagnosisBeginFragment extends Fragment {
     super.onDestroyView();
     binding = null;
   }
+
 }

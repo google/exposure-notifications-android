@@ -21,6 +21,7 @@ import com.google.android.apps.exposurenotification.proto.ApiCall.ApiCallType;
 import com.google.android.apps.exposurenotification.proto.RpcCall.RpcCallType;
 import com.google.android.apps.exposurenotification.proto.UiInteraction.EventType;
 import com.google.android.apps.exposurenotification.proto.WorkManagerTask.WorkerTask;
+import com.google.android.apps.exposurenotification.storage.AnalyticsLoggingEntity;
 import com.google.common.util.concurrent.ListenableFuture;
 
 /** Interface for analytics logger */
@@ -65,6 +66,14 @@ public interface AnalyticsLogger {
   /** Asynchronously logs failed RPC call with server error code */
   ListenableFuture<?> logRpcCallFailureAsync(RpcCallType rpcCallType, Throwable error);
 
-  /** Send logs off device if permitted by app usage & performance sharing */
-  ListenableFuture<Void> sendLoggingBatchIfEnabled();
+  /**
+   * Send logs off device if permitted by app usage & performance sharing.
+   * If isENEnabled is true, all logs are sent. Otherwise, this method looks for the last
+   * log entry that stops EN module. If it finds one, it sends logs up to including this entry.
+   * Throws NotEnabledException if EN is not enabled and there is no stop call in the logs.
+   */
+  ListenableFuture<?> sendLoggingBatchIfConsented(boolean isENEnabled);
+
+  /** Exception thrown if EN is not enabled */
+  class NotEnabledException extends Exception {}
 }

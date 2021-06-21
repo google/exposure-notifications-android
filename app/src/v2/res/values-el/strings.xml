@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">Η εφαρμογή είναι ενεργοποιημένη και ελέγχει</string>
+  <string name="app_active_and_checking_info">Αυτή η εφαρμογή ελέγχει για πιθανές εκθέσεις. Η χρήση των Ειδοποιήσεων έκθεσης σάς βοηθά να προστατέψετε την κοινότητά σας, ακόμη και αν έχετε εμβολιαστεί.</string>
+  <string name="possible_exposure_title">Μπορεί να έχετε εκτεθεί</string>
+  <string name="share_test_result_home_screen_title">Μοιραστείτε το αποτέλεσμα της εξέτασής σας</string>
+  <string name="have_questions">Μήπως έχετε απορίες;</string>
+  <string name="check_exposure_status">Ελέγξτε την κατάσταση έκθεσής σας</string>
+  <string name="en_active">Ενεργοποιημένες</string>
+  <string name="en_inactive">Απενεργοποιημένες</string>
+  <string name="exposure_checks_activity_title">Αρχείο πρόσφατων ελέγχων</string>
+  <string name="sharing_history_activity_title">Κοινοποίηση ιστορικού</string>
+  <string name="no_recent_exposure_card_content_no_checks">Δεν βρέθηκαν αναφορές κινδύνου έκθεσης στον COVID-19.</string>
+  <string name="no_recent_exposure_card_content">Δεν βρέθηκαν αναφορές κινδύνου έκθεσης στον COVID-19. Τελευταίος έλεγχος: %1$s</string>
+  <string name="see_recent_checks_button">Δείτε τους πρόσφατους ελέγχους</string>
+  <string name="possible_exposure_card_title">Αναφέρθηκε πιθανή έκθεση</string>
+  <string name="possible_exposure_card_contents">Κάποιο άτομο στο οποίο βρεθήκατε κοντά ανέφερε θετικό αποτέλεσμα εξέτασης COVID-19</string>
+  <string name="see_details_button">Προβολή λεπτομερειών</string>
+  <string name="share_test_result_card_title">Συμβάλετε στην πρόληψη κατά του COVID-19 στην κοινότητά σας</string>
+  <string name="share_test_result_card_content">Κάθε φορά που κάποιος μοιράζεται ένα θετικό αποτέλεσμα εξέτασης, συμβάλει στην αποτροπή ενός ακόμη κρούσματος COVID-19. Η κοινοπ. αποτελεσμ. εξέτασης δεν αποκαλύπτει την ταυτότητά σας σε άλλα άτομα.</string>
+  <string name="see_history_button">Προβολή ιστορικού</string>
+  <string name="share_positive_diagnosis_card_content">Μοιραστείτε το αποτέλεσμα της εξέτασής σας για να συμβάλετε στην καταπολέμηση της μετάδοσης του COVID-19</string>
+  <string name="share_app_card_content">Μοιραστείτε αυτήν την εφαρμογή για να βελτιώσετε την προστασία της κοινότητάς σας</string>
+  <string name="how_en_works_card_content">Μάθετε περισσότερα σχετικά με τον τρόπο λειτουργίας των Ειδοποιήσεων έκθεσης</string>
+</resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="onboarding_activity_title">Skráning</string>
+  <string name="share_history_activity_title">Sjá deilingaferil</string>
+  <string name="remove_region_link_title">Fjarlægja svæði</string>
+  <string name="delete_shared_diagnosis">Eyða prófsniðurstöðum sem var deilt</string>
+  <string name="active_region_subtitle">%1$s er stillt sem virkt svæði fyrir Tilkynningar um útsetningu.</string>
+  <string name="active_region_subtitle_en_off">%1$s er stillt sem virkt svæði en slökkt er á Tilkynningar um útsetningu í símanum</string>
+  <string name="remove_region_title">Fjarlægja svæði</string>
+  <string name="remove_region_detail">Þegar svæði er fjarlægt slokknar á tilkynningum um útsetningu. Þú getur bætt þessu svæði við aftur hvenær sem er.</string>
+  <string name="btn_remove">Fjarlægja</string>
+  <string name="exposure_notifications_is_off">Slökkt er á tilkynningum um útsetningu</string>
+  <string name="possible_exposure">Möguleg útsetning</string>
+  <string name="share_history_delete_test_result_title">Eyða þessum niðurstöðum úr skimun?</string>
+  <string name="share_history_delete_test_result_detail">Niðurstöðum þínum úr COVID-19 skimun frá %1$s verður eytt úr símanum.</string>
+</resources>

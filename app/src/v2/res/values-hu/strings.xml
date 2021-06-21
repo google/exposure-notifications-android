@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">Az alkalmazás aktív, és ellenőrzést végez</string>
+  <string name="app_active_and_checking_info">Az alkalmazás a lehetséges expozíció előfordulását figyeli. A Kitettséget jelző értesítések használata segít a közössége megvédésében – akkor is, ha Önt már beoltották.</string>
+  <string name="possible_exposure_title">Előfordulhat, hogy megfertőződött</string>
+  <string name="share_test_result_home_screen_title">Ossza meg teszteredményét</string>
+  <string name="have_questions">Kérdése van?</string>
+  <string name="check_exposure_status">Ellenőrizze megfertőződésének kockázatát</string>
+  <string name="en_active">Aktív</string>
+  <string name="en_inactive">Inaktív</string>
+  <string name="exposure_checks_activity_title">Legutóbbi bejelentkezések adatai</string>
+  <string name="sharing_history_activity_title">Előzmények megosztása</string>
+  <string name="no_recent_exposure_card_content_no_checks">Nem található bejelentett COVID-19-fertőzési kockázat.</string>
+  <string name="no_recent_exposure_card_content">Nem található bejelentett COVID-19-fertőzési kockázat. Legutóbb ellenőrizve: %1$s</string>
+  <string name="see_recent_checks_button">Legutóbbi bejelentkezések megtekintése</string>
+  <string name="possible_exposure_card_title">Bejelentett lehetséges fertőzési kockázat</string>
+  <string name="possible_exposure_card_contents">Olyan személy közelében tartózkodott, akinek COVID-19-teszteredménye pozitív lett</string>
+  <string name="see_details_button">Részletek megtekintése</string>
+  <string name="share_test_result_card_title">Segítsen a COVID-19 terjedésének megelőzésében közösségében</string>
+  <string name="share_test_result_card_content">Minden alkalommal, amikor valaki pozitív teszteredményt oszt meg, azzal segítséget nyújthat egy újabb COVID-19-megbetegedés megelőzéséhez. A teszteredmény megosztása nem fedi fel kilétét mások előtt.</string>
+  <string name="see_history_button">Előzmények megtekintése</string>
+  <string name="share_positive_diagnosis_card_content">Ossza meg teszteredményét, hogy segíthessen a COVID-19 terjedésének megállításában</string>
+  <string name="share_app_card_content">Ossza meg az alkalmazást, hogy hatékonyabb lehessen közössége védelme</string>
+  <string name="how_en_works_card_content">További információ a Kitettséget jelző értesítések működéséről</string>
+</resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="onboarding_activity_title">Kom aan boord</string>
+  <string name="share_history_activity_title">Sien delinggeskiedenis</string>
+  <string name="remove_region_link_title">Verwyder streek</string>
+  <string name="delete_shared_diagnosis">Vee gedeelde toetsuitslag uit</string>
+  <string name="active_region_subtitle">%1$s is tans as jou aktiewe streek vir Blootstellingkennisgewings gestel</string>
+  <string name="active_region_subtitle_en_off">%1$s is as jou aktiewe streek gestel, maar Blootstellingkennisgewings is af vir jou foon</string>
+  <string name="remove_region_title">Verwyder streek</string>
+  <string name="remove_region_detail">Blootstellingkennisgewings sal afgeskakel word as jy jou streek verwyder. Jy kan hierdie streek enige tyd weer byvoeg.</string>
+  <string name="btn_remove">Verwyder</string>
+  <string name="exposure_notifications_is_off">Blootstellingkennisgewings is af</string>
+  <string name="possible_exposure">Moontlike blootstelling</string>
+  <string name="share_history_delete_test_result_title">Vee hierdie toetsuitslag uit?</string>
+  <string name="share_history_delete_test_result_detail">Jou COVID-19-toetsuitslag van %1$s sal van jou foon af uitgevee word.</string>
+</resources>

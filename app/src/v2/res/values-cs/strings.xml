@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">Aplikace je aktivní a provádí kontrolu</string>
+  <string name="app_active_and_checking_info">Aplikace provádí kontrolu možných kontaktů. Oznámení o možném kontaktu vám pomohou ochránit své okolí – i když už jste naočkovaní.</string>
+  <string name="possible_exposure_title">Mohlo u vás dojít ke kontaktu</string>
+  <string name="share_test_result_home_screen_title">Sdílejte výsledek testu</string>
+  <string name="have_questions">Máte dotazy?</string>
+  <string name="check_exposure_status">Kontrola stavu kontaktu</string>
+  <string name="en_active">Aktivní</string>
+  <string name="en_inactive">Neaktivní</string>
+  <string name="exposure_checks_activity_title">Záznam posledních kontrol</string>
+  <string name="sharing_history_activity_title">Sdílení historie</string>
+  <string name="no_recent_exposure_card_content_no_checks">Nebyl nalezen žádný nahlášený rizikový kontakt s covidem-19.</string>
+  <string name="no_recent_exposure_card_content">Nebyl nalezen žádný nahlášený rizikový kontakt s covidem-19. Poslední kontrola: %1$s</string>
+  <string name="see_recent_checks_button">Zobrazit poslední kontroly</string>
+  <string name="possible_exposure_card_title">Byl nahlášen možný kontakt</string>
+  <string name="possible_exposure_card_contents">Někdo ve vašem okolí měl pozitivní test na covid-19</string>
+  <string name="see_details_button">Zobrazit podrobnosti</string>
+  <string name="share_test_result_card_title">Pomozte předcházet covidu-19 ve vašem okolí</string>
+  <string name="share_test_result_card_content">Pokaždé, když někdo sdílí pozitivní výsledek testu, pomůže tím zabránit dalšímu případu covidu-19. Při sdílení výsledku testu se ostatní nedozví vaši totožnost.</string>
+  <string name="see_history_button">Zobrazit historii</string>
+  <string name="share_positive_diagnosis_card_content">Sdílejte výsledek testu a pomozte zabránit šíření onemocnění COVID-19</string>
+  <string name="share_app_card_content">Sdílejte tuto aplikaci, abyste ochránili své okolí</string>
+  <string name="how_en_works_card_content">Další informace o principu oznámení o možném kontaktu</string>
+</resources>

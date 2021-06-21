@@ -61,3 +61,8 @@ Public health authorities will need to opt into using analytics in ENX during th
 ### Do individual users opt in to analytics in ENX?
 
 Users will need to [opt in](https://support.google.com/android/answer/10162607) to analytics in ENX in the minted app. They control whether to contribute their data. They can also opt-out at any time they want to.
+
+### Where can I find more information?
+
+We have a [paper](ENPA.pdf) that provides the technical details of the implemented protcol.
+

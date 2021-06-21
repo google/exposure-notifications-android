@@ -75,4 +75,34 @@ public class NotifyHomeViewModelTest {
     assertThat(diagnosisEntityList).hasSize(1);
     assertThat(diagnosisEntityList.get(0).getId()).isEqualTo(12345L);
   }
+
+  @Test
+  public void setDeleteDialogOpenAtPosition_getDeleteDialogOpenAtPosition_returnValueIsCorrect() {
+    int deleteDialogOpenAtPosition = 2;
+
+    notifyHomeViewModel.setDeleteDialogOpenAtPosition(deleteDialogOpenAtPosition);
+
+    assertThat(notifyHomeViewModel.getDeleteDialogOpenAtPosition().isPresent()).isTrue();
+    assertThat(notifyHomeViewModel.getDeleteDialogOpenAtPosition().get()).isEqualTo(
+        deleteDialogOpenAtPosition);
+  }
+
+  @Test
+  public void setDeleteDialogOpenAtInvalidPosition_getDeleteDialogOpenAtPosition_valueNotPresent() {
+    notifyHomeViewModel.setDeleteDialogOpenAtPosition(-2);
+
+    assertThat(notifyHomeViewModel.getDeleteDialogOpenAtPosition().isPresent()).isFalse();
+  }
+
+  @Test
+  public void setDeleteDialogClosed_getDeleteDialogOpenAtPosition_valueNotPresent() {
+    notifyHomeViewModel.setDeleteDialogClosed();
+
+    assertThat(notifyHomeViewModel.getDeleteDialogOpenAtPosition().isPresent()).isFalse();
+  }
+
+  @Test
+  public void getDeleteDialogOpenAtPosition_defaultState_valueNotPresent() {
+    assertThat(notifyHomeViewModel.getDeleteDialogOpenAtPosition().isPresent()).isFalse();
+  }
 }

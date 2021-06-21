@@ -28,13 +28,12 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.work.WorkInfo;
 import androidx.work.WorkInfo.State;
 import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.common.KeyboardHelper;
@@ -45,7 +44,6 @@ import com.google.android.libraries.privateanalytics.PrivateAnalyticsMetric;
 import com.google.android.material.datepicker.CalendarConstraints;
 import com.google.android.material.datepicker.CalendarConstraints.DateValidator;
 import com.google.android.material.datepicker.MaterialDatePicker;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 import dagger.hilt.android.AndroidEntryPoint;
 import java.util.List;
@@ -90,7 +88,6 @@ public final class DebugActivity extends AppCompatActivity {
     setupMatchingControls();
     setupVerificationCodeControls();
     setupRoamingControls();
-    setupUxFlowSwitchControls();
     setupPrivateAnalyticsControls();
   }
 
@@ -160,6 +157,23 @@ public final class DebugActivity extends AppCompatActivity {
 
     debugViewModel.getProvidedDiagnosisKeyHexToLogLiveData()
         .observe(this, binding.keyToLog::setText);
+
+    // Control button state depending on the number of manual "provide" jobs.
+    // If any "DebugProvide" job is still running, keep the button disabled.
+    debugViewModel.getDebugProvideStateLiveData().observe(this,
+        workInfos -> {
+            if (workInfos == null) {
+              binding.debugProvideNow.setEnabled(true);
+              return;
+            }
+            for (WorkInfo workInfo : workInfos) {
+              if (!workInfo.getState().isFinished()) {
+                binding.debugProvideNow.setEnabled(false);
+                return;
+              }
+            }
+            binding.debugProvideNow.setEnabled(true);
+          });
 
     binding.debugProvideNow.setOnClickListener(
         v -> {
@@ -327,43 +341,6 @@ public final class DebugActivity extends AppCompatActivity {
     dialog.show(getSupportFragmentManager(), "date_picker");
   }
 
-  /**
-   * Switch between old and new UX flows.
-   *
-   * <p>To avoid unwanted calls to the custom uxSwitchChangeListener every time we switch the
-   * toggle button, ensure that OnCheckedChangeListener for the toggle is set to null while changing
-   * the switch state.
-   */
-  private void setupUxFlowSwitchControls() {
-    debugViewModel.getUxFlowLiveData().observe(this, isEnabled -> {
-      binding.uxFlowSwitch.setOnCheckedChangeListener(null);
-      binding.uxFlowSwitch.setChecked(isEnabled);
-      binding.uxFlowSwitch.setOnCheckedChangeListener(uxSwitchChangeListener);
-    });
-  }
-
-  private void showSwitchUXFlowDialog(boolean checked) {
-    new MaterialAlertDialogBuilder(DebugActivity.this)
-        .setTitle(R.string.switch_ux_flow_dialog_title)
-        .setMessage(R.string.switch_ux_flow_dialog_message)
-        .setCancelable(true)
-        .setNegativeButton(R.string.btn_cancel, (dialog, i) -> dialog.cancel())
-        .setPositiveButton(R.string.btn_switch_ux, (dialog, i) -> {
-          debugViewModel.setIsEnabledNewUxFlow(checked);
-          restartApplication();
-        })
-        .show();
-  }
-
-  private void restartApplication() {
-    Intent restart = this
-        .getPackageManager()
-        .getLaunchIntentForPackage(this.getApplicationContext().getPackageName());
-    restart.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-    this.finish();
-    this.startActivity(restart);
-  }
-
   private static boolean isNotInFuture(long date) {
     return date <= System.currentTimeMillis();
   }
@@ -395,22 +372,6 @@ public final class DebugActivity extends AppCompatActivity {
         @Override
         public void writeToParcel(Parcel dest, int flags) {
           // No-op. This validator has no state to parcelize
-        }
-      };
-
-  private final OnCheckedChangeListener uxSwitchChangeListener =
-      new OnCheckedChangeListener() {
-        @Override
-        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-          /*
-           * Set OnCheckedChangeListener to null to avoid unwanted calls to uxSwitchChangeListener
-           * while changing switch states.
-           */
-          buttonView.setOnCheckedChangeListener(null);
-          // Set the toggle back. It will only toggle to the correct state if an operation succeeds.
-          buttonView.setChecked(!isChecked);
-          buttonView.setOnCheckedChangeListener(uxSwitchChangeListener);
-          showSwitchUXFlowDialog(isChecked);
         }
       };
 }

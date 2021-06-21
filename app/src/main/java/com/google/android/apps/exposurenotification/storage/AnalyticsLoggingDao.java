@@ -32,6 +32,9 @@ abstract class AnalyticsLoggingDao {
   @Query("DELETE FROM AnalyticsLoggingEntity")
   abstract ListenableFuture<Void> deleteLogEvents();
 
+  @Query("DELETE FROM AnalyticsLoggingEntity WHERE key <= :analyticsLoggingEntityKey")
+  abstract ListenableFuture<Void> deleteLogEventsUpToIncludingEvent(long analyticsLoggingEntityKey);
+
   @Insert()
   abstract void insert(AnalyticsLoggingEntity entity);
 }

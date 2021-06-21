@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="onboarding_activity_title">Innføring</string>
+  <string name="share_history_activity_title">Se delingsloggen</string>
+  <string name="remove_region_link_title">Fjern regionen</string>
+  <string name="delete_shared_diagnosis">Slett delte testresultater</string>
+  <string name="active_region_subtitle">%1$s er nå angitt som den aktive regionen din for eksponeringsvarsler</string>
+  <string name="active_region_subtitle_en_off">%1$s er angitt som den aktive regionen din, men eksponeringsvarsler er av for telefonen</string>
+  <string name="remove_region_title">Fjern regionen</string>
+  <string name="remove_region_detail">Eksponeringsvarsler slås av hvis du fjerner regionen. Du kan når som helst legge til denne regionen igjen.</string>
+  <string name="btn_remove">Fjern</string>
+  <string name="exposure_notifications_is_off">Eksponeringsvarsler er av</string>
+  <string name="possible_exposure">Mulig eksponering</string>
+  <string name="share_history_delete_test_result_title">Vil du slette dette testresultatet?</string>
+  <string name="share_history_delete_test_result_detail">Covid-19-testresultatet ditt fra %1$s blir slettet fra telefonen.</string>
+</resources>

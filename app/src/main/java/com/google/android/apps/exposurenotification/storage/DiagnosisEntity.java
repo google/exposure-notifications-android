@@ -41,7 +41,7 @@ import org.threeten.bp.LocalDate;
 public abstract class DiagnosisEntity {
 
   public enum TestResult {
-    CONFIRMED, LIKELY, NEGATIVE;
+    CONFIRMED, LIKELY, NEGATIVE, USER_REPORT;
 
     public static TestResult of(String apiTestType) {
       switch (apiTestType.toLowerCase()) {
@@ -51,11 +51,16 @@ public abstract class DiagnosisEntity {
           return LIKELY;
         case "negative":
           return NEGATIVE;
+        case "user-report":
+          return USER_REPORT;
       }
       throw new IllegalArgumentException("Unsupported test type " + apiTestType);
     }
 
     public String toApiType() {
+      if (this == USER_REPORT) {
+        return "user-report";
+      }
       return name().toLowerCase();
     }
   }
@@ -108,6 +113,8 @@ public abstract class DiagnosisEntity {
 
   public abstract boolean getIsCodeFromLink();
 
+  public abstract long getLastUpdatedTimestampMs();
+
   public abstract Builder toBuilder();
 
   public static Builder newBuilder() {
@@ -119,7 +126,8 @@ public abstract class DiagnosisEntity {
         .setIsServerOnsetDate(false)
         .setHasSymptoms(HasSymptoms.UNSET)
         .setTravelStatus(TravelStatus.NOT_ATTEMPTED)
-        .setIsCodeFromLink(false);
+        .setIsCodeFromLink(false)
+        .setLastUpdatedTimestampMs(0L);
   }
 
   @AutoValue.Builder
@@ -151,6 +159,8 @@ public abstract class DiagnosisEntity {
 
     public abstract Builder setIsCodeFromLink(boolean isCodeFromLink);
 
+    public abstract Builder setLastUpdatedTimestampMs(long lastUpdatedTimestampMs);
+
     public abstract DiagnosisEntity build();
   }
 
@@ -171,7 +181,8 @@ public abstract class DiagnosisEntity {
       HasSymptoms hasSymptoms,
       String revisionToken,
       TravelStatus travelStatus,
-      boolean isCodeFromLink) {
+      boolean isCodeFromLink,
+      long lastUpdatedTimestampMs) {
     return newBuilder()
         .setId(id)
         .setCreatedTimestampMs(createdTimestampMs)
@@ -186,6 +197,7 @@ public abstract class DiagnosisEntity {
         .setRevisionToken(revisionToken)
         .setTravelStatus(travelStatus)
         .setIsCodeFromLink(isCodeFromLink)
+        .setLastUpdatedTimestampMs(lastUpdatedTimestampMs)
         .build();
   }
 }

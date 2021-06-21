@@ -17,6 +17,9 @@
 
 package com.google.android.apps.exposurenotification.privateanalytics.metrics;
 
+import android.content.Context;
+import android.text.TextUtils;
+import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.common.Qualifiers.BackgroundExecutor;
 import com.google.android.apps.exposurenotification.privateanalytics.PrivateAnalyticsMetricsRemoteConfig;
 import com.google.android.libraries.privateanalytics.PrioDataPoint;
@@ -27,8 +30,11 @@ import dagger.Module;
 import dagger.Provides;
 import dagger.hilt.InstallIn;
 import dagger.hilt.android.components.ApplicationComponent;
+import dagger.hilt.android.qualifiers.ApplicationContext;
 import dagger.hilt.components.SingletonComponent;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 @Module
 @InstallIn(SingletonComponent.class)
@@ -36,6 +42,7 @@ public class MetricsModule {
 
   @Provides
   public PrioDataPointsProvider providesMetrics(
+      @ApplicationContext Context context,
       PrivateAnalyticsMetricsRemoteConfig privateAnalyticsMetricsRemoteConfig,
       @BackgroundExecutor ListeningExecutorService backgroundExecutor,
       PeriodicExposureNotificationMetric periodicExposureNotificationMetric,
@@ -43,7 +50,8 @@ public class MetricsModule {
       PeriodicExposureNotificationInteractionMetric periodicExposureNotificationInteractionMetric,
       CodeVerifiedMetric codeVerifiedMetric,
       KeysUploadedMetric keysUploadedMetric,
-      DateExposureMetric dateExposureMetric
+      DateExposureMetric dateExposureMetric,
+      KeysUploadedVaccineStatusMetric keysUploadedVaccineStatusMetric
   ) {
     return () -> Futures
         .transform(privateAnalyticsMetricsRemoteConfig.fetchUpdatedConfigs(), remoteConfigs -> {
@@ -59,17 +67,32 @@ public class MetricsModule {
           double keysUploadedEpsilon = remoteConfigs.keysUploadedPrioEpsilon();
           double dateExposureSamplingRate = remoteConfigs.dateExposurePrioSamplingRate();
           double dateExposureEpsilon = remoteConfigs.dateExposurePrioEpsilon();
+          double keysUploadedVaccineStatusSamplingRate = remoteConfigs
+              .keysUploadedVaccineStatusPrioSamplingRate();
+          double keysUploadedVaccineStatusEpsilon = remoteConfigs
+              .keysUploadedVaccineStatusPrioEpsilon();
 
-          return Arrays.asList(
-              new PrioDataPoint(periodicExposureNotificationMetric, notificationCountEpsilon,
-                  notificationCountSampleRate),
-              new PrioDataPoint(histogramMetric, riskScoreEpsilon, riskScoreSampleRate),
-              new PrioDataPoint(periodicExposureNotificationInteractionMetric,
-                  interactionCountEpsilon, interactionCountSamplingRate),
-              new PrioDataPoint(codeVerifiedMetric, codeVerifiedEpsilon, codeVerifiedSamplingRate),
-              new PrioDataPoint(keysUploadedMetric, keysUploadedEpsilon, keysUploadedSamplingRate),
-              new PrioDataPoint(dateExposureMetric, dateExposureEpsilon, dateExposureSamplingRate)
-          );
+          List<PrioDataPoint> metricsList = new ArrayList<>(
+              Arrays.asList(
+                  new PrioDataPoint(periodicExposureNotificationMetric, notificationCountEpsilon,
+                      notificationCountSampleRate),
+                  new PrioDataPoint(histogramMetric, riskScoreEpsilon, riskScoreSampleRate),
+                  new PrioDataPoint(periodicExposureNotificationInteractionMetric,
+                      interactionCountEpsilon, interactionCountSamplingRate),
+                  new PrioDataPoint(codeVerifiedMetric, codeVerifiedEpsilon,
+                      codeVerifiedSamplingRate),
+                  new PrioDataPoint(keysUploadedMetric, keysUploadedEpsilon,
+                      keysUploadedSamplingRate),
+                  new PrioDataPoint(dateExposureMetric, dateExposureEpsilon,
+                      dateExposureSamplingRate)
+              ));
+          if (!TextUtils
+              .isEmpty(context.getResources().getString(R.string.share_vaccination_detail))) {
+            metricsList.add(
+                new PrioDataPoint(keysUploadedVaccineStatusMetric, keysUploadedVaccineStatusEpsilon,
+                    keysUploadedVaccineStatusSamplingRate));
+          }
+          return metricsList;
         }, backgroundExecutor);
   }
 }

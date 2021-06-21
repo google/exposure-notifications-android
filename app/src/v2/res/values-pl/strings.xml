@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">Aplikacja jest aktywna. Sprawdzam…</string>
+  <string name="app_active_and_checking_info">Aplikacja jest aktywna i sprawdza możliwe narażenia na kontakt. Korzystając z powiadomień o narażeniu na kontakt dbasz o zdrowie innych, w tym swoich najbliższych – nawet po zaszczepieniu się.</string>
+  <string name="possible_exposure_title">Mogło dojść do narażenia na kontakt</string>
+  <string name="share_test_result_home_screen_title">Udostępnij wynik testu</string>
+  <string name="have_questions">Masz pytania?</string>
+  <string name="check_exposure_status">Sprawdź, czy doszło do narażenia na kontakt</string>
+  <string name="en_active">Aktywne</string>
+  <string name="en_inactive">Nieaktywne</string>
+  <string name="exposure_checks_activity_title">Historia ostatnich weryfikacji</string>
+  <string name="sharing_history_activity_title">Udostępnij historię</string>
+  <string name="no_recent_exposure_card_content_no_checks">Brak odnotowanego ryzyka narażenia na COVID-19.</string>
+  <string name="no_recent_exposure_card_content">Brak odnotowanego ryzyka narażenia na COVID-19. Ostatnio sprawdzono %1$s</string>
+  <string name="see_recent_checks_button">Przeglądaj ostatnie weryfikacje</string>
+  <string name="possible_exposure_card_title">Odnotowano możliwe narażenie na kontakt</string>
+  <string name="possible_exposure_card_contents">Osoba, która przebywała blisko Ciebie, otrzymała pozytywny wynik testu na COVID-19</string>
+  <string name="see_details_button">Zobacz szczegóły</string>
+  <string name="share_test_result_card_title">Pomóż zapobiegać zachorowaniom na COVID-19</string>
+  <string name="share_test_result_card_content">Każde udostępnienie informacji o pozytywnym teście to szansa na zapobiegnięcie nowym przypadkom COVID-19. Udostępniając wynik testu, nie ujawniasz swojej tożsamości.</string>
+  <string name="see_history_button">Zobacz historię</string>
+  <string name="share_positive_diagnosis_card_content">Udostępnij wynik testu, aby pomóc zahamować rozprzestrzenianie się COVID-19</string>
+  <string name="share_app_card_content">Podziel się tą aplikacją z innymi – aby chronić ich i Waszych najbliższych</string>
+  <string name="how_en_works_card_content">Dowiedz się więcej o tym, jak działają powiadomienia o narażeniu na kontakt</string>
+</resources>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">აპი აქტიურია და ამოწმებს</string>
+  <string name="app_active_and_checking_info">ეს აპი ამოწმებს შესაძლო კონტაქტებს. კონტაქტის შეტყობინებების გამოყენება იცავს თქვენს გარშემომყოფებს — მაშინაც კი, თუ თქვენ აცრილი ხართ.</string>
+  <string name="possible_exposure_title">შესაძლოა, თქვენ კონტაქტი გქონოდათ ვირუსთან</string>
+  <string name="share_test_result_home_screen_title">გააზიარეთ თქვენი ტესტის შედეგი</string>
+  <string name="have_questions">შეკითხვები გაქვთ?</string>
+  <string name="check_exposure_status">შეამოწმეთ თქვენი ვირუსთან კონტაქტის სტატუსი</string>
+  <string name="en_active">აქტიური</string>
+  <string name="en_inactive">არააქტიური</string>
+  <string name="exposure_checks_activity_title">ბოლოდროინდელი მონიშვნების ჩანაწერი</string>
+  <string name="sharing_history_activity_title">გაზიარების ისტორია</string>
+  <string name="no_recent_exposure_card_content_no_checks">COVID-19-თან კონტაქტის შესატყობინებელი რისკი არ ფიქსირდება.</string>
+  <string name="no_recent_exposure_card_content">COVID-19-თან კონტაქტის შესატყობინებელი რისკი არ ფიქსირდება. ბოლო შემოწმება: %1$s</string>
+  <string name="see_recent_checks_button">ბოლოდროინდელი შემოწმებების ნახვა</string>
+  <string name="possible_exposure_card_title">შეტყობინება შესაძლო კონტაქტის შესახებ</string>
+  <string name="possible_exposure_card_contents">თქვენ ისეთ პიროვნებასთან ახლოს იმყოფებოდით, რომელსად COVID-19-ის ტესტირების დადებითი შედეგი დაუდგინდა</string>
+  <string name="see_details_button">დეტალების ნახვა</string>
+  <string name="share_test_result_card_title">დაგვეხმარეთ COVID-19-ის თქვენს საზოგადოებაში გავრცელების პრევენციაში</string>
+  <string name="share_test_result_card_content">ყოველ ჯერზე, როცა ვინმე ტესტის დადებით შედეგს მიუთითებს, ამან შეიძლება აღკვეთოს COVID-19-ს შემდეგი შემთხვევა. თქვენი ტესტის შედეგის გაზიარებით თქვენ სხვებისთვის იდენტიფიცირებადი არ გახდებით.</string>
+  <string name="see_history_button">ისტორიის ნახვა</string>
+  <string name="share_positive_diagnosis_card_content">გააზიარეთ თქვენი ტესტირების შედეგი, რათა დაგვეხმაროთ COVID-19-ის გავრცელების შეჩერებაში</string>
+  <string name="share_app_card_content">გააზიარეთ ეს აპი, რათა უკეთ დაიცვათ თქვენი გარშემომყოფები</string>
+  <string name="how_en_works_card_content">შეიტყვეთ მეტი კონტაქტის შეტყობინებების მუშაობის პრინციპების შესახებ</string>
+</resources>

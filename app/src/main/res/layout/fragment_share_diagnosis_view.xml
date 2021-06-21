@@ -31,6 +31,7 @@
       android:layout_width="?attr/actionBarSize"
       android:layout_height="match_parent"
       android:background="?attr/selectableItemBackgroundBorderless"
+      android:contentDescription="@string/btn_close_label"
       app:srcCompat="@drawable/ic_close" />
 
   </LinearLayout>
@@ -58,7 +59,7 @@
       <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_banner_hand"/>
+        app:srcCompat="@drawable/ic_banner_hand"/>
 
       <TextView
         android:layout_width="fill_parent"

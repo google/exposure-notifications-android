@@ -17,10 +17,15 @@
 
 package com.google.android.apps.exposurenotification.utils;
 
-import android.content.Context;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
+import android.text.style.URLSpan;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
+import com.google.android.apps.exposurenotification.R;
+import com.google.android.material.snackbar.Snackbar;
 
 /**
  * Simple util class for manipulating URLs.
@@ -31,12 +36,13 @@ public final class UrlUtils {
   private static final String ALLOWED_SCHEME = "https";
 
   /**
-   * Attempts to parse {@link Uri} from the provided URL String and then open it.
+   * Attempts to parse {@link Uri} from the provided URL String and then open it. Error cases will
+   * post a {@link Snackbar}.
    *
-   * @param context Application context.
-   * @param url URL String provided by the HA.
+   * @param view {@link View} to attach a {@link Snackbar to}
+   * @param url  URL String
    */
-  public static void openUrl(Context context, String url) {
+  public static void openUrl(View view, String url) {
     Uri uri = Uri.parse(url);
 
     if (!ALLOWED_SCHEME.equals(uri.getScheme())) {
@@ -48,16 +54,28 @@ public final class UrlUtils {
     try {
       Intent i = new Intent(Intent.ACTION_VIEW);
       i.setData(uri);
-      context.startActivity(i);
+      view.getContext().startActivity(i);
+    } catch (ActivityNotFoundException e) {
+      Snackbar.make(view, R.string.browser_unavailable_error, Snackbar.LENGTH_LONG).show();
     } catch (Exception e) {
-      /*
-       * This might fail either if the user does not have an App to handle the intent (Browser)
-       * or the URL provided by the HA can not be parsed. In these cases we don't show an error to
-       * the user, but log it.
-       */
-      Log.e(TAG, String.format("Exception while launching ACTION_VIEW with URL %s", uri.toString()),
-          e);
+      // This might fail if the URL provided by the HA can not be parsed.
+      Log.e(TAG,
+          String.format("Exception while launching ACTION_VIEW with URL %s", uri.toString()), e);
+      Snackbar.make(view, R.string.generic_error_message, Snackbar.LENGTH_LONG).show();
     }
+  }
+
+  /**
+   * Creates a {@link URLSpan} that has better error handling by using a {@link Snackbar} error
+   * message when no browser is available.
+   */
+  public static URLSpan createURLSpan(String url) {
+    return new URLSpan(url) {
+      @Override
+      public void onClick(View widget) {
+        openUrl(widget, getURL());
+      }
+    };
   }
 
   private UrlUtils() {

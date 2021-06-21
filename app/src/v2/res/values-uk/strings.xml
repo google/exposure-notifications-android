@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">Додаток активний і здійснює перевірку</string>
+  <string name="app_active_and_checking_info">Цей додаток зараз перевіряє можливі ризики зараження. Система сповіщень про ризик зараження допомагає захищати вашу громаду, навіть якщо ви вже вакцинувались.</string>
+  <string name="possible_exposure_title">Можливо, ви контактували з хворим</string>
+  <string name="share_test_result_home_screen_title">Поділіться своїм результатом тесту</string>
+  <string name="have_questions">Маєте запитання?</string>
+  <string name="check_exposure_status">Перевірте свій статус ризику зараження</string>
+  <string name="en_active">Сервіс активний</string>
+  <string name="en_inactive">Сервіс неактивний</string>
+  <string name="exposure_checks_activity_title">Журнал нещодавніх перевірок</string>
+  <string name="sharing_history_activity_title">Історія повідомлень</string>
+  <string name="no_recent_exposure_card_content_no_checks">Ризику зараження COVID-19 не виявлено.</string>
+  <string name="no_recent_exposure_card_content">Ризику зараження COVID-19 не виявлено. Остання перевірка: %1$s</string>
+  <string name="see_recent_checks_button">Переглянути нещодавні перевірки</string>
+  <string name="possible_exposure_card_title">Виявлено ризик зараження</string>
+  <string name="possible_exposure_card_contents">Людина, яка була поруч із вами, отримала позитивний результат тесту на COVID-19</string>
+  <string name="see_details_button">Докладніше</string>
+  <string name="share_test_result_card_title">Допоможіть запобігти поширенню COVID-19 у своїй громаді</string>
+  <string name="share_test_result_card_content">Кожне повідомлення про позитивний результат тесту може запобігти наступному зараженню COVID-19. Ви можете поділитися своїм результатом тесту анонімно.</string>
+  <string name="see_history_button">Переглянути історію</string>
+  <string name="share_positive_diagnosis_card_content">Поділіться своїм результатом тесту, щоб допомогти зупинити поширювання COVID-19</string>
+  <string name="share_app_card_content">Поділіться цим додатком, щоб краще захистити свою громаду</string>
+  <string name="how_en_works_card_content">Дізнайтеся більше про те, як працюють Сповіщення про ризик зараження</string>
+</resources>

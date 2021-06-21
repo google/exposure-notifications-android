@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="onboarding_activity_title">オンボーディング</string>
+  <string name="share_history_activity_title">共有履歴の表示</string>
+  <string name="remove_region_link_title">地域を削除</string>
+  <string name="delete_shared_diagnosis">共有した検査結果を削除します</string>
+  <string name="active_region_subtitle">現在、%1$s が接触通知システムの有効な地域として設定されています</string>
+  <string name="active_region_subtitle_en_off">%1$s が接触通知システムの有効な地域として設定されていますが、お使いのスマートフォンでは OFF になっています</string>
+  <string name="remove_region_title">地域を削除</string>
+  <string name="remove_region_detail">地域を削除すると、接触通知システムが無効になります。この地域は後でいつでも追加し直すことができます。</string>
+  <string name="btn_remove">削除</string>
+  <string name="exposure_notifications_is_off">接触通知システムが無効です</string>
+  <string name="possible_exposure">陽性者との接触の可能性</string>
+  <string name="share_history_delete_test_result_title">この検査結果を削除しますか？</string>
+  <string name="share_history_delete_test_result_detail">%1$sの COVID-19 の検査結果をスマートフォンから削除します。</string>
+</resources>

@@ -17,28 +17,20 @@
 
 package com.google.android.apps.exposurenotification.notify;
 
-import static android.app.Activity.RESULT_OK;
-
-import android.content.Intent;
-import android.content.IntentSender.SendIntentException;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
+import androidx.annotation.NonNull;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.common.SnackbarUtil;
 import com.google.android.apps.exposurenotification.databinding.FragmentShareDiagnosisReviewBinding;
 import com.google.android.apps.exposurenotification.network.Connectivity;
 import com.google.android.apps.exposurenotification.notify.ShareDiagnosisViewModel.Step;
 import com.google.android.apps.exposurenotification.storage.DiagnosisEntity;
-import com.google.android.apps.exposurenotification.storage.DiagnosisEntity.Shared;
-import com.google.android.apps.exposurenotification.utils.RequestCodes;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-import com.google.android.material.snackbar.Snackbar;
 import dagger.hilt.android.AndroidEntryPoint;
 import javax.inject.Inject;
 import org.threeten.bp.format.DateTimeFormatter;
@@ -49,7 +41,7 @@ import org.threeten.bp.format.FormatStyle;
  * not to share their keys with the upload server.
  */
 @AndroidEntryPoint
-public class ShareDiagnosisReviewFragment extends Fragment {
+public class ShareDiagnosisReviewFragment extends ShareDiagnosisBaseFragment {
 
   private static final String TAG = "ShareExposureReviewFrag";
 
@@ -57,34 +49,35 @@ public class ShareDiagnosisReviewFragment extends Fragment {
       DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM);
 
   private FragmentShareDiagnosisReviewBinding binding;
-  private ShareDiagnosisViewModel shareDiagnosisViewModel;
 
   @Inject
   Connectivity connectivity;
 
   @Override
-  public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
+  public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup parent,
+      Bundle savedInstanceState) {
     binding = FragmentShareDiagnosisReviewBinding.inflate(inflater, parent, false);
     return binding.getRoot();
   }
 
   @Override
-  public void onViewCreated(View view, Bundle savedInstanceState) {
-    getActivity().setTitle(R.string.share_review_title);
+  public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+    super.onViewCreated(view, savedInstanceState);
 
-    shareDiagnosisViewModel =
-        new ViewModelProvider(getActivity()).get(ShareDiagnosisViewModel.class);
+    requireActivity().setTitle(R.string.share_review_title);
 
-    binding.home.setContentDescription(getString(R.string.navigate_up));
-    binding.home.setOnClickListener(v -> closeAction());
+    binding.home.setOnClickListener(v -> showCloseWarningAlertDialog());
 
     binding.shareShareButton.setOnClickListener(v -> {
       if (connectivity.hasInternet()) {
         shareAction();
       } else {
-        maybeShowSnackbar(requireContext().getString(R.string.share_error_no_internet));
+        SnackbarUtil
+            .maybeShowRegularSnackbar(getView(), getString(R.string.share_error_no_internet));
       }
     });
+
+    shareDiagnosisViewModel.registerResolutionForActivityResult(this);
 
     shareDiagnosisViewModel
         .getCurrentDiagnosisLiveData()
@@ -96,7 +89,7 @@ public class ShareDiagnosisReviewFragment extends Fragment {
                 return;
               }
 
-              binding.shareReviewDelete.setOnClickListener(v -> deleteAction(diagnosisEntity));
+              binding.deleteDiagnosis.setOnClickListener(v -> deleteAction(diagnosisEntity));
               if (shareDiagnosisViewModel.isDeleteOpen()) {
                 deleteAction(diagnosisEntity);
               }
@@ -124,22 +117,8 @@ public class ShareDiagnosisReviewFragment extends Fragment {
                 binding.shareProgressBar.setVisibility(View.VISIBLE);
               } else {
                 binding.shareShareButton.setEnabled(true);
-                binding.shareShareButton.setText(R.string.btn_share_positive);
+                binding.shareShareButton.setText(R.string.btn_share);
                 binding.shareProgressBar.setVisibility(View.INVISIBLE);
-              }
-            });
-
-    shareDiagnosisViewModel
-        .getResolutionRequiredLiveEvent()
-        .observe(
-            getViewLifecycleOwner(),
-            apiException -> {
-              try {
-                apiException.getStatus().startResolutionForResult(
-                    requireActivity(), RequestCodes.REQUEST_CODE_GET_TEMP_EXPOSURE_KEY_HISTORY);
-              } catch (SendIntentException e) {
-                Log.w(TAG, "Error calling startResolutionForResult", apiException);
-                maybeShowSnackbar(getString(R.string.generic_error_message));
               }
             });
 
@@ -147,11 +126,12 @@ public class ShareDiagnosisReviewFragment extends Fragment {
         .getSharedLiveEvent()
         .observe(
             getViewLifecycleOwner(),
-            shared -> shareDiagnosisViewModel
-                .nextStepIrreversible(shared ? Step.SHARED : Step.NOT_SHARED));
+            shared -> shareDiagnosisViewModel.nextStepIrreversible(
+                shared ? Step.SHARED : Step.NOT_SHARED));
 
     shareDiagnosisViewModel.getSnackbarSingleLiveEvent()
-        .observe(getViewLifecycleOwner(), this::maybeShowSnackbar);
+        .observe(getViewLifecycleOwner(),
+            message -> SnackbarUtil.maybeShowRegularSnackbar(getView(), message));
 
     shareDiagnosisViewModel.getPreviousStepLiveData(Step.REVIEW).observe(
         getViewLifecycleOwner(),
@@ -163,25 +143,10 @@ public class ShareDiagnosisReviewFragment extends Fragment {
         .observe(
             getViewLifecycleOwner(),
             unused -> {
-              if (getActivity() != null) {
-                Toast.makeText(getContext(), R.string.delete_test_result_confirmed,
-                    Toast.LENGTH_LONG).show();
-                getActivity().finish();
-              }
+              Toast.makeText(getContext(), R.string.delete_test_result_confirmed,
+                  Toast.LENGTH_LONG).show();
+              closeShareDiagnosisFlow();
             });
-  }
-
-  @Override
-  public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-    if (requestCode == RequestCodes.REQUEST_CODE_GET_TEMP_EXPOSURE_KEY_HISTORY) {
-      if (resultCode == RESULT_OK) {
-        // Okay to share, submit data.
-        shareDiagnosisViewModel.uploadKeys();
-      } else {
-        // Not okay to share, just store for later.
-        shareDiagnosisViewModel.setIsShared(Shared.NOT_ATTEMPTED);
-      }
-    }
   }
 
   @Override
@@ -195,13 +160,9 @@ public class ShareDiagnosisReviewFragment extends Fragment {
     shareDiagnosisViewModel.uploadKeys();
   }
 
-  private void closeAction() {
-    ShareDiagnosisActivity.showCloseWarningAlertDialog(requireActivity(), shareDiagnosisViewModel);
-  }
-
   private void deleteAction(DiagnosisEntity diagnosis) {
     shareDiagnosisViewModel.setDeleteOpen(true);
-    new MaterialAlertDialogBuilder(requireContext())
+    new MaterialAlertDialogBuilder(requireContext(), R.style.ExposureNotificationAlertDialogTheme)
         .setTitle(R.string.delete_test_result_title)
         .setMessage(R.string.delete_test_result_detail)
         .setCancelable(true)
@@ -216,15 +177,5 @@ public class ShareDiagnosisReviewFragment extends Fragment {
         .setOnDismissListener(d -> shareDiagnosisViewModel.setDeleteOpen(false))
         .setOnCancelListener(d -> shareDiagnosisViewModel.setDeleteOpen(false))
         .show();
-  }
-
-  /**
-   * Shows a snackbar with a given message if the {@link View} is visible.
-   */
-  private void maybeShowSnackbar(String message) {
-    View rootView = getView();
-    if (rootView != null) {
-      Snackbar.make(rootView, message, Snackbar.LENGTH_LONG).show();
-    }
   }
 }

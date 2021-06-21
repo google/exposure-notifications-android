@@ -25,8 +25,10 @@ public class Qualifiers {
 
   @Qualifier
   @Retention(RetentionPolicy.RUNTIME)
-  public @interface RemoteConfigUri {
+  public @interface RemoteConfigUri {}
 
-  }
+  @Qualifier
+  @Retention(RetentionPolicy.RUNTIME)
+  public @interface PackageName {}
 
 }

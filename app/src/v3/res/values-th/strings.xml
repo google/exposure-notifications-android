@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="onboarding_activity_title">การเริ่มต้นใช้งาน</string>
+  <string name="share_history_activity_title">ดูประวัติการแชร์</string>
+  <string name="remove_region_link_title">นำภูมิภาคออก</string>
+  <string name="delete_shared_diagnosis">ลบผลตรวจหาเชื้อที่แชร์</string>
+  <string name="active_region_subtitle">ขณะนี้ตั้งค่า %1$s เป็นภูมิภาคที่ใช้งานอยู่สำหรับการแจ้งเตือนความเสี่ยงต่อการติดเชื้อ</string>
+  <string name="active_region_subtitle_en_off">มีการตั้งค่า %1$s เป็นภูมิภาคที่ใช้งานอยู่ แต่การแจ้งเตือนความเสี่ยงต่อการติดเชื้อในโทรศัพท์ของคณปิดอยู่</string>
+  <string name="remove_region_title">นำภูมิภาคออก</string>
+  <string name="remove_region_detail">การนำภูมิภาคออกจะปิดการแจ้งเตือนความเสี่ยงต่อการติดเชื้อ คุณเพิ่มภูมิภาคอีกครั้งได้ทุกเมื่อ</string>
+  <string name="btn_remove">นำออก</string>
+  <string name="exposure_notifications_is_off">การแจ้งเตือนความเสี่ยงต่อการติดเชื้อปิดอยู่</string>
+  <string name="possible_exposure">ความเสี่ยงต่อการติดเชื้อ</string>
+  <string name="share_history_delete_test_result_title">ลบผลตรวจหาเชื้อนี้ใช่ไหม</string>
+  <string name="share_history_delete_test_result_detail">ระบบจะลบผลตรวจหาเชื้อโควิด-19 เมื่อวันที่ %1$s ออกจากโทรศัพท์</string>
+</resources>

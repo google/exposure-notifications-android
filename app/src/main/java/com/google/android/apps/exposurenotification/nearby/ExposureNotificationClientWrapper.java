@@ -46,6 +46,11 @@ public class ExposureNotificationClientWrapper {
 
   private static final String TAG = "ENClientWrapper";
 
+  public static final String GMSCORE_PACKAGE_NAME = "com.google.android.gms";
+
+  public static final String EN_MODULE_PERMISSION =
+      "com.google.android.gms.nearby.exposurenotification.EXPOSURE_CALLBACK";
+
   private final ExposureNotificationClient exposureNotificationClient;
   private final AnalyticsLogger logger;
 

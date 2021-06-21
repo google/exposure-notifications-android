@@ -34,75 +34,13 @@
   <!-- "Share this app" link with a placeholder, which is the current application ID. [CHAR_LIMIT=NONE]-->
   <string name="share_this_app_link">https://play.google.com/store/apps/details?id=<xliff:g id="package_name" example="com.google.android.apps.exposurenotification">%1$s</xliff:g></string>
 
-  <!-- Help Center's page with a list of the allowlisted exposure notifications apps hyperlink. [CHAR_LIMIT=NONE]-->
-  <string name="allowlisted_en_apps_link" translatable="false">https://support.google.com/android/answer/10289696</string>
-
   <!-- Help Center's page on device requirements to use exposure notifications hyperlink. [CHAR_LIMIT=NONE]-->
   <string name="device_requirements_link" translatable="false">https://support.google.com/android/answer/9888358</string>
 
   <!-- Main page for information on exposure notifications hyperlink. [CHAR_LIMIT=NONE]-->
   <string name="en_info_main_page_link" translatable="false">http://g.co/ens</string>
 
-  <!-- NEW UX FLOW -->
-
-  <!-- Title of the home page, shown when there have been no COVID-19 exposures detected. [CHAR_LIMIT=120] -->
-  <string name="no_recent_exposure_title">App is active and checking</string>
-
-  <!-- Title of the home page, shown when Exposure Notifications are turned off. [CHAR_LIMIT=120] -->
-  <string name="exposure_notifications_off_title">Not checking for possible exposure</string>
-
-  <!-- Title of the home page, shown when there's been a possible exposure. [CHAR_LIMIT=120] -->
-  <string name="possible_exposure_title">Possible exposure reported</string>
-
-  <!-- Text for the button at the bottom of the "No recent exposure" card that opens the dialog with the most recent exposure check-ins that have occurred. [CHAR_LIMIT=100] -->
-  <string name="see_recent_checks_dialog">See recent checks</string>
-
-  <!-- Text for the button at the bottom of the "No recent exposure" and "Exposure notification is off" cards that opens the Exposure Notifications FAQ page. [CHAR_LIMIT=100] -->
-  <string name="how_en_work">How it works</string>
-
-  <!-- Heading above "Share your test result" and "Share this app" cards on the home page. [CHAR_LIMIT=120] -->
-  <string name="protect_your_community">Ways to help protect your community</string>
-
-  <!-- Title of the "Share your test result" card on the home page. [CHAR_LIMIT=120] -->
-  <string name="share_test_result">Share your test result</string>
-
-  <!-- Contents of the "Share your test result" card on the home page. [CHAR_LIMIT=200] -->
-  <string name="share_test_result_card_content">Sharing your COVID-19 test result, especially if you have tested positive, will help notify others who may have been exposed.</string>
-
-  <!-- Text for the button at the bottom of the "Share your test result" card that opens the diagnosis sharing flow. [CHAR_LIMIT=100] -->
-  <string name="notify_others_card_button">Continue</string>
-
-  <!-- Title of the "Share this app" card on the home page. [CHAR_LIMIT=120] -->
-  <string name="share_app_card_title">Share this app</string>
-
-  <!-- Contents of the "Share this app" card on the home page. [CHAR_LIMIT=200] -->
-  <string name="share_app_card_content">Help your community protect themselves better.</string>
-
-  <!-- Text for the button at the bottom of the "Share this app" card that opens the app sharing flow. [CHAR_LIMIT=100] -->
-  <string name="share_app_button">Share</string>
-
-  <!-- Title of the "Exposure notification is off" card on the home page. [CHAR_LIMIT=120] -->
-  <string name="en_off_card_title">Exposure notification is off</string>
-
-  <!-- Contents of the "Exposure notification is off" card on the home page. [CHAR_LIMIT=200] -->
-  <string name="en_off_card_content">Your app isn’t currently checking for possible exposures. To be notified of possible COVID-19 exposure, turn on Exposure Notifications.</string>
-
-  <!-- Additional heading shown above the "Exposure notification is off" card on the home page, when there has been a possible exposure detected. [CHAR_LIMIT=120] -->
-  <string name="en_off_and_exposure_detected_title">App is not checking for possible exposure</string>
-
-  <!-- Additional information displayed on the home page if there's been a possible exposure. [CHAR_LIMIT=200] -->
-  <string name="possible_exposure_text">Someone you were near has tested positive for COVID-19. Tap the bottom card to see guidance.</string>
-
-  <!-- Title of the "Possible exposure" card. [CHAR_LIMIT=120] -->
-  <string name="possible_exposure_card_title">Possible exposure</string>
-
-  <!-- Content of the "Record of recent check-ins for possible exposure" dialog when there haven't been any exposure check-ins yet. [CHAR_LIMIT=200] -->
-  <string name="no_recent_exposure_checks">Recent check-ins for possible exposure will be shown once they’re complete. Check back later.</string>
-
-  <!-- Title of the Settings Activity. [CHAR_LIMIT=120] -->
-  <string name="settings_activity_title">Settings</string>
-
-  <!-- Title of the Possible Exposure Activity. [CHAR_LIMIT=120] -->
-  <string name="possible_exposure_activity_title">Exposure</string>
+  <!-- Help Center's page on what Google Play services is. [CHAR_LIMIT=NONE]-->
+  <string name="gms_info_link" translatable="false">https://support.google.com/googleplay/answer/9037938</string>
 
 </resources>

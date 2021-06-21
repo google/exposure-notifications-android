@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="onboarding_activity_title">Qəbul</string>
+  <string name="share_history_activity_title">Paylaşma tarixçəsinə baxın</string>
+  <string name="remove_region_link_title">Regionu silin</string>
+  <string name="delete_shared_diagnosis">Paylaşılan test nəticəsini silin</string>
+  <string name="active_region_subtitle">%1$s hazırda Yoluxma Bildirişləri üçün aktiv regionunuz olaraq ayarlanıb</string>
+  <string name="active_region_subtitle_en_off">%1$s aktiv region olaraq ayarlanıb, lakin Yoluxma Bildirişləri telefonunuz üçün deaktivdir.</string>
+  <string name="remove_region_title">Regionu silin</string>
+  <string name="remove_region_detail">Regionunuzu silsəniz Yoluxma Bildirişləri deaktiv ediləcək. Bu regionu istədiyiniz zaman yenidən əlavə edə bilərsiniz.</string>
+  <string name="btn_remove">Silin</string>
+  <string name="exposure_notifications_is_off">Yoluxma Bildirişləri deaktivdir</string>
+  <string name="possible_exposure">Ehtimal yoluxma</string>
+  <string name="share_history_delete_test_result_title">Bu test nəticəsi silinsin?</string>
+  <string name="share_history_delete_test_result_detail">%1$s tarixinə aid COVID-19 test nəticəniz telefonunuzdan silinəcək.</string>
+</resources>

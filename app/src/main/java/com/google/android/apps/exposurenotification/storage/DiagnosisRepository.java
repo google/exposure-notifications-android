@@ -22,7 +22,9 @@ import androidx.annotation.WorkerThread;
 import androidx.lifecycle.LiveData;
 import com.google.android.apps.exposurenotification.common.Qualifiers.BackgroundExecutor;
 import com.google.android.apps.exposurenotification.common.time.Clock;
+import com.google.android.apps.exposurenotification.storage.DiagnosisEntity.Shared;
 import com.google.common.base.Function;
+import com.google.common.collect.ImmutableList;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 import java.util.List;
@@ -33,6 +35,9 @@ import javax.inject.Inject;
  * Abstracts database access to {@link DiagnosisEntity} data and TEK revision tokens.
  */
 public class DiagnosisRepository {
+
+  private final static List<Shared> NOT_SHARED_STATUSES = ImmutableList.of(
+      Shared.NOT_SHARED, Shared.NOT_ATTEMPTED);
 
   private final DiagnosisDao diagnosisDao;
   private final ExecutorService backgroundExecutor;
@@ -59,6 +64,11 @@ public class DiagnosisRepository {
   }
 
   @AnyThread
+  public ListenableFuture<DiagnosisEntity> maybeGetLastNotSharedDiagnosisAsync() {
+    return diagnosisDao.getLastDiagnosisWithSharedStatusInStatusesAsync(NOT_SHARED_STATUSES);
+  }
+
+  @AnyThread
   public ListenableFuture<List<DiagnosisEntity>> getByVerificationCodeAsync(
       String verificationCode) {
     return diagnosisDao.getByVerificationCodeAsync(verificationCode);
@@ -78,7 +88,8 @@ public class DiagnosisRepository {
   @AnyThread
   public ListenableFuture<Long> upsertAsync(DiagnosisEntity entity) {
     return Futures.submit(
-        () -> diagnosisDao.upsert(maybeSetCreationTime(entity)), backgroundExecutor);
+        () -> diagnosisDao.upsert(updateLastUpdatedTimestampMs(maybeSetCreationTime(entity))),
+        backgroundExecutor);
   }
 
   @AnyThread
@@ -89,7 +100,7 @@ public class DiagnosisRepository {
   @WorkerThread
   public Long createOrMutateById(long id, Function<DiagnosisEntity, DiagnosisEntity> mutator) {
     Function<DiagnosisEntity, DiagnosisEntity> mutateAndMaybeSetCreationTime =
-        entity -> maybeSetCreationTime(mutator.apply(entity));
+        entity -> updateLastUpdatedTimestampMs(maybeSetCreationTime(mutator.apply(entity)));
     return diagnosisDao.createOrMutateById(id, mutateAndMaybeSetCreationTime);
   }
 
@@ -99,5 +110,10 @@ public class DiagnosisRepository {
     }
     return entity;
   }
+
+  private DiagnosisEntity updateLastUpdatedTimestampMs(DiagnosisEntity entity) {
+      return entity.toBuilder().setLastUpdatedTimestampMs(clock.now().toEpochMilli()).build();
+  }
+
 }
 

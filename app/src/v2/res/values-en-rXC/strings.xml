@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‎‏‏‏‎‎‏‏‎‎‏‎‏‏‏‎‏‎‎‏‎‏‏‏‏‎‏‏‏‏‎‎‏‏‎‎‎‎‏‏‏‎‏‏‏‏‎‎‏‎‎‎‏‏‎‏‎‎‎‎‏‎‏‎App is active and checking‎‏‎‎‏‎</string>
+  <string name="app_active_and_checking_info">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‎‏‏‏‎‎‏‎‏‏‎‏‏‎‎‏‎‏‏‎‏‏‎‏‏‎‏‎‏‎‎‏‎‎‎‏‏‏‏‎‏‎‏‏‏‎‎‏‎‎‎‎‏‎‎‎‎‎‏‏‏‏‎‎This app is checking for possible exposures. Using Exposure Notifications helps you protect your community - even if you\'ve been vaccinated.‎‏‎‎‏‎</string>
+  <string name="possible_exposure_title">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‎‏‏‎‏‏‎‎‎‏‎‎‎‎‎‏‏‏‏‎‏‏‎‎‏‎‏‏‏‎‎‏‏‎‎‎‏‏‏‎‏‎‎‏‎‎‏‎‏‎‏‏‎‎‎‎‏‎‏‏‎‎‏‎You may have been exposed‎‏‎‎‏‎</string>
+  <string name="share_test_result_home_screen_title">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‏‎‎‏‏‏‏‎‎‎‎‏‎‏‏‎‎‎‎‎‏‏‏‏‏‏‎‏‎‏‎‏‏‏‏‎‎‏‏‏‏‎‏‎‎‎‎‏‏‎‎‏‏‎‎‏‏‎‏‎‏‎‎Share your test result‎‏‎‎‏‎</string>
+  <string name="have_questions">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‎‏‏‏‏‎‏‏‎‎‎‎‏‎‏‎‏‎‎‎‎‏‎‏‎‎‎‏‏‏‏‎‏‏‏‎‏‏‏‎‎‎‏‏‏‏‎‏‏‏‎‏‏‏‏‎‏‏‏‎Have questions?‎‏‎‎‏‎</string>
+  <string name="check_exposure_status">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‎‏‏‎‎‏‎‏‏‏‏‎‏‎‎‏‎‏‏‎‎‏‏‏‎‎‏‎‏‎‎‎‏‏‎‎‎‏‎‏‏‎‎‏‏‎‎‏‏‎‏‎‎‏‏‎‏‎‎‎‏‏‎‎Check your exposure status‎‏‎‎‏‎</string>
+  <string name="en_active">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‎‏‏‏‎‎‏‏‏‏‎‎‏‎‎‎‎‏‎‏‎‎‏‏‎‏‎‎‏‎‎‏‎‏‏‎‏‎‎‏‏‏‎‏‏‎‏‎‏‏‏‎‎‏‏‎‏‏‏‎‎‎‏‎Active‎‏‎‎‏‎</string>
+  <string name="en_inactive">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‎‏‏‎‏‏‏‏‏‎‏‎‎‏‎‏‏‏‎‏‎‎‎‎‎‎‎‏‏‏‏‏‎‏‏‎‏‎‏‎‏‏‏‎‎‎‏‎‎‎‏‏‏‎‏‎‏‏‏‏‎‎‎‎Inactive‎‏‎‎‏‎</string>
+  <string name="exposure_checks_activity_title">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‏‎‎‎‎‏‏‎‏‏‏‎‎‎‏‏‎‎‏‎‏‏‏‏‏‏‎‎‎‏‏‎‎‏‎‎‏‎‏‏‎‎‎‏‏‏‏‎‎‎‏‏‎‏‏‏‎‎‎‎‏‎‎Record of recent check-ins‎‏‎‎‏‎</string>
+  <string name="sharing_history_activity_title">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‏‎‎‎‏‏‏‏‏‏‏‏‎‎‎‏‎‏‎‏‎‏‏‎‎‏‏‎‎‎‏‏‎‎‏‎‏‏‏‎‎‎‎‎‎‏‏‎‎‎‎‏‎‎‏‎‎‏‎‎‎‎‎Share history‎‏‎‎‏‎</string>
+  <string name="no_recent_exposure_card_content_no_checks">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‎‎‏‏‎‎‏‏‏‏‎‏‏‏‏‏‎‎‏‏‏‏‏‏‎‏‏‎‎‎‎‎‏‏‎‏‎‎‏‎‏‏‎‏‏‎‏‏‏‏‏‏‎‎‎‏‎‏‏‏‎‎‎No reported COVID-19 exposure risk found.‎‏‎‎‏‎</string>
+  <string name="no_recent_exposure_card_content">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‎‏‏‎‎‎‎‎‎‏‎‎‎‏‎‏‎‏‏‎‎‎‏‎‏‎‏‎‎‏‏‏‏‎‎‎‎‎‎‏‎‏‎‏‎‎‏‏‎‎‏‎‏‏‏‏‎‏‏‏‎‎‏‎No reported COVID-19 exposure risk found. Last checked ‎‏‎‎‏‏‎%1$s‎‏‎‎‏‏‏‎‎‏‎‎‏‎</string>
+  <string name="see_recent_checks_button">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‏‏‎‎‎‎‏‏‎‏‎‎‎‏‎‎‏‎‎‎‎‏‎‏‎‎‎‏‏‎‏‎‏‏‎‏‎‏‏‏‏‏‏‎‏‎‏‎‎‏‎‎‎‏‎‏‎‎‏‏‎‏‎See recent checks‎‏‎‎‏‎</string>
+  <string name="possible_exposure_card_title">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‎‏‎‏‏‏‏‏‏‎‎‎‏‎‏‎‏‏‎‏‎‎‎‎‏‎‎‎‏‏‏‎‏‎‏‏‏‏‏‎‎‏‏‎‏‎‎‎‎‏‎‏‎‎‏‏‏‏‏‏‎‏‏‎Possible exposure reported‎‏‎‎‏‎</string>
+  <string name="possible_exposure_card_contents">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‎‏‎‎‎‎‏‎‏‎‎‎‏‏‏‏‎‎‏‏‏‎‏‏‏‎‏‎‎‏‏‎‎‏‎‏‏‏‎‎‏‏‎‎‎‎‎‎‏‎‏‎‎‏‎‎‏‏‎‏‏‏‏‎Someone you were near has tested positive for COVID-19‎‏‎‎‏‎</string>
+  <string name="see_details_button">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‏‏‏‎‎‏‏‏‏‎‏‏‎‏‎‎‏‏‏‏‎‏‎‏‎‏‏‎‎‎‎‎‎‏‏‎‎‏‎‏‎‎‏‏‏‏‏‎‎‏‎‎‎‎‎‏‏‎‏‏‎‏‎See details‎‏‎‎‏‎</string>
+  <string name="share_test_result_card_title">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‎‏‎‏‏‏‏‎‏‏‎‎‎‎‏‏‎‏‎‏‏‎‎‎‎‎‏‎‎‏‏‏‏‏‎‏‎‎‏‎‎‎‏‎‏‏‎‎‎‎‎‎‏‏‏‏‎‏‎‎‎‏‏‎Help prevent COVID-19 in your community‎‏‎‎‏‎</string>
+  <string name="share_test_result_card_content">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‎‏‏‎‎‏‎‏‏‎‏‎‎‎‏‎‏‎‏‏‏‎‏‎‏‏‏‏‏‎‏‎‏‎‏‎‏‎‏‎‏‏‎‏‏‎‎‎‎‏‎‏‎‏‎‎‎‎‏‏‎‎‎‎Each time someone shares a positive test result, it can help stop another case of COVID-19. Sharing your test result won\'t identify you to others.‎‏‎‎‏‎</string>
+  <string name="see_history_button">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‎‏‏‏‎‎‎‎‎‏‏‏‎‎‎‎‎‎‎‎‏‏‏‎‏‏‏‎‏‎‏‏‏‎‎‎‎‎‏‎‏‎‎‎‏‎‎‎‏‎‎‏‎‎‏‏‏‎‎‎‏‎‎‎See history‎‏‎‎‏‎</string>
+  <string name="share_positive_diagnosis_card_content">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‎‏‏‏‏‏‎‏‎‏‎‎‏‎‏‏‎‎‏‎‎‎‏‏‎‏‎‏‏‏‏‎‏‏‎‏‎‏‏‏‏‎‎‏‎‏‎‏‏‎‎‏‏‎‎‏‎‏‎‏‏‎‎Share your test result to help stop the spread of COVID-19‎‏‎‎‏‎</string>
+  <string name="share_app_card_content">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‎‏‏‏‎‎‏‎‎‎‎‎‎‎‏‎‎‎‎‏‏‎‎‏‏‏‏‎‎‏‏‎‎‏‎‎‏‏‎‎‏‎‏‏‏‎‎‎‎‏‏‎‏‎‏‎‏‎‎‏‎‎‎‎Share this app to better protect your community‎‏‎‎‏‎</string>
+  <string name="how_en_works_card_content">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‎‏‏‎‎‎‏‏‏‏‎‏‎‎‏‏‎‏‎‎‏‏‏‎‏‏‏‎‎‏‏‏‎‎‏‎‎‏‎‏‏‏‏‏‎‏‎‏‎‏‎‎‎‏‎‎‎‎‏‏‎‏‎Learn more about how Exposure Notifications works‎‏‎‎‏‎</string>
+</resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="onboarding_activity_title">Въвеждане</string>
+  <string name="share_history_activity_title">Преглед на историята на споделяне</string>
+  <string name="remove_region_link_title">Премахване на регион</string>
+  <string name="delete_shared_diagnosis">Изтриване на споделения резултат от теста</string>
+  <string name="active_region_subtitle">Понастоящем %1$s е зададено като активно приложение за известия за излагане на опасност от заразяване</string>
+  <string name="active_region_subtitle_en_off">%1$s е зададено като активно приложение, но известията за излагане на опасност от заразяване са изключени за телефона ви</string>
+  <string name="remove_region_title">Премахване на регион</string>
+  <string name="remove_region_detail">Премахването на региона ви ще доведе до изключване на известията за излагане на опасност от заразяване. По всяко време можете да го добавите отново.</string>
+  <string name="btn_remove">Премахване</string>
+  <string name="exposure_notifications_is_off">Известията за излагане на опасност от заразяване са изключени</string>
+  <string name="possible_exposure">Възможно излагане на опасност от заразяване</string>
+  <string name="share_history_delete_test_result_title">Да се изтрие ли резултатът от този тест?</string>
+  <string name="share_history_delete_test_result_detail">Резултатът от теста ви за COVID-19 от %1$s ще бъде изтрит от телефона ви.</string>
+</resources>

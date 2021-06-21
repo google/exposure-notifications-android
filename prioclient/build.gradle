@@ -20,12 +20,12 @@ plugins {
 apply plugin: 'com.google.protobuf'
 
 android {
-    compileSdkVersion 30
-    ndkVersion '21.3.6528147'
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    ndkVersion rootProject.ext.ndkVersion
 
     defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 29
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
 
         ndk {
             debugSymbolLevel = 'FULL'
@@ -42,10 +42,6 @@ android {
         cmake {
             path "../third_party/CMakeLists.txt"
         }
-    }
-
-    buildFeatures {
-        prefab true
     }
 }
 

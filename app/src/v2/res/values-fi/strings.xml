@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">Sovellus on aktiivinen ja tekee tarkistuksia</string>
+  <string name="app_active_and_checking_info">Sovellus tarkistaa mahdollisia altistumisia. Altistumisilmoitusten käyttö auttaa sinua suojelemaan muita, vaikka olisitkin jo saanut rokotuksen.</string>
+  <string name="possible_exposure_title">Saatat olla altistunut</string>
+  <string name="share_test_result_home_screen_title">Jaa testituloksesi</string>
+  <string name="have_questions">Onko sinulla kysyttävää?</string>
+  <string name="check_exposure_status">Tarkista altistumisstatuksesi</string>
+  <string name="en_active">Aktiivinen</string>
+  <string name="en_inactive">Ei-aktiivinen</string>
+  <string name="exposure_checks_activity_title">Tiedot viimeaikaisista altistumistarkistuksista</string>
+  <string name="sharing_history_activity_title">Historian jakaminen</string>
+  <string name="no_recent_exposure_card_content_no_checks">Ilmoitusten mukaan COVID-19-altistumisvaaraa ei ole.</string>
+  <string name="no_recent_exposure_card_content">Ilmoitusten mukaan COVID-19-altistumisvaaraa ei ole. Tarkistettu viimeksi %1$s</string>
+  <string name="see_recent_checks_button">Katso viimeaikaiset tarkistukset</string>
+  <string name="possible_exposure_card_title">Mahdollinen ilmoitettu altistuminen</string>
+  <string name="possible_exposure_card_contents">Joku lähelläsi ollut on saanut positiivisen COVID-19-testituloksen</string>
+  <string name="see_details_button">Näytä tiedot</string>
+  <string name="share_test_result_card_title">Auta estämään COVID-19:n leviämistä ympärilläsi</string>
+  <string name="share_test_result_card_content">Aina kun joku jakaa positiivisen testituloksen, se voi auttaa toisen COVID-19-tartunnan estämisessä. Testituloksesi jakaminen ei paljasta henkilöllisyyttäsi muille.</string>
+  <string name="see_history_button">Näytä historia</string>
+  <string name="share_positive_diagnosis_card_content">Jaa testituloksesi COVID-19:n leviämisen estämiseksi</string>
+  <string name="share_app_card_content">Jaa tämä sovellus muiden suojelemiseksi</string>
+  <string name="how_en_works_card_content">Lue lisää siitä, miten altistumisilmoitukset toimivat</string>
+</resources>

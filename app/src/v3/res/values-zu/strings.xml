@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="onboarding_activity_title">Ukugibela</string>
+  <string name="share_history_activity_title">Bona umlando wokwabelana</string>
+  <string name="remove_region_link_title">Susa isifunda</string>
+  <string name="delete_shared_diagnosis">Sula umphumela wohlolo owabiwe</string>
+  <string name="active_region_subtitle">I-%1$s okwamanje isethwe njengesigodi sakho esisebenzayo Sezaziso Zokuhlangabezana</string>
+  <string name="active_region_subtitle_en_off">I-%1$s isethwe njengesigodi sakho esisebenzayo kodwa Izaziso Zokuhlangabezana zicishiwe kwifoni yakho</string>
+  <string name="remove_region_title">Susa isifunda</string>
+  <string name="remove_region_detail">Ukususa isifunda sakho kuzovala Izaziso Zokuhlangabezana. Ungaphinda ungeze lesi sifunda noma nini.</string>
+  <string name="btn_remove">Susa</string>
+  <string name="exposure_notifications_is_off">Izaziso Zokuhlangabezana zivaliwe</string>
+  <string name="possible_exposure">Ukuhlangabezana okunokwenzeka</string>
+  <string name="share_history_delete_test_result_title">Sula lo mphumela wohlolo?</string>
+  <string name="share_history_delete_test_result_detail">Umphumela wohlolo lwakho lwe-COVID-19 wangomhla ka-%1$s uzosulwa kwifoni yakho.</string>
+</resources>

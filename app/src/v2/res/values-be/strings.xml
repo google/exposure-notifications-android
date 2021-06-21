@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">Праграма ўключана і выконвае праверку</string>
+  <string name="app_active_and_checking_info">Гэта праграма правярае наяўнасць рызыкі заражэння. Выкарыстанне Апавяшчэнняў пра рызыку заражэння дапаможа абараніць людзей вакол вас, нават калі вы прайшлі курс вакцынацыі.</string>
+  <string name="possible_exposure_title">Магчыма, вы падпалі пад рызыку заражэння</string>
+  <string name="share_test_result_home_screen_title">Абагульце вынікі свайго тэста</string>
+  <string name="have_questions">Ёсць пытанні?</string>
+  <string name="check_exposure_status">Праверце свой стан датычна рызыкі заражэння</string>
+  <string name="en_active">Уключана</string>
+  <string name="en_inactive">Выключана</string>
+  <string name="exposure_checks_activity_title">Вынікі нядаўніх праверак</string>
+  <string name="sharing_history_activity_title">Абагуліць гісторыю</string>
+  <string name="no_recent_exposure_card_content_no_checks">Няма звестак пра рызыку заражэння COVID-19.</string>
+  <string name="no_recent_exposure_card_content">Няма звестак пра рызыку заражэння COVID-19. Апошняя праверка: %1$s</string>
+  <string name="see_recent_checks_button">Паглядзець нядаўнія праверкі</string>
+  <string name="possible_exposure_card_title">Заяўлена пра магчымае заражэнне</string>
+  <string name="possible_exposure_card_contents">Асоба, якая была паблізу ад вас, атрымала станоўчы вынік тэста на COVID-19</string>
+  <string name="see_details_button">Праглядзець падрабязнасці</string>
+  <string name="share_test_result_card_title">Дапамажыце прадухіліць заражэнне COVID-19 у вашай супольнасці</string>
+  <string name="share_test_result_card_content">Кожны раз, калі людзі абагульваюць інфармацыю пра станоўчы вынік тэста, яны дапамагаюць спыніць распаўсюджванне захворвання на COVID-19. Абагульванне такіх звестак не раскрывае даныя пра вашу асобу.</string>
+  <string name="see_history_button">Паказаць гісторыю</string>
+  <string name="share_positive_diagnosis_card_content">Абагульце вынікі свайго тэста, каб дапамагчы спыніць распаўсюджванне COVID-19</string>
+  <string name="share_app_card_content">Абагульце гэту праграму, каб лепш абараніць людзей вакол вас</string>
+  <string name="how_en_works_card_content">Даведайцеся больш пра працу Апавяшчэнняў пра рызыку заражэння</string>
+</resources>

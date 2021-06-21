@@ -17,12 +17,13 @@
 
 package com.google.android.apps.exposurenotification.common;
 
-import static com.google.android.apps.exposurenotification.common.NotificationHelper.NOTIFICATION_DISMISSED_ACTION_ID;
+import static com.google.android.apps.exposurenotification.common.IntentUtil.NOTIFICATION_DISMISSED_ACTION_ID;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import com.google.android.apps.exposurenotification.common.time.Clock;
+import com.google.android.apps.exposurenotification.riskcalculation.ExposureClassification;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.NotificationInteraction;
 import dagger.hilt.android.AndroidEntryPoint;
@@ -44,7 +45,14 @@ public class ExposureNotificationDismissedReceiver extends
   @Override
   public void onReceive(Context context, Intent intent) {
     super.onReceive(context, intent);
-    if (NOTIFICATION_DISMISSED_ACTION_ID.equals(intent.getAction())) {
+
+    boolean isPossibleExposurePresent =
+        exposureNotificationSharedPreferences.getExposureClassification().getClassificationIndex()
+            != ExposureClassification.NO_EXPOSURE_CLASSIFICATION_INDEX
+            || exposureNotificationSharedPreferences.getIsExposureClassificationRevoked();
+
+    if (NOTIFICATION_DISMISSED_ACTION_ID.equals(intent.getAction())
+        && isPossibleExposurePresent) {
       // We assume it dismissed the last notification received.
       int classificationIndex = exposureNotificationSharedPreferences
           .getExposureNotificationLastShownClassification();

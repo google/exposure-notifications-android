@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">L\'application est active et les vérifications sont activées</string>
+  <string name="app_active_and_checking_info">Cette application vérifie activement les expositions possibles. L\'utilisation des notifications d\'exposition vous aide à protéger votre communauté, même si vous avez été vacciné.</string>
+  <string name="possible_exposure_title">Il se peut que vous ayez été exposé</string>
+  <string name="share_test_result_home_screen_title">Partager votre résultat de test</string>
+  <string name="have_questions">Vous avez des questions?</string>
+  <string name="check_exposure_status">Vérifiez votre état d\'exposition</string>
+  <string name="en_active">Actives</string>
+  <string name="en_inactive">Inactives</string>
+  <string name="exposure_checks_activity_title">Liste des enregistrements récents</string>
+  <string name="sharing_history_activity_title">Partager l\'historique</string>
+  <string name="no_recent_exposure_card_content_no_checks">Aucun risque signalé d\'exposition à la COVID-19 n\'a été trouvé.</string>
+  <string name="no_recent_exposure_card_content">Aucun risque signalé d\'exposition à la COVID-19 n\'a été trouvé. Dernière vérification : %1$s.</string>
+  <string name="see_recent_checks_button">Voir les vérifications récentes</string>
+  <string name="possible_exposure_card_title">Exposition possible signalée</string>
+  <string name="possible_exposure_card_contents">Une personne qui s\'est trouvée à proximité de vous a signalé un résultat de test positif pour la COVID-19</string>
+  <string name="see_details_button">Afficher les renseignements</string>
+  <string name="share_test_result_card_title">Contribuez à prévenir la propagation de la COVID-19 dans votre communauté.</string>
+  <string name="share_test_result_card_content">Chaque fois que quelqu\'un partage un résultat de test positif, cela peut prévenir un autre cas de COVID-19. Lorsque vous partagez vos résultats de test, les autres ne pourront pas vous identifier.</string>
+  <string name="see_history_button">Afficher l’historique</string>
+  <string name="share_positive_diagnosis_card_content">Partagez votre résultat de test pour contribuer à arrêter la propagation de la COVID-19</string>
+  <string name="share_app_card_content">Partagez cette application pour contribuer à la protection de votre communauté</string>
+  <string name="how_en_works_card_content">Apprenez-en plus sur le fonctionnement des notifications d\'exposition</string>
+</resources>

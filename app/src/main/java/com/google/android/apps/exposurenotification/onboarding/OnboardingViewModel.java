@@ -17,6 +17,7 @@
 
 package com.google.android.apps.exposurenotification.onboarding;
 
+import android.app.Activity;
 import androidx.hilt.lifecycle.ViewModelInject;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Transformations;
@@ -35,6 +36,8 @@ public class OnboardingViewModel extends ViewModel {
   private final ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
   private final PrivateAnalyticsEnabledProvider privateAnalyticsEnabledProvider;
   private final WorkManager workManager;
+
+  private boolean resultOkSet = false;
 
   @ViewModelInject
   public OnboardingViewModel(
@@ -76,9 +79,17 @@ public class OnboardingViewModel extends ViewModel {
   }
 
   /**
-   * Returns whether a new UX Flow is enabled or not.
+   * Returns whether we've set {@link Activity#RESULT_OK} for the caller as this information
+   * may have been lost upon device configuration changes (e.g. rotations).
    */
-  public boolean isNewUxFlowEnabled() {
-    return exposureNotificationSharedPreferences.getIsEnabledNewUXFlow();
+  public boolean isResultOkSet() {
+    return resultOkSet;
+  }
+
+  /**
+   * Marks if {@link Activity#RESULT_OK} can be set for the caller.
+   */
+  public void setResultOk(boolean resultOkSet) {
+    this.resultOkSet = resultOkSet;
   }
 }

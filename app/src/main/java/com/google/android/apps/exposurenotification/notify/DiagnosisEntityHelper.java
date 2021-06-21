@@ -18,14 +18,17 @@
 package com.google.android.apps.exposurenotification.notify;
 
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
 import androidx.viewbinding.ViewBinding;
 import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.storage.DiagnosisEntity;
 import com.google.android.apps.exposurenotification.storage.DiagnosisEntity.Shared;
+import com.google.android.apps.exposurenotification.storage.DiagnosisEntity.TestResult;
 import org.threeten.bp.LocalDate;
 import org.threeten.bp.ZoneOffset;
 
@@ -33,7 +36,7 @@ import org.threeten.bp.ZoneOffset;
  * Helper class for functions around the {@link DiagnosisEntity}.
  */
 public final class DiagnosisEntityHelper {
-
+  private static final String TAG = "DiagnosisEntityHelper";
   /**
    * If a verification code is set and has a long term token.
    */
@@ -157,6 +160,25 @@ public final class DiagnosisEntityHelper {
   private static boolean isWithinLast14Days(Clock clock, LocalDate localDate) {
     return isWithinLast14Days(
         clock, localDate.atStartOfDay(ZoneOffset.UTC).toInstant().toEpochMilli());
+  }
+
+  public static @StringRes int getDiagnosisTypeStringResourceFromTestResult(TestResult testResult) {
+    if (testResult == null) {
+      Log.e(TAG, "Unknown TestResult=null");
+      return R.string.test_result_type_confirmed;
+    } else {
+      switch (testResult) {
+        case LIKELY:
+          return R.string.test_result_type_likely;
+        case NEGATIVE:
+          return R.string.test_result_type_negative;
+        case CONFIRMED:
+          return R.string.test_result_type_confirmed;
+        default:
+          Log.e(TAG, "Unknown TestResult=" + testResult);
+          return R.string.test_result_type_confirmed;
+      }
+    }
   }
 
   private DiagnosisEntityHelper() {

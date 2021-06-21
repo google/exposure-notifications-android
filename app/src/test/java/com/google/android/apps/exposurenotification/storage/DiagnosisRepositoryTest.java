@@ -97,17 +97,19 @@ public class DiagnosisRepositoryTest {
         .setHasSymptoms(HasSymptoms.UNSET)
         .setTestResult(TestResult.LIKELY)
         .setTravelStatus(TravelStatus.TRAVELED)
+        .setLastUpdatedTimestampMs(18L)
         .build();
 
     long newId = diagnosisRepo.upsertAsync(diagnosis).get();
     DiagnosisEntity readBack = diagnosisRepo.getByIdAsync(newId).get();
 
     assertThat(readBack).isNotNull();
-    assertEqualIgnoringId(readBack, diagnosis);
+    assertEqualIgnoringIdAndLastUpdatedTime(readBack, diagnosis);
   }
 
   @Test
-  public void upsert_withNewEntity_missingCreationTime_shouldSetCreationTime() throws Exception {
+  public void upsert_withNewEntity_missingCreationTime_shouldSetCreationTime()
+      throws Exception {
     DiagnosisEntity diagnosis = DiagnosisEntity.newBuilder().build();
 
     long newId = diagnosisRepo.upsertAsync(diagnosis).get();
@@ -115,6 +117,23 @@ public class DiagnosisRepositoryTest {
 
     DiagnosisEntity expected = DiagnosisEntity.newBuilder()
         .setCreatedTimestampMs(clock.now().toEpochMilli())
+        .build();
+    assertThat(readBack).isNotNull();
+    assertEqualIgnoringIdAndLastUpdatedTime(readBack, expected);
+  }
+
+
+  @Test
+  public void upsert_withNewEntity_shouldSetLastUpdatedTime()
+      throws Exception {
+    DiagnosisEntity diagnosis = DiagnosisEntity.newBuilder().build();
+
+    long newId = diagnosisRepo.upsertAsync(diagnosis).get();
+    DiagnosisEntity readBack = diagnosisRepo.getByIdAsync(newId).get();
+
+    DiagnosisEntity expected = DiagnosisEntity.newBuilder()
+        .setCreatedTimestampMs(clock.now().toEpochMilli())
+        .setLastUpdatedTimestampMs(clock.now().toEpochMilli())
         .build();
     assertThat(readBack).isNotNull();
     assertEqualIgnoringId(readBack, expected);
@@ -147,6 +166,25 @@ public class DiagnosisRepositoryTest {
   }
 
   @Test
+  public void upsert_shouldUpdateLastUpdatedTimestampMs() throws Exception {
+    // Create and read back one record.
+    long newId = diagnosisRepo.upsertAsync(
+        DiagnosisEntity.newBuilder().setVerificationCode("code1").build()).get();
+    DiagnosisEntity readBack = diagnosisRepo.getByIdAsync(newId).get();
+
+    // Mutate some fields and progress time
+    ((FakeClock)clock).advance();
+    DiagnosisEntity mutated = readBack.toBuilder().setCreatedTimestampMs(42L).build();
+    diagnosisRepo.upsertAsync(mutated).get();
+
+    // Read it back again and it should have the updated lastUpdatedTimestampMs.
+    DiagnosisEntity expected = mutated.toBuilder()
+        .setLastUpdatedTimestampMs(clock.now().toEpochMilli()).build();
+    DiagnosisEntity readAgain = diagnosisRepo.getByIdAsync(newId).get();
+    assertThat(readAgain).isEqualTo(expected);
+  }
+
+  @Test
   public void upsertAsync_shouldCreateNewEntity() throws Exception {
     // Create a new diagnosis
     DiagnosisEntity diagnosis = DiagnosisEntity.newBuilder()
@@ -164,7 +202,7 @@ public class DiagnosisRepositoryTest {
 
     // Then read it back and verify.
     DiagnosisEntity readBack = diagnosisRepo.getByIdAsync(newId).get();
-    assertEqualIgnoringId(readBack, diagnosis);
+    assertEqualIgnoringIdAndLastUpdatedTime(readBack, diagnosis);
   }
 
   @Test
@@ -386,6 +424,17 @@ public class DiagnosisRepositoryTest {
   }
 
   @Test
+  public void createOrMutateById_shouldUpdateLastUpdatedTime() throws Exception {
+    // WHEN
+    long newId = diagnosisRepo.createOrMutateById(
+        -1, diagnosis -> diagnosis.toBuilder().setLastUpdatedTimestampMs(41L).build());
+
+    // THEN
+    DiagnosisEntity readBack = diagnosisRepo.getByIdAsync(newId).get();
+    assertThat(readBack.getLastUpdatedTimestampMs()).isEqualTo(clock.currentTimeMillis());
+  }
+
+  @Test
   public void createOrMutateById_withExistingId_shouldMutateDiagnosis() throws Exception {
     // GIVEN
     long newId = diagnosisRepo.upsertAsync(
@@ -404,6 +453,78 @@ public class DiagnosisRepositoryTest {
     assertThat(readBack.getCertificate()).isEqualTo("cert");
   }
 
+  @Test
+  public void getLastNotSharedDiagnosisAsync_noNotSharedDiagnosesPresent_returnsNull()
+      throws Exception {
+    // GIVEN
+    diagnosisRepo
+        .upsertAsync(DiagnosisEntity.newBuilder().setId(1).setSharedStatus(Shared.SHARED).build())
+        .get();
+
+    // WHEN
+    DiagnosisEntity entity = diagnosisRepo.maybeGetLastNotSharedDiagnosisAsync().get();
+
+    // THEN
+    assertThat(entity).isNull();
+  }
+
+  @Test
+  public void getLastNotSharedDiagnosisAsync_notAttemptedDiagnosisPresent_shouldReturnEntity()
+      throws Exception {
+    // GIVEN
+    DiagnosisEntity notAttemptedToShareDiagnosis = DiagnosisEntity.newBuilder()
+        .setId(1).setSharedStatus(Shared.NOT_ATTEMPTED).setCreatedTimestampMs(1L).build();
+    diagnosisRepo.upsertAsync(notAttemptedToShareDiagnosis).get();
+
+    // WHEN
+    DiagnosisEntity entity = diagnosisRepo.maybeGetLastNotSharedDiagnosisAsync().get();
+
+    // THEN
+    assertEqualIgnoringLastUpdatedTime(entity, notAttemptedToShareDiagnosis);
+  }
+
+  @Test
+  public void getLastNotSharedDiagnosisAsync_notSharedDiagnosisPresent_shouldReturnEntity()
+      throws Exception {
+    // GIVEN
+    DiagnosisEntity notSharedDiagnosis = DiagnosisEntity.newBuilder()
+        .setId(1).setSharedStatus(Shared.NOT_SHARED).setCreatedTimestampMs(1L).build();
+    diagnosisRepo.upsertAsync(notSharedDiagnosis).get();
+
+    // WHEN
+    DiagnosisEntity entity = diagnosisRepo.maybeGetLastNotSharedDiagnosisAsync().get();
+
+    // THEN
+    assertEqualIgnoringLastUpdatedTime(entity, notSharedDiagnosis);
+  }
+
+  @Test
+  public void getLastNotSharedDiagnosisAsync_fewNotSharedDiagnosesPresent_returnsLast()
+      throws Exception {
+    // GIVEN
+    DiagnosisEntity diagnosis = DiagnosisEntity.newBuilder().setId(1)
+        .setSharedStatus(Shared.NOT_SHARED).setCreatedTimestampMs(1L).build();
+    DiagnosisEntity anotherDiagnosis = DiagnosisEntity.newBuilder().setId(2)
+        .setSharedStatus(Shared.NOT_SHARED).setCreatedTimestampMs(10L).build();
+    DiagnosisEntity yetAnotherDiagnosis = DiagnosisEntity.newBuilder().setId(3)
+        .setSharedStatus(Shared.NOT_ATTEMPTED).setCreatedTimestampMs(42L).build();
+    DiagnosisEntity expectedDiagnosis = DiagnosisEntity.newBuilder().setId(4)
+        .setSharedStatus(Shared.NOT_SHARED).setCreatedTimestampMs(63L).build();
+    DiagnosisEntity sharedDiagnosis = DiagnosisEntity.newBuilder().setId(5)
+        .setSharedStatus(Shared.SHARED).setCreatedTimestampMs(99L).build();
+    diagnosisRepo.upsertAsync(diagnosis).get();
+    diagnosisRepo.upsertAsync(anotherDiagnosis).get();
+    diagnosisRepo.upsertAsync(yetAnotherDiagnosis).get();
+    diagnosisRepo.upsertAsync(expectedDiagnosis).get();
+    diagnosisRepo.upsertAsync(sharedDiagnosis).get();
+
+    // WHEN
+    DiagnosisEntity entity = diagnosisRepo.maybeGetLastNotSharedDiagnosisAsync().get();
+
+    // THEN
+    assertEqualIgnoringLastUpdatedTime(entity, expectedDiagnosis);
+  }
+
   /**
    * Check that two {@link DiagnosisEntity} objects are the same, ignoring the {@code id} field.
    */
@@ -411,5 +532,25 @@ public class DiagnosisRepositoryTest {
       DiagnosisEntity result, DiagnosisEntity expected) {
     assertThat(result.toBuilder().setId(0).build())
         .isEqualTo(expected.toBuilder().setId(0).build());
+  }
+
+  /**
+   * Check that two {@link DiagnosisEntity} objects are the same, ignoring the
+   * {@code LastUpdatedTime} field.
+   */
+  private static void assertEqualIgnoringLastUpdatedTime(
+      DiagnosisEntity result, DiagnosisEntity expected) {
+    assertThat(result.toBuilder().setLastUpdatedTimestampMs(0).build())
+        .isEqualTo(expected.toBuilder().setLastUpdatedTimestampMs(0).build());
+  }
+
+  /**
+   * Check that two {@link DiagnosisEntity} objects are the same, ignoring the {@code id}  and
+   * {@code lastUpdatedTime} field.
+   */
+  private static void assertEqualIgnoringIdAndLastUpdatedTime(
+      DiagnosisEntity result, DiagnosisEntity expected) {
+    assertThat(result.toBuilder().setId(0).setLastUpdatedTimestampMs(0).build())
+        .isEqualTo(expected.toBuilder().setId(0).setLastUpdatedTimestampMs(0).build());
   }
 }

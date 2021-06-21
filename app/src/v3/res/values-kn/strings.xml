@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="onboarding_activity_title">ಆನ್‌ಬೋರ್ಡಿಂಗ್</string>
+  <string name="share_history_activity_title">ಹಂಚಿಕೊಂಡ ಇತಿಹಾಸವನ್ನು ನೋಡಿ</string>
+  <string name="remove_region_link_title">ಪ್ರದೇಶವನ್ನು ತೆಗೆದುಹಾಕಿ</string>
+  <string name="delete_shared_diagnosis">ಹಂಚಿಕೊಳ್ಳಲಾದ ಪರೀಕ್ಷೆಯ ಫಲಿತಾಂಶವನ್ನು ಅಳಿಸಿ</string>
+  <string name="active_region_subtitle">ಪ್ರಸ್ತುತ %1$s ಅನ್ನು ಎಕ್ಸ್‌ಪೋಶರ್ ಅಧಿಸೂಚನೆಗಳನ್ನು ಪಡೆಯುವ ಸಕ್ರಿಯ ಪ್ರದೇಶವೆಂದು ಹೊಂದಿಸಲಾಗಿದೆ</string>
+  <string name="active_region_subtitle_en_off">%1$s ಅನ್ನು ನಿಮ್ಮ ಸಕ್ರಿಯ ಪ್ರದೇಶವೆಂದು ಹೊಂದಿಸಲಾಗಿದೆ, ಆದರೆ ನಿಮ್ಮ ಫೋನ್‌ನಲ್ಲಿ ಎಕ್ಸ್‌ಪೋಶರ್ ಅಧಿಸೂಚನೆಗಳು ಆಫ್ ಆಗಿವೆ</string>
+  <string name="remove_region_title">ಪ್ರದೇಶವನ್ನು ತೆಗೆದುಹಾಕಿ</string>
+  <string name="remove_region_detail">ನಿಮ್ಮ ಪ್ರದೇಶವನ್ನು ತೆಗೆದು ಹಾಕುವುದರಿಂದ ಎಕ್ಸ್‌ಪೋಶರ್ ಅಧಿಸೂಚನೆಗಳು ಆಫ್ ಆಗುತ್ತವೆ. ನೀವು ಯಾವಾಗ ಬೇಕಾದರೂ ಈ ಪ್ರದೇಶವನ್ನು ಮರಳಿ ಸೇರಿಸಬಹುದು.</string>
+  <string name="btn_remove">ತೆಗೆದುಹಾಕಿ</string>
+  <string name="exposure_notifications_is_off">ಎಕ್ಸ್‌ಪೋಶರ್ ಅಧಿಸೂಚನೆಗಳು ಆಫ್ ಆಗಿವೆ</string>
+  <string name="possible_exposure">ಸಂಭವನೀಯ ಸಂಪರ್ಕಕ್ಕೆ ಬಂದಿರುವಿಕೆ</string>
+  <string name="share_history_delete_test_result_title">ಈ ಪರೀಕ್ಷೆಯ ಫಲಿತಾಂಶವನ್ನು ಅಳಿಸುವುದೇ?</string>
+  <string name="share_history_delete_test_result_detail">%1$s ದಿನಾಂಕದಿಂದ ನಿಮ್ಮ COVID-19 ಪರೀಕ್ಷೆಯ ಫಲಿತಾಂಶಗಳನ್ನು ನಿಮ್ಮ ಫೋನ್‌ನಿಂದ ಅಳಿಸಲಾಗುತ್ತದೆ.</string>
+</resources>

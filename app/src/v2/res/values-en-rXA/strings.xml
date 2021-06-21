@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">[Åþþ îš åçţîvé åñð çĥéçķîñĝ one two three four five six]</string>
+  <string name="app_active_and_checking_info">[Ţĥîš åþþ îš çĥéçķîñĝ ƒöŕ þöššîбļé éxþöšûŕéš. Ûšîñĝ Éxþöšûŕé Ñöţîƒîçåţîöñš ĥéļþš ýöû þŕöţéçţ ýöûŕ çömmûñîţý - évéñ îƒ ýöû\'vé бééñ våççîñåţéð. one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty twentyone]</string>
+  <string name="possible_exposure_title">[Ýöû måý ĥåvé бééñ éxþöšéð one two three four five six]</string>
+  <string name="share_test_result_home_screen_title">[Šĥåŕé ýöûŕ ţéšţ ŕéšûļţ one two three four five]</string>
+  <string name="have_questions">[Ĥåvé qûéšţîöñš¿ one two]</string>
+  <string name="check_exposure_status">[Çĥéçķ ýöûŕ éxþöšûŕé šţåţûš one two three four five six]</string>
+  <string name="en_active">[Åçţîvé one]</string>
+  <string name="en_inactive">[Îñåçţîvé one]</string>
+  <string name="exposure_checks_activity_title">[Ŕéçöŕð öƒ ŕéçéñţ çĥéçķ-îñš one two three four five six]</string>
+  <string name="sharing_history_activity_title">[Šĥåŕé ĥîšţöŕý one two]</string>
+  <string name="no_recent_exposure_card_content_no_checks">[Ñö ŕéþöŕţéð ÇÖVÎÐ-19 éxþöšûŕé ŕîšķ ƒöûñð. one two three four five six seven eight nine]</string>
+  <string name="no_recent_exposure_card_content">[Ñö ŕéþöŕţéð ÇÖVÎÐ-19 éxþöšûŕé ŕîšķ ƒöûñð. Ļåšţ çĥéçķéð ᐅ%1$sᐊ one two three four five six seven eight nine ten eleven twelve]</string>
+  <string name="see_recent_checks_button">[Šéé ŕéçéñţ çĥéçķš one two three]</string>
+  <string name="possible_exposure_card_title">[Þöššîбļé éxþöšûŕé ŕéþöŕţéð one two three]</string>
+  <string name="possible_exposure_card_contents">[Šöméöñé ýöû ŵéŕé ñéåŕ ĥåš ţéšţéð þöšîţîvé ƒöŕ ÇÖVÎÐ-19 one two three four five six seven eight nine ten eleven]</string>
+  <string name="see_details_button">[Šéé ðéţåîļš one two]</string>
+  <string name="share_test_result_card_title">[Ĥéļþ þŕévéñţ ÇÖVÎÐ-19 îñ ýöûŕ çömmûñîţý one two three four five six seven eight]</string>
+  <string name="share_test_result_card_content">[Éåçĥ ţîmé šöméöñé šĥåŕéš å þöšîţîvé ţéšţ ŕéšûļţ, îţ çåñ ĥéļþ šţöþ åñöţĥéŕ çåšé öƒ ÇÖVÎÐ-19. Šĥåŕîñĝ ýöûŕ ţéšţ ŕéšûļţ ŵöñ\'ţ îðéñţîƒý ýöû ţö öţĥéŕš. one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty twentyone twentytwo]</string>
+  <string name="see_history_button">[Šéé ĥîšţöŕý one two]</string>
+  <string name="share_positive_diagnosis_card_content">[Šĥåŕé ýöûŕ ţéšţ ŕéšûļţ ţö ĥéļþ šţöþ ţĥé šþŕéåð öƒ ÇÖVÎÐ-19 one two three four five six seven eight nine ten eleven twelve]</string>
+  <string name="share_app_card_content">[Šĥåŕé ţĥîš åþþ ţö бéţţéŕ þŕöţéçţ ýöûŕ çömmûñîţý one two three four five six seven eight nine ten]</string>
+  <string name="how_en_works_card_content">[Ļéåŕñ möŕé åбöûţ ĥöŵ Éxþöšûŕé Ñöţîƒîçåţîöñš ŵöŕķš one two three four five six seven eight nine ten]</string>
+</resources>

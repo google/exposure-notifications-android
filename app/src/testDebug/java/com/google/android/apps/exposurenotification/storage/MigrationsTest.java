@@ -23,6 +23,7 @@ import static com.google.android.apps.exposurenotification.storage.ExposureNotif
 import static com.google.android.apps.exposurenotification.storage.ExposureNotificationDatabase.MIGRATION_38_39;
 import static com.google.android.apps.exposurenotification.storage.ExposureNotificationDatabase.MIGRATION_39_40;
 import static com.google.android.apps.exposurenotification.storage.ExposureNotificationDatabase.MIGRATION_40_41;
+import static com.google.android.apps.exposurenotification.storage.ExposureNotificationDatabase.MIGRATION_41_42;
 import static com.google.common.truth.Truth.assertThat;
 
 import android.database.Cursor;
@@ -169,6 +170,40 @@ public class MigrationsTest {
     db.close();
     // MigrationTestHelper automatically verifies the schema changes.
     helper.runMigrationsAndValidate(TEST_DB, 41, true, MIGRATION_40_41);
+  }
+
+  @Test
+  public void migrate41to42() throws IOException {
+    SupportSQLiteDatabase db = helper.createDatabase(TEST_DB, 41);
+    db.close();
+    // MigrationTestHelper automatically verifies the schema changes.
+    helper.runMigrationsAndValidate(TEST_DB, 42, true, MIGRATION_41_42);
+  }
+
+  @Test
+  public void migrate41To42_backfillShouldDuplicateCreatedTimestampMs() throws Exception {
+    // GIVEN
+    // Set up a version 41 database with two diagnoses (with default/arbitrary createdTimestampMs).
+    SupportSQLiteDatabase db = helper.createDatabase(TEST_DB, 41);
+    db.execSQL("INSERT INTO DiagnosisEntity"
+        + " (id, createdTimestampMs, isServerOnsetDate, isCodeFromLink)"
+        + " VALUES (1, 0, 0, 0)");
+    db.execSQL("INSERT INTO DiagnosisEntity"
+        + " (id, createdTimestampMs, isServerOnsetDate, isCodeFromLink)"
+        + " VALUES (2, 1616687307341, 0, 0)");
+
+    // WHEN
+    // Now upgrade the database
+    helper.runMigrationsAndValidate(TEST_DB, 42, true, MIGRATION_41_42);
+
+    // THEN
+    // There should not be any rows where createdTimestampMs is not equal to lastUpdatedTimestampMs
+    try (Cursor c = db.query(
+        "SELECT count(*) FROM DiagnosisEntity"
+            + " WHERE createdTimestampMs != lastUpdatedTimestampMs")) {
+      assertThat(c.moveToNext()).isTrue();
+      assertThat(c.getInt(0)).isEqualTo(0);
+    }
   }
 
   private ExposureNotificationDatabase createAppDatabase() {

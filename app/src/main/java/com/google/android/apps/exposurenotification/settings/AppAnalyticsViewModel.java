@@ -23,7 +23,7 @@ import androidx.lifecycle.ViewModel;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
 
 /**
- * View model for {@link AppAnalyticsActivity}.
+ * View model for {@link AppAnalyticsFragment}.
  */
 public class AppAnalyticsViewModel extends ViewModel {
 

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">កម្មវិធីគឺ​សកម្ម និង​កំពុងពិនិត្យរកមើល</string>
+  <string name="app_active_and_checking_info">កម្មវិធីនេះ​កំពុងរកមើល​ការនៅជិត​អ្នកមានផ្ទុក COVID-19 ដែលអាច​កើតមាន។ ការប្រើប្រាស់​ការជូនដំណឹង​អំពីការនៅជិត​អ្នកមានផ្ទុក COVID-19 ជួយអ្នកក្នុងការ​ការពារសហគមន៍​របស់អ្នក ទោះបីជាអ្នក​បានទទួល​ការចាក់វ៉ាក់សាំងហើយ​ក៏ដោយ។</string>
+  <string name="possible_exposure_title">អ្នកប្រហែលជា​បាននៅជិត​អ្នកមានផ្ទុក COVID-19</string>
+  <string name="share_test_result_home_screen_title">ចែករំលែក​លទ្ធផល​តេស្តរបស់អ្នក</string>
+  <string name="have_questions">មានសំណួរ​មែនទេ?</string>
+  <string name="check_exposure_status">ពិនិត្យមើល​ស្ថានភាព​នៃការនៅជិត​អ្នកមានផ្ទុក COVID-19 របស់អ្នក</string>
+  <string name="en_active">សកម្ម</string>
+  <string name="en_inactive">អសកម្ម​</string>
+  <string name="exposure_checks_activity_title">កំណត់ត្រានៃ​ការរកមើល​ការនៅជិត​អ្នកមានផ្ទុក COVID-19 ថ្មីៗ</string>
+  <string name="sharing_history_activity_title">ចែករំលែក​ប្រវត្តិ</string>
+  <string name="no_recent_exposure_card_content_no_checks">រកមិនឃើញ​ហានិភ័យនៃការនៅជិត​អ្នកមានផ្ទុក COVID-19 ដែលបាន​រាយការណ៍ទេ។</string>
+  <string name="no_recent_exposure_card_content">រកមិនឃើញ​ហានិភ័យនៃការនៅជិត​អ្នកមានផ្ទុក COVID-19 ដែលបាន​រាយការណ៍ទេ។ បានពិនិត្យ​រកមើលលើកចុងក្រោយ​នៅថ្ងៃទី %1$s</string>
+  <string name="see_recent_checks_button">មើល​ការពិនិត្យ​រកមើលថ្មីៗ</string>
+  <string name="possible_exposure_card_title">បានរាយការណ៍ថាមាន​ការនៅជិត​អ្នកមានផ្ទុក COVID-19 ដែលអាច​កើតមាន</string>
+  <string name="possible_exposure_card_contents">អ្នកបាននៅជិត​នរណាម្នាក់​ដែលបានធ្វើតេស្ត​ឃើញមានផ្ទុក COVID-19</string>
+  <string name="see_details_button">មើល​ព័ត៌មានលម្អិត</string>
+  <string name="share_test_result_card_title">ជួយទប់ស្កាត់ COVID-19 នៅក្នុង​សហគមន៍​របស់អ្នក</string>
+  <string name="share_test_result_card_content">រាល់ពេលដែល​មាននរណាម្នាក់​ចែករំលែក​លទ្ធផលតេស្តវិជ្ជមាន គឺអាច​ជួយបញ្ឈប់ករណី COVID-19 ផ្សេងទៀតបាន។ ការចែករំលែក​លទ្ធផលតេស្ដ​របស់អ្នក​នឹងមិនបង្ហាញ​អត្តសញ្ញាណ​របស់អ្នក​ដល់អ្នកដទៃទេ។</string>
+  <string name="see_history_button">មើល​ប្រវត្តិ</string>
+  <string name="share_positive_diagnosis_card_content">ចែករំលែក​លទ្ធផលតេស្ដ​របស់អ្នក ដើម្បីជួយបញ្ឈប់​ការឆ្លងរាលដាលនៃ COVID-19</string>
+  <string name="share_app_card_content">ចែករំលែក​កម្មវិធីនេះ ដើម្បីការពារ​សហគមន៍​របស់អ្នក​ឱ្យបានកាន់តែប្រសើរ</string>
+  <string name="how_en_works_card_content">ស្វែងយល់បន្ថែម​អំពីរបៀបដែល​ការជូនដំណឹង​អំពី​ការនៅជិត​អ្នកមានផ្ទុក COVID-19 ដំណើរការ</string>
+</resources>

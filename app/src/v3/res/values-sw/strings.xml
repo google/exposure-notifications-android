@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="onboarding_activity_title">Utaratibu wa kufahamu mazingira ya kazi</string>
+  <string name="share_history_activity_title">Angalia historia ya kushiriki</string>
+  <string name="remove_region_link_title">Ondoa eneo</string>
+  <string name="delete_shared_diagnosis">Futa matokeo ya vipimo yaliyoshirikiwa</string>
+  <string name="active_region_subtitle">%1$s imewekwa kama eneo lako la sasa ambako Arifa Kuhusu Kukaribia Aliye na COVID-19 zinatumika</string>
+  <string name="active_region_subtitle_en_off">%1$s imewekwa kama eneo lako la sasa lakini Arifa Kuhusu Kukaribia Aliye na COVID-19 zimezimwa kwenye simu yako</string>
+  <string name="remove_region_title">Ondoa eneo</string>
+  <string name="remove_region_detail">Hatua ya kuondoa eneo uliko itazima Arifa Kuhusu Kukaribia Aliye na COVID-19. Unaweza kuweka eneo hili tena wakati wowote.</string>
+  <string name="btn_remove">Ondoa</string>
+  <string name="exposure_notifications_is_off">Arifa Kuhusu Kukaribia Aliye na COVID-19 zimezimwa</string>
+  <string name="possible_exposure">Kukaribia aliyeambukizwa</string>
+  <string name="share_history_delete_test_result_title">Ungependa kufuta matokeo haya ya vipimo?</string>
+  <string name="share_history_delete_test_result_detail">Matokeo yako ya COVID-19 ya tarehe %1$s yatafutwa kwenye simu yako.</string>
+</resources>

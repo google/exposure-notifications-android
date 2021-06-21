@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="onboarding_activity_title">İlk Katılım</string>
+  <string name="share_history_activity_title">Paylaşım geçmişini göster</string>
+  <string name="remove_region_link_title">Bölgeyi kaldır</string>
+  <string name="delete_shared_diagnosis">Paylaşılan test sonucunu sil</string>
+  <string name="active_region_subtitle">%1$s, Temas Bildirimleri için etkin bölgeniz olarak ayarlandı</string>
+  <string name="active_region_subtitle_en_off">%1$s, etkin bölgeniz olarak ayarlandı ancak telefonunuzda Temas Bildirimleri kapalı</string>
+  <string name="remove_region_title">Bölgeyi kaldır</string>
+  <string name="remove_region_detail">Bölgenizi kaldırmak Temas Bildirimleri\'ni kapatır. Bu bölgeyi dilediğiniz zaman tekrar ekleyebilirsiniz.</string>
+  <string name="btn_remove">Kaldır</string>
+  <string name="exposure_notifications_is_off">Temas Bildirimleri kapalı</string>
+  <string name="possible_exposure">Olası temas</string>
+  <string name="share_history_delete_test_result_title">Bu test sonucu silinsin mi?</string>
+  <string name="share_history_delete_test_result_detail">%1$s tarihli COVID-19 test sonucunuz telefonunuzdan silinecek.</string>
+</resources>

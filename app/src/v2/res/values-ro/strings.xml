@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">Aplicația este activă și face o verificare</string>
+  <string name="app_active_and_checking_info">Aplicația verifică dacă există posibile expuneri. Cu ajutorul Notificărilor privind expunerea, vă protejați comunitatea, chiar dacă v-ați vaccinat.</string>
+  <string name="possible_exposure_title">Este posibil să vă fi expus</string>
+  <string name="share_test_result_home_screen_title">Trimiteți rezultatul testului</string>
+  <string name="have_questions">Aveți întrebări?</string>
+  <string name="check_exposure_status">Verificați starea expunerii</string>
+  <string name="en_active">Active</string>
+  <string name="en_inactive">Inactive</string>
+  <string name="exposure_checks_activity_title">Evidența celor mai recente verificări</string>
+  <string name="sharing_history_activity_title">Trimiteți istoricul</string>
+  <string name="no_recent_exposure_card_content_no_checks">Nu aveți un risc de expunere la COVID-19 raportat.</string>
+  <string name="no_recent_exposure_card_content">Nu aveți un risc de expunere la COVID-19 raportat. Ultima verificare: %1$s</string>
+  <string name="see_recent_checks_button">Vedeți verificările recente</string>
+  <string name="possible_exposure_card_title">A fost raportată o expunere posibilă</string>
+  <string name="possible_exposure_card_contents">O persoană de care v-ați apropiat a semnalat un rezultat pozitiv al testului pentru COVID-19</string>
+  <string name="see_details_button">Vedeți detaliile</string>
+  <string name="share_test_result_card_title">Contribuiți la prevenirea COVID-19 în comunitate</string>
+  <string name="share_test_result_card_content">De fiecare dată când cineva trimite un rezultat pozitiv al testului, poate contribui la prevenirea altor cazuri de COVID-19. Trimiterea rezultatului testului nu poate fi folosită pentru a vă identifica</string>
+  <string name="see_history_button">Vedeți istoricul</string>
+  <string name="share_positive_diagnosis_card_content">Trimiteți rezultatul testului pentru a contribui la combaterea răspândirii COVID-19</string>
+  <string name="share_app_card_content">Distribuiți aplicația pentru a vă proteja mai bine comunitatea</string>
+  <string name="how_en_works_card_content">Aflați mai multe despre cum funcționează Notificările privind expunerea</string>
+</resources>

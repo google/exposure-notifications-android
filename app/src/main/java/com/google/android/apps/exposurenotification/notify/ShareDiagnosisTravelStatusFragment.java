@@ -28,8 +28,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.common.KeyboardHelper;
 import com.google.android.apps.exposurenotification.databinding.FragmentShareDiagnosisTravelStatusBinding;
@@ -42,31 +40,30 @@ import dagger.hilt.android.AndroidEntryPoint;
  * 14 days.
  */
 @AndroidEntryPoint
-public class ShareDiagnosisTravelStatusFragment extends Fragment {
+public class ShareDiagnosisTravelStatusFragment extends ShareDiagnosisBaseFragment {
 
   private static final String TAG = "ShareExposureEditFrag";
 
   private FragmentShareDiagnosisTravelStatusBinding binding;
-  private ShareDiagnosisViewModel viewModel;
 
   @Override
-  public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
+  public View onCreateView(
+      @NonNull LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
     binding = FragmentShareDiagnosisTravelStatusBinding.inflate(inflater, parent, false);
     return binding.getRoot();
   }
 
   @Override
   public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-    getActivity().setTitle(R.string.share_travel_title);
+    super.onViewCreated(view, savedInstanceState);
 
-    viewModel =
-        new ViewModelProvider(getActivity()).get(ShareDiagnosisViewModel.class);
+    requireActivity().setTitle(R.string.share_travel_title);
 
     // "Next" button should be disabled until the travel status is selected
     binding.shareNextButton.setEnabled(false);
 
     // Keep input fields up to date with the diagnosis entity.
-    viewModel
+    shareDiagnosisViewModel
         .getCurrentDiagnosisLiveData()
         .observe(
             getViewLifecycleOwner(),
@@ -82,30 +79,27 @@ public class ShareDiagnosisTravelStatusFragment extends Fragment {
       // Enabled next button only when the travel status is selected
       TravelStatus travelStatus =
           mapRadioButtonIdToTravelStatus(checkedId);
-      viewModel.setTravelStatus(travelStatus);
+      shareDiagnosisViewModel.setTravelStatus(travelStatus);
     });
 
-    binding.home.setContentDescription(getString(R.string.navigate_up));
-    binding.home.setOnClickListener((v) -> closeAction());
+    binding.home.setOnClickListener(v -> showCloseWarningAlertDialog());
 
-    viewModel.getNextStepLiveData(Step.TRAVEL_STATUS).observe(getViewLifecycleOwner(),
-        step -> binding.shareNextButton.setOnClickListener(v -> viewModel.nextStep(step)));
+    shareDiagnosisViewModel.getNextStepLiveData(Step.TRAVEL_STATUS).observe(getViewLifecycleOwner(),
+        step -> binding.shareNextButton
+            .setOnClickListener(v -> shareDiagnosisViewModel.nextStep(step)));
 
-    viewModel.getPreviousStepLiveData(Step.TRAVEL_STATUS).observe(getViewLifecycleOwner(),
-        step -> binding.sharePreviousButton.setOnClickListener(v -> {
-          KeyboardHelper.maybeHideKeyboard(requireContext(), view);
-          viewModel.previousStep(step);
-        }));
+    shareDiagnosisViewModel.getPreviousStepLiveData(Step.TRAVEL_STATUS)
+        .observe(getViewLifecycleOwner(),
+            step -> binding.sharePreviousButton.setOnClickListener(v -> {
+              KeyboardHelper.maybeHideKeyboard(requireContext(), view);
+              shareDiagnosisViewModel.previousStep(step);
+            }));
   }
 
   @Override
   public void onDestroyView() {
     super.onDestroyView();
     binding = null;
-  }
-
-  private void closeAction() {
-    ShareDiagnosisActivity.showCloseWarningAlertDialog(requireActivity(), viewModel);
   }
 
   private int mapTravelStatusToRadioButtonId(TravelStatus travelStatus) {

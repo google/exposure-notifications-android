@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">Lietotne ir aktīva un veic pārbaudi</string>
+  <string name="app_active_and_checking_info">Šī lietotne pārbauda iespējamas saskares gadījumus. Paziņojumi par saskari palīdz aizsargāt apkārtējos, pat ja esat vakcinēts.</string>
+  <string name="possible_exposure_title">Iespējams, esat saskāries ar slimnieku</string>
+  <string name="share_test_result_home_screen_title">Testa rezultāta kopīgošana</string>
+  <string name="have_questions">Vai jums ir jautājumi?</string>
+  <string name="check_exposure_status">Pārbaudiet savu iespējamas saskares statusu</string>
+  <string name="en_active">Aktīvi</string>
+  <string name="en_inactive">Neaktīvi</string>
+  <string name="exposure_checks_activity_title">Pēdējās reģistrētās pārbaudes reizes</string>
+  <string name="sharing_history_activity_title">Kopīgošanas vēsture</string>
+  <string name="no_recent_exposure_card_content_no_checks">Nav ziņots, ka jūs varētu būt saskāries ar Covid-19.</string>
+  <string name="no_recent_exposure_card_content">Nav ziņots, ka jūs varētu būt saskāries ar Covid-19. Pēdējās pārbaudes laiks: %1$s.</string>
+  <string name="see_recent_checks_button">Skatīt pēdējās pārbaudes</string>
+  <string name="possible_exposure_card_title">Ziņots par iespējamu saskari</string>
+  <string name="possible_exposure_card_contents">Jūs atradāties blakus kādai personai ar pozitīvu Covid-19 testa rezultātu</string>
+  <string name="see_details_button">Skatīt informāciju</string>
+  <string name="share_test_result_card_title">Palīdziet novērst Covid-19 izplatību apkārtējā sabiedrībā</string>
+  <string name="share_test_result_card_content">Katra reize, kad kāds kopīgo pozitīvu testa rezultātu, var palīdzēt novērst jaunu Covid-19 gadījumu. Kopīgojot testa rezultātu, jūs neatklāsiet citiem savu identitāti.</string>
+  <string name="see_history_button">Skatīt vēsturi</string>
+  <string name="share_positive_diagnosis_card_content">Kopīgot savu testa rezultātu, lai palīdzētu apturēt Covid-19 izplatību</string>
+  <string name="share_app_card_content">Kopīgot šo lietotni, lai palīdzētu aizsargāt apkārtējos</string>
+  <string name="how_en_works_card_content">Uzzināt vairāk par sistēmas “Paziņojumi par saskari” darbības principiem</string>
+</resources>

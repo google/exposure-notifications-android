@@ -33,6 +33,6 @@
     android:pivotY="50%"
     android:repeatCount="infinite"
     android:startOffset="0"
-    android:toXScale="8"
-    android:toYScale="8" />
+    android:toXScale="4"
+    android:toYScale="4" />
 </set>

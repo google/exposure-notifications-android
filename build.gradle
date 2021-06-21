@@ -45,9 +45,17 @@ allprojects {
         google()
 	mavenCentral()
         jcenter()
+        mavenLocal()
     }
 }
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+ext {
+    compileSdkVersion = 30
+    targetSdkVersion = 30
+    minSdkVersion = 21
+    ndkVersion = '21.3.6528147'
 }

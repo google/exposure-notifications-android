@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="onboarding_activity_title">မိတ်ဆက်ခြင်း</string>
+  <string name="share_history_activity_title">မျှဝေခြင်းမှတ်တမ်းကို ကြည့်ပါ</string>
+  <string name="remove_region_link_title">ဒေသကို ဖယ်ရှားပါ</string>
+  <string name="delete_shared_diagnosis">မျှဝေထားသော စစ်ဆေးချက်ရလဒ်ကို ဖျက်ပါ</string>
+  <string name="active_region_subtitle">သင့်ဒေသတွင် ‘ထိတွေ့မှုအကြောင်းကြားချက်များ’ အတွက် %1$s ကို လောလောဆယ် သတ်မှတ်ထားသည်</string>
+  <string name="active_region_subtitle_en_off">%1$s ကို သင်၏လက်ရှိဒေသအဖြစ် သတ်မှတ်ထားသော်လည်း သင့်ဖုန်းအတွက် ‘ထိတွေ့မှုအကြောင်းကြားချက်များ’ ကို ပိတ်ထားသည်</string>
+  <string name="remove_region_title">ဒေသကို ဖယ်ရှားပါ</string>
+  <string name="remove_region_detail">သင့်ဒေသကို ဖယ်ရှားပါက ‘ထိတွေ့မှုအကြောင်းကြားချက်များ’ ကို ပိတ်မည်။ ဤဒေသကို အချိန်မရွေး ပြန်ထည့်နိုင်သည်။</string>
+  <string name="btn_remove">ဖယ်ရှားမလား</string>
+  <string name="exposure_notifications_is_off">‘ထိတွေ့မှု အကြောင်းကြားချက်များ’ ပိတ်ထားသည်</string>
+  <string name="possible_exposure">ထိတွေ့နိုင်ခြေ</string>
+  <string name="share_history_delete_test_result_title">ဤစစ်ဆေးချက်ရလဒ်ကို ဖျက်မလား။</string>
+  <string name="share_history_delete_test_result_detail">%1$s က သင်၏ COVID-19 စစ်ဆေးချက်ရလဒ်ကို သင့်ဖုန်းမှဖျက်ပါမည်။</string>
+</resources>

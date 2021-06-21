@@ -20,6 +20,9 @@ package com.google.android.apps.exposurenotification.exposure;
 import static com.google.common.truth.Truth.assertThat;
 
 import androidx.lifecycle.LiveData;
+import androidx.test.core.app.ApplicationProvider;
+import com.google.android.apps.exposurenotification.common.time.Clock;
+import com.google.android.apps.exposurenotification.common.time.RealTimeModule;
 import com.google.android.apps.exposurenotification.riskcalculation.ExposureClassification;
 import com.google.android.apps.exposurenotification.storage.DbModule;
 import com.google.android.apps.exposurenotification.storage.ExposureCheckEntity;
@@ -28,6 +31,7 @@ import com.google.android.apps.exposurenotification.storage.ExposureNotification
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.BadgeStatus;
 import com.google.android.apps.exposurenotification.testsupport.ExposureNotificationRules;
+import com.google.android.apps.exposurenotification.testsupport.FakeClock;
 import com.google.android.apps.exposurenotification.testsupport.InMemoryDb;
 import dagger.hilt.android.testing.BindValue;
 import dagger.hilt.android.testing.HiltAndroidTest;
@@ -44,11 +48,14 @@ import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 import org.threeten.bp.Instant;
+import org.threeten.bp.LocalDate;
+import org.threeten.bp.OffsetDateTime;
+import org.threeten.bp.ZoneOffset;
 
 @HiltAndroidTest
 @RunWith(RobolectricTestRunner.class)
 @Config(application = HiltTestApplication.class)
-@UninstallModules({DbModule.class})
+@UninstallModules({DbModule.class, RealTimeModule.class})
 public class ExposureHomeViewModelTest {
 
   @Rule
@@ -61,6 +68,9 @@ public class ExposureHomeViewModelTest {
   ExposureCheckRepository exposureCheckRepository;
 
   @BindValue
+  Clock clock = new FakeClock();
+
+  @BindValue
   ExposureNotificationDatabase database = InMemoryDb.create();
 
   private ExposureHomeViewModel exposureHomeViewModel;
@@ -69,7 +79,7 @@ public class ExposureHomeViewModelTest {
   public void setup() {
     rules.hilt().inject();
     exposureHomeViewModel = new ExposureHomeViewModel(
-        exposureNotificationSharedPreferences, exposureCheckRepository);
+        exposureNotificationSharedPreferences, exposureCheckRepository, clock);
   }
 
   @Test
@@ -199,4 +209,22 @@ public class ExposureHomeViewModelTest {
     assertThat(exposureChecks).hasSize(2);
     assertThat(exposureChecks.get(0).getCheckTime()).isEqualTo(Instant.ofEpochMilli(23456L));
   }
+
+  @Test
+  public void getDaysFromStartOfExposureString_exposure2DaysAgo_returns2DaysAgo() {
+    // GIVEN
+    ExposureClassification exposureClassification = ExposureClassification
+        .create(0, ExposureClassification.NO_EXPOSURE_CLASSIFICATION_NAME,
+            LocalDate.of(2021, 2, 6).toEpochDay());
+    ((FakeClock) clock).set(Instant.from(OffsetDateTime
+        .of(2021, 2, 8, 18, 0, 0, 0, ZoneOffset.UTC)));
+
+    // WHEN
+    String result = exposureHomeViewModel.getDaysFromStartOfExposureString(exposureClassification,
+        ApplicationProvider.getApplicationContext());
+
+    // THEN
+    assertThat(result).isEqualTo("2 days ago");
+  }
+
 }

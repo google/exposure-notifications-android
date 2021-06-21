@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">برنامه فعال و درحال بررسی کردن است</string>
+  <string name="app_active_and_checking_info">این برنامه درحال بررسی تماس‌های پرخطر احتمالی است. استفاده از «اعلان تماس‌های پرخطر» به شما کمک می‌کند از جامعه محافظت کنید - حتی اگر واکسینه شده باشید.</string>
+  <string name="possible_exposure_title">ممکن است درمعرض تماس پرخطر قرار گرفته باشید</string>
+  <string name="share_test_result_home_screen_title">هم‌رسانی کردن نتایج آزمایش</string>
+  <string name="have_questions">سؤالی دارید؟</string>
+  <string name="check_exposure_status">بررسی وضعیت تماس پرخطر</string>
+  <string name="en_active">فعال</string>
+  <string name="en_inactive">غیرفعال</string>
+  <string name="exposure_checks_activity_title">سوابق بررسی‌های اخیر</string>
+  <string name="sharing_history_activity_title">سابقه هم‌رسانی</string>
+  <string name="no_recent_exposure_card_content_no_checks">هیچ گزارشی مبنی بر تماس پرخطر با کووید-۱۹ پیدا نشد.</string>
+  <string name="no_recent_exposure_card_content">هیچ گزارشی مبنی بر تماس پرخطر با کووید-۱۹ پیدا نشد. آخرین بررسی: %1$s</string>
+  <string name="see_recent_checks_button">دیدن بررسی‌های اخیر</string>
+  <string name="possible_exposure_card_title">تماس پرخطر احتمالی گزارش شده است</string>
+  <string name="possible_exposure_card_contents">نتیجه آزمایش کووید-۱۹ یکی از افرادی که نزدیک شما بوده است مثبت گزارش شده است</string>
+  <string name="see_details_button">دیدن جزئیات</string>
+  <string name="share_test_result_card_title">به جلوگیری از شیوع کووید-۱۹ در جامعه کمک کنید</string>
+  <string name="share_test_result_card_content">هربار که فردی نتیجه مثبت آزمایش خود را هم‌رسانی می‌کند، می‌تواند از ابتلای فرد دیگری به کووید-۱۹ جلوگیری کند. هم‌رسانی کردن نتیجه آزمایش باعث نمی‌شود دیگران شما را شناسایی کنند.</string>
+  <string name="see_history_button">مشاهده سابقه</string>
+  <string name="share_positive_diagnosis_card_content">نتایج آزمایشتان را هم‌رسانی کنید تا به جلوگیری از شیوع کووید-۱۹ کمک کنید</string>
+  <string name="share_app_card_content">برای محافظت بهتر از جامعه، این برنامه را هم‌رسانی کنید</string>
+  <string name="how_en_works_card_content">درباره نحوه عملکرد «اعلان تماس‌های پرخطر» بیشتر بدانید</string>
+</resources>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">Приложението е активно и извършва проверки</string>
+  <string name="app_active_and_checking_info">Това приложение проверява за случаи на евентуално излагане на опасност от заразяване. Използването на съответните известия помага да защитите общността си дори ако ви е била поставена ваксина.</string>
+  <string name="possible_exposure_title">Възможно е да сте били изложен(а) на опасност от заразяване</string>
+  <string name="share_test_result_home_screen_title">Споделяне на резултата от теста ви</string>
+  <string name="have_questions">Имате въпроси?</string>
+  <string name="check_exposure_status">Проверка на състоянието ви във връзка с излагането на опасност от заразяване</string>
+  <string name="en_active">Активно</string>
+  <string name="en_inactive">Неактивно</string>
+  <string name="exposure_checks_activity_title">Информация за скорошните проверки</string>
+  <string name="sharing_history_activity_title">Споделяне на историята</string>
+  <string name="no_recent_exposure_card_content_no_checks">Няма информация за евентуално излагане на опасност от заразяване с COVID-19.</string>
+  <string name="no_recent_exposure_card_content">Няма информация за евентуално излагане на опасност от заразяване с COVID-19. Последна проверка: %1$s</string>
+  <string name="see_recent_checks_button">Преглед на скорошните проверки</string>
+  <string name="possible_exposure_card_title">Сигнал за евентуално излагане на опасност от заразяване</string>
+  <string name="possible_exposure_card_contents">Човек, до когото сте били в близост, има положителен резултат от тест за COVID-19</string>
+  <string name="see_details_button">Преглед на подробностите</string>
+  <string name="share_test_result_card_title">Помогнете за предотвратяване на разпространението на COVID-19 в общността ви</string>
+  <string name="share_test_result_card_content">Всеки път, когато някой сподели положителен резултат от тест, това може да предотврати друг случай на заразяване с COVID-19. Споделянето на резултата от теста ви няма да разкрие самоличността ви.</string>
+  <string name="see_history_button">Преглед на историята</string>
+  <string name="share_positive_diagnosis_card_content">Споделете резултата от теста си, за да помогнете за предотвратяване на разпространението на COVID-19</string>
+  <string name="share_app_card_content">Споделете това приложение, така че общността ви да бъде защитена по-добре</string>
+  <string name="how_en_works_card_content">Научете повече за това как работи системата за известия за излагане на опасност от заразяване</string>
+</resources>

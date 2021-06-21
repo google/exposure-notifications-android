@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">Колдонмо иштеп жатат</string>
+  <string name="app_active_and_checking_info">Бул колдонмо ооруну жугузуп алуу коркунучун текшерүүдө. Вакцина алсаңыз да, Ооруну жугузуп алуу коркунучу тууралуу билдирмелер аркылуу коомдоштугуңузду коргоого жардам бере аласыз.</string>
+  <string name="possible_exposure_title">Ооруну жугузуп алган болушуңуз мүмкүн</string>
+  <string name="share_test_result_home_screen_title">Анализиңиздин жыйынтыгын бөлүшүңүз</string>
+  <string name="have_questions">Суроолоруңуз барбы?</string>
+  <string name="check_exposure_status">Ооруну жугузуп алуу коркунучуна байланыштуу абалыңызды текшериңиз</string>
+  <string name="en_active">Жигердүү</string>
+  <string name="en_inactive">Жигерсиз</string>
+  <string name="exposure_checks_activity_title">Акыркы текшерүүлөр боюнча маалымат</string>
+  <string name="sharing_history_activity_title">Таржымалды бөлүшүү</string>
+  <string name="no_recent_exposure_card_content_no_checks">COVID-19 вирусун жугузуп алуу коркунучу катталган жок.</string>
+  <string name="no_recent_exposure_card_content">COVID-19 вирусун жугузуп алуу коркунучу катталган жок. Акыркы жолу качан текшерилген: %1$s</string>
+  <string name="see_recent_checks_button">Акыркы текшерүүлөрдү көрүү</string>
+  <string name="possible_exposure_card_title">Ооруну жугузуп алуу коркунучу катталды</string>
+  <string name="possible_exposure_card_contents">Сиз менен жакын аралыкта болгон кимдир бирөөнүн COVID-19 анализинин жыйынтыгы оң болуп чыкты</string>
+  <string name="see_details_button">Чоо-жайын көрүү</string>
+  <string name="share_test_result_card_title">COVID-19 вирусунун жайылышын токтотууга жардам бериңиз</string>
+  <string name="share_test_result_card_content">Каалагандар анализинин оң жыйынтыгын бөлүшүү менен, COVID-19 оорусунун жаңы учурларын токтотууга жардам бере алат. Анализиңиздин жыйынтыгын бөлүшкөндө, купуялыгыңыз сакталат.</string>
+  <string name="see_history_button">Таржымалды көрүү</string>
+  <string name="share_positive_diagnosis_card_content">COVID-19 вирусунун жайылышын токтотууга жардам берүү үчүн анализиңиздин жыйынтыгын бөлүшүңүз</string>
+  <string name="share_app_card_content">Коомдоштугуңузду коргоо үчүн бул колдонмону бөлүшүңүз</string>
+  <string name="how_en_works_card_content">Ооруну жугузуп алуу коркунучу тууралуу билдирмелер кандайча иштей турганын билип алыңыз</string>
+</resources>

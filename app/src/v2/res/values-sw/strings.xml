@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">Programu inatumika na inakagua</string>
+  <string name="app_active_and_checking_info">Programu hii inakagua ili kubaini matukio ya kukaribia aliyeambukizwa. Kutumia Arifa Kuhusu Kukaribia Aliye na COVID-19 hukusaidia kulinda jumuiya yako - hata ikiwa umeshapata chanjo.</string>
+  <string name="possible_exposure_title">Huenda umemkaribia mtu aliyeambukizwa</string>
+  <string name="share_test_result_home_screen_title">Shiriki matokeo yako ya COVID-19</string>
+  <string name="have_questions">Una maswali?</string>
+  <string name="check_exposure_status">Angalia hali yako ya kukaribia aliyeambukizwa</string>
+  <string name="en_active">Inatumika</string>
+  <string name="en_inactive">Haitumiki</string>
+  <string name="exposure_checks_activity_title">Rekodi ya matukio ya ukaguzi ya hivi majuzi</string>
+  <string name="sharing_history_activity_title">Historia ya uhamishaji</string>
+  <string name="no_recent_exposure_card_content_no_checks">Hakuna ripoti kuhusu hatari ya kukaribia aliyeambukizwa COVID-19.</string>
+  <string name="no_recent_exposure_card_content">Hakuna ripoti kuhusu hatari ya kukaribia aliyeambukizwa COVID-19. Ilikagua mwisho %1$s</string>
+  <string name="see_recent_checks_button">Angalia ukaguzi wa hivi majuzi</string>
+  <string name="possible_exposure_card_title">Hali ya kukaribia aliyeambukizwa imeripotiwa</string>
+  <string name="possible_exposure_card_contents">Mtu uliyemkaribia amethibitishwa kuwa ameambukizwa COVID-19</string>
+  <string name="see_details_button">Angalia maelezo</string>
+  <string name="share_test_result_card_title">Tusaidie kuzuia COVID-19 katika jumuiya yako</string>
+  <string name="share_test_result_card_content">Kila mara mtu anaposhiriki matokeo yanayothibitisha kuwa ameambukizwa, yanaweza kusaidia kuzuia maambukizi mengine ya COVID-19. Kushiriki matokeo yako hakutakutambulisha kwa wengine.</string>
+  <string name="see_history_button">Angalia historia</string>
+  <string name="share_positive_diagnosis_card_content">Shiriki matokeo yako baada ya kupimwa ili usaidie kuzuia kuenea kwa COVID-19</string>
+  <string name="share_app_card_content">Shiriki programu hii ili ulinde jumuiya yako vyema</string>
+  <string name="how_en_works_card_content">Pata maelezo zaidi kuhusu jinsi Arifa Kuhusu Kukaribia Aliye na COVID-19 zinavyofanya kazi</string>
+</resources>

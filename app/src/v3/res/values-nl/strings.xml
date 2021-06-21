@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="onboarding_activity_title">Introductie</string>
+  <string name="share_history_activity_title">Deelgeschiedenis bekijken</string>
+  <string name="remove_region_link_title">Regio verwijderen</string>
+  <string name="delete_shared_diagnosis">Gedeeld testresultaat verwijderen</string>
+  <string name="active_region_subtitle">%1$s is momenteel ingesteld als je actieve regio voor blootstellingsmeldingen</string>
+  <string name="active_region_subtitle_en_off">%1$s is ingesteld als je actieve regio, maar blootstellingsmeldingen staan uit voor je telefoon</string>
+  <string name="remove_region_title">Regio verwijderen</string>
+  <string name="remove_region_detail">Als je je regio verwijdert, worden blootstellingsmeldingen uitgezet. Je kunt deze regio altijd weer toevoegen.</string>
+  <string name="btn_remove">Verwijderen</string>
+  <string name="exposure_notifications_is_off">Blootstellingsmeldingen staan uit</string>
+  <string name="possible_exposure">Mogelijke blootstelling</string>
+  <string name="share_history_delete_test_result_title">Dit testresultaat verwijderen?</string>
+  <string name="share_history_delete_test_result_detail">Je COVID-19-testresultaat van %1$s wordt verwijderd van je telefoon.</string>
+</resources>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">האפליקציה פעילה ומבצעת בדיקות</string>
+  <string name="app_active_and_checking_info">האפליקציה הזו בודקת מקרי חשיפה אפשריים לנגיף. השימוש בהתראות החשיפה עוזר להגן על הקהילה, גם לאחר קבלת החיסון.</string>
+  <string name="possible_exposure_title">ייתכן שנחשפת לנגיף</string>
+  <string name="share_test_result_home_screen_title">שיתוף תוצאת הבדיקה שלך</string>
+  <string name="have_questions">יש לך שאלות?</string>
+  <string name="check_exposure_status">בדיקת סטטוס החשיפה שלך</string>
+  <string name="en_active">פעילות</string>
+  <string name="en_inactive">לא פעילות</string>
+  <string name="exposure_checks_activity_title">תיעוד של בדיקות החשיפה האחרונות לנגיף</string>
+  <string name="sharing_history_activity_title">שיתוף ההיסטוריה</string>
+  <string name="no_recent_exposure_card_content_no_checks">לא נמצאו דיווחים על סיכוני חשיפה לנגיף הקורונה (COVID-19).</string>
+  <string name="no_recent_exposure_card_content">לא נמצאו דיווחים על סיכוני חשיפה לנגיף הקורונה (COVID-19). בדיקה אחרונה: %1$s</string>
+  <string name="see_recent_checks_button">לבדיקות החשיפה האחרונות</string>
+  <string name="possible_exposure_card_title">דיווח על חשיפה אפשרית</string>
+  <string name="possible_exposure_card_contents">מישהו ששהית בקרבתו קיבל תוצאה חיובית בבדיקה לנגיף הקורונה (COVID-19)</string>
+  <string name="see_details_button">פרטים נוספים</string>
+  <string name="share_test_result_card_title">רוצה לעזור לקהילה להימנע מהידבקויות בנגיף הקורונה (COVID-19)?</string>
+  <string name="share_test_result_card_content">כל שיתוף של תוצאת בדיקה חיובית יכול לעזור למנוע מקרה נוסף של הידבקות בנגיף הקורונה (COVID-19). שיתוף תוצאת הבדיקה שלך לא יחשוף את זהותך לאחרים.</string>
+  <string name="see_history_button">להיסטוריה</string>
+  <string name="share_positive_diagnosis_card_content">אפשר לשתף את תוצאת הבדיקה שלך כדי לעזור בבלימת ההתפשטות של נגיף הקורונה (COVID-19)</string>
+  <string name="share_app_card_content">אפשר לשתף את האפליקציה הזו כדי להגן טוב יותר על הקהילה</string>
+  <string name="how_en_works_card_content">מידע נוסף על האופן שבו פועלות התראות החשיפה</string>
+</resources>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">Rakendus on aktiivne ja kontrollib</string>
+  <string name="app_active_and_checking_info">Rakendus kontrollib võimalikke kokkupuuteid. Kokkupuute märguannete kasutamine aitab teil kaitsta oma kogukonda – isegi kui olete vaktsineeritud.</string>
+  <string name="possible_exposure_title">Võisite viirusega kokku puutuda</string>
+  <string name="share_test_result_home_screen_title">Jagage testitulemust</string>
+  <string name="have_questions">Kas teil on küsimusi?</string>
+  <string name="check_exposure_status">Kontrollige oma kokkupuutumise olekut</string>
+  <string name="en_active">Aktiivne</string>
+  <string name="en_inactive">Mitteaktiivne</string>
+  <string name="exposure_checks_activity_title">Viimaste kontrollide kirjed</string>
+  <string name="sharing_history_activity_title">Jagage ajalugu</string>
+  <string name="no_recent_exposure_card_content_no_checks">Ei leitud teavitatud COVID-19-ga kokkupuute ohtu.</string>
+  <string name="no_recent_exposure_card_content">Ei leitud teavitatud COVID-19-ga kokkupuute ohtu. Viimati kontrolliti %1$s</string>
+  <string name="see_recent_checks_button">Kuva viimaseid kontrolle</string>
+  <string name="possible_exposure_card_title">Võimaliku kokkupuute teavitus</string>
+  <string name="possible_exposure_card_contents">Keegi, kelle läheduses olete viibinud, andis positiivse COVID-19-proovi</string>
+  <string name="see_details_button">Kuva üksikasjad</string>
+  <string name="share_test_result_card_title">Aidake vältida COVID-19 levikut oma kogukonnas</string>
+  <string name="share_test_result_card_content">Iga kord, kui keegi jagab oma positiivset testitulemust, aitab see takistada järgmist COVID-19-ga nakatumise juhtumit. Testitulemuse jagamine on anonüümne.</string>
+  <string name="see_history_button">Kuva ajalugu</string>
+  <string name="share_positive_diagnosis_card_content">Jagage oma testitulemust, et aidata COVID-19 levikut takistada</string>
+  <string name="share_app_card_content">Jagage seda rakendust, et oma kogukonda paremini kaitsta</string>
+  <string name="how_en_works_card_content">Vaadake lisateavet selle kohta, kuidas kokkupuute märguannete süsteem toimib</string>
+</resources>

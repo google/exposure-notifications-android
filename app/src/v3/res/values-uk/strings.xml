@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="onboarding_activity_title">Реєстрація</string>
+  <string name="share_history_activity_title">Переглянути історію повідомлень</string>
+  <string name="remove_region_link_title">Вилучити регіон</string>
+  <string name="delete_shared_diagnosis">Видалити повідомлений результат тесту</string>
+  <string name="active_region_subtitle">Наразі %1$s – активний регіон для Сповіщень про ризик зараження.</string>
+  <string name="active_region_subtitle_en_off">%1$s – активний регіон, але на вашому телефоні вимкнено Сповіщення про ризик зараження</string>
+  <string name="remove_region_title">Вилучити регіон</string>
+  <string name="remove_region_detail">Якщо вилучити ваш регіон, Сповіщення про ризик зараження буде вимкнено. Ви зможете будь-коли додати його знову.</string>
+  <string name="btn_remove">Вилучити</string>
+  <string name="exposure_notifications_is_off">Сповіщення про ризик зараження вимкнено</string>
+  <string name="possible_exposure">Можливий ризик зараження</string>
+  <string name="share_history_delete_test_result_title">Видалити цей результат тесту?</string>
+  <string name="share_history_delete_test_result_detail">Ваш результат тесту на COVID-19 від %1$s буде видалено з телефона.</string>
+</resources>

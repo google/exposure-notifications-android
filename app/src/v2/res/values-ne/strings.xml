@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">एप चलिरहेको छ र जाँच गरिरहेको छ</string>
+  <string name="app_active_and_checking_info">यो एपले तपाईं सम्भवतः सङ्क्रमित व्यक्तिको सम्पर्कमा आउनुभएको छ कि छैन भन्ने कुरा जाँच गरिरहेको छ। तपाईंले खोप लगाइसक्नुभएको छ भने पनि तपाईं सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सूचना दिने प्रणाली प्रयोग गरी आफ्नो समुदायलाई सुरक्षित राख्न मद्दत गर्न सक्नुहुन्छ।</string>
+  <string name="possible_exposure_title">तपाईं सङ्क्रमित व्यक्तिको सम्पर्कमा आउनुभएको हुन सक्छ</string>
+  <string name="share_test_result_home_screen_title">आफ्नो परीक्षणको नतिजा सेयर गर्नुहोस्</string>
+  <string name="have_questions">प्रश्न सोध्न चाहनुहुन्छ?</string>
+  <string name="check_exposure_status">तपाईं सङ्क्रमित व्यक्तिको सम्पर्कमा आउनुभएको छ कि छैन भन्ने कुरा जाँच्नुहोस्</string>
+  <string name="en_active">सक्रिय छ</string>
+  <string name="en_inactive">निष्क्रिय छ</string>
+  <string name="exposure_checks_activity_title">हालसालै गरिएका चेक इनहरूको रेकर्ड</string>
+  <string name="sharing_history_activity_title">विगतमा सेयर गरिएको जानकारी</string>
+  <string name="no_recent_exposure_card_content_no_checks">तपाईं COVID-19 लागेको जानकारी पेस गर्ने कुनै पनि व्यक्तिको सम्पर्कमा आउनुभएको छैन।</string>
+  <string name="no_recent_exposure_card_content">तपाईं COVID-19 लागेको जानकारी पेस गर्ने कुनै पनि व्यक्तिको सम्पर्कमा आउनुभएको छैन। पछिल्लो पटक जाँच गरिएको मिति: %1$s</string>
+  <string name="see_recent_checks_button">हालसालै गरिएका जाँचहरू हेर्नुहोस्</string>
+  <string name="possible_exposure_card_title">तपाईं सङ्क्रमित व्यक्तिको सम्पर्कमा आएको हुन सक्ने जानकारी प्राप्त भएको छ</string>
+  <string name="possible_exposure_card_contents">तपाईंसँग सम्पर्कमा आएका कुनै व्यक्तिले COVID-19 परीक्षणमा आफ्नो नतिजा पोजेटिभ देखिएको जानकारी पेस गर्नुभएको छ</string>
+  <string name="see_details_button">विवरणहरू हेर्नुहोस्</string>
+  <string name="share_test_result_card_title">आफ्नो समुदायमा COVID-19 रोकथाम गर्न सघाउनुहोस्</string>
+  <string name="share_test_result_card_content">कसैले परीक्षणको नतिजा पोजेटिभ आएको जानकारी पेस गर्दा हरेक पटक COVID-19 को अर्को सङ्क्रमण रोक्न मद्दत पुग्न सक्छ। तपाईंले आफ्नो परीक्षणको नतिजा सेयर गर्दा तपाईंको परिचय गोप्य राखिन्छ।</string>
+  <string name="see_history_button">इतिहास हेर्नुहोस्</string>
+  <string name="share_positive_diagnosis_card_content">COVID-19 फैलन नदिने कार्यमा मद्दत पुर्‍याउन आफ्नो परीक्षणको नतिजा सेयर गर्नुहोस्</string>
+  <string name="share_app_card_content">आफ्नो समुदायलाई अझ सुरक्षित राख्न यो एप सेयर गर्नुहोस्</string>
+  <string name="how_en_works_card_content">सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सूचना दिने प्रणालीले काम गर्ने तरिकाका बारेमा थप जान्नुहोस्</string>
+</resources>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">ایپ فعال ہے اور جانچ کر رہی ہے</string>
+  <string name="app_active_and_checking_info">ایپ ممکنہ ایکسپوژرز کیلئے جانچ کر رہی ہے۔ ایکسپوژر نوٹیفیکیشنز کا استعمال کرنے سے آپ کو اپنی کمیونٹی کی حفاظت کرنے میں مدد ملتی ہے - اگرچہ آپ نے ویکسین بھی لگوائی ہو۔</string>
+  <string name="possible_exposure_title">ہو سکتا ہے کہ آپ متاثر ہوئے ہوں</string>
+  <string name="share_test_result_home_screen_title">اپنے ٹیسٹ کے نتیجے کا اشتراک کریں</string>
+  <string name="have_questions">سوالات پوچھنا چاہتے ہیں؟</string>
+  <string name="check_exposure_status">اپنا ایکسپوژر اسٹیٹس چیک کریں</string>
+  <string name="en_active">فعال ہے</string>
+  <string name="en_inactive">غیر فعال ہے</string>
+  <string name="exposure_checks_activity_title">حالیہ چیک انز کا ریکارڈ</string>
+  <string name="sharing_history_activity_title">سرگزشت کا اشتراک کریں</string>
+  <string name="no_recent_exposure_card_content_no_checks">COVID-19 ایکسپوژر کے خطرہ کی کوئی اطلاع نہیں ملی۔</string>
+  <string name="no_recent_exposure_card_content">COVID-19 ایکسپوژر کے خطرہ کی کوئی اطلاع نہیں ملی۔ آخری بار %1$s کو جانچ کی گئی</string>
+  <string name="see_recent_checks_button">حالیہ جانچیں دیکھیں</string>
+  <string name="possible_exposure_card_title">ممکنہ ایکسپوژر کی اطلاع دی گئی</string>
+  <string name="possible_exposure_card_contents">کوئی جس کے آپ قریب تھے اس کا COVID-19 کا ٹیسٹ مثبت نکلا ہے</string>
+  <string name="see_details_button">تفصیلات دیکھیں</string>
+  <string name="share_test_result_card_title">اپنی کمیونٹی میں COVID-19 کو روکنے میں مدد کریں</string>
+  <string name="share_test_result_card_content">ہر بار جب کوئی مثبت ٹیسٹ کے نتیجے کا اشتراک کرتا ہے تو یہ COVID-19 کے کسی اور کیس کو روکنے میں مدد کر سکتا ہے۔ اپنے ٹیسٹ کے نتیجے کا اشتراک کرنے سے دیگر لوگ آپ کی شناخت نہیں کر سکیں گے۔</string>
+  <string name="see_history_button">سرگزشت دیکھیں</string>
+  <string name="share_positive_diagnosis_card_content">COVID-19 کے پھیلاؤ کو روکنے میں مدد کرنے کیلئے اپنے ٹیسٹ کے نتیجے کا اشتراک کریں</string>
+  <string name="share_app_card_content">اپنی کمیونٹی کی بہتر حفاظت کیلئے اس ایپ کا اشتراک کریں</string>
+  <string name="how_en_works_card_content">ایکسپوژر نوٹیفیکیشنز کے کام کرنے طریقے کے بارے میں مزید جانیں</string>
+</resources>

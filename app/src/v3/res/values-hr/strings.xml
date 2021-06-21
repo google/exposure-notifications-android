@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="onboarding_activity_title">Integracija</string>
+  <string name="share_history_activity_title">Pogledajte povijest dijeljenja</string>
+  <string name="remove_region_link_title">Uklonite regiju</string>
+  <string name="delete_shared_diagnosis">Izbrišite podijeljeni rezultat testiranja</string>
+  <string name="active_region_subtitle">Regija %1$s trenutačno je postavljena kao vaša aktivna regija za Obavješćivanje o izloženosti</string>
+  <string name="active_region_subtitle_en_off">Regija %1$s postavljena je kao vaša aktivna regija, ali Obavješćivanje o izloženosti isključeno je za vaš telefon</string>
+  <string name="remove_region_title">Uklanjanje regije</string>
+  <string name="remove_region_detail">Uklanjanjem regije isključit ćete Obavješćivanje o izloženosti. Regiju možete ponovo dodati kad god želite.</string>
+  <string name="btn_remove">Ukloni</string>
+  <string name="exposure_notifications_is_off">Obavješćivanje o izloženosti je isključeno</string>
+  <string name="possible_exposure">Moguća izloženost</string>
+  <string name="share_history_delete_test_result_title">Izbrisati rezultat testiranja?</string>
+  <string name="share_history_delete_test_result_detail">Vaš rezultat testiranja na COVID-19 od %1$s izbrisat će se s vašeg telefona.</string>
+</resources>

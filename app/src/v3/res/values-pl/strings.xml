@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="onboarding_activity_title">Wprowadzenie</string>
+  <string name="share_history_activity_title">Zobacz historię udostępniania</string>
+  <string name="remove_region_link_title">Usuń region</string>
+  <string name="delete_shared_diagnosis">Usuń udostępniony wynik testu</string>
+  <string name="active_region_subtitle">%1$s jest obecnie aktywnym regionem dla powiadomień o narażeniu na kontakt</string>
+  <string name="active_region_subtitle_en_off">%1$s jest aktywnym regionem dla powiadomień o narażeniu na kontakt, ale są one wyłączone</string>
+  <string name="remove_region_title">Usuń region</string>
+  <string name="remove_region_detail">Usunięcie regionu spowoduje wyłączenie powiadomień o narażeniu na kontakt. W dowolnej chwili możesz ponownie dodać ten region.</string>
+  <string name="btn_remove">Usuń</string>
+  <string name="exposure_notifications_is_off">Powiadomienia o narażeniu na kontakt są wyłączone</string>
+  <string name="possible_exposure">Możliwe narażenie na kontakt</string>
+  <string name="share_history_delete_test_result_title">Usunąć ten wynik testu?</string>
+  <string name="share_history_delete_test_result_detail">Wynik testu na COVID-19 z %1$s zostanie usunięty z telefonu.</string>
+</resources>

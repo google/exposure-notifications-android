@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="onboarding_activity_title">Incorporació</string>
+  <string name="share_history_activity_title">Mostra l\'historial de compartició</string>
+  <string name="remove_region_link_title">Suprimeix la regió</string>
+  <string name="delete_shared_diagnosis">Suprimeix el resultat de la prova compartit</string>
+  <string name="active_region_subtitle">%1$s s\'ha definit com la teva regió activa per a Notificacions d\'exposició</string>
+  <string name="active_region_subtitle_en_off">%1$s s\'ha definit com la teva regió activa, però el sistema Notificacions d\'exposició no està activat al teu telèfon</string>
+  <string name="remove_region_title">Suprimeix la regió</string>
+  <string name="remove_region_detail">Suprimir la teva regió desactivarà Notificacions d\'exposició. Pots tornar a afegir aquesta regió en qualsevol moment.</string>
+  <string name="btn_remove">Suprimeix</string>
+  <string name="exposure_notifications_is_off">Les notificacions d\'exposició estan desactivades</string>
+  <string name="possible_exposure">Possible exposició</string>
+  <string name="share_history_delete_test_result_title">Vols suprimir aquest resultat de la prova?</string>
+  <string name="share_history_delete_test_result_detail">El teu resultat de la prova de la COVID-19 del dia %1$s se suprimirà del telèfon.</string>
+</resources>

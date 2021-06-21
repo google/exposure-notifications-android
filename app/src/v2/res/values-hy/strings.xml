@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">Հավելվածն աշխատում է</string>
+  <string name="app_active_and_checking_info">Այս հավելվածը հետագծում է վարակակիրների հետ հնարավոր շփումները։ Օգտագործեք այն, որպեսզի կանխեք հիվանդության տարածումը, անգամ եթե դուք արդեն պատվաստվել եք։</string>
+  <string name="possible_exposure_title">Հավանական շփում վարակակրի հետ</string>
+  <string name="share_test_result_home_screen_title">Կիսվեք ձեր թեստի արդյունքով</string>
+  <string name="have_questions">Հարցե՞ր ունեք</string>
+  <string name="check_exposure_status">Իմացեք վարակակիրների հետ հնարավոր շփումների մասին</string>
+  <string name="en_active">Ակտիվ է</string>
+  <string name="en_inactive">Ակտիվ չէ</string>
+  <string name="exposure_checks_activity_title">Տեղեկություններ վերջին ստուգումների մասին</string>
+  <string name="sharing_history_activity_title">Ուղարկման պատմություն</string>
+  <string name="no_recent_exposure_card_content_no_checks">COVID-19-ով վարակման նոր վտանգ ձեզ համար չի գրանցվել։</string>
+  <string name="no_recent_exposure_card_content">COVID-19-ով վարակման նոր վտանգ ձեզ համար չի գրանցվել։ Վերջին ստուգումը՝ %1$s։</string>
+  <string name="see_recent_checks_button">Դիտել վերջին ստուգումները</string>
+  <string name="possible_exposure_card_title">Հաղորդվել է հնարավոր շփման մասին</string>
+  <string name="possible_exposure_card_contents">COVID-19-ի առկայություն է հաստատվել մի անձի մոտ, որի հետ շփվել եք։</string>
+  <string name="see_details_button">Դիտել մանրամասները</string>
+  <string name="share_test_result_card_title">Օգնեք կանխել COVID-19-ի տարածումը ձեր համայնքում</string>
+  <string name="share_test_result_card_content">Ցանկացած անձ, որը կիսվում է COVID-19-ի իր թեստի դրական արդյունքով, օգնում է կանխել վարակման նոր դեպքերը։ Ընդ որում, վարակված անձի տվյալները մնում են գաղտնի։</string>
+  <string name="see_history_button">Դիտել պատմությունը</string>
+  <string name="share_positive_diagnosis_card_content">Կիսվեք ձեր թեստի արդյունքով և օգնեք կանխել COVID-19-ի տարածումը</string>
+  <string name="share_app_card_content">Կիսվեք այս հավելվածով՝ ձեր համայնքն ավելի լավ պաշտպանելու համար</string>
+  <string name="how_en_works_card_content">Իմացեք ավելին, թե ինչպես են աշխատում վարակման վտանգի մասին ծանուցումները</string>
+</resources>

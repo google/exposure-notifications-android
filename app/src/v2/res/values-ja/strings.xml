@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">アプリは有効で、チェックを実行しています</string>
+  <string name="app_active_and_checking_info">このアプリは陽性者との接触の可能性をチェックしています。ワクチンを接種していても、接触通知システムを利用することは、地域社会を守ることにつながります。</string>
+  <string name="possible_exposure_title">陽性者と接触した可能性があります</string>
+  <string name="share_test_result_home_screen_title">検査結果の共有にご協力ください</string>
+  <string name="have_questions">ご不明な点がある場合</string>
+  <string name="check_exposure_status">陽性者との接触状況のチェック</string>
+  <string name="en_active">有効</string>
+  <string name="en_inactive">無効</string>
+  <string name="exposure_checks_activity_title">最近のチェックの記録</string>
+  <string name="sharing_history_activity_title">履歴の共有</string>
+  <string name="no_recent_exposure_card_content_no_checks">COVID-19 の陽性者との接触のリスクは報告されていません。</string>
+  <string name="no_recent_exposure_card_content">COVID-19 の陽性者との接触のリスクは報告されていません。前回のチェック: %1$s</string>
+  <string name="see_recent_checks_button">最近のチェックを見る</string>
+  <string name="possible_exposure_card_title">陽性者との接触の可能性が報告されました</string>
+  <string name="possible_exposure_card_contents">近くにいた人の COVID-19（新型コロナウイルス感染症）の検査結果が陽性でした</string>
+  <string name="see_details_button">詳細を表示</string>
+  <string name="share_test_result_card_title">地域社会での COVID-19 感染拡大防止への協力</string>
+  <string name="share_test_result_card_content">陽性の検査結果が共有される件数が増えるほど、COVID-19 の感染拡大防止につながります。検査結果を共有しても、個人が特定されることはありません。</string>
+  <string name="see_history_button">履歴を表示</string>
+  <string name="share_positive_diagnosis_card_content">検査結果を共有して、COVID-19 の感染拡大防止にご協力ください</string>
+  <string name="share_app_card_content">このアプリを共有して、地域社会を守りましょう</string>
+  <string name="how_en_works_card_content">詳しくは、接触通知システムの仕組みについての説明をご覧ください</string>
+</resources>

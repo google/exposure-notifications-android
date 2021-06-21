@@ -1,0 +1,93 @@
+/*
+ * Copyright 2021 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
+package com.google.android.apps.exposurenotification.home;
+
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.view.View;
+import androidx.annotation.Nullable;
+import com.google.android.apps.exposurenotification.common.IntentUtil;
+import com.google.android.apps.exposurenotification.exposure.PossibleExposureFragment;
+import com.google.android.apps.exposurenotification.notify.ShareDiagnosisFragment;
+import com.google.android.apps.exposurenotification.settings.ExposureAboutFragment;
+import com.google.common.base.Optional;
+import dagger.hilt.android.AndroidEntryPoint;
+
+/**
+ * Main Activity for the Exposure Notification Application.
+ *
+ * <p>This activity uses fragments to show the various screens of the application.
+ */
+@AndroidEntryPoint
+public final class ExposureNotificationActivity extends BaseActivity {
+
+  private static final String TAG = "ExposureNotifnActivity";
+
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+  }
+
+  @Override
+  protected void handleIntent(@Nullable String action, @Nullable Bundle extras, @Nullable Uri uri,
+      boolean isOnNewIntent) {
+    if (extras == null) {
+      extras = new Bundle();
+    }
+
+    switch (action == null ? "" : action) {
+      case Intent.ACTION_VIEW:
+        BaseFragment shareDiagnosisFragment;
+        Optional<String> codeFromDeepLink = IntentUtil.maybeGetCodeFromDeepLinkUri(uri);
+        if (codeFromDeepLink.isPresent()) {
+          shareDiagnosisFragment = ShareDiagnosisFragment.newInstance(codeFromDeepLink.get());
+        } else {
+          finish();
+          return;
+        }
+        transitionToFragmentThroughAnotherFragmentWithBackStack(
+            /* destinationFragment= */shareDiagnosisFragment,
+            /* transitFragment= */SinglePageHomeFragment.newInstance());
+        break;
+      case Intent.ACTION_MAIN:
+        if (extras.getBoolean(IntentUtil.EXTRA_NOTIFICATION, false)
+            && exposureNotificationViewModel.isPossibleExposurePresent()) {
+          exposureNotificationViewModel.updateLastExposureNotificationLastClickedTime();
+          BaseFragment possibleExposureFragment = PossibleExposureFragment.newInstance();
+          transitionToFragmentThroughAnotherFragmentWithBackStack(
+              /* destinationFragment= */possibleExposureFragment,
+              /* transitFragment= */SinglePageHomeFragment.newInstance());
+        } else {
+          transitionToFragmentDirect(isOnNewIntent
+              ? SinglePageHomeFragment.newInstance() : SplashFragment.newInstance());
+        }
+        break;
+      default:
+        transitionToFragmentDirect(SplashFragment.newInstance());
+        break;
+    }
+  }
+
+  /**
+   * Open the exposure notifications about fragment.
+   */
+  public void launchExposureNotificationsAbout(View view) {
+    transitionToFragmentWithBackStack(ExposureAboutFragment.newInstance());
+  }
+}

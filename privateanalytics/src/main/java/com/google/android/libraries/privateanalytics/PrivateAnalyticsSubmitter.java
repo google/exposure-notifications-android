@@ -18,6 +18,7 @@
 package com.google.android.libraries.privateanalytics;
 
 import android.os.Build.VERSION_CODES;
+import android.text.TextUtils;
 import android.util.Log;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.VisibleForTesting;
@@ -98,6 +99,13 @@ public class PrivateAnalyticsSubmitter {
 
           if (!privateAnalyticsEnabledProvider.isEnabledForUser()) {
             Log.i(TAG, "Private analytics enabled but not turned on");
+            return Futures.immediateFuture(null);
+          }
+
+          if (TextUtils.isEmpty(remoteConfigs.facilitatorCertificate())
+              || TextUtils.isEmpty(remoteConfigs.phaCertificate())) {
+            Log.i(TAG,
+                "Private analytics enabled but missing a facilitator/PHA certificate");
             return Futures.immediateFuture(null);
           }
 

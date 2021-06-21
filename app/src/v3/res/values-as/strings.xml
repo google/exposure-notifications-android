@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="onboarding_activity_title">অনব’ৰ্ডিং</string>
+  <string name="share_history_activity_title">শ্বেয়াৰ কৰাৰ ইতিহাস চাওক</string>
+  <string name="remove_region_link_title">অঞ্চলটো আঁতৰাওক</string>
+  <string name="delete_shared_diagnosis">শ্বেয়াৰ কৰা পৰীক্ষাৰ ফলাফল মচক</string>
+  <string name="active_region_subtitle">%1$sক বৰ্তমান আপোনাৰ অঞ্চলত এক্সপ’জাৰ ন’টিফিকেশ্বনৰ বাবে সক্ৰিয় হিচাপে ছেট কৰা হৈছে</string>
+  <string name="active_region_subtitle_en_off">%1$sক আপোনাৰ সক্ৰিয় অঞ্চল হিচাপে ছেট কৰা হৈছে কিন্তু আপোনাৰ ফ’নটোৰ বাবে এক্সপ’জাৰ ন’টিফিকেশ্বন অফ হৈ আছে</string>
+  <string name="remove_region_title">অঞ্চলটো আঁতৰাওক</string>
+  <string name="remove_region_detail">আপোনাৰ অঞ্চলটো আঁতৰালে এক্সপ’জাৰ ন’টিফিকেশ্বন অফ হ’ব। আপুনি যিকোনো সময়তে এই অঞ্চলটো পুনৰ যোগ দিব পাৰে।</string>
+  <string name="btn_remove">আঁতৰাওক</string>
+  <string name="exposure_notifications_is_off">এক্সপ’জাৰ ন’টিফিকেশ্বন অফ হৈ আছে</string>
+  <string name="possible_exposure">সংস্পৰ্শলৈ অহাৰ সম্ভাৱনা</string>
+  <string name="share_history_delete_test_result_title">এই পৰীক্ষাৰ ফলাফলটো মচিবনে?</string>
+  <string name="share_history_delete_test_result_detail">%1$sৰ পৰা আপোনাৰ COVID-19ৰ পৰীক্ষাৰ ফলাফল আপোনাৰ ফ’নৰ পৰা মচা যাব।</string>
+</resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="onboarding_activity_title">Рэгістрацыя</string>
+  <string name="share_history_activity_title">Паказаць гісторыю абагульванняў</string>
+  <string name="remove_region_link_title">Выдаліць рэгіён</string>
+  <string name="delete_shared_diagnosis">Выдаліць абагуленыя вынікі тэста</string>
+  <string name="active_region_subtitle">Апавяшчэнні пра рызыку заражэння цяпер уключаны для рэгіёна %1$s</string>
+  <string name="active_region_subtitle_en_off">Апавяшчэнні пра рызыку заражэння выключаны на вашым тэлефоне для рэгіёна %1$s</string>
+  <string name="remove_region_title">Выдаліць рэгіён</string>
+  <string name="remove_region_detail">Выдаленне рэгіёна выключыць Апавяшчэнні пра рызыку заражэння. Вы можаце ў любы час зноў дадаць гэты рэгіён.</string>
+  <string name="btn_remove">Выдаліць</string>
+  <string name="exposure_notifications_is_off">Апавяшчэнні пра рызыку заражэння выключаны</string>
+  <string name="possible_exposure">Магчымае заражэнне</string>
+  <string name="share_history_delete_test_result_title">Выдаліць вынікі гэтага тэста?</string>
+  <string name="share_history_delete_test_result_detail">Вынікі вашага тэста на COVID-19 ад %1$s будуць выдалены з вашага тэлефона.</string>
+</resources>

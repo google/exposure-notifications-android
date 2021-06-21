@@ -17,16 +17,27 @@
 
 package com.google.android.apps.exposurenotification.notify;
 
+import android.app.Activity;
+import android.app.PendingIntent;
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.Resources;
-import android.net.UrlQuerySanitizer;
+import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.IntentSenderRequest;
+import androidx.activity.result.contract.ActivityResultContracts.StartIntentSenderForResult;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
+import androidx.fragment.app.Fragment;
+import androidx.hilt.Assisted;
 import androidx.hilt.lifecycle.ViewModelInject;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.SavedStateHandle;
 import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 import com.google.android.apps.exposurenotification.R;
@@ -36,6 +47,7 @@ import com.google.android.apps.exposurenotification.common.Qualifiers.ScheduledE
 import com.google.android.apps.exposurenotification.common.SingleLiveEvent;
 import com.google.android.apps.exposurenotification.common.TaskToFutureAdapter;
 import com.google.android.apps.exposurenotification.common.time.Clock;
+import com.google.android.apps.exposurenotification.home.ExposureNotificationViewModel.ExposureNotificationState;
 import com.google.android.apps.exposurenotification.keyupload.Upload;
 import com.google.android.apps.exposurenotification.keyupload.UploadController;
 import com.google.android.apps.exposurenotification.keyupload.UploadController.UploadException;
@@ -49,15 +61,18 @@ import com.google.android.apps.exposurenotification.storage.DiagnosisEntity.Test
 import com.google.android.apps.exposurenotification.storage.DiagnosisEntity.TravelStatus;
 import com.google.android.apps.exposurenotification.storage.DiagnosisRepository;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
+import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.VaccinationStatus;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.nearby.exposurenotification.ExposureNotificationStatusCodes;
 import com.google.android.gms.nearby.exposurenotification.TemporaryExposureKey;
+import com.google.android.libraries.privateanalytics.PrivateAnalyticsEnabledProvider;
 import com.google.auto.value.AutoValue;
 import com.google.common.base.Function;
 import com.google.common.base.Optional;
 import com.google.common.base.Strings;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableList.Builder;
+import com.google.common.collect.ImmutableSet;
 import com.google.common.util.concurrent.FluentFuture;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
@@ -74,7 +89,7 @@ import org.threeten.bp.Duration;
 import org.threeten.bp.LocalDate;
 
 /**
- * View model for {@link ShareDiagnosisActivity} and its child fragments.
+ * View model for the Share Diagnosis flow.
  *
  * <p>Implements all aspects of sharing diagnosis and exposure keys with the keyserver, including:
  *
@@ -91,6 +106,30 @@ public class ShareDiagnosisViewModel extends ViewModel {
 
   private static final String TAG = "ShareDiagnosisViewModel";
 
+  // Keys for storing UI state data in the SavedStateHandle.
+  @VisibleForTesting static final String SAVED_STATE_CODE_IS_INVALID =
+      "ShareDiagnosisViewModel.SAVED_STATE_CODE_IS_INVALID";
+  @VisibleForTesting static final String SAVED_STATE_CODE_IS_VERIFIED =
+      "ShareDiagnosisViewModel.SAVED_STATE_CODE_IS_VERIFIED";
+  @VisibleForTesting static final String SAVED_STATE_SHARE_ADVANCE_SWITCHER_CHILD =
+      "ShareDiagnosisViewModel.SAVED_STATE_SHARE_ADVANCE_SWITCHER_CHILD";
+  @VisibleForTesting static final String SAVED_STATE_VERIFIED_CODE =
+      "ShareDiagnosisViewModel.SAVED_STATE_VERIFIED_CODE";
+  @VisibleForTesting static final String SAVED_STATE_CODE_INPUT =
+      "ShareDiagnosisViewModel.SAVED_STATE_CODE_INPUT";
+  @VisibleForTesting static final String SAVED_STATE_CODE_INPUT_IS_ENABLED =
+      "ShareDiagnosisViewModel.SAVED_STATE_CODE_INPUT_IS_ENABLED";
+
+  public static final Set<ExposureNotificationState> EN_STATES_BLOCKING_SHARING_FLOW =
+      ImmutableSet.of(ExposureNotificationState.DISABLED,
+          ExposureNotificationState.FOCUS_LOST,
+          ExposureNotificationState.STORAGE_LOW,
+          ExposureNotificationState.PAUSED_USER_PROFILE_NOT_SUPPORT,
+          ExposureNotificationState.PAUSED_NOT_IN_ALLOWLIST,
+          ExposureNotificationState.PAUSED_HW_NOT_SUPPORT,
+          ExposureNotificationState.PAUSED_EN_NOT_SUPPORT);
+
+  public static final DiagnosisEntity EMPTY_DIAGNOSIS = DiagnosisEntity.newBuilder().build();
   public static final long NO_EXISTING_ID = -1;
   private static final Duration GET_TEKS_TIMEOUT = Duration.ofSeconds(10);
 
@@ -100,6 +139,7 @@ public class ShareDiagnosisViewModel extends ViewModel {
   private final Resources resources;
   private final Connectivity connectivity;
   private final ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
+  private final PrivateAnalyticsEnabledProvider privateAnalyticsEnabledProvider;
   private final Clock clock;
 
   private final MutableLiveData<Long> currentDiagnosisId = new MutableLiveData<>(NO_EXISTING_ID);
@@ -112,6 +152,9 @@ public class ShareDiagnosisViewModel extends ViewModel {
   private final SingleLiveEvent<Boolean> sharedLiveEvent = new SingleLiveEvent<>();
   private final SingleLiveEvent<Boolean> revealCodeStepEvent = new SingleLiveEvent<>();
 
+  private final MutableLiveData<Optional<VaccinationStatus>> vaccinationStatusForUILiveData =
+      new MutableLiveData<>(Optional.absent());
+
   private final ExecutorService backgroundExecutor;
   private final ExecutorService lightweightExecutor;
   private final ScheduledExecutorService scheduledExecutor;
@@ -119,7 +162,7 @@ public class ShareDiagnosisViewModel extends ViewModel {
   // We use this immutable empty diagnosis livedata until we have a "real" one saved in storage,
   // just to make it nicer for observers; they don't have to check for null.
   private final LiveData<DiagnosisEntity> emptyDiagnosisLiveData =
-      new MutableLiveData<>(DiagnosisEntity.newBuilder().build());
+      new MutableLiveData<>(EMPTY_DIAGNOSIS);
 
   private final MutableLiveData<Step> currentStepLiveData = new MutableLiveData<>();
   private final Stack<Step> backStack = new Stack<>();
@@ -127,9 +170,12 @@ public class ShareDiagnosisViewModel extends ViewModel {
   private final MutableLiveData<String> verificationErrorLiveData = new MutableLiveData<>("");
   private final Context context;
 
+  private SavedStateHandle savedStateHandle;
   private boolean isDeleteOpen = false;
   private boolean isCloseOpen = false;
   private boolean isCodeFromLinkUsed = false;
+  private boolean resumingAndNotConfirmed = false;
+  private boolean restoredFromSavedState;
 
   /**
    * Via this enum, this viewmodel expresses to observers (fragments) what step in the flow the
@@ -142,20 +188,24 @@ public class ShareDiagnosisViewModel extends ViewModel {
   @ViewModelInject
   public ShareDiagnosisViewModel(
       @ApplicationContext Context context,
+      @Assisted SavedStateHandle savedStateHandle,
       UploadController uploadController,
       DiagnosisRepository diagnosisRepository,
       ExposureNotificationClientWrapper exposureNotificationClientWrapper,
       ExposureNotificationSharedPreferences exposureNotificationSharedPreferences,
+      PrivateAnalyticsEnabledProvider privateAnalyticsEnabledProvider,
       Clock clock,
       Connectivity connectivity,
       @BackgroundExecutor ExecutorService backgroundExecutor,
       @LightweightExecutor ExecutorService lightweightExecutor,
       @ScheduledExecutor ScheduledExecutorService scheduledExecutor) {
     this.context = context;
+    this.savedStateHandle = savedStateHandle;
     this.uploadController = uploadController;
     this.diagnosisRepository = diagnosisRepository;
     this.exposureNotificationClientWrapper = exposureNotificationClientWrapper;
     this.exposureNotificationSharedPreferences = exposureNotificationSharedPreferences;
+    this.privateAnalyticsEnabledProvider = privateAnalyticsEnabledProvider;
     this.clock = clock;
     this.connectivity = connectivity;
     this.backgroundExecutor = backgroundExecutor;
@@ -170,6 +220,40 @@ public class ShareDiagnosisViewModel extends ViewModel {
       stepNames.add(step.name());
     }
     return stepNames;
+  }
+
+  /**
+   * Helper methods to make it easy for activities to add resolution handling for releasing TEKs.
+   */
+  public void registerResolutionForActivityResult(Fragment fragment) {
+    ActivityResultLauncher<IntentSenderRequest> resolutionActivityResultLauncher =
+        fragment.registerForActivityResult(
+            new StartIntentSenderForResult(), this::onResolutionComplete);
+
+    getResolutionRequiredLiveEvent()
+        .observe(
+            fragment,
+            apiException -> startResolution(apiException, resolutionActivityResultLauncher));
+  }
+
+  public void onResolutionComplete(ActivityResult activityResult) {
+    if (activityResult.getResultCode() == Activity.RESULT_OK) {
+      // Okay to share, submit data.
+      uploadKeys();
+    } else {
+      inFlightLiveData.setValue(false);
+      setIsShared(Shared.NOT_ATTEMPTED);
+    }
+  }
+
+  private void startResolution(ApiException apiException,
+      ActivityResultLauncher<IntentSenderRequest> resolutionActivityResultLauncher) {
+    PendingIntent resolution = apiException.getStatus().getResolution();
+    if (resolution != null) {
+      IntentSenderRequest intentSenderRequest =
+          new IntentSenderRequest.Builder(resolution).build();
+      resolutionActivityResultLauncher.launch(intentSenderRequest);
+    }
   }
 
   public void setCurrentDiagnosisId(long id) {
@@ -225,7 +309,14 @@ public class ShareDiagnosisViewModel extends ViewModel {
    * Notifies if the code verification has failed with a particular {@link String} error message.
    */
   public LiveData<String> getVerificationErrorLiveData() {
-    return Transformations.distinctUntilChanged(verificationErrorLiveData);
+    return verificationErrorLiveData;
+  }
+
+  /**
+   * Invalidate verification code error if the user inputs a verified code.
+   */
+  public void invalidateVerificationError() {
+    verificationErrorLiveData.postValue("");
   }
 
   /**
@@ -328,6 +419,18 @@ public class ShareDiagnosisViewModel extends ViewModel {
     });
   }
 
+  /**
+   * Tells us which vaccination status radio button was checked to restore state.
+   * Null indicated no checked button.
+   */
+  public LiveData<Optional<VaccinationStatus>> getVaccinationStatusForUILiveData() {
+    return Transformations.distinctUntilChanged(vaccinationStatusForUILiveData);
+  }
+
+  public void setVaccinationStatusForUI(VaccinationStatus vaccinationStatus) {
+    vaccinationStatusForUILiveData.postValue(Optional.of(vaccinationStatus));
+  }
+
   private ListenableFuture<Long> save(
       Function<DiagnosisEntity, DiagnosisEntity> mutator) {
     return FluentFuture.from(getCurrentDiagnosis())
@@ -347,7 +450,7 @@ public class ShareDiagnosisViewModel extends ViewModel {
           if (diagnosis == null) {
             Log.d(TAG, "No diagnosis id [" + currentDiagnosisId
                 + "] exists in storage. Returning a fresh empty one.");
-            return emptyDiagnosisLiveData.getValue();
+            return EMPTY_DIAGNOSIS;
           }
           Log.d(TAG, "Got saved diagnosis for id " + currentDiagnosisId.getValue());
           return diagnosis;
@@ -468,11 +571,13 @@ public class ShareDiagnosisViewModel extends ViewModel {
   }
 
   /**
-   * Call this function in onCreateView() of 'Code' step fragment.
+   * Checks if we are entering the Code step for the deep link flow. Call this function in
+   * {@link ShareDiagnosisCodeFragment#onViewCreated(View, Bundle)}.
+   *
+   * @param codeFromLink code from the deep link.
    */
-  public EnterCodeStepReturnValue enterCodeStep(@Nullable Intent activityStartIntent) {
-    // The sharing diagnosis activity is not started from SMS link.
-    if (activityStartIntent == null || activityStartIntent.getData() == null) {
+  public EnterCodeStepReturnValue enterCodeStep(@Nullable String codeFromLink) {
+    if (Strings.isNullOrEmpty(codeFromLink)) {
       return EnterCodeStepReturnValue.create(true, Optional.absent());
     }
 
@@ -483,14 +588,9 @@ public class ShareDiagnosisViewModel extends ViewModel {
       return EnterCodeStepReturnValue.create(true, Optional.absent());
     }
 
-    String codeFromLink = new UrlQuerySanitizer(
-        activityStartIntent.getData().toString())
-        .getValue("c");
-    if (Strings.isNullOrEmpty(codeFromLink)) {
-      return EnterCodeStepReturnValue.create(true, Optional.absent());
-    }
-
     setCodeFromUrlUsed();
+    setCodeInputForCodeStep(codeFromLink);
+    markUiToBeRestoredFromSavedState(true);
     submitCode(codeFromLink, true);
     return EnterCodeStepReturnValue.create(false, Optional.of(codeFromLink));
   }
@@ -522,7 +622,8 @@ public class ShareDiagnosisViewModel extends ViewModel {
               // If successful, capture the long term token and some diagnosis facts into storage.
               DiagnosisEntity.Builder builder =
                   DiagnosisEntity.newBuilder().setVerificationCode(code)
-                      .setIsCodeFromLink(isCodeFromLink);
+                      .setIsCodeFromLink(isCodeFromLink)
+                      .setSharedStatus(Shared.NOT_ATTEMPTED);
               // The long term token is required.
               builder.setLongTermToken(verifiedUpload.longTermToken());
               // Symptom onset may or may not be provided by the verification server.
@@ -535,6 +636,9 @@ public class ShareDiagnosisViewModel extends ViewModel {
               // like something that could change. Let's check.
               if (verifiedUpload.testType() != null) {
                 builder.setTestResult(TestResult.of(verifiedUpload.testType()));
+              }
+              if (isResumingAndNotConfirmed()) {
+                setResumingAndNotConfirmed(false);
               }
               // Store in the preferences that a verification code has been successfully uploaded.
               exposureNotificationSharedPreferences
@@ -773,4 +877,106 @@ public class ShareDiagnosisViewModel extends ViewModel {
   public boolean isTravelStatusStepSkippable() {
     return ShareDiagnosisFlowHelper.isTravelStatusStepSkippable(context);
   }
+
+  public void setResumingAndNotConfirmed(boolean resumingAndNotConfirmed) {
+    this.resumingAndNotConfirmed = resumingAndNotConfirmed;
+  }
+
+  public boolean isResumingAndNotConfirmed() {
+    return resumingAndNotConfirmed;
+  }
+
+  /**
+   * Sets a boolean flag to indicate if the UI for the Code step in the sharing flow should be
+   * marked as restored from {@link SavedStateHandle} upon the next render.
+   *
+   * @param restoredFromSavedState whether the Code step UI should be marked as restored from
+   *                               saved state upon the next render
+   */
+  public void markUiToBeRestoredFromSavedState(boolean restoredFromSavedState) {
+    this.restoredFromSavedState = restoredFromSavedState;
+  }
+
+  /**
+   * Checks whether the UI for the Code step in the sharing flow has been restored from
+   * {@link SavedStateHandle} (which is the case if the UI has been restored e.g. upon device
+   * configuration changes such as rotations).
+   *
+   * @return a boolean indicating if the UI for the Code step has been restored from the saved state
+   */
+  public boolean isUiToBeRestoredFromSavedState() {
+    return restoredFromSavedState;
+  }
+
+  /*
+   * All the methods below are to store or retrieve the different bits of UI state for the Code step
+   * in the sharing flow with the help of SavedStateHandle.
+   */
+  public void setCodeIsInvalidForCodeStep(boolean isCodeInvalid) {
+    savedStateHandle.set(SAVED_STATE_CODE_IS_INVALID, isCodeInvalid);
+  }
+
+  public LiveData<Boolean> isCodeInvalidForCodeStepLiveData() {
+    return savedStateHandle.getLiveData(SAVED_STATE_CODE_IS_INVALID, false);
+  }
+
+  public void setCodeIsVerifiedForCodeStep(boolean isCodeVerified) {
+    savedStateHandle.set(SAVED_STATE_CODE_IS_VERIFIED, isCodeVerified);
+  }
+
+  public LiveData<Boolean> isCodeVerifiedForCodeStepLiveData() {
+    return savedStateHandle.getLiveData(SAVED_STATE_CODE_IS_VERIFIED, false);
+  }
+
+  public void setSwitcherChildForCodeStep(int displayedChild) {
+    savedStateHandle.set(SAVED_STATE_SHARE_ADVANCE_SWITCHER_CHILD, displayedChild);
+  }
+
+  public LiveData<Integer> getSwitcherChildForCodeStepLiveData() {
+    return savedStateHandle.getLiveData(SAVED_STATE_SHARE_ADVANCE_SWITCHER_CHILD, -1);
+  }
+
+  public void setCodeInputEnabledForCodeStep(boolean codeInputForCodeStepEnabled) {
+    savedStateHandle.set(SAVED_STATE_CODE_INPUT_IS_ENABLED, codeInputForCodeStepEnabled);
+  }
+
+  public LiveData<Boolean> isCodeInputEnabledForCodeStepLiveData() {
+    return savedStateHandle.getLiveData(SAVED_STATE_CODE_INPUT_IS_ENABLED, true);
+  }
+
+  public void setCodeInputForCodeStep(String codeInput) {
+    savedStateHandle.set(SAVED_STATE_CODE_INPUT, codeInput);
+  }
+
+  public LiveData<String> getCodeInputForCodeStepLiveData() {
+    return savedStateHandle.getLiveData(SAVED_STATE_CODE_INPUT, null);
+  }
+
+  public void setVerifiedCodeForCodeStep(@Nullable String verifiedCode) {
+    savedStateHandle.set(SAVED_STATE_VERIFIED_CODE, verifiedCode);
+  }
+
+  public LiveData<String> getVerifiedCodeForCodeStepLiveData() {
+    return savedStateHandle.getLiveData(SAVED_STATE_VERIFIED_CODE, null);
+  }
+
+  public void setLastVaccinationResponse(VaccinationStatus vaccinationStatus) {
+    exposureNotificationSharedPreferences
+        .setLastVaccinationResponse(clock.now(), vaccinationStatus);
+  }
+
+  /**
+   * Check whether we show the vaccination question screen.
+   * We only want to show it, if ALL of the following conditions are true:
+   * - ENPA is supported by the App
+   * - The user has enabled ENPA
+   * - Vaccination question is enabled by the HealthAuthority (empty string indicates it being
+   * disabled)
+   */
+  public boolean showVaccinationQuestion(Resources resources) {
+    return privateAnalyticsEnabledProvider.isSupportedByApp()
+        && privateAnalyticsEnabledProvider.isEnabledForUser()
+        && !TextUtils.isEmpty(resources.getString(R.string.share_vaccination_detail));
+  }
+
 }

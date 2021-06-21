@@ -17,23 +17,20 @@
 
 package com.google.android.apps.exposurenotification.notify;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.ViewSwitcher;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.common.StringUtils;
+import com.google.android.apps.exposurenotification.databinding.ItemDiagnosisEntityBinding;
 import com.google.android.apps.exposurenotification.notify.DiagnosisEntityAdapter.DiagnosisViewHolder;
 import com.google.android.apps.exposurenotification.storage.DiagnosisEntity;
 import com.google.android.apps.exposurenotification.storage.DiagnosisEntity.Shared;
 import com.google.android.apps.exposurenotification.storage.DiagnosisEntity.TestResult;
 import java.util.Collections;
 import java.util.List;
-import org.threeten.bp.format.DateTimeFormatter;
-import org.threeten.bp.format.FormatStyle;
 
 /** View adapter for displaying a list of {@link DiagnosisEntity}. */
 public class DiagnosisEntityAdapter
@@ -41,15 +38,13 @@ public class DiagnosisEntityAdapter
 
   private static final String TAG = "DiagnosisEntityAdapter";
 
-  private List<DiagnosisEntity> diagnosisEntities = Collections.emptyList();
   private final NotifyHomeViewModel notifyHomeViewModel;
-
-  private final DateTimeFormatter dateTimeFormatter =
-      DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM);
   private final DiagnosisClickListener onDiagnosisClickListener;
 
-  public DiagnosisEntityAdapter(
-      DiagnosisClickListener onDiagnosisClickListener, NotifyHomeViewModel notifyHomeViewModel) {
+  private List<DiagnosisEntity> diagnosisEntities = Collections.emptyList();
+
+  public DiagnosisEntityAdapter(DiagnosisClickListener onDiagnosisClickListener,
+      NotifyHomeViewModel notifyHomeViewModel) {
     this.onDiagnosisClickListener = onDiagnosisClickListener;
     this.notifyHomeViewModel = notifyHomeViewModel;
   }
@@ -71,9 +66,8 @@ public class DiagnosisEntityAdapter
   @NonNull
   @Override
   public DiagnosisViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-    return new DiagnosisViewHolder(
-        LayoutInflater.from(viewGroup.getContext())
-            .inflate(R.layout.item_diagnosis_entity, viewGroup, false));
+    return new DiagnosisViewHolder(ItemDiagnosisEntityBinding
+        .inflate(LayoutInflater.from(viewGroup.getContext()), viewGroup, false));
   }
 
   @Override
@@ -90,60 +84,32 @@ public class DiagnosisEntityAdapter
   class DiagnosisViewHolder extends RecyclerView.ViewHolder {
 
     private final View rootView;
-    private final TextView type;
-    private final TextView date;
-    private final ViewSwitcher shared;
     private final View itemDivider;
+    private final ItemDiagnosisEntityBinding binding;
 
-    DiagnosisViewHolder(@NonNull View view) {
-      super(view);
-      this.rootView = view;
-      type = view.findViewById(R.id.diagnosis_type);
-      date = view.findViewById(R.id.diagnosis_date);
-      shared = view.findViewById(R.id.diagnosis_status);
-      itemDivider = view.findViewById(R.id.horizontal_divider_view);
+    DiagnosisViewHolder(@NonNull ItemDiagnosisEntityBinding binding) {
+      super(binding.getRoot());
+      this.rootView = binding.getRoot();
+      this.binding = binding;
+      itemDivider = rootView.findViewById(R.id.horizontal_divider_view);
     }
 
     void bind(final DiagnosisEntity entity, boolean lastElement) {
       rootView.setOnClickListener(v -> onDiagnosisClickListener.onClick(entity));
 
       TestResult testResult = entity.getTestResult();
-      if (testResult == null) {
-        Log.e(TAG, "Unknown TestResult=null");
-        type.setText(R.string.test_result_type_confirmed);
-      } else {
-        switch (testResult) {
-          case LIKELY:
-            type.setText(R.string.test_result_type_likely);
-            break;
-          case NEGATIVE:
-            type.setText(R.string.test_result_type_negative);
-            break;
-          case CONFIRMED:
-            type.setText(R.string.test_result_type_confirmed);
-            break;
-          default:
-            Log.e(TAG, "Unknown TestResult=" + testResult);
-            type.setText(R.string.test_result_type_confirmed);
-            break;
-        }
-      }
+      binding.diagnosisType.setText(
+          DiagnosisEntityHelper.getDiagnosisTypeStringResourceFromTestResult(testResult));
 
-      if (entity.getOnsetDate() != null) {
-        date.setText(dateTimeFormatter.format(entity.getOnsetDate()));
-        date.setVisibility(View.VISIBLE);
-      } else {
-        date.setVisibility(View.GONE);
-        date.setText("");
-      }
+      String sharedStatus = Shared.SHARED.equals(entity.getSharedStatus()) ?
+          rootView.getResources().getString(R.string.positive_test_result_status_shared) :
+          rootView.getResources().getString(R.string.positive_test_result_status_not_shared);
+      String lastUpdatedDate = StringUtils.epochTimestampToMediumUTCDateString(
+          entity.getLastUpdatedTimestampMs(), rootView.getResources().getConfiguration().locale);
+      binding.diagnosisSharedDate.setText(rootView.getResources()
+          .getString(R.string.diagnosis_subtitle_template, sharedStatus, lastUpdatedDate));
 
-      if (lastElement) {
-        itemDivider.setVisibility(View.GONE);
-      } else {
-        itemDivider.setVisibility(View.VISIBLE);
-      }
-
-      shared.setDisplayedChild(Shared.SHARED.equals(entity.getSharedStatus()) ? 0 : 1);
+      itemDivider.setVisibility(lastElement ? View.GONE : View.VISIBLE);
     }
   }
 

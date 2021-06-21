@@ -17,6 +17,7 @@
   -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:orientation="vertical"
@@ -32,16 +33,17 @@
       android:layout_width="?attr/actionBarSize"
       android:layout_height="match_parent"
       android:background="?attr/selectableItemBackgroundBorderless"
-      android:src="?attr/homeAsUpIndicator"
+      android:contentDescription="@string/btn_close_label"
+      app:srcCompat="@drawable/ic_close"
       android:layout_alignParentStart="true" />
 
     <ImageButton
-      android:id="@+id/share_review_delete"
+      android:id="@+id/delete_diagnosis"
       style="?attr/borderlessButtonStyle"
       android:layout_width="?attr/actionBarSize"
       android:layout_height="match_parent"
       android:background="?attr/selectableItemBackgroundBorderless"
-      android:src="@drawable/ic_delete_normal"
+      app:srcCompat="@drawable/ic_delete_normal"
       android:contentDescription="@string/btn_delete_status"
       android:layout_alignParentEnd="true" />
 
@@ -61,16 +63,20 @@
       android:paddingHorizontal="@dimen/padding_large">
 
       <TextView
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingTop="@dimen/padding_normal"
+        android:paddingHorizontal="@dimen/padding_large"
         android:gravity="center"
         android:text="@string/share_review_title"
         android:textAppearance="?attr/textAppearanceHeadline5" />
 
       <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_banner_hand"/>
+        android:layout_height="@dimen/home_screen_banner_height"
+        android:importantForAccessibility="no"
+        android:contentDescription="@null"
+        app:srcCompat="@drawable/ic_review_info" />
 
       <TextView
         android:layout_width="fill_parent"
@@ -155,34 +161,39 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/padding_normal"
-        android:text="@string/btn_back" />
+        android:text="@string/btn_previous" />
 
     </LinearLayout>
 
     <FrameLayout
       android:layout_width="0dp"
-      android:layout_weight="2"
-      android:layout_marginHorizontal="@dimen/padding_small"
+      android:layout_weight="1"
       android:layout_height="wrap_content"
       android:layout_gravity="center_vertical">
 
-      <Button
-        android:id="@+id/share_share_button"
+      <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/padding_normal"
-        android:text="@string/btn_share_positive"
-        android:elevation="0dp"
-        android:layout_gravity="end"/>
+        android:layout_marginEnd="@dimen/padding_normal"
+        android:layout_gravity="end">
 
-      <ProgressBar
-        android:id="@+id/share_progress_bar"
-        android:layout_width="match_parent"
-        android:layout_height="24dp"
-        android:layout_gravity="center_vertical"
-        android:indeterminateTint="@android:color/white"
-        android:elevation="10dp"
-        android:visibility="invisible"/>
+        <Button
+          android:id="@+id/share_share_button"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/btn_share"
+          android:elevation="0dp"/>
+
+        <ProgressBar
+          android:id="@+id/share_progress_bar"
+          android:layout_width="match_parent"
+          android:layout_height="24dp"
+          android:layout_gravity="center"
+          android:indeterminateTint="@android:color/white"
+          android:elevation="10dp"
+          android:visibility="invisible"/>
+
+      </FrameLayout>
 
     </FrameLayout>
 

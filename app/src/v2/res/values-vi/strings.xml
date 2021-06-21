@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">Ứng dụng đang hoạt động và đang kiểm tra</string>
+  <string name="app_active_and_checking_info">Ứng dụng này đang kiểm tra để phát hiện khả năng tiếp xúc. Khi sử dụng tính năng Thông báo tiếp xúc, bạn sẽ góp phần bảo vệ cộng đồng của mình – ngay cả khi bạn đã tiêm vắc-xin.</string>
+  <string name="possible_exposure_title">Bạn có thể đã tiếp xúc với Covid-19</string>
+  <string name="share_test_result_home_screen_title">Chia sẻ kết quả xét nghiệm của bạn</string>
+  <string name="have_questions">Bạn có câu hỏi?</string>
+  <string name="check_exposure_status">Xem trạng thái tiếp xúc của bạn</string>
+  <string name="en_active">Đang hoạt động</string>
+  <string name="en_inactive">Không hoạt động</string>
+  <string name="exposure_checks_activity_title">Bản ghi những lần kiểm tra gần đây</string>
+  <string name="sharing_history_activity_title">Nhật ký chia sẻ</string>
+  <string name="no_recent_exposure_card_content_no_checks">Không phát hiện thấy nguy cơ tiếp xúc với người đã báo cáo là bị mắc COVID-19.</string>
+  <string name="no_recent_exposure_card_content">Không phát hiện thấy nguy cơ tiếp xúc với người đã báo cáo là bị mắc COVID-19. Lần kiểm tra gần đây nhất: %1$s</string>
+  <string name="see_recent_checks_button">Xem những lần kiểm tra gần đây</string>
+  <string name="possible_exposure_card_title">Khả năng tiếp xúc với người đã báo cáo là bị mắc COVID-19</string>
+  <string name="possible_exposure_card_contents">Ai đó mà bạn tiếp xúc gần có kết quả xét nghiệm dương tính với COVID-19</string>
+  <string name="see_details_button">Xem thông tin chi tiết</string>
+  <string name="share_test_result_card_title">Giúp ngăn chặn COVID-19 lây lan trong cộng đồng</string>
+  <string name="share_test_result_card_content">Mỗi người đều có thể giúp ngăn chặn ca nhiễm COVID-19 khi chia sẻ kết quả xét nghiệm dương tính của mình. Việc chia sẻ kết quả xét nghiệm sẽ không làm lộ danh tính của bạn với những người khác.</string>
+  <string name="see_history_button">Xem nhật ký</string>
+  <string name="share_positive_diagnosis_card_content">Chia sẻ kết quả xét nghiệm của bạn để giúp ngăn chặn sự lây lan của COVID-19</string>
+  <string name="share_app_card_content">Chia sẻ ứng dụng này để bảo vệ cộng đồng tốt hơn</string>
+  <string name="how_en_works_card_content">Tìm hiểu thêm về cách hoạt động của Thông báo tiếp xúc</string>
+</resources>

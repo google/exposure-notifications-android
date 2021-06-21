@@ -21,9 +21,11 @@ import static com.google.common.truth.Truth.assertThat;
 
 import androidx.lifecycle.LiveData;
 import androidx.test.core.app.ApplicationProvider;
+import com.google.android.apps.exposurenotification.home.ExposureNotificationViewModel.ExposureNotificationState;
 import com.google.android.apps.exposurenotification.riskcalculation.ExposureClassification;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.NotificationInteraction;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.OnboardingStatus;
+import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.VaccinationStatus;
 import com.google.android.apps.exposurenotification.testsupport.ExposureNotificationRules;
 import com.google.android.apps.exposurenotification.testsupport.FakeClock;
 import com.google.common.base.Optional;
@@ -151,6 +153,8 @@ public class ExposureNotificationSharedPreferencesTest {
         .setExposureNotificationLastShownClassification(time, exposureClassification);
     exposureNotificationSharedPreferences
         .setExposureNotificationLastInteraction(time, NotificationInteraction.CLICKED, 2);
+    exposureNotificationSharedPreferences
+        .setLastVaccinationResponse(time, VaccinationStatus.VACCINATED);
 
     assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsWorkerLastTime())
         .isEqualTo(time);
@@ -173,6 +177,10 @@ public class ExposureNotificationSharedPreferencesTest {
         .isEqualTo(2);
     assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsLastExposureTime())
         .isEqualTo(Instant.EPOCH.plus(Duration.ofDays(exposureDay)));
+    assertThat(exposureNotificationSharedPreferences.getLastVaccinationStatusResponseTime())
+        .isEqualTo(time);
+    assertThat(exposureNotificationSharedPreferences.getLastVaccinationStatus())
+        .isEqualTo(VaccinationStatus.VACCINATED);
 
     // Clear all the Private Analytics fields.
     exposureNotificationSharedPreferences.clearPrivateAnalyticsFields();
@@ -195,6 +203,86 @@ public class ExposureNotificationSharedPreferencesTest {
         .isEqualTo(0);
     assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsLastExposureTime())
         .isEqualTo(Instant.EPOCH);
+    assertThat(exposureNotificationSharedPreferences.getLastVaccinationStatusResponseTime())
+        .isEqualTo(Instant.EPOCH);
+    assertThat(exposureNotificationSharedPreferences.getLastVaccinationStatus())
+        .isEqualTo(VaccinationStatus.UNKNOWN);
+
+    // The worker time is the only field not cleared.
+    assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsWorkerLastTime())
+        .isEqualTo(time);
+  }
+
+  @Test
+  public void clearPrivateAnalyticsFieldsBefore() {
+    exposureNotificationSharedPreferences.setPrivateAnalyticsState(true);
+    Instant time = Instant.ofEpochMilli(123456789L);
+    int classificationIndex = 1;
+    long exposureDay = (time.getEpochSecond() / TimeUnit.DAYS.toSeconds(1)) - 10;
+    ExposureClassification exposureClassification = ExposureClassification
+        .create(classificationIndex, "", exposureDay);
+    exposureNotificationSharedPreferences.setPrivateAnalyticsWorkerLastTime(time);
+    exposureNotificationSharedPreferences.setPrivateAnalyticsLastSubmittedCodeTime(time);
+    exposureNotificationSharedPreferences.setPrivateAnalyticsLastSubmittedKeysTime(time);
+    exposureNotificationSharedPreferences
+        .setExposureNotificationLastShownClassification(time, exposureClassification);
+    exposureNotificationSharedPreferences
+        .setExposureNotificationLastInteraction(time, NotificationInteraction.CLICKED, 2);
+    exposureNotificationSharedPreferences
+        .setLastVaccinationResponse(time, VaccinationStatus.VACCINATED);
+
+    assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsWorkerLastTime())
+        .isEqualTo(time);
+    assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsLastSubmittedCodeTime())
+        .isEqualTo(time);
+    assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsLastSubmittedKeysTime())
+        .isEqualTo(time);
+    assertThat(exposureNotificationSharedPreferences.getExposureNotificationLastShownTime())
+        .isEqualTo(time);
+    assertThat(
+        exposureNotificationSharedPreferences.getExposureNotificationLastShownClassification())
+        .isEqualTo(classificationIndex);
+    assertThat(exposureNotificationSharedPreferences.getExposureNotificationLastInteractionTime())
+        .isEqualTo(time);
+    assertThat(exposureNotificationSharedPreferences.getExposureNotificationLastInteractionType())
+        .isEqualTo(NotificationInteraction.CLICKED);
+    assertThat(
+        exposureNotificationSharedPreferences
+            .getExposureNotificationLastInteractionClassification())
+        .isEqualTo(2);
+    assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsLastExposureTime())
+        .isEqualTo(Instant.EPOCH.plus(Duration.ofDays(exposureDay)));
+    assertThat(exposureNotificationSharedPreferences.getLastVaccinationStatusResponseTime())
+        .isEqualTo(time);
+    assertThat(exposureNotificationSharedPreferences.getLastVaccinationStatus())
+        .isEqualTo(VaccinationStatus.VACCINATED);
+
+    // Clear all the Private Analytics fields.
+    exposureNotificationSharedPreferences
+        .clearPrivateAnalyticsFieldsBefore(time.plus(Duration.ofDays(14)));
+
+    assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsLastSubmittedCodeTime())
+        .isEqualTo(Instant.EPOCH);
+    assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsLastSubmittedKeysTime())
+        .isEqualTo(Instant.EPOCH);
+    assertThat(exposureNotificationSharedPreferences.getExposureNotificationLastShownTime())
+        .isEqualTo(Instant.EPOCH);
+    assertThat(
+        exposureNotificationSharedPreferences.getExposureNotificationLastShownClassification())
+        .isEqualTo(0);
+    assertThat(exposureNotificationSharedPreferences.getExposureNotificationLastInteractionTime())
+        .isEqualTo(Instant.EPOCH);
+    assertThat(exposureNotificationSharedPreferences.getExposureNotificationLastInteractionType())
+        .isEqualTo(NotificationInteraction.UNKNOWN);
+    assertThat(
+        exposureNotificationSharedPreferences.getExposureNotificationLastShownClassification())
+        .isEqualTo(0);
+    assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsLastExposureTime())
+        .isEqualTo(Instant.EPOCH);
+    assertThat(exposureNotificationSharedPreferences.getLastVaccinationStatusResponseTime())
+        .isEqualTo(Instant.EPOCH);
+    assertThat(exposureNotificationSharedPreferences.getLastVaccinationStatus())
+        .isEqualTo(VaccinationStatus.UNKNOWN);
 
     // The worker time is the only field not cleared.
     assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsWorkerLastTime())
@@ -454,4 +542,96 @@ public class ExposureNotificationSharedPreferencesTest {
     exposureNotificationSharedPreferences.setProvidedDiagnosisKeyHexToLog("the-key");
     assertThat(observer.get()).isEqualTo("the-key");
   }
+
+  @Test
+  public void enStateCache_saysEnDisabledByDefault() {
+    assertThat(exposureNotificationSharedPreferences.getEnStateCache()).isEqualTo(
+        ExposureNotificationState.DISABLED.ordinal());
+  }
+
+  @Test
+  public void shouldSetAndGetEnStateCache() {
+    int pausedLocationState = ExposureNotificationState.PAUSED_LOCATION.ordinal();
+    exposureNotificationSharedPreferences.setEnStateCache(pausedLocationState);
+    assertThat(exposureNotificationSharedPreferences.getEnStateCache())
+        .isEqualTo(pausedLocationState);
+  }
+
+  @Test
+  public void lastVaccinationResponse() {
+    exposureNotificationSharedPreferences.setPrivateAnalyticsState(true);
+
+    Instant time = clock.now().minus(Duration.ofDays(2));
+    exposureNotificationSharedPreferences
+        .setLastVaccinationResponse(time, VaccinationStatus.VACCINATED);
+
+    assertThat(exposureNotificationSharedPreferences.getLastVaccinationStatusResponseTime())
+        .isEqualTo(time);
+    assertThat(exposureNotificationSharedPreferences.getLastVaccinationStatus())
+        .isEqualTo(VaccinationStatus.VACCINATED);
+  }
+
+  @Test
+  public void getBleLocNotificationSeen_default_isFalse() {
+    assertThat(exposureNotificationSharedPreferences.getBleLocNotificationSeen()).isFalse();
+  }
+
+  @Test
+  public void getBleLocNotificationSeen_setTrue_isTrue() {
+    exposureNotificationSharedPreferences.setBleLocNotificationSeen(true);
+
+    assertThat(exposureNotificationSharedPreferences.getBleLocNotificationSeen()).isTrue();
+  }
+
+  @Test
+  public void getBeginTimestampBleLocOff_setBleLocSeenTrue_removesBeginTimestampBleLocOff() {
+    exposureNotificationSharedPreferences.setBeginTimestampBleLocOff(Optional.of(clock.now()));
+
+    exposureNotificationSharedPreferences.setBleLocNotificationSeen(true);
+
+    assertThat(exposureNotificationSharedPreferences.getBeginTimestampBleLocOff())
+        .isAbsent();
+  }
+
+  @Test
+  public void getBeginTimestampBleLocOff_setBleLocSeenFalse_keepsBeginTimestampBleLocOff() {
+    Instant time = clock.now();
+    exposureNotificationSharedPreferences
+        .setBeginTimestampBleLocOff(Optional.of(time));
+
+    exposureNotificationSharedPreferences.setBleLocNotificationSeen(false);
+
+    assertThat(exposureNotificationSharedPreferences.getBeginTimestampBleLocOff().isPresent())
+        .isTrue();
+    assertThat(exposureNotificationSharedPreferences.getBeginTimestampBleLocOff().get())
+        .isEqualTo(time);
+  }
+
+  @Test
+  public void getBeginTimestampBleLocOff_default_returnsAbsent() {
+    assertThat(exposureNotificationSharedPreferences.getBeginTimestampBleLocOff().isPresent())
+        .isFalse();
+  }
+
+  @Test
+  public void getBeginTimestampBleLocOff_absentSet_returnsAbsent() {
+    exposureNotificationSharedPreferences
+        .setBeginTimestampBleLocOff(Optional.absent());
+
+    assertThat(exposureNotificationSharedPreferences.getBeginTimestampBleLocOff().isPresent())
+        .isFalse();
+  }
+
+  @Test
+  public void getBeginTimestampBleLocOff_valueSet_returnsValue() {
+    Instant time = clock.now();
+    exposureNotificationSharedPreferences
+        .setBeginTimestampBleLocOff(Optional.of(time));
+
+    assertThat(exposureNotificationSharedPreferences.getBeginTimestampBleLocOff().isPresent())
+        .isTrue();
+    assertThat(exposureNotificationSharedPreferences.getBeginTimestampBleLocOff().get())
+        .isEqualTo(time);
+  }
+
 }

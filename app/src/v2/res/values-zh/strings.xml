@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">该应用处于工作状态，并且正在进行检查</string>
+  <string name="app_active_and_checking_info">该应用正在检查您是否可能接触过新冠肺炎 (COVID-19) 患者。使用“接触史通知”应用有助于您保护所在的社区，即使您已接种疫苗也是如此。</string>
+  <string name="possible_exposure_title">您可能接触过新冠肺炎 (COVID-19) 患者</string>
+  <string name="share_test_result_home_screen_title">分享您的检测结果</string>
+  <string name="have_questions">有疑问？</string>
+  <string name="check_exposure_status">查看您的新冠肺炎 (COVID-19) 患者接触状况</string>
+  <string name="en_active">工作中</string>
+  <string name="en_inactive">未工作</string>
+  <string name="exposure_checks_activity_title">近期检查记录</string>
+  <string name="sharing_history_activity_title">分享历史记录</string>
+  <string name="no_recent_exposure_card_content_no_checks">未发现该应用曾报告您可能接触过新冠肺炎 (COVID-19) 患者。</string>
+  <string name="no_recent_exposure_card_content">未发现该应用曾报告您可能接触过新冠肺炎 (COVID-19) 患者。上次检查时间：%1$s</string>
+  <string name="see_recent_checks_button">查看近期检查记录</string>
+  <string name="possible_exposure_card_title">该应用曾报告您可能接触过新冠肺炎 (COVID-19) 患者</string>
+  <string name="possible_exposure_card_contents">您曾近距离接触过新冠肺炎 (COVID-19) 检测结果为阳性的人员</string>
+  <string name="see_details_button">查看详情</string>
+  <string name="share_test_result_card_title">帮助防止新冠肺炎 (COVID-19) 在您所在的社区传播</string>
+  <string name="share_test_result_card_content">每次有人分享阳性检测结果，都有助于防止其他人感染新冠肺炎 (COVID-19)。分享您的检测结果不会向其他人泄露您的身份。</string>
+  <string name="see_history_button">查看历史记录</string>
+  <string name="share_positive_diagnosis_card_content">分享您的检测结果，帮助阻止新冠肺炎 (COVID-19) 的传播</string>
+  <string name="share_app_card_content">分享该应用，帮助更好地保护您所在的社区</string>
+  <string name="how_en_works_card_content">详细了解“接触史通知”应用的运作方式</string>
+</resources>

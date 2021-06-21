@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">ॲप सुरू आहे आणि तपासत आहे</string>
+  <string name="app_active_and_checking_info">हे ॲप संभाव्य लागणीबाबत तपासणी करत आहे. लागणीबद्दलच्या सूचना वापरणे हे तुमच्या समुदायाला संरक्षित करण्यात तुम्हाला मदत करते - तुमचे लसीकरण झालेले असले तरीही.</string>
+  <string name="possible_exposure_title">तुम्हाला लागण झालेली असू शकते</string>
+  <string name="share_test_result_home_screen_title">तुमच्या चाचणीचा परिणाम शेअर करा</string>
+  <string name="have_questions">प्रश्न आहेत का?</string>
+  <string name="check_exposure_status">तुमची लागणीबाबतची स्थिती तपासा</string>
+  <string name="en_active">सुरू आहे</string>
+  <string name="en_inactive">बंद आहे</string>
+  <string name="exposure_checks_activity_title">अलीकडील चेक इनचे रेकॉर्ड</string>
+  <string name="sharing_history_activity_title">इतिहास शेअर करा</string>
+  <string name="no_recent_exposure_card_content_no_checks">COVID-19 च्या लागणीविषयी नोंद झालेला कोणताही धोका आढळला नाही.</string>
+  <string name="no_recent_exposure_card_content">COVID-19 च्या लागणीविषयी नोंद झालेला कोणताही धोका आढळला नाही. %1$s रोजी शेवटची तपासणी झाली</string>
+  <string name="see_recent_checks_button">अलीकडील तपासण्या पहा</string>
+  <string name="possible_exposure_card_title">संभाव्य लागणीची नोंद झाली</string>
+  <string name="possible_exposure_card_contents">तुम्ही COVID-19 चाचणीचा परिणाम पॉझिटीव्ह आला आहे अशा एखाद्या व्यक्तीच्या जवळ होतात</string>
+  <string name="see_details_button">तपशील पहा</string>
+  <string name="share_test_result_card_title">तुमच्या समुदायामध्ये COVID-19 पसरण्यापासून रोखण्याकरिता मदत करा.</string>
+  <string name="share_test_result_card_content">प्रत्येकवेळी कोणीतरी चाचणीचा पॉझिटीव्ह परिणाम शेअर करते तेव्हा, COVID-19 चा प्रसार थांबवण्यात मदत होते. तुमच्या चाचणीचा परिणाम शेअर केल्याने तुमची ओळख इतर लोकांसोबत शेअर केले जाणार नाही.</string>
+  <string name="see_history_button">इतिहास पहा</string>
+  <string name="share_positive_diagnosis_card_content">COVID-19 चा प्रसार रोखण्यात मदत करण्यासाठी तुमच्या चाचणीचा परिणाम शेअर करा</string>
+  <string name="share_app_card_content">तुमच्या समुदायाचे आणखी चांगल्याप्रकारे संरक्षण करण्यासाठी हे ॲप शेअर करा</string>
+  <string name="how_en_works_card_content">लागणीबद्दलच्या सूचना कशाप्रकारे काम करतात याबद्दल अधिक जाणून घ्या</string>
+</resources>

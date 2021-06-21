@@ -18,15 +18,19 @@
 package com.google.android.apps.exposurenotification;
 
 import android.app.Application;
+import android.os.Build.VERSION_CODES;
 import android.util.Log;
 import androidx.annotation.Keep;
 import androidx.annotation.Nullable;
 import androidx.hilt.work.HiltWorkerFactory;
+import androidx.lifecycle.ProcessLifecycleOwner;
 import androidx.work.Configuration;
 import androidx.work.Configuration.Builder;
 import androidx.work.WorkManager;
-import com.google.android.apps.exposurenotification.home.ExposureNotificationActivity;
+import com.google.android.apps.exposurenotification.logging.ApplicationObserver;
+import com.google.android.apps.exposurenotification.slices.SlicePermissionManager;
 import com.google.android.apps.exposurenotification.work.WorkScheduler;
+import com.google.common.base.Optional;
 import com.google.firebase.FirebaseApp;
 import com.jakewharton.threetenabp.AndroidThreeTen;
 import dagger.hilt.android.HiltAndroidApp;
@@ -34,8 +38,6 @@ import javax.inject.Inject;
 
 /**
  * ExposureNotificationApplication is instantiated whenever the app is running.
- *
- * <p>For UI see {@link ExposureNotificationActivity}
  */
 @HiltAndroidApp
 public final class ExposureNotificationApplication extends Application implements
@@ -56,6 +58,12 @@ public final class ExposureNotificationApplication extends Application implement
   @Inject
   WorkScheduler workScheduler;
 
+  @Inject
+  ApplicationObserver applicationObserver;
+
+  @Inject
+  Optional<SlicePermissionManager> slicePermissionManager;
+
   /**
    * Done to ensure firebase services are initialized properly.
    */
@@ -67,8 +75,17 @@ public final class ExposureNotificationApplication extends Application implement
   @Override
   public void onCreate() {
     super.onCreate();
+
+    // Grant slice runtime permission
+    if (slicePermissionManager.isPresent() && android.os.Build.VERSION.SDK_INT < VERSION_CODES.P) {
+      slicePermissionManager.get().grantSlicePermission();
+    }
+
     AndroidThreeTen.init(this);
     workScheduler.schedule();
+
+    // Add ProcessLifecycleObserver that loggs APP_OPENED if the app is in foreground
+    applicationObserver.observeLifecycle(ProcessLifecycleOwner.get());
   }
 
   @Override

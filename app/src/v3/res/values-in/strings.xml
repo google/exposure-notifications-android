@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="onboarding_activity_title">Orientasi</string>
+  <string name="share_history_activity_title">Lihat histori berbagi</string>
+  <string name="remove_region_link_title">Hapus wilayah</string>
+  <string name="delete_shared_diagnosis">Hapus hasil tes yang dibagikan</string>
+  <string name="active_region_subtitle">%1$s saat ini ditetapkan sebagai wilayah aktif Anda untuk Notifikasi Paparan</string>
+  <string name="active_region_subtitle_en_off">%1$s ditetapkan sebagai wilayah aktif, tetapi Notifikasi Paparan dinonaktifkan untuk ponsel Anda</string>
+  <string name="remove_region_title">Hapus wilayah</string>
+  <string name="remove_region_detail">Menghapus wilayah Anda akan menonaktifkan Notifikasi Paparan. Anda dapat menambahkan kembali wilayah ini kapan saja.</string>
+  <string name="btn_remove">Hapus</string>
+  <string name="exposure_notifications_is_off">Notifikasi Paparan nonaktif</string>
+  <string name="possible_exposure">Kemungkinan paparan</string>
+  <string name="share_history_delete_test_result_title">Hapus hasil tes ini?</string>
+  <string name="share_history_delete_test_result_detail">Hasil tes COVID-19 Anda dari %1$s akan dihapus dari ponsel.</string>
+</resources>

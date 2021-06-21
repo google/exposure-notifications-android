@@ -34,10 +34,6 @@ public class PrioJni implements Prio {
   private static final String TAG = "PAPrioJni";
   private static final Initializer INITIALIZER_INSTANCE = new Initializer();
 
-  public PrioJni() {
-  }
-
-
   @Override
   public CreatePacketsResponse getPackets(CreatePacketsParameters params) {
     ResponseStatus.Builder responseStatusBuilder = ResponseStatus.newBuilder();

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">Apl aktif dan sedang melakukan semakan</string>
+  <string name="app_active_and_checking_info">Apl ini sedang menyemak kemungkinan pendedahan. Tindakan menggunakan Pemberitahuan Pendedahan membantu anda melindungi komuniti anda - walaupun anda telah divaksin.</string>
+  <string name="possible_exposure_title">Anda mungkin telah terdedah</string>
+  <string name="share_test_result_home_screen_title">Kongsi keputusan ujian anda</string>
+  <string name="have_questions">Ada pertanyaan?</string>
+  <string name="check_exposure_status">Semak status pendedahan anda</string>
+  <string name="en_active">Aktif</string>
+  <string name="en_inactive">Tidak aktif</string>
+  <string name="exposure_checks_activity_title">Rekod daftar masuk terbaharu</string>
+  <string name="sharing_history_activity_title">Sejarah kongsi</string>
+  <string name="no_recent_exposure_card_content_no_checks">Tiada laporan risiko pendedahan COVID-19 ditemukan.</string>
+  <string name="no_recent_exposure_card_content">Tiada laporan risiko pendedahan COVID-19 ditemukan. Terakhir disemak %1$s</string>
+  <string name="see_recent_checks_button">Lihat daftar masuk terbaharu</string>
+  <string name="possible_exposure_card_title">Kemungkinan pendedahan yang dilaporkan</string>
+  <string name="possible_exposure_card_contents">Anda pernah berada dekat dengan seseorang yang telah diuji positif COVID-19</string>
+  <string name="see_details_button">Lihat butiran</string>
+  <string name="share_test_result_card_title">Bantu pencegahan COVID-19 dalam komuniti anda</string>
+  <string name="share_test_result_card_content">Setiap kali seseorang berkongsi keputusan ujian positif, kes COVID-19 yang lain mampu dicegah. Anda tidak akan mendedahkan identiti anda kepada orang lain dengan berkongsi keputusan ujian.</string>
+  <string name="see_history_button">Lihat sejarah</string>
+  <string name="share_positive_diagnosis_card_content">Kongsi keputusan ujian anda untuk menghentikan penyebaran COVID-19</string>
+  <string name="share_app_card_content">Kongsikan apl ini untuk melindungi komuniti anda dengan lebih baik</string>
+  <string name="how_en_works_card_content">Ketahui lebih lanjut tentang cara Pemberitahuan Pendedahan berfungsi</string>
+</resources>

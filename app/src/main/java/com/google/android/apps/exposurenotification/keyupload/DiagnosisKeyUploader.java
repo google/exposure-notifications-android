@@ -24,6 +24,7 @@ import androidx.concurrent.futures.CallbackToFutureAdapter;
 import com.android.volley.Response;
 import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
+import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.common.Qualifiers.BackgroundExecutor;
 import com.google.android.apps.exposurenotification.common.Qualifiers.LightweightExecutor;
 import com.google.android.apps.exposurenotification.common.time.Clock;
@@ -153,7 +154,7 @@ class DiagnosisKeyUploader {
 
       payload
           .put(UploadV1.KEYS, keysJson)
-          .put(UploadV1.APP_PACKAGE, context.getPackageName())
+          .put(UploadV1.APP_PACKAGE, context.getString(R.string.health_authority_id))
           .put(UploadV1.HMAC_KEY, upload.hmacKeyBase64())
           .put(UploadV1.VERIFICATION_CERT, upload.certificate())
           .put(UploadV1.TRAVELER, upload.hasTraveled());

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="onboarding_activity_title">Einführung</string>
+  <string name="share_history_activity_title">Bisher geteilte Testergebnisse ansehen</string>
+  <string name="remove_region_link_title">Region entfernen</string>
+  <string name="delete_shared_diagnosis">Geteiltes Testergebnis löschen</string>
+  <string name="active_region_subtitle">%1$s ist derzeit als deine aktive Region für COVID-19-Benachrichtigungen festgelegt</string>
+  <string name="active_region_subtitle_en_off">%1$s ist als deine aktive Region für COVID-19-Benachrichtigungen festgelegt, aber die Benachrichtigungen sind auf deinem Smartphone deaktiviert</string>
+  <string name="remove_region_title">Region entfernen</string>
+  <string name="remove_region_detail">Wenn du deine Region entfernst, werden die COVID-19-Benachrichtigungen deaktiviert. Du kannst diese Region jederzeit wieder hinzufügen.</string>
+  <string name="btn_remove">Entfernen</string>
+  <string name="exposure_notifications_is_off">COVID-19-Benachrichtigungen sind deaktiviert</string>
+  <string name="possible_exposure">Mögliche Begegnung mit infizierter Person</string>
+  <string name="share_history_delete_test_result_title">Dieses Testergebnis löschen?</string>
+  <string name="share_history_delete_test_result_detail">Dein COVID-19-Testergebnis vom %1$s wird von deinem Smartphone gelöscht.</string>
+</resources>

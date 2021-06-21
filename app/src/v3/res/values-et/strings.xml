@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="onboarding_activity_title">Liitumine</string>
+  <string name="share_history_activity_title">Kuva jagamise ajalugu</string>
+  <string name="remove_region_link_title">Eemalda piirkond</string>
+  <string name="delete_shared_diagnosis">Jagatud testitulemuse kustutamine</string>
+  <string name="active_region_subtitle">%1$s on praegu kokkupuute märguannete jaoks aktiivseks piirkonnaks määratud</string>
+  <string name="active_region_subtitle_en_off">%1$s on teie aktiivseks piirkonnaks määratud, kuid kokkupuute märguanded on teie telefonis välja lülitatud</string>
+  <string name="remove_region_title">Eemalda piirkond</string>
+  <string name="remove_region_detail">Piirkonna eemaldamisel lülitatakse kokkupuute märguanded välja. Saate selle piirkonna alati uuesti lisada.</string>
+  <string name="btn_remove">Eemalda</string>
+  <string name="exposure_notifications_is_off">Kokkupuute märguanded on välja lülitatud</string>
+  <string name="possible_exposure">Võimalik kokkupuude</string>
+  <string name="share_history_delete_test_result_title">Kas kustutada see testitulemus?</string>
+  <string name="share_history_delete_test_result_detail">Teie COVID-19 testi tulemus kuupäevast %1$s kustutatakse teie telefonist.</string>
+</resources>

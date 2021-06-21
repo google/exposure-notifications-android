@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="onboarding_activity_title">ఆన్‌బోర్డింగ్</string>
+  <string name="share_history_activity_title">షేరింగ్ హిస్టరీని చూడండి</string>
+  <string name="remove_region_link_title">ప్రాంతాన్ని తీసివేయి</string>
+  <string name="delete_shared_diagnosis">షేర్ చేయబడిన పరీక్షా ఫలితాన్ని తొలగిస్తుంది</string>
+  <string name="active_region_subtitle">వ్యాధి సోకగల అవకాశాన్ని తెలిపే నోటిఫికేషన్‌ల కోసం %1$s ప్రస్తుతం మీ యాక్టివ్ రీజియన్‌గా సెట్ చేయబడింది</string>
+  <string name="active_region_subtitle_en_off">%1$s మీ యాక్టివ్ రీజియన్‌గా సెట్ చేయబడింది, కానీ మీ ఫోన్‌లో వ్యాధి సోకగల అవకాశాన్ని తెలిపే నోటిఫికేషన్‌లు ఆఫ్ చేయబడ్డాయి</string>
+  <string name="remove_region_title">ప్రాంతాన్ని తీసివేయి</string>
+  <string name="remove_region_detail">ప్రాంతాన్ని తీసివేయడం వల్ల వ్యాధి సోకగల అవకాశాన్ని తెలిపే నోటిఫికేషన్‌లు ఆఫ్ అవుతాయి. మీరు ఎప్పుడైనా ఈ ప్రాంతాన్ని తిరిగి జోడించవచ్చు.</string>
+  <string name="btn_remove">తీసివేయి</string>
+  <string name="exposure_notifications_is_off">వ్యాధి సోకగల అవకాశాన్ని తెలిపే నోటిఫికేషన్‌లు ఆఫ్ చేయబడ్డాయి</string>
+  <string name="possible_exposure">వ్యాధి సోకగల అవకాశం</string>
+  <string name="share_history_delete_test_result_title">ఈ పరీక్షా ఫలితాన్ని తొలగించాలా?</string>
+  <string name="share_history_delete_test_result_detail">%1$s నుండి మీ COVID-19 పరీక్ష ఫలితం మీ ఫోన్ నుండి తొలగించబడుతుంది.</string>
+</resources>

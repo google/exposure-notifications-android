@@ -17,24 +17,31 @@
 
 package com.google.android.apps.exposurenotification.home;
 
+import static com.google.android.apps.exposurenotification.notify.ShareDiagnosisViewModel.EN_STATES_BLOCKING_SHARING_FLOW;
 import static com.google.common.truth.Truth.assertThat;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import android.os.Bundle;
 import android.util.Pair;
-import com.google.android.apps.exposurenotification.common.Qualifiers.BackgroundExecutor;
-import com.google.android.apps.exposurenotification.common.Qualifiers.LightweightExecutor;
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.common.time.RealTimeModule;
 import com.google.android.apps.exposurenotification.home.ExposureNotificationViewModel.ExposureNotificationState;
 import com.google.android.apps.exposurenotification.logging.AnalyticsLogger;
 import com.google.android.apps.exposurenotification.nearby.ExposureNotificationClientWrapper;
 import com.google.android.apps.exposurenotification.nearby.PackageConfigurationHelper;
+import com.google.android.apps.exposurenotification.riskcalculation.ExposureClassification;
+import com.google.android.apps.exposurenotification.storage.DbModule;
+import com.google.android.apps.exposurenotification.storage.DiagnosisRepository;
+import com.google.android.apps.exposurenotification.storage.ExposureNotificationDatabase;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
+import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.BadgeStatus;
 import com.google.android.apps.exposurenotification.testsupport.ExposureNotificationRules;
 import com.google.android.apps.exposurenotification.testsupport.FakeClock;
+import com.google.android.apps.exposurenotification.testsupport.InMemoryDb;
+import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.nearby.exposurenotification.ExposureNotificationStatus;
@@ -42,15 +49,20 @@ import com.google.android.gms.nearby.exposurenotification.ExposureNotificationSt
 import com.google.android.gms.nearby.exposurenotification.PackageConfiguration.PackageConfigurationBuilder;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.Tasks;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
-import com.google.common.util.concurrent.ListeningExecutorService;
+import com.google.common.util.concurrent.MoreExecutors;
 import dagger.hilt.android.testing.BindValue;
 import dagger.hilt.android.testing.HiltAndroidTest;
 import dagger.hilt.android.testing.HiltTestApplication;
 import dagger.hilt.android.testing.UninstallModules;
+import java.util.EnumSet;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 import javax.inject.Inject;
 import org.junit.Before;
@@ -64,7 +76,7 @@ import org.robolectric.annotation.Config;
 @HiltAndroidTest
 @RunWith(RobolectricTestRunner.class)
 @Config(application = HiltTestApplication.class)
-@UninstallModules({RealTimeModule.class})
+@UninstallModules({DbModule.class, RealTimeModule.class})
 public class ExposureNotificationViewModelTest {
 
   @Rule
@@ -74,20 +86,96 @@ public class ExposureNotificationViewModelTest {
   @Inject
   ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
   @Inject
+  DiagnosisRepository diagnosisRepository;
+  @Inject
   PackageConfigurationHelper packageConfigurationHelper;
-  @Inject
-  @BackgroundExecutor
-  ListeningExecutorService backgroundExecutor;
-  @Inject
-  @LightweightExecutor
-  ExecutorService lightweightExecutor;
+
   @BindValue
   Clock clock = new FakeClock();
+  @BindValue
+  ExposureNotificationDatabase database = InMemoryDb.create();
 
   private static final Set<ExposureNotificationStatus> ACTIVATED_SET =
       ImmutableSet.of(ExposureNotificationStatus.ACTIVATED);
   private static final Set<ExposureNotificationStatus> INACTIVATED_SET =
       ImmutableSet.of(ExposureNotificationStatus.INACTIVATED);
+  /*
+   * Maps from the set of ExposureNotificationStatus objects, which may actually be returned by the
+   * EN module's getStatus() API, to the single ExposureNotificationState object it corresponds to.
+   * These maps are primarily used to simulate scenarios with multiple edge cases returned at the
+   * same time to ensure we handle them properly.
+   */
+  private static final Map<Set<ExposureNotificationStatus>, ExposureNotificationState>
+      EN_DISABLED_STATUS_SET_TO_STATE_MAP =
+      ImmutableMap.<Set<ExposureNotificationStatus>, ExposureNotificationState>builder()
+          .put(ImmutableSet.of(ExposureNotificationStatus.EN_NOT_SUPPORT),
+              /* state= */ExposureNotificationState.PAUSED_EN_NOT_SUPPORT)
+          .put(ImmutableSet.of(ExposureNotificationStatus.NOT_IN_ALLOWLIST),
+              /* state= */ExposureNotificationState.PAUSED_NOT_IN_ALLOWLIST)
+          .put(ImmutableSet.of(ExposureNotificationStatus.INACTIVATED,
+              ExposureNotificationStatus.HW_NOT_SUPPORT),
+              /* state= */ExposureNotificationState.PAUSED_HW_NOT_SUPPORT)
+          .put(ImmutableSet.of(ExposureNotificationStatus.INACTIVATED,
+              ExposureNotificationStatus.USER_PROFILE_NOT_SUPPORT),
+              /* state= */ExposureNotificationState.PAUSED_USER_PROFILE_NOT_SUPPORT)
+          .put(ImmutableSet.of(ExposureNotificationStatus.INACTIVATED,
+              ExposureNotificationStatus.USER_PROFILE_NOT_SUPPORT,
+              ExposureNotificationStatus.HW_NOT_SUPPORT),
+              /* state= */ExposureNotificationState.PAUSED_HW_NOT_SUPPORT)
+          .put(ImmutableSet.of(ExposureNotificationStatus.INACTIVATED,
+              ExposureNotificationStatus.NO_CONSENT,
+              ExposureNotificationStatus.FOCUS_LOST),
+              /* state= */ExposureNotificationState.DISABLED)
+          .put(ImmutableSet.of(ExposureNotificationStatus.INACTIVATED,
+              ExposureNotificationStatus.FOCUS_LOST),
+              /* state= */ExposureNotificationState.FOCUS_LOST)
+          .build();
+  private static final Map<Set<ExposureNotificationStatus>, ExposureNotificationState>
+      EN_DISABLED_STATUS_SET_WITH_LOW_STORAGE_TO_STATE_MAP =
+      ImmutableMap.<Set<ExposureNotificationStatus>, ExposureNotificationState>builder()
+          .put(ImmutableSet.of(ExposureNotificationStatus.INACTIVATED,
+              ExposureNotificationStatus.USER_PROFILE_NOT_SUPPORT,
+              ExposureNotificationStatus.HW_NOT_SUPPORT,
+              ExposureNotificationStatus.LOW_STORAGE),
+              /* state= */ExposureNotificationState.PAUSED_HW_NOT_SUPPORT)
+          .put(ImmutableSet.of(ExposureNotificationStatus.INACTIVATED,
+              ExposureNotificationStatus.USER_PROFILE_NOT_SUPPORT,
+              ExposureNotificationStatus.LOW_STORAGE),
+              /* state= */ExposureNotificationState.PAUSED_USER_PROFILE_NOT_SUPPORT)
+          .put(ImmutableSet.of(ExposureNotificationStatus.INACTIVATED,
+              ExposureNotificationStatus.FOCUS_LOST,
+              ExposureNotificationStatus.LOW_STORAGE),
+              /* state= */ExposureNotificationState.STORAGE_LOW)
+          .put(ImmutableSet.of(ExposureNotificationStatus.INACTIVATED,
+              ExposureNotificationStatus.NO_CONSENT,
+              ExposureNotificationStatus.LOW_STORAGE),
+              /* state= */ExposureNotificationState.STORAGE_LOW)
+          .put(ImmutableSet.of(ExposureNotificationStatus.INACTIVATED,
+              ExposureNotificationStatus.NO_CONSENT,
+              ExposureNotificationStatus.FOCUS_LOST,
+              ExposureNotificationStatus.LOW_STORAGE),
+              /* state= */ExposureNotificationState.STORAGE_LOW)
+          .build();
+  /*
+   * List of the set of ExposureNotificationStatus objects, which may actually be returned by the
+   * EN module's getStatus() API. Used to test whether we always give priority to LOW_STORAGE
+   * status if multiple statuses are returned at the same time.
+   */
+  private static final List<Set<ExposureNotificationStatus>>
+      EN_ENABLED_STATUS_SETS_WITH_LOW_STORAGE = ImmutableList.of(
+      ImmutableSet.of(ExposureNotificationStatus.INACTIVATED,
+          ExposureNotificationStatus.LOW_STORAGE,
+          ExposureNotificationStatus.LOCATION_DISABLED),
+      ImmutableSet.of(ExposureNotificationStatus.INACTIVATED,
+          ExposureNotificationStatus.LOW_STORAGE,
+          ExposureNotificationStatus.BLUETOOTH_DISABLED,
+          ExposureNotificationStatus.BLUETOOTH_SUPPORT_UNKNOWN),
+      ImmutableSet.of(ExposureNotificationStatus.INACTIVATED,
+          ExposureNotificationStatus.LOW_STORAGE,
+          ExposureNotificationStatus.LOCATION_DISABLED,
+          ExposureNotificationStatus.BLUETOOTH_DISABLED,
+          ExposureNotificationStatus.BLUETOOTH_SUPPORT_UNKNOWN));
+
   // Tasks returned by calls to the EN module APIs.
   private static final Task<Boolean> TASK_FOR_RESULT_TRUE = Tasks.forResult(true);
   private static final Task<Boolean> TASK_FOR_RESULT_FALSE = Tasks.forResult(false);
@@ -96,6 +184,8 @@ public class ExposureNotificationViewModelTest {
       Tasks.forResult(ACTIVATED_SET);
   private static final Task<Set<ExposureNotificationStatus>> TASK_FOR_INACTIVATED =
       Tasks.forResult(INACTIVATED_SET);
+  private static final int EN_DISABLED_ORDINAL = ExposureNotificationState.DISABLED.ordinal();
+  private static final int EN_ENABLED_ORDINAL = ExposureNotificationState.ENABLED.ordinal();
 
   @Mock
   private ExposureNotificationClientWrapper exposureNotificationClientWrapper;
@@ -109,24 +199,29 @@ public class ExposureNotificationViewModelTest {
     exposureNotificationViewModel = new ExposureNotificationViewModel(
         exposureNotificationSharedPreferences,
         exposureNotificationClientWrapper,
+        diagnosisRepository,
         logger,
         packageConfigurationHelper,
-        clock);
+        clock,
+        MoreExecutors.newDirectExecutorService());
     when(exposureNotificationClientWrapper.getPackageConfiguration())
         .thenReturn(Tasks.forResult(new PackageConfigurationBuilder().build()));
   }
 
   @Test
-  public void refreshState_clientIsNotEnabled_cacheSaysApiIsNotEnabled() {
+  public void refreshState_clientIsNotEnabled_cacheSaysApiIsNotEnabledAndStateIsDisabled() {
     when(exposureNotificationClientWrapper.isEnabled()).thenReturn(TASK_FOR_RESULT_FALSE);
     when(exposureNotificationClientWrapper.getStatus()).thenReturn(TASK_FOR_INACTIVATED);
     exposureNotificationSharedPreferences.setIsEnabledCache(true);
+    exposureNotificationSharedPreferences.setEnStateCache(EN_ENABLED_ORDINAL);
 
     exposureNotificationViewModel.refreshState();
 
     verify(exposureNotificationClientWrapper).isEnabled();
     verify(exposureNotificationClientWrapper).getStatus();
     assertThat(exposureNotificationSharedPreferences.getIsEnabledCache()).isFalse();
+    assertThat(exposureNotificationSharedPreferences.getEnStateCache()).isEqualTo(
+        EN_DISABLED_ORDINAL);
   }
 
   @Test
@@ -183,29 +278,22 @@ public class ExposureNotificationViewModelTest {
   }
 
   @Test
-  public void refreshState_clientFailed_cacheDisabled() {
-    Task<Boolean> task = Tasks.forException(new Exception());
-    Task<Set<ExposureNotificationStatus>> setTask = Tasks.forException(new Exception());
-    when(exposureNotificationClientWrapper.isEnabled()).thenReturn(task);
-    when(exposureNotificationClientWrapper.getStatus()).thenReturn(setTask);
-    exposureNotificationSharedPreferences.setIsEnabledCache(true);
-
-    exposureNotificationViewModel.refreshState();
-
-    verify(exposureNotificationClientWrapper).isEnabled();
-    verify(exposureNotificationClientWrapper).getStatus();
-    assertThat(exposureNotificationSharedPreferences.getIsEnabledCache()).isFalse();
-  }
-
-  @Test
-  public void refreshState_stateEnabled_notInFlight_refreshUiLiveDataUpdated() {
+  public void refreshState_clientFailed_cacheDisabled_liveDataUpdated() {
     // GIVEN
-    AtomicReference<Pair<ExposureNotificationState, Boolean>> refreshUiData = new AtomicReference<>(
-        Pair.create(ExposureNotificationState.DISABLED, /* isInFlight= */ true));
-    when(exposureNotificationClientWrapper.isEnabled()).thenReturn(TASK_FOR_RESULT_TRUE);
-    when(exposureNotificationClientWrapper.getStatus()).thenReturn(TASK_FOR_ACTIVATED);
-    exposureNotificationViewModel.getStateWithInFlightLiveData()
-        .observeForever(refreshUiData::set);
+    AtomicBoolean isEnabled = new AtomicBoolean(true);
+    AtomicReference<Pair<ExposureNotificationState, Boolean>> pairLiveData = new AtomicReference<>(
+        Pair.create(ExposureNotificationState.ENABLED, /* isInFlight= */ true));
+    // Set cache values
+    exposureNotificationSharedPreferences.setIsEnabledCache(true);
+    exposureNotificationSharedPreferences.setEnStateCache(EN_ENABLED_ORDINAL);
+    // Imitate failed EN API calls
+    Task<Boolean> failedIsEnabledTask = Tasks.forException(new Exception());
+    Task<Set<ExposureNotificationStatus>> failedGetStatusTask = Tasks.forException(new Exception());
+    when(exposureNotificationClientWrapper.isEnabled()).thenReturn(failedIsEnabledTask);
+    when(exposureNotificationClientWrapper.getStatus()).thenReturn(failedGetStatusTask);
+    // Observe LiveData updates
+    exposureNotificationViewModel.getEnEnabledLiveData().observeForever(isEnabled::set);
+    exposureNotificationViewModel.getStateWithInFlightLiveData().observeForever(pairLiveData::set);
 
     // WHEN
     exposureNotificationViewModel.refreshState();
@@ -213,19 +301,42 @@ public class ExposureNotificationViewModelTest {
     // THEN
     verify(exposureNotificationClientWrapper).isEnabled();
     verify(exposureNotificationClientWrapper).getStatus();
-    assertThat(refreshUiData.get().first).isEqualTo(ExposureNotificationState.ENABLED);
-    assertThat(refreshUiData.get().second).isFalse();
+    assertThat(exposureNotificationSharedPreferences.getIsEnabledCache()).isFalse();
+    assertThat(exposureNotificationSharedPreferences.getEnStateCache()).isEqualTo(
+        EN_DISABLED_ORDINAL);
+    assertThat(isEnabled.get()).isFalse();
+    assertThat(pairLiveData.get().first).isEqualTo(ExposureNotificationState.DISABLED);
+    assertThat(pairLiveData.get().second).isFalse();
   }
 
   @Test
-  public void refreshState_stateDisabled_notInFlight_refreshUiLiveDataUpdated() {
+  public void refreshState_stateEnabled_notInFlight_pairLiveDataUpdated() {
     // GIVEN
-    AtomicReference<Pair<ExposureNotificationState, Boolean>> refreshUiData = new AtomicReference<>(
+    AtomicReference<Pair<ExposureNotificationState, Boolean>> pairLiveData = new AtomicReference<>(
+        Pair.create(ExposureNotificationState.DISABLED, /* isInFlight= */ true));
+    when(exposureNotificationClientWrapper.isEnabled()).thenReturn(TASK_FOR_RESULT_TRUE);
+    when(exposureNotificationClientWrapper.getStatus()).thenReturn(TASK_FOR_ACTIVATED);
+    exposureNotificationViewModel.getStateWithInFlightLiveData().observeForever(pairLiveData::set);
+
+    // WHEN
+    exposureNotificationViewModel.refreshState();
+
+    // THEN
+    verify(exposureNotificationClientWrapper).isEnabled();
+    verify(exposureNotificationClientWrapper).getStatus();
+    assertThat(pairLiveData.get().first).isEqualTo(ExposureNotificationState.ENABLED);
+    assertThat(pairLiveData.get().second).isFalse();
+  }
+
+  @Test
+  public void refreshState_stateDisabled_notInFlight_pairLiveDataUpdated() {
+    // GIVEN
+    AtomicReference<Pair<ExposureNotificationState, Boolean>> pairLiveData = new AtomicReference<>(
         Pair.create(ExposureNotificationState.ENABLED, /* isInFlight= */ true));
     when(exposureNotificationClientWrapper.isEnabled()).thenReturn(TASK_FOR_RESULT_FALSE);
     when(exposureNotificationClientWrapper.getStatus()).thenReturn(TASK_FOR_INACTIVATED);
     exposureNotificationViewModel.getStateWithInFlightLiveData()
-        .observeForever(refreshUiData::set);
+        .observeForever(pairLiveData::set);
 
     // WHEN
     exposureNotificationViewModel.refreshState();
@@ -233,12 +344,12 @@ public class ExposureNotificationViewModelTest {
     // THEN
     verify(exposureNotificationClientWrapper).isEnabled();
     verify(exposureNotificationClientWrapper).getStatus();
-    assertThat(refreshUiData.get().first).isEqualTo(ExposureNotificationState.DISABLED);
-    assertThat(refreshUiData.get().second).isFalse();
+    assertThat(pairLiveData.get().first).isEqualTo(ExposureNotificationState.DISABLED);
+    assertThat(pairLiveData.get().second).isFalse();
   }
 
 
-  private ExposureNotificationState callGetStateForIsEnabledAndStatusSet(
+  private ExposureNotificationState callGetStateForStatusAndIsEnabled(
       boolean enabled, Set<ExposureNotificationStatus> statusSet) {
     Task<Boolean> task = Tasks.forResult(enabled);
     Task<Set<ExposureNotificationStatus>> setTask = Tasks.forResult(statusSet);
@@ -254,66 +365,105 @@ public class ExposureNotificationViewModelTest {
   }
 
   @Test
-  public void getStateForIsEnabled_disabled() {
+  public void getStateForStatusAndIsEnabled_disabled() {
     ExposureNotificationState exposureNotificationState =
-        callGetStateForIsEnabledAndStatusSet(false, INACTIVATED_SET);
+        callGetStateForStatusAndIsEnabled(false, INACTIVATED_SET);
 
     assertThat(exposureNotificationState).isEqualTo(ExposureNotificationState.DISABLED);
   }
 
   @Test
-  public void getStateForIsEnabled_bluetoothIsDisabled() {
+  public void getStateForStatusAndIsEnabled_bluetoothIsDisabled() {
     Set<ExposureNotificationStatus> bluetoothDisabledSet = ImmutableSet.of(
         ExposureNotificationStatus.INACTIVATED, ExposureNotificationStatus.BLUETOOTH_DISABLED,
         ExposureNotificationStatus.BLUETOOTH_SUPPORT_UNKNOWN);
 
     ExposureNotificationState exposureNotificationState =
-        callGetStateForIsEnabledAndStatusSet(true, bluetoothDisabledSet);
+        callGetStateForStatusAndIsEnabled(true, bluetoothDisabledSet);
 
     assertThat(exposureNotificationState).isEqualTo(ExposureNotificationState.PAUSED_BLE);
   }
 
   @Test
-  public void getStateForIsEnabled_locationIsNotEnabled() {
+  public void getStateForStatusAndIsEnabled_locationIsNotEnabled() {
     Set<ExposureNotificationStatus> locationDisabledSet = ImmutableSet.of(
         ExposureNotificationStatus.INACTIVATED, ExposureNotificationStatus.LOCATION_DISABLED);
 
     ExposureNotificationState exposureNotificationState =
-        callGetStateForIsEnabledAndStatusSet(true, locationDisabledSet);
+        callGetStateForStatusAndIsEnabled(true, locationDisabledSet);
 
     assertThat(exposureNotificationState).isEqualTo(ExposureNotificationState.PAUSED_LOCATION);
   }
 
   @Test
-  public void getStateForIsEnabled_bluetoothIsDisabled_locationIsDisabled() {
+  public void getStateForStatusAndIsEnabled_bluetoothIsDisabled_locationIsDisabled() {
     Set<ExposureNotificationStatus> bluetoothAndLocationDisabledSet = ImmutableSet.of(
         ExposureNotificationStatus.INACTIVATED, ExposureNotificationStatus.BLUETOOTH_DISABLED,
         ExposureNotificationStatus.BLUETOOTH_SUPPORT_UNKNOWN,
         ExposureNotificationStatus.LOCATION_DISABLED);
 
     ExposureNotificationState exposureNotificationState =
-        callGetStateForIsEnabledAndStatusSet(true, bluetoothAndLocationDisabledSet);
+        callGetStateForStatusAndIsEnabled(true, bluetoothAndLocationDisabledSet);
 
     assertThat(exposureNotificationState).isEqualTo(ExposureNotificationState.PAUSED_LOCATION_BLE);
   }
 
   @Test
-  public void getStateForIsEnabled_storageLow() {
+  public void getStateForStatusAndIsEnabled_storageLow() {
     Set<ExposureNotificationStatus> storageLowSet = ImmutableSet.of(
         ExposureNotificationStatus.INACTIVATED, ExposureNotificationStatus.LOW_STORAGE);
 
     ExposureNotificationState exposureNotificationState =
-        callGetStateForIsEnabledAndStatusSet(true, storageLowSet);
+        callGetStateForStatusAndIsEnabled(true, storageLowSet);
 
     assertThat(exposureNotificationState).isEqualTo(ExposureNotificationState.STORAGE_LOW);
   }
 
   @Test
-  public void getStateForIsEnabled_everythingEnabled() {
+  public void getStateForStatusAndIsEnabled_everythingEnabled() {
     ExposureNotificationState exposureNotificationState =
-        callGetStateForIsEnabledAndStatusSet(true, ACTIVATED_SET);
+        callGetStateForStatusAndIsEnabled(true, ACTIVATED_SET);
 
     assertThat(exposureNotificationState).isEqualTo(ExposureNotificationState.ENABLED);
+  }
+
+  @Test
+  public void getStateForStatusAndIsEnabled_enDisabled_statesReturnedAsExpected() {
+    for (Set<ExposureNotificationStatus> statusSet : EN_DISABLED_STATUS_SET_TO_STATE_MAP.keySet()) {
+      // WHEN
+      ExposureNotificationState exposureNotificationState =
+          callGetStateForStatusAndIsEnabled(false, statusSet);
+
+      // THEN
+      assertThat(exposureNotificationState).isEqualTo(
+          EN_DISABLED_STATUS_SET_TO_STATE_MAP.get(statusSet));
+    }
+  }
+
+  @Test
+  public void getStateForStatusAndIsEnabled_enDisabled_statusSetWithLowStorage_statesReturnedAsExpected() {
+    for (Set<ExposureNotificationStatus> statusSet :
+        EN_DISABLED_STATUS_SET_WITH_LOW_STORAGE_TO_STATE_MAP.keySet()) {
+      // WHEN
+      ExposureNotificationState exposureNotificationState =
+          callGetStateForStatusAndIsEnabled(false, statusSet);
+
+      // THEN
+      assertThat(exposureNotificationState).isEqualTo(
+          EN_DISABLED_STATUS_SET_WITH_LOW_STORAGE_TO_STATE_MAP.get(statusSet));
+    }
+  }
+
+  @Test
+  public void getStateForStatusAndIsEnabled_enEnabled_statusSetWithLowStorage_lowStorageStateReturned() {
+    for (Set<ExposureNotificationStatus> statusSet : EN_ENABLED_STATUS_SETS_WITH_LOW_STORAGE) {
+      // WHEN
+      ExposureNotificationState exposureNotificationState =
+          callGetStateForStatusAndIsEnabled(true, statusSet);
+
+      // THEN
+      assertThat(exposureNotificationState).isEqualTo(ExposureNotificationState.STORAGE_LOW);
+    }
   }
 
   @Test
@@ -341,20 +491,20 @@ public class ExposureNotificationViewModelTest {
         new AtomicReference<>(ExposureNotificationState.DISABLED);
     AtomicReference<Boolean> inFlight =
         new AtomicReference<>(true);
-    AtomicReference<Pair<ExposureNotificationState, Boolean>> refreshUiData = new AtomicReference<>(
+    AtomicReference<Pair<ExposureNotificationState, Boolean>> pairLiveData = new AtomicReference<>(
         Pair.create(ExposureNotificationState.DISABLED, /* isInFlight= */ true));
     exposureNotificationViewModel.getStateLiveData().observeForever(exposureNotificationState::set);
     exposureNotificationViewModel.getInFlightLiveData().observeForever(inFlight::set);
     exposureNotificationViewModel.getStateWithInFlightLiveData()
-        .observeForever(refreshUiData::set);
+        .observeForever(pairLiveData::set);
 
     exposureNotificationViewModel.startExposureNotifications();
 
     verify(exposureNotificationClientWrapper).start();
     assertThat(inFlight.get()).isFalse();
     assertThat(exposureNotificationState.get()).isEqualTo(ExposureNotificationState.ENABLED);
-    assertThat(refreshUiData.get().first).isEqualTo(ExposureNotificationState.ENABLED);
-    assertThat(refreshUiData.get().second).isFalse();
+    assertThat(pairLiveData.get().first).isEqualTo(ExposureNotificationState.ENABLED);
+    assertThat(pairLiveData.get().second).isFalse();
   }
 
   @Test
@@ -362,33 +512,84 @@ public class ExposureNotificationViewModelTest {
     Task<Void> task = Tasks.forException(new Exception());
     when(exposureNotificationClientWrapper.start()).thenReturn(task);
     AtomicBoolean apiErrorObserved = new AtomicBoolean(false);
-    AtomicBoolean inFlight = new AtomicBoolean(true);
-    exposureNotificationViewModel.getInFlightLiveData().observeForever(inFlight::set);
+    AtomicBoolean apiUnavailableObserved = new AtomicBoolean(false);
+    AtomicBoolean inFlightObserved = new AtomicBoolean(true);
+    exposureNotificationViewModel.getInFlightLiveData().observeForever(inFlightObserved::set);
     exposureNotificationViewModel.getApiErrorLiveEvent()
         .observeForever(unused -> apiErrorObserved.set(true));
+    exposureNotificationViewModel.getApiUnavailableLiveEvent()
+        .observeForever(unused -> apiUnavailableObserved.set(true));
 
     exposureNotificationViewModel.startExposureNotifications();
 
     verify(exposureNotificationClientWrapper).start();
     assertThat(apiErrorObserved.get()).isTrue();
-    assertThat(inFlight.get()).isFalse();
+    assertThat(apiUnavailableObserved.get()).isFalse();
+    assertThat(inFlightObserved.get()).isFalse();
   }
 
   @Test
-  public void startExposureNotifications_liveDataUpdatedOnFailed_isApiException() {
+  public void startExposureNotifications_liveDataUpdatedOnFailed_isResolutionRequiredApiException() {
     Task<Void> task = Tasks.forException(
         new ApiException(new Status(ExposureNotificationStatusCodes.RESOLUTION_REQUIRED)));
     when(exposureNotificationClientWrapper.start()).thenReturn(task);
-    AtomicReference<Status> apiErrorObserved =
+    AtomicBoolean apiErrorObserved = new AtomicBoolean(false);
+    AtomicBoolean apiUnavailableObserved = new AtomicBoolean(false);
+    AtomicReference<Status> resolutionRequiredObserved =
         new AtomicReference<>(Status.RESULT_SUCCESS);
+    AtomicBoolean inFlightObserved = new AtomicBoolean();
     exposureNotificationViewModel.getResolutionRequiredLiveEvent()
-        .observeForever(ex -> apiErrorObserved.set(ex.getStatus()));
+        .observeForever(ex -> resolutionRequiredObserved.set(ex.getStatus()));
+    exposureNotificationViewModel.getApiUnavailableLiveEvent()
+        .observeForever(unused -> apiUnavailableObserved.set(true));
+    exposureNotificationViewModel.getInFlightLiveData().observeForever(inFlightObserved::set);
 
     exposureNotificationViewModel.startExposureNotifications();
 
     verify(exposureNotificationClientWrapper).start();
-    assertThat(apiErrorObserved.get().getStatusCode())
+    assertThat(resolutionRequiredObserved.get().getStatusCode())
         .isEqualTo(ExposureNotificationStatusCodes.RESOLUTION_REQUIRED);
+    assertThat(apiErrorObserved.get()).isFalse();
+    assertThat(apiUnavailableObserved.get()).isFalse();
+    assertThat(inFlightObserved.get()).isTrue();
+  }
+
+  @Test
+  public void startExposureNotifications_liveDataUpdatedOnFailed_isUnavailableApiException() {
+    Task<Void> taskDisabled = Tasks.forException(
+        new ApiException(new Status(new ConnectionResult(ConnectionResult.SERVICE_DISABLED), "")));
+    Task<Void> taskInvalid = Tasks.forException(
+        new ApiException(new Status(new ConnectionResult(ConnectionResult.SERVICE_INVALID), "")));
+    Task<Void> taskMissing = Tasks.forException(
+        new ApiException(new Status(new ConnectionResult(ConnectionResult.SERVICE_MISSING), "")));
+    Task<Void> taskServiceVersionUpdateRequired = Tasks.forException(
+        new ApiException(
+            new Status(new ConnectionResult(ConnectionResult.SERVICE_VERSION_UPDATE_REQUIRED),
+                "")));
+    when(exposureNotificationClientWrapper.start())
+        .thenReturn(taskDisabled, taskInvalid, taskMissing, taskServiceVersionUpdateRequired);
+    AtomicBoolean apiErrorObserved = new AtomicBoolean(false);
+    AtomicInteger apiUnavailableObserved = new AtomicInteger(0);
+    AtomicBoolean resolutionRequiredObserved = new AtomicBoolean(false);
+    AtomicBoolean inFlightObserved = new AtomicBoolean();
+    exposureNotificationViewModel.getResolutionRequiredLiveEvent()
+        .observeForever(ex -> resolutionRequiredObserved.set(true));
+    exposureNotificationViewModel.getApiErrorLiveEvent()
+        .observeForever(unused -> apiErrorObserved.set(true));
+    exposureNotificationViewModel.getApiUnavailableLiveEvent()
+        .observeForever(unused -> apiUnavailableObserved.incrementAndGet());
+    exposureNotificationViewModel.getInFlightLiveData().observeForever(inFlightObserved::set);
+
+    exposureNotificationViewModel.startExposureNotifications();
+    exposureNotificationViewModel.startExposureNotifications();
+    exposureNotificationViewModel.startExposureNotifications();
+    exposureNotificationViewModel.startExposureNotifications();
+
+    verify(exposureNotificationClientWrapper, times(4)).start();
+    assertThat(resolutionRequiredObserved.get()).isFalse();
+    assertThat(apiErrorObserved.get()).isFalse();
+    assertThat(apiUnavailableObserved.get()).isEqualTo(4);
+    assertThat(inFlightObserved.get()).isFalse();
   }
 
   @Test
@@ -398,7 +599,7 @@ public class ExposureNotificationViewModelTest {
     AtomicBoolean atomicBoolean = new AtomicBoolean(false);
     exposureNotificationViewModel.getApiErrorLiveEvent()
         .observeForever(unused -> atomicBoolean.set(true));
-    AtomicBoolean inFlight = new AtomicBoolean(true);
+    AtomicBoolean inFlight = new AtomicBoolean();
     exposureNotificationViewModel.getInFlightLiveData().observeForever(inFlight::set);
 
     exposureNotificationViewModel.startResolutionResultOk();
@@ -408,7 +609,6 @@ public class ExposureNotificationViewModelTest {
     assertThat(inFlight.get()).isFalse();
   }
 
-  // TODO
   @Test
   public void startResolutionResultOk_onSuccess_enabled() {
     when(exposureNotificationClientWrapper.start()).thenReturn(TASK_FOR_RESULT_VOID);
@@ -430,19 +630,19 @@ public class ExposureNotificationViewModelTest {
     AtomicBoolean inFlight = new AtomicBoolean(true);
     AtomicReference<ExposureNotificationState> exposureNotificationState =
         new AtomicReference<>(ExposureNotificationState.DISABLED);
-    AtomicReference<Pair<ExposureNotificationState, Boolean>> refreshUiData = new AtomicReference<>(
+    AtomicReference<Pair<ExposureNotificationState, Boolean>> pairLiveData = new AtomicReference<>(
         Pair.create(ExposureNotificationState.DISABLED, /* isInFlight= */ true));
     exposureNotificationViewModel.getStateLiveData().observeForever(exposureNotificationState::set);
     exposureNotificationViewModel.getInFlightLiveData().observeForever(inFlight::set);
     exposureNotificationViewModel.getStateWithInFlightLiveData()
-        .observeForever(refreshUiData::set);
+        .observeForever(pairLiveData::set);
 
     exposureNotificationViewModel.startResolutionResultOk();
 
     assertThat(inFlight.get()).isFalse();
     assertThat(exposureNotificationState.get()).isEqualTo(ExposureNotificationState.ENABLED);
-    assertThat(refreshUiData.get().first).isEqualTo(ExposureNotificationState.ENABLED);
-    assertThat(refreshUiData.get().second).isFalse();
+    assertThat(pairLiveData.get().first).isEqualTo(ExposureNotificationState.ENABLED);
+    assertThat(pairLiveData.get().second).isFalse();
   }
 
   @Test
@@ -455,4 +655,125 @@ public class ExposureNotificationViewModelTest {
 
     assertThat(atomicBoolean.get()).isFalse();
   }
+
+  @Test
+  public void stopExposureNotifications_clientIsEnabled_onSuccess_enStoppedIsTrue() {
+    // GIVEN
+    // Configure required mock behavior for all methods that should be called.
+    when(exposureNotificationClientWrapper.stop()).thenReturn(TASK_FOR_RESULT_VOID);
+    when(exposureNotificationClientWrapper.isEnabled()).thenReturn(TASK_FOR_RESULT_TRUE);
+    when(exposureNotificationClientWrapper.getStatus()).thenReturn(TASK_FOR_INACTIVATED);
+    // Ensure the enStoppedLiveEvent sends expected updates.
+    AtomicBoolean enStopped = new AtomicBoolean(false);
+    exposureNotificationViewModel.getEnStoppedLiveEvent().observeForever(enStopped::set);
+
+    // WHEN
+    exposureNotificationViewModel.stopExposureNotifications();
+
+    // THEN
+    verify(exposureNotificationClientWrapper, times(2)).isEnabled();
+    verify(exposureNotificationClientWrapper).stop();
+    verify(exposureNotificationClientWrapper).getStatus();
+    assertThat(enStopped.get()).isTrue();
+  }
+
+  @Test
+  public void stopExposureNotifications_clientIsEnabled_onFailed_enStoppedIsFalse() {
+    // GIVEN
+    // Configure required mock behavior for all methods that should be called.
+    Task<Void> task = Tasks.forException(new Exception());
+    when(exposureNotificationClientWrapper.stop()).thenReturn(task);
+    when(exposureNotificationClientWrapper.isEnabled()).thenReturn(TASK_FOR_RESULT_TRUE);
+    // Ensure the enStoppedLiveEvent sends expected updates.
+    AtomicBoolean enStopped = new AtomicBoolean(true);
+    exposureNotificationViewModel.getEnStoppedLiveEvent().observeForever(enStopped::set);
+
+    // WHEN
+    exposureNotificationViewModel.stopExposureNotifications();
+
+    // THEN
+    verify(exposureNotificationClientWrapper).isEnabled();
+    verify(exposureNotificationClientWrapper).stop();
+    assertThat(enStopped.get()).isFalse();
+  }
+
+  @Test
+  public void stopExposureNotifications_clientIsNotEnabled_stopNotCalled_enStoppedIsTrue() {
+    // GIVEN
+    // Configure required mock behavior for all methods that should be called.
+    when(exposureNotificationClientWrapper.stop()).thenReturn(TASK_FOR_RESULT_VOID);
+    when(exposureNotificationClientWrapper.isEnabled()).thenReturn(TASK_FOR_RESULT_FALSE);
+    when(exposureNotificationClientWrapper.getStatus()).thenReturn(TASK_FOR_INACTIVATED);
+    // Ensure the enStoppedLiveEvent sends expected updates
+    AtomicBoolean enStopped = new AtomicBoolean(false);
+    exposureNotificationViewModel.getEnStoppedLiveEvent().observeForever(enStopped::set);
+
+    // WHEN
+    exposureNotificationViewModel.stopExposureNotifications();
+
+    // THEN
+    verify(exposureNotificationClientWrapper, times(2)).isEnabled();
+    verify(exposureNotificationClientWrapper, never()).stop();
+    verify(exposureNotificationClientWrapper).getStatus();
+    assertThat(enStopped.get()).isTrue();
+  }
+
+  @Test
+  public void isStateBlockingSharingFlow_blockingStates_returnsTrue() {
+    for (ExposureNotificationState state : EN_STATES_BLOCKING_SHARING_FLOW) {
+      assertThat(exposureNotificationViewModel.isStateBlockingSharingFlow(state)).isTrue();
+    }
+  }
+
+  @Test
+  public void isStateBlockingSharingFlow_nonBlockingStates_returnsFalse() {
+    // GIVEN
+    Set<ExposureNotificationState> enStatesNotBlockingSharingFlow =
+        EnumSet.allOf(ExposureNotificationState.class);
+    enStatesNotBlockingSharingFlow.removeAll(EN_STATES_BLOCKING_SHARING_FLOW);
+
+    // THEN
+    for (ExposureNotificationState state : enStatesNotBlockingSharingFlow) {
+      assertThat(exposureNotificationViewModel.isStateBlockingSharingFlow(state)).isFalse();
+    }
+  }
+
+  @Test
+  public void isPossibleExposurePresent_noExposure_returnsFalse() {
+    // GIVEN
+    ExposureClassification noExposure = ExposureClassification.createNoExposureClassification();
+
+    // WHEN
+    exposureNotificationSharedPreferences.setExposureClassification(noExposure);
+
+    // THEN
+    assertThat(exposureNotificationViewModel.isPossibleExposurePresent()).isFalse();
+  }
+
+  @Test
+  public void isPossibleExposurePresent_noExposureButRevokedExposure_returnsTrue() {
+    // GIVEN
+    ExposureClassification noExposure = ExposureClassification.createNoExposureClassification();
+
+    // WHEN
+    exposureNotificationSharedPreferences.setExposureClassification(noExposure);
+    exposureNotificationSharedPreferences.setIsExposureClassificationRevoked(true);
+
+    // THEN
+    assertThat(exposureNotificationViewModel.isPossibleExposurePresent()).isTrue();
+  }
+
+  @Test
+  public void isPossibleExposurePresent_exposure_returnsTrue() {
+    // GIVEN
+    ExposureClassification newExposure = ExposureClassification.create(
+        /* classificationIndex= */1, /* classificationName= */"", clock.now().toEpochMilli());
+
+    // WHEN
+    exposureNotificationSharedPreferences.setExposureClassification(newExposure);
+
+    // THEN
+    assertThat(exposureNotificationViewModel.isPossibleExposurePresent()).isTrue();
+  }
+
 }

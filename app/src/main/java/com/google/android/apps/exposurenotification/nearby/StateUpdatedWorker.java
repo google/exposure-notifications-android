@@ -18,8 +18,12 @@
 package com.google.android.apps.exposurenotification.nearby;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
+import androidx.annotation.VisibleForTesting;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.hilt.Assisted;
 import androidx.hilt.work.WorkerInject;
 import androidx.work.ListenableWorker;
@@ -27,6 +31,7 @@ import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkManager;
 import androidx.work.WorkerParameters;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.common.IntentUtil;
 import com.google.android.apps.exposurenotification.common.NotificationHelper;
 import com.google.android.apps.exposurenotification.common.Qualifiers.BackgroundExecutor;
 import com.google.android.apps.exposurenotification.common.Qualifiers.ScheduledExecutor;
@@ -42,12 +47,17 @@ import com.google.android.apps.exposurenotification.storage.ExposureNotification
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.BadgeStatus;
 import com.google.android.apps.exposurenotification.storage.ExposureRepository;
 import com.google.android.gms.nearby.exposurenotification.DailySummariesConfig;
+import com.google.android.gms.nearby.exposurenotification.ExposureNotificationStatus;
+import com.google.common.base.Optional;
 import com.google.common.util.concurrent.FluentFuture;
+import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ScheduledExecutorService;
 import org.threeten.bp.Duration;
+import org.threeten.bp.Instant;
 
 /**
  * Performs work for {@value com.google.android.gms.nearby.exposurenotification.ExposureNotificationClient#ACTION_EXPOSURE_STATE_UPDATED}
@@ -58,6 +68,8 @@ public class StateUpdatedWorker extends ListenableWorker {
   private static final String TAG = "StateUpdatedWorker";
 
   private static final Duration GET_DAILY_SUMMARIES_TIMEOUT = Duration.ofSeconds(120);
+  @VisibleForTesting static final Duration BLE_LOC_OFF_UNTIL_NOTIFICATION_THRESHOLD =
+      Duration.ofHours(24);
 
   private final Context context;
   private final ExposureRepository exposureRepository;
@@ -115,14 +127,33 @@ public class StateUpdatedWorker extends ListenableWorker {
             exposureNotificationClientWrapper.getDailySummaries(dailySummariesConfig),
             GET_DAILY_SUMMARIES_TIMEOUT,
             scheduledExecutor))
-        .transform(
+        .transformAsync(
             (dailySummaries) -> {
               logger.logWorkManagerTaskStarted(WorkerTask.TASK_STATE_UPDATED);
-              retrievePreviousExposuresAndCheckForExposureUpdate(context, dailySummaries);
+              boolean notificationTriggered =
+                  retrievePreviousExposuresAndCheckForExposureUpdate(context, dailySummaries);
               logger.logWorkManagerTaskSuccess(WorkerTask.TASK_STATE_UPDATED);
-              return Result.success();
+              if (notificationTriggered) {
+                // If we triggered an exposure, we skip any edge-case detection steps
+                return Futures.immediateFailedFuture(new NotificationShownException());
+              } else {
+                // Otherwise, we check if we need to show an edge-case notification. To do so,
+                // we query getStatus()
+                return TaskToFutureAdapter.getFutureWithTimeout(
+                    exposureNotificationClientWrapper.getStatus(),
+                    GET_DAILY_SUMMARIES_TIMEOUT,
+                    scheduledExecutor);
+              }
             },
             backgroundExecutor)
+        .transform(
+            enStatusSet -> {
+              maybeShowEdgeCaseNotification(enStatusSet);
+              return Result.success();
+            }, backgroundExecutor)
+        .catching(
+            NotificationShownException.class,
+            x -> Result.success(), backgroundExecutor)
         .catching(
             Exception.class,
             x -> {
@@ -132,7 +163,14 @@ public class StateUpdatedWorker extends ListenableWorker {
             }, backgroundExecutor);
   }
 
-  private void retrievePreviousExposuresAndCheckForExposureUpdate(Context context,
+  private static class NotificationShownException extends Exception {}
+
+  /**
+   * Check if there was a new exposure or revocation and whether we need to notify.
+   * Returns true if we triggered a exposure/revocation notification.
+   */
+  @VisibleForTesting
+  boolean retrievePreviousExposuresAndCheckForExposureUpdate(Context context,
       List<DailySummaryWrapper> dailySummaries) {
     List<ExposureEntity> currentExposureEntities =
         revocationDetector.dailySummaryToExposureEntity(dailySummaries);
@@ -143,7 +181,7 @@ public class StateUpdatedWorker extends ListenableWorker {
     ExposureClassification previousClassification =
         exposureNotificationSharedPreferences.getExposureClassification();
 
-    checkForExposureUpdate(context, currentExposureEntities, currentClassification,
+    return checkForExposureUpdate(context, currentExposureEntities, currentClassification,
         previousClassification);
   }
 
@@ -155,8 +193,10 @@ public class StateUpdatedWorker extends ListenableWorker {
    * <li>- Recognize changes that trigger notifications
    * <li>- Detect revocations
    * </ul>
+   *
+   * @return true if triggered a exposure/revocation notification
    */
-  public void checkForExposureUpdate(Context context,
+  public boolean checkForExposureUpdate(Context context,
       List<ExposureEntity> currentExposureEntities, ExposureClassification currentClassification,
       ExposureClassification previousClassification) {
 
@@ -193,8 +233,8 @@ public class StateUpdatedWorker extends ListenableWorker {
      * To give the UI a chance to update to changed exposure classifications, we only set a
      * "notifyUser" flag here and postpone the actual notification to the very end of this method.
      */
-    int notificationTitleResource = 0;
-    int notificationMessageResource = 0;
+    int notificationTitleResource = ResourcesCompat.ID_NULL;
+    int notificationMessageResource = ResourcesCompat.ID_NULL;
 
     if (newExposureClassification || newExposureDate) {
       if (previousClassification.getClassificationIndex()
@@ -237,9 +277,13 @@ public class StateUpdatedWorker extends ListenableWorker {
     /*
      * Notify the user
      */
-    if (notificationTitleResource != 0 || notificationMessageResource != 0) {
-      notificationHelper.showPossibleExposureNotification(
-          context, notificationTitleResource, notificationMessageResource);
+    boolean showNotification = (notificationTitleResource != ResourcesCompat.ID_NULL
+        || notificationMessageResource != ResourcesCompat.ID_NULL);
+    if (showNotification) {
+      notificationHelper.showNotification(
+          context, notificationTitleResource, notificationMessageResource,
+          IntentUtil.getNotificationContentIntent(context),
+          IntentUtil.getNotificationDeleteIntent(context));
       exposureNotificationSharedPreferences
           .setExposureNotificationLastShownClassification(clock.now(),
               currentClassification);
@@ -254,11 +298,14 @@ public class StateUpdatedWorker extends ListenableWorker {
      * Write a the scores of the DailySummaries to disk for later revocation detection
      */
     exposureRepository.clearInsertExposureEntities(currentExposureEntities);
+
+    return showNotification;
   }
 
   /**
    * Helper to provide the string resources for the notification title
    */
+  @StringRes
   private int getNotificationTitleResource(ExposureClassification exposureClassification) {
     switch (exposureClassification.getClassificationIndex()) {
       case 1:
@@ -277,6 +324,7 @@ public class StateUpdatedWorker extends ListenableWorker {
   /**
    * Helper to provide the string resources for the notification message
    */
+  @StringRes
   private int getNotificationMessageResource(ExposureClassification exposureClassification) {
     switch (exposureClassification.getClassificationIndex()) {
       case 1:
@@ -291,4 +339,78 @@ public class StateUpdatedWorker extends ListenableWorker {
         throw new IllegalArgumentException("Classification index must be between 1 and 4");
     }
   }
+
+  /**
+   * Helper to check if we should show a edge-case notification.
+   * This must only be called if we have not previously shown an exposure / revocation notification.
+   */
+  @VisibleForTesting
+  void maybeShowEdgeCaseNotification(Set<ExposureNotificationStatus> enStatusSet) {
+    // We only a possible edge-case notification once per user. If we did that already, we're done
+    if(exposureNotificationSharedPreferences.getBleLocNotificationSeen()) {
+      return;
+    }
+
+    // We don't execute this logic if the user had an exposure/revocation in the last 14 days
+    if(exposureNotificationSharedPreferences.getExposureClassification().getClassificationIndex()
+        != ExposureClassification.NO_EXPOSURE_CLASSIFICATION_INDEX
+        || exposureNotificationSharedPreferences.getIsExposureClassificationRevoked()) {
+      return;
+    }
+
+    Optional<Instant> beginTimestampBleLocOff =
+        exposureNotificationSharedPreferences.getBeginTimestampBleLocOff();
+
+    // Set the correct beginTimestampBleLocOff
+    if (enStatusSet.contains(ExposureNotificationStatus.LOCATION_DISABLED)
+        || enStatusSet.contains(ExposureNotificationStatus.BLUETOOTH_DISABLED)
+        || enStatusSet.contains(ExposureNotificationStatus.BLUETOOTH_SUPPORT_UNKNOWN)) {
+      // We only want to store the time when we started to see loc/ble off, so we only reset the
+      // timestamp if we see a change to loc/ble off for the first time
+      if (!beginTimestampBleLocOff.isPresent()) {
+        beginTimestampBleLocOff = Optional.of(clock.now());
+      }
+    } else {
+      // If Ble/Loc are both enabled, we do not store a timestamp
+      beginTimestampBleLocOff = Optional.absent();
+    }
+
+    // If we're still in a Ble/Loc off state, notify
+    if (beginTimestampBleLocOff.isPresent()
+        && Duration.between(beginTimestampBleLocOff.get(), clock.now())
+        .compareTo(BLE_LOC_OFF_UNTIL_NOTIFICATION_THRESHOLD) >= 0 /*bigger equal threshold*/) {
+      int bleLocNotificationMessageResource = getBleLocMessageResource(enStatusSet);
+      if (bleLocNotificationMessageResource != ResourcesCompat.ID_NULL) {
+        notificationHelper.showNotification(context,
+            R.string.updated_permission_disabled_notification_title,
+            getBleLocMessageResource(enStatusSet),
+            IntentUtil.getNotificationContentIntent(context),
+            IntentUtil.getNotificationDeleteIntent(context));
+      }
+      exposureNotificationSharedPreferences.setBleLocNotificationSeen(true);
+    }
+
+    // Write back the beginTimestampBleLocOff
+    exposureNotificationSharedPreferences.setBeginTimestampBleLocOff(beginTimestampBleLocOff);
+  }
+
+  /**
+   * Return the correct edge-case string resource id depending on the current statusSet
+   */
+  @StringRes
+  private int getBleLocMessageResource(Set<ExposureNotificationStatus> statusSet) {
+    if (statusSet.contains(ExposureNotificationStatus.LOCATION_DISABLED)
+        && (statusSet.contains(ExposureNotificationStatus.BLUETOOTH_DISABLED)
+        || statusSet.contains(ExposureNotificationStatus.BLUETOOTH_SUPPORT_UNKNOWN))) {
+      return R.string.updated_bluetooth_location_state_notification;
+    } else if (statusSet.contains(ExposureNotificationStatus.BLUETOOTH_DISABLED)
+        || statusSet.contains(ExposureNotificationStatus.BLUETOOTH_SUPPORT_UNKNOWN)) {
+      return R.string.updated_bluetooth_state_notification;
+    } else if (statusSet.contains(ExposureNotificationStatus.LOCATION_DISABLED)) {
+      return R.string.updated_location_state_notification;
+    } else {
+      return ResourcesCompat.ID_NULL;
+    }
+  }
+
 }

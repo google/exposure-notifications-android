@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">Forritið er virkt og athugar</string>
+  <string name="app_active_and_checking_info">Forritið athugar möguleika á útsetningu. Tilkynningar um útsetningu hjálpa þér að vernda samfélagið – jafnvel þótt þú hafir fengið bólusetningu.</string>
+  <string name="possible_exposure_title">Þú gætir verið útsett(ur)</string>
+  <string name="share_test_result_home_screen_title">Deildu niðurstöðu skimunar</string>
+  <string name="have_questions">Ertu með spurningar?</string>
+  <string name="check_exposure_status">Athuga stöðu þína varðandi útsetningu</string>
+  <string name="en_active">Virkt</string>
+  <string name="en_inactive">Óvirkt</string>
+  <string name="exposure_checks_activity_title">Skrá yfir nýlegar athuganir</string>
+  <string name="sharing_history_activity_title">Deila ferli</string>
+  <string name="no_recent_exposure_card_content_no_checks">Ekki hefur verið greint frá áhættu á COVID-19-útsetningu.</string>
+  <string name="no_recent_exposure_card_content">Ekki hefur verið greint frá áhættu á COVID-19-útsetningu. Síðast athugað %1$s</string>
+  <string name="see_recent_checks_button">Sjá síðustu athuganir</string>
+  <string name="possible_exposure_card_title">Möguleg útsetning tilkynnt</string>
+  <string name="possible_exposure_card_contents">Einhver sem þú varst nálægt greindist með COVID-19</string>
+  <string name="see_details_button">Sjá nánar</string>
+  <string name="share_test_result_card_title">Hjálpaðu til við að koma í veg fyrir COVID-19-smit í samfélaginu</string>
+  <string name="share_test_result_card_content">Í hvert sinn sem einhver deilir jákvæðri niðurstöðu getur það komið í veg fyrir annað tilvik af COVID-19. Ekki er hægt að bera kennsl á þig þótt þú deilir niðurstöðum úr skimun.</string>
+  <string name="see_history_button">Sjá feril</string>
+  <string name="share_positive_diagnosis_card_content">Deildu niðurstöðu prófsins til að hjálpa til í baráttunni gegn útbreiðslu COVID-19</string>
+  <string name="share_app_card_content">Deildu þessu forriti til að vernda samfélagið</string>
+  <string name="how_en_works_card_content">Nánar um hvernig tilkynningar um útsetningu virka</string>
+</resources>

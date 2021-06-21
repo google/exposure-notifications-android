@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="onboarding_activity_title">Регистрация</string>
+  <string name="share_history_activity_title">История отправок</string>
+  <string name="remove_region_link_title">Удалить регион</string>
+  <string name="delete_shared_diagnosis">Удалить результат</string>
+  <string name="active_region_subtitle">В настоящее время \"%1$s\" является активным приложением в Системе уведомлений о риске инфицирования для вашего региона.</string>
+  <string name="active_region_subtitle_en_off">В настоящее время \"%1$s\" является активным приложением для вашего региона, но Система уведомлений о риске инфицирования отключена на телефоне.</string>
+  <string name="remove_region_title">Удаление региона</string>
+  <string name="remove_region_detail">Если вы удалите регион, то перестанете получать Уведомления о риске инфицирования. Вы сможете добавить его снова в любое время.</string>
+  <string name="btn_remove">Удалить</string>
+  <string name="exposure_notifications_is_off">Уведомления о риске инфицирования отключены</string>
+  <string name="possible_exposure">Возможный контакт</string>
+  <string name="share_history_delete_test_result_title">Удаление результата</string>
+  <string name="share_history_delete_test_result_detail">Ваш результат теста на COVID-19 от %1$s будет удален с телефона.</string>
+</resources>

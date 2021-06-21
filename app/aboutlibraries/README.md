@@ -14,14 +14,24 @@ in the release code. To see the release libraries, use
 
 ```
 ./gradlew app:dependencies --configuration sampleReleaseRuntimeClasspath
+./gradlew privateanalytics:dependencies --configuration releaseRuntimeClasspath
 ```
 
-To convert to a list, use
+The basic output is a digraph. To remove the structure and repetition, leaving
+a list, pass the output into this Python script
 
 ```
-./gradlew app:dependencies --configuration sampleReleaseRuntimeClasspath \
-  | fgrep "\---" | fgrep -v "(*)" | fgrep -v "\->" \
-  | sed -e 's/^.*--- //' | sort -u
+import re
+import sys
+
+dependencies = set()
+for line in sys.stdin.readlines():
+  match = re.search(r'--- ([^:]+:[^:]+):(\S+)( -> (\S+))?', line)
+  if match:
+    library, version, _, actual_version = match.groups()
+    dependencies.add('%s:%s' % (library, actual_version or version))
+
+print('\n'.join(sorted(dependencies)))
 ```
 
 ### `exportLibraries.txt`

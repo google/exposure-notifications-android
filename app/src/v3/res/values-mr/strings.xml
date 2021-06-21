@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="onboarding_activity_title">ऑनबोर्डिंग</string>
+  <string name="share_history_activity_title">शेअरिंग इतिहास पाहा</string>
+  <string name="remove_region_link_title">प्रदेश हटवा</string>
+  <string name="delete_shared_diagnosis">चाचणीचा शेअर केलेला परिणाम हटवा</string>
+  <string name="active_region_subtitle">%1$s हा सध्या लागणीबद्दलच्या सूचना यांसाठी तुमचा अ‍ॅक्टिव्ह प्रदेश म्हणून सेट केला आहे</string>
+  <string name="active_region_subtitle_en_off">%1$s हा तुमचा अ‍ॅक्टिव्ह प्रदेश म्हणून सेट केला आहे पण लागणीबद्दलच्या सूचना बंद आहेत</string>
+  <string name="remove_region_title">प्रदेश हटवा</string>
+  <string name="remove_region_detail">तुमचा प्रदेश काढून टाकल्याने लागणीबद्दलच्या सूचना बंद होतील. तुम्ही हा प्रदेश नंतर कधीही जोडू शकता.</string>
+  <string name="btn_remove">काढून टाका</string>
+  <string name="exposure_notifications_is_off">लागणीबद्दलच्या सूचना बंद आहेत</string>
+  <string name="possible_exposure">संभाव्य लागण</string>
+  <string name="share_history_delete_test_result_title">चाचणीचा हा परिणाम हटवायचा आहे का?</string>
+  <string name="share_history_delete_test_result_detail">तुमचा %1$s चा COVID-19 चाचणीचा परिणाम तुमच्या फोनमधून हटवला जाईल.</string>
+</resources>

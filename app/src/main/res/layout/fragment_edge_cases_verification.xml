@@ -34,7 +34,7 @@
       android:layout_height="match_parent"
       android:background="?attr/selectableItemBackgroundBorderless"
       app:srcCompat="@drawable/ic_close"
-      android:contentDescription="@string/btn_cancel" />
+      android:contentDescription="@string/btn_close_label" />
 
   </LinearLayout>
 

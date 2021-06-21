@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="onboarding_activity_title">Prezantimi</string>
+  <string name="share_history_activity_title">Shiko historikun e ndarjeve</string>
+  <string name="remove_region_link_title">Hiqe rajonin</string>
+  <string name="delete_shared_diagnosis">Fshi rezultatin e ndarë të testit</string>
+  <string name="active_region_subtitle">\"Njoftimet rreth ekspozimit\" janë aktualisht aktive për rajonin tënd (%1$s)</string>
+  <string name="active_region_subtitle_en_off">\"Njoftimet rreth ekspozimit\" janë aktualisht aktive për rajonin tënd (%1$s), por janë joaktive për telefonin tënd</string>
+  <string name="remove_region_title">Hiqe rajonin</string>
+  <string name="remove_region_detail">Heqja e rajonit tënd do të çaktivizojë \"Njoftimet rreth ekspozimit\". Mund ta shtosh këtë rajon përsëri në çdo kohë.</string>
+  <string name="btn_remove">Hiq</string>
+  <string name="exposure_notifications_is_off">\"Njoftimet rreth ekspozimit\" janë joaktive</string>
+  <string name="possible_exposure">Ekspozim i mundshëm</string>
+  <string name="share_history_delete_test_result_title">Të fshihet ky rezultat i testit?</string>
+  <string name="share_history_delete_test_result_detail">Rezultati i testit tënd për COVID-19 nga data %1$s do të fshihet nga telefoni yt.</string>
+</resources>

@@ -91,34 +91,6 @@
 
       <include layout="@layout/horizontal_divider" />
 
-      <!-- UX flows switch -->
-      <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:paddingHorizontal="@dimen/padding_large"
-        android:paddingVertical="@dimen/padding_normal"
-        android:text="@string/debug_ux_flows"
-        android:textAppearance="?attr/textAppearanceSubtitle1" />
-
-      <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingHorizontal="@dimen/padding_large"
-        android:paddingVertical="@dimen/padding_small">
-
-        <com.google.android.material.switchmaterial.SwitchMaterial
-          android:id="@+id/ux_flow_switch"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:text="@string/debug_ux_flow_toggle"
-          android:textAppearance="?attr/textAppearanceBody1" />
-
-      </LinearLayout>
-
-      <include layout="@layout/horizontal_divider" />
-
       <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

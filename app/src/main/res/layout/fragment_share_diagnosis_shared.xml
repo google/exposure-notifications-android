@@ -41,20 +41,57 @@
       android:paddingHorizontal="@dimen/padding_large">
 
       <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/share_confirm_title"
-        android:layout_marginBottom="@dimen/padding_extra_large"
-        android:textAppearance="?attr/textAppearanceHeadline5" />
-
-      <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="@dimen/padding_extra_large"
-        android:paddingVertical="@dimen/padding_extra_large"
-        android:layout_marginVertical="@dimen/padding_extra_large"
-        app:srcCompat="@drawable/ic_check_filled" />
+        android:paddingTop="@dimen/padding_normal"
+        android:paddingHorizontal="@dimen/padding_large"
+        android:gravity="center"
+        android:text="@string/share_confirm_title"
+        android:textAppearance="?attr/textAppearanceHeadline5" />
+
+      <ViewSwitcher
+        android:id="@+id/vaccination_question_switcher"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/padding_normal"
+          android:orientation="vertical">
+
+          <include
+            layout="@layout/card_notify_vaccination_status"
+            android:id="@+id/vaccination_status_layout" />
+
+          <TextView
+            android:id="@+id/help_more_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingTop="@dimen/padding_small"
+            android:text="@string/share_vaccination_description"
+            android:textAppearance="?attr/textAppearanceBody2"
+            android:textColor="?attr/colorControlNormal" />
+
+          <Button
+            android:id="@+id/learn_more_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="0dp"
+            android:text="@string/share_vaccination_learn_more"
+            style="@style/Widget.MaterialComponents.Button.TextButton" />
+
+        </LinearLayout>
+
+        <ImageView
+          android:layout_width="match_parent"
+          android:layout_height="@dimen/home_screen_banner_height"
+          android:importantForAccessibility="no"
+          android:contentDescription="@null"
+          app:srcCompat="@drawable/ic_test_result_shared" />
+
+      </ViewSwitcher>
 
     </LinearLayout>
 

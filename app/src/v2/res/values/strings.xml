@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright 2021 Google LLC
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      https://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  ~
+  -->
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+  <!-- RE-DESIGNED SINGLE PAGE HOME SCREEN -->
+
+  <!-- Title of the home page, shown when there have been no COVID-19 exposures detected. [CHAR_LIMIT=120] -->
+  <string name="no_recent_exposure_title">App is active and checking</string>
+
+  <!-- Text displayed below the title on the home page, shown when there have been no COVID-19 exposures detected. [CHAR_LIMIT=NONE] -->
+  <string name="app_active_and_checking_info">This app is checking for possible exposures. Using Exposure Notifications helps you protect your community - even if you\'ve been vaccinated.</string>
+
+  <!-- Title of the home page, shown when there's been a possible exposure. [CHAR_LIMIT=120] -->
+  <string name="possible_exposure_title">You may have been exposed</string>
+
+  <!-- Title of the home page, shown when user has started but hasn't yet completed a sharing flow to report their COVID-19 test result. [CHAR_LIMIT=120] -->
+  <string name="share_test_result_home_screen_title">Share your test result</string>
+
+  <!-- Title of the section on the home page, which links to additional resources on Exposure Notifications. [CHAR_LIMIT=120] -->
+  <string name="have_questions">Have questions?</string>
+
+  <!-- Title of the section on the home page, which suggests user to check their exposure status. [CHAR_LIMIT=120] -->
+  <string name="check_exposure_status">Check your exposure status</string>
+
+  <!-- Text next to the "Exposure Notifications is active" icon displayed on the top of the home screen when EN are active. [CHAR_LIMIT=100] -->
+  <string name="en_active">Active</string>
+
+  <!-- Text next to the "Exposure Notifications isn't active" icon displayed on the top of the home screen when EN are not active. [CHAR_LIMIT=100] -->
+  <string name="en_inactive">Inactive</string>
+
+  <!-- Title of the Recent Exposure Check-ins Activity. [CHAR_LIMIT=120] -->
+  <string name="exposure_checks_activity_title">Record of recent check-ins</string>
+
+  <!-- Title of the Sharing History Activity. [CHAR_LIMIT=120] -->
+  <string name="sharing_history_activity_title">Share history</string>
+
+  <!-- CARDS FOR THE RE-DESIGNED HOME SCREEN -->
+
+  <!-- Contents of the "No recent exposure" card on the home page when there have been no exposure check-ins. [CHAR_LIMIT=200] -->
+  <string name="no_recent_exposure_card_content_no_checks">No reported COVID-19 exposure risk found.</string>
+
+  <!-- Contents of the "No recent exposure" card on the home page when there have been exposure check-ins. Placeholder is the last time of the exposure check (exact date and time e.g. February 2, 10:30 AM or relative date and time e.g. 2 days ago). [CHAR_LIMIT=200] -->
+  <string name="no_recent_exposure_card_content">No reported COVID-19 exposure risk found. Last checked <xliff:g id="date" example="February 2, 10:30 AM">%1$s</xliff:g></string>
+
+  <!-- Text for the button at the bottom of the "No recent exposure" card that opens the dialog (or screen) with the most recent exposure check-ins that have occurred. [CHAR_LIMIT=100] -->
+  <string name="see_recent_checks_button">See recent checks</string>
+
+  <!-- Title of the "Possible exposure" card on the home page. [CHAR_LIMIT=120] -->
+  <string name="possible_exposure_card_title">Possible exposure reported</string>
+
+  <!-- Contents of the "Possible exposure" card on the home page. [CHAR_LIMIT=200] -->
+  <string name="possible_exposure_card_contents">Someone you were near has tested positive for COVID-19</string>
+
+  <!-- Text for the button at the bottom of the "Possible exposure" card that opens the Possible Exposure details page. [CHAR_LIMIT=100] -->
+  <string name="see_details_button">See details</string>
+
+  <!-- Title of the top "Share your test result" card on the home page, shown when user has started but hasn't yet completed a sharing flow to report their COVID-19 test result. [CHAR_LIMIT=120] -->
+  <string name="share_test_result_card_title">Help prevent COVID-19 in your community</string>
+
+  <!-- Contents of the top "Share your test result" card on the home page, shown when user has started but hasn't yet completed a sharing flow to report their COVID-19 test result. [CHAR_LIMIT=200] -->
+  <string name="share_test_result_card_content">Each time someone shares a positive test result, it can help stop another case of COVID-19. Sharing your test result won\'t identify you to others.</string>
+
+  <!-- Text for the button at the bottom of the "Share your test result" card that opens the screen with the history of user's test results. [CHAR_LIMIT=100] -->
+  <string name="see_history_button">See history</string>
+
+  <!-- Contents of the "Share your test result" card on the home page, shown in the "Help protect your community" section. Tapping on this card will land user in the test result sharing flow. [CHAR_LIMIT=200] -->
+  <string name="share_positive_diagnosis_card_content">Share your test result to help stop the spread of COVID-19</string>
+
+  <!-- Contents of the "Share this app" card on the home page, shown in the "Help protect your community" section. Tapping on this card will land user in the app sharing flow. [CHAR_LIMIT=200] -->
+  <string name="share_app_card_content">Share this app to better protect your community</string>
+
+  <!-- Contents of the "How Exposure Notifications works" card on the home page, shown in the "Have questions?" section. Tapping on this card will lead to a web page with more information on how exposure notifications works. [CHAR_LIMIT=200] -->
+  <string name="how_en_works_card_content">Learn more about how Exposure Notifications works</string>
+
+</resources>

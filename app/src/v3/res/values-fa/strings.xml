@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="onboarding_activity_title">ورود کارکنان جدید</string>
+  <string name="share_history_activity_title">دیدن سوابق هم‌رسانی</string>
+  <string name="remove_region_link_title">حذف منطقه</string>
+  <string name="delete_shared_diagnosis">حذف نتیجه آزمایش هم‌رسانی‌شده</string>
+  <string name="active_region_subtitle">%1$s درحال‌حاضر به‌عنوان منطقه فعال شما برای «اعلان تماس‌های پرخطر» تنظیم شده است</string>
+  <string name="active_region_subtitle_en_off">%1$s به‌عنوان منطقه فعال شما تنظیم شده است، اما «اعلان تماس‌های پرخطر» برای تلفنتان خاموش است</string>
+  <string name="remove_region_title">حذف منطقه</string>
+  <string name="remove_region_detail">با حذف منطقه‌تان «اعلان تماس‌های پرخطر» خاموش خواهد شد. هروقت بخواهید می‌توانید این منطقه را دوباره اضافه کنید.</string>
+  <string name="btn_remove">برداشتن</string>
+  <string name="exposure_notifications_is_off">«اعلان تماس‌های پرخطر» خاموش است</string>
+  <string name="possible_exposure">تماس پرخطر احتمالی</string>
+  <string name="share_history_delete_test_result_title">این نتیجه آزمایش حذف شود؟</string>
+  <string name="share_history_delete_test_result_detail">نتیجه آزمایش کووید-۱۹ شما در %1$s از تلفنتان حذف خواهد شد.</string>
+</resources>

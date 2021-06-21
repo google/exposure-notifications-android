@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">యాప్ యాక్టివ్‌గా ఉంది, చెక్ చేస్తోంది</string>
+  <string name="app_active_and_checking_info">ఈ యాప్ వ్యాధి సోకే అవకాశాలను సేకరించడం కోసం చెక్ చేస్తోంది. మీకు వ్యాక్సిన్ వేసినప్పటికీ, ఈ వ్యాధి సోకగల అవకాశాన్ని తెలిపే నోటిఫికేషన్‌లను ఉపయోగించి మీ కమ్యూనిటీని సురక్షితంగా ఉంచడంలో సహాయపడుతుంది.</string>
+  <string name="possible_exposure_title">వ్యాధి సోకే అవకాశానికి మీరు గురి అయి ఉండవచ్చు</string>
+  <string name="share_test_result_home_screen_title">మీ పరీక్ష ఫలితాన్ని షేర్ చేసుకోండి</string>
+  <string name="have_questions">ఏవైనా ప్రశ్నలు ఉన్నాయా?</string>
+  <string name="check_exposure_status">మీ వ్యాధి సోకే అవకాశం స్టేటస్‌ను చెక్ చేయండి</string>
+  <string name="en_active">యాక్టివ్‌గా ఉంది</string>
+  <string name="en_inactive">ఇన్‌యాక్టివ్‌గా ఉంది</string>
+  <string name="exposure_checks_activity_title">ఇటీవలి చెక్-ఇన్‌ల రికార్డ్</string>
+  <string name="sharing_history_activity_title">హిస్టరీని షేర్ చేయండి</string>
+  <string name="no_recent_exposure_card_content_no_checks">రిపోర్ట్ చేయబడని COVID-19 వ్యాధి సోకే అవకాశం గురించి ప్రమాదం కనుగొనబడింది.</string>
+  <string name="no_recent_exposure_card_content">రిపోర్ట్ చేయబడని COVID-19 వ్యాధి సోకే అవకాశం గురించి ప్రమాదం కనుగొనబడింది. చివరిగా చెక్ చేసిన సమయం %1$s</string>
+  <string name="see_recent_checks_button">ఇటీవలి చెక్‌లను చూడండి</string>
+  <string name="possible_exposure_card_title">వ్యాధి సోకే అవకాశం ఉంది అని రిపోర్ట్ చేయబడింది</string>
+  <string name="possible_exposure_card_contents">ఇంతకుముందు మీకు సమీపంగా వచ్చిన వ్యక్తి COVID-19 పాజిటివ్ టెస్ట్‌గా నిర్ధారణ అయ్యారు</string>
+  <string name="see_details_button">వివరాలను చూడండి</string>
+  <string name="share_test_result_card_title">మీ కమ్యూనిటీలో COVID-19ను నిరోధించడంలో సహాయపడండి</string>
+  <string name="share_test_result_card_content">ప్రతిసారీ ఎవరైనా పాజిటివ్ టెస్ట్ ఫలితాన్ని షేర్ చేసుకున్నప్పుడు, ఇది COVID-19 మరొక కేసును ఆపడానికి సహాయపడుతుంది. మీ టెస్ట్ ఫలితాన్ని షేర్ చేయడం వలన మిమ్మల్ని ఇతరులు గుర్తించలేరు.</string>
+  <string name="see_history_button">హిస్టరీని చూడండి</string>
+  <string name="share_positive_diagnosis_card_content">COVID-19 వ్యాప్తిని ఆపడానికి మీ టెస్ట్ ఫలితాన్ని షేర్ చేయండి</string>
+  <string name="share_app_card_content">మీ కమ్యూనిటీని బాగా రక్షించడానికి ఈ యాప్‌ను షేర్ చేయండి</string>
+  <string name="how_en_works_card_content">వ్యాధి సోకగల అవకాశాన్ని తెలిపే నోటిఫికేషన్‌లు ఎలా పని చేస్తాయనే దాని గురించి మరింత తెలుసుకోండి</string>
+</resources>

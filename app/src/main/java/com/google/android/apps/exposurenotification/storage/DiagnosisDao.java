@@ -23,6 +23,7 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Transaction;
+import com.google.android.apps.exposurenotification.storage.DiagnosisEntity.Shared;
 import com.google.common.base.Function;
 import com.google.common.base.Strings;
 import com.google.common.util.concurrent.ListenableFuture;
@@ -52,6 +53,11 @@ abstract class DiagnosisDao {
 
   @Query("SELECT * FROM DiagnosisEntity ORDER BY id DESC")
   abstract LiveData<List<DiagnosisEntity>> getAllLiveData();
+
+  @Query("SELECT * FROM DiagnosisEntity WHERE sharedStatus IN (:statuses)"
+      + " ORDER BY createdTimestampMs DESC LIMIT 1")
+  abstract ListenableFuture<DiagnosisEntity> getLastDiagnosisWithSharedStatusInStatusesAsync(
+      List<Shared> statuses);
 
   @Transaction
   public Long createOrMutateById(

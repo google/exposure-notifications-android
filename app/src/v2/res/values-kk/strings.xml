@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">Қолданба қосулы және тексеруде</string>
+  <string name="app_active_and_checking_info">Бұл қолданба ауру жұқтырғандармен ықтимал байланысты тексеруде. Вакцина алмаған болсаңыз да, ауру жұқтырғандармен байланыс туралы хабарландыру жүйесі арқылы өз ортаңызды қорғай аласыз.</string>
+  <string name="possible_exposure_title">Ауру жұқтырғандармен байланыс орнатқан болуыңыз мүмкін</string>
+  <string name="share_test_result_home_screen_title">Сынақ нәтижесін бөлісіңіз</string>
+  <string name="have_questions">Сұрақтарыңыз бар ма?</string>
+  <string name="check_exposure_status">Ауру жұқтырғандармен байланыс күйін тексеріңіз</string>
+  <string name="en_active">Қосулы</string>
+  <string name="en_inactive">Өшірулі</string>
+  <string name="exposure_checks_activity_title">Соңғы тексерістер жазбасы</string>
+  <string name="sharing_history_activity_title">Бөлісу тарихы</string>
+  <string name="no_recent_exposure_card_content_no_checks">COVID-19 ауруын жұқтырғандармен байланыс қаупі туралы хабарланбады.</string>
+  <string name="no_recent_exposure_card_content">COVID-19 ауруын жұқтырғандармен байланыс қаупі туралы хабарланбады. Соңғы рет тексерілді: %1$s.</string>
+  <string name="see_recent_checks_button">Соңғы тексерістерді көру</string>
+  <string name="possible_exposure_card_title">Ауру жұқтырғандармен ықтимал байланыс туралы хабарланды</string>
+  <string name="possible_exposure_card_contents">Қасыңызда болған бір адамның COVID-19 сынағы нәтижесі оң болып шықты.</string>
+  <string name="see_details_button">Мәліметтерді көру</string>
+  <string name="share_test_result_card_title">COVID-19 ауруының өз ортаңызға таралуының алдын алуға көмектесіңіз</string>
+  <string name="share_test_result_card_content">Сынақ нәтижесі оң болып шыққаны туралы ақпаратты бөліскен әр адам COVID-19 ауруының басқаға жұғуын тоқтатуға көмектесе алады. Сынақ нәтижесін бөлісу кезінде басқаларға жеке басыңыз жарияланбайды.</string>
+  <string name="see_history_button">Тарихты көру</string>
+  <string name="share_positive_diagnosis_card_content">Сынақ нәтижесін бөлісіп, COVID-19 ауруының таралуын тоқтатуға көмектесіңіз.</string>
+  <string name="share_app_card_content">Өз ортаңызды барынша қорғау үшін, осы қолданба туралы айтыңыз.</string>
+  <string name="how_en_works_card_content">Ауру жұқтырғандармен байланыс туралы хабарландыру жүйесінің жұмысы туралы толығырақ ақпарат</string>
+</resources>

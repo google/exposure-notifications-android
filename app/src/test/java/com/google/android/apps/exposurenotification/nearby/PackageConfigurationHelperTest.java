@@ -77,6 +77,24 @@ public class PackageConfigurationHelperTest {
   }
 
   @Test
+  public void getCheckboxConsentFromPackageConfiguration_nullPackageConfiguration_checkBoxConsentIsFalse() {
+    boolean checkboxConsent =
+        PackageConfigurationHelper.getCheckboxConsentFromPackageConfiguration(null);
+
+    assertThat(checkboxConsent).isEqualTo(false);
+  }
+
+  @Test
+  public void getCheckboxConsentFromPackageConfiguration_nullConfigurationBundle_checkBoxConsentIsFalse() {
+    PackageConfiguration packageConfiguration = new PackageConfigurationBuilder().build();
+
+    boolean checkboxConsent =
+        PackageConfigurationHelper.getCheckboxConsentFromPackageConfiguration(packageConfiguration);
+
+    assertThat(checkboxConsent).isEqualTo(false);
+  }
+
+  @Test
   public void maybeUpdateAnalyticsState_appAnalyticsAlreadySet_notUpdated() {
     exposureNotificationSharedPreferences.setAppAnalyticsState(false);
     Bundle bundle = new Bundle();
@@ -102,7 +120,6 @@ public class PackageConfigurationHelperTest {
 
     assertThat(exposureNotificationSharedPreferences.isPrivateAnalyticsStateSet()).isEqualTo(true);
     assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticState()).isEqualTo(false);
-
   }
 
   @Test
@@ -155,5 +172,31 @@ public class PackageConfigurationHelperTest {
 
     assertThat(exposureNotificationSharedPreferences.isPrivateAnalyticsStateSet()).isEqualTo(true);
     assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticState()).isEqualTo(true);
+  }
+
+  @Test
+  public void getCheckboxConsentFromPackageConfiguration_checkboxConsentFalse_checkBoxConsentIsFalse() {
+    Bundle bundle = new Bundle();
+    bundle.putBoolean(PackageConfigurationHelper.CHECK_BOX_API_KEY, false);
+    PackageConfiguration packageConfiguration =
+        new PackageConfigurationBuilder().setValues(bundle).build();
+
+    boolean checkboxConsent =
+        PackageConfigurationHelper.getCheckboxConsentFromPackageConfiguration(packageConfiguration);
+
+    assertThat(checkboxConsent).isEqualTo(false);
+  }
+
+  @Test
+  public void getCheckboxConsentFromPackageConfiguration_checkboxConsentTrue_checkBoxConsentIsTrue() {
+    Bundle bundle = new Bundle();
+    bundle.putBoolean(PackageConfigurationHelper.CHECK_BOX_API_KEY, true);
+    PackageConfiguration packageConfiguration =
+        new PackageConfigurationBuilder().setValues(bundle).build();
+
+    boolean checkboxConsent =
+        PackageConfigurationHelper.getCheckboxConsentFromPackageConfiguration(packageConfiguration);
+
+    assertThat(checkboxConsent).isEqualTo(true);
   }
 }

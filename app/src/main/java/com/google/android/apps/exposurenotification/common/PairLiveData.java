@@ -26,7 +26,7 @@ import androidx.lifecycle.MediatorLiveData;
 
 /**
  * {@link MediatorLiveData} subclass which observes a pair of {@code LiveData} objects and reacts
- * when {@code onChanged} events are triggered for both of them.
+ * when {@code onChanged} events is triggered for one of them.
  *
  */
 public class PairLiveData<S, T> extends MediatorLiveData<Pair<S, T>> {
@@ -36,7 +36,10 @@ public class PairLiveData<S, T> extends MediatorLiveData<Pair<S, T>> {
 
   /**
    * Creates a new {@code PairLiveData} object that observes the given pair of {@link LiveData}
-   * objects and emits the value when {@code onChanged} is triggered for both of them.
+   * objects and emits the value when {@code onChanged} is triggered for one of them.
+   *
+   * Note that to get the first update triggered all the values emitted by observed LiveDatas must
+   * be non-null.
    *
    * @param firstLiveData  First {@code LiveData} to observe.
    * @param secondLiveData Second {@code LiveData} to observe.

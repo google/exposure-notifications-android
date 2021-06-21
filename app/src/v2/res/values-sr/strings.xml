@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">Апликација је активна и проверава</string>
+  <string name="app_active_and_checking_info">Ова апликација тражи могуће изложености. Коришћење обавештења о изложености вам помаже у заштити заједнице – чак и ако сте вакцинисани.</string>
+  <string name="possible_exposure_title">Можда сте били изложени</string>
+  <string name="share_test_result_home_screen_title">Делите резултат теста</string>
+  <string name="have_questions">Имате питања?</string>
+  <string name="check_exposure_status">Проверите статус изложености</string>
+  <string name="en_active">Активна</string>
+  <string name="en_inactive">Неактивна</string>
+  <string name="exposure_checks_activity_title">Евиденција недавних провера</string>
+  <string name="sharing_history_activity_title">Историја дељења</string>
+  <string name="no_recent_exposure_card_content_no_checks">Није пронађен ниједан пријављен ризик од изложености болести COVID-19.</string>
+  <string name="no_recent_exposure_card_content">Није пронађен ниједан пријављен ризик од изложености болести COVID-19. Последња провера: %1$s</string>
+  <string name="see_recent_checks_button">Прикажи недавне провере</string>
+  <string name="possible_exposure_card_title">Могућа изложеност је пријављена</string>
+  <string name="possible_exposure_card_contents">Неко ко је био у вашој близини има позитиван резултат теста на COVID-19</string>
+  <string name="see_details_button">Прикажи детаље</string>
+  <string name="share_test_result_card_title">Помозите у спречавању болести COVID-19 у заједници</string>
+  <string name="share_test_result_card_content">Сваки пут када неко дели позитиван резултат теста, то може да помогне да се спречи још један случај болести COVID-19. Ако делите резултат теста, друге особе неће моћи да вас препознају.</string>
+  <string name="see_history_button">Прикажи историју</string>
+  <string name="share_positive_diagnosis_card_content">Делите резултат теста да бисте помогли у спречавању ширења болести COVID-19</string>
+  <string name="share_app_card_content">Делите ову апликацију да бисте боље заштитили заједницу</string>
+  <string name="how_en_works_card_content">Сазнајте више о томе како обавештења о изложености раде</string>
+</resources>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">Aktibo at nagsusuri ang app</string>
+  <string name="app_active_and_checking_info">Nagsusuri ang app na ito para sa mga posibleng exposure. Makakatulong ang paggamit ng Mga Notification sa Exposure para maprotektahan mo ang iyong komunidad - kahit nabakunahan ka na.</string>
+  <string name="possible_exposure_title">Posibleng na-expose ka</string>
+  <string name="share_test_result_home_screen_title">Ibahagi ang resulta ng iyong pagsusuri</string>
+  <string name="have_questions">May mga tanong ka ba?</string>
+  <string name="check_exposure_status">Tingnan ang iyong status ng exposure</string>
+  <string name="en_active">Aktibo</string>
+  <string name="en_inactive">Hindi aktibo</string>
+  <string name="exposure_checks_activity_title">Record ng mga kamakailang pagsusuri</string>
+  <string name="sharing_history_activity_title">Pagbabahagi ng history</string>
+  <string name="no_recent_exposure_card_content_no_checks">Walang natuklasang ulat ng panganib ng exposure sa COVID-19.</string>
+  <string name="no_recent_exposure_card_content">Walang natuklasang ulat ng panganib ng exposure sa COVID-19. Huling nasuri noong %1$s</string>
+  <string name="see_recent_checks_button">Tingnan ang mga kamakailang pagsusuri</string>
+  <string name="possible_exposure_card_title">May naiulat na posibleng exposure</string>
+  <string name="possible_exposure_card_contents">Positibo ang resulta ng pagsusuri para sa COVID-19 ng isang taong nalapitan mo</string>
+  <string name="see_details_button">Tingnan ang mga detalye</string>
+  <string name="share_test_result_card_title">Tumulong na maiwasan ang COVID-19 sa iyong komunidad</string>
+  <string name="share_test_result_card_content">Sa tuwing may magbabahagi ng positibong resulta ng pagsusuri, makakatulong ito sa pag-iwas ng iba sa COVID-19. Hindi ihahayag ang iyong pagkakakilanlan kung ibabahagi ang resulta ng pagsusuri mo.</string>
+  <string name="see_history_button">Tingnan ang history</string>
+  <string name="share_positive_diagnosis_card_content">Ibahagi ang resulta ng iyong pagsusuri para tumulong na mapigilan ang pagkalat ng COVID-19</string>
+  <string name="share_app_card_content">Ibahagi ang app na ito para mas maprotektahan ang iyong komunidad</string>
+  <string name="how_en_works_card_content">Matuto pa tungkol sa kung paano gumagana ang Mga Notification sa Exposure</string>
+</resources>

@@ -79,7 +79,8 @@ class DiagnosisAttestor {
       ImmutableList.of(
           TestResult.CONFIRMED.toApiType(),
           TestResult.LIKELY.toApiType(),
-          TestResult.NEGATIVE.toApiType()));
+          TestResult.NEGATIVE.toApiType(),
+          TestResult.USER_REPORT.toApiType()));
 
   private final Uri codeUri;
   private final Uri certUri;

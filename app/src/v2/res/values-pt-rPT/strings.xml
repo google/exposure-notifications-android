@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">A app está ativa e a verificar</string>
+  <string name="app_active_and_checking_info">Esta app está a verificar a existência de possíveis exposições. A utilização das Notificações de exposição ajuda a proteger a sua comunidade, mesmo que tenha recebido a vacina.</string>
+  <string name="possible_exposure_title">Pode ter tido uma exposição</string>
+  <string name="share_test_result_home_screen_title">Partilhe o resultado do teste</string>
+  <string name="have_questions">Tem dúvidas?</string>
+  <string name="check_exposure_status">Verifique o estado da exposição</string>
+  <string name="en_active">Ativas</string>
+  <string name="en_inactive">Inativas</string>
+  <string name="exposure_checks_activity_title">Registo de comunicações recentes</string>
+  <string name="sharing_history_activity_title">Partilhe o histórico</string>
+  <string name="no_recent_exposure_card_content_no_checks">Não foi encontrado qualquer risco de exposição à COVID-19 comunicado.</string>
+  <string name="no_recent_exposure_card_content">Não foi encontrado qualquer risco de exposição à COVID-19 comunicado. Última verificação: %1$s</string>
+  <string name="see_recent_checks_button">Ver verificações recentes</string>
+  <string name="possible_exposure_card_title">Possível exposição comunicada</string>
+  <string name="possible_exposure_card_contents">Alguém de quem tenha estado perto teve um resultado do teste à COVID-19 positivo.</string>
+  <string name="see_details_button">Ver detalhes</string>
+  <string name="share_test_result_card_title">Ajude a prevenir a COVID-19 na sua comunidade</string>
+  <string name="share_test_result_card_content">Sempre que alguém partilhar um resultado do teste positivo, pode ajudar a parar outro caso de COVID-19. Ao partilhar o resultado do seu teste, não partilha a sua identidade com outras pessoas.</string>
+  <string name="see_history_button">Ver histórico</string>
+  <string name="share_positive_diagnosis_card_content">Partilhe o resultado do teste para ajudar a travar a propagação da COVID-19</string>
+  <string name="share_app_card_content">Partilhe esta app para proteger a sua comunidade</string>
+  <string name="how_en_works_card_content">Saiba mais sobre como funcionam as Notificações de exposição</string>
+</resources>

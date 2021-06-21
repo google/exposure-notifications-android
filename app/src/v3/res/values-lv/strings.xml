@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="onboarding_activity_title">Darba sākšana</string>
+  <string name="share_history_activity_title">Skatīt kopīgošanas vēsturi</string>
+  <string name="remove_region_link_title">Noņemt reģionu</string>
+  <string name="delete_shared_diagnosis">Dzēst kopīgoto testa rezultātu</string>
+  <string name="active_region_subtitle">Reģions %1$s pašlaik ir iestatīts kā jūsu aktīvais reģions paziņojumiem par saskari.</string>
+  <string name="active_region_subtitle_en_off">Reģions %1$s ir iestatīts kā jūsu aktīvais reģions, taču paziņojumi par saskari ir izslēgti.</string>
+  <string name="remove_region_title">Reģiona noņemšana</string>
+  <string name="remove_region_detail">Ja noņemsiet reģionu, paziņojumi par saskari tiks izslēgti. Jebkurā laikā varēsiet atkal pievienot šo reģionu.</string>
+  <string name="btn_remove">Noņemt</string>
+  <string name="exposure_notifications_is_off">Paziņojumi par saskari ir izslēgti.</string>
+  <string name="possible_exposure">Iespējama saskare</string>
+  <string name="share_history_delete_test_result_title">Vai dzēst šo testa rezultātu?</string>
+  <string name="share_history_delete_test_result_detail">No tālruņa tiks izdzēsts Covid-19 testa rezultāts, kas iegūts šajā datumā: %1$s.</string>
+</resources>

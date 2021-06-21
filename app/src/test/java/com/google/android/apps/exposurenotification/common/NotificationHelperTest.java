@@ -18,25 +18,26 @@
 package com.google.android.apps.exposurenotification.common;
 
 import static com.google.android.apps.exposurenotification.common.NotificationHelper.EXPOSURE_NOTIFICATION_CHANNEL_ID;
+import static com.google.common.truth.Truth.assertThat;
 import static org.robolectric.Shadows.shadowOf;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import androidx.core.app.NotificationCompat;
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.common.BuildUtils.Type;
 import dagger.hilt.android.testing.HiltAndroidTest;
 import dagger.hilt.android.testing.HiltTestApplication;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.annotation.Config;
 import org.robolectric.shadows.ShadowNotificationManager;
-
-import static com.google.common.truth.Truth.assertThat;
 
 @RunWith(AndroidJUnit4.class)
 @HiltAndroidTest
@@ -48,11 +49,16 @@ public class NotificationHelperTest {
       shadowOf((NotificationManager) context
           .getSystemService(Context.NOTIFICATION_SERVICE));
   private final NotificationHelper notificationHelper = new NotificationHelper();
+  private final Intent notificationContentIntent =
+      IntentUtil.getNotificationContentIntent(context);
+  private final Intent notificationDeleteIntent =
+      IntentUtil.getNotificationDeleteIntent(context);
 
   @Test
-  public void showPossibleExposureNotification_verifyNotificationInfo() {
-    notificationHelper.showPossibleExposureNotification(context, R.string.exposure_notification_title_1,
-        R.string.exposure_notification_message_1);
+  public void showNotification_verifyNotificationInfo() {
+    notificationHelper.showNotification(context,
+        R.string.exposure_notification_title_1, R.string.exposure_notification_message_1,
+        notificationContentIntent, notificationDeleteIntent);
 
     assertThat(notificationManager.getAllNotifications()).hasSize(1);
     Notification notification = notificationManager.getNotification(0);
@@ -72,9 +78,10 @@ public class NotificationHelperTest {
 
   @Test
   @Config(minSdk = Build.VERSION_CODES.O)
-  public void showPossibleExposureNotification_createChannel() {
-    notificationHelper.showPossibleExposureNotification(context, R.string.exposure_notification_title_1,
-        R.string.exposure_notification_message_1);
+  public void showNotification_createChannel() {
+    notificationHelper.showNotification(context, R.string.exposure_notification_title_1,
+        R.string.exposure_notification_message_1,
+        notificationContentIntent, notificationDeleteIntent);
 
     assertThat(notificationManager.getNotificationChannels()).hasSize(1);
     NotificationChannel channel = (NotificationChannel) notificationManager
@@ -86,4 +93,5 @@ public class NotificationHelperTest {
     assertThat(channel.getDescription())
         .isEqualTo(context.getString(R.string.notification_channel_description));
   }
+
 }

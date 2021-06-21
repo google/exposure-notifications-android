@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">အက်ပ်ကို အသုံးပြုနေပြီး စစ်ဆေးနေသည်</string>
+  <string name="app_active_and_checking_info">ဤအက်ပ်က ထိတွေ့နိုင်ခြေများကို စစ်ဆေးနေသည်။ ‘ထိတွေ့မှု အကြောင်းကြားချက်များ’ ကို အသုံးပြုခြင်းသည် သင်ကာကွယ်ဆေးထိုးထားစေကာမူ - သင့်ကွန်မြူနတီကို ကာကွယ်ရာတွင် ကူညီပေးသည်။</string>
+  <string name="possible_exposure_title">သင် ထိတွေ့မှုရှိနိုင်သည်</string>
+  <string name="share_test_result_home_screen_title">သင်၏ စစ်ဆေးမှုရလဒ်ကို မျှဝေခြင်း</string>
+  <string name="have_questions">မေးစရာ ရှိပါသလား။</string>
+  <string name="check_exposure_status">သင်၏ ထိတွေမှု အခြေအနေကို စစ်ဆေးပါ</string>
+  <string name="en_active">အသုံးပြုနေသည်</string>
+  <string name="en_inactive">အသုံးမပြုပါ</string>
+  <string name="exposure_checks_activity_title">မကြာသေးမီက စာရင်းသွင်းမှုများ မှတ်တမ်း</string>
+  <string name="sharing_history_activity_title">မှတ်တမ်းကို မျှဝေခြင်း</string>
+  <string name="no_recent_exposure_card_content_no_checks">အကြောင်းကြားထားသော COVID-19 ထိတွေ့မှုအန္တရာယ် မတွေ့ပါ။</string>
+  <string name="no_recent_exposure_card_content">အကြောင်းကြားထားသော COVID-19 ထိတွေ့မှုအန္တရာယ် မတွေ့ပါ။ %1$s တွင် နောက်ဆုံး စစ်ဆေးခဲ့သည်</string>
+  <string name="see_recent_checks_button">မကြာသေးမီက စစ်ဆေးမှုများကို ကြည့်ရန်</string>
+  <string name="possible_exposure_card_title">ထိတွေ့နိုင်ခြေ အကြောင်းကြားလိုက်သည်</string>
+  <string name="possible_exposure_card_contents">သင့်အနီးတွင် ရှိနေခဲ့သူက COVID-19 ရောဂါပိုးရှိကြောင်း စစ်ဆေးတွေ့ရှိသည်</string>
+  <string name="see_details_button">အသေးစိတ် ကြည့်ရန်</string>
+  <string name="share_test_result_card_title">သင့်ကွန်မြူနတီအတွင်း COVID-19 ကာကွယ်မှုကို ကူညီပါ</string>
+  <string name="share_test_result_card_content">ရောဂါပိုးရှိကြောင်း စစ်ဆေးမှုရလဒ်ကို တစ်စုံတစ်ယောက်က မျှဝေတိုင်း ၎င်းသည် နောက်ထပ် COVID-19 ဖြစ်စဉ်ကို ရပ်သွားစေနိုင်သည်။ သင်၏ စစ်ဆေးမှုရလဒ်ကို မျှဝေခြင်းကြောင့် အခြားသူများက သင့်ကို မသိနိုင်ပါ။</string>
+  <string name="see_history_button">မှတ်တမ်းကို ကြည့်ရန်</string>
+  <string name="share_positive_diagnosis_card_content">COVID-19 ကူးစက်ပြန့်ပွားမှု ရပ်သွားစေရန်အတွက် သင့်စစ်ဆေးမှုရလဒ်ကို မျှဝေရန်</string>
+  <string name="share_app_card_content">သင့်ကွန်မြူနတီကို ပိုမိုကောင်းမွန်စွာ ကာကွယ်ရန်အတွက် ဤအက်ပ်ကို မျှဝေရန်</string>
+  <string name="how_en_works_card_content">‘ထိတွေ့မှု အကြောင်းကြားချက်များ’ အလုပ်လုပ်ပုံကို ပိုမိုလေ့လာရန်</string>
+</resources>

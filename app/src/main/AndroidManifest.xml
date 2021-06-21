@@ -28,106 +28,11 @@
   <uses-permission android:name="android.permission.BLUETOOTH" />
 
   <application
-      android:allowBackup="false"
       android:name=".ExposureNotificationApplication"
       android:icon="@mipmap/ic_launcher"
       android:label="@string/app_name"
       android:supportsRtl="true"
       android:theme="@style/ExposureNotification">
-
-    <!-- Activities -->
-    <activity
-      android:name=".home.ExposureNotificationActivity"
-      android:exported="true"
-      android:launchMode="singleTask"
-      android:clearTaskOnLaunch="true"
-      android:windowSoftInputMode="stateHidden">
-      <intent-filter>
-        <action android:name="android.intent.action.MAIN" />
-        <category android:name="android.intent.category.LAUNCHER" />
-      </intent-filter>
-      <intent-filter>
-        <action android:name="com.google.android.exposurenotification.ACTION_LAUNCH_HOME" />
-        <category android:name="android.intent.category.DEFAULT" />
-      </intent-filter>
-    </activity>
-
-    <activity
-      android:name=".settings.ExposureAboutActivity"
-      android:label="@string/exposure_about_title"
-      android:exported="false"
-      android:windowSoftInputMode="stateHidden"
-      android:parentActivityName=".home.ExposureNotificationActivity" />
-
-    <activity
-      android:name=".notify.ShareDiagnosisActivity"
-      android:exported="false"
-      android:windowSoftInputMode="stateHidden|adjustResize"
-      android:parentActivityName=".home.ExposureNotificationActivity">
-    </activity>
-
-    <activity-alias
-      android:name=".ENNotifyOthers"
-      android:exported="true"
-      android:targetActivity=".notify.ShareDiagnosisActivity">
-      <intent-filter>
-        <action android:name="android.intent.action.VIEW" />
-        <category android:name="android.intent.category.DEFAULT" />
-        <category android:name="android.intent.category.BROWSABLE" />
-        <data android:scheme="ens" />
-      </intent-filter>
-      <intent-filter android:autoVerify="true">
-        <action android:name="android.intent.action.VIEW" />
-        <category android:name="android.intent.category.DEFAULT" />
-        <category android:name="android.intent.category.BROWSABLE" />
-        <data android:scheme="https" android:host="${appLinkHost}" />
-      </intent-filter>
-      <intent-filter>
-        <action android:name="com.google.android.exposurenotification.ACTION_SHARE_DIAGNOSIS" />
-        <category android:name="android.intent.category.DEFAULT" />
-      </intent-filter>
-    </activity-alias>
-
-    <activity
-      android:name=".settings.AppAnalyticsActivity"
-      android:label="@string/app_analytics_title"
-      android:exported="false"
-      android:windowSoftInputMode="stateHidden|adjustResize"
-      android:parentActivityName=".home.ExposureNotificationActivity" />
-
-    <activity
-      android:name=".settings.PrivateAnalyticsActivity"
-      android:exported="false"
-      android:windowSoftInputMode="stateHidden|adjustResize"
-      android:parentActivityName=".home.ExposureNotificationActivity" />
-
-    <activity
-      android:name=".settings.AgencyActivity"
-      android:label="@string/agency_message_title"
-      android:exported="false"
-      android:windowSoftInputMode="stateHidden|adjustResize"
-      android:parentActivityName=".home.ExposureNotificationActivity" />
-
-    <activity
-      android:name=".settings.LegalTermsActivity"
-      android:label="@string/settings_legal_terms"
-      android:exported="false"
-      android:windowSoftInputMode="stateHidden|adjustResize"
-      android:parentActivityName=".home.ExposureNotificationActivity" />
-
-    <activity
-      android:name=".settings.SettingsActivity"
-      android:label="@string/settings_activity_title"
-      android:exported="false"
-      android:windowSoftInputMode="stateHidden|adjustResize"
-      android:parentActivityName=".home.ExposureNotificationActivity" />
-
-    <activity
-      android:name=".exposure.PossibleExposureActivity"
-      android:label="@string/possible_exposure_activity_title"
-      android:exported="false"
-      android:windowSoftInputMode="stateHidden|adjustResize"
-      android:parentActivityName=".home.ExposureNotificationActivity" />
 
     <!-- Receivers -->
     <receiver

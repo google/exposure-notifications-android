@@ -41,6 +41,11 @@ public class AnalyticsLoggingRepository {
   }
 
   @WorkerThread
+  public void eraseEventsBatchUpToIncludingEvent(AnalyticsLoggingEntity analyticsLoggingEntity) {
+    loggingDao.deleteLogEventsUpToIncludingEvent(analyticsLoggingEntity.getKey());
+  }
+
+  @WorkerThread
   public void recordEvent(EnxLogExtension logProto) {
     loggingDao.insert(
         AnalyticsLoggingEntity.create(0, BaseEncoding.base64().encode(logProto.toByteArray())));

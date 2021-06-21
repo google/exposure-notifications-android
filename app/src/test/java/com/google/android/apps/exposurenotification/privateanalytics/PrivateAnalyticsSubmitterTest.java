@@ -18,6 +18,7 @@
 package com.google.android.apps.exposurenotification.privateanalytics;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -169,12 +170,6 @@ public class PrivateAnalyticsSubmitterTest {
         .thenReturn(Futures.immediateFuture(
             MetricsRemoteConfigs.newBuilder()
                 .build()));
-    RemoteConfigs remoteConfig = RemoteConfigs.newBuilder()
-        .setEnabled(true)
-        .setDeviceAttestationRequired(false)
-        .build();
-    when(sdkRemoteConfig.fetchUpdatedConfigs())
-        .thenReturn(Futures.immediateFuture(remoteConfig));
 
     Executors.setBackgroundListeningExecutor(MoreExecutors.newDirectExecutorService());
     Executors.setLightweightListeningExecutor(MoreExecutors.newDirectExecutorService());
@@ -190,8 +185,30 @@ public class PrivateAnalyticsSubmitterTest {
   }
 
   @Test
+  public void testSubmitPackets_doesNotUploadSharesIfKeysOrCertificatesMissing()
+      throws ExecutionException, InterruptedException {
+    RemoteConfigs remoteConfig = RemoteConfigs.newBuilder()
+        .setEnabled(true)
+        .setDeviceAttestationRequired(false)
+        .build();
+    when(sdkRemoteConfig.fetchUpdatedConfigs())
+        .thenReturn(Futures.immediateFuture(remoteConfig));
+
+    verify(prio, never()).getPackets(any());
+  }
+
+  @Test
   public void testSubmitPackets_uploadsShares()
       throws ExecutionException, InterruptedException {
+    RemoteConfigs remoteConfig = RemoteConfigs.newBuilder()
+        .setEnabled(true)
+        .setDeviceAttestationRequired(false)
+        .setFacilitatorCertificate("foo")
+        .setPhaCertificate("foo")
+        .build();
+    when(sdkRemoteConfig.fetchUpdatedConfigs())
+        .thenReturn(Futures.immediateFuture(remoteConfig));
+
     CreatePacketsResponse createPacketsResponse = CreatePacketsResponse.newBuilder()
         .addShares(generateRandomByteString())
         .addShares(generateRandomByteString())
@@ -209,7 +226,7 @@ public class PrivateAnalyticsSubmitterTest {
 
     // The following function should submit the _five_ metrics available.
     privateAnalyticsSubmitter.submitPackets().get();
-    verify(documentReference, times(6)).set(documentsCaptor.capture());
+    verify(documentReference, times(7)).set(documentsCaptor.capture());
   }
 
   private ByteString generateRandomByteString() {

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">Uygulama etkin durumda ve kontrol işlemi gerçekleştiriyor</string>
+  <string name="app_active_and_checking_info">Bu uygulama, olası temasları kontrol ediyor. Temas Bildirimleri\'ni kullanmak, aşı olmuş olsanız bile topluluğunuzu korumanıza yardımcı olur.</string>
+  <string name="possible_exposure_title">Temasınız olmuş olabilir</string>
+  <string name="share_test_result_home_screen_title">Test sonucunuzu paylaşın</string>
+  <string name="have_questions">Sorularınız mı var?</string>
+  <string name="check_exposure_status">Temas durumunuzu kontrol edin</string>
+  <string name="en_active">Etkin</string>
+  <string name="en_inactive">Etkin değil</string>
+  <string name="exposure_checks_activity_title">Son temas durumu kontrolü kayıtları</string>
+  <string name="sharing_history_activity_title">Geçmişi paylaşın</string>
+  <string name="no_recent_exposure_card_content_no_checks">Bildirilmiş COVID-19 ile temas riski yok.</string>
+  <string name="no_recent_exposure_card_content">Bildirilmiş COVID-19 ile temas riski yok. Son kontrol zamanı: %1$s</string>
+  <string name="see_recent_checks_button">Son kontrolleri göster</string>
+  <string name="possible_exposure_card_title">Olası temas bildirildi</string>
+  <string name="possible_exposure_card_contents">Yakınında bulunduğunuz birisinin COVID-19 test sonucu pozitif çıktı</string>
+  <string name="see_details_button">Ayrıntıları göster</string>
+  <string name="share_test_result_card_title">Topluluğunuzda COVID-19\'u önlemeye yardımcı olun</string>
+  <string name="share_test_result_card_content">Paylaşılan her pozitif test sonucu, başka bir COVID-19 vakasını durdurmaya yardımcı olabilir. Test sonucunuzu paylaştığınızda başkalarına kimliğiniz açıklanmaz.</string>
+  <string name="see_history_button">Geçmişi göster</string>
+  <string name="share_positive_diagnosis_card_content">COVID-19\'un yayılmasını önlemeye yardımcı olmak için test sonucunuzu paylaşın</string>
+  <string name="share_app_card_content">Topluluğunuzu daha iyi korumak için bu uygulamayı paylaşın</string>
+  <string name="how_en_works_card_content">Temas Bildirimleri\'nin işleyiş şekli hakkında daha fazla bilgi</string>
+</resources>

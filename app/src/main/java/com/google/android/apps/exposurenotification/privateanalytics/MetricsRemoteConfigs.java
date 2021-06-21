@@ -43,6 +43,9 @@ public abstract class MetricsRemoteConfigs {
   private static final double DEFAULT_DATE_EXPOSURE_METRIC_SAMPLING_RATE = 1.0;
   private static final double DEFAULT_DATE_EXPOSURE_METRIC_EPSILON = 8.0;
 
+  private static final double DEFAULT_KEYS_UPLOADED_VACCINE_STATUS_METRIC_SAMPLING_RATE = 1.0;
+  private static final double DEFAULT_KEYS_UPLOADED_VACCINE_STATUS_METRIC_EPSILON = 8.0;
+
   public abstract double interactionCountPrioEpsilon();
 
   public abstract double interactionCountPrioSamplingRate();
@@ -67,6 +70,10 @@ public abstract class MetricsRemoteConfigs {
 
   public abstract double dateExposurePrioSamplingRate();
 
+  public abstract double keysUploadedVaccineStatusPrioEpsilon();
+
+  public abstract double keysUploadedVaccineStatusPrioSamplingRate();
+
   public static MetricsRemoteConfigs.Builder newBuilder() {
     return new AutoValue_MetricsRemoteConfigs.Builder()
         .setNotificationCountPrioSamplingRate(DEFAULT_NOTIFICATION_COUNT_METRIC_SAMPLING_RATE)
@@ -80,11 +87,16 @@ public abstract class MetricsRemoteConfigs {
         .setKeysUploadedPrioSamplingRate(DEFAULT_KEYS_UPLOADED_METRIC_SAMPLING_RATE)
         .setKeysUploadedPrioEpsilon(DEFAULT_KEYS_UPLOADED_METRIC_EPSILON)
         .setDateExposurePrioSamplingRate(DEFAULT_DATE_EXPOSURE_METRIC_SAMPLING_RATE)
-        .setDateExposurePrioEpsilon(DEFAULT_DATE_EXPOSURE_METRIC_EPSILON);
+        .setDateExposurePrioEpsilon(DEFAULT_DATE_EXPOSURE_METRIC_EPSILON)
+        .setKeysUploadedVaccineStatusPrioSamplingRate(
+            DEFAULT_KEYS_UPLOADED_VACCINE_STATUS_METRIC_SAMPLING_RATE)
+        .setKeysUploadedVaccineStatusPrioEpsilon(
+            DEFAULT_KEYS_UPLOADED_VACCINE_STATUS_METRIC_EPSILON);
   }
 
   @AutoValue.Builder
   public abstract static class Builder {
+
     public abstract MetricsRemoteConfigs.Builder setInteractionCountPrioEpsilon(double value);
 
     public abstract MetricsRemoteConfigs.Builder setInteractionCountPrioSamplingRate(double value);
@@ -108,6 +120,12 @@ public abstract class MetricsRemoteConfigs {
     public abstract MetricsRemoteConfigs.Builder setDateExposurePrioEpsilon(double value);
 
     public abstract MetricsRemoteConfigs.Builder setDateExposurePrioSamplingRate(double value);
+
+    public abstract MetricsRemoteConfigs.Builder setKeysUploadedVaccineStatusPrioEpsilon(
+        double value);
+
+    public abstract MetricsRemoteConfigs.Builder setKeysUploadedVaccineStatusPrioSamplingRate(
+        double value);
 
     public abstract MetricsRemoteConfigs build();
   }

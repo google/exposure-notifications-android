@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">La aplicación está activa y haciendo comprobaciones</string>
+  <string name="app_active_and_checking_info">La aplicación está comprobando si ha habido posibles exposiciones al COVID-19. Al usar las notificaciones de exposición, ayudas a proteger a tu entorno, incluso si te has vacunado.</string>
+  <string name="possible_exposure_title">Se ha detectado un riesgo de exposición</string>
+  <string name="share_test_result_home_screen_title">Comparte el resultado de tu prueba</string>
+  <string name="have_questions">¿Tienes alguna pregunta?</string>
+  <string name="check_exposure_status">Comprueba tu estado de exposición</string>
+  <string name="en_active">Activas</string>
+  <string name="en_inactive">Inactivas</string>
+  <string name="exposure_checks_activity_title">Registro de comprobaciones recientes</string>
+  <string name="sharing_history_activity_title">Historial de exposiciones compartidas</string>
+  <string name="no_recent_exposure_card_content_no_checks">No se ha encontrado ningún riesgo de exposición al COVID-19 del que se haya informado.</string>
+  <string name="no_recent_exposure_card_content">No se ha encontrado ningún riesgo de exposición al COVID-19 del que se haya informado. Última comprobación: %1$s</string>
+  <string name="see_recent_checks_button">Ver comprobaciones recientes</string>
+  <string name="possible_exposure_card_title">Posible exposición notificada</string>
+  <string name="possible_exposure_card_contents">Has estado cerca de alguien que ha dado positivo en la prueba del COVID-19</string>
+  <string name="see_details_button">Ver detalles</string>
+  <string name="share_test_result_card_title">Ayuda a reducir la propagación del COVID‑19 en tu entorno</string>
+  <string name="share_test_result_card_content">Cada vez que alguien comparte el resultado positivo de una prueba, puede ayudar a detener otro caso de COVID-19. Si compartes el resultado de tu prueba, no se te podrá identificar.</string>
+  <string name="see_history_button">Ver historial</string>
+  <string name="share_positive_diagnosis_card_content">Comparte el resultado de tu prueba para ayudar a detener la propagación del COVID-19</string>
+  <string name="share_app_card_content">Comparte esta aplicación para proteger mejor a tu entorno</string>
+  <string name="how_en_works_card_content">Más información sobre cómo funcionan las notificaciones de exposición</string>
+</resources>

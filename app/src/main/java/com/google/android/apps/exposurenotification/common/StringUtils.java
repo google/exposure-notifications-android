@@ -24,17 +24,20 @@ import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.format.DateUtils;
 import android.text.style.URLSpan;
+import android.util.Log;
 import androidx.annotation.VisibleForTesting;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.riskcalculation.ExposureClassification;
 import com.google.common.io.BaseEncoding;
 import java.security.SecureRandom;
 import java.text.DateFormat;
 import java.util.Locale;
 import java.util.TimeZone;
-import java.util.concurrent.TimeUnit;
 import org.threeten.bp.Duration;
 import org.threeten.bp.Instant;
+import org.threeten.bp.LocalDate;
 import org.threeten.bp.ZoneId;
+import org.threeten.bp.ZoneOffset;
 import org.threeten.bp.ZonedDateTime;
 import org.threeten.bp.format.DateTimeFormatter;
 
@@ -42,6 +45,7 @@ import org.threeten.bp.format.DateTimeFormatter;
  * Simple util class for manipulating strings.
  */
 public final class StringUtils {
+  private static final String TAG = "StringUtils";
 
   private static final SecureRandom RAND = new SecureRandom();
   private static final BaseEncoding BASE64 = BaseEncoding.base64();
@@ -66,18 +70,6 @@ public final class StringUtils {
     DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.LONG, locale);
     dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
     return dateFormat.format(timestampMs);
-  }
-
-  /**
-   * Converts an epoch UTC timestamp in days to a formatted UTC date for a given locale.
-   *
-   * @param epochDays the epoch timestamp to convert in days since epoch
-   * @param locale the locale to represent the text in
-   * @return the MMMM dd, YYYY representation of the timestamp as a UTC date
-   */
-  public static String epochDaysTimestampToMediumUTCDateString(long epochDays, Locale locale) {
-    return epochTimestampToMediumUTCDateString(TimeUnit.DAYS.toMillis(epochDays),
-        locale);
   }
 
   /**
@@ -137,6 +129,16 @@ public final class StringUtils {
   }
 
   /**
+   * Returns the current health authority agency name.
+   *
+   * @param context Application context.
+   * @return health authority name.
+   */
+  public static String getHealthAuthorityName(Context context)  {
+    return context.getString(R.string.health_authority_name);
+  }
+
+  /**
    * Generates a spannable string for the given URLSpan, text, and link text.
    *
    * @param urlSpan  the actual URL.
@@ -163,6 +165,37 @@ public final class StringUtils {
     Instant midnight = zonedNow.toLocalDate().atStartOfDay(zonedNow.getZone()).toInstant();
     Duration timeSinceYesterdayMidnight = Duration.between(midnight, now).plus(Duration.ofDays(1));
     return timeSinceYesterdayMidnight.toMillis();
+  }
+
+  /**
+   * Creates the "x days" string informing the user about the date of a possible exposure.
+   * Uses a ExposureClassification and the current time to calculate x.
+   */
+  public static String daysFromStartOfExposure(ExposureClassification exposureClassification,
+      Instant nowUTC, Context context) {
+    Instant exposureStartOfDayUTC = LocalDate
+        .ofEpochDay(exposureClassification.getClassificationDate())
+        .atStartOfDay()
+        .toInstant(ZoneOffset.UTC);
+    long daysFromStartOfExposure = calculateDaysFromStartOfExposure(exposureStartOfDayUTC, nowUTC);
+    return context.getResources()
+        .getQuantityString(R.plurals.days_from_start_of_exposure, (int) daysFromStartOfExposure,
+        daysFromStartOfExposure);
+  }
+
+  /**
+   * Calculates the x in "x days" to inform the user about the date of a possible exposure.
+   * The calculation does not take into account timezones (timezone-less Instants).
+   */
+  @VisibleForTesting
+  static long calculateDaysFromStartOfExposure(Instant exposureStartOfDayUTC, Instant nowUTC) {
+    Duration timeSinceExposure = Duration.between(exposureStartOfDayUTC, nowUTC);
+    if (timeSinceExposure.isNegative()) {
+      Log.e(TAG, "Negative time since exposure!");
+      return 1;
+    }
+    long daysSinceExposureRoundedDown = timeSinceExposure.toDays();
+    return Math.max(1, daysSinceExposureRoundedDown);
   }
 
 }

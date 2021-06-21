@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">App is actief en aan het checken</string>
+  <string name="app_active_and_checking_info">Deze app checkt op mogelijke blootstelling. Met blootstellingsmeldingen kun je je gemeenschap beschermen, ook als je bent gevaccineerd.</string>
+  <string name="possible_exposure_title">Je bent mogelijk blootgesteld</string>
+  <string name="share_test_result_home_screen_title">Je testresultaat delen</string>
+  <string name="have_questions">Heb je vragen?</string>
+  <string name="check_exposure_status">Je blootstellingsstatus checken</string>
+  <string name="en_active">Actief</string>
+  <string name="en_inactive">Inactief</string>
+  <string name="exposure_checks_activity_title">Overzicht van recente check-ins</string>
+  <string name="sharing_history_activity_title">Deelgeschiedenis</string>
+  <string name="no_recent_exposure_card_content_no_checks">Geen gemeld blootstellingsrisico voor COVID-19 gevonden.</string>
+  <string name="no_recent_exposure_card_content">Geen gemeld blootstellingsrisico voor COVID-19 gevonden. Laatst gecheckt: %1$s</string>
+  <string name="see_recent_checks_button">Recente checks bekijken</string>
+  <string name="possible_exposure_card_title">Mogelijke blootstelling gemeld</string>
+  <string name="possible_exposure_card_contents">Iemand bij wie je in de buurt was, is positief getest voor COVID-19</string>
+  <string name="see_details_button">Details bekijken</string>
+  <string name="share_test_result_card_title">Help COVID-19 tegen te gaan in je gemeenschap</string>
+  <string name="share_test_result_card_content">Elke keer dat iemand een positief testresultaat deelt, kan dit helpen nieuwe gevallen van COVID-19 tegen te gaan. Als je je testresultaat deelt, krijgen anderen je identiteit niet te zien.</string>
+  <string name="see_history_button">Geschiedenis bekijken</string>
+  <string name="share_positive_diagnosis_card_content">Deel je testresultaat om de verspreiding van COVID-19 tegen te gaan</string>
+  <string name="share_app_card_content">Deel deze app om je gemeenschap beter te beschermen</string>
+  <string name="how_en_works_card_content">Meer informatie over hoe blootstellingsmeldingen werken</string>
+</resources>

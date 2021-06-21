@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">ແອັບເຮັດວຽກ ແລະ ກຳລັງກວດສອບຢູ່</string>
+  <string name="app_active_and_checking_info">ແອັບນີ້ກຳລັງກວດສອບຄວາມສ່ຽງຕິດເຊື້ອທີ່ເປັນໄປໄດ້ຢູ່. ການໃຊ້ການແຈ້ງເຕືອນຄວາມສ່ຽງຕິດເຊື້ອຈະຊ່ວຍທ່ານປົກປ້ອງຊຸມຊົນຂອງທ່ານ, ເຖິງແມ່ນວ່າທ່ານຈະໄດ້ຮັບວັກຊີນແລ້ວກໍຕາມ.</string>
+  <string name="possible_exposure_title">ທ່ານອາດໄດ້ຮັບເຊື້ອ</string>
+  <string name="share_test_result_home_screen_title">ແບ່ງປັນຜົນກວດຂອງທ່ານ</string>
+  <string name="have_questions">ມີຄຳຖາມບໍ່?</string>
+  <string name="check_exposure_status">ກວດສອບສະຖານະຄວາມສ່ຽງຕິດເຊື້ອຂອງທ່ານ</string>
+  <string name="en_active">ເຮັດວຽກຢູ່</string>
+  <string name="en_inactive">ບໍ່ເຮັດວຽກ</string>
+  <string name="exposure_checks_activity_title">ບັນທຶກການເຊັກອິນຫຼ້າສຸດ</string>
+  <string name="sharing_history_activity_title">ແບ່ງປັນປະຫວັດ</string>
+  <string name="no_recent_exposure_card_content_no_checks">ບໍ່ພົບຄວາມສ່ຽງຕິດເຊື້ອ COVID-19 ທີ່ລາຍງານໄວ້.</string>
+  <string name="no_recent_exposure_card_content">ບໍ່ພົບຄວາມສ່ຽງຕິດເຊື້ອ COVID-19 ທີ່ລາຍງານໄວ້. ກວດສອບຫຼ້າສຸດ %1$s</string>
+  <string name="see_recent_checks_button">ເບິ່ງການກວດຫຼ້າສຸດ</string>
+  <string name="possible_exposure_card_title">ລາຍງານຄວາມສ່ຽງຕິດເຊື້ອທີ່ເປັນໄປໄດ້ແລ້ວ</string>
+  <string name="possible_exposure_card_contents">ຄົນທີ່ທ່ານເຄີຍຢູ່ໃກ້ມີຜົນກວດ COVID-19 ເປັນບວກ</string>
+  <string name="see_details_button">ເບິ່ງລາຍລະອຽດ</string>
+  <string name="share_test_result_card_title">ຊ່ວຍປ້ອງກັນ COVID-19 ໃນຊຸມຊົນຂອງທ່ານ</string>
+  <string name="share_test_result_card_content">ແຕ່ລະເທື່ອທີມີຄົນແບ່ງປັນຜົນກວດເປັນບວກ, ມັນສາມາດຊ່ວຍຢຸດກໍລະນີຕິດເຊື້ອ COVID-19 ອື່ນໄດ້. ການແບ່ງປັນຜົນກວດຂອງທ່ານຈະບໍ່ລະບຸຕົວຕົນຂອງທ່ານໃຫ້ຄົນອື່ນຮູ້.</string>
+  <string name="see_history_button">ເບິ່ງປະຫວັດ</string>
+  <string name="share_positive_diagnosis_card_content">ແບ່ງປັນຜົນກວດຂອງທ່ານເພື່ອຊ່ວຍຢຸດການແຜ່ກະຈາຍຂອງ COVID-19</string>
+  <string name="share_app_card_content">ແບ່ງປັນແອັບນີ້ເພື່ອປົກປ້ອງຊຸມຊົນຂອງທ່ານໃຫ້ດີຂຶ້ນ</string>
+  <string name="how_en_works_card_content">ສຶກສາເພີ່ມເຕີມກ່ຽວກັບວິທີເຮັດວຽກຂອງການແຈ້ງເຕືອນຄວາມສ່ຽງຕິດເຊື້ອ</string>
+</resources>

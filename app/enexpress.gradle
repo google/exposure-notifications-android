@@ -27,7 +27,9 @@ project.ext.excludedTasks = []
 
 // Generate a flavor for each config file.
 android {
-  flavorDimensions "ha"
+  def v2Name = "v2"
+  def v3Name = "v3"
+  flavorDimensions "ha", "type"
   productFlavors {
     configData.each { name, config ->
       "$name" {
@@ -39,10 +41,34 @@ android {
         if (!config["enableENPA"]) {
           println "Disabling google-services plugin tasks for " + name
           project.excludedTasks += [
-              'process' + name.capitalize() + 'ReleaseGoogleServices',
-              'process' + name.capitalize() + 'DebugGoogleServices',
+              'process' + name.capitalize() + 'V2ReleaseGoogleServices',
+              'process' + name.capitalize() + 'V2DebugGoogleServices',
+              'process' + name.capitalize() + 'V3ReleaseGoogleServices',
+              'process' + name.capitalize() + 'V3DebugGoogleServices',
               ]
         }
+        buildConfigField("String", "TYPE_V2", "\"$v2Name\"")
+        buildConfigField("String", "TYPE_V3", "\"$v3Name\"")
+      }
+    }
+    "$v2Name" {
+      dimension "type"
+    }
+    "$v3Name" {
+      dimension "type"
+      applicationIdSuffix ".v3"
+      versionNameSuffix "-v3"
+    }
+  }
+
+  applicationVariants.all { variant ->
+    // Check v3 flavour
+    if (variant.flavorName.endsWith(v3Name.capitalize())) {
+      // Extract the HA name
+      def ha = variant.flavorName.substring(0, variant.flavorName.size() - v3Name.size())
+      // Override the applicationId if the override config field exists
+      if (configData.get(ha).containsKey("v3ApplicationIdOverride")) {
+        variant.mergedFlavor.setApplicationId(configData.get(ha).get("v3ApplicationIdOverride"))
       }
     }
   }

@@ -20,6 +20,7 @@ package com.google.android.apps.exposurenotification.logging;
 import android.content.Context;
 import android.util.Log;
 import androidx.annotation.AnyThread;
+import androidx.annotation.Nullable;
 import androidx.annotation.UiThread;
 import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.network.VolleyUtils;
@@ -29,6 +30,7 @@ import com.google.android.apps.exposurenotification.proto.RpcCall.RpcCallType;
 import com.google.android.apps.exposurenotification.proto.UiInteraction.EventType;
 import com.google.android.apps.exposurenotification.proto.WorkManagerTask.Status;
 import com.google.android.apps.exposurenotification.proto.WorkManagerTask.WorkerTask;
+import com.google.android.apps.exposurenotification.storage.AnalyticsLoggingEntity;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.nearby.exposurenotification.ExposureNotificationStatusCodes;
 import com.google.common.util.concurrent.Futures;
@@ -161,7 +163,7 @@ public class LogcatAnalyticsLogger implements AnalyticsLogger {
 
   @Override
   @AnyThread
-  public ListenableFuture<Void> sendLoggingBatchIfEnabled() {
+  public ListenableFuture<Void> sendLoggingBatchIfConsented(boolean isENEnabled) {
     // No action as logcat logger doesn't send anything off device
     Log.i(tag, "LogcatAnalytics logger - no batch upload operation specified");
     return Futures.immediateVoidFuture();

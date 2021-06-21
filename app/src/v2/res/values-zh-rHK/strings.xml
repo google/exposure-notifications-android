@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">應用程式運作中且正在進行檢查</string>
+  <string name="app_active_and_checking_info">應用程式正在檢查您是否可能接觸到 COVID-19。即使您已接種疫苗，亦可以使用「接觸通知」保護您的社區。</string>
+  <string name="possible_exposure_title">您可能接觸到 COVID-19</string>
+  <string name="share_test_result_home_screen_title">分享檢測結果</string>
+  <string name="have_questions">有任何問題嗎？</string>
+  <string name="check_exposure_status">檢查接觸狀態</string>
+  <string name="en_active">運作中</string>
+  <string name="en_inactive">無法運作</string>
+  <string name="exposure_checks_activity_title">近期接觸情況檢查記錄</string>
+  <string name="sharing_history_activity_title">分享記錄</string>
+  <string name="no_recent_exposure_card_content_no_checks">未發現有接觸 COVID-19 的風險。</string>
+  <string name="no_recent_exposure_card_content">未發現有接觸 COVID-19 的風險。上次檢查時間：%1$s</string>
+  <string name="see_recent_checks_button">查看近期檢查記錄</string>
+  <string name="possible_exposure_card_title">已報告可能接觸到 COVID-19</string>
+  <string name="possible_exposure_card_contents">您曾近距離接觸 COVID-19 檢測結果呈陽性的人</string>
+  <string name="see_details_button">瞭解詳情</string>
+  <string name="share_test_result_card_title">協助防止 COVID-19 在您的社區傳播</string>
+  <string name="share_test_result_card_content">只要確診者願意分享自己的檢測結果，就能協助防止 COVID-19 傳播。分享您的檢測結果並不會向其他人透露您的身分。</string>
+  <string name="see_history_button">查看記錄</string>
+  <string name="share_positive_diagnosis_card_content">分享檢測結果可協助防止 COVID-19 傳播</string>
+  <string name="share_app_card_content">分享此應用程式可讓您的社區更安全</string>
+  <string name="how_en_works_card_content">進一步瞭解「接觸通知」的運作方式</string>
+</resources>

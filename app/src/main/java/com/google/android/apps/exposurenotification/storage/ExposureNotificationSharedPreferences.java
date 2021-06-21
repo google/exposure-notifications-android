@@ -26,6 +26,7 @@ import com.google.android.apps.exposurenotification.common.BooleanSharedPreferen
 import com.google.android.apps.exposurenotification.common.ContainsSharedPreferenceLiveData;
 import com.google.android.apps.exposurenotification.common.SharedPreferenceLiveData;
 import com.google.android.apps.exposurenotification.common.time.Clock;
+import com.google.android.apps.exposurenotification.home.ExposureNotificationViewModel.ExposureNotificationState;
 import com.google.android.apps.exposurenotification.riskcalculation.ExposureClassification;
 import com.google.common.base.Optional;
 import org.threeten.bp.Duration;
@@ -51,6 +52,8 @@ public class ExposureNotificationSharedPreferences {
       "ExposureNotificationSharedPreferences.SHARE_ANALYTICS_KEY";
   private static final String IS_ENABLED_CACHE_KEY =
       "ExposureNotificationSharedPreferences.IS_ENABLED_CACHE_KEY";
+  private static final String EN_STATE_CACHE_KEY =
+      "ExposureNotificationSharedPreferences.EN_STATE_CACHE_KEY";
   private static final String ATTENUATION_THRESHOLD_1_KEY =
       "ExposureNotificationSharedPreferences.ATTENUATION_THRESHOLD_1_KEY";
   private static final String ATTENUATION_THRESHOLD_2_KEY =
@@ -69,11 +72,12 @@ public class ExposureNotificationSharedPreferences {
       "ExposureNotificationSharedPreferences.EXPOSURE_CLASSIFICATION_IS_DATE_NEW_KEY";
   private static final String ANALYTICS_LOGGING_LAST_TIMESTAMP =
       "ExposureNotificationSharedPreferences.ANALYTICS_LOGGING_LAST_TIMESTAMP";
-  private static final String IS_ENABLED_NEW_UX_FLOW_KEY =
-      "ExposureNotificationSharedPreferences.IS_ENABLED_NEW_UX_FLOW_KEY";
   private static final String PROVIDED_DIAGNOSIS_KEY_HEX_TO_LOG_KEY =
       "ExposureNotificationSharedPreferences.PROVIDE_DIAGNOSIS_KEY_TO_LOG_KEY";
-
+  private static final String BLE_LOC_OFF_NOTIFICATION_SEEN =
+      "ExposureNotificationSharedPreferences.BLE_LOC_OFF_NOTIFICATION_SEEN";
+  private static final String BEGIN_TIMESTAMP_BLE_LOC_OFF =
+      "ExposureNotificationSharedPreferences.BEGIN_TIMESTAMP_BLE_LOC_OFF";
   // Private analytics
   private static final String SHARE_PRIVATE_ANALYTICS_KEY =
       "ExposureNotificationSharedPreferences.SHARE_PRIVATE_ANALYTICS_KEY";
@@ -95,12 +99,15 @@ public class ExposureNotificationSharedPreferences {
       "ExposureNotificationSharedPreferences.PRIVATE_ANALYTICS_SUBMITTED_KEYS_TIME";
   private static final String PRIVATE_ANALYTICS_LAST_EXPOSURE_TIME =
       "ExposureNotificationSharedPreferences.PRIVATE_ANALYTICS_LAST_EXPOSURE_TIME";
+  private static final String EXPOSURE_NOTIFICATION_LAST_VACCINATION_STATUS =
+      "ExposureNotificationSharedPreferences.EXPOSURE_NOTIFICATION_LAST_VACCINATION_STATUS";
+  private static final String EXPOSURE_NOTIFICATION_LAST_VACCINATION_STATUS_RESPONSE_TIME_MS =
+      "ExposureNotificationSharedPreferences.EXPOSURE_NOTIFICATION_LAST_VACCINATION_STATUS_TIME_MS";
 
   private final SharedPreferences sharedPreferences;
   private final Clock clock;
   private static AnalyticsStateListener analyticsStateListener;
 
-  private final LiveData<Boolean> isEnabledNewUxFlowLiveData;
   private final LiveData<Boolean> appAnalyticsStateLiveData;
   private final LiveData<Boolean> privateAnalyticsStateLiveData;
   private final LiveData<Boolean> isExposureClassificationRevokedLiveData;
@@ -172,6 +179,36 @@ public class ExposureNotificationSharedPreferences {
   }
 
   /**
+   * Enum for Vaccination Status.
+   */
+  public enum VaccinationStatus {
+    UNKNOWN(0),
+    VACCINATED(1),
+    NOT_VACCINATED(2);
+
+    private final int value;
+
+    VaccinationStatus(int value) {
+      this.value = value;
+    }
+
+    public int value() {
+      return value;
+    }
+
+    public static VaccinationStatus fromValue(int value) {
+      switch (value) {
+        case 1:
+          return VACCINATED;
+        case 2:
+          return NOT_VACCINATED;
+        default:
+          return UNKNOWN;
+      }
+    }
+  }
+
+  /**
    * Enum for network handling.
    */
   public enum NetworkMode {
@@ -218,8 +255,6 @@ public class ExposureNotificationSharedPreferences {
     sharedPreferences = context.getSharedPreferences(SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE);
     this.clock = clock;
 
-    this.isEnabledNewUxFlowLiveData =
-        new BooleanSharedPreferenceLiveData(sharedPreferences, IS_ENABLED_NEW_UX_FLOW_KEY, false);
     this.appAnalyticsStateLiveData =
         new BooleanSharedPreferenceLiveData(sharedPreferences, SHARE_ANALYTICS_KEY, false);
     this.privateAnalyticsStateLiveData =
@@ -270,18 +305,6 @@ public class ExposureNotificationSharedPreferences {
         setValue(getProvidedDiagnosisKeyHexToLog());
       }
     };
-  }
-
-  public void setIsEnabledNewUxFlow(boolean isEnabledNewUxFlow) {
-    sharedPreferences.edit().putBoolean(IS_ENABLED_NEW_UX_FLOW_KEY, isEnabledNewUxFlow).apply();
-  }
-
-  public boolean getIsEnabledNewUXFlow() {
-    return sharedPreferences.getBoolean(IS_ENABLED_NEW_UX_FLOW_KEY, false);
-  }
-
-  public LiveData<Boolean> getIsEnabledNewUXFlowLiveData() {
-    return Transformations.distinctUntilChanged(isEnabledNewUxFlowLiveData);
   }
 
   public void setOnboardedState(boolean onboardedState) {
@@ -378,6 +401,15 @@ public class ExposureNotificationSharedPreferences {
     sharedPreferences.edit().putBoolean(IS_ENABLED_CACHE_KEY, isEnabled).apply();
   }
 
+  public int getEnStateCache() {
+    return sharedPreferences.getInt(
+        EN_STATE_CACHE_KEY, ExposureNotificationState.DISABLED.ordinal());
+  }
+
+  public void setEnStateCache(int enState) {
+    sharedPreferences.edit().putInt(EN_STATE_CACHE_KEY, enState).apply();
+  }
+
   public void setExposureClassification(ExposureClassification exposureClassification) {
     sharedPreferences
         .edit()
@@ -424,6 +456,68 @@ public class ExposureNotificationSharedPreferences {
   public void setIsExposureClassificationNewAsync(BadgeStatus badgeStatus) {
     sharedPreferences.edit()
         .putInt(EXPOSURE_CLASSIFICATION_IS_CLASSIFICATION_NEW_KEY, badgeStatus.value()).apply();
+  }
+
+  // Vaccine Status for Private Analytics
+  public void setLastVaccinationResponse(Instant responseTime,
+      VaccinationStatus vaccinationStatus) {
+    if (getPrivateAnalyticState()) {
+      sharedPreferences.edit()
+          .putInt(EXPOSURE_NOTIFICATION_LAST_VACCINATION_STATUS, vaccinationStatus.value())
+          .putLong(EXPOSURE_NOTIFICATION_LAST_VACCINATION_STATUS_RESPONSE_TIME_MS,
+              responseTime.toEpochMilli())
+          .apply();
+    }
+  }
+
+  public VaccinationStatus getLastVaccinationStatus() {
+    return VaccinationStatus
+        .fromValue(sharedPreferences.getInt(EXPOSURE_NOTIFICATION_LAST_VACCINATION_STATUS,
+            VaccinationStatus.UNKNOWN.value()));
+  }
+
+  public Instant getLastVaccinationStatusResponseTime() {
+    return Instant
+        .ofEpochMilli(sharedPreferences.getLong(
+            EXPOSURE_NOTIFICATION_LAST_VACCINATION_STATUS_RESPONSE_TIME_MS, 0L));
+  }
+
+  /*
+   * If bleLocNotificationSeen is set to true, we clear BEGIN_TIMESTAMP_BLE_LOC_OFF, too,
+   * since it is not required anymore.
+   */
+  public void setBleLocNotificationSeen(boolean bleLocNotificationSeen) {
+    sharedPreferences.edit()
+        .putBoolean(BLE_LOC_OFF_NOTIFICATION_SEEN, bleLocNotificationSeen).apply();
+    if (bleLocNotificationSeen) {
+      sharedPreferences.edit().remove(BEGIN_TIMESTAMP_BLE_LOC_OFF).apply();
+    }
+  }
+
+  public boolean getBleLocNotificationSeen() {
+    return sharedPreferences.getBoolean(BLE_LOC_OFF_NOTIFICATION_SEEN, false);
+  }
+
+  /*
+   * Sets a timestamp for the first time we see Ble/Location off.
+   * If beginTimestampBleLocOff is Optional.absent(), any previously stored value is cleared.
+   */
+  public void setBeginTimestampBleLocOff(Optional<Instant> beginTimestampBleLocOff) {
+    if (beginTimestampBleLocOff.isPresent()) {
+      sharedPreferences.edit()
+          .putLong(BEGIN_TIMESTAMP_BLE_LOC_OFF, beginTimestampBleLocOff.get().toEpochMilli())
+          .apply();
+    } else {
+      sharedPreferences.edit().remove(BEGIN_TIMESTAMP_BLE_LOC_OFF).apply();
+    }
+  }
+
+  public Optional<Instant> getBeginTimestampBleLocOff() {
+    long longBeginTimestampBleLocOff = sharedPreferences.getLong(
+        BEGIN_TIMESTAMP_BLE_LOC_OFF, -1L);
+    return longBeginTimestampBleLocOff != -1
+        ? Optional.of(Instant.ofEpochMilli(longBeginTimestampBleLocOff))
+        : Optional.absent();
   }
 
   // Notifications for Private Analytics.
@@ -525,6 +619,8 @@ public class ExposureNotificationSharedPreferences {
         .remove(PRIVATE_ANALYTICS_LAST_EXPOSURE_TIME)
         .remove(PRIVATE_ANALYTICS_VERIFICATION_CODE_TIME)
         .remove(PRIVATE_ANALYTICS_SUBMITTED_KEYS_TIME)
+        .remove(EXPOSURE_NOTIFICATION_LAST_VACCINATION_STATUS)
+        .remove(EXPOSURE_NOTIFICATION_LAST_VACCINATION_STATUS_RESPONSE_TIME_MS)
         .apply();
   }
 
@@ -545,6 +641,11 @@ public class ExposureNotificationSharedPreferences {
     }
     if (getPrivateAnalyticsLastSubmittedKeysTime().isBefore(date)) {
       sharedPreferencesEditor.remove(PRIVATE_ANALYTICS_SUBMITTED_KEYS_TIME);
+    }
+    if (getLastVaccinationStatusResponseTime().isBefore(date)) {
+      sharedPreferencesEditor
+          .remove(EXPOSURE_NOTIFICATION_LAST_VACCINATION_STATUS_RESPONSE_TIME_MS);
+      sharedPreferencesEditor.remove(EXPOSURE_NOTIFICATION_LAST_VACCINATION_STATUS);
     }
     sharedPreferencesEditor.apply();
   }

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">এপ্‌টো সক্ৰিয় হৈ আছে আৰু ই পৰীক্ষা কৰি আছে</string>
+  <string name="app_active_and_checking_info">এই এপ্‌টোৱে সম্ভাব্য সংস্পৰ্শৰ বাবে পৰীক্ষা কৰি আছে। আপোনাক ইতিমধ্যে প্ৰতিষেধক প্ৰদান কৰা হ’লেও এক্সপ’জাৰ ন’টিফিকেশ্বন ব্যৱহাৰ কৰাটোৱে আপোনাক নিজৰ সম্প্ৰদায় সুৰক্ষিত কৰাত সহায় কৰে।</string>
+  <string name="possible_exposure_title">আপুনি হয়তো সংস্পৰ্শলৈ আহিব পাৰে</string>
+  <string name="share_test_result_home_screen_title">আপোনাৰ পৰীক্ষাৰ ফলাফল শ্বেয়াৰ কৰক</string>
+  <string name="have_questions">কিবা প্ৰশ্ন আছে নেকি?</string>
+  <string name="check_exposure_status">আপোনাৰ সংস্পৰ্শৰ স্থিতি পৰীক্ষা কৰক</string>
+  <string name="en_active">সক্ৰিয় হৈ আছে</string>
+  <string name="en_inactive">নিষ্ক্ৰিয় হৈ আছে</string>
+  <string name="exposure_checks_activity_title">শেহতীয়া চেক-ইনৰ ৰেকৰ্ড</string>
+  <string name="sharing_history_activity_title">ইতিহাস শ্বেয়াৰ কৰক</string>
+  <string name="no_recent_exposure_card_content_no_checks">COVID-19ৰ সংস্পৰ্শৰ বিপদাশংকা থকা কোনো ৰিপ’ৰ্ট পোৱা নগ’ল।</string>
+  <string name="no_recent_exposure_card_content">COVID-19ৰ সংস্পৰ্শৰ বিপদাশংকা থকা কোনো ৰিপ’ৰ্ট পোৱা নগ’ল। অন্তিমবাৰ %1$sত পৰীক্ষা কৰা হৈছিল</string>
+  <string name="see_recent_checks_button">শেহতীয়া চেক-ইন চাওক</string>
+  <string name="possible_exposure_card_title">সম্ভাব্য সংস্পৰ্শৰ ৰিপ’ৰ্ট পোৱা গৈছে</string>
+  <string name="possible_exposure_card_contents">আপুনি পূৰ্বতে কাষলৈ অহা কোনো লোকৰ COVID-19 ধনাত্মক বুলি ৰিপ’ৰ্ট আহিছে</string>
+  <string name="see_details_button">সবিশেষ চাওক</string>
+  <string name="share_test_result_card_title">আপোনাৰ সম্প্ৰদায়ত COVID-19 প্ৰতিৰোধ কৰাত সহায় কৰক</string>
+  <string name="share_test_result_card_content">প্ৰতিবাৰ কোনোবাই পৰীক্ষাৰ ধনাত্মক ফলাফল শ্বেয়াৰ কৰাৰ সময়ত, ই অন্য এগৰাকীৰ COVID-19 হোৱাটো প্ৰতিৰোধ কৰাত সহায় কৰিব পাৰে। আপোনাৰ পৰীক্ষাৰ ফলাফল শ্বেয়াৰ কৰাটোৱে অন্য লোকসকলক আপোনাৰ পৰিচয় জানিবলৈ নিদিয়ে।</string>
+  <string name="see_history_button">ইতিহাস চাওক</string>
+  <string name="share_positive_diagnosis_card_content">COVID-19ৰ সংক্ৰমণ ৰোধ কৰাত সহায় কৰিবলৈ আপোনাৰ পৰীক্ষাৰ ফলাফল শ্বেয়াৰ কৰক</string>
+  <string name="share_app_card_content">আপোনাৰ সম্প্ৰদায়ক ভালদৰে সুৰক্ষিত কৰিবলৈ এই এপ্‌টো শ্বেয়াৰ কৰক</string>
+  <string name="how_en_works_card_content">এক্সপ’জাৰ ন’টিফিকেশ্বনে কেনেকৈ কাম কৰে সেই বিষয়ে অধিক জানক</string>
+</resources>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">Appen er aktiv og sjekker</string>
+  <string name="app_active_and_checking_info">Denne appen sjekker for mulig eksponering. Bruk av eksponeringsvarsler bidrar til å beskytte lokalsamfunnet ditt – selv om du er vaksinert.</string>
+  <string name="possible_exposure_title">Du kan ha blitt eksponert</string>
+  <string name="share_test_result_home_screen_title">Del testresultatet ditt</string>
+  <string name="have_questions">Lurer du på noe?</string>
+  <string name="check_exposure_status">Sjekk eksponeringsstatusen din</string>
+  <string name="en_active">Aktiv</string>
+  <string name="en_inactive">Inaktiv</string>
+  <string name="exposure_checks_activity_title">Oversikt over nylige sjekker</string>
+  <string name="sharing_history_activity_title">Delingslogg</string>
+  <string name="no_recent_exposure_card_content_no_checks">Ingen rapportert covid-19-eksponeringsrisiko er funnet.</string>
+  <string name="no_recent_exposure_card_content">Ingen rapportert covid-19-eksponeringsrisiko er funnet. Sist kontrollert %1$s</string>
+  <string name="see_recent_checks_button">Se nylige sjekker</string>
+  <string name="possible_exposure_card_title">Mulig eksponering er rapportert</string>
+  <string name="possible_exposure_card_contents">Noen du har vært i nærheten av, har testet positivt for covid-19</string>
+  <string name="see_details_button">Se detaljer</string>
+  <string name="share_test_result_card_title">Bidra til å forebygge covid-19 i lokalsamfunnet</string>
+  <string name="share_test_result_card_content">Hver gang noen deler et positivt testresultat, kan det bidra til å hindre et annet tilfelle av covid-19. Du blir ikke identifisert for andre hvis du deler testresultatet ditt.</string>
+  <string name="see_history_button">Se loggen</string>
+  <string name="share_positive_diagnosis_card_content">Del testresultatet ditt for å bidra til å stoppe spredningen av covid-19</string>
+  <string name="share_app_card_content">Del denne appen for å beskytte lokalsamfunnet ditt</string>
+  <string name="how_en_works_card_content">Finn ut mer om hvordan eksponeringsvarsler fungerer</string>
+</resources>

@@ -17,6 +17,9 @@
 
 package com.google.android.apps.exposurenotification.home;
 
+import static com.google.android.apps.exposurenotification.notify.ShareDiagnosisViewModel.EMPTY_DIAGNOSIS;
+import static com.google.android.apps.exposurenotification.notify.ShareDiagnosisViewModel.EN_STATES_BLOCKING_SHARING_FLOW;
+
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.util.Log;
@@ -24,6 +27,7 @@ import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.IntentSenderRequest;
 import androidx.activity.result.contract.ActivityResultContracts.StartIntentSenderForResult;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.hilt.lifecycle.ViewModelInject;
@@ -31,6 +35,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import com.google.android.apps.exposurenotification.common.PairLiveData;
+import com.google.android.apps.exposurenotification.common.Qualifiers.LightweightExecutor;
 import com.google.android.apps.exposurenotification.common.SingleLiveEvent;
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.logging.AnalyticsLogger;
@@ -38,13 +43,21 @@ import com.google.android.apps.exposurenotification.nearby.ExposureNotificationC
 import com.google.android.apps.exposurenotification.nearby.PackageConfigurationHelper;
 import com.google.android.apps.exposurenotification.proto.UiInteraction.EventType;
 import com.google.android.apps.exposurenotification.riskcalculation.ExposureClassification;
+import com.google.android.apps.exposurenotification.storage.DiagnosisEntity;
+import com.google.android.apps.exposurenotification.storage.DiagnosisRepository;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
+import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.BadgeStatus;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.NotificationInteraction;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.OnboardingStatus;
+import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.nearby.exposurenotification.ExposureNotificationStatus;
 import com.google.android.gms.nearby.exposurenotification.ExposureNotificationStatusCodes;
+import com.google.android.gms.tasks.Tasks;
+import com.google.common.util.concurrent.FutureCallback;
+import com.google.common.util.concurrent.Futures;
 import java.util.Set;
+import java.util.concurrent.ExecutorService;
 
 /**
  * View model for the {@link ExposureNotificationActivity} and fragments.
@@ -53,22 +66,30 @@ public class ExposureNotificationViewModel extends ViewModel {
 
   private static final String TAG = "ExposureNotificationVM";
 
-  private final MutableLiveData<ExposureNotificationState> stateLiveData = new MutableLiveData<>();
+  private final MutableLiveData<ExposureNotificationState> stateLiveData;
   private final MutableLiveData<Boolean> inFlightLiveData = new MutableLiveData<>(false);
   private final MutableLiveData<Boolean> inFlightResolutionLiveData = new MutableLiveData<>(false);
   private final MutableLiveData<Boolean> enEnabledLiveData;
+  private final MutableLiveData<Boolean> enEnabledLiveDataNoCache = new MutableLiveData<>(false);
+  private final MutableLiveData<Boolean> isLocationEnableRequired = new MutableLiveData<>(true);
   private final ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
   private final PairLiveData<ExposureNotificationState, Boolean> stateWithInFlightLiveData;
   private final PairLiveData<ExposureNotificationState, ExposureClassification>
       stateWithExposureClassificationLiveData;
 
   private final SingleLiveEvent<Void> apiErrorLiveEvent = new SingleLiveEvent<>();
+  private final SingleLiveEvent<Void> apiUnavailableLiveEvent = new SingleLiveEvent<>();
+  private final SingleLiveEvent<Boolean> enStoppedLiveEvent = new SingleLiveEvent<>();
   private final SingleLiveEvent<ApiException> resolutionRequiredLiveEvent = new SingleLiveEvent<>();
+  private final SingleLiveEvent<DiagnosisEntity> lastNotSharedDiagnosisLiveEvent =
+      new SingleLiveEvent<>();
 
   private final ExposureNotificationClientWrapper exposureNotificationClientWrapper;
+  private final DiagnosisRepository diagnosisRepository;
   private final AnalyticsLogger logger;
   private final PackageConfigurationHelper packageConfigurationHelper;
   private final Clock clock;
+  private final ExecutorService lightweightExecutor;
 
   private boolean inFlightIsEnabled = false;
 
@@ -95,17 +116,25 @@ public class ExposureNotificationViewModel extends ViewModel {
   public ExposureNotificationViewModel(
       ExposureNotificationSharedPreferences exposureNotificationSharedPreferences,
       ExposureNotificationClientWrapper exposureNotificationClientWrapper,
+      DiagnosisRepository diagnosisRepository,
       AnalyticsLogger logger,
       PackageConfigurationHelper packageConfigurationHelper,
-      Clock clock) {
+      Clock clock,
+      @LightweightExecutor ExecutorService lightweightExecutor) {
     this.exposureNotificationSharedPreferences = exposureNotificationSharedPreferences;
     this.exposureNotificationClientWrapper = exposureNotificationClientWrapper;
+    this.diagnosisRepository = diagnosisRepository;
     this.logger = logger;
     this.packageConfigurationHelper = packageConfigurationHelper;
     this.clock = clock;
+    this.lightweightExecutor = lightweightExecutor;
 
     boolean isEnabled = exposureNotificationSharedPreferences.getIsEnabledCache();
     enEnabledLiveData = new MutableLiveData<>(isEnabled);
+
+    ExposureNotificationState state = ExposureNotificationState
+        .values()[exposureNotificationSharedPreferences.getEnStateCache()];
+    stateLiveData = new MutableLiveData<>(state);
 
     stateWithInFlightLiveData = PairLiveData.of(getStateLiveData(), getInFlightLiveData());
     stateWithExposureClassificationLiveData = PairLiveData.of(
@@ -129,6 +158,13 @@ public class ExposureNotificationViewModel extends ViewModel {
   }
 
   /**
+   * Whether EN requires location to be enabled.
+   */
+  public LiveData<Boolean> getIsLocationEnableRequired() {
+    return isLocationEnableRequired;
+  }
+
+  /**
    * Returns whether en_module is on/off, irrespective of its functional state. Should be used if
    * there is a EN on/off button.
    */
@@ -137,11 +173,11 @@ public class ExposureNotificationViewModel extends ViewModel {
   }
 
   /**
-   * Returns {@link LiveData} to observe whether a new UX Flow has been turned on/off. Should be
-   * used to switch between home screens.
+   * Returns whether en_module is on/off, irrespective of its functional state. Does not use any
+   * form of caching.
    */
-  public LiveData<Boolean> getNewUxFlowEnabledLiveData() {
-    return exposureNotificationSharedPreferences.getIsEnabledNewUXFlowLiveData();
+  public LiveData<Boolean> getEnEnabledLiveDataNoCache() {
+    return enEnabledLiveDataNoCache;
   }
 
   /**
@@ -156,7 +192,8 @@ public class ExposureNotificationViewModel extends ViewModel {
    * Returns {@link PairLiveData} to observe changes both in {@link ExposureNotificationState} and
    * {@link ExposureClassification}.
    */
-  public PairLiveData<ExposureNotificationState, ExposureClassification> getStateWithExposureClassificationLiveData() {
+  public PairLiveData<ExposureNotificationState, ExposureClassification>
+  getStateWithExposureClassificationLiveData() {
     return stateWithExposureClassificationLiveData;
   }
 
@@ -172,6 +209,13 @@ public class ExposureNotificationViewModel extends ViewModel {
    */
   public SingleLiveEvent<Void> getApiErrorLiveEvent() {
     return apiErrorLiveEvent;
+  }
+
+  /**
+   * An event that triggers when there is no API available, e.g. disabled / missing GMSCore.
+   */
+  public SingleLiveEvent<Void> getApiUnavailableLiveEvent() {
+    return apiUnavailableLiveEvent;
   }
 
   public OnboardingStatus getOnboardedState() {
@@ -197,6 +241,7 @@ public class ExposureNotificationViewModel extends ViewModel {
             isEnabled -> {
               maybeRefreshStatus(isEnabled);
               enEnabledLiveData.setValue(isEnabled);
+              enEnabledLiveDataNoCache.setValue(isEnabled);
               exposureNotificationSharedPreferences.setIsEnabledCache(isEnabled);
               inFlightIsEnabled = false;
             })
@@ -207,6 +252,7 @@ public class ExposureNotificationViewModel extends ViewModel {
         .addOnFailureListener(t -> {
           maybeRefreshStatus(false);
           enEnabledLiveData.setValue(false);
+          enEnabledLiveDataNoCache.setValue(false);
           exposureNotificationSharedPreferences.setIsEnabledCache(false);
           inFlightIsEnabled = false;
         });
@@ -216,7 +262,16 @@ public class ExposureNotificationViewModel extends ViewModel {
     inFlightLiveData.setValue(true);
     exposureNotificationClientWrapper.getStatus()
         .addOnSuccessListener(status -> {
-          stateLiveData.setValue(getStateForStatusAndIsEnabled(status, isEnabled));
+          if (status != null) {
+            if (status.contains(ExposureNotificationStatus.LOCATION_DISABLED)) {
+              isLocationEnableRequired.setValue(true);
+            } else {
+              isLocationEnableRequired.setValue(false);
+            }
+          }
+          ExposureNotificationState state = getStateForStatusAndIsEnabled(status, isEnabled);
+          stateLiveData.setValue(state);
+          exposureNotificationSharedPreferences.setEnStateCache(state.ordinal());
           inFlightLiveData.setValue(false);
         })
         .addOnCanceledListener(() -> {
@@ -225,6 +280,9 @@ public class ExposureNotificationViewModel extends ViewModel {
         })
         .addOnFailureListener(t -> {
           Log.e(TAG, "Error calling getStatus", t);
+          stateLiveData.setValue(ExposureNotificationState.DISABLED);
+          exposureNotificationSharedPreferences.setEnStateCache(
+              ExposureNotificationState.DISABLED.ordinal());
           inFlightLiveData.setValue(false);
         });
   }
@@ -245,7 +303,8 @@ public class ExposureNotificationViewModel extends ViewModel {
    * compared to a set of ExposureNotificationStatus objects. The given set is retrieved by calling
    * the EN module's {@code getStatus()} API. This set always contains at least one element.
    *
-   * @param statusSet a set of ExposureNotificationStatus objects denoting the status of the EN API.
+   * @param statusSet a set of ExposureNotificationStatus objects denoting the status of the EN
+   *                  API.
    * @param isEnabled a boolean indicating whether contact tracing is running for the current
    *                  requesting app.
    * @return The enum state that denotes the status of the EN API.
@@ -254,25 +313,26 @@ public class ExposureNotificationViewModel extends ViewModel {
       Set<ExposureNotificationStatus> statusSet, boolean isEnabled) {
     if (!isEnabled) {
       /*
-       * The EN is not enabled for the current app. In this case, if we also hit a Low Storage
-       * error, always display it first, as EN can only be (re-)enabled with enough storage space
-       * available.
+       * The EN is not enabled for the current app. In this case we have 'terminal' states for which
+       * EN cannot be re-enabled and 'non-terminal' states for which it can. Display terminal states
+       * first and give the highest priority to LOW_STORAGE among non-terminal ones.
        */
-      if (statusSet.contains(ExposureNotificationStatus.LOW_STORAGE)) {
+      if (statusSet.contains(ExposureNotificationStatus.EN_NOT_SUPPORT)) {
+        return ExposureNotificationState.PAUSED_EN_NOT_SUPPORT;
+      } else if (statusSet.contains(ExposureNotificationStatus.HW_NOT_SUPPORT)) {
+        return ExposureNotificationState.PAUSED_HW_NOT_SUPPORT;
+      } else if (statusSet.contains(ExposureNotificationStatus.USER_PROFILE_NOT_SUPPORT)) {
+        return ExposureNotificationState.PAUSED_USER_PROFILE_NOT_SUPPORT;
+      } else if (statusSet.contains(ExposureNotificationStatus.NOT_IN_ALLOWLIST)) {
+        return ExposureNotificationState.PAUSED_NOT_IN_ALLOWLIST;
+      } else if (statusSet.contains(ExposureNotificationStatus.LOW_STORAGE)) {
         return ExposureNotificationState.STORAGE_LOW;
       } else if (statusSet.contains(ExposureNotificationStatus.NO_CONSENT)) {
         return ExposureNotificationState.DISABLED;
-      } else if (statusSet.contains(ExposureNotificationStatus.HW_NOT_SUPPORT)) {
-        return ExposureNotificationState.PAUSED_HW_NOT_SUPPORT;
       } else if (statusSet.contains(ExposureNotificationStatus.FOCUS_LOST)) {
         return ExposureNotificationState.FOCUS_LOST;
-      } else if (statusSet.contains(ExposureNotificationStatus.USER_PROFILE_NOT_SUPPORT)) {
-        return ExposureNotificationState.PAUSED_USER_PROFILE_NOT_SUPPORT;
-      } else if (statusSet.contains(ExposureNotificationStatus.EN_NOT_SUPPORT)) {
-        return ExposureNotificationState.PAUSED_EN_NOT_SUPPORT;
-      } else if (statusSet.contains(ExposureNotificationStatus.NOT_IN_ALLOWLIST)) {
-        return ExposureNotificationState.PAUSED_NOT_IN_ALLOWLIST;
       }
+      // We should not get here but in case for some reason we do, return the DISABLED state.
       return ExposureNotificationState.DISABLED;
     }
 
@@ -285,7 +345,7 @@ public class ExposureNotificationViewModel extends ViewModel {
         return ExposureNotificationState.STORAGE_LOW;
       } else if (statusSet.contains(ExposureNotificationStatus.LOCATION_DISABLED)
           && (statusSet.contains(ExposureNotificationStatus.BLUETOOTH_DISABLED)
-              || statusSet.contains(ExposureNotificationStatus.BLUETOOTH_SUPPORT_UNKNOWN))) {
+          || statusSet.contains(ExposureNotificationStatus.BLUETOOTH_SUPPORT_UNKNOWN))) {
         return ExposureNotificationState.PAUSED_LOCATION_BLE;
       } else if (statusSet.contains(ExposureNotificationStatus.BLUETOOTH_DISABLED)
           || statusSet.contains(ExposureNotificationStatus.BLUETOOTH_SUPPORT_UNKNOWN)) {
@@ -300,7 +360,7 @@ public class ExposureNotificationViewModel extends ViewModel {
   }
 
   /**
-   * Helper methods to make it easy for activities and fragments to add resolution handling.
+   * Helper methods to make it easy for activities and fragments to add opt-in resolution handling.
    * <p>
    * Instead of starting resolution handling with apiException.startResolutionForResult and
    * listening for results in an Activity with onActivityResult, these methods create an AndroidX
@@ -359,6 +419,7 @@ public class ExposureNotificationViewModel extends ViewModel {
             unused -> {
               maybeRefreshStatus(true);
               enEnabledLiveData.setValue(true);
+              enEnabledLiveDataNoCache.setValue(true);
               inFlightLiveData.setValue(false);
               refreshState();
             })
@@ -380,8 +441,24 @@ public class ExposureNotificationViewModel extends ViewModel {
                 }
               } else {
                 Log.w(TAG, "No RESOLUTION_REQUIRED in result", apiException);
-                apiErrorLiveEvent.call();
-                inFlightLiveData.setValue(false);
+                int connectionResult = ConnectionResult.UNKNOWN;
+                if (apiException.getStatus() != null
+                    && apiException.getStatus().getConnectionResult() != null) {
+                  connectionResult = apiException.getStatus().getConnectionResult().getErrorCode();
+                }
+                switch (connectionResult) {
+                  case ConnectionResult.SERVICE_DISABLED:
+                  case ConnectionResult.SERVICE_INVALID:
+                  case ConnectionResult.SERVICE_MISSING:
+                  case ConnectionResult.SERVICE_VERSION_UPDATE_REQUIRED:
+                    apiUnavailableLiveEvent.call();
+                    inFlightLiveData.setValue(false);
+                    break;
+                  default:
+                    apiErrorLiveEvent.call();
+                    inFlightLiveData.setValue(false);
+                    break;
+                }
               }
             })
         .addOnCanceledListener(() -> inFlightLiveData.setValue(false));
@@ -398,11 +475,14 @@ public class ExposureNotificationViewModel extends ViewModel {
             unused -> {
               maybeRefreshStatus(true);
               enEnabledLiveData.setValue(true);
+              enEnabledLiveDataNoCache.setValue(true);
               inFlightLiveData.setValue(false);
               refreshState();
             })
         .addOnFailureListener(
             exception -> {
+              // We don't need to handle GMSCore unavailable here because if we get to resolution
+              // RESULT_OK this means the API must be available. Instead send generic error event.
               apiErrorLiveEvent.call();
               inFlightLiveData.setValue(false);
             })
@@ -418,20 +498,34 @@ public class ExposureNotificationViewModel extends ViewModel {
   }
 
   /**
-   * Calls stop on the Exposure Notifications API.
+   * Calls stop on the Exposure Notifications API but only if Exposure Notifications is enabled.
    */
   public void stopExposureNotifications() {
     inFlightLiveData.setValue(true);
     exposureNotificationClientWrapper
-        .stop()
+        .isEnabled()
+        .continueWithTask(
+            isEnabled -> {
+              if (isEnabled.getResult()) {
+                return exposureNotificationClientWrapper.stop();
+              } else {
+                return Tasks.forResult(null);
+              }
+            })
         .addOnSuccessListener(
-            unused -> {
+            result -> {
               refreshState();
               inFlightLiveData.setValue(false);
+              enStoppedLiveEvent.postValue(true);
             })
-        .addOnFailureListener(
-            exception -> inFlightLiveData.setValue(false))
-        .addOnCanceledListener(() -> inFlightLiveData.setValue(false));
+        .addOnFailureListener(exception -> {
+          inFlightLiveData.setValue(false);
+          enStoppedLiveEvent.postValue(false);
+        })
+        .addOnCanceledListener(() -> {
+          inFlightLiveData.setValue(false);
+          enStoppedLiveEvent.postValue(false);
+        });
   }
 
   public void updateLastExposureNotificationLastClickedTime() {
@@ -445,5 +539,61 @@ public class ExposureNotificationViewModel extends ViewModel {
 
   public void logUiInteraction(EventType event) {
     logger.logUiInteraction(event);
+  }
+
+  public SingleLiveEvent<Boolean> getEnStoppedLiveEvent() {
+    return enStoppedLiveEvent;
+  }
+
+  public SingleLiveEvent<DiagnosisEntity> getLastNotSharedDiagnosisLiveEvent() {
+    return lastNotSharedDiagnosisLiveEvent;
+  }
+
+  /**
+   * Attempts at retrieving last non-shared diagnosis.
+   * <p>
+   * If there is no last non-shared diagnosis available, updates the LiveData for that last
+   * non-shared diagnosis with an empty diagnosis object.
+   */
+  public void getLastNotSharedDiagnosisIfAny() {
+    Futures.addCallback(
+        diagnosisRepository.maybeGetLastNotSharedDiagnosisAsync(),
+        new FutureCallback<DiagnosisEntity>() {
+          @Override
+          public void onSuccess(DiagnosisEntity diagnosis) {
+            lastNotSharedDiagnosisLiveEvent.postValue(
+                diagnosis == null ? EMPTY_DIAGNOSIS : diagnosis);
+          }
+
+          @Override
+          public void onFailure(@NonNull Throwable t) {
+            Log.w(TAG, "Failed to retrieve last not shared diagnosis", t);
+          }
+        },
+        lightweightExecutor);
+  }
+
+  /**
+   * Checks if the given state blocks user from starting or resuming a "Share diagnosis" flow.
+   *
+   * @param state state of the EN.
+   * @return if the given state blocks the sharing flow
+   */
+  public boolean isStateBlockingSharingFlow(ExposureNotificationState state) {
+    return EN_STATES_BLOCKING_SHARING_FLOW.contains(state);
+  }
+
+  /**
+   * Checks if a user had a possible exposure (or an exposure revocation) in the last 14 days.
+   *
+   * @return true if a user had an exposure (or revocation) and false otherwise
+   */
+  public boolean isPossibleExposurePresent() {
+    ExposureClassification exposureClassification =
+        exposureNotificationSharedPreferences.getExposureClassification();
+
+    return exposureClassification.getClassificationIndex()
+        != ExposureClassification.NO_EXPOSURE_CLASSIFICATION_INDEX
+        || exposureNotificationSharedPreferences.getIsExposureClassificationRevoked();
   }
 }

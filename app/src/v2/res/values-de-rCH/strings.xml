@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">App ist aktiv und die Prüfung ist aktiv</string>
+  <string name="app_active_and_checking_info">Diese App prüft mögliche Begegnungen mit infizierten Personen. Mit COVID-19-Benachrichtigungen trägst du zum Schutz deines Umfelds bei – selbst wenn du geimpft wurdest.</string>
+  <string name="possible_exposure_title">Du bist möglicherweise einer infizierten Person begegnet</string>
+  <string name="share_test_result_home_screen_title">Testergebnis teilen</string>
+  <string name="have_questions">Hast du Fragen?</string>
+  <string name="check_exposure_status">Status der möglichen Begegnungen mit infizierten Personen prüfen</string>
+  <string name="en_active">Aktiv</string>
+  <string name="en_inactive">Inaktiv</string>
+  <string name="exposure_checks_activity_title">Verlauf kürzlicher Prüfungen</string>
+  <string name="sharing_history_activity_title">Verlauf der Meldungen</string>
+  <string name="no_recent_exposure_card_content_no_checks">Keine möglichen Begegnungen mit Personen gefunden, die an COVID-19 erkrankt sind.</string>
+  <string name="no_recent_exposure_card_content">Keine möglichen Begegnungen mit Personen gefunden, die an COVID-19 erkrankt sind. Letzte Überprüfung: %1$s</string>
+  <string name="see_recent_checks_button">Kürzliche Prüfungen ansehen</string>
+  <string name="possible_exposure_card_title">Mögliche Begegnung mit einer Person, die an COVID-19 erkrankt ist</string>
+  <string name="possible_exposure_card_contents">Du hast dich in der Nähe einer Person aufgehalten, die ein positives COVID-19-Testergebnis gemeldet hat</string>
+  <string name="see_details_button">Details anzeigen</string>
+  <string name="share_test_result_card_title">Hilf mit, COVID-19 in deinem Umfeld vorzubeugen</string>
+  <string name="share_test_result_card_content">Jedes positive Testergebnis, das gemeldet wird, kann dazu beitragen, einen anderen COVID-19-Fall zu verhindern. Wenn du dein Testergebnis teilst, lässt dies keine Rückschlüsse auf deine Identität zu.</string>
+  <string name="see_history_button">Verlauf ansehen</string>
+  <string name="share_positive_diagnosis_card_content">Teile dein Testergebnis und trage dazu bei, die Ausbreitung von COVID-19 einzudämmen</string>
+  <string name="share_app_card_content">Teile diese App, um dein Umfeld besser zu schützen</string>
+  <string name="how_en_works_card_content">Weitere Informationen dazu, wie COVID-19-Benachrichtigungen funktionieren</string>
+</resources>

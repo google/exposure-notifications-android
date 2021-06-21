@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">ആപ്പ് സജീവമാണ്, എക്‌സ്പോഷർ സാധ്യത പരിശോധിക്കുന്നു</string>
+  <string name="app_active_and_checking_info">ഈ ആപ്പ്, എക്‌സ്പോഷർ സാധ്യതകൾ പരിശോധിക്കുന്നു. നിങ്ങൾ വാക്‌സിൻ എടുത്തിട്ടുണ്ടെങ്കിൽ പോലും, എക്‌സ്പോഷർ അറിയിപ്പുകൾ ഉപയോഗിക്കുന്നത് നിങ്ങളുടെ കമ്മ്യൂണിറ്റിയെ പരിരക്ഷിക്കാൻ സഹായിക്കും.</string>
+  <string name="possible_exposure_title">നിങ്ങൾ കോവിഡ്-19 ബാധിതരുമായി സമ്പർക്കം പുലർത്തിയിട്ടുണ്ടാകാം</string>
+  <string name="share_test_result_home_screen_title">നിങ്ങളുടെ പരിശോധനാ ഫലം പങ്കിടുക</string>
+  <string name="have_questions">എന്തെങ്കിലും ചോദിക്കാനുണ്ടോ?</string>
+  <string name="check_exposure_status">നിങ്ങളുടെ എക്സ്പോഷർ നില പരിശോധിക്കുക</string>
+  <string name="en_active">സജീവം</string>
+  <string name="en_inactive">നിഷ്ക്രിയം</string>
+  <string name="exposure_checks_activity_title">സമീപകാല പരിശോധനകളുടെ റെക്കോർഡ്</string>
+  <string name="sharing_history_activity_title">പങ്കിടൽ ചരിത്രം</string>
+  <string name="no_recent_exposure_card_content_no_checks">റിപ്പോർട്ട് ചെയ്‌തിട്ടുള്ള കോവിഡ്-19 എക്സ്പോഷർ അപകടസാധ്യതകളൊന്നുമില്ല.</string>
+  <string name="no_recent_exposure_card_content">റിപ്പോർട്ട് ചെയ്‌തിട്ടുള്ള കോവിഡ്-19 എക്സ്പോഷർ അപകടസാധ്യതകളൊന്നുമില്ല. അവസാനം പരിശോധിച്ചത് %1$s</string>
+  <string name="see_recent_checks_button">സമീപകാല പരിശോധനകൾ കാണുക</string>
+  <string name="possible_exposure_card_title">എക്‌സ്പോഷർ സാധ്യത റിപ്പോർട്ട് ചെയ്തു</string>
+  <string name="possible_exposure_card_contents">നിങ്ങൾക്ക് സമീപമുണ്ടായിരുന്ന ആർക്കോ കോവിഡ്-19 പരിശോധനാ ഫലം പോസിറ്റീവായി</string>
+  <string name="see_details_button">വിശദാംശങ്ങൾ കാണുക</string>
+  <string name="share_test_result_card_title">നിങ്ങളുടെ കമ്മ്യൂണിറ്റിയിൽ കോവിഡ്-19 വ്യാപനം തടയാൻ സഹായിക്കുക</string>
+  <string name="share_test_result_card_content">ആരെങ്കിലും പോസിറ്റീവ് പരിശോധനാ ഫലം പങ്കിടുമ്പോഴെല്ലാം, മറ്റൊരു കോവിഡ്-19 കേസ് തടയാൻ ഇത് സഹായിക്കുന്നു. പരിശോധനാ ഫലം പങ്കിടുന്നത് മറ്റുള്ളവർ നിങ്ങളെ തിരിച്ചറിയാൻ ഇടയാക്കില്ല.</string>
+  <string name="see_history_button">ചരിത്രം കാണുക</string>
+  <string name="share_positive_diagnosis_card_content">കോവിഡ്-19 വ്യാപനം തടയാൻ സഹായിക്കുന്നതിന് നിങ്ങളുടെ പരിശോധനാ ഫലം പങ്കിടുക</string>
+  <string name="share_app_card_content">നിങ്ങളുടെ കമ്മ്യൂണിറ്റിയെ മികച്ച രീതിയിൽ പരിരക്ഷിക്കാൻ ഈ ആപ്പ് പങ്കിടുക</string>
+  <string name="how_en_works_card_content">എക്‌സ്പോഷർ അറിയിപ്പുകളുടെ പ്രവർത്തനത്തെ കുറിച്ച് കൂടുതലറിയുക</string>
+</resources>

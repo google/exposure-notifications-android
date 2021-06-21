@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="onboarding_activity_title">Introduktion</string>
+  <string name="share_history_activity_title">Se delingshistorik</string>
+  <string name="remove_region_link_title">Fjern område</string>
+  <string name="delete_shared_diagnosis">Slet delt testresultat</string>
+  <string name="active_region_subtitle">%1$s er i øjeblikket aktiveret til notifikationer om eksponering</string>
+  <string name="active_region_subtitle_en_off">%1$s er angivet som dit aktive område, men notifikationer om eksponering er deaktiveret på din telefon</string>
+  <string name="remove_region_title">Fjern område</string>
+  <string name="remove_region_detail">Hvis du fjerner dit område, deaktiveres notifikationer om eksponering. Du kan til enhver tid tilføje dette område igen.</string>
+  <string name="btn_remove">Fjern</string>
+  <string name="exposure_notifications_is_off">Notifikationer om eksponering er deaktiveret</string>
+  <string name="possible_exposure">Mulig eksponering</string>
+  <string name="share_history_delete_test_result_title">Vil du slette dette testresultat?</string>
+  <string name="share_history_delete_test_result_detail">Dit COVID-19-testresultat fra den %1$s slettes fra din telefon.</string>
+</resources>

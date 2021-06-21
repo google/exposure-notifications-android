@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="onboarding_activity_title">الإعداد</string>
+  <string name="share_history_activity_title">الاطّلاع على سجلّ المشاركة</string>
+  <string name="remove_region_link_title">إزالة المنطقة</string>
+  <string name="delete_shared_diagnosis">حذف نتيجة الاختبار التي تمت مشاركتها</string>
+  <string name="active_region_subtitle">تم ضبط نظام \"إشعارات التعرّض لفيروس كورونا\" ليكون نشطًا حاليًا في %1$s</string>
+  <string name="active_region_subtitle_en_off">تم ضبط نظام \"إشعارات التعرّض لفيروس كورونا\" ليكون نشطًا في %1$s إلا أن النظام غير مفعّل حاليًا على هاتفك</string>
+  <string name="remove_region_title">إزالة المنطقة</string>
+  <string name="remove_region_detail">ستؤدي إزالة المنطقة إلى إيقاف نظام \"إشعارات التعرّض لفيروس كورونا\". يمكنك إضافة هذه المنطقة مرة أخرى في أي وقت.</string>
+  <string name="btn_remove">إزالة</string>
+  <string name="exposure_notifications_is_off">نظام \"إشعارات التعرّض لفيروس كورونا\" غير مفعّل.</string>
+  <string name="possible_exposure">التعرّض المحتمل للفيروس</string>
+  <string name="share_history_delete_test_result_title">هل تريد حذف نتيجة الاختبار هذه؟</string>
+  <string name="share_history_delete_test_result_detail">سيتم حذف نتيجة اختبار فيروس كورونا المستجد الخاص بك بتاريخ %1$s من هاتفك.</string>
+</resources>

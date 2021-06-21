@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="onboarding_activity_title">Giới thiệu</string>
+  <string name="share_history_activity_title">Xem nhật ký chia sẻ</string>
+  <string name="remove_region_link_title">Xóa khu vực</string>
+  <string name="delete_shared_diagnosis">Xóa kết quả xét nghiệm đã chia sẻ</string>
+  <string name="active_region_subtitle">Bạn đang đặt %1$s làm khu vực hoạt động của dịch vụ Thông báo tiếp xúc</string>
+  <string name="active_region_subtitle_en_off">Bạn đã đặt %1$s làm khu vực hoạt động của dịch vụ Thông báo tiếp xúc, nhưng dịch vụ này đang tắt trên điện thoại của bạn</string>
+  <string name="remove_region_title">Xóa khu vực</string>
+  <string name="remove_region_detail">Thao tác xóa khu vực sẽ tắt Thông báo tiếp xúc. Bạn có thể thêm lại khu vực này bất cứ lúc nào.</string>
+  <string name="btn_remove">Xóa</string>
+  <string name="exposure_notifications_is_off">Thông báo tiếp xúc đang tắt</string>
+  <string name="possible_exposure">Ngày có khả năng tiếp xúc</string>
+  <string name="share_history_delete_test_result_title">Xóa kết quả xét nghiệm này?</string>
+  <string name="share_history_delete_test_result_detail">Kết quả xét nghiệm COVID-19 của bạn vào %1$s sẽ bị xóa khỏi điện thoại.</string>
+</resources>

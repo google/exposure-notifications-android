@@ -33,6 +33,7 @@ import com.google.android.libraries.privateanalytics.PrivateAnalyticsDeviceAttes
 import com.google.android.libraries.privateanalytics.PrivateAnalyticsEnabledProvider;
 import com.google.android.libraries.privateanalytics.PrivateAnalyticsEventListener;
 import com.google.android.libraries.privateanalytics.PrivateAnalyticsRemoteConfig;
+import com.google.android.libraries.privateanalytics.Qualifiers.PackageName;
 import com.google.android.libraries.privateanalytics.Qualifiers.RemoteConfigUri;
 import com.google.common.base.Optional;
 import dagger.Module;
@@ -47,8 +48,8 @@ public class PrivateAnalyticsModule {
 
   @Provides
   public PrivateAnalyticsDeviceAttestation providesDeviceAttestation(
-      @ApplicationContext Context context) {
-    return new DefaultPrivateAnalyticsDeviceAttestation(context);
+      @ApplicationContext Context context, @PackageName String packageName) {
+    return new DefaultPrivateAnalyticsDeviceAttestation(context, packageName);
   }
 
   @Provides
@@ -64,12 +65,19 @@ public class PrivateAnalyticsModule {
   }
 
   @Provides
+  @PackageName
+  public String providePackageName(@ApplicationContext Context context) {
+    return context.getString(R.string.enx_healthAuthorityID);
+  }
+
+  @Provides
   public PrivateAnalyticsEnabledProvider provideIsPrivateAnalyticsEnabled(
       ExposureNotificationSharedPreferences sharedPreferences) {
     return new PrivateAnalyticsEnabledProvider() {
       @Override
       public boolean isSupportedByApp() {
-        return BuildConfig.PRIVATE_ANALYTICS_SUPPORTED;
+        return BuildConfig.PRIVATE_ANALYTICS_SUPPORTED && DefaultPrivateAnalyticsDeviceAttestation
+            .isDeviceAttestationAvailable();
       }
 
       @Override

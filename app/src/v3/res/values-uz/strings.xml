@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="onboarding_activity_title">Registratsiya</string>
+  <string name="share_history_activity_title">Ulashish tarixi bilan tanishish</string>
+  <string name="remove_region_link_title">Hududni olib tashlash</string>
+  <string name="delete_shared_diagnosis">Ulashilgan test natijalarini olib tashlash</string>
+  <string name="active_region_subtitle">%1$s hozirgi vaqtda hududingizda Ehtimoliy zararlanish bildirishnomalari uchun faol ilova hisoblanadi</string>
+  <string name="active_region_subtitle_en_off">%1$s hozirgi vaqtda hududingizda faol ilova hisoblanadi, lekin telefoningizda Ehtimoliy zararlanish bildirishnomalari yoqilmagan</string>
+  <string name="remove_region_title">Hududni olib tashlash</string>
+  <string name="remove_region_detail">Hududni olib tashlasangiz, Ehtimoliy zararlanish bildirishnomalari kelishi toʻxtaydi. Bu hududni istalgan vaqtda yana kiritish mumkin.</string>
+  <string name="btn_remove">Olib tashlash</string>
+  <string name="exposure_notifications_is_off">Ehtimoliy zararlanish bildirishnomalari yoqilmagan</string>
+  <string name="possible_exposure">Ehtimoliy zararlanish</string>
+  <string name="share_history_delete_test_result_title">Bu test natijalari oʻchirilsinmi?</string>
+  <string name="share_history_delete_test_result_detail">%1$s sanasidagi COVID-19 testi natijalari telefoningizdan oʻchiriladi.</string>
+</resources>

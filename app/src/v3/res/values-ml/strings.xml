@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="onboarding_activity_title">ഓൺബോർഡിംഗ്</string>
+  <string name="share_history_activity_title">പങ്കിടൽ ചരിത്രം കാണുക</string>
+  <string name="remove_region_link_title">പ്രദേശം നീക്കംചെയ്യുക</string>
+  <string name="delete_shared_diagnosis">പങ്കിട്ട പരിശോധനാ ഫലം ഇല്ലാതാക്കുക</string>
+  <string name="active_region_subtitle">നിലവിൽ, എക്‌സ്പോഷർ അറിയിപ്പുകൾക്കുള്ള നിങ്ങളുടെ സജീവ പ്രദേശമായി %1$s എന്നത് സജ്ജീകരിച്ചു</string>
+  <string name="active_region_subtitle_en_off">നിങ്ങളുടെ സജീവ പ്രദേശമായി %1$s എന്നത് സജ്ജീകരിച്ചു, എന്നാൽ എക്‌സ്‌പോഷർ അറിയിപ്പുകൾ നിങ്ങളുടെ ഫോണിൽ ഓഫാണ്</string>
+  <string name="remove_region_title">പ്രദേശം നീക്കംചെയ്യുക</string>
+  <string name="remove_region_detail">നിങ്ങളുടെ പ്രദേശത്തെ നീക്കം ചെയ്യുന്നത് എക്സ്പോഷർ അറിയിപ്പുകൾ ഓഫാക്കും. നിങ്ങൾക്ക് ഏതുസമയത്തും ഈ പ്രദേശത്തെ തിരിച്ച് ചേർക്കാം.</string>
+  <string name="btn_remove">നീക്കംചെയ്യുക</string>
+  <string name="exposure_notifications_is_off">എക്സ്പോഷർ അറിയിപ്പുകൾ ഓഫാണ്</string>
+  <string name="possible_exposure">എക്സ്പോഷർ സാധ്യത</string>
+  <string name="share_history_delete_test_result_title">ഈ പരിശോധനാ ഫലം ഇല്ലാതാക്കണോ?</string>
+  <string name="share_history_delete_test_result_detail">%1$s എന്ന തീയതിയിലെ നിങ്ങളുടെ കോവിഡ്-19 പരിശോധനാ ഫലം ഇല്ലാതാക്കും.</string>
+</resources>

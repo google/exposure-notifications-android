@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">ऐप्लिकेशन चालू है और जांच कर रहा है</string>
+  <string name="app_active_and_checking_info">यह ऐप्लिकेशन संभावित संक्रमण की जांच कर रहा है. एक्सपोज़र नोटिफ़िकेशन का इस्तेमाल करने से आप अपने समुदाय को सुरक्षित रखने में मदद करते हैं - भले ही, आपका टीकाकरण हो चुका हो.</string>
+  <string name="possible_exposure_title">शायद आप COVID-19 से संक्रमित किसी व्यक्ति के संपर्क में आए हैं</string>
+  <string name="share_test_result_home_screen_title">जांच के नतीजे शेयर करें</string>
+  <string name="have_questions">कोई सवाल पूछना चाहते हैं?</string>
+  <string name="check_exposure_status">संक्रमित व्यक्ति से संपर्क में आने की अपनी स्थिति की जांच करें</string>
+  <string name="en_active">चालू है</string>
+  <string name="en_inactive">बंद है</string>
+  <string name="exposure_checks_activity_title">हाल ही के चेक-इन का रिकॉर्ड</string>
+  <string name="sharing_history_activity_title">इतिहास शेयर करें</string>
+  <string name="no_recent_exposure_card_content_no_checks">आप COVID-19 से संक्रमित किसी व्यक्ति के संपर्क में नहीं आए हैं.</string>
+  <string name="no_recent_exposure_card_content">आप COVID-19 से संक्रमित किसी व्यक्ति के संपर्क में नहीं आए हैं. पिछली बार %1$s पर जांच की गई थी</string>
+  <string name="see_recent_checks_button">हाल ही के चेक-इन देखें</string>
+  <string name="possible_exposure_card_title">यह पता चला है कि आप COVID-19 से संक्रमित किसी व्यक्ति के संपर्क में आए हैं.</string>
+  <string name="possible_exposure_card_contents">आपके संपर्क में आया कोई व्यक्ति COVID-19 से संक्रमित पाया गया है</string>
+  <string name="see_details_button">जानकारी देखें</string>
+  <string name="share_test_result_card_title">COVID-19 के संक्रमण को अपने समुदाय में फैलने से रोकने में हमारी मदद करें</string>
+  <string name="share_test_result_card_content">जब कोई व्यक्ति COVID-19 से संक्रमित होने की जानकारी शेयर करता है, तो COVID-19 के संक्रमण को फैलने से रोकने में मदद मिलती है. जांच के नतीजे शेयर करने पर, आपकी पहचान दूसरों के साथ शेयर नहीं की जाएगी.</string>
+  <string name="see_history_button">इतिहास देखें</string>
+  <string name="share_positive_diagnosis_card_content">COVID-19 को फैलने से रोकने के लिए, अपने जांच के नतीजों को शेयर करें</string>
+  <string name="share_app_card_content">अपने समुदाय को सुरक्षित रखने के लिए, इस ऐप्लिकेशन को शेयर करें</string>
+  <string name="how_en_works_card_content">एक्सपोज़र नोटिफ़िकेशन कैसे काम करता है, इसके बारे में ज़्यादा जानें</string>
+</resources>

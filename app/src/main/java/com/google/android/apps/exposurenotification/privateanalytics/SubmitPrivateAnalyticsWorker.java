@@ -46,6 +46,7 @@ import com.google.common.util.concurrent.ListenableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 import org.threeten.bp.Duration;
+import org.threeten.bp.Instant;
 
 /**
  * Performs work to submit private analytics to the configured ingestion server.
@@ -94,12 +95,20 @@ public class SubmitPrivateAnalyticsWorker extends ListenableWorker {
               if (analyticsListener.isPresent()) {
                 analyticsListener.get().onPrivateAnalyticsWorkerTaskStarted();
               }
+
+              Instant lastWorkerTime = exposureNotificationSharedPreferences
+                  .getPrivateAnalyticsWorkerLastTime();
+              Instant fourteenDaysAgo = clock.now().minus(Duration.ofDays(14));
+              Instant latestTimeToClear =
+                  lastWorkerTime.isAfter(fourteenDaysAgo) ? lastWorkerTime : fourteenDaysAgo;
+
+              // Clear data older than two weeks + since last run (whichever comes first).
+              exposureNotificationSharedPreferences
+                  .clearPrivateAnalyticsFieldsBefore(latestTimeToClear);
+
               if (isEnabled && DefaultPrivateAnalyticsDeviceAttestation
                   .isDeviceAttestationAvailable()) {
                 Log.d(TAG, "Private analytics enabled and device attestation available.");
-                // Clear data older than two weeks.
-                exposureNotificationSharedPreferences
-                    .clearPrivateAnalyticsFieldsBefore(clock.now().minus(Duration.ofDays(14)));
                 // Attempt to submit packets. Note this this will return early is private analytics
                 // are remotely disabled or toggled off.
                 return privateAnalyticsSubmitter.submitPackets();

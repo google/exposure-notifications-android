@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">Апп идэвхтэй байгаа бөгөөд шалгаж байна</string>
+  <string name="app_active_and_checking_info">Энэ апп өртсөн байж болзошгүй талаарх мэдээллийг шалгаж байна. Өртсөн тухай мэдэгдлийг ашигласнаар та вакцин хийлгэсэн байсан ч - нийгэмлэгээ хамгаалахад тусалж чадна.</string>
+  <string name="possible_exposure_title">Та өртсөн байж болзошгүй</string>
+  <string name="share_test_result_home_screen_title">Шинжилгээний хариугаа хуваалцана уу</string>
+  <string name="have_questions">Асуулт байна уу?</string>
+  <string name="check_exposure_status">Өртөлтийн төлөвөө шалгана уу</string>
+  <string name="en_active">Идэвхтэй</string>
+  <string name="en_inactive">Идэвхгүй</string>
+  <string name="exposure_checks_activity_title">Саяхны бүртгэлийн бүртгэл</string>
+  <string name="sharing_history_activity_title">Хуваалцсан байдлын түүх</string>
+  <string name="no_recent_exposure_card_content_no_checks">Коронавируст халдвар (COVID-19)-т өртсөн байж болзошгүй эрсдэл олдсонгүй.</string>
+  <string name="no_recent_exposure_card_content">Коронавируст халдвар (COVID-19)-т өртсөн байж болзошгүй эрсдэл олдсонгүй. Хамгийн сүүлд %1$s-д шалгасан</string>
+  <string name="see_recent_checks_button">Саяхны бүртгэлийг харах</string>
+  <string name="possible_exposure_card_title">Өртсөн байж болзошгүй талаар мэдээлсэн</string>
+  <string name="possible_exposure_card_contents">Тантай ойр байсан хэн нэгний коронавируст халдвар (COVID-19)-ын хариу эерэг гарсан байна</string>
+  <string name="see_details_button">Дэлгэрэнгүйг харах</string>
+  <string name="share_test_result_card_title">Нийгэмлэгтээ коронавируст халдвар (COVID-19)-аас сэргийлэхэд тусална уу</string>
+  <string name="share_test_result_card_content">Хэн нэгэн шинжилгээний эерэг хариу хуваалцах бүрд энэ нь коронавируст халдвар (COVID-19)-ын өөр нэгэн тохиолдлыг зогсооход туслах боломжтой. Шинжилгээний хариугаа хуваалцахад таныг бусдад мэдэгдэхгүй.</string>
+  <string name="see_history_button">Түүхийг харах</string>
+  <string name="share_positive_diagnosis_card_content">Коронавируст халдвар (COVID-19)-ын тархалтыг зогсооход туслахын тулд шинжилгээний хариугаа хуваалцана уу</string>
+  <string name="share_app_card_content">Нийгэмлэгээ илүү сайн хамгаалахын тулд энэ аппыг хуваалцана уу</string>
+  <string name="how_en_works_card_content">Өртсөн тухай мэдэгдэл хэрхэн ажилладаг талаар нэмэлт мэдээлэл авна уу</string>
+</resources>

@@ -33,6 +33,7 @@
       android:layout_width="?attr/actionBarSize"
       android:layout_height="match_parent"
       android:background="?attr/selectableItemBackgroundBorderless"
+      android:contentDescription="@string/btn_close_label"
       app:srcCompat="@drawable/ic_close" />
 
   </LinearLayout>
@@ -97,7 +98,7 @@
             android:layout_width="@dimen/settings_page_icon_width"
             android:layout_height="@dimen/settings_page_icon_width"
             android:layout_gravity="center_vertical"
-            android:src="@mipmap/ic_launcher" />
+            app:srcCompat="@mipmap/ic_launcher" />
 
         </LinearLayout>
 

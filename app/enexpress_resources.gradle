@@ -210,7 +210,7 @@ def emitLocaleStrings(config, defaultLocale, locale, outputDir) {
               destXmlMkp.yield(convertColorDark(itemValue))
             }
           } else if (itemValue instanceof String) {
-            "string"("name": "enx_" + itemKeySansLocale) {
+            "string"("formatted": "false", "name": "enx_" + itemKeySansLocale) {
               destXmlMkp.yield(escapeString(itemValue))
             }
           } else if (itemValue instanceof Integer) {
@@ -246,13 +246,18 @@ def generateResources(configData) {
       inputs.files(config["files"])
       def locales = getConfigLocales(config)
       def defaultLocale = pickDefaultLocale(config, locales)
+      def localeSuffix = defaultLocale.toUpperCase().replace("-", "_");
       // Add default values for mandatory fields which are not used when
       // ENPA is disabled. These are typically string resources.
       if (!config.get("enableENPA")) {
-        def localeSuffix = defaultLocale.toUpperCase().replace("-", "_");
         config["enpaConsentText_" + localeSuffix] = "unused";
         config["enpaConsentVersion"] = "unused";
         config["enpaRemoteConfigURL"] = "unused";
+      }
+      // If a vaccinationQuestionText entry does not exist, we set it to the empty string.
+      // This disables the vaccination question feature by default.
+      if (!config.get("vaccinationQuestionText_" + localeSuffix)) {
+        config["vaccinationQuestionText_" + localeSuffix] = "";
       }
       doFirst {
         // Emit images.

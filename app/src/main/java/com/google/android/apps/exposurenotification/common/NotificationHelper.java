@@ -17,8 +17,6 @@
 
 package com.google.android.apps.exposurenotification.common;
 
-import static com.google.android.apps.exposurenotification.home.ExposureNotificationActivity.ACTION_LAUNCH_FROM_EXPOSURE_NOTIFICATION;
-
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -32,7 +30,6 @@ import androidx.core.app.NotificationCompat.Builder;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 import com.google.android.apps.exposurenotification.R;
-import com.google.android.apps.exposurenotification.home.ExposureNotificationActivity;
 import java.util.Objects;
 
 /**
@@ -40,26 +37,23 @@ import java.util.Objects;
  */
 public final class NotificationHelper {
 
+  private static final String TAG = "NotificationHelper";
+
   @VisibleForTesting
   static final String EXPOSURE_NOTIFICATION_CHANNEL_ID =
       "ApolloExposureNotificationCallback.EXPOSURE_NOTIFICATION_CHANNEL_ID";
 
-  protected static final String NOTIFICATION_DISMISSED_ACTION_ID =
-      "ApolloExposureNotificationCallback.NOTIFICATION_DISMISSED_ACTION_ID";
+  private static final int POSSIBLE_EXPOSURE_NOTIFICATION_ID = 0;
 
   /**
-   * Shows a notification, notifying of a possible exposure.
+   * Shows a notification.
    */
-  public void showPossibleExposureNotification(Context context, @StringRes int titleResource,
-      @StringRes int messageResource) {
+  public void showNotification(Context context, @StringRes int titleResource,
+      @StringRes int messageResource, Intent contentIntent, Intent deleteIntent) {
     createNotificationChannel(context);
-    Intent intent = new Intent(context, ExposureNotificationActivity.class);
-    intent.setAction(ACTION_LAUNCH_FROM_EXPOSURE_NOTIFICATION);
-    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-    PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
 
-    Intent deleteIntent = new Intent(context, ExposureNotificationDismissedReceiver.class);
-    deleteIntent.setAction(NOTIFICATION_DISMISSED_ACTION_ID);
+    PendingIntent pendingIntent = PendingIntent
+        .getActivity(context, 0, contentIntent, 0);
     PendingIntent deletePendingIntent = PendingIntent
         .getBroadcast(context, 0, deleteIntent, PendingIntent.FLAG_CANCEL_CURRENT);
 
@@ -80,7 +74,7 @@ public final class NotificationHelper {
             .setVisibility(NotificationCompat.VISIBILITY_SECRET);
     NotificationManagerCompat notificationManager = NotificationManagerCompat
         .from(context);
-    notificationManager.notify(0, builder.build());
+    notificationManager.notify(POSSIBLE_EXPOSURE_NOTIFICATION_ID, builder.build());
   }
 
   /**
@@ -97,4 +91,5 @@ public final class NotificationHelper {
       Objects.requireNonNull(notificationManager).createNotificationChannel(channel);
     }
   }
+
 }

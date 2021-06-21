@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="onboarding_activity_title">शामिल होने पर की जाने वाली गतिविधि</string>
+  <string name="share_history_activity_title">पहले शेयर की गई जानकारी देखें</string>
+  <string name="remove_region_link_title">इलाके की जानकारी हटाएं</string>
+  <string name="delete_shared_diagnosis">शेयर किए गए जांच के नतीजे मिटाएं</string>
+  <string name="active_region_subtitle">फ़िलहाल, एक्सपोज़र नोटिफ़िकेशन की सुविधा %1$s के लिए चालू है</string>
+  <string name="active_region_subtitle_en_off">एक्सपोज़र नोटिफ़िकेशन की सुविधा %1$s के लिए चालू है. हालांकि, आपके फ़ोन में यह सुविधा बंद है</string>
+  <string name="remove_region_title">इलाके की जानकारी हटाएं</string>
+  <string name="remove_region_detail">इलाके की जानकारी को हटाने पर एक्सपोज़र नोटिफ़िकेशन की सुविधा बंद हो जाएगी. आप जब चाहें, इस इलाके की जानकारी को फिर से जोड़ सकते हैं.</string>
+  <string name="btn_remove">हटाएं</string>
+  <string name="exposure_notifications_is_off">एक्सपोज़र नोटिफ़िकेशन की सुविधा बंद है</string>
+  <string name="possible_exposure">संक्रमित व्यक्ति के संपर्क में आने की संभावना से जुड़ी जानकारी</string>
+  <string name="share_history_delete_test_result_title">क्या आप इस जांच के नतीजे को मिटाना चाहते हैं?</string>
+  <string name="share_history_delete_test_result_detail">%1$s से मिला आपकी COVID-19 जांच का नतीजा, आपके फ़ोन से मिट जाएगा.</string>
+</resources>

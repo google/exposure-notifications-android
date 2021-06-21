@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="onboarding_activity_title">תהליך קליטת שותף</string>
+  <string name="share_history_activity_title">עיון בהיסטוריית השיתופים</string>
+  <string name="remove_region_link_title">הסרת האזור</string>
+  <string name="delete_shared_diagnosis">מחיקת תוצאת הבדיקה ששותפה</string>
+  <string name="active_region_subtitle">האזור %1$s מוגדר כרגע כאזור הפעיל שלך לקבלת התראות חשיפה</string>
+  <string name="active_region_subtitle_en_off">האזור %1$s מוגדר כאזור הפעיל שלך אבל התראות החשיפה כבויות בטלפון</string>
+  <string name="remove_region_title">הסרת האזור</string>
+  <string name="remove_region_detail">הסרת האזור תשבית את התראות החשיפה. ניתן להוסיף את האזור הזה שוב בכל שלב.</string>
+  <string name="btn_remove">הסרה</string>
+  <string name="exposure_notifications_is_off">התראות החשיפה מושבתות</string>
+  <string name="possible_exposure">חשיפה אפשרית לנגיף</string>
+  <string name="share_history_delete_test_result_title">למחוק את תוצאת הבדיקה הזו?</string>
+  <string name="share_history_delete_test_result_detail">תוצאת הבדיקה שלך לנגיף הקורונה (COVID-19) מ-%1$s תימחק מהטלפון.</string>
+</resources>

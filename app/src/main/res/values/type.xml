@@ -106,4 +106,53 @@
     <item name="android:textSize">30sp</item>
   </style>
 
+
+  <!-- EXPOSURE NOTIFICATION ALERT DIALOG STYLES -->
+  <!-- Dialog Title -->
+  <style name="AlertDialogTitleTextAppearance" parent="MaterialAlertDialog.MaterialComponents.Body.Text">
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:ellipsize">marquee</item>
+    <item name="android:gravity">center</item>
+    <item name="android:fontFamily">"@font/google_sans_medium"</item>
+    <item name="android:textSize">20sp</item>
+    <item name="android:paddingTop">@dimen/padding_large</item>
+    <item name="android:paddingBottom">@dimen/padding_large</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:textColor">?android:attr/textColorPrimary</item>
+  </style>
+
+  <!-- Dialog Message -->
+  <style name="AlertDialogMessageTextAppearance" parent="MaterialAlertDialog.MaterialComponents.Body.Text">
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:ellipsize">marquee</item>
+    <item name="android:fontFamily">"@font/roboto_regular"</item>
+    <item name="android:gravity">start</item>
+    <item name="android:textSize">16sp</item>
+    <item name="android:textColor">?android:attr/textColorPrimary</item>
+  </style>
+
+  <!-- Dialog Buttons -->
+  <style name="AlertDialogButtonTextAppearance" parent="@style/Widget.MaterialComponents.Button.TextButton">
+    <item name="android:layout_width">wrap_content</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:ellipsize">marquee</item>
+    <item name="android:fontFamily">"@font/google_sans_medium"</item>
+    <item name="android:textSize">14sp</item>
+    <item name="android:paddingStart">@dimen/padding_normal</item>
+    <item name="android:paddingEnd">@dimen/padding_normal</item>
+    <item name="android:paddingBottom">@dimen/padding_small</item>
+    <item name="android:minHeight">@dimen/touch_area_min_size</item>
+    <item name="android:textColor">@color/colorPrimary</item>
+  </style>
+
+  <!-- Dialog Theme -->
+  <style name="ExposureNotificationAlertDialogTheme" parent="@style/ThemeOverlay.MaterialComponents.MaterialAlertDialog.Centered">
+    <item name="materialAlertDialogTitleTextStyle">@style/AlertDialogTitleTextAppearance</item>
+    <item name="materialAlertDialogBodyTextStyle">@style/AlertDialogMessageTextAppearance</item>
+    <item name="buttonBarPositiveButtonStyle">@style/AlertDialogButtonTextAppearance</item>
+    <item name="buttonBarNegativeButtonStyle">@style/AlertDialogButtonTextAppearance</item>
+  </style>
+
 </resources>

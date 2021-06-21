@@ -20,13 +20,21 @@ package com.google.android.apps.exposurenotification.logging;
 import android.content.Context;
 import android.util.Log;
 import androidx.annotation.AnyThread;
+import androidx.annotation.Nullable;
 import androidx.annotation.UiThread;
+import androidx.annotation.VisibleForTesting;
 import androidx.annotation.WorkerThread;
 import androidx.concurrent.futures.CallbackToFutureAdapter;
 import com.google.android.apps.exposurenotification.BuildConfig;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.common.BuildUtils;
+import com.google.android.apps.exposurenotification.common.BuildUtils.Type;
 import com.google.android.apps.exposurenotification.common.Qualifiers.BackgroundExecutor;
+import com.google.android.apps.exposurenotification.common.Qualifiers.ScheduledExecutor;
+import com.google.android.apps.exposurenotification.common.TaskToFutureAdapter;
 import com.google.android.apps.exposurenotification.common.time.Clock;
+import com.google.android.apps.exposurenotification.nearby.ExposureNotificationClientWrapper;
+import com.google.android.apps.exposurenotification.nearby.PackageConfigurationHelper;
 import com.google.android.apps.exposurenotification.network.VolleyUtils;
 import com.google.android.apps.exposurenotification.proto.ApiCall;
 import com.google.android.apps.exposurenotification.proto.ApiCall.ApiCallType;
@@ -53,8 +61,10 @@ import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.protobuf.InvalidProtocolBufferException;
+import dagger.Lazy;
 import dagger.hilt.android.qualifiers.ApplicationContext;
 import java.util.List;
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeoutException;
 import javax.inject.Inject;
 import org.threeten.bp.Duration;
@@ -64,6 +74,17 @@ import org.threeten.bp.Instant;
  * Analytics logger which logs through Firelog transport and logcat
  */
 public class FirelogAnalyticsLogger implements AnalyticsLogger {
+  private static final Duration GET_PACKAGE_CONFIGURATION_TIMEOUT = Duration.ofSeconds(120);
+
+  /*
+   * ExposureNotificationClientWrapper injects (Firelog)AnalyticsLogger in its constructor.
+   * Injecting ExposureNotificationClientWrapper in this constructor would thus cause a dependency
+   * cycle. We instead use a Lazy<ExposureNotificationClientWrapper>, which enables us to inject
+   * ExposureNotificationClientWrapper later when it is required by a method instead.
+   * Lazy<...> provides the same instance every time its .get() method is called and because
+   * ExposureNotificationClientWrapper is @Singleton its instance is shared among all clients.
+   */
+  private final Lazy<ExposureNotificationClientWrapper> exposureNotificationClientWrapper;
 
   private final String healthAuthorityCode;
   private final String tag;
@@ -72,6 +93,7 @@ public class FirelogAnalyticsLogger implements AnalyticsLogger {
   private final Clock clock;
   private final AnalyticsLoggingRepository repository;
   private final ListeningExecutorService backgroundExecutor;
+  private final ScheduledExecutorService scheduledExecutor;
   private final WorkerStatusRepository workerStatusRepository;
 
   @Inject
@@ -79,29 +101,35 @@ public class FirelogAnalyticsLogger implements AnalyticsLogger {
   public FirelogAnalyticsLogger(
       @ApplicationContext Context context,
       ExposureNotificationSharedPreferences preferences,
+      Lazy<ExposureNotificationClientWrapper> exposureNotificationClientWrapper,
       Transport<EnxLogExtension> transport,
       AnalyticsLoggingRepository repository,
       Clock clock,
       WorkerStatusRepository workerStatusRepository,
-      @BackgroundExecutor ListeningExecutorService backgroundExecutor) {
+      @BackgroundExecutor ListeningExecutorService backgroundExecutor,
+      @ScheduledExecutor ScheduledExecutorService scheduledExecutor) {
     healthAuthorityCode = context.getResources().getString(R.string.enx_regionIdentifier);
     tag = "ENX." + healthAuthorityCode;
     this.transport = transport;
     this.preferences = preferences;
+    this.exposureNotificationClientWrapper = exposureNotificationClientWrapper;
     this.clock = clock;
     this.repository = repository;
     this.backgroundExecutor = backgroundExecutor;
+    this.scheduledExecutor = scheduledExecutor;
     this.workerStatusRepository = workerStatusRepository;
     Log.i(tag, "Using firelog analytics logger.");
 
-    preferences.setAnalyticsStateListener(analyticsEnabled -> {
-      if (analyticsEnabled) {
-        Log.i(tag, "Firelog analytics logging enabled");
-      } else {
-        Log.i(tag, "Firelog analytics logging disabled");
-        repository.eraseEventsBatch();
-      }
-    });
+    if (BuildUtils.getType() == Type.V2) {
+      preferences.setAnalyticsStateListener(analyticsEnabled -> {
+        if (analyticsEnabled) {
+          Log.i(tag, "Firelog analytics logging enabled");
+        } else {
+          Log.i(tag, "Firelog analytics logging disabled");
+          repository.eraseEventsBatch();
+        }
+      });
+    }
   }
 
   @Override
@@ -246,12 +274,62 @@ public class FirelogAnalyticsLogger implements AnalyticsLogger {
     return backgroundExecutor.submit(() -> logEventIfEnabled(logEvent));
   }
 
+  @WorkerThread
+  @VisibleForTesting
+  @Nullable
+  AnalyticsLoggingEntity findLastStopCallIfExists() {
+    AnalyticsLoggingEntity lastAnalyticsLoggingEntity = null;
+
+    List<AnalyticsLoggingEntity> batch = repository.getEventsBatch();
+    for (AnalyticsLoggingEntity logEvent : batch) {
+      try {
+        EnxLogExtension enxLogExtension =
+            EnxLogExtension.parseFrom(BaseEncoding.base64().decode(logEvent.getEventProto()));
+        /*
+         * One log event can have multiple ApiCalls with different attributes, so we check them
+         * one-by-one if we find any with the attribute ApiCallType.CALL_STOP
+         */
+        List<ApiCall> apiCalls = enxLogExtension.getApiCallList();
+        for (ApiCall apiCall : apiCalls) {
+          if (apiCall.getApiCallType().equals(ApiCallType.CALL_STOP)) {
+            lastAnalyticsLoggingEntity = logEvent;
+          }
+        }
+      } catch (InvalidProtocolBufferException e) {
+        Log.e(tag, "Error decoding EnxLogExtension: " + e);
+        return null;
+      }
+    }
+    if (lastAnalyticsLoggingEntity != null) {
+      Log.d(tag, "findLastStopCallIfExists: Found last stop call: " + lastAnalyticsLoggingEntity);
+    } else {
+      Log.d(tag, "findLastStopCallIfExists: No stop call found");
+    }
+    return lastAnalyticsLoggingEntity;
+  }
+
   @Override
   @WorkerThread
-  public ListenableFuture<Void> sendLoggingBatchIfEnabled() {
-    if (!preferences.getAppAnalyticsState()) {
-      return Futures.immediateVoidFuture();
+  public ListenableFuture<?> sendLoggingBatchIfConsented(boolean isENEnabled) {
+    final AnalyticsLoggingEntity lastEntryToSend;
+    if (!isENEnabled) {
+      /* If the API is disabled we check if we have a stop() call in our logs.
+       * In this case, we want to submit the logs that were still in the "enabled"
+       * window. */
+      lastEntryToSend = findLastStopCallIfExists();
+      if (lastEntryToSend != null) {
+        Log.d(tag, "!isEnabled but stop call found, partially uploading logs.");
+      } else {
+        // If we don't find a stop() call, we don't submit logs. We can stop here.
+        Log.d(tag, "!isEnabled and no stop call found, not uploading logs.");
+        return Futures.immediateFailedFuture(new NotEnabledException());
+      }
+    } else { /* isEnabled */
+      // If EN is enabled, we upload all logs. We indicate that by setting lastEntryToSend = null
+      Log.d(tag, "isEnabled, fully uploading logs.");
+      lastEntryToSend = null;
     }
+
     Instant currentTime = clock.now();
     Optional<Instant> lastTimestamp = preferences.maybeGetAnalyticsLoggingLastTimestamp();
     if (lastTimestamp.isPresent()) {
@@ -280,6 +358,12 @@ public class FirelogAnalyticsLogger implements AnalyticsLogger {
         Log.e(tag, "Error reading from AnalyticsLoggingRepository: " + e);
         return Futures.immediateFailedFuture(e);
       }
+
+      // If a lastEntryToSend was detected, we stop adding entries to the enxLogExtensionBuilder
+      if (lastEntryToSend != null && logEvent.getKey() == lastEntryToSend.getKey()) {
+        Log.d(tag, "Stopping to build EnxLogExtension at " + lastEntryToSend);
+        break;
+      }
     }
 
     EnxLogExtension logEvent = enxLogExtensionBuilder
@@ -288,36 +372,87 @@ public class FirelogAnalyticsLogger implements AnalyticsLogger {
         .setRegionIdentifier(healthAuthorityCode)
         .build();
 
-    return FluentFuture.from(
-        CallbackToFutureAdapter.getFuture(
-            completer -> {
-              transport.schedule(Event.ofData(logEvent), exception -> {
-                if (exception != null) {
-                  completer.setException(exception);
-                  return;
-                }
-                completer.set(null);
-              });
-              // This value is used only for debug purposes: it will be used in toString()
-              // of returned future or error cases.
-              return "AnalyticsLogger#sendLoggingBatchIfEnabled";
-            })
-    ).transform(unused -> {
-      repository.eraseEventsBatch();
-      Log.i(tag, "Analytics log batch sent to Firelog.");
-      return null;
-    }, backgroundExecutor);
+    // Consent is fetched differently depending on the version
+    FluentFuture<Boolean> checkConsentFuture =
+        (BuildUtils.getType() == Type.V2)
+        // For v2, we get it directly from shared preferences / in-app opt-in
+        ? FluentFuture.from(Futures.immediateFuture(preferences.getAppAnalyticsState()))
+        // For v3, we get it by querying checkbox via getPackageConfiguration
+        : FluentFuture.from(TaskToFutureAdapter.getFutureWithTimeout(
+            exposureNotificationClientWrapper.get().getPackageConfiguration(),
+            GET_PACKAGE_CONFIGURATION_TIMEOUT,
+            scheduledExecutor))
+        .transform(PackageConfigurationHelper::getCheckboxConsentFromPackageConfiguration
+            , backgroundExecutor);
+
+    return checkConsentFuture
+        .transformAsync(
+            consent -> {
+              if (!consent) {
+                // If we don't have checkbox consent
+                Log.i(tag, "Skipped firelog upload.");
+                repository.eraseEventsBatch();
+                return Futures.immediateFailedFuture(new NoConsentException());
+              } else {
+                return CallbackToFutureAdapter.getFuture(
+                    completer -> {
+                      transport.schedule(Event.ofData(logEvent), exception -> {
+                        if (exception != null) {
+                          completer.setException(exception);
+                          return;
+                        }
+                        completer.set(null);
+                      });
+                      // This value is used only for debug purposes: it will be used in toString()
+                      // of returned future or error cases.
+                      return "AnalyticsLogger#sendLoggingBatchIfEnabled";
+                    });
+              }
+            }, backgroundExecutor)
+        .transform(unused -> {
+          // If we have a lastEntryToSend, we only erase logs up until (including this log)
+          if (lastEntryToSend != null) {
+            Log.d(tag, "ErasingEventsBatchUpToIncludingEvent " + lastEntryToSend);
+            repository.eraseEventsBatchUpToIncludingEvent(lastEntryToSend);
+          } else {
+            repository.eraseEventsBatch();
+          }
+          Log.i(tag, "Analytics log batch sent to Firelog.");
+          return null;
+        }, backgroundExecutor)
+        .catching(NoConsentException.class, ex -> null, backgroundExecutor);
   }
 
   private void logEventIfEnabled(EnxLogExtension logEvent) {
-    if (preferences.getAppAnalyticsState()) {
-      repository.recordEvent(logEvent);
-      if (!preferences.maybeGetAnalyticsLoggingLastTimestamp().isPresent()) {
-        preferences.resetAnalyticsLoggingLastTimestamp();
+    if (BuildUtils.getType() == Type.V2) {
+      if (preferences.getAppAnalyticsState()) {
+        repository.recordEvent(logEvent);
+        if (!preferences.maybeGetAnalyticsLoggingLastTimestamp().isPresent()) {
+          preferences.resetAnalyticsLoggingLastTimestamp();
+        }
+        Log.i(tag, "App analytics enabled via in-app consent. Sending log event.");
+      } else {
+        Log.d(tag, "App analytics disabled via in-app consent. Not sending log event.");
       }
-      Log.i(tag, "App analytics enabled. Sending log event.");
-    } else {
-      Log.d(tag, "App analytics disabled. Not sending log event.");
+    } else /* BuildUtils.getType() == Type.V3 */ {
+      exposureNotificationClientWrapper.get().getPackageConfiguration()
+          .addOnSuccessListener(backgroundExecutor, packageConfiguration -> {
+            if (PackageConfigurationHelper
+                .getCheckboxConsentFromPackageConfiguration(packageConfiguration)) {
+              repository.recordEvent(logEvent);
+              if (!preferences.maybeGetAnalyticsLoggingLastTimestamp().isPresent()) {
+                preferences.resetAnalyticsLoggingLastTimestamp();
+              }
+              Log.i(tag, "App analytics enabled via checkbox. Sending log event.");
+            } else /* consent not granted via checkbox*/ {
+              // Clear recorded events, but only if there were any to avoid unnecessary DB-calls
+              repository.eraseEventsBatch();
+              Log.d(tag, "App analytics disabled via checkbox. Not sending log event and "
+                  + "clearing previous event record.");
+            }
+          })
+          .addOnCanceledListener(() -> Log.i(tag, "Call getPackageConfiguration is canceled"))
+          .addOnFailureListener(t -> Log.e(tag, "Error calling getPackageConfiguration", t));
     }
   }
 
@@ -357,4 +492,9 @@ public class FirelogAnalyticsLogger implements AnalyticsLogger {
         RpcCall.newBuilder().setRpcCallType(rpcCallType).setRpcCallResult(rpcCallResult).build())
         .build();
   }
+
+  /**
+   * An {@link Exception} to use in Future chains when logging consent was not given.
+   */
+  private static class NoConsentException extends Exception {}
 }

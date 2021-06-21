@@ -35,6 +35,8 @@ import com.google.api.client.googleapis.GoogleUtils
 import com.google.api.client.googleapis.auth.oauth2.GoogleCredential
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport
 import com.google.api.client.http.FileContent
+import com.google.api.client.http.HttpRequest
+import com.google.api.client.http.HttpRequestInitializer
 import com.google.api.client.http.javanet.NetHttpTransport
 import com.google.api.client.json.jackson2.JacksonFactory
 import com.google.api.services.androidpublisher.AndroidPublisher
@@ -47,6 +49,19 @@ import com.google.api.services.androidpublisher.model.LocalizedText
 import com.google.api.services.androidpublisher.model.Track
 import com.google.api.services.androidpublisher.model.TrackRelease
 
+
+// Add 2 minute timeouts to http requests
+// Required for Publish API. See:
+// https://developers.google.com/resources/api-libraries/documentation/androidpublisher/v3/java/latest/com/google/api/services/androidpublisher/AndroidPublisher.Edits.Bundles.Upload.html
+def setHttpTimeout(HttpRequestInitializer requestInitializer) {
+  return new HttpRequestInitializer() {
+    void initialize(HttpRequest httpRequest) throws IOException {
+      requestInitializer.initialize(httpRequest);
+      httpRequest.setConnectTimeout(2 * 60000);
+      httpRequest.setReadTimeout(2 * 60000);
+    }
+  }
+}
 
 def login(config) {
   def serviceAccountEmail = config["serviceAccount"]
@@ -66,7 +81,7 @@ def login(config) {
     httpTransport = GoogleNetHttpTransport.newTrustedTransport()
   }
   // Get acount credential.
-  def credential = new GoogleCredential.Builder()
+  def rawCredential = new GoogleCredential.Builder()
      .setTransport(httpTransport)
      .setJsonFactory(jsonFactory)
      .setServiceAccountId(serviceAccountEmail)
@@ -75,6 +90,7 @@ def login(config) {
               AndroidPublisherScopes.ANDROIDPUBLISHER))
      .setServiceAccountPrivateKeyFromP12File(serviceAccountKey)
      .build()
+  def credential = setHttpTimeout(rawCredential)
   // Create the API service.
   def service = new AndroidPublisher.Builder(
       httpTransport, jsonFactory, credential)
@@ -83,8 +99,16 @@ def login(config) {
   return service
 }
 
-static def updateListing(config, edits, editId) {
-  def packageName = config["healthAuthorityID"]
+static def fullPackageName(config, appVersion) {
+  String packageName = config["healthAuthorityID"]
+  if (appVersion == 'V3') {
+    packageName += "." + appVersion.toLowerCase()
+    packageName = config.get("v3ApplicationIdOverride", packageName)
+  }
+  return packageName
+}
+
+def updateListing(packageName, config, edits, editId) {
   def locales = getConfigLocales(config)
   def defaultLocale = pickDefaultLocale(config, locales)
 
@@ -108,8 +132,7 @@ static def updateListing(config, edits, editId) {
   }
 }
 
-static def updateTrack(config, edits, editId, bundleVersionCodes) {
-  def packageName = config["healthAuthorityID"]
+static def updateTrack(packageName, config, edits, editId, bundleVersionCodes) {
   def trackRelease = new TrackRelease()
       .setName("My Alpha Release")
       .setVersionCodes(bundleVersionCodes)
@@ -125,8 +148,7 @@ static def updateTrack(config, edits, editId, bundleVersionCodes) {
        .execute()
 }
 
-static def uploadApp(config, edits, editId, appPath) {
-  def packageName = config["healthAuthorityID"]
+static def uploadApp(packageName, config, edits, editId, appPath) {
   def file =
       new FileContent("application/octet-stream", new File(appPath))
   def app = edits
@@ -139,45 +161,52 @@ static def uploadApp(config, edits, editId, appPath) {
 }
 
 def generatePlayStorePublishApp(configData) {
-  configData.each { name, config ->
-    def packageName = config["healthAuthorityID"]
-    def appPath = "$buildDir/outputs/bundle/" + name +
-        "Release/app-" + name + "-release.aab"
-    def taskName = "publishApp" + name.capitalize()
-    task "$taskName" {
-      inputs.files(config["files"])
-      doLast {
-        // Create a new edit to make changes.
-        def edits = login(config).edits()
-        String editId = edits.insert(packageName, null).execute().getId()
+  def appVersions = ["V2", "V3"]
+  appVersions.each { appVersion ->
+    configData.each { name, config ->
+      def packageName = fullPackageName(config, appVersion)
+      def appPath = "$buildDir/outputs/bundle/" + name +
+          appVersion + "Release/app-" + name + "-" +
+          appVersion.toLowerCase() + "-release.aab"
+      def taskName = "publishApp" + name.capitalize() + appVersion
+      task "$taskName" {
+        inputs.files(config["files"])
+        doLast {
+          // Create a new edit to make changes.
+          def edits = login(config).edits()
+          String editId = edits.insert(packageName, null).execute().getId()
 
-        // Upload bundle, and tracks.
-        def versions = uploadApp(config, edits, editId, appPath)
-        updateTrack(config, edits, editId, versions)
+          // Upload bundle, and tracks.
+          def versions = uploadApp(packageName, config, edits, editId, appPath)
+          updateTrack(packageName, config, edits, editId, versions)
 
-        // Commit changes for edit.
-        edits.commit(packageName, editId).execute()
+          // Commit changes for edit.
+          edits.commit(packageName, editId).execute()
+        }
       }
     }
   }
 }
 
 def generatePlayStorePublishListing(configData) {
-  configData.each { name, config ->
-    def packageName = config["healthAuthorityID"]
-    def taskName = "publishListing" + name.capitalize()
-    task "$taskName" {
-      inputs.files(config["files"])
-      doLast {
-        // Create a new edit to make changes.
-        def edits = login(config).edits()
-        String editId = edits.insert(packageName, null).execute().getId()
+  def appVersions = ["V2", "V3"]
+  appVersions.each { appVersion ->
+    configData.each { name, config ->
+      def packageName = fullPackageName(config, appVersion)
+      def taskName = "publishListing" + name.capitalize() + appVersion
+      task "$taskName" {
+        inputs.files(config["files"])
+        doLast {
+          // Create a new edit to make changes.
+          def edits = login(config).edits()
+          String editId = edits.insert(packageName, null).execute().getId()
 
-        // Upload listing only.
-        updateListing(config, edits, editId)
+          // Upload listing only.
+          updateListing(packageName, config, edits, editId)
 
-        // Commit changes for edit.
-        edits.commit(packageName, editId).execute()
+          // Commit changes for edit.
+          edits.commit(packageName, editId).execute()
+        }
       }
     }
   }

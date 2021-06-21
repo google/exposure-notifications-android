@@ -107,9 +107,7 @@
   <string name="debug_matching_signature_info_help">When using the \"Single\" option above, this app
     creates Diagnosis Key files, signed with a randomly generated key. To use the Diagnosis Key
     File, the Exposure Notifications API must be in debug mode and needs info about the signature.
-    Tap each item below to copy it; then paste into Exposure Notifications debug controls. NOTE:
-    When using the \"File\" option above, provide the signature info that your file is signed with
-    instead of the below info.</string>
+    Tap each item below to copy it; then paste into Exposure Notifications debug controls.</string>
 
   <string name="debug_matching_public_key_caption">Public key</string>
 

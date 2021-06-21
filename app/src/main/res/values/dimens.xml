@@ -32,6 +32,7 @@
   <dimen name="touch_area_min_size">48dp</dimen>
 
   <dimen name="padding_normal">16dp</dimen>
+  <dimen name="padding_medium">12dp</dimen>
   <dimen name="padding_small">8dp</dimen>
   <dimen name="padding_micro">4dp</dimen>
   <dimen name="padding_large">24dp</dimen>
@@ -57,18 +58,20 @@
   <dimen name="no_exposure_check_size">24dp</dimen>
   <dimen name="pulsation_circle_size">24dp</dimen>
 
+  <dimen name="home_screen_banner_height">280dp</dimen>
+  <dimen name="home_screen_en_on_image_height">200dp</dimen>
+  <dimen name="home_screen_en_on_image_margin_top">48dp</dimen>
+  <dimen name="home_screen_pulse_size">24dp</dimen>
+  <dimen name="no_exposure_padding_vertical">16dp</dimen>
+
+  <dimen name="dialog_corner_radius">8dp</dimen>
+
   <!-- New UX flow -->
+  <dimen name="card_icon_size">84dp</dimen>
   <dimen name="card_border_width">1dp</dimen>
   <dimen name="card_corner_radius">24dp</dimen>
 
   <dimen name="round_button_corner_radius">100dp</dimen>
-
-  <dimen name="card_icon_size">144dp</dimen>
-  <dimen name="share_app_card_icon_size">108dp</dimen>
-  <dimen name="home_page_main_icon_size">28dp</dimen>
-  <dimen name="en_off_and_exposure_icon_size">20dp</dimen>
-  <dimen name="open_exposure_icon_size">12dp</dimen>
-  <dimen name="share_diagnosis_icon_size">288dp</dimen>
-
+  <dimen name="home_page_icon_size">28dp</dimen>
   <dimen name="pulsation_area_size">56dp</dimen>
 </resources>

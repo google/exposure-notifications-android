@@ -17,9 +17,12 @@
 
 package com.google.android.apps.exposurenotification.exposure;
 
+import android.content.Context;
 import androidx.hilt.lifecycle.ViewModelInject;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
+import com.google.android.apps.exposurenotification.common.StringUtils;
+import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.riskcalculation.ExposureClassification;
 import com.google.android.apps.exposurenotification.storage.ExposureCheckEntity;
 import com.google.android.apps.exposurenotification.storage.ExposureCheckRepository;
@@ -28,7 +31,7 @@ import com.google.android.apps.exposurenotification.storage.ExposureNotification
 import java.util.List;
 
 /**
- * View model for the {@link ExposureHomeFragment}.
+ * View model that updates on the exposures and the exposure checks.
  */
 public class ExposureHomeViewModel extends ViewModel {
 
@@ -37,14 +40,17 @@ public class ExposureHomeViewModel extends ViewModel {
 
   private final ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
   private final LiveData<List<ExposureCheckEntity>> getExposureChecksLiveData;
+  private final Clock clock;
 
   @ViewModelInject
   public ExposureHomeViewModel(
       ExposureNotificationSharedPreferences exposureNotificationSharedPreferences,
-      ExposureCheckRepository exposureCheckRepository) {
+      ExposureCheckRepository exposureCheckRepository,
+      Clock clock) {
     this.exposureNotificationSharedPreferences = exposureNotificationSharedPreferences;
     getExposureChecksLiveData =
         exposureCheckRepository.getLastXExposureChecksLiveData(NUM_CHECKS_TO_DISPLAY);
+    this.clock = clock;
   }
 
   public LiveData<ExposureClassification> getExposureClassificationLiveData() {
@@ -86,6 +92,12 @@ public class ExposureHomeViewModel extends ViewModel {
    */
   public LiveData<List<ExposureCheckEntity>> getExposureChecksLiveData() {
     return getExposureChecksLiveData;
+  }
+
+
+  public String getDaysFromStartOfExposureString(ExposureClassification exposureClassification,
+      Context context) {
+    return StringUtils.daysFromStartOfExposure(exposureClassification, clock.now(), context);
   }
 
 }

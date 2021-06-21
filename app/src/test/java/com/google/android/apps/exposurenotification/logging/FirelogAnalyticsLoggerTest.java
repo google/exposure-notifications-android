@@ -23,8 +23,10 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.support.test.espresso.core.internal.deps.guava.collect.ImmutableList;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import com.android.volley.NetworkError;
@@ -35,12 +37,18 @@ import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.google.android.apps.exposurenotification.BuildConfig;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.common.BuildUtils;
+import com.google.android.apps.exposurenotification.common.BuildUtils.Type;
 import com.google.android.apps.exposurenotification.common.ExecutorsModule;
 import com.google.android.apps.exposurenotification.common.Qualifiers.BackgroundExecutor;
 import com.google.android.apps.exposurenotification.common.Qualifiers.LightweightExecutor;
 import com.google.android.apps.exposurenotification.common.Qualifiers.ScheduledExecutor;
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.common.time.RealTimeModule;
+import com.google.android.apps.exposurenotification.logging.AnalyticsLogger.NotEnabledException;
+import com.google.android.apps.exposurenotification.nearby.ExposureNotificationClientWrapper;
+import com.google.android.apps.exposurenotification.nearby.ExposureNotificationsClientModule;
+import com.google.android.apps.exposurenotification.nearby.PackageConfigurationHelper;
 import com.google.android.apps.exposurenotification.proto.ApiCall;
 import com.google.android.apps.exposurenotification.proto.ApiCall.ApiCallType;
 import com.google.android.apps.exposurenotification.proto.EnxLogExtension;
@@ -65,6 +73,9 @@ import com.google.android.datatransport.Transport;
 import com.google.android.datatransport.TransportScheduleCallback;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.Status;
+import com.google.android.gms.nearby.exposurenotification.PackageConfiguration;
+import com.google.android.gms.nearby.exposurenotification.PackageConfiguration.PackageConfigurationBuilder;
+import com.google.android.gms.tasks.Tasks;
 import com.google.common.base.Optional;
 import com.google.common.io.BaseEncoding;
 import com.google.common.util.concurrent.ListenableFuture;
@@ -80,6 +91,7 @@ import dagger.hilt.android.testing.UninstallModules;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeoutException;
@@ -98,7 +110,8 @@ import org.threeten.bp.Instant;
 @HiltAndroidTest
 @Config(application = HiltTestApplication.class)
 @UninstallModules(
-    {RealTimeModule.class, DbModule.class, TransportModule.class, ExecutorsModule.class})
+    {RealTimeModule.class, DbModule.class, TransportModule.class, ExecutorsModule.class,
+        ExposureNotificationsClientModule.class})
 public class FirelogAnalyticsLoggerTest {
 
   private static final BaseEncoding BASE64 = BaseEncoding.base64();
@@ -136,6 +149,9 @@ public class FirelogAnalyticsLoggerTest {
   ExposureNotificationDatabase db = InMemoryDb.create();
   @BindValue
   Clock clock = new FakeClock();
+  @BindValue
+  @Mock
+  ExposureNotificationClientWrapper exposureNotificationClientWrapper;
 
   @Inject
   AnalyticsLoggingRepository repository;
@@ -155,7 +171,7 @@ public class FirelogAnalyticsLoggerTest {
   public void setUp() {
     rules.hilt().inject();
     // Logging is enabled for most of these tests. Can override in specific tests.
-    preferences.setAppAnalyticsState(true);
+    setAppAnalyticsConsent(true);
   }
 
   @Test
@@ -576,7 +592,7 @@ public class FirelogAnalyticsLoggerTest {
     preferences.resetAnalyticsLoggingLastTimestamp();
     ((FakeClock) clock).advanceBy(Duration.ofHours(4).plusMinutes(31));
     // Now submit.
-    logger.sendLoggingBatchIfEnabled();
+    logger.sendLoggingBatchIfConsented(true);
 
     // THEN
     ArgumentCaptor<Event<EnxLogExtension>> captor = ArgumentCaptor.forClass(Event.class);
@@ -599,7 +615,7 @@ public class FirelogAnalyticsLoggerTest {
     preferences.resetAnalyticsLoggingLastTimestamp();
     ((FakeClock) clock).advanceBy(Duration.ofHours(4).plusMinutes(31));
     // Now submit.
-    logger.sendLoggingBatchIfEnabled();
+    logger.sendLoggingBatchIfConsented(true);
 
     // THEN
     assertThat(preferences.maybeGetAnalyticsLoggingLastTimestamp())
@@ -636,7 +652,7 @@ public class FirelogAnalyticsLoggerTest {
   @Test
   public void logEvent_disabledWithUnsetTimestamp_doesNotSetTimestamp() {
     // GIVEN
-    preferences.setAppAnalyticsState(false);
+    setAppAnalyticsConsent(false);
     assertThat(preferences.maybeGetAnalyticsLoggingLastTimestamp().isPresent()).isFalse();
 
     // WHEN
@@ -649,7 +665,7 @@ public class FirelogAnalyticsLoggerTest {
   @Test
   public void loggingDisabled_shouldNotRecordLogs() {
     // GIVEN
-    preferences.setAppAnalyticsState(false);
+    setAppAnalyticsConsent(false);
 
     // WHEN
     logger.logApiCallSuccess(ApiCallType.CALL_IS_ENABLED);
@@ -661,13 +677,13 @@ public class FirelogAnalyticsLoggerTest {
   @Test
   public void loggingDisabled_shouldNotSubmitLogs() {
     // GIVEN
-    preferences.setAppAnalyticsState(false);
+    setAppAnalyticsConsent(false);
 
     // WHEN
     logger.logApiCallSuccess(ApiCallType.CALL_IS_ENABLED);
     preferences.resetAnalyticsLoggingLastTimestamp();
     ((FakeClock) clock).advanceBy(Duration.ofHours(4).plusMinutes(31));
-    logger.sendLoggingBatchIfEnabled();
+    logger.sendLoggingBatchIfConsented(true);
 
     // THEN
     verify(transport, never()).schedule(any(), any());
@@ -675,25 +691,25 @@ public class FirelogAnalyticsLoggerTest {
 
   @Test
   public void toggleLoggingOnAndOff_shouldRecordLogsWhileOn_notWhileOff() {
-    preferences.setAppAnalyticsState(false);
+    setAppAnalyticsConsent(false);
     logger.logApiCallSuccess(ApiCallType.CALL_IS_ENABLED);
     assertThat(repository.getEventsBatch()).isEmpty();
 
-    preferences.setAppAnalyticsState(true);
+    setAppAnalyticsConsent(true);
     logger.logApiCallSuccess(ApiCallType.CALL_IS_ENABLED);
     assertThat(repository.getEventsBatch()).hasSize(1);
 
-    preferences.setAppAnalyticsState(false);
+    setAppAnalyticsConsent(false);
     logger.logApiCallSuccess(ApiCallType.CALL_IS_ENABLED);
     assertThat(repository.getEventsBatch()).isEmpty();
 
-    preferences.setAppAnalyticsState(true);
+    setAppAnalyticsConsent(true);
     logger.logApiCallSuccess(ApiCallType.CALL_IS_ENABLED);
     assertThat(repository.getEventsBatch()).hasSize(1);
   }
 
   @Test
-  public void shouldLogAndSubmit_endtoEnd() {
+  public void shouldLogAndSubmit_isENEnabledTrue_endtoEnd() {
     // Log lots of things and collect the expected log submissions for each one.
     List<EnxLogExtension> expectedLogs = new ArrayList<>();
 
@@ -732,14 +748,14 @@ public class FirelogAnalyticsLoggerTest {
     preferences.resetAnalyticsLoggingLastTimestamp();
     ((FakeClock) clock).advanceBy(Duration.ofHours(4).plusMinutes(31));
     // OK, now submit.
-    logger.sendLoggingBatchIfEnabled();
+    logger.sendLoggingBatchIfConsented(true);
 
     // Log some more stuff.
     logger.logApiCallSuccess(ApiCallType.CALL_GET_DAILY_SUMMARIES);
     // And pretend the collector job ran a bit early (< 4 hours), so this log isn't expected to be
     // sent.
     ((FakeClock) clock).advanceBy(Duration.ofHours(4).minusMinutes(1));
-    logger.sendLoggingBatchIfEnabled();
+    logger.sendLoggingBatchIfConsented(true);
 
     // Verify the right logs were sent; that is: the first batch should have been sent, but not that
     // last log.
@@ -757,7 +773,7 @@ public class FirelogAnalyticsLoggerTest {
   }
 
   @Test
-  public void sendLoggingBatchIfEnabled_batchNotSent_shouldNotErase() throws Exception {
+  public void sendLoggingBatchIfConsented_batchNotSent_shouldNotErase() throws Exception {
     // GIVEN
     logger.logApiCallSuccess(ApiCallType.CALL_IS_ENABLED);
 
@@ -766,7 +782,7 @@ public class FirelogAnalyticsLoggerTest {
     preferences.resetAnalyticsLoggingLastTimestamp();
     ((FakeClock) clock).advanceBy(Duration.ofHours(4).plusMinutes(31));
     // Now submit.
-    ListenableFuture<Void> sendLoggingBatchFuture = logger.sendLoggingBatchIfEnabled();
+    ListenableFuture<?> sendLoggingBatchFuture = logger.sendLoggingBatchIfConsented(true);
 
     // THEN
     ArgumentCaptor<TransportScheduleCallback> captor = ArgumentCaptor.forClass(
@@ -779,7 +795,7 @@ public class FirelogAnalyticsLoggerTest {
   }
 
   @Test
-  public void sendLoggingBatchIfEnabled_batchSent_shouldErase() throws Exception {
+  public void sendLoggingBatchIfConsented_batchSent_shouldErase() throws Exception {
     // GIVEN
     logger.logApiCallSuccess(ApiCallType.CALL_IS_ENABLED);
 
@@ -788,7 +804,7 @@ public class FirelogAnalyticsLoggerTest {
     preferences.resetAnalyticsLoggingLastTimestamp();
     ((FakeClock) clock).advanceBy(Duration.ofHours(4).plusMinutes(31));
     // Now submit.
-    ListenableFuture<Void> sendLoggingBatchFuture = logger.sendLoggingBatchIfEnabled();
+    ListenableFuture<?> sendLoggingBatchFuture = logger.sendLoggingBatchIfConsented(true);
 
     // THEN
     ArgumentCaptor<TransportScheduleCallback> captor = ArgumentCaptor.forClass(
@@ -798,6 +814,176 @@ public class FirelogAnalyticsLoggerTest {
     // Verify that the logs have been deleted because the logging batch was sent.
     sendLoggingBatchFuture.get();
     assertThat(repository.getEventsBatch()).isEmpty();
+  }
+
+  @Test
+  public void sendLoggingBatchIfConsented_isENEnabledFalseNoStopEvent_shouldReturnFailedFuture()
+      throws Exception {
+    // GIVEN any list of logs without a call STOP event
+    logger.logApiCallSuccess(ApiCallType.CALL_IS_ENABLED);
+
+    // WHEN
+    ListenableFuture<?> sendLoggingBatchFuture = logger.sendLoggingBatchIfConsented(false);
+
+    // THEN - expect a FailedFuture with a NotEnabledException
+    ExecutionException e = assertThrows(ExecutionException.class, sendLoggingBatchFuture::get);
+    assertThat(e).hasCauseThat().isInstanceOf(NotEnabledException.class);
+  }
+
+  @Test
+  public void
+  findLastStopCallIfExists_listWithSuccessfulStopCall_returnsLastStopAnalyticsLoggingEntity() {
+    //GIVEN  Some log events, in their List<AnalyticsLoggingEntity> representation
+    logger.logApiCallFailure(ApiCallType.CALL_STOP, null);
+    logger.logApiCallSuccess(ApiCallType.CALL_IS_ENABLED);
+    logger.logApiCallSuccess(ApiCallType.CALL_GET_DAILY_SUMMARIES);
+    logger.logApiCallSuccess(ApiCallType.CALL_DEVICE_SUPPORTS_LOCATIONLESS_SCANNING);
+    logger.logApiCallSuccess(ApiCallType.CALL_STOP);
+    logger.logApiCallSuccess(ApiCallType.CALL_IS_ENABLED);
+    List<AnalyticsLoggingEntity> eventsBatch = repository.getEventsBatch();
+
+    // WHEN Querying for the last stop call in the list above
+    AnalyticsLoggingEntity result = logger.findLastStopCallIfExists();
+
+    // THEN We should get this element (which is at index 4 of above list)
+    assertThat(result).isEqualTo(eventsBatch.get(4));
+  }
+
+  @Test
+  public void
+  findLastStopCallIfExists_listWithFailedStopCall_returnsLastStopAnalyticsLoggingEntity() {
+    //GIVEN  Some log events, in their List<AnalyticsLoggingEntity> representation
+    logger.logApiCallSuccess(ApiCallType.CALL_STOP);
+    logger.logApiCallSuccess(ApiCallType.CALL_IS_ENABLED);
+    logger.logApiCallSuccess(ApiCallType.CALL_GET_DAILY_SUMMARIES);
+    logger.logApiCallSuccess(ApiCallType.CALL_DEVICE_SUPPORTS_LOCATIONLESS_SCANNING);
+    logger.logApiCallFailure(ApiCallType.CALL_STOP, null);
+    logger.logApiCallSuccess(ApiCallType.CALL_IS_ENABLED);
+    List<AnalyticsLoggingEntity> eventsBatch = repository.getEventsBatch();
+
+    // WHEN Querying for the last stop call in the list above
+    AnalyticsLoggingEntity result = logger.findLastStopCallIfExists();
+
+    // THEN We should get this element (which is at index 4 of above list)
+    assertThat(result).isEqualTo(eventsBatch.get(4));
+  }
+
+  @Test
+  public void
+  findLastStopCallIfExists_listWithNoStopCall_returnsNull() {
+    //GIVEN  Some log events, in their List<AnalyticsLoggingEntity> representation
+    logger.logApiCallSuccess(ApiCallType.CALL_IS_ENABLED);
+    logger.logApiCallSuccess(ApiCallType.CALL_GET_DAILY_SUMMARIES);
+    logger.logApiCallSuccess(ApiCallType.CALL_DEVICE_SUPPORTS_LOCATIONLESS_SCANNING);
+    logger.logApiCallSuccess(ApiCallType.CALL_IS_ENABLED);
+
+    // WHEN Querying for the last stop call in the list above
+    AnalyticsLoggingEntity result = logger.findLastStopCallIfExists();
+
+    // THEN We should get this element (which is at index 4 of above list)
+    assertThat(result).isNull();
+  }
+
+  /**
+   * Verify that a call to eraseEventsBatchUpToIncludingEvent erases up to this point
+   */
+  @Test
+  public void eraseEventsBatchUpToIncludingEvent_entityToRemoveUpToGiven_removesAllEntriesBefore() {
+    //GIVEN  Some log events, in their List<AnalyticsLoggingEntity> representation
+    logger.logApiCallSuccess(ApiCallType.CALL_IS_ENABLED);
+    logger.logApiCallSuccess(ApiCallType.CALL_GET_DAILY_SUMMARIES);
+    logger.logApiCallSuccess(ApiCallType.CALL_DEVICE_SUPPORTS_LOCATIONLESS_SCANNING);
+    logger.logApiCallSuccess(ApiCallType.CALL_STOP);
+    logger.logApiCallSuccess(ApiCallType.CALL_IS_ENABLED);
+    List<AnalyticsLoggingEntity> eventsBatch = repository.getEventsBatch();
+
+    // WHEN Removing all items up to a certain position
+    int indexToRemoveUpTo = 2;
+    repository.eraseEventsBatchUpToIncludingEvent(eventsBatch.get(indexToRemoveUpTo));
+    List<AnalyticsLoggingEntity> result = repository.getEventsBatch();
+
+    // THEN We should only see the entries after (excluding) the indexToRemoveUpTo
+    assertThat(result).isEqualTo(eventsBatch.subList(indexToRemoveUpTo+1, eventsBatch.size()));
+  }
+
+  @Test
+  public void sendLoggingBatchIfConsented_isENEnabledFalseAndStopEvent_E2E()
+      throws Exception {
+    // Log lots of things and collect the expected log submissions for each one.
+    List<EnxLogExtension> expectedLogs = new ArrayList<>();
+
+    // Successful Stop API call
+    logger.logApiCallSuccess(ApiCallType.CALL_STOP);
+    expectedLogs.add(EnxLogExtension.newBuilder()
+        .addApiCall(ApiCall.newBuilder()
+            .setApiCallType(ApiCallType.CALL_STOP)
+            .setStatusCode(0))
+        .build());
+
+    // Failed RPC call
+    logger.logRpcCallFailure(RpcCallType.RPC_TYPE_KEYS_DOWNLOAD, volleyErrorOf(404));
+    expectedLogs.add(EnxLogExtension.newBuilder()
+        .addRpcCall(RpcCall.newBuilder()
+            .setRpcCallType(RpcCallType.RPC_TYPE_KEYS_DOWNLOAD)
+            .setRpcCallResult(RpcCallResult.RESULT_FAILED_GENERIC_4XX))
+        .build());
+
+    // Successful Workmanager job.
+    logger.logWorkManagerTaskSuccess(WorkerTask.TASK_STATE_UPDATED);
+    expectedLogs.add(EnxLogExtension.newBuilder()
+        .addWorkManagerTask(WorkManagerTask.newBuilder()
+            .setWorkerTask(WorkerTask.TASK_STATE_UPDATED)
+            .setStatus(WorkManagerTask.Status.STATUS_SUCCESS))
+        .build());
+
+    // Another successful Stop API call
+    logger.logApiCallSuccess(ApiCallType.CALL_STOP);
+    expectedLogs.add(EnxLogExtension.newBuilder()
+        .addApiCall(ApiCall.newBuilder()
+            .setApiCallType(ApiCallType.CALL_STOP)
+            .setStatusCode(0))
+        .build());
+
+    // Some more logs that should not be send as they came after the stop API call
+    logger.logUiInteraction(EventType.SHARE_APP_CLICKED);
+    logger.logWorkManagerTaskSuccess(WorkerTask.TASK_STATE_UPDATED);
+
+    // For our lastEntryToSend, we just take the 4th entry from the repository
+    // This is the last successful stop API call
+    int lastEntryToSendIndex = 3;
+    List<AnalyticsLoggingEntity> batchPreSubmit = repository.getEventsBatch();
+
+    // Now submit. Well, first we need the most recent execution to be longer than 4.5 hours ago.
+    preferences.resetAnalyticsLoggingLastTimestamp();
+    ((FakeClock) clock).advanceBy(Duration.ofHours(4).plusMinutes(31));
+    // OK, now submit, including a lastEntryToSend
+    ListenableFuture<?> sendLoggingBatchFuture = logger.sendLoggingBatchIfConsented(false);
+
+    // Verify the right logs were sent; that is: the first batch should have been sent,
+    // but only up to the lastEntryToSend log
+    ArgumentCaptor<Event<EnxLogExtension>> captor = ArgumentCaptor.forClass(Event.class);
+    // Also there should only have been one call to submit logs.
+    verify(transport, times(1)).schedule(captor.capture(), any());
+    EnxLogExtension expected =
+        mergeAll(expectedLogs).toBuilder()
+        .setBuildId(BuildConfig.VERSION_CODE)
+        // Time since last batch gets rounded up from the ~4.5 hours we set the fake clock to.
+        .setHoursSinceLastBatch(5)
+        // Region ID comes from config resources.
+        .setRegionIdentifier(context.getResources().getString(R.string.enx_regionIdentifier))
+        .build();
+    assertThat(captor.getValue()).isEqualTo(Event.ofData(expected));
+
+    // Verify that the correct logs were deleted. All send logs should be deleted,
+    // so we should only be left with logs after the lastEntryToSendIndex
+    ArgumentCaptor<TransportScheduleCallback> transportScheduleCaptor = ArgumentCaptor.forClass(
+        TransportScheduleCallback.class);
+    verify(transport).schedule(any(), transportScheduleCaptor.capture());
+    transportScheduleCaptor.getValue().onSchedule(null);
+    sendLoggingBatchFuture.get();
+    List<AnalyticsLoggingEntity> batchPostSubmit = repository.getEventsBatch();
+    assertThat(batchPostSubmit)
+        .isEqualTo(batchPreSubmit.subList(lastEntryToSendIndex+1, batchPreSubmit.size()));
   }
 
   /**
@@ -829,5 +1015,25 @@ public class FirelogAnalyticsLoggerTest {
       builder.mergeFrom(l);
     }
     return builder.build();
+  }
+
+  /**
+   * Consent is handled differently for v2 vs v3 apps. This helper sets up the environment
+   * accordingly.
+   */
+  private void setAppAnalyticsConsent(boolean consent) {
+    if (BuildUtils.getType() == Type.V2) {
+      preferences.setAppAnalyticsState(consent);
+    } else /* BuildUtils.getType() == Type.V3 */ {
+      // Build a bundle with the consent value set accordingly
+      Bundle bundle = new Bundle();
+      bundle.putBoolean(PackageConfigurationHelper.CHECK_BOX_API_KEY, consent);
+      PackageConfiguration packageConfiguration =
+          new PackageConfigurationBuilder().setValues(bundle).build();
+
+      // Mock exposureNotificationClientWrapper to return it
+      when(exposureNotificationClientWrapper.getPackageConfiguration())
+          .thenReturn(Tasks.forResult(packageConfiguration));
+    }
   }
 }

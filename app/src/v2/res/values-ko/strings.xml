@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">앱이 활성 상태이며 확인 중임</string>
+  <string name="app_active_and_checking_info">앱에서 노출 가능성을 확인 중입니다. 백신 접종을 받았더라도 노출 알림을 사용하면 지역사회를 안전하게 보호하는 데 도움이 됩니다.</string>
+  <string name="possible_exposure_title">노출 가능성이 있음</string>
+  <string name="share_test_result_home_screen_title">검사 결과 공유</string>
+  <string name="have_questions">궁금한 점이 있나요?</string>
+  <string name="check_exposure_status">노출 상태 확인</string>
+  <string name="en_active">활성</string>
+  <string name="en_inactive">비활성</string>
+  <string name="exposure_checks_activity_title">최근 확인 기록</string>
+  <string name="sharing_history_activity_title">기록 공유</string>
+  <string name="no_recent_exposure_card_content_no_checks">보고된 코로나19 노출 가능성이 없습니다.</string>
+  <string name="no_recent_exposure_card_content">보고된 코로나19 노출 가능성이 없습니다. %1$s에 마지막으로 확인했습니다.</string>
+  <string name="see_recent_checks_button">최근 확인 기록 보기</string>
+  <string name="possible_exposure_card_title">노출 가능성이 보고됨</string>
+  <string name="possible_exposure_card_contents">코로나19 검사 결과가 양성인 사람이 근처에 있었습니다.</string>
+  <string name="see_details_button">세부정보 보기</string>
+  <string name="share_test_result_card_title">지역사회의 코로나19 확산 방지에 동참하기</string>
+  <string name="share_test_result_card_content">누군가 양성 검사 결과를 공유할 때마다 코로나19의 확산을 방지하는 데 도움이 됩니다. 검사 결과를 공유해도 내 신원이 공개되지는 않습니다.</string>
+  <string name="see_history_button">기록 보기</string>
+  <string name="share_positive_diagnosis_card_content">검사 결과를 공유하여 코로나19 확산 방지에 동참하세요</string>
+  <string name="share_app_card_content">이 앱을 공유하여 지역사회를 안전하게 보호하세요</string>
+  <string name="how_en_works_card_content">노출 알림의 작동 원리 자세히 알아보기</string>
+</resources>

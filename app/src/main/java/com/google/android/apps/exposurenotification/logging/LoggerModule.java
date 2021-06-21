@@ -45,5 +45,13 @@ public class LoggerModule {
       return firelogLogger;
     }
   }
+
+  /**
+   * Get reference to ApplicationObserver, used to log APP_OPENED calls
+   */
+  @Provides
+  public ApplicationObserver provideApplicationObserver(AnalyticsLogger analyticsLogger) {
+    return new ApplicationObserver(analyticsLogger);
+  }
 }
 

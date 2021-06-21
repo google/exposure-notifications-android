@@ -21,7 +21,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import androidx.fragment.app.Fragment;
+import androidx.annotation.NonNull;
 import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.databinding.FragmentShareDiagnosisNotSharedBinding;
 import dagger.hilt.android.AndroidEntryPoint;
@@ -31,22 +31,25 @@ import dagger.hilt.android.AndroidEntryPoint;
  * user cancels upload, or when there is an upload failure.
  */
 @AndroidEntryPoint
-public class ShareDiagnosisNotSharedFragment extends Fragment {
+public class ShareDiagnosisNotSharedFragment extends ShareDiagnosisBaseFragment {
 
   private static final String TAG = "ShareExposureNotSharedFrag";
 
   private FragmentShareDiagnosisNotSharedBinding binding;
 
   @Override
-  public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
+  public View onCreateView(
+      @NonNull LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
     binding = FragmentShareDiagnosisNotSharedBinding.inflate(inflater, parent, false);
     return binding.getRoot();
   }
 
   @Override
-  public void onViewCreated(View view, Bundle savedInstanceState) {
-    getActivity().setTitle(R.string.not_shared_confirm_title);
-    binding.shareDoneButton.setOnClickListener(v -> requireActivity().finish());
+  public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+    super.onViewCreated(view, savedInstanceState);
+
+    requireActivity().setTitle(R.string.not_shared_confirm_title);
+    binding.shareDoneButton.setOnClickListener(v -> closeShareDiagnosisFlow());
   }
 
   @Override
@@ -54,4 +57,5 @@ public class ShareDiagnosisNotSharedFragment extends Fragment {
     super.onDestroyView();
     binding = null;
   }
+
 }

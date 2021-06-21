@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="onboarding_activity_title">अनबोर्डिङ</string>
+  <string name="share_history_activity_title">विगतमा सेयर गरिएको जानकारी हेर्नुहोस्</string>
+  <string name="remove_region_link_title">यो क्षेत्र हटाउनुहोस्</string>
+  <string name="delete_shared_diagnosis">परीक्षणको सेयर गरिएको नतिजा मेटाउनुहोस्</string>
+  <string name="active_region_subtitle">सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सूचना दिने प्रणालीको प्रयोजनका लागि हाल %1$s लाई तपाईं रहनुभएको स्थानका रूपमा सेट गरिएको छ</string>
+  <string name="active_region_subtitle_en_off">%1$s लाई तपाईं रहनुभएको स्थानका रूपमा सेट गरिएको छ तर तपाईंको फोनमा सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सूचना दिने प्रणाली अफ गरिएको छ</string>
+  <string name="remove_region_title">यो क्षेत्र हटाउनुहोस्</string>
+  <string name="remove_region_detail">तपाईंले आफ्नो क्षेत्र हटाउनुभयो भने सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सूचना दिने प्रणाली अफ हुने छ। तपाईं जुनसुकै बेला यो क्षेत्र फेरि थप्न सक्नुहुन्छ।</string>
+  <string name="btn_remove">हटाउनुहोस्</string>
+  <string name="exposure_notifications_is_off">सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सूचना दिने प्रणाली अफ छ</string>
+  <string name="possible_exposure">सङ्क्रमित व्यक्तिको सम्पर्कमा आएको हुन सक्ने</string>
+  <string name="share_history_delete_test_result_title">यो परीक्षणको नतिजा मेटाउने हो?</string>
+  <string name="share_history_delete_test_result_detail">%1$s मा प्राप्त भएको तपाईंको COVID-19 परीक्षणको नतिजा तपाईंको फोनबाट मेटाइने छ।</string>
+</resources>

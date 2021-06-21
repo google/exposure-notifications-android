@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="onboarding_activity_title">ការណែនាំឱ្យ​យល់​ពីការក្លាយជាដៃគូ</string>
+  <string name="share_history_activity_title">មើលប្រវត្តិ​ចែករំលែក</string>
+  <string name="remove_region_link_title">លុបតំបន់</string>
+  <string name="delete_shared_diagnosis">លុបលទ្ធផលតេស្តដែលបានចែករំលែក</string>
+  <string name="active_region_subtitle">បច្ចុប្បន្ន %1$s ត្រូវបានកំណត់ជាតំបន់សកម្ម​របស់អ្នក​សម្រាប់​ការជូនដំណឹងអំពី​ការនៅជិត​អ្នកមានផ្ទុក COVID-19</string>
+  <string name="active_region_subtitle_en_off">%1$s ត្រូវបានកំណត់ជាតំបន់សកម្ម​របស់អ្នក ប៉ុន្តែការជូនដំណឹង​អំពី​ការនៅជិត​អ្នកមានផ្ទុក COVID-19 ត្រូវបានបិទសម្រាប់ទូរសព្ទរបស់អ្នក</string>
+  <string name="remove_region_title">លុបតំបន់</string>
+  <string name="remove_region_detail">ការលុបតំបន់របស់អ្នកនឹងបិទការជូនដំណឹង​អំពី​ការនៅជិត​អ្នកមានផ្ទុក COVID-19។ អ្នកអាចបញ្ចូលតំបន់នេះវិញបានគ្រប់ពេល។</string>
+  <string name="btn_remove">លុប</string>
+  <string name="exposure_notifications_is_off">ការជូនដំណឹងអំពីការនៅជិតអ្នកមានផ្ទុក COVID-19 ត្រូវបានបិទ</string>
+  <string name="possible_exposure">ការដែលអាចនៅជិតអ្នកមានផ្ទុក COVID-19</string>
+  <string name="share_history_delete_test_result_title">លុបលទ្ធផលតេស្តនេះឬ?</string>
+  <string name="share_history_delete_test_result_detail">លទ្ធផលតេស្ត COVID-19 របស់អ្នកពីថ្ងៃទី %1$s នឹងត្រូវលុបចេញពីទូរសព្ទរបស់អ្នក។</string>
+</resources>

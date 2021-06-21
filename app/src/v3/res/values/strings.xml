@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright 2020 Google LLC
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      https://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  ~
+  -->
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+  <!-- Title of the Onboarding Activity. Might be used by the system but not displayed anywhere in the UI. [CHAR_LIMIT=40] -->
+  <string name="onboarding_activity_title">Onboarding</string>
+
+  <!-- Title of the ShareHistoryActivity. This is displayed in the top bar of the share history page. [CHAR_LIMIT=40] -->
+  <string name="share_history_activity_title">See sharing history</string>
+
+  <!-- Text displayed on the link that triggers a dialog to turn off Exposure Notifications for the current region. This is displayed on the active app page. [CHAR_LIMIT=40] -->
+  <string name="remove_region_link_title">Remove region</string>
+
+  <!-- Content description for the trash-can button that deletes previously shared test results [CHAR_LIMIT=60] -->
+  <string name="delete_shared_diagnosis">Delete shared test result</string>
+
+  <!-- Subtitle that appears on the "Active app" screen below the Health Authority region name to inform user that Exposure Notifications is running for this region. The placeholder is a region name. [CHAR_LIMIT=NONE] -->
+  <string name="active_region_subtitle"><xliff:g id="region_name" example="Sample Region">%1$s</xliff:g> is currently set as your active region for Exposure Notifications</string>
+
+  <!-- Subtitle that appears on the "Active app" screen below the Health Authority region name to inform user that Exposure Notifications is not running for this region. The placeholder is a region name. [CHAR_LIMIT=NONE] -->
+  <string name="active_region_subtitle_en_off"><xliff:g id="region_name" example="Sample Region">%1$s</xliff:g> is set as your active region but Exposure Notifications is off for your phone</string>
+
+  <!-- Title of the dialog that appears when removing the currently active region. [CHAR_LIMIT=60] -->
+  <string name="remove_region_title">Remove region</string>
+
+  <!-- Body text of the dialog that appears when removing the currently active region. [CHAR_LIMIT=200] -->
+  <string name="remove_region_detail">Removing your region will turn off Exposure Notifications. You can add this region back at any time.</string>
+
+  <!-- Title of the button on the dialog confirming that the user would like to remove the currently active region. [CHAR_LIMIT=40] -->
+  <string name="btn_remove">Remove</string>
+
+  <!-- Displayed on the card, which is shown when the user lands on the Active App screen and exposure notifications is currently off. [CHAR_LIMIT=120] [BACKUP_MESSAGE_ID=1495296937597291382] -->
+  <string name="exposure_notifications_is_off">Exposure Notifications is off</string>
+
+  <!-- Displayed on the card, which is shown when the user lands on the Active App screen and there has been a possible exposure. [CHAR_LIMIT=120] -->
+  <string name="possible_exposure">Possible exposure</string>
+
+  <!-- Title of dialog confirming the user wants to delete their COVID-19 test result from the share history [CHAR_LIMIT=100] -->
+  <string name="share_history_delete_test_result_title">Delete this test result?</string>
+
+  <!-- Main body of text on the dialog confirming the user wants to delete their COVID-19 test result information from the app. [CHAR_LIMIT=200] -->
+  <string name="share_history_delete_test_result_detail">Your COVID-19 test result from <xliff:g id="date" example="Mar 18">%1$s</xliff:g> will get deleted from your phone.</string>
+
+</resources>

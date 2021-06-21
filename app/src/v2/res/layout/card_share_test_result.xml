@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright 2021 Google LLC
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      https://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  ~
+  -->
+
+<com.google.android.material.card.MaterialCardView
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:id="@+id/share_test_result_card"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:layout_gravity="center"
+  android:layout_marginVertical="@dimen/padding_micro"
+  android:background="@drawable/card_background"
+  app:cardElevation="0dp"
+  app:cardCornerRadius="@dimen/card_corner_radius"
+  app:strokeColor="@color/card_border_color"
+  app:strokeWidth="@dimen/card_border_width">
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:paddingEnd="@dimen/padding_normal"
+    android:paddingVertical="@dimen/padding_normal"
+    android:orientation="vertical">
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal">
+
+      <ImageView
+        android:layout_width="@dimen/card_icon_size"
+        android:layout_height="@dimen/card_icon_size"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="@dimen/padding_normal"
+        android:importantForAccessibility="no"
+        android:contentDescription="@null"
+        app:srcCompat="@drawable/ic_share_test_result" />
+
+      <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:paddingBottom="@dimen/padding_micro"
+          android:text="@string/share_test_result_card_title"
+          android:textAppearance="?attr/textAppearanceBody1"
+          android:textStyle="bold"/>
+
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:gravity="start"
+          android:text="@string/share_test_result_card_content"
+          android:textAppearance="?attr/textAppearanceBody2"
+          android:textColor="?attr/colorControlNormal" />
+
+      </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:gravity="end"
+      android:orientation="horizontal">
+
+      <Button
+        android:id="@+id/see_history_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/padding_small"
+        android:layout_gravity="center"
+        android:text="@string/see_history_button"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        app:cornerRadius="@dimen/round_button_corner_radius"
+        app:strokeColor="@color/card_border_color"
+        android:visibility="gone" />
+
+      <Button
+        android:id="@+id/notify_others_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/btn_continue"
+        app:cornerRadius="@dimen/round_button_corner_radius" />
+
+    </LinearLayout>
+
+  </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

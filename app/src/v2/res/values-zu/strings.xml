@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">I-app iyasebenza futhi iyahlola</string>
+  <string name="app_active_and_checking_info">Le app ihlola ukuhlangabezana okungase kube khona. Ukusebenzisa Izaziso Zokuhlangabezana kukusiza ukuthi uvikele umphakathi wakho - ngisho noma usugonyiwe.</string>
+  <string name="possible_exposure_title">Kungenzeka ukuthi uhlangabezene</string>
+  <string name="share_test_result_home_screen_title">Yabelana ngomphumela wakho wokuhlolwa</string>
+  <string name="have_questions">Unemibuzo?</string>
+  <string name="check_exposure_status">Hlola isimo sakho sokuhlangabezana</string>
+  <string name="en_active">Kuyasebenza</string>
+  <string name="en_inactive">Akusebenzi</string>
+  <string name="exposure_checks_activity_title">Irekhodi yokungena kwakamuva</string>
+  <string name="sharing_history_activity_title">Yabelana ngomlando</string>
+  <string name="no_recent_exposure_card_content_no_checks">Ayikho ingozi yokuhlangabezana ne-COVID-19 ebikiwe.</string>
+  <string name="no_recent_exposure_card_content">Ayikho ingozi yokuhlangabezana ne-COVID-19 ebikiwe. Kugcinwe ukuhlolwa ngomhla ka-%1$s</string>
+  <string name="see_recent_checks_button">Bona ukuhlolwa kwakamuva</string>
+  <string name="possible_exposure_card_title">Ukuhlangabezana okungase kube khona kubikiwe</string>
+  <string name="possible_exposure_card_contents">Kutholakale ukuthi othile okade useduze kwakhe une-COVID-19</string>
+  <string name="see_details_button">Bona imininingwane</string>
+  <string name="share_test_result_card_title">Siza ukugwema i-COVID-19 emphakathini wakini</string>
+  <string name="share_test_result_card_content">Njalo lapho othile abelana ngomphumela wokuthi unaso isifo, kungase kusize ukuvimbela esinye isigameko se-COVID-19. Ukwabelana ngomphumela wakho wokuhlolwa ngeke kukudalule kwabanye abantu.</string>
+  <string name="see_history_button">Bona umlando</string>
+  <string name="share_positive_diagnosis_card_content">Yabelana ngomphumela wakho wokuhlolwa ukusiza ukuvimbela ukusabalala kwe-COVID-19</string>
+  <string name="share_app_card_content">Yabelana ngale app ukuvikela kangcono umphakathi wakho</string>
+  <string name="how_en_works_card_content">Funda kabanzi ngendlela Izaziso Zokuhlangabezana ezisebenza ngayo</string>
+</resources>

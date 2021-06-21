@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="onboarding_activity_title">ଅନବୋର୍ଡିଂ</string>
+  <string name="share_history_activity_title">ସେୟାରିଂ ଇତିହାସ ଦେଖନ୍ତୁ</string>
+  <string name="remove_region_link_title">ଅଞ୍ଚଳକୁ କାଢ଼ି ଦିଅନ୍ତୁ</string>
+  <string name="delete_shared_diagnosis">ସେୟାର୍ କରାଯାଇଥିବା ଟେଷ୍ଟ ରିପୋର୍ଟକୁ ଡିଲିଟ୍ କରନ୍ତୁ</string>
+  <string name="active_region_subtitle">ସଂକ୍ରମଣ ବିଜ୍ଞପ୍ତି ପାଇଁ ବର୍ତ୍ତମାନ %1$sକୁ ଆପଣଙ୍କ ସକ୍ରିୟ ଅଞ୍ଚଳ ଭାବେ ସେଟ୍ କରାଯାଇଛି</string>
+  <string name="active_region_subtitle_en_off">%1$sକୁ ଆପଣଙ୍କ ସକ୍ରିୟ ଅଞ୍ଚଳ ଭାବେ ସେଟ୍ କରାଯାଇଛି କିନ୍ତୁ ଆପଣଙ୍କ ଫୋନରେ ସଂକ୍ରମଣ ବିଜ୍ଞପ୍ତିଗୁଡ଼ିକ ବନ୍ଦ ଅଛି</string>
+  <string name="remove_region_title">ଅଞ୍ଚଳକୁ କାଢ଼ି ଦିଅନ୍ତୁ</string>
+  <string name="remove_region_detail">ଆପଣଙ୍କ ଅଞ୍ଚଳ କାଢ଼ିବା ଫଳରେ ସଂକ୍ରମଣ ବିଜ୍ଞପ୍ତିଗୁଡ଼ିକ ବନ୍ଦ ହୋଇଯିବ। ଆପଣ ଯେ କୌଣସି ସମୟରେ ଏହି ଅଞ୍ଚଳକୁ ପୁଣି ଯୋଗ କରିପାରିବେ।</string>
+  <string name="btn_remove">କାଢ଼ି ଦିଅନ୍ତୁ</string>
+  <string name="exposure_notifications_is_off">ସଂକ୍ରମଣ ବିଜ୍ଞପ୍ତି ବନ୍ଦ ଅଛି</string>
+  <string name="possible_exposure">ସମ୍ଭାବ୍ୟ ସଂକ୍ରମଣ</string>
+  <string name="share_history_delete_test_result_title">ଏହି ଟେଷ୍ଟ ରିପୋର୍ଟକୁ ଡିଲିଟ୍ କରିବେ?</string>
+  <string name="share_history_delete_test_result_detail">%1$sରୁ ଆପଣଙ୍କ COVID-19 ଟେଷ୍ଟ ରିପୋର୍ଟ ଆପଣଙ୍କ ଫୋନରୁ ଡିଲିଟ୍ ହୋଇଯିବ।</string>
+</resources>

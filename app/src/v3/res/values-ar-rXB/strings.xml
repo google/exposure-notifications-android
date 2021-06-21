@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="onboarding_activity_title">‏‮Onboarding‬‏</string>
+  <string name="share_history_activity_title">‏‮See‬‏ ‏‮sharing‬‏ ‏‮history‬‏</string>
+  <string name="remove_region_link_title">‏‮Remove‬‏ ‏‮region‬‏</string>
+  <string name="delete_shared_diagnosis">‏‮Delete‬‏ ‏‮shared‬‏ ‏‮test‬‏ ‏‮result‬‏</string>
+  <string name="active_region_subtitle">%1$s ‏‮is‬‏ ‏‮currently‬‏ ‏‮set‬‏ ‏‮as‬‏ ‏‮your‬‏ ‏‮active‬‏ ‏‮region‬‏ ‏‮for‬‏ ‏‮Exposure‬‏ ‏‮Notifications‬‏</string>
+  <string name="active_region_subtitle_en_off">%1$s ‏‮is‬‏ ‏‮set‬‏ ‏‮as‬‏ ‏‮your‬‏ ‏‮active‬‏ ‏‮region‬‏ ‏‮but‬‏ ‏‮Exposure‬‏ ‏‮Notifications‬‏ ‏‮is‬‏ ‏‮off‬‏ ‏‮for‬‏ ‏‮your‬‏ ‏‮phone‬‏</string>
+  <string name="remove_region_title">‏‮Remove‬‏ ‏‮region‬‏</string>
+  <string name="remove_region_detail">‏‮Removing‬‏ ‏‮your‬‏ ‏‮region‬‏ ‏‮will‬‏ ‏‮turn‬‏ ‏‮off‬‏ ‏‮Exposure‬‏ ‏‮Notifications‬‏. ‏‮You‬‏ ‏‮can‬‏ ‏‮add‬‏ ‏‮this‬‏ ‏‮region‬‏ ‏‮back‬‏ ‏‮at‬‏ ‏‮any‬‏ ‏‮time‬‏.</string>
+  <string name="btn_remove">‏‮Remove‬‏</string>
+  <string name="exposure_notifications_is_off">‏‮Exposure‬‏ ‏‮Notifications‬‏ ‏‮is‬‏ ‏‮off‬‏</string>
+  <string name="possible_exposure">‏‮Possible‬‏ ‏‮exposure‬‏</string>
+  <string name="share_history_delete_test_result_title">‏‮Delete‬‏ ‏‮this‬‏ ‏‮test‬‏ ‏‮result‬‏?</string>
+  <string name="share_history_delete_test_result_detail">‏‮Your‬‏ ‏‮COVID‬‏-19 ‏‮test‬‏ ‏‮result‬‏ ‏‮from‬‏ %1$s ‏‮will‬‏ ‏‮get‬‏ ‏‮deleted‬‏ ‏‮from‬‏ ‏‮your‬‏ ‏‮phone‬‏.</string>
+</resources>

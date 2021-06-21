@@ -17,8 +17,6 @@
 
 package com.google.android.apps.exposurenotification.notify;
 
-import static com.google.android.apps.exposurenotification.notify.NotifyHomeFragment.DELETE_DIALOG_CLOSED;
-
 import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.hilt.lifecycle.ViewModelInject;
@@ -28,6 +26,7 @@ import com.google.android.apps.exposurenotification.common.Qualifiers.Lightweigh
 import com.google.android.apps.exposurenotification.common.SingleLiveEvent;
 import com.google.android.apps.exposurenotification.storage.DiagnosisEntity;
 import com.google.android.apps.exposurenotification.storage.DiagnosisRepository;
+import com.google.common.base.Optional;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import java.util.List;
@@ -35,11 +34,12 @@ import java.util.concurrent.ExecutorService;
 import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 
 /**
- * View model for the {@link NotifyHomeFragment}.
+ * View model that updates on the current {@link DiagnosisEntity} objects.
  */
 public class NotifyHomeViewModel extends ViewModel {
 
   private static final String TAG = "NotifyHomeViewModel";
+  private static final int DELETE_DIALOG_CLOSED = -1;
 
   private final SingleLiveEvent<Void> deletedLiveEvent = new SingleLiveEvent<>();
   private final LiveData<List<DiagnosisEntity>> getAllDiagnosisLiveData;
@@ -48,7 +48,7 @@ public class NotifyHomeViewModel extends ViewModel {
 
   // Stores the position of a to-be-deleted diagnosis entity in the DiagnosisEntityAdapter to
   // preserve the delete dialog state upon rotations.
-  private int deleteOpenPosition = DELETE_DIALOG_CLOSED;
+  private int deleteDialogOpenAtPosition = DELETE_DIALOG_CLOSED;
 
   @ViewModelInject
   public NotifyHomeViewModel(
@@ -93,11 +93,17 @@ public class NotifyHomeViewModel extends ViewModel {
         lightweightExecutor);
   }
 
-  public void setDeleteOpenPosition(int deleteOpenPosition) {
-    this.deleteOpenPosition = deleteOpenPosition;
+  public void setDeleteDialogOpenAtPosition(int deleteDialogOpenAtPosition) {
+    this.deleteDialogOpenAtPosition = deleteDialogOpenAtPosition;
   }
 
-  public int getDeleteOpenPosition() {
-    return deleteOpenPosition;
+  public void setDeleteDialogClosed() {
+    this.deleteDialogOpenAtPosition = DELETE_DIALOG_CLOSED;
   }
+
+  public Optional<Integer> getDeleteDialogOpenAtPosition() {
+    return deleteDialogOpenAtPosition > DELETE_DIALOG_CLOSED
+        ? Optional.of(deleteDialogOpenAtPosition) : Optional.absent();
+  }
+
 }

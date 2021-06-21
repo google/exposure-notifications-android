@@ -23,7 +23,9 @@ tasks.withType(Test) {
     jacoco.includeNoLocationClasses = true
 }
 
-task jacocoTestReport(type: JacocoReport, dependsOn: ['testSampleDebugUnitTest']) {
+task jacocoTestReport(
+        type: JacocoReport,
+        dependsOn: ['testSampleV2DebugUnitTest', 'testSampleV3DebugUnitTest']) {
 
     // Output only the HTML report
     reports {
@@ -32,7 +34,14 @@ task jacocoTestReport(type: JacocoReport, dependsOn: ['testSampleDebugUnitTest']
     }
 
     // Add our project classes and exclude common Android classes from code coverage
-    def debugTree = fileTree(dir: "$project.buildDir/intermediates/javac/sampleDebug", excludes: [
+    def debugV2Tree = fileTree(dir: "$project.buildDir/intermediates/javac/sampleV2Debug", excludes: [
+            '**/R.class',
+            '**/R$*.class',
+            '**/BuildConfig.*',
+            '**/Manifest*.*',
+            'android/**/*.*',
+    ])
+    def debugV3Tree = fileTree(dir: "$project.buildDir/intermediates/javac/sampleV3Debug", excludes: [
             '**/R.class',
             '**/R$*.class',
             '**/BuildConfig.*',
@@ -40,9 +49,10 @@ task jacocoTestReport(type: JacocoReport, dependsOn: ['testSampleDebugUnitTest']
             'android/**/*.*',
     ])
 
-    classDirectories.setFrom files([debugTree])
+    classDirectories.setFrom files([debugV2Tree, debugV3Tree])
     sourceDirectories.setFrom files(["$project.projectDir/src/main/java"])
     executionData.setFrom fileTree(dir: buildDir, includes: [
-            'jacoco/testSampleDebugUnitTest.exec',
+            'jacoco/testSampleDebugV2UnitTest.exec',
+            'jacoco/testSampleDebugV3UnitTest.exec',
     ])
 }

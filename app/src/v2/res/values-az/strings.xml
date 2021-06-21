@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">Tətbiq aktivdir və yoxlama aparılır</string>
+  <string name="app_active_and_checking_info">Bu tətbiq ehtimal yoluxmaları yoxlayır. Yoluxma Bildirişlərindən istifadə etmək peyvənd olsanız da cəmiyyətinizi qorumağınıza kömək edir.</string>
+  <string name="possible_exposure_title">Yoluxmuş ola bilərsiniz</string>
+  <string name="share_test_result_home_screen_title">Test nəticənizi paylaşın</string>
+  <string name="have_questions">Suallarınız var?</string>
+  <string name="check_exposure_status">Yoluxma statusunuzu yoxlayın</string>
+  <string name="en_active">Aktiv</string>
+  <string name="en_inactive">Deaktiv</string>
+  <string name="exposure_checks_activity_title">Son girişlərin qeydi</string>
+  <string name="sharing_history_activity_title">Paylaşım tarixçəsi</string>
+  <string name="no_recent_exposure_card_content_no_checks">COVID-19 xəstəliyinə yoluxma riski barədə heç nə bildirilməyib.</string>
+  <string name="no_recent_exposure_card_content">COVID-19 xəstəliyinə yoluxma riski barədə heç nə bildirilməyib. Sonuncu yoxlama: %1$s</string>
+  <string name="see_recent_checks_button">Son yoxlamalara baxın</string>
+  <string name="possible_exposure_card_title">Bildirilən ehtimal yoluxmalar</string>
+  <string name="possible_exposure_card_contents">Yaxınlığınızda olan birinin COVID-19 test nəticəsi pozitiv olub</string>
+  <string name="see_details_button">Detallara baxın</string>
+  <string name="share_test_result_card_title">İcmanızda COVID-19 virusunun yayılmasını dayandırmağa kömək edin</string>
+  <string name="share_test_result_card_content">Hər dəfə kimsə pozitiv test nəticəsini paylaşdıqda, başqa bir COVID-19 yoluxmasının qarşısını almağa kömək edə bilər. Test nəticənizi paylaşdıqda başqaları kimliyinizi görməyəcək</string>
+  <string name="see_history_button">Tarixçəyə baxın</string>
+  <string name="share_positive_diagnosis_card_content">COVID-19 virusunun yayılmasının qarşısını almaq üçün test nəticənizi paylaşın</string>
+  <string name="share_app_card_content">Cəmiyyətinizi daha yaxşı qorumaq üçün bu tətbiqi paylaşın</string>
+  <string name="how_en_works_card_content">Yoluxma Bildirişlərinin işləmə qaydası barədə ətraflı məlumat</string>
+</resources>

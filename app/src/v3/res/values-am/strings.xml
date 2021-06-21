@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="onboarding_activity_title">ማሳፈር</string>
+  <string name="share_history_activity_title">የማጋራት ታሪክን ይመልከቱ</string>
+  <string name="remove_region_link_title">ክልልን ያስወግዱ</string>
+  <string name="delete_shared_diagnosis">የተጋራ የምርመራ ውጤትን ሰርዝ</string>
+  <string name="active_region_subtitle">ለተጋላጭነት ማስታወቂያዎችዎ በአሁኑ ጊዜ %1$s እንደ ንቁ ክልልዎ ተቀናብሯል</string>
+  <string name="active_region_subtitle_en_off">%1$s እንደ ንቁ ክልልዎ ተቀናብሯል ነገር ግን የተጋላጭነት ማሳወቂያዎች ለስልክዎ ጠፍተዋል</string>
+  <string name="remove_region_title">ክልልን ያስወግዱ</string>
+  <string name="remove_region_detail">ክልልዎን ማስወገድ የተጋላጭነት ማሳወቂያዎችን ያጠፋል። ይህን ክልል በማንኛውም ጊዜ መልሰው ማከል ይችላሉ።</string>
+  <string name="btn_remove">አስወግድ</string>
+  <string name="exposure_notifications_is_off">የተጋላጭነት ማሳወቂያዎች ጠፍቷል</string>
+  <string name="possible_exposure">ሊሆን የሚችል ተጋላጭነት</string>
+  <string name="share_history_delete_test_result_title">ይህ የምርመራ ውጤት ይሰረዝ?</string>
+  <string name="share_history_delete_test_result_detail">ከ%1$s ጀምሮ ያለው የእርስዎ የኮቪድ-19 ምርመራ ውጤት ከስልክዎ ይሰረዛል።</string>
+</resources>

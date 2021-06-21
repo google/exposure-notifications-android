@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">التطبيق نشط ويجري التحقّق</string>
+  <string name="app_active_and_checking_info">يتحقّق هذا التطبيق من حالات التعرّض المحتمل للفيروس. يساعدك استخدام نظام \"إشعارات التعرّض لفيروس كورونا\" على حماية المجتمع، حتى إذا تم تلقيحك.</string>
+  <string name="possible_exposure_title">يُحتمَل أنك قد تعرّضت للفيروس</string>
+  <string name="share_test_result_home_screen_title">مشاركة نتيجة الاختبار</string>
+  <string name="have_questions">هل لديك أسئلة؟</string>
+  <string name="check_exposure_status">تحقّق من حالة التعرّض للفيروس</string>
+  <string name="en_active">نشطة</string>
+  <string name="en_inactive">غير نشطة</string>
+  <string name="exposure_checks_activity_title">سجلّ عمليات التحقّق الحديثة</string>
+  <string name="sharing_history_activity_title">مشاركة السجلّ</string>
+  <string name="no_recent_exposure_card_content_no_checks">لم يتم رصد أي حالة تعرّض لفيروس كورونا.</string>
+  <string name="no_recent_exposure_card_content">لم يتم رصد أي حالة تعرّض لفيروس كورونا. تاريخ آخر تحقّق: %1$s</string>
+  <string name="see_recent_checks_button">الاطّلاع على عمليات التحقّق الحديثة</string>
+  <string name="possible_exposure_card_title">تم رصد حالة تعرّض محتمل للفيروس</string>
+  <string name="possible_exposure_card_contents">كنت بالقرب من شخص كانت نتيجة اختبار فيروس كورونا المستجد الخاصة به إيجابية.</string>
+  <string name="see_details_button">عرض التفاصيل</string>
+  <string name="share_test_result_card_title">ساعد على مكافحة فيروس كورونا المستجد (كوفيد-19) في مجتمعك</string>
+  <string name="share_test_result_card_content">في كل مرة يشارك فيها شخص أن نتيجة اختبار إصابته بالفيروس إيجابية، يساعد في منع إصابة شخص آخر بالفيروس. لن تؤدي مشاركة نتيجة الاختبار إلى تعرّف الآخرين على هويتك.</string>
+  <string name="see_history_button">عرض السجلّ</string>
+  <string name="share_positive_diagnosis_card_content">شارِك نتيجة اختبارك للمساعدة في منع انتشار فيروس كورونا.</string>
+  <string name="share_app_card_content">شارِك هذا التطبيق للمساعدة في حماية المجتمع بشكلٍ أفضل.</string>
+  <string name="how_en_works_card_content">تعرّف على المزيد من المعلومات عن كيفية عمل نظام \"إشعارات التعرّض لفيروس كورونا\".</string>
+</resources>

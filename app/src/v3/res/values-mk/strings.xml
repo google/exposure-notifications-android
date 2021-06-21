@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="onboarding_activity_title">Интегрирање</string>
+  <string name="share_history_activity_title">Видете ја историјата на споделување</string>
+  <string name="remove_region_link_title">Отстрани регион</string>
+  <string name="delete_shared_diagnosis">Избриши ги споделените резултати од тестот</string>
+  <string name="active_region_subtitle">%1$s моментално е поставена како ваша активна апликација за известувања за изложеност во регионот</string>
+  <string name="active_region_subtitle_en_off">%1$s е поставен како ваш активен регион, но известувањата за изложеност се исклучени за вашиот телефон</string>
+  <string name="remove_region_title">Отстрани регион</string>
+  <string name="remove_region_detail">Ако го отстраните вашиот регион, „Известувањата за изложеност“ ќе се исклучат. Можете повторно да го додадете регионов во секое време.</string>
+  <string name="btn_remove">Отстрани</string>
+  <string name="exposure_notifications_is_off">„Известувањата за изложеност“ се исклучени</string>
+  <string name="possible_exposure">Можна изложеност</string>
+  <string name="share_history_delete_test_result_title">Да се избрише резултатот од тестов?</string>
+  <string name="share_history_delete_test_result_detail">Резултатот од тестот за COVID-19 од %1$s ќе се избрише од телефонот.</string>
+</resources>

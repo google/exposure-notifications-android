@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="onboarding_activity_title">බඳවා ගැනීම</string>
+  <string name="share_history_activity_title">බෙදා ගැනීමේ ඉතිහාසය බලන්න</string>
+  <string name="remove_region_link_title">කලාපය ඉවත් කරන්න</string>
+  <string name="delete_shared_diagnosis">බෙදා ගත් පරීක්ෂණ ප්‍රතිඵල මකන්න</string>
+  <string name="active_region_subtitle">%1$s නිරාවරණ දැනුම්දීම් සඳහා ඔබගේ සක්‍රිය කලාපය ලෙස දැනට සකසා ඇත</string>
+  <string name="active_region_subtitle_en_off">%1$s ඔබගේ සක්‍රිය කලාපය ලෙස සකසා ඇති නමුත් ඔබගේ දුරකථනය සඳහා නිරාවරණ දැනුම්දීම් ක්‍රියාවිරහිතයි.</string>
+  <string name="remove_region_title">කලාපය ඉවත් කරන්න</string>
+  <string name="remove_region_detail">ඔබගේ කලාපය ඉවත් කිරීම නිරාවරණ දැනුම්දීම් ක්‍රියාවිරහිත කරනු ඇත. ඔබට ඕනෑම වේලාවක මෙම කලාපය ආපසු එක් කළ හැකිය</string>
+  <string name="btn_remove">ඉවත් කරන්න</string>
+  <string name="exposure_notifications_is_off">නිරාවරණ දැනුම්දීම් ක්‍රියාවිරහිතයි</string>
+  <string name="possible_exposure">විය හැකි නිරාවරණය</string>
+  <string name="share_history_delete_test_result_title">මෙම පරීක්ෂණ ප්‍රතිඵල මකන්නද?</string>
+  <string name="share_history_delete_test_result_detail">%1$s ලැබුණ ඔබගේ COVID-19 පරීක්ෂණ ප්‍රතිඵල ඔබගේ දුරකථනයෙන් මැකෙනු ඇත.</string>
+</resources>

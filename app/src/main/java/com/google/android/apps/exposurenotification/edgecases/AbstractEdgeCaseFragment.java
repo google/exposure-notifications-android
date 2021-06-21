@@ -22,38 +22,31 @@ import static com.google.android.gms.nearby.exposurenotification.ExposureNotific
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.common.SnackbarUtil;
 import com.google.android.apps.exposurenotification.common.StorageManagementHelper;
-import com.google.android.apps.exposurenotification.home.ExposureNotificationViewModel;
+import com.google.android.apps.exposurenotification.home.BaseFragment;
 import com.google.android.apps.exposurenotification.home.ExposureNotificationViewModel.ExposureNotificationState;
 import com.google.android.apps.exposurenotification.proto.UiInteraction.EventType;
-import com.google.android.material.snackbar.Snackbar;
+import com.google.android.apps.exposurenotification.utils.UrlUtils;
 
 /**
- * Abstract superclass fragment that encapsulates all lifecycle and event-management
- * logic required for edge-case handling.
+ * Abstract superclass fragment that encapsulates all lifecycle and event-management logic required
+ * for edge-case handling.
  */
-public abstract class AbstractEdgeCaseFragment extends Fragment {
+public abstract class AbstractEdgeCaseFragment extends BaseFragment {
 
   private static final String TAG = "MainEdgeCaseFragment";
 
-  private ExposureNotificationViewModel exposureNotificationViewModel;
-
-  /*
-   * Provide arguments to the fragment via static "newInstance" constructor pattern
-   */
+  // Provide arguments to the fragment via static "newInstance" constructor pattern
   private static final String KEY_HANDLE_API_ERROR_LIVE_EVENTS = "handleApiErrorLiveEvents";
   private static final String KEY_HANDLE_RESOLUTIONS = "handleResolutions";
   private static final String NO_ARG_CONSTRUCTOR_WARNING =
       "Constructing EdgeCaseFragment with non-argument constructor might lead to"
-      + " unexpected behavior, consider using  EdgeCaseFragment.newInstance(...) instead.";
+          + " unexpected behavior, consider using  EdgeCaseFragment.newInstance(...) instead.";
 
   // Both true by default, see constructor documentation
   public boolean isHandleApiErrorLiveEvents() {
@@ -104,26 +97,17 @@ public abstract class AbstractEdgeCaseFragment extends Fragment {
   }
 
   /**
-   * Abstract method that controls the edge cases layout (which base layout/XML the fragment
-   * uses). Filled in by subclasses.
-   */
-  @Override
-  public abstract View onCreateView(@NonNull LayoutInflater inflater, ViewGroup parent,
-      Bundle savedInstanceState);
-
-  /**
    * Abstract method that controls the layout of edge-cases (how text and button actions change
    * depending on the current {@link ExposureNotificationState}). Filled in by subclasses.
    *
-   * @param rootView a View layout for a given Fragment
+   * @param rootView      a View layout for a given Fragment
    * @param containerView a View layout of a given Fragment's parent (i.e. of the hosting Activity
    *                      or Fragment)
-   * @param state an ExposureNotificationState object for the current state of EN service
-   * @param isInFlight a flag to indicate if there is an API request in flight
+   * @param state         an ExposureNotificationState object for the current state of EN service
+   * @param isInFlight    a flag to indicate if there is an API request in flight
    */
   protected abstract void fillUIContent(View rootView, View containerView,
       ExposureNotificationState state, boolean isInFlight);
-
 
   // Helpers to configure button actions and behaviors (from within the subclass)
 
@@ -170,13 +154,10 @@ public abstract class AbstractEdgeCaseFragment extends Fragment {
    */
   @Override
   public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-    exposureNotificationViewModel =
-        new ViewModelProvider(requireActivity()).get(ExposureNotificationViewModel.class);
+    super.onViewCreated(view, savedInstanceState);
 
-    /*
-     * Observe changes in the EN state or in the 'in-flight' status of the API request as we need
-     * both these pieces of information to refresh the UI.
-     */
+    // Observe changes in the EN state or in the 'in-flight' status of the API request as we need
+    // both these pieces of information to refresh the UI.
     exposureNotificationViewModel
         .getStateWithInFlightLiveData()
         .observe(getViewLifecycleOwner(), this::refreshUiForStateAndInFlight);
@@ -185,12 +166,19 @@ public abstract class AbstractEdgeCaseFragment extends Fragment {
     if (isHandleApiErrorLiveEvents()) {
       exposureNotificationViewModel
           .getApiErrorLiveEvent()
+          .observe(getViewLifecycleOwner(), unused -> SnackbarUtil
+              .maybeShowRegularSnackbar(getView(), getString(R.string.generic_error_message)));
+
+      exposureNotificationViewModel
+          .getApiUnavailableLiveEvent()
           .observe(
               getViewLifecycleOwner(),
               unused -> {
                 View rootView = getView();
                 if (rootView != null) {
-                  Snackbar.make(rootView, R.string.generic_error_message, Snackbar.LENGTH_LONG)
+                  SnackbarUtil.createLargeSnackbar(rootView, R.string.gms_unavailable_error)
+                      .setAction(R.string.learn_more, v ->
+                          UrlUtils.openUrl(view, getString(R.string.gms_info_link)))
                       .show();
                 }
               });
@@ -200,23 +188,6 @@ public abstract class AbstractEdgeCaseFragment extends Fragment {
     if (isHandleResolutions()) {
       exposureNotificationViewModel.registerResolutionForActivityResult(this);
     }
-  }
-
-  /**
-   * Make sure that we refresh the UI when the fragment is resumed (e.g. App brought back from
-   * background)
-   */
-  @Override
-  public void onResume() {
-    super.onResume();
-    refreshUi();
-  }
-
-  /**
-   * Update UI state after Exposure Notifications client state changes
-   */
-  public void refreshUi() {
-    exposureNotificationViewModel.refreshState();
   }
 
   /**

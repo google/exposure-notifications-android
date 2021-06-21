@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">Aplikacija je aktivna in preverja</string>
+  <string name="app_active_and_checking_info">Ta aplikacija preverja morebitne izpostavljenosti. Z uporabo obveščanja o izpostavljenosti lažje zaščitite svojo skupnost, tudi če ste bili že cepljeni.</string>
+  <string name="possible_exposure_title">Morda ste bili izpostavljeni</string>
+  <string name="share_test_result_home_screen_title">Delite svoj rezultat testa</string>
+  <string name="have_questions">Imate vprašanja?</string>
+  <string name="check_exposure_status">Preverite svoj status glede izpostavljenosti</string>
+  <string name="en_active">Aktivno</string>
+  <string name="en_inactive">Neaktivno</string>
+  <string name="exposure_checks_activity_title">Evidenca nedavnih preverjanj</string>
+  <string name="sharing_history_activity_title">Zgodovina deljenja</string>
+  <string name="no_recent_exposure_card_content_no_checks">Ni nobenega poročila o morebitni izpostavljenosti bolezni COVID-19.</string>
+  <string name="no_recent_exposure_card_content">Ni nobenega poročila o morebitni izpostavljenosti bolezni COVID-19. Nazadnje preverjeno: %1$s</string>
+  <string name="see_recent_checks_button">Ogled nedavnih preverjanj</string>
+  <string name="possible_exposure_card_title">Poročilo o morebitni izpostavljenosti</string>
+  <string name="possible_exposure_card_contents">Oseba, v bližini katere ste bili, je sporočila, da je bila pozitivna na testu za COVID-19.</string>
+  <string name="see_details_button">Ogled podrobnosti</string>
+  <string name="share_test_result_card_title">Pomagajte preprečevati širjenje bolezni COVID-19 v svoji skupnosti</string>
+  <string name="share_test_result_card_content">Vsakič ko nekdo deli, da je bil pozitiven na testu, lahko s tem prepreči dodaten primer bolezni COVID-19. Na podlagi rezultata testa, ki ga delite, drugi ne morejo ugotoviti vaše identitete.</string>
+  <string name="see_history_button">Ogled zgodovine</string>
+  <string name="share_positive_diagnosis_card_content">Delite svoj rezultat testa in tako pomagajte zajeziti širjenje bolezni COVID-19.</string>
+  <string name="share_app_card_content">Delite to aplikacijo, da bo vaša skupnost bolje zaščitena.</string>
+  <string name="how_en_works_card_content">Preberite več o tem, kako deluje obveščanje o izpostavljenosti.</string>
+</resources>

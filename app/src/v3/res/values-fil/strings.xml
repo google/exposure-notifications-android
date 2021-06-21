@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="onboarding_activity_title">Onboarding</string>
+  <string name="share_history_activity_title">Tingnan ang history ng pagbabahagi</string>
+  <string name="remove_region_link_title">Alisin ang rehiyon</string>
+  <string name="delete_shared_diagnosis">I-delete ang nakabahaging resulta ng test</string>
+  <string name="active_region_subtitle">Kasalukuyang nakatakda ang %1$s bilang iyong aktibong rehiyon para sa Mga Notification sa Exposure</string>
+  <string name="active_region_subtitle_en_off">Nakatakda ang %1$s bilang iyong aktibong rehiyon pero naka-off ang Mga Notification sa Exposure para sa telepono mo</string>
+  <string name="remove_region_title">Alisin ang rehiyon</string>
+  <string name="remove_region_detail">Kapag inalis ang iyong rehiyon, mao-off ang Mga Notification sa Exposure. Puwede mong idagdag ulit ang rehiyong ito anumang oras.</string>
+  <string name="btn_remove">Alisin</string>
+  <string name="exposure_notifications_is_off">Naka-off ang Mga Notification sa Exposure</string>
+  <string name="possible_exposure">Posibleng exposure</string>
+  <string name="share_history_delete_test_result_title">I-delete ang resulta ng test na ito?</string>
+  <string name="share_history_delete_test_result_detail">Made-delete sa iyong telepono ang resulta ng COVID-19 test mo noong %1$s.</string>
+</resources>

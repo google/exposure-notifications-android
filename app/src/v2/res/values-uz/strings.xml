@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">Ilova faol va tekshirmoqda</string>
+  <string name="app_active_and_checking_info">Bu ilova ehtimoliy zararlanishni tekshirib boradi. Ehtimoliy zararlanish bildirishnomalaridan foydalanish hatto emlangan boʻlsangiz ham kasallanish oldini olishga yordam beradi.</string>
+  <string name="possible_exposure_title">Zararlanish ehtimolingiz bor</string>
+  <string name="share_test_result_home_screen_title">Tahlil natijangizni ulashing</string>
+  <string name="have_questions">Savollaringiz bormi?</string>
+  <string name="check_exposure_status">Ehtimoliy zararlanish holatingizni tekshiring</string>
+  <string name="en_active">Faol</string>
+  <string name="en_inactive">Nofaol</string>
+  <string name="exposure_checks_activity_title">Oxirgi tekshiruvlar jurnali</string>
+  <string name="sharing_history_activity_title">Ulashuv tarixi</string>
+  <string name="no_recent_exposure_card_content_no_checks">COVID-19 bilan ehtimoliy zararlanish haqida xabar topilmadi.</string>
+  <string name="no_recent_exposure_card_content">COVID-19 bilan ehtimoliy zararlanish haqida xabar topilmadi. Oxirgi marta %1$s da tekshirilgan</string>
+  <string name="see_recent_checks_button">Oxirgi tekshiruvlar</string>
+  <string name="possible_exposure_card_title">Ehtimoliy zararlanish haqida xabar</string>
+  <string name="possible_exposure_card_contents">Atrofingizda kimningdir COVID-19 uchun natijasi musbat chiqqan</string>
+  <string name="see_details_button">Tafsilotlar</string>
+  <string name="share_test_result_card_title">Hududingizda COVID-19 tarqalishining oldini olishda yordam bering</string>
+  <string name="share_test_result_card_content">Har safar kimdir musbat tahlil natijasini ulashganda COVID-19 bilan yangi kasallanish oldini olgan boʻladi. Tahlil natijangiz ulashilganda kimligingiz boshqalarga koʻrinmaydi.</string>
+  <string name="see_history_button">Tarixni koʻrish</string>
+  <string name="share_positive_diagnosis_card_content">COVID-19 virusi tarqalishining oldini olish uchun tahlil natijangizni ulashing</string>
+  <string name="share_app_card_content">Kasallikning tarqalishining oldini olish uchun bu ilova haqida aytib bering</string>
+  <string name="how_en_works_card_content">Ehtimoliy zararlanish bildirishnomalari qanday ishlashi haqida batafsil</string>
+</resources>

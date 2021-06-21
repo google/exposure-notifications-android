@@ -34,6 +34,6 @@
     android:pivotY="50%"
     android:repeatCount="infinite"
     android:startOffset="500"
-    android:toXScale="6"
-    android:toYScale="6" />
+    android:toXScale="3"
+    android:toYScale="3" />
 </set>

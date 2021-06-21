@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright 2020 Google LLC
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      https://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  ~
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:orientation="vertical"
+  android:accessibilityPaneTitle="@string/onboarding_opt_in_title">
+
+  <androidx.core.widget.NestedScrollView
+    android:id="@+id/onboarding_scroll"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1"
+    android:isScrollContainer="false"
+    android:fillViewport="true">
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginHorizontal="@dimen/onboarding_padding_horizontal"
+      android:orientation="vertical">
+
+      <ImageView
+        android:layout_width="match_parent"
+        android:layout_marginVertical="@dimen/padding_large"
+        android:layout_height="@dimen/onboarding_logo_size"
+        android:importantForAccessibility="no"
+        android:background="@color/enx_agencyImageBackgroundColor"
+        app:srcCompat="@drawable/enx_agency_image" />
+
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal">
+
+          <ImageView
+            android:layout_width="@dimen/onboarding_section_header_image_width"
+            android:layout_height="@dimen/onboarding_section_header_image_height"
+            android:layout_gravity="center_vertical"
+            android:paddingHorizontal="@dimen/padding_small"
+            android:importantForAccessibility="no"
+            android:contentDescription="@null"
+            app:srcCompat="@drawable/ic_onboarding_en" />
+
+          <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="@string/onboarding_exposure_notifications_title"
+              android:layout_gravity="center_vertical"
+              android:textAppearance="?attr/textAppearanceSubtitle1"
+              android:textStyle="bold" />
+
+          </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+          android:id="@+id/onboarding_exposure_notifications_detail"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="@dimen/onboarding_section_header_image_width"
+          android:layout_marginVertical="@dimen/padding_large"
+          android:text="@string/onboarding_exposure_notifications_detail"
+          android:textAppearance="?attr/textAppearanceBody2" />
+
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:paddingVertical="@dimen/padding_small"
+          android:layout_marginStart="@dimen/onboarding_section_header_image_width">
+
+          <include layout="@layout/horizontal_divider" />
+
+        </LinearLayout>
+
+      </LinearLayout>
+
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/padding_large"
+        android:orientation="vertical">
+
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal">
+
+          <ImageView
+            android:layout_width="@dimen/onboarding_section_header_image_width"
+            android:layout_height="@dimen/onboarding_section_header_image_height"
+            android:layout_gravity="center_vertical"
+            android:importantForAccessibility="no"
+            android:contentDescription="@null"
+            app:srcCompat="@mipmap/ic_launcher" />
+
+          <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="@string/onboarding_legal_title"
+              android:layout_gravity="center_vertical"
+              android:textAppearance="?attr/textAppearanceSubtitle1"
+              android:textStyle="bold" />
+
+            <TextView
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="@string/onboarding_legal_subtitle"
+              android:layout_gravity="center_vertical"
+              android:textAppearance="?attr/textAppearanceCaption"
+              android:textColor="?attr/colorControlNormal" />
+
+          </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginVertical="@dimen/padding_normal"
+          android:layout_marginStart="@dimen/onboarding_section_header_image_width"
+          android:paddingBottom="@dimen/padding_small"
+          android:autoLink="web"
+          android:text="@string/onboarding_legal_detail"
+          android:textAppearance="?attr/textAppearanceBody2" />
+
+      </LinearLayout>
+
+    </LinearLayout>
+
+  </androidx.core.widget.NestedScrollView>
+
+  <LinearLayout
+    android:id="@+id/onboarding_buttons"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="@dimen/onboarding_padding_horizontal"
+    android:paddingVertical="@dimen/padding_normal"
+    android:orientation="vertical"
+    android:background="?android:attr/colorBackground"
+    android:elevation="@dimen/onboarding_button_elevation">
+
+    <Button
+      android:id="@+id/onboarding_continue_button"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="@string/btn_continue"
+      android:elevation="0dp"
+      style="@style/Widget.V3.Button"/>
+
+    <Button
+      android:id="@+id/onboarding_not_now_button"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="@string/btn_not_now"
+      app:strokeColor="@color/horizontal_divider_color"
+      style="@style/Widget.V3.Button.OutlinedButton"/>
+
+  </LinearLayout>
+
+</LinearLayout>
+

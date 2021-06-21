@@ -17,6 +17,12 @@
 
 package com.google.android.apps.exposurenotification.notify;
 
+import static com.google.android.apps.exposurenotification.notify.ShareDiagnosisViewModel.SAVED_STATE_CODE_INPUT;
+import static com.google.android.apps.exposurenotification.notify.ShareDiagnosisViewModel.SAVED_STATE_CODE_INPUT_IS_ENABLED;
+import static com.google.android.apps.exposurenotification.notify.ShareDiagnosisViewModel.SAVED_STATE_CODE_IS_INVALID;
+import static com.google.android.apps.exposurenotification.notify.ShareDiagnosisViewModel.SAVED_STATE_CODE_IS_VERIFIED;
+import static com.google.android.apps.exposurenotification.notify.ShareDiagnosisViewModel.SAVED_STATE_SHARE_ADVANCE_SWITCHER_CHILD;
+import static com.google.android.apps.exposurenotification.notify.ShareDiagnosisViewModel.SAVED_STATE_VERIFIED_CODE;
 import static com.google.common.truth.Truth.assertThat;
 import static org.mockito.Mockito.when;
 import static org.robolectric.Shadows.shadowOf;
@@ -26,8 +32,10 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.test.espresso.core.internal.deps.guava.collect.ImmutableList;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.SavedStateHandle;
 import androidx.test.core.app.ApplicationProvider;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.common.IntentUtil;
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.common.time.RealTimeModule;
 import com.google.android.apps.exposurenotification.keyupload.ApiConstants.UploadV1;
@@ -53,6 +61,7 @@ import com.google.android.apps.exposurenotification.storage.DiagnosisEntity.Trav
 import com.google.android.apps.exposurenotification.storage.DiagnosisRepository;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationDatabase;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
+import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.VaccinationStatus;
 import com.google.android.apps.exposurenotification.testsupport.ExposureNotificationRules;
 import com.google.android.apps.exposurenotification.testsupport.FakeClock;
 import com.google.android.apps.exposurenotification.testsupport.FakeRequestQueue;
@@ -63,6 +72,8 @@ import com.google.android.gms.nearby.exposurenotification.TemporaryExposureKey;
 import com.google.android.gms.nearby.exposurenotification.TemporaryExposureKey.TemporaryExposureKeyBuilder;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.Tasks;
+import com.google.android.libraries.privateanalytics.PrivateAnalyticsEnabledProvider;
+import com.google.common.base.Optional;
 import com.google.common.util.concurrent.MoreExecutors;
 import com.google.common.util.concurrent.testing.TestingExecutors;
 import dagger.Module;
@@ -75,6 +86,7 @@ import dagger.hilt.android.testing.UninstallModules;
 import dagger.hilt.components.SingletonComponent;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.AtomicReference;
 import javax.inject.Inject;
@@ -86,6 +98,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
+import org.threeten.bp.Instant;
 import org.threeten.bp.LocalDate;
 
 @HiltAndroidTest
@@ -121,6 +134,8 @@ public class ShareDiagnosisViewModelTest {
   Connectivity connectivity;
   @Inject
   ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
+  @Mock
+  PrivateAnalyticsEnabledProvider privateAnalyticsEnabledProvider;
   @BindValue
   Clock clock = new FakeClock();
 
@@ -154,10 +169,12 @@ public class ShareDiagnosisViewModelTest {
     rules.hilt().inject();
     viewModel = new ShareDiagnosisViewModel(
         context,
+        new SavedStateHandle(),
         uploadController,
         diagnosisRepository,
         exposureNotificationClient,
         exposureNotificationSharedPreferences,
+        privateAnalyticsEnabledProvider,
         clock,
         connectivity,
         MoreExecutors.newDirectExecutorService(),
@@ -170,6 +187,81 @@ public class ShareDiagnosisViewModelTest {
   public void flow_startsOnStep_null() {
     AtomicReference<Step> observedStep = observeFlowStep();
     assertThat(observedStep.get()).isNull();
+  }
+
+  @Test
+  public void savedStateHandle_withValuesSet_stateRestored_uiNotMarkedAsRestored() {
+    // GIVEN
+    SavedStateHandle savedStateHandle = new SavedStateHandle();
+    savedStateHandle.set(SAVED_STATE_CODE_IS_INVALID, false);
+    savedStateHandle.set(SAVED_STATE_CODE_IS_VERIFIED, true);
+    savedStateHandle.set(SAVED_STATE_SHARE_ADVANCE_SWITCHER_CHILD, 0);
+    savedStateHandle.set(SAVED_STATE_CODE_INPUT_IS_ENABLED, false);
+    savedStateHandle.set(SAVED_STATE_CODE_INPUT, "code-input");
+    savedStateHandle.set(SAVED_STATE_VERIFIED_CODE, "verified-code");
+
+    // WHEN
+    viewModel = new ShareDiagnosisViewModel(
+        context,
+        savedStateHandle,
+        uploadController,
+        diagnosisRepository,
+        exposureNotificationClient,
+        exposureNotificationSharedPreferences,
+        privateAnalyticsEnabledProvider,
+        clock,
+        connectivity,
+        MoreExecutors.newDirectExecutorService(),
+        MoreExecutors.newDirectExecutorService(),
+        TestingExecutors.sameThreadScheduledExecutor());
+    when(connectivity.hasInternet()).thenReturn(true);
+
+    // THEN
+    assertThat(viewModel.isCodeInvalidForCodeStepLiveData().getValue()).isFalse();
+    assertThat(viewModel.isCodeVerifiedForCodeStepLiveData().getValue()).isTrue();
+    assertThat(viewModel.getSwitcherChildForCodeStepLiveData().getValue()).isEqualTo(0);
+    assertThat(viewModel.isCodeInputEnabledForCodeStepLiveData().getValue()).isFalse();
+    assertThat(viewModel.getCodeInputForCodeStepLiveData().getValue())
+        .isEqualTo("code-input");
+    assertThat(viewModel.getVerifiedCodeForCodeStepLiveData().getValue())
+        .isEqualTo("verified-code");
+    assertThat(viewModel.isUiToBeRestoredFromSavedState()).isFalse();
+  }
+
+  @Test
+  public void savedStateHandle_setValues_markUiToBeRestored_stateUpdated_uiMarkedAsRestored() {
+    // GIVEN
+    AtomicBoolean isCodeInvalid = new AtomicBoolean();
+    AtomicBoolean isCodeVerified = new AtomicBoolean();
+    AtomicInteger displayedChild = new AtomicInteger();
+    AtomicBoolean isCodeInputEnabledForCodeStep = new AtomicBoolean(true);
+    AtomicReference<String> codeInput = new AtomicReference<>();
+    AtomicReference<String> verifiedCode = new AtomicReference<>();
+    viewModel.isCodeInvalidForCodeStepLiveData().observeForever(isCodeInvalid::set);
+    viewModel.isCodeVerifiedForCodeStepLiveData().observeForever(isCodeVerified::set);
+    viewModel.getSwitcherChildForCodeStepLiveData().observeForever(displayedChild::set);
+    viewModel.getCodeInputForCodeStepLiveData().observeForever(codeInput::set);
+    viewModel.getVerifiedCodeForCodeStepLiveData().observeForever(verifiedCode::set);
+    viewModel.isCodeInputEnabledForCodeStepLiveData()
+        .observeForever(isCodeInputEnabledForCodeStep::set);
+
+    // WHEN
+    viewModel.setCodeIsInvalidForCodeStep(true);
+    viewModel.setCodeIsVerifiedForCodeStep(true);
+    viewModel.setSwitcherChildForCodeStep(1);
+    viewModel.setCodeInputForCodeStep("code-input");
+    viewModel.setVerifiedCodeForCodeStep("verified-code");
+    viewModel.setCodeInputEnabledForCodeStep(false);
+    viewModel.markUiToBeRestoredFromSavedState(true);
+
+    // THEN
+    assertThat(isCodeInvalid.get()).isTrue();
+    assertThat(isCodeVerified.get()).isTrue();
+    assertThat(displayedChild.get()).isEqualTo(1);
+    assertThat(isCodeInputEnabledForCodeStep.get()).isFalse();
+    assertThat(codeInput.get()).isEqualTo("code-input");
+    assertThat(verifiedCode.get()).isEqualTo("verified-code");
+    assertThat(viewModel.isUiToBeRestoredFromSavedState()).isTrue();
   }
 
   @Test
@@ -198,6 +290,26 @@ public class ShareDiagnosisViewModelTest {
     assertThat(diagnosisRepository.getByIdAsync(observedDiagnosisId.get()).get()
         .getIsCodeFromLink())
         .isTrue();
+  }
+
+  @Test
+  public void submitCode_shouldStoreDiagnosisAndSetNotAttemptedSharedStatus() throws Exception {
+    // GIVEN
+    // Later we'll need the diagnosis ID to read it from the DB, so observe and capture it.
+    AtomicLong observedDiagnosisId = observeDiagnosisId();
+    queue().addResponse(CODE_URI.toString(), 200, codeResponse(/* onsetDate= */ null));
+
+    // WHEN
+    viewModel.submitCode("code", false).get();
+    DiagnosisEntity lastNonSharedDiagnosis = diagnosisRepository
+        .maybeGetLastNotSharedDiagnosisAsync().get();
+
+    // THEN
+    long testDiagnosisId = observeDiagnosisId().get();
+    assertThat(lastNonSharedDiagnosis).isNotNull();
+    assertThat(testDiagnosisId).isEqualTo(lastNonSharedDiagnosis.getId());
+    assertThat(diagnosisRepository.getByIdAsync(testDiagnosisId).get().getSharedStatus())
+        .isEqualTo(Shared.NOT_ATTEMPTED);
   }
 
   @Test
@@ -259,6 +371,19 @@ public class ShareDiagnosisViewModelTest {
   }
 
   @Test
+  public void submitCode_resumeFlowAutomatically_shouldReset() throws Exception {
+    // GIVEN
+    queue().addResponse(CODE_URI.toString(), 200, codeResponse(/* onsetDate= */ null));
+    viewModel.setResumingAndNotConfirmed(true);
+
+    // WHEN
+    viewModel.submitCode("code", true).get();
+
+    // THEN
+    assertThat(viewModel.isResumingAndNotConfirmed()).isFalse();
+  }
+
+  @Test
   public void setNoSymptoms_shouldBeSaved_andOnsetDateShouldBeUnset() throws Exception {
     // GIVEN
     // Start with a diagnosis that has its verification code (a precondition to onset date entry).
@@ -312,8 +437,9 @@ public class ShareDiagnosisViewModelTest {
 
   @Test
   public void enterCodeStep_shouldNotRevealStepIfCodeIsFromLink() {
-    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("ens://v?c=123"));
-    EnterCodeStepReturnValue returnValue = viewModel.enterCodeStep(intent);
+    Optional<String> codeFromDeepLink = IntentUtil
+        .maybeGetCodeFromDeepLinkUri(Uri.parse("ens://v?c=123"));
+    EnterCodeStepReturnValue returnValue = viewModel.enterCodeStep(codeFromDeepLink.get());
 
     assertThat(returnValue.revealPage()).isFalse();
     assertThat(returnValue.verificationCodeToPrefill()).hasValue("123");
@@ -321,17 +447,15 @@ public class ShareDiagnosisViewModelTest {
 
   @Test
   public void enterCodeStep_shouldRevealStepIfCodeIsNotFromLink() {
-    Intent intent = new Intent(Intent.ACTION_VIEW);
-    EnterCodeStepReturnValue returnValue = viewModel.enterCodeStep(intent);
+    EnterCodeStepReturnValue returnValue = viewModel.enterCodeStep(null);
 
     assertThat(returnValue.revealPage()).isTrue();
     assertThat(returnValue.verificationCodeToPrefill()).isAbsent();
   }
 
   @Test
-  public void enterCodeStep_shouldRevealStepIfCodeIsFromBadLink() {
-    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("ens://v?c="));
-    EnterCodeStepReturnValue returnValue = viewModel.enterCodeStep(intent);
+  public void enterCodeStep_shouldRevealStepIfCodeIsNull() {
+    EnterCodeStepReturnValue returnValue = viewModel.enterCodeStep(null);
 
     assertThat(returnValue.revealPage()).isTrue();
     assertThat(returnValue.verificationCodeToPrefill()).isAbsent();
@@ -346,7 +470,6 @@ public class ShareDiagnosisViewModelTest {
     FakeShadowResources resources = (FakeShadowResources) shadowOf(context.getResources());
     resources.addFakeResource(R.string.share_travel_detail, "Sample travel question");
     // Imitate the submission of code with symptom onset date
-    AtomicLong observedDiagnosisId = observeDiagnosisId();
     viewModel.nextStep(Step.CODE);
     viewModel.submitCode("code", false).get();
     viewModel.nextStep(Step.ONSET);
@@ -370,7 +493,6 @@ public class ShareDiagnosisViewModelTest {
     FakeShadowResources resources = (FakeShadowResources) shadowOf(context.getResources());
     resources.addFakeResource(R.string.share_travel_detail, "");
     // Imitate the submission of code with symptom onset date
-    AtomicLong observedDiagnosisId = observeDiagnosisId();
     viewModel.nextStep(Step.CODE);
     viewModel.submitCode("code", false).get();
     viewModel.nextStep(Step.ONSET);
@@ -482,6 +604,68 @@ public class ShareDiagnosisViewModelTest {
     assertThat(diagnosis.getTestResult()).isEqualTo(TestResult.CONFIRMED);
     assertThat(diagnosis.getSharedStatus()).isEqualTo(Shared.SHARED);
     assertThat(diagnosis.getTravelStatus()).isEqualTo(TravelStatus.TRAVELED);
+  }
+
+  @Test
+  public void setLastVaccinationResponse_setState_setsStateAndTimestamp() {
+    Instant timestamp = Instant.now();
+    ((FakeClock) clock).set(timestamp);
+    exposureNotificationSharedPreferences.setPrivateAnalyticsState(true);
+
+    viewModel.setLastVaccinationResponse(VaccinationStatus.VACCINATED);
+
+    assertThat(exposureNotificationSharedPreferences.getLastVaccinationStatus())
+        .isEqualTo(VaccinationStatus.VACCINATED);
+    assertThat(exposureNotificationSharedPreferences.getLastVaccinationStatusResponseTime())
+        .isEqualTo(timestamp);
+  }
+
+  @Test
+  public void showVaccinationQuestion_enpaDisabled_returnsFalse() {
+    when(privateAnalyticsEnabledProvider.isEnabledForUser()).thenReturn(false);
+    when(privateAnalyticsEnabledProvider.isSupportedByApp()).thenReturn(true);
+    FakeShadowResources resources = (FakeShadowResources) shadowOf(context.getResources());
+    resources.addFakeResource(R.string.share_vaccination_detail, "non-empty");
+
+    boolean result = viewModel.showVaccinationQuestion(context.getResources());
+
+    assertThat(result).isFalse();
+  }
+
+  @Test
+  public void showVaccinationQuestion_enpaUnsupported_returnsFalse() {
+    when(privateAnalyticsEnabledProvider.isEnabledForUser()).thenReturn(true);
+    when(privateAnalyticsEnabledProvider.isSupportedByApp()).thenReturn(false);
+    FakeShadowResources resources = (FakeShadowResources) shadowOf(context.getResources());
+    resources.addFakeResource(R.string.share_vaccination_detail, "non-empty");
+
+    boolean result = viewModel.showVaccinationQuestion(context.getResources());
+
+    assertThat(result).isFalse();
+  }
+
+  @Test
+  public void showVaccinationQuestion_vaccinationQuestionDisabled_returnsFalse() {
+    when(privateAnalyticsEnabledProvider.isEnabledForUser()).thenReturn(true);
+    when(privateAnalyticsEnabledProvider.isSupportedByApp()).thenReturn(true);
+    FakeShadowResources resources = (FakeShadowResources) shadowOf(context.getResources());
+    resources.addFakeResource(R.string.share_vaccination_detail, "");
+
+    boolean result = viewModel.showVaccinationQuestion(context.getResources());
+
+    assertThat(result).isFalse();
+  }
+
+  @Test
+  public void showVaccinationQuestion_enpaSupportedEnabledVaccinationEnabled_returnsTrue() {
+    when(privateAnalyticsEnabledProvider.isEnabledForUser()).thenReturn(true);
+    when(privateAnalyticsEnabledProvider.isSupportedByApp()).thenReturn(true);
+    FakeShadowResources resources = (FakeShadowResources) shadowOf(context.getResources());
+    resources.addFakeResource(R.string.share_vaccination_detail, "non-empty");
+
+    boolean result = viewModel.showVaccinationQuestion(context.getResources());
+
+    assertThat(result).isTrue();
   }
 
   private static String codeResponse(@Nullable LocalDate onsetDate) throws Exception {

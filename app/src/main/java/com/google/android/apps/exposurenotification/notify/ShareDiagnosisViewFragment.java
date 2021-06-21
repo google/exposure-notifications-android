@@ -23,8 +23,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.databinding.FragmentShareDiagnosisViewBinding;
 import com.google.android.apps.exposurenotification.storage.DiagnosisEntity;
@@ -38,7 +36,7 @@ import org.threeten.bp.format.FormatStyle;
  * uploaded previously, or it may have failed or been canceled by the user.
  */
 @AndroidEntryPoint
-public class ShareDiagnosisViewFragment extends Fragment {
+public class ShareDiagnosisViewFragment extends ShareDiagnosisBaseFragment {
 
   private static final String TAG = "ShareDiagnosisViewFrag";
 
@@ -46,23 +44,21 @@ public class ShareDiagnosisViewFragment extends Fragment {
       DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM);
 
   private FragmentShareDiagnosisViewBinding binding;
-  private ShareDiagnosisViewModel shareDiagnosisViewModel;
 
   @Override
-  public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
+  public View onCreateView(
+      @NonNull LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
     binding = FragmentShareDiagnosisViewBinding.inflate(inflater, parent, false);
     return binding.getRoot();
   }
 
   @Override
   public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-    getActivity().setTitle(R.string.status_shared_detail_title);
+    super.onViewCreated(view, savedInstanceState);
 
-    shareDiagnosisViewModel =
-        new ViewModelProvider(getActivity()).get(ShareDiagnosisViewModel.class);
+    requireActivity().setTitle(R.string.status_shared_detail_title);
 
-    binding.home.setContentDescription(getString(R.string.navigate_up));
-    binding.home.setOnClickListener(v -> closeAction());
+    binding.home.setOnClickListener(v -> closeShareDiagnosisFlow());
 
     shareDiagnosisViewModel
         .getCurrentDiagnosisLiveData()
@@ -97,11 +93,9 @@ public class ShareDiagnosisViewFragment extends Fragment {
         .observe(
             getViewLifecycleOwner(),
             unused -> {
-              if (getActivity() != null) {
-                Toast.makeText(getContext(), R.string.delete_test_result_confirmed,
-                    Toast.LENGTH_LONG).show();
-                getActivity().finish();
-              }
+              Toast.makeText(getContext(), R.string.delete_test_result_confirmed,
+                  Toast.LENGTH_LONG).show();
+              closeShareDiagnosisFlow();
             });
   }
 
@@ -113,7 +107,7 @@ public class ShareDiagnosisViewFragment extends Fragment {
 
   private void deleteAction(DiagnosisEntity diagnosis) {
     shareDiagnosisViewModel.setDeleteOpen(true);
-    new MaterialAlertDialogBuilder(requireContext())
+    new MaterialAlertDialogBuilder(requireContext(), R.style.ExposureNotificationAlertDialogTheme)
         .setTitle(R.string.delete_test_result_title)
         .setMessage(R.string.delete_test_result_detail)
         .setCancelable(true)
@@ -128,9 +122,5 @@ public class ShareDiagnosisViewFragment extends Fragment {
         .setOnDismissListener(d -> shareDiagnosisViewModel.setDeleteOpen(false))
         .setOnCancelListener(d -> shareDiagnosisViewModel.setDeleteOpen(false))
         .show();
-  }
-
-  private void closeAction() {
-    requireActivity().finish();
   }
 }

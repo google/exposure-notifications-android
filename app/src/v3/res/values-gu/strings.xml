@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="onboarding_activity_title">ઑનબોર્ડિંગ</string>
+  <string name="share_history_activity_title">શેરિંગનો ઇતિહાસ જુઓ</string>
+  <string name="remove_region_link_title">પ્રદેશને કાઢી નાખો</string>
+  <string name="delete_shared_diagnosis">શેર કરેલું પરીક્ષણનું પરિણામ ડિલીટ કરો</string>
+  <string name="active_region_subtitle">એક્સપોઝર નોટિફિકેશન માટે %1$s તમારા સક્રિય પ્રદેશ તરીકે હાલમાં સેટ છે</string>
+  <string name="active_region_subtitle_en_off">%1$s તમારા સક્રિય પ્રદેશ તરીકે હાલમાં સેટ છે પરંતુ તમારા ફોનમાં એક્સપોઝર નોટિફિકેશન બંધ છે</string>
+  <string name="remove_region_title">પ્રદેશને કાઢી નાખો</string>
+  <string name="remove_region_detail">તમારા પ્રદેશને કાઢી નાખવાથી એક્સપોઝર નોટિફિકેશન બંધ થઈ જશે. તમે કોઈપણ સમયે આ પ્રદેશને પાછા ઉમેરી શકો છો.</string>
+  <string name="btn_remove">કાઢી નાખો</string>
+  <string name="exposure_notifications_is_off">એક્સપોઝર નોટિફિકેશન બંધ છે</string>
+  <string name="possible_exposure">સંભવિત એક્સપોઝર</string>
+  <string name="share_history_delete_test_result_title">આ પરીક્ષણનું પરિણામ ડિલીટ કરીએ?</string>
+  <string name="share_history_delete_test_result_detail">%1$sના રોજ મેળવેલું તમારું COVID-19 પરીક્ષણનું પરિણામ, તમારા ફોનમાંથી ડિલીટ કરવામાં આવશે.</string>
+</resources>

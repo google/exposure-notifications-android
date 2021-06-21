@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="onboarding_activity_title">অনবোর্ডিং</string>
+  <string name="share_history_activity_title">শেয়ার করা ডায়াগনসিস সংক্রান্ত তথ্য দেখুন</string>
+  <string name="remove_region_link_title">অঞ্চল সরিয়ে দিন</string>
+  <string name="delete_shared_diagnosis">শেয়ার করা পরীক্ষার ফলাফল মুছুন</string>
+  <string name="active_region_subtitle">Exposure Notifications-এর বিজ্ঞপ্তি দেওয়ার জন্য %1$s-কে বর্তমানে আপনার অঞ্চলের জন্য অ্যাক্টিভ হিসেবে সেট করা আছে</string>
+  <string name="active_region_subtitle_en_off">%1$s আপনার অঞ্চলের জন্য অ্যাক্টিভ হিসেবে সেট করা হয়েছে কিন্তু Exposure Notifications বিকল্প আপনার ফোনে বন্ধ আছে</string>
+  <string name="remove_region_title">অঞ্চল সরিয়ে দিন</string>
+  <string name="remove_region_detail">আপনার অঞ্চল সরিয়ে দিলে \'Exposure Notifications\' বন্ধ হয়ে যাবে। এই অঞ্চল আপনি যেকোনও সময় আবার যোগ করতে পারবেন।</string>
+  <string name="btn_remove">সরান</string>
+  <string name="exposure_notifications_is_off">Exposure notifications বন্ধ করা আছে</string>
+  <string name="possible_exposure">সম্ভাব্য এক্সপোজার</string>
+  <string name="share_history_delete_test_result_title">পরীক্ষার ফলাফল মুছতে চান?</string>
+  <string name="share_history_delete_test_result_detail">%1$s তারিখ থেকে পাওয়া আপনার COVID-19 পরীক্ষার ফলাফল আপনার ফোন থেকে মুছে দেওয়া হবে।</string>
+</resources>

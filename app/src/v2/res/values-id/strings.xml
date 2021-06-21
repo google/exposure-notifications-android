@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="no_recent_exposure_title">Aplikasi aktif dan sedang memeriksa</string>
+  <string name="app_active_and_checking_info">Aplikasi ini memeriksa kemungkinan paparan. Menggunakan Notifikasi Paparan akan membantu Anda melindungi masyarakat sekitar, meskipun Anda telah divaksinasi.</string>
+  <string name="possible_exposure_title">Anda mungkin sudah terpapar</string>
+  <string name="share_test_result_home_screen_title">Bagikan hasil tes Anda</string>
+  <string name="have_questions">Ada pertanyaan?</string>
+  <string name="check_exposure_status">Periksa status paparan Anda</string>
+  <string name="en_active">Aktif</string>
+  <string name="en_inactive">Tidak aktif</string>
+  <string name="exposure_checks_activity_title">Data histori terbaru</string>
+  <string name="sharing_history_activity_title">Berbagi histori</string>
+  <string name="no_recent_exposure_card_content_no_checks">Tidak ditemukan risiko paparan COVID-19 yang dilaporkan.</string>
+  <string name="no_recent_exposure_card_content">Tidak ditemukan risiko paparan COVID-19 yang dilaporkan. Terakhir diperiksa %1$s</string>
+  <string name="see_recent_checks_button">Lihat pemeriksaan terbaru</string>
+  <string name="possible_exposure_card_title">Kemungkinan paparan dilaporkan</string>
+  <string name="possible_exposure_card_contents">Seseorang yang berada di dekat Anda telah dinyatakan positif COVID-19</string>
+  <string name="see_details_button">Lihat detail</string>
+  <string name="share_test_result_card_title">Bantu cegah COVID-19 di masyarakat sekitar Anda</string>
+  <string name="share_test_result_card_content">Setiap kali seseorang membagikan hasil tes positif, hal tersebut dapat membantu menghentikan kasus COVID-19 lainnya. Berbagi hasil tes Anda tidak akan mengidentifikasi diri Anda kepada orang lain.</string>
+  <string name="see_history_button">Lihat histori</string>
+  <string name="share_positive_diagnosis_card_content">Bagikan hasil tes Anda untuk membantu menghentikan penyebaran COVID-19</string>
+  <string name="share_app_card_content">Bagikan aplikasi ini untuk melindungi masyarakat sekitar dengan lebih baik</string>
+  <string name="how_en_works_card_content">Pelajari cara kerja Notifikasi Paparan lebih lanjut</string>
+</resources>

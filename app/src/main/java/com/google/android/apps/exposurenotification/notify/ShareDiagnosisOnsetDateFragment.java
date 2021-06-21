@@ -29,10 +29,11 @@ import android.widget.RadioGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.common.AbstractTextWatcher;
 import com.google.android.apps.exposurenotification.common.KeyboardHelper;
+import com.google.android.apps.exposurenotification.common.PairLiveData;
+import com.google.android.apps.exposurenotification.common.SnackbarUtil;
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.databinding.FragmentShareDiagnosisOnsetDateBinding;
 import com.google.android.apps.exposurenotification.notify.ShareDiagnosisViewModel.Step;
@@ -41,7 +42,6 @@ import com.google.android.apps.exposurenotification.storage.DiagnosisEntity.HasS
 import com.google.android.material.datepicker.CalendarConstraints;
 import com.google.android.material.datepicker.CalendarConstraints.DateValidator;
 import com.google.android.material.datepicker.MaterialDatePicker;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.common.base.Function;
 import dagger.hilt.android.AndroidEntryPoint;
 import javax.inject.Inject;
@@ -58,7 +58,7 @@ import org.threeten.bp.format.FormatStyle;
  * the symptom onset date, this screen is not needed, so is skipped automatically.
  */
 @AndroidEntryPoint
-public class ShareDiagnosisOnsetDateFragment extends Fragment {
+public class ShareDiagnosisOnsetDateFragment extends ShareDiagnosisBaseFragment {
 
   private static final String TAG = "ShareDiagnosisOnset";
   private static final String DATE_PICKER_TAG = "date_picker";
@@ -67,19 +67,19 @@ public class ShareDiagnosisOnsetDateFragment extends Fragment {
   Clock clock;
 
   private FragmentShareDiagnosisOnsetDateBinding binding;
-  private ShareDiagnosisViewModel viewModel;
 
   @Override
-  public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
+  public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup parent,
+      Bundle savedInstanceState) {
     binding = FragmentShareDiagnosisOnsetDateBinding.inflate(inflater, parent, false);
     return binding.getRoot();
   }
 
   @Override
   public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-    getActivity().setTitle(R.string.share_onset_title);
+    super.onViewCreated(view, savedInstanceState);
 
-    viewModel = new ViewModelProvider(getActivity()).get(ShareDiagnosisViewModel.class);
+    requireActivity().setTitle(R.string.share_onset_title);
 
     // Enabled next button when the user answers "have you had symptoms", but if it's "yes", require
     // that they enter a valid onset date.
@@ -102,20 +102,28 @@ public class ShareDiagnosisOnsetDateFragment extends Fragment {
     binding.shareTestDate.setOnClickListener(v -> maybeShowMaterialDatePicker());
 
     // Keep input fields up to date with the diagnosis entity.
-    viewModel
-        .getCurrentDiagnosisLiveData()
+    PairLiveData<DiagnosisEntity, Boolean> diagnosisEntityAndIsEnabledPairLiveData =
+        PairLiveData.of(shareDiagnosisViewModel.getCurrentDiagnosisLiveData(),
+            exposureNotificationViewModel.getEnEnabledLiveData());
+    diagnosisEntityAndIsEnabledPairLiveData
         .observe(
             getViewLifecycleOwner(),
-            diagnosisEntity -> {
+            (diagnosisEntity, isEnabled) -> {
+              String shareTestDateText;
               if (diagnosisEntity.getOnsetDate() == null) {
-                binding.shareTestDate.setText("");
+                shareTestDateText = "";
               } else {
-                binding.shareTestDate.setText(
-                    getDateTimeFormatter().format(diagnosisEntity.getOnsetDate()));
+                shareTestDateText = getDateTimeFormatter().format(diagnosisEntity.getOnsetDate());
               }
+
+              // Only change the text field if its content changes
+              if (!binding.shareTestDate.getText().toString().equals(shareTestDateText)) {
+                binding.shareTestDate.setText(shareTestDateText);
+              }
+
               // Show the date picker if the symptom onset date is still not set and the user
               // answered that they had symptoms
-              if (diagnosisEntity.getOnsetDate() == null) {
+              if (diagnosisEntity.getOnsetDate() == null && isEnabled) {
                 maybeShowMaterialDatePicker();
               }
 
@@ -131,11 +139,11 @@ public class ShareDiagnosisOnsetDateFragment extends Fragment {
                   break;
               }
 
-              binding.shareNextButton.setEnabled(DiagnosisEntityHelper.hasCompletedOnset(diagnosisEntity, clock));
+              binding.shareNextButton
+                  .setEnabled(DiagnosisEntityHelper.hasCompletedOnset(diagnosisEntity, clock));
             });
 
-    binding.home.setContentDescription(getString(R.string.btn_cancel));
-    binding.home.setOnClickListener((v) -> closeAction());
+    binding.home.setOnClickListener(v -> showCloseWarningAlertDialog());
 
     // If the date picker already exists upon view creation it means that view was just recreated
     // upon rotation. If so, its listeners need to be cleared and replaced as they hold references
@@ -147,13 +155,14 @@ public class ShareDiagnosisOnsetDateFragment extends Fragment {
       addOnPositiveButtonClickListener(datePicker);
     }
 
-    viewModel.getNextStepLiveData(Step.ONSET).observe(getViewLifecycleOwner(),
-        step -> binding.shareNextButton.setOnClickListener(v -> viewModel.nextStep(step)));
+    shareDiagnosisViewModel.getNextStepLiveData(Step.ONSET).observe(getViewLifecycleOwner(),
+        step -> binding.shareNextButton.setOnClickListener(
+            v -> shareDiagnosisViewModel.nextStep(step)));
 
-    viewModel.getPreviousStepLiveData(Step.ONSET).observe(getViewLifecycleOwner(),
+    shareDiagnosisViewModel.getPreviousStepLiveData(Step.ONSET).observe(getViewLifecycleOwner(),
         step -> binding.sharePreviousButton.setOnClickListener(v -> {
           KeyboardHelper.maybeHideKeyboard(requireContext(), view);
-          viewModel.previousStep(step);
+          shareDiagnosisViewModel.previousStep(step);
         }));
   }
 
@@ -167,14 +176,14 @@ public class ShareDiagnosisOnsetDateFragment extends Fragment {
     // Always save hasSymptoms input if there is one
     int checkedId = hasSymptomsRadioGroup.getCheckedRadioButtonId();
     if (checkedId > 0) {
-      viewModel.setHasSymptoms(hasSymptomsFromButtonId(checkedId));
+      shareDiagnosisViewModel.setHasSymptoms(hasSymptomsFromButtonId(checkedId));
     }
 
     // Symptom onset date should be set only if user answered "yes" and the entered value onset date
     // is formatted correctly
     final String dateStr = dateEditText.getText().toString();
     if (checkedId == R.id.has_symptoms_yes && isValidDate(dateStr, d -> true)) {
-      viewModel.setSymptomOnsetDate(LocalDate.parse(dateStr, getDateTimeFormatter()));
+      shareDiagnosisViewModel.setSymptomOnsetDate(LocalDate.parse(dateStr, getDateTimeFormatter()));
     }
   }
 
@@ -188,10 +197,6 @@ public class ShareDiagnosisOnsetDateFragment extends Fragment {
         return HasSymptoms.WITHHELD;
     }
     return HasSymptoms.UNSET;
-  }
-
-  private void closeAction() {
-    ShareDiagnosisActivity.showCloseWarningAlertDialog(requireActivity(), viewModel);
   }
 
   /**
@@ -245,12 +250,14 @@ public class ShareDiagnosisOnsetDateFragment extends Fragment {
       if (!TextUtils.isEmpty(dateStr)
           && !isValidDate(
           dateStr, dateInMillis -> DiagnosisEntityHelper.isNotInFuture(clock, dateInMillis))) {
-        maybeShowSnackbar(getString(R.string.input_error_onset_date_future));
+        SnackbarUtil.maybeShowRegularSnackbar(
+            getView(), getString(R.string.input_error_onset_date_future));
       } else if (!TextUtils.isEmpty(dateStr)
           && !isValidDate(
           dateStr,
           dateInMillis -> DiagnosisEntityHelper.isWithinLast14Days(clock, dateInMillis))) {
-        maybeShowSnackbar(getString(R.string.input_error_onset_date_past, "14"));
+        SnackbarUtil.maybeShowRegularSnackbar(
+            getView(), getString(R.string.input_error_onset_date_past, "14"));
       }
     }
   }
@@ -268,16 +275,9 @@ public class ShareDiagnosisOnsetDateFragment extends Fragment {
     return questionAnswered && (!hasSymptoms || haveValidDate);
   }
 
-  private void maybeShowSnackbar(String message) {
-    View rootView = getView();
-    if (rootView != null) {
-      Snackbar.make(rootView, message, Snackbar.LENGTH_LONG).show();
-    }
-  }
-
   @Nullable
   private LocalDate getOnsetDateOrNull() {
-    DiagnosisEntity diagnosis = viewModel.getCurrentDiagnosisLiveData().getValue();
+    DiagnosisEntity diagnosis = shareDiagnosisViewModel.getCurrentDiagnosisLiveData().getValue();
     if (diagnosis != null && diagnosis.getOnsetDate() != null) {
       return diagnosis.getOnsetDate();
     }
