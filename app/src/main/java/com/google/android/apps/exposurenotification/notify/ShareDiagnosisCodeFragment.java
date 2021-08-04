@@ -17,6 +17,14 @@
 
 package com.google.android.apps.exposurenotification.notify;
 
+import static com.google.android.apps.exposurenotification.nearby.ExposureNotificationClientWrapper.ACTION_VERIFICATION_LINK;
+import static com.google.android.apps.exposurenotification.nearby.ExposureNotificationClientWrapper.EN_MODULE_PERMISSION;
+
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -30,16 +38,21 @@ import android.widget.LinearLayout;
 import android.widget.ViewSwitcher;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import com.google.android.apps.exposurenotification.BuildConfig;
 import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.common.AbstractTextWatcher;
+import com.google.android.apps.exposurenotification.common.IntentUtil;
 import com.google.android.apps.exposurenotification.common.KeyboardHelper;
 import com.google.android.apps.exposurenotification.common.SnackbarUtil;
 import com.google.android.apps.exposurenotification.databinding.FragmentShareDiagnosisCodeBinding;
+import com.google.android.apps.exposurenotification.notify.ShareDiagnosisFlowHelper.ShareDiagnosisFlow;
 import com.google.android.apps.exposurenotification.notify.ShareDiagnosisViewModel.EnterCodeStepReturnValue;
 import com.google.android.apps.exposurenotification.notify.ShareDiagnosisViewModel.Step;
 import com.google.android.apps.exposurenotification.storage.DiagnosisEntity.Shared;
 import com.google.android.apps.exposurenotification.utils.UrlUtils;
+import com.google.common.base.Optional;
 import dagger.hilt.android.AndroidEntryPoint;
+import java.util.Locale;
 
 /**
  * The first step of the diagnosis flow, in which the user enters a verification code.
@@ -47,7 +60,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class ShareDiagnosisCodeFragment extends ShareDiagnosisBaseFragment {
 
-  private static final String TAG = "ShareDiagnosisCodeFrag";
+  private static final String DATA_SCHEME = "https";
   private static final int VIEW_NOT_SET = -1;
 
   private final TextWatcher verificationCodeTextWatcher = new AbstractTextWatcher() {
@@ -72,6 +85,8 @@ public class ShareDiagnosisCodeFragment extends ShareDiagnosisBaseFragment {
 
   @Nullable
   private String verifiedCode = null;
+  @Nullable
+  private BroadcastReceiver codeFromSMSBroadcastReceiver = null;
 
   @Override
   public View onCreateView(
@@ -98,6 +113,11 @@ public class ShareDiagnosisCodeFragment extends ShareDiagnosisBaseFragment {
 
     binding.shareVerifyButton.setEnabled(!TextUtils.isEmpty(verificationCode.getText()));
 
+    if (ShareDiagnosisFlow.SELF_REPORT.equals(shareDiagnosisViewModel.getShareDiagnosisFlow())) {
+      String healthAuthorityName = getString(R.string.health_authority_name);
+      binding.codeHelp.setText(getString(R.string.enter_code_help, healthAuthorityName));
+    }
+
     binding.shareVerifyButton
         .setOnClickListener(v -> {
           KeyboardHelper.maybeHideKeyboard(requireContext(), view);
@@ -118,7 +138,7 @@ public class ShareDiagnosisCodeFragment extends ShareDiagnosisBaseFragment {
 
     shareDiagnosisViewModel.getCurrentDiagnosisLiveData().observe(getViewLifecycleOwner(),
         diagnosisEntity -> {
-          if (!shareDiagnosisViewModel.isUiToBeRestoredFromSavedState()) {
+          if (!shareDiagnosisViewModel.isCodeUiToBeRestoredFromSavedState()) {
             // We didn't populate UI with data from the saved instance state, so populate UI now.
             if (DiagnosisEntityHelper.hasVerified(diagnosisEntity)
                 && !Shared.SHARED.equals(diagnosisEntity.getSharedStatus())) {
@@ -131,6 +151,7 @@ public class ShareDiagnosisCodeFragment extends ShareDiagnosisBaseFragment {
               verified.announceForAccessibility(getString(R.string.share_test_identifier_verified));
               verificationCode.setEnabled(shareDiagnosisViewModel.isResumingAndNotConfirmed());
               verificationCode.setText(diagnosisEntity.getVerificationCode());
+              verificationCode.setSelection(verificationCode.getText().length());
               shareAdvanceSwitcher.setDisplayedChild(1);
             } else {
               // Not yet verified, allow user to enter a code and verify.
@@ -138,26 +159,23 @@ public class ShareDiagnosisCodeFragment extends ShareDiagnosisBaseFragment {
               shareAdvanceSwitcher.setDisplayedChild(0);
             }
           } else {
-            shareDiagnosisViewModel.markUiToBeRestoredFromSavedState(false);
+            shareDiagnosisViewModel.markCodeUiToBeRestoredFromSavedState(false);
           }
 
           binding.home.setOnClickListener(v -> {
             KeyboardHelper.maybeHideKeyboard(requireContext(), view);
-            // Only show the dialog if has been verified.
-            if (DiagnosisEntityHelper.hasVerified(diagnosisEntity)) {
-              showCloseWarningAlertDialog();
-            } else {
-              closeShareDiagnosisFlow();
-            }
+            maybeCloseShareDiagnosisFlow(DiagnosisEntityHelper.hasVerified(diagnosisEntity));
           });
         });
 
-    binding.learnMoreButton.setText(getString(
-        R.string.share_test_identifier_link, getString(R.string.health_authority_website_url)));
-
     binding.learnMoreButton.setOnClickListener(
-        v -> UrlUtils
-            .openUrl(view, getString(R.string.share_verification_code_learn_more_url)));
+        v -> {
+          String learnMoreLink = ShareDiagnosisFlow.SELF_REPORT.equals(
+              shareDiagnosisViewModel.getShareDiagnosisFlow())
+              ? getString(R.string.en_reporting_info_link)
+              : getString(R.string.share_verification_code_learn_more_url);
+          UrlUtils.openUrl(view, learnMoreLink);
+        });
 
     shareDiagnosisViewModel.getSnackbarSingleLiveEvent()
         .observe(getViewLifecycleOwner(), message ->
@@ -184,6 +202,7 @@ public class ShareDiagnosisCodeFragment extends ShareDiagnosisBaseFragment {
         .enterCodeStep(codeStepFromDeepLink);
     if (enterCodeStepReturnValue.verificationCodeToPrefill().isPresent()) {
       verificationCode.setText(enterCodeStepReturnValue.verificationCodeToPrefill().get());
+      verificationCode.setSelection(verificationCode.getText().length());
     }
     if (enterCodeStepReturnValue.revealPage()) {
       binding.verifyProgressIndicator.hide();
@@ -221,6 +240,7 @@ public class ShareDiagnosisCodeFragment extends ShareDiagnosisBaseFragment {
         codeInput -> {
           if (codeInput != null) {
             verificationCode.setText(codeInput);
+            verificationCode.setSelection(verificationCode.getText().length());
             binding.shareVerifyButton.setEnabled(!TextUtils.isEmpty(codeInput));
           }
         });
@@ -245,12 +265,43 @@ public class ShareDiagnosisCodeFragment extends ShareDiagnosisBaseFragment {
     super.onResume();
     // Listen to verification code input changes.
     binding.shareTestIdentifier.addTextChangedListener(verificationCodeTextWatcher);
+    // Register a broadcast receiver for a verification code from the intercepted SMS but only
+    // if reading a verification code from the intercepted SMS is enabled.
+    if (ShareDiagnosisFlowHelper.isSmsInterceptEnabled(requireContext())
+        && codeFromSMSBroadcastReceiver == null) {
+      EditText verificationCode = binding.shareTestIdentifier;
+      String host = BuildConfig.APP_LINK_HOST.toLowerCase(Locale.ROOT);
+      // Set up Intent Filter
+      IntentFilter intentFilter = new IntentFilter();
+      intentFilter.addAction(ACTION_VERIFICATION_LINK);
+      intentFilter.addDataScheme(DATA_SCHEME);
+      intentFilter.addDataAuthority(host, /* port= */null);
+
+      codeFromSMSBroadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+          Uri deepLinkUri = intent.getData();
+          Optional<String> code = IntentUtil.maybeGetCodeFromDeepLinkUri(deepLinkUri);
+          if (code.isPresent()) {
+            verificationCode.setText(code.get());
+            verificationCode.setSelection(verificationCode.getText().length());
+          }
+        }
+      };
+
+      requireContext().registerReceiver(codeFromSMSBroadcastReceiver, intentFilter,
+          EN_MODULE_PERMISSION, /* scheduler= */null);
+    }
   }
 
   @Override
   public void onPause() {
     super.onPause();
     binding.shareTestIdentifier.removeTextChangedListener(verificationCodeTextWatcher);
+    if (codeFromSMSBroadcastReceiver != null) {
+      requireContext().unregisterReceiver(codeFromSMSBroadcastReceiver);
+      codeFromSMSBroadcastReceiver = null;
+    }
   }
 
   @Override
@@ -263,6 +314,13 @@ public class ShareDiagnosisCodeFragment extends ShareDiagnosisBaseFragment {
   public void onDestroyView() {
     super.onDestroyView();
     binding = null;
+  }
+
+  @Override
+  public boolean onBackPressed() {
+    super.onBackPressed();
+    saveInstanceState();
+    return true;
   }
 
   /**
@@ -281,6 +339,6 @@ public class ShareDiagnosisCodeFragment extends ShareDiagnosisBaseFragment {
     shareDiagnosisViewModel.setCodeInputEnabledForCodeStep(binding.shareTestIdentifier.isEnabled());
     shareDiagnosisViewModel.setCodeInputForCodeStep(codeInput);
     shareDiagnosisViewModel.setVerifiedCodeForCodeStep(verifiedCode);
-    shareDiagnosisViewModel.markUiToBeRestoredFromSavedState(true);
+    shareDiagnosisViewModel.markCodeUiToBeRestoredFromSavedState(true);
   }
 }

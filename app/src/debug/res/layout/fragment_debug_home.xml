@@ -212,6 +212,15 @@
         android:layout_marginHorizontal="@dimen/padding_large"
         android:text="@string/debug_verification_code_create_button_text" />
 
+      <Button
+        android:id="@+id/debug_create_verifiable_sms_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/padding_normal"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginHorizontal="@dimen/padding_large"
+        android:text="@string/debug_verifiable_sms_create_button_text" />
+
       <LinearLayout
         android:id="@+id/debug_verification_code_container"
         android:visibility="gone"

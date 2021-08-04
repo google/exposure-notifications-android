@@ -29,8 +29,9 @@
   <string name="onboarding_finish_title">노출 알림을 사용 설정하려면 계속해서 권한 필요</string>
   <string name="onboarding_exposure_notifications_title">노출 알림 사용 설정</string>
   <string name="onboarding_exposure_notifications_detail">코로나19에 걸렸다고 신고한 사람의 근처에 간 적이 있다면 알려 줍니다.
-    \n\n휴대전화가 블루투스를 사용하여 근처 휴대전화의 임의 ID를 안전하게 수집 및 공유합니다.
-    \n\n잠재적인 노출과 관련된 날짜, 기간, 신호 강도는 공공 보건 당국에서 설정한 매개변수를 기준으로 알림을 보낼지 결정하는 데 사용됩니다.</string>
+    \n\n휴대전화에서 블루투스를 사용하여 근처 휴대전화의 임의 ID를 안전하게 수집 및 공유합니다.
+    \n\n잠재적인 노출과 관련된 날짜, 기간, 신호 강도는 공공 보건 당국에서 설정한 매개변수를 기준으로 알림을 보낼지 결정하는 데 사용됩니다.
+    \n\n양성 판정을 받으면 결과를 보건 당국과 공유하라는 알림을 받을 수 있습니다.</string>
   <string name="onboarding_metrics_title">앱 개선에 참여하기</string>
   <string name="onboarding_metrics_subtitle">Google에 앱 사용 정보 및 성능 데이터 공유</string>
   <string name="onboarding_metrics_description">앱을 유지관리하고 개선하기 위해 앱 성능 및 사용과 관련된 일부 익명화된 데이터가 Google과 제한적으로 공유됩니다. 이 데이터로는 사용자 식별이 불가능합니다. %1$s</string>
@@ -61,9 +62,9 @@
   <string name="using_en_helps_even_if_vaccinated">백신 접종을 받았더라도 이 서비스를 사용하면 지역사회를 안전하게 보호하는 데 도움이 됩니다.</string>
   <string name="share_begin_title">지역사회 보호하기</string>
   <string name="share_close_title">공유하지 않고 종료하시겠습니까?</string>
-  <string name="share_close_detail">검사 결과를 빨리 공유하면 지역사회에 더 큰 도움이 됩니다. 지금까지 입력한 검사 결과 정보는 앱에 저장되어 나중에 수정할 수 있습니다.</string>
+  <string name="share_close_detail">지역 사회를 돕는 최고의 방법은 가능한 한 빨리 결과를 공유하는 것입니다. 지금 공유하지 않고 종료하면 나중에 중단한 부분부터 이어서 진행할 수 있습니다.</string>
   <string name="btn_resume_later">예, 종료합니다</string>
-  <string name="verify_test_result_title">코로나19 검사 정보 입력하기</string>
+  <string name="verify_test_result_title">인증 코드 입력</string>
   <string name="enter_your_test_identifier">인증 코드</string>
   <string name="share_test_identifier_help">검사 결과를 인증하기 위한 일회성 코드입니다.</string>
   <string name="share_test_identifier_verified">코드 확인됨</string>
@@ -73,30 +74,29 @@
   <string name="test_date_label">증상 시작 날짜</string>
   <string name="share_onset_symptoms">예</string>
   <string name="share_onset_no_symptoms">아니요</string>
-  <string name="share_onset_no_answer">응답하고 싶지 않음</string>
+  <string name="share_onset_no_answer">답변하고 싶지 않음</string>
   <string name="share_travel_title">지난 14일 동안 여행을 가신 적이 있나요?</string>
   <string name="share_travel_confirmed">예</string>
   <string name="share_travel_no_travel">아니요</string>
-  <string name="share_travel_no_answer">응답하고 싶지 않음</string>
+  <string name="share_travel_no_answer">답변하고 싶지 않음</string>
   <string name="share_review_title">정보 검토하기</string>
   <string name="share_review_status_subtitle">코로나19 검사 결과</string>
   <string name="share_review_status_confirmed">양성</string>
   <string name="share_review_status_likely">양성일 가능성 있음</string>
   <string name="share_review_status_negative">음성</string>
-  <string name="share_review_onset_subtitle">증상 정보</string>
-  <string name="share_review_onset_date">%1$s부터 증상 발현</string>
+  <string name="share_review_onset_subtitle">증상</string>
+  <string name="share_review_onset_date">%1$s부터 나타나기 시작</string>
   <string name="share_review_onset_no_symptoms">증상 없음</string>
   <string name="share_review_onset_no_answer">응답하지 않음</string>
-  <string name="share_review_travel_subtitle">여행 이력</string>
-  <string name="share_review_travel_confirmed">지난 14일 동안 여행한 적 있음</string>
+  <string name="share_review_travel_subtitle">여행</string>
+  <string name="share_review_travel_confirmed">지난 14일 이내</string>
   <string name="share_review_travel_no_travel">지난 14일 동안 여행한 적 없음</string>
   <string name="share_review_travel_no_answer">응답하지 않음</string>
   <string name="share_confirm_title">코로나19 검사 결과를 공유해 주셔서 감사합니다</string>
   <string name="not_shared_confirm_title">검사 결과가 공유되지 않았습니다</string>
   <string name="not_shared_confirm_detail">코로나19 검사 결과가 공유되지 않았습니다. 다시 시도해 보세요.</string>
   <string name="status_shared_detail_title">공유된 코로나19 검사 결과</string>
-  <string name="delete_test_result_title">코로나19 검사 결과를 삭제하시겠습니까?</string>
-  <string name="delete_test_result_detail">앱에서 검사 결과 세부정보가 삭제됩니다.</string>
+  <string name="delete_test_result_title">검사 결과를 삭제하시겠습니까?</string>
   <string name="delete_test_result_confirmed">검사 결과가 삭제되었습니다.</string>
   <string name="share_error_no_internet">오프라인에서는 검사 결과를 공유할 수 없습니다. 인터넷 연결을 확인한 후 다시 시도해 보세요.</string>
   <string name="share_vaccination_title">코로나19 백신 접종을 받으셨나요?</string>
@@ -104,7 +104,30 @@
   <string name="share_vaccination_learn_more">자세히 알아보기</string>
   <string name="share_vaccination_vaccinated">예, 백신 접종을 받았습니다</string>
   <string name="share_vaccination_not_vaccinated">아니요</string>
-  <string name="share_vaccination_unknown">응답하고 싶지 않습니다</string>
+  <string name="share_vaccination_unknown">답변하고 싶지 않음</string>
+  <string name="do_you_have_code_title">코드를 받으셨나요?</string>
+  <string name="do_you_have_code_content">코로나19 양성 판정을 받으면 일반적으로 보건 당국에서 검사 결과를 공유할 수 있도록 전화나 문자로 인증 코드를 보내드립니다.</string>
+  <string name="btn_i_have_code">예, 코드가 있습니다</string>
+  <string name="btn_i_need_code">코드가 필요합니다</string>
+  <string name="get_verification_code_title">인증 코드 받기</string>
+  <string name="phone_number_prompt">전화번호</string>
+  <string name="phone_number_help">인증 코드를 통해 검사 결과를 공유할 수 있습니다. 입력하신 전화번호로 코드가 전송됩니다.</string>
+  <string name="phone_number_may_be_stored_help">검사 결과를 1회 넘어 제출할 수 없도록 하기 위해 공공 보건 당국에서 전화번호를 임시로 보관할 수 있습니다.</string>
+  <string name="test_date_prompt">검사 날짜</string>
+  <string name="test_date_help">검사 날짜는 지난 14일 이내여야 합니다.</string>
+  <string name="tested_for_covid_checkbox_text">지난 14일 이내에 코로나19 양성 판정을 받았습니다.</string>
+  <string name="btn_send_code">코드 전송</string>
+  <string name="enter_code_help">%1$s에서 보낸 코드를 입력하세요.</string>
+  <string name="positive_result_already_reported_title">최근에 검사 결과를 이미 신고했습니다</string>
+  <string name="positive_result_already_reported_content">다시 검사 결과를 신고하려면 %1$s에 문의하세요.</string>
+  <string name="self_report_bad_code">잘못된 코드입니다. 인증 코드를 요청한 기기와 입력하는 기기가 동일해야 합니다.</string>
+  <string name="self_report_bad_phone_number">전화번호를 확인한 후 다시 시도하세요. %1$s</string>
+  <string name="self_report_code_requested_too_many_times">요청 횟수가 너무 많습니다. 계속 코드가 필요하면 %1$s에 문의하세요.</string>
+  <plurals name="self_report_code_already_requested">
+    <item quantity="one">요청 횟수가 너무 많습니다. %1$d분 후에 다시 코드를 요청할 수 있습니다.</item>
+    <item quantity="other">요청 횟수가 너무 많습니다. %1$d분 후에 다시 코드를 요청할 수 있습니다.</item>
+  </plurals>
+  <string name="notify_others_notification_title">코로나19에 노출되었을 가능성이 있는 다른 사람들에게 알리기</string>
   <string name="settings_exposure_notifications_subtitle">노출 알림</string>
   <string name="settings_app_analytics_subtitle">앱 사용 정보 및 성능 데이터 공유</string>
   <string name="settings_privacy_policy">개인정보처리방침</string>
@@ -166,4 +189,9 @@
   <string name="private_analytics_footer_learn_more">자세히 알아보기</string>
   <string name="diagnosis_subtitle_template">%2$s %1$s</string>
   <string name="empty_share_history_body">공유 기록 없음</string>
+  <string name="share_diagnosis_share_test_result_title">%1$s 앱과 검사 결과 공유</string>
+  <string name="share_diagnosis_share_test_result_subtitle">코로나19 확산 방지에 도움을 주셔서 감사합니다</string>
+  <string name="share_diagnosis_share_test_result_body">검사 결과를 공유할 때 원하는 경우 증상이 나타난 시기도 공유할 수 있습니다. 이 정보는 코로나19의 확산을 막고 생명을 구하는 데 도움이 될 수 있습니다.</string>
+  <string name="sms_intercept_notice_title">새로운 기능</string>
+  <string name="sms_intercept_notice_content">현지 보건 당국에서 검사 결과를 보내면 앱에서 결과를 제출하고 노출 가능성을 다른 사람에게 알리도록 알림을 보낼 수 있습니다. 설정에서 언제든지 사용 중지할 수 있습니다.</string>
 </resources>

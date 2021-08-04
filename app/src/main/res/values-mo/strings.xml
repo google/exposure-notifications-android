@@ -30,7 +30,8 @@
   <string name="onboarding_exposure_notifications_title">Activați Notificările privind expunerea</string>
   <string name="onboarding_exposure_notifications_detail">Primiți notificări dacă v-ați apropiat de o persoană care a semnalat că este infectată cu COVID-19.
     \n\nTelefonul dvs. folosește Bluetooth pentru a colecta și a trimite în siguranță ID-uri aleatorii la alte telefoane din apropiere.
-    \n\nData, durata și puterea semnalului asociate unei posibile expuneri vor fi folosite pentru a se stabili dacă veți primi notificări pe baza parametrilor prevăzuți de autoritatea dvs. de sănătate publică.</string>
+    \n\nData, durata și puterea semnalului asociate unei posibile expuneri vor fi folosite pentru a se stabili dacă veți primi notificări pe baza parametrilor prevăzuți de autoritatea dvs. de sănătate publică.
+    \n\nDacă obțineți un rezultat pozitiv al testului, este posibil să primiți un memento pentru a trimite rezultatul autorității de sănătate.</string>
   <string name="onboarding_metrics_title">Ajutați-ne să îmbunătățim aplicația</string>
   <string name="onboarding_metrics_subtitle">Trimiteți datele despre performanță și utilizare la Google</string>
   <string name="onboarding_metrics_description">Pentru a ne ajuta să întreținem și să îmbunătățim aplicația, anumite date limitate cu informațiile de identificare eliminate despre performanța și utilizarea aplicației se trimit la Google. Aceste date nu vă identifică. %1$s</string>
@@ -61,10 +62,10 @@
   <string name="notify_turn_on_exposure_notifications_header">Ca să primiți notificări privind posibila expunere la COVID-19, activați Notificările privind expunerea. %1$s</string>
   <string name="using_en_helps_even_if_vaccinated">Prin folosirea acestui serviciu, vă protejați comunitatea, chiar dacă v-ați vaccinat.</string>
   <string name="share_begin_title">Protejați-vă comunitatea</string>
-  <string name="share_close_title">Ieșiți fără să trimiteți?</string>
-  <string name="share_close_detail">Protejați comunitatea trimițând rapid rezultatul testului. Informațiile privind rezultatul testului pe care le-ați introdus până acum sunt salvate în aplicație ca să puteți relua mai târziu editarea.</string>
-  <string name="btn_resume_later">Da, ies</string>
-  <string name="verify_test_result_title">Introduceți informații privind testul COVID-19</string>
+  <string name="share_close_title">Închideți fără să trimiteți?</string>
+  <string name="share_close_detail">Cea mai bună modalitate de a vă ajuta comunitatea este să trimiteți cât mai curând rezultatul. Dacă închideți acum fără să trimiteți, puteți să reluați de unde ați rămas dacă vă răzgândiți ulterior.</string>
+  <string name="btn_resume_later">Da, închid</string>
+  <string name="verify_test_result_title">Introduceți codul de verificare</string>
   <string name="enter_your_test_identifier">Cod de verificare</string>
   <string name="share_test_identifier_help">Acest cod unic se folosește pentru a verifica rezultatul testului.</string>
   <string name="share_test_identifier_verified">Cod validat</string>
@@ -84,20 +85,19 @@
   <string name="share_review_status_confirmed">Pozitiv</string>
   <string name="share_review_status_likely">Probabil</string>
   <string name="share_review_status_negative">Negativ</string>
-  <string name="share_review_onset_subtitle">Informații despre simptome</string>
-  <string name="share_review_onset_date">Simptome din %1$s</string>
+  <string name="share_review_onset_subtitle">Simptome</string>
+  <string name="share_review_onset_date">Au debutat pe %1$s</string>
   <string name="share_review_onset_no_symptoms">Fără simptome</string>
   <string name="share_review_onset_no_answer">Nu a răspuns</string>
-  <string name="share_review_travel_subtitle">Istoricul călătoriilor</string>
-  <string name="share_review_travel_confirmed">A călătorit în ultimele 14 zile</string>
+  <string name="share_review_travel_subtitle">Călătorii</string>
+  <string name="share_review_travel_confirmed">În ultimele 14 zile</string>
   <string name="share_review_travel_no_travel">Nu a călătorit în ultimele 14 zile</string>
   <string name="share_review_travel_no_answer">Nu a răspuns</string>
   <string name="share_confirm_title">Vă mulțumim că ne-ați comunicat rezultatul testului dvs. COVID-19</string>
   <string name="not_shared_confirm_title">Rezultatul testului nu a fost trimis</string>
   <string name="not_shared_confirm_detail">Rezultatul testului pentru COVID-19 nu a fost trimis. Încercați din nou.</string>
   <string name="status_shared_detail_title">Rezultatul testului privind COVID-19 trimis</string>
-  <string name="delete_test_result_title">Ștergeți rezultatul testului COVID-19?</string>
-  <string name="delete_test_result_detail">Detaliile privind rezultatul testului se vor șterge din această aplicație.</string>
+  <string name="delete_test_result_title">Ștergeți rezultatul testului?</string>
   <string name="delete_test_result_confirmed">Rezultatul testului a fost șters</string>
   <string name="share_error_no_internet">Nu puteți trimite rezultatele testelor dacă sunteți offline. Verificați conexiunea la internet și încercați din nou.</string>
   <string name="share_vaccination_title">V-ați făcut vaccinul împotriva COVID-19?</string>
@@ -106,6 +106,30 @@
   <string name="share_vaccination_vaccinated">Da, m-am vaccinat</string>
   <string name="share_vaccination_not_vaccinated">Nu</string>
   <string name="share_vaccination_unknown">Prefer să nu răspund</string>
+  <string name="do_you_have_code_title">Ați primit un cod?</string>
+  <string name="do_you_have_code_content">Dacă obțineți un rezultat pozitiv al testului pentru COVID-19, autoritatea de sănătate vă comunică de obicei un cod de verificare prin apel sau mesaj text, ca să puteți trimite rezultatul.</string>
+  <string name="btn_i_have_code">Da, am un cod</string>
+  <string name="btn_i_need_code">Am nevoie de un cod</string>
+  <string name="get_verification_code_title">Primiți un cod de verificare</string>
+  <string name="phone_number_prompt">Număr de telefon</string>
+  <string name="phone_number_help">Cu ajutorul codului de verificare, putem trimite rezultatul testului. Codul va fi trimis la numărul pe care l-ați indicat.</string>
+  <string name="phone_number_may_be_stored_help">Pentru a împiedica utilizatorii să trimită mai multe rezultate, numărul dvs. de telefon poate fi stocat temporar de autoritatea de sănătate publică.</string>
+  <string name="test_date_prompt">Data testului</string>
+  <string name="test_date_help">Data testului trebuie să fie în ultimele 14 zile.</string>
+  <string name="tested_for_covid_checkbox_text">Am primit un rezultat pozitiv la testul pentru COVID-19 în ultimele 14 zile.</string>
+  <string name="btn_send_code">Trimite codul</string>
+  <string name="enter_code_help">Introduceți codul trimis de %1$s.</string>
+  <string name="positive_result_already_reported_title">Ați raportat recent un rezultat al testului.</string>
+  <string name="positive_result_already_reported_content">Dacă doriți să raportați un alt rezultat al testului, luați legătura cu %1$s.</string>
+  <string name="self_report_bad_code">Cod nevalid. Asigurați-vă că folosiți același dispozitiv pentru a solicita și a introduce codul de verificare.</string>
+  <string name="self_report_bad_phone_number">Verificați numărul și încercați din nou. %1$s</string>
+  <string name="self_report_code_requested_too_many_times">Ați trimis prea multe solicitări. Luați legătura cu %1$s dacă mai aveți nevoie de un cod.</string>
+  <plurals name="self_report_code_already_requested">
+    <item quantity="one">Ați trimis prea multe solicitări. Puteți solicita alt cod peste %1$d minut.</item>
+    <item quantity="few">Ați trimis prea multe solicitări. Puteți solicita alt cod peste %1$d minute.</item>
+    <item quantity="other">Ați trimis prea multe solicitări. Puteți solicita alt cod peste %1$d de minute.</item>
+  </plurals>
+  <string name="notify_others_notification_title">Ajutați-ne să notificăm alți utilizatori care au fost expuși</string>
   <string name="settings_exposure_notifications_subtitle">Notificări privind expunerea</string>
   <string name="settings_app_analytics_subtitle">Permiteți accesul la performanță și utilizare</string>
   <string name="settings_privacy_policy">Politica de confidențialitate</string>
@@ -167,4 +191,9 @@
   <string name="private_analytics_footer_learn_more">Aflați mai multe</string>
   <string name="diagnosis_subtitle_template">%1$s, %2$s</string>
   <string name="empty_share_history_body">Nu există un istoric al trimiterilor</string>
+  <string name="share_diagnosis_share_test_result_title">Trimiteți rezultatul testului folosind %1$s</string>
+  <string name="share_diagnosis_share_test_result_subtitle">Vă mulțumim pentru că ajutați la combaterea pandemiei de COVID-19.</string>
+  <string name="share_diagnosis_share_test_result_body">Când trimiteți rezultatul, puteți și să transmiteți când au debutat simptomele. Aceste informații pot contribui la combaterea răspândirii COVID-19 și la salvarea vieților.</string>
+  <string name="sms_intercept_notice_title">Noutăți</string>
+  <string name="sms_intercept_notice_content">Dacă autoritatea de sănătate locală vă trimite rezultatul testului, aplicația vă poate notifica printr-un memento să trimiteți rezultatul și să avertizați alți utilizatori cu privire la expunerea potențială. Puteți dezactiva oricând opțiunea din setări.</string>
 </resources>

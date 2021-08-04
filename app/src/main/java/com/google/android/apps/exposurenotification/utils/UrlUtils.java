@@ -21,10 +21,10 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.text.style.URLSpan;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.common.logging.Logger;
 import com.google.android.material.snackbar.Snackbar;
 
 /**
@@ -32,7 +32,7 @@ import com.google.android.material.snackbar.Snackbar;
  */
 public final class UrlUtils {
 
-  private static final String TAG = "UrlUtils";
+  private static final Logger logger = Logger.getLogger("UrlUtils");
   private static final String ALLOWED_SCHEME = "https";
 
   /**
@@ -59,7 +59,7 @@ public final class UrlUtils {
       Snackbar.make(view, R.string.browser_unavailable_error, Snackbar.LENGTH_LONG).show();
     } catch (Exception e) {
       // This might fail if the URL provided by the HA can not be parsed.
-      Log.e(TAG,
+      logger.e(
           String.format("Exception while launching ACTION_VIEW with URL %s", uri.toString()), e);
       Snackbar.make(view, R.string.generic_error_message, Snackbar.LENGTH_LONG).show();
     }

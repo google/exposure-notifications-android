@@ -18,7 +18,6 @@
 package com.google.android.apps.exposurenotification.nearby;
 
 import android.content.Context;
-import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.hilt.Assisted;
 import androidx.hilt.work.WorkerInject;
@@ -35,6 +34,7 @@ import androidx.work.WorkerParameters;
 import com.google.android.apps.exposurenotification.common.Qualifiers.BackgroundExecutor;
 import com.google.android.apps.exposurenotification.common.Qualifiers.ScheduledExecutor;
 import com.google.android.apps.exposurenotification.common.TaskToFutureAdapter;
+import com.google.android.apps.exposurenotification.common.logging.Logger;
 import com.google.android.apps.exposurenotification.keydownload.DiagnosisKeyDownloader;
 import com.google.android.apps.exposurenotification.logging.AnalyticsLogger;
 import com.google.android.apps.exposurenotification.proto.WorkManagerTask.WorkerTask;
@@ -60,7 +60,7 @@ public class ProvideDiagnosisKeysWorker extends ListenableWorker {
    */
   private static final Duration MINIMAL_TEK_PUBLISH_INTERVAL = Duration.ofHours(4);
 
-  private static final String TAG = "ProvideDiagnosisKeysWkr";
+  private static final Logger logcat = Logger.getLogger("ProvideDiagnosisKeysWkr");
 
   private static final Duration GET_DIAGNOSIS_KEY_DATA_MAPPING_TIMEOUT = Duration.ofSeconds(10);
   private static final Duration SET_DIAGNOSIS_KEY_DATA_MAPPING_TIMEOUT = Duration.ofSeconds(10);
@@ -101,8 +101,7 @@ public class ProvideDiagnosisKeysWorker extends ListenableWorker {
   @NonNull
   @Override
   public ListenableFuture<Result> startWork() {
-    Log.d(
-        TAG,
+    logcat.d(
         "Starting worker providing the DiagnosisKeysDataMapping to the API, "
             + "downloading diagnosis key files and submitting "
             + "them to the API for exposure detection, then storing the token used.");
@@ -134,7 +133,7 @@ public class ProvideDiagnosisKeysWorker extends ListenableWorker {
               }
               // Ignore other exceptions thrown during DiagnosisKeyDataMapping calls
               else {
-                Log.e(TAG, "Exception while updating the DiagnosisKeyDataMapping", e);
+                logcat.e("Exception while updating the DiagnosisKeyDataMapping", e);
                 return Futures.immediateVoidFuture();
               }
             },
@@ -159,7 +158,7 @@ public class ProvideDiagnosisKeysWorker extends ListenableWorker {
         .catching(
             Exception.class,
             x -> {
-              Log.e(TAG, "Failure to provide diagnosis keys", x);
+              logcat.e("Failure to provide diagnosis keys", x);
               logger.logWorkManagerTaskFailure(WorkerTask.TASK_PROVIDE_DIAGNOSIS_KEYS, x);
               return Result.failure();
             },
@@ -181,10 +180,10 @@ public class ProvideDiagnosisKeysWorker extends ListenableWorker {
     DiagnosisKeysDataMapping newDkdm = diagnosisKeysDataMapping;
 
     if (previousDkdm.equals(newDkdm)) {
-      Log.d(TAG, "DiagnosisKeysDataMapping unchanged, not requesting update");
+      logcat.d("DiagnosisKeysDataMapping unchanged, not requesting update");
       return Futures.immediateVoidFuture();
     } else {
-      Log.d(TAG, "Updated DiagnosisKeysDataMapping detected, "
+      logcat.d("Updated DiagnosisKeysDataMapping detected, "
           + "calling Nearby.setDiagnosisKeysDataMapping");
 
       return TaskToFutureAdapter.getFutureWithTimeout(

@@ -18,7 +18,6 @@
 package com.google.android.apps.exposurenotification.keyupload;
 
 import android.content.Context;
-import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
 import androidx.hilt.Assisted;
@@ -34,7 +33,9 @@ import androidx.work.WorkerParameters;
 import com.google.android.apps.exposurenotification.common.Qualifiers.BackgroundExecutor;
 import com.google.android.apps.exposurenotification.common.Qualifiers.LightweightExecutor;
 import com.google.android.apps.exposurenotification.common.Qualifiers.ScheduledExecutor;
+import com.google.android.apps.exposurenotification.common.SecureRandomUtil;
 import com.google.android.apps.exposurenotification.common.StringUtils;
+import com.google.android.apps.exposurenotification.common.logging.Logger;
 import com.google.android.apps.exposurenotification.network.DiagnosisKey;
 import com.google.android.apps.exposurenotification.work.WorkerStartupManager;
 import com.google.common.collect.ImmutableList;
@@ -51,13 +52,17 @@ import org.threeten.bp.Duration;
 import org.threeten.bp.LocalDate;
 
 /**
- * A worker that uploads a random number of fake Diagnosis Key uploads each day.
+ * A worker that somewhat randomly executes fake requests to the Verification and Key servers.
  *
- * <p>Somewhat random operation is achieved by skipping some executions at random.
+ * <p>Somewhat random operation is achieved by skipping some executions of the worker at random.
+ * <p>Currently, this worker is executed with a probability of once every 2 days.
+ * <p>Out of 4 RPC calls made by this worker when the worker gets executed, one RPC call to request
+ * a verification code is made with an additional probability (which is once over each 6 actual
+ * non-skipped executions of the worker).
  */
 public final class UploadCoverTrafficWorker extends ListenableWorker {
 
-  private static final String TAG = "UploadCoverTrafficWrk";
+  private static final Logger logger = Logger.getLogger("UploadCoverTrafficWrk");
   private static final TimeUnit REPEAT_INTERVAL_UNITS = TimeUnit.HOURS;
   private static final int KEY_SIZE_BYTES = 16;
   private static final int FAKE_INTERVAL_NUM = 2650847; // Only size matters here, not the value.
@@ -71,6 +76,8 @@ public final class UploadCoverTrafficWorker extends ListenableWorker {
   static final int REPEAT_INTERVAL = 4;
   @VisibleForTesting
   static final double EXECUTION_PROBABILITY = 1.0d / 12.0d;
+  @VisibleForTesting
+  static final double USER_REPORT_RPC_EXECUTION_PROBABILITY = 1.0d / 6.0d;
 
   private final UploadController uploadController;
   private final ExecutorService backgroundExecutor;
@@ -105,7 +112,7 @@ public final class UploadCoverTrafficWorker extends ListenableWorker {
   @NonNull
   @Override
   public ListenableFuture<Result> startWork() {
-    if (!shouldExecute()) {
+    if (!shouldExecute(EXECUTION_PROBABILITY)) {
       // We skip execution with random probability.
       return Futures.immediateFuture(Result.success());
     }
@@ -119,7 +126,10 @@ public final class UploadCoverTrafficWorker extends ListenableWorker {
                 // If the API is not enabled, skip the upload.
                 return Futures.immediateFuture(null);
               }
-              return FluentFuture.from(uploadController.submitCode(fakeCodeRequest()))
+              return FluentFuture.from(maybeRequestCode())
+                  .transformAsync(
+                      unused -> uploadController.submitCode(fakeCodeRequest()),
+                      backgroundExecutor)
                   .transformAsync(
                       upload -> scheduledExecutor
                           .schedule(() -> uploadController.submitKeysForCert(fakeCertRequest()),
@@ -138,14 +148,29 @@ public final class UploadCoverTrafficWorker extends ListenableWorker {
         .catching(Throwable.class, t -> Result.failure(), lightweightExecutor);
   }
 
-  private static Upload fakeCodeRequest() {
-    return Upload.newBuilder("FAKE-VALIDATION-CODE")
+  private ListenableFuture<?> maybeRequestCode() {
+    if (!shouldExecute(USER_REPORT_RPC_EXECUTION_PROBABILITY)) {
+      // We skip execution of the RPC call to request a verification code with random probability.
+      return Futures.immediateVoidFuture();
+    }
+    return uploadController.requestCode(fakeUserReportRequest());
+  }
+
+  private UserReportUpload fakeUserReportRequest() {
+    return UserReportUpload.newBuilder("FAKE-PHONE-NUMBER", SecureRandomUtil.newNonce(secureRandom),
+        LocalDate.now(), /* tzOffsetMin= */0L)
+        .setIsCoverTraffic(true)
+        .build();
+  }
+
+  private Upload fakeCodeRequest() {
+    return Upload.newBuilder("FAKE-VALIDATION-CODE", SecureRandomUtil.newHmacKey(secureRandom))
         .setIsCoverTraffic(true)
         .build();
   }
 
   private Upload fakeCertRequest() {
-    return Upload.newBuilder("FAKE-VALIDATION-CODE")
+    return Upload.newBuilder("FAKE-VALIDATION-CODE", SecureRandomUtil.newHmacKey(secureRandom))
         .setIsCoverTraffic(true)
         .setKeys(fakeKeys())
         .setLongTermToken(StringUtils.randomBase64Data(100))
@@ -153,7 +178,7 @@ public final class UploadCoverTrafficWorker extends ListenableWorker {
   }
 
   private Upload fakeKeyUpload() {
-    return Upload.newBuilder("FAKE-VALIDATION-CODE")
+    return Upload.newBuilder("FAKE-VALIDATION-CODE", SecureRandomUtil.newHmacKey(secureRandom))
         .setIsCoverTraffic(true)
         .setKeys(fakeKeys())
         .setRegions(ImmutableList.of("US", "CA"))
@@ -183,12 +208,22 @@ public final class UploadCoverTrafficWorker extends ListenableWorker {
     return keys.build();
   }
 
-  private boolean shouldExecute() {
-    return secureRandom.nextDouble() < EXECUTION_PROBABILITY;
+  /**
+   * Determines whether the execution (e.g. of a chain of RPC calls or a single RPC call in this
+   * worker) should happen depending on the provided probability of execution.
+   *
+   * <p>The execution should happen if a randomly generated number is less than provided
+   * executionProbability.
+   *
+   * @param executionProbability probability of execution
+   * @return true the execution should happen and false otherwise.
+   */
+  private boolean shouldExecute(double executionProbability) {
+    return secureRandom.nextDouble() < executionProbability;
   }
 
   public static Operation schedule(WorkManager workManager) {
-    Log.i(TAG, "Scheduling periodic WorkManager job...");
+    logger.i("Scheduling periodic WorkManager job...");
     // WARNING: You must set ExistingPeriodicWorkPolicy.REPLACE if you want to change the params for
     //          previous app version users.
     PeriodicWorkRequest workRequest =

@@ -21,6 +21,8 @@ import static com.google.common.truth.Truth.assertThat;
 
 import androidx.lifecycle.LiveData;
 import androidx.test.core.app.ApplicationProvider;
+import androidx.work.WorkManager;
+import com.google.android.apps.exposurenotification.common.NotificationHelper;
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.common.time.RealTimeModule;
 import com.google.android.apps.exposurenotification.riskcalculation.ExposureClassification;
@@ -45,6 +47,7 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 import org.threeten.bp.Instant;
@@ -65,7 +68,13 @@ public class ExposureHomeViewModelTest {
   ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
 
   @Inject
+  NotificationHelper notificationHelper;
+
+  @Inject
   ExposureCheckRepository exposureCheckRepository;
+
+  @Mock
+  WorkManager workManager;
 
   @BindValue
   Clock clock = new FakeClock();
@@ -79,7 +88,8 @@ public class ExposureHomeViewModelTest {
   public void setup() {
     rules.hilt().inject();
     exposureHomeViewModel = new ExposureHomeViewModel(
-        exposureNotificationSharedPreferences, exposureCheckRepository, clock);
+        exposureNotificationSharedPreferences, exposureCheckRepository, notificationHelper, clock,
+        workManager);
   }
 
   @Test
@@ -214,10 +224,10 @@ public class ExposureHomeViewModelTest {
   public void getDaysFromStartOfExposureString_exposure2DaysAgo_returns2DaysAgo() {
     // GIVEN
     ExposureClassification exposureClassification = ExposureClassification
-        .create(0, ExposureClassification.NO_EXPOSURE_CLASSIFICATION_NAME,
-            LocalDate.of(2021, 2, 6).toEpochDay());
+        .create(0,ExposureClassification.NO_EXPOSURE_CLASSIFICATION_NAME,
+            LocalDate.of(2021,2,6).toEpochDay());
     ((FakeClock) clock).set(Instant.from(OffsetDateTime
-        .of(2021, 2, 8, 18, 0, 0, 0, ZoneOffset.UTC)));
+        .of(2021, 2 ,8, 18,0,0,0, ZoneOffset.UTC)));
 
     // WHEN
     String result = exposureHomeViewModel.getDaysFromStartOfExposureString(exposureClassification,

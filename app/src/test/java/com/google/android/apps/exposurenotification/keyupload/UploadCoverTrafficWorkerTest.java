@@ -39,6 +39,7 @@ import com.google.android.apps.exposurenotification.nearby.PackageConfigurationH
 import com.google.android.apps.exposurenotification.storage.DbModule;
 import com.google.android.apps.exposurenotification.storage.ExposureCheckRepository;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationDatabase;
+import com.google.android.apps.exposurenotification.storage.VerificationCodeRequestRepository;
 import com.google.android.apps.exposurenotification.testsupport.ExposureNotificationRules;
 import com.google.android.apps.exposurenotification.testsupport.FakeClock;
 import com.google.android.apps.exposurenotification.testsupport.InMemoryDb;
@@ -62,6 +63,8 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.Mock;
 import org.robolectric.annotation.Config;
+import org.threeten.bp.LocalDate;
+import org.threeten.bp.ZoneOffset;
 
 @HiltAndroidTest
 @RunWith(AndroidJUnit4.class)
@@ -94,6 +97,8 @@ public class UploadCoverTrafficWorkerTest {
   PackageConfigurationHelper packageConfigurationHelper;
   @Inject
   ExposureCheckRepository exposureCheckRepository;
+  @Inject
+  VerificationCodeRequestRepository verificationCodeRequestRepository;
 
   @BindValue
   ExposureNotificationDatabase db = InMemoryDb.create();
@@ -110,14 +115,19 @@ public class UploadCoverTrafficWorkerTest {
     // Randoms below probability result in execution. It's not great for the test to know the
     // internal implementation of the SUT like this. TODO: is there a better way to test?
     when(secureRandom.nextDouble())
-        .thenReturn(UploadCoverTrafficWorker.EXECUTION_PROBABILITY - 0.1d);
+        .thenReturn(UploadCoverTrafficWorker.EXECUTION_PROBABILITY - 0.1d,
+        UploadCoverTrafficWorker.USER_REPORT_RPC_EXECUTION_PROBABILITY - 0.1d);
     // Set up all mocked controller operations to succeed by default.
+    when(uploadController.requestCode(any()))
+        .thenReturn(Futures.immediateFuture(UserReportUpload.newBuilder("dummy-phone-number",
+            "dummy-nonce", LocalDate.from(clock.now().atZone(ZoneOffset.UTC)),
+            /* tzOffsetMin= */0).build()));
     when(uploadController.submitCode(any()))
-        .thenReturn(Futures.immediateFuture(Upload.newBuilder("dummy").build()));
+        .thenReturn(Futures.immediateFuture(Upload.newBuilder("dummy-code", "dummy-key").build()));
     when(uploadController.submitKeysForCert(any()))
-        .thenReturn(Futures.immediateFuture(Upload.newBuilder("dummy").build()));
+        .thenReturn(Futures.immediateFuture(Upload.newBuilder("dummy-code", "dummy-key").build()));
     when(uploadController.upload(any()))
-        .thenReturn(Futures.immediateFuture(Upload.newBuilder("dummy").build()));
+        .thenReturn(Futures.immediateFuture(Upload.newBuilder("dummy-code", "dummy-key").build()));
 
     worker = new UploadCoverTrafficWorker(
         context,
@@ -133,21 +143,42 @@ public class UploadCoverTrafficWorkerTest {
             TestingExecutors.sameThreadScheduledExecutor(),
             packageConfigurationHelper,
             exposureCheckRepository,
+            verificationCodeRequestRepository,
             clock));
   }
 
   @Test
   public void randomExecution_decidesNotToExecute_shouldNotMakeRpcs() throws Exception {
-    // Randoms above probability result in no execution. It's not great for the test to know the
-    // internal implementation of the SUT like this. TODO: is there a better way to test?
+    // Randoms above probability result in no execution.
     when(secureRandom.nextDouble())
         .thenReturn(UploadCoverTrafficWorker.EXECUTION_PROBABILITY + 0.1d);
 
     Result result = worker.startWork().get();
 
+    verify(uploadController, never()).requestCode(any());
     verify(uploadController, never()).submitCode(any());
     verify(uploadController, never()).submitKeysForCert(any());
     verify(uploadController, never()).upload(any());
+    assertThat(result).isEqualTo(Result.success());
+  }
+
+  @Test
+  public void randomExecution_decidesNotToExecuteUserReportRpcButExecutesRest_shouldNotMakeUserReportRpc()
+      throws Exception {
+    // Randoms below probability result in execution and above probability result in no execution.
+    // First, secureRandom.nextDouble() is called to determine if we execute the worker at all.
+    // Then, it is called to determine if we execute the RPC call to /user-report API.
+    when(secureRandom.nextDouble())
+        .thenReturn(UploadCoverTrafficWorker.EXECUTION_PROBABILITY - 0.1d,
+            UploadCoverTrafficWorker.USER_REPORT_RPC_EXECUTION_PROBABILITY + 0.1d);
+    when(exposureNotificationClientWrapper.isEnabled()).thenReturn(Tasks.forResult(true));
+
+    Result result = worker.startWork().get();
+
+    verify(uploadController, never()).requestCode(any());
+    verify(uploadController).submitCode(any());
+    verify(uploadController).submitKeysForCert(any());
+    verify(uploadController).upload(any());
     assertThat(result).isEqualTo(Result.success());
   }
 
@@ -158,6 +189,7 @@ public class UploadCoverTrafficWorkerTest {
 
     Result result = worker.startWork().get();
 
+    verify(uploadController, never()).requestCode(any());
     verify(uploadController, never()).submitCode(any());
     verify(uploadController, never()).submitKeysForCert(any());
     verify(uploadController, never()).upload(any());
@@ -170,6 +202,7 @@ public class UploadCoverTrafficWorkerTest {
 
     Result result = worker.startWork().get();
 
+    verify(uploadController, never()).requestCode(any());
     verify(uploadController, never()).submitCode(any());
     verify(uploadController, never()).submitKeysForCert(any());
     verify(uploadController, never()).upload(any());
@@ -177,7 +210,25 @@ public class UploadCoverTrafficWorkerTest {
   }
 
   @Test
-  public void submitCodeRequest_shouldIncludeIsCoverTrafficAndVerificationCode() throws Exception {
+  public void submitCodeRequest_shouldIncludeIsCoverTrafficAndFieldsRequiredByServer()
+      throws Exception {
+    when(exposureNotificationClientWrapper.isEnabled()).thenReturn(Tasks.forResult(true));
+    ArgumentCaptor<UserReportUpload> captor = ArgumentCaptor.forClass(UserReportUpload.class);
+
+    worker.startWork().get();
+
+    verify(uploadController).requestCode(captor.capture());
+    UserReportUpload upload = captor.getValue();
+    assertThat(upload.isCoverTraffic()).isTrue();
+    assertThat(upload.nonceBase64()).isNotEmpty();
+    assertThat(upload.phoneNumber()).isNotEmpty();
+    assertThat(upload.testDate()).isNotNull();
+    assertThat(upload.tzOffsetMin()).isEqualTo(0L);
+  }
+
+  @Test
+  public void submitVerifyCodeRequest_shouldIncludeIsCoverTrafficAndVerificationCode()
+      throws Exception {
     when(exposureNotificationClientWrapper.isEnabled()).thenReturn(Tasks.forResult(true));
     ArgumentCaptor<Upload> captor = ArgumentCaptor.forClass(Upload.class);
 

@@ -228,6 +228,37 @@ def emitLocaleStrings(config, defaultLocale, locale, outputDir) {
   }
 }
 
+static def setUpSelfReportFields(config, localeSuffix) {
+  def webReportURLMissing = !config.get("webReportURL") || config.get("webReportURL") == ""
+  def testVerificationUserReportURLMissing = !config.get("testVerificationUserReportURL") ||
+          config.get("testVerificationUserReportURL") == ""
+  def selfReportStrings = [
+          "webReportIntroMessage_" + localeSuffix,
+          "webReportDateMessage_" + localeSuffix,
+          "webReportLegalMessage_" + localeSuffix,
+          "webReportPhoneNumberMessage_" + localeSuffix]
+
+  if (webReportURLMissing || testVerificationUserReportURLMissing) {
+    // If either a webReportURL or testVerificationUserReportURL entry is empty or does not exist,
+    // this means that self-reporting is disabled. So, we set these and other related self-reporting
+    // entries to empty values.
+    config["webReportURL"] = "";
+    config["testVerificationUserReportURL"] = ""
+    selfReportStrings.each {
+      config[it] = ""
+    }
+  } else {
+    // Even if self-reporting is enabled, the related self-reporting entries may be missing.
+    // If an entry is missing, set it to a default empty value, so that app can fall back to the
+    // app-owned (i.e. not HA-provided) strings.
+    selfReportStrings.each {
+      if (!config.get(it)) {
+        config[it] = ""
+      }
+    }
+  }
+}
+
 static def escapeString(str) {
   // TODO: Would have also escaped "?", but that wouldn't build
   //       for some reason.
@@ -259,6 +290,15 @@ def generateResources(configData) {
       if (!config.get("vaccinationQuestionText_" + localeSuffix)) {
         config["vaccinationQuestionText_" + localeSuffix] = "";
       }
+      // If a enableTextMessageVerification entry does not exist, we set it to false.
+      if (!config.get("enableTextMessageVerification")) {
+        config["enableTextMessageVerification"] = false;
+      }
+      // If a testVerificationNotificationBody entry does not exist, we set it to the empty string.
+      if (!config.get("testVerificationNotificationBody_" + localeSuffix)) {
+        config["testVerificationNotificationBody_" + localeSuffix] = "";
+      }
+      setUpSelfReportFields(config, localeSuffix)
       doFirst {
         // Emit images.
         emitDrawables(config, outPath)

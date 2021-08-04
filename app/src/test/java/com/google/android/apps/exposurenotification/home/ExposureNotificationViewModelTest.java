@@ -186,6 +186,8 @@ public class ExposureNotificationViewModelTest {
       Tasks.forResult(INACTIVATED_SET);
   private static final int EN_DISABLED_ORDINAL = ExposureNotificationState.DISABLED.ordinal();
   private static final int EN_ENABLED_ORDINAL = ExposureNotificationState.ENABLED.ordinal();
+  private static final Task<Void> TASK_FOR_RESULT_API_EXCEPTION =
+      Tasks.forException(new ApiException(Status.RESULT_INTERNAL_ERROR));
 
   @Mock
   private ExposureNotificationClientWrapper exposureNotificationClientWrapper;
@@ -698,10 +700,10 @@ public class ExposureNotificationViewModelTest {
   }
 
   @Test
-  public void stopExposureNotifications_clientIsNotEnabled_stopNotCalled_enStoppedIsTrue() {
+  public void stopExposureNotifications_clientIsNotEnabled_stopCalled_enStoppedIsTrue() {
     // GIVEN
     // Configure required mock behavior for all methods that should be called.
-    when(exposureNotificationClientWrapper.stop()).thenReturn(TASK_FOR_RESULT_VOID);
+    when(exposureNotificationClientWrapper.stop()).thenReturn(TASK_FOR_RESULT_API_EXCEPTION);
     when(exposureNotificationClientWrapper.isEnabled()).thenReturn(TASK_FOR_RESULT_FALSE);
     when(exposureNotificationClientWrapper.getStatus()).thenReturn(TASK_FOR_INACTIVATED);
     // Ensure the enStoppedLiveEvent sends expected updates
@@ -713,7 +715,7 @@ public class ExposureNotificationViewModelTest {
 
     // THEN
     verify(exposureNotificationClientWrapper, times(2)).isEnabled();
-    verify(exposureNotificationClientWrapper, never()).stop();
+    verify(exposureNotificationClientWrapper, times(1)).stop();
     verify(exposureNotificationClientWrapper).getStatus();
     assertThat(enStopped.get()).isTrue();
   }
@@ -774,6 +776,94 @@ public class ExposureNotificationViewModelTest {
 
     // THEN
     assertThat(exposureNotificationViewModel.isPossibleExposurePresent()).isTrue();
+  }
+
+  @Test
+  public void getShouldShowSmsNoticeLiveData_enDisabled_returnsFalse() {
+    when(exposureNotificationClientWrapper.isEnabled()).thenReturn(TASK_FOR_RESULT_FALSE);
+    when(exposureNotificationClientWrapper.getStatus()).thenReturn(TASK_FOR_ACTIVATED);
+    when(exposureNotificationClientWrapper.getPackageConfiguration())
+        .thenReturn(Tasks.forResult(new PackageConfigurationBuilder().build()));
+    AtomicReference<Boolean> shouldShowSmsNotice = new AtomicReference<>();
+    exposureNotificationViewModel.getShouldShowSmsNoticeLiveData()
+        .observeForever(shouldShowSmsNotice::set);
+
+    exposureNotificationViewModel.refreshState();
+
+    verify(exposureNotificationClientWrapper).isEnabled();
+    verify(exposureNotificationClientWrapper).getPackageConfiguration();
+    assertThat(shouldShowSmsNotice.get()).isEqualTo(false);
+  }
+
+  @Test
+  public void getShouldShowSmsNoticeLiveData_shownInApp_returnsFalse() {
+    when(exposureNotificationClientWrapper.isEnabled()).thenReturn(TASK_FOR_RESULT_TRUE);
+    when(exposureNotificationClientWrapper.getStatus()).thenReturn(TASK_FOR_ACTIVATED);
+    exposureNotificationSharedPreferences.markInAppSmsNoticeSeen();
+    when(exposureNotificationClientWrapper.getPackageConfiguration())
+        .thenReturn(Tasks.forResult(new PackageConfigurationBuilder().build()));
+    AtomicReference<Boolean> shouldShowSmsNotice = new AtomicReference<>();
+    exposureNotificationViewModel.getShouldShowSmsNoticeLiveData()
+        .observeForever(shouldShowSmsNotice::set);
+
+    exposureNotificationViewModel.refreshState();
+
+    verify(exposureNotificationClientWrapper).isEnabled();
+    verify(exposureNotificationClientWrapper).getPackageConfiguration();
+    assertThat(shouldShowSmsNotice.get()).isEqualTo(false);
+  }
+
+  @Test
+  public void getShouldShowSmsNoticeLiveData_shownPackageConfiguration_returnsFalse() {
+    when(exposureNotificationClientWrapper.isEnabled()).thenReturn(TASK_FOR_RESULT_TRUE);
+    when(exposureNotificationClientWrapper.getStatus()).thenReturn(TASK_FOR_ACTIVATED);
+    Bundle bundle = new Bundle();
+    bundle.putBoolean(PackageConfigurationHelper.SMS_NOTICE, true);
+    when(exposureNotificationClientWrapper.getPackageConfiguration())
+        .thenReturn(Tasks.forResult(new PackageConfigurationBuilder().setValues(bundle).build()));
+    AtomicReference<Boolean> shouldShowSmsNotice = new AtomicReference<>();
+    exposureNotificationViewModel.getShouldShowSmsNoticeLiveData()
+        .observeForever(shouldShowSmsNotice::set);
+
+    exposureNotificationViewModel.refreshState();
+
+    verify(exposureNotificationClientWrapper).isEnabled();
+    verify(exposureNotificationClientWrapper).getPackageConfiguration();
+    assertThat(shouldShowSmsNotice.get()).isEqualTo(false);
+  }
+
+  @Test
+  public void getShouldShowSmsNoticeLiveData_packageConfigurationStillComputing_returnsFalse() {
+    when(exposureNotificationClientWrapper.isEnabled()).thenReturn(TASK_FOR_RESULT_TRUE);
+    when(exposureNotificationClientWrapper.getStatus()).thenReturn(TASK_FOR_ACTIVATED);
+    when(exposureNotificationClientWrapper.getPackageConfiguration())
+        .thenReturn(Tasks.forException(new Exception()));
+    AtomicReference<Boolean> shouldShowSmsNotice = new AtomicReference<>();
+    exposureNotificationViewModel.getShouldShowSmsNoticeLiveData()
+        .observeForever(shouldShowSmsNotice::set);
+
+    exposureNotificationViewModel.refreshState();
+
+    verify(exposureNotificationClientWrapper).isEnabled();
+    verify(exposureNotificationClientWrapper).getPackageConfiguration();
+    assertThat(shouldShowSmsNotice.get()).isEqualTo(false);
+  }
+
+  @Test
+  public void getShouldShowSmsNoticeLiveData_enEnabledAndNotShown_returnsTrue() {
+    when(exposureNotificationClientWrapper.isEnabled()).thenReturn(TASK_FOR_RESULT_TRUE);
+    when(exposureNotificationClientWrapper.getStatus()).thenReturn(TASK_FOR_ACTIVATED);
+    when(exposureNotificationClientWrapper.getPackageConfiguration())
+        .thenReturn(Tasks.forResult(new PackageConfigurationBuilder().build()));
+    AtomicReference<Boolean> shouldShowSmsNotice = new AtomicReference<>();
+    exposureNotificationViewModel.getShouldShowSmsNoticeLiveData()
+        .observeForever(shouldShowSmsNotice::set);
+
+    exposureNotificationViewModel.refreshState();
+
+    verify(exposureNotificationClientWrapper).isEnabled();
+    verify(exposureNotificationClientWrapper).getPackageConfiguration();
+    assertThat(shouldShowSmsNotice.get()).isEqualTo(true);
   }
 
 }

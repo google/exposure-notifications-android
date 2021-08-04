@@ -18,7 +18,7 @@
 package com.google.android.apps.exposurenotification.riskcalculation;
 
 import android.text.TextUtils;
-import android.util.Log;
+import com.google.android.apps.exposurenotification.common.logging.Logger;
 import com.google.android.apps.exposurenotification.nearby.DailySummaryWrapper;
 import com.google.android.gms.nearby.exposurenotification.ReportType;
 import java.util.Arrays;
@@ -30,7 +30,7 @@ import java.util.List;
  */
 public class DailySummaryRiskCalculator {
 
-  private static final String TAG = "DailySummaryRiskCalc";
+  private static final Logger logger = Logger.getLogger("DailySummaryRiskCalc");
 
   private final ClassificationThreshold[] classificationThresholds;
 
@@ -43,7 +43,7 @@ public class DailySummaryRiskCalculator {
    */
   public ExposureClassification classifyExposure(List<DailySummaryWrapper> dailySummaries) {
 
-    Log.d(TAG, "Classifying dailySummaries [" + TextUtils.join(", ", dailySummaries)
+    logger.d("Classifying dailySummaries [" + TextUtils.join(", ", dailySummaries)
         + "] using classificationThresholds " + Arrays.toString(classificationThresholds));
 
     // Find the global classification with the highest priority (the LOWEST classification index)

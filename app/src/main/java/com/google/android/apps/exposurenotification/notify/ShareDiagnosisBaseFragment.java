@@ -18,19 +18,40 @@
 package com.google.android.apps.exposurenotification.notify;
 
 import android.os.Bundle;
+import android.os.Parcel;
+import android.text.TextUtils;
 import android.view.View;
 import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.common.SnackbarUtil;
+import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.home.BaseFragment;
+import com.google.android.apps.exposurenotification.storage.DiagnosisEntity;
+import com.google.android.material.datepicker.CalendarConstraints;
+import com.google.android.material.datepicker.CalendarConstraints.DateValidator;
+import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.common.base.Function;
+import dagger.hilt.android.AndroidEntryPoint;
+import javax.inject.Inject;
+import org.threeten.bp.Instant;
+import org.threeten.bp.LocalDate;
+import org.threeten.bp.ZoneOffset;
+import org.threeten.bp.format.DateTimeFormatter;
+import org.threeten.bp.format.FormatStyle;
 
 /** Base {@link Fragment} for the fragments in the Share Diagnosis flow. */
+@AndroidEntryPoint
 public abstract class ShareDiagnosisBaseFragment extends BaseFragment {
 
   protected ShareDiagnosisViewModel shareDiagnosisViewModel;
+
+  @Inject
+  Clock clock;
 
   @CallSuper
   @Override
@@ -40,21 +61,46 @@ public abstract class ShareDiagnosisBaseFragment extends BaseFragment {
         .get(ShareDiagnosisViewModel.class);
 
     if (shareDiagnosisViewModel.isCloseOpen()) {
-      showCloseWarningAlertDialog();
+      showCloseShareDiagnosisFlowAlertDialog();
+    }
+  }
+
+  @Override
+  public boolean onBackPressed() {
+    if (!shareDiagnosisViewModel.backStepIfPossible()) {
+      @Nullable ShareDiagnosisFragment parent = (ShareDiagnosisFragment) getParentFragment();
+      boolean showCloseWarningDialog = parent != null && parent.isShowCloseWarningDialog();
+      maybeCloseShareDiagnosisFlow(showCloseWarningDialog);
+    }
+    return true;
+  }
+
+  /**
+   * Attempts to close the "Share diagnosis" flow. If we need to show a confirmation dialog, we
+   * first show the dialog. Otherwise, we close the flow immediately.
+   *
+   * @param showCloseWarningDialog whether we need to show a confirmation dialog upon exiting the
+   *                               flow.
+   */
+  public void maybeCloseShareDiagnosisFlow(boolean showCloseWarningDialog) {
+    if (showCloseWarningDialog) {
+      showCloseShareDiagnosisFlowAlertDialog();
+    } else {
+      closeShareDiagnosisFlowImmediately();
     }
   }
 
   /**
-   * Shows an alert dialog warning of closing.
+   * Shows an alert dialog warning of closing the sharing flow.
    */
-  public void showCloseWarningAlertDialog() {
+  protected void showCloseShareDiagnosisFlowAlertDialog() {
     shareDiagnosisViewModel.setCloseOpen(true);
     new MaterialAlertDialogBuilder(requireContext(), R.style.ExposureNotificationAlertDialogTheme)
         .setTitle(R.string.share_close_title)
         .setMessage(R.string.share_close_detail)
         .setPositiveButton(R.string.btn_resume_later, (d, w) -> {
           shareDiagnosisViewModel.setCloseOpen(false);
-          closeShareDiagnosisFlow();
+          closeShareDiagnosisFlowImmediately();
         })
         .setNegativeButton(R.string.btn_cancel,
             (d, w) -> {
@@ -65,10 +111,119 @@ public abstract class ShareDiagnosisBaseFragment extends BaseFragment {
         .show();
   }
 
-  protected void closeShareDiagnosisFlow() {
+  /**
+   * Closes the sharing flow immediately.
+   */
+  protected void closeShareDiagnosisFlowImmediately() {
     if (!getParentFragment().getParentFragmentManager().popBackStackImmediate()) {
       getParentFragment().requireActivity().finish();
     }
   }
 
+  /**
+   * Shows an alert dialog warning of deleting a given diagnosis.
+   */
+  protected void showDeleteDiagnosisAlertDialog(DiagnosisEntity diagnosis) {
+    shareDiagnosisViewModel.setDeleteOpen(true);
+    new MaterialAlertDialogBuilder(requireContext(), R.style.ExposureNotificationAlertDialogTheme)
+        .setTitle(R.string.delete_test_result_title)
+        .setCancelable(true)
+        .setPositiveButton(
+            R.string.btn_delete,
+            (d, w) -> {
+              shareDiagnosisViewModel.setDeleteOpen(false);
+              shareDiagnosisViewModel.deleteEntity(diagnosis);
+            })
+        .setNegativeButton(R.string.btn_cancel,
+            (d, w) -> shareDiagnosisViewModel.setDeleteOpen(false))
+        .setOnDismissListener(d -> shareDiagnosisViewModel.setDeleteOpen(false))
+        .setOnCancelListener(d -> shareDiagnosisViewModel.setDeleteOpen(false))
+        .show();
+  }
+
+  /**
+   * Creates a material Date Picker.
+   *
+   * @param defaultDateSelection the default {@link Instant} date selection for the date picker
+   * @return material date picker object.
+   */
+  protected MaterialDatePicker<Long> createMaterialDatePicker(Instant defaultDateSelection) {
+    return MaterialDatePicker.Builder.datePicker()
+        .setCalendarConstraints(
+            new CalendarConstraints.Builder()
+                .setEnd(System.currentTimeMillis())
+                .setValidator(symptomOnsetOrTestDateValidator)
+                .build())
+        .setSelection(defaultDateSelection.toEpochMilli())
+        .build();
+  }
+
+  @SuppressWarnings("unchecked")
+  protected MaterialDatePicker<Long> findMaterialDatePicker(String datePickerTag) {
+    Fragment datePickerFragment = getParentFragmentManager().findFragmentByTag(datePickerTag);
+    if (datePickerFragment == null) {
+      return null;
+    }
+    return (MaterialDatePicker<Long>) datePickerFragment;
+  }
+
+  /**
+   * Shows relevant invalid date snackbar if the symptom onset date or test date user entered is not
+   * within the last 14 days.
+   */
+  protected void maybeShowInvalidDateSnackbar(String dateStr) {
+    if (!TextUtils.isEmpty(dateStr) && !isValidDate(
+        dateStr, dateInMillis -> DiagnosisEntityHelper.isNotInFuture(clock, dateInMillis))) {
+      SnackbarUtil.maybeShowRegularSnackbar(
+          getView(), getString(R.string.input_error_onset_date_future));
+    } else if (!TextUtils.isEmpty(dateStr) && !isValidDate(
+        dateStr, dateInMillis -> DiagnosisEntityHelper.isWithinLast14Days(clock, dateInMillis))) {
+      SnackbarUtil.maybeShowRegularSnackbar(
+          getView(), getString(R.string.input_error_onset_date_past, "14"));
+    }
+  }
+
+  /**
+   * Checks if the given date is a valid date for either a symptoms onset date or a test date.
+   *
+   * <p> For either of these dates to be valid they must occur within the last 14 days.
+   */
+  protected boolean isValidDate(String dateStr, Function<Long, Boolean> dateValidationFn) {
+    if (dateStr.isEmpty()) {
+      return false;
+    }
+    try {
+      long dateInMillis = LocalDate.parse(dateStr, getDateTimeFormatter())
+          .atStartOfDay(ZoneOffset.UTC)
+          .toInstant()
+          .toEpochMilli();
+      return dateValidationFn.apply(dateInMillis);
+    } catch (RuntimeException e) {
+      return false;
+    }
+  }
+
+  protected DateTimeFormatter getDateTimeFormatter() {
+    return DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)
+        .withLocale(getResources().getConfiguration().locale);
+  }
+
+  protected final DateValidator symptomOnsetOrTestDateValidator =
+      new DateValidator() {
+        @Override
+        public boolean isValid(long date) {
+          return DiagnosisEntityHelper.isWithinLast14Days(clock, date);
+        }
+
+        @Override
+        public int describeContents() {
+          // Return no-op value. This validator has no state to describe
+          return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+          // No-op. This validator has no state to parcelize
+        }
+      };
 }

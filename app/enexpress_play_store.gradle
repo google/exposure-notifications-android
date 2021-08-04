@@ -134,13 +134,12 @@ def updateListing(packageName, config, edits, editId) {
 
 static def updateTrack(packageName, config, edits, editId, bundleVersionCodes) {
   def trackRelease = new TrackRelease()
-      .setName("My Alpha Release")
       .setVersionCodes(bundleVersionCodes)
       .setStatus("draft")  // completed
       .setReleaseNotes(Collections.singletonList(
                        new LocalizedText()
                        .setLanguage(Locale.US.toString())
-                       .setText("recent changes text")))
+                       .setText("Bug fixes and performance improvements.")))
   def track = new Track()
       .setReleases([trackRelease])
   edits.tracks()

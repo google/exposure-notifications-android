@@ -39,4 +39,8 @@ public class Qualifiers {
   @Retention(RetentionPolicy.RUNTIME)
   public @interface VerificationCertUri {}
 
+  @Qualifier
+  @Retention(RetentionPolicy.RUNTIME)
+  public @interface VerificationUserReportUri {}
+
 }

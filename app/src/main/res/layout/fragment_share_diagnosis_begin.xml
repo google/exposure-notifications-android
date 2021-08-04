@@ -18,6 +18,7 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:orientation="vertical"
@@ -39,6 +40,7 @@
   </LinearLayout>
 
   <androidx.core.widget.NestedScrollView
+    android:id="@+id/share_diagnosis_scroll_view"
     android:layout_width="match_parent"
     android:layout_height="0dp"
     android:layout_weight="1"
@@ -49,84 +51,73 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:orientation="vertical"
-      android:paddingHorizontal="@dimen/padding_normal">
+      android:paddingTop="@dimen/padding_normal"
+      android:paddingHorizontal="@dimen/share_diagnosis_begin_padding_horizontal">
+
+      <ImageView
+        android:layout_width="@dimen/sharing_flow_icon_size"
+        android:layout_height="@dimen/sharing_flow_icon_size"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_gravity="center_vertical"
+        android:contentDescription="@null"
+        app:srcCompat="@drawable/ic_medication" />
 
       <TextView
-        android:layout_width="match_parent"
+        android:id="@+id/share_test_result_title_text_view"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/share_begin_title"
-        android:layout_marginBottom="@dimen/padding_extra_large"
-        android:textAppearance="?attr/textAppearanceHeadline5" />
-
-      <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:paddingVertical="@dimen/padding_small"
-          android:paddingHorizontal="@dimen/padding_normal"
-          android:orientation="horizontal">
-
-          <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_gravity="center_vertical"
-            android:orientation="vertical">
-
-            <TextView
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="@string/share_begin_agency_region"
-              android:textAppearance="?attr/textAppearanceHeadline6"
-              android:textSize="@dimen/ha_header_text_size" />
-
-            <TextView
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="@string/share_begin_agency_name"
-              android:textAppearance="?attr/textAppearanceBody2"
-              android:textColor="?attr/colorControlNormal" />
-
-          </LinearLayout>
-
-          <ImageView
-            android:layout_width="@dimen/settings_page_icon_width"
-            android:layout_height="@dimen/settings_page_icon_width"
-            android:layout_gravity="center_vertical"
-            app:srcCompat="@mipmap/ic_launcher" />
-
-        </LinearLayout>
+        android:layout_marginTop="@dimen/padding_normal"
+        tools:text="@string/share_diagnosis_share_test_result_title"
+        android:textAppearance="?attr/textAppearanceSubtitle1"
+        android:textStyle="bold" />
 
       <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/padding_normal"
-        android:autoLink="web"
-        android:text="@string/share_begin_detail"
+        android:text="@string/share_diagnosis_share_test_result_subtitle"
+        android:layout_marginTop="@dimen/padding_extra_large"
         android:textAppearance="?attr/textAppearanceBody2" />
 
-      </LinearLayout>
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/share_diagnosis_share_test_result_body"
+        android:layout_marginVertical="@dimen/padding_large"
+        android:textAppearance="?attr/textAppearanceBody2" />
+
+      <include layout="@layout/horizontal_divider" />
+
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_normal"
+        android:text="@string/health_authority_name"
+        android:textAppearance="?attr/textAppearanceSubtitle1"
+        android:textStyle="bold" />
+
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/share_begin_detail"
+        android:layout_marginVertical="@dimen/padding_large"
+        android:textAppearance="?attr/textAppearanceBody2" />
 
     </LinearLayout>
 
   </androidx.core.widget.NestedScrollView>
 
   <RelativeLayout
+    android:id="@+id/button_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginVertical="@dimen/padding_normal"
-    android:orientation="horizontal">
+    android:padding="@dimen/padding_normal"
+    android:background="?android:attr/colorBackground"
+    android:elevation="@dimen/bottom_button_container_elevation">
 
     <Button
       android:id="@+id/share_next_button"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginHorizontal="@dimen/padding_normal"
       android:layout_alignParentEnd="true"
       android:text="@string/btn_continue" />
 

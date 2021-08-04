@@ -57,7 +57,7 @@
           android:layout_height="wrap_content"
           android:paddingHorizontal="@dimen/padding_large"
           android:paddingTop="@dimen/padding_normal"
-          android:paddingBottom="@dimen/padding_extra_large"
+          android:paddingBottom="@dimen/padding_huge"
           android:gravity="center"
           android:text="@string/home_tab_settings_text"
           android:textAppearance="?attr/textAppearanceHeadline5" />

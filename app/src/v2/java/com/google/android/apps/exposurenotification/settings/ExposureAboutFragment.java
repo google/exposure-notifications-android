@@ -48,8 +48,6 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class ExposureAboutFragment extends BaseFragment {
 
-  private static final String TAG = "ExposureAboutActivity";
-
   private static final String STATE_TURN_OFF_OPEN = "STATE_TURN_OFF_OPEN";
   private static final String STATE_MANAGE_STORAGE_OPEN = "STATE_MANAGE_STORAGE_OPEN";
 

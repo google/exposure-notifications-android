@@ -30,7 +30,8 @@
   <string name="onboarding_exposure_notifications_title">បើកការជូនដំណឹងអំពីការនៅជិតអ្នកមានផ្ទុក COVID-19</string>
   <string name="onboarding_exposure_notifications_detail">ទទួលបានការជូនដំណឹង ប្រសិនបើ​អ្នកបាននៅជិត​នរណាម្នាក់​ដែលបានរាយការណ៍ថា​មានផ្ទុក COVID-19។
     \n\nទូរសព្ទរបស់អ្នក​ប្រើប៊្លូធូស ដើម្បីប្រមូល និងចែករំលែក​លេខសម្គាល់ចៃដន្យ​ដោយសុវត្ថិភាព​ជាមួយ​ទូរសព្ទផ្សេងទៀត​ដែលនៅជិត។
-    \n\nកាលបរិច្ឆេទ រយៈពេល និង​កម្លាំង​រលកសញ្ញា​ដែលពាក់ព័ន្ធនឹង​ការដែលអាចនៅជិត​អ្នកមានផ្ទុក COVID-19 ​នឹងត្រូវបានប្រើ ដើម្បីកំណត់ថាតើអ្នកនឹងទទួលបានការជូនដំណឹង ដោយផ្អែកលើប៉ារ៉ាម៉ែត្រដែលកំណត់ដោយអាជ្ញាធរសុខភាព​សាធារណៈរបស់អ្នកឬអត់។</string>
+    \n\nកាលបរិច្ឆេទ រយៈពេល និង​កម្លាំង​រលកសញ្ញា​ដែលពាក់ព័ន្ធនឹង​ការដែលអាចនៅជិត​អ្នកមានផ្ទុក COVID-19 ​នឹងត្រូវបានប្រើ ដើម្បីកំណត់ថាតើអ្នកនឹងទទួលបានការជូនដំណឹង ដោយផ្អែកលើប៉ារ៉ាម៉ែត្រដែលកំណត់ដោយអាជ្ញាធរសុខភាព​សាធារណៈរបស់អ្នកឬអត់។
+    \n\nប្រសិនបើអ្នក​ធ្វើតេស្តរកឃើញ​វិជ្ជមាន អ្នកអាចនឹង​ទទួលបានការរំលឹក​ឱ្យចែករំលែកលទ្ធផល​របស់អ្នកជាមួយអាជ្ញាធរសុខភាព។</string>
   <string name="onboarding_metrics_title">ជួយធ្វើឱ្យកម្មវិធីនេះ​ប្រសើរជាងមុន</string>
   <string name="onboarding_metrics_subtitle">ចែករំលែកទិន្នន័យប្រតិបត្តិការ និងការប្រើប្រាស់កម្មវិធីជាមួយ Google</string>
   <string name="onboarding_metrics_description">ដើម្បីជួយរក្សា និងកែលម្អ​កម្មវិធីនេះ ទិន្នន័យមានកំណត់មួយចំនួន​ដែលមិនបញ្ជាក់អត្តសញ្ញាណ​អំពីការប្រើប្រាស់ និងប្រតិបត្តិការ​កម្មវិធីត្រូវបាន​ចែករំលែកជាមួយ Google។ ទិន្នន័យនេះ​មិនកំណត់​អត្តសញ្ញាណអ្នកទេ។ %1$s</string>
@@ -60,10 +61,10 @@
   <string name="notify_turn_on_exposure_notifications_header">ដើម្បីទទួលបាន​ការជូនដំណឹងអំពី​ការនៅជិតអ្នកមានផ្ទុក COVID-19 ដែលអាចកើតមាន សូមបើកការជូនដំណឹង​អំពីការនៅជិត​អ្នកមានផ្ទុក COVID-19។ %1$s</string>
   <string name="using_en_helps_even_if_vaccinated">ការប្រើប្រាស់​សេវាកម្មនេះ​ជួយអ្នកក្នុងការ​ការពារសហគមន៍​របស់អ្នក ទោះបីជាអ្នក​បានទទួល​ការចាក់វ៉ាក់សាំងហើយ​ក៏ដោយ។</string>
   <string name="share_begin_title">ជួយការពារ​សហគមន៍របស់អ្នក</string>
-  <string name="share_close_title">ចាកចេញ​ដោយមិន​ចែករំលែកឬ?</string>
-  <string name="share_close_detail">អ្នកអាចជួយសហគមន៍របស់អ្នកបានល្អបំផុត ប្រសិនបើអ្នកចែករំលែកលទ្ធផលតេស្តរបស់អ្នកកាន់តែឆាប់។ ប៉ុន្តែ ព័ត៌មានអំពីលទ្ធផលតេស្តដែលអ្នកបានបញ្ចូលកន្លងមកត្រូវបានរក្សាទុកនៅក្នុងកម្មវិធីសម្រាប់ឱ្យអ្នកបន្តកែនៅពេលក្រោយ។</string>
-  <string name="btn_resume_later">បាទ/ចាស ចាកចេញ</string>
-  <string name="verify_test_result_title">បញ្ចូលព័ត៌មាន​អំពីតេស្ត COVID-19</string>
+  <string name="share_close_title">បិទ​ដោយមិន​ចែករំលែកឬ?</string>
+  <string name="share_close_detail">វិធីដ៏ល្អបំផុតដែលអ្នកអាចជួយសហគមន៍របស់អ្នកបានគឺចែករំលែកលទ្ធផលរបស់អ្នកឱ្យបានឆាប់បំផុត។ ប្រសិនបើអ្នកពិតជាបិទឥឡូវនេះដោយមិនចែករំលែកមែន អ្នកអាចបន្តនៅត្រង់ចំណុចដែលអ្នកបានចាកចេញ ប្រសិនបើអ្នកប្ដូរចិត្តនៅពេលក្រោយ។</string>
+  <string name="btn_resume_later">បាទ/ចាស បិទ</string>
+  <string name="verify_test_result_title">បញ្ចូល​លេខកូដ​ផ្ទៀងផ្ទាត់​របស់អ្នក</string>
   <string name="enter_your_test_identifier">លេខ​កូដ​ផ្ទៀងផ្ទាត់</string>
   <string name="share_test_identifier_help">លេខកូដដែលអាច​ប្រើបានម្ដងនេះត្រូវ​បានប្រើ ដើម្បីផ្ទៀងផ្ទាត់លទ្ធផល​តេស្តរបស់អ្នក។</string>
   <string name="share_test_identifier_verified">បានផ្ទៀងផ្ទាត់លេខកូដហើយ</string>
@@ -73,30 +74,29 @@
   <string name="test_date_label">កាលបរិច្ឆេទដែលរោគសញ្ញាបានចាប់ផ្ដើម</string>
   <string name="share_onset_symptoms">បាទ/ចាស</string>
   <string name="share_onset_no_symptoms">ទេ</string>
-  <string name="share_onset_no_answer">សូមមិន​​ឆ្លើយ</string>
+  <string name="share_onset_no_answer">ខ្ញុំ​សូមមិន​​ឆ្លើយ</string>
   <string name="share_travel_title">តើអ្នកបានធ្វើដំណើរ​ក្នុងរយៈពេល 14 ថ្ងៃចុងក្រោយ​ដែរទេ?</string>
   <string name="share_travel_confirmed">បាទ/ចាស</string>
   <string name="share_travel_no_travel">ទេ</string>
-  <string name="share_travel_no_answer">សូមមិន​​ឆ្លើយ</string>
+  <string name="share_travel_no_answer">ខ្ញុំ​សូមមិន​​ឆ្លើយ</string>
   <string name="share_review_title">ពិនិត្យមើល​ព័ត៌មានរបស់អ្នក</string>
   <string name="share_review_status_subtitle">ស្ថានភាព COVID-19</string>
   <string name="share_review_status_confirmed">វិជ្ជមាន</string>
   <string name="share_review_status_likely">ទំនងជា​មានផ្ទុក</string>
   <string name="share_review_status_negative">អវិជ្ជមាន</string>
-  <string name="share_review_onset_subtitle">ព័ត៌មាន​អំពីរោគសញ្ញា</string>
-  <string name="share_review_onset_date">រោគសញ្ញាពីថ្ងៃទី %1$s</string>
+  <string name="share_review_onset_subtitle">រោគ​សញ្ញា</string>
+  <string name="share_review_onset_date">បានចាប់ផ្ដើម​ចេញនៅថ្ងៃទី %1$s</string>
   <string name="share_review_onset_no_symptoms">គ្មានរោគសញ្ញាទេ</string>
   <string name="share_review_onset_no_answer">មិនបានឆ្លើយ</string>
-  <string name="share_review_travel_subtitle">ប្រវត្តិធ្វើដំណើរ</string>
-  <string name="share_review_travel_confirmed">បានធ្វើដំណើរក្នុង​រយៈពេល 14 ថ្ងៃចុងក្រោយ</string>
+  <string name="share_review_travel_subtitle">ការ​ធ្វើដំណើរ</string>
+  <string name="share_review_travel_confirmed">ក្នុងរយៈពេល 14 ថ្ងៃ​ចុងក្រោយ</string>
   <string name="share_review_travel_no_travel">មិនបានធ្វើដំណើរ​ក្នុងរយៈពេល 14 ថ្ងៃចុងក្រោយទេ</string>
   <string name="share_review_travel_no_answer">មិនបានឆ្លើយ</string>
-  <string name="share_confirm_title">សូមអរគុណចំពោះ​ការចែករំលែក​ស្ថានភាព COVID-19 របស់អ្នក</string>
+  <string name="share_confirm_title">សូមអរគុណចំពោះ​ការចែករំលែក​លទ្ធផល COVID-19 របស់អ្នក</string>
   <string name="not_shared_confirm_title">លទ្ធផលតេស្តរបស់អ្នកមិនត្រូវបានចែករំលែកទេ</string>
   <string name="not_shared_confirm_detail">លទ្ធផលតេស្ត COVID-19 របស់អ្នកមិនត្រូវបានចែករំលែកទេ។ សូមព្យាយាមម្ដងទៀត។</string>
   <string name="status_shared_detail_title">ស្ថានភាព COVID-19 ដែលបានចែករំលែក</string>
-  <string name="delete_test_result_title">លុបលទ្ធផលតេស្ត COVID-19 ឬ?</string>
-  <string name="delete_test_result_detail">ព័ត៌មានលម្អិត​អំពីលទ្ធផលតេស្ត​របស់អ្នកនឹងត្រូវបានលុប​ចេញពីកម្មវិធីនេះ។</string>
+  <string name="delete_test_result_title">លុប​លទ្ធផលតេស្ត​របស់អ្នកឬ?</string>
   <string name="delete_test_result_confirmed">បានលុប​លទ្ធផលតេស្ត</string>
   <string name="share_error_no_internet">មិនអាចចែករំលែក​លទ្ធផលតេស្ត​ដោយគ្មានអ៊ីនធឺណិត​បានទេ។ សូមពិនិត្យ​ការតភ្ជាប់​អ៊ីនធឺណិត​របស់អ្នក រួចព្យាយាម​ម្ដងទៀត។</string>
   <string name="share_vaccination_title">តើអ្នកបានទទួល​ការចាក់​វ៉ាក់សាំង​ប្រឆាំង Covid-19 ហើយឬនៅ?</string>
@@ -104,7 +104,30 @@
   <string name="share_vaccination_learn_more">ស្វែងយល់បន្ថែម</string>
   <string name="share_vaccination_vaccinated">បាទ/ចាស ខ្ញុំបានទទួល​ការចាក់​វ៉ាក់សាំងហើយ</string>
   <string name="share_vaccination_not_vaccinated">ទេ</string>
-  <string name="share_vaccination_unknown">សូមមិន​​ឆ្លើយ</string>
+  <string name="share_vaccination_unknown">ខ្ញុំ​សូមមិន​​ឆ្លើយ</string>
+  <string name="do_you_have_code_title">តើអ្នក​បានទទួល​លេខកូដ​ដែរទេ?</string>
+  <string name="do_you_have_code_content">ប្រសិនបើអ្នក​ធ្វើតេស្តរក COVID-19 ឃើញមាន​លទ្ធផលវិជ្ជមាន ជាធម្មតា​អាជ្ញាធរ​សុខភាព​របស់អ្នក​ផ្ដល់លេខកូដ​ផ្ទៀងផ្ទាត់តាម​ទូរសព្ទ ឬ​សារជាអក្សរ ដើម្បីឱ្យអ្នក​អាចចែករំលែក​លទ្ធផលរបស់អ្នក​បាន។</string>
+  <string name="btn_i_have_code">បាទ/ចាស ខ្ញុំមាន​លេខកូដ</string>
+  <string name="btn_i_need_code">ខ្ញុំត្រូវការ​លេខកូដ</string>
+  <string name="get_verification_code_title">យក​លេខកូដ​ផ្ទៀងផ្ទាត់</string>
+  <string name="phone_number_prompt">លេខទូរសព្ទ</string>
+  <string name="phone_number_help">លេខកូដ​ផ្ទៀងផ្ទាត់​អនុញ្ញាតឱ្យអ្នក​អាចចែករំលែក​លទ្ធផលតេស្ត​របស់អ្នកបាន។ លេខកូដ​របស់អ្នក​នឹងត្រូវបានផ្ញើទៅកាន់​លេខទូរសព្ទ​ដែលអ្នកផ្ដល់ជូន។</string>
+  <string name="phone_number_may_be_stored_help">ដើម្បីទប់ស្កាត់​មិនឱ្យអ្នកប្រើប្រាស់​ដាក់បញ្ចូន​លទ្ធផលច្រើនជាងមួយ លេខទូរសព្ទ​របស់អ្នក​អាចត្រូវបានរក្សាទុក​ជាបណ្ដោះអាសន្ន​ដោយ​អាជ្ញាធរសុខភាព​សាធារណៈ​របស់អ្នក។</string>
+  <string name="test_date_prompt">កាលបរិច្ឆេទ​ធ្វើតេស្ត</string>
+  <string name="test_date_help">កាលបរិច្ឆេទ​ធ្វើតេស្ត​គួរតែស្ថិត​ក្នុងរយៈពេល 14 ថ្ងៃ​ចុងក្រោយ។</string>
+  <string name="tested_for_covid_checkbox_text">លទ្ធផលធ្វើតេស្តរក COVID-19 ដែលខ្ញុំបានទទួល​ក្នុងរយៈពេល 14 ថ្ងៃចុងក្រោយ​គឺវិជ្ជមាន។</string>
+  <string name="btn_send_code">ផ្ញើ​លេខ​កូដ</string>
+  <string name="enter_code_help">បញ្ចូល​លេខកូដ​ដែលផ្ញើទៅអ្នក​ដោយ %1$s។</string>
+  <string name="positive_result_already_reported_title">អ្នកបាន​រាយការណ៍អំពី​លទ្ធផលតេស្ត​រួចហើយ​នាពេលថ្មីៗនេះ។</string>
+  <string name="positive_result_already_reported_content">ប្រសិនបើអ្នក​ចង់រាយការណ៍​អំពីលទ្ធផលតេស្ត​ផ្សេងទៀត សូមទាក់ទង %1$s។</string>
+  <string name="self_report_bad_code">លេខកូដ​មិនត្រឹមត្រូវ។ សូមប្រាកដថា អ្នកកំពុងប្រើ​ឧបករណ៍តែមួយ សម្រាប់ទាំងការស្នើសុំ និង​ការបញ្ចូល​លេខកូដ​ផ្ទៀងផ្ទាត់​របស់អ្នក។</string>
+  <string name="self_report_bad_phone_number">សូមពិនិត្យមើល​លេខ​ទូរសព្ទ​របស់អ្នក រួចព្យាយាម​ម្ដងទៀត។ %1$s</string>
+  <string name="self_report_code_requested_too_many_times">អ្នកបាន​ធ្វើការស្នើសុំ​ច្រើនពេក។ សូមទាក់ទង %1$s ប្រសិនបើអ្នក​នៅតែត្រូវការ​លេខកូដ។</string>
+  <plurals name="self_report_code_already_requested">
+    <item quantity="one">អ្នកបាន​ធ្វើការស្នើសុំ​ច្រើនពេក។ អ្នកអាចស្នើសុំ​លេខកូដ​មួយទៀតបាន​ក្នុងរយៈពេល %1$d នាទីទៀត។</item>
+    <item quantity="other">អ្នកបាន​ធ្វើការស្នើសុំ​ច្រើនពេក។ អ្នកអាចស្នើសុំ​លេខកូដ​មួយទៀតបាន​ក្នុងរយៈពេល %1$d នាទីទៀត។</item>
+  </plurals>
+  <string name="notify_others_notification_title">ជួយ​ជូនដំណឹង​ដល់អ្នកដទៃ​ដែលប្រហែល​ជាបាននៅជិតអ្នក​មានផ្ទុក COVID-19</string>
   <string name="settings_exposure_notifications_subtitle">ការជូនដំណឹងអំពីការនៅជិតអ្នកមានផ្ទុក COVID-19</string>
   <string name="settings_app_analytics_subtitle">ការចែករំលែកប្រតិបត្តិការ និងការប្រើប្រាស់កម្មវិធី</string>
   <string name="settings_privacy_policy">គោលការណ៍​ឯកជនភាព</string>
@@ -166,4 +189,9 @@
   <string name="private_analytics_footer_learn_more">ស្វែងយល់បន្ថែម</string>
   <string name="diagnosis_subtitle_template">%1$s នៅថ្ងៃទី %2$s</string>
   <string name="empty_share_history_body">គ្មានប្រវត្តិចែករំលែកទេ</string>
+  <string name="share_diagnosis_share_test_result_title">ចែករំលែក​លទ្ធផលតេស្ត​របស់អ្នក​ជាមួយ %1$s</string>
+  <string name="share_diagnosis_share_test_result_subtitle">សូមអរគុណ​ចំពោះការជួយ​បញ្ឈប់ COVID-19។</string>
+  <string name="share_diagnosis_share_test_result_body">នៅពេលអ្នក​ចែករំលែក​លទ្ធផល​របស់អ្នក អ្នកក៏អាចជ្រើសរើស​ចែករំលែក នៅពេលដែល​រោគសញ្ញា​របស់អ្នក​បានចាប់ផ្ដើមចេញ​ផងដែរ។ ព័ត៌មាននេះ​អាចជួយបញ្ឈប់​ការឆ្លងរាលដាលនៃ COVID-19 និង​សង្គ្រោះជីវិត។</string>
+  <string name="sms_intercept_notice_title">អ្វី​ដែលថ្មី</string>
+  <string name="sms_intercept_notice_content">ប្រសិនបើ​អាជ្ញាធរ​សុខាភិបាល​ក្នុងតំបន់​របស់អ្នក​ផ្ញើលទ្ធផលតេស្តដល់អ្នក កម្មវិធី​របស់អ្នក​អាចជូនដំណឹង​ដល់អ្នក ដោយមាន​ការរំលឹក​ឱ្យដាក់បញ្ជូន​លទ្ធផលរបស់អ្នក និង​ជួយជូនដំណឹង​ដល់អ្នកដទៃ​អំពី​ការដែលអាចនៅជិតអ្នកមានផ្ទុក COVID-19។ អ្នកអាចបិទ​មុខងារនេះ​បានគ្រប់ពេល​នៅក្នុង​ការកំណត់។</string>
 </resources>

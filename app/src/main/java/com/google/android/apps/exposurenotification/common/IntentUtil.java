@@ -23,7 +23,6 @@ import static com.google.android.gms.nearby.exposurenotification.ExposureNotific
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.net.UrlQuerySanitizer;
 import android.os.Bundle;
@@ -43,12 +42,20 @@ public final class IntentUtil {
 
   @VisibleForTesting
   static final int VERIFICATION_CODE_MAX_CHARS = 128;
+  @VisibleForTesting
+  static final String SELF_REPORT_PATH = "report";
   private static final String VERIFICATION_CODE_REGEX =
       String.format(Locale.US, "^[a-zA-Z0-9]{1,%d}$", VERIFICATION_CODE_MAX_CHARS);
   private static final Pattern VERIFICATION_CODE_PATTERN = Pattern.compile(VERIFICATION_CODE_REGEX);
 
   // V2 & V3
   public static final String EXTRA_NOTIFICATION = "IntentUtil.EXTRA_NOTIFICATION";
+
+  public static final String EXTRA_SMS_VERIFICATION =
+      "IntentUtil.ACTION_SMS_VERIFICATION";
+
+  public static final String EXTRA_DEEP_LINK =
+      "IntentUtil.EXTRA_DEEP_LINK";
 
   // V3 Only
   public static final String ACTION_LAUNCH_HOME =
@@ -81,7 +88,7 @@ public final class IntentUtil {
     return intent;
   }
 
-  public static Intent getNotificationContentIntent(Context context) {
+  private static Intent getNotificationContentIntent(Context context) {
     Intent intent;
     if (BuildUtils.getType() == Type.V2) {
       intent = context.getPackageManager().getLaunchIntentForPackage(context.getPackageName());
@@ -89,13 +96,31 @@ public final class IntentUtil {
       intent = getActionLaunchHomeIntent(context);
     }
     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+    return intent;
+  }
+
+  public static Intent getNotificationContentIntentExposure(Context context) {
+    Intent intent = getNotificationContentIntent(context);
     intent.putExtra(IntentUtil.EXTRA_NOTIFICATION, true);
+    return intent;
+  }
+
+  public static Intent getNotificationContentIntentSmsVerification(Context context, Uri uri) {
+    Intent intent = getNotificationContentIntent(context);
+    intent.putExtra(EXTRA_SMS_VERIFICATION, true);
+    intent.putExtra(EXTRA_DEEP_LINK, uri);
     return intent;
   }
 
   public static Intent getNotificationDeleteIntent(Context context) {
     Intent intent = new Intent(context, ExposureNotificationDismissedReceiver.class);
     intent.setAction(NOTIFICATION_DISMISSED_ACTION_ID);
+    return intent;
+  }
+
+  public static Intent getNotificationDeleteIntentSmsVerification(Context context) {
+    Intent intent = getNotificationDeleteIntent(context);
+    intent.putExtra(EXTRA_SMS_VERIFICATION, true);
     return intent;
   }
 
@@ -122,7 +147,7 @@ public final class IntentUtil {
   }
 
   /**
-   * Parses the verification code from the given Deep Link intent.
+   * Parses the verification code from the given Deep Link uri.
    *
    * <p>Basic validation on the code for alpha-numeric charset of between 1 and 128 characters.
    *
@@ -141,6 +166,20 @@ public final class IntentUtil {
       return Optional.absent();
     }
     return Optional.of(cParam);
+  }
+
+  /**
+   * Checks if the given Deep Link uri is a Self-Report Deep Link uri that should land into the
+   * "Get a verification code" screen (if self-report is enabled).
+   *
+   * @param uri uri from the intent of the deep link
+   * @return true if the provided uri is a Self-Report uri and false otherwise.
+   */
+  public static boolean isSelfReportUri(@Nullable Uri uri) {
+    if (uri == null) {
+      return false;
+    }
+    return uri.toString().contains(SELF_REPORT_PATH);
   }
 
   @VisibleForTesting

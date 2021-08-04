@@ -130,6 +130,7 @@ public class OnboardingPermissionV3Fragment extends AbstractOnboardingFragment {
 
   @Override
   void nextAction() {
+    onboardingViewModel.markSmsInterceptNoticeSeenAsync();
     if (ExposureNotificationState.STORAGE_LOW.equals(this.state)) {
       showManageStorageDialog();
     } else {

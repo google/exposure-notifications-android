@@ -39,8 +39,6 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class PrivateAnalyticsFragment extends BaseFragment {
 
-  private static final String TAG = "PrivateAnalyticsFragment";
-
   private FragmentPrivateAnalyticsBinding binding;
 
   public static PrivateAnalyticsFragment newInstance() {

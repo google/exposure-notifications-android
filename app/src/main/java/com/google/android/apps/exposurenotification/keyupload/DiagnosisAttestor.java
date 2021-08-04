@@ -19,16 +19,18 @@ package com.google.android.apps.exposurenotification.keyupload;
 
 import android.content.Context;
 import android.net.Uri;
-import android.util.Log;
+import android.text.TextUtils;
 import androidx.concurrent.futures.CallbackToFutureAdapter;
 import com.android.volley.Response;
 import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.common.logging.Logger;
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.keyupload.ApiConstants.VerifyV1;
 import com.google.android.apps.exposurenotification.keyupload.Qualifiers.VerificationCertUri;
 import com.google.android.apps.exposurenotification.keyupload.Qualifiers.VerificationCodeUri;
+import com.google.android.apps.exposurenotification.keyupload.Qualifiers.VerificationUserReportUri;
 import com.google.android.apps.exposurenotification.keyupload.UploadController.VerificationFailureException;
 import com.google.android.apps.exposurenotification.keyupload.UploadController.VerificationServerFailureException;
 import com.google.android.apps.exposurenotification.logging.AnalyticsLogger;
@@ -63,15 +65,20 @@ import org.json.JSONObject;
 import org.threeten.bp.LocalDate;
 
 /**
- * Consults a diagnosis verification service who we hope will provide a cryptographic attestation
- * that our positive diagnosis is genuine, and should be trusted by the Diagnosis Key Server.
+ * Consults a diagnosis verification service who we hope will
+ * <ul>
+ *   <li>provide a cryptographic attestation that our positive diagnosis is genuine, and should be
+ *   trusted by the Diagnosis Key Server;
+ *   <li>provide an attestation that our unconfirmed diagnosis is from the same device that
+ *   requested a verification code, and should be trusted by the Diagnosis Key Server.
+ *</ul>
  *
  * <p>Such trust enables the Diagnosis Key Server to publish our Temporary Exposure Keys as
  * Diagnosis Keys for other users to attempt matching with.
  */
 class DiagnosisAttestor {
 
-  private static final String TAG = "DiagnosisAttestor";
+  private static final Logger logcat = Logger.getLogger("DiagnosisAttestor");
   private static final Joiner COMMAS = Joiner.on(',');
   private static final BaseEncoding BASE64 = BaseEncoding.base64();
   private static final String HASH_ALGO = "HmacSHA256";
@@ -84,46 +91,111 @@ class DiagnosisAttestor {
 
   private final Uri codeUri;
   private final Uri certUri;
+  private final Uri userReportUri;
   private final RequestQueueWrapper queue;
   private final String apiKey;
   private final Clock clock;
-  private final AnalyticsLogger logger;
+  private final AnalyticsLogger analyticsLogger;
 
   @Inject
   DiagnosisAttestor(
       @ApplicationContext Context context,
       @VerificationCodeUri Uri codeUri,
       @VerificationCertUri Uri certUri,
+      @VerificationUserReportUri Uri userReportUri,
       RequestQueueWrapper queue,
       Clock clock,
-      AnalyticsLogger logger) {
+      AnalyticsLogger analyticsLogger) {
     this.codeUri = codeUri;
     this.certUri = certUri;
+    this.userReportUri = userReportUri;
     this.queue = queue;
     this.clock = clock;
-    this.logger = logger;
+    this.analyticsLogger = analyticsLogger;
     apiKey = context.getString(R.string.enx_testVerificationAPIKey);
   }
 
+  ListenableFuture<UserReportUpload> requestCode(UserReportUpload upload) {
+    return CallbackToFutureAdapter.getFuture(completer -> {
+      JSONObject requestBody = verificationUserReportRequestBody(upload);
+
+      Listener<JSONObject> responseListener = response -> {
+        analyticsLogger.logRpcCallSuccessAsync(RpcCallType.RPC_TYPE_VERIFICATION,
+            requestBody.toString().length());
+        completer.set(captureVerificationUserReportResponse(upload, response));
+      };
+
+      ErrorListener errorListener =
+          err -> {
+            analyticsLogger.logRpcCallFailureAsync(RpcCallType.RPC_TYPE_VERIFICATION, err);
+            if (VolleyUtils.getHttpStatus(err) >= 500) {
+              completer.setException(new VerificationServerFailureException(err));
+            } else {
+              completer.setException(new VerificationFailureException(err));
+            }
+          };
+
+      VerificationRequest request =
+          new VerificationRequest(
+              apiKey, userReportUri, requestBody, responseListener, errorListener,
+              clock, upload.isCoverTraffic());
+      queue.add(request);
+      return request;
+    });
+  }
+
+  private static JSONObject verificationUserReportRequestBody(UserReportUpload upload)
+      throws JSONException {
+    return Padding.addPadding(new JSONObject()
+        .put(VerifyV1.TEST_DATE, upload.testDate())
+        .put(VerifyV1.TZ_OFFSET, upload.tzOffsetMin())
+        .put(VerifyV1.PHONE, upload.phoneNumber())
+        .put(VerifyV1.NONCE, upload.nonceBase64()));
+  }
+
+  private static UserReportUpload captureVerificationUserReportResponse(
+      UserReportUpload upload, JSONObject response) {
+    if (upload.isCoverTraffic()) {
+      // Ignore responses for cover traffic requests.
+      return upload;
+    }
+    UserReportUpload.Builder withResponse = upload.toBuilder();
+    try {
+      if (response.has(VerifyV1.EXPIRY_STR) &&
+          !Strings.isNullOrEmpty(response.getString(VerifyV1.EXPIRY_STR))) {
+        withResponse.setExpiresAt(response.getString(VerifyV1.EXPIRY_STR));
+      }
+      if (response.has(VerifyV1.EXPIRY_TIMESTAMP) &&
+          !Strings.isNullOrEmpty(response.getString(VerifyV1.EXPIRY_TIMESTAMP))) {
+        withResponse.setExpiresAtTimestampSec(
+            Integer.parseInt(response.getString(VerifyV1.EXPIRY_TIMESTAMP)));
+      }
+      return withResponse.build();
+    } catch (JSONException e) {
+      // TODO: Better exception.
+      throw new RuntimeException(e);
+    }
+  }
+
   ListenableFuture<Upload> submitCode(Upload upload) {
-    Log.d(TAG, "Submitting verification code: " + upload);
+    logcat.d("Submitting verification code: " + upload);
     return CallbackToFutureAdapter.getFuture(completer -> {
       JSONObject requestBody = verificationCodeRequestBody(upload);
-      Log.d(TAG, "Submitting verification code: " + requestBody);
+      logcat.d("Submitting verification code: " + requestBody);
 
       Listener<JSONObject> responseListener =
           response -> {
-            logger.logRpcCallSuccessAsync(RpcCallType.RPC_TYPE_VERIFICATION,
+            analyticsLogger.logRpcCallSuccessAsync(RpcCallType.RPC_TYPE_VERIFICATION,
                 requestBody.toString().length());
-            Log.d(TAG, "Verification code submission succeeded: " + response);
+            logcat.d("Verification code submission succeeded: " + response);
             completer.set(captureVerificationCodeResponse(upload, response));
           };
 
       ErrorListener errorListener =
           err -> {
-            logger.logRpcCallFailureAsync(RpcCallType.RPC_TYPE_VERIFICATION, err);
+            analyticsLogger.logRpcCallFailureAsync(RpcCallType.RPC_TYPE_VERIFICATION, err);
             String msg = VolleyUtils.getErrorMessage(err);
-            Log.e(TAG, String.format("Verification code submission error: [%s]", msg));
+            logcat.e(String.format("Verification code submission error: [%s]", msg));
             if (VolleyUtils.getHttpStatus(err) >= 500) {
               completer.setException(new VerificationServerFailureException(err));
             } else {
@@ -141,9 +213,13 @@ class DiagnosisAttestor {
   }
 
   private static JSONObject verificationCodeRequestBody(Upload upload) throws JSONException {
-    return Padding.addPadding(new JSONObject()
+    JSONObject verificationCodeRequestBody = new JSONObject()
         .put(VerifyV1.VERIFICATION_CODE, upload.verificationCode())
-        .put(VerifyV1.ACCEPT_TEST_TYPES, SUPPORTED_TEST_TYPES));
+        .put(VerifyV1.ACCEPT_TEST_TYPES, SUPPORTED_TEST_TYPES);
+    if (!TextUtils.isEmpty(upload.nonceBase64())) {
+      verificationCodeRequestBody.put(VerifyV1.NONCE, upload.nonceBase64());
+    }
+    return Padding.addPadding(verificationCodeRequestBody);
   }
 
   private static Upload captureVerificationCodeResponse(Upload upload, JSONObject response) {
@@ -178,21 +254,21 @@ class DiagnosisAttestor {
     return CallbackToFutureAdapter.getFuture(
         completer -> {
           JSONObject requestBody = certRequestBody(upload);
-          Log.d(TAG, "Submitting request for certificate: " + requestBody);
+          logcat.d("Submitting request for certificate: " + requestBody);
 
           Listener<JSONObject> responseListener =
               response -> {
-                logger.logRpcCallSuccessAsync(RpcCallType.RPC_TYPE_VERIFICATION,
+                analyticsLogger.logRpcCallSuccessAsync(RpcCallType.RPC_TYPE_VERIFICATION,
                     requestBody.toString().length());
-                Log.d(TAG, "Certificate obtained: " + response);
+                logcat.d("Certificate obtained: " + response);
                 completer.set(captureCertResponse(upload, response));
               };
 
           ErrorListener errorListener =
               err -> {
-                logger.logRpcCallFailureAsync(RpcCallType.RPC_TYPE_VERIFICATION, err);
+                analyticsLogger.logRpcCallFailureAsync(RpcCallType.RPC_TYPE_VERIFICATION, err);
                 String msg = VolleyUtils.getErrorMessage(err);
-                Log.e(TAG, String.format("Certificate error: [%s]", msg));
+                logcat.e(String.format("Certificate error: [%s]", msg));
                 if (VolleyUtils.getHttpStatus(err) >= 500) {
                   completer.setException(new VerificationServerFailureException(err));
                 } else {
@@ -228,8 +304,7 @@ class DiagnosisAttestor {
     }
     Collections.sort(cleartextSegments);
     String cleartext = COMMAS.join(cleartextSegments);
-    Log.d(TAG,
-        upload.keys().size() + " keys for hashing prior to verification: [" + cleartext + "]");
+    logcat.d(upload.keys().size() + " keys for hashing prior to verification: [" + cleartext + "]");
     try {
       Mac mac = Mac.getInstance(HASH_ALGO);
       mac.init(new SecretKeySpec(BASE64.decode(upload.hmacKeyBase64()), HASH_ALGO));

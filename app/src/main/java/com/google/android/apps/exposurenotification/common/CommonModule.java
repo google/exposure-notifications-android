@@ -46,4 +46,10 @@ public class CommonModule {
   public NotificationHelper provideNotificationHelper() {
     return new NotificationHelper();
   }
+
+  @Provides
+  public TelephonyHelper provideTelephonyHelper(TelephonyManager telephonyManager,
+      @ApplicationContext Context context) {
+    return new TelephonyHelper(telephonyManager, context.getResources());
+  }
 }

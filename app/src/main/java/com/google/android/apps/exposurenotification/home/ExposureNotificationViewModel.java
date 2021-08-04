@@ -22,21 +22,23 @@ import static com.google.android.apps.exposurenotification.notify.ShareDiagnosis
 
 import android.app.Activity;
 import android.app.PendingIntent;
-import android.util.Log;
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.IntentSenderRequest;
 import androidx.activity.result.contract.ActivityResultContracts.StartIntentSenderForResult;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.hilt.lifecycle.ViewModelInject;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 import com.google.android.apps.exposurenotification.common.PairLiveData;
 import com.google.android.apps.exposurenotification.common.Qualifiers.LightweightExecutor;
 import com.google.android.apps.exposurenotification.common.SingleLiveEvent;
+import com.google.android.apps.exposurenotification.common.logging.Logger;
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.logging.AnalyticsLogger;
 import com.google.android.apps.exposurenotification.nearby.ExposureNotificationClientWrapper;
@@ -46,7 +48,6 @@ import com.google.android.apps.exposurenotification.riskcalculation.ExposureClas
 import com.google.android.apps.exposurenotification.storage.DiagnosisEntity;
 import com.google.android.apps.exposurenotification.storage.DiagnosisRepository;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
-import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.BadgeStatus;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.NotificationInteraction;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.OnboardingStatus;
 import com.google.android.gms.common.ConnectionResult;
@@ -54,6 +55,7 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.nearby.exposurenotification.ExposureNotificationStatus;
 import com.google.android.gms.nearby.exposurenotification.ExposureNotificationStatusCodes;
 import com.google.android.gms.tasks.Tasks;
+import com.google.common.base.Optional;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import java.util.Set;
@@ -64,7 +66,7 @@ import java.util.concurrent.ExecutorService;
  */
 public class ExposureNotificationViewModel extends ViewModel {
 
-  private static final String TAG = "ExposureNotificationVM";
+  private static final Logger logcat = Logger.getLogger("ExposureNotificationVM");
 
   private final MutableLiveData<ExposureNotificationState> stateLiveData;
   private final MutableLiveData<Boolean> inFlightLiveData = new MutableLiveData<>(false);
@@ -72,6 +74,8 @@ public class ExposureNotificationViewModel extends ViewModel {
   private final MutableLiveData<Boolean> enEnabledLiveData;
   private final MutableLiveData<Boolean> enEnabledLiveDataNoCache = new MutableLiveData<>(false);
   private final MutableLiveData<Boolean> isLocationEnableRequired = new MutableLiveData<>(true);
+  private final MutableLiveData<Optional<Boolean>> isPackageConfigurationSmsNoticeSeenLiveData =
+      new MutableLiveData<>(Optional.absent());
   private final ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
   private final PairLiveData<ExposureNotificationState, Boolean> stateWithInFlightLiveData;
   private final PairLiveData<ExposureNotificationState, ExposureClassification>
@@ -91,6 +95,7 @@ public class ExposureNotificationViewModel extends ViewModel {
   private final Clock clock;
   private final ExecutorService lightweightExecutor;
 
+  private @Nullable LiveData<Boolean> shouldShowSmsNoticeLiveData = null;
   private boolean inFlightIsEnabled = false;
 
   /**
@@ -181,6 +186,51 @@ public class ExposureNotificationViewModel extends ViewModel {
   }
 
   /**
+   * A live data that combines the in app sms notice and package configuration sms notice together.
+   *
+   * @return an optional of true when either is true, false otherwise or empty when still being
+   * computed
+   */
+  private LiveData<Optional<Boolean>> hasShownSmsNoticeLiveData() {
+    return Transformations.map(PairLiveData
+        .of(exposureNotificationSharedPreferences.isInAppSmsNoticeSeenLiveData(),
+            isPackageConfigurationSmsNoticeSeenLiveData), value -> {
+      boolean smsNoticeInApp = value.first;
+      Optional<Boolean> smsNoticePackageConfiguration = value.second;
+      if (smsNoticeInApp) {
+        return Optional.of(true);
+      } else {
+        return smsNoticePackageConfiguration;
+      }
+    });
+  }
+
+  /**
+   * Whether EN is enabled and the SMS notice has not been shown in the app or play onboarding.
+   */
+  public LiveData<Boolean> getShouldShowSmsNoticeLiveData() {
+    if (shouldShowSmsNoticeLiveData == null) {
+      shouldShowSmsNoticeLiveData =
+          Transformations.distinctUntilChanged(
+              Transformations.map(
+                  PairLiveData.of(enEnabledLiveData, hasShownSmsNoticeLiveData()),
+                  combined -> {
+                    boolean enEnabled = combined.first;
+                    if (!enEnabled) {
+                      return false; // don't show when en not enabled
+                    }
+                    Optional<Boolean> hasShownSmsNotice = combined.second;
+                    if (hasShownSmsNotice.isPresent()) {
+                      return !hasShownSmsNotice.get(); // show if not been shown
+                    } else {
+                      return false; // still being computed so return false for now.
+                    }
+                  }));
+    }
+    return shouldShowSmsNoticeLiveData;
+  }
+
+  /**
    * Returns {@link PairLiveData} to observe changes both in the {@link ExposureNotificationState}
    * and 'in-flight' status of the API request.
    */
@@ -228,7 +278,7 @@ public class ExposureNotificationViewModel extends ViewModel {
    */
   public void refreshState() {
     maybeRefreshIsEnabled();
-    maybeRefreshAnalytics();
+    maybeRefreshPackageConfig();
   }
 
   private synchronized void maybeRefreshIsEnabled() {
@@ -246,7 +296,7 @@ public class ExposureNotificationViewModel extends ViewModel {
               inFlightIsEnabled = false;
             })
         .addOnCanceledListener(() -> {
-          Log.i(TAG, "Call isEnabled is canceled");
+          logcat.i("Call isEnabled is canceled");
           inFlightIsEnabled = false;
         })
         .addOnFailureListener(t -> {
@@ -275,11 +325,11 @@ public class ExposureNotificationViewModel extends ViewModel {
           inFlightLiveData.setValue(false);
         })
         .addOnCanceledListener(() -> {
-          Log.i(TAG, "Call getStatus is canceled");
+          logcat.i("Call getStatus is canceled");
           inFlightLiveData.setValue(false);
         })
         .addOnFailureListener(t -> {
-          Log.e(TAG, "Error calling getStatus", t);
+          logcat.e("Error calling getStatus", t);
           stateLiveData.setValue(ExposureNotificationState.DISABLED);
           exposureNotificationSharedPreferences.setEnStateCache(
               ExposureNotificationState.DISABLED.ordinal());
@@ -287,12 +337,17 @@ public class ExposureNotificationViewModel extends ViewModel {
         });
   }
 
-  private synchronized void maybeRefreshAnalytics() {
+  private synchronized void maybeRefreshPackageConfig() {
     exposureNotificationClientWrapper.getPackageConfiguration()
-        .addOnSuccessListener(
-            packageConfigurationHelper::maybeUpdateAnalyticsState)
-        .addOnCanceledListener(() -> Log.i(TAG, "Call getPackageConfiguration is canceled"))
-        .addOnFailureListener(t -> Log.e(TAG, "Error calling getPackageConfiguration", t));
+        .addOnSuccessListener(packageConfiguration -> {
+          packageConfigurationHelper.maybeUpdateAnalyticsState(packageConfiguration);
+          isPackageConfigurationSmsNoticeSeenLiveData.postValue(
+              Optional.of(
+                  PackageConfigurationHelper.getSmsNoticeFromPackageConfiguration(
+                      packageConfiguration)));
+        })
+        .addOnCanceledListener(() -> logcat.i("Call getPackageConfiguration is canceled"))
+        .addOnFailureListener(t -> logcat.e("Error calling getPackageConfiguration", t));
   }
 
   /**
@@ -389,7 +444,7 @@ public class ExposureNotificationViewModel extends ViewModel {
   }
 
   public void onResolutionComplete(ActivityResult activityResult) {
-    Log.d(TAG, "onResolutionComplete");
+    logcat.d("onResolutionComplete");
     if (activityResult.getResultCode() == Activity.RESULT_OK) {
       startResolutionResultOk();
     } else {
@@ -399,7 +454,7 @@ public class ExposureNotificationViewModel extends ViewModel {
 
   private void startResolution(ApiException apiException,
       ActivityResultLauncher<IntentSenderRequest> resolutionActivityResultLauncher) {
-    Log.d(TAG, "startResolutionForResult");
+    logcat.d("startResolutionForResult");
     PendingIntent resolution = apiException.getStatus().getResolution();
     if (resolution != null) {
       IntentSenderRequest intentSenderRequest =
@@ -434,13 +489,13 @@ public class ExposureNotificationViewModel extends ViewModel {
               if (apiException.getStatusCode()
                   == ExposureNotificationStatusCodes.RESOLUTION_REQUIRED) {
                 if (inFlightResolutionLiveData.getValue()) {
-                  Log.e(TAG, "Error, has in flight resolution", exception);
+                  logcat.e("Error, has in flight resolution", exception);
                 } else {
                   inFlightResolutionLiveData.setValue(true);
                   resolutionRequiredLiveEvent.postValue(apiException);
                 }
               } else {
-                Log.w(TAG, "No RESOLUTION_REQUIRED in result", apiException);
+                logcat.w("No RESOLUTION_REQUIRED in result", apiException);
                 int connectionResult = ConnectionResult.UNKNOWN;
                 if (apiException.getStatus() != null
                     && apiException.getStatus().getConnectionResult() != null) {
@@ -509,7 +564,10 @@ public class ExposureNotificationViewModel extends ViewModel {
               if (isEnabled.getResult()) {
                 return exposureNotificationClientWrapper.stop();
               } else {
-                return Tasks.forResult(null);
+                // Even if En is disabled, call stop to correctly gather STOP metrics.
+                // This call will fail with an exception, so we ignore the result.
+                return exposureNotificationClientWrapper.stop()
+                    .continueWithTask(stop -> Tasks.forResult(null));
               }
             })
         .addOnSuccessListener(
@@ -567,7 +625,7 @@ public class ExposureNotificationViewModel extends ViewModel {
 
           @Override
           public void onFailure(@NonNull Throwable t) {
-            Log.w(TAG, "Failed to retrieve last not shared diagnosis", t);
+            logcat.w("Failed to retrieve last not shared diagnosis", t);
           }
         },
         lightweightExecutor);
@@ -596,4 +654,9 @@ public class ExposureNotificationViewModel extends ViewModel {
         != ExposureClassification.NO_EXPOSURE_CLASSIFICATION_INDEX
         || exposureNotificationSharedPreferences.getIsExposureClassificationRevoked();
   }
+
+  public void markInAppSmsInterceptNoticeSeenAsync() {
+    exposureNotificationSharedPreferences.markInAppSmsNoticeSeenAsync();
+  }
+
 }

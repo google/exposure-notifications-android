@@ -30,7 +30,8 @@
   <string name="onboarding_exposure_notifications_title">Aktifkan Notifikasi Paparan</string>
   <string name="onboarding_exposure_notifications_detail">Dapatkan notifikasi jika Anda berada di dekat seseorang yang dilaporkan terinfeksi COVID-19.
     \n\nPonsel Anda menggunakan Bluetooth untuk mengumpulkan dan membagikan ID acak secara aman ke ponsel lain yang ada di sekitar.
-    \n\nTanggal, durasi, dan kekuatan sinyal yang terkait dengan kemungkinan paparan akan digunakan untuk menentukan apakah Anda akan diberi tahu berdasarkan parameter yang ditetapkan oleh otoritas kesehatan masyarakat.</string>
+    \n\nTanggal, durasi, dan kekuatan sinyal yang terkait dengan kemungkinan paparan akan digunakan untuk menentukan apakah Anda akan diberi tahu berdasarkan parameter yang ditetapkan oleh otoritas kesehatan masyarakat.
+    \n\nJika hasil tes COVID-19 Anda positif, Anda akan menerima pengingat untuk membagikan hasil tes kepada otoritas kesehatan.</string>
   <string name="onboarding_metrics_title">Bantu agar aplikasi ini menjadi lebih baik</string>
   <string name="onboarding_metrics_subtitle">Bagikan data penggunaan &amp; performa aplikasi kepada Google</string>
   <string name="onboarding_metrics_description">Untuk membantu memelihara dan menyempurnakan aplikasi, beberapa data terbatas yang tidak diidentifikasi tentang performa dan penggunaan aplikasi dibagikan kepada Google. Data ini tidak mengidentifikasikan Anda. %1$s</string>
@@ -60,10 +61,10 @@
   <string name="notify_turn_on_exposure_notifications_header">Untuk mendapatkan notifikasi kemungkinan paparan COVID-19, aktifkan Notifikasi Paparan. %1$s</string>
   <string name="using_en_helps_even_if_vaccinated">Menggunakan layanan ini akan membantu Anda melindungi masyarakat sekitar, meskipun Anda telah divaksinasi.</string>
   <string name="share_begin_title">Bantu lindungi masyarakat sekitar</string>
-  <string name="share_close_title">Keluar tanpa berbagi?</string>
-  <string name="share_close_detail">Anda dapat membantu komunitas Anda dengan membagikan hasil tes secepatnya. Namun, informasi hasil tes yang Anda masukkan sejauh ini disimpan di aplikasi agar Anda dapat melanjutkan pengeditan nanti.</string>
-  <string name="btn_resume_later">Ya, keluar</string>
-  <string name="verify_test_result_title">Masukkan informasi tes COVID-19</string>
+  <string name="share_close_title">Tutup tanpa berbagi?</string>
+  <string name="share_close_detail">Cara terbaik membantu komunitas Anda adalah dengan membagikan hasil tes Anda sesegera mungkin. Jika menutup sekarang tanpa berbagi, Anda dapat melanjutkan berbagi nanti saat berubah pikiran.</string>
+  <string name="btn_resume_later">Ya, tutup</string>
+  <string name="verify_test_result_title">Masukkan kode verifikasi</string>
   <string name="enter_your_test_identifier">Kode verifikasi</string>
   <string name="share_test_identifier_help">Kode sekali pakai ini digunakan untuk memverifikasi hasil tes Anda.</string>
   <string name="share_test_identifier_verified">Kode terverifikasi</string>
@@ -73,30 +74,29 @@
   <string name="test_date_label">Tanggal gejala dimulai</string>
   <string name="share_onset_symptoms">Ya</string>
   <string name="share_onset_no_symptoms">Tidak</string>
-  <string name="share_onset_no_answer">Memilih tidak menjawab</string>
+  <string name="share_onset_no_answer">Saya memilih untuk tidak menjawab</string>
   <string name="share_travel_title">Apakah Anda bepergian dalam 14 hari terakhir?</string>
   <string name="share_travel_confirmed">Ya</string>
   <string name="share_travel_no_travel">Tidak</string>
-  <string name="share_travel_no_answer">Memilih tidak menjawab</string>
+  <string name="share_travel_no_answer">Saya memilih untuk tidak menjawab</string>
   <string name="share_review_title">Tinjau informasi Anda</string>
   <string name="share_review_status_subtitle">Status COVID-19</string>
   <string name="share_review_status_confirmed">Positif</string>
   <string name="share_review_status_likely">Mungkin</string>
   <string name="share_review_status_negative">Negatif</string>
-  <string name="share_review_onset_subtitle">Info gejala</string>
-  <string name="share_review_onset_date">Gejala mulai %1$s</string>
+  <string name="share_review_onset_subtitle">Gejala</string>
+  <string name="share_review_onset_date">Dimulai %1$s</string>
   <string name="share_review_onset_no_symptoms">Tidak ada gejala</string>
   <string name="share_review_onset_no_answer">Tidak dijawab</string>
-  <string name="share_review_travel_subtitle">Histori bepergian</string>
-  <string name="share_review_travel_confirmed">Bepergian dalam 14 hari terakhir</string>
+  <string name="share_review_travel_subtitle">Perjalanan</string>
+  <string name="share_review_travel_confirmed">Dalam 14 hari terakhir</string>
   <string name="share_review_travel_no_travel">Tidak bepergian dalam 14 hari terakhir</string>
   <string name="share_review_travel_no_answer">Tidak dijawab</string>
   <string name="share_confirm_title">Terima kasih telah membagikan hasil tes COVID-19 Anda</string>
   <string name="not_shared_confirm_title">Hasil tes Anda tidak dibagikan</string>
   <string name="not_shared_confirm_detail">Hasil tes COVID-19 Anda tidak dibagikan. Coba lagi.</string>
   <string name="status_shared_detail_title">Status COVID-19 yang dibagikan</string>
-  <string name="delete_test_result_title">Hapus hasil tes COVID-19?</string>
-  <string name="delete_test_result_detail">Detail hasil tes Anda akan dihapus dari aplikasi ini.</string>
+  <string name="delete_test_result_title">Hapus hasil tes?</string>
   <string name="delete_test_result_confirmed">Hasil tes dihapus</string>
   <string name="share_error_no_internet">Tidak dapat membagikan hasil tes secara offline. Periksa koneksi internet Anda dan coba lagi.</string>
   <string name="share_vaccination_title">Apakah Anda sudah divaksinasi COVID-19?</string>
@@ -104,7 +104,30 @@
   <string name="share_vaccination_learn_more">Pelajari lebih lanjut</string>
   <string name="share_vaccination_vaccinated">Ya, saya telah divaksinasi</string>
   <string name="share_vaccination_not_vaccinated">Tidak</string>
-  <string name="share_vaccination_unknown">Memilih tidak menjawab</string>
+  <string name="share_vaccination_unknown">Saya memilih untuk tidak menjawab</string>
+  <string name="do_you_have_code_title">Apakah Anda menerima kode?</string>
+  <string name="do_you_have_code_content">Jika Anda dinyatakan positif COVID-19, otoritas kesehatan biasanya akan memberikan kode verifikasi melalui telepon atau SMS agar Anda dapat membagikan hasil tes.</string>
+  <string name="btn_i_have_code">Ya, saya memiliki kode</string>
+  <string name="btn_i_need_code">Saya perlu kode</string>
+  <string name="get_verification_code_title">Dapatkan kode verifikasi</string>
+  <string name="phone_number_prompt">Nomor telepon</string>
+  <string name="phone_number_help">Kode verifikasi memungkinkan Anda membagikan hasil tes. Kode akan dikirimkan ke nomor yang Anda berikan.</string>
+  <string name="phone_number_may_be_stored_help">Untuk mencegah pengguna mengirim lebih dari satu hasil tes, nomor telepon Anda dapat disimpan sementara waktu oleh otoritas kesehatan masyarakat.</string>
+  <string name="test_date_prompt">Tanggal tes</string>
+  <string name="test_date_help">Tanggal tes harus dalam 14 hari terakhir.</string>
+  <string name="tested_for_covid_checkbox_text">Saya menerima hasil tes positif COVID-19 dalam 14 hari terakhir.</string>
+  <string name="btn_send_code">Kirim kode</string>
+  <string name="enter_code_help">Masukkan kode yang dikirimkan oleh %1$s.</string>
+  <string name="positive_result_already_reported_title">Anda sudah melaporkan hasil tes baru-baru ini.</string>
+  <string name="positive_result_already_reported_content">Jika Anda ingin melaporkan hasil tes lagi, harap hubungi %1$s.</string>
+  <string name="self_report_bad_code">Kode tidak valid. Pastikan Anda menggunakan perangkat yang sama untuk meminta dan memasukkan kode verifikasi.</string>
+  <string name="self_report_bad_phone_number">Periksa nomor Anda lalu coba lagi. %1$s</string>
+  <string name="self_report_code_requested_too_many_times">Anda telah membuat terlalu banyak permintaan. Hubungi %1$s jika Anda masih memerlukan kode.</string>
+  <plurals name="self_report_code_already_requested">
+    <item quantity="one">Anda telah membuat terlalu banyak permintaan. Anda dapat meminta kode lain dalam %1$d menit.</item>
+    <item quantity="other">Anda telah membuat terlalu banyak permintaan. Anda dapat meminta kode lain dalam %1$d menit.</item>
+  </plurals>
+  <string name="notify_others_notification_title">Bantu beri tahu orang lain yang mungkin telah terpapar</string>
   <string name="settings_exposure_notifications_subtitle">Notifikasi Paparan</string>
   <string name="settings_app_analytics_subtitle">Berbagi penggunaan &amp; performa aplikasi</string>
   <string name="settings_privacy_policy">Kebijakan privasi</string>
@@ -166,4 +189,9 @@
   <string name="private_analytics_footer_learn_more">Pelajari lebih lanjut</string>
   <string name="diagnosis_subtitle_template">%1$s pada %2$s</string>
   <string name="empty_share_history_body">Tidak ada histori berbagi</string>
+  <string name="share_diagnosis_share_test_result_title">Bagikan hasil tes Anda dengan %1$s</string>
+  <string name="share_diagnosis_share_test_result_subtitle">Terima kasih telah membantu menghentikan COVID-19.</string>
+  <string name="share_diagnosis_share_test_result_body">Jika membagikan hasil tes, Anda juga dapat memilih untuk membagikan kapan gejala Anda dimulai. Informasi ini dapat membantu menghentikan penyebaran COVID-19 dan menyelamatkan nyawa.</string>
+  <string name="sms_intercept_notice_title">Yang baru</string>
+  <string name="sms_intercept_notice_content">Jika otoritas kesehatan setempat mengirimkan hasil tes kepada Anda, aplikasi dapat memberi tahu dengan pengingat agar Anda mengirimkan hasil tes dan membantu memberi tahu orang lain tentang kemungkinan paparan. Anda dapat menonaktifkannya kapan saja di setelan.</string>
 </resources>

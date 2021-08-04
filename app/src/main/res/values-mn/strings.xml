@@ -30,7 +30,8 @@
   <string name="onboarding_exposure_notifications_title">Өртсөн тухай мэдэгдлийг асаах</string>
   <string name="onboarding_exposure_notifications_detail">Та коронавируст халдвар (COVID-19)-тай гэж мэдээлсэн хэн нэгэнтэй ойр байсан тохиолдолд мэдэгдэл аваарай.
     \n\nТаны утас санамсаргүй ID-г аюулгүйгээр цуглуулах болон ойролцоох бусад утастай хуваалцахын тулд Bluetooth-г ашиглана.
-    \n\nӨртсөн байж болзошгүй мэдээлэлтэй холбоотой огноо, үргэлжлэх хугацаа болон дохионы хүчийг танай нийгмийн эрүүл мэндийн төрийн байгууллагын тохируулсан параметрт тулгуурлан танд мэдэгдэх эсэхийг шийдвэрлэхэд ашиглана.</string>
+    \n\nӨртсөн байж болзошгүй мэдээлэлтэй холбоотой огноо, үргэлжлэх хугацаа болон дохионы хүчийг танай нийгмийн эрүүл мэндийн төрийн байгууллагын тохируулсан параметрт тулгуурлан танд мэдэгдэх эсэхийг шийдвэрлэхэд ашиглана.
+    \n\nХэрэв таны шинжилгээний хариу эерэг гарвал та хариугаа эрүүл мэндийн төрийн байгууллагатайгаа хуваалцах сануулагч хүлээн авч магадгүй.</string>
   <string name="onboarding_metrics_title">Энэ аппыг илүү сайн болгоход туслах</string>
   <string name="onboarding_metrics_subtitle">Аппын ашиглалт, гүйцэтгэлийн өгөгдлийг Google-тай хуваалцаарай</string>
   <string name="onboarding_metrics_description">Аппыг хадгалах болон сайжруулахад туслахын тулд аппын гүйцэтгэл болон ашиглалтын талаарх зарим хязгаарлагдмал, танигдуулахгүй өгөгдлийг Google-тай хуваалцдаг. Энэ өгөгдөл таныг танигдуулахгүй. %1$s</string>
@@ -60,10 +61,10 @@
   <string name="notify_turn_on_exposure_notifications_header">Коронавируст халдвар (COVID-19)-т өртсөн байж болзошгүй талаарх мэдэгдэл авахын тулд Өртсөн тухай мэдэгдлийг асаана уу. %1$s</string>
   <string name="using_en_helps_even_if_vaccinated">Энэ үйлчилгээг ашигласнаар та вакцин хийлгэсэн байсан ч - нийгэмлэгээ хамгаалахад тусалж чадна.</string>
   <string name="share_begin_title">Орон нутгаа хамгаалахад туслах</string>
-  <string name="share_close_title">Хуваалцахгүйгээр гарах уу?</string>
-  <string name="share_close_detail">Та шинжилгээний хариугаа илүү хурдан хуваалцвал орон нутагтаа хамгийн сайнаар туслах болно. Таны одоо оруулсан шинжилгээний хариуны мэдээллийг дараа үргэлжлүүлэн засахад зориулан аппад хадгалдаг.</string>
-  <string name="btn_resume_later">Тийм, гаръя</string>
-  <string name="verify_test_result_title">COVID-19-ын шинжилгээний мэдээллээ оруулах</string>
+  <string name="share_close_title">Хуваалцахгүйгээр хаах уу?</string>
+  <string name="share_close_detail">Нийгэмлэгтээ туслах хамгийн сайн арга бол шинжилгээнийхээ хариуг аль болох хурдан хуваалцах юм. Хэрэв та одоо хуваалцахгүйгээр хаавал бодлоо өөрчилсөн үедээ орхисон газраасаа үргэлжлүүлж болно.</string>
+  <string name="btn_resume_later">Тийм, хаая</string>
+  <string name="verify_test_result_title">Баталгаажуулах кодоо оруулна уу</string>
   <string name="enter_your_test_identifier">Баталгаажуулах код</string>
   <string name="share_test_identifier_help">Энэ нэг удаагийн кодыг таны шинжилгээний хариуг баталгаажуулахад ашигладаг.</string>
   <string name="share_test_identifier_verified">Код баталгаажсан</string>
@@ -73,30 +74,29 @@
   <string name="test_date_label">Шинж тэмдэг эхэлсэн огноо</string>
   <string name="share_onset_symptoms">Тийм</string>
   <string name="share_onset_no_symptoms">Үгүй</string>
-  <string name="share_onset_no_answer">Хариулахгүй байхыг илүүд үзэх</string>
+  <string name="share_onset_no_answer">Би хариулмааргүй байна</string>
   <string name="share_travel_title">Та сүүлийн 14 хоногт аялсан уу\?</string>
   <string name="share_travel_confirmed">Тийм</string>
   <string name="share_travel_no_travel">Үгүй</string>
-  <string name="share_travel_no_answer">Хариулахгүй байхыг илүүд үзэх</string>
+  <string name="share_travel_no_answer">Би хариулмааргүй байна</string>
   <string name="share_review_title">Мэдээллээ үнэлэх</string>
   <string name="share_review_status_subtitle">Коронавируст халдвар (COVID-19)-ын төлөв</string>
   <string name="share_review_status_confirmed">Эерэг</string>
   <string name="share_review_status_likely">Магадлалтай</string>
   <string name="share_review_status_negative">Сөрөг</string>
-  <string name="share_review_onset_subtitle">Шинж тэмдгийн мэдээлэл</string>
-  <string name="share_review_onset_date">%1$s-с эхэлсэн шинж тэмдэг</string>
+  <string name="share_review_onset_subtitle">Шинж тэмдэг</string>
+  <string name="share_review_onset_date">%1$s-д эхэлсэн</string>
   <string name="share_review_onset_no_symptoms">Шинж тэмдэг алга</string>
   <string name="share_review_onset_no_answer">Хариулаагүй</string>
-  <string name="share_review_travel_subtitle">Аяллын түүх</string>
-  <string name="share_review_travel_confirmed">Сүүлийн 14 хоногт аялсан</string>
+  <string name="share_review_travel_subtitle">Аялал</string>
+  <string name="share_review_travel_confirmed">Өнгөрсөн 14 хоногийн дотор</string>
   <string name="share_review_travel_no_travel">Сүүлийн 14 хоногт аялаагүй</string>
   <string name="share_review_travel_no_answer">Хариулаагүй</string>
-  <string name="share_confirm_title">Коронавируст халдвар (COVID-19)-ын төлөвөө хуваалцсанд баярлалаа</string>
+  <string name="share_confirm_title">Коронавируст халдвар (COVID-19)-ын хариугаа хуваалцсанд баярлалаа</string>
   <string name="not_shared_confirm_title">Таны шинжилгээний хариуг хуваалцаагүй байна</string>
   <string name="not_shared_confirm_detail">Таны коронавируст халдвар (COVID-19)-ын шинжилгээний хариуг хуваалцаагүй байна. Дахин оролдоно уу.</string>
   <string name="status_shared_detail_title">Коронавируст халдвар (COVID-19)-ын төлөвийг хуваалцсан</string>
-  <string name="delete_test_result_title">Коронавируст халдвар (COVID-19)-ын шинжилгээний хариугаа устгах уу?</string>
-  <string name="delete_test_result_detail">Таны шинжилгээний хариуны дэлгэрэнгүйг энэ аппаас устгана.</string>
+  <string name="delete_test_result_title">Шинжилгээний хариугаа устгах уу?</string>
   <string name="delete_test_result_confirmed">Шинжилгээний хариуг устгасан</string>
   <string name="share_error_no_internet">Шинжилгээний хариуг офлайнаар хуваалцах боломжгүй. Интернэт холболтоо шалгаад, дахин оролдоно уу.</string>
   <string name="share_vaccination_title">Та COVID-19-ын эсрэг вакцин хийлгэсэн үү\?</string>
@@ -104,7 +104,30 @@
   <string name="share_vaccination_learn_more">Нэмэлт мэдээлэл авах</string>
   <string name="share_vaccination_vaccinated">Тийм, би вакцин хийлгэсэн</string>
   <string name="share_vaccination_not_vaccinated">Үгүй</string>
-  <string name="share_vaccination_unknown">Хариулахыг хүсэхгүй байна</string>
+  <string name="share_vaccination_unknown">Би хариулмааргүй байна</string>
+  <string name="do_you_have_code_title">Та код хүлээн авсан уу?</string>
+  <string name="do_you_have_code_content">Хэрэв таны COVID-19-ын шинжилгээний хариу эерэг гарвал эрүүл мэндийн төрийн байгууллага тань ихэвчлэн утас эсвэл мессежээр баталгаажуулах код өгөх бөгөөд ингэснээр та хариугаа хуваалцах боломжтой.</string>
+  <string name="btn_i_have_code">Тийм, надад код байгаа</string>
+  <string name="btn_i_need_code">Надад код хэрэгтэй байна</string>
+  <string name="get_verification_code_title">Баталгаажуулах код аваарай</string>
+  <string name="phone_number_prompt">Утасны дугаар</string>
+  <string name="phone_number_help">Баталгаажуулах код нь танд шинжилгээний хариугаа хуваалцах боломжийг олгоно. Кодыг таны өгсөн дугаарт илгээнэ.</string>
+  <string name="phone_number_may_be_stored_help">Хүмүүсийг нэгээс олон хариу илгээхээс сэргийлэхийн тулд таны утасны дугаарыг түр зуур нийгмийн эрүүл мэндийн төрийн байгууллага тань хадгалж магадгүй.</string>
+  <string name="test_date_prompt">Шинжилгээний огноо</string>
+  <string name="test_date_help">Шинжилгээний огноо нь өнгөрсөн 14 хоногийн дотор байх ёстой.</string>
+  <string name="tested_for_covid_checkbox_text">Өнгөрсөн 14 хоногийн дотор миний коронавируст халдвар (COVID-19)-ын шинжилгээний хариу эерэг гарсан.</string>
+  <string name="btn_send_code">Код илгээх</string>
+  <string name="enter_code_help">Танд %1$s-с илгээсэн кодыг оруулна уу.</string>
+  <string name="positive_result_already_reported_title">Та саяхан шинжилгээний хариу мэдээлсэн байна.</string>
+  <string name="positive_result_already_reported_content">Хэрэв та шинжилгээний өөр хариу мэдээлэхийг хүсвэл %1$s-тай холбогдоно уу.</string>
+  <string name="self_report_bad_code">Код буруу байна. Та хүсэлт тавих болон баталгаажуулах кодоо оруулахдаа ижил төхөөрөмж ашиглаж байгаа эсэхээ шалгана уу.</string>
+  <string name="self_report_bad_phone_number">Дугаараа шалгаад, дахин оролдоно уу. %1$s</string>
+  <string name="self_report_code_requested_too_many_times">Та хэт олон удаа хүсэлт тавьсан байна. Танд код шаардлагатай хэвээр байвал %1$s-тай холбогдоно уу.</string>
+  <plurals name="self_report_code_already_requested">
+    <item quantity="one">Та хэт олон удаа хүсэлт тавьсан байна. Та %1$d минутын дараа өөр код хүсэх боломжтой.</item>
+    <item quantity="other">Та хэт олон удаа хүсэлт тавьсан байна. Та %1$d минутын дараа өөр код хүсэх боломжтой.</item>
+  </plurals>
+  <string name="notify_others_notification_title">Өртсөн байж болзошгүй бусад хүнд мэдэгдэхэд тусална уу</string>
   <string name="settings_exposure_notifications_subtitle">Өртсөн тухай мэдэгдэл</string>
   <string name="settings_app_analytics_subtitle">Аппын ашиглалт, гүйцэтгэлийг хуваалцах</string>
   <string name="settings_privacy_policy">Нууцлалын бодлого</string>
@@ -166,4 +189,9 @@
   <string name="private_analytics_footer_learn_more">Нэмэлт мэдээлэл авах</string>
   <string name="diagnosis_subtitle_template">%2$s-д %1$s</string>
   <string name="empty_share_history_body">Хуваалцсан түүх байхгүй</string>
+  <string name="share_diagnosis_share_test_result_title">Шинжилгээний хариугаа %1$s-тай хуваалцаарай</string>
+  <string name="share_diagnosis_share_test_result_subtitle">Коронавируст халдвар (COVID-19)-ыг зогсооход тусалж байгаад тань баярлалаа.</string>
+  <string name="share_diagnosis_share_test_result_body">Та мөн хариугаа хуваалцах үедээ шинж тэмдэг хэзээ эхэлснээ хуваалцахаар сонгох боломжтой. Энэ мэдээлэл коронавируст халдвар (COVID-19)-ын тархалтыг зогсоож, амь насаа аврахад туслах боломжтой.</string>
+  <string name="sms_intercept_notice_title">Шинэ юм юу байна</string>
+  <string name="sms_intercept_notice_content">Хэрэв танай орон нутгийн эрүүл мэндийн эрх бүхий байгууллага шинжилгээний хариу илгээвэл таны апп танд хариугаа илгээх сануулагч бүхий мэдэгдэл явуулж, бусдад өртсөн байж болзошгүй талаар сэрэмжлүүлэхэд тусалж болно. Та үүнийг хүссэн үедээ тохиргоонд идэвхгүй болгох боломжтой.</string>
 </resources>

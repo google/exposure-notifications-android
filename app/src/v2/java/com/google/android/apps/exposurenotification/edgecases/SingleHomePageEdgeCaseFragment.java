@@ -40,8 +40,6 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class SingleHomePageEdgeCaseFragment extends AbstractEdgeCaseFragment {
 
-  private static final String TAG = "HomePageEdgeCaseFragment";
-
   private FragmentEdgeCasesHomeSinglePageBinding binding;
 
   public static SingleHomePageEdgeCaseFragment newInstance(boolean handleApiErrorLiveEvents,

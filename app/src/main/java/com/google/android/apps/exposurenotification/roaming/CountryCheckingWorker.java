@@ -18,7 +18,6 @@
 package com.google.android.apps.exposurenotification.roaming;
 
 import android.content.Context;
-import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.hilt.Assisted;
 import androidx.hilt.work.WorkerInject;
@@ -29,6 +28,7 @@ import androidx.work.PeriodicWorkRequest;
 import androidx.work.WorkManager;
 import androidx.work.WorkerParameters;
 import com.google.android.apps.exposurenotification.common.Qualifiers.BackgroundExecutor;
+import com.google.android.apps.exposurenotification.common.logging.Logger;
 import com.google.android.apps.exposurenotification.logging.AnalyticsLogger;
 import com.google.android.apps.exposurenotification.proto.WorkManagerTask.WorkerTask;
 import com.google.android.apps.exposurenotification.work.WorkerStartupManager;
@@ -40,7 +40,7 @@ import java.util.concurrent.TimeUnit;
 
 public class CountryCheckingWorker extends ListenableWorker {
 
-  private static final String TAG = "CountryCheckingWorker";
+  private static final Logger logcat = Logger.getLogger("CountryCheckingWorker");
   private static final String WORKER_NAME = "CountryCheckingWorker";
 
   private final ExecutorService backgroundExecutor;
@@ -83,7 +83,7 @@ public class CountryCheckingWorker extends ListenableWorker {
         .catching(
             Exception.class,
             x -> {
-              Log.e(TAG, "Failure to check country code", x);
+              logcat.e("Failure to check country code", x);
               logger.logWorkManagerTaskFailure(WorkerTask.TASK_COUNTRY_CHECKING, x);
               return Result.failure();
             },
@@ -91,7 +91,7 @@ public class CountryCheckingWorker extends ListenableWorker {
   }
 
   public static Operation schedule(WorkManager workManager) {
-    Log.d(TAG, "Scheduling country code checker");
+    logcat.d("Scheduling country code checker");
     // WARNING: You must set ExistingPeriodicWorkPolicy.REPLACE if you want to change the params for
     //          previous app version users.
     return workManager.enqueueUniquePeriodicWork(WORKER_NAME, ExistingPeriodicWorkPolicy.KEEP,
@@ -99,7 +99,7 @@ public class CountryCheckingWorker extends ListenableWorker {
   }
 
   public static void cancel(WorkManager workManager) {
-    Log.d(TAG, "Cancelling country code checker");
+    logcat.d("Cancelling country code checker");
     workManager.cancelUniqueWork(WORKER_NAME);
   }
 

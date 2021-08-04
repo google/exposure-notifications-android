@@ -49,7 +49,6 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class ActiveRegionFragment extends BaseFragment {
 
-  private static final String TAG = "ActiveRegionFragment";
   private static final String STATE_REMOVE_REGION_DIALOG_OPEN = "STATE_REMOVE_REGION_DIALOG_OPEN";
   // Result code to report that the current region has been removed from active regions.
   private static final int RESULT_REMOVE_REGION = RESULT_FIRST_USER;

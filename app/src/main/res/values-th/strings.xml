@@ -30,7 +30,8 @@
   <string name="onboarding_exposure_notifications_title">เปิดการแจ้งเตือนความเสี่ยงต่อการติดเชื้อ</string>
   <string name="onboarding_exposure_notifications_detail">รับการแจ้งเตือนหากคุณเข้าใกล้ผู้ที่เคยรายงานว่าติดเชื้อโควิด-19
     \n\nโทรศัพท์ของคุณใช้บลูทูธเพื่อรวบรวมและแชร์รหัสแบบสุ่มกับโทรศัพท์เครื่องอื่นที่อยู่ใกล้เคียงอย่างปลอดภัย
-    \n\nระบบจะใช้วันที่ ระยะเวลา และความแรงของสัญญาณที่เกี่ยวข้องกับความเสี่ยงต่อการติดเชื้อเพื่อพิจารณาว่าคุณควรได้รับการแจ้งเตือนหรือไม่เมื่อดูจากปัจจัยที่หน่วยงานด้านสาธารณสุขกำหนด</string>
+    \n\nระบบจะใช้วันที่ ระยะเวลา และความแรงของสัญญาณที่เกี่ยวข้องกับความเสี่ยงต่อการติดเชื้อเพื่อพิจารณาว่าคุณควรได้รับการแจ้งเตือนหรือไม่เมื่อดูจากปัจจัยที่หน่วยงานด้านสาธารณสุขกำหนด
+    \n\nหากผลตรวจเป็นบวก คุณอาจได้รับการแจ้งเตือนให้แชร์ผลตรวจกับหน่วยงานสาธารณสุข</string>
   <string name="onboarding_metrics_title">ช่วยปรับปรุงแอปนี้</string>
   <string name="onboarding_metrics_subtitle">แชร์ข้อมูลการใช้งานและประสิทธิภาพของแอปกับ Google</string>
   <string name="onboarding_metrics_description">ระบบจะแชร์ข้อมูลเกี่ยวกับประสิทธิภาพและการใช้งานแอปเพียงบางอย่างที่ลบการระบุตัวตนแล้วกับ Google เพื่อช่วยคงฟังก์ชันการทำงานและปรับปรุงแอป ข้อมูลนี้ไม่ได้ระบุตัวตนของคุณ %1$s</string>
@@ -60,10 +61,10 @@
   <string name="notify_turn_on_exposure_notifications_header">เปิดการแจ้งเตือนความเสี่ยงต่อการติดเชื้อเพื่อรับการแจ้งเตือนความเสี่ยงต่อการติดเชื้อโควิด-19 %1$s</string>
   <string name="using_en_helps_even_if_vaccinated">การใช้บริการนี้ช่วยปกป้องชุมชน แม้ว่าคุณจะฉีดวัคซีนแล้วก็ตาม</string>
   <string name="share_begin_title">ช่วยปกป้องชุมชน</string>
-  <string name="share_close_title">ออกโดยไม่แชร์ใช่ไหม</string>
-  <string name="share_close_detail">คุณจะช่วยเหลือชุมชนได้ดีที่สุดหากแชร์ผลตรวจให้เร็วขึ้น อย่างไรก็ตาม ข้อมูลผลตรวจที่คุณป้อนไว้แล้วจะบันทึกอยู่ในแอปเพื่อให้คุณแก้ไขได้ในภายหลัง</string>
-  <string name="btn_resume_later">ใช่ ออก</string>
-  <string name="verify_test_result_title">ป้อนข้อมูลการตรวจโควิด-19</string>
+  <string name="share_close_title">ปิดโดยไม่แชร์ใช่ไหม</string>
+  <string name="share_close_detail">วิธีที่ดีที่สุดที่คุณจะช่วยชุมชนของคุณได้คือการแชร์ผลตรวจของคุณโดยเร็วที่สุด หากปิดไปตอนนี้โดยไม่แชร์ คุณกลับมาดำเนินการต่อจากจุดเดิมได้หากเปลี่ยนใจในภายหลัง</string>
+  <string name="btn_resume_later">ใช่ ปิดเลย</string>
+  <string name="verify_test_result_title">ป้อนรหัสยืนยันของคุณ</string>
   <string name="enter_your_test_identifier">รหัสยืนยัน</string>
   <string name="share_test_identifier_help">รหัสแบบใช้ครั้งเดียวนี้ใช้ในการยืนยันผลตรวจของคุณ</string>
   <string name="share_test_identifier_verified">ยืนยันรหัสแล้ว</string>
@@ -73,30 +74,29 @@
   <string name="test_date_label">วันที่เริ่มมีอาการ</string>
   <string name="share_onset_symptoms">ใช่</string>
   <string name="share_onset_no_symptoms">ไม่</string>
-  <string name="share_onset_no_answer">ไม่ต้องการตอบ</string>
+  <string name="share_onset_no_answer">ฉันไม่ต้องการตอบ</string>
   <string name="share_travel_title">คุณได้เดินทางในช่วง 14 วันที่ผ่านมาไหม</string>
   <string name="share_travel_confirmed">ใช่</string>
   <string name="share_travel_no_travel">ไม่</string>
-  <string name="share_travel_no_answer">ไม่ต้องการตอบ</string>
+  <string name="share_travel_no_answer">ฉันไม่ต้องการตอบ</string>
   <string name="share_review_title">ตรวจสอบข้อมูล</string>
   <string name="share_review_status_subtitle">สถานะความเสี่ยงต่อการติดเชื้อโควิด-19</string>
   <string name="share_review_status_confirmed">ติดเชื้อ</string>
   <string name="share_review_status_likely">อาจติดเชื้อ</string>
   <string name="share_review_status_negative">ไม่ติดเชื้อ</string>
-  <string name="share_review_onset_subtitle">ข้อมูลเกี่ยวกับอาการ</string>
-  <string name="share_review_onset_date">มีอาการตั้งแต่วันที่ %1$s</string>
+  <string name="share_review_onset_subtitle">อาการ</string>
+  <string name="share_review_onset_date">เริ่มต้นเมื่อวันที่ %1$s</string>
   <string name="share_review_onset_no_symptoms">ไม่มีอาการ</string>
   <string name="share_review_onset_no_answer">ไม่ได้ตอบ</string>
-  <string name="share_review_travel_subtitle">ประวัติการเดินทาง</string>
-  <string name="share_review_travel_confirmed">เดินทางในช่วง 14 วันที่ผ่านมา</string>
+  <string name="share_review_travel_subtitle">การเดินทาง</string>
+  <string name="share_review_travel_confirmed">ในช่วง 14 วันที่ผ่านมา</string>
   <string name="share_review_travel_no_travel">ไม่ได้เดินทางในช่วง 14 วันที่ผ่านมา</string>
   <string name="share_review_travel_no_answer">ไม่ได้ตอบ</string>
-  <string name="share_confirm_title">ขอขอบคุณที่แชร์สถานะความเสี่ยงต่อการติดเชื้อโควิด-19</string>
+  <string name="share_confirm_title">ขอขอบคุณที่แชร์ผลการตรวจหาเชื้อโควิด-19</string>
   <string name="not_shared_confirm_title">ไม่ได้แชร์ผลตรวจหาเชื้อ</string>
   <string name="not_shared_confirm_detail">ไม่ได้แชร์ผลตรวจหาเชื้อโควิด-19 ของคุณ โปรดลองอีกครั้ง</string>
   <string name="status_shared_detail_title">สถานะความเสี่ยงต่อการติดเชื้อโควิด-19 ที่แชร์</string>
-  <string name="delete_test_result_title">ลบผลการตรวจหาเชื้อโควิด-19 ใช่ไหม</string>
-  <string name="delete_test_result_detail">ระบบจะลบรายละเอียดผลการตรวจออกจากแอปนี้</string>
+  <string name="delete_test_result_title">ลบผลตรวจใช่ไหม</string>
   <string name="delete_test_result_confirmed">ลบผลตรวจแล้ว</string>
   <string name="share_error_no_internet">แชร์ผลการทดสอบแบบออฟไลน์ไม่ได้ ตรวจสอบการเชื่อมต่ออินเทอร์เน็ต แล้วลองอีกครั้ง</string>
   <string name="share_vaccination_title">คุณฉีดวัคซีนป้องกันโควิด-19 แล้วใช่ไหม</string>
@@ -104,7 +104,30 @@
   <string name="share_vaccination_learn_more">ดูข้อมูลเพิ่มเติม</string>
   <string name="share_vaccination_vaccinated">ใช่ ฉันฉีดวัคซีนแล้ว</string>
   <string name="share_vaccination_not_vaccinated">ไม่</string>
-  <string name="share_vaccination_unknown">ไม่ต้องการตอบ</string>
+  <string name="share_vaccination_unknown">ฉันไม่ต้องการตอบ</string>
+  <string name="do_you_have_code_title">คุณได้รับรหัสไหม</string>
+  <string name="do_you_have_code_content">หากผลการตรวจหาเชื้อโควิด-19 ของคุณเป็นบวก ปกติแล้วหน่วยงานด้านสาธารณสุขจะแจ้งรหัสยืนยันทางโทรศัพท์หรือข้อความเพื่อให้คุณแชร์ผลตรวจดังกล่าวได้</string>
+  <string name="btn_i_have_code">ใช่ ฉันมีรหัส</string>
+  <string name="btn_i_need_code">ฉันต้องการรหัส</string>
+  <string name="get_verification_code_title">รับรหัสยืนยัน</string>
+  <string name="phone_number_prompt">หมายเลขโทรศัพท์</string>
+  <string name="phone_number_help">รหัสยืนยันช่วยให้คุณแชร์ผลตรวจได้ ระบบจะส่งรหัสยืนยันไปยังหมายเลขที่คุณให้ไว้</string>
+  <string name="phone_number_may_be_stored_help">หน่วยงานด้านสาธารณสุขอาจจัดเก็บหมายเลขโทรศัพท์ไว้ชั่วคราวเพื่อป้องกันการส่งผลตรวจมามากกว่า 1 รายการ</string>
+  <string name="test_date_prompt">วันที่ตรวจ</string>
+  <string name="test_date_help">วันที่ตรวจควรอยู่ในช่วง 14 วันที่ผ่านมา</string>
+  <string name="tested_for_covid_checkbox_text">ผลการตรวจหาเชื้อโควิด-19 ของฉันเป็นบวกในช่วง 14 วันที่ผ่านมา</string>
+  <string name="btn_send_code">ส่งรหัส</string>
+  <string name="enter_code_help">ป้อนรหัสที่ส่งมาจาก %1$s</string>
+  <string name="positive_result_already_reported_title">คุณได้รายงานผลตรวจไปแล้วเมื่อเร็วๆ นี้</string>
+  <string name="positive_result_already_reported_content">หากต้องการรายงานผลตรวจอีกครั้ง โปรดติดต่อ %1$s</string>
+  <string name="self_report_bad_code">รหัสไม่ถูกต้อง ตรวจดูว่าคุณใช้อุปกรณ์เครื่องเดียวกันในการขอและป้อนรหัสยืนยัน</string>
+  <string name="self_report_bad_phone_number">ตรวจสอบหมายเลขโทรศัพท์แล้วลองอีกครั้ง %1$s</string>
+  <string name="self_report_code_requested_too_many_times">คุณส่งคำขอจำนวนมากเกินไป โปรดติดต่อ %1$s หากยังต้องการรหัส</string>
+  <plurals name="self_report_code_already_requested">
+    <item quantity="one">คุณส่งคำขอจำนวนมากเกินไป คุณขอรหัสใหม่ได้ในอีก %1$d นาที</item>
+    <item quantity="other">คุณส่งคำขอจำนวนมากเกินไป คุณขอรหัสใหม่ได้ในอีก %1$d นาที</item>
+  </plurals>
+  <string name="notify_others_notification_title">ช่วยแจ้งเตือนให้ผู้ที่อาจมีความเสี่ยงต่อการติดเชื้อทราบ</string>
   <string name="settings_exposure_notifications_subtitle">การแจ้งเตือนความเสี่ยงต่อการติดเชื้อ</string>
   <string name="settings_app_analytics_subtitle">การแชร์การใช้งานและประสิทธิภาพของแอป</string>
   <string name="settings_privacy_policy">นโยบายความเป็นส่วนตัว</string>
@@ -166,4 +189,9 @@
   <string name="private_analytics_footer_learn_more">ดูข้อมูลเพิ่มเติม</string>
   <string name="diagnosis_subtitle_template">%1$sเมื่อวันที่ %2$s</string>
   <string name="empty_share_history_body">ไม่มีประวัติการแชร์</string>
+  <string name="share_diagnosis_share_test_result_title">แชร์ผลตรวจของคุณด้วย %1$s</string>
+  <string name="share_diagnosis_share_test_result_subtitle">ขอขอบคุณที่ช่วยหยุดเชื้อโควิด-19</string>
+  <string name="share_diagnosis_share_test_result_body">เมื่อคุณแชร์ผลตรวจ คุณเลือกที่จะแชร์วันที่เริ่มมีอาการได้อีกด้วย ข้อมูลนี้จะช่วยหยุดการแพร่กระจายของเชื้อโควิด-19 และทำให้ผู้คนปลอดภัยได้</string>
+  <string name="sms_intercept_notice_title">มีอะไรใหม่</string>
+  <string name="sms_intercept_notice_content">หากหน่วยงานด้านสาธารณสุขในท้องถิ่นส่งผลการตรวจหาเชื้อให้กับคุณ แอปจะแจ้งเตือนให้คุณส่งผลการตรวจด้วยการช่วยเตือนและช่วยแจ้งเตือนผู้อื่นถึงความเสี่ยงต่อการติดเชื้อ คุณปิดใช้งานได้ทุกเมื่อในการตั้งค่า</string>
 </resources>

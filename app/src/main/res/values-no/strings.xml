@@ -30,7 +30,8 @@
   <string name="onboarding_exposure_notifications_title">Slå på eksponeringsvarsler</string>
   <string name="onboarding_exposure_notifications_detail">Bli varslet hvis du har vært i nærheten av noen som har rapportert at de har covid-19.
     \n\nTelefonen din bruker Bluetooth for å samle inn og dele tilfeldige ID-er med telefoner i nærheten på en trygg måte.
-    \n\nDatoen, varigheten og signalstyrken knyttet til en mulig eksponering brukes til å fastslå hvorvidt du blir varslet, basert på parametere som er angitt av offentlige helsemyndigheter.</string>
+    \n\nDatoen, varigheten og signalstyrken knyttet til en mulig eksponering brukes til å fastslå hvorvidt du blir varslet, basert på parametere som er angitt av offentlige helsemyndigheter.
+    \n\nHvis du tester positivt, kan du motta en påminnelse om å dele resultatene dine med helsemyndighetene.</string>
   <string name="onboarding_metrics_title">Bidra til å gjøre appen bedre</string>
   <string name="onboarding_metrics_subtitle">Del appbruk og ytelsesdata med Google</string>
   <string name="onboarding_metrics_description">For å vedlikeholde og forbedre appen deles noen begrensede, avidentifiserte data om appytelsen og -bruken med Google. Disse dataene identifiserer deg ikke. %1$s</string>
@@ -60,10 +61,10 @@
   <string name="notify_turn_on_exposure_notifications_header">For å bli varslet om mulig covid-19-eksponering, slå på eksponeringsvarsler. %1$s</string>
   <string name="using_en_helps_even_if_vaccinated">Bruk av denne tjenesten bidrar til å beskytte lokalsamfunnet ditt – selv om du er vaksinert.</string>
   <string name="share_begin_title">Bidra til å beskytte lokalsamfunnet</string>
-  <string name="share_close_title">Vil du avslutte uten å dele?</string>
-  <string name="share_close_detail">Du kan hjelpe lokalsamfunnet best ved å dele testresultatet ditt raskere. Informasjonen om testresultatet du har skrevet inn til nå, er lagret i appen, slik at du kan fortsette innskrivingen senere.</string>
-  <string name="btn_resume_later">Ja, avslutt</string>
-  <string name="verify_test_result_title">Skriv inn covid-19-testinformasjon</string>
+  <string name="share_close_title">Vil du lukke uten å dele?</string>
+  <string name="share_close_detail">Den beste måten du kan hjelpe lokalsamfunnet på, er å dele resultatene dine så snart som mulig. Hvis du lukker uten å dele nå, kan du fortsette der du slapp, hvis du ombestemmer deg senere.</string>
+  <string name="btn_resume_later">Ja, lukk</string>
+  <string name="verify_test_result_title">Angi bekreftelseskoden din</string>
   <string name="enter_your_test_identifier">Bekreftelseskode</string>
   <string name="share_test_identifier_help">Denne engangskoden brukes til å bekrefte testresultatet ditt.</string>
   <string name="share_test_identifier_verified">Koden er bekreftet</string>
@@ -73,30 +74,29 @@
   <string name="test_date_label">Datoen da symptomene startet</string>
   <string name="share_onset_symptoms">Ja</string>
   <string name="share_onset_no_symptoms">Nei</string>
-  <string name="share_onset_no_answer">Vil helst ikke svare</string>
+  <string name="share_onset_no_answer">Jeg vil helst ikke svare</string>
   <string name="share_travel_title">Har du reist i løpet av de siste 14 dagene\?</string>
   <string name="share_travel_confirmed">Ja</string>
   <string name="share_travel_no_travel">Nei</string>
-  <string name="share_travel_no_answer">Vil helst ikke svare</string>
+  <string name="share_travel_no_answer">Jeg vil helst ikke svare</string>
   <string name="share_review_title">Gjennomgå informasjonen din</string>
   <string name="share_review_status_subtitle">Covid-19-status</string>
   <string name="share_review_status_confirmed">Positiv</string>
   <string name="share_review_status_likely">Sannsynlig</string>
   <string name="share_review_status_negative">Negativ</string>
-  <string name="share_review_onset_subtitle">Informasjon om symptomer</string>
-  <string name="share_review_onset_date">Symptomer fra %1$s</string>
+  <string name="share_review_onset_subtitle">Symptomer</string>
+  <string name="share_review_onset_date">Startet %1$s</string>
   <string name="share_review_onset_no_symptoms">Ingen symptomer</string>
   <string name="share_review_onset_no_answer">Ikke svart</string>
-  <string name="share_review_travel_subtitle">Reisehistorikk</string>
-  <string name="share_review_travel_confirmed">Reist i løpet av de siste 14 dagene</string>
+  <string name="share_review_travel_subtitle">Reise</string>
+  <string name="share_review_travel_confirmed">I løpet av de siste 14 dagene</string>
   <string name="share_review_travel_no_travel">Ikke reist i løpet av de siste 14 dagene</string>
   <string name="share_review_travel_no_answer">Ikke svart</string>
-  <string name="share_confirm_title">Takk for at du deler covid-19-statusen din.</string>
+  <string name="share_confirm_title">Takk for at du deler covid-19-resultatet ditt</string>
   <string name="not_shared_confirm_title">Testresultatet ditt ble ikke delt</string>
   <string name="not_shared_confirm_detail">Covid-19-testresultatet ditt ble ikke delt. Prøv igjen.</string>
   <string name="status_shared_detail_title">Delt covid-19-status</string>
-  <string name="delete_test_result_title">Vil du slette covid-19-testresultatet?</string>
-  <string name="delete_test_result_detail">Informasjon om testresultatet ditt slettes fra denne appen.</string>
+  <string name="delete_test_result_title">Vil du slette testresultatet ditt?</string>
   <string name="delete_test_result_confirmed">Testresultatet er slettet</string>
   <string name="share_error_no_internet">Du kan ikke dele testresultatene uten nett. Sjekk internettilkoblingen og prøv på nytt.</string>
   <string name="share_vaccination_title">Er du vaksinert mot covid-19?</string>
@@ -104,7 +104,30 @@
   <string name="share_vaccination_learn_more">Finn ut mer</string>
   <string name="share_vaccination_vaccinated">Ja, jeg er vaksinert</string>
   <string name="share_vaccination_not_vaccinated">Nei</string>
-  <string name="share_vaccination_unknown">Vil helst ikke svare</string>
+  <string name="share_vaccination_unknown">Jeg vil helst ikke svare</string>
+  <string name="do_you_have_code_title">Har du mottatt en kode?</string>
+  <string name="do_you_have_code_content">Hvis du tester positivt for covid-19, gir helsemyndighetene deg vanligvis en bekreftelseskode via telefon eller tekstmelding, slik at du kan dele resultatene.</string>
+  <string name="btn_i_have_code">Ja, jeg har en kode</string>
+  <string name="btn_i_need_code">Jeg trenger en kode</string>
+  <string name="get_verification_code_title">Få en bekreftelseskode</string>
+  <string name="phone_number_prompt">Telefonnummer</string>
+  <string name="phone_number_help">Du kan bruke en bekreftelseskode for å dele testresultatene dine. Koden blir sendt til nummeret du oppgir.</string>
+  <string name="phone_number_may_be_stored_help">For å forhindre at noen sender inn mer enn ett resultat, kan telefonnummeret ditt lagres midlertidig av de offentlige helsemyndighetene.</string>
+  <string name="test_date_prompt">Testdato</string>
+  <string name="test_date_help">Testdatoen skal være i løpet av de siste 14 dagene.</string>
+  <string name="tested_for_covid_checkbox_text">Jeg har fått en positiv covid-19-test i løpet av de siste 14 dagene.</string>
+  <string name="btn_send_code">Send koden</string>
+  <string name="enter_code_help">Skriv inn koden du mottok fra %1$s.</string>
+  <string name="positive_result_already_reported_title">Du har allerede rapportert et testresultat nylig.</string>
+  <string name="positive_result_already_reported_content">Hvis du vil rapportere et annet testresultat, kan du kontakte %1$s.</string>
+  <string name="self_report_bad_code">Ugyldig kode. Sørg for at du bruker den samme enheten til å både be om og skrive inn bekreftelseskoden.</string>
+  <string name="self_report_bad_phone_number">Sjekk nummeret ditt og prøv igjen. %1$s</string>
+  <string name="self_report_code_requested_too_many_times">Du har sendt for mange forespørsler. Kontakt %1$s hvis du fremdeles trenger en kode.</string>
+  <plurals name="self_report_code_already_requested">
+    <item quantity="one">Du har sendt for mange forespørsler. Du kan be om en ny kode om %1$d minutt.</item>
+    <item quantity="other">Du har sendt for mange forespørsler. Du kan be om en ny kode om %1$d minutter.</item>
+  </plurals>
+  <string name="notify_others_notification_title">Bidra til å varsle andre som kan ha blitt eksponert</string>
   <string name="settings_exposure_notifications_subtitle">Eksponeringsvarsler</string>
   <string name="settings_app_analytics_subtitle">Deling av appbruk og ytelse</string>
   <string name="settings_privacy_policy">Personvernregler</string>
@@ -166,4 +189,9 @@
   <string name="private_analytics_footer_learn_more">Finn ut mer</string>
   <string name="diagnosis_subtitle_template">%1$s på %2$s</string>
   <string name="empty_share_history_body">Ingen delingslogg</string>
+  <string name="share_diagnosis_share_test_result_title">Del testresultatet ditt med %1$s</string>
+  <string name="share_diagnosis_share_test_result_subtitle">Takk for at du hjelper til med å bekjempe covid-19.</string>
+  <string name="share_diagnosis_share_test_result_body">Når du deler resultatet ditt, kan du også velge å dele når symptomene dine startet. Denne informasjonen kan bidra til å stoppe spredningen av covid-19 og redde liv.</string>
+  <string name="sms_intercept_notice_title">Nyheter</string>
+  <string name="sms_intercept_notice_content">Hvis de lokale helsemyndighetene sender deg et testresultat, kan appen varsle deg med en påminnelse om å sende inn resultatet ditt og bidra til å varsle andre om mulig eksponering. Du kan når som helst slå av dette i innstillingene.</string>
 </resources>

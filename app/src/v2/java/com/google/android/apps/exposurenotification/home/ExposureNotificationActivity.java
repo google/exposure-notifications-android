@@ -37,8 +37,6 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public final class ExposureNotificationActivity extends BaseActivity {
 
-  private static final String TAG = "ExposureNotifnActivity";
-
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -53,17 +51,7 @@ public final class ExposureNotificationActivity extends BaseActivity {
 
     switch (action == null ? "" : action) {
       case Intent.ACTION_VIEW:
-        BaseFragment shareDiagnosisFragment;
-        Optional<String> codeFromDeepLink = IntentUtil.maybeGetCodeFromDeepLinkUri(uri);
-        if (codeFromDeepLink.isPresent()) {
-          shareDiagnosisFragment = ShareDiagnosisFragment.newInstance(codeFromDeepLink.get());
-        } else {
-          finish();
-          return;
-        }
-        transitionToFragmentThroughAnotherFragmentWithBackStack(
-            /* destinationFragment= */shareDiagnosisFragment,
-            /* transitFragment= */SinglePageHomeFragment.newInstance());
+        maybeLaunchFromDeeplink(uri);
         break;
       case Intent.ACTION_MAIN:
         if (extras.getBoolean(IntentUtil.EXTRA_NOTIFICATION, false)
@@ -73,6 +61,9 @@ public final class ExposureNotificationActivity extends BaseActivity {
           transitionToFragmentThroughAnotherFragmentWithBackStack(
               /* destinationFragment= */possibleExposureFragment,
               /* transitFragment= */SinglePageHomeFragment.newInstance());
+        } else if (extras.getBoolean(IntentUtil.EXTRA_SMS_VERIFICATION, false)) {
+          Uri deeplinkUri = extras.getParcelable(IntentUtil.EXTRA_DEEP_LINK);
+          maybeLaunchFromDeeplink(deeplinkUri);
         } else {
           transitionToFragmentDirect(isOnNewIntent
               ? SinglePageHomeFragment.newInstance() : SplashFragment.newInstance());
@@ -82,6 +73,21 @@ public final class ExposureNotificationActivity extends BaseActivity {
         transitionToFragmentDirect(SplashFragment.newInstance());
         break;
     }
+  }
+
+  private void maybeLaunchFromDeeplink(@Nullable Uri uri) {
+    BaseFragment shareDiagnosisFragment;
+    Optional<String> codeFromDeepLink = IntentUtil.maybeGetCodeFromDeepLinkUri(uri);
+    if (codeFromDeepLink.isPresent()) {
+      shareDiagnosisFragment = ShareDiagnosisFragment.newInstanceForCode(codeFromDeepLink.get());
+    } else if (IntentUtil.isSelfReportUri(uri)) {
+      shareDiagnosisFragment = ShareDiagnosisFragment.newInstanceForSelfReport();
+    } else {
+      shareDiagnosisFragment = ShareDiagnosisFragment.newInstance();
+    }
+    transitionToFragmentThroughAnotherFragmentWithBackStack(
+        /* destinationFragment= */shareDiagnosisFragment,
+        /* transitFragment= */SinglePageHomeFragment.newInstance());
   }
 
   /**

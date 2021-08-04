@@ -56,6 +56,7 @@ public enum UploadError {
 
   // Cause:
   //   serverErrorCode = invalid_test_type | token_invalid | token_expired | hmac_invalid
+  //                      | missing_date | invalid_date | missing_phone
   //   HTTP status = 401 | 403 | 404 | 405
   // Action: show a "generic" app internal error message
   APP_ERROR,
@@ -113,6 +114,10 @@ public enum UploadError {
             return UNSUPPORTED_TEST_TYPE;
           case VerifyV1.Error.INVALID_TEST_TYPE:
           case VerifyV1.Error.HMAC_INVALID:
+          case VerifyV1.Error.MISSING_DATE:
+          case VerifyV1.Error.INVALID_DATE:
+          case VerifyV1.Error.MISSING_PHONE:
+          case VerifyV1.Error.MISSING_NONCE:
           default:
             return APP_ERROR;
         }
@@ -141,10 +146,11 @@ public enum UploadError {
   }
 
   @NonNull
-  public String getErrorMessage(Resources resources) {
+  public String getErrorMessage(Resources resources, boolean isSelfReportFlow) {
     switch (this) {
       case CODE_INVALID:
-        return resources.getString(R.string.network_error_code_invalid);
+        return isSelfReportFlow ? resources.getString(R.string.self_report_bad_code)
+            : resources.getString(R.string.network_error_code_invalid);
       case CODE_EXPIRED:
         return resources.getString(R.string.network_error_code_expired,
             resources.getString(R.string.error_agency_name));

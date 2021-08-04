@@ -21,8 +21,6 @@ package com.google.android.apps.exposurenotification.keyupload;
 import com.google.android.apps.exposurenotification.network.DiagnosisKey;
 import com.google.auto.value.AutoValue;
 import com.google.common.collect.ImmutableList;
-import com.google.common.io.BaseEncoding;
-import java.security.SecureRandom;
 import java.util.Collection;
 import java.util.List;
 import androidx.annotation.Nullable;
@@ -39,11 +37,6 @@ import org.threeten.bp.LocalDate;
  */
 @AutoValue
 public abstract class Upload {
-  private static final SecureRandom RAND = new SecureRandom();
-  // "The key should be at least 128 bits of random data generated on the device"
-  // https://github.com/google/exposure-notifications-server/blob/main/docs/design/verification_protocol.md
-  private static final int HMAC_KEY_LEN_BYTES = 128 / 8;
-  private static final BaseEncoding BASE64 = BaseEncoding.base64();
 
   public abstract String verificationCode();
 
@@ -67,6 +60,8 @@ public abstract class Upload {
 
   @Nullable public abstract String revisionToken();
 
+  @Nullable public abstract String nonceBase64();
+
   public abstract boolean hasTraveled();
 
   /**
@@ -78,15 +73,16 @@ public abstract class Upload {
   public abstract boolean isCoverTraffic();
 
   /**
-   * Every {@link Upload} starts with these two givens.
+   * Every {@link Upload} starts with these three givens.
    */
   public static Upload.Builder newBuilder(
       List<DiagnosisKey> keys,
-      String verificationCode) {
+      String verificationCode,
+      String hmacKeyBase64) {
     return new AutoValue_Upload.Builder()
         .setVerificationCode(verificationCode)
         .setKeys(ImmutableList.copyOf(keys))
-        .setHmacKeyBase64(newHmacKey())
+        .setHmacKeyBase64(hmacKeyBase64)
         .setIsCoverTraffic(false)
         .setNumKeysAffected(0)
         .setRegions(ImmutableList.of())
@@ -94,11 +90,12 @@ public abstract class Upload {
   }
 
   /**
-   * Every {@link Upload} starts with these two givens.
+   * Every {@link Upload} starts with these three givens.
    */
   public static Upload.Builder newBuilder(
-      String verificationCode) {
-    return newBuilder(ImmutableList.of(), verificationCode);
+      String verificationCode,
+      String hmacKeyBase64) {
+    return newBuilder(ImmutableList.of(), verificationCode, hmacKeyBase64);
   }
 
   public abstract Upload.Builder toBuilder();
@@ -134,13 +131,9 @@ public abstract class Upload {
 
     public abstract Upload.Builder setHasTraveled(boolean hasTraveled);
 
-    public abstract Upload build();
-  }
+    public abstract Upload.Builder setNonceBase64(String nonce);
 
-  public static String newHmacKey() {
-    byte[] bytes = new byte[HMAC_KEY_LEN_BYTES];
-    RAND.nextBytes(bytes);
-    return BASE64.encode(bytes);
+    public abstract Upload build();
   }
 
 }

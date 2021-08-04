@@ -25,6 +25,7 @@
 
   <uses-permission android:name="android.permission.CAMERA" />
   <uses-permission android:name="android.permission.WAKE_LOCK" />
+  <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
   <uses-sdk tools:overrideLibrary="com.google.zxing.client.android" />
 
@@ -34,6 +35,12 @@
     <activity
       android:name=".debug.MatchingDebugActivity"
       android:label="@string/debug_matching_matching_title"
+      android:windowSoftInputMode="stateHidden|adjustResize"
+      android:parentActivityName=".home.ExposureNotificationActivity"/>
+
+    <activity
+      android:name=".debug.VerifiableSmsActivity"
+      android:label="@string/debug_verifiable_sms_activity_title"
       android:windowSoftInputMode="stateHidden|adjustResize"
       android:parentActivityName=".home.ExposureNotificationActivity"/>
 

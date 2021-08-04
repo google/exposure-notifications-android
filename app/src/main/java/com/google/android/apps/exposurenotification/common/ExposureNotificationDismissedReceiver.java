@@ -52,7 +52,8 @@ public class ExposureNotificationDismissedReceiver extends
             || exposureNotificationSharedPreferences.getIsExposureClassificationRevoked();
 
     if (NOTIFICATION_DISMISSED_ACTION_ID.equals(intent.getAction())
-        && isPossibleExposurePresent) {
+        && isPossibleExposurePresent
+        && !intent.getBooleanExtra(IntentUtil.EXTRA_SMS_VERIFICATION, false)) {
       // We assume it dismissed the last notification received.
       int classificationIndex = exposureNotificationSharedPreferences
           .getExposureNotificationLastShownClassification();

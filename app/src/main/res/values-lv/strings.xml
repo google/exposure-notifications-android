@@ -29,8 +29,9 @@
   <string name="onboarding_finish_title">Citas atļaujas, kas nepieciešamas, lai iespējotu paziņojumus par saskari</string>
   <string name="onboarding_exposure_notifications_title">Paziņojumu par saskari ieslēgšana</string>
   <string name="onboarding_exposure_notifications_detail">Saņemiet paziņojumu, ja esat bijis tuvumā personai, kas ir ziņojusi par inficēšanos ar Covid-19.
-    \n\nJūsu tālrunī tiek izmantots Bluetooth savienojums, lai droši vāktu nejauši izveidotos ID un kopīgotu tos ar citiem tuvumā esošiem tālruņiem.
-    \n\nŅemot vērā iespējamās saskares datumu, ilgumu un signāla stiprumu, atbilstoši jūsu veselības aizsardzības iestādes iestatītajiem parametriem tiks noteikts, vai jums paziņot.</string>
+    \n\nJūsu tālrunī tiek izmantots Bluetooth savienojums, lai droši vāktu un kopīgotu nejauši izveidotos ID ar citiem tuvumā esošiem tālruņiem.
+    \n\nŅemot vērā iespējamās saskares datumu, ilgumu un signāla stiprumu, atbilstoši jūsu veselības aizsardzības iestādes iestatītajiem parametriem tiks noteikts, vai nosūtīt jums paziņojumu.
+    \n\nJa jūsu testa rezultāts būs pozitīvs, iespējams, saņemsiet atgādinājumu kopīgot rezultātu ar attiecīgo veselības aizsardzības iestādi.</string>
   <string name="onboarding_metrics_title">Lietotnes uzlabošana</string>
   <string name="onboarding_metrics_subtitle">Kopīgojiet lietotnes izmantojuma un veiktsp. datus ar Google</string>
   <string name="onboarding_metrics_description">Lai palīdzētu uzturēt un uzlabot lietotni, ar uzņēmumu Google tiek kopīgoti noteikti anonimizēti dati par lietotnes veiktspēju un izmantojumu. Šos datus nevar izmantot, lai jūs identificētu. %1$s</string>
@@ -61,10 +62,10 @@
   <string name="notify_turn_on_exposure_notifications_header">Lai tiktu informēts par iespējamu saskari ar Covid-19, ieslēdziet paziņojumus par saskari. %1$s</string>
   <string name="using_en_helps_even_if_vaccinated">Šis pakalpojums palīdz aizsargāt apkārtējos, pat ja esat vakcinēts.</string>
   <string name="share_begin_title">Jūsu iespēja aizsargāt apkārtējos</string>
-  <string name="share_close_title">Vai iziet, neveicot kopīgošanu?</string>
-  <string name="share_close_detail">Savai kopienai vislabāk varat palīdzēt, ātrāk kopīgojot savu testa rezultātu. Jūsu līdz šim ievadītā informācija par testa rezultātu ir saglabāta lietotnē, lai jūs vēlāk varētu atsākt rediģēšanu.</string>
-  <string name="btn_resume_later">Jā, iziet</string>
-  <string name="verify_test_result_title">Ievadiet informāciju par Covid-19 testu</string>
+  <string name="share_close_title">Vai aizvērt, neveicot kopīgošanu?</string>
+  <string name="share_close_detail">Lai palīdzētu apkārtējiem, vislabāk kopīgot rezultātus pēc iespējas drīz. Ja tagad aizvērsiet dialoglodziņu, neveicot kopīgošanu, bet vēlāk pārdomāsiet, varēsiet turpināt iesākto.</string>
+  <string name="btn_resume_later">Jā, aizvērt</string>
+  <string name="verify_test_result_title">Ievadiet verifikācijas kodu</string>
   <string name="enter_your_test_identifier">Verifikācijas kods</string>
   <string name="share_test_identifier_help">Šis vienreizējais kods tiek izmantots testa rezultāta verifikācijai.</string>
   <string name="share_test_identifier_verified">Kods ir verificēts</string>
@@ -84,20 +85,19 @@
   <string name="share_review_status_confirmed">Pozitīvs</string>
   <string name="share_review_status_likely">Iespējams</string>
   <string name="share_review_status_negative">Negatīvs</string>
-  <string name="share_review_onset_subtitle">Informācija par simptomiem</string>
-  <string name="share_review_onset_date">Simptomi, sākot no datuma %1$s</string>
+  <string name="share_review_onset_subtitle">Simptomi</string>
+  <string name="share_review_onset_date">Sākās: %1$s</string>
   <string name="share_review_onset_no_symptoms">Nebija simptomu</string>
   <string name="share_review_onset_no_answer">Neatbildējāt</string>
-  <string name="share_review_travel_subtitle">Ceļošanas vēsture</string>
-  <string name="share_review_travel_confirmed">Pēdējo 14 dienu laikā esat ceļojis</string>
+  <string name="share_review_travel_subtitle">Ceļošana</string>
+  <string name="share_review_travel_confirmed">Pēdējo 14 dienu laikā</string>
   <string name="share_review_travel_no_travel">Pēdējo 14 dienu laikā neesat ceļojis</string>
   <string name="share_review_travel_no_answer">Neatbildējāt</string>
-  <string name="share_confirm_title">Paldies, ka kopīgojāt savu Covid-19 statusu!</string>
+  <string name="share_confirm_title">Paldies, ka kopīgojāt savu Covid-19 testa rezultātu!</string>
   <string name="not_shared_confirm_title">Testa rezultāts netika kopīgots</string>
   <string name="not_shared_confirm_detail">Covid-19 testa rezultāts netika kopīgots. Lūdzu, mēģiniet vēlreiz.</string>
   <string name="status_shared_detail_title">Kopīgotais Covid-19 statuss</string>
-  <string name="delete_test_result_title">Vai dzēst Covid-19 testa rezultātu?</string>
-  <string name="delete_test_result_detail">Informācija par testa rezultātu tiks izdzēsta no šīs lietotnes.</string>
+  <string name="delete_test_result_title">Vai vēlaties dzēst testa rezultātu?</string>
   <string name="delete_test_result_confirmed">Testa rezultāts ir izdzēsts.</string>
   <string name="share_error_no_internet">Bezsaistē nevar kopīgot testēšanas rezultātus. Pārbaudiet interneta savienojumu un mēģiniet vēlreiz.</string>
   <string name="share_vaccination_title">Vai esat vakcinēts pret Covid-19?</string>
@@ -106,6 +106,30 @@
   <string name="share_vaccination_vaccinated">Jā, esmu vakcinēts</string>
   <string name="share_vaccination_not_vaccinated">Nē</string>
   <string name="share_vaccination_unknown">Nevēlos atbildēt</string>
+  <string name="do_you_have_code_title">Vai saņēmāt kodu?</string>
+  <string name="do_you_have_code_content">Ja saņemat pozitīvu Covid-19 testa rezultātu, veselības aizsardzības iestāde parasti tālruņa zvanā vai īsziņā norāda verifikācijas kodu, lai jūs varētu rezultātu kopīgot.</string>
+  <string name="btn_i_have_code">Jā, man ir kods</string>
+  <string name="btn_i_need_code">Man vajag kodu</string>
+  <string name="get_verification_code_title">Verifikācijas koda saņemšana</string>
+  <string name="phone_number_prompt">Tālruņa numurs</string>
+  <string name="phone_number_help">Izmantojot verifikācijas kodu, varēsiet kopīgot testa rezultātu. Kods tiks nosūtīts uz jūsu norādīto tālruņa numuru.</string>
+  <string name="phone_number_may_be_stored_help">Iespējams, jūsu valsts veselības aizsardzības iestāde īslaicīgi uzglabās jūsu tālruņa numuru, lai neviens nevarētu iesniegt vairākus rezultātus.</string>
+  <string name="test_date_prompt">Testa datums</string>
+  <string name="test_date_help">Testa datumam jābūt pēdējo 14 dienu laikā.</string>
+  <string name="tested_for_covid_checkbox_text">Man pēdējo 14 dienu laikā veica Covid-19 testu, kura rezultāts bija pozitīvs.</string>
+  <string name="btn_send_code">Sūtīt kodu</string>
+  <string name="enter_code_help">Ievadiet kodu, ko jums atsūtīja %1$s.</string>
+  <string name="positive_result_already_reported_title">Jūs nesen jau ziņojāt par testa rezultātu.</string>
+  <string name="positive_result_already_reported_content">Ja vēlaties ziņot par citu testa rezultātu, sazinieties ar šo iestādi: %1$s.</string>
+  <string name="self_report_bad_code">Kods nav derīgs. Pieprasiet un ievadiet verifikācijas kodu vienā un tajā pašā ierīcē.</string>
+  <string name="self_report_bad_phone_number">Pārbaudiet numuru un mēģiniet vēlreiz. %1$s</string>
+  <string name="self_report_code_requested_too_many_times">Esat iesniedzis pārāk daudz pieprasījumu. Ja jums joprojām vajadzīgs kods, sazinieties ar šo iestādi: %1$s.</string>
+  <plurals name="self_report_code_already_requested">
+    <item quantity="zero">Esat iesniedzis pārāk daudz pieprasījumu. Varēsiet pieprasīt vēl vienu kodu pēc %1$d minūtēm.</item>
+    <item quantity="one">Esat iesniedzis pārāk daudz pieprasījumu. Varēsiet pieprasīt vēl vienu kodu pēc %1$d minūtes.</item>
+    <item quantity="other">Esat iesniedzis pārāk daudz pieprasījumu. Varēsiet pieprasīt vēl vienu kodu pēc %1$d minūtēm.</item>
+  </plurals>
+  <string name="notify_others_notification_title">Palīdziet informēt citas personas par iespējamu saskari</string>
   <string name="settings_exposure_notifications_subtitle">Paziņojumi par saskari</string>
   <string name="settings_app_analytics_subtitle">Lietotnes datu kopīgošana</string>
   <string name="settings_privacy_policy">Konfidencialitātes politika</string>
@@ -167,4 +191,9 @@
   <string name="private_analytics_footer_learn_more">Uzzināt vairāk</string>
   <string name="diagnosis_subtitle_template">%1$s šajā datumā: %2$s</string>
   <string name="empty_share_history_body">Nav kopīgošanas vēstures</string>
+  <string name="share_diagnosis_share_test_result_title">Testa rezultāta kopīgošana ar lietotni %1$s</string>
+  <string name="share_diagnosis_share_test_result_subtitle">Paldies, ka palīdzat apturēt Covid-19 izplatību!</string>
+  <string name="share_diagnosis_share_test_result_body">Kopīgojot rezultātu, pēc izvēles varat kopīgot arī informāciju par to, kad sākās simptomi. Šī informācija var palīdzēt apturēt Covid-19 izplatību un glābt dzīvības.</string>
+  <string name="sms_intercept_notice_title">Jaunumi</string>
+  <string name="sms_intercept_notice_content">Ja jūsu vietējā veselības aizsardzības iestāde nosūta jums testa rezultātu, jūsu lietotnē var tikt rādīts paziņojums ar atgādinājumu iesniegt savu rezultātu un palīdzēt brīdināt citus par iespējamu saskari. Iestatījumos varat to jebkurā laikā atspējot.</string>
 </resources>

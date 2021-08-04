@@ -50,7 +50,7 @@ public class NotificationHelperTest {
           .getSystemService(Context.NOTIFICATION_SERVICE));
   private final NotificationHelper notificationHelper = new NotificationHelper();
   private final Intent notificationContentIntent =
-      IntentUtil.getNotificationContentIntent(context);
+      IntentUtil.getNotificationContentIntentExposure(context);
   private final Intent notificationDeleteIntent =
       IntentUtil.getNotificationDeleteIntent(context);
 
@@ -74,6 +74,59 @@ public class NotificationHelperTest {
     assertThat(notification.flags & Notification.FLAG_ONLY_ALERT_ONCE)
         .isEqualTo(Notification.FLAG_ONLY_ALERT_ONCE);
     assertThat(notification.visibility).isEqualTo(NotificationCompat.VISIBILITY_SECRET);
+  }
+
+  @Test
+  public void showReActivateENAppNotification_verifyNotificationInfo() {
+    if (BuildUtils.getType() == Type.V3) {
+      notificationHelper.showReActivateENAppNotification(context,
+          R.string.reactivate_exposure_notification_app_subject,
+          R.string.reactivate_exposure_notification_app_body);
+
+      assertThat(notificationManager.getAllNotifications()).isEmpty();
+      return;
+    }
+
+    notificationHelper.showReActivateENAppNotification(context,
+        R.string.reactivate_exposure_notification_app_subject,
+        R.string.reactivate_exposure_notification_app_body);
+
+    assertThat(notificationManager.getAllNotifications()).hasSize(1);
+    Notification notification = notificationManager.getNotification(1);
+    assertThat(shadowOf(notification).getContentTitle())
+        .isEqualTo(context.getString(R.string.reactivate_exposure_notification_app_subject));
+    assertThat(shadowOf(notification).getContentText())
+        .isEqualTo(context.getString(R.string.reactivate_exposure_notification_app_body, StringUtils.getHealthAuthorityName(context)));
+    assertThat(notification.getSmallIcon().getResId())
+        .isEqualTo(R.drawable.ic_exposure_notification);
+    assertThat(notification.priority).isEqualTo(NotificationCompat.PRIORITY_MAX);
+    assertThat(notification.flags & Notification.FLAG_AUTO_CANCEL)
+        .isEqualTo(Notification.FLAG_AUTO_CANCEL);
+    assertThat(notification.flags & Notification.FLAG_ONLY_ALERT_ONCE)
+        .isEqualTo(Notification.FLAG_ONLY_ALERT_ONCE);
+    assertThat(notification.visibility).isEqualTo(NotificationCompat.VISIBILITY_SECRET);
+  }
+
+  @Test
+  public void dismissReActivateENNotificationIfShowing_verifyNotificationDismissed() {
+    if (BuildUtils.getType() == Type.V3) {
+      notificationHelper.showReActivateENAppNotification(context,
+          R.string.reactivate_exposure_notification_app_subject,
+          R.string.reactivate_exposure_notification_app_body);
+
+      assertThat(notificationManager.getAllNotifications()).isEmpty();
+      return;
+    }
+
+    notificationHelper.showReActivateENAppNotification(context,
+        R.string.reactivate_exposure_notification_app_subject,
+        R.string.reactivate_exposure_notification_app_body);
+
+    assertThat(notificationManager.getAllNotifications()).hasSize(1);
+
+    notificationHelper.dismissReActivateENNotificationIfShowing(context);
+
+    assertThat(notificationManager.getAllNotifications()).isEmpty();
   }
 
   @Test

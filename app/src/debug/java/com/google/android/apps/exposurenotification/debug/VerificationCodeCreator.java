@@ -19,17 +19,18 @@ package com.google.android.apps.exposurenotification.debug;
 
 import android.content.Context;
 import android.net.Uri;
-import android.util.Log;
 import androidx.concurrent.futures.CallbackToFutureAdapter;
 import com.android.volley.Response;
 import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.common.logging.Logger;
 import com.google.android.apps.exposurenotification.network.RequestQueueWrapper;
 import com.google.android.apps.exposurenotification.network.VolleyUtils;
 import com.google.auto.value.AutoValue;
 import com.google.common.util.concurrent.ListenableFuture;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import androidx.annotation.Nullable;
@@ -53,7 +54,7 @@ class VerificationCodeCreator {
   /** Negative test type value that backend understands. */
   public static final String TEST_TYPE_NEGATIVE = "negative";
 
-  private static final String TAG = "VerificationCodeCreator";
+  private static final Logger logger = Logger.getLogger("VerificationCodeCreator");
   private static final int DEFAULT_ONSET_DAYS_AGO = 3;
 
   private final RequestQueueWrapper queue;
@@ -81,19 +82,18 @@ class VerificationCodeCreator {
    * Creates a new verification code with the given {@code onsetDate} and {@code testType}.
    */
   ListenableFuture<VerificationCode> create(@Nullable LocalDate onsetDate, String testType) {
-    Log.d(TAG, "Creating a verification code with onset date [" + onsetDate + "] and test type ["
+    logger.d("Creating a verification code with onset date [" + onsetDate + "] and test type ["
         + testType + "].");
     return CallbackToFutureAdapter.getFuture(
         completer -> {
           Listener<JSONObject> responseListener =
               response -> {
-                Log.d(TAG, "Verification code obtained: " + response);
+                logger.d("Verification code obtained: " + response);
                 try {
                   completer.set(parseResponse(response));
                 } catch (Exception e) {
                   // Pass along the exception instead of crashing the app
-                  Log.e(
-                      TAG,
+                  logger.e(
                       String.format(
                           "Failed to parse create verification code response: [%s]",
                           e.getMessage()));
@@ -104,7 +104,7 @@ class VerificationCodeCreator {
           ErrorListener errorListener =
               err -> {
                 JSONObject errorBody = VolleyUtils.getErrorBodyWithoutPadding(err);
-                Log.e(TAG, String.format("Create verification code error: [%s]", errorBody));
+                logger.e(String.format("Create verification code error: [%s]", errorBody));
                 if (VolleyUtils.getHttpStatus(err) >= 500) {
                   completer.setException(
                       new VerificationCodeCreateServerFailureException());
@@ -114,7 +114,7 @@ class VerificationCodeCreator {
               };
 
           JSONObject requestBody = requestBody(onsetDate, testType);
-          Log.d(TAG, "Submitting request for verification code: " + requestBody);
+          logger.d("Submitting request for verification code: " + requestBody);
 
           CreateCodeRequest request =
               new CreateCodeRequest(
@@ -182,7 +182,7 @@ class VerificationCodeCreator {
    * verification server in test scenarios (as opposed to being user input in prod scenarios).
    */
   @AutoValue
-  abstract static class VerificationCode {
+  abstract static class VerificationCode implements Serializable {
     static final VerificationCode EMPTY = of("", 0L);
 
     abstract String code();

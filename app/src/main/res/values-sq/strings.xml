@@ -30,7 +30,8 @@
   <string name="onboarding_exposure_notifications_title">Aktivizo \"Njoftimet rreth ekspozimit\"</string>
   <string name="onboarding_exposure_notifications_detail">Merr njoftime nëse ke qenë afër dikujt që është raportuar se ka COVID-19.
     \n\nTelefoni yt përdor Bluetooth-in për të mbledhur dhe ndarë në mënyrë të sigurt ID-të e rastësishme me telefonat e tjerë që janë në afërsi.
-    \n\nData, kohëzgjatja dhe fuqia e sinjalit në lidhje me një ekspozim të mundshëm do të përdoren për të përcaktuar nëse do të njoftohesh bazuar në parametrat e caktuar nga autoritetet e shëndetit publik.</string>
+    \n\nData, kohëzgjatja dhe fuqia e sinjalit në lidhje me një ekspozim të mundshëm do të përdoren për të përcaktuar nëse do të njoftohesh bazuar në parametrat e caktuar nga autoritetet e shëndetit publik.
+    \n\nNëse rezulton pozitiv, mund të marrësh një rikujtesë për t\'i ndarë rezultatet e tua me autoritetet shëndetësore.</string>
   <string name="onboarding_metrics_title">Ndihmo në përmirësimin e këtij aplikacioni</string>
   <string name="onboarding_metrics_subtitle">Ndaj me Google të dhënat e përdorimit dhe të cilësisë së funksionimit të aplikacionit</string>
   <string name="onboarding_metrics_description">Për të ndihmuar në mirëmbajtjen dhe përmirësimin e aplikacionit, disa të dhëna të kufizuara të anonimizuara për cilësinë e funksionimit dhe përdorimin e aplikacionit ndahen me Google. Këto të dhëna nuk të identifikojnë ty. %1$s</string>
@@ -60,10 +61,10 @@
   <string name="notify_turn_on_exposure_notifications_header">Për t\'u njoftuar për ekspozimin e mundshëm ndaj COVID-19, aktivizo \"Njoftimet rreth ekspozimit\". %1$s</string>
   <string name="using_en_helps_even_if_vaccinated">Përdorimi i këtij shërbimi ndihmon për të mbrojtur komunitetin tënd, edhe nëse je vaksinuar.</string>
   <string name="share_begin_title">Ndihmo në mbrojtjen e komunitetit tënd</string>
-  <string name="share_close_title">Të dilet pa e ndarë?</string>
-  <string name="share_close_detail">Mund ta ndihmosh më mirë komunitetin tënd nëse e ndan sa më shpejt rezultatin e testit tënd. Sidoqoftë, informacionet e rezultatit të testit që ke futur deri tani janë ruajtur në aplikacion që t\'i redaktosh më vonë.</string>
-  <string name="btn_resume_later">Po, dil</string>
-  <string name="verify_test_result_title">Fut informacionet për testin e COVID-19</string>
+  <string name="share_close_title">Të mbyllet pa i ndarë?</string>
+  <string name="share_close_detail">Mënyra më e mirë për të ndihmuar komunitetin tënd është t\'i ndash rezultatet e tua sa më shpejt. Nëse e mbyll tani pa i ndarë ato, mund të vazhdosh aty ku e ke lënë nëse ndërron mendje më vonë.</string>
+  <string name="btn_resume_later">Po, mbylle</string>
+  <string name="verify_test_result_title">Fut kodin tënd të verifikimit</string>
   <string name="enter_your_test_identifier">Kodi i verifikimit</string>
   <string name="share_test_identifier_help">Ky kod njëpërdorimësh përdoret për të verifikuar rezultatin e testit tënd.</string>
   <string name="share_test_identifier_verified">Kodi u verifikua</string>
@@ -83,20 +84,19 @@
   <string name="share_review_status_confirmed">Pozitiv</string>
   <string name="share_review_status_likely">I mundshëm</string>
   <string name="share_review_status_negative">Negativ</string>
-  <string name="share_review_onset_subtitle">Informacionet për simptomat</string>
-  <string name="share_review_onset_date">Simptomat nga data %1$s</string>
+  <string name="share_review_onset_subtitle">Simptomat</string>
+  <string name="share_review_onset_date">Filluan më %1$s</string>
   <string name="share_review_onset_no_symptoms">Asnjë simptomë</string>
   <string name="share_review_onset_no_answer">Nuk ka përgjigje</string>
-  <string name="share_review_travel_subtitle">Historiku i udhëtimeve</string>
-  <string name="share_review_travel_confirmed">Ke udhëtuar gjatë 14 ditëve të fundit</string>
+  <string name="share_review_travel_subtitle">Udhëtimi</string>
+  <string name="share_review_travel_confirmed">Brenda 14 ditëve të fundit</string>
   <string name="share_review_travel_no_travel">Nuk ke udhëtuar gjatë 14 ditëve të fundit</string>
   <string name="share_review_travel_no_answer">Nuk ka përgjigje</string>
-  <string name="share_confirm_title">Faleminderit që e ndave statusin tënd për COVID-19</string>
+  <string name="share_confirm_title">Faleminderit që e ndave rezultatin tënd për COVID-19</string>
   <string name="not_shared_confirm_title">Rezultati i testit tënd nuk është ndarë</string>
   <string name="not_shared_confirm_detail">Rezultati i testit tënd të COVID-19 nuk është ndarë. Provo përsëri.</string>
   <string name="status_shared_detail_title">Statusi i ndarë për COVID-19</string>
-  <string name="delete_test_result_title">Do ta fshish rezultatin e testit për COVID-19?</string>
-  <string name="delete_test_result_detail">Detajet e rezultatit të testit tënd do të fshihen nga ky aplikacion.</string>
+  <string name="delete_test_result_title">Të fshihet rezultati i testit tënd?</string>
   <string name="delete_test_result_confirmed">Rezultati i testit u fshi</string>
   <string name="share_error_no_internet">Rezultatet e testit nuk mund të ndahen jashtë linje. Kontrollo lidhjen e internetit dhe provo sërish.</string>
   <string name="share_vaccination_title">E ke bërë vaksinën kundër Covid-19\?</string>
@@ -105,6 +105,29 @@
   <string name="share_vaccination_vaccinated">Po, jam vaksinuar</string>
   <string name="share_vaccination_not_vaccinated">Jo</string>
   <string name="share_vaccination_unknown">Preferoj të mos përgjigjem</string>
+  <string name="do_you_have_code_title">More një kod?</string>
+  <string name="do_you_have_code_content">Nëse rezulton pozitiv për COVID-19, autoritetet shëndetësore zakonisht të japin një kod verifikimi nëpërmjet një telefonate ose mesazhi me tekst që të mund t\'i ndash rezultatet e tua.</string>
+  <string name="btn_i_have_code">Po, e kam një kod</string>
+  <string name="btn_i_need_code">Më nevojitet një kod</string>
+  <string name="get_verification_code_title">Merr një kod verifikimi</string>
+  <string name="phone_number_prompt">Numri i telefonit</string>
+  <string name="phone_number_help">Një kod verifikimi të lejon të ndash rezultatet e testit tënd. Kodi do të dërgohet te numri që jep ti.</string>
+  <string name="phone_number_may_be_stored_help">Për të parandaluar që njerëzit të mos dërgojmë më shumë se një rezultat, numri yt i telefonit mund të ruhet përkohësisht nga autoritetet e shëndetit publik.</string>
+  <string name="test_date_prompt">Data e testit</string>
+  <string name="test_date_help">Data e testit duhet të jetë brenda 14 ditëve të fundit.</string>
+  <string name="tested_for_covid_checkbox_text">Kam pasur një test pozitiv të COVID-19 në 14 ditët e fundit.</string>
+  <string name="btn_send_code">Dërgo kodin</string>
+  <string name="enter_code_help">Fut kodin që të është dërguar nga %1$s.</string>
+  <string name="positive_result_already_reported_title">Ke raportuar tashmë një rezultat testi së fundi.</string>
+  <string name="positive_result_already_reported_content">Nëse dëshiron të raportosh një rezultat tjetër testi, kontakto me %1$s.</string>
+  <string name="self_report_bad_code">Kod i pavlefshëm. Sigurohu që po përdor të njëjtën pajisje për kërkesën si dhe për futjen e kodit të verifikimit.</string>
+  <string name="self_report_bad_phone_number">Kontrollo numrin tënd dhe provo përsëri. %1$s</string>
+  <string name="self_report_code_requested_too_many_times">Ke bërë shumë kërkesa. Kontakto me %1$s nëse të nevojitet akoma një kod.</string>
+  <plurals name="self_report_code_already_requested">
+    <item quantity="one">Ke bërë shumë kërkesa. Mund të kërkosh një kod tjetër pas %1$d minute.</item>
+    <item quantity="other">Ke bërë shumë kërkesa. Mund të kërkosh një kod tjetër pas %1$d minutash.</item>
+  </plurals>
+  <string name="notify_others_notification_title">Ndihmo për t\'i njoftuar të tjerët që mund të jenë ekspozuar</string>
   <string name="settings_exposure_notifications_subtitle">Njoftimet rreth ekspozimit</string>
   <string name="settings_app_analytics_subtitle">Ndarja e përdorimit dhe cilësisë së funksionimit të aplikacionit</string>
   <string name="settings_privacy_policy">Politika e privatësisë</string>
@@ -166,4 +189,9 @@
   <string name="private_analytics_footer_learn_more">Mëso më shumë</string>
   <string name="diagnosis_subtitle_template">%1$s në %2$s</string>
   <string name="empty_share_history_body">Nuk ka historik të ndarjeve</string>
+  <string name="share_diagnosis_share_test_result_title">Ndaj rezultatin e testit tënd me %1$s</string>
+  <string name="share_diagnosis_share_test_result_subtitle">Faleminderit që ndihmon për të ndaluar COVID-19.</string>
+  <string name="share_diagnosis_share_test_result_body">Kur ndan rezultatin tënd, mund të zgjedhësh po ashtu që të ndash se kur të kanë filluar simptomat. Këto informacione mund të ndihmojnë për të ndaluar përhapjen e COVID-19 dhe për të shpëtuar jetë.</string>
+  <string name="sms_intercept_notice_title">Ç\'të reja ka</string>
+  <string name="sms_intercept_notice_content">Nëse autoritetet lokale shëndetësore të dërgojnë një rezultat testi, aplikacioni yt mund të të njoftojë me një rikujtesë për ta dorëzuar rezultatin tënd dhe për të ndihmuar në sinjalizimin e të tjerëve për ekspozimin e mundshëm. Mund ta çaktivizosh këtë në çdo kohë te cilësimet.</string>
 </resources>

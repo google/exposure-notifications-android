@@ -29,6 +29,7 @@ import com.google.android.apps.exposurenotification.storage.DiagnosisEntity.Trav
 import com.google.android.apps.exposurenotification.testsupport.ExposureNotificationRules;
 import com.google.android.apps.exposurenotification.testsupport.FakeClock;
 import com.google.android.apps.exposurenotification.testsupport.InMemoryDb;
+import com.google.common.base.Optional;
 import com.google.common.util.concurrent.ListenableFuture;
 import dagger.hilt.android.testing.BindValue;
 import dagger.hilt.android.testing.HiltAndroidTest;
@@ -37,6 +38,7 @@ import dagger.hilt.android.testing.UninstallModules;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 import javax.inject.Inject;
 import org.junit.Before;
@@ -44,6 +46,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.annotation.Config;
+import org.threeten.bp.Duration;
 import org.threeten.bp.LocalDate;
 
 /**
@@ -56,6 +59,8 @@ import org.threeten.bp.LocalDate;
 @UninstallModules({DbModule.class, RealTimeModule.class})
 public class DiagnosisRepositoryTest {
 
+  private static final Duration DURATION_NINETY_DAYS = Duration.ofDays(90);
+
   @Rule
   public ExposureNotificationRules rules = ExposureNotificationRules.forTest(this).build();
 
@@ -67,9 +72,13 @@ public class DiagnosisRepositoryTest {
   @Inject
   DiagnosisRepository diagnosisRepo;
 
+  private long minThresholdMs;
+
   @Before
   public void setUp() {
     rules.hilt().inject();
+    // Threshold to test maybeGetConfirmedOrSelfReportedDiagnosisSharedAfterThresholdAsync API.
+    minThresholdMs = clock.now().minus(DURATION_NINETY_DAYS).toEpochMilli();
   }
 
   @Test
@@ -454,7 +463,7 @@ public class DiagnosisRepositoryTest {
   }
 
   @Test
-  public void getLastNotSharedDiagnosisAsync_noNotSharedDiagnosesPresent_returnsNull()
+  public void maybeGetLastNotSharedDiagnosisAsync_noNotSharedDiagnosesPresent_returnsNull()
       throws Exception {
     // GIVEN
     diagnosisRepo
@@ -469,7 +478,7 @@ public class DiagnosisRepositoryTest {
   }
 
   @Test
-  public void getLastNotSharedDiagnosisAsync_notAttemptedDiagnosisPresent_shouldReturnEntity()
+  public void maybeGetLastNotSharedDiagnosisAsync_notAttemptedDiagnosisPresent_shouldReturnEntity()
       throws Exception {
     // GIVEN
     DiagnosisEntity notAttemptedToShareDiagnosis = DiagnosisEntity.newBuilder()
@@ -484,7 +493,7 @@ public class DiagnosisRepositoryTest {
   }
 
   @Test
-  public void getLastNotSharedDiagnosisAsync_notSharedDiagnosisPresent_shouldReturnEntity()
+  public void maybeGetLastNotSharedDiagnosisAsync_notSharedDiagnosisPresent_shouldReturnEntity()
       throws Exception {
     // GIVEN
     DiagnosisEntity notSharedDiagnosis = DiagnosisEntity.newBuilder()
@@ -499,7 +508,7 @@ public class DiagnosisRepositoryTest {
   }
 
   @Test
-  public void getLastNotSharedDiagnosisAsync_fewNotSharedDiagnosesPresent_returnsLast()
+  public void maybeGetLastNotSharedDiagnosisAsync_fewNotSharedDiagnosesPresent_returnsLast()
       throws Exception {
     // GIVEN
     DiagnosisEntity diagnosis = DiagnosisEntity.newBuilder().setId(1)
@@ -523,6 +532,147 @@ public class DiagnosisRepositoryTest {
 
     // THEN
     assertEqualIgnoringLastUpdatedTime(entity, expectedDiagnosis);
+  }
+
+  @Test
+  public void getPositiveDiagnosisSharedAfterThresholdLiveData_noConfirmedOrSelfReportedPresent_returnsAbsent()
+      throws Exception {
+    // GIVEN
+    AtomicReference<Optional<DiagnosisEntity>> observer = new AtomicReference<>();
+    diagnosisRepo
+        .getPositiveDiagnosisSharedAfterThresholdLiveData(minThresholdMs)
+        .observeForever(observer::set);
+    DiagnosisEntity likelyDiagnosis = DiagnosisEntity.newBuilder()
+        .setId(1).setCreatedTimestampMs(1L)
+        .setTestResult(TestResult.LIKELY).setSharedStatus(Shared.SHARED)
+        .build();
+
+    // WHEN
+    diagnosisRepo.upsertAsync(likelyDiagnosis).get();
+    Optional<DiagnosisEntity> diagnosisOptional = observer.get();
+
+    // THEN
+    assertThat(diagnosisOptional).isAbsent();
+  }
+
+  @Test
+  public void getPositiveDiagnosisSharedAfterThresholdLiveData_noSharedPresent_returnsAbsent()
+      throws Exception {
+    // GIVEN
+    AtomicReference<Optional<DiagnosisEntity>> observer = new AtomicReference<>();
+    diagnosisRepo
+        .getPositiveDiagnosisSharedAfterThresholdLiveData(minThresholdMs)
+        .observeForever(observer::set);
+    DiagnosisEntity selfReportedDiagnosis = DiagnosisEntity.newBuilder()
+        .setId(1).setCreatedTimestampMs(1L)
+        .setTestResult(TestResult.USER_REPORT).setSharedStatus(Shared.NOT_SHARED)
+        .build();
+    DiagnosisEntity confirmedDiagnosis = DiagnosisEntity.newBuilder()
+        .setId(2).setCreatedTimestampMs(2L)
+        .setTestResult(TestResult.CONFIRMED).setSharedStatus(Shared.NOT_SHARED)
+        .build();
+
+    // WHEN
+    diagnosisRepo.upsertAsync(selfReportedDiagnosis).get();
+    diagnosisRepo.upsertAsync(confirmedDiagnosis).get();
+    Optional<DiagnosisEntity> diagnosisOptional = observer.get();
+
+    // THEN
+    assertThat(diagnosisOptional).isAbsent();
+  }
+
+  @Test
+  public void getPositiveDiagnosisSharedAfterThresholdLiveData_lastUpdatedAfterThreshold_returnsAbsent()
+      throws Exception {
+    // GIVEN
+    AtomicReference<Optional<DiagnosisEntity>> observer = new AtomicReference<>();
+    diagnosisRepo
+        .getPositiveDiagnosisSharedAfterThresholdLiveData(minThresholdMs)
+        .observeForever(observer::set);
+    DiagnosisEntity selfReportedDiagnosis = DiagnosisEntity.newBuilder()
+        .setId(1).setCreatedTimestampMs(1L)
+        .setTestResult(TestResult.USER_REPORT).setSharedStatus(Shared.SHARED)
+        .build();
+    ((FakeClock) clock).moveBackBy(DURATION_NINETY_DAYS.plus(Duration.ofDays(1)));
+
+    // WHEN
+    diagnosisRepo.upsertAsync(selfReportedDiagnosis).get();
+    Optional<DiagnosisEntity> diagnosisOptional = observer.get();
+
+    // THEN
+    assertThat(diagnosisOptional).isAbsent();
+  }
+
+  @Test
+  public void getPositiveDiagnosisSharedAfterThresholdLiveData_selfReportedUpdatedBeforeThresholdPresent_returnsEntity()
+      throws Exception {
+    // GIVEN
+    AtomicReference<Optional<DiagnosisEntity>> observer = new AtomicReference<>();
+    diagnosisRepo
+        .getPositiveDiagnosisSharedAfterThresholdLiveData(minThresholdMs)
+        .observeForever(observer::set);
+    DiagnosisEntity selfReportedDiagnosis = DiagnosisEntity.newBuilder()
+        .setId(1).setCreatedTimestampMs(1L)
+        .setTestResult(TestResult.USER_REPORT).setSharedStatus(Shared.SHARED)
+        .build();
+
+    // WHEN
+    diagnosisRepo.upsertAsync(selfReportedDiagnosis).get();
+    Optional<DiagnosisEntity> diagnosisOptional = observer.get();
+
+    // THEN
+    assertThat(diagnosisOptional).isPresent();
+    assertEqualIgnoringLastUpdatedTime(diagnosisOptional.get(), selfReportedDiagnosis);
+  }
+
+  @Test
+  public void getPositiveDiagnosisSharedAfterThresholdLiveData_confirmedUpdatedBeforeThresholdPresent_returnsEntity()
+      throws Exception {
+    // GIVEN
+    AtomicReference<Optional<DiagnosisEntity>> observer = new AtomicReference<>();
+    diagnosisRepo
+        .getPositiveDiagnosisSharedAfterThresholdLiveData(minThresholdMs)
+        .observeForever(observer::set);
+    DiagnosisEntity confirmedDiagnosis = DiagnosisEntity.newBuilder()
+        .setId(1).setCreatedTimestampMs(1L)
+        .setTestResult(TestResult.CONFIRMED).setSharedStatus(Shared.SHARED)
+        .build();
+
+    // WHEN
+    diagnosisRepo.upsertAsync(confirmedDiagnosis).get();
+    Optional<DiagnosisEntity> diagnosisOptional = observer.get();
+
+    // THEN
+    assertThat(diagnosisOptional).isPresent();
+    assertEqualIgnoringLastUpdatedTime(diagnosisOptional.get(), confirmedDiagnosis);
+  }
+
+  @Test
+  public void getPositiveDiagnosisSharedAfterThresholdLiveData_twoMatchingPresent_returnsLastUpdated()
+      throws Exception {
+    // GIVEN
+    AtomicReference<Optional<DiagnosisEntity>> observer = new AtomicReference<>();
+    diagnosisRepo
+        .getPositiveDiagnosisSharedAfterThresholdLiveData(minThresholdMs)
+        .observeForever(observer::set);
+    DiagnosisEntity selfReportedDiagnosis = DiagnosisEntity.newBuilder()
+        .setId(1).setCreatedTimestampMs(1L)
+        .setTestResult(TestResult.USER_REPORT).setSharedStatus(Shared.SHARED)
+        .build();
+    DiagnosisEntity confirmedDiagnosis = DiagnosisEntity.newBuilder()
+        .setId(2).setCreatedTimestampMs(2L)
+        .setTestResult(TestResult.CONFIRMED).setSharedStatus(Shared.SHARED)
+        .build();
+    diagnosisRepo.upsertAsync(selfReportedDiagnosis).get();
+    ((FakeClock) clock).advance();
+    diagnosisRepo.upsertAsync(confirmedDiagnosis).get();
+
+    // WHEN
+    Optional<DiagnosisEntity> diagnosisOptional = observer.get();
+
+    // THEN
+    assertThat(diagnosisOptional).isPresent();
+    assertEqualIgnoringLastUpdatedTime(diagnosisOptional.get(), confirmedDiagnosis);
   }
 
   /**

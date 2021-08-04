@@ -24,7 +24,6 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
-import android.util.Log;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.VisibleForTesting;
@@ -34,11 +33,12 @@ import androidx.slice.SliceConvert;
 import androidx.slice.builders.ListBuilder;
 import androidx.slice.builders.ListBuilder.RowBuilder;
 import androidx.slice.builders.SliceAction;
+import com.google.android.apps.exposurenotification.common.logging.Logger;
 import com.google.common.collect.ImmutableList;
 
 @RequiresApi(VERSION_CODES.KITKAT)
 public abstract class ListSliceBuilderWrapper {
-  public static final String TAG = "ListSliceBuilderWrapper";
+  private static final Logger logger = Logger.getLogger("ListSliceBuilderWrapper");
 
   /** Creates a {@link ListSliceBuilderWrapper}. */
   public static ListSliceBuilderWrapper createListSliceBuilderWrapper(
@@ -47,7 +47,7 @@ public abstract class ListSliceBuilderWrapper {
     try {
       listBuilder = new ListBuilder(context, sliceUri, ListBuilder.INFINITY);
     } catch (IllegalStateException e) {
-      Log.w(TAG, "ListSliceBuilderWrapper: Meet exception when constructing ListBuilder!");
+      logger.w("Meet exception when constructing ListBuilder!");
       listBuilder = null;
     }
 
@@ -56,7 +56,7 @@ public abstract class ListSliceBuilderWrapper {
     } else if (VERSION.SDK_INT >= VERSION_CODES.P) {
       return new NativeListSliceBuilder(context, sliceUri);
     } else {
-      Log.w(TAG, "ListSliceBuilderWrapper: Build androidx Slice fail and os version is " +
+      logger.w("Build androidx Slice fail and os version is " +
           VERSION.SDK_INT);
       // Return an empty builder for this case.
       return new EmptyListSliceBuilderWrapper();
@@ -76,7 +76,7 @@ public abstract class ListSliceBuilderWrapper {
 
     private AndroidXListSliceBuilder(ListBuilder listBuilder) {
       this.listBuilder = listBuilder;
-      Log.i(TAG, "ListSliceBuilderWrapper: Build with AndroidXListSliceBuilder");
+      logger.i("Build with AndroidXListSliceBuilder");
     }
 
     @Override
@@ -115,7 +115,7 @@ public abstract class ListSliceBuilderWrapper {
     private NativeListSliceBuilder(Context context, Uri sliceUri) {
       this.context = context;
       this.builder = new Builder(sliceUri, /* spec= */ null);
-      Log.i(TAG, "ListSliceBuilderWrapper: Build with NativeListSliceBuilder");
+      logger.i("Build with NativeListSliceBuilder");
     }
 
     @Override
@@ -152,7 +152,7 @@ public abstract class ListSliceBuilderWrapper {
    */
   static class EmptyListSliceBuilderWrapper extends ListSliceBuilderWrapper {
     private EmptyListSliceBuilderWrapper() {
-      Log.i(TAG, "ListSliceBuilderWrapper: Build with EmptyListSliceBuilderWrapper");
+      logger.i("Build with EmptyListSliceBuilderWrapper");
     }
 
     @Override

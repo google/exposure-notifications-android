@@ -33,8 +33,6 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class ShareDiagnosisNotSharedFragment extends ShareDiagnosisBaseFragment {
 
-  private static final String TAG = "ShareExposureNotSharedFrag";
-
   private FragmentShareDiagnosisNotSharedBinding binding;
 
   @Override
@@ -49,7 +47,7 @@ public class ShareDiagnosisNotSharedFragment extends ShareDiagnosisBaseFragment 
     super.onViewCreated(view, savedInstanceState);
 
     requireActivity().setTitle(R.string.not_shared_confirm_title);
-    binding.shareDoneButton.setOnClickListener(v -> closeShareDiagnosisFlow());
+    binding.shareDoneButton.setOnClickListener(v -> closeShareDiagnosisFlowImmediately());
   }
 
   @Override

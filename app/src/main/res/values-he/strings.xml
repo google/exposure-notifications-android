@@ -29,8 +29,9 @@
   <string name="onboarding_finish_title">המשך ההרשאות שנדרשות כדי להפעיל את התראות החשיפה</string>
   <string name="onboarding_exposure_notifications_title">הפעלת התראות החשיפה</string>
   <string name="onboarding_exposure_notifications_detail">יישלחו אליך התראות אם שהית בקרבת אדם שדיווח על תוצאה חיובית של בדיקת נגיף הקורונה (COVID-19).
-    \n\nבטלפון שלך נעשה שימוש בחיבור Bluetooth כדי לאסוף מזהים רנדומליים ולשתף אותם באופן מאובטח עם טלפונים אחרים בקרבת מקום.
-    \n\nהנתונים שבהם ייעשה שימוש כדי לקבוע אם תישלח אליך התראה הם התאריך, משך הזמן וחוזק האות שמשויכים לחשיפה אפשרית לנגיף, וזאת על סמך פרמטרים שנקבעו על ידי הרשות לבריאות הציבור.</string>
+    \n\nבטלפון שלך נעשה שימוש בחיבור Bluetooth כדי לאסוף מזהים רנדומליים ולשתף אותם באופן מאובטח עם טלפונים אחרים שנמצאים בקרבת מקום.
+    \n\nהנתונים שבהם ייעשה שימוש כדי לקבוע אם תישלח אליך התראה הם התאריך, משך הזמן וחוזק האות שמשויכים לחשיפה אפשרית לנגיף. הנתונים האלה נקבעים לפי פרמטרים שהוגדרו על ידי הרשות לבריאות הציבור.
+    \n\nאם תתקבל תוצאה חיובית לבדיקה שלך, ייתכן שתישלח לך תזכורת לשיתוף התוצאות עם הרשות לבריאות הציבור.</string>
   <string name="onboarding_metrics_title">נשמח לעזרתך בשיפור האפליקציה</string>
   <string name="onboarding_metrics_subtitle">שיתוף נתוני שימוש וביצועים עם Google</string>
   <string name="onboarding_metrics_description">כדי לעזור בתחזוקה ובשיפור של האפליקציה, נתונים מסוימים ומוגבלים לגבי ביצועי האפליקציה והשימוש בה משותפים עם Google לאחר הסרת פרטי הזיהוי. לא ניתן לזהות אותך לפי הנתונים האלו. %1$s</string>
@@ -62,10 +63,10 @@
   <string name="notify_turn_on_exposure_notifications_header">כדי לקבל התראה על חשיפה אפשרית לנגיף הקורונה (COVID-19), יש להפעיל את התראות החשיפה. %1$s</string>
   <string name="using_en_helps_even_if_vaccinated">השימוש בשירות הזה עוזר להגן על הקהילה, גם לאחר קבלת החיסון.</string>
   <string name="share_begin_title">עזרה בהגנה על הקהילה</string>
-  <string name="share_close_title">לצאת בלי לשתף?</string>
-  <string name="share_close_detail">שיתוף תוצאת הבדיקה שלך בהקדם יספק את העזרה הטובה ביותר לקהילה שלך. עם זאת, המידע על תוצאת הבדיקה שהזנת עד כה נשמר באפליקציה, וניתן יהיה להמשיך לערוך אותו בהמשך.</string>
-  <string name="btn_resume_later">כן, אני רוצה לצאת</string>
-  <string name="verify_test_result_title">הזנת מידע על בדיקת נגיף הקורונה (COVID-19)</string>
+  <string name="share_close_title">לסגור בלי לשתף?</string>
+  <string name="share_close_detail">הדרך הטובה ביותר לעזור לקהילה שלך היא לשתף את התוצאות מוקדם ככל האפשר. רוצה לסגור עכשיו בלי לשתף? ניתן יהיה להמשיך מאותו מקום מאוחר יותר אם דעתך תשתנה.</string>
+  <string name="btn_resume_later">כן, אני רוצה לסגור</string>
+  <string name="verify_test_result_title">יש להזין את קוד האימות</string>
   <string name="enter_your_test_identifier">קוד אימות</string>
   <string name="share_test_identifier_help">קוד חד-פעמי זה משמש לאימות תוצאות הבדיקה שלך.</string>
   <string name="share_test_identifier_verified">הקוד אומת</string>
@@ -85,20 +86,19 @@
   <string name="share_review_status_confirmed">חיובית</string>
   <string name="share_review_status_likely">סבירות גבוהה</string>
   <string name="share_review_status_negative">שלילית</string>
-  <string name="share_review_onset_subtitle">מידע על התסמינים</string>
-  <string name="share_review_onset_date">התסמינים החלו בתאריך %1$s</string>
+  <string name="share_review_onset_subtitle">תסמינים</string>
+  <string name="share_review_onset_date">תאריך התחלה %1$s</string>
   <string name="share_review_onset_no_symptoms">אין תסמינים</string>
   <string name="share_review_onset_no_answer">ללא תשובה</string>
-  <string name="share_review_travel_subtitle">היסטוריית נסיעות</string>
-  <string name="share_review_travel_confirmed">נסיעות ב-14 הימים האחרונים</string>
+  <string name="share_review_travel_subtitle">נסיעות</string>
+  <string name="share_review_travel_confirmed">במהלך 14 הימים האחרונים</string>
   <string name="share_review_travel_no_travel">אין נסיעות ב-14 הימים האחרונים</string>
   <string name="share_review_travel_no_answer">ללא תשובה</string>
-  <string name="share_confirm_title">תודה ששיתפת אותנו בסטטוס שלך לגבי נגיף הקורונה (COVID-19)</string>
+  <string name="share_confirm_title">תודה ששיתפת אותנו בתוצאות הבדיקה של נגיף הקורונה (COVID-19)</string>
   <string name="not_shared_confirm_title">לא נעשה שיתוף לתוצאת הבדיקה שלך</string>
   <string name="not_shared_confirm_detail">לא נעשה שיתוף לתוצאת הבדיקה שלך לנגיף הקורונה (COVID-19). יש לנסות שוב.</string>
   <string name="status_shared_detail_title">סטטוס ששותף לגבי נגיף הקורונה (COVID-19)</string>
-  <string name="delete_test_result_title">למחוק את התוצאה של בדיקת נגיף הקורונה?</string>
-  <string name="delete_test_result_detail">פרטי תוצאת הבדיקה יימחקו מהאפליקציה הזו.</string>
+  <string name="delete_test_result_title">למחוק את תוצאות הבדיקה שלך?</string>
   <string name="delete_test_result_confirmed">תוצאת הבדיקה נמחקה</string>
   <string name="share_error_no_internet">לא ניתן לשתף את תוצאות הבדיקה ללא חיבור לאינטרנט. יש לבדוק את החיבור לאינטרנט ולנסות שוב.</string>
   <string name="share_vaccination_title">האם חוסנת כנגד נגיף הקורונה (COVID-19)?</string>
@@ -107,6 +107,31 @@
   <string name="share_vaccination_vaccinated">כן, התחסנתי</string>
   <string name="share_vaccination_not_vaccinated">לא</string>
   <string name="share_vaccination_unknown">לא רוצה לענות</string>
+  <string name="do_you_have_code_title">קיבלת קוד?</string>
+  <string name="do_you_have_code_content">לרוב, במקרה של קבלת תוצאה חיובית לבדיקת נגיף הקורונה (COVID-19), הרשות לבריאות הציבור באזור שלך מספקת קוד אימות בשיחת טלפון או בהודעת טקסט כדי שניתן יהיה לשתף את התוצאות.</string>
+  <string name="btn_i_have_code">כן, קיבלתי קוד</string>
+  <string name="btn_i_need_code">דרוש לי קוד</string>
+  <string name="get_verification_code_title">קבלת קוד אימות</string>
+  <string name="phone_number_prompt">מספר טלפון</string>
+  <string name="phone_number_help">באמצעות קוד אימות, אפשר לשתף את תוצאות הבדיקה שלך. הקוד יישלח למספר שיוזן כאן.</string>
+  <string name="phone_number_may_be_stored_help">כדי למנוע מאנשים לשלוח תוצאות של יותר מבדיקה אחת, ייתכן שמספר הטלפון שלך יאוחסן באופן זמני אצל הרשות לבריאות הציבור באזור שלך.</string>
+  <string name="test_date_prompt">תאריך הבדיקה</string>
+  <string name="test_date_help">תאריך הבדיקה צריך לחול במהלך 14 הימים האחרונים.</string>
+  <string name="tested_for_covid_checkbox_text">קיבלתי תוצאה חיובית לבדיקה של נגיף הקורונה (COVID-19) במהלך 14 הימים האחרונים.</string>
+  <string name="btn_send_code">שליחת קוד</string>
+  <string name="enter_code_help">יש להזין את הקוד שנשלח אליך על ידי %1$s.</string>
+  <string name="positive_result_already_reported_title">כבר דיווחת על תוצאת בדיקה לאחרונה.</string>
+  <string name="positive_result_already_reported_content">אם ברצונך לדווח על תוצאת בדיקה אחרת, עליך לפנות אל %1$s.</string>
+  <string name="self_report_bad_code">הקוד לא תקף. יש לוודא שאותו מכשיר משמש גם לבקשת קוד האימות וגם להזנתו.</string>
+  <string name="self_report_bad_phone_number">יש לבדוק את המספר ולנסות שוב. %1$s</string>
+  <string name="self_report_code_requested_too_many_times">שלחת יותר מדי בקשות. עליך לפנות אל %1$s אם עדיין דרוש לך קוד.</string>
+  <plurals name="self_report_code_already_requested">
+    <item quantity="one">שלחת יותר מדי בקשות. ניתן יהיה לבקש קוד נוסף בעוד דקה (%1$d).</item>
+    <item quantity="two">שלחת יותר מדי בקשות. ניתן יהיה לבקש קוד נוסף בעוד %1$d דקות.</item>
+    <item quantity="many">שלחת יותר מדי בקשות. ניתן יהיה לבקש קוד נוסף בעוד %1$d דקות.</item>
+    <item quantity="other">שלחת יותר מדי בקשות. ניתן יהיה לבקש קוד נוסף בעוד %1$d דקות.</item>
+  </plurals>
+  <string name="notify_others_notification_title">רוצה לעזור לעדכן אחרים לגבי חשיפה אפשרית לנגיף?</string>
   <string name="settings_exposure_notifications_subtitle">התראות חשיפה</string>
   <string name="settings_app_analytics_subtitle">שיתוף נתוני שימוש וביצועים של האפליקציה</string>
   <string name="settings_privacy_policy">מדיניות פרטיות</string>
@@ -168,4 +193,9 @@
   <string name="private_analytics_footer_learn_more">מידע נוסף</string>
   <string name="diagnosis_subtitle_template">%1$s שותפה ב-%2$s</string>
   <string name="empty_share_history_body">אין היסטוריית שיתופים</string>
+  <string name="share_diagnosis_share_test_result_title">שיתוף תוצאת הבדיקה שלך עם %1$s</string>
+  <string name="share_diagnosis_share_test_result_subtitle">תודה על עזרתך בבלימת ההתפשטות של נגיף הקורונה (COVID-19).</string>
+  <string name="share_diagnosis_share_test_result_body">לאחר השיתוף של תוצאת הבדיקה שלך, ניתן יהיה לשתף גם את התאריך שבו החלו התסמינים. המידע הזה עוזר בבלימת ההתפשטות של נגיף הקורונה (COVID-19) ובהצלת חיים.</string>
+  <string name="sms_intercept_notice_title">מה חדש</string>
+  <string name="sms_intercept_notice_content">אם שולחים לך תוצאת בדיקה ממשרד הבריאות, האפליקציה יכולה לשלוח לך תזכורת לגבי שליחת התוצאה ולעזור בשליחה של התראות לאחרים לגבי חשיפה אפשרית לנגיף. ניתן להשבית זאת בכל שלב בהגדרות.</string>
 </resources>

@@ -30,7 +30,8 @@
   <string name="onboarding_exposure_notifications_title">تفعيل نظام \"إشعارات التعرّض لفيروس كورونا\"</string>
   <string name="onboarding_exposure_notifications_detail">يمكن أن يتم تنبيهك إذا كنت بالقرب من شخص أبلغ أنه مصاب بفيروس كورونا المستجد (كوفيد-19).
     \n\nيستخدم هاتفك البلوتوث لجمع أرقام التعريف العشوائية ومشاركتها بأمان مع الهواتف الأخرى القريبة.
-    \n\nبعض البيانات المحدّدة، التي تشمل التاريخ والمدة المرتبطين بالتعرّض المحتمل للفيروس من الأجهزة المجاورة وقوة إشارة البلوتوث الخاصة بهذه الأجهزة، سيتم استخدامها لتحديد ما إذا كان سيتم تنبيهك بناءً على المعلَمات التي حددتها هيئة الصحة العامة.</string>
+    \n\nبعض البيانات المحدّدة، التي تشمل التاريخ والمدة المرتبطين بالتعرّض المحتمل للفيروس من الأجهزة المجاورة وقوة إشارة البلوتوث الخاصة بهذه الأجهزة، سيتم استخدامها لتحديد ما إذا كان سيتم تنبيهك بناءً على المعلَمات التي حددتها هيئة الصحة العامة.
+    \n\nإذا كانت نتيجة اختبار إصابتك بفيروس كورونا إيجابية، قد تتلقّى تذكيرًا لمشاركة هذه النتائج مع هيئة الصحة العامة.</string>
   <string name="onboarding_metrics_title">المساعدة في تحسين هذا التطبيق</string>
   <string name="onboarding_metrics_subtitle">مشاركة بيانات استخدام التطبيق وأدائه مع Google</string>
   <string name="onboarding_metrics_description">للمساعدة في الحفاظ على التطبيق وتحسينه، تتم مشاركة بعض البيانات المجهولة الهوية عن استخدام التطبيق وأدائه مع Google. وهذه المعلومات لا تحدّد هويتك. %1$s</string>
@@ -64,10 +65,10 @@
   <string name="notify_turn_on_exposure_notifications_header">يمكنك تفعيل \"نظام إشعارات التعرّض لفيروس كورونا\" ليتم إشعارك بالتعرّض المحتمل للفيروس. %1$s</string>
   <string name="using_en_helps_even_if_vaccinated">يساعدك استخدام هذه الخدمة على حماية المجتمع، حتى إذا تم تلقيحك.</string>
   <string name="share_begin_title">المساعدة في حماية المجتمع</string>
-  <string name="share_close_title">هل تريد الخروج بدون مشاركة المعلومات؟</string>
-  <string name="share_close_detail">أفضل مساعدة تقدّمها للمجتمع هي مشاركة نتائج الاختبار بسرعة. وإنّ معلومات نتيجة الاختبار التي أدخلتها إلى الآن تم حفظها في التطبيق لتتمكن من استئناف تعديلها لاحقًا.</string>
-  <string name="btn_resume_later">نعم، خروج</string>
-  <string name="verify_test_result_title">إدخال معلومات نتيجة اختبار فيروس كورونا المستجد (كوفيد-19)</string>
+  <string name="share_close_title">هل تريد الإغلاق بدون مشاركة النتائج؟</string>
+  <string name="share_close_detail">أفضل طريقة يمكنك من خلالها مساعدة المجتمع هي مشاركة نتائج اختبارك في أسرع وقت ممكن. إذا أغلقت مربّع الحوار هذا الآن بدون مشاركة النتائج، يمكنك استئناف هذه العملية من حيث غادرت إذا غيّرت رأيك لاحقًا.</string>
+  <string name="btn_resume_later">نعم، الإغلاق</string>
+  <string name="verify_test_result_title">أدخِل رمز إثبات الهوية</string>
   <string name="enter_your_test_identifier">رمز التحقّق</string>
   <string name="share_test_identifier_help">يصلح رمز التحقّق هذا لمرة واحدة ويُستخدَم للتحقّق من نتيجة اختبارك.</string>
   <string name="share_test_identifier_verified">تم التحقّق من الرمز</string>
@@ -87,20 +88,19 @@
   <string name="share_review_status_confirmed">إيجابية</string>
   <string name="share_review_status_likely">محتملة</string>
   <string name="share_review_status_negative">سلبية</string>
-  <string name="share_review_onset_subtitle">معلومات عن الأعراض</string>
-  <string name="share_review_onset_date">ظهرت الأعراض بدءًا من %1$s.</string>
+  <string name="share_review_onset_subtitle">الأعراض</string>
+  <string name="share_review_onset_date">بدأت في %1$s.</string>
   <string name="share_review_onset_no_symptoms">لم تظهر أعراض</string>
   <string name="share_review_onset_no_answer">لم تتم الإجابة عن السؤال.</string>
-  <string name="share_review_travel_subtitle">سجلّ السفر</string>
-  <string name="share_review_travel_confirmed">سافرت خلال آخر 14 يومًا.</string>
+  <string name="share_review_travel_subtitle">السفر</string>
+  <string name="share_review_travel_confirmed">خلال آخر 14 يومًا</string>
   <string name="share_review_travel_no_travel">لم أسافر خلال آخر 14 يومًا.</string>
   <string name="share_review_travel_no_answer">لم تتم الإجابة عن السؤال.</string>
-  <string name="share_confirm_title">شكرًا لك على مشاركة حالة إصابتك بفيروس كورونا</string>
+  <string name="share_confirm_title">شكرًا لك على مشاركة نتيجة اختبار فيروس كورونا الخاص بك</string>
   <string name="not_shared_confirm_title">لم تتم مشاركة نتيجة اختبارك</string>
   <string name="not_shared_confirm_detail">لم تتم مشاركة نتيجة اختبار فيروس كورونا المستجد (كوفيد-19). يُرجى إعادة المحاولة.</string>
   <string name="status_shared_detail_title">حالة الإصابة بفيروس كورونا المستجد التي تمت مشاركتها</string>
-  <string name="delete_test_result_title">هل تريد حذف نتيجة اختبار فيروس كورونا؟</string>
-  <string name="delete_test_result_detail">سيتم حذف تفاصيل نتيجة اختبارك من التطبيق.</string>
+  <string name="delete_test_result_title">هل تريد حذف نتيجة الاختبار؟</string>
   <string name="delete_test_result_confirmed">تم حذف نتيجة الاختبار.</string>
   <string name="share_error_no_internet">تتعذّر مشاركة نتائج الاختبار بلا اتصال بالإنترنت. يُرجى التحقّق من الاتصال بالإنترنت ثم إعادة المحاولة.</string>
   <string name="share_vaccination_title">هل تم تلقيحك ضد فيروس كورونا المستجد (كوفيد-19)؟</string>
@@ -108,7 +108,34 @@
   <string name="share_vaccination_learn_more">مزيد من المعلومات</string>
   <string name="share_vaccination_vaccinated">نعم، تم تلقيحي.</string>
   <string name="share_vaccination_not_vaccinated">لا</string>
-  <string name="share_vaccination_unknown">أفضّل عدم الإجابة.</string>
+  <string name="share_vaccination_unknown">أفضّل عدم الإجابة</string>
+  <string name="do_you_have_code_title">هل تلقّيت رمزًا؟</string>
+  <string name="do_you_have_code_content">إذا كانت نتيجة اختبار إصابتك بفيروس كورونا المستجد (كوفيد-19) إيجابية، سترسل لك هيئة الصحة العامة عادةً رمز إثبات الهوية عن طريق الاتصال بالهاتف أو من خلال رسالة نصية كي تتمكن من مشاركة نتائج اختبارك.</string>
+  <string name="btn_i_have_code">نعم، تلقّيت رمزًا</string>
+  <string name="btn_i_need_code">احتاج إلى تلقّي رمز</string>
+  <string name="get_verification_code_title">الحصول على رمز إثبات الهوية</string>
+  <string name="phone_number_prompt">رقم الهاتف</string>
+  <string name="phone_number_help">يسمح لك رمز إثبات الهوية بمشاركة نتائج الاختبار. سيتم إرسال الرمز إلى رقم الهاتف الذي تقدمه.</string>
+  <string name="phone_number_may_be_stored_help">لمنع إرسال الشخص أكثر من نتيجة واحدة، قد تخزِّن هيئة الصحة العامة رقم هاتفك مؤقتًا.</string>
+  <string name="test_date_prompt">تاريخ الاختبار</string>
+  <string name="test_date_help">يجب أن يكون تاريخ الاختبار خلال آخر 14 يومًا.</string>
+  <string name="tested_for_covid_checkbox_text">نتيجة اختبار فيروس كورونا المستجد (كوفيد-19) الخاصة بي إيجابية خلال آخر 14 يومًا.</string>
+  <string name="btn_send_code">إرسال الرمز</string>
+  <string name="enter_code_help">أدخِل الرمز الذي أرسلته لك %1$s.</string>
+  <string name="positive_result_already_reported_title">لقد سبق أن أبلغت عن نتيجة اختبار مؤخرًا.</string>
+  <string name="positive_result_already_reported_content">إذا كنت تريد الإبلاغ عن نتيجة اختبار أخرى، يُرجى التواصل مع %1$s.</string>
+  <string name="self_report_bad_code">الرمز غير صالح. تأكّد من أنك تستخدم الجهاز نفسه لكل من إرسال الطلب وإدخال رمز إثبات الهوية.</string>
+  <string name="self_report_bad_phone_number">تحقّق من الرقم ثم أعِد المحاولة. %1$s</string>
+  <string name="self_report_code_requested_too_many_times">لقد أرسلت عددًا كبيرًا جدًا من الطلبات. يُرجى التواصل مع %1$s إذا كنت لا تزال بحاجة إلى الحصول على رمز.</string>
+  <plurals name="self_report_code_already_requested">
+    <item quantity="zero">لقد أرسلت عددًا كبيرًا جدًا من الطلبات. يمكنك طلب رمز آخر خلال %1$d دقيقة.</item>
+    <item quantity="one">لقد أرسلت عددًا كبيرًا جدًا من الطلبات. يمكنك طلب رمز آخر خلال دقيقة واحدة (%1$d).</item>
+    <item quantity="two">لقد أرسلت عددًا كبيرًا جدًا من الطلبات. يمكنك طلب رمز آخر خلال دقيقتين (%1$d).</item>
+    <item quantity="few">لقد أرسلت عددًا كبيرًا جدًا من الطلبات. يمكنك طلب رمز آخر خلال %1$d دقائق.</item>
+    <item quantity="many">لقد أرسلت عددًا كبيرًا جدًا من الطلبات. يمكنك طلب رمز آخر خلال %1$d دقيقة.</item>
+    <item quantity="other">لقد أرسلت عددًا كبيرًا جدًا من الطلبات. يمكنك طلب رمز آخر خلال %1$d دقيقة.</item>
+  </plurals>
+  <string name="notify_others_notification_title">يمكنك المساعدة في إشعار الآخرين الذين قد يكونوا تعرضوا للفيروس</string>
   <string name="settings_exposure_notifications_subtitle">إشعارات التعرّض لفيروس كورونا</string>
   <string name="settings_app_analytics_subtitle">مشاركة استخدام التطبيق وأدائه</string>
   <string name="settings_privacy_policy">سياسة الخصوصية</string>
@@ -170,4 +197,9 @@
   <string name="private_analytics_footer_learn_more">مزيد من المعلومات</string>
   <string name="diagnosis_subtitle_template">%1$s في %2$s</string>
   <string name="empty_share_history_body">لا يتوفّر سجلّ مشاركة.</string>
+  <string name="share_diagnosis_share_test_result_title">مشاركة نتيجة الاختبار مع %1$s</string>
+  <string name="share_diagnosis_share_test_result_subtitle">نشكرك على المساعدة في منع انتشار فيروس كورونا المستجد (كوفيد-19)</string>
+  <string name="share_diagnosis_share_test_result_body">عندما تشارك نتيجة الاختبار، يمكنك أيضًا مشاركة الوقت الذي بدأت فيه الأعراض. يمكن أن تساعد هذه المعلومات في منع انتشار فيروس كورونا المستجد وفي إنقاذ أرواح الناس.</string>
+  <string name="sms_intercept_notice_title">الميزة الجديدة</string>
+  <string name="sms_intercept_notice_content">إذا أرسلت هيئة الصحة العامة إليك نتيجة اختبار، يمكن للتطبيق إرسال إشعار إليك لتذكيرك بإرسال نتيجة اختبارك والمساعدة في تنبيه الآخرين بشأن التعرّض المحتمل للفيروس. يمكنك إيقاف هذه الميزة في أي وقت من الإعدادات.</string>
 </resources>

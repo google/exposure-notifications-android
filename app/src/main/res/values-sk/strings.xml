@@ -30,7 +30,8 @@
   <string name="onboarding_exposure_notifications_title">Zapnutie upozornení na kontakt</string>
   <string name="onboarding_exposure_notifications_detail">Dostaňte upozornenie, keď ste boli v blízkosti osoby, ktorá nahlásila ochorenie COVID‑19.
     \n\nTelefón pomocou rozhrania Bluetooth zabezpečene zhromažďuje a zdieľa náhodné identifikátory s inými telefónmi v okolí.
-    \n\nPodľa dátumu, trvania a sily signálu spojeného s možným kontaktom sa určí, či dostanete upozornenie na základe parametrov stanovených vašou inštitúciou verejného zdravotníctva.</string>
+    \n\nPodľa dátumu, trvania a sily signálu spojeného s možným kontaktom sa určí, či dostanete upozornenie na základe parametrov stanovených vašou inštitúciou verejného zdravotníctva.
+    \n\nAk budete mať pozitívny výsledok testu, môžete dostať upozornenie, aby ste o tom informovali inštitúciu verejného zdravotníctva.</string>
   <string name="onboarding_metrics_title">Pomôžte zlepšiť túto aplikáciu</string>
   <string name="onboarding_metrics_subtitle">Zdieľanie údajov o používaní a výkonnosti aplik. s Googlom</string>
   <string name="onboarding_metrics_description">Niektoré obmedzené údaje o výkonnosti a používaní aplikácie, ktoré neumožňujú osobnú identifikáciu, sú zdieľané s Googlom, aby sme ju mohli udržiavať v chode a zlepšovať. Podľa týchto údajov vás nie je možné identifikovať. %1$s</string>
@@ -62,10 +63,10 @@
   <string name="notify_turn_on_exposure_notifications_header">Ak chcete dostávať upozornenia na možný kontakt s ochorením COVID‑19, zapnite upozornenia na kontakt. %1$s</string>
   <string name="using_en_helps_even_if_vaccinated">Používaním tejto služby pomáhate chrániť svoju komunitu, dokonca aj keď ste už zaočkovaný/-á.</string>
   <string name="share_begin_title">Pomôžte chrániť svoje okolie</string>
-  <string name="share_close_title">Chcete odísť bez zdieľania?</string>
-  <string name="share_close_detail">Čím skôr budete výsledok testu zdieľať, tým viac pomôžete svojej komunite. Informácie o výsledku testu, ktoré ste zadali, budú uložené v tejto aplikácii, kde môžete neskôr pokračovať v ich upravovaní.</string>
-  <string name="btn_resume_later">Áno, ukončiť</string>
-  <string name="verify_test_result_title">Zadajte informácie o teste na COVID‑19</string>
+  <string name="share_close_title">Chcete zavrieť bez zdieľania?</string>
+  <string name="share_close_detail">Najlepší spôsob, akým môžete pomôcť svojej komunite, je zdieľať výsledky čo najskôr. Ak okno zavriete bez zdieľania a neskôr zmeníte názor, budete môcť začať tam, kde ste prestali.</string>
+  <string name="btn_resume_later">Áno, zavrieť</string>
+  <string name="verify_test_result_title">Zadajte overovací kód</string>
   <string name="enter_your_test_identifier">Overovací kód</string>
   <string name="share_test_identifier_help">Tento jednorazový kód sa použije na overenie výsledku testu.</string>
   <string name="share_test_identifier_verified">Kód bol overený</string>
@@ -86,19 +87,18 @@
   <string name="share_review_status_likely">Pravdepodobne pozitívny</string>
   <string name="share_review_status_negative">Negatívny</string>
   <string name="share_review_onset_subtitle">Príznaky</string>
-  <string name="share_review_onset_date">Príznaky od %1$s</string>
+  <string name="share_review_onset_date">Dátum začatia: %1$s</string>
   <string name="share_review_onset_no_symptoms">Žiadne príznaky</string>
   <string name="share_review_onset_no_answer">Bez odpovede</string>
-  <string name="share_review_travel_subtitle">História cestovania</string>
-  <string name="share_review_travel_confirmed">Aspoň jedna cesta za posledných 14 dní</string>
+  <string name="share_review_travel_subtitle">Cestovanie</string>
+  <string name="share_review_travel_confirmed">V posledných 14 dňoch</string>
   <string name="share_review_travel_no_travel">Žiadna cesta za posledných 14 dní</string>
   <string name="share_review_travel_no_answer">Bez odpovede</string>
-  <string name="share_confirm_title">Ďakujeme za zdieľanie stavu testu na COVID‑19</string>
+  <string name="share_confirm_title">Ďakujeme za zdieľanie výsledku testu na COVID‑19</string>
   <string name="not_shared_confirm_title">Výsledok vášho testu nebol zdieľaný</string>
   <string name="not_shared_confirm_detail">Výsledok vášho testu na COVID‑19 nebol zdieľaný. Skúste to znova.</string>
   <string name="status_shared_detail_title">Zdieľaný stav testu na COVID‑19</string>
-  <string name="delete_test_result_title">Chcete odstrániť výsledok testu na COVID‑19?</string>
-  <string name="delete_test_result_detail">Výsledky testu budú z aplikácie odstránené.</string>
+  <string name="delete_test_result_title">Chcete výsledok testu odstrániť?</string>
   <string name="delete_test_result_confirmed">Výsledok testu bol odstránený</string>
   <string name="share_error_no_internet">Výsledky testu nie je možné zdieľať offline. Skontrolujte internetové pripojenie a skúste to znova.</string>
   <string name="share_vaccination_title">Boli ste očkovaný/-á proti ochoreniu COVID‑19?</string>
@@ -107,6 +107,31 @@
   <string name="share_vaccination_vaccinated">Áno, som zaočkovaný/-á</string>
   <string name="share_vaccination_not_vaccinated">Nie</string>
   <string name="share_vaccination_unknown">Nechcem odpovedať</string>
+  <string name="do_you_have_code_title">Dostali ste kód?</string>
+  <string name="do_you_have_code_content">V prípade pozitívneho testu na COVID‑19 miestna inštitúcia verejného zdravotníctva zvyčajne poskytne telefonicky alebo v textovej správe overovací kód, aby ste mohli svoje výsledky zdieľať.</string>
+  <string name="btn_i_have_code">Áno, mám kód</string>
+  <string name="btn_i_need_code">Potrebujem kód</string>
+  <string name="get_verification_code_title">Získať overovací kód</string>
+  <string name="phone_number_prompt">Telefónne číslo</string>
+  <string name="phone_number_help">Overovací kód vám umožní zdieľať výsledky testu. Kód bude odoslaný na telefónne číslo, ktoré uvediete.</string>
+  <string name="phone_number_may_be_stored_help">Miestna inštitúcia verejného zdravotníctva môže vaše telefónne číslo dočasne uložiť. Ľudia tak nemôžu odosielať viacero výsledkov.</string>
+  <string name="test_date_prompt">Dátum testovania</string>
+  <string name="test_date_help">Dátum testovania by mal byť v období posledných 14 dní.</string>
+  <string name="tested_for_covid_checkbox_text">Za posledných 14 dní som mal(a) pozitívny test na COVID‑19.</string>
+  <string name="btn_send_code">Odoslať kód</string>
+  <string name="enter_code_help">Zadajte kód, ktorý vám poslala inštitúcia %1$s.</string>
+  <string name="positive_result_already_reported_title">Nedávno ste výsledok testu nahlásili.</string>
+  <string name="positive_result_already_reported_content">Ak chcete nahlásiť ďalší výsledok testu, kontaktujte %1$s.</string>
+  <string name="self_report_bad_code">Neplatný kód. Overovací kód musíte zadať v zariadení, v ktorom odosielate žiadosť.</string>
+  <string name="self_report_bad_phone_number">Skontrolujte číslo a skúste to znova. %1$s</string>
+  <string name="self_report_code_requested_too_many_times">Odoslali ste príliš veľa žiadostí. Ak stále potrebujete kód, kontaktujte %1$s.</string>
+  <plurals name="self_report_code_already_requested">
+    <item quantity="one">Odoslali ste príliš veľa žiadostí. O ďalší kód môžete požiadať o %1$d minútu.</item>
+    <item quantity="few">Odoslali ste príliš veľa žiadostí. O ďalší kód môžete požiadať o %1$d minúty.</item>
+    <item quantity="many">Odoslali ste príliš veľa žiadostí. O ďalší kód môžete požiadať o %1$d minúty.</item>
+    <item quantity="other">Odoslali ste príliš veľa žiadostí. O ďalší kód môžete požiadať o %1$d minút.</item>
+  </plurals>
+  <string name="notify_others_notification_title">Pomôžte upozorňovať ľudí, ktorí sa mohli dostať do kontaktu</string>
   <string name="settings_exposure_notifications_subtitle">Upozornenia na kontakt</string>
   <string name="settings_app_analytics_subtitle">Zdieľanie údajov o používaní a výkone aplikácie</string>
   <string name="settings_privacy_policy">Pravidlá ochrany súkromia</string>
@@ -121,7 +146,7 @@
   <string name="settings_analytics_on">Zapnuté</string>
   <string name="settings_analytics_off">Vypnuté</string>
   <string name="exposure_about_title">Upozornenia na kontakt</string>
-  <string name="exposure_about_toggle">Použiť upozornenia na kontakt</string>
+  <string name="exposure_about_toggle">Používať upozornenia na kontakt</string>
   <string name="exposure_about_detail">Zapnite upozornenia na kontakt, aby vás mohol úrad %1$s upozorniť, keď ste boli v blízkosti osoby, ktorá nahlásila ochorenie COVID‑19.
     \n\nTelefón pomocou rozhrania Bluetooth zabezpečene zhromažďuje a zdieľa náhodné identifikátory s inými telefónmi v okolí.
     \n\nTáto aplikácia získa dátum, trvanie a silu signálu súvisiace s možným kontaktom.</string>
@@ -168,4 +193,9 @@
   <string name="private_analytics_footer_learn_more">Ďalšie informácie</string>
   <string name="diagnosis_subtitle_template">%1$s %2$s</string>
   <string name="empty_share_history_body">Žiadna história zdieľania</string>
+  <string name="share_diagnosis_share_test_result_title">Zdieľajte výsledok svojho testu s aplikáciou %1$s</string>
+  <string name="share_diagnosis_share_test_result_subtitle">Ďakujeme vám, že pomáhate v boji proti pandémii COVID‑19.</string>
+  <string name="share_diagnosis_share_test_result_body">Keď zdieľate výsledok, môžete tiež vybrať, že chcete zdieľať aj dátum začatia príznakov. Táto informácia môže pomôcť zastaviť šírenie pandémie COVID‑19 a zachrániť životy.</string>
+  <string name="sms_intercept_notice_title">Novinky</string>
+  <string name="sms_intercept_notice_content">Ak vám miestny zdravotnícky úrad pošle výsledok testu, aplikácia vás môže pripomenutím upozorniť, že máte výsledok odoslať a pomôcť tak ostatných upozorniť na možný kontakt. Túto možnosť môžete kedykoľvek vypnúť v nastaveniach.</string>
 </resources>

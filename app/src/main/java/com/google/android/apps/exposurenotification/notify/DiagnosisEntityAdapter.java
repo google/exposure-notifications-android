@@ -36,8 +36,6 @@ import java.util.List;
 public class DiagnosisEntityAdapter
     extends RecyclerView.Adapter<DiagnosisViewHolder> {
 
-  private static final String TAG = "DiagnosisEntityAdapter";
-
   private final NotifyHomeViewModel notifyHomeViewModel;
   private final DiagnosisClickListener onDiagnosisClickListener;
 

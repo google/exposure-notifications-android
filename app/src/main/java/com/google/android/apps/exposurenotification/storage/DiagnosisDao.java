@@ -24,7 +24,9 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Transaction;
 import com.google.android.apps.exposurenotification.storage.DiagnosisEntity.Shared;
+import com.google.android.apps.exposurenotification.storage.DiagnosisEntity.TestResult;
 import com.google.common.base.Function;
+import com.google.common.base.Optional;
 import com.google.common.base.Strings;
 import com.google.common.util.concurrent.ListenableFuture;
 import java.util.List;
@@ -56,8 +58,15 @@ abstract class DiagnosisDao {
 
   @Query("SELECT * FROM DiagnosisEntity WHERE sharedStatus IN (:statuses)"
       + " ORDER BY createdTimestampMs DESC LIMIT 1")
-  abstract ListenableFuture<DiagnosisEntity> getLastDiagnosisWithSharedStatusInStatusesAsync(
+  abstract ListenableFuture<DiagnosisEntity> maybeGetLastDiagnosisWithSharedStatusInStatusesAsync(
       List<Shared> statuses);
+
+
+  @Query("SELECT * FROM DiagnosisEntity WHERE testResult IN (:testResults)"
+      + " AND sharedStatus IN (:statuses) AND lastUpdatedTimestampMs > :minTimestampMs"
+      + " ORDER BY lastUpdatedTimestampMs DESC LIMIT 1")
+  abstract LiveData<Optional<DiagnosisEntity>> getDiagnosisWithTestResultAndStatusLastUpdatedAfterThresholdLiveData(
+      List<TestResult> testResults, List<Shared> statuses, long minTimestampMs);
 
   @Transaction
   public Long createOrMutateById(

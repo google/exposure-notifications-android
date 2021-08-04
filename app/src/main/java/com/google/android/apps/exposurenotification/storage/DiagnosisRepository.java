@@ -23,7 +23,9 @@ import androidx.lifecycle.LiveData;
 import com.google.android.apps.exposurenotification.common.Qualifiers.BackgroundExecutor;
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.storage.DiagnosisEntity.Shared;
+import com.google.android.apps.exposurenotification.storage.DiagnosisEntity.TestResult;
 import com.google.common.base.Function;
+import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
@@ -38,6 +40,9 @@ public class DiagnosisRepository {
 
   private final static List<Shared> NOT_SHARED_STATUSES = ImmutableList.of(
       Shared.NOT_SHARED, Shared.NOT_ATTEMPTED);
+  private final static List<Shared> SHARED_STATUSES = ImmutableList.of(Shared.SHARED);
+  private final static List<TestResult> POSITIVE_TEST_RESULTS = ImmutableList.of(
+      TestResult.CONFIRMED, TestResult.USER_REPORT);
 
   private final DiagnosisDao diagnosisDao;
   private final ExecutorService backgroundExecutor;
@@ -65,7 +70,14 @@ public class DiagnosisRepository {
 
   @AnyThread
   public ListenableFuture<DiagnosisEntity> maybeGetLastNotSharedDiagnosisAsync() {
-    return diagnosisDao.getLastDiagnosisWithSharedStatusInStatusesAsync(NOT_SHARED_STATUSES);
+    return diagnosisDao.maybeGetLastDiagnosisWithSharedStatusInStatusesAsync(NOT_SHARED_STATUSES);
+  }
+
+  @AnyThread
+  public LiveData<Optional<DiagnosisEntity>> getPositiveDiagnosisSharedAfterThresholdLiveData(
+      long minTimestampMs) {
+    return diagnosisDao.getDiagnosisWithTestResultAndStatusLastUpdatedAfterThresholdLiveData(
+        POSITIVE_TEST_RESULTS, SHARED_STATUSES, minTimestampMs);
   }
 
   @AnyThread

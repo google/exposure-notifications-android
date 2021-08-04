@@ -93,7 +93,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/settings_icon_field_width"
-            android:layout_marginEnd="@dimen/padding_extra_large"
+            android:layout_marginEnd="@dimen/padding_huge"
             android:text="@string/app_analytics_detail"
             android:textAppearance="?attr/textAppearanceBody2"
             android:textColor="?attr/colorControlNormal" />

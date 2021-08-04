@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="no_recent_exposure_title">ஆப்ஸ் செயல்பாட்டிலுள்ளது, ஆராய்கிறது</string>
-  <string name="app_active_and_checking_info">இந்த ஆப்ஸ் நோய் தொற்றின் சாத்தியங்களை ஆராய்கிறது. COVID-19 தொற்று சாத்தியத்தை எச்சரிக்கும் அறிவிப்புகளைப் பயன்படுத்துவது உங்கள் சமூகத்தைப் பாதுகாக்க உங்களுக்கு உதவுகிறது - உங்களுக்குத் தடுப்பூசி போடப்பட்டிருந்தாலும் கூட.</string>
+  <string name="app_active_and_checking_info">இந்த ஆப்ஸ் நோய் தொற்றின் சாத்தியங்களை ஆராய்கிறது. கோவிட்-19 தொற்று சாத்தியத்தை எச்சரிக்கும் அறிவிப்புகளைப் பயன்படுத்துவது உங்கள் சமூகத்தைப் பாதுகாக்க உங்களுக்கு உதவுகிறது - உங்களுக்குத் தடுப்பூசி போடப்பட்டிருந்தாலும் கூட.</string>
   <string name="possible_exposure_title">உங்களுக்குத் தொற்று ஏற்பட்டிருக்கக்கூடும்</string>
   <string name="share_test_result_home_screen_title">உங்கள் பரிசோதனை முடிவைப் பகிருங்கள்</string>
   <string name="have_questions">கேள்விகள் உள்ளனவா?</string>
@@ -10,16 +10,16 @@
   <string name="en_inactive">செயலில் இல்லை</string>
   <string name="exposure_checks_activity_title">சமீபத்திய பரிசோதனை முடிவுகளின் பதிவு</string>
   <string name="sharing_history_activity_title">முந்தைய பரிசோதனை முடிவுகளைப் பகிருங்கள்</string>
-  <string name="no_recent_exposure_card_content_no_checks">COVID-19 தொற்று சாத்தியத்தின் அபாயம் எதுவும் கண்டறியப்படவில்லை.</string>
-  <string name="no_recent_exposure_card_content">COVID-19 தொற்று சாத்தியத்தின் அபாயம் எதுவும் கண்டறியப்படவில்லை. கடைசியாக ஆராய்ந்தது: %1$s</string>
+  <string name="no_recent_exposure_card_content_no_checks">கோவிட்-19 தொற்று சாத்தியத்தின் அபாயம் எதுவும் கண்டறியப்படவில்லை.</string>
+  <string name="no_recent_exposure_card_content">கோவிட்-19 தொற்று சாத்தியத்தின் அபாயம் எதுவும் கண்டறியப்படவில்லை. கடைசியாக ஆராய்ந்தது: %1$s</string>
   <string name="see_recent_checks_button">சமீபத்திய ஆராய்வுகளைப் பாருங்கள்</string>
   <string name="possible_exposure_card_title">தொற்றின் சாத்தியம் கண்டறியப்பட்டுள்ளது</string>
-  <string name="possible_exposure_card_contents">உங்கள் அருகிலிருந்த ஒருவருக்கு COVID-19 தொற்று உறுதிசெய்யப்பட்டுள்ளது</string>
+  <string name="possible_exposure_card_contents">உங்கள் அருகிலிருந்த ஒருவருக்கு கோவிட்-19 தொற்று உறுதிசெய்யப்பட்டுள்ளது</string>
   <string name="see_details_button">விவரங்களைக் காட்டு</string>
-  <string name="share_test_result_card_title">உங்கள் சமூகத்தில் COVID-19 பரவலைத் தடுக்க உதவுங்கள்</string>
-  <string name="share_test_result_card_content">தொற்று உறுதிசெய்யப்பட்ட பரிசோதனை முடிவை யாரேனும் பகிரும் ஒவ்வொருமுறையும் பிறருக்கு COVID-19 தொற்று ஏற்படுவதைத் தடுக்க உதவலாம். பரிசோதனை முடிவைப் பகிர்வது உங்கள் அடையாளத்தைப் பிறருக்குக் காட்டாது.</string>
+  <string name="share_test_result_card_title">உங்கள் சமூகத்தில் கோவிட்-19 பரவலைத் தடுக்க உதவுங்கள்</string>
+  <string name="share_test_result_card_content">தொற்று உறுதிசெய்யப்பட்ட பரிசோதனை முடிவை யாரேனும் பகிரும் ஒவ்வொருமுறையும் பிறருக்கு கோவிட்-19 தொற்று ஏற்படுவதைத் தடுக்க உதவலாம். பரிசோதனை முடிவைப் பகிர்வது உங்கள் அடையாளத்தைப் பிறருக்குக் காட்டாது.</string>
   <string name="see_history_button">முந்தைய பரிசோதனை முடிவுகளைப் பாருங்கள்</string>
-  <string name="share_positive_diagnosis_card_content">COVID-19 பரவலைத் தடுக்க, உங்கள் பரிசோதனை முடிவைப் பகிருங்கள்</string>
+  <string name="share_positive_diagnosis_card_content">கோவிட்-19 பரவலைத் தடுக்க, உங்கள் பரிசோதனை முடிவைப் பகிருங்கள்</string>
   <string name="share_app_card_content">உங்கள் சமூகத்துக்குச் சிறந்த பாதுகாப்பை வழங்க இந்த ஆப்ஸைப் பகிருங்கள்</string>
-  <string name="how_en_works_card_content">COVID-19 தொற்று சாத்தியத்தை எச்சரிக்கும் அறிவிப்புகள் எவ்வாறு செயல்படுகின்றன என்பது குறித்து மேலும் அறிந்துகொள்ளுங்கள்</string>
+  <string name="how_en_works_card_content">கோவிட்-19 தொற்று சாத்தியத்தை எச்சரிக்கும் அறிவிப்புகள் எவ்வாறு செயல்படுகின்றன என்பது குறித்து மேலும் அறிந்துகொள்ளுங்கள்</string>
 </resources>

@@ -23,7 +23,6 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,11 +31,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.common.SnackbarUtil;
 import com.google.android.apps.exposurenotification.common.StringUtils;
+import com.google.android.apps.exposurenotification.common.logging.Logger;
 import com.google.android.apps.exposurenotification.debug.TemporaryExposureKeyAdapter.TemporaryExposureKeyViewHolder;
 import com.google.android.apps.exposurenotification.debug.TemporaryExposureKeyEncodingHelper.EncodeException;
 import com.google.android.gms.nearby.exposurenotification.TemporaryExposureKey;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.common.io.BaseEncoding;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
@@ -48,7 +48,7 @@ import java.util.Locale;
 /** Adapter for displaying keys in {@link KeysMatchingFragment}. */
 class TemporaryExposureKeyAdapter extends RecyclerView.Adapter<TemporaryExposureKeyViewHolder> {
 
-  private static final String TAG = "ViewKeysAdapter";
+  private static final Logger logger = Logger.getLogger("TEKAdapter");
 
   private static final BaseEncoding BASE16 = BaseEncoding.base16().lowerCase();
 
@@ -113,12 +113,12 @@ class TemporaryExposureKeyAdapter extends RecyclerView.Adapter<TemporaryExposure
       try {
         singleEncoding = TemporaryExposureKeyEncodingHelper.encodeSingle(entity);
       } catch (EncodeException e) {
-        Log.e(TAG, "Error encoding", e);
+        logger.e("Error encoding", e);
       }
       try {
         qrCode.setImageBitmap(encodeAsQRCode(singleEncoding));
       } catch (WriterException e) {
-        Log.d(TAG, "WriterException making QR code", e);
+        logger.d("WriterException making QR code", e);
       }
 
       date.setText(
@@ -161,8 +161,8 @@ class TemporaryExposureKeyAdapter extends RecyclerView.Adapter<TemporaryExposure
 
               ClipData clip = ClipData.newPlainText(keyHex, keyHex);
               clipboard.setPrimaryClip(clip);
-              Snackbar.make(view, R.string.debug_matching_view_share_success, Snackbar.LENGTH_LONG)
-                  .show();
+              SnackbarUtil.maybeShowRegularSnackbar(view,
+                  v.getContext().getString(R.string.debug_matching_view_share_success));
             }
           });
     }

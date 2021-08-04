@@ -38,8 +38,6 @@ import org.threeten.bp.format.FormatStyle;
 @AndroidEntryPoint
 public class ShareDiagnosisViewFragment extends ShareDiagnosisBaseFragment {
 
-  private static final String TAG = "ShareDiagnosisViewFrag";
-
   private final DateTimeFormatter dateTimeFormatter =
       DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM);
 
@@ -58,7 +56,7 @@ public class ShareDiagnosisViewFragment extends ShareDiagnosisBaseFragment {
 
     requireActivity().setTitle(R.string.status_shared_detail_title);
 
-    binding.home.setOnClickListener(v -> closeShareDiagnosisFlow());
+    binding.home.setOnClickListener(v -> closeShareDiagnosisFlowImmediately());
 
     shareDiagnosisViewModel
         .getCurrentDiagnosisLiveData()
@@ -71,9 +69,9 @@ public class ShareDiagnosisViewFragment extends ShareDiagnosisBaseFragment {
               }
 
               binding.diagnosisDeleteButton.setOnClickListener(
-                  v -> deleteAction(diagnosisEntity));
+                  v -> showDeleteDiagnosisAlertDialog(diagnosisEntity));
               if (shareDiagnosisViewModel.isDeleteOpen()) {
-                deleteAction(diagnosisEntity);
+                showDeleteDiagnosisAlertDialog(diagnosisEntity);
               }
 
               String onsetDate = "";
@@ -95,7 +93,7 @@ public class ShareDiagnosisViewFragment extends ShareDiagnosisBaseFragment {
             unused -> {
               Toast.makeText(getContext(), R.string.delete_test_result_confirmed,
                   Toast.LENGTH_LONG).show();
-              closeShareDiagnosisFlow();
+              closeShareDiagnosisFlowImmediately();
             });
   }
 
@@ -105,22 +103,9 @@ public class ShareDiagnosisViewFragment extends ShareDiagnosisBaseFragment {
     binding = null;
   }
 
-  private void deleteAction(DiagnosisEntity diagnosis) {
-    shareDiagnosisViewModel.setDeleteOpen(true);
-    new MaterialAlertDialogBuilder(requireContext(), R.style.ExposureNotificationAlertDialogTheme)
-        .setTitle(R.string.delete_test_result_title)
-        .setMessage(R.string.delete_test_result_detail)
-        .setCancelable(true)
-        .setPositiveButton(
-            R.string.btn_delete,
-            (d, w) -> {
-              shareDiagnosisViewModel.setDeleteOpen(false);
-              shareDiagnosisViewModel.deleteEntity(diagnosis);
-            })
-        .setNegativeButton(R.string.btn_cancel,
-            (d, w) -> shareDiagnosisViewModel.setDeleteOpen(false))
-        .setOnDismissListener(d -> shareDiagnosisViewModel.setDeleteOpen(false))
-        .setOnCancelListener(d -> shareDiagnosisViewModel.setDeleteOpen(false))
-        .show();
+  @Override
+  public boolean onBackPressed() {
+    closeShareDiagnosisFlowImmediately();
+    return true;
   }
 }

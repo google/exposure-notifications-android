@@ -106,6 +106,20 @@
     <item name="android:textSize">30sp</item>
   </style>
 
+  <!-- Button Styles -->
+  <style name="Widget.ExposureNotifications.Button.OutlinedButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
+    <item name="android:textSize">16sp</item>
+    <item name="android:minHeight">52dp</item>
+    <item name="fontFamily">@font/google_sans_medium</item>
+    <item name="android:fontFamily">@font/google_sans_medium</item>
+  </style>
+
+  <style name="Widget.ExposureNotifications.Button" parent="Widget.MaterialComponents.Button">
+    <item name="android:textSize">16sp</item>
+    <item name="android:minHeight">52dp</item>
+    <item name="fontFamily">@font/google_sans_medium</item>
+    <item name="android:fontFamily">@font/google_sans_medium</item>
+  </style>
 
   <!-- EXPOSURE NOTIFICATION ALERT DIALOG STYLES -->
   <!-- Dialog Title -->

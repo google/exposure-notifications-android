@@ -30,7 +30,8 @@
   <string name="onboarding_exposure_notifications_title">Yoluxma riski haqqında bildirişləri aktiv edin</string>
   <string name="onboarding_exposure_notifications_detail">COVID-19 xəstəliyinə yoluxduğunu bildirmiş bir şəxsə yaxınlaşdığınız zaman bildiriş alın.
     \n\nTelefonunuz yaxında olan digər telefonlardan təsadüfi ID\'ləri toplamaq və onlarla paylaşmaq üçün Bluetooth\'dan istifadə edir.
-    \n\nEhtimal yoluxma ilə əlaqəli tarix, müddət və siqnal gücü səhiyyə orqanınız tərəfindən təyin olunan parametrlərə əsasən sizə xəbər verilib-verilməməsini təyin etmək üçün istifadə ediləcəkdir.</string>
+    \n\nEhtimal yoluxma ilə əlaqəli tarix, müddət və siqnal gücü səhiyyə orqanınız tərəfindən təyin olunan parametrlərə əsasən sizə xəbər verilib-verilməməsini təyin etmək üçün istifadə ediləcəkdir.
+    \n\nTest nəticəniz müsbət olarsa, nəticələrinizi səhiyyə orqanınızla paylaşmaq üçün xatırlatma ala bilərsiniz.</string>
   <string name="onboarding_metrics_title">Bu tətbiqi təkmilləşdirməyə kömək edin</string>
   <string name="onboarding_metrics_subtitle">Tətbiq istifadəsi, məhsuldarlıq datasını Google ilə paylaşın</string>
   <string name="onboarding_metrics_description">Tətbiqin dəstəklənməsi və təkmilləşdirilməsinə kömək etmək üçün tətbiq məhsuldarlığı və istifadəsi barədə şəxsiyyəti müəyyənləşdirməyən bəzi məhdud məlumatlar Google ilə paylaşılır. Bu məlumatlar kimliyinizi müəyyənləşdirmir. %1$s</string>
@@ -60,10 +61,10 @@
   <string name="notify_turn_on_exposure_notifications_header">Ehtimal COVID-19 yoluxmaları barədə bildiriş almaq üçün Yoluxma Bildirişlərini aktiv edin. %1$s</string>
   <string name="using_en_helps_even_if_vaccinated">Bu xidmətdən istifadə etmək peyvənd olsanız da cəmiyyətinizi qorumağınıza kömək edir.</string>
   <string name="share_begin_title">İcmanızı qorumağa kömək edin</string>
-  <string name="share_close_title">Paylaşmadan çıxırsınız?</string>
-  <string name="share_close_detail">Test nəticənizi tezliklə paylaşsanız icmanıza daha çox yardım edərsiniz. Lakin indiyədək daxil etdiyiniz test nəticəsi məlumatınız sonra düzəliş etməniz üçün bu tətbiqdə saxlanacaq.</string>
-  <string name="btn_resume_later">Bəli, çıxın</string>
-  <string name="verify_test_result_title">COVID-19 test məlumatlarını daxil edin</string>
+  <string name="share_close_title">Paylaşmadan bağlansın?</string>
+  <string name="share_close_detail">Cəmiyyətinizə kömək etməyin ən yaxşı yolu nəticələrinizi ən qısa müddətdə paylaşmaqdır. İndi paylaşmadan bağlasanız, daha sonra fikrinizi dəyişdirsəniz, qaldığınız yerdən davam edə bilərsiniz.</string>
+  <string name="btn_resume_later">Bəli, bağlayın</string>
+  <string name="verify_test_result_title">Doğrulama kodunu daxil edin</string>
   <string name="enter_your_test_identifier">Doğrulama kodu</string>
   <string name="share_test_identifier_help">Bu birdəfəlik kod test nəticənizi doğrulamaq üçün istifadə edilir.</string>
   <string name="share_test_identifier_verified">Kod doğrulanıb</string>
@@ -73,30 +74,29 @@
   <string name="test_date_label">Simptomların başladığı tarix</string>
   <string name="share_onset_symptoms">Bəli</string>
   <string name="share_onset_no_symptoms">Xeyr</string>
-  <string name="share_onset_no_answer">Cavab verməməyi üstün tuturam</string>
+  <string name="share_onset_no_answer">Cavab vermək istəmirəm</string>
   <string name="share_travel_title">Son 14 gündə səyahət etmisiniz?</string>
   <string name="share_travel_confirmed">Bəli</string>
   <string name="share_travel_no_travel">Xeyr</string>
-  <string name="share_travel_no_answer">Cavab verməməyi üstün tuturam</string>
+  <string name="share_travel_no_answer">Cavab vermək istəmirəm</string>
   <string name="share_review_title">Məlumatlarınızı nəzərdən keçirin</string>
   <string name="share_review_status_subtitle">COVID-19 statusu</string>
   <string name="share_review_status_confirmed">Pozitiv</string>
   <string name="share_review_status_likely">Güman ki</string>
   <string name="share_review_status_negative">Neqativ</string>
-  <string name="share_review_onset_subtitle">Simptom məlumatları</string>
-  <string name="share_review_onset_date">%1$s tarixindən simptomlar</string>
+  <string name="share_review_onset_subtitle">Əlamətlər</string>
+  <string name="share_review_onset_date">%1$s tarixində başlayıb</string>
   <string name="share_review_onset_no_symptoms">Simptom yoxdur</string>
   <string name="share_review_onset_no_answer">Cavablanmayıb</string>
-  <string name="share_review_travel_subtitle">Səyahət tarixçəsi</string>
-  <string name="share_review_travel_confirmed">Son 14 gündə səyahət edilib</string>
+  <string name="share_review_travel_subtitle">Səyahət</string>
+  <string name="share_review_travel_confirmed">Son 14 gün ərzində</string>
   <string name="share_review_travel_no_travel">Son 14 gündə səyahət edilməyib</string>
   <string name="share_review_travel_no_answer">Cavablanmayıb</string>
-  <string name="share_confirm_title">COVID-19 statusunu paylaşdığınız üçün təşəkkür edirik</string>
+  <string name="share_confirm_title">COVID-19 nəticənizi paylaşdığınız üçün təşəkkür edirik</string>
   <string name="not_shared_confirm_title">Test nəticəniz paylaşılmayıb</string>
   <string name="not_shared_confirm_detail">COVID-19 test nəticəniz paylaşılmayıb. Yenidən sınayın.</string>
   <string name="status_shared_detail_title">Paylaşılmış COVID-19 statusu</string>
-  <string name="delete_test_result_title">COVID-19 test nəticəsi silinsin?</string>
-  <string name="delete_test_result_detail">Test nəticəsi detallarınız bu tətbiqdən silinəcək.</string>
+  <string name="delete_test_result_title">Test nəticəniz silinsin?</string>
   <string name="delete_test_result_confirmed">Test nəticəsi silinib</string>
   <string name="share_error_no_internet">Test nəticələrini oflayn paylaşmaq mümkün deyil. İnternet bağlantınızı yoxlayın və yenidən cəhd edin.</string>
   <string name="share_vaccination_title">Covid-19\'a qarşı peyvənd olmusunuz?</string>
@@ -105,6 +105,29 @@
   <string name="share_vaccination_vaccinated">Bəli, peyvənd olmuşam</string>
   <string name="share_vaccination_not_vaccinated">Xeyr</string>
   <string name="share_vaccination_unknown">Cavab vermək istəmirəm</string>
+  <string name="do_you_have_code_title">Kodu almısınız?</string>
+  <string name="do_you_have_code_content">COVID-19 testinizin nəticəsi müsbət olarsa, sağlamlıq idarəniz adətən nəticələrinizi paylaşmanız üçün telefon və ya mətn mesajı ilə doğrulama kodu təqdim edir.</string>
+  <string name="btn_i_have_code">Bəli, kodum var</string>
+  <string name="btn_i_need_code">Kod lazımdır</string>
+  <string name="get_verification_code_title">Doğrulama kodu əldə edin</string>
+  <string name="phone_number_prompt">Telefon nömrəsi</string>
+  <string name="phone_number_help">Doğrulama kodu test nəticələrini paylaşmağa imkan verir. Kodunuz təqdim etdiyiniz nömrəyə göndəriləcək.</string>
+  <string name="phone_number_may_be_stored_help">İnsanların birdən çox nəticə göndərməsinin qarşısını almaq üçün telefon nömrəniz müvəqqəti olaraq səhiyyə orqanınız tərəfindən saxlanıla bilər.</string>
+  <string name="test_date_prompt">Test tarixi</string>
+  <string name="test_date_help">Test tarixi son 14 gün ərzində olmalıdır.</string>
+  <string name="tested_for_covid_checkbox_text">Son 14 gün ərzində müsbət COVID-19 test nəticəsi aldım.</string>
+  <string name="btn_send_code">Kodu göndərin</string>
+  <string name="enter_code_help">%1$s tərəfindən göndərilən kodu daxil edin.</string>
+  <string name="positive_result_already_reported_title">Bu yaxınlarda bir test nəticəsi bildirmisiniz.</string>
+  <string name="positive_result_already_reported_content">Başqa bir test nəticəsi bildirmək istəyirsinizsə, %1$s əlaqə saxlayın.</string>
+  <string name="self_report_bad_code">Yanlış kod. Doğrulama kodunu həm tələb, həm də daxil etmək üçün eyni cihazdan istifadə etdiyinizə əmin olun.</string>
+  <string name="self_report_bad_phone_number">Nömrənizi yoxlayıb yenidən cəhd edin. %1$s</string>
+  <string name="self_report_code_requested_too_many_times">Həddindən artıq sorğu göndərmisiniz. Hələ də kod lazımdırsa, %1$s ilə əlaqə saxlayın.</string>
+  <plurals name="self_report_code_already_requested">
+    <item quantity="one">Həddindən artıq sorğu göndərmisiniz. %1$d dəqiqə sonra başqa bir kod üçün sorğu göndərə bilərsiniz.</item>
+    <item quantity="other">Həddindən artıq sorğu göndərmisiniz. %1$d dəqiqə sonra başqa bir kod üçün sorğu göndərə bilərsiniz.</item>
+  </plurals>
+  <string name="notify_others_notification_title">Yoluxma ehtimalı olan digər insanlara xəbərdarlıq etməyə kömək edin</string>
   <string name="settings_exposure_notifications_subtitle">Yoluxma Bildirişləri</string>
   <string name="settings_app_analytics_subtitle">Tətbiqdən istifadə, məhsuldarlıq datasının paylaşılması</string>
   <string name="settings_privacy_policy">Məxfilik siyasəti</string>
@@ -166,4 +189,9 @@
   <string name="private_analytics_footer_learn_more">Ətraflı məlumat</string>
   <string name="diagnosis_subtitle_template">%2$s tarixində %1$s</string>
   <string name="empty_share_history_body">Paylaşma tarixçəsi yoxdur</string>
+  <string name="share_diagnosis_share_test_result_title">Test nəticənizi %1$s ilə paylaşın</string>
+  <string name="share_diagnosis_share_test_result_subtitle">COVID-19 xəstəliyini dayandırmağa kömək etdiyiniz üçün təşəkkür edirik.</string>
+  <string name="share_diagnosis_share_test_result_body">Nəticənizi paylaşdığınız zaman simptomlarınızın başladığı vaxtı da paylaşmağı seçə bilərsiniz. Bu məlumatlar COVID-19 xəstəliyinin yayılmasını dayandırmağa və insanları xilas etməyə kömək edə bilər.</string>
+  <string name="sms_intercept_notice_title">Yeniliklər</string>
+  <string name="sms_intercept_notice_content">Yerli səhiyyə orqanınız sizə bir test nəticəsi göndərsə, tətbiqiniz nəticənizi təqdim etməyiniz və başqalarına mümkün yoluxma barədə xəbər verməyiniz üçün bir xatırlatma göndərə bilər. Bunu istənilən vaxt Ayarlarda deaktiv edə bilərsiniz.</string>
 </resources>

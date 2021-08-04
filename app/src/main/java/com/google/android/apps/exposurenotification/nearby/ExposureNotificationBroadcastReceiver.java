@@ -23,6 +23,10 @@ import android.content.Intent;
 import android.widget.Toast;
 import androidx.work.WorkManager;
 import com.google.android.apps.exposurenotification.BuildConfig;
+import com.google.android.apps.exposurenotification.common.NotificationHelper;
+import com.google.android.apps.exposurenotification.common.logging.Logger;
+import com.google.android.apps.exposurenotification.restore.RestoreNotificationUtil;
+import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
 import com.google.android.gms.nearby.exposurenotification.ExposureNotificationClient;
 import dagger.hilt.android.AndroidEntryPoint;
 import javax.inject.Inject;
@@ -34,8 +38,16 @@ import javax.inject.Inject;
 public class ExposureNotificationBroadcastReceiver extends
     Hilt_ExposureNotificationBroadcastReceiver {
 
+  private static final Logger logger = Logger.getLogger("ENBroadcastReceiver");
+
   @Inject
   WorkManager workManager;
+
+  @Inject
+  NotificationHelper notificationHelper;
+
+  @Inject
+  ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
 
   @Override
   public void onReceive(Context context, Intent intent) {
@@ -55,6 +67,10 @@ public class ExposureNotificationBroadcastReceiver extends
         break;
       case ExposureNotificationClient.ACTION_EXPOSURE_STATE_UPDATED:
         StateUpdatedWorker.runOnce(workManager);
+        break;
+      case ExposureNotificationClientWrapper.ACTION_WAKE_UP:
+        RestoreNotificationUtil.onENApiWakeupEvent(context,
+            exposureNotificationSharedPreferences, workManager, notificationHelper);
         break;
     }
   }

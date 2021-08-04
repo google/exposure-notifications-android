@@ -30,7 +30,8 @@
   <string name="onboarding_exposure_notifications_title">Zapněte oznámení o možném kontaktu</string>
   <string name="onboarding_exposure_notifications_detail">Nechte se upozornit, pokud jste se ocitli blízko někoho, kdo nahlásil, že má covid-19.
     \n\nK bezpečnému shromažďování a sdílení náhodných ID s ostatními telefony v okolí používá telefon rozhraní Bluetooth.
-    \n\nK určení, zda jste jste byli upozorněni na základě parametrů stanovených státním zdravotnickým úřadem, bude použito datum vašeho kontaktu s tímto onemocněním, jeho trvání a s ním spojenou sílu signálu.</string>
+    \n\nK určení, zda jste jste byli upozorněni na základě parametrů stanovených státním zdravotnickým úřadem, bude použito datum vašeho kontaktu s tímto onemocněním, jeho trvání a s ním spojenou sílu signálu.
+    \n\nPokud budete mít pozitivní výsledek testu, můžete dostat připomenutí, ať o tom informujete zdravotní úřad.</string>
   <string name="onboarding_metrics_title">Pomozte aplikaci vylepšit</string>
   <string name="onboarding_metrics_subtitle">Sdílejte data o využití aplikace a výkonu s Googlem</string>
   <string name="onboarding_metrics_description">Za účelem údržby a vylepšování aplikace jsou s Googlem sdílena omezená data o využití a výkonu aplikace. Tato data neumožňují identifikaci uživatele. %1$s</string>
@@ -62,10 +63,10 @@
   <string name="notify_turn_on_exposure_notifications_header">Chcete-li být informováni o možném kontaktu s covidem-19, zapněte oznámení o možném kontaktu. %1$s</string>
   <string name="using_en_helps_even_if_vaccinated">Tato služba vám pomůže ochránit své okolí – i když už jste naočkovaní.</string>
   <string name="share_begin_title">Pomozte chránit své okolí</string>
-  <string name="share_close_title">Ukončit bez sdílení?</string>
-  <string name="share_close_detail">Čím dříve budete výsledek testu sdílet, tím více své komunitě pomůžete. Zadané informace o výsledku testu se však uloží do aplikace, abyste v editování mohli pokračovat později.</string>
-  <string name="btn_resume_later">Ano, ukončit</string>
-  <string name="verify_test_result_title">Zadejte informace o testu na COVID-19</string>
+  <string name="share_close_title">Zavřít bez sdílení?</string>
+  <string name="share_close_detail">Nejvíce své komunitě pomůžete, když výsledky budete sdílet co nejdříve. Pokud teď aplikaci zavřete bez sdílení výsledků a později si to rozmyslíte, budete moci pokračovat z místa, kde jste skončili.</string>
+  <string name="btn_resume_later">Ano, zavřít</string>
+  <string name="verify_test_result_title">Zadejte ověřovací kód</string>
   <string name="enter_your_test_identifier">Ověřovací kód</string>
   <string name="share_test_identifier_help">Tento jednorázový kód slouží k ověření výsledku testu.</string>
   <string name="share_test_identifier_verified">Kód byl ověřen</string>
@@ -85,20 +86,19 @@
   <string name="share_review_status_confirmed">Pozitivní</string>
   <string name="share_review_status_likely">Pravděpodobně pozitivní</string>
   <string name="share_review_status_negative">Negativní</string>
-  <string name="share_review_onset_subtitle">Informace o příznacích</string>
-  <string name="share_review_onset_date">Příznaky od %1$s</string>
+  <string name="share_review_onset_subtitle">Příznaky</string>
+  <string name="share_review_onset_date">Začátek: %1$s</string>
   <string name="share_review_onset_no_symptoms">Žádné příznaky</string>
   <string name="share_review_onset_no_answer">Bez odpovědi</string>
-  <string name="share_review_travel_subtitle">Historie cestování</string>
-  <string name="share_review_travel_confirmed">Cestoval(a) v posledních 14 dnech</string>
+  <string name="share_review_travel_subtitle">Cestování</string>
+  <string name="share_review_travel_confirmed">Během posledních 14 dní</string>
   <string name="share_review_travel_no_travel">Necestoval(a) za posledních 14 dnů</string>
   <string name="share_review_travel_no_answer">Bez odpovědi</string>
-  <string name="share_confirm_title">Děkujeme, že sdílíte svůj stav v souvislosti s covidem-19</string>
+  <string name="share_confirm_title">Děkujeme, že sdílíte svůj stav v souvislosti s onemocněním COVID-19</string>
   <string name="not_shared_confirm_title">Výsledek testu nebyl sdílen</string>
   <string name="not_shared_confirm_detail">Výsledek testu na covid-19 nebyl sdílen. Zkuste to znovu.</string>
   <string name="status_shared_detail_title">Sdílený stav v souvislosti s COVID-19</string>
-  <string name="delete_test_result_title">Smazat výsledek testu na COVID-19?</string>
-  <string name="delete_test_result_detail">Podrobnosti o výsledku testu budou z aplikace smazány.</string>
+  <string name="delete_test_result_title">Smazat výsledek testu</string>
   <string name="delete_test_result_confirmed">Výsledek testu byl smazán</string>
   <string name="share_error_no_internet">Výsledky testu nelze sdílet offline. Zkontrolujte připojení k internetu a zkuste to znovu.</string>
   <string name="share_vaccination_title">Už jste očkovaní proti onemocnění COVID-19\?</string>
@@ -107,6 +107,31 @@
   <string name="share_vaccination_vaccinated">Ano, mám očkování</string>
   <string name="share_vaccination_not_vaccinated">Ne</string>
   <string name="share_vaccination_unknown">Nechci odpovídat</string>
+  <string name="do_you_have_code_title">Obdrželi jste kód?</string>
+  <string name="do_you_have_code_content">V případě pozitivního testu na COVID‑19 vám zdravotnický úřad obvykle telefonicky nebo zprávou SMS poskytne ověřovací kód, abyste výsledky testu mohli sdílet.</string>
+  <string name="btn_i_have_code">Ano, mám kód</string>
+  <string name="btn_i_need_code">Potřebuji kód</string>
+  <string name="get_verification_code_title">Získání ověřovacího kódu</string>
+  <string name="phone_number_prompt">Telefonní číslo</string>
+  <string name="phone_number_help">Ověřovací kód umožňuje sdílet výsledky testu. Kód vám bude zaslán na číslo, které uvedete.</string>
+  <string name="phone_number_may_be_stored_help">Aby se předešlo možnému zneužití systému, státní zdravotnické úřady si vaše telefonní číslo mohou dočasně uložit.</string>
+  <string name="test_date_prompt">Datum testu</string>
+  <string name="test_date_help">Datum testu by mělo být během posledních 14 dní.</string>
+  <string name="tested_for_covid_checkbox_text">Během uplynulých 14 dní jsem byl(a) pozitivně testován(a) na COVID‑19.</string>
+  <string name="btn_send_code">Poslat kód</string>
+  <string name="enter_code_help">Zadejte kód, který jste obdrželi od: %1$s.</string>
+  <string name="positive_result_already_reported_title">V poslední době jste již výsledek testu nahlásili.</string>
+  <string name="positive_result_already_reported_content">Pokud chcete nahlásit další výsledek testu, kontaktujte tento úřad: %1$s.</string>
+  <string name="self_report_bad_code">Neplatný kód. Ověřovací kód je potřeba zadat na zařízení, ze kterého jste o něj požádali.</string>
+  <string name="self_report_bad_phone_number">Zkontrolujte svoje číslo a zkuste to znovu. %1$s</string>
+  <string name="self_report_code_requested_too_many_times">Poslali jste příliš mnoho žádostí. Pokud stále potřebujete kód, kontaktujte úřad %1$s.</string>
+  <plurals name="self_report_code_already_requested">
+    <item quantity="one">Poslali jste příliš mnoho žádostí. O další kód budete moci požádat za %1$d minutu.</item>
+    <item quantity="few">Poslali jste příliš mnoho žádostí. O další kód budete moci požádat za %1$d minuty.</item>
+    <item quantity="many">Poslali jste příliš mnoho žádostí. O další kód budete moci požádat za %1$d minuty.</item>
+    <item quantity="other">Poslali jste příliš mnoho žádostí. O další kód budete moci požádat za %1$d minut.</item>
+  </plurals>
+  <string name="notify_others_notification_title">Pomozte informovat ostatní o možném kontaktu s onemocněním</string>
   <string name="settings_exposure_notifications_subtitle">Oznámení o pokrytí</string>
   <string name="settings_app_analytics_subtitle">Sdílení využití a výkonu aplikace</string>
   <string name="settings_privacy_policy">Zásady ochrany soukromí</string>
@@ -168,4 +193,9 @@
   <string name="private_analytics_footer_learn_more">Další informace</string>
   <string name="diagnosis_subtitle_template">%1$s %2$s</string>
   <string name="empty_share_history_body">Žádná historie sdílení</string>
+  <string name="share_diagnosis_share_test_result_title">Sdílejte výsledek testu pomocí aplikace %1$s</string>
+  <string name="share_diagnosis_share_test_result_subtitle">Děkujeme, že pomáháte zastavit COVID‑19.</string>
+  <string name="share_diagnosis_share_test_result_body">Při sdílení výsledku můžete také uvést, kdy se u vás projevily první příznaky. Tato informace může pomoci zastavit šíření onemocnění COVID‑19 a zachránit životy.</string>
+  <string name="sms_intercept_notice_title">Co je nového</string>
+  <string name="sms_intercept_notice_content">Pokud vám místní zdravotnický úřad pošle výsledek testu, aplikace vám zobrazí připomenutí, abyste výsledek odeslali a pomohli informovat ostatní o možném kontaktu. Tuto možnost můžete kdykoli deaktivovat v nastavení.</string>
 </resources>

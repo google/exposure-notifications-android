@@ -37,8 +37,6 @@ import java.util.List;
  */
 public class ExposureCheckEntityAdapter extends RecyclerView.Adapter<ExposureCheckViewHolder> {
 
-  private static final String TAG = "ExposureCheckEntityAdapter";
-
   private final Context context;
   private final Clock clock;
   private List<ExposureCheckEntity> exposureChecks = Collections.emptyList();

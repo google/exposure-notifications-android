@@ -18,7 +18,6 @@
 package com.google.android.apps.exposurenotification.notify;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +25,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.common.SnackbarUtil;
+import com.google.android.apps.exposurenotification.common.logging.Logger;
 import com.google.android.apps.exposurenotification.databinding.FragmentShareDiagnosisReviewBinding;
 import com.google.android.apps.exposurenotification.network.Connectivity;
 import com.google.android.apps.exposurenotification.notify.ShareDiagnosisViewModel.Step;
@@ -43,7 +43,7 @@ import org.threeten.bp.format.FormatStyle;
 @AndroidEntryPoint
 public class ShareDiagnosisReviewFragment extends ShareDiagnosisBaseFragment {
 
-  private static final String TAG = "ShareExposureReviewFrag";
+  private static final Logger logger = Logger.getLogger("ShareExposureReviewFrag");
 
   private static final DateTimeFormatter dateTimeFormatter =
       DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM);
@@ -66,7 +66,7 @@ public class ShareDiagnosisReviewFragment extends ShareDiagnosisBaseFragment {
 
     requireActivity().setTitle(R.string.share_review_title);
 
-    binding.home.setOnClickListener(v -> showCloseWarningAlertDialog());
+    binding.home.setOnClickListener(v -> showCloseShareDiagnosisFlowAlertDialog());
 
     binding.shareShareButton.setOnClickListener(v -> {
       if (connectivity.hasInternet()) {
@@ -89,9 +89,10 @@ public class ShareDiagnosisReviewFragment extends ShareDiagnosisBaseFragment {
                 return;
               }
 
-              binding.deleteDiagnosis.setOnClickListener(v -> deleteAction(diagnosisEntity));
+              binding.deleteDiagnosis.setOnClickListener(
+                  v -> showDeleteDiagnosisAlertDialog(diagnosisEntity));
               if (shareDiagnosisViewModel.isDeleteOpen()) {
-                deleteAction(diagnosisEntity);
+                showDeleteDiagnosisAlertDialog(diagnosisEntity);
               }
 
               String onsetDate = "";
@@ -145,7 +146,7 @@ public class ShareDiagnosisReviewFragment extends ShareDiagnosisBaseFragment {
             unused -> {
               Toast.makeText(getContext(), R.string.delete_test_result_confirmed,
                   Toast.LENGTH_LONG).show();
-              closeShareDiagnosisFlow();
+              closeShareDiagnosisFlowImmediately();
             });
   }
 
@@ -156,26 +157,7 @@ public class ShareDiagnosisReviewFragment extends ShareDiagnosisBaseFragment {
   }
 
   private void shareAction() {
-    Log.d(TAG, "Submitting diagnosis keys...");
+    logger.d("Submitting diagnosis keys...");
     shareDiagnosisViewModel.uploadKeys();
-  }
-
-  private void deleteAction(DiagnosisEntity diagnosis) {
-    shareDiagnosisViewModel.setDeleteOpen(true);
-    new MaterialAlertDialogBuilder(requireContext(), R.style.ExposureNotificationAlertDialogTheme)
-        .setTitle(R.string.delete_test_result_title)
-        .setMessage(R.string.delete_test_result_detail)
-        .setCancelable(true)
-        .setPositiveButton(
-            R.string.btn_delete,
-            (d, w) -> {
-              shareDiagnosisViewModel.setDeleteOpen(false);
-              shareDiagnosisViewModel.deleteEntity(diagnosis);
-            })
-        .setNegativeButton(R.string.btn_cancel,
-            (d, w) -> shareDiagnosisViewModel.setDeleteOpen(false))
-        .setOnDismissListener(d -> shareDiagnosisViewModel.setDeleteOpen(false))
-        .setOnCancelListener(d -> shareDiagnosisViewModel.setDeleteOpen(false))
-        .show();
   }
 }

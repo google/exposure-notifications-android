@@ -18,7 +18,6 @@
 package com.google.android.apps.exposurenotification.debug;
 
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +25,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.common.logging.Logger;
 import com.google.android.apps.exposurenotification.debug.PrivateAnalyticsMetricAdapter.PrivateAnalyticsMetricViewHolder;
 import com.google.android.libraries.privateanalytics.PrivateAnalyticsMetric;
 import java.util.Collections;
@@ -36,7 +36,7 @@ import java.util.List;
  */
 class PrivateAnalyticsMetricAdapter extends RecyclerView.Adapter<PrivateAnalyticsMetricViewHolder> {
 
-  private final static String TAG = "PrioMetricAdapter";
+  private final static Logger logger = Logger.getLogger("PrivateAnalyticsMetricAdapter");
 
   private List<PrivateAnalyticsMetric> metrics = Collections.emptyList();
 
@@ -61,7 +61,7 @@ class PrivateAnalyticsMetricAdapter extends RecyclerView.Adapter<PrivateAnalytic
       privateAnalyticsMetricViewHolder
           .bind(metrics.get(i).getMetricName(), data.toString());
     } catch (Exception e) {
-      Log.e(TAG, "Could not get data for metric: " + metrics.get(i).getMetricName(), e);
+      logger.e("Could not get data for metric: " + metrics.get(i).getMetricName(), e);
     }
   }
 

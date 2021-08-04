@@ -57,7 +57,7 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:paddingTop="@dimen/padding_normal"
-          android:paddingBottom="@dimen/padding_extra_large"
+          android:paddingBottom="@dimen/padding_huge"
           android:paddingHorizontal="@dimen/padding_large"
           android:gravity="center"
           android:text="@string/exposure_checks_activity_title"

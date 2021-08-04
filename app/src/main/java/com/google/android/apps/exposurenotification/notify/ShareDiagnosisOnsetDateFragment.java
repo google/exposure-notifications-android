@@ -18,9 +18,7 @@
 package com.google.android.apps.exposurenotification.notify;
 
 import android.os.Bundle;
-import android.os.Parcel;
 import android.text.Editable;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,21 +26,16 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.common.AbstractTextWatcher;
 import com.google.android.apps.exposurenotification.common.KeyboardHelper;
 import com.google.android.apps.exposurenotification.common.PairLiveData;
-import com.google.android.apps.exposurenotification.common.SnackbarUtil;
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.databinding.FragmentShareDiagnosisOnsetDateBinding;
 import com.google.android.apps.exposurenotification.notify.ShareDiagnosisViewModel.Step;
 import com.google.android.apps.exposurenotification.storage.DiagnosisEntity;
 import com.google.android.apps.exposurenotification.storage.DiagnosisEntity.HasSymptoms;
-import com.google.android.material.datepicker.CalendarConstraints;
-import com.google.android.material.datepicker.CalendarConstraints.DateValidator;
 import com.google.android.material.datepicker.MaterialDatePicker;
-import com.google.common.base.Function;
 import dagger.hilt.android.AndroidEntryPoint;
 import javax.inject.Inject;
 import org.threeten.bp.Instant;
@@ -50,8 +43,6 @@ import org.threeten.bp.LocalDate;
 import org.threeten.bp.LocalTime;
 import org.threeten.bp.ZoneOffset;
 import org.threeten.bp.ZonedDateTime;
-import org.threeten.bp.format.DateTimeFormatter;
-import org.threeten.bp.format.FormatStyle;
 
 /**
  * An optional second page of user input for the diagnosis flow. If the verification server supplies
@@ -60,8 +51,7 @@ import org.threeten.bp.format.FormatStyle;
 @AndroidEntryPoint
 public class ShareDiagnosisOnsetDateFragment extends ShareDiagnosisBaseFragment {
 
-  private static final String TAG = "ShareDiagnosisOnset";
-  private static final String DATE_PICKER_TAG = "date_picker";
+  private static final String DATE_PICKER_TAG = "ShareDiagnosisOnsetDateFragment.DATE_PICKER_TAG";
 
   @Inject
   Clock clock;
@@ -121,7 +111,7 @@ public class ShareDiagnosisOnsetDateFragment extends ShareDiagnosisBaseFragment 
                 binding.shareTestDate.setText(shareTestDateText);
               }
 
-              // Show the date picker if the symptom onset date is still not set and the user
+              // Maybe show the date picker if the symptom onset date is still not set and the user
               // answered that they had symptoms
               if (diagnosisEntity.getOnsetDate() == null && isEnabled) {
                 maybeShowMaterialDatePicker();
@@ -143,12 +133,12 @@ public class ShareDiagnosisOnsetDateFragment extends ShareDiagnosisBaseFragment 
                   .setEnabled(DiagnosisEntityHelper.hasCompletedOnset(diagnosisEntity, clock));
             });
 
-    binding.home.setOnClickListener(v -> showCloseWarningAlertDialog());
+    binding.home.setOnClickListener(v -> showCloseShareDiagnosisFlowAlertDialog());
 
     // If the date picker already exists upon view creation it means that view was just recreated
     // upon rotation. If so, its listeners need to be cleared and replaced as they hold references
     // to pre-rotation views.
-    MaterialDatePicker<Long> datePicker = findMaterialDatePicker();
+    MaterialDatePicker<Long> datePicker = findMaterialDatePicker(DATE_PICKER_TAG);
     if (datePicker != null) {
       // Need to be cleared as most likely the view was just re-created after rotation
       datePicker.clearOnPositiveButtonClickListeners();
@@ -205,61 +195,25 @@ public class ShareDiagnosisOnsetDateFragment extends ShareDiagnosisBaseFragment 
    */
   private void maybeShowMaterialDatePicker() {
     int checkedId = binding.hasSymptomsRadioGroup.getCheckedRadioButtonId();
-    if (findMaterialDatePicker() != null || checkedId != R.id.has_symptoms_yes) {
+    if (findMaterialDatePicker(DATE_PICKER_TAG) != null || checkedId != R.id.has_symptoms_yes) {
       return;
     }
-    MaterialDatePicker<Long> dialog =
-        MaterialDatePicker.Builder.datePicker()
-            .setCalendarConstraints(
-                new CalendarConstraints.Builder()
-                    .setEnd(System.currentTimeMillis())
-                    .setValidator(symptomDateValidator)
-                    .build())
-            .setSelection(getOnsetDateOrNow().toEpochMilli())
-            .build();
+    MaterialDatePicker<Long> dialog = createMaterialDatePicker(getOnsetDateOrNow());
     addOnPositiveButtonClickListener(dialog);
     dialog.show(getParentFragmentManager(), DATE_PICKER_TAG);
-  }
-
-  private MaterialDatePicker<Long> findMaterialDatePicker() {
-    Fragment datePickerFragment = getParentFragmentManager().findFragmentByTag(DATE_PICKER_TAG);
-    if (datePickerFragment == null) {
-      return null;
-    }
-    return (MaterialDatePicker<Long>) datePickerFragment;
   }
 
   private void addOnPositiveButtonClickListener(MaterialDatePicker<Long> dialog) {
     dialog.addOnPositiveButtonClickListener(
         selection -> {
-          binding.shareTestDate.setText(
-              getDateTimeFormatter()
-                  .format(Instant.ofEpochMilli(selection).atZone(ZoneOffset.UTC)));
+          String dateStr = getDateTimeFormatter()
+              .format(Instant.ofEpochMilli(selection).atZone(ZoneOffset.UTC));
+          binding.shareTestDate.setText(dateStr);
           // Check if selected date is valid and if so show snackbar
-          showInvalidDateSnackbarIfNecessary();
+          if (!inputIsValidToProceed(binding.hasSymptomsRadioGroup, dateStr)) {
+            maybeShowInvalidDateSnackbar(dateStr);
+          }
         });
-  }
-
-  /**
-   * Shows relevant invalid date snackbar if currently user selected that they had symptoms, but the
-   * symptom onset date they entered is not within the last 14 days.
-   */
-  private void showInvalidDateSnackbarIfNecessary() {
-    final String dateStr = binding.shareTestDate.getText().toString();
-    if (!inputIsValidToProceed(binding.hasSymptomsRadioGroup, dateStr)) {
-      if (!TextUtils.isEmpty(dateStr)
-          && !isValidDate(
-          dateStr, dateInMillis -> DiagnosisEntityHelper.isNotInFuture(clock, dateInMillis))) {
-        SnackbarUtil.maybeShowRegularSnackbar(
-            getView(), getString(R.string.input_error_onset_date_future));
-      } else if (!TextUtils.isEmpty(dateStr)
-          && !isValidDate(
-          dateStr,
-          dateInMillis -> DiagnosisEntityHelper.isWithinLast14Days(clock, dateInMillis))) {
-        SnackbarUtil.maybeShowRegularSnackbar(
-            getView(), getString(R.string.input_error_onset_date_past, "14"));
-      }
-    }
   }
 
   /**
@@ -270,7 +224,7 @@ public class ShareDiagnosisOnsetDateFragment extends ShareDiagnosisBaseFragment 
     int checkedId = hasSymptomsRadioGroup.getCheckedRadioButtonId();
     boolean questionAnswered = checkedId > 0;
     boolean hasSymptoms = checkedId == R.id.has_symptoms_yes;
-    boolean haveValidDate = isValidDate(dateStr, symptomDateValidator::isValid);
+    boolean haveValidDate = isValidDate(dateStr, symptomOnsetOrTestDateValidator::isValid);
 
     return questionAnswered && (!hasSymptoms || haveValidDate);
   }
@@ -291,45 +245,4 @@ public class ShareDiagnosisOnsetDateFragment extends ShareDiagnosisBaseFragment 
     }
     return Instant.now();
   }
-
-  private boolean isValidDate(String dateStr, Function<Long, Boolean> dateValidationFn) {
-    if (dateStr.isEmpty()) {
-      return false;
-    }
-    try {
-      long dateInMillis =
-          LocalDate.parse(dateStr, getDateTimeFormatter())
-              .atStartOfDay(ZoneOffset.UTC)
-              .toInstant()
-              .toEpochMilli();
-      return dateValidationFn.apply(dateInMillis);
-    } catch (RuntimeException e) {
-      return false;
-    }
-  }
-
-  private DateTimeFormatter getDateTimeFormatter() {
-    return DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)
-        .withLocale(getResources().getConfiguration().locale);
-  }
-
-  private final DateValidator symptomDateValidator =
-      new DateValidator() {
-
-        @Override
-        public boolean isValid(long date) {
-          return DiagnosisEntityHelper.isWithinLast14Days(clock, date);
-        }
-
-        @Override
-        public int describeContents() {
-          // Return no-op value. This validator has no state to describe
-          return 0;
-        }
-
-        @Override
-        public void writeToParcel(Parcel dest, int flags) {
-          // No-op. This validator has no state to parcelize
-        }
-      };
 }

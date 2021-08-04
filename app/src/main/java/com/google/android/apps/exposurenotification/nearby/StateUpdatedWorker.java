@@ -18,8 +18,6 @@
 package com.google.android.apps.exposurenotification.nearby;
 
 import android.content.Context;
-import android.content.Intent;
-import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.annotation.VisibleForTesting;
@@ -36,6 +34,7 @@ import com.google.android.apps.exposurenotification.common.NotificationHelper;
 import com.google.android.apps.exposurenotification.common.Qualifiers.BackgroundExecutor;
 import com.google.android.apps.exposurenotification.common.Qualifiers.ScheduledExecutor;
 import com.google.android.apps.exposurenotification.common.TaskToFutureAdapter;
+import com.google.android.apps.exposurenotification.common.logging.Logger;
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.logging.AnalyticsLogger;
 import com.google.android.apps.exposurenotification.proto.WorkManagerTask.WorkerTask;
@@ -65,7 +64,7 @@ import org.threeten.bp.Instant;
  */
 public class StateUpdatedWorker extends ListenableWorker {
 
-  private static final String TAG = "StateUpdatedWorker";
+  private static final Logger logcat = Logger.getLogger("StateUpdatedWorker");
 
   private static final Duration GET_DAILY_SUMMARIES_TIMEOUT = Duration.ofSeconds(120);
   @VisibleForTesting static final Duration BLE_LOC_OFF_UNTIL_NOTIFICATION_THRESHOLD =
@@ -157,7 +156,7 @@ public class StateUpdatedWorker extends ListenableWorker {
         .catching(
             Exception.class,
             x -> {
-              Log.e(TAG, "Failure to update app state (tokens, etc) from exposure summary.", x);
+              logcat.e("Failure to update app state (tokens, etc) from exposure summary.", x);
               logger.logWorkManagerTaskFailure(WorkerTask.TASK_STATE_UPDATED, x);
               return Result.failure();
             }, backgroundExecutor);
@@ -202,9 +201,9 @@ public class StateUpdatedWorker extends ListenableWorker {
 
     boolean isClassificationRevoked = false;
 
-    Log.d(TAG, "Current ExposureClassification: " + currentClassification);
+    logcat.d("Current ExposureClassification: " + currentClassification);
 
-    Log.d(TAG, "Previous ExposureClassification: " + previousClassification);
+    logcat.d("Previous ExposureClassification: " + previousClassification);
 
     /*
      * We assume a change of classification if either the classification index (and resources)
@@ -282,16 +281,16 @@ public class StateUpdatedWorker extends ListenableWorker {
     if (showNotification) {
       notificationHelper.showNotification(
           context, notificationTitleResource, notificationMessageResource,
-          IntentUtil.getNotificationContentIntent(context),
+          IntentUtil.getNotificationContentIntentExposure(context),
           IntentUtil.getNotificationDeleteIntent(context));
       exposureNotificationSharedPreferences
           .setExposureNotificationLastShownClassification(clock.now(),
               currentClassification);
-      Log.d(TAG, "Notifying user: "
+      logcat.d("Notifying user: "
           + context.getResources().getString(notificationTitleResource) + " - "
           + context.getResources().getString(notificationMessageResource));
     } else {
-      Log.d(TAG, "No new exposure information, not notifying user");
+      logcat.d("No new exposure information, not notifying user");
     }
 
     /*
@@ -384,7 +383,7 @@ public class StateUpdatedWorker extends ListenableWorker {
         notificationHelper.showNotification(context,
             R.string.updated_permission_disabled_notification_title,
             getBleLocMessageResource(enStatusSet),
-            IntentUtil.getNotificationContentIntent(context),
+            IntentUtil.getNotificationContentIntentExposure(context),
             IntentUtil.getNotificationDeleteIntent(context));
       }
       exposureNotificationSharedPreferences.setBleLocNotificationSeen(true);

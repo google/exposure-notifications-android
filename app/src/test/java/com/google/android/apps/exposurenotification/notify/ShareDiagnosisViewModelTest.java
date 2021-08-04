@@ -21,6 +21,8 @@ import static com.google.android.apps.exposurenotification.notify.ShareDiagnosis
 import static com.google.android.apps.exposurenotification.notify.ShareDiagnosisViewModel.SAVED_STATE_CODE_INPUT_IS_ENABLED;
 import static com.google.android.apps.exposurenotification.notify.ShareDiagnosisViewModel.SAVED_STATE_CODE_IS_INVALID;
 import static com.google.android.apps.exposurenotification.notify.ShareDiagnosisViewModel.SAVED_STATE_CODE_IS_VERIFIED;
+import static com.google.android.apps.exposurenotification.notify.ShareDiagnosisViewModel.SAVED_STATE_GET_CODE_PHONE_NUMBER;
+import static com.google.android.apps.exposurenotification.notify.ShareDiagnosisViewModel.SAVED_STATE_GET_CODE_TEST_DATE;
 import static com.google.android.apps.exposurenotification.notify.ShareDiagnosisViewModel.SAVED_STATE_SHARE_ADVANCE_SWITCHER_CHILD;
 import static com.google.android.apps.exposurenotification.notify.ShareDiagnosisViewModel.SAVED_STATE_VERIFIED_CODE;
 import static com.google.common.truth.Truth.assertThat;
@@ -28,7 +30,6 @@ import static org.mockito.Mockito.when;
 import static org.robolectric.Shadows.shadowOf;
 
 import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
 import android.support.test.espresso.core.internal.deps.guava.collect.ImmutableList;
 import androidx.annotation.Nullable;
@@ -36,6 +37,7 @@ import androidx.lifecycle.SavedStateHandle;
 import androidx.test.core.app.ApplicationProvider;
 import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.common.IntentUtil;
+import com.google.android.apps.exposurenotification.common.TelephonyHelper;
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.common.time.RealTimeModule;
 import com.google.android.apps.exposurenotification.keyupload.ApiConstants.UploadV1;
@@ -43,6 +45,7 @@ import com.google.android.apps.exposurenotification.keyupload.ApiConstants.Verif
 import com.google.android.apps.exposurenotification.keyupload.Qualifiers.UploadUri;
 import com.google.android.apps.exposurenotification.keyupload.Qualifiers.VerificationCertUri;
 import com.google.android.apps.exposurenotification.keyupload.Qualifiers.VerificationCodeUri;
+import com.google.android.apps.exposurenotification.keyupload.Qualifiers.VerificationUserReportUri;
 import com.google.android.apps.exposurenotification.keyupload.UploadController;
 import com.google.android.apps.exposurenotification.keyupload.UploadUrisModule;
 import com.google.android.apps.exposurenotification.nearby.ExposureNotificationClientWrapper;
@@ -50,6 +53,7 @@ import com.google.android.apps.exposurenotification.nearby.ExposureNotifications
 import com.google.android.apps.exposurenotification.network.Connectivity;
 import com.google.android.apps.exposurenotification.network.RealRequestQueueModule;
 import com.google.android.apps.exposurenotification.network.RequestQueueWrapper;
+import com.google.android.apps.exposurenotification.notify.ShareDiagnosisFlowHelper.ShareDiagnosisFlow;
 import com.google.android.apps.exposurenotification.notify.ShareDiagnosisViewModel.EnterCodeStepReturnValue;
 import com.google.android.apps.exposurenotification.notify.ShareDiagnosisViewModel.Step;
 import com.google.android.apps.exposurenotification.storage.DbModule;
@@ -62,6 +66,7 @@ import com.google.android.apps.exposurenotification.storage.DiagnosisRepository;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationDatabase;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.VaccinationStatus;
+import com.google.android.apps.exposurenotification.storage.VerificationCodeRequestRepository;
 import com.google.android.apps.exposurenotification.testsupport.ExposureNotificationRules;
 import com.google.android.apps.exposurenotification.testsupport.FakeClock;
 import com.google.android.apps.exposurenotification.testsupport.FakeRequestQueue;
@@ -84,6 +89,7 @@ import dagger.hilt.android.testing.HiltAndroidTest;
 import dagger.hilt.android.testing.HiltTestApplication;
 import dagger.hilt.android.testing.UninstallModules;
 import dagger.hilt.components.SingletonComponent;
+import java.security.SecureRandom;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -98,8 +104,11 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
+import org.threeten.bp.Duration;
 import org.threeten.bp.Instant;
 import org.threeten.bp.LocalDate;
+import org.threeten.bp.ZoneId;
+import org.threeten.bp.ZoneOffset;
 
 @HiltAndroidTest
 @RunWith(RobolectricTestRunner.class)
@@ -111,7 +120,10 @@ public class ShareDiagnosisViewModelTest {
   private static final Uri UPLOAD_URI = Uri.parse("http://sampleurls.com/upload");
   private static final Uri CODE_URI = Uri.parse("http://sampleurls.com/code");
   private static final Uri CERT_URI = Uri.parse("http://sampleurls.com/cert");
+  private static final Uri USER_REPORT_URI = Uri.parse("http://sampleurls.com/user-report");
   private static final LocalDate ONSET_DATE = LocalDate.parse("2020-04-01");
+  private static final String PHONE_NUMBER_GB_INTERNATIONAL = "+447911123456";
+  private static final String EXPIRES_AT_STR = "2021-06-08";
 
   @Rule
   public ExposureNotificationRules rules =
@@ -122,6 +134,8 @@ public class ShareDiagnosisViewModelTest {
   UploadController uploadController;
   @Inject
   DiagnosisRepository diagnosisRepository;
+  @Inject
+  VerificationCodeRequestRepository verificationCodeRequestRepository;
   @BindValue
   @Mock
   ExposureNotificationClientWrapper exposureNotificationClient;
@@ -134,10 +148,14 @@ public class ShareDiagnosisViewModelTest {
   Connectivity connectivity;
   @Inject
   ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
+  @Inject
+  TelephonyHelper telephonyHelper;
   @Mock
   PrivateAnalyticsEnabledProvider privateAnalyticsEnabledProvider;
   @BindValue
   Clock clock = new FakeClock();
+  @Inject
+  SecureRandom secureRandom;
 
   @Module
   @InstallIn(SingletonComponent.class)
@@ -160,6 +178,12 @@ public class ShareDiagnosisViewModelTest {
     public Uri provideCertUri() {
       return CERT_URI;
     }
+
+    @Provides
+    @VerificationUserReportUri
+    public Uri provideUserReportUri() {
+      return USER_REPORT_URI;
+    }
   }
 
   private ShareDiagnosisViewModel viewModel;
@@ -172,11 +196,13 @@ public class ShareDiagnosisViewModelTest {
         new SavedStateHandle(),
         uploadController,
         diagnosisRepository,
+        verificationCodeRequestRepository,
         exposureNotificationClient,
         exposureNotificationSharedPreferences,
         privateAnalyticsEnabledProvider,
         clock,
-        connectivity,
+        telephonyHelper,
+        secureRandom,
         MoreExecutors.newDirectExecutorService(),
         MoreExecutors.newDirectExecutorService(),
         TestingExecutors.sameThreadScheduledExecutor());
@@ -190,15 +216,9 @@ public class ShareDiagnosisViewModelTest {
   }
 
   @Test
-  public void savedStateHandle_withValuesSet_stateRestored_uiNotMarkedAsRestored() {
+  public void savedStateHandle_withValuesSet_stateRestoredAndUiNotMarkedAsRestored() {
     // GIVEN
-    SavedStateHandle savedStateHandle = new SavedStateHandle();
-    savedStateHandle.set(SAVED_STATE_CODE_IS_INVALID, false);
-    savedStateHandle.set(SAVED_STATE_CODE_IS_VERIFIED, true);
-    savedStateHandle.set(SAVED_STATE_SHARE_ADVANCE_SWITCHER_CHILD, 0);
-    savedStateHandle.set(SAVED_STATE_CODE_INPUT_IS_ENABLED, false);
-    savedStateHandle.set(SAVED_STATE_CODE_INPUT, "code-input");
-    savedStateHandle.set(SAVED_STATE_VERIFIED_CODE, "verified-code");
+    SavedStateHandle savedStateHandle = setUpSavedStateHandle();
 
     // WHEN
     viewModel = new ShareDiagnosisViewModel(
@@ -206,17 +226,20 @@ public class ShareDiagnosisViewModelTest {
         savedStateHandle,
         uploadController,
         diagnosisRepository,
+        verificationCodeRequestRepository,
         exposureNotificationClient,
         exposureNotificationSharedPreferences,
         privateAnalyticsEnabledProvider,
         clock,
-        connectivity,
+        telephonyHelper,
+        secureRandom,
         MoreExecutors.newDirectExecutorService(),
         MoreExecutors.newDirectExecutorService(),
         TestingExecutors.sameThreadScheduledExecutor());
     when(connectivity.hasInternet()).thenReturn(true);
 
     // THEN
+    // SavedStateHandle for CODE step
     assertThat(viewModel.isCodeInvalidForCodeStepLiveData().getValue()).isFalse();
     assertThat(viewModel.isCodeVerifiedForCodeStepLiveData().getValue()).isTrue();
     assertThat(viewModel.getSwitcherChildForCodeStepLiveData().getValue()).isEqualTo(0);
@@ -225,11 +248,14 @@ public class ShareDiagnosisViewModelTest {
         .isEqualTo("code-input");
     assertThat(viewModel.getVerifiedCodeForCodeStepLiveData().getValue())
         .isEqualTo("verified-code");
-    assertThat(viewModel.isUiToBeRestoredFromSavedState()).isFalse();
+    assertThat(viewModel.isCodeUiToBeRestoredFromSavedState()).isFalse();
+    // SavedStateHandle for GET_CODE step
+    assertThat(viewModel.getPhoneNumberForGetCodeStepLiveData().getValue()).isEqualTo("0123456");
+    assertThat(viewModel.getTestDateForGetCodeStepLiveData().getValue()).isEqualTo("Jul 2, 2021");
   }
 
   @Test
-  public void savedStateHandle_setValues_markUiToBeRestored_stateUpdated_uiMarkedAsRestored() {
+  public void savedStateHandle_setValuesAndMarkUiToBeRestored_stateUpdatedAndUiMarkedAsRestored() {
     // GIVEN
     AtomicBoolean isCodeInvalid = new AtomicBoolean();
     AtomicBoolean isCodeVerified = new AtomicBoolean();
@@ -237,6 +263,8 @@ public class ShareDiagnosisViewModelTest {
     AtomicBoolean isCodeInputEnabledForCodeStep = new AtomicBoolean(true);
     AtomicReference<String> codeInput = new AtomicReference<>();
     AtomicReference<String> verifiedCode = new AtomicReference<>();
+    AtomicReference<String> phoneNumber = new AtomicReference<>();
+    AtomicReference<String> testDate = new AtomicReference<>();
     viewModel.isCodeInvalidForCodeStepLiveData().observeForever(isCodeInvalid::set);
     viewModel.isCodeVerifiedForCodeStepLiveData().observeForever(isCodeVerified::set);
     viewModel.getSwitcherChildForCodeStepLiveData().observeForever(displayedChild::set);
@@ -244,24 +272,152 @@ public class ShareDiagnosisViewModelTest {
     viewModel.getVerifiedCodeForCodeStepLiveData().observeForever(verifiedCode::set);
     viewModel.isCodeInputEnabledForCodeStepLiveData()
         .observeForever(isCodeInputEnabledForCodeStep::set);
+    viewModel.getPhoneNumberForGetCodeStepLiveData().observeForever(phoneNumber::set);
+    viewModel.getTestDateForGetCodeStepLiveData().observeForever(testDate::set);
 
     // WHEN
+    // SavedStateHandle for CODE step
     viewModel.setCodeIsInvalidForCodeStep(true);
     viewModel.setCodeIsVerifiedForCodeStep(true);
     viewModel.setSwitcherChildForCodeStep(1);
     viewModel.setCodeInputForCodeStep("code-input");
     viewModel.setVerifiedCodeForCodeStep("verified-code");
     viewModel.setCodeInputEnabledForCodeStep(false);
-    viewModel.markUiToBeRestoredFromSavedState(true);
+    viewModel.markCodeUiToBeRestoredFromSavedState(true);
+    // SavedStateHandle for GET_CODE step
+    viewModel.setPhoneNumberForGetCodeStep("0123456");
+    viewModel.setTestDateForGetCodeStep("Jul 2, 2021");
 
     // THEN
+    // SavedStateHandle for CODE step
     assertThat(isCodeInvalid.get()).isTrue();
     assertThat(isCodeVerified.get()).isTrue();
     assertThat(displayedChild.get()).isEqualTo(1);
     assertThat(isCodeInputEnabledForCodeStep.get()).isFalse();
     assertThat(codeInput.get()).isEqualTo("code-input");
     assertThat(verifiedCode.get()).isEqualTo("verified-code");
-    assertThat(viewModel.isUiToBeRestoredFromSavedState()).isTrue();
+    assertThat(viewModel.isCodeUiToBeRestoredFromSavedState()).isTrue();
+    // SavedStateHandle for GET_CODE step
+    assertThat(phoneNumber.get()).isEqualTo("0123456");
+    assertThat(testDate.get()).isEqualTo("Jul 2, 2021");
+  }
+
+  @Test
+  public void calculateTzOffsetMin_zoneUTC_returns0() {
+    ((FakeClock) clock).setZoneId(ZoneId.of("UTC")); // UTC+00
+    long expectedTzOffsetMin = 0;
+
+    long tzOffsetMin = viewModel.calculateTzOffsetMin();
+
+    assertThat(tzOffsetMin).isEqualTo(expectedTzOffsetMin);
+  }
+
+  @Test
+  public void calculateTzOffsetMin_zoneJST_returnsPositive540() {
+    ((FakeClock) clock).setZoneId(ZoneId.of("Asia/Tokyo")); // UTC+09
+    long expectedTzOffsetMin = Duration.ofHours(9).toMinutes();
+
+    long tzOffsetMin = viewModel.calculateTzOffsetMin();
+
+    assertThat(tzOffsetMin).isEqualTo(expectedTzOffsetMin);
+  }
+
+  @Test
+  public void calculateTzOffsetMin_zonePST_returnsNegative480() {
+    ((FakeClock) clock).setZoneId(ZoneId.of("America/Los_Angeles")); // UTC-08
+    long expectedTzOffsetMin = -(Duration.ofHours(8).toMinutes());
+
+    long tzOffsetMin = viewModel.calculateTzOffsetMin();
+
+    assertThat(tzOffsetMin).isEqualTo(expectedTzOffsetMin);
+  }
+
+  @Test
+  public void requestCode_noConnectivity_shouldCancel() throws Exception {
+    // GIVEN
+    when(connectivity.hasInternet()).thenReturn(false);
+    LocalDate testDate = LocalDate.from(clock.now().atZone(ZoneOffset.UTC));
+
+    // WHEN
+    viewModel.requestCode(PHONE_NUMBER_GB_INTERNATIONAL, testDate).get();
+
+    // THEN
+    assertThat(queue().numRpcs()).isEqualTo(0);
+  }
+
+  @Test
+  public void requestCode_invalidPhoneNumber_shouldFireErrorAndCancel() throws Exception {
+    // GIVEN
+    LocalDate testDate = LocalDate.from(clock.now().atZone(ZoneOffset.UTC));
+    AtomicBoolean phoneErrorObserved = new AtomicBoolean();
+    viewModel.getPhoneNumberErrorMessageLiveData().observeForever(
+        unused -> phoneErrorObserved.set(true));
+
+    // WHEN
+    viewModel.requestCode("+1", testDate).get();
+
+    // THEN
+    assertThat(phoneErrorObserved.get()).isTrue();
+    assertThat(queue().numRpcs()).isEqualTo(0);
+  }
+
+  @Test
+  public void requestCode_secondRequestInThirtyMinutes_shouldCancelSecondAndFireError() throws Exception {
+    // GIVEN
+    LocalDate testDate = LocalDate.from(clock.now().atZone(ZoneOffset.UTC));
+    AtomicReference<String> errorMessageObserved = new AtomicReference<>();
+    viewModel.getPhoneNumberErrorMessageLiveData().observeForever(errorMessageObserved::set);
+    queue().addResponse(USER_REPORT_URI.toString(), 200, userReportResponse());
+
+    // WHEN
+    viewModel.requestCode(PHONE_NUMBER_GB_INTERNATIONAL, testDate).get();
+    ((FakeClock) clock).advanceBy(Duration.ofMinutes(5));
+    viewModel.requestCode(PHONE_NUMBER_GB_INTERNATIONAL, testDate).get();
+
+    // THEN
+    assertThat(queue().numRpcs()).isEqualTo(1);
+    assertThat(errorMessageObserved.get()).isNotEmpty();
+  }
+
+  @Test
+  public void requestCode_fourthRequestInThirtyDays_shouldCancelFourthAndFireError() throws Exception {
+    // GIVEN
+    LocalDate testDate = LocalDate.from(clock.now().atZone(ZoneOffset.UTC));
+    AtomicReference<String> errorMessageObserved = new AtomicReference<>();
+    viewModel.getPhoneNumberErrorMessageLiveData().observeForever(errorMessageObserved::set);
+    queue().addResponse(USER_REPORT_URI.toString(), 200, userReportResponse());
+
+    // WHEN
+    viewModel.requestCode(PHONE_NUMBER_GB_INTERNATIONAL, testDate).get();
+    ((FakeClock) clock).advanceBy(Duration.ofDays(5));
+    viewModel.requestCode(PHONE_NUMBER_GB_INTERNATIONAL, testDate).get();;
+    ((FakeClock) clock).advanceBy(Duration.ofDays(5));
+    viewModel.requestCode(PHONE_NUMBER_GB_INTERNATIONAL, testDate).get();
+    ((FakeClock) clock).advanceBy(Duration.ofDays(5));
+    viewModel.requestCode(PHONE_NUMBER_GB_INTERNATIONAL, testDate).get();
+
+    // THEN
+    assertThat(queue().numRpcs()).isEqualTo(3);
+    assertThat(errorMessageObserved.get()).isNotEmpty();
+  }
+
+  @Test
+  public void requestCode_shouldSaveRequestWithNonceAndAdvanceStep() throws Exception {
+    // GIVEN
+    LocalDate testDate = LocalDate.from(clock.now().atZone(ZoneOffset.UTC));
+    AtomicReference<Step> observedStep = observeFlowStep();
+    queue().addResponse(USER_REPORT_URI.toString(), 200, userReportResponse());
+
+    // WHEN
+    viewModel.requestCode(PHONE_NUMBER_GB_INTERNATIONAL, testDate).get();
+    // We won't be getting a real response from the server with a positive value for the expiresAt
+    // field. As this field will default to 0, pass a negative value to trigger nonces retrieval.
+    List<String> nonces = verificationCodeRequestRepository
+        .getValidNoncesWithLatestExpiringFirstIfAnyAsync(Instant.ofEpochMilli(-1L)).get();
+
+    // THEN
+    assertThat(observedStep.get()).isEqualTo(Step.CODE);
+    assertThat(nonces).isNotEmpty();
   }
 
   @Test
@@ -295,8 +451,6 @@ public class ShareDiagnosisViewModelTest {
   @Test
   public void submitCode_shouldStoreDiagnosisAndSetNotAttemptedSharedStatus() throws Exception {
     // GIVEN
-    // Later we'll need the diagnosis ID to read it from the DB, so observe and capture it.
-    AtomicLong observedDiagnosisId = observeDiagnosisId();
     queue().addResponse(CODE_URI.toString(), 200, codeResponse(/* onsetDate= */ null));
 
     // WHEN
@@ -516,7 +670,6 @@ public class ShareDiagnosisViewModelTest {
     FakeShadowResources resources = (FakeShadowResources) shadowOf(context.getResources());
     resources.addFakeResource(R.string.share_travel_detail, "Sample travel question");
     // Imitate the submission of code with symptom onset date
-    AtomicLong observedDiagnosisId = observeDiagnosisId();
     viewModel.nextStep(Step.CODE);
     viewModel.submitCode("code", false).get();
     viewModel.nextStep(Step.ONSET);
@@ -542,7 +695,6 @@ public class ShareDiagnosisViewModelTest {
     FakeShadowResources resources = (FakeShadowResources) shadowOf(context.getResources());
     resources.addFakeResource(R.string.share_travel_detail, "");
     // Imitate the submission of code with symptom onset date
-    AtomicLong observedDiagnosisId = observeDiagnosisId();
     viewModel.nextStep(Step.CODE);
     viewModel.submitCode("code", false).get();
     viewModel.nextStep(Step.ONSET);
@@ -591,8 +743,71 @@ public class ShareDiagnosisViewModelTest {
     viewModel.setTravelStatus(TravelStatus.TRAVELED);
     // Then the review step, and we're done.
     viewModel.uploadKeys().get();
+    // Check if the nonces have been saved. We won't be getting a real response from the server
+    // with a positive value for the expiresAt field. As this field will default to 0, pass
+    // a negative value to trigger nonces retrieval.
+    List<String> nonces = verificationCodeRequestRepository
+        .getValidNoncesWithLatestExpiringFirstIfAnyAsync(Instant.ofEpochMilli(-1L)).get();
 
     // THEN
+    assertThat(nonces).isEmpty();
+    // And we should have stored numerous artifacts of the successful steps:
+    DiagnosisEntity diagnosis = diagnosisRepository.getByIdAsync(observedDiagnosisId.get()).get();
+    assertThat(diagnosis).isNotNull();
+    assertThat(diagnosis.getVerificationCode()).isEqualTo("code");
+    assertThat(diagnosis.getLongTermToken()).isEqualTo("token");
+    assertThat(diagnosis.getOnsetDate()).isEqualTo(LocalDate.parse("2020-04-01"));
+    assertThat(diagnosis.getCertificate()).isEqualTo("cert-data");
+    assertThat(diagnosis.getRevisionToken()).isEqualTo("revision-token");
+    assertThat(diagnosis.getTestResult()).isEqualTo(TestResult.CONFIRMED);
+    assertThat(diagnosis.getSharedStatus()).isEqualTo(Shared.SHARED);
+    assertThat(diagnosis.getTravelStatus()).isEqualTo(TravelStatus.TRAVELED);
+  }
+
+  /**
+   * Different from the other tests in this file, this tests one long end to end flow along the
+   * "happy path" in a self-report flow.
+   */
+  @Test
+  public void executeAllSteps_selfReportFlow_withValidInputs_shouldSaveRelevantData()
+      throws Exception {
+    // GIVEN
+    viewModel.setShareDiagnosisFlow(ShareDiagnosisFlow.SELF_REPORT);
+    // We'll also need the diagnosis ID to read it from the DB, so observe and capture it.
+    LocalDate testDate = LocalDate.from(clock.now().atZone(ZoneOffset.UTC));
+    AtomicLong observedDiagnosisId = observeDiagnosisId();
+    // We'll need successful responses set up in the fake servers for all four RPCs
+    queue().addResponse(USER_REPORT_URI.toString(), 200, userReportResponse());
+    queue().addResponse(
+        CODE_URI.toString(),
+        200,
+        codeResponse("token", /* testType= */ "confirmed", /* onsetDate= */ null));
+    queue().addResponse(CERT_URI.toString(), 200, certResponse("cert-data"));
+    queue().addResponse(
+        UPLOAD_URI.toString(), 200, uploadResponse("revision-token", /* numExposures= */ 3));
+    // Also we'll need some keys from GMSCore.
+    Task<List<TemporaryExposureKey>> keys = Tasks.forResult(ImmutableList.of(key("key1")));
+    when(exposureNotificationClient.getTemporaryExposureKeyHistory()).thenReturn(keys);
+
+    // WHEN
+    // Starts with the get code step
+    viewModel.requestCode(PHONE_NUMBER_GB_INTERNATIONAL, testDate).get();
+    // Next is the verification code step
+    viewModel.submitCode("code", false).get();
+    // Next is the onset date step
+    viewModel.setSymptomOnsetDate(LocalDate.parse("2020-04-01"));
+    // Next is the travel status step
+    viewModel.setTravelStatus(TravelStatus.TRAVELED);
+    // Then the review step, and we're done.
+    viewModel.uploadKeys().get();
+    // Check if the nonces have been saved. We won't be getting a real response from the server
+    // with a positive value for the expiresAt field. As this field will default to 0, pass
+    // a negative value to trigger nonces retrieval.
+    List<String> nonces = verificationCodeRequestRepository
+        .getValidNoncesWithLatestExpiringFirstIfAnyAsync(Instant.ofEpochMilli(-1L)).get();
+
+    // THEN
+    assertThat(nonces).isNotEmpty();
     // And we should have stored numerous artifacts of the successful steps:
     DiagnosisEntity diagnosis = diagnosisRepository.getByIdAsync(observedDiagnosisId.get()).get();
     assertThat(diagnosis).isNotNull();
@@ -668,6 +883,103 @@ public class ShareDiagnosisViewModelTest {
     assertThat(result).isTrue();
   }
 
+  @Test
+  public void backStepIfPossible_oneStepInTheBackStack_returnsFalse() {
+    // GIVEN
+    viewModel.nextStep(Step.BEGIN);
+    viewModel.nextStepIrreversible(Step.CODE);
+
+    // THEN
+    assertThat(viewModel.backStepIfPossible()).isFalse();
+  }
+
+  @Test
+  public void backStepIfPossible_emptyBackStack_returnsFalse() {
+    // GIVEN
+    viewModel.nextStep(Step.BEGIN);
+
+    // WHEN
+    viewModel.backStepIfPossible();
+
+    // THEN
+    assertThat(viewModel.backStepIfPossible()).isFalse();
+  }
+
+  @Test
+  public void backStepIfPossible_fewStepsInTheBackStack_returnsTrue() {
+    // GIVEN
+    viewModel.nextStep(Step.BEGIN);
+    viewModel.nextStep(Step.CODE);
+
+    // THEN
+    assertThat(viewModel.backStepIfPossible()).isTrue();
+  }
+
+  @Test
+  public void getShareDiagnosisFlow_valueNotSet_returnsDefault() {
+    assertThat(viewModel.getShareDiagnosisFlow()).isEqualTo(ShareDiagnosisFlow.DEFAULT);
+  }
+
+  @Test
+  public void shouldSetAndGetShareDiagnosisFlow() {
+    viewModel.setShareDiagnosisFlow(ShareDiagnosisFlow.DEEP_LINK);
+
+    assertThat(viewModel.getShareDiagnosisFlow()).isEqualTo(ShareDiagnosisFlow.DEEP_LINK);
+  }
+
+  @Test
+  public void setShareDiagnosisFlow_selfReport_resetsDiagnosisAndSavedStateHandleForStepCode() {
+    // GIVEN
+    AtomicLong observedDiagnosisId = observeDiagnosisId();
+    SavedStateHandle savedStateHandle = setUpSavedStateHandle();
+
+    // WHEN
+    viewModel = new ShareDiagnosisViewModel(
+        context,
+        savedStateHandle,
+        uploadController,
+        diagnosisRepository,
+        verificationCodeRequestRepository,
+        exposureNotificationClient,
+        exposureNotificationSharedPreferences,
+        privateAnalyticsEnabledProvider,
+        clock,
+        telephonyHelper,
+        secureRandom,
+        MoreExecutors.newDirectExecutorService(),
+        MoreExecutors.newDirectExecutorService(),
+        TestingExecutors.sameThreadScheduledExecutor());
+    viewModel.setShareDiagnosisFlow(ShareDiagnosisFlow.SELF_REPORT);
+
+    // THEN
+    assertThat(viewModel.getShareDiagnosisFlow()).isEqualTo(ShareDiagnosisFlow.SELF_REPORT);
+    assertThat(observedDiagnosisId.get()).isEqualTo(ShareDiagnosisViewModel.NO_EXISTING_ID);
+    // Ensure that all the SavedStateHandle queries for Step.CODE values return defaults
+    assertThat(viewModel.isCodeInvalidForCodeStepLiveData().getValue()).isFalse();
+    assertThat(viewModel.isCodeVerifiedForCodeStepLiveData().getValue()).isFalse();
+    assertThat(viewModel.isCodeInputEnabledForCodeStepLiveData().getValue()).isTrue();
+    assertThat(viewModel.getSwitcherChildForCodeStepLiveData().getValue()).isEqualTo(-1);
+    assertThat(viewModel.getCodeInputForCodeStepLiveData().getValue()).isNull();
+    assertThat(viewModel.getVerifiedCodeForCodeStepLiveData().getValue()).isNull();
+    // Ensure that the SavedStateHandle queries for Step.GET_CODE values return values set above.
+    assertThat(viewModel.getPhoneNumberForGetCodeStepLiveData().getValue()).isEqualTo("0123456");
+    assertThat(viewModel.getTestDateForGetCodeStepLiveData().getValue()).isEqualTo("Jul 2, 2021");
+  }
+
+  private static String userReportResponse() throws Exception {
+    return new JSONObject()
+        .put(VerifyV1.EXPIRY_STR, EXPIRES_AT_STR)
+        .put(VerifyV1.EXPIRY_TIMESTAMP, 0)
+        .toString();
+  }
+
+  private static String userReportErrorResponse() throws Exception {
+    return new JSONObject()
+        .put(VerifyV1.ERR_MESSAGE, "error")
+        .put(VerifyV1.ERR_CODE, "error-code")
+        .toString();
+  }
+
   private static String codeResponse(@Nullable LocalDate onsetDate) throws Exception {
     return codeResponse("token", "confirmed", onsetDate);
   }
@@ -738,5 +1050,18 @@ public class ShareDiagnosisViewModelTest {
 
   private FakeRequestQueue queue() {
     return (FakeRequestQueue) queue;
+  }
+
+  private SavedStateHandle setUpSavedStateHandle() {
+    SavedStateHandle savedStateHandle = new SavedStateHandle();
+    savedStateHandle.set(SAVED_STATE_CODE_IS_INVALID, false);
+    savedStateHandle.set(SAVED_STATE_CODE_IS_VERIFIED, true);
+    savedStateHandle.set(SAVED_STATE_SHARE_ADVANCE_SWITCHER_CHILD, 0);
+    savedStateHandle.set(SAVED_STATE_CODE_INPUT_IS_ENABLED, false);
+    savedStateHandle.set(SAVED_STATE_CODE_INPUT, "code-input");
+    savedStateHandle.set(SAVED_STATE_VERIFIED_CODE, "verified-code");
+    savedStateHandle.set(SAVED_STATE_GET_CODE_PHONE_NUMBER, "0123456");
+    savedStateHandle.set(SAVED_STATE_GET_CODE_TEST_DATE, "Jul 2, 2021");
+    return savedStateHandle;
   }
 }

@@ -28,9 +28,10 @@
   <string name="onboarding_opt_in_title">‘ထိတွေ့မှုအကြောင်းကြားချက်များ’ ဖွင့်ရန် လိုအပ်သောခွင့်ပြုချက်များ</string>
   <string name="onboarding_finish_title">‘ထိတွေ့မှုအကြောင်းကြားချက်များ’ ဖွင့်ရန် လိုအပ်သောခွင့်ပြုချက်များ၏ အဆက်</string>
   <string name="onboarding_exposure_notifications_title">\'ထိတွေ့မှု အကြောင်းကြားချက်များ\' ကို ဖွင့်ပါ</string>
-  <string name="onboarding_exposure_notifications_detail">COVID-19 ရှိကြောင်း သတင်းပို့ထားသူအနားသို့ သင်ရောက်ရှိခဲ့ပါက အကြောင်းကြားချက်ရယူပါ။
-    \n\nသင့်ဖုန်းက ကျပန်း ID များကို လုံခြုံစွာစုဆောင်းရန်နှင့် အနီးရှိ အခြားဖုန်းများနှင့် မျှဝေရန် ဘလူးတုသ်ကို သုံးသည်။
-    \n\nသင်၏ ပြည်သူ့ကျန်းမာရေးအာဏာပိုင်က သတ်မှတ်ထားသည့် သတ်မှတ်ချက်ဘောင်များပေါ်အခြေခံ၍ သင် အကြောင်းကြားချက်ရနိုင်၊ မရနိုင်ကို ဆုံးဖြတ်ရန် ထိတွေ့နိုင်ခြေနှင့်ဆက်စပ်သော ရက်စွဲ၊ ကြာချိန်နှင့် လိုင်းဆွဲအားတို့ကို အသုံးပြုမည်။</string>
+  <string name="onboarding_exposure_notifications_detail">COVID-19 ရှိကြောင်း သတင်းပို့ထားသူ၏ အနီးတွင် သင် ရှိနေခဲ့လျှင် အကြောင်းကြားချက်ရယူပါ။
+    \n\nသင့်ဖုန်းသည် ကျပန်း ID များကို လုံခြုံစွာစုဆောင်းရန်နှင့် အနီးတစ်ဝိုက်ရှိ အခြားဖုန်းများနှင့် မျှဝေရန် ဘလူးတုသ်ကို အသုံးပြုသည်။
+    \n\nသင်၏ ပြည်သူ့ကျန်းမာရေးအာဏာပိုင်က သတ်မှတ်ထားသည့် သတ်မှတ်ချက်ဘောင်များပေါ်အခြေခံ၍ သင့်အား အကြောင်းကြားမည်၊ မကြားမည်ကို ဆုံးဖြတ်ရန် ထိတွေ့နိုင်ခြေနှင့်ဆက်စပ်သော ရက်စွဲ၊ ကြာချိန်နှင့် လိုင်းဆွဲအားတို့ အသုံးပြုမည်။
+    \n\nသင့်တွင် ရောဂါရှိသည်ဟု စစ်ဆေးတွေ့ရှိလျှင် ထိုအဖြေကို ကျန်းမာရေး အာဏာပိုင်ထံ မျှဝေပေးရန် သတိပေးချက်ကို သင် ရရှိနိုင်သည်။</string>
   <string name="onboarding_metrics_title">ဤအက်ပ်ကို ပိုမိုကောင်းမွန်စေရန် ကူညီဆောင်ရွက်ပေးပါ</string>
   <string name="onboarding_metrics_subtitle">အက်ပ်အသုံးပြုမှုနှင့် စွမ်းဆောင်ရည်ဒေတာကို Google နှင့်မျှဝေပါ</string>
   <string name="onboarding_metrics_description">အက်ပ်ကို ကူညီထိန်းသိမ်းရန်နှင့် ပိုမိုကောင်းမွန်စေရန် အက်ပ်စွမ်းဆောင်ရည်၊ အသုံးပြုမှုတို့နှင့်ပတ်သက်သော အမည်ခွဲခြားမသိနိုင်သည့် ဒေတာအချို့ကို Google အားမျှဝေသည်။ ဤဒေတာသည် သင် မည်သူမည်ဝါဖြစ်ကြောင်း ထုတ်ဖော်မည်မဟုတ်ပါ။ %1$s</string>
@@ -60,10 +61,10 @@
   <string name="notify_turn_on_exposure_notifications_header">COVID-19 ထိတွေ့နိုင်ခြေကို အကြောင်းကြားချက်ရယူရန် ‘ထိတွေ့မှု အကြောင်းကြားချက်များ’ ကို ဖွင့်ပါ။ %1$s</string>
   <string name="using_en_helps_even_if_vaccinated">ဤဝန်ဆောင်မှုကို အသုံးပြုခြင်းသည် သင်ကာကွယ်ဆေးထိုးထားစေကာမူ - သင့်ကွန်မြူနတီကို ကာကွယ်ရာတွင် ကူညီပေးသည်။</string>
   <string name="share_begin_title">သင်၏ကွန်မြူနတီကို ကူညီကာကွယ်ပါ</string>
-  <string name="share_close_title">မျှဝေခြင်းမပြုဘဲ ထွက်မလား။</string>
-  <string name="share_close_detail">သင့်စစ်ဆေးမှုရလဒ်ကို စောစောမျှဝေလျှင် ကွန်မြူနတီကိုအကောင်းဆုံး ကူညီနိုင်သည်။ သင် ယခုအချိန်အထိ ထည့်သွင်းထားသော စစ်ဆေးမှုရလဒ် အချက်အလက်များကို နောင်တွင် ပြန်လည်တည်းဖြတ်နိုင်ရန် ဤအက်ပ်တွင် သိမ်းထားပါသည်။</string>
-  <string name="btn_resume_later">ထွက်ရန်</string>
-  <string name="verify_test_result_title">COVID-19 စစ်ဆေးမှုအချက်အလက်များ ထည့်ပါ</string>
+  <string name="share_close_title">မမျှဝေဘဲ ပိတ်မလား။</string>
+  <string name="share_close_detail">သင့်ကွန်မြူနတီကို ကူညီနိုင်သည့် အကောင်းဆုံးနည်းလမ်းက သင့်ရလဒ်များကို အမြန်ဆုံး မျှဝေရန်ဖြစ်သည်။ မမျှဝေဘဲ ယခုပိတ်လျှင် နောက်ပိုင်းတွင် သင်စိတ်ပြောင်းသွားပါက ရပ်ထားသည့်နေရာမှ ပြန်သုံးနိုင်သည်။</string>
+  <string name="btn_resume_later">ပိတ်ရန်</string>
+  <string name="verify_test_result_title">သင်၏ အတည်ပြုကုဒ်ကို ရိုက်ထည့်ပါ</string>
   <string name="enter_your_test_identifier">အတည်ပြုကုဒ်</string>
   <string name="share_test_identifier_help">သင်၏စစ်ဆေးမှုရလဒ်ကို စိစစ်ရန် ဤတစ်ကြိမ်သုံးကုဒ်ကို အသုံးပြုသည်။</string>
   <string name="share_test_identifier_verified">ကုဒ်ကို စိစစ်ပြီးပါပြီ</string>
@@ -83,20 +84,19 @@
   <string name="share_review_status_confirmed">ရောဂါပိုးရှိသည်</string>
   <string name="share_review_status_likely">ဖြစ်နိုင်ခြေရှိသည်</string>
   <string name="share_review_status_negative">ရောဂါပိုးမရှိပါ</string>
-  <string name="share_review_onset_subtitle">ရောဂါလက္ခဏာ အချက်အလက်</string>
-  <string name="share_review_onset_date">%1$s ရက်က ရောဂါလက္ခဏာ</string>
+  <string name="share_review_onset_subtitle">ရောဂါလက္ခဏာများ</string>
+  <string name="share_review_onset_date">%1$s တွင် စတင်ထားသည်</string>
   <string name="share_review_onset_no_symptoms">ရောဂါလက္ခဏာ မရှိပါ</string>
   <string name="share_review_onset_no_answer">ဖြေမထားပါ</string>
-  <string name="share_review_travel_subtitle">ခရီးသွားရာဇဝင်</string>
-  <string name="share_review_travel_confirmed">ပြီးခဲ့သော ၁၄ ရက်အတွင်း ခရီးသွားထားသည်</string>
+  <string name="share_review_travel_subtitle">ခရီးသွားခြင်း</string>
+  <string name="share_review_travel_confirmed">ပြီးခဲ့သော ၁၄ ရက်အတွင်း</string>
   <string name="share_review_travel_no_travel">ပြီးခဲ့သော ၁၄ ရက်အတွင်း ခရီးမသွားခဲ့ပါ</string>
   <string name="share_review_travel_no_answer">ဖြေမထားပါ</string>
   <string name="share_confirm_title">သင်၏ COVID-19 ရလဒ်ကို မျှဝေသည့်အတွက် ကျေးဇူးတင်ပါသည်</string>
   <string name="not_shared_confirm_title">သင်၏စစ်ဆေးချက်ရလဒ်ကို မျှဝေမထားပါ</string>
   <string name="not_shared_confirm_detail">သင်၏ COVID-19 စစ်ဆေးချက်ရလဒ်ကို မျှဝေမထားပါ။ ထပ်စမ်းကြည့်ပါ။</string>
   <string name="status_shared_detail_title">မျှဝေထားသော COVID-19 အခြေအနေ</string>
-  <string name="delete_test_result_title">COVID-19 စစ်ဆေးမှုရလဒ်ကို ဖျက်မလား။</string>
-  <string name="delete_test_result_detail">သင်၏ စစ်ဆေးမှုရလဒ်အသေးစိတ်များကို ဤအက်ပ်မှဖျက်လိုက်ပါမည်။</string>
+  <string name="delete_test_result_title">သင်၏ စစ်ဆေးမှုရလဒ်ကို ဖျက်မလား။</string>
   <string name="delete_test_result_confirmed">စစ်ဆေးမှုရလဒ်ကို ဖျက်ပြီးပြီ</string>
   <string name="share_error_no_internet">စစ်ဆေးမှုရလဒ်များကို အော့ဖ်လိုင်း မျှဝေ၍မရပါ။ သင်၏ အင်တာနက်ချိတ်ဆက်မှုကို စစ်ဆေးပြီး ထပ်စမ်းကြည့်ပါ။</string>
   <string name="share_vaccination_title">COVID-19 ကာကွယ်ဆေးထိုးပြီးပြီလား\။</string>
@@ -105,6 +105,29 @@
   <string name="share_vaccination_vaccinated">ကာကွယ်ဆေးထိုးပြီးပါပြီ</string>
   <string name="share_vaccination_not_vaccinated">ကာကွယ်ဆေးမထိုးရသေးပါ</string>
   <string name="share_vaccination_unknown">မဖြေလိုပါ</string>
+  <string name="do_you_have_code_title">ကုဒ်ကို လက်ခံရရှိသလား။</string>
+  <string name="do_you_have_code_content">သင့်တွင် COVID-19 ရှိသည်ဟု စစ်ဆေးသိရှိပါက သင်၏ ကျန်းမာရေး အာဏာပိုင်သည် ရလဒ်များကို သင်က မျှဝေနိုင်ရန် ဖုန်း (သို့) စာတိုဖြင့် အတည်ပြုကုဒ်ကို ပုံမှန်အားဖြင့် ပေးပို့ပါသည်။</string>
+  <string name="btn_i_have_code">ကျွန်ုပ်တွင် ကုဒ်ရှိပါသည်</string>
+  <string name="btn_i_need_code">ကုဒ် လိုအပ်ပါသည်</string>
+  <string name="get_verification_code_title">အတည်ပြုကုဒ် ရယူခြင်း</string>
+  <string name="phone_number_prompt">ဖုန်းနံပါတ်</string>
+  <string name="phone_number_help">အတည်ပြုကုဒ်က သင်၏ စစ်ဆေးမှုရလဒ်များကို မျှဝေရန် သင့်အား ခွင့်ပြုသည်။ သင်ပေးသော နံပါတ်သို့ သင်၏ကုဒ်ကို ပို့ပါမည်။</string>
+  <string name="phone_number_may_be_stored_help">လူများကို ရလဒ်တစ်ခုထပ်ပို၍ ပေးပိုခြင်းမှ တားမြစ်ရန် သင့်ဖုန်းနံပါတ်ကို သင်၏ ပြည်သူ့ ကျန်းမာရေး အာဏာပိုင်က ယာယီ သိမ်းထားနိုင်သည်။</string>
+  <string name="test_date_prompt">စစ်ဆေးသည့်ရက်စွဲ</string>
+  <string name="test_date_help">စစ်ဆေးသည့်ရက်စွဲက ပြီးခဲ့သော ၁၄ ရက်အတွင်း ဖြစ်ရမည်။</string>
+  <string name="tested_for_covid_checkbox_text">ပြီးခဲ့သော ၁၄ ရက်အတွင်း COVID-19 ရှိကြောင်း စစ်ဆေးချက်ကို လက်ခံရရှိပါသည်။</string>
+  <string name="btn_send_code">ကုဒ်ပို့ရန်</string>
+  <string name="enter_code_help">%1$s က သင့်အားပို့သော ကုဒ်ကို ရိုက်ထည့်ပါ။</string>
+  <string name="positive_result_already_reported_title">သင်သည် မကြာသေးမီက စစ်ဆေးမှုရလဒ်ကို အကြောင်းကြားပြီးပါပြီ။</string>
+  <string name="positive_result_already_reported_content">နောက်ထပ် စစ်ဆေးမှုရလဒ်ကို အကြောင်းကြားလိုပါက %1$s ကို ဆက်သွယ်ပါ။</string>
+  <string name="self_report_bad_code">ကုဒ် မမှန်ကန်ပါ။ သင်၏ အတည်ပြုကုဒ် တောင်းဆိုခြင်းနှင့် ရိုက်ထည့်ခြင်း နှစ်ခုစလုံးတွင် တူညီသောစက်ကို အသုံးပြုနေကြောင်း သေချာပါစေ။</string>
+  <string name="self_report_bad_phone_number">သင့်နံပါတ်ကို စစ်ဆေးပြီး ထပ်စမ်းကြည့်ပါ။ %1$s</string>
+  <string name="self_report_code_requested_too_many_times">တောင်းဆိုမှု များစွာလုပ်ထားသည်။ ကုဒ် လိုအပ်သေးပါက %1$s ကို ဆက်သွယ်ပါ။</string>
+  <plurals name="self_report_code_already_requested">
+    <item quantity="one">တောင်းဆိုမှု များစွာလုပ်ထားသည်။ %1$d မိနစ်အတွင်း နောက်ထပ်ကုဒ်ကို တောင်းဆိုနိုင်သည်။</item>
+    <item quantity="other">တောင်းဆိုမှု များစွာလုပ်ထားသည်။ %1$d မိနစ်အတွင်း နောက်ထပ်ကုဒ်ကို တောင်းဆိုနိုင်သည်။</item>
+  </plurals>
+  <string name="notify_others_notification_title">ထိတွေ့နိုင်ခြေရှိသော အခြားသူများအား အသိပေးကူညီခြင်း</string>
   <string name="settings_exposure_notifications_subtitle">ထိတွေ့မှု အကြောင်းကြားချက်များ</string>
   <string name="settings_app_analytics_subtitle">အက်ပ်အသုံးပြုမှုနှင့် စွမ်းဆောင်ရည်မျှဝေခြင်း</string>
   <string name="settings_privacy_policy">ပုဂ္ဂိုလ်ရေးဆိုင်ရာ မူဝါဒ</string>
@@ -166,4 +189,9 @@
   <string name="private_analytics_footer_learn_more">ပိုမိုလေ့လာရန်</string>
   <string name="diagnosis_subtitle_template">%2$s တွင် %1$s</string>
   <string name="empty_share_history_body">မျှဝေခြင်းမှတ်တမ်း မရှိပါ</string>
+  <string name="share_diagnosis_share_test_result_title">သင်၏ စစ်ဆေးမှုရလဒ်ကို %1$s နှင့် မျှဝေပါ</string>
+  <string name="share_diagnosis_share_test_result_subtitle">COVID-19 ကို တားဆီးရန် ကူညီသည့်အတွက် ကျေးဇူးတင်ပါသည်။</string>
+  <string name="share_diagnosis_share_test_result_body">သင်၏ရလဒ်ကို မျှဝေသောအခါ သင့်ရောဂါလက္ခဏာများ စတင်ချိန်ကိုလည်း မျှဝေရန် ရွေးနိုင်သည်။ ဤအချက်အလက်က COVID-19 ကူးစက်ပြန့်ပွားမှုကို တားဆီးရန် ကူညီနိုင်ပြီး အသက်များကို ကယ်တင်နိုင်သည်။</string>
+  <string name="sms_intercept_notice_title">အသစ်ရှိသလား</string>
+  <string name="sms_intercept_notice_content">သင့်ထံသို့ ဒေသခံ ကျန်းမာရေးအာဏာပိုင်က စစ်ဆေးမှုရလဒ် ပို့လာလျှင် ထိုရလဒ်ကို တင်သွင်းရန် အက်ပ်က သတိပေးချက်ဖြင့် အကြောင်းကြားပေးနိုင်ပြီး အခြား ထိတွေ့မှု ရှိနိုင်သည်များကို ကူညီသတိပေးနိုင်ပါသည်။ ဤအရာကို ဆက်တင်များတွင် အချိန်မရွေး ပိတ်နိုင်သည်။</string>
 </resources>

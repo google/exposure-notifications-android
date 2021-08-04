@@ -37,8 +37,6 @@ import javax.inject.Inject;
 @AndroidEntryPoint
 public class ExposureChecksFragment extends BaseFragment {
 
-  private static final String TAG = "ExposureChecksFragment";
-
   private FragmentExposureChecksBinding binding;
 
   public static ExposureChecksFragment newInstance() {

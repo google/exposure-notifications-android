@@ -21,11 +21,17 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.widget.RelativeLayout;
 import androidx.annotation.NonNull;
+import androidx.core.widget.NestedScrollView;
+import androidx.core.widget.NestedScrollView.OnScrollChangeListener;
 import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.common.PairLiveData;
+import com.google.android.apps.exposurenotification.common.StringUtils;
 import com.google.android.apps.exposurenotification.databinding.FragmentShareDiagnosisBeginBinding;
 import com.google.android.apps.exposurenotification.notify.ShareDiagnosisViewModel.Step;
+import com.google.common.base.Optional;
 import dagger.hilt.android.AndroidEntryPoint;
 
 /**
@@ -34,9 +40,11 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class ShareDiagnosisBeginFragment extends ShareDiagnosisBaseFragment {
 
-  private static final String TAG = "ShareExposureBeginFrag";
-
   private FragmentShareDiagnosisBeginBinding binding;
+
+  private RelativeLayout buttonContainer;
+  private NestedScrollView scroller;
+  private Optional<Boolean> lastUpdateAtBottom = Optional.absent();
 
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup parent,
@@ -49,19 +57,20 @@ public class ShareDiagnosisBeginFragment extends ShareDiagnosisBaseFragment {
   public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
 
+    scroller = binding.shareDiagnosisScrollView;
+    buttonContainer = binding.buttonContainer;
+
     requireActivity().setTitle(R.string.share_begin_title);
+    setupView();
 
     shareDiagnosisViewModel.getCurrentDiagnosisLiveData().observe(
-        getViewLifecycleOwner(), diagnosisEntity -> binding.home.setOnClickListener(v -> {
-          // Only show the dialog if has been verified.
-          if (DiagnosisEntityHelper.hasVerified(diagnosisEntity)) {
-            showCloseWarningAlertDialog();
-          } else {
-            closeShareDiagnosisFlow();
-          }
-        }));
+        getViewLifecycleOwner(), diagnosisEntity -> binding.home.setOnClickListener(
+            v -> maybeCloseShareDiagnosisFlow(DiagnosisEntityHelper.hasVerified(diagnosisEntity))));
 
-    // Determine the next step
+    determineNextStep();
+  }
+
+  private void determineNextStep() {
     PairLiveData<Step, Boolean> nextStepAndIsCodeInvalidLiveData = PairLiveData.of(
         shareDiagnosisViewModel.getNextStepLiveData(Step.BEGIN),
         shareDiagnosisViewModel.isCodeInvalidForCodeStepLiveData());
@@ -76,6 +85,53 @@ public class ShareDiagnosisBeginFragment extends ShareDiagnosisBaseFragment {
           }
         }
     );
+  }
+
+  private void setupView() {
+    binding.shareTestResultTitleTextView.setText(
+        getString(R.string.share_diagnosis_share_test_result_title,
+            StringUtils.getApplicationName(requireContext())));
+
+    setupUpdateAtBottom(scroller, buttonContainer);
+  }
+
+  /**
+   * Set up UI components to update the UI depending on the scrolling.
+   */
+  void setupUpdateAtBottom(NestedScrollView scroller, RelativeLayout buttonContainer) {
+    scroller.setOnScrollChangeListener(
+        (OnScrollChangeListener) (v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
+          if (scroller.getChildAt(0).getBottom()
+              <= (scroller.getHeight() + scroller.getScrollY())) {
+            updateAtBottom(buttonContainer, true);
+          } else {
+            updateAtBottom( buttonContainer, false);
+          }
+        });
+    ViewTreeObserver observer = scroller.getViewTreeObserver();
+    observer.addOnGlobalLayoutListener(() -> {
+      if (scroller.getMeasuredHeight() >= scroller.getChildAt(0).getHeight()) {
+        // Not scrollable so set at bottom.
+        updateAtBottom(buttonContainer, true);
+      }
+    });
+  }
+
+  /**
+   * Update the UI depending on whether scrolling is at the bottom or not.
+   */
+  void updateAtBottom(RelativeLayout buttonContainer, boolean atBottom) {
+    if (lastUpdateAtBottom.isPresent() && lastUpdateAtBottom.get() == atBottom) {
+      // Don't update if already at set.
+      return;
+    }
+    lastUpdateAtBottom = Optional.of(atBottom);
+    if (atBottom) {
+      buttonContainer.setElevation(0F);
+    } else {
+      buttonContainer
+          .setElevation(getResources().getDimension(R.dimen.bottom_button_container_elevation));
+    }
   }
 
   @Override

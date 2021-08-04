@@ -18,7 +18,6 @@
 package com.google.android.apps.exposurenotification.logging;
 
 import android.content.Context;
-import android.util.Log;
 import androidx.annotation.AnyThread;
 import androidx.annotation.Nullable;
 import androidx.annotation.UiThread;
@@ -32,6 +31,7 @@ import com.google.android.apps.exposurenotification.common.BuildUtils.Type;
 import com.google.android.apps.exposurenotification.common.Qualifiers.BackgroundExecutor;
 import com.google.android.apps.exposurenotification.common.Qualifiers.ScheduledExecutor;
 import com.google.android.apps.exposurenotification.common.TaskToFutureAdapter;
+import com.google.android.apps.exposurenotification.common.logging.Logger;
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.nearby.ExposureNotificationClientWrapper;
 import com.google.android.apps.exposurenotification.nearby.PackageConfigurationHelper;
@@ -74,6 +74,9 @@ import org.threeten.bp.Instant;
  * Analytics logger which logs through Firelog transport and logcat
  */
 public class FirelogAnalyticsLogger implements AnalyticsLogger {
+
+  private static final Logger logger = Logger.getLogger("FirelogAnalyticsLogger");
+
   private static final Duration GET_PACKAGE_CONFIGURATION_TIMEOUT = Duration.ofSeconds(120);
 
   /*
@@ -87,7 +90,6 @@ public class FirelogAnalyticsLogger implements AnalyticsLogger {
   private final Lazy<ExposureNotificationClientWrapper> exposureNotificationClientWrapper;
 
   private final String healthAuthorityCode;
-  private final String tag;
   private final ExposureNotificationSharedPreferences preferences;
   private final Transport<EnxLogExtension> transport;
   private final Clock clock;
@@ -109,7 +111,6 @@ public class FirelogAnalyticsLogger implements AnalyticsLogger {
       @BackgroundExecutor ListeningExecutorService backgroundExecutor,
       @ScheduledExecutor ScheduledExecutorService scheduledExecutor) {
     healthAuthorityCode = context.getResources().getString(R.string.enx_regionIdentifier);
-    tag = "ENX." + healthAuthorityCode;
     this.transport = transport;
     this.preferences = preferences;
     this.exposureNotificationClientWrapper = exposureNotificationClientWrapper;
@@ -118,14 +119,14 @@ public class FirelogAnalyticsLogger implements AnalyticsLogger {
     this.backgroundExecutor = backgroundExecutor;
     this.scheduledExecutor = scheduledExecutor;
     this.workerStatusRepository = workerStatusRepository;
-    Log.i(tag, "Using firelog analytics logger.");
+    logger.i("Using firelog analytics logger.");
 
     if (BuildUtils.getType() == Type.V2) {
       preferences.setAnalyticsStateListener(analyticsEnabled -> {
         if (analyticsEnabled) {
-          Log.i(tag, "Firelog analytics logging enabled");
+          logger.i("Firelog analytics logging enabled");
         } else {
-          Log.i(tag, "Firelog analytics logging disabled");
+          logger.i("Firelog analytics logging disabled");
           repository.eraseEventsBatch();
         }
       });
@@ -137,11 +138,11 @@ public class FirelogAnalyticsLogger implements AnalyticsLogger {
   public void logUiInteraction(EventType event) {
     EnxLogExtension logEvent = EnxLogExtension.newBuilder()
         .addUiInteraction(UiInteraction.newBuilder().setEventType(event).build()).build();
-    Log.i(tag, event.toString());
+    logger.i(event.toString());
 
     FluentFuture.from(backgroundExecutor.submit(() -> logEventIfEnabled(logEvent)))
         .catching(Exception.class, e -> {
-          Log.w(tag, "Error recording UI logs", e);
+          logger.w("Error recording UI logs", e);
           return null;
         }, backgroundExecutor);
   }
@@ -151,7 +152,7 @@ public class FirelogAnalyticsLogger implements AnalyticsLogger {
   public void logApiCallFailure(ApiCallType apiCallType, Exception exception) {
     EnxLogExtension logEvent = getApiFailureLogEvent(apiCallType, exception);
     logEventIfEnabled(logEvent);
-    Log.e(tag, apiCallType + " failed.", exception);
+    logger.e(apiCallType + " failed.", exception);
   }
 
   @Override
@@ -160,7 +161,7 @@ public class FirelogAnalyticsLogger implements AnalyticsLogger {
     EnxLogExtension logEvent = getApiSuccessLogEvent(apiCallType);
     logEventIfEnabled(logEvent);
 
-    Log.i(tag, apiCallType + " succeeded.");
+    logger.i(apiCallType + " succeeded.");
   }
 
   @Override
@@ -168,7 +169,7 @@ public class FirelogAnalyticsLogger implements AnalyticsLogger {
   public ListenableFuture<?> logApiCallFailureAsync(
       ApiCallType apiCallType, Exception exception) {
     EnxLogExtension logEvent = getApiFailureLogEvent(apiCallType, exception);
-    Log.e(tag, apiCallType + " failed.", exception);
+    logger.e(apiCallType + " failed.", exception);
     return backgroundExecutor.submit(() -> logEventIfEnabled(logEvent));
   }
 
@@ -176,7 +177,7 @@ public class FirelogAnalyticsLogger implements AnalyticsLogger {
   @AnyThread
   public ListenableFuture<?> logApiCallSuccessAsync(ApiCallType apiCallType) {
     EnxLogExtension logEvent = getApiSuccessLogEvent(apiCallType);
-    Log.i(tag, apiCallType + " succeeded.");
+    logger.i(apiCallType + " succeeded.");
     return backgroundExecutor.submit(() -> logEventIfEnabled(logEvent));
   }
 
@@ -190,7 +191,7 @@ public class FirelogAnalyticsLogger implements AnalyticsLogger {
             .setHoursSinceLastRun(hoursSinceLastRun)
             .build()).build();
     logEventIfEnabled(logEvent);
-    Log.i(tag, workerTask + " started");
+    logger.i(workerTask + " started");
   }
 
   private int getHoursSinceLastRunAndUpdateLastRunTimestamp(WorkerTask workerTask) {
@@ -216,7 +217,7 @@ public class FirelogAnalyticsLogger implements AnalyticsLogger {
             .build()).build();
     logEventIfEnabled(logEvent);
 
-    Log.i(tag, workerTask + " finished with status: SUCCESS");
+    logger.i(workerTask + " finished with status: SUCCESS");
   }
 
   @Override
@@ -230,7 +231,7 @@ public class FirelogAnalyticsLogger implements AnalyticsLogger {
         WorkManagerTask.newBuilder().setWorkerTask(workerTask).setStatus(status)
             .build()).build();
     logEventIfEnabled(logEvent);
-    Log.e(tag, workerTask + " failed with status: " + status);
+    logger.e(workerTask + " failed with status: " + status);
   }
 
   @Override
@@ -241,7 +242,7 @@ public class FirelogAnalyticsLogger implements AnalyticsLogger {
         WorkManagerTask.newBuilder().setWorkerTask(workerTask).setStatus(status)
             .build()).build();
     logEventIfEnabled(logEvent);
-    Log.e(tag, workerTask + " finished with status: " + status);
+    logger.e(workerTask + " finished with status: " + status);
   }
 
   @Override
@@ -249,7 +250,7 @@ public class FirelogAnalyticsLogger implements AnalyticsLogger {
   public void logRpcCallSuccess(RpcCallType rpcCallType, int payloadSize) {
     EnxLogExtension logEvent = getRpcSuccessLogEvent(rpcCallType, payloadSize);
     logEventIfEnabled(logEvent);
-    Log.i(tag, rpcCallType + " succeeded with payload size: " + payloadSize);
+    logger.i(rpcCallType + " succeeded with payload size: " + payloadSize);
   }
 
   @Override
@@ -263,7 +264,7 @@ public class FirelogAnalyticsLogger implements AnalyticsLogger {
   @AnyThread
   public ListenableFuture<?> logRpcCallSuccessAsync(RpcCallType rpcCallType, int payloadSize) {
     EnxLogExtension logEvent = getRpcSuccessLogEvent(rpcCallType, payloadSize);
-    Log.i(tag, rpcCallType + " succeeded with payload size: " + payloadSize);
+    logger.i(rpcCallType + " succeeded with payload size: " + payloadSize);
     return backgroundExecutor.submit(() -> logEventIfEnabled(logEvent));
   }
 
@@ -296,14 +297,14 @@ public class FirelogAnalyticsLogger implements AnalyticsLogger {
           }
         }
       } catch (InvalidProtocolBufferException e) {
-        Log.e(tag, "Error decoding EnxLogExtension: " + e);
+        logger.e("Error decoding EnxLogExtension: " + e);
         return null;
       }
     }
     if (lastAnalyticsLoggingEntity != null) {
-      Log.d(tag, "findLastStopCallIfExists: Found last stop call: " + lastAnalyticsLoggingEntity);
+      logger.d("findLastStopCallIfExists: Found last stop call: " + lastAnalyticsLoggingEntity);
     } else {
-      Log.d(tag, "findLastStopCallIfExists: No stop call found");
+      logger.d("findLastStopCallIfExists: No stop call found");
     }
     return lastAnalyticsLoggingEntity;
   }
@@ -318,15 +319,15 @@ public class FirelogAnalyticsLogger implements AnalyticsLogger {
        * window. */
       lastEntryToSend = findLastStopCallIfExists();
       if (lastEntryToSend != null) {
-        Log.d(tag, "!isEnabled but stop call found, partially uploading logs.");
+        logger.d("!isEnabled but stop call found, partially uploading logs.");
       } else {
         // If we don't find a stop() call, we don't submit logs. We can stop here.
-        Log.d(tag, "!isEnabled and no stop call found, not uploading logs.");
+        logger.d("!isEnabled and no stop call found, not uploading logs.");
         return Futures.immediateFailedFuture(new NotEnabledException());
       }
     } else { /* isEnabled */
       // If EN is enabled, we upload all logs. We indicate that by setting lastEntryToSend = null
-      Log.d(tag, "isEnabled, fully uploading logs.");
+      logger.d("isEnabled, fully uploading logs.");
       lastEntryToSend = null;
     }
 
@@ -334,11 +335,11 @@ public class FirelogAnalyticsLogger implements AnalyticsLogger {
     Optional<Instant> lastTimestamp = preferences.maybeGetAnalyticsLoggingLastTimestamp();
     if (lastTimestamp.isPresent()) {
       if (Duration.between(lastTimestamp.get(), currentTime).toHours() < 4) {
-        Log.i(tag, "Skipped firelog upload - less than 4 hours");
+        logger.i("Skipped firelog upload - less than 4 hours");
         return Futures.immediateVoidFuture();
       }
     } else {
-      Log.i(tag, "Skipped firelog upload - no last timestamp, resetting");
+      logger.i("Skipped firelog upload - no last timestamp, resetting");
       preferences.resetAnalyticsLoggingLastTimestamp();
       return Futures.immediateVoidFuture();
     }
@@ -355,13 +356,13 @@ public class FirelogAnalyticsLogger implements AnalyticsLogger {
       try {
         enxLogExtensionBuilder.mergeFrom(BaseEncoding.base64().decode(logEvent.getEventProto()));
       } catch (InvalidProtocolBufferException e) {
-        Log.e(tag, "Error reading from AnalyticsLoggingRepository: " + e);
+        logger.e("Error reading from AnalyticsLoggingRepository: " + e);
         return Futures.immediateFailedFuture(e);
       }
 
       // If a lastEntryToSend was detected, we stop adding entries to the enxLogExtensionBuilder
       if (lastEntryToSend != null && logEvent.getKey() == lastEntryToSend.getKey()) {
-        Log.d(tag, "Stopping to build EnxLogExtension at " + lastEntryToSend);
+        logger.d("Stopping to build EnxLogExtension at " + lastEntryToSend);
         break;
       }
     }
@@ -390,7 +391,7 @@ public class FirelogAnalyticsLogger implements AnalyticsLogger {
             consent -> {
               if (!consent) {
                 // If we don't have checkbox consent
-                Log.i(tag, "Skipped firelog upload.");
+                logger.i("Skipped firelog upload.");
                 repository.eraseEventsBatch();
                 return Futures.immediateFailedFuture(new NoConsentException());
               } else {
@@ -412,12 +413,12 @@ public class FirelogAnalyticsLogger implements AnalyticsLogger {
         .transform(unused -> {
           // If we have a lastEntryToSend, we only erase logs up until (including this log)
           if (lastEntryToSend != null) {
-            Log.d(tag, "ErasingEventsBatchUpToIncludingEvent " + lastEntryToSend);
+            logger.d("ErasingEventsBatchUpToIncludingEvent " + lastEntryToSend);
             repository.eraseEventsBatchUpToIncludingEvent(lastEntryToSend);
           } else {
             repository.eraseEventsBatch();
           }
-          Log.i(tag, "Analytics log batch sent to Firelog.");
+          logger.i("Analytics log batch sent to Firelog.");
           return null;
         }, backgroundExecutor)
         .catching(NoConsentException.class, ex -> null, backgroundExecutor);
@@ -430,9 +431,9 @@ public class FirelogAnalyticsLogger implements AnalyticsLogger {
         if (!preferences.maybeGetAnalyticsLoggingLastTimestamp().isPresent()) {
           preferences.resetAnalyticsLoggingLastTimestamp();
         }
-        Log.i(tag, "App analytics enabled via in-app consent. Sending log event.");
+        logger.i("App analytics enabled via in-app consent. Sending log event.");
       } else {
-        Log.d(tag, "App analytics disabled via in-app consent. Not sending log event.");
+        logger.d("App analytics disabled via in-app consent. Not sending log event.");
       }
     } else /* BuildUtils.getType() == Type.V3 */ {
       exposureNotificationClientWrapper.get().getPackageConfiguration()
@@ -443,16 +444,16 @@ public class FirelogAnalyticsLogger implements AnalyticsLogger {
               if (!preferences.maybeGetAnalyticsLoggingLastTimestamp().isPresent()) {
                 preferences.resetAnalyticsLoggingLastTimestamp();
               }
-              Log.i(tag, "App analytics enabled via checkbox. Sending log event.");
+              logger.i("App analytics enabled via checkbox. Sending log event.");
             } else /* consent not granted via checkbox*/ {
               // Clear recorded events, but only if there were any to avoid unnecessary DB-calls
               repository.eraseEventsBatch();
-              Log.d(tag, "App analytics disabled via checkbox. Not sending log event and "
+              logger.d("App analytics disabled via checkbox. Not sending log event and "
                   + "clearing previous event record.");
             }
           })
-          .addOnCanceledListener(() -> Log.i(tag, "Call getPackageConfiguration is canceled"))
-          .addOnFailureListener(t -> Log.e(tag, "Error calling getPackageConfiguration", t));
+          .addOnCanceledListener(() -> logger.i("Call getPackageConfiguration is canceled"))
+          .addOnFailureListener(t -> logger.e("Error calling getPackageConfiguration", t));
     }
   }
 
@@ -483,7 +484,7 @@ public class FirelogAnalyticsLogger implements AnalyticsLogger {
     String errorCode = VolleyUtils.getErrorCode(error);
     String errorMessage = VolleyUtils.getErrorMessage(error);
 
-    Log.e(tag, rpcCallType + " failed. "
+    logger.e(rpcCallType + " failed. "
         + " Result:[" + rpcCallResult + "]"
         + " HTTP status:[" + httpStatus + "]"
         + " Server error:[" + errorCode + ":" + errorMessage + "]");

@@ -17,11 +17,11 @@
 
 package com.google.android.apps.exposurenotification.network;
 
-import android.util.Log;
 import com.android.volley.NetworkError;
 import com.android.volley.RetryPolicy;
 import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
+import com.google.android.apps.exposurenotification.common.logging.Logger;
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.common.base.Optional;
 import java.util.HashMap;
@@ -37,7 +37,7 @@ import org.threeten.bp.format.DateTimeFormatter;
  */
 public class CustomRetryPolicy implements RetryPolicy {
 
-  private static final String TAG = "CustomRetryPolicy";
+  private static final Logger logger = Logger.getLogger("CustomRetryPolicy");
   private static final int SERVER_ERR = 500;
   private static final int SERVER_ERR_NUM_RETRIES = 3;
   private static final int RATE_LIMITED = 429;
@@ -67,7 +67,7 @@ public class CustomRetryPolicy implements RetryPolicy {
 
   @Override
   public void retry(VolleyError error) throws VolleyError {
-    Log.d(TAG, error.getClass().getSimpleName() + " error, retrycount:[" + currentRetryCount + "]");
+    logger.d(error.getClass().getSimpleName() + " error, retrycount:[" + currentRetryCount + "]");
     int httpStatus = VolleyUtils.getHttpStatus(error);
 
     // Rate limited requests retry once.
@@ -82,13 +82,13 @@ public class CustomRetryPolicy implements RetryPolicy {
       }
       // If we didn't get a useful retry-time from the response header, we just keep whatever delay
       // we had.
-      Log.d(TAG, "Rate limited, will retry after delay.");
+      logger.d("Rate limited, will retry after delay.");
       return;
     }
 
     // Server errors retry SERVER_ERR_NUM_RETRIES times.
     if (httpStatus >= SERVER_ERR && currentRetryCount < SERVER_ERR_NUM_RETRIES) {
-      Log.d(TAG, "Server error, retrycount:[" + currentRetryCount + "]. Will retry after delay.");
+      logger.d("Server error, retrycount:[" + currentRetryCount + "]. Will retry after delay.");
       currentRetryCount++;
       return;
     }
@@ -99,13 +99,13 @@ public class CustomRetryPolicy implements RetryPolicy {
     // issues like "Unable to resolve host". Figure out a way to retry these cleanly.
     if ((error instanceof TimeoutError || error instanceof NetworkError)
         && currentRetryCount < SERVER_ERR_NUM_RETRIES) {
-      Log.d(TAG, "Timeout or network error, retry count [" + currentRetryCount
+      logger.d("Timeout or network error, retry count [" + currentRetryCount
           + "]. Will retry after delay.");
       currentRetryCount++;
       return;
     }
 
-    Log.d(TAG, "Error not retryable, or retries exhausted. Fail now.");
+    logger.d("Error not retryable, or retries exhausted. Fail now.");
     throw error;
   }
 

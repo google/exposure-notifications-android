@@ -30,7 +30,8 @@
   <string name="onboarding_exposure_notifications_title">Washa Arifa Kuhusu Kukaribia Aliye na COVID-19</string>
   <string name="onboarding_exposure_notifications_detail">Pata arifa iwapo umemkaribia mtu aliyeripoti kuwa ameambukizwa COVID-19.
     \n\nSimu yako hutumia Bluetooth kukusanya na kushiriki kwa usalama vitambulisho nasibu na simu zingine zilizo karibu nawe.
-    \n\nMaelezo ya tarehe, muda na uthabiti wa mawimbi yanayohusiana na kukaribia aliyeambukizwa yatatumiwa ili kubaini iwapo utaarifiwa kulingana na vigezo vilivyowekwa na mamlaka ya afya ya mahali ulipo.</string>
+    \n\nMaelezo ya tarehe, muda na uthabiti wa mawimbi yanayohusiana na kukaribia aliyeambukizwa yatatumiwa ili kubaini iwapo utaarifiwa kulingana na vigezo vilivyowekwa na mamlaka ya afya ya mahali ulipo.
+    \n\nUkithibitishwa kuwa umeambukizwa COVID-19, huenda ukapokea kikumbusho ili ushiriki matokeo yako na mamlaka ya afya ya mahali ulipo.</string>
   <string name="onboarding_metrics_title">Saidia kuboresha programu hii</string>
   <string name="onboarding_metrics_subtitle">Shiriki data ya utendaji na matumizi ya programu na Google</string>
   <string name="onboarding_metrics_description">Ili kusaidia kudumisha na kuboresha programu, data fulani isiyomtambulisha mtu kuhusu matumizi na utendaji wa programu hushirikiwa na Google. Data hii haikutambulishi. %1$s</string>
@@ -60,10 +61,10 @@
   <string name="notify_turn_on_exposure_notifications_header">Ili uarifiwe unapomkaribia mtu aliyeambukizwa COVID-19 , washa Arifa Kuhusu Kukaribia Aliye na COVID-19.%1$s</string>
   <string name="using_en_helps_even_if_vaccinated">Kutumia huduma hii hukusaidia kulinda jumuiya yako - hata ikiwa umeshapata chanzo.</string>
   <string name="share_begin_title">Saidia kulinda jumuiya yako</string>
-  <string name="share_close_title">Ungependa kuondoka bila kushiriki?</string>
-  <string name="share_close_detail">Utaisaidia jamii yako ukishiriki matokeo yako ya COVID-19 mapema zaidi. Hata hivyo, matokeo ya kipimo cha COVID-19 uliyoweka hadi sasa yamehifadhiwa katika programu ili uendelee kubadilisha baadaye.</string>
-  <string name="btn_resume_later">Ndiyo, ondoka</string>
-  <string name="verify_test_result_title">Weka maelezo ya kipimo cha COVID-19</string>
+  <string name="share_close_title">Ungependa kufunga bila kushiriki?</string>
+  <string name="share_close_detail">Njia bora unayoweza kuisaidia jumuiya yako ni kushiriki matokeo yako baada ya kupimwa haraka iwezekanavyo. Ukifunga sasa bila kushiriki, unaweza kuendelea utakapoachia ukibadili mawazo yako.</string>
+  <string name="btn_resume_later">Ndiyo, funga</string>
+  <string name="verify_test_result_title">Weka nambari yako ya kuthibitisha</string>
   <string name="enter_your_test_identifier">Nambari ya kuthibitisha</string>
   <string name="share_test_identifier_help">Msimbo huu wa mara moja unatumiwa kuthibitisha matokeo yako baada ya kupimwa COVID-19.</string>
   <string name="share_test_identifier_verified">Msimbo umethibitishwa</string>
@@ -83,20 +84,19 @@
   <string name="share_review_status_confirmed">Umeambukizwa</string>
   <string name="share_review_status_likely">Huenda umeambukizwa</string>
   <string name="share_review_status_negative">Hujaambukizwa</string>
-  <string name="share_review_onset_subtitle">Maelezo kuhusu dalili</string>
-  <string name="share_review_onset_date">Dalili zilianza %1$s</string>
+  <string name="share_review_onset_subtitle">Dalili</string>
+  <string name="share_review_onset_date">Zilianza %1$s</string>
   <string name="share_review_onset_no_symptoms">Hakuna dalili</string>
   <string name="share_review_onset_no_answer">Hujajibu</string>
-  <string name="share_review_travel_subtitle">Historia ya usafiri</string>
-  <string name="share_review_travel_confirmed">Umesafiri katika siku 14 zilizopita</string>
+  <string name="share_review_travel_subtitle">Kusafiri</string>
+  <string name="share_review_travel_confirmed">Ndani ya siku 14 zilizopita</string>
   <string name="share_review_travel_no_travel">Hujasafiri katika siku 14 zilizopita</string>
   <string name="share_review_travel_no_answer">Hujajibu</string>
-  <string name="share_confirm_title">Asante kwa kushiriki hali yako ya COVID-19</string>
+  <string name="share_confirm_title">Asante kwa kushiriki matokeo yako ya COVID-19</string>
   <string name="not_shared_confirm_title">Matokeo yako baada ya kupimwa hayajashirikiwa</string>
   <string name="not_shared_confirm_detail">Matokeo yako baada ya kupimwa COVID-19 hayajashirikiwa. Tafadhali jaribu tena.</string>
   <string name="status_shared_detail_title">Hali iliyoshirikiwa ya COVID-19</string>
-  <string name="delete_test_result_title">Ungependa kufuta matokeo ya COVID-19?</string>
-  <string name="delete_test_result_detail">Maelezo ya matokeo yako baada ya kupimwa yatafutwa kwenye programu hii.</string>
+  <string name="delete_test_result_title">Ungependa kufuta matokeo yako?</string>
   <string name="delete_test_result_confirmed">Matokeo ya Covid-19 yamefutwa</string>
   <string name="share_error_no_internet">Huwezi kushiriki matokeo ya vipimo nje ya mtandao. Angalia muunganisho wako wa intaneti kisha ujaribu tena.</string>
   <string name="share_vaccination_title">Je, umeshapata chanjo dhidi ya Covid-19\?</string>
@@ -105,6 +105,29 @@
   <string name="share_vaccination_vaccinated">Ndiyo, nimeshapata chanjo</string>
   <string name="share_vaccination_not_vaccinated">Hapana</string>
   <string name="share_vaccination_unknown">Nisingependa kujibu</string>
+  <string name="do_you_have_code_title">Je, umepokea nambari ya kuthibitisha?</string>
+  <string name="do_you_have_code_content">Ikithibitishwa kuwa umeambukizwa COVID-19, mamlaka ya afya ya mahali ulipo hukutumia nambari ya kuthibitisha kupitia simu au SMS ili uweze kushiriki matokeo yako.</string>
+  <string name="btn_i_have_code">Ndiyo, nina nambari ya kuthibitisha</string>
+  <string name="btn_i_need_code">Ninahitaji nambari ya kuthibitisha</string>
+  <string name="get_verification_code_title">Pata nambari ya kuthibitisha</string>
+  <string name="phone_number_prompt">Nambari ya simu</string>
+  <string name="phone_number_help">Nambari ya kuthibitisha inakuruhusu ushiriki matokeo yako baada ya kupimwa. Nambari yako ya kuthibitisha itatumwa kwa nambari utakayoweka.</string>
+  <string name="phone_number_may_be_stored_help">Ili kuwazuia watu wasitume zaidi ya tokeo moja, huenda nambari yako ya simu ikahifadhiwa kwa muda na mamlaka yako ya afya ya umma.</string>
+  <string name="test_date_prompt">Tarehe ya kupimwa</string>
+  <string name="test_date_help">Tarehe ya kupimwa inafaa kuwa ndani ya siku 14 zilizopita.</string>
+  <string name="tested_for_covid_checkbox_text">Nimepokea matokeo yanayothibitisha kuwa nimeambukizwa COVID-19 katika siku 14 zilizopita.</string>
+  <string name="btn_send_code">Tuma nambari ya kuthibitisha</string>
+  <string name="enter_code_help">Weka nambari ya kuthibitisha uliyotumiwa na %1$s.</string>
+  <string name="positive_result_already_reported_title">Tayari umeripoti matokeo ya COVID-19 hivi majuzi.</string>
+  <string name="positive_result_already_reported_content">Iwapo ungependa kuripoti matokeo mengine baada ya kupimwa, tafadhali wasiliana na %1$s.</string>
+  <string name="self_report_bad_code">Nambari ya kuthibitisha si sahihi. Hakikisha kuwa unatumia kifaa kimoja kutuma ombi na kuweka nambari yako ya kuthibitisha.</string>
+  <string name="self_report_bad_phone_number">Angalia nambari yako kisha ujaribu tena. %1$s</string>
+  <string name="self_report_code_requested_too_many_times">Umetuma maombi mengi mno. Wasiliana na %1$s ikiwa bado unahitaji nambari ya kuthibitisha.</string>
+  <plurals name="self_report_code_already_requested">
+    <item quantity="one">Umetuma maombi mengi mno. Unaweza kuomba nambari nyingine ya kuthibitisha baada ya dakika %1$d.</item>
+    <item quantity="other">Umetuma maombi mengi mno. Unaweza kuomba nambari nyingine ya kuthibitisha baada ya dakika %1$d.</item>
+  </plurals>
+  <string name="notify_others_notification_title">Tusaidie kuwaarifu wengine ambao huenda walikukaribia</string>
   <string name="settings_exposure_notifications_subtitle">Arifa Kuhusu Kukaribia Aliye na COVID-19</string>
   <string name="settings_app_analytics_subtitle">Shiriki matumizi na utendaji wa programu</string>
   <string name="settings_privacy_policy">Sera ya faragha</string>
@@ -166,4 +189,9 @@
   <string name="private_analytics_footer_learn_more">Pata maelezo zaidi</string>
   <string name="diagnosis_subtitle_template">%1$s kwenye %2$s</string>
   <string name="empty_share_history_body">Hamna historia ya kushiriki</string>
+  <string name="share_diagnosis_share_test_result_title">Shiriki matokeo yako ya COVID-19 na %1$s</string>
+  <string name="share_diagnosis_share_test_result_subtitle">Asante kwa kusaidia kukomesha COVID-19.</string>
+  <string name="share_diagnosis_share_test_result_body">Unaposhiriki matokeo yako ya COVID-19, unaweza pia kuchagua kushiriki wakati dalili zako zilipoanza. Maelezo haya yanaweza kusaidia kukomesha kuenea kwa COVID-19 na kuokoa maisha.</string>
+  <string name="sms_intercept_notice_title">Mambo mapya</string>
+  <string name="sms_intercept_notice_content">Mamlaka ya afya katika eneo ikikutumia matokeo yako baada ya kupimwa, programu yako inaweza kukuarifu kwa kikumbusho ili utume matokeo yako na usaidie kuwaarifu wengine kuwa walimkaribia mtu aliyeambukizwa. Unaweza kuzima kipengele hiki wakati wowote katika mipangilio.</string>
 </resources>

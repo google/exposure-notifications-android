@@ -18,7 +18,6 @@
 package com.google.android.apps.exposurenotification.privateanalytics;
 
 import android.content.Context;
-import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.hilt.Assisted;
 import androidx.hilt.work.WorkerInject;
@@ -33,6 +32,7 @@ import androidx.work.WorkManager;
 import androidx.work.WorkRequest;
 import androidx.work.WorkerParameters;
 import com.google.android.apps.exposurenotification.common.Qualifiers.BackgroundExecutor;
+import com.google.android.apps.exposurenotification.common.logging.Logger;
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
 import com.google.android.apps.exposurenotification.work.WorkerStartupManager;
@@ -53,8 +53,7 @@ import org.threeten.bp.Instant;
  */
 public class SubmitPrivateAnalyticsWorker extends ListenableWorker {
 
-  // Logging TAG
-  private static final String TAG = "PrioSubmitWorker";
+  private static final Logger logger = Logger.getLogger("PrioSubmitWorker");
 
   public static final String WORKER_NAME = "SubmitPrivateAnalyticsWorker";
 
@@ -88,7 +87,7 @@ public class SubmitPrivateAnalyticsWorker extends ListenableWorker {
   @NonNull
   @Override
   public ListenableFuture<Result> startWork() {
-    Log.d(TAG, "Starting worker for submitting private analytics to ingestion server.");
+    logger.d("Starting worker for submitting private analytics to ingestion server.");
     return FluentFuture.from(workerStartupManager.getIsEnabledWithStartupTasks())
         .transformAsync(
             (isEnabled) -> {
@@ -108,12 +107,12 @@ public class SubmitPrivateAnalyticsWorker extends ListenableWorker {
 
               if (isEnabled && DefaultPrivateAnalyticsDeviceAttestation
                   .isDeviceAttestationAvailable()) {
-                Log.d(TAG, "Private analytics enabled and device attestation available.");
+                logger.d("Private analytics enabled and device attestation available.");
                 // Attempt to submit packets. Note this this will return early is private analytics
                 // are remotely disabled or toggled off.
                 return privateAnalyticsSubmitter.submitPackets();
               } else {
-                Log.d(TAG, "API not enabled or device attestation unavailable.");
+                logger.d("API not enabled or device attestation unavailable.");
                 // Stop here because things are not enabled. Will still return successful though.
                 return Futures.immediateFailedFuture(new NotEnabledException());
               }
@@ -133,7 +132,7 @@ public class SubmitPrivateAnalyticsWorker extends ListenableWorker {
         .catching(
             Exception.class,
             x -> {
-              Log.e(TAG, "Failure to submit private analytics", x);
+              logger.e("Failure to submit private analytics", x);
               // Even if we observe an Exception, we store the last time the worker run.
               // Note that this will prevent older data to be uploaded.
               exposureNotificationSharedPreferences.setPrivateAnalyticsWorkerLastTime(clock.now());
@@ -148,7 +147,7 @@ public class SubmitPrivateAnalyticsWorker extends ListenableWorker {
    * <p>This job will only be run when not low battery and with network connection.
    */
   public static Operation schedule(WorkManager workManager) {
-    Log.d(TAG,
+    logger.d(
         "Scheduling periodic work request. repeatInterval=" + MINIMAL_ENPA_TASK_INTERVAL.toHours());
     PeriodicWorkRequest workRequest =
         new PeriodicWorkRequest.Builder(

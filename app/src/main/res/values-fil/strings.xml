@@ -30,7 +30,8 @@
   <string name="onboarding_exposure_notifications_title">I-on ang Mga Notification sa Exposure</string>
   <string name="onboarding_exposure_notifications_detail">Maabisuhan kung nalapitan mo ang isang taong nag-ulat na may COVID-19.
     \n\nGumagamit ang iyong telepono ng Bluetooth para secure na makakolekta at makapagbahagi ng mga random na ID sa iba pang telepono sa malapit.
-    \n\nGagamitin ang petsa, tagal, at lakas ng signal na nauugnay sa isang posibleng exposure para tukuyin kung aabisuhan ka ba batay sa mga parameter na itinakda ng iyong awtoridad sa pampublikong kalusugan.</string>
+    \n\nGagamitin ang petsa, tagal, at lakas ng signal na nauugnay sa isang posibleng exposure para tukuyin kung aabisuhan ka ba batay sa mga parameter na itinakda ng iyong awtoridad sa pampublikong kalusugan.
+    \n\nKung magpositibo ka, puwede kang makatanggap ng paalala na ibahagi ang mga resulta mo sa iyong awtoridad sa kalusugan.</string>
   <string name="onboarding_metrics_title">Tumulong na pahusayin ang app na ito</string>
   <string name="onboarding_metrics_subtitle">Magbahagi ng data ng app usage at performance sa Google</string>
   <string name="onboarding_metrics_description">Para makatulong na mapanatili at mapahusay ang app, ibinabahagi sa Google ang ilang limitado at walang pagkakakilanlang data tungkol sa performance at paggamit ng app. Hindi ka makikilala sa data na ito. %1$s</string>
@@ -60,10 +61,10 @@
   <string name="notify_turn_on_exposure_notifications_header">Para maabisuhan tungkol sa mga posibleng exposure sa COVID-19, i-on ang Mga Notification sa Exposure. %1$s</string>
   <string name="using_en_helps_even_if_vaccinated">Makakatulong ang paggamit ng serbisyong ito para maprotektahan mo ang iyong komunidad - kahit nabakunahan ka na.</string>
   <string name="share_begin_title">Tumulong na protektahan ang iyong komunidad</string>
-  <string name="share_close_title">Lumabas nang hindi nagbabahagi?</string>
-  <string name="share_close_detail">Makakatulong ka sa komunidad mo kung mas maaga mong ibabahagi ang iyong test result. Gayunpaman, na-save muna sa app ang impormasyon ng test result na nailagay mo na para ma-edit mo pa ito sa susunod.</string>
-  <string name="btn_resume_later">Oo, lumabas</string>
-  <string name="verify_test_result_title">Ilagay ang impormasyon ng COVID-19 test</string>
+  <string name="share_close_title">Isara nang hindi ibinabahagi?</string>
+  <string name="share_close_detail">Magandang ibahagi ang mga resulta mo sa lalong madaling panahon para makatulong sa komunidad. Kung pipiliin mong isara ito nang hindi nagbabahagi, mababalikan mo ito mamaya kung magbago ang isip mo.</string>
+  <string name="btn_resume_later">Oo, isara</string>
+  <string name="verify_test_result_title">Ilagay ang iyong code sa pag-verify</string>
   <string name="enter_your_test_identifier">Code sa pag-verify</string>
   <string name="share_test_identifier_help">Ginagamit ang one-time na code na ito para i-verify ang iyong resulta ng pagsusuri.</string>
   <string name="share_test_identifier_verified">Na-verify ang code</string>
@@ -73,30 +74,29 @@
   <string name="test_date_label">Petsa kung kailan nagsimula ang sintomas</string>
   <string name="share_onset_symptoms">Oo</string>
   <string name="share_onset_no_symptoms">Wala</string>
-  <string name="share_onset_no_answer">Mas gustong hindi sumagot</string>
+  <string name="share_onset_no_answer">Mas gusto kong hindi sumagot</string>
   <string name="share_travel_title">Naglakbay ka ba sa nakalipas na 14 na araw\?</string>
   <string name="share_travel_confirmed">Oo</string>
   <string name="share_travel_no_travel">Hindi</string>
-  <string name="share_travel_no_answer">Mas gustong hindi sumagot</string>
+  <string name="share_travel_no_answer">Mas gusto kong hindi sumagot</string>
   <string name="share_review_title">Suriin ang iyong impormasyon</string>
   <string name="share_review_status_subtitle">Status sa COVID-19</string>
   <string name="share_review_status_confirmed">Positibo</string>
   <string name="share_review_status_likely">Malamang</string>
   <string name="share_review_status_negative">Negatibo</string>
-  <string name="share_review_onset_subtitle">Impormasyon ng sintomas</string>
-  <string name="share_review_onset_date">Mga sintomas mula %1$s</string>
+  <string name="share_review_onset_subtitle">Mga Sintomas</string>
+  <string name="share_review_onset_date">Nagsimula noong %1$s</string>
   <string name="share_review_onset_no_symptoms">Walang sintomas</string>
   <string name="share_review_onset_no_answer">Hindi sinagutan</string>
-  <string name="share_review_travel_subtitle">History ng paglalakbay</string>
-  <string name="share_review_travel_confirmed">Naglakbay sa nakalipas na 14 na araw</string>
+  <string name="share_review_travel_subtitle">Paglalakbay</string>
+  <string name="share_review_travel_confirmed">Sa loob ng nakalipas na 14 na araw</string>
   <string name="share_review_travel_no_travel">Hindi naglakbay sa nakalipas na 14 na araw</string>
   <string name="share_review_travel_no_answer">Hindi sinagutan</string>
-  <string name="share_confirm_title">Salamat sa pagbabahagi ng iyong status sa COVID-19</string>
+  <string name="share_confirm_title">Salamat sa pagbabahagi ng iyong resulta sa COVID-19</string>
   <string name="not_shared_confirm_title">Hindi ibinahagi ang resulta ng iyong test</string>
   <string name="not_shared_confirm_detail">Hindi ibinahagi ang resulta ng iyong COVID-19 test. Pakisubukan ulit.</string>
   <string name="status_shared_detail_title">Ibinahaging status ng COVID-19</string>
-  <string name="delete_test_result_title">I-delete ang resulta ng COVID-19 test?</string>
-  <string name="delete_test_result_detail">Made-delete ang iyong mga detalye ng resulta ng test sa app na ito.</string>
+  <string name="delete_test_result_title">I-delete ang resulta ng iyong test?</string>
   <string name="delete_test_result_confirmed">Na-delete ang resulta ng test</string>
   <string name="share_error_no_internet">Hindi puwedeng ibahagi ang mga resulta ng pagsusuri offline. Suriin ang iyong koneksyon sa internet at subukan ulit.</string>
   <string name="share_vaccination_title">Nabakunahan ka na ba laban sa Covid-19?</string>
@@ -104,7 +104,30 @@
   <string name="share_vaccination_learn_more">Matuto pa</string>
   <string name="share_vaccination_vaccinated">Oo, nabakunahan na ako</string>
   <string name="share_vaccination_not_vaccinated">Hindi</string>
-  <string name="share_vaccination_unknown">Mas gustong hindi sumagot</string>
+  <string name="share_vaccination_unknown">Mas gusto kong hindi sumagot</string>
+  <string name="do_you_have_code_title">Nakatanggap ka ba ng code?</string>
+  <string name="do_you_have_code_content">Kung nag-positibo ka sa COVID-19, karaniwang nagbibigay ang iyong awtoridad sa kalusugan ng code sa pag-verify sa telepono o text para maibahagi mo ang iyong mga resulta.</string>
+  <string name="btn_i_have_code">Oo, may code ako</string>
+  <string name="btn_i_need_code">Kailangan ko ng code</string>
+  <string name="get_verification_code_title">Kumuha ng code sa pag-verify</string>
+  <string name="phone_number_prompt">Numero ng telepono</string>
+  <string name="phone_number_help">Nagbibigay-daan sa iyo ang isang code sa pag-verify na maibahagi mo ang iyong mga resulta sa test. Ipapadala ang iyong code sa ibinigay mong numero.</string>
+  <string name="phone_number_may_be_stored_help">Para mapigilan ang mga tao na magsumite ng mahigit sa isang resulta, posibleng pansamantalang i-store ang numero ng telepono mo ng iyong awtoridad sa pampublikong kalusugan.</string>
+  <string name="test_date_prompt">Petsa ng test</string>
+  <string name="test_date_help">Dapat nasa loob ng nakaraang 14 na araw ang petsa ng test.</string>
+  <string name="tested_for_covid_checkbox_text">Nagpositibo ako sa COVID-19 test sa loob ng nakalipas na 14 na araw.</string>
+  <string name="btn_send_code">Ipadala ang code</string>
+  <string name="enter_code_help">Ilagay ang code na ipinadala sa iyo ng %1$s.</string>
+  <string name="positive_result_already_reported_title">Nag-ulat ka na ng resulta ng test kamakailan.</string>
+  <string name="positive_result_already_reported_content">Kung gusto mong mag-ulat ng isa pang resulta ng test, makipag-ugnayan sa %1$s.</string>
+  <string name="self_report_bad_code">Di-wastong code. Tiyaking iisang device ang ginagamit mo sa paghiling at paglagay ng code sa pag-verify.</string>
+  <string name="self_report_bad_phone_number">Tingnan ang iyong numero at subukan ulit. %1$s</string>
+  <string name="self_report_code_requested_too_many_times">Masyadong marami na ang nagawa mong kahilingan. Makipag-ugnayan sa %1$s kung kailangan mo pa rin ng code.</string>
+  <plurals name="self_report_code_already_requested">
+    <item quantity="one">Masyadong marami na ang nagawa mong kahilingan. Makakahiling ka ng isa pang code pagkatapos ng %1$d minuto.</item>
+    <item quantity="other">Masyadong marami na ang nagawa mong kahilingan. Makakahiling ka ng isa pang code pagkatapos ng %1$d na minuto.</item>
+  </plurals>
+  <string name="notify_others_notification_title">Tumulong na maabisuhan ang ibang tao na posibleng na-expose</string>
   <string name="settings_exposure_notifications_subtitle">Mga Notification sa Exposure</string>
   <string name="settings_app_analytics_subtitle">Pagbabahagi ng app usage at performance</string>
   <string name="settings_privacy_policy">Patakaran sa privacy</string>
@@ -166,4 +189,9 @@
   <string name="private_analytics_footer_learn_more">Matuto pa</string>
   <string name="diagnosis_subtitle_template">%1$s noong %2$s</string>
   <string name="empty_share_history_body">Walang history ng pagbabahagi</string>
+  <string name="share_diagnosis_share_test_result_title">Ibahagi ang iyong resulta sa test gamit ang %1$s</string>
+  <string name="share_diagnosis_share_test_result_subtitle">Salamat sa pagtulong sa pagpigil sa COVID-19.</string>
+  <string name="share_diagnosis_share_test_result_body">Kapag nagbahagi ka ng iyong resulta, puwede mo ring piliing ibahagi kung kailan nagsimula ang iyong mga sintomas. Makakatulong ang impormasyong ito na mapigilan ang paglaganap ng COVID-19 at makaligtas ng mga buhay.</string>
+  <string name="sms_intercept_notice_title">Ano\'ng bago</string>
+  <string name="sms_intercept_notice_content">Kung padalhan ka ng iyong lokal na awtoridad sa kalusugan ng resulta ng test, maaabisuhan ka ng app mo ng paalala na isumite ang iyong resulta at tulungang alertuhan ang iba ng posibleng exposure. Puwede mo itong i-disable anumang oras sa mga setting.</string>
 </resources>

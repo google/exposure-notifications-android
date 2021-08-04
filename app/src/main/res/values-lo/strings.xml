@@ -28,9 +28,10 @@
   <string name="onboarding_opt_in_title">ຕ້ອງການສິດອະນຸຍາດເພື່ອເປີດການນຳໃຊ້ການແຈ້ງເຕືອນຄວາມສ່ຽງຕິດເຊື້ອ</string>
   <string name="onboarding_finish_title">ຈຳເປັນຕ້ອງມີການອະນຸຍາດຢ່າງຕໍ່ເນື່ອງເພື່ອເປີດການນຳໃຊ້ການແຈ້ງເຕືອນຄວາມສ່ຽງຕິດເຊື້ອ</string>
   <string name="onboarding_exposure_notifications_title">ເປີດໃຊ້ການແຈ້ງເຕືອນຄວາມສ່ຽງຕິດເຊື້ອ</string>
-  <string name="onboarding_exposure_notifications_detail">ຮັບການແຈ້ງເຕືອນເມື່ອທ່ານໄດ້ເຄີຍໄປຢູ່ໃກ້ຄົນທີ່ລາຍງານວ່າມີເຊື້ອ COVID-19.
+  <string name="onboarding_exposure_notifications_detail">ຮັບການແຈ້ງເຕືອນຫາກທ່ານເຄີຍໄປຢູ່ໃກ້ຄົນທີ່ລາຍງານວ່າມີເຊື້ອ COVID-19.
     \n\nໂທລະສັບຂອງທ່ານຈະໃຊ້ Bluetooth ເພື່ອເກັບກຳ ແລະ ແບ່ງປັນ ID ແບບສຸ່ມກັບໂທລະສັບອື່ນທີ່ຢູ່ໃກ້ກັນຢ່າງປອດໄພ.
-    \n\nວັນທີ, ໄລຍະເວລາ ແລະ ຄວາມແຮງສັນຍານທີ່ເຊື່ອມໂຍງກັບຄວາມສ່ຽງຕຶດເຊື້ອທີ່ເປັນໄປໄດ້ຈະຖືກໃຊ້ເພື່ອກຳນົດວ່າທ່ານຈະໄດ້ຮັບການແຈ້ງເຕືອນໂດຍອີງໃສ່ພາຣາມິເຕີທີ່ຕັ້ງໄວ້ໂດຍເຈົ້າໜ້າທີ່ສາທາລະນະສຸກຂອງທ່ານຫຼືບໍ່.</string>
+    \n\nວັນທີ, ໄລຍະເວລາ ແລະ ຄວາມແຮງສັນຍານທີ່ເຊື່ອມໂຍງກັບຄວາມສ່ຽງຕຶດເຊື້ອທີ່ເປັນໄປໄດ້ຈະຖືກໃຊ້ເພື່ອກຳນົດວ່າທ່ານຈະໄດ້ຮັບການແຈ້ງເຕືອນໂດຍອີງໃສ່ພາຣາມິເຕີທີ່ຕັ້ງໄວ້ໂດຍເຈົ້າໜ້າທີ່ສາທາລະນະສຸກຂອງທ່ານຫຼືບໍ່.
+    \n\nຫາກຜົນກວດຂອງທ່ານອອກມາເປັນບວກ, ທ່ານອາດໄດ້ຮັບການແຈ້ງເຕືອນໃຫ້ແບ່ງປັນຜົນກວດຂອງທ່ານກັບເຈົ້າໜ້າທີ່ສາທາລະນະສຸກ.</string>
   <string name="onboarding_metrics_title">ຊ່ວຍເຮັດໃຫ້ແອັບນີ້ດີຂຶ້ນ</string>
   <string name="onboarding_metrics_subtitle">ແບ່ງປັນຂໍ້ມູນການນຳໃຊ້ ແລະ ປະສິດທິພາບແອັບໃຫ້ກັບ Google</string>
   <string name="onboarding_metrics_description">ເພື່ອຊ່ວຍບຳລຸງຮັກສາ ແລະ ປັບປຸງແອັບ, ຂໍ້ມູນທີ່ບໍ່ສາມາດລະບຸຕົວຕົນທີ່ຈຳກັດໄວ້ບາງຢ່າງກ່ຽວກັບປະສິດທິພາບ ແລະ ການນຳໃຊ້ແອັບຈະຖືກແບ່ງປັນໃຫ້ກັບ Google. ຂໍ້ມູນນີ້ຈະບໍ່ລະບຸຕົວຕົນຂອງທ່ານ. %1$s</string>
@@ -60,10 +61,10 @@
   <string name="notify_turn_on_exposure_notifications_header">ເພື່ອຮັບການແຈ້ງເຕືອນຄວາມສ່ຽງຕິດເຊື້ອ COVID-19 ທີ່ເປັນໄປໄດ້, ກະລຸນາເປີດໃຊ້ການແຈ້ງເຕືອນຄວາມສ່ຽງຕິດເຊື້ອ. %1$s</string>
   <string name="using_en_helps_even_if_vaccinated">ການໃຊ້ບໍລິການນີ້ຈະຊ່ວຍທ່ານປົກປ້ອງຊຸມຊົນຂອງທ່ານ, ເຖິງແມ່ນວ່າທ່ານຈະໄດ້ຮັບວັກຊີນແລ້ວກໍຕາມ.</string>
   <string name="share_begin_title">ຊ່ວຍປົກປ້ອງຊຸມຊົນຂອງທ່ານ</string>
-  <string name="share_close_title">ອອກໂດຍບໍ່ແບ່ງປັນບໍ?</string>
-  <string name="share_close_detail">ທ່ານສາມາດຊ່ວຍຊຸມຊົນຂອງທ່ານໄດ້ດີທີ່ສຸດຫາກທ່ານແບ່ງປັນຜົນກວດຂອງທ່ານໄວຂຶ້ນ. ຢ່າງໃດກໍຕາມ, ຂໍ້ມູນການກວດທີ່ທ່ານລະບຸໄວ້ນັ້ນຖືກບັນທຶກໄວ້ໃນແອັບເພື່ອໃຫ້ທ່ານສືບຕໍ່ແກ້ໄຂໃນພາຍຫຼັງແລ້ວ.</string>
-  <string name="btn_resume_later">ຕົກ​ລົງ, ອອກ</string>
-  <string name="verify_test_result_title">ລະບຸຂໍ້ມູນການກວດ COVID-19</string>
+  <string name="share_close_title">ປິດໂດຍບໍ່ແບ່ງປັນບໍ?</string>
+  <string name="share_close_detail">ວິທີທີ່ດີທີ່ສຸດທີ່ທ່ານສາມາດຊ່ວຍຊຸມຊົນຂອງທ່ານໄດ້ແມ່ນການແບ່ງປັນຜົນກວດຂອງທ່ານໃຫ້ໄວເທົ່າທີ່ຈະໄວໄດ້. ຫາກທ່ານປິດດຽວນີ້ໂດຍບໍ່ແບ່ງປັນ, ທ່ານຈະສາມາດສືບຕໍ່ຈາກບ່ອນທີ່ເຮັດຄ້າງໄວ້ໄດ້ຫາກທ່ານປ່ຽນໃຈໃນພາຍຫຼັງ.</string>
+  <string name="btn_resume_later">ແມ່ນແລ້ວ, ປິດ</string>
+  <string name="verify_test_result_title">ລະບຸລະຫັດການຢັ້ງຢືນຂອງທ່ານ</string>
   <string name="enter_your_test_identifier">ລະຫັດການຢັ້ງຢືນ</string>
   <string name="share_test_identifier_help">ລະຫັດແບບເທື່ອດຽວນີ້ຈະຖືກໃຊ້ເພື່ອຢັ້ງຢືນຜົນກວດຂອງທ່ານ.</string>
   <string name="share_test_identifier_verified">ຢັ້ງຢືນລະຫັດຜ່ານແລ້ວ</string>
@@ -73,30 +74,29 @@
   <string name="test_date_label">ວັນທີເລີ່ມມີອາການ</string>
   <string name="share_onset_symptoms">ແມ່ນແລ້ວ</string>
   <string name="share_onset_no_symptoms">ບໍ່ແມ່ນ</string>
-  <string name="share_onset_no_answer">ບໍ່ຢາກຕອບ</string>
+  <string name="share_onset_no_answer">ຂ້ອຍບໍ່ຢາກຕອບ</string>
   <string name="share_travel_title">ທ່ານໄດ້ເດີນທາງໄປໃສໃນຮອບ 14 ມື້ທີ່ຜ່ານມາບໍ່\?</string>
   <string name="share_travel_confirmed">ແມ່ນແລ້ວ</string>
   <string name="share_travel_no_travel">ບໍ່ແມ່ນ</string>
-  <string name="share_travel_no_answer">ບໍ່ຢາກຕອບ</string>
+  <string name="share_travel_no_answer">ຂ້ອຍບໍ່ຢາກຕອບ</string>
   <string name="share_review_title">ກວດສອບຂໍ້ມູນຂອງທ່ານ</string>
   <string name="share_review_status_subtitle">ສະຖານະ COVID-19</string>
   <string name="share_review_status_confirmed">ຜົນບວກ</string>
   <string name="share_review_status_likely">ມີຄວາມເປັນໄປໄດ້</string>
   <string name="share_review_status_negative">ຜົນລົບ</string>
-  <string name="share_review_onset_subtitle">ຂໍ້ມູນອາການ</string>
-  <string name="share_review_onset_date">ອາການຈາກ %1$s</string>
+  <string name="share_review_onset_subtitle">ອາການ</string>
+  <string name="share_review_onset_date">ເລີ່ມເມື່ອ %1$s</string>
   <string name="share_review_onset_no_symptoms">ບໍ່ມີອາການ</string>
   <string name="share_review_onset_no_answer">ບໍ່ໄດ້ຕອບ</string>
-  <string name="share_review_travel_subtitle">ປະຫວັດການເດີນທາງ</string>
-  <string name="share_review_travel_confirmed">ເຄີຍເດີນທາງໃນຮອບ 14 ມື້ທີ່ຜ່ານມາ</string>
+  <string name="share_review_travel_subtitle">ທ່ອງທ່ຽວ</string>
+  <string name="share_review_travel_confirmed">ພາຍໃນ 14 ມື້ທີ່ຜ່ານມາ</string>
   <string name="share_review_travel_no_travel">ບໍ່ໄດ້ເດີນທາງໃນຮອບ 14 ມື້ທີ່ຜ່ານມາ</string>
   <string name="share_review_travel_no_answer">ບໍ່ໄດ້ຕອບ</string>
-  <string name="share_confirm_title">ຂໍຂອບໃຈສຳລັບການແບ່ງປັນສະຖານະ COVID-19 ຂອງທ່ານ</string>
+  <string name="share_confirm_title">ຂໍຂອບໃຈສຳລັບການແບ່ງປັນຜົນກວດ COVID-19 ຂອງທ່ານ</string>
   <string name="not_shared_confirm_title">ບໍ່ໄດ້ແບ່ງປັນຜົນກວດຂອງທ່ານເທື່ອ</string>
   <string name="not_shared_confirm_detail">ບໍ່ໄດ້ແບ່ງປັນຜົນກວດ COVID-19 ຂອງທ່ານເທື່ອ. ກະລຸນາລອງໃໝ່.</string>
   <string name="status_shared_detail_title">ແບ່ງປັນສະຖານະ COVID-19 ແລ້ວ</string>
-  <string name="delete_test_result_title">ລຶບຜົນກວດ COVID-19 ອອກບໍ?</string>
-  <string name="delete_test_result_detail">ລາຍລະອຽດຜົນກວດຂອງທ່ານຈະຖືກລຶບອອກຈາກແອັບນີ້.</string>
+  <string name="delete_test_result_title">ລຶບຜົນກວດຂອງທ່ານອອກບໍ?</string>
   <string name="delete_test_result_confirmed">ລຶບຜົນກວດອອກແລ້ວ</string>
   <string name="share_error_no_internet">ບໍ່ສາມາດແບ່ງປັນຜົນກວດອອບລາຍໄດ້. ກະລຸນາກວດສອບການເຊື່ອມຕໍ່ອິນເຕີເນັດຂອງທ່ານແລ້ວລອງໃໝ່.</string>
   <string name="share_vaccination_title">ທ່ານໄດ້ຮັບວັກຊີນປ້ອງກັນ COVID-19 ຫຼືຍັງ?</string>
@@ -104,7 +104,30 @@
   <string name="share_vaccination_learn_more">ສຶກສາເພີ່ມເຕີມ</string>
   <string name="share_vaccination_vaccinated">ແມ່ນແລ້ວ, ຂ້ອຍໄດ້ຮັບວັກຊີນແລ້ວ</string>
   <string name="share_vaccination_not_vaccinated">ບໍ່ແມ່ນ</string>
-  <string name="share_vaccination_unknown">ບໍ່ຢາກຕອບ</string>
+  <string name="share_vaccination_unknown">ຂ້ອຍບໍ່ຢາກຕອບ</string>
+  <string name="do_you_have_code_title">ທ່ານໄດ້ຮັບລະຫັດບໍ່?</string>
+  <string name="do_you_have_code_content">ຫາກຜົນກວດ COVID-19 ຂອງທ່ານອອກມາເປັນບວກ, ເຈົ້າໜ້າທີ່ສາທາລະນະສຸກຂອງທ່ານຈະໃຫ້ລະຫັດການຢັ້ງຢືນທາງໂທລະສັບ ຫຼື ທາງຂໍ້ຄວາມເພື່ອໃຫ້ທ່ານສາມາດແບ່ງປັນຜົນກວດຂອງທ່ານໄດ້.</string>
+  <string name="btn_i_have_code">ແມ່ນແລ້ວ, ຂ້ອຍມີລະຫັດ</string>
+  <string name="btn_i_need_code">ຂ້ອຍຕ້ອງການລະຫັດ</string>
+  <string name="get_verification_code_title">ຂໍລະຫັດການຢັ້ງຢືນ</string>
+  <string name="phone_number_prompt">ເບີໂທລະສັບ</string>
+  <string name="phone_number_help">ລະຫັດການຢັ້ງຢືນຈະເຮັດໃຫ້ທ່ານສາມາດແບ່ງປັນຜົນກວດຂອງທ່ານໄດ້. ລະຫັດຂອງທ່ານຈະຖືກສົ່ງໄປໃຫ້ເບີໂທທີ່ທ່ານລະບຸໄວ້.</string>
+  <string name="phone_number_may_be_stored_help">ເພື່ອປ້ອງກັນບໍ່ໃຫ້ຄົນສົ່ງຜົນກວດຫຼາຍກວ່າໜຶ່ງອັນ, ເບີໂທລະສັບຂອງທ່ານອາດຖືກຈັດເກັບໄວ້ໂດຍເຈົ້າໜ້າທີ່ສາທາລະນະສຸກຊົ່ວຄາວ.</string>
+  <string name="test_date_prompt">ວັນທີກວດ</string>
+  <string name="test_date_help">ວັນທີກວດຄວນຢູ່ພາຍໃນ 14 ມື້ທີ່ຜ່ານມາ.</string>
+  <string name="tested_for_covid_checkbox_text">ຂ້ອຍໄດ້ຮັບຜົນກວດ COVID-19 ເປັນບວກໃນ 14 ມືີ້ທີ່ຜ່ານມາ.</string>
+  <string name="btn_send_code">ສົ່ງລະຫັດ</string>
+  <string name="enter_code_help">ໃສ່ລະຫັດທີ່ສົ່ງໃຫ້ທ່ານໂດຍ %1$s.</string>
+  <string name="positive_result_already_reported_title">ເມື່ອບໍ່ດົນມານີ້ທ່ານໄດ້ລາຍງານຜົນກວດໄປກ່ອນແລ້ວ.</string>
+  <string name="positive_result_already_reported_content">ຫາກທ່ານຕ້ອງການລາຍງານຜົນກວດອື່ນ, ກະລຸນາຕິດຕໍ່ຫາ %1$s.</string>
+  <string name="self_report_bad_code">ລະຫັດບໍ່ຖືກຕ້ອງ. ກະລຸນາກວດສອບວ່າທ່ານກຳລັງໃຊ້ອຸປະກອນດຽວກັນເພື່ອຮ້ອງຂໍ ແລະ ໃສ່ລະຫັດການຢັ້ງຢືນຂອງທ່ານ.</string>
+  <string name="self_report_bad_phone_number">ກະລຸນາກວດສອບເບີຂອງທ່ານແລ້ວລອງໃໝ່. %1$s</string>
+  <string name="self_report_code_requested_too_many_times">ທ່ານສົ່ງຄຳຮ້ອງຂໍຫຼາຍເກີນໄປ. ກະລຸນາຕິດຕໍ່ຫາ %1$s ຫາກທ່ານຍັງຄົງຕ້ອງການລະຫັດຢູ່.</string>
+  <plurals name="self_report_code_already_requested">
+    <item quantity="one">ທ່ານສົ່ງຄຳຮ້ອງຂໍຫຼາຍເກີນໄປ. ທ່ານສາມາດຮ້ອງຂໍລະຫັດໃໝ່ໄດ້ໃນອີກ %1$d ນາທີ.</item>
+    <item quantity="other">ທ່ານສົ່ງຄຳຮ້ອງຂໍຫຼາຍເກີນໄປ. ທ່ານສາມາດຮ້ອງຂໍລະຫັດໃໝ່ໄດ້ໃນອີກ %1$d ນາທີ.</item>
+  </plurals>
+  <string name="notify_others_notification_title">ຊ່ວຍແຈ້ງເຕືອນຄົນອື່ນທີ່ອາດມີຄວາມສ່ຽງຕິດເຊື້ອ.</string>
   <string name="settings_exposure_notifications_subtitle">ການແຈ້ງເຕືອນຄວາມສ່ຽງຕິດເຊື້ອ</string>
   <string name="settings_app_analytics_subtitle">ການແບ່ງປັນການນຳໃຊ້ແອັບ ແລະ ປະສິດທິພາບ</string>
   <string name="settings_privacy_policy">ນະໂບບາຍຄວາມເປັນສ່ວນຕົວ</string>
@@ -166,4 +189,9 @@
   <string name="private_analytics_footer_learn_more">ສຶກສາເພີ່ມເຕີມ</string>
   <string name="diagnosis_subtitle_template">%1$s ເມື່ອ %2$s</string>
   <string name="empty_share_history_body">ບໍ່ມີປະຫວັດການແບ່ງປັນ</string>
+  <string name="share_diagnosis_share_test_result_title">ແບ່ງປັນຜົນກວດຂອງທ່ານໃຫ້ກັບ %1$s</string>
+  <string name="share_diagnosis_share_test_result_subtitle">ຂໍຂອບໃຈສຳລັບການຊ່ວຍຢຸດ COVID-19.</string>
+  <string name="share_diagnosis_share_test_result_body">ເມື່ອທ່ານແບ່ງປັນຜົນກວດຂອງທ່ານ, ທ່ານສາມາດເລືອກລະບຸໄດ້ວ່າອາການຂອງທ່ານເລີ່ມຕອນໃດ. ຂໍ້ມູນນີ້ສາມາດຊ່ວຍຢຸດການ​ຂະ​ຫຍາຍ COVID-19 ແລະ ຊ່ວຍຊີວິດຜູ້ຄົນໄດ້.</string>
+  <string name="sms_intercept_notice_title">ມີຫຍັງໃໝ່</string>
+  <string name="sms_intercept_notice_content">ຫາກໜ່ວຍງານສາທາລະນະສຸກທ້ອງຖິ່ນຂອງທ່ານສົ່ງຜົນກວດໃຫ້ທ່ານ, ແອັບຂອງທ່ານຈະສາມາດແຈ້ງເຕືອນທ່ານເພື່ອເຕືອນໃຫ້ສົ່ງຜົນກວດຂອງທ່ານ ແລະ ຊ່ວຍແຈ້ງເຕືອນຄົນອື່ນກ່ຽວກັບຄວາມສ່ຽງຕິດເຊື້ອໄດ້. ທ່ານສາມາດປິດຄຸນສົມບັດນີ້ຕອນໃດກໍໄດ້ໃນການຕັ້ງຄ່າ.</string>
 </resources>

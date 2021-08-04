@@ -135,7 +135,7 @@ public abstract class AbstractOnboardingFragment extends BaseFragment {
       nextButton.setText(R.string.btn_continue);
       nextButton.setOnClickListener(v2 -> scroller.fullScroll(View.FOCUS_DOWN));
       onboardingButtons
-          .setElevation(getResources().getDimension(R.dimen.onboarding_button_elevation));
+          .setElevation(getResources().getDimension(R.dimen.bottom_button_container_elevation));
     }
     if (nextButton.isAccessibilityFocused()) {
       // Let accessibility service announce when button text change.

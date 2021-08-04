@@ -30,7 +30,8 @@
   <string name="onboarding_exposure_notifications_title">Hidupkan Pemberitahuan Pendedahan</string>
   <string name="onboarding_exposure_notifications_detail">Dapatkan pemberitahuan jika anda pernah berada berdekatan dengan seseorang yang melaporkan dirinya positif COVID-19.
     \n\nTelefon anda menggunakan Bluetooth untuk mengumpul dan berkongsi ID rawak secara selamat dengan telefon lain yang berdekatan.
-    \n\nTarikh, tempoh dan kekuatan isyarat yang dikaitkan dengan kemungkinan pendedahan akan digunakan untuk menentukan sama ada anda akan menerima pemberitahuan berdasarkan parameter yang ditetapkan oleh pihak berkuasa kesihatan awam anda atau tidak.</string>
+    \n\nTarikh, tempoh dan kekuatan isyarat yang dikaitkan dengan kemungkinan pendedahan akan digunakan untuk menentukan sama ada anda akan menerima pemberitahuan berdasarkan parameter yang ditetapkan oleh pihak berkuasa kesihatan awam anda atau tidak.
+    \n\nJika anda didapati positif, anda mungkin menerima peringatan untuk berkongsi keputusan anda dengan pihak berkuasa kesihatan anda.</string>
   <string name="onboarding_metrics_title">Jadikan apl ini lebih baik</string>
   <string name="onboarding_metrics_subtitle">Kongsikan data penggunaan &amp; prestasi apl dengan Google</string>
   <string name="onboarding_metrics_description">Untuk membantu penyenggaraan dan peningkatan apl, beberapa data yang dinyahkenal pasti tentang prestasi dan penggunaan apl dikongsikan dengan Google. Data ini tidak mengenal pasti anda. %1$s</string>
@@ -60,10 +61,10 @@
   <string name="notify_turn_on_exposure_notifications_header">Untuk mendapatkan pemberitahuan tentang kemungkinan pendedahan COVID-19, hidupkan Pemberitahuan Pendedahan. %1$s</string>
   <string name="using_en_helps_even_if_vaccinated">Tindakan menggunakan perkhidmatan ini membantu anda melindungi komuniti anda - walaupun anda telah divaksin.</string>
   <string name="share_begin_title">Lindungi komuniti anda</string>
-  <string name="share_close_title">Keluar tanpa berkongsi?</string>
-  <string name="share_close_detail">Anda memberikan bantuan terbaik kepada komuniti jika berkongsi keputusan ujian lebih awal. Namun, maklumat keputusan ujian yang dimasukkan setakat ini disimpan dalam apl untuk anda sambung edit nanti.</string>
-  <string name="btn_resume_later">Ya, keluar</string>
-  <string name="verify_test_result_title">Masukkan maklumat ujian COVID-19</string>
+  <string name="share_close_title">Tutup tanpa berkongsi?</string>
+  <string name="share_close_detail">Cara terbaik untuk tolong komuniti anda adalah dengan berkongsi keputusan secepat mungkin. Jika ditutup sekarang tanpa berkongsi, anda boleh sambung semula dari tempat terakhir jika anda ubah fikiran.</string>
+  <string name="btn_resume_later">Ya, tutup</string>
+  <string name="verify_test_result_title">Masukkan kod pengesahan anda</string>
   <string name="enter_your_test_identifier">Kod pengesahan</string>
   <string name="share_test_identifier_help">Kod satu kali ini digunakan untuk mengesahkan keputusan ujian anda.</string>
   <string name="share_test_identifier_verified">Kod disahkan</string>
@@ -83,20 +84,19 @@
   <string name="share_review_status_confirmed">Positif</string>
   <string name="share_review_status_likely">Mungkin</string>
   <string name="share_review_status_negative">Negatif</string>
-  <string name="share_review_onset_subtitle">Maklumat gejala</string>
-  <string name="share_review_onset_date">Gejala dari %1$s</string>
+  <string name="share_review_onset_subtitle">Simptom</string>
+  <string name="share_review_onset_date">Bermula %1$s</string>
   <string name="share_review_onset_no_symptoms">Tiada gejala</string>
   <string name="share_review_onset_no_answer">Tidak dijawab</string>
-  <string name="share_review_travel_subtitle">Sejarah perjalanan</string>
-  <string name="share_review_travel_confirmed">Telah melakukan perjalanan dalam tempoh 14 hari yang lalu</string>
+  <string name="share_review_travel_subtitle">Perjalanan</string>
+  <string name="share_review_travel_confirmed">Dalam 14 hari yang lalu</string>
   <string name="share_review_travel_no_travel">Tidak pergi berjalan dalam tempoh 14 hari yang lalu</string>
   <string name="share_review_travel_no_answer">Tidak dijawab</string>
-  <string name="share_confirm_title">Terima kasih kerana berkongsi status COVID-19 anda</string>
+  <string name="share_confirm_title">Terima kasih kerana berkongsi keputusan COVID-19 anda</string>
   <string name="not_shared_confirm_title">Keputusan ujian anda tidak dikongsi</string>
   <string name="not_shared_confirm_detail">Keputusan ujian COVID-19 anda tidak dikongsi. Sila cuba lagi.</string>
   <string name="status_shared_detail_title">Status COVID-19 yang dikongsi</string>
-  <string name="delete_test_result_title">Padamkan keputusan ujian COVID-19?</string>
-  <string name="delete_test_result_detail">Butiran keputusan ujian anda akan dipadamkan daripada apl ini.</string>
+  <string name="delete_test_result_title">Padamkan keputusan ujian anda?</string>
   <string name="delete_test_result_confirmed">Keputusan ujian dipadamkan</string>
   <string name="share_error_no_internet">Tidak dapat berkongsi keputusan ujian di luar talian. Periksa sambungan Internet anda &amp; cuba lagi.</string>
   <string name="share_vaccination_title">Pernahkah anda divaksinkan terhadap Covid-19?</string>
@@ -105,6 +105,29 @@
   <string name="share_vaccination_vaccinated">Ya, saya telah divaksin</string>
   <string name="share_vaccination_not_vaccinated">Tidak</string>
   <string name="share_vaccination_unknown">Enggan menjawab</string>
+  <string name="do_you_have_code_title">Adakah anda menerima kod?</string>
+  <string name="do_you_have_code_content">Jika anda didapati positif COVID-19, pihak berkuasa kesihatan anda biasanya akan memberikan kod pengesahan melalui telefon atau teks supaya anda dapat berkongsi keputusan anda.</string>
+  <string name="btn_i_have_code">Ya, saya ada kod</string>
+  <string name="btn_i_need_code">Saya memerlukan kod</string>
+  <string name="get_verification_code_title">Dapatkan kod pengesahan</string>
+  <string name="phone_number_prompt">Nombor telefon</string>
+  <string name="phone_number_help">Kod pengesahan membolehkan anda berkongsi keputusan ujian anda. Kod anda akan dihantar kepada nombor yang anda berikan.</string>
+  <string name="phone_number_may_be_stored_help">Untuk mengelakkan orang menghantar lebih daripada satu keputusan, nombor telefon anda mungkin disimpan buat sementara waktu oleh pihak berkuasa kesihatan awam anda.</string>
+  <string name="test_date_prompt">Tarikh ujian</string>
+  <string name="test_date_help">Tarikh ujian hendaklah dalam masa 14 hari yang lalu.</string>
+  <string name="tested_for_covid_checkbox_text">Saya telah menerima ujian COVID-19 positif dalam 14 hari yang lalu.</string>
+  <string name="btn_send_code">Hantar kod</string>
+  <string name="enter_code_help">Masukkan kod yang dihantar kepada anda oleh %1$s.</string>
+  <string name="positive_result_already_reported_title">Anda telah melaporkan keputusan ujian baru-baru ini.</string>
+  <string name="positive_result_already_reported_content">Jika anda ingin melaporkan keputusan ujian yang lain, sila hubungi %1$s.</string>
+  <string name="self_report_bad_code">Kod tidak sah. Pastikan anda menggunakan peranti yang sama untuk meminta dan memasukkan kod pengesahan anda.</string>
+  <string name="self_report_bad_phone_number">Semak nombor anda dan cuba lagi. %1$s</string>
+  <string name="self_report_code_requested_too_many_times">Anda telah membuat terlalu banyak permintaan. Hubungi %1$s jika anda masih memerlukan kod.</string>
+  <plurals name="self_report_code_already_requested">
+    <item quantity="one">Anda telah membuat terlalu banyak permintaan. Anda boleh meminta kod lain dalam %1$d minit.</item>
+    <item quantity="other">Anda telah membuat terlalu banyak permintaan. Anda boleh meminta kod lain dalam %1$d minit.</item>
+  </plurals>
+  <string name="notify_others_notification_title">Bantu memberitahu orang lain yang mungkin telah terdedah</string>
   <string name="settings_exposure_notifications_subtitle">Pemberitahuan Pendedahan</string>
   <string name="settings_app_analytics_subtitle">Perkongsian penggunaan &amp; prestasi apl</string>
   <string name="settings_privacy_policy">Dasar privasi</string>
@@ -166,4 +189,9 @@
   <string name="private_analytics_footer_learn_more">Ketahui lebih lanjut</string>
   <string name="diagnosis_subtitle_template">%1$s pada %2$s</string>
   <string name="empty_share_history_body">Tiada sejarah perkongsian</string>
+  <string name="share_diagnosis_share_test_result_title">Kongsi keputusan ujian anda dengan %1$s</string>
+  <string name="share_diagnosis_share_test_result_subtitle">Terima kasih kerana membantu menghentikan COVID-19.</string>
+  <string name="share_diagnosis_share_test_result_body">Apabila anda berkongsi keputusan, anda juga boleh memilih untuk berkongsi ketika gejala anda bermula. Maklumat ini boleh membantu menghentikan penyebaran COVID-19 dan menyelamatkan nyawa.</string>
+  <string name="sms_intercept_notice_title">Ciri baharu</string>
+  <string name="sms_intercept_notice_content">Jika pihak berkuasa kesihatan tempatan menghantar keputusan ujian kepada anda, apl anda boleh memberitahu anda dengan satu peringatan untuk menyerahkan keputusan anda dan membantu memberikan amaran kepada orang lain tentang kemungkinan pendedahan. Anda boleh melumpuhkan fungsi tersebut pada bila-bila masa dalam tetapan.</string>
 </resources>

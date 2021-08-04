@@ -31,8 +31,6 @@ import java.util.List;
 @Dao
 abstract class ExposureDao {
 
-  private static final String TAG = "ExposureDao";
-
   @WorkerThread
   @Query("SELECT * FROM ExposureEntity")
   abstract List<ExposureEntity> getAll();

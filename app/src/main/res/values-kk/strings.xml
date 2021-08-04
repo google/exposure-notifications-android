@@ -22,15 +22,16 @@
   <string name="navigate_up">Алдыңғы экранға қайту</string>
   <string name="btn_close_label">Жабу</string>
   <string name="updated_permission_disabled_notification_title">Ауру жұқтырғандармен байланыс орнатқандарды тексеру мүмкін емес</string>
-  <string name="updated_bluetooth_location_state_notification">Ауру жұқтырғандармен байланыс ықтималдығын тексеруді жалғастыру үшін Bluetooth-ды және құрылғының орналасу параметрін қосыңыз.</string>
-  <string name="updated_bluetooth_state_notification">Ауру жұқтырғандармен байланыс ықтималдығын тексеруді жалғастыру үшін Bluetooth-ды қосыңыз.</string>
+  <string name="updated_bluetooth_location_state_notification">Ауру жұқтырғандармен байланыс ықтималдығын тексеруді жалғастыру үшін Bluetooth-ты және құрылғының орналасу параметрін қосыңыз.</string>
+  <string name="updated_bluetooth_state_notification">Ауру жұқтырғандармен байланыс ықтималдығын тексеруді жалғастыру үшін Bluetooth-ты қосыңыз.</string>
   <string name="updated_location_state_notification">Ауру жұқтырғандармен байланыс ықтималдығын тексеруді жалғастыру үшін құрылғының орналасу параметрін қосыңыз.</string>
   <string name="onboarding_opt_in_title">Ауру жұқтырғандармен байланыс туралы хабарландыруды қосу үшін рұқсаттар қажет</string>
   <string name="onboarding_finish_title">Ауру жұқтырғандармен байланыс туралы хабарландыруды қосу үшін әрі қарай рұқсаттар қажет</string>
   <string name="onboarding_exposure_notifications_title">Ауру жұқтырғандармен байланыс туралы хабарландыруды қосу</string>
   <string name="onboarding_exposure_notifications_detail">COVID-19 вирусын жұқтырғанын хабарлаған адамның жанында болғанда, хабарландыру алыңыз.
     \n\nТелефон Bluetooth функциясының көмегімен кездейсоқ идентификаторларды қауіпсіз жинап, оларды маңайдағы басқа құрылғылармен бөліседі.
-    \n\nДенсаулық сақтау мекемесі орнатқан параметрлер негізінде хабарлау мүмкіндігі ауру жұқтырғандармен байланыс күніне, оның ұзақтығына және сигнал күшіне байланысты болады.</string>
+    \n\nДенсаулық сақтау мекемесі орнатқан параметрлер негізінде хабарлау мүмкіндігі ауру жұқтырғандармен байланыс күніне, оның ұзақтығына және сигнал күшіне байланысты болады.
+    \n\nЕгер сынағыңыз оң нәтиже көрсетсе, оны денсаулық сақтау мекемесімен бөлісу туралы еске салғыш алуыңыз мүмкін.</string>
   <string name="onboarding_metrics_title">Осы қолданбаны жақсартуға көмектесіңіз</string>
   <string name="onboarding_metrics_subtitle">Қолданбаның пайдаланылуы, жұмыс өнімділігі дерегін Google-мен бөлісіңіз.</string>
   <string name="onboarding_metrics_description">Қолданбаның жұмыс қалпын сақтап, ісін жақсартып отыру үшін оның пайдаланылуы мен жұмыс өнімділігі туралы кейбір деректер Google-мен бөлісіледі. Бұл деректерде жеке бас мәліметі анықталмайды. %1$s</string>
@@ -60,10 +61,10 @@
   <string name="notify_turn_on_exposure_notifications_header">COVID-19 ауруын жұқтырғандармен ықтимал байланыс туралы хабарландыру алу үшін ауру жұқтырғандармен байланыс туралы хабарландыруды қосып қойыңыз. %1$s</string>
   <string name="using_en_helps_even_if_vaccinated">Вакцина алмаған болсаңыз да, бұл қызметтің көмегімен өз ортаңызды қорғай аласыз.</string>
   <string name="share_begin_title">Қауымдастығыңызды қорғауға көмектесіңіз</string>
-  <string name="share_close_title">Бөліспестен шығасыз ба?</string>
-  <string name="share_close_detail">Неғұрлым тезірек сынақ нәтижесін бөліссеңіз, соғұрлым аурудың таралуын тоқтатасыз. Сынақ нәтижесі туралы ақпарат осы қолданбада сақталады. Оны кейінірек өзгертуге болады.</string>
-  <string name="btn_resume_later">Иә, шығамын</string>
-  <string name="verify_test_result_title">COVID-19 сынағы туралы ақпаратты енгізіңіз</string>
+  <string name="share_close_title">Бөліспей жабу керек пе?</string>
+  <string name="share_close_detail">Сынақ нәтижелерін барынша тез бөлісу – адамдарға көмектесудің ең дұрыс жолы. Нәтижелерді бөліспей, жауып тастап, кейінірек ойыңыздан айнысаңыз, тоқтаған жерден қайта жалғастыра аласыз.</string>
+  <string name="btn_resume_later">Иә, жабу</string>
+  <string name="verify_test_result_title">Растау кодын енгізіңіз</string>
   <string name="enter_your_test_identifier">Растау коды</string>
   <string name="share_test_identifier_help">Бұл бір реттік код сынақ нәтижесін растау үшін пайдаланылады.</string>
   <string name="share_test_identifier_verified">Код расталды</string>
@@ -73,30 +74,29 @@
   <string name="test_date_label">Симптомдар пайда болған күн</string>
   <string name="share_onset_symptoms">Иә</string>
   <string name="share_onset_no_symptoms">Жоқ</string>
-  <string name="share_onset_no_answer">Жауап бергім келмейді</string>
+  <string name="share_onset_no_answer">Жауап бермегенді жөн санаймын</string>
   <string name="share_travel_title">Соңғы 14 күнде бір жаққа бардыңыз ба?</string>
   <string name="share_travel_confirmed">Иә</string>
   <string name="share_travel_no_travel">Жоқ</string>
-  <string name="share_travel_no_answer">Жауап бергім келмейді</string>
+  <string name="share_travel_no_answer">Жауап бермегенді жөн санаймын</string>
   <string name="share_review_title">Ақпаратты қарап шығыңыз</string>
   <string name="share_review_status_subtitle">COVID-19 ауруына қатысты күй</string>
   <string name="share_review_status_confirmed">Оң</string>
   <string name="share_review_status_likely">Мүмкін</string>
   <string name="share_review_status_negative">Теріс</string>
-  <string name="share_review_onset_subtitle">Симптомдар туралы ақпарат</string>
-  <string name="share_review_onset_date">Симптомдар байқалған күн: %1$s</string>
+  <string name="share_review_onset_subtitle">Белгілер</string>
+  <string name="share_review_onset_date">Басталған күні: %1$s</string>
   <string name="share_review_onset_no_symptoms">Симптомдар жоқ.</string>
   <string name="share_review_onset_no_answer">Жауап жазылмаған.</string>
-  <string name="share_review_travel_subtitle">Сапарлар тарихы</string>
-  <string name="share_review_travel_confirmed">Соңғы 14 күнде сапарларға шықтым.</string>
+  <string name="share_review_travel_subtitle">Саяхат</string>
+  <string name="share_review_travel_confirmed">Соңғы 14 күнде</string>
   <string name="share_review_travel_no_travel">Соңғы 14 күнде ешқайда бармадым.</string>
   <string name="share_review_travel_no_answer">Жауап жазылмаған.</string>
-  <string name="share_confirm_title">COVID-19 ауруына қатысты күйіңізді бөліскеніңіз үшін рақмет!</string>
+  <string name="share_confirm_title">COVID-19 сынағының нәтижесін бөліскеніңіз үшін рақмет!</string>
   <string name="not_shared_confirm_title">Сынақ нәтижесі бөлісілмеді</string>
   <string name="not_shared_confirm_detail">COVID-19 сынағының нәтижесі бөлісілмеді. Қайталап көріңіз.</string>
   <string name="status_shared_detail_title">COVID-19 ауруына қатысты күйіңіз туралы мәлімет</string>
-  <string name="delete_test_result_title">COVID-19 сынақ нәтижесі жойылсын ба?</string>
-  <string name="delete_test_result_detail">Сынағыңыздың нәтижесі туралы мәліметтер осы қолданбадан жойылады.</string>
+  <string name="delete_test_result_title">Сынақ нәтижесін жою керек пе?</string>
   <string name="delete_test_result_confirmed">Сынақтың нәтижесі жойылды.</string>
   <string name="share_error_no_internet">Сынақ нәтижелерін офлайн режимде бөлісу мүмкін емес. Интернет байланысын тексеріп, әрекетті қайталаңыз.</string>
   <string name="share_vaccination_title">COVID-19 ауруына қарсы вакцина алдыңыз ба?</string>
@@ -104,7 +104,30 @@
   <string name="share_vaccination_learn_more">Толығырақ</string>
   <string name="share_vaccination_vaccinated">Иә, вакцина алғанмын</string>
   <string name="share_vaccination_not_vaccinated">Жоқ</string>
-  <string name="share_vaccination_unknown">Жауап бергім келмейді</string>
+  <string name="share_vaccination_unknown">Жауап бермегенді жөн санаймын</string>
+  <string name="do_you_have_code_title">Кодты алдыңыз ба?</string>
+  <string name="do_you_have_code_content">Егер сіз тапсырған COVID-19 сынағы оң нәтиже көрсетсе, денсаулық сақтау мекемесі әдетте телефон немесе мәтін арқылы растау кодын жібереді. Осылайша сынақ нәтижелерін бөлісе аласыз.</string>
+  <string name="btn_i_have_code">Иә, менде код бар</string>
+  <string name="btn_i_need_code">Маған код керек</string>
+  <string name="get_verification_code_title">Растау кодын алыңыз</string>
+  <string name="phone_number_prompt">Телефон нөмірі</string>
+  <string name="phone_number_help">Растау кодының көмегімен сынақ нәтижелерін бөлісе аласыз. Код сіз көрсеткен нөмірге жіберіледі.</string>
+  <string name="phone_number_may_be_stored_help">Денсаулық сақтау мекемесі телефон нөміріңізді уақытша сақтап қоюы мүмкін. Бұл шара адамдардың қатарынан бірнеше нәтиже жіберуін болдырмас үшін жасалады.</string>
+  <string name="test_date_prompt">Сынақ күні</string>
+  <string name="test_date_help">Сынақ күні соңғы 14 күннің ішінде болуы керек.</string>
+  <string name="tested_for_covid_checkbox_text">Соңғы 14 күнде мен тапсырған COVID-19 сынағы оң нәтиже көрсетті.</string>
+  <string name="btn_send_code">Код жіберу</string>
+  <string name="enter_code_help">%1$s мекемесінің жіберген кодын енгізіңіз.</string>
+  <string name="positive_result_already_reported_title">Жақында ғана сынақ нәтижесі туралы хабарлап қойдыңыз.</string>
+  <string name="positive_result_already_reported_content">Тағы бір сынақ нәтижесін жібергіңіз келсе, %1$s мекемесіне хабарласыңыз.</string>
+  <string name="self_report_bad_code">Код дұрыс емес. Растау кодын сұрау және енгізу үшін бір құрылғы пайдаланыңыз.</string>
+  <string name="self_report_bad_phone_number">Нөміріңізді тексеріп, қайталап көріңіз. %1$s</string>
+  <string name="self_report_code_requested_too_many_times">Сұраулар саны тым көп болып кетті. Әлі де код керек болса, %1$s мекемесіне хабарласыңыз.</string>
+  <plurals name="self_report_code_already_requested">
+    <item quantity="one">Сұраулар саны тым көп болып кетті. Жаңа кодты %1$d минуттан кейін сұрай аласыз.</item>
+    <item quantity="other">Сұраулар саны тым көп болып кетті. Жаңа кодты %1$d минуттан кейін сұрай аласыз.</item>
+  </plurals>
+  <string name="notify_others_notification_title">Сізбен байланыста болуы ықтимал адамдарды хабардар етуге көмектесіңіз</string>
   <string name="settings_exposure_notifications_subtitle">Ауру жұқтырғандармен байланыс туралы хабарландыру</string>
   <string name="settings_app_analytics_subtitle">Қолданбаның пайдаланылуы мен өнімділік дерегін бөлісу</string>
   <string name="settings_privacy_policy">Құпиялылық саясаты</string>
@@ -166,4 +189,9 @@
   <string name="private_analytics_footer_learn_more">Толығырақ</string>
   <string name="diagnosis_subtitle_template">%1$s: %2$s</string>
   <string name="empty_share_history_body">Бөлісу тарихы жоқ.</string>
+  <string name="share_diagnosis_share_test_result_title">Сынақ нәтижесін %1$s қолданбасымен бөлісу</string>
+  <string name="share_diagnosis_share_test_result_subtitle">COVID-19 індетімен күресуге үлес қосқаныңыз үшін рақмет!</string>
+  <string name="share_diagnosis_share_test_result_body">Нәтижені бөліскенде, ауру белгілерінің басталғаны туралы да бөлісу опциясын таңдай аласыз. Бұл ақпарат COVID-19 вирусының таралуын тоқтатып, адамдарды құтқаруы мүмкін.</string>
+  <string name="sms_intercept_notice_title">Жаңалықтар</string>
+  <string name="sms_intercept_notice_content">Егер жергілікті денсаулық сақтау мекемесі сынақ нәтижесін жіберсе, қолданба еске салғыш арқылы нәтиже жіберуді хабарлайды және ауру жұқтырғандармен байланыс ықтималдығы туралы хабарлауға көмектеседі. Мұны кез келген уақытта параметрлерден өшіре аласыз.</string>
 </resources>

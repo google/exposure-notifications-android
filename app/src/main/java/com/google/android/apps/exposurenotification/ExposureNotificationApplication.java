@@ -19,7 +19,6 @@ package com.google.android.apps.exposurenotification;
 
 import android.app.Application;
 import android.os.Build.VERSION_CODES;
-import android.util.Log;
 import androidx.annotation.Keep;
 import androidx.annotation.Nullable;
 import androidx.hilt.work.HiltWorkerFactory;
@@ -27,6 +26,7 @@ import androidx.lifecycle.ProcessLifecycleOwner;
 import androidx.work.Configuration;
 import androidx.work.Configuration.Builder;
 import androidx.work.WorkManager;
+import com.google.android.apps.exposurenotification.common.Qualifiers.BackgroundExecutor;
 import com.google.android.apps.exposurenotification.logging.ApplicationObserver;
 import com.google.android.apps.exposurenotification.slices.SlicePermissionManager;
 import com.google.android.apps.exposurenotification.work.WorkScheduler;
@@ -34,6 +34,7 @@ import com.google.common.base.Optional;
 import com.google.firebase.FirebaseApp;
 import com.jakewharton.threetenabp.AndroidThreeTen;
 import dagger.hilt.android.HiltAndroidApp;
+import java.util.concurrent.ExecutorService;
 import javax.inject.Inject;
 
 /**
@@ -43,7 +44,8 @@ import javax.inject.Inject;
 public final class ExposureNotificationApplication extends Application implements
     Configuration.Provider {
 
-  private static final String TAG = "ENApplication";
+  public static final int DEBUG = 3;
+
   @Inject
   HiltWorkerFactory workerFactory;
 
@@ -64,6 +66,10 @@ public final class ExposureNotificationApplication extends Application implement
   @Inject
   Optional<SlicePermissionManager> slicePermissionManager;
 
+  @Inject
+  @BackgroundExecutor
+  ExecutorService backgroundExecutor;
+
   /**
    * Done to ensure firebase services are initialized properly.
    */
@@ -78,7 +84,7 @@ public final class ExposureNotificationApplication extends Application implement
 
     // Grant slice runtime permission
     if (slicePermissionManager.isPresent() && android.os.Build.VERSION.SDK_INT < VERSION_CODES.P) {
-      slicePermissionManager.get().grantSlicePermission();
+      backgroundExecutor.execute(() -> slicePermissionManager.get().grantSlicePermission());
     }
 
     AndroidThreeTen.init(this);
@@ -94,7 +100,7 @@ public final class ExposureNotificationApplication extends Application implement
 
     // Enable debug logging for debug builds.
     if (BuildConfig.DEBUG) {
-      builder.setMinimumLoggingLevel(Log.DEBUG);
+      builder.setMinimumLoggingLevel(DEBUG);
     }
     return builder.build();
   }

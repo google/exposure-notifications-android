@@ -28,9 +28,10 @@
   <string name="onboarding_opt_in_title">\'Exposure Notifications\' চালু করতে অনুমতিগুলি প্রয়োজন</string>
   <string name="onboarding_finish_title">\'Exposure Notifications\' চালু করতে অনুমতিগুলি দিয়ে রাখতে হবে</string>
   <string name="onboarding_exposure_notifications_title">\'Exposure Notifications\' চালু করুন</string>
-  <string name="onboarding_exposure_notifications_detail">আপনার আশেপাশে কেউ COVID-19 সংক্রমিত হলে তার বিজ্ঞপ্তি পান।
-    \n\nআপনার ফোন ব্লুটুথ ব্যবহার করে আশেপাশের অন্যান্য ফোন থেকে নিরাপদে র‍্যান্ডম আইডি সংগ্রহ এবং শেয়ার করবে।
-    \n\n আপনার সরকারি স্বাস্থ্য কর্তৃপক্ষের মাধ্যমে সেট করা প্যারামিটার অনুযায়ী আপনাকে বিজ্ঞপ্তি দেওয়া হবে কিনা তা নির্ধারণ করতে সম্ভাব্য এক্সপোজার সম্পর্কিত তথ্য যেমন তারিখ, সময়কাল এবং সিগন্যালের ক্ষমতা ব্যবহার করা হবে।</string>
+  <string name="onboarding_exposure_notifications_detail">আপনার কাছাকাছি কোনও COVID-19 সংক্রমিত ব্যক্তি আছেন কিনা, সে বিষয়ে বিজ্ঞপ্তি পান।
+    \n\nআপনার ফোন ব্লুটুথ ব্যবহার করে আশেপাশের অন্যান্য ফোন থেকে নিরাপদে র‍্যান্ডম আইডি সংগ্রহ এবং শেয়ার করে।
+    \n\n সরকারি স্বাস্থ্য কর্তৃপক্ষের মাধ্যমে সেট করা প্যারামিটার অনুযায়ী, আপনাকে বিজ্ঞপ্তি দেওয়া হবে কিনা তা নির্ধারণ করতে সম্ভাব্য এক্সপোজার সম্পর্কিত তথ্য যেমন তারিখ, সময়কাল ও সিগন্যাল ক্ষমতা ব্যবহার করা হবে।
+    \n\nআপনার রিপোর্ট পজিটিভ হলে, হয়ত স্বাস্থ্য কর্তৃপক্ষের সাথে ফলাফল শেয়ার করার ব্যাপারে বিজ্ঞপ্তি পাবেন।</string>
   <string name="onboarding_metrics_title">এই অ্যাপটি আরও উন্নত করতে সাহায্য করুন</string>
   <string name="onboarding_metrics_subtitle">Google-এর সাথে অ্যাপের ব্যবহার ও পারফর্ম্যান্স সংক্রান্ত ডেটা শেয়ার করুন</string>
   <string name="onboarding_metrics_description">অ্যাপের গুনমান বজায় রাখতে ও তা আরও উন্নত করতে, অ্যাপের ব্যবহার ও পারফর্ম্যান্সের ব্যাপারে ব্যবহারকারীকে শনাক্ত করে না এমন কিছু সীমিত ডেটা Google-এর সাথে শেয়ার করা হয়। এই ডেটা আপনাকে শনাক্ত করে না। %1$s</string>
@@ -60,10 +61,10 @@
   <string name="notify_turn_on_exposure_notifications_header">COVID-19 সংক্রমিত ব্যক্তির সংস্পর্শে এসেছেন কিনা সেই সম্পর্কিত বিজ্ঞপ্তি পেতে, Exposure Notifications চালু করুন। %1$s</string>
   <string name="using_en_helps_even_if_vaccinated">এই পরিষেবা আপনার কমিউনিটিকে সুরক্ষিত রাখতে সাহায্য করে - এমনকি আপনি যদি টিকা নিয়েও থাকেন।</string>
   <string name="share_begin_title">আপনার কমিউনিটিকে সুরক্ষিত রাখতে সাহায্য করুন</string>
-  <string name="share_close_title">শেয়ার না করেই চলে যাবেন?</string>
-  <string name="share_close_detail">যত শীঘ্র সম্ভব পরীক্ষার ফলাফল শেয়ার করে সবচেয়ে ভালভাবে আপনি কমিউনিটিকে সাহায্য করতে পারেন। এখনও পর্যন্ত আপনার দেওয়া পরীক্ষা ফলাফলের তথ্য অ্যাপে সেভ করা আছে যাতে আপনি পরে আবার এটি এডিট করতে পারেন।</string>
-  <string name="btn_resume_later">হ্যাঁ, চলে যাব</string>
-  <string name="verify_test_result_title">COVID-19-এর পরীক্ষা সংক্রান্ত তথ্য লিখুন</string>
+  <string name="share_close_title">শেয়ার না করেই বন্ধ করতে চান?</string>
+  <string name="share_close_detail">ফলাফল যত তাড়াতাড়ি সম্ভব শেয়ার করে আপনার কমিউনিটিকে সবচেয়ে সেরা উপায়ে সাহায্য করতে পারেন। এই মুহূর্তে শেয়ার না করে বন্ধ করলে, পরে মত বদলালে আপনি যেখানে বন্ধ করেছেন সেখান থেকেই শুরু করতে পারবেন।</string>
+  <string name="btn_resume_later">হ্যাঁ, বন্ধ করুন</string>
+  <string name="verify_test_result_title">আপনার যাচাইকরণ কোড লিখুন</string>
   <string name="enter_your_test_identifier">যাচাইকরণ কোড</string>
   <string name="share_test_identifier_help">এই এককালীন কোডটি আপনার পরীক্ষার ফলাফল যাচাই করতে ব্যবহার করা হয়।</string>
   <string name="share_test_identifier_verified">কোড যাচাই করা হয়েছে</string>
@@ -83,20 +84,19 @@
   <string name="share_review_status_confirmed">পজিটিভ</string>
   <string name="share_review_status_likely">হতেও পারে</string>
   <string name="share_review_status_negative">নেগেটিভ</string>
-  <string name="share_review_onset_subtitle">উপসর্গ সংক্রান্ত তথ্য</string>
-  <string name="share_review_onset_date">%1$s-এ প্রথম উপসর্গ দেখা দিয়েছিল</string>
+  <string name="share_review_onset_subtitle">উপসর্গ</string>
+  <string name="share_review_onset_date">%1$s-এ শুরু হয়েছে</string>
   <string name="share_review_onset_no_symptoms">কোনও উপসর্গ দেখা যায়নি</string>
   <string name="share_review_onset_no_answer">উত্তর পাওয়া যায়নি</string>
-  <string name="share_review_travel_subtitle">ভ্রমণের ইতিহাস</string>
-  <string name="share_review_travel_confirmed">গত ১৪ দিনে ভ্রমণ করেছেন</string>
+  <string name="share_review_travel_subtitle">ভ্রমণ</string>
+  <string name="share_review_travel_confirmed">গত ১৪ দিনের মধ্যে</string>
   <string name="share_review_travel_no_travel">গত ১৪ দিন কোথাও যাননি</string>
   <string name="share_review_travel_no_answer">উত্তর পাওয়া যায়নি</string>
   <string name="share_confirm_title">আপনার COVID-19 সংক্রান্ত স্ট্যাটাস শেয়ার করার জন্য ধন্যবাদ</string>
   <string name="not_shared_confirm_title">আপনার পরীক্ষার ফলাফল শেয়ার করা হয়নি</string>
   <string name="not_shared_confirm_detail">আপনার COVID-19 পরীক্ষার ফলাফল শেয়ার করা হয়নি। আবার চেষ্টা করুন।</string>
   <string name="status_shared_detail_title">COVID-19-এর পরীক্ষার শেয়ার করা স্ট্যাটাস</string>
-  <string name="delete_test_result_title">COVID-19-এর পরীক্ষার ফলাফল মুছে দেবেন?</string>
-  <string name="delete_test_result_detail">এই অ্যাপ থেকে আপনার পরীক্ষার ফলাফল মুছে দেওয়া হবে।</string>
+  <string name="delete_test_result_title">আপনার পরীক্ষার ফলাফল মুছতে চান?</string>
   <string name="delete_test_result_confirmed">COVID-19-এর পরীক্ষার ফলাফল মুছে দেওয়া হয়েছে</string>
   <string name="share_error_no_internet">অফলাইনে পরীক্ষার ফলাফল শেয়ার করা যাচ্ছে না। ইন্টারনেট কানেকশন ঠিক আছে কিনা দেখে আবার চেষ্টা করুন।</string>
   <string name="share_vaccination_title">আপনি কি Covid-19 সংক্রমণের জন্য টিকা নিয়েছেন?</string>
@@ -105,6 +105,29 @@
   <string name="share_vaccination_vaccinated">হ্যাঁ, আমি টিকা নিয়েছি</string>
   <string name="share_vaccination_not_vaccinated">না</string>
   <string name="share_vaccination_unknown">উত্তর দিতে চাই না</string>
+  <string name="do_you_have_code_title">আপনি কোনও কোড পেয়েছেন?</string>
+  <string name="do_you_have_code_content">আপনি COVID-19 সংক্রমিত হলে, আপনার স্বাস্থ্য কর্তৃপক্ষ সাধারণত ফোনের মাধ্যমে বা টেক্সট করে একটি যাচাইকরণ কোড পাঠায়, যাতে ফলাফল শেয়ার করতে পারেন।</string>
+  <string name="btn_i_have_code">হ্যাঁ, আমার কোড আছে</string>
+  <string name="btn_i_need_code">আমার কোডের প্রয়োজন</string>
+  <string name="get_verification_code_title">একটি যাচাইকরণ কোড পান</string>
+  <string name="phone_number_prompt">ফোন নম্বর</string>
+  <string name="phone_number_help">যাচাইকরণ কোডের মাধ্যমে সবসময় আপনার পরীক্ষার ফলাফল শেয়ার করতে পারবেন। কোড আপনার দেওয়া নম্বরে পাঠানো হবে।</string>
+  <string name="phone_number_may_be_stored_help">লোকজন যাতে একাধিক ফলাফল জমা দিতে না পারেন সেই জন্য আপনার ফোন নম্বর হয়ত সরকারি স্বাস্থ্য কর্তৃপক্ষের কাছে সাময়িকভাবে সেভ করা থাকতে পারে।</string>
+  <string name="test_date_prompt">পরীক্ষার তারিখ</string>
+  <string name="test_date_help">পরীক্ষার তারিখ গত ১৪ দিনের মধ্যে হওয়া উচিত।</string>
+  <string name="tested_for_covid_checkbox_text">গত ১৪ দিনের মধ্যে করা COVID-19 পরীক্ষার ফলাফলে আমাকে পজিটিভ বলা হয়েছে।</string>
+  <string name="btn_send_code">কোড পাঠান</string>
+  <string name="enter_code_help">%1$s-এর মাধ্যমে কোডটি লিখুন।</string>
+  <string name="positive_result_already_reported_title">আপনি সম্প্রতি পরীক্ষার ফলাফল জানিয়ে দিয়েছেন।</string>
+  <string name="positive_result_already_reported_content">অন্য পরীক্ষার ফলাফল শেয়ার করতে চাইলে, %1$s-এর সাথে যোগাযোগ করুন।</string>
+  <string name="self_report_bad_code">ভুল কোড। আপনি দুটি অনুরোধের ক্ষেত্রে একই ডিভাইস ব্যবহার করছেন এবং আপনার যাচাইকরণ কোড লিখেছেন কিনা ভাল করে দেখে নিন।</string>
+  <string name="self_report_bad_phone_number">আপনার নম্বর চেক করে আবার চেষ্টা করুন। %1$s</string>
+  <string name="self_report_code_requested_too_many_times">আপনি অনেকবার অনুরোধ করেছেন। এখনও কোড প্রয়োজন হলে %1$s-এর সাথে যোগাযোগ করুন।</string>
+  <plurals name="self_report_code_already_requested">
+    <item quantity="one">আপনি অনেক বেশি বার অনুরোধ করেছেন। আপনি %1$d মিনিট পরে অন্য কোডের জন্য অনুরোধ করতে পারবেন।</item>
+    <item quantity="other">আপনি অনেক বেশি বার অনুরোধ করেছেন। আপনি %1$d মিনিট পরে অন্য কোডের জন্য অনুরোধ করতে পারবেন।</item>
+  </plurals>
+  <string name="notify_others_notification_title">কারও সংক্রমিত হওয়ার সম্ভাবনা থাকলে তাদের সাবধান করে দিতে, বিজ্ঞপ্তি দিয়ে সাহায্য করুন</string>
   <string name="settings_exposure_notifications_subtitle">Exposure Notifications</string>
   <string name="settings_app_analytics_subtitle">অ্যাপের ব্যবহার ও পারফর্ম্যান্স সংক্রান্ত তথ্য শেয়ার করা</string>
   <string name="settings_privacy_policy">গোপনীয়তা নীতি</string>
@@ -166,4 +189,9 @@
   <string name="private_analytics_footer_learn_more">আরও জানুন</string>
   <string name="diagnosis_subtitle_template">%2$s-এ %1$s</string>
   <string name="empty_share_history_body">শেয়ার করা কোনও ইতিহাস নেই</string>
+  <string name="share_diagnosis_share_test_result_title">%1$s-এর সাথে আপনার পরীক্ষার ফলাফল শেয়ার করুন</string>
+  <string name="share_diagnosis_share_test_result_subtitle">COVID-19-এর সংক্রমণ প্রতিরোধ করতে সাহায্য করার জন্য আপনাকে ধন্যবাদ।</string>
+  <string name="share_diagnosis_share_test_result_body">ফলাফল শেয়ার করার সময়, উপসর্গ কখন দেখা দিতে শুরু করেছিল সেই সম্পর্কে তথ্য শেয়ার করার বিকল্পও বেছে নিতে পারেন। এই তথ্য COVID-19-এর সংক্রমণ প্রতিরোধ করতে এবং জীবন বাঁচাতে সাহায্য করতে পারে।</string>
+  <string name="sms_intercept_notice_title">নতুন কী রয়েছে</string>
+  <string name="sms_intercept_notice_content">যদি আপনার স্থানীয় স্বাস্থ্য কর্তৃপক্ষ আপনাকে পরীক্ষার ফলাফল পাঠায় তাহলে আপনার অ্যাপ আপনাকে ফলাফল জমা দেওয়ার জন্য রিমাইন্ডার দিয়ে আপনাকে জানাতে পারে এবং অন্যদেরকে সম্ভাব্য ঝুঁকি সম্পর্কে সতর্ক করতে সহায়তা করে। আপনি সেটিংস থেকে এটি যেকোনও সময় বন্ধ করে দিতে পারেন।</string>
 </resources>

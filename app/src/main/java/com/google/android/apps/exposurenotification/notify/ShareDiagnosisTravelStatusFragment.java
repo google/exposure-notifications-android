@@ -42,8 +42,6 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class ShareDiagnosisTravelStatusFragment extends ShareDiagnosisBaseFragment {
 
-  private static final String TAG = "ShareExposureEditFrag";
-
   private FragmentShareDiagnosisTravelStatusBinding binding;
 
   @Override
@@ -82,7 +80,7 @@ public class ShareDiagnosisTravelStatusFragment extends ShareDiagnosisBaseFragme
       shareDiagnosisViewModel.setTravelStatus(travelStatus);
     });
 
-    binding.home.setOnClickListener(v -> showCloseWarningAlertDialog());
+    binding.home.setOnClickListener(v -> showCloseShareDiagnosisFlowAlertDialog());
 
     shareDiagnosisViewModel.getNextStepLiveData(Step.TRAVEL_STATUS).observe(getViewLifecycleOwner(),
         step -> binding.shareNextButton

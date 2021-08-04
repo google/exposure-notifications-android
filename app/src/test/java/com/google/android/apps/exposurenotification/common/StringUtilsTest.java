@@ -21,6 +21,8 @@ import static com.google.android.apps.exposurenotification.common.StringUtils.EL
 import static com.google.common.truth.Truth.assertThat;
 
 import android.content.Context;
+import android.text.SpannableStringBuilder;
+import android.text.style.BulletSpan;
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import com.google.android.apps.exposurenotification.common.time.Clock;

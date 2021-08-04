@@ -59,7 +59,7 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:gravity="center"
-          android:layout_marginBottom="@dimen/padding_extra_large"
+          android:layout_marginBottom="@dimen/padding_huge"
           android:text="@string/verify_test_result_title"
           android:textAppearance="?attr/textAppearanceHeadline5" />
 
@@ -111,6 +111,7 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:orientation="horizontal"
+          android:layout_marginTop="@dimen/padding_small"
           android:visibility="gone">
 
           <ImageView
@@ -126,6 +127,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:paddingStart="@dimen/padding_small"
             android:textAppearance="?attr/textAppearanceBody1"
             android:layout_gravity="center_vertical"
             android:textColor="@color/material_error_color"
@@ -134,6 +136,7 @@
         </LinearLayout>
 
         <TextView
+          android:id="@+id/code_help"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:textAppearance="?attr/textAppearanceBody1"

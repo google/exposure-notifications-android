@@ -28,9 +28,10 @@
   <string name="onboarding_opt_in_title">ସଂକ୍ରମଣ ବିଜ୍ଞପ୍ତିଗୁଡ଼ିକୁ ସକ୍ଷମ କରିବା ପାଇଁ ଅନୁମତି ଆବଶ୍ୟକ</string>
   <string name="onboarding_finish_title">ସଂକ୍ରମଣ ବିଜ୍ଞପ୍ତିଗୁଡ଼ିକୁ ସକ୍ଷମ କରିବା ପାଇଁ ନିୟମିତ ଅନୁମତି ଆବଶ୍ୟକ</string>
   <string name="onboarding_exposure_notifications_title">ସଂକ୍ରମଣ ବିଜ୍ଞପ୍ତିଗୁଡ଼ିକ ଚାଲୁ କରନ୍ତୁ</string>
-  <string name="onboarding_exposure_notifications_detail">ଯଦି ଆପଣ କୌଣସି COVID-19 ଟେଷ୍ଟ ରିପୋର୍ଟରେ ପଜିଟିଭ୍ ଆସିଥିବା ବ୍ୟକ୍ତିଙ୍କ ପାଖରେ ଅଛନ୍ତି, ତେବେ ସୂଚନା ପାଆନ୍ତୁ।
+  <string name="onboarding_exposure_notifications_detail">ଯଦି ଆପଣ COVID-19 ଟେଷ୍ଟ ରିପୋର୍ଟରେ ପଜିଟିଭ୍ ଆସିଥିବା କେହି ଜଣେ ବ୍ୟକ୍ତିଙ୍କ ନିକଟରେ ଅଛନ୍ତି, ତେବେ ସୂଚନା ପାଆନ୍ତୁ।
     \n\nଆଖପାଖରେ ଥିବା ଅନ୍ୟ ଫୋନଗୁଡ଼ିକ ସହ ରେଣ୍ଡମ୍ IDଗୁଡ଼ିକୁ ସୁରକ୍ଷିତ ଭାବେ ସଂଗ୍ରହ ଏବଂ ସେୟାର୍ କରିବାକୁ ଆପଣଙ୍କ ଫୋନ୍ ବ୍ଲୁଟୁଥ୍ ବ୍ୟବହାର କରେ।
-    \n\nଆପଣଙ୍କ ଜନ ସ୍ୱାସ୍ଥ୍ୟ କର୍ତ୍ତୃପକ୍ଷଙ୍କ ଦ୍ୱାରା ସେଟ୍ କରାଯାଇଥିବା ପାରାମିଟରଗୁଡ଼ିକ ଆଧାରରେ ଆପଣଙ୍କୁ ସୂଚିତ କରାଯିବ ନା ନାହିଁ ତାହା ନିର୍ଦ୍ଧାରଣ କରିବାକୁ ଏକ ସମ୍ଭାବ୍ୟ ସଂକ୍ରମଣ ସହ ସମ୍ବନ୍ଧିତ ତାରିଖ, ଅବଧି ଏବଂ ସିଗନାଲର କ୍ଷମତାକୁ ବ୍ୟବହାର କରାଯିବ।</string>
+    \n\nଆପଣଙ୍କ ଜନ ସ୍ୱାସ୍ଥ୍ୟ କର୍ତ୍ତୃପକ୍ଷଙ୍କ ଦ୍ୱାରା ସେଟ୍ କରାଯାଇଥିବା ପାରାମିଟରଗୁଡ଼ିକ ଆଧାରରେ ଆପଣଙ୍କୁ ସୂଚିତ କରାଯିବ ନା ନାହିଁ ତାହା ସ୍ଥିର କରିବାକୁ ଏକ ସମ୍ଭାବ୍ୟ ସଂକ୍ରମଣ ସହ ସମ୍ବନ୍ଧିତ ତାରିଖ, ଅବଧି ଏବଂ ସିଗନାଲର କ୍ଷମତାକୁ ବ୍ୟବହାର କରାଯିବ।
+    \n\nଯଦି ଆପଣ ସଂକ୍ରମିତ ହୋଇଛନ୍ତି, ତେବେ ଆପଣଙ୍କ ସ୍ୱାସ୍ଥ୍ୟ କର୍ତ୍ତୃପକ୍ଷଙ୍କ ସହ ଆପଣଙ୍କ ରିପୋର୍ଟଗୁଡ଼ିକୁ ସେୟାର୍ କରିବା ପାଇଁ ଆପଣ ଏକ ରିମାଇଣ୍ଡର୍ ପାଇପାରନ୍ତି।</string>
   <string name="onboarding_metrics_title">ଏହି ଆପକୁ ଉନ୍ନତ କରିବାରେ ସାହାଯ୍ୟ କରନ୍ତୁ</string>
   <string name="onboarding_metrics_subtitle">ଆପର ବ୍ୟବହାର ଏବଂ କାର୍ଯ୍ୟଦକ୍ଷତା ଡାଟା Google ସହିତ ସେୟାର୍ କରନ୍ତୁ</string>
   <string name="onboarding_metrics_description">ଆପକୁ ପରିଚାଳନା କରିବା ଏବଂ ଉନ୍ନତ କରିବାରେ ସାହାଯ୍ୟ କରିବା ପାଇଁ, ଆପର କାର୍ଯ୍ୟଦକ୍ଷତା ଏବଂ ବ୍ୟବହାର ବିଷୟରେ ବ୍ୟକ୍ତିଗତ ଚିହ୍ନଟକାରୀ ସୂଚନା-ବିନା କିଛି ସୀମିତ ଡାଟା Google ସହ ସେୟାର୍ କରାଯାଏ। ଏହି ଡାଟା ଆପଣଙ୍କୁ ଚିହ୍ନଟ କରେ ନାହିଁ। %1$s</string>
@@ -60,10 +61,10 @@
   <string name="notify_turn_on_exposure_notifications_header">ସମ୍ଭାବ୍ୟ COVID-19 ସଂକ୍ରମଣ ବିଷୟରେ ସୂଚନା ପାଇବାକୁ, ସଂକ୍ରମଣ ବିଜ୍ଞପ୍ତିକୁ ଚାଲୁ କରନ୍ତୁ। %1$s</string>
   <string name="using_en_helps_even_if_vaccinated">ଏହି ସେବା ବ୍ୟବହାର କରିବା ଆପଣଙ୍କୁ ଆପଣଙ୍କ କମ୍ୟୁନିଟୀକୁ ସୁରକ୍ଷା ଦେବାରେ ସାହାଯ୍ୟ କରେ - ଯଦିଓ ଆପଣଙ୍କୁ ଟିକାକରଣ କରାଯାଇଛି।</string>
   <string name="share_begin_title">ଆପଣଙ୍କ କମ୍ୟୁନିଟୀକୁ ସୁରକ୍ଷିତ ରଖିବାରେ ସାହାଯ୍ୟ କରନ୍ତୁ</string>
-  <string name="share_close_title">ସେୟାର୍ ନକରି ବାହାରିଯିବେ?</string>
-  <string name="share_close_detail">ଆପଣ ଆପଣଙ୍କ ଟେଷ୍ଟ ରିପୋର୍ଟ ଶୀଘ୍ର ସେୟାର୍ କଲେ ଆପଣ ଆପଣଙ୍କ କମ୍ୟୁନିଟୀକୁ ଭଲ ଭାବରେ ସାହାଯ୍ୟ କରିପାରିବେ। ତଥାପି, ଆପଣ ପରେ ପୁଣି ଏଡିଟିଂ ଆରମ୍ଭ କରିବା ପାଇଁ ଏପର୍ଯ୍ୟନ୍ତ ଲେଖିଥିବା ଟେଷ୍ଟ ରିପୋର୍ଟ ସୂଚନା ଆପରେ ସେଭ୍ କରାଯାଏ।</string>
-  <string name="btn_resume_later">ହଁ, ବାହାରି ଯାଆନ୍ତୁ</string>
-  <string name="verify_test_result_title">COVID-19 ଟେଷ୍ଟର ସୂଚନା ଲେଖନ୍ତୁ</string>
+  <string name="share_close_title">ସେୟାର୍ ନକରି ବନ୍ଦ କରିବେ?</string>
+  <string name="share_close_detail">ଆପଣ ନିଜ କମ୍ୟୁନିଟୀକୁ ସାହାଯ୍ୟ କରିବାର ସର୍ବୋତ୍ତମ ଉପାୟ ହେଉଛି ଆପଣଙ୍କ ରିପୋର୍ଟକୁ ଯଥାଶୀଘ୍ର ସେୟାର କରିବା। ଯଦି ଆପଣ ସେୟାର ନକରି ଏବେ ବନ୍ଦ କରନ୍ତି, ତେବେ ଆପଣ ପରେ ମନ ବଦଳାଇଲେ, ଆପଣ ଯେଉଁଠି ଛାଡ଼ିଥିଲେ ସେଠାରୁ ଆରମ୍ଭ କରିପାରିବେ।</string>
+  <string name="btn_resume_later">ହଁ, ବନ୍ଦ କରନ୍ତୁ</string>
+  <string name="verify_test_result_title">ଆପଣଙ୍କ ଯାଞ୍ଚକରଣ କୋଡ୍ ଲେଖନ୍ତୁ</string>
   <string name="enter_your_test_identifier">ଯାଞ୍ଚକରଣ କୋଡ୍</string>
   <string name="share_test_identifier_help">ଆପଣଙ୍କ ଟେଷ୍ଟ ରିପୋର୍ଟ ଯାଞ୍ଚ କରିବା ପାଇଁ ଏହି ୱାନ୍-ଟାଇମ୍ କୋଡ୍ ବ୍ୟବହାର କରାଯାଏ।</string>
   <string name="share_test_identifier_verified">କୋଡ୍ ଯାଞ୍ଚ କରାଯାଇଛି</string>
@@ -73,30 +74,29 @@
   <string name="test_date_label">ଲକ୍ଷଣ ଆରମ୍ଭ ହୋଇଥିବା ତାରିଖ</string>
   <string name="share_onset_symptoms">ହଁ</string>
   <string name="share_onset_no_symptoms">ନାହିଁ</string>
-  <string name="share_onset_no_answer">ଉତ୍ତର ଦେବାକୁ ଚାହୁଁନାହାଁନ୍ତି</string>
+  <string name="share_onset_no_answer">ମୁଁ ଉତ୍ତର ଦେବାକୁ ପସନ୍ଦ କରୁନାହିଁ</string>
   <string name="share_travel_title">ଆପଣ ଗତ 14 ଦିନ ମଧ୍ୟରେ ଯାତ୍ରା କରିଛନ୍ତି କି?</string>
   <string name="share_travel_confirmed">ହଁ</string>
   <string name="share_travel_no_travel">ନାହିଁ</string>
-  <string name="share_travel_no_answer">ଉତ୍ତର ଦେବାକୁ ଚାହୁଁନାହାଁନ୍ତି</string>
+  <string name="share_travel_no_answer">ମୁଁ ଉତ୍ତର ଦେବାକୁ ପସନ୍ଦ କରୁନାହିଁ</string>
   <string name="share_review_title">ଆପଣଙ୍କ ସୂଚନାର ସମୀକ୍ଷା କରନ୍ତୁ</string>
   <string name="share_review_status_subtitle">COVID-19 ସ୍ଥିତି</string>
   <string name="share_review_status_confirmed">ପଜିଟିଭ୍</string>
   <string name="share_review_status_likely">ସମ୍ଭାବନା ଅଛି</string>
   <string name="share_review_status_negative">ନେଗେଟିଭ୍</string>
-  <string name="share_review_onset_subtitle">ଲକ୍ଷଣର ସୂଚନା</string>
-  <string name="share_review_onset_date">%1$sରୁ ଲକ୍ଷଣ</string>
+  <string name="share_review_onset_subtitle">ଲକ୍ଷଣଗୁଡ଼ିକ</string>
+  <string name="share_review_onset_date">%1$sରୁ ଆରମ୍ଭ ହୋଇଛି</string>
   <string name="share_review_onset_no_symptoms">କୌଣସି ଲକ୍ଷଣ ନାହିଁ</string>
   <string name="share_review_onset_no_answer">ଉତ୍ତର ଦେଇନାହାଁନ୍ତି</string>
-  <string name="share_review_travel_subtitle">ଯାତ୍ରାର ଇତିହାସ</string>
-  <string name="share_review_travel_confirmed">ଗତ 14 ଦିନ ମଧ୍ୟରେ ଯାତ୍ରା କରିଛନ୍ତି</string>
+  <string name="share_review_travel_subtitle">ଭ୍ରମଣ</string>
+  <string name="share_review_travel_confirmed">ଗତ 14 ଦିନ ମଧ୍ୟରେ</string>
   <string name="share_review_travel_no_travel">ଗତ 14 ଦିନ ମଧ୍ୟରେ କୌଣସି ଯାତ୍ରା କରାଯାଇନାହିଁ</string>
   <string name="share_review_travel_no_answer">ଉତ୍ତର ଦେଇନାହାଁନ୍ତି</string>
-  <string name="share_confirm_title">ଆପଣଙ୍କର COVID-19 ସ୍ଥିତି ସେୟାର୍ କରିଥିବା ଯୋଗୁଁ ଧନ୍ୟବାଦ</string>
+  <string name="share_confirm_title">ଆପଣଙ୍କ କୋଭିଡ-19ର ରିପୋର୍ଟ ସେୟାର୍ କରିଥିବା ଯୋଗୁଁ ଧନ୍ୟବାଦ</string>
   <string name="not_shared_confirm_title">ଆପଣଙ୍କ ଟେଷ୍ଟ ରିପୋର୍ଟ ସେୟାର୍ କରାଯାଇନାହିଁ</string>
   <string name="not_shared_confirm_detail">ଆପଣଙ୍କ COVID-19 ଟେଷ୍ଟ ରିପୋର୍ଟ ସେୟାର୍ କରାଯାଇନାହିଁ। ଦୟାକରି ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।</string>
   <string name="status_shared_detail_title">COVID-19 ସ୍ଥିତି ସେୟାର୍ କରାଯାଇଛି</string>
-  <string name="delete_test_result_title">COVID-19 ଟେଷ୍ଟ ରିପୋର୍ଟ ଡିଲିଟ୍ କରିବେ?</string>
-  <string name="delete_test_result_detail">ଆପଣଙ୍କ ଟେଷ୍ଟ ରିପୋର୍ଟର ବିବରଣୀ ଏହି ଆପରୁ ଡିଲିଟ୍ କରାଯିବ।</string>
+  <string name="delete_test_result_title">ଆପଣଙ୍କ ଟେଷ୍ଟ ରିପୋର୍ଟ ଡିଲିଟ୍ କରିବେ?</string>
   <string name="delete_test_result_confirmed">ଟେଷ୍ଟ ରିପୋର୍ଟ ଡିଲିଟ୍ କରାଯାଇଛି</string>
   <string name="share_error_no_internet">ଅଫଲାଇନରେ ଟେଷ୍ଟର ରିପୋର୍ଟ ସେୟାର୍ କରିପାରିବ ନାହିଁ। ଆପଣଙ୍କ ଇଣ୍ଟର୍ନେଟ୍ ସଂଯୋଗ ଯାଞ୍ଚ କରି ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।</string>
   <string name="share_vaccination_title">Covid-19 ବିରୁଦ୍ଧରେ ଆପଣଙ୍କୁ ଟିକାକରଣ କରାଯାଇଛି କି\?</string>
@@ -104,7 +104,30 @@
   <string name="share_vaccination_learn_more">ଅଧିକ ଜାଣନ୍ତୁ</string>
   <string name="share_vaccination_vaccinated">ହଁ, ମୋତେ ଟିକାକରଣ କରାଯାଇଛି</string>
   <string name="share_vaccination_not_vaccinated">ନା</string>
-  <string name="share_vaccination_unknown">ଉତ୍ତର ଦେବାକୁ ପସନ୍ଦ କରୁନାହିଁ</string>
+  <string name="share_vaccination_unknown">ମୁଁ ଉତ୍ତର ଦେବାକୁ ପସନ୍ଦ କରୁନାହିଁ</string>
+  <string name="do_you_have_code_title">ଆପଣ ଏକ କୋଡ୍ ପାଇଛନ୍ତି କି?</string>
+  <string name="do_you_have_code_content">ଯଦି ଆପଣ କୋଭିଡ-19ରେ ସଂକ୍ରମିତ ହୋଇଛନ୍ତି, ତେବେ ଆପଣଙ୍କ ସ୍ୱାସ୍ଥ୍ୟ କର୍ତ୍ତୃପକ୍ଷ ସାଧାରଣତଃ ଫୋନ୍ କିମ୍ବା ଟେକ୍ସଟ୍ ମେସେଜ୍ ମାଧ୍ୟମରେ ଏକ ଯାଞ୍ଚକରଣ କୋଡ୍ ପ୍ରଦାନ କରିଥାନ୍ତି ଯାହା ଫଳରେ ଆପଣ ଆପଣଙ୍କ ରିପୋର୍ଟ ସେୟାର୍ କରିପାରିବେ।</string>
+  <string name="btn_i_have_code">ହଁ, ମୋ ପାଖରେ ଏକ କୋଡ୍ ଅଛି</string>
+  <string name="btn_i_need_code">ମୋର ଏକ କୋଡ୍ ଦରକାର</string>
+  <string name="get_verification_code_title">ଏକ ଯାଞ୍ଚକରଣ କୋଡ୍ ପାଆନ୍ତୁ</string>
+  <string name="phone_number_prompt">ଫୋନ୍ ନମ୍ବର</string>
+  <string name="phone_number_help">ଏକ ଯାଞ୍ଚକରଣ କୋଡ୍ ଆପଣଙ୍କୁ ଆପଣଙ୍କ ଟେଷ୍ଟ ରିପୋର୍ଟଗୁଡ଼ିକୁ ସେୟାର୍ କରିବା ପାଇଁ ଅନୁମତି ଦିଏ। ଆପଣ ପ୍ରଦାନ କରିଥିବା ନମ୍ବରକୁ ଆପଣଙ୍କ କୋଡ୍ ପଠାଯିବ।</string>
+  <string name="phone_number_may_be_stored_help">ଗୋଟିଏରୁ ଅଧିକ ରିପୋର୍ଟ ଦାଖଲ କରିବାରୁ ଲୋକମାନଙ୍କୁ ପ୍ରତିରୋଧ କରିବା ପାଇଁ, ଆପଣଙ୍କ ଜନ ସ୍ୱାସ୍ଥ୍ୟ କର୍ତ୍ତୃପକ୍ଷଙ୍କ ଦ୍ୱାରା ଆପଣଙ୍କ ଫୋନ୍ ନମ୍ବର ଅସ୍ଥାୟୀ ଭାବେ ଷ୍ଟୋର୍ କରାଯାଇପାରେ।</string>
+  <string name="test_date_prompt">ଟେଷ୍ଟର ତାରିଖ</string>
+  <string name="test_date_help">ଟେଷ୍ଟର ତାରିଖ ଗତ 14 ଦିନ ମଧ୍ୟରେ ହେବା ଉଚିତ।</string>
+  <string name="tested_for_covid_checkbox_text">ଗତ 14 ଦିନ ମଧ୍ୟରେ କରାଯାଇଥିବା ଟେଷ୍ଟରେ ମୁଁ କୋଭିଡ-19ରେ ସଂକ୍ରମିତ ହୋଇଛି ବୋଲି ରିପୋର୍ଟ ପାଇଛି।</string>
+  <string name="btn_send_code">କୋଡ୍ ପଠାନ୍ତୁ</string>
+  <string name="enter_code_help">%1$s ଦ୍ୱାରା ଆପଣଙ୍କୁ ପଠାଯାଇଥିବା କୋଡ୍ ଲେଖନ୍ତୁ।</string>
+  <string name="positive_result_already_reported_title">ଆପଣ ଏବେ ଏକ \"ଟେଷ୍ଟ ରିପୋର୍ଟ\" ସେୟାର୍ କରିସାରିଛନ୍ତି।</string>
+  <string name="positive_result_already_reported_content">ଯଦି ଆପଣ ଅନ୍ୟ ଏକ \"ଟେଷ୍ଟ ରିପୋର୍ଟ\" ସେୟାର୍ କରିବାକୁ ଚାହାଁନ୍ତି, ତେବେ ଦୟାକରି %1$s ସହ ଯୋଗାଯୋଗ କରନ୍ତୁ।</string>
+  <string name="self_report_bad_code">ଅବୈଧ କୋଡ୍। ଆପଣ ଯାଞ୍ଚକରଣ କୋଡ୍ ନିମନ୍ତେ ଅନୁରୋଧ କରିବା ଏବଂ ଏହା ଲେଖିବା ଉଭୟ ପାଇଁ ସମାନ ଡିଭାଇସ୍ ବ୍ୟବହାର କରୁଛନ୍ତି ବୋଲି ସୁନିଶ୍ଚିତ କରନ୍ତୁ।</string>
+  <string name="self_report_bad_phone_number">ଆପଣଙ୍କ ନମ୍ବର ଯାଞ୍ଚ କରି ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ। %1$s</string>
+  <string name="self_report_code_requested_too_many_times">ଆପଣ ଅନେକଗୁଡ଼ିଏ ଅନୁରୋଧ କରିଛନ୍ତି। ଯଦି ଆପଣଙ୍କୁ ଏବେ ବି କୋଡ୍ ଦରକାର, ତେବେ %1$s ସହ ଯୋଗାଯୋଗ କରନ୍ତୁ।</string>
+  <plurals name="self_report_code_already_requested">
+    <item quantity="one">ଆପଣ ଅନେକଗୁଡ଼ିଏ ଅନୁରୋଧ କରିଛନ୍ତି। ଆପଣ %1$d ମିନିଟରେ ଅନ୍ୟ ଏକ କୋଡ୍ ପାଇଁ ଅନୁରୋଧ କରିପାରିବେ।</item>
+    <item quantity="other">ଆପଣ ଅନେକଗୁଡ଼ିଏ ଅନୁରୋଧ କରିଛନ୍ତି। ଆପଣ %1$d ମିନିଟରେ ଅନ୍ୟ ଏକ କୋଡ୍ ପାଇଁ ଅନୁରୋଧ କରିପାରିବେ।</item>
+  </plurals>
+  <string name="notify_others_notification_title">ଯେଉଁମାନେ ସଂସ୍ପର୍ଶରେ ଆସିଥାଇପାରନ୍ତି, ସେମାନଙ୍କୁ ସୂଚିତ କରିବାରେ ସାହାଯ୍ୟ କରନ୍ତୁ</string>
   <string name="settings_exposure_notifications_subtitle">ସଂକ୍ରମଣ ବିଜ୍ଞପ୍ତି</string>
   <string name="settings_app_analytics_subtitle">ଆପର ବ୍ୟବହାର ଏବଂ କାର୍ଯ୍ୟଦକ୍ଷତା ସେୟାରିଂ</string>
   <string name="settings_privacy_policy">ଗୋପନୀୟତା ନୀତି</string>
@@ -166,4 +189,9 @@
   <string name="private_analytics_footer_learn_more">ଅଧିକ ଜାଣନ୍ତୁ</string>
   <string name="diagnosis_subtitle_template">%2$sରେ %1$s</string>
   <string name="empty_share_history_body">କୌଣସି ସେୟାରିଂ ଇତିହାସ ନାହିଁ</string>
+  <string name="share_diagnosis_share_test_result_title">%1$s ସହ ଆପଣଙ୍କ ଟେଷ୍ଟ ରିପୋର୍ଟକୁ ସେୟାର୍ କରନ୍ତୁ</string>
+  <string name="share_diagnosis_share_test_result_subtitle">କୋଭିଡ-19ର ସଂକ୍ରମଣକୁ ପ୍ରତିରୋଧ କରିବାରେ ସାହାଯ୍ୟ କରିଥିବା ଯୋଗୁଁ ଆପଣଙ୍କୁ ଧନ୍ୟବାଦ।</string>
+  <string name="share_diagnosis_share_test_result_body">ଆପଣ ଆପଣଙ୍କ ରିପୋର୍ଟ ସେୟାର୍ କରିବା ସମୟରେ ଆପଣଙ୍କ ଲକ୍ଷଣ କେବେଠାରୁ ଆରମ୍ଭ ହୋଇଥିଲା ତାହା ସେୟାର୍ କରିବାକୁ ମଧ୍ୟ ବାଛିପାରିବେ। ଏହି ସୂଚନା କୋଭିଡ-19କୁ ବ୍ୟାପିବାରୁ ପ୍ରତିରୋଧ କରିବା ଏବଂ ଜୀବନ ବଞ୍ଚାଇବାରେ ସାହାଯ୍ୟ କରିପାରିବ।</string>
+  <string name="sms_intercept_notice_title">ନୂଆ କଣ ଅଛି</string>
+  <string name="sms_intercept_notice_content">ଯଦି ଆପଣଙ୍କ ସ୍ଥାନୀୟ ସ୍ୱାସ୍ଥ୍ୟ କର୍ତ୍ତୃପକ୍ଷ ଆପଣଙ୍କୁ ଏକ ଟେଷ୍ଟ ରିପୋର୍ଟ ପଠାନ୍ତି, ତେବେ ଆପଣଙ୍କ ରିପୋର୍ଟ ଦାଖଲ କରିବାକୁ ଏବଂ ସମ୍ଭାବ୍ୟ ସଂକ୍ରମଣ ସମ୍ପର୍କରେ ଅନ୍ୟମାନଙ୍କୁ ଆଲର୍ଟ କରିବାରେ ସାହାଯ୍ୟ କରିବା ପାଇଁ ଆପଣଙ୍କ ଆପ୍ ଏକ ରିମାଇଣ୍ଡର୍ ମାଧ୍ୟମରେ ଆପଣଙ୍କୁ ସୂଚିତ କରିପାରିବ। ଆପଣ ଯେ କୌଣସି ସମୟରେ ସେଟିଂସରେ ଏହାକୁ ଅକ୍ଷମ କରିପାରିବେ।</string>
 </resources>

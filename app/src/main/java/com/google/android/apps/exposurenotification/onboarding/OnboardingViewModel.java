@@ -57,6 +57,10 @@ public class OnboardingViewModel extends ViewModel {
     exposureNotificationSharedPreferences.setAppAnalyticsState(isEnabled);
   }
 
+  public void markSmsInterceptNoticeSeenAsync() {
+    exposureNotificationSharedPreferences.markInAppSmsNoticeSeenAsync();
+  }
+
   public LiveData<Boolean> isPrivateAnalyticsStateSetLiveData() {
     return exposureNotificationSharedPreferences.isPrivateAnalyticsStateSetLiveData();
   }

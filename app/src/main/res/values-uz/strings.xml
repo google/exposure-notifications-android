@@ -30,7 +30,8 @@
   <string name="onboarding_exposure_notifications_title">Ehtimoliy zararlanish bildirishnomalarini yoqish</string>
   <string name="onboarding_exposure_notifications_detail">Atrofingizdagi kimdir COVID-19 yuqtirgani haqida ogohlantirish oling.
     \n\nTelefoningiz tasodifiy identifikatorlarni jamlash va yaqin-atrofdagi boshqa telefonlarga ulashish uchun Bluetooth aloqasidan foydalanadi.
-    \n\nIlovaga uchrashilgan sana va telefonlar orqali kontakt davomiyligi hamda Bluetooth signali kuchiga oid axborot sogʻliqni saqlash idoralari tomonidan oʻrnatilgan parametrlarga asoslanib sizga xabar berish uchun ishlatiladi.</string>
+    \n\nIlovaga uchrashilgan sana va telefonlar orqali kontakt davomiyligi hamda Bluetooth signali kuchiga oid axborot sogʻliqni saqlash idoralari tomonidan oʻrnatilgan parametrlarga asoslanib sizga xabar berish uchun ishlatiladi.
+    \n\nNatijangiz musbat chiqsa, uni sogʻliqni saqlash idoralari bilan ulashish haqida eslatma olishingiz mumkin.</string>
   <string name="onboarding_metrics_title">Bu ilovani yaxshilashga yordam bering</string>
   <string name="onboarding_metrics_subtitle">Ilova haqidagi axborotlarni Googlega yuborish</string>
   <string name="onboarding_metrics_description">Ilovaning ishlashini yaxshilash uchun Google ilovadan foydalanish va uning xususiyatlari haqida qatʼiy cheklangan anonim axborotlarni jamlaydi. Bu axborotlarda siz haqingizda maʼlumot boʻlmaydi. %1$s</string>
@@ -60,10 +61,10 @@
   <string name="notify_turn_on_exposure_notifications_header">COVID-19 bilan ehtimoliy zararlanish bildirishnomalarini olish uchun Ehtimoliy zararlanish bildirishnomalarini yoqing. %1$s</string>
   <string name="using_en_helps_even_if_vaccinated">Bu xizmatdan foydalanish hatto emlangan boʻlsangiz ham kasallanish oldini olishga yordam beradi.</string>
   <string name="share_begin_title">Atrofingizdagilarni himoyalashda yordam bering</string>
-  <string name="share_close_title">Ulashmasdan chiqasizmi?</string>
-  <string name="share_close_detail">Test natijasini qancha tez ulashsangiz, atrofdagilarga shuncha yordam berasiz. Test natijasi ushbu ilovaga saqlandi va uni keyinroq tahrirlashingiz mumkin.</string>
-  <string name="btn_resume_later">Ha, chiqish</string>
-  <string name="verify_test_result_title">COVID-19 test natijasini kiriting</string>
+  <string name="share_close_title">Ulashmasdan yopilsinmi?</string>
+  <string name="share_close_detail">Hamjamiyatingizga yordam qilishning eng yaxshi usuli – natijalarni imkon qadar tezroq ulashish. Ulashmasdan yopsangiz, keyinroq ulashsangiz ham boʻladi.</string>
+  <string name="btn_resume_later">Ha, yopilsin</string>
+  <string name="verify_test_result_title">Tasdiqlash kodini kiriting</string>
   <string name="enter_your_test_identifier">Tasdiqlash kodi</string>
   <string name="share_test_identifier_help">Bu bir martalik kod test natijalarini tekshirish uchun ishlatiladi.</string>
   <string name="share_test_identifier_verified">Kod tasdiqlandi</string>
@@ -73,30 +74,29 @@
   <string name="test_date_label">Alomatlari chiqa boshlagan sana</string>
   <string name="share_onset_symptoms">Ha</string>
   <string name="share_onset_no_symptoms">Yoʻq</string>
-  <string name="share_onset_no_answer">Javob berishni istamayman</string>
+  <string name="share_onset_no_answer">Javob bermaslikni maʼqul koʻraman</string>
   <string name="share_travel_title">Oxirgi 14 kun ichida sayohatga chiqdingizmi?</string>
   <string name="share_travel_confirmed">Ha</string>
   <string name="share_travel_no_travel">Yoʻq</string>
-  <string name="share_travel_no_answer">Javob berishni istamayman</string>
+  <string name="share_travel_no_answer">Javob bermaslikni maʼqul koʻraman</string>
   <string name="share_review_title">Axborotlarni tekshiring</string>
   <string name="share_review_status_subtitle">COVID-19 holati</string>
   <string name="share_review_status_confirmed">Musbat</string>
   <string name="share_review_status_likely">Yuqqanga oʻxshaydi</string>
   <string name="share_review_status_negative">Manfiy</string>
-  <string name="share_review_onset_subtitle">Simptomlar haqida</string>
-  <string name="share_review_onset_date">Simptomlar %1$s sanasida aniqlangan</string>
+  <string name="share_review_onset_subtitle">Alomatlari</string>
+  <string name="share_review_onset_date">%1$s sanasida boshlandi</string>
   <string name="share_review_onset_no_symptoms">Simptomlar mavjud emas</string>
   <string name="share_review_onset_no_answer">Javob berilmagan</string>
-  <string name="share_review_travel_subtitle">Sayohat tarixi</string>
-  <string name="share_review_travel_confirmed">Oxirgi 14 kun ichida sayohat qilingan</string>
+  <string name="share_review_travel_subtitle">Sayohat</string>
+  <string name="share_review_travel_confirmed">Oʻtgan 14 kun ichida</string>
   <string name="share_review_travel_no_travel">Oxirgi 14 kun ichida sayohat qilinmagan</string>
   <string name="share_review_travel_no_answer">Javob berilmagan</string>
-  <string name="share_confirm_title">COVID-19 haqida axborot ulashganingiz uchun tashakkur</string>
+  <string name="share_confirm_title">COVID-19 natijasini ulashganingiz uchun tashakkur</string>
   <string name="not_shared_confirm_title">Test natijalari yuborilmadi</string>
   <string name="not_shared_confirm_detail">COVID-19 testi natijalari yuborilmadi. Qayta urining.</string>
   <string name="status_shared_detail_title">Ulashilgan COVID-19 holati axboroti</string>
-  <string name="delete_test_result_title">COVID-19 test natijasi oʻchirilsinmi?</string>
-  <string name="delete_test_result_detail">Test natijasi ilovadan oʻchirib tashlanadi.</string>
+  <string name="delete_test_result_title">Test natijasi oʻchirilsinmi?</string>
   <string name="delete_test_result_confirmed">Test natijasi tozalandi</string>
   <string name="share_error_no_internet">Tezlik tekshiruvi natijalarini oflayn ulashish imkonsiz. Internetni tekshiring va qayta urining.</string>
   <string name="share_vaccination_title">COVID-19 virusiga qarshi emlandingizmi?</string>
@@ -104,7 +104,30 @@
   <string name="share_vaccination_learn_more">Batafsil</string>
   <string name="share_vaccination_vaccinated">Ha, emlandim</string>
   <string name="share_vaccination_not_vaccinated">Yoʻq</string>
-  <string name="share_vaccination_unknown">Javob berishni istamayman</string>
+  <string name="share_vaccination_unknown">Javob bermaslikni maʼqul koʻraman</string>
+  <string name="do_you_have_code_title">Kod oldingizmi?</string>
+  <string name="do_you_have_code_content">COVID-19 uchun diagnostika natijasi musbat chiqsa, sogʻliqni saqlash idorasi telefoningizga yoki SMS shaklida tasdiqlash kodini yuboradi. U orali natijalarni ulashishingiz mumkin.</string>
+  <string name="btn_i_have_code">Ha, kod oldim</string>
+  <string name="btn_i_need_code">Menga kod kerak</string>
+  <string name="get_verification_code_title">Tasdiqlash kodini olish</string>
+  <string name="phone_number_prompt">Telefon raqami</string>
+  <string name="phone_number_help">Tasdiqlash kodi test natijalarini ulashish imkonini beradi. Kodingiz siz kiritgan raqamga yuboriladi.</string>
+  <string name="phone_number_may_be_stored_help">Bir nechta natija yuborilishining oldini olish uchun telefon raqamingizni sogʻliqni saqlash idoralari vaqtincha saqlab qoʻyishi mumkin.</string>
+  <string name="test_date_prompt">Test sanasi</string>
+  <string name="test_date_help">Test sanasi oxirgi 14 kun boʻlishi kerak.</string>
+  <string name="tested_for_covid_checkbox_text">Oxirgi 14 kun ichida COVID-19 uchun menga musbat test natijasi kelgan.</string>
+  <string name="btn_send_code">Kod soʻrash</string>
+  <string name="enter_code_help">Sizga %1$s. yuborgan kodni kiriting.</string>
+  <string name="positive_result_already_reported_title">Siz test natijasini yuborgansiz.</string>
+  <string name="positive_result_already_reported_content">Boshqa test natijasi haqida xabar berishni istasangiz, %1$s bilan bogʻlaning.</string>
+  <string name="self_report_bad_code">Kod xato. Soʻrov yuborgan qurilmadan foydalanayotganingizga ishonch hosil qiling va unga tasdiqlash kodini kiriting.</string>
+  <string name="self_report_bad_phone_number">Raqamni tekshiring va qayta urining. %1$s</string>
+  <string name="self_report_code_requested_too_many_times">Juda koʻp soʻrov yubordingiz. Hali ham kod kerak boʻlsa, %1$s bilan bogʻlaning.</string>
+  <plurals name="self_report_code_already_requested">
+    <item quantity="one">Juda koʻp soʻrov yubordingiz. %1$d daqiqadan keyin yana urinib koʻrishingiz mumkin.</item>
+    <item quantity="other">Juda koʻp soʻrov yubordingiz. %1$d daqiqadan keyin yana urinib koʻrishingiz mumkin.</item>
+  </plurals>
+  <string name="notify_others_notification_title">Ehtimoliy zararlanish haqida boshqalarga xabar bering</string>
   <string name="settings_exposure_notifications_subtitle">Ehtimoliy zararlanish bildirishnomalari</string>
   <string name="settings_app_analytics_subtitle">Ilova haqidagi axborotlarni yuborish</string>
   <string name="settings_privacy_policy">Maxfiylik siyosati</string>
@@ -166,4 +189,9 @@
   <string name="private_analytics_footer_learn_more">Batafsil</string>
   <string name="diagnosis_subtitle_template">%1$s — %2$s</string>
   <string name="empty_share_history_body">Test natijalari mavjud emas</string>
+  <string name="share_diagnosis_share_test_result_title">Test natijalarini %1$s ilovasi orqali ulashing</string>
+  <string name="share_diagnosis_share_test_result_subtitle">COVID-19 tarqalishiga qarshi yordam berganingiz uchun rahmat.</string>
+  <string name="share_diagnosis_share_test_result_body">Natijalarni ulashganda simptomlar qachon boshlangani haqidagi axborotni ham tanlashingiz mumkin. Bu maʼlumotlar COVID-19 tarqalishining oldini olish va koʻplab insonlarning hayotini saqlab qolishda yordam beradi.</string>
+  <string name="sms_intercept_notice_title">Nima yangiliklar</string>
+  <string name="sms_intercept_notice_content">Agar mahalliy sogʻliqni saqlash idorasi sizga test natijasini yuborsa, boshqalarni ehtimoliy zararlanishdan himoyalash maqsadida ogohlantirish uchun ilova sizga eslatma chiqarishi mumkin. Buni istalgan vaqt sozlamalar orqali faolsizlantirish mumkin.</string>
 </resources>

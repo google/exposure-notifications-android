@@ -18,7 +18,6 @@
 package com.google.android.apps.exposurenotification.notify;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +25,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import androidx.annotation.NonNull;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.common.logging.Logger;
 import com.google.android.apps.exposurenotification.databinding.FragmentShareDiagnosisSharedBinding;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.VaccinationStatus;
 import com.google.android.apps.exposurenotification.utils.UrlUtils;
@@ -38,7 +38,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class ShareDiagnosisSharedFragment extends ShareDiagnosisBaseFragment {
 
-  private static final String TAG = "ShareExposureSharedFrag";
+  private static final Logger logger = Logger.getLogger("ShareExposureSharedFrag");
 
   private static final int VIEWSWITCHER_VACCINATION_QUESTION = 0;
   private static final int VIEWSWITCHER_BANNER_ONLY = 1;
@@ -104,10 +104,10 @@ public class ShareDiagnosisSharedFragment extends ShareDiagnosisBaseFragment {
       RadioGroup radioGroup = binding.vaccinationStatusLayout.vaccinationQuestionRadioGroup;
       VaccinationStatus vaccinationStatus =
           mapRadioButtonIdToVaccinationStatus(radioGroup.getCheckedRadioButtonId());
-      Log.d(TAG, "setLastVaccinationResponse to " + vaccinationStatus.name());
+      logger.d("setLastVaccinationResponse to " + vaccinationStatus.name());
       shareDiagnosisViewModel.setLastVaccinationResponse(vaccinationStatus);
     }
-    closeShareDiagnosisFlow();
+    closeShareDiagnosisFlowImmediately();
   }
 
   private VaccinationStatus mapRadioButtonIdToVaccinationStatus(int checkedRadioButtonId) {

@@ -30,7 +30,8 @@
   <string name="onboarding_exposure_notifications_title">ایکسپوژر نوٹیفیکیشنز آن کریں</string>
   <string name="onboarding_exposure_notifications_detail">اگر آپ کسی ایسے شخص کے قریب رہے ہوں جس نے COVID-19 ہونے کی رپورٹ دی ہو تو اس بارے میں مطلع کریں۔
     \n\nآپ کا فون رینڈم IDs کو محفوظ طریقے سے جمع اور دیگر قریبی فونز کے ساتھ اشتراک کرنے کے لیے بلوٹوتھ کا استعمال کرتا ہے۔
-    \n\nممکنہ ایکسپوژر سے وابستہ تاریخ، مدت اور سگنل کی قوت کا استعمال اس بات کا تعین کرنے کے لیے کیا جائے گا کہ آیا آپ کو آپ کی عوامی صحت کی اتھارٹی کے ذریعے طے شدہ پیرامیٹرز کی بنیاد پر مطلع کیا جائے۔</string>
+    \n\nممکنہ ایکسپوژر سے وابستہ تاریخ، مدت اور سگنل کی قوت کا استعمال اس بات کا تعین کرنے کے لیے کیا جائے گا کہ آیا آپ کو آپ کی عوامی صحت کی اتھارٹی کے ذریعے طے شدہ پیرامیٹرز کی بنیاد پر مطلع کیا جائے۔
+    \n\nاگر آپ کا ٹیسٹ مثبت ہے تو آپ کو اپنے نتائج کا اشتراک اپنی ہیلتھ اتھارٹی کے ساتھ کرنے کے لیے ایک یاد دہانی موصول ہو سکتی ہے۔</string>
   <string name="onboarding_metrics_title">اس ایپ کو بہتر بنانے میں مدد کریں</string>
   <string name="onboarding_metrics_subtitle">Google کے ساتھ ایپ کے استعمال اور کارکردگی کا اشتراک کریں</string>
   <string name="onboarding_metrics_description">ایپ کو برقرار رکھنے اور اسے بہتر بنانے میں مدد کیلئے، Google کے ساتھ ایپ کی کارکردگی اور استعمال سے متعلق کچھ محدود غیر شناخت کردہ ڈیٹا کا اشتراک کیا جاتا ہے۔ یہ ڈیٹا آپ کی شناخت نہیں کرتا ہے۔ %1$s</string>
@@ -60,10 +61,10 @@
   <string name="notify_turn_on_exposure_notifications_header">ممکنہ COVID-19 ایکسپوژر کی اطلاع حاصل کرنے کیلئے ایکسپوژر نوٹیفیکیشنز آن کریں۔ %1$s</string>
   <string name="using_en_helps_even_if_vaccinated">اس سروس کا استعمال کرنے سے آپ کو اپنی کمیونٹی کی حفاظت کرنے میں مدد ملتی ہے - اگرچہ آپ نے ویکسین بھی لگوائی ہو۔</string>
   <string name="share_begin_title">اپنی کمیونٹی کی حفاظت میں مدد کریں</string>
-  <string name="share_close_title">اشتراک کیے بغیر باہر نکلیں؟</string>
-  <string name="share_close_detail">آپ جلدی اپنے ٹیسٹ کے نتیجے کا اشتراک کر کے اپنی کمیونٹی کی بہتر مدد کر سکتے ہیں۔ تاہم، ٹیسٹ نتیجے کی معلومات جو آپ نے اب تک درج کی ہے وہ بعد میں ترمیم دوبارہ شروع کرنے کیلئے آپ کیلئے ایپ میں محفوظ ہے۔</string>
-  <string name="btn_resume_later">ہاں، باہر نکلیں</string>
-  <string name="verify_test_result_title">‫COVID-19 ٹیسٹ کی معلومات درج کریں</string>
+  <string name="share_close_title">اشتراک کیے بغیر بند کریں؟</string>
+  <string name="share_close_detail">اپنی کمیونٹی کی بہترین مدد کرنے کے کا طریقہ یہ ہے کہ اپنے نتائج کا جلد از جلد اشتراک کریں۔ اگر آپ ابھی اشتراک کیے بغیر بند کرتے ہیں تو بعد میں ذہن تبدیل ہونے پر آپ جہاں چھوڑے ہیں وہاں سے شروع کر سکتے ہیں۔</string>
+  <string name="btn_resume_later">ہاں، بند کریں</string>
+  <string name="verify_test_result_title">اپنا توثیقی کوڈ درج کریں</string>
   <string name="enter_your_test_identifier">توثیقی کوڈ</string>
   <string name="share_test_identifier_help">اس یک وقتی کوڈ کا استعمال آپ کے ٹیسٹ کے نتیجے کی توثیق کے لیے کیا جاتا ہے۔</string>
   <string name="share_test_identifier_verified">کوڈ کی توثیق ہو گئی</string>
@@ -73,30 +74,29 @@
   <string name="test_date_label">علامتوں کے شروع ہونے کی تاریخ</string>
   <string name="share_onset_symptoms">ہاں</string>
   <string name="share_onset_no_symptoms">نہیں</string>
-  <string name="share_onset_no_answer">جواب دینا پسند نہیں</string>
+  <string name="share_onset_no_answer">میں جواب دینا پسند نہیں کرتا ہوں</string>
   <string name="share_travel_title">کیا آپ نے گزشتہ 14 دنوں میں سفر کیا ہے؟</string>
   <string name="share_travel_confirmed">ہاں</string>
   <string name="share_travel_no_travel">نہیں</string>
-  <string name="share_travel_no_answer">جواب دینا پسند نہیں</string>
+  <string name="share_travel_no_answer">میں جواب دینا پسند نہیں کرتا ہوں</string>
   <string name="share_review_title">اپنی معلومات کا جائزہ لیں</string>
   <string name="share_review_status_subtitle">COVID-19 اسٹیٹس</string>
   <string name="share_review_status_confirmed">مثبت</string>
   <string name="share_review_status_likely">ممکنہ</string>
   <string name="share_review_status_negative">منفی</string>
-  <string name="share_review_onset_subtitle">علامت کی معلومات</string>
-  <string name="share_review_onset_date">%1$s سے علامات موجود ہیں</string>
+  <string name="share_review_onset_subtitle">علامات</string>
+  <string name="share_review_onset_date">%1$s کو شروع ہوئیں</string>
   <string name="share_review_onset_no_symptoms">کوئی علامت نہیں</string>
   <string name="share_review_onset_no_answer">جواب نہیں دیا</string>
-  <string name="share_review_travel_subtitle">سفر کی سرگزشت</string>
-  <string name="share_review_travel_confirmed">گزشتہ 14 دنوں میں سفر کیا</string>
+  <string name="share_review_travel_subtitle">سفر</string>
+  <string name="share_review_travel_confirmed">گزشتہ 14 دن کے اندر</string>
   <string name="share_review_travel_no_travel">گزشتہ 14 دنوں میں سفر نہیں کیا</string>
   <string name="share_review_travel_no_answer">جواب نہیں دیا</string>
-  <string name="share_confirm_title">اپنے COVID-19 کے اسٹیٹس کا اشتراک کرنے کیلئے آپ کا شکریہ</string>
+  <string name="share_confirm_title">اپنے COVID-19 کے نتیجہ کا اشتراک کرنے کے لیے آپ کا شکریہ</string>
   <string name="not_shared_confirm_title">آپ کے ٹیسٹ کے نتیجے کا اشتراک نہیں کیا گیا تھا</string>
   <string name="not_shared_confirm_detail">آپ کے COVID-19 ٹیسٹ کے نتیجے کا اشتراک نہیں کیا گیا تھا۔ براہ کرم دوبارہ کوشش کریں۔</string>
   <string name="status_shared_detail_title">‫COVID-19 اسٹیٹس کا اشتراک کیا گیا</string>
-  <string name="delete_test_result_title">‫COVID-19 ٹیسٹ کا نتیجہ حذف کریں؟</string>
-  <string name="delete_test_result_detail">آپ کے ٹیسٹ کے نتیجے کی تفصیلات کو اس ایپ سے حذف کر دیا جائے گا۔</string>
+  <string name="delete_test_result_title">اپنے ٹیسٹ نتیجہ کو حذف کریں؟</string>
   <string name="delete_test_result_confirmed">ٹیسٹ کا نتیجہ حذف ہو گیا</string>
   <string name="share_error_no_internet">ٹیسٹ کے نتائج کا اشتراک آف لائن نہیں کیا جا سکتا۔ اپنا انٹرنیٹ کنکشن چیک کریں اور دوبارہ کوشش کریں۔</string>
   <string name="share_vaccination_title">کیا آپ نے COVID-19 کی ویکسین لگوائی ہے؟</string>
@@ -104,7 +104,30 @@
   <string name="share_vaccination_learn_more">مزید جانیں</string>
   <string name="share_vaccination_vaccinated">ہاں، میں نے ویکسین لگوائی ہے</string>
   <string name="share_vaccination_not_vaccinated">نہیں</string>
-  <string name="share_vaccination_unknown">جواب دینا پسند نہیں</string>
+  <string name="share_vaccination_unknown">میں جواب دینا پسند نہیں کرتا ہوں</string>
+  <string name="do_you_have_code_title">کیا آپ کو کوڈ موصول ہوا؟</string>
+  <string name="do_you_have_code_content">اگر آپ کا ٹیسٹ COVID-19 کے لیے مثبت ہے تو آپ کی صحت کی اتھارٹی عموماً فون یا ٹیکسٹ کے ذریعے توثیقی کوڈ فراہم کرتی ہے تاکہ آپ اپنے نتائج کا اشتراک کر سکیں۔</string>
+  <string name="btn_i_have_code">ہاں، میرے پاس کوڈ ہے</string>
+  <string name="btn_i_need_code">مجھے کوڈ کی ضرورت ہے</string>
+  <string name="get_verification_code_title">توثیقی کوڈ حاصل کریں</string>
+  <string name="phone_number_prompt">فون نمبر</string>
+  <string name="phone_number_help">توثیقی کوڈ آپ کو آپ کے ٹیسٹ کے نتائج کا اشتراک کرنے کی اجازت دیتا ہے۔ آپ کا کوڈ آپ کے فراہم کردہ نمبر پر بھیجا جائے گا۔</string>
+  <string name="phone_number_may_be_stored_help">ایک سے زیادہ نتیجہ جمع کرانے سے لوگوں بچانے کے لیے، آپ کا فون نمبر عارضی طور پر آپ کی عوامی صحت کی اتھارٹی کے ذریعے اسٹور کیا جا سکتا ہے۔</string>
+  <string name="test_date_prompt">ٹیسٹ کی تاریخ</string>
+  <string name="test_date_help">ٹیسٹ کی تاریخ گزشتہ 14 دن کے اندر کی ہونی چاہیے۔</string>
+  <string name="tested_for_covid_checkbox_text">گزشتہ 14 دن میں مجھے COVID-19 کا ٹیسٹ مثبت موصول ہوا ہے۔</string>
+  <string name="btn_send_code">کوڈ بھیجیں</string>
+  <string name="enter_code_help">%1$s کے ذریعے آپ کو بھیجا گیا کوڈ درج کریں۔</string>
+  <string name="positive_result_already_reported_title">آپ نے پہلے ہی حالیہ ٹیسٹ کے نتیجے کا اشتراک کر دیا ہے۔</string>
+  <string name="positive_result_already_reported_content">اگر آپ کسی دوسرے ٹیسٹ نتیجے کا اشتراک کرنا چاہتے ہیں تو براہ کرم %1$s سے رابطہ کریں۔</string>
+  <string name="self_report_bad_code">غلط کوڈ۔ یہ یقینی بنائیں کہ آپ اپنے توثیقی کوڈ کی درخواست کرنے اور اسے درج کرنے دونوں کے لیے ایک ہی آلے کا استعمال کر رہے ہیں۔</string>
+  <string name="self_report_bad_phone_number">اپنا نمبر چیک کریں اور دوبارہ کوشش کریں۔ %1$s</string>
+  <string name="self_report_code_requested_too_many_times">آپ نے بہت زیادہ درخواستیں کی ہیں۔ اگر آپ کو اب بھی کوڈ کی ضرورت ہے تو %1$s سے رابطہ کریں۔</string>
+  <plurals name="self_report_code_already_requested">
+    <item quantity="one">آپ نے بہت زیادہ درخواستیں کی ہیں۔ آپ %1$d منٹ میں دوسرے کوڈ کی درخواست کر سکتے ہیں۔</item>
+    <item quantity="other">آپ نے بہت زیادہ درخواستیں کی ہیں۔ آپ %1$d منٹ میں دوسرے کوڈ کی درخواست کر سکتے ہیں۔</item>
+  </plurals>
+  <string name="notify_others_notification_title">دیگر افراد کو مطلع کرنے میں مدد کریں جو ممکن ہے متاثر ہوئے ہوں</string>
   <string name="settings_exposure_notifications_subtitle">ایکسپوژر نوٹیفیکیشنز</string>
   <string name="settings_app_analytics_subtitle">ایپ کے استعمال اور کارکردگی کا اشتراک</string>
   <string name="settings_privacy_policy">رازداری کی پالیسی</string>
@@ -166,4 +189,9 @@
   <string name="private_analytics_footer_learn_more">مزید جانیں</string>
   <string name="diagnosis_subtitle_template">%2$s پر %1$s</string>
   <string name="empty_share_history_body">اشتراک کی کوئی سرگزشت نہیں</string>
+  <string name="share_diagnosis_share_test_result_title">%1$s کے ساتھ اپنے ٹیسٹ کے نتیجے کا اشتراک کریں</string>
+  <string name="share_diagnosis_share_test_result_subtitle">COVID-19 کو روکنے میں مدد کرنے کے لیے آپ کا شکریہ۔</string>
+  <string name="share_diagnosis_share_test_result_body">جب آپ اپنے نتیجے کا اشتراک کرتے ہیں تو آپ اپنی علامات کے شروع ہونے کے وقت کا بھی انتخاب کر سکتے ہیں۔ اس معلومات سے COVID-19 کے پھیلاؤ کو روکنے اور زندگیوں کو بچانے میں مدد مل سکتی ہے۔</string>
+  <string name="sms_intercept_notice_title">نیا کیا ہے</string>
+  <string name="sms_intercept_notice_content">اگر آپ کی مقامی ہیلتھ اتھارٹی آپ کو ٹیسٹ کا نتیجہ بھیجتی ہے تو آپ کی ایپ آپ کو اپنا نتیجہ جمع کروانے کیلئے یاد دہانی کے ساتھ مطلع اور دوسروں کو ممکنہ ایکسپوژر کے بارے میں الرٹ کرنے کیلئے مدد کر سکتی ہے۔ آپ اسے ترتیبات میں کسی بھی وقت غیر فعال کر سکتے ہیں۔</string>
 </resources>

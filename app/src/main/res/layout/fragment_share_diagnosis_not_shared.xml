@@ -45,7 +45,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/not_shared_confirm_title"
-        android:layout_marginBottom="@dimen/padding_extra_large"
+        android:layout_marginBottom="@dimen/padding_huge"
         android:textAppearance="?attr/textAppearanceHeadline5" />
 
       <TextView

@@ -29,8 +29,9 @@
   <string name="onboarding_finish_title">Щоб увімкнути Сповіщення про ризик зараження, потрібно подовжити дію дозволів</string>
   <string name="onboarding_exposure_notifications_title">Увімкніть сповіщення про ризик зараження</string>
   <string name="onboarding_exposure_notifications_detail">Отримуйте сповіщення про те, що поряд із вами перебувала людина, яка повідомила про захворювання на COVID-19.
-    \n\nЩоб ваш телефон міг обмінюватися випадковими ідентифікаторами з іншими пристроями поблизу, на ньому потрібно ввімкнути Bluetooth.
-    \n\nЗгідно з параметрами, визначеними державним органом охорони здоров\'я, можливість отримання сповіщення залежатиме від даних про дату й тривалість імовірного контактування, а також зафіксованої потужності сигналу від іншого пристрою.</string>
+    \n\nЩоб ваш телефон міг безпечно обмінюватися випадковими ідентифікаторами з іншими пристроями поблизу, на ньому потрібно ввімкнути Bluetooth.
+    \n\nЗгідно з параметрами, визначеними державним органом охорони здоров’я, можливість отримання сповіщення залежатиме від даних про дату й тривалість імовірного контакту, а також зафіксованої потужності сигналу від іншого пристрою.
+    \n\nIЯкщо результат тесту буде позитивний, ви можете отримати нагадування поділитися ним з органом охорони здоров’я.</string>
   <string name="onboarding_metrics_title">Допоможіть покращити цей додаток</string>
   <string name="onboarding_metrics_subtitle">Діліться даними про використання додатка</string>
   <string name="onboarding_metrics_description">Google отримає обмежений доступ до загальних даних про використання та продуктивність додатка, щоб підтримувати й покращувати його роботу. За цією інформацією неможливо встановити вашу особу. %1$s</string>
@@ -62,10 +63,10 @@
   <string name="notify_turn_on_exposure_notifications_header">Щоб отримувати сповіщення про ризик зараження COVID-19, їх потрібно ввімкнути. %1$s</string>
   <string name="using_en_helps_even_if_vaccinated">Цей сервіс допомагає захищати вашу громаду, навіть якщо ви вже вакцинувались.</string>
   <string name="share_begin_title">Захистіть свою громаду</string>
-  <string name="share_close_title">Вийти, не повідомивши про результат?</string>
-  <string name="share_close_detail">Що швидше ви повідомите про результат тесту, то краще для вашої громади. Однак уже введену інформацію буде збережено в додатку, і ви зможете продовжити пізніше.</string>
-  <string name="btn_resume_later">Так, вийти</string>
-  <string name="verify_test_result_title">Укажіть відомості про тест на COVID-19</string>
+  <string name="share_close_title">Закрити вікно й не надсилати дані?</string>
+  <string name="share_close_detail">Найкращий спосіб допомогти спільноті – якнайшвидше поділитися своїм результатом тесту. Ви можете не надсилати дані зараз, але якщо передумаєте, то продовжите з того місця, на якому зупинились.</string>
+  <string name="btn_resume_later">Так, закрити</string>
+  <string name="verify_test_result_title">Введіть код підтвердження</string>
   <string name="enter_your_test_identifier">Код підтвердження</string>
   <string name="share_test_identifier_help">Цей одноразовий код слугує для підтвердження результату тесту.</string>
   <string name="share_test_identifier_verified">Код перевірено</string>
@@ -75,30 +76,29 @@
   <string name="test_date_label">Дата появи симптомів</string>
   <string name="share_onset_symptoms">Так</string>
   <string name="share_onset_no_symptoms">Ні</string>
-  <string name="share_onset_no_answer">Не хочу відповідати</string>
+  <string name="share_onset_no_answer">Я не хочу відповідати</string>
   <string name="share_travel_title">Чи ви подорожували протягом останніх 14 днів?</string>
   <string name="share_travel_confirmed">Так</string>
   <string name="share_travel_no_travel">Ні</string>
-  <string name="share_travel_no_answer">Не хочу відповідати</string>
+  <string name="share_travel_no_answer">Я не хочу відповідати</string>
   <string name="share_review_title">Перегляньте свою інформацію</string>
   <string name="share_review_status_subtitle">Статус COVID-19</string>
   <string name="share_review_status_confirmed">Позитивний</string>
   <string name="share_review_status_likely">Імовірний</string>
   <string name="share_review_status_negative">Негативний</string>
-  <string name="share_review_onset_subtitle">Дані про симптоми</string>
-  <string name="share_review_onset_date">Симптоми спостерігаються з %1$s</string>
+  <string name="share_review_onset_subtitle">Симптоми</string>
+  <string name="share_review_onset_date">Проявились %1$s</string>
   <string name="share_review_onset_no_symptoms">Немає симптомів</string>
   <string name="share_review_onset_no_answer">Немає відповіді</string>
-  <string name="share_review_travel_subtitle">Історія подорожей</string>
-  <string name="share_review_travel_confirmed">Принаймні одна подорож за 14 днів</string>
+  <string name="share_review_travel_subtitle">Подорожі</string>
+  <string name="share_review_travel_confirmed">За останні 14 днів</string>
   <string name="share_review_travel_no_travel">Немає подорожей за останні 14 днів</string>
   <string name="share_review_travel_no_answer">Немає відповіді</string>
-  <string name="share_confirm_title">Дякуємо, що повідомили про свій статус COVID-19</string>
+  <string name="share_confirm_title">Дякуємо, що повідомили свій результат тесту на COVID-19</string>
   <string name="not_shared_confirm_title">Результат тесту не надіслано</string>
   <string name="not_shared_confirm_detail">Ви не повідомили про свій результат тесту на COVID-19. Повторіть спробу.</string>
   <string name="status_shared_detail_title">Надісланий статус тесту на COVID-19</string>
-  <string name="delete_test_result_title">Видалити результат тесту на COVID-19?</string>
-  <string name="delete_test_result_detail">Результат вашого тесту буде видалено з цього додатка.</string>
+  <string name="delete_test_result_title">Видалити результат тесту?</string>
   <string name="delete_test_result_confirmed">Результат тесту видалено</string>
   <string name="share_error_no_internet">Результати тесту не можна повідомити в режимі офлайн. Перевірте інтернет-з\'єднання й повторіть спробу.</string>
   <string name="share_vaccination_title">Ви вже вакцинувалися від Covid-19?</string>
@@ -106,7 +106,32 @@
   <string name="share_vaccination_learn_more">Докладніше</string>
   <string name="share_vaccination_vaccinated">Так, мене вакцинували</string>
   <string name="share_vaccination_not_vaccinated">Ні</string>
-  <string name="share_vaccination_unknown">Не хочу відповідати</string>
+  <string name="share_vaccination_unknown">Я не хочу відповідати</string>
+  <string name="do_you_have_code_title">Ви отримали код?</string>
+  <string name="do_you_have_code_content">Якщо ваш результат тесту на COVID-19 буде позитивний, орган охорони здоров’я скоріше за все надішле вам код підтвердження на телефон або повідомленням. Так ви зможете поділитися своїм результатом.</string>
+  <string name="btn_i_have_code">Так, я маю код</string>
+  <string name="btn_i_need_code">Мені потрібен код</string>
+  <string name="get_verification_code_title">Отримати код підтвердження</string>
+  <string name="phone_number_prompt">Номер телефону</string>
+  <string name="phone_number_help">За допомогою коду підтвердження ви можете поділитися результатом тесту. Ми надішлемо його на вказаний номер телефону.</string>
+  <string name="phone_number_may_be_stored_help">Щоб люди могли надсилати лише один результат, державні органи охорони здоров’я можуть тимчасово зберігати отримані номери телефонів.</string>
+  <string name="test_date_prompt">Дата здачі тесту</string>
+  <string name="test_date_help">Тест мав бути зданий упродовж останніх 14 днів.</string>
+  <string name="tested_for_covid_checkbox_text">Мені прийшов позитивний тест на COVID-19 упродовж останніх 14 днів.</string>
+  <string name="btn_send_code">Надіслати код</string>
+  <string name="enter_code_help">Введіть код, який отримали від органа охорони здоров’я (%1$s).</string>
+  <string name="positive_result_already_reported_title">Нещодавно ви вже повідомляли результат свого тесту.</string>
+  <string name="positive_result_already_reported_content">Якщо ви хочете повідомити результат ще одного тесту, зв’яжіться з органом охорони здоров’я (%1$s).</string>
+  <string name="self_report_bad_code">Недійсний код. Переконайтеся, що подавали запит на код підтвердження на тому самому пристрої, на якому вводите його.</string>
+  <string name="self_report_bad_phone_number">Перевірте номер і повторіть спробу. %1$s</string>
+  <string name="self_report_code_requested_too_many_times">Ви подали забагато запитів. Якщо вам усе ще потрібен код, зв’яжіться з органом охорони здоров’я (%1$s).</string>
+  <plurals name="self_report_code_already_requested">
+    <item quantity="one">Ви подали забагато запитів на коди. Новий можна надіслати через %1$d хвилину.</item>
+    <item quantity="few">Ви подали забагато запитів на коди. Новий можна надіслати через %1$d хвилини.</item>
+    <item quantity="many">Ви подали забагато запитів на коди. Новий можна надіслати через %1$d хвилин.</item>
+    <item quantity="other">Ви подали забагато запитів на коди. Новий можна надіслати через %1$d хвилини.</item>
+  </plurals>
+  <string name="notify_others_notification_title">Допоможіть сповістити людей, які могли заразитися</string>
   <string name="settings_exposure_notifications_subtitle">Сповіщення про ризик зараження</string>
   <string name="settings_app_analytics_subtitle">Використання та продуктивність додатка</string>
   <string name="settings_privacy_policy">Політика конфіденційності</string>
@@ -168,4 +193,9 @@
   <string name="private_analytics_footer_learn_more">Докладніше</string>
   <string name="diagnosis_subtitle_template">%1$s %2$s</string>
   <string name="empty_share_history_body">Немає історії повідомлень</string>
+  <string name="share_diagnosis_share_test_result_title">Надішліть свої результати тесту додатку %1$s</string>
+  <string name="share_diagnosis_share_test_result_subtitle">Дякуємо, що допомагаєте зупинити поширення COVID-19.</string>
+  <string name="share_diagnosis_share_test_result_body">Надсилаючи результат тесту, ви також можете вказати, коли почали проявлятися симптоми. Ця інформація може допомогти зупинити поширення COVID-19 і врятувати життя.</string>
+  <string name="sms_intercept_notice_title">Що нового</string>
+  <string name="sms_intercept_notice_content">Коли місцеві органи охорони здоров’я надсилають вам результати тесту, додаток може показувати нагадування поділитися результатом і допомогти попередити інших про можливий ризик зараження. Цю функцію можна будь-коли вимкнути в налаштуваннях.</string>
 </resources>

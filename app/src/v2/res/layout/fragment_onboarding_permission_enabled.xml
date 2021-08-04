@@ -32,7 +32,7 @@
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     android:background="?android:attr/colorBackground"
-    android:elevation="@dimen/onboarding_button_elevation">
+    android:elevation="@dimen/bottom_button_container_elevation">
 
     <Button
       android:id="@+id/onboarding_next_button"

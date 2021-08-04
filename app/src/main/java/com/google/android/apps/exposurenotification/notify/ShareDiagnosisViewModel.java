@@ -23,7 +23,6 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultLauncher;
@@ -31,6 +30,7 @@ import androidx.activity.result.IntentSenderRequest;
 import androidx.activity.result.contract.ActivityResultContracts.StartIntentSenderForResult;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.UiThread;
 import androidx.annotation.VisibleForTesting;
 import androidx.fragment.app.Fragment;
 import androidx.hilt.Assisted;
@@ -44,16 +44,21 @@ import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.common.Qualifiers.BackgroundExecutor;
 import com.google.android.apps.exposurenotification.common.Qualifiers.LightweightExecutor;
 import com.google.android.apps.exposurenotification.common.Qualifiers.ScheduledExecutor;
+import com.google.android.apps.exposurenotification.common.SecureRandomUtil;
 import com.google.android.apps.exposurenotification.common.SingleLiveEvent;
 import com.google.android.apps.exposurenotification.common.TaskToFutureAdapter;
+import com.google.android.apps.exposurenotification.common.TelephonyHelper;
+import com.google.android.apps.exposurenotification.common.logging.Logger;
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.home.ExposureNotificationViewModel.ExposureNotificationState;
 import com.google.android.apps.exposurenotification.keyupload.Upload;
 import com.google.android.apps.exposurenotification.keyupload.UploadController;
+import com.google.android.apps.exposurenotification.keyupload.UploadController.NoInternetException;
 import com.google.android.apps.exposurenotification.keyupload.UploadController.UploadException;
+import com.google.android.apps.exposurenotification.keyupload.UserReportUpload;
 import com.google.android.apps.exposurenotification.nearby.ExposureNotificationClientWrapper;
-import com.google.android.apps.exposurenotification.network.Connectivity;
 import com.google.android.apps.exposurenotification.network.DiagnosisKey;
+import com.google.android.apps.exposurenotification.notify.ShareDiagnosisFlowHelper.ShareDiagnosisFlow;
 import com.google.android.apps.exposurenotification.storage.DiagnosisEntity;
 import com.google.android.apps.exposurenotification.storage.DiagnosisEntity.HasSymptoms;
 import com.google.android.apps.exposurenotification.storage.DiagnosisEntity.Shared;
@@ -62,6 +67,8 @@ import com.google.android.apps.exposurenotification.storage.DiagnosisEntity.Trav
 import com.google.android.apps.exposurenotification.storage.DiagnosisRepository;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.VaccinationStatus;
+import com.google.android.apps.exposurenotification.storage.VerificationCodeRequestEntity;
+import com.google.android.apps.exposurenotification.storage.VerificationCodeRequestRepository;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.nearby.exposurenotification.ExposureNotificationStatusCodes;
 import com.google.android.gms.nearby.exposurenotification.TemporaryExposureKey;
@@ -78,6 +85,7 @@ import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 import dagger.hilt.android.qualifiers.ApplicationContext;
+import java.security.SecureRandom;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -86,6 +94,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ScheduledExecutorService;
 import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 import org.threeten.bp.Duration;
+import org.threeten.bp.Instant;
 import org.threeten.bp.LocalDate;
 
 /**
@@ -104,7 +113,22 @@ import org.threeten.bp.LocalDate;
  */
 public class ShareDiagnosisViewModel extends ViewModel {
 
-  private static final String TAG = "ShareDiagnosisViewModel";
+  private static final Logger logger = Logger.getLogger("ShareDiagnosisViewModel");
+
+  // Current limits on a number of verification code requests per a certain period.
+  private static final VerificationCodeRequestLimit DAYS_REQUEST_LIMIT =
+      VerificationCodeRequestLimit.newBuilder()
+          .setPeriodDuration(Duration.ofDays(30))
+          .setNumOfRequests(3)
+          .build();
+  private static final VerificationCodeRequestLimit MINS_REQUEST_LIMIT =
+      VerificationCodeRequestLimit.newBuilder()
+          .setPeriodDuration(Duration.ofMinutes(30))
+          .setNumOfRequests(1)
+          .build();
+  // Number of days in which a user can't self-report after self-reporting or reporting a confirmed
+  // positive COVID-19 test result. Used to mitigate an abuse of a Self-report functionality.
+  private static final int SELF_REPORT_DISABLED_NUM_OF_DAYS = 90;
 
   // Keys for storing UI state data in the SavedStateHandle.
   @VisibleForTesting static final String SAVED_STATE_CODE_IS_INVALID =
@@ -119,6 +143,12 @@ public class ShareDiagnosisViewModel extends ViewModel {
       "ShareDiagnosisViewModel.SAVED_STATE_CODE_INPUT";
   @VisibleForTesting static final String SAVED_STATE_CODE_INPUT_IS_ENABLED =
       "ShareDiagnosisViewModel.SAVED_STATE_CODE_INPUT_IS_ENABLED";
+  @VisibleForTesting static final String SAVED_STATE_GET_CODE_PHONE_NUMBER =
+      "ShareDiagnosisViewModel.SAVED_STATE_GET_CODE_PHONE_NUMBER";
+  @VisibleForTesting static final String SAVED_STATE_GET_CODE_TEST_DATE =
+      "ShareDiagnosisViewModel.SAVED_STATE_GET_CODE_TEST_DATE";
+  static final Set<String> SAVED_STATE_GET_CODE_KEYS =
+      ImmutableSet.of(SAVED_STATE_GET_CODE_TEST_DATE, SAVED_STATE_GET_CODE_PHONE_NUMBER);
 
   public static final Set<ExposureNotificationState> EN_STATES_BLOCKING_SHARING_FLOW =
       ImmutableSet.of(ExposureNotificationState.DISABLED,
@@ -134,13 +164,15 @@ public class ShareDiagnosisViewModel extends ViewModel {
   private static final Duration GET_TEKS_TIMEOUT = Duration.ofSeconds(10);
 
   private final DiagnosisRepository diagnosisRepository;
+  private final VerificationCodeRequestRepository requestRepository;
   private final UploadController uploadController;
   private final ExposureNotificationClientWrapper exposureNotificationClientWrapper;
   private final Resources resources;
-  private final Connectivity connectivity;
   private final ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
   private final PrivateAnalyticsEnabledProvider privateAnalyticsEnabledProvider;
   private final Clock clock;
+  private final TelephonyHelper telephonyHelper;
+  private final SecureRandom secureRandom;
 
   private final MutableLiveData<Long> currentDiagnosisId = new MutableLiveData<>(NO_EXISTING_ID);
 
@@ -151,6 +183,8 @@ public class ShareDiagnosisViewModel extends ViewModel {
   private final SingleLiveEvent<ApiException> resolutionRequiredLiveEvent = new SingleLiveEvent<>();
   private final SingleLiveEvent<Boolean> sharedLiveEvent = new SingleLiveEvent<>();
   private final SingleLiveEvent<Boolean> revealCodeStepEvent = new SingleLiveEvent<>();
+  private final SingleLiveEvent<DiagnosisEntity> recentlySharedPositiveDiagnosisLiveEvent =
+      new SingleLiveEvent<>();
 
   private final MutableLiveData<Optional<VaccinationStatus>> vaccinationStatusForUILiveData =
       new MutableLiveData<>(Optional.absent());
@@ -167,22 +201,26 @@ public class ShareDiagnosisViewModel extends ViewModel {
   private final MutableLiveData<Step> currentStepLiveData = new MutableLiveData<>();
   private final Stack<Step> backStack = new Stack<>();
 
-  private final MutableLiveData<String> verificationErrorLiveData = new MutableLiveData<>("");
+  private final MutableLiveData<String> verificationErrorLiveData = new MutableLiveData<>();
+  private final MutableLiveData<String> requestCodeErrorLiveData = new MutableLiveData<>();
+  private final MutableLiveData<String> phoneNumberErrorMessageLiveData = new MutableLiveData<>();
   private final Context context;
 
   private SavedStateHandle savedStateHandle;
+  private ShareDiagnosisFlow shareDiagnosisFlow = ShareDiagnosisFlow.DEFAULT;
   private boolean isDeleteOpen = false;
   private boolean isCloseOpen = false;
   private boolean isCodeFromLinkUsed = false;
   private boolean resumingAndNotConfirmed = false;
-  private boolean restoredFromSavedState;
+  private boolean codeUiRestoredFromSavedState;
 
   /**
    * Via this enum, this viewmodel expresses to observers (fragments) what step in the flow the
    * current diagnosis is on.
    */
   enum Step {
-    BEGIN, CODE, ONSET, REVIEW, SHARED, NOT_SHARED, TRAVEL_STATUS, VIEW
+    BEGIN, IS_CODE_NEEDED, GET_CODE, CODE, ONSET, REVIEW, SHARED, NOT_SHARED, TRAVEL_STATUS, VIEW,
+    ALREADY_REPORTED
   }
 
   @ViewModelInject
@@ -191,11 +229,13 @@ public class ShareDiagnosisViewModel extends ViewModel {
       @Assisted SavedStateHandle savedStateHandle,
       UploadController uploadController,
       DiagnosisRepository diagnosisRepository,
+      VerificationCodeRequestRepository requestRepository,
       ExposureNotificationClientWrapper exposureNotificationClientWrapper,
       ExposureNotificationSharedPreferences exposureNotificationSharedPreferences,
       PrivateAnalyticsEnabledProvider privateAnalyticsEnabledProvider,
       Clock clock,
-      Connectivity connectivity,
+      TelephonyHelper telephonyHelper,
+      SecureRandom secureRandom,
       @BackgroundExecutor ExecutorService backgroundExecutor,
       @LightweightExecutor ExecutorService lightweightExecutor,
       @ScheduledExecutor ScheduledExecutorService scheduledExecutor) {
@@ -203,11 +243,13 @@ public class ShareDiagnosisViewModel extends ViewModel {
     this.savedStateHandle = savedStateHandle;
     this.uploadController = uploadController;
     this.diagnosisRepository = diagnosisRepository;
+    this.requestRepository = requestRepository;
     this.exposureNotificationClientWrapper = exposureNotificationClientWrapper;
     this.exposureNotificationSharedPreferences = exposureNotificationSharedPreferences;
     this.privateAnalyticsEnabledProvider = privateAnalyticsEnabledProvider;
     this.clock = clock;
-    this.connectivity = connectivity;
+    this.telephonyHelper = telephonyHelper;
+    this.secureRandom = secureRandom;
     this.backgroundExecutor = backgroundExecutor;
     this.lightweightExecutor = lightweightExecutor;
     this.scheduledExecutor = scheduledExecutor;
@@ -291,8 +333,8 @@ public class ShareDiagnosisViewModel extends ViewModel {
    */
   public LiveData<Step> getNextStepLiveData(Step currentStep) {
     return Transformations.map(
-        getCurrentDiagnosisLiveData(),
-        diagnosis -> ShareDiagnosisFlowHelper.getNextStep(currentStep, diagnosis, context));
+        getCurrentDiagnosisLiveData(), diagnosis -> ShareDiagnosisFlowHelper.getNextStep(
+            currentStep, diagnosis, getShareDiagnosisFlow(), context));
   }
 
   /**
@@ -301,8 +343,26 @@ public class ShareDiagnosisViewModel extends ViewModel {
    */
   public LiveData<Step> getPreviousStepLiveData(Step currentStep) {
     return Transformations.map(
-        getCurrentDiagnosisLiveData(),
-        diagnosis -> ShareDiagnosisFlowHelper.getPreviousStep(currentStep, diagnosis, context));
+        getCurrentDiagnosisLiveData(), diagnosis -> ShareDiagnosisFlowHelper.getPreviousStep(
+            currentStep, diagnosis, getShareDiagnosisFlow(), context));
+  }
+
+  /**
+   * Notifies if the request for a verification code has failed with a particular {@link String}
+   * error message.
+   *
+   * <p>This message will be displayed in a snackbar on the "Get a verification code" screen.
+   */
+  public LiveData<String> getRequestCodeErrorLiveData() {
+    return requestCodeErrorLiveData;
+  }
+
+  /**
+   * An event that triggers when there is an error to be displayed under a "Phone number" input
+   * field on the "Get a verification code" screen.
+   */
+  public LiveData<String> getPhoneNumberErrorMessageLiveData() {
+    return phoneNumberErrorMessageLiveData;
   }
 
   /**
@@ -310,6 +370,16 @@ public class ShareDiagnosisViewModel extends ViewModel {
    */
   public LiveData<String> getVerificationErrorLiveData() {
     return verificationErrorLiveData;
+  }
+
+  /**
+   * A LiveData that tracks a positive (i.e. confirmed or self-reported) diagnosis shared within
+   * the last {@link ShareDiagnosisViewModel#SELF_REPORT_DISABLED_NUM_OF_DAYS} days.
+   */
+  public LiveData<Optional<DiagnosisEntity>> getRecentlySharedPositiveDiagnosisLiveData() {
+    long minTimestampMs = clock.now().minus(Duration.ofDays(SELF_REPORT_DISABLED_NUM_OF_DAYS))
+        .toEpochMilli();
+    return diagnosisRepository.getPositiveDiagnosisSharedAfterThresholdLiveData(minTimestampMs);
   }
 
   /**
@@ -350,7 +420,7 @@ public class ShareDiagnosisViewModel extends ViewModel {
     if (previousStep == null) {
       return;
     }
-    backStack.pop();
+    maybePopFromBackStack();
     if (backStack.isEmpty()) {
       // No more to go back, set new step as the stack
       backStack.push(previousStep);
@@ -372,7 +442,7 @@ public class ShareDiagnosisViewModel extends ViewModel {
    * @return false if the back stack is empty and so not possible.
    */
   public boolean backStepIfPossible() {
-    backStack.pop();
+    maybePopFromBackStack();
     if (backStack.isEmpty()) {
       return false;
     }
@@ -384,7 +454,13 @@ public class ShareDiagnosisViewModel extends ViewModel {
    * Removes the current step (assume must be the top on the stack) from the back stack.
    */
   public void removeCurrentStepFromBackStack() {
-    backStack.pop();
+    maybePopFromBackStack();
+  }
+
+  private void maybePopFromBackStack() {
+    if (!backStack.isEmpty()) {
+      backStack.pop();
+    }
   }
 
   /**
@@ -448,11 +524,11 @@ public class ShareDiagnosisViewModel extends ViewModel {
     return FluentFuture.from(diagnosisRepository.getByIdAsync(currentDiagnosisId.getValue()))
         .transform(diagnosis -> {
           if (diagnosis == null) {
-            Log.d(TAG, "No diagnosis id [" + currentDiagnosisId
+            logger.d("No diagnosis id [" + currentDiagnosisId
                 + "] exists in storage. Returning a fresh empty one.");
             return EMPTY_DIAGNOSIS;
           }
-          Log.d(TAG, "Got saved diagnosis for id " + currentDiagnosisId.getValue());
+          logger.d("Got saved diagnosis for id " + currentDiagnosisId.getValue());
           return diagnosis;
         }, backgroundExecutor);
   }
@@ -477,7 +553,7 @@ public class ShareDiagnosisViewModel extends ViewModel {
 
           @Override
           public void onFailure(@NonNull Throwable t) {
-            Log.w(TAG, "Failed to delete", t);
+            logger.w("Failed to delete", t);
           }
         },
         lightweightExecutor);
@@ -500,8 +576,14 @@ public class ShareDiagnosisViewModel extends ViewModel {
               return null;
             },
             lightweightExecutor)
+        .catching(NoInternetException.class, ex -> {
+          snackbarLiveEvent.postValue(resources.getString(R.string.share_error_no_internet));
+          inFlightLiveData.postValue(false);
+          return null;
+        }, lightweightExecutor)
         .catching(UploadException.class, ex -> {
-          snackbarLiveEvent.postValue(ex.getUploadError().getErrorMessage(resources));
+          snackbarLiveEvent.postValue(ex.getUploadError().getErrorMessage(
+              resources, ShareDiagnosisFlow.SELF_REPORT.equals(getShareDiagnosisFlow())));
           inFlightLiveData.postValue(false);
           return null;
         }, lightweightExecutor)
@@ -510,7 +592,7 @@ public class ShareDiagnosisViewModel extends ViewModel {
             resolutionRequiredLiveEvent.postValue(ex);
             return null;
           } else {
-            Log.w(TAG, "No RESOLUTION_REQUIRED in result", ex);
+            logger.w("No RESOLUTION_REQUIRED in result", ex);
           }
           snackbarLiveEvent.postValue(resources.getString(R.string.generic_error_message));
           inFlightLiveData.postValue(false);
@@ -527,7 +609,7 @@ public class ShareDiagnosisViewModel extends ViewModel {
    * Gets recent (initially 14 days) Temporary Exposure Keys from Google Play Services.
    */
   private ListenableFuture<List<TemporaryExposureKey>> getRecentKeys() {
-    Log.d(TAG, "Getting current TEKs from EN API...");
+    logger.d("Getting current TEKs from EN API...");
     return TaskToFutureAdapter.getFutureWithTimeout(
         exposureNotificationClientWrapper.getTemporaryExposureKeyHistory(),
         GET_TEKS_TIMEOUT,
@@ -541,7 +623,7 @@ public class ShareDiagnosisViewModel extends ViewModel {
    */
   private ImmutableList<DiagnosisKey> toDiagnosisKeysWithTransmissionRisk(
       List<TemporaryExposureKey> recentKeys) {
-    Log.d(TAG, "Converting TEKs into DiagnosisKeys...");
+    logger.d("Converting TEKs into DiagnosisKeys...");
     ImmutableList.Builder<DiagnosisKey> builder = new Builder<>();
     for (TemporaryExposureKey k : recentKeys) {
       builder.add(
@@ -590,18 +672,180 @@ public class ShareDiagnosisViewModel extends ViewModel {
 
     setCodeFromUrlUsed();
     setCodeInputForCodeStep(codeFromLink);
-    markUiToBeRestoredFromSavedState(true);
+    markCodeUiToBeRestoredFromSavedState(true);
     submitCode(codeFromLink, true);
     return EnterCodeStepReturnValue.create(false, Optional.of(codeFromLink));
   }
 
+  /**
+   * Requests a verification code from the verification server as part of the self-report flow.
+   *
+   * @param phoneNumber user-provided phone number
+   * @param testDate    user-provided test date
+   */
+  @UiThread
+  public ListenableFuture<?> requestCode(String phoneNumber, LocalDate testDate) {
+    if (inFlightLiveData.getValue()) {
+      return Futures.immediateVoidFuture();
+    }
+    inFlightLiveData.postValue(true);
+
+    String normalizedPhoneNumber = telephonyHelper.normalizePhoneNumber(phoneNumber);
+    if (!telephonyHelper.isValidPhoneNumber(phoneNumber)
+        || TextUtils.isEmpty(normalizedPhoneNumber)) {
+      String learnMoreText = resources.getString(R.string.learn_more);
+      String errorText = resources.getString(R.string.self_report_bad_phone_number, learnMoreText);
+      inFlightLiveData.postValue(false);
+      phoneNumberErrorMessageLiveData.postValue(errorText);
+      return Futures.immediateVoidFuture();
+    }
+
+    phoneNumberErrorMessageLiveData.postValue("");
+
+    long tzOffsetMin = calculateTzOffsetMin();
+    UserReportUpload upload = UserReportUpload
+        .newBuilder(normalizedPhoneNumber, SecureRandomUtil.newNonce(secureRandom),
+            testDate, tzOffsetMin)
+        .build();
+
+    return FluentFuture.from(checkIfLimitHasBeenHit(DAYS_REQUEST_LIMIT))
+        .transformAsync(lastRequestTime -> {
+          if (lastRequestTime != null) {
+            String healthAuthorityName = resources.getString(R.string.health_authority_name);
+            String errorMessage = resources.getString(
+                R.string.self_report_code_requested_too_many_times, healthAuthorityName);
+            return Futures.immediateFailedFuture(
+                new TooManyVerificationCodeRequestsException(errorMessage));
+          }
+          return checkIfLimitHasBeenHit(MINS_REQUEST_LIMIT);
+        }, lightweightExecutor)
+        .transformAsync(lastRequestTime -> {
+          if (lastRequestTime != null) {
+            long minutesTillNextRequest = MINS_REQUEST_LIMIT.periodDuration()
+                .minus(Duration.between(lastRequestTime, clock.now()))
+                .toMinutes();
+            String errorMessage = resources.getQuantityString(
+                R.plurals.self_report_code_already_requested,
+                (int) minutesTillNextRequest,
+                minutesTillNextRequest);
+            return Futures.immediateFailedFuture(
+                new TooManyVerificationCodeRequestsException(errorMessage));
+          }
+          // No limits for sending a verification code request have been hit. Submit a request now.
+          return uploadController.requestCode(upload);
+        }, lightweightExecutor)
+        .transformAsync(uploadResponse -> {
+          UserReportUpload.Builder builder = upload.toBuilder();
+          // expiresAt and expiresAtTimestampSec fields will be set for successful responses only
+          // (statusCode=200).
+          if (!TextUtils.isEmpty(uploadResponse.expiresAt())
+              && uploadResponse.expiresAtTimestampSec() > 0) {
+            builder
+                .setExpiresAt(uploadResponse.expiresAt())
+                .setExpiresAtTimestampSec(uploadResponse.expiresAtTimestampSec());
+          }
+          // And we want to capture all requests with non-error responses (200 < statusCode < 400)
+          // here. Requests with error responses are handled via UploadException.
+          return captureVerificationCodeRequest(builder.build());
+        }, lightweightExecutor)
+        .transform(
+            unused -> {
+              inFlightLiveData.postValue(false);
+              nextStep(Step.CODE);
+              return null;
+            }, lightweightExecutor)
+        .catching(TooManyVerificationCodeRequestsException.class, ex -> {
+          inFlightLiveData.postValue(false);
+          phoneNumberErrorMessageLiveData.postValue(ex.getErrorMessage());
+          return null;
+        }, lightweightExecutor)
+        .catching(NoInternetException.class, ex -> {
+          inFlightLiveData.postValue(false);
+          requestCodeErrorLiveData.postValue(resources.getString(R.string.share_error_no_internet));
+          return null;
+        }, lightweightExecutor)
+        .catchingAsync(UploadException.class, ex -> {
+          captureVerificationCodeRequestAndUploadException(upload, ex);
+          return null;
+        }, lightweightExecutor)
+        .catching(Exception.class, ex -> {
+          inFlightLiveData.postValue(false);
+          requestCodeErrorLiveData.postValue(resources.getString(R.string.generic_error_message));
+          return null;
+        }, lightweightExecutor);
+  }
+
+  /** Calculates offset in minutes of the user's timezone. */
+  @VisibleForTesting
+  protected long calculateTzOffsetMin() {
+    return clock.zonedNow().getOffset().getTotalSeconds() / 60;
+  }
+
+  /**
+   * Checks if a given limit for a number of verification code requests in a given period of time
+   * has been hit.
+   *
+   * @param verificationCodeRequestLimit a given limit for a number of verification code requests
+   * @return time of the most recent request if a limit has been hit or null otherwise
+   */
+  private ListenableFuture<Instant> checkIfLimitHasBeenHit(
+      VerificationCodeRequestLimit verificationCodeRequestLimit) {
+    Instant earliestThreshold = clock.now().minus(verificationCodeRequestLimit.periodDuration());
+    return FluentFuture.from(requestRepository.
+        getLastXRequestsNotOlderThanThresholdAsync(earliestThreshold,
+            verificationCodeRequestLimit.numOfRequests()))
+        .transform(requests -> {
+          if (!requests.isEmpty() &&
+              requests.size() >= verificationCodeRequestLimit.numOfRequests()) {
+            return requests.get(0).getRequestTime();
+          }
+          return null;
+        }, lightweightExecutor);
+  }
+
+  /**
+   * Captures a request for verification code. Should be called if we get a response from the
+   * verification server (either success or error).
+   */
+  private ListenableFuture<Long> captureVerificationCodeRequest(UserReportUpload upload) {
+    VerificationCodeRequestEntity.Builder builder = VerificationCodeRequestEntity.newBuilder()
+        .setRequestTime(clock.now())
+        .setNonce(upload.nonceBase64());
+    if (upload.expiresAtTimestampSec() > 0) {
+      builder.setExpiresAtTime(Instant.ofEpochSecond(upload.expiresAtTimestampSec()));
+    }
+    return requestRepository.upsertAsync(builder.build());
+  }
+
+  /**
+   * Captures a request for verification code and updates LiveData-s for a thrown exception.
+   */
+  private ListenableFuture<Void> captureVerificationCodeRequestAndUploadException(
+      UserReportUpload upload, UploadException ex) {
+    return FluentFuture.from(captureVerificationCodeRequest(upload))
+        .transform(unused -> {
+          inFlightLiveData.postValue(false);
+          requestCodeErrorLiveData.postValue(ex.getUploadError().getErrorMessage(
+              resources, ShareDiagnosisFlow.SELF_REPORT.equals(getShareDiagnosisFlow())));
+          return null;
+        }, lightweightExecutor);
+  }
+
+  /**
+   * Submits a short-lived verification code to the verification server in attempt to exchange it
+   * for a long-lived token.
+   *
+   * @param code           verification code to submit
+   * @param isCodeFromLink indicates if a given verification code is from an SMS deep link
+   */
+  @UiThread
   public ListenableFuture<?> submitCode(String code, boolean isCodeFromLink) {
     if (inFlightLiveData.getValue()) {
       return Futures.immediateVoidFuture();
     }
-    inFlightLiveData.setValue(true);
+    inFlightLiveData.postValue(true);
 
-    Log.d(TAG, "Checking verification code locally");
+    logger.d("Checking verification code locally");
     return FluentFuture.from(diagnosisRepository.getByVerificationCodeAsync(code))
         .transformAsync(diagnosisEntities -> {
           if (!diagnosisEntities.isEmpty()) {
@@ -609,13 +853,21 @@ public class ShareDiagnosisViewModel extends ViewModel {
             return Futures.immediateFailedFuture(
                 new VerificationCodeExistsException(diagnosisEntities.get(0)));
           }
-          if (!connectivity.hasInternet()) {
-            return Futures.immediateFailedFuture(new NoInternetException());
+          return requestRepository.getValidNoncesWithLatestExpiringFirstIfAnyAsync(clock.now());
+        }, lightweightExecutor)
+        .transformAsync(nonces -> {
+          logger.d("Submitting verification code...");
+          Upload.Builder uploadBuilder = Upload.newBuilder(
+              code, SecureRandomUtil.newHmacKey(secureRandom));
+          if (!nonces.isEmpty()) {
+            // Nonces effectively expire every 15 minutes. We never allow two or more requests for
+            // a verification code in 30-minute-intervals. Thus, we should always have at most one
+            // non-expired nonce stored. TODO: add some retry logic?
+            String mostRecentNonce = nonces.get(0);
+            uploadBuilder.setNonceBase64(mostRecentNonce);
           }
-          Log.d(TAG, "Submitting verification code...");
           // Submit the verification code to the verification server:
-          Upload upload = Upload.newBuilder(code).build();
-          return uploadController.submitCode(upload);
+          return uploadController.submitCode(uploadBuilder.build());
         }, lightweightExecutor)
         .transformAsync(
             verifiedUpload -> {
@@ -650,7 +902,7 @@ public class ShareDiagnosisViewModel extends ViewModel {
             newDiagnosisId -> {
               // Remember the diagnosis ID as the "current" diagnosis for the rest of the sharing
               // flow.
-              Log.d(TAG, "Current diagnosis stored, notifying view");
+              logger.d("Current diagnosis stored, notifying view");
               postCurrentDiagnosisId(newDiagnosisId);
               inFlightLiveData.postValue(false);
               verificationErrorLiveData.postValue("");
@@ -662,7 +914,8 @@ public class ShareDiagnosisViewModel extends ViewModel {
                 skipCodeStep(diagnosisEntity);
               } else {
                 revealCodeStepEvent.postValue(true);
-                nextStep(ShareDiagnosisFlowHelper.getNextStep(Step.CODE, diagnosisEntity, context));
+                nextStep(ShareDiagnosisFlowHelper.getNextStep(
+                    Step.CODE, diagnosisEntity, getShareDiagnosisFlow(), context));
               }
               return null;
             }, lightweightExecutor)
@@ -690,11 +943,12 @@ public class ShareDiagnosisViewModel extends ViewModel {
         .catching(UploadException.class, ex -> {
           inFlightLiveData.postValue(false);
           revealCodeStepEvent.postValue(true);
-          verificationErrorLiveData.postValue(ex.getUploadError().getErrorMessage(resources));
+          verificationErrorLiveData.postValue(ex.getUploadError().getErrorMessage(
+              resources, ShareDiagnosisFlow.SELF_REPORT.equals(getShareDiagnosisFlow())));
           return null;
         }, lightweightExecutor)
         .catching(Exception.class, ex -> {
-          Log.e(TAG, "Failed to submit verification code.", ex);
+          logger.e("Failed to submit verification code.", ex);
           inFlightLiveData.postValue(false);
           revealCodeStepEvent.postValue(true);
           verificationErrorLiveData.postValue(resources.getString(R.string.generic_error_message));
@@ -704,7 +958,8 @@ public class ShareDiagnosisViewModel extends ViewModel {
 
   void skipCodeStep(DiagnosisEntity diagnosisEntity) {
     removeCurrentStepFromBackStack();
-    nextStep(ShareDiagnosisFlowHelper.getNextStep(Step.CODE, diagnosisEntity, context));
+    nextStep(ShareDiagnosisFlowHelper.getNextStep(
+        Step.CODE, diagnosisEntity, getShareDiagnosisFlow(), context));
   }
 
   /**
@@ -724,13 +979,6 @@ public class ShareDiagnosisViewModel extends ViewModel {
   }
 
   /**
-   * An {@link Exception} thrown when there is no internet connectivity during code submission.
-   */
-  private static class NoInternetException extends Exception {
-
-  }
-
-  /**
    * Submits TEKs and our diagnosis for sharing to other EN participating devices.
    *
    * <p>This involves these steps:
@@ -746,12 +994,13 @@ public class ShareDiagnosisViewModel extends ViewModel {
    * @return a {@link ListenableFuture} of type {@link Boolean} of successfully submitted state
    */
   private ListenableFuture<?> getCertAndUploadKeys(ImmutableList<DiagnosisKey> diagnosisKeys) {
-    Log.d(TAG, "Certifying and uploading keys...");
+    logger.d("Certifying and uploading keys...");
     return FluentFuture.from(getCurrentDiagnosis())
         .transform(
             // Construct an Upload from some diagnosis fields.
             diagnosis ->
-                Upload.newBuilder(diagnosisKeys, diagnosis.getVerificationCode())
+                Upload.newBuilder(diagnosisKeys, diagnosis.getVerificationCode(),
+                        SecureRandomUtil.newHmacKey(secureRandom))
                     .setLongTermToken(diagnosis.getLongTermToken())
                     .setSymptomOnset(diagnosis.getOnsetDate())
                     .setCertificate(diagnosis.getCertificate())
@@ -760,7 +1009,7 @@ public class ShareDiagnosisViewModel extends ViewModel {
             lightweightExecutor)
         .transformAsync(
             upload -> {
-              Log.d(TAG, "Submitting keys to verification server for certificate...");
+              logger.d("Submitting keys to verification server for certificate...");
               // We normally do not have a certificate yet, but in some cases like resuming a past
               // failed upload, we have one already. Get one if we need one.
               if (Strings.isNullOrEmpty(upload.certificate())) {
@@ -773,7 +1022,7 @@ public class ShareDiagnosisViewModel extends ViewModel {
             this::addRevisionTokenToUpload, lightweightExecutor)
         .transformAsync(
             upload -> {
-              Log.d(TAG, "Uploading keys and cert to keyserver...");
+              logger.d("Uploading keys and cert to keyserver...");
               // Finally, the verification server having certified our diagnosis, upload our keys.
               return uploadController.upload(upload);
             },
@@ -781,7 +1030,7 @@ public class ShareDiagnosisViewModel extends ViewModel {
         .transform(
             upload -> {
               // Successfully submitted
-              Log.d(TAG, "Upload success: " + upload);
+              logger.d("Upload success: " + upload);
               save(
                   diagnosis -> diagnosis.toBuilder()
                       .setCertificate(upload.certificate())
@@ -799,7 +1048,7 @@ public class ShareDiagnosisViewModel extends ViewModel {
             ApiException.class,
             e -> {
               // Not successfully submitted
-              Log.e(TAG, "Upload fail: ", e);
+              logger.e("Upload fail: ", e);
               setIsShared(Shared.NOT_SHARED);
               return Shared.NOT_SHARED;
             },
@@ -886,15 +1135,32 @@ public class ShareDiagnosisViewModel extends ViewModel {
     return resumingAndNotConfirmed;
   }
 
+  /** Set the type of the current sharing flow. */
+  public void setShareDiagnosisFlow(ShareDiagnosisFlow shareDiagnosisFlow) {
+    if (ShareDiagnosisFlow.SELF_REPORT.equals(shareDiagnosisFlow)) {
+      // Sharing flow may have been populated with the last non-shared diagnosis or SavedStateHandle
+      // data for the Step.CODE already as part of the "Resume diagnosis automatically flow". We
+      // won't need that data for the self-report flow, so reset it.
+      setCurrentDiagnosisId(ShareDiagnosisViewModel.NO_EXISTING_ID);
+      resetSavedStateHandleForCodeStep();
+    }
+    this.shareDiagnosisFlow = shareDiagnosisFlow;
+  }
+
+  /** Return the type of the current sharing flow. */
+  public ShareDiagnosisFlow getShareDiagnosisFlow() {
+    return shareDiagnosisFlow;
+  }
+
   /**
    * Sets a boolean flag to indicate if the UI for the Code step in the sharing flow should be
    * marked as restored from {@link SavedStateHandle} upon the next render.
    *
-   * @param restoredFromSavedState whether the Code step UI should be marked as restored from
-   *                               saved state upon the next render
+   * @param codeUiRestoredFromSavedState whether the Code step UI should be marked as restored from
+   *                                     saved state upon the next render
    */
-  public void markUiToBeRestoredFromSavedState(boolean restoredFromSavedState) {
-    this.restoredFromSavedState = restoredFromSavedState;
+  public void markCodeUiToBeRestoredFromSavedState(boolean codeUiRestoredFromSavedState) {
+    this.codeUiRestoredFromSavedState = codeUiRestoredFromSavedState;
   }
 
   /**
@@ -904,13 +1170,22 @@ public class ShareDiagnosisViewModel extends ViewModel {
    *
    * @return a boolean indicating if the UI for the Code step has been restored from the saved state
    */
-  public boolean isUiToBeRestoredFromSavedState() {
-    return restoredFromSavedState;
+  public boolean isCodeUiToBeRestoredFromSavedState() {
+    return codeUiRestoredFromSavedState;
+  }
+
+  /** Resets SavedStateHandle values for {@link Step#CODE}. */
+  public void resetSavedStateHandleForCodeStep() {
+    Set<String> keysToReset = savedStateHandle.keys();
+    keysToReset.removeAll(SAVED_STATE_GET_CODE_KEYS);
+    for (String key : keysToReset) {
+      savedStateHandle.remove(key);
+    }
   }
 
   /*
-   * All the methods below are to store or retrieve the different bits of UI state for the Code step
-   * in the sharing flow with the help of SavedStateHandle.
+   * All the methods below are to store or retrieve the different bits of UI state for the CODE and
+   * GET_CODE steps in the sharing flow with the help of SavedStateHandle.
    */
   public void setCodeIsInvalidForCodeStep(boolean isCodeInvalid) {
     savedStateHandle.set(SAVED_STATE_CODE_IS_INVALID, isCodeInvalid);
@@ -960,6 +1235,22 @@ public class ShareDiagnosisViewModel extends ViewModel {
     return savedStateHandle.getLiveData(SAVED_STATE_VERIFIED_CODE, null);
   }
 
+  public void setPhoneNumberForGetCodeStep(@Nullable String phoneNumber) {
+    savedStateHandle.set(SAVED_STATE_GET_CODE_PHONE_NUMBER, phoneNumber);
+  }
+
+  public LiveData<String> getPhoneNumberForGetCodeStepLiveData() {
+    return savedStateHandle.getLiveData(SAVED_STATE_GET_CODE_PHONE_NUMBER, null);
+  }
+
+  public void setTestDateForGetCodeStep(@Nullable String testDate) {
+    savedStateHandle.set(SAVED_STATE_GET_CODE_TEST_DATE, testDate);
+  }
+
+  public LiveData<String> getTestDateForGetCodeStepLiveData() {
+    return savedStateHandle.getLiveData(SAVED_STATE_GET_CODE_TEST_DATE, null);
+  }
+
   public void setLastVaccinationResponse(VaccinationStatus vaccinationStatus) {
     exposureNotificationSharedPreferences
         .setLastVaccinationResponse(clock.now(), vaccinationStatus);
@@ -977,6 +1268,51 @@ public class ShareDiagnosisViewModel extends ViewModel {
     return privateAnalyticsEnabledProvider.isSupportedByApp()
         && privateAnalyticsEnabledProvider.isEnabledForUser()
         && !TextUtils.isEmpty(resources.getString(R.string.share_vaccination_detail));
+  }
+
+  /**
+   * An {@link Exception} thrown when a number of requests for a verification code made within
+   * a particular time frame (e.g. 30 minutes or 30 days) has exceeded a certain limit.
+   */
+  public static class TooManyVerificationCodeRequestsException extends Exception {
+
+    private final String errorMessage;
+
+    public TooManyVerificationCodeRequestsException(String errorMessage) {
+      this.errorMessage = errorMessage;
+    }
+
+    public String getErrorMessage() {
+      return errorMessage;
+    }
+  }
+
+  /**
+   * Used to represent a limit on number of requests for a verification code sent per a particular
+   * period of time (e.g. 2 limits per 2 weeks).
+   *
+   * <p>Request limits are in place to mitigate an abuse of a Self-report functionality.
+   */
+  @AutoValue
+  abstract static class VerificationCodeRequestLimit {
+
+    abstract Duration periodDuration();
+
+    abstract Integer numOfRequests();
+
+    static VerificationCodeRequestLimit.Builder newBuilder() {
+      return new AutoValue_ShareDiagnosisViewModel_VerificationCodeRequestLimit.Builder();
+    }
+
+    @AutoValue.Builder
+    abstract static class Builder {
+
+      abstract VerificationCodeRequestLimit.Builder setPeriodDuration(Duration numOfTimeUnits);
+
+      abstract VerificationCodeRequestLimit.Builder setNumOfRequests(Integer numOfRequests);
+
+      abstract VerificationCodeRequestLimit build();
+    }
   }
 
 }

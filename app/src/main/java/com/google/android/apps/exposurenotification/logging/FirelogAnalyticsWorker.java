@@ -41,7 +41,6 @@ import org.threeten.bp.Duration;
  * A worker that uploads analytical logs through firelog.
  */
 public class FirelogAnalyticsWorker extends ListenableWorker {
-  private static final String TAG = "FirelogAnalyticsWorker";
 
   public static final String WORKER_NAME = "FirelogAnalyticsUploadWorker";
   public static final Duration JOB_INTERVAL = Duration.ofHours(4).plusMinutes(30);

@@ -215,73 +215,10 @@
 
       </LinearLayout>
 
-      <TextView
+      <FrameLayout
+        android:id="@+id/debug_public_key_fragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/padding_large"
-        android:layout_marginVertical="@dimen/padding_micro"
-        android:textAppearance="?attr/textAppearanceCaption"
-        android:text="@string/debug_matching_public_key_caption"/>
-
-      <TextView
-        android:id="@+id/keyfile_signature_public_key"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/padding_large"
-        android:layout_marginVertical="@dimen/padding_small"
-        android:background="@drawable/bg_copyable_textview"
-        android:textAppearance="?attr/textAppearanceBody2"/>
-
-      <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/padding_large"
-        android:layout_marginVertical="@dimen/padding_micro"
-        android:textAppearance="?attr/textAppearanceCaption"
-        android:text="@string/debug_matching_package_caption"/>
-
-      <TextView
-        android:id="@+id/keyfile_signature_package_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/padding_large"
-        android:layout_marginVertical="@dimen/padding_small"
-        android:background="@drawable/bg_copyable_textview"
-        android:textAppearance="?attr/textAppearanceBody2"/>
-
-      <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/padding_large"
-        android:layout_marginVertical="@dimen/padding_micro"
-        android:textAppearance="?attr/textAppearanceCaption"
-        android:text="@string/debug_matching_key_id_caption"/>
-
-      <TextView
-        android:id="@+id/keyfile_signature_id"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/padding_large"
-        android:layout_marginVertical="@dimen/padding_small"
-        android:background="@drawable/bg_copyable_textview"
-        android:textAppearance="?attr/textAppearanceBody2" />
-
-      <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/padding_large"
-        android:layout_marginVertical="@dimen/padding_micro"
-        android:textAppearance="?attr/textAppearanceCaption"
-        android:text="@string/debug_matching_key_version_caption"/>
-
-      <TextView
-        android:id="@+id/keyfile_signature_version"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/padding_large"
-        android:layout_marginVertical="@dimen/padding_small"
-        android:background="@drawable/bg_copyable_textview"
-        android:textAppearance="?attr/textAppearanceBody2" />
+        android:layout_height="wrap_content" />
 
     </LinearLayout>
 

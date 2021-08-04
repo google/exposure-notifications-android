@@ -30,30 +30,42 @@ import androidx.core.app.NotificationCompat.Builder;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.common.BuildUtils.Type;
+import com.google.android.apps.exposurenotification.common.logging.Logger;
 import java.util.Objects;
 
 /**
  * Helper class for managing notifications in the app.
  */
 public final class NotificationHelper {
-
-  private static final String TAG = "NotificationHelper";
+  private static final Logger logger = Logger.getLogger("NotificationHelper");
 
   @VisibleForTesting
   static final String EXPOSURE_NOTIFICATION_CHANNEL_ID =
       "ApolloExposureNotificationCallback.EXPOSURE_NOTIFICATION_CHANNEL_ID";
 
   private static final int POSSIBLE_EXPOSURE_NOTIFICATION_ID = 0;
+  private static final int REACTIVATE_APPLICATION_NOTIFICATION_ID = 1;
 
   /**
-   * Shows a notification.
+   * Shows a notification based on Strings resources.
    */
   public void showNotification(Context context, @StringRes int titleResource,
       @StringRes int messageResource, Intent contentIntent, Intent deleteIntent) {
+    String titleString = context.getString(titleResource);
+    String messageString = context.getString(messageResource);
+    showNotification(context, titleString, messageString, contentIntent, deleteIntent);
+  }
+
+  /**
+   * Shows a notification based on Strings.
+   */
+  public void showNotification(Context context, String titleString,
+      String messageString, Intent contentIntent, Intent deleteIntent) {
     createNotificationChannel(context);
 
     PendingIntent pendingIntent = PendingIntent
-        .getActivity(context, 0, contentIntent, 0);
+        .getActivity(context, 0, contentIntent, PendingIntent.FLAG_UPDATE_CURRENT);
     PendingIntent deletePendingIntent = PendingIntent
         .getBroadcast(context, 0, deleteIntent, PendingIntent.FLAG_CANCEL_CURRENT);
 
@@ -61,20 +73,69 @@ public final class NotificationHelper {
         new Builder(context, EXPOSURE_NOTIFICATION_CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_exposure_notification)
             .setColor(ContextCompat.getColor(context, R.color.notification_color))
-            .setContentTitle(context.getString(titleResource))
-            .setContentText(context.getString(messageResource))
+            .setContentTitle(titleString)
+            .setContentText(messageString)
             .setStyle(new NotificationCompat.BigTextStyle()
-                .bigText(context.getString(messageResource)))
+                .bigText(messageString))
             .setPriority(NotificationCompat.PRIORITY_MAX)
             .setContentIntent(pendingIntent)
+            .setDeleteIntent(deletePendingIntent)
             .setOnlyAlertOnce(true)
             .setAutoCancel(true)
-            .setDeleteIntent(deletePendingIntent)
             // Do not reveal this notification on a secure lockscreen.
             .setVisibility(NotificationCompat.VISIBILITY_SECRET);
+
     NotificationManagerCompat notificationManager = NotificationManagerCompat
         .from(context);
     notificationManager.notify(POSSIBLE_EXPOSURE_NOTIFICATION_ID, builder.build());
+  }
+
+  /**
+   * Shows a notification, notifying user to reactivate the exposure notifications app.
+   * This notification is disabled for V3 apps
+   */
+  public void showReActivateENAppNotification(Context context,
+      @StringRes int titleResource, @StringRes int messageResource) {
+
+    if (BuildUtils.getType() == Type.V3) {
+      return;
+    }
+
+    createNotificationChannel(context);
+
+    Intent notificationIntent = IntentUtil.getNotificationContentIntentExposure(context);
+    PendingIntent pendingIntent = PendingIntent.getActivity(context, 0,
+        notificationIntent, 0);
+
+    NotificationCompat.Builder builder =
+        new Builder(context, EXPOSURE_NOTIFICATION_CHANNEL_ID)
+        .setSmallIcon(R.drawable.ic_exposure_notification)
+        .setColor(ContextCompat.getColor(context, R.color.notification_color))
+        .setContentTitle(context.getString(titleResource))
+        .setContentText(context.getString(messageResource,
+            StringUtils.getHealthAuthorityName(context)))
+        .setStyle(new NotificationCompat.BigTextStyle()
+            .bigText(context.getString(messageResource,
+                StringUtils.getHealthAuthorityName(context))))
+        .setPriority(NotificationCompat.PRIORITY_MAX)
+        .setContentIntent(pendingIntent)
+        .setOnlyAlertOnce(true)
+        .setAutoCancel(true)
+        .setVisibility(NotificationCompat.VISIBILITY_SECRET);
+
+    NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
+    notificationManager.notify(REACTIVATE_APPLICATION_NOTIFICATION_ID, builder.build());
+  }
+
+  /**
+   * Dismisses notification notifying user to reactivate the exposure notifications app.
+   * The reactivate exposure app notification is disabled for V3 apps.
+   */
+  public void dismissReActivateENNotificationIfShowing(Context context) {
+    if (BuildUtils.getType() == Type.V3) {
+      return;
+    }
+    NotificationManagerCompat.from(context).cancel(REACTIVATE_APPLICATION_NOTIFICATION_ID);
   }
 
   /**

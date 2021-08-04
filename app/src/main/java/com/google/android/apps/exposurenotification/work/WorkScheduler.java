@@ -17,10 +17,10 @@
 
 package com.google.android.apps.exposurenotification.work;
 
-import android.util.Log;
 import androidx.work.Operation.State.SUCCESS;
 import androidx.work.WorkManager;
 import com.google.android.apps.exposurenotification.common.Qualifiers.LightweightExecutor;
+import com.google.android.apps.exposurenotification.common.logging.Logger;
 import com.google.android.apps.exposurenotification.keyupload.UploadCoverTrafficWorker;
 import com.google.android.apps.exposurenotification.logging.FirelogAnalyticsWorker;
 import com.google.android.apps.exposurenotification.nearby.ProvideDiagnosisKeysWorker;
@@ -40,7 +40,7 @@ import org.threeten.bp.Duration;
  */
 public class WorkScheduler {
 
-  private static final String TAG = "WorkScheduler";
+  private static final Logger logger = Logger.getLogger("WorkScheduler");
 
   private final WorkManager workManager;
   private final ListeningExecutorService lightweightExecutor;
@@ -62,18 +62,18 @@ public class WorkScheduler {
   }
 
   public void schedule() {
-    Log.i(TAG, "Scheduling post-enable periodic WorkManager jobs...");
+    logger.i("Scheduling post-enable periodic WorkManager jobs...");
     Futures.addCallback(
         UploadCoverTrafficWorker.schedule(workManager).getResult(),
         new FutureCallback<SUCCESS>() {
           @Override
           public void onSuccess(@NullableDecl SUCCESS result) {
-            Log.i(TAG, "Scheduled UploadCoverTrafficWorker.");
+            logger.i("Scheduled UploadCoverTrafficWorker.");
           }
 
           @Override
           public void onFailure(Throwable t) {
-            Log.e(TAG, "Failed to schedule UploadCoverTrafficWorker.", t);
+            logger.e("Failed to schedule UploadCoverTrafficWorker.", t);
           }
         }, lightweightExecutor);
 
@@ -82,12 +82,12 @@ public class WorkScheduler {
         new FutureCallback<SUCCESS>() {
           @Override
           public void onSuccess(@NullableDecl SUCCESS result) {
-            Log.i(TAG, "Scheduled ProvideDiagnosisKeysWorker.");
+            logger.i("Scheduled ProvideDiagnosisKeysWorker.");
           }
 
           @Override
           public void onFailure(Throwable t) {
-            Log.e(TAG, "Failed to schedule ProvideDiagnosisKeysWorker.", t);
+            logger.e("Failed to schedule ProvideDiagnosisKeysWorker.", t);
           }
         }, lightweightExecutor);
 
@@ -96,12 +96,12 @@ public class WorkScheduler {
         new FutureCallback<SUCCESS>() {
           @Override
           public void onSuccess(@NullableDecl SUCCESS result) {
-            Log.i(TAG, "Scheduled CountryCheckingWorker.");
+            logger.i("Scheduled CountryCheckingWorker.");
           }
 
           @Override
           public void onFailure(Throwable t) {
-            Log.e(TAG, "Failed to schedule CountryCheckingWorker.", t);
+            logger.e("Failed to schedule CountryCheckingWorker.", t);
           }
         }, lightweightExecutor);
 
@@ -110,12 +110,12 @@ public class WorkScheduler {
         new FutureCallback<SUCCESS>() {
           @Override
           public void onSuccess(@NullableDecl SUCCESS result) {
-            Log.i(TAG, "Scheduled FirelogAnalyticsWorker.");
+            logger.i("Scheduled FirelogAnalyticsWorker.");
           }
 
           @Override
           public void onFailure(Throwable t) {
-            Log.e(TAG, "Failed to schedule FirelogAnalyticsWorker.", t);
+            logger.e("Failed to schedule FirelogAnalyticsWorker.", t);
           }
         }, lightweightExecutor);
 
@@ -126,16 +126,16 @@ public class WorkScheduler {
           new FutureCallback<SUCCESS>() {
             @Override
             public void onSuccess(@NullableDecl SUCCESS result) {
-              Log.i(TAG, "Scheduled SubmitPrivateAnalyticsWorker.");
+              logger.i("Scheduled SubmitPrivateAnalyticsWorker.");
             }
 
             @Override
             public void onFailure(Throwable t) {
-              Log.e(TAG, "Failed to schedule SubmitPrivateAnalyticsWorker.", t);
+              logger.e("Failed to schedule SubmitPrivateAnalyticsWorker.", t);
             }
           }, lightweightExecutor);
     } else {
-      Log.d(TAG, String.format(
+      logger.d(String.format(
           "Private Analytics not scheduled. isFeatureSupported=%s, isDeviceAttestationAvailable=%s",
           privateAnalyticsEnabledProvider.isSupportedByApp(),
           DefaultPrivateAnalyticsDeviceAttestation.isDeviceAttestationAvailable()));

@@ -30,7 +30,8 @@
   <string name="onboarding_exposure_notifications_title">Уключыць Апавяшчэнні пра рызыку заражэння</string>
   <string name="onboarding_exposure_notifications_detail">Атрымлівайце апавяшчэнні, калі вы знаходзіліся побач з асобай, якая паведаміла пра заражэнне COVID-19.
     \n\nВаш тэлефон выкарыстоўвае Bluetooth, каб бяспечна збіраць выпадковыя ідэнтыфікатары і абагульваць іх з іншымі тэлефонамі паблізу.
-    \n\nДата, працягласць і ўзровень сігналу, звязаныя з рызыкай заражэння, будуць уплываць на тое, ці атрымаеце вы апавяшчэнне на падставе паказчыкаў, зададзеных органамі грамадскай аховы здароўя.</string>
+    \n\nДата, працягласць і ўзровень сігналу, звязаныя з рызыкай заражэння, будуць уплываць на тое, ці атрымаеце вы апавяшчэнне на падставе паказчыкаў, зададзеных дзяржаўнымі органамі аховы здароўя.
+    \n\nКалі вынік вашага тэста будзе станоўчым, вы можаце атрымаць напамін аб неабходнасці абагуліць гэту інфармацыю з органамі аховы здароўя.</string>
   <string name="onboarding_metrics_title">Дапамажыце ўдасканаліць гэту праграму</string>
   <string name="onboarding_metrics_subtitle">Абагульвайце даныя пра выкарыстанне праграмы з Google</string>
   <string name="onboarding_metrics_description">Дзеля падтрымкі і ўдасканалення нашай праграмы частка інфармацыі пра яе прадукцыйнасць і выкарыстанне будзе ананімна абагульвацца з Google. Гэтыя даныя не дазволяць вызначыць вашу асобу. %1$s</string>
@@ -62,10 +63,10 @@
   <string name="notify_turn_on_exposure_notifications_header">Каб атрымліваць апавяшчэнні пра магчымае заражэнне COVID-19, уключыце Апавяшчэнні пра рызыку заражэння. %1$s</string>
   <string name="using_en_helps_even_if_vaccinated">Выкарыстанне гэтага сэрвісу дапаможа абараніць людзей вакол вас, нават калі вы прайшлі курс вакцынацыі.</string>
   <string name="share_begin_title">Дапамажыце абараніць іншых людзей</string>
-  <string name="share_close_title">Выйсці без абагульвання?</string>
-  <string name="share_close_detail">Чым хутчэй вы абагуліце інфармацыю пра вынікі тэста, тым большую карысць прынесяце людзям з вашай супольнасці. Дадзеная вамі інфармацыя захавана ў гэтай праграме, і вы можаце змяніць яе пазней.</string>
-  <string name="btn_resume_later">Так, выйсці</string>
-  <string name="verify_test_result_title">Увядзіце інфармацыю пра тэст на COVID-19</string>
+  <string name="share_close_title">Закрыць акно без абагульвання вынікаў?</string>
+  <string name="share_close_detail">Найлепшы спосаб дапамагчы супольнасці – як мага хутчэй абагуліць вынікі тэста. Калі вы закрыеце акно без абагульвання вынікаў, а потым зменіце рашэнне, вы зможаце вярнуцца да этапа, на якім спыніліся.</string>
+  <string name="btn_resume_later">Так, закрыць</string>
+  <string name="verify_test_result_title">Увядзіце код спраўджання</string>
   <string name="enter_your_test_identifier">Код спраўджання</string>
   <string name="share_test_identifier_help">Гэты аднаразовы код выкарыстоўваецца для спраўджання вынікаў вашага тэста.</string>
   <string name="share_test_identifier_verified">Код спраўджаны</string>
@@ -75,30 +76,29 @@
   <string name="test_date_label">Дата ўзнікнення сімптомаў</string>
   <string name="share_onset_symptoms">Так</string>
   <string name="share_onset_no_symptoms">Не</string>
-  <string name="share_onset_no_answer">Не хачу адказваць</string>
+  <string name="share_onset_no_answer">Я не хачу адказваць</string>
   <string name="share_travel_title">Ці падарожнічалі вы ў апошнія 14 дзён?</string>
   <string name="share_travel_confirmed">Так</string>
   <string name="share_travel_no_travel">Не</string>
-  <string name="share_travel_no_answer">Не хачу адказваць</string>
+  <string name="share_travel_no_answer">Я не хачу адказваць</string>
   <string name="share_review_title">Праглядзіце інфармацыю</string>
   <string name="share_review_status_subtitle">Стан COVID-19</string>
   <string name="share_review_status_confirmed">Станоўчы</string>
   <string name="share_review_status_likely">Верагодны</string>
   <string name="share_review_status_negative">Адмоўны</string>
-  <string name="share_review_onset_subtitle">Інфармацыя пра сімптомы</string>
-  <string name="share_review_onset_date">Сімптомы з %1$s</string>
+  <string name="share_review_onset_subtitle">Сімптомы</string>
+  <string name="share_review_onset_date">З\'явіліся %1$s</string>
   <string name="share_review_onset_no_symptoms">Няма сімптомаў</string>
   <string name="share_review_onset_no_answer">Няма адказу</string>
-  <string name="share_review_travel_subtitle">Гісторыя падарожжаў</string>
-  <string name="share_review_travel_confirmed">Падарожнічалі ў апошнія 14 дзён</string>
+  <string name="share_review_travel_subtitle">Падарожжы</string>
+  <string name="share_review_travel_confirmed">У апошнія 14 дзён</string>
   <string name="share_review_travel_no_travel">Не падарожнічалі ў апошнія 14 дзён</string>
   <string name="share_review_travel_no_answer">Няма адказу</string>
-  <string name="share_confirm_title">Дзякуй, што абагулілі свой стан COVID-19</string>
+  <string name="share_confirm_title">Дзякуй, што абагулілі вынікі свайго тэста на COVID-19</string>
   <string name="not_shared_confirm_title">Вынікі вашага тэста не абагулены</string>
   <string name="not_shared_confirm_detail">Вынікі вашага тэста на COVID-19 не абагулены. Паўтарыце спробу.</string>
   <string name="status_shared_detail_title">Абагулены стан датычна COVID-19</string>
-  <string name="delete_test_result_title">Выдаліць вынікі тэсту на COVID-19?</string>
-  <string name="delete_test_result_detail">Падрабязныя звесткі пра вынікі тэсту будуць выдалены з гэтай праграмы.</string>
+  <string name="delete_test_result_title">Выдаліць вынікі вашага тэста?</string>
   <string name="delete_test_result_confirmed">Вынікі тэста выдалены</string>
   <string name="share_error_no_internet">Не ўдалося абагуліць вынікі па-за сеткай. Праверце падключэнне да інтэрнэту і паўтарыце спробу.</string>
   <string name="share_vaccination_title">Ці прайшлі вы курс вакцынацыі супраць Covid-19\?</string>
@@ -106,7 +106,32 @@
   <string name="share_vaccination_learn_more">Даведацца больш</string>
   <string name="share_vaccination_vaccinated">Так, мною пройдзены курс вакцынацыі</string>
   <string name="share_vaccination_not_vaccinated">Не</string>
-  <string name="share_vaccination_unknown">Не хачу адказваць</string>
+  <string name="share_vaccination_unknown">Я не хачу адказваць</string>
+  <string name="do_you_have_code_title">Вы атрымалі код?</string>
+  <string name="do_you_have_code_content">Калі ў вас будуць станоўчыя вынікі тэста на COVID-19, дзяржаўныя органы аховы здароўя адправяць вам код спраўджання на тэлефон ці праз SMS, каб вы маглі абагуліць вынікі тэста.</string>
+  <string name="btn_i_have_code">Так, у мяне ёсць код</string>
+  <string name="btn_i_need_code">Мне патрабуецца код</string>
+  <string name="get_verification_code_title">Атрымаць код спраўджання</string>
+  <string name="phone_number_prompt">Нумар тэлефона</string>
+  <string name="phone_number_help">Код спраўджання дазволіць вам абагуліць вынікі тэста. Ваш код будзе адпраўлены на вызначаны вамі нумар.</string>
+  <string name="phone_number_may_be_stored_help">Каб людзі не адпраўлялі вынік некалькі разоў, у дзяржаўных органах аховы здароўя могуць часова захоўвацца іх нумары тэлефона.</string>
+  <string name="test_date_prompt">Дата тэста</string>
+  <string name="test_date_help">Дата тэста павінна быць у межах апошніх 14 дзён.</string>
+  <string name="tested_for_covid_checkbox_text">Мной атрыманы станоўчы вынік тэста на COVID-19 у апошнія 14 дзён.</string>
+  <string name="btn_send_code">Адправіць код</string>
+  <string name="enter_code_help">Увядзіце код, адпраўлены вам органам \"%1$s\".</string>
+  <string name="positive_result_already_reported_title">Вы ўжо нядаўна адпраўлялі звесткі пра вынікі тэста.</string>
+  <string name="positive_result_already_reported_content">Калі вы хочаце адправіць інфармацыю пра вынікі іншага тэста, звярніцеся сюды: %1$s.</string>
+  <string name="self_report_bad_code">Няправільны код. Для запыту і ўводу кода спраўджання неабходна выкарыстоўваць адну і тую прыладу.</string>
+  <string name="self_report_bad_phone_number">Праверце нумар тэлефона і паўтарыце спробу. %1$s</string>
+  <string name="self_report_code_requested_too_many_times">Вы адправілі занадта шмат запытаў. Калі вам па-ранейшаму неабходны код, звярніцеся сюды: %1$s.</string>
+  <plurals name="self_report_code_already_requested">
+    <item quantity="one">Вы адправілі занадта шмат запытаў. Іншы код вы можаце запытаць праз %1$d хвіліну.</item>
+    <item quantity="few">Вы адправілі занадта шмат запытаў. Іншы код вы можаце запытаць праз %1$d хвіліны.</item>
+    <item quantity="many">Вы адправілі занадта шмат запытаў. Іншы код вы можаце запытаць праз %1$d хвілін.</item>
+    <item quantity="other">Вы адправілі занадта шмат запытаў. Іншы код вы можаце запытаць праз %1$d хвіліны.</item>
+  </plurals>
+  <string name="notify_others_notification_title">Дапамажыце апавясціць іншых карыстальнікаў, якія маглі заразіцца</string>
   <string name="settings_exposure_notifications_subtitle">Апавяшчэнні пра рызыку заражэння</string>
   <string name="settings_app_analytics_subtitle">Абагульваюцца даныя пра выкарыстанне</string>
   <string name="settings_privacy_policy">Палітыка прыватнасці</string>
@@ -168,4 +193,9 @@
   <string name="private_analytics_footer_learn_more">Даведацца больш</string>
   <string name="diagnosis_subtitle_template">%1$s – %2$s</string>
   <string name="empty_share_history_body">Няма гісторыі абагульванняў</string>
+  <string name="share_diagnosis_share_test_result_title">Абагульце вынікі свайго тэста з праграмай \"%1$s\"</string>
+  <string name="share_diagnosis_share_test_result_subtitle">Дзякуй за дапамогу ў спыненні распаўсюджвання COVID-19.</string>
+  <string name="share_diagnosis_share_test_result_body">Падчас абагульвання вынікаў тэста вы можаце абагуліць і звесткі пра тое, калі ў вас з\'явіліся сімптомы. Гэта інфармацыя дапаможа спыніць распаўсюджванне COVID-19 і зберагчы жыццё іншым людзям.</string>
+  <string name="sms_intercept_notice_title">Што новага</string>
+  <string name="sms_intercept_notice_content">Калі мясцовыя органы аховы здароўя прышлюць вынікі вашага тэста, праграма можа напомніць вам пра неабходнасць адпраўкі гэтай інфармацыі, каб апавясціць іншых карыстальнікаў пра рызыку заражэння. Вы можаце ў любы час адключыць гэту функцыю ў наладах.</string>
 </resources>

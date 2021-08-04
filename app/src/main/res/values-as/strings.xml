@@ -30,7 +30,8 @@
   <string name="onboarding_exposure_notifications_title">এক্সপ’জাৰ ন’টিফিকেশ্বন অন কৰক</string>
   <string name="onboarding_exposure_notifications_detail">COVID-19ত আক্ৰান্ত হোৱা বুলি জনোৱা কোনো লোকৰ কাষলৈ আহিলে আপুনি জাননী লাভ কৰক।
     \n\nযাদৃচ্ছিক আইডিসমূহ সুৰক্ষিতভাৱে সংগ্ৰহ আৰু ওচৰত থকা অন্য ফ’নসমূহৰ সৈতে শ্বেয়াৰ কৰিবলৈ আপোনাৰ ফ’নটোৱে ব্লুটুথ ব্যৱহাৰ কৰে।
-    \n\nৰাজহুৱা স্বাস্থ্য কৰ্তৃপক্ষই নিৰ্ধাৰণ কৰা পেৰামিটাৰৰ ওপৰত ভিত্তি কৰি আপোনাক সংস্পৰ্শলৈ অহাৰ বিষয়ে জনোৱা হ’ব নে নাই তাৰ সিদ্ধান্ত ল’বলৈ সম্ভাব্য কোনো সংস্পৰ্শৰ সৈতে জড়িত হৈ থকা তাৰিখ, সময় অৱধি আৰু ছিগনেলৰ ক্ষমতা ব্যৱহাৰ কৰা হ’ব।</string>
+    \n\nৰাজহুৱা স্বাস্থ্য কৰ্তৃপক্ষই নিৰ্ধাৰণ কৰা পেৰামিটাৰৰ ওপৰত ভিত্তি কৰি আপোনাক সংস্পৰ্শলৈ অহাৰ বিষয়ে জনোৱা হ’বনে নাই তাৰ সিদ্ধান্ত ল’বলৈ সম্ভাব্য কোনো সংস্পৰ্শৰ সৈতে জড়িত হৈ থকা তাৰিখ, সময় অৱধি আৰু ছিগনেলৰ ক্ষমতা ব্যৱহাৰ কৰা হ’ব।
+    \n\nযদি আপোনাৰ সংক্ৰমণৰ পৰীক্ষাৰ ফলাফল ধনাত্মক ওলাইছে, আপুনি আপোনাৰ ফলাফলৰ আপোনাৰ স্বাস্থ্য প্ৰাধিকৰণৰ সৈতে শ্বেয়াৰ কৰিবলৈ এটা ৰিমাইণ্ডাৰ লাভ কৰিব পাৰে।</string>
   <string name="onboarding_metrics_title">এই এপ্‌টো অধিক ভাল কৰাত সহায় কৰক</string>
   <string name="onboarding_metrics_subtitle">Googleৰ সৈতে এপৰ ব্যৱহাৰ আৰু কাৰ্যদক্ষতাৰ ডেটা শ্বেয়াৰ কৰক</string>
   <string name="onboarding_metrics_description">এপ্‌টো চলাই ৰখা আৰু উন্নত কৰাত সহায় কৰিবলৈ, এপ্‌টোৰ কাৰ্যদক্ষতা আৰু ব্যৱহাৰ সম্পৰ্কীয় কিছুমান সীমিত ব্যক্তিগত তথ্য প্ৰকাশ নোপোৱা ডেটা Googleৰ সৈতে শ্বেয়াৰ কৰা হয়। এই ডেটাখিনিয়ে আপোনাক চিনাক্ত নকৰে। %1$s</string>
@@ -60,10 +61,10 @@
   <string name="notify_turn_on_exposure_notifications_header">সম্ভাব্য COVID-19ৰ সংস্পৰ্শৰ বিষয়ে জাননী পাবলৈ এক্সপ’জাৰ ন’টিফিকেশ্বন অন কৰক। %1$s</string>
   <string name="using_en_helps_even_if_vaccinated">আপোনাক ইতিমধ্যে প্ৰতিষেধক প্ৰদান কৰা হ’লেও এই সেৱাটো ব্যৱহাৰ কৰাটোৱে আপোনাক নিজৰ সম্প্ৰদায় সুৰক্ষিত কৰাত সহায় কৰে।</string>
   <string name="share_begin_title">আপোনাৰ সম্প্ৰদায়টো সুৰক্ষিত কৰাত সহায় কৰক</string>
-  <string name="share_close_title">শ্বেয়াৰ নকৰাকৈ বাহিৰ হ’বনে?</string>
-  <string name="share_close_detail">আপুনি নিজৰ পৰীক্ষাৰ ফলাফল সোনকালে শ্বেয়াৰ কৰি নিজৰ সম্প্ৰদায়টোক সহায় কৰিব পাৰে। কিন্তু, আপুনি পাছত সম্পাদনা কৰা পুনৰ আৰম্ভ কৰিব পৰাকৈ আপুনি এতিয়ালৈকে দিয়া পৰীক্ষাৰ ফলাফলৰ তথ্য এপ্‌টোত ছেভ কৰা হৈছে।</string>
-  <string name="btn_resume_later">হয়, বাহিৰ হওক</string>
-  <string name="verify_test_result_title">COVID-19ৰ পৰীক্ষাৰ তথ্য দিয়ক</string>
+  <string name="share_close_title">শ্বেয়াৰ নকৰাকৈ বন্ধ কৰিবনে?</string>
+  <string name="share_close_detail">আপোনাৰ সম্প্ৰদায়ক সহায় কৰাৰ উত্তম উপায় হৈছে যিমান পাৰি সিমান সোনকালে নিজৰ ফলাফল শ্বেয়াৰ কৰাটো। আপুনি এতিয়া শ্বেয়াৰ নকৰাকৈ বন্ধ কৰিলে পাছত আপোনাৰ মন সলনি হ’লে আপুনি য’ত এৰিছিল তাৰ পৰা আৰম্ভ কৰিব পাৰিব।</string>
+  <string name="btn_resume_later">হয়, বন্ধ কৰক</string>
+  <string name="verify_test_result_title">আপোনাৰ সত্যাপনৰ ক’ডটো দিয়ক</string>
   <string name="enter_your_test_identifier">সত্যাপনৰ ক’ড</string>
   <string name="share_test_identifier_help">এই এবাৰ ব্যৱহাৰ কৰিব পৰা ক\'ডটো আপোনাৰ পৰীক্ষাৰ ফলাফল সত্যাপন কৰিবলৈ ব্যৱহাৰ কৰা হয়।</string>
   <string name="share_test_identifier_verified">ক’ড সত্যাপন কৰা হ’ল</string>
@@ -73,30 +74,29 @@
   <string name="test_date_label">লক্ষণ দেখা দিয়াৰ তাৰিখ</string>
   <string name="share_onset_symptoms">আছে</string>
   <string name="share_onset_no_symptoms">নাই</string>
-  <string name="share_onset_no_answer">মই একো উত্তৰ দিব নোখোজোঁ</string>
+  <string name="share_onset_no_answer">মই উত্তৰ দিব বিচৰা নাই</string>
   <string name="share_travel_title">আপুনি যোৱা ১৪ দিনত ভ্ৰমণ কৰিছে নেকি?</string>
   <string name="share_travel_confirmed">হয়</string>
   <string name="share_travel_no_travel">নাই</string>
-  <string name="share_travel_no_answer">মই একো উত্তৰ দিব নোখোজোঁ</string>
+  <string name="share_travel_no_answer">মই উত্তৰ দিব বিচৰা নাই</string>
   <string name="share_review_title">আপোনাৰ তথ্যৰ পৰ্যালোচনা কৰক</string>
   <string name="share_review_status_subtitle">COVID-19ৰ স্থিতি</string>
   <string name="share_review_status_confirmed">ধনাত্মক</string>
   <string name="share_review_status_likely">হোৱাৰ সম্ভাৱনা আছে</string>
   <string name="share_review_status_negative">ঋণাত্মক</string>
-  <string name="share_review_onset_subtitle">লক্ষণৰ তথ্য</string>
-  <string name="share_review_onset_date">%1$sৰ পৰা লক্ষণসমূহ আছে</string>
+  <string name="share_review_onset_subtitle">লক্ষণসমূহ</string>
+  <string name="share_review_onset_date">%1$sত আৰম্ভ হৈছে</string>
   <string name="share_review_onset_no_symptoms">কোনো লক্ষণ নাই</string>
   <string name="share_review_onset_no_answer">উত্তৰ দিয়া নাই</string>
-  <string name="share_review_travel_subtitle">ভ্ৰমণৰ ইতিহাস</string>
-  <string name="share_review_travel_confirmed">যোৱা ১৪ দিনত ভ্ৰমণ কৰিছে</string>
+  <string name="share_review_travel_subtitle">ভ্ৰমণ</string>
+  <string name="share_review_travel_confirmed">যোৱা ১৪ দিনৰ ভিতৰত</string>
   <string name="share_review_travel_no_travel">যোৱা ১৪ দিনত ভ্ৰমণ কৰা নাই</string>
   <string name="share_review_travel_no_answer">উত্তৰ দিয়া নাই</string>
-  <string name="share_confirm_title">আপোনাৰ COVID-19ৰ স্থিতি শ্বেয়াৰ কৰাৰ বাবে ধন্যবাদ</string>
+  <string name="share_confirm_title">আপোনাৰ COVID-19ৰ ফলাফল শ্বেয়াৰ কৰাৰ বাবে ধন্যবাদ</string>
   <string name="not_shared_confirm_title">আপোনাৰ পৰীক্ষাৰ ফলাফল শ্বেয়াৰ কৰা হোৱা নাই</string>
   <string name="not_shared_confirm_detail">আপোনাৰ COVID-19ৰ পৰীক্ষাৰ ফলাফল শ্বেয়াৰ কৰা হোৱা নাই। অনুগ্ৰহ কৰি পুনৰ চেষ্টা কৰক।</string>
   <string name="status_shared_detail_title">COVID-19ৰ শ্বেয়াৰ কৰা স্থিতি</string>
-  <string name="delete_test_result_title">COVID-19ৰ পৰীক্ষাৰ ফলাফল মচিবনে?</string>
-  <string name="delete_test_result_detail">আপোনাৰ পৰীক্ষাৰ ফলাফলৰ সবিশেষ এই এপ্‌টোৰ পৰা মচা হ\'ব।</string>
+  <string name="delete_test_result_title">আপোনাৰ পৰীক্ষাৰ ফলাফল মচিবনে?</string>
   <string name="delete_test_result_confirmed">পৰীক্ষাৰ ফলাফল মচা হ’ল</string>
   <string name="share_error_no_internet">পৰীক্ষাৰ ফলাফল অফলাইনত শ্বেয়াৰ কৰিব নোৱাৰি। আপোনাৰ ইণ্টাৰনেট সংযোগ পৰীক্ষা কৰক আৰু পুনৰ চেষ্টা কৰক।</string>
   <string name="share_vaccination_title">আপোনাক Covid-19ৰ প্ৰতিষেধক প্ৰদান কৰা হৈছেনে?</string>
@@ -104,7 +104,30 @@
   <string name="share_vaccination_learn_more">অধিক জানক</string>
   <string name="share_vaccination_vaccinated">হয়, মোক প্ৰতিষেধক প্ৰদান কৰা হৈছে</string>
   <string name="share_vaccination_not_vaccinated">নহয়</string>
-  <string name="share_vaccination_unknown">মই উত্তৰ দিয়াৰ প্ৰয়োজনবোধ কৰা নাই</string>
+  <string name="share_vaccination_unknown">মই উত্তৰ দিব বিচৰা নাই</string>
+  <string name="do_you_have_code_title">আপুনি এটা ক’ড পাইছেনে?</string>
+  <string name="do_you_have_code_content">যদি আপোনাৰ COVID-19ৰ পৰীক্ষাৰ ফলাফল ধনাত্মক ওলায়, তেন্তে আপোনাৰ স্বাস্থ্য কৰ্তৃপক্ষই সাধাৰণতে ফ’ন অথবা বাৰ্তাৰ জৰিয়তে এটা সত্যাপনৰ ক’ড প্ৰদান কৰে যাতে আপুনি নিজৰ ফলাফল শ্বেয়াৰ কৰিব পাৰে।</string>
+  <string name="btn_i_have_code">হয়, মোৰ ওচৰত এটা ক’ড আছে</string>
+  <string name="btn_i_need_code">মোক এটা ক’ড লাগে</string>
+  <string name="get_verification_code_title">এটা সত্যাপনৰ ক’ড লাভ কৰক</string>
+  <string name="phone_number_prompt">ফ’ন নম্বৰ</string>
+  <string name="phone_number_help">এটা সত্যাপনৰ ক’ডে আপোনাক নিজৰ পৰীক্ষাৰ ফলাফল শ্বেয়াৰ কৰিবলৈ দিয়ে। আপোনাৰ ক’ডটো আপুনি প্ৰদান কৰা নম্বৰটোলৈ পঠিওৱা হ’ব।</string>
+  <string name="phone_number_may_be_stored_help">মানুহে এটাতকৈ অধিক ফলাফল দাখিল কৰাটো ৰোধ কৰিবলৈ, আপোনাৰ ৰাজহুৱা স্বাস্থ্য কৰ্তৃপক্ষই আপোনাৰ ফ’ন নম্বৰটো সাময়িকভাৱে ষ্ট’ৰ কৰিব পাৰে।</string>
+  <string name="test_date_prompt">পৰীক্ষাৰ তাৰিখ</string>
+  <string name="test_date_help">পৰীক্ষাৰ তাৰিখটো যোৱা ১৪ দিনৰ ভিতৰত হ’ব লাগিব।</string>
+  <string name="tested_for_covid_checkbox_text">যোৱা ১৪ দিনৰ ভিতৰত কৰা পৰীক্ষাত মোৰ COVID-19ৰ ফলাফল ধনাত্মক আহিছে।</string>
+  <string name="btn_send_code">ক’ড পঠিয়াওক</string>
+  <string name="enter_code_help">%1$sএ আপোনালৈ পঠিওৱা ক’ডটো দিয়ক।</string>
+  <string name="positive_result_already_reported_title">আপুনি ইতিমধ্যে শেহতীয়াকৈ পৰীক্ষাৰ ফলাফলৰ ৰিপ’ৰ্ট দাখিল কৰিছে।</string>
+  <string name="positive_result_already_reported_content">যদি আপুনি আন এটা পৰীক্ষাৰ ফলাফলৰ ৰিপ’ৰ্ট দাখিল কৰিব বিচাৰে, তেন্তে অনুগ্ৰহ কৰি%1$sৰ সৈতে যোগাযোগ কৰক।</string>
+  <string name="self_report_bad_code">ক’ডটো মান্য নহয়। আপুনি দুয়োটা অনুৰোধৰ বাবে একেটা ডিভাইচ ব্যৱহাৰ কৰাটো আৰু নিজৰ সত্যাপনৰ ক’ড দিয়াটো নিশ্চিত কৰক।</string>
+  <string name="self_report_bad_phone_number">আপোনাৰ নম্বৰটো পৰীক্ষা কৰক আৰু পুনৰ চেষ্টা কৰক। %1$s</string>
+  <string name="self_report_code_requested_too_many_times">আপুনি বহুকেইটা অনুৰোধ দাখিল কৰিছে। তথাপি যদি আপোনাক ক’ডৰ প্ৰয়োজন, তেন্তে %1$sৰ সৈতে যোগাযোগ কৰক।</string>
+  <plurals name="self_report_code_already_requested">
+    <item quantity="one">আপুনি বহুকেইটা অনুৰোধ দাখিল কৰিছে। আপুনি %1$d মিনিটৰ পাছত অন্য এটা ক’ডৰ বাবে অনুৰোধ কৰিব পাৰে।</item>
+    <item quantity="other">আপুনি বহুকেইটা অনুৰোধ দাখিল কৰিছে। আপুনি %1$d মিনিটৰ পাছত অন্য এটা ক’ডৰ বাবে অনুৰোধ কৰিব পাৰে।</item>
+  </plurals>
+  <string name="notify_others_notification_title">সংস্পৰ্শলৈ অহাৰ সম্ভাৱনা থকা অন্য লোকসকলক জাননী দিয়াত সহায় কৰক</string>
   <string name="settings_exposure_notifications_subtitle">এক্সপ’জাৰ ন’টিফিকেশ্বন</string>
   <string name="settings_app_analytics_subtitle">এপৰ ব্যৱহাৰ আৰু কাৰ্যদক্ষতা শ্বেয়াৰ কৰা</string>
   <string name="settings_privacy_policy">গোপনীয়তা নীতি</string>
@@ -166,4 +189,9 @@
   <string name="private_analytics_footer_learn_more">অধিক জানক</string>
   <string name="diagnosis_subtitle_template">%2$sত %1$s</string>
   <string name="empty_share_history_body">শ্বেয়াৰ কৰাৰ কোনো ইতিহাস নাই</string>
+  <string name="share_diagnosis_share_test_result_title">%1$sৰ সৈতে আপোনাৰ পৰীক্ষাৰ ফলাফল শ্বেয়াৰ কৰক</string>
+  <string name="share_diagnosis_share_test_result_subtitle">COVID-19 ৰোধ কৰাত সহায় কৰাৰ বাবে ধন্যবাদ।</string>
+  <string name="share_diagnosis_share_test_result_body">আপুনি পৰীক্ষাৰ ফলাফল শ্বেয়াৰ কৰাৰ সময়ত আপুনি আপোনাৰ লক্ষণসমূহ কেতিয়া আৰম্ভ হৈছিল সেই কথাও শ্বেয়াৰ কৰিব পাৰে। এই তথ্যই COVID-19ৰ সংক্ৰমণ ৰোধ কৰাত আৰু জীৱন ৰক্ষা কৰাত সহায় কৰিব পাৰে।</string>
+  <string name="sms_intercept_notice_title">নতুন কি আছে</string>
+  <string name="sms_intercept_notice_content">যদি আপোনাৰ স্থানীয় স্বাস্থ্য কৰ্তৃপক্ষই আপোনালৈ কোনো পৰীক্ষাৰ ফলাফল পঠিয়ায়, আপোনাৰ এপ্‌টোৱে আপোনাৰ ফলাফল দাখিল কৰিবলৈ এটা ৰিমাইণ্ডাৰৰ জৰিয়তে জনাব পাৰে আৰু অন্য লোকক সম্ভাব্য সংস্পৰ্শৰ বিষয়ে সতর্ক কৰাত সহায় কৰিব পাৰে। আপুনি যিকোনো সময়তে ছেটিঙত এইটো অক্ষম কৰিব পাৰে।</string>
 </resources>

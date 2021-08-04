@@ -3,13 +3,13 @@
   <string name="share_history_activity_title">இதுவரை பகிரப்பட்ட முடிவுகளைப் பாருங்கள்</string>
   <string name="remove_region_link_title">பகுதியை அகற்று</string>
   <string name="delete_shared_diagnosis">பகிரப்பட்ட பரிசோதனை முடிவை நீக்கு</string>
-  <string name="active_region_subtitle">COVID-19 தொற்று சாத்தியத்தை எச்சரிக்கும் அறிவிப்புகளை அனுப்புவதற்கான செயல்படும் பகுதியாக %1$s தற்போது அமைக்கப்பட்டுள்ளது</string>
-  <string name="active_region_subtitle_en_off">செயல்படும் பகுதியாக %1$s அமைக்கப்பட்டுள்ளது. ஆனால், உங்கள் மொபைலில் COVID-19 தொற்று சாத்தியத்தை எச்சரிக்கும் அறிவிப்புகள் முடக்கப்பட்டுள்ளது</string>
+  <string name="active_region_subtitle">கோவிட்-19 தொற்று சாத்தியத்தை எச்சரிக்கும் அறிவிப்புகளை அனுப்புவதற்கான செயல்படும் பகுதியாக %1$s தற்போது அமைக்கப்பட்டுள்ளது</string>
+  <string name="active_region_subtitle_en_off">செயல்படும் பகுதியாக %1$s அமைக்கப்பட்டுள்ளது. ஆனால், உங்கள் மொபைலில் கோவிட்-19 தொற்று சாத்தியத்தை எச்சரிக்கும் அறிவிப்புகள் முடக்கப்பட்டுள்ளது</string>
   <string name="remove_region_title">பகுதியை அகற்று</string>
-  <string name="remove_region_detail">உங்கள் பகுதியை அகற்றுவது COVID-19 தொற்று சாத்தியத்தை எச்சரிக்கும் அறிவிப்புகளை முடக்கும். இந்தப் பகுதியை மீண்டும் எப்போது வேண்டுமானாலும் சேர்க்கலாம்.</string>
+  <string name="remove_region_detail">உங்கள் பகுதியை அகற்றுவது கோவிட்-19 தொற்று சாத்தியத்தை எச்சரிக்கும் அறிவிப்புகளை முடக்கும். இந்தப் பகுதியை மீண்டும் எப்போது வேண்டுமானாலும் சேர்க்கலாம்.</string>
   <string name="btn_remove">அகற்று</string>
-  <string name="exposure_notifications_is_off">COVID-19 தொற்று சாத்தியத்தை எச்சரிக்கும் அறிவிப்புகள் முடக்கப்பட்டுள்ளது</string>
+  <string name="exposure_notifications_is_off">கோவிட்-19 தொற்று சாத்தியத்தை எச்சரிக்கும் அறிவிப்புகள் முடக்கப்பட்டுள்ளது</string>
   <string name="possible_exposure">தொற்றின் சாத்தியம்</string>
   <string name="share_history_delete_test_result_title">இந்தப் பரிசோதனை முடிவை நீக்கவா?</string>
-  <string name="share_history_delete_test_result_detail">%1$s அன்று பெறப்பட்ட COVID-19 பரிசோதனை முடிவு உங்கள் மொபைலிலிருந்து நீக்கப்படும்.</string>
+  <string name="share_history_delete_test_result_detail">%1$s அன்று பெறப்பட்ட கோவிட்-19 பரிசோதனை முடிவு உங்கள் மொபைலிலிருந்து நீக்கப்படும்.</string>
 </resources>

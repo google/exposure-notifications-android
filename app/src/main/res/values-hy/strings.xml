@@ -30,7 +30,8 @@
   <string name="onboarding_exposure_notifications_title">Միացնել վարակման վտանգի մասին ծանուցումները</string>
   <string name="onboarding_exposure_notifications_detail">Ստացեք ծանուցում, եթե անձը, որին մոտ եք գտնվել, հաղորդի COVID-19-ի իր թեստի դրական արդյունքի մասին։
     \n\nՁեր հեռախոսը Bluetooth-ի օգնությամբ հավաքում է պատահական նույնացուցիչներ և ուղարկում դրանք մոտակայքում գտնվող այլ հեռախոսների։
-    \n\nՀամաձայն հանրային առողջապահական մարմինների սահմանած պարամետրերի՝ ծանուցումների ուղարկումը կախված է վարակակրի հետ շփման ամսաթվից, տևողությունից, ինչպես նաև այդ պահին Bluetooth ազդանշանի ուժգնությունից։</string>
+    \n\nՀամաձայն հանրային առողջապահական մարմինների սահմանած պարամետրերի՝ ծանուցումների ուղարկումը կախված է վարակակրի հետ շփման ամսաթվից, տևողությունից, ինչպես նաև այդ պահին Bluetooth ազդանշանի ուժգնությունից։
+    \n\nԵթե ձեր թեստի արդյունքը դրական է, դուք կարող եք հիշեցում ստանալ՝ այդ մասին առողջապահական մարմիններին հայտնելու համար։</string>
   <string name="onboarding_metrics_title">Օգնեք ավելի լավը դարձնել այս հավելվածը</string>
   <string name="onboarding_metrics_subtitle">Ուղարկել հավելվածի մասին տվյալները Google-ին</string>
   <string name="onboarding_metrics_description">Հավելվածի պատշաճ աշխատանքն ապահովելու և այն կատարելագործելու նպատակով հավելվածի աշխատանքի և օգտագործման մասին որոշ անանուն տվյալներ կուղարկվեն Google-ին։ Այդ տվյալները չեն նույնականացնի ձեզ։ %1$s</string>
@@ -60,10 +61,10 @@
   <string name="notify_turn_on_exposure_notifications_header">COVID-19-ի վարակակիրների հետ հնարավոր շփումների մասին ծանուցումներ ստանալու համար միացրեք վարակման վտանգի մասին ծանուցումները։ %1$s</string>
   <string name="using_en_helps_even_if_vaccinated">Դա կօգնի կանխել հիվանդության տարածումը, անգամ եթե դուք արդեն պատվաստվել եք։</string>
   <string name="share_begin_title">Օգնեք պաշտպանել ձեր համայնքը</string>
-  <string name="share_close_title">Դուրս գա՞լ առանց կիսվելու</string>
-  <string name="share_close_detail">Օգնեք ձեր համայնքին՝ հնարավորինս շուտ կիսվելով ձեր թեստի արդյունքներով։ Թեստի արդյունքների մասին ձեր մուտքագրած տվյալները կպահվեն այս հավելվածում, որպեսզի դուք կարողանաք փոխել դրանք ավելի ուշ։</string>
-  <string name="btn_resume_later">Այո, դուրս գալ</string>
-  <string name="verify_test_result_title">Մուտքագրեք COVID-19-ի թեստի մասին տեղեկությունները</string>
+  <string name="share_close_title">Փակե՞լ առանց կիսվելու</string>
+  <string name="share_close_detail">Համայնքին օգնելու լավագույն եղանակը հնարավորինս շուտ ձեր արդյունքով կիսվելն է։ Եթե առանց կիսվելու փակեք պատուհանը, ավելի ուշ մտափոխվելու դեպքում կարող եք շարունակել նույն տեղից, որտեղ կանգ եք առել։</string>
+  <string name="btn_resume_later">Այո, փակել</string>
+  <string name="verify_test_result_title">Մուտքագրեք հաստատման կոդը</string>
   <string name="enter_your_test_identifier">Հաստատման կոդ</string>
   <string name="share_test_identifier_help">Այս միանգամյա օգտագործման կոդն օգտագործվում է ձեր թեստի արդյունքը հաստատելու համար։</string>
   <string name="share_test_identifier_verified">Կոդը հաստատված է</string>
@@ -83,20 +84,19 @@
   <string name="share_review_status_confirmed">Դրական</string>
   <string name="share_review_status_likely">Հավանական</string>
   <string name="share_review_status_negative">Բացասական</string>
-  <string name="share_review_onset_subtitle">Տեղեկություններ ախտանիշների մասին</string>
-  <string name="share_review_onset_date">Ախտանիշները հայտնվել են են՝ սկսած %1$s</string>
+  <string name="share_review_onset_subtitle">Ախտանիշներ</string>
+  <string name="share_review_onset_date">Հայտնվել են՝ %1$s</string>
   <string name="share_review_onset_no_symptoms">Ախտանիշներ չկան</string>
   <string name="share_review_onset_no_answer">Չեք պատասխանել</string>
-  <string name="share_review_travel_subtitle">Ճամփորդությունների պատմություն</string>
-  <string name="share_review_travel_confirmed">Ճամփորդել եմ վերջին 14 օրվա ընթացում</string>
+  <string name="share_review_travel_subtitle">Ուղևորություններ</string>
+  <string name="share_review_travel_confirmed">Վերջին 14 օրվա ընթացում</string>
   <string name="share_review_travel_no_travel">Չեմ ճամփորդել վերջին 14 օրվա ընթացքում</string>
   <string name="share_review_travel_no_answer">Չեք պատասխանել</string>
   <string name="share_confirm_title">Շնորհակալություն COVID-19-ի ձեր թեստի արդյունքով կիսվելու համար</string>
   <string name="not_shared_confirm_title">Թեստի արդյունքը չի ուղարկվել</string>
   <string name="not_shared_confirm_detail">COVID-19-ի ձեր թեստի արդյունքը չի ուղարկվել։ Նորից փորձեք։</string>
   <string name="status_shared_detail_title">COVID-19 կարգավիճակի մասին տեղեկություն</string>
-  <string name="delete_test_result_title">Ջնջե՞լ COVID-19-ի թեստի արդյունքը</string>
-  <string name="delete_test_result_detail">Ձեր թեստի արդյունքի տվյալները կջնջվեն այս հավելվածից։</string>
+  <string name="delete_test_result_title">Ջնջե՞լ ձեր թեստի արդյունքը</string>
   <string name="delete_test_result_confirmed">Թեստի արդյունքը ջնջվեց</string>
   <string name="share_error_no_internet">Չհաջողվեց կիսվել թեստի արդյունքներով։ Ստուգեք ինտերնետ կապը և նորից փորձեք։</string>
   <string name="share_vaccination_title">Դուք պատվաստվե՞լ եք COVID-19-ի դեմ</string>
@@ -105,6 +105,29 @@
   <string name="share_vaccination_vaccinated">Այո, ես պատվաստվել եմ</string>
   <string name="share_vaccination_not_vaccinated">Ոչ</string>
   <string name="share_vaccination_unknown">Նախընտրում եմ չպատասխանել</string>
+  <string name="do_you_have_code_title">Ստացե՞լ եք կոդ</string>
+  <string name="do_you_have_code_content">Եթե վարակվել եք COVID-19-ով, ապա առողջապահական մարմիններից պետք է որ ստացած լինեք հաստատման կոդ ձեր հեռախոսին զանգի կամ SMS-ի միջոցով։ Այդ կոդի միջոցով կարող եք կիսվել ձեր թեստի արդյունքով։</string>
+  <string name="btn_i_have_code">Այո, ստացել եմ կոդ</string>
+  <string name="btn_i_need_code">Ոչ, ինձ անհրաժեշտ է կոդ</string>
+  <string name="get_verification_code_title">Ստացեք հաստատման կոդ</string>
+  <string name="phone_number_prompt">Հեռախոսահամար</string>
+  <string name="phone_number_help">Ստանալով հաստատման կոդ՝ դուք կարող եք կիսվել ձեր թեստի արդյունքով։ Այն կուղարկվի ձեր նշած հեռախոսահամարին։</string>
+  <string name="phone_number_may_be_stored_help">Հանրային առողջապահական մարմինները կարող են ժամանակավորապես պահել ձեր հեռախոսահամարը։ Դա անհրաժեշտ է, որպեսզի միևնույն մարդը չկարողանա ուղարկել մեկից ավելի արդյունք։</string>
+  <string name="test_date_prompt">Թեստի ամսաթիվը</string>
+  <string name="test_date_help">Թեստը պետք է արված լինի վերջին 14 օրվա ընթացքում։</string>
+  <string name="tested_for_covid_checkbox_text">Ես ստացել եք COVID-19-ի թեստի դրական պատասխան վերջին 14 օրվա ընթացքում։</string>
+  <string name="btn_send_code">Ստանալ կոդ</string>
+  <string name="enter_code_help">Մուտքագրեք ձեզ ուղարկված (%1$s) կոդը։</string>
+  <string name="positive_result_already_reported_title">Դուք վերջերս արդեն հաղորդել եք թեստի արդյունքի մասին։</string>
+  <string name="positive_result_already_reported_content">Եթե ուզում եք հաղորդել մեկ այլ թեստի արդյունքի մասին, դիմեք առողջապահական մարմիններ (%1$s)։</string>
+  <string name="self_report_bad_code">Կոդն անվավեր է։ Համոզվեք, որ կոդը ստանալու և մուտքագրելու համար օգտագործում եք նույն սարքը։</string>
+  <string name="self_report_bad_phone_number">Ստուգեք համարը և նորից փորձեք։ %1$s</string>
+  <string name="self_report_code_requested_too_many_times">Դուք գերազանցել եք հարցումների սահմանաչափը։ Դիմեք առողջապահական մարմիններ (%1$s), եթե ձեզ դեռ անհրաժեշտ է կոդ։</string>
+  <plurals name="self_report_code_already_requested">
+    <item quantity="one">Դուք գերազանցել եք հարցումների սահմանաչափը։ Կարող եք նորից փորձել %1$d րոպեից։</item>
+    <item quantity="other">Դուք գերազանցել եք հարցումների սահմանաչափը։ Կարող եք նորից փորձել %1$d րոպեից։</item>
+  </plurals>
+  <string name="notify_others_notification_title">Օգնեք տեղեկացնել այլ մարդկանց հնարավոր վարակման վտանգի մասին</string>
   <string name="settings_exposure_notifications_subtitle">Ծանուցումներ վարակման վտանգի մասին</string>
   <string name="settings_app_analytics_subtitle">Հավելվածի մասին տվյալների ուղարկում</string>
   <string name="settings_privacy_policy">Գաղտնիության քաղաքականություն</string>
@@ -166,4 +189,9 @@
   <string name="private_analytics_footer_learn_more">Իմանալ ավելին</string>
   <string name="diagnosis_subtitle_template">%1$s՝ %2$s</string>
   <string name="empty_share_history_body">Ուղարկման պատմությունը դատարկ է</string>
+  <string name="share_diagnosis_share_test_result_title">Կիսվեք ձեր թեստի արդյունքով %1$s հավելվածի հետ</string>
+  <string name="share_diagnosis_share_test_result_subtitle">Շնորհակալություն, որ օգնում եք պայքարել COVID-19-ի տարածման դեմ։</string>
+  <string name="share_diagnosis_share_test_result_body">Հաղորդելով ձեր թեստի արդյունքը՝ դուք կարող եք նաև հայտնել, թե երբ են ձեզ մոտ սկսվել ախտանիշները։ Այս տեղեկություններն օգնում են կանխել COVID-19-ի տարածումը և փրկել կյանքեր։</string>
+  <string name="sms_intercept_notice_title">Նոր գործառույթ</string>
+  <string name="sms_intercept_notice_content">Եթե տեղական առողջապահական մարմիններից դուք ստանաք թեստի պատասխանը, հավելվածը կարող է ծանուցում ուղարկել ձեզ՝ հիշեցներով թեստի պատասխանը վերբեռնելու անհրաժեշտության մասին։ Դա կօգնի զգուշացնել մյուսներին հնարավոր վարակման վտանգի մասին։ Ցանկացած ժամանակ կարող եք այս գործառույթն անջատել կարգավորումներում։</string>
 </resources>

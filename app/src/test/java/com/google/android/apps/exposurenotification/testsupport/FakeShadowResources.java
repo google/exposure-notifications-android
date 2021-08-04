@@ -19,8 +19,10 @@ package com.google.android.apps.exposurenotification.testsupport;
 
 import static org.robolectric.shadow.api.Shadow.directlyOn;
 
+import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.util.SparseArray;
+import java.util.Locale;
 import org.robolectric.annotation.Implementation;
 import org.robolectric.annotation.Implements;
 import org.robolectric.annotation.RealObject;
@@ -30,6 +32,7 @@ import org.robolectric.shadows.ShadowResources;
 public class FakeShadowResources extends ShadowResources {
 
   private final SparseArray<Object> resources = new SparseArray<>();
+  private Configuration configuration = setUpConfiguration();
 
   @RealObject
   private Resources realResources;
@@ -37,6 +40,11 @@ public class FakeShadowResources extends ShadowResources {
   /** Adds a fake resource object. */
   public void addFakeResource(int resourceId, Object value) {
     resources.put(resourceId, value);
+  }
+
+  /** Updates fake configuration object. */
+  public void updateConfiguration(Configuration configuration) {
+    this.configuration = configuration;
   }
 
   @Implementation
@@ -47,5 +55,28 @@ public class FakeShadowResources extends ShadowResources {
       return directlyOn(realResources, Resources.class).getString(id);
     }
     return (String) value;
+  }
+
+  @Implementation
+  public boolean getBoolean(int id) throws Resources.NotFoundException {
+    final Object value = resources.get(id);
+    if (value == null) {
+      // Call the real object since no value was set for this shadow.
+      return directlyOn(realResources, Resources.class).getBoolean(id);
+    }
+    return (boolean) value;
+  }
+
+  @Implementation
+  public Configuration getConfiguration() {
+    return configuration;
+  }
+
+  private Configuration setUpConfiguration() {
+    Configuration config = new Configuration();
+    Locale locale = new Locale("en", "US");
+    Locale.setDefault(locale);
+    config.locale = locale;
+    return config;
   }
 }

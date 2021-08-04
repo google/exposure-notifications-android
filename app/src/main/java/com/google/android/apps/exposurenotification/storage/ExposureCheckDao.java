@@ -32,8 +32,6 @@ import org.threeten.bp.Instant;
 @Dao
 public abstract class ExposureCheckDao {
 
-  private static final String TAG = "ExposureCheckDao";
-
   @WorkerThread
   @Query("SELECT * FROM ExposureCheckEntity")
   abstract List<ExposureCheckEntity> getAll();

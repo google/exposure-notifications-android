@@ -60,9 +60,8 @@ public class ShareHistoryFragment extends BaseFragment {
             .get(NotifyHomeViewModel.class);
 
     ApplessDiagnosisEntityAdapter notifyViewAdapter =
-        new ApplessDiagnosisEntityAdapter(
-            diagnosis -> transitionToFragmentWithBackStack(
-                ShareDiagnosisFragment.newInstance(requireContext(), diagnosis)),
+        new ApplessDiagnosisEntityAdapter(diagnosis -> transitionToFragmentWithBackStack(
+            ShareDiagnosisFragment.newInstanceForDiagnosis(requireContext(), diagnosis)),
             notifyHomeViewModel);
     notifyViewAdapter
         .setOnDiagnosisDeleteListener(position -> showDeleteDialog(notifyViewAdapter, position));

@@ -32,6 +32,7 @@ public class PackageConfigurationHelper {
   public static final String APP_ANALYTICS_OPT_IN = "METRICS_OPT_IN";
   public static final String PRIVATE_ANALYTICS_OPT_IN = "APPA_OPT_IN";
   public static final String CHECK_BOX_API_KEY = "check_box_api";
+  public static final String SMS_NOTICE = "SMS_NOTICE";
 
   private final ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
 
@@ -118,5 +119,20 @@ public class PackageConfigurationHelper {
     return false;
   }
 
+  /**
+   * Fetches the sms notice presence from a {@link PackageConfiguration} if it exists. Otherwise
+   * returns false.
+   */
+  public static boolean getSmsNoticeFromPackageConfiguration(
+      @Nullable PackageConfiguration packageConfiguration) {
+    if (packageConfiguration == null) {
+      return false;
+    }
+    Bundle values = packageConfiguration.getValues();
+    if (values != null) {
+      return values.getBoolean(SMS_NOTICE, false);
+    }
+    return false;
+  }
 
 }

@@ -40,8 +40,6 @@ import java.util.Locale;
 public class ApplessDiagnosisEntityAdapter
     extends RecyclerView.Adapter<ApplessDiagnosisViewHolder> {
 
-  private static final String TAG = "ApplessDiagEntityAdaptr";
-
   private List<DiagnosisEntity> diagnosisEntities = Collections.emptyList();
   private final NotifyHomeViewModel notifyHomeViewModel;
 

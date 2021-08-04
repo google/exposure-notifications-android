@@ -17,13 +17,13 @@
 
 package com.google.android.apps.exposurenotification.notify;
 
-import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.hilt.lifecycle.ViewModelInject;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 import com.google.android.apps.exposurenotification.common.Qualifiers.LightweightExecutor;
 import com.google.android.apps.exposurenotification.common.SingleLiveEvent;
+import com.google.android.apps.exposurenotification.common.logging.Logger;
 import com.google.android.apps.exposurenotification.storage.DiagnosisEntity;
 import com.google.android.apps.exposurenotification.storage.DiagnosisRepository;
 import com.google.common.base.Optional;
@@ -38,7 +38,7 @@ import org.checkerframework.checker.nullness.compatqual.NullableDecl;
  */
 public class NotifyHomeViewModel extends ViewModel {
 
-  private static final String TAG = "NotifyHomeViewModel";
+  private static final Logger logger = Logger.getLogger("NotifyHomeViewModel");
   private static final int DELETE_DIALOG_CLOSED = -1;
 
   private final SingleLiveEvent<Void> deletedLiveEvent = new SingleLiveEvent<>();
@@ -87,7 +87,7 @@ public class NotifyHomeViewModel extends ViewModel {
 
           @Override
           public void onFailure(@NonNull Throwable t) {
-            Log.w(TAG, "Failed to delete", t);
+            logger.w("Failed to delete", t);
           }
         },
         lightweightExecutor);

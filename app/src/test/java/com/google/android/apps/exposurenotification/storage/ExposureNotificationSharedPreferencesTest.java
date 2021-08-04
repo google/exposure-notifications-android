@@ -572,6 +572,18 @@ public class ExposureNotificationSharedPreferencesTest {
   }
 
   @Test
+  public void setHasPendingRestoreNotificationState_default_isFalse() {
+    assertThat(exposureNotificationSharedPreferences.hasPendingRestoreNotification()).isFalse();
+  }
+
+  @Test
+  public void setHasPendingRestoreNotificationState_set_isTrue() {
+    exposureNotificationSharedPreferences.setHasPendingRestoreNotificationState(true);
+
+    assertThat(exposureNotificationSharedPreferences.hasPendingRestoreNotification()).isTrue();
+  }
+
+  @Test
   public void getBleLocNotificationSeen_default_isFalse() {
     assertThat(exposureNotificationSharedPreferences.getBleLocNotificationSeen()).isFalse();
   }
@@ -632,6 +644,57 @@ public class ExposureNotificationSharedPreferencesTest {
         .isTrue();
     assertThat(exposureNotificationSharedPreferences.getBeginTimestampBleLocOff().get())
         .isEqualTo(time);
+  }
+
+  @Test
+  public void removeHasPendingRestoreNotificationState() {
+    exposureNotificationSharedPreferences.setHasPendingRestoreNotificationState(true);
+
+    exposureNotificationSharedPreferences.removeHasPendingRestoreNotificationState();
+
+    assertThat(exposureNotificationSharedPreferences.hasPendingRestoreNotification()).isFalse();
+  }
+
+  @Test
+  public void isInAppSmsNoticeSeen_default_isFalse() {
+    assertThat(exposureNotificationSharedPreferences.isInAppSmsNoticeSeen()).isFalse();
+  }
+
+  @Test
+  public void isInAppSmsNoticeSeen_markSeenAsync_isTrue() throws InterruptedException {
+    exposureNotificationSharedPreferences.markInAppSmsNoticeSeenAsync();
+    Thread.sleep(1000); // just wait a second incase async write not complete.
+
+    assertThat(exposureNotificationSharedPreferences.isInAppSmsNoticeSeen()).isTrue();
+  }
+
+  @Test
+  public void isInAppSmsNoticeSeen_markSeen_isTrue() {
+    exposureNotificationSharedPreferences.markInAppSmsNoticeSeen();
+
+    assertThat(exposureNotificationSharedPreferences.isInAppSmsNoticeSeen()).isTrue();
+  }
+
+  @Test
+  public void isInAppSmsNoticeSeenLiveData_default_isFalse() {
+    LiveData<Boolean> isInAppSmsNoticeSeenLiveData =
+        exposureNotificationSharedPreferences.isInAppSmsNoticeSeenLiveData();
+    List<Boolean> values = new ArrayList<>();
+    isInAppSmsNoticeSeenLiveData.observeForever(values::add);
+
+    assertThat(values).containsExactly(false);
+  }
+
+  @Test
+  public void isInAppSmsNoticeSeenLiveData_markedTrue_isFalseThenTrue() {
+    LiveData<Boolean> isInAppSmsNoticeSeenLiveData =
+        exposureNotificationSharedPreferences.isInAppSmsNoticeSeenLiveData();
+    List<Boolean> values = new ArrayList<>();
+    isInAppSmsNoticeSeenLiveData.observeForever(values::add);
+
+    exposureNotificationSharedPreferences.markInAppSmsNoticeSeen();
+
+    assertThat(values).containsExactly(false, true);
   }
 
 }

@@ -20,25 +20,45 @@ package com.google.android.apps.exposurenotification.keyupload;
 import static com.google.common.truth.Truth.assertThat;
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.fail;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
+import android.content.Context;
 import android.net.Uri;
+import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
+import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.common.ExecutorsModule;
 import com.google.android.apps.exposurenotification.common.Qualifiers.BackgroundExecutor;
 import com.google.android.apps.exposurenotification.common.Qualifiers.LightweightExecutor;
 import com.google.android.apps.exposurenotification.common.Qualifiers.ScheduledExecutor;
+import com.google.android.apps.exposurenotification.common.SecureRandomUtil;
+import com.google.android.apps.exposurenotification.common.time.Clock;
+import com.google.android.apps.exposurenotification.common.time.RealTimeModule;
 import com.google.android.apps.exposurenotification.keyupload.ApiConstants.VerifyV1;
 import com.google.android.apps.exposurenotification.keyupload.ApiConstants.VerifyV1.Error;
 import com.google.android.apps.exposurenotification.keyupload.Qualifiers.UploadUri;
 import com.google.android.apps.exposurenotification.keyupload.Qualifiers.VerificationCertUri;
 import com.google.android.apps.exposurenotification.keyupload.Qualifiers.VerificationCodeUri;
+import com.google.android.apps.exposurenotification.keyupload.Qualifiers.VerificationUserReportUri;
 import com.google.android.apps.exposurenotification.keyupload.UploadController.UploadException;
 import com.google.android.apps.exposurenotification.keyupload.UploadController.VerificationFailureException;
 import com.google.android.apps.exposurenotification.keyupload.UploadController.VerificationServerFailureException;
+import com.google.android.apps.exposurenotification.logging.AnalyticsLogger;
+import com.google.android.apps.exposurenotification.logging.ApplicationObserver;
+import com.google.android.apps.exposurenotification.logging.FirelogAnalyticsLogger;
+import com.google.android.apps.exposurenotification.logging.LoggerModule;
 import com.google.android.apps.exposurenotification.network.DiagnosisKey;
 import com.google.android.apps.exposurenotification.network.RealRequestQueueModule;
 import com.google.android.apps.exposurenotification.network.RequestQueueWrapper;
+import com.google.android.apps.exposurenotification.proto.RpcCall.RpcCallType;
 import com.google.android.apps.exposurenotification.testsupport.ExposureNotificationRules;
+import com.google.android.apps.exposurenotification.testsupport.FakeClock;
 import com.google.android.apps.exposurenotification.testsupport.FakeRequestQueue;
 import com.google.common.collect.ImmutableList;
 import com.google.common.util.concurrent.ListeningExecutorService;
@@ -49,6 +69,7 @@ import dagger.hilt.android.testing.BindValue;
 import dagger.hilt.android.testing.HiltAndroidTest;
 import dagger.hilt.android.testing.HiltTestApplication;
 import dagger.hilt.android.testing.UninstallModules;
+import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -63,12 +84,19 @@ import org.junit.function.ThrowingRunnable;
 import org.junit.runner.RunWith;
 import org.robolectric.annotation.Config;
 import org.threeten.bp.LocalDate;
+import org.threeten.bp.ZoneOffset;
 
 @RunWith(AndroidJUnit4.class)
 @HiltAndroidTest
 @Config(application = HiltTestApplication.class)
-@UninstallModules({RealRequestQueueModule.class, UploadUrisModule.class, ExecutorsModule.class})
+@UninstallModules({RealRequestQueueModule.class, UploadUrisModule.class, ExecutorsModule.class,
+    RealTimeModule.class, LoggerModule.class})
 public class DiagnosisAttestorTest {
+
+  private static final String PHONE_NUMBER_GB_LOCALE = "07911123456";
+  private static final String EXPIRES_AT_STR = "2021-06-08";
+
+  private final Context context = ApplicationProvider.getApplicationContext();
 
   // Having uninstalled some modules above (@UninstallModules), we need to provide everything they
   // would have, even if the code under test here doesn't use them.
@@ -78,6 +106,9 @@ public class DiagnosisAttestorTest {
   @BindValue
   @VerificationCertUri
   static final Uri CERT_URI = Uri.parse("http://sampleurls.com/verify/cert");
+  @BindValue
+  @VerificationUserReportUri
+  static final Uri USER_REPORT_URI = Uri.parse("http://sampleurls.com/verify/user-report");
   @BindValue
   @UploadUri
   static final Uri UNUSED_URI = Uri.EMPTY;
@@ -106,12 +137,23 @@ public class DiagnosisAttestorTest {
 
   @BindValue
   RequestQueueWrapper queue = new FakeRequestQueue();
+  @BindValue
+  AnalyticsLogger analyticsLogger = mock(FirelogAnalyticsLogger.class);
+  @BindValue
+  ApplicationObserver applicationObserver = null; // Unused but needed for Hilt dependency graph.
 
   @Rule
-  public ExposureNotificationRules rules = ExposureNotificationRules.forTest(this).build();
+  public ExposureNotificationRules rules = ExposureNotificationRules.forTest(this).withMocks()
+      .build();
 
   @Inject
   DiagnosisAttestor diagnosisAttestor;
+
+  @BindValue
+  Clock clock = new FakeClock();
+
+  @Inject
+  SecureRandom secureRandom;
 
   @Before
   public void setUp() {
@@ -130,6 +172,7 @@ public class DiagnosisAttestorTest {
     // THEN
     // The verification code RPC is the first of two.
     assertThat(fakeQueue().getLastRpcHeaders()).containsEntry("X-Chaff", "1");
+    verifyVerificationRPCSuccessLoggedAndFailureNotLogged();
   }
 
   @Test
@@ -144,6 +187,21 @@ public class DiagnosisAttestorTest {
     // THEN
     // The verification certificate RPC is the second of two.
     assertThat(fakeQueue().getLastRpcHeaders()).containsEntry("X-Chaff", "1");
+    verifyVerificationRPCSuccessLoggedAndFailureNotLogged();
+  }
+
+  @Test
+  public void userReport_coverTrafficRequest_shouldHaveXChaffHeader() throws Exception {
+    // GIVEN
+    UserReportUpload input = sampleUserReportUpload().toBuilder().setIsCoverTraffic(true).build();
+    setupSuccessfulUserReportRpc();
+
+    // WHEN
+    diagnosisAttestor.requestCode(input);
+
+    // THEN
+    assertThat(fakeQueue().getLastRpcHeaders()).containsEntry("X-Chaff", "1");
+    verifyVerificationRPCSuccessLoggedAndFailureNotLogged();
   }
 
   @Test
@@ -155,6 +213,7 @@ public class DiagnosisAttestorTest {
     // WHEN
     // If nothing is thrown here, we're happy.
     diagnosisAttestor.submitCode(input);
+    verifyVerificationRPCSuccessLoggedAndFailureNotLogged();
   }
 
   @Test
@@ -166,6 +225,19 @@ public class DiagnosisAttestorTest {
     // WHEN
     // If nothing is thrown here, we're happy.
     diagnosisAttestor.submitKeysForCert(input);
+    verifyVerificationRPCSuccessLoggedAndFailureNotLogged();
+  }
+
+  @Test
+  public void userReport_coverTrafficRequest_toleratesGarbageResponse() {
+    // GIVEN
+    UserReportUpload input = sampleUserReportUpload().toBuilder().setIsCoverTraffic(true).build();
+    fakeQueue().addResponse(USER_REPORT_URI.toString(), 200, "Response not parsable as JSON.");
+
+    // WHEN
+    // If nothing is thrown here, we're happy.
+    diagnosisAttestor.requestCode(input);
+    verifyVerificationRPCSuccessLoggedAndFailureNotLogged();
   }
 
   @Test
@@ -180,6 +252,7 @@ public class DiagnosisAttestorTest {
     // THEN
     JSONObject requestBody = fakeQueue().getLastRpcBody();
     assertThat(requestBody.getString(VerifyV1.PADDING)).isNotEmpty();
+    verifyVerificationRPCSuccessLoggedAndFailureNotLogged();
   }
 
   @Test
@@ -194,6 +267,22 @@ public class DiagnosisAttestorTest {
     // THEN
     JSONObject requestBody = fakeQueue().getLastRpcBody();
     assertThat(requestBody.getString(VerifyV1.PADDING)).isNotEmpty();
+    verifyVerificationRPCSuccessLoggedAndFailureNotLogged();
+  }
+
+  @Test
+  public void userReportRequest_shouldHavePadding() throws Exception {
+    // GIVEN
+    UserReportUpload input = sampleUserReportUpload().toBuilder().build();
+    setupSuccessfulUserReportRpc();
+
+    // WHEN
+    diagnosisAttestor.requestCode(input);
+
+    // THEN
+    JSONObject requestBody = fakeQueue().getLastRpcBody();
+    assertThat(requestBody.getString(VerifyV1.PADDING)).isNotEmpty();
+    verifyVerificationRPCSuccessLoggedAndFailureNotLogged();
   }
 
   // TODO: lots more tests.
@@ -446,6 +535,74 @@ public class DiagnosisAttestorTest {
         UploadError.UNKNOWN);
   }
 
+  @Test
+  public void userReportStatus400_missingNonce_throwsVerificationFailureException_withAppError()
+      throws Exception {
+    doUserReportErrorResponseTest(
+        400,
+        errorResponse(Error.MISSING_NONCE),
+        VerificationFailureException.class,
+        UploadError.APP_ERROR);
+  }
+
+  @Test
+  public void userReportStatus400_missingDate_throwsVerificationFailureException_withAppError()
+      throws Exception {
+    doUserReportErrorResponseTest(
+        400,
+        errorResponse(Error.MISSING_DATE),
+        VerificationFailureException.class,
+        UploadError.APP_ERROR);
+  }
+
+  @Test
+  public void userReportStatus400_invalidDate_throwsVerificationFailureException_withAppError()
+      throws Exception {
+    doUserReportErrorResponseTest(
+        400,
+        errorResponse(Error.INVALID_DATE),
+        VerificationFailureException.class,
+        UploadError.APP_ERROR);
+  }
+
+  @Test
+  public void userReportStatus400_missingPhone_throwsVerificationFailureException_withAppError()
+      throws Exception {
+    doUserReportErrorResponseTest(
+        400,
+        errorResponse(Error.MISSING_PHONE),
+        VerificationFailureException.class,
+        UploadError.APP_ERROR);
+  }
+
+  @Test
+  public void selfReportFlow_codeInvalidUploadError_getErrorMessage_returnsAsExpected() {
+    UploadError uploadError = UploadError.CODE_INVALID;
+    String invalidCodeSelfReportEnabled = context.getResources()
+        .getString(R.string.self_report_bad_code);
+
+    assertThat(errorMessageFrom(uploadError, /* isSelfReportFlow= */true))
+        .isEqualTo(invalidCodeSelfReportEnabled);
+  }
+
+  @Test
+  public void notSelfReportFlow_codeInvalidUploadError_getErrorMessage_returnsAsExpected() {
+    UploadError uploadError = UploadError.CODE_INVALID;
+    String invalidCodeSelfReportDisabled = context.getResources()
+        .getString(R.string.network_error_code_invalid);
+
+    assertThat(errorMessageFrom(uploadError, /* isSelfReportFlow= */false))
+        .isEqualTo(invalidCodeSelfReportDisabled);
+  }
+
+
+  private void verifyVerificationRPCSuccessLoggedAndFailureNotLogged() {
+    verify(analyticsLogger, times(1))
+        .logRpcCallSuccessAsync(eq(RpcCallType.RPC_TYPE_VERIFICATION), anyInt());
+    verify(analyticsLogger, never())
+        .logRpcCallFailureAsync(eq(RpcCallType.RPC_TYPE_VERIFICATION), any());
+  }
+
   private void doCodeErrorResponseTest(
       int httpStatus, String responseBody, Class<? extends UploadException> thrownException,
       UploadError expectedErrorCode) {
@@ -462,6 +619,11 @@ public class DiagnosisAttestorTest {
     assertThat(thrown.getCause()).isInstanceOf(thrownException);
     // The UploadError is also important
     assertThat(errorCodeFrom(thrown)).isEqualTo(expectedErrorCode);
+    // Verify that the RPC call's failure has been logged (and success has not been logged).
+    verify(analyticsLogger, times(1))
+        .logRpcCallFailureAsync(eq(RpcCallType.RPC_TYPE_VERIFICATION), any());
+    verify(analyticsLogger, never())
+        .logRpcCallSuccessAsync(eq(RpcCallType.RPC_TYPE_VERIFICATION), anyInt());
   }
 
   private void doCertErrorResponseTest(
@@ -480,6 +642,38 @@ public class DiagnosisAttestorTest {
     assertThat(thrown.getCause()).isInstanceOf(thrownException);
     // The UploadError is also important
     assertThat(errorCodeFrom(thrown)).isEqualTo(expectedErrorCode);
+    // Verify that the RPC call's failure has been logged (and success has not been logged).
+    verify(analyticsLogger, times(1))
+        .logRpcCallFailureAsync(eq(RpcCallType.RPC_TYPE_VERIFICATION), any());
+    verify(analyticsLogger, never())
+        .logRpcCallSuccessAsync(eq(RpcCallType.RPC_TYPE_VERIFICATION), anyInt());
+  }
+
+  private void doUserReportErrorResponseTest(
+      int httpStatus, String responseBody, Class<? extends UploadException> thrownException,
+      UploadError expectedErrorCode) {
+    // GIVEN
+    UserReportUpload anyInput = sampleUserReportUpload();
+    fakeQueue().addResponse(USER_REPORT_URI.toString(), httpStatus, responseBody);
+
+    // WHEN
+    ThrowingRunnable execute = () -> diagnosisAttestor.requestCode(anyInput).get();
+
+    // Then
+    Exception thrown = assertThrows(ExecutionException.class, execute);
+    // The cause it what we're really interested in.
+    assertThat(thrown.getCause()).isInstanceOf(thrownException);
+    // The UploadError is also important
+    assertThat(errorCodeFrom(thrown)).isEqualTo(expectedErrorCode);
+    // Verify that the RPC call's failure has been logged (and success has not been logged).
+    verify(analyticsLogger, times(1))
+        .logRpcCallFailureAsync(eq(RpcCallType.RPC_TYPE_VERIFICATION), any());
+    verify(analyticsLogger, never())
+        .logRpcCallSuccessAsync(eq(RpcCallType.RPC_TYPE_VERIFICATION), anyInt());
+  }
+
+  private String errorMessageFrom(UploadError error, boolean isSelfReportFlow) {
+    return error.getErrorMessage(context.getResources(), isSelfReportFlow);
   }
 
   private static UploadError errorCodeFrom(Throwable thrown) {
@@ -506,11 +700,19 @@ public class DiagnosisAttestorTest {
   }
 
   private Upload sampleUpload(String verificationCode, DiagnosisKey... keys) {
-    return Upload.newBuilder(verificationCode)
+    return Upload.newBuilder(verificationCode, SecureRandomUtil.newHmacKey(secureRandom))
         .setKeys(Arrays.asList(keys))
         .setRegions(ImmutableList.of("US", "GB"))
         .setSymptomOnset(LocalDate.of(2020, 1, 2))
         .setHasTraveled(true)
+        .build();
+  }
+
+  private UserReportUpload sampleUserReportUpload() {
+    return UserReportUpload.newBuilder(PHONE_NUMBER_GB_LOCALE,
+        SecureRandomUtil.newNonce(secureRandom),
+        LocalDate.from(clock.now().atZone(ZoneOffset.UTC)),
+        /* tzOffsetMin = */0)
         .build();
   }
 
@@ -528,6 +730,17 @@ public class DiagnosisAttestorTest {
 
   private String successfulCertResponse(String cert) throws JSONException {
     return new JSONObject().put(VerifyV1.CERT, cert).toString();
+  }
+
+  private void setupSuccessfulUserReportRpc() throws Exception {
+    fakeQueue().addResponse(USER_REPORT_URI.toString(), 200, successfulUserReportResponse());
+  }
+
+  private String successfulUserReportResponse() throws JSONException {
+    return new JSONObject()
+        .put(VerifyV1.EXPIRY_STR, EXPIRES_AT_STR)
+        .put(VerifyV1.EXPIRY_TIMESTAMP, 0)
+        .toString();
   }
 
   /**

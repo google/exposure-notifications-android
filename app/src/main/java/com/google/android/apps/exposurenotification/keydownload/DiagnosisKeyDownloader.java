@@ -19,7 +19,6 @@ package com.google.android.apps.exposurenotification.keydownload;
 
 import android.content.Context;
 import android.net.Uri;
-import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.concurrent.futures.CallbackToFutureAdapter;
 import com.android.volley.Response.ErrorListener;
@@ -27,6 +26,7 @@ import com.android.volley.Response.Listener;
 import com.google.android.apps.exposurenotification.common.Qualifiers.BackgroundExecutor;
 import com.google.android.apps.exposurenotification.common.Qualifiers.LightweightExecutor;
 import com.google.android.apps.exposurenotification.common.Qualifiers.ScheduledExecutor;
+import com.google.android.apps.exposurenotification.common.logging.Logger;
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.keydownload.Qualifiers.HomeDownloadUriPair;
 import com.google.android.apps.exposurenotification.keydownload.Qualifiers.TravellerDownloadUriPairs;
@@ -66,7 +66,7 @@ import org.threeten.bp.Duration;
  */
 public class DiagnosisKeyDownloader {
 
-  private static final String TAG = "KeyDownloader";
+  private static final Logger logcat = Logger.getLogger("DiagnosisKeyDownloader");
   private static final SecureRandom RAND = new SecureRandom();
   private static final BaseEncoding BASE32 = BaseEncoding.base32().lowerCase().omitPadding();
 
@@ -176,19 +176,18 @@ public class DiagnosisKeyDownloader {
         completer -> {
           Listener<byte[]> responseListener =
               response -> {
-                Log.d(
-                    TAG,
+                logcat.d(
                     "Keyfile " + uri + " successfully downloaded " + response.length + " bytes.");
                 completer.set(response);
               };
 
           ErrorListener errorListener =
               err -> {
-                Log.e(TAG, "Error getting keyfile " + uri);
+                logcat.e("Error getting keyfile " + uri);
                 completer.setException(err);
               };
 
-          Log.d(TAG, "Downloading keyfile file from " + uri);
+          logcat.d("Downloading keyfile file from " + uri);
           RespondableByteArrayRequest request =
               new RespondableByteArrayRequest(uri, responseListener, errorListener, clock);
           requestQueueWrapper.add(request);
@@ -222,7 +221,7 @@ public class DiagnosisKeyDownloader {
         @Override
         public void onFailure(@NonNull Throwable t) {
           logger.logRpcCallFailure(RpcCallType.RPC_TYPE_KEYS_DOWNLOAD, t);
-          Log.d(TAG, VolleyUtils.getErrorBodyWithoutPadding(t).toString());
+          logcat.d(VolleyUtils.getErrorBodyWithoutPadding(t).toString());
         }
       };
 }

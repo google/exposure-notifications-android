@@ -19,7 +19,6 @@ package com.google.android.apps.exposurenotification.debug;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.util.Log;
 import androidx.hilt.lifecycle.ViewModelInject;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -30,13 +29,12 @@ import com.google.android.apps.exposurenotification.common.Qualifiers.Lightweigh
 import com.google.android.apps.exposurenotification.common.Qualifiers.ScheduledExecutor;
 import com.google.android.apps.exposurenotification.common.SingleLiveEvent;
 import com.google.android.apps.exposurenotification.common.TaskToFutureAdapter;
+import com.google.android.apps.exposurenotification.common.logging.Logger;
 import com.google.android.apps.exposurenotification.keydownload.KeyFile;
 import com.google.android.apps.exposurenotification.nearby.DiagnosisKeyFileSubmitter;
 import com.google.android.apps.exposurenotification.nearby.ExposureNotificationClientWrapper;
-import com.google.android.apps.exposurenotification.proto.SignatureInfo;
 import com.google.android.gms.nearby.exposurenotification.TemporaryExposureKey;
 import com.google.android.gms.nearby.exposurenotification.TemporaryExposureKey.TemporaryExposureKeyBuilder;
-import com.google.auto.value.AutoValue;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.google.common.io.BaseEncoding;
@@ -56,7 +54,7 @@ import org.threeten.bp.Instant;
  */
 public class ProvideMatchingViewModel extends ViewModel {
 
-  private static final String TAG = "ProvideKeysViewModel";
+  private static final Logger logger = Logger.getLogger("ProvideMatchingViewModel");
 
   private static final BaseEncoding BASE16 = BaseEncoding.base16().lowerCase();
   private static final Duration IS_ENABLED_TIMEOUT = Duration.ofSeconds(10);
@@ -70,14 +68,10 @@ public class ProvideMatchingViewModel extends ViewModel {
 
   private final SingleLiveEvent<String> snackbarLiveEvent = new SingleLiveEvent<>();
 
-  private final MutableLiveData<SigningKeyInfo> keyInfoLiveData;
-
   private final ExposureNotificationClientWrapper exposureNotificationClientWrapper;
-  private final KeyFileSigner keyFileSigner;
   private final KeyFileWriter keyFileWriter;
   private final DiagnosisKeyFileSubmitter diagnosisKeyFileSubmitter;
   private final Resources resources;
-  private final String packageName;
   private final ExecutorService backgroundExecutor;
   private final ExecutorService lightweightExecutor;
   private final ScheduledExecutorService scheduledExecutor;
@@ -94,10 +88,8 @@ public class ProvideMatchingViewModel extends ViewModel {
     this.backgroundExecutor = backgroundExecutor;
     this.lightweightExecutor = lightweightExecutor;
     this.scheduledExecutor = scheduledExecutor;
-    keyFileSigner = KeyFileSigner.get();
     keyFileWriter = new KeyFileWriter(context);
     resources = context.getResources();
-    packageName = context.getPackageName();
 
     singleInputKeyLiveData = new MutableLiveData<>("");
     singleInputIntervalNumberLiveData = new MutableLiveData<>(0);
@@ -105,9 +97,6 @@ public class ProvideMatchingViewModel extends ViewModel {
     singleInputTransmissionRiskLevelLiveData = new MutableLiveData<>(0);
     singleInputDaysSinceOnsetOfSymptomsLiveData = new MutableLiveData<>(0);
     singleInputReportTypeLiveData = new MutableLiveData<>(0);
-    keyInfoLiveData = new MutableLiveData<>();
-    // The keyfile signing key info doesn't change throughout the run of the app.
-    setSigningKeyInfo();
   }
 
   public LiveData<String> getSingleInputKeyLiveData() {
@@ -162,10 +151,6 @@ public class ProvideMatchingViewModel extends ViewModel {
     return snackbarLiveEvent;
   }
 
-  public LiveData<SigningKeyInfo> getSigningKeyInfoLiveData() {
-    return keyInfoLiveData;
-  }
-
   private boolean isSingleInputTemporaryExposureKeyValid(
       TemporaryExposureKey temporaryExposureKey) {
     return temporaryExposureKey.getRollingStartIntervalNumber() != 0
@@ -177,7 +162,7 @@ public class ProvideMatchingViewModel extends ViewModel {
 
   public void provideSingleAction() {
     String key = getSingleInputKeyLiveData().getValue();
-    Log.d(TAG, "Submitting " + key);
+    logger.d("Submitting " + key);
 
     TemporaryExposureKey temporaryExposureKey;
     try {
@@ -192,11 +177,11 @@ public class ProvideMatchingViewModel extends ViewModel {
               .setReportType(getSingleInputReportTypeLiveData().getValue())
               .build();
     } catch (IllegalArgumentException e) {
-      Log.e(TAG, "Error creating TemporaryExposureKey", e);
+      logger.e("Error creating TemporaryExposureKey", e);
       snackbarLiveEvent.postValue(resources.getString(R.string.debug_matching_single_error));
       return;
     }
-    Log.d(TAG, "Composed " + temporaryExposureKey + " for submission.");
+    logger.d("Composed " + temporaryExposureKey + " for submission.");
 
     if (!isSingleInputTemporaryExposureKeyValid(temporaryExposureKey)) {
       snackbarLiveEvent.postValue(resources.getString(R.string.debug_matching_single_error));
@@ -204,7 +189,7 @@ public class ProvideMatchingViewModel extends ViewModel {
     }
     List<TemporaryExposureKey> keys = Lists.newArrayList(temporaryExposureKey);
 
-    Log.d(TAG, "Creating keyfile...");
+    logger.d("Creating keyfile...");
     List<File> files =
         keyFileWriter.writeForKeys(
             keys, Instant.now().minus(Duration.ofDays(14)), Instant.now(), "GB");
@@ -222,7 +207,7 @@ public class ProvideMatchingViewModel extends ViewModel {
   }
 
   private void provideFiles(List<KeyFile> files) {
-    Log.d(TAG, String.format("About to provide %d key files.", files.size()));
+    logger.d(String.format("About to provide %d key files.", files.size()));
 
     FluentFuture<Object> unusedResult = FluentFuture.from(
         TaskToFutureAdapter.getFutureWithTimeout(
@@ -254,7 +239,7 @@ public class ProvideMatchingViewModel extends ViewModel {
             x -> {
               snackbarLiveEvent.postValue(
                   resources.getString(R.string.debug_matching_provide_error_disabled));
-              Log.w(TAG, "Error, isEnabled is false", x);
+              logger.w("Error, isEnabled is false", x);
               return null;
             },
             backgroundExecutor)
@@ -263,51 +248,10 @@ public class ProvideMatchingViewModel extends ViewModel {
             x -> {
               snackbarLiveEvent.postValue(
                   resources.getString(R.string.debug_matching_provide_error_unknown));
-              Log.w(TAG, "Unknown exception when providing", x);
+              logger.w("Unknown exception when providing", x);
               return null;
             },
             backgroundExecutor);
   }
 
-  private void setSigningKeyInfo() {
-    SignatureInfo signatureInfo = keyFileSigner.signatureInfo();
-    SigningKeyInfo info =
-        SigningKeyInfo.newBuilder()
-            .setPackageName(packageName)
-            .setKeyVersion(signatureInfo.getVerificationKeyVersion())
-            .setKeyId(signatureInfo.getVerificationKeyId())
-            .setPublicKeyBase64(keyFileSigner.getPublicKeyBase64())
-            .build();
-    keyInfoLiveData.postValue(info);
-  }
-
-  @AutoValue
-  abstract static class SigningKeyInfo {
-
-    abstract String packageName();
-
-    abstract String keyId();
-
-    abstract String keyVersion();
-
-    abstract String publicKeyBase64();
-
-    static Builder newBuilder() {
-      return new AutoValue_ProvideMatchingViewModel_SigningKeyInfo.Builder();
-    }
-
-    @AutoValue.Builder
-    abstract static class Builder {
-
-      abstract Builder setPackageName(String p);
-
-      abstract Builder setKeyId(String p);
-
-      abstract Builder setKeyVersion(String p);
-
-      abstract Builder setPublicKeyBase64(String p);
-
-      abstract SigningKeyInfo build();
-    }
-  }
 }

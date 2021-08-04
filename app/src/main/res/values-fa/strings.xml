@@ -30,7 +30,8 @@
   <string name="onboarding_exposure_notifications_title">روشن کردن اعلان تماس‌های پرخطر</string>
   <string name="onboarding_exposure_notifications_detail">اگر نزدیک فردی قرار گرفته باشید که آزمایش کووید-۱۹ او مثبت گزارش شده است، اعلان دریافت می‌کنید.
     \n\nتلفنتان برای جمع‌آوری و هم‌رسانی ایمن شناسه‌های تصادفی با دیگر تلفن‌های اطراف از بلوتوث استفاده می‌کند.
-    \n\nبااستفاده از تاریخ، مدت‌زمان، و قدرت سیگنال مرتبط با تماس پرخطر احتمالی مشخص می‌شود آیا براساس پارامترهایی تعیین‌شده توسط مرجع بهداشت عمومی‌تان اعلان دریافت خواهید کرد یا نه.</string>
+    \n\nبااستفاده از تاریخ، مدت‌زمان، و قدرت سیگنال مرتبط با تماس پرخطر احتمالی مشخص می‌شود آیا براساس پارامترهایی تعیین‌شده توسط مرجع بهداشت عمومی‌تان اعلان دریافت خواهید کرد یا نه.
+    \n\nاگر نتایج آزمایش شما مثبت باشد، ممکن است برای هم‌رسانی این نتایج با مرجع بهداشتی‌تان یادآوری دریافت کنید.</string>
   <string name="onboarding_metrics_title">به بهبود این برنامه کمک کنید</string>
   <string name="onboarding_metrics_subtitle">داده عملکرد و استفاده از برنامه را با Google هم‌رسانی کنید</string>
   <string name="onboarding_metrics_description">برای کمک به نگهداری و بهبود برنامه، برخی داده‌هایی محدود و غیرقابل‌شناسایی درباره عملکرد و استفاده از برنامه، با Google هم‌رسانی می‌شود. این داده‌ها هویت شما را فاش نمی‌کند. %1$s</string>
@@ -60,10 +61,10 @@
   <string name="notify_turn_on_exposure_notifications_header">برای اینکه از تماس پرخطر احتمالی با کووید-۱۹ مطلع شوید، «اعلان تماس‌های پرخطر» را روشن کنید. %1$s</string>
   <string name="using_en_helps_even_if_vaccinated">استفاده از این سرویس به شما کمک می‌کند از جامعه محافظت کنید - حتی اگر واکسینه شده باشید.</string>
   <string name="share_begin_title">به محافظت از جامعه کمک کنید</string>
-  <string name="share_close_title">بدون هم‌رسانی خارج می‌شوید؟</string>
-  <string name="share_close_detail">با هم‌رسانی سریع‌تر نتیجه آزمایشتان، می‌توانید به بهترین نحو به جامعه‌تان کمک کنید. بااین‌حال اطلاعات نتیجه آزمایش که تاکنون وارد کرده‌اید در برنامه ذخیره می‌شود تا بتوانید بعداً ویرایش آن را ازسر بگیرید.</string>
-  <string name="btn_resume_later">بله، خارج شوم</string>
-  <string name="verify_test_result_title">اطلاعات آزمایش کووید-۱۹ را وارد کنید</string>
+  <string name="share_close_title">بدون هم‌رسانی بسته شود؟</string>
+  <string name="share_close_detail">بهترین راه برای کمک به جامعه‌تان، هم‌رسانی کردن نتایج در اسرع وقت است. اگر کادر گفتگو را اکنون بدون هم‌رسانی ببندید و بعداً نظرتان عوض شود، می‌توانید کار را از جایی که متوقف کرده‌اید ادامه دهید.</string>
+  <string name="btn_resume_later">بله، بسته شود</string>
+  <string name="verify_test_result_title">کد راستی‌آزمایی را وارد کنید</string>
   <string name="enter_your_test_identifier">کد راستی‌آزمایی</string>
   <string name="share_test_identifier_help">از این کد یک‌بار مصرف برای تأیید نتیجه آزمایش شما استفاده می‌شود.</string>
   <string name="share_test_identifier_verified">کد تأیید شد</string>
@@ -83,20 +84,19 @@
   <string name="share_review_status_confirmed">مثبت</string>
   <string name="share_review_status_likely">احتمالاً</string>
   <string name="share_review_status_negative">منفی</string>
-  <string name="share_review_onset_subtitle">اطلاعات مربوط به علائم</string>
-  <string name="share_review_onset_date">علائم از %1$s</string>
+  <string name="share_review_onset_subtitle">علائم</string>
+  <string name="share_review_onset_date">تاریخ شروع: %1$s</string>
   <string name="share_review_onset_no_symptoms">بدون علائم</string>
   <string name="share_review_onset_no_answer">پاسخ داده نشده است</string>
-  <string name="share_review_travel_subtitle">سوابق سفر</string>
-  <string name="share_review_travel_confirmed">در ۱۴ روز گذشته سفر کرده‌ام</string>
+  <string name="share_review_travel_subtitle">سفر</string>
+  <string name="share_review_travel_confirmed">طی ۱۴ روز گذشته</string>
   <string name="share_review_travel_no_travel">در ۱۴ روز گذشته سفر نکرده‌ام</string>
   <string name="share_review_travel_no_answer">پاسخ داده نشده است</string>
-  <string name="share_confirm_title">از اینکه وضعیت کووید-۱۹ خود را هم‌رسانی می‌کنید سپاس‌گزاریم</string>
+  <string name="share_confirm_title">از اینکه نتیجه کووید-۱۹ خود را هم‌رسانی کردید سپاس‌گزاریم</string>
   <string name="not_shared_confirm_title">نتیجه آزمایش شما هم‌رسانی نشده است</string>
   <string name="not_shared_confirm_detail">نتیجه آزمایش کووید-۱۹ شما هم‌رسانی نشده است. لطفاً دوباره امتحان کنید.</string>
   <string name="status_shared_detail_title">وضعیت هم‌رسانی‌شده کووید-۱۹</string>
-  <string name="delete_test_result_title">نتیجه آزمایش کووید-۱۹ حذف شود؟</string>
-  <string name="delete_test_result_detail">جزئیات نتیجه آزمایش از این برنامه حذف خواهد شد.</string>
+  <string name="delete_test_result_title">نتیجه آزمایش حذف شود؟</string>
   <string name="delete_test_result_confirmed">نتیجه آزمایش حذف شد</string>
   <string name="share_error_no_internet">نتایج آزمایش درحالت آفلاین هم‌رسانی نمی‌شود. اتصال اینترنت را بررسی و دوباره امتحان کنید.</string>
   <string name="share_vaccination_title">آیا واکسن کووید-۱۹ دریافت کرده‌اید؟</string>
@@ -105,6 +105,29 @@
   <string name="share_vaccination_vaccinated">بله، واکسینه شده‌ام</string>
   <string name="share_vaccination_not_vaccinated">نه</string>
   <string name="share_vaccination_unknown">ترجیح می‌دهم پاسخ ندهم</string>
+  <string name="do_you_have_code_title">آیا کد را دریافت کردید؟</string>
+  <string name="do_you_have_code_content">اگر نتیجه آزمایش کووید-۱۹ شما مثبت باشد، مرجع بهداشت عمومی‌تان معمولاً کد درستی‌سنجی‌ای را ازطریق تلفن یا پیامک ارائه می‌دهد تا بتوانید نتایجتان را هم‌رسانی کنید.</string>
+  <string name="btn_i_have_code">بله، کد دارم</string>
+  <string name="btn_i_need_code">به کد نیاز دارم</string>
+  <string name="get_verification_code_title">دریافت کد درستی‌سنجی</string>
+  <string name="phone_number_prompt">شماره تلفن</string>
+  <string name="phone_number_help">با داشتن کد درستی‌سنجی، می‌توانید نتایج آزمایشتان را هم‌رسانی کنید. کد به شماره‌ای که ارائه می‌کنید ارسال خواهد شد.</string>
+  <string name="phone_number_may_be_stored_help">برای اینکه افراد بیش‌از یک نتیجه ارسال نکنند، ممکن است شماره تلفن شما موقتاً توسط مرجع بهداشت عمومی‌تان ذخیره شود.</string>
+  <string name="test_date_prompt">تاریخ آزمایش</string>
+  <string name="test_date_help">تاریخ آزمایش باید در ۱۴ روز گذشته باشد.</string>
+  <string name="tested_for_covid_checkbox_text">در ۱۴ روز گذشته، نتیجه آزمایش کووید-۱۹ من مثبت شده است.</string>
+  <string name="btn_send_code">ارسال کد</string>
+  <string name="enter_code_help">کد ارسال‌شده ازسوی %1$s را وارد کنید.</string>
+  <string name="positive_result_already_reported_title">اخیراً نتیجه آزمایشی را گزارش داده‌اید.</string>
+  <string name="positive_result_already_reported_content">اگر می‌خواهید نتیجه آزمایش دیگری را گزارش دهید، لطفاً با %1$s تماس بگیرید.</string>
+  <string name="self_report_bad_code">کد نامعتبر است. حتماً برای درخواست کردن و وارد کردن کد درستی‌سنجی از یک دستگاه استفاده کنید.</string>
+  <string name="self_report_bad_phone_number">شماره‌تان را بررسی کنید و دوباره امتحان کنید. %1$s</string>
+  <string name="self_report_code_requested_too_many_times">تعداد درخواست‌های شما بیش‌ازحد مجاز است. اگر همچنان به کد نیاز دارید، با %1$s تماس بگیرید.</string>
+  <plurals name="self_report_code_already_requested">
+    <item quantity="one">تعداد درخواست‌های شما بیش‌ازحد مجاز است. تا %1$d دقیقه دیگر، می‌توانید کد دیگری درخواست کنید.</item>
+    <item quantity="other">تعداد درخواست‌های شما بیش‌ازحد مجاز است. تا %1$d دقیقه دیگر، می‌توانید کد دیگری درخواست کنید.</item>
+  </plurals>
+  <string name="notify_others_notification_title">کمک کنید به افرادی که ممکن است تماس پرخطر داشته‌اند اطلاع داده شود</string>
   <string name="settings_exposure_notifications_subtitle">اعلان تماس‌های پرخطر</string>
   <string name="settings_app_analytics_subtitle">هم‌رسانی عملکرد و استفاده از برنامه</string>
   <string name="settings_privacy_policy">خط‌مشی رازداری</string>
@@ -166,4 +189,9 @@
   <string name="private_analytics_footer_learn_more">بیشتر بدانید</string>
   <string name="diagnosis_subtitle_template">%1$s در %2$s</string>
   <string name="empty_share_history_body">سابقه هم‌رسانی وجود ندارد</string>
+  <string name="share_diagnosis_share_test_result_title">هم‌رسانی نتیجه آزمایش با %1$s</string>
+  <string name="share_diagnosis_share_test_result_subtitle">بابت کمک شما برای جلوگیری از شیوع کووید-۱۹ سپاس‌گزاریم.</string>
+  <string name="share_diagnosis_share_test_result_body">وقتی نتیجه‌تان را هم‌رسانی می‌کنید، می‌توانید انتخاب کنید که زمان شروع شدن علائم نیز هم‌رسانی شود. این اطلاعات می‌تواند به جلوگیری از شیوع کووید-۱۹ و نجات جان افراد کمک کند.</string>
+  <string name="sms_intercept_notice_title">تازه‌ها</string>
+  <string name="sms_intercept_notice_content">اگر مرجع بهداشت محلی‌تان نتیجه آزمایشی را برایتان ارسال کرد، ممکن است برنامه ازطریق یادآوری به شما اطلاع دهد که نتیجه را ارسال کنید و دیگران را از تماس‌های پرخطر احتمالی مطلع کنید. هر وقت خواستید می‌توانید این ویژگی را در تنظیمات غیرفعال کنید.</string>
 </resources>

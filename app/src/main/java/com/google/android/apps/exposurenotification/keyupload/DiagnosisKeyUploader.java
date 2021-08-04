@@ -19,7 +19,6 @@ package com.google.android.apps.exposurenotification.keyupload;
 
 import android.content.Context;
 import android.net.Uri;
-import android.util.Log;
 import androidx.concurrent.futures.CallbackToFutureAdapter;
 import com.android.volley.Response;
 import com.android.volley.Response.ErrorListener;
@@ -27,6 +26,7 @@ import com.android.volley.Response.Listener;
 import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.common.Qualifiers.BackgroundExecutor;
 import com.google.android.apps.exposurenotification.common.Qualifiers.LightweightExecutor;
+import com.google.android.apps.exposurenotification.common.logging.Logger;
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.keyupload.ApiConstants.UploadV1;
 import com.google.android.apps.exposurenotification.keyupload.Qualifiers.UploadUri;
@@ -73,7 +73,7 @@ import org.threeten.bp.ZoneOffset;
  */
 class DiagnosisKeyUploader {
 
-  private static final String TAG = "KeyUploader";
+  private static final Logger logcat = Logger.getLogger("DiagnosisKeyUploader");
   // NOTE: The server expects padding.
   private static final BaseEncoding BASE64 = BaseEncoding.base64();
   // All requests to the server take at least 5s by design, so time out far longer than that.
@@ -117,10 +117,10 @@ class DiagnosisKeyUploader {
    */
   public ListenableFuture<Upload> upload(Upload upload) {
     if (upload.keys().isEmpty()) {
-      Log.d(TAG, "Zero keys given, skipping.");
+      logcat.d("Zero keys given, skipping.");
       return Futures.immediateFuture(upload);
     }
-    Log.d(TAG, "Uploading keys: [" + upload.keys().size() + "]");
+    logcat.d("Uploading keys: [" + upload.keys().size() + "]");
 
     // Start by creating a JSON request payload from the given Upload.
     return FluentFuture.from(createPayload(upload))
@@ -138,7 +138,7 @@ class DiagnosisKeyUploader {
     JSONArray keysJson = new JSONArray();
     try {
       for (DiagnosisKey k : upload.keys()) {
-        Log.d(TAG, "Adding key: " + k + " to submission.");
+        logcat.d("Adding key: " + k + " to submission.");
         keysJson.put(
             new JSONObject()
                 .put(UploadV1.KEY, BASE64.encode(k.getKeyBytes()))
@@ -195,7 +195,7 @@ class DiagnosisKeyUploader {
           ErrorListener errorListener =
               err -> {
                 logger.logRpcCallFailureAsync(RpcCallType.RPC_TYPE_KEYS_UPLOAD, err);
-                Log.d(TAG, VolleyUtils.getErrorBodyWithoutPadding(err).toString());
+                logcat.d(VolleyUtils.getErrorBodyWithoutPadding(err).toString());
                 if (VolleyUtils.getHttpStatus(err) >= 500) {
                   completer.setException(new KeysSubmitServerFailureException(err));
                 } else {
@@ -203,7 +203,7 @@ class DiagnosisKeyUploader {
                 }
               };
 
-          Log.d(TAG, "Submitting " + payload);
+          logcat.d("Submitting " + payload);
 
           SubmitKeysRequest request =
               new SubmitKeysRequest(

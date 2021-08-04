@@ -199,4 +199,42 @@ public class PackageConfigurationHelperTest {
 
     assertThat(checkboxConsent).isEqualTo(true);
   }
+
+  @Test
+  public void getSmsNoticeFromPackageConfiguration_smsNoticeNotPresent_returnsFalse() {
+    Bundle bundle = new Bundle();
+    PackageConfiguration packageConfiguration =
+        new PackageConfigurationBuilder().setValues(bundle).build();
+
+    boolean checkboxConsent =
+        PackageConfigurationHelper.getSmsNoticeFromPackageConfiguration(packageConfiguration);
+
+    assertThat(checkboxConsent).isEqualTo(false);
+  }
+
+  @Test
+  public void getSmsNoticeFromPackageConfiguration_smsNoticeFalse_returnsFalse() {
+    Bundle bundle = new Bundle();
+    bundle.putBoolean(PackageConfigurationHelper.SMS_NOTICE, false);
+    PackageConfiguration packageConfiguration =
+        new PackageConfigurationBuilder().setValues(bundle).build();
+
+    boolean checkboxConsent =
+        PackageConfigurationHelper.getSmsNoticeFromPackageConfiguration(packageConfiguration);
+
+    assertThat(checkboxConsent).isEqualTo(false);
+  }
+
+  @Test
+  public void getSmsNoticeFromPackageConfiguration_smsNoticeTrue_returnsTrue() {
+    Bundle bundle = new Bundle();
+    bundle.putBoolean(PackageConfigurationHelper.SMS_NOTICE, true);
+    PackageConfiguration packageConfiguration =
+        new PackageConfigurationBuilder().setValues(bundle).build();
+
+    boolean checkboxConsent =
+        PackageConfigurationHelper.getSmsNoticeFromPackageConfiguration(packageConfiguration);
+
+    assertThat(checkboxConsent).isEqualTo(true);
+  }
 }

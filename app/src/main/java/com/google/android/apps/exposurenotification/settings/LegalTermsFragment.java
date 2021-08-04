@@ -33,8 +33,6 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class LegalTermsFragment extends BaseFragment {
 
-  private static final String TAG = "LegalTermsActivity";
-
   private FragmentLegalTermsBinding binding;
 
   public static LegalTermsFragment newInstance() {

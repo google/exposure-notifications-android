@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright 2020 Google LLC
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      https://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  ~
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:orientation="vertical">
+
+  <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize">
+
+    <ImageButton
+      android:id="@android:id/home"
+      style="?attr/borderlessButtonStyle"
+      android:layout_width="?attr/actionBarSize"
+      android:layout_height="match_parent"
+      android:background="?attr/selectableItemBackgroundBorderless"
+      android:contentDescription="@string/btn_close_label"
+      app:srcCompat="@drawable/ic_close" />
+
+  </RelativeLayout>
+
+  <androidx.core.widget.NestedScrollView
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1"
+    android:isScrollContainer="false"
+    android:fillViewport="true">
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:paddingHorizontal="@dimen/padding_large">
+
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:paddingTop="@dimen/padding_extra_large"
+          android:paddingBottom="@dimen/padding_huge"
+          android:gravity="center"
+          android:text="@string/get_verification_code_title"
+          android:textAppearance="?attr/textAppearanceHeadline5" />
+
+        <!-- 1. Phone number input field -->
+        <com.google.android.material.textfield.TextInputLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/padding_normal"
+          android:hint="@string/phone_number_prompt"
+          android:textColorHint="?android:attr/textColorPrimary"
+          style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+
+          <com.google.android.apps.exposurenotification.common.ui.NoAutofillTextInputEditText
+            android:id="@+id/phone_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/touch_area_min_size"
+            android:importantForAutofill="no"
+            android:inputType="phone"
+            android:imeOptions="actionDone"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Error for the phone number input field -->
+        <TextView
+          android:id="@+id/phone_number_error"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/padding_medium"
+          android:textAppearance="?attr/textAppearanceBody2"
+          android:textColor="@color/material_error_color"
+          android:accessibilityLiveRegion="polite"
+          android:visibility="gone" />
+
+        <!-- Phone number help text -->
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginVertical="@dimen/padding_medium"
+          android:orientation="vertical">
+
+          <TextView
+            android:id="@+id/phone_number_help"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/phone_number_help"
+            android:textAppearance="?attr/textAppearanceBody2" />
+
+          <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_medium"
+            android:text="@string/phone_number_may_be_stored_help"
+            android:textAppearance="?attr/textAppearanceBody2" />
+
+          <Button
+            android:id="@+id/learn_more_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="0dp"
+            android:text="@string/learn_more"
+            style="@style/Widget.MaterialComponents.Button.TextButton" />
+
+        </LinearLayout>
+
+        <!-- 2. Test date input field -->
+        <com.google.android.material.textfield.TextInputLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/padding_large"
+          android:hint="@string/test_date_prompt"
+          android:textColorHint="?android:attr/textColorPrimary"
+          style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+
+          <com.google.android.apps.exposurenotification.common.ui.NoAutofillTextInputEditText
+            android:id="@+id/test_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/ic_calendar"
+            android:minHeight="@dimen/touch_area_min_size"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:importantForAutofill="no"
+            android:inputType="none"
+            tools:ignore="TextFields" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+          android:id="@+id/test_date_help"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/padding_medium"
+          android:text="@string/test_date_help"
+          android:textAppearance="?attr/textAppearanceBody2" />
+
+      </LinearLayout>
+
+      <CheckBox
+        android:id="@+id/tested_for_covid_checkbox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/padding_medium"
+        android:text="@string/tested_for_covid_checkbox_text"
+        android:textAppearance="?attr/textAppearanceBody2" />
+
+    </LinearLayout>
+
+  </androidx.core.widget.NestedScrollView>
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/padding_medium"
+    android:layout_marginBottom="@dimen/padding_normal"
+    android:layout_marginHorizontal="@dimen/padding_normal"
+    android:orientation="horizontal"
+    android:baselineAligned="false">
+
+    <LinearLayout
+      android:layout_width="0dp"
+      android:layout_weight="1"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_vertical">
+
+      <Button
+        android:id="@+id/btn_previous"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_previous"
+        style="@style/Widget.MaterialComponents.Button.TextButton" />
+
+    </LinearLayout>
+
+    <FrameLayout
+      android:layout_width="0dp"
+      android:layout_weight="1"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_vertical">
+
+      <ViewSwitcher
+        android:id="@+id/send_code_switcher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:measureAllChildren="true">
+
+        <Button
+          android:id="@+id/btn_send_code"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:enabled="false"
+          android:text="@string/btn_send_code"
+          android:elevation="0dp"/>
+
+        <ProgressBar
+          android:layout_width="match_parent"
+          android:layout_height="24dp"
+          android:layout_gravity="center"
+          android:elevation="10dp"/>
+
+      </ViewSwitcher>
+
+    </FrameLayout>
+
+  </LinearLayout>
+
+</LinearLayout>

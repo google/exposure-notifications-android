@@ -30,7 +30,8 @@
   <string name="onboarding_exposure_notifications_title">开启接触史通知</string>
   <string name="onboarding_exposure_notifications_detail">如果您与报告确诊新冠肺炎 (COVID-19) 的人员有过近距离接触，就会收到通知。
     \n\n您的手机会使用蓝牙安全地收集附近其他手机的随机 ID，并与这些手机分享您的随机 ID。
-    \n\n系统会参照您所在地的公共卫生机构设定的参数，根据可能的接触事件发生的日期、时长和相关信号强度来确定是否向您发送通知。</string>
+    \n\n系统会参照您所在地的公共卫生机构设定的参数，根据可能的接触事件发生的日期、时长和相关信号强度来确定是否向您发送通知。
+    \n\n如果您的检测结果呈阳性，系统可能会提醒您将检测结果分享给卫生机构。</string>
   <string name="onboarding_metrics_title">协助改进此应用</string>
   <string name="onboarding_metrics_subtitle">与 Google 分享应用使用情况和性能数据</string>
   <string name="onboarding_metrics_description">为帮助维护和改进该应用，系统会将少量与应用性能和使用情况有关的数据（去除了可用于识别个人身份的信息）提供给 Google。这些数据不会泄露您的身份。%1$s</string>
@@ -60,10 +61,10 @@
   <string name="notify_turn_on_exposure_notifications_header">要想在您可能接触过新冠肺炎 (COVID-19) 患者时收到通知，请开启“接触史通知”应用。%1$s</string>
   <string name="using_en_helps_even_if_vaccinated">使用此服务有助于您保护所在的社区，即使您已接种疫苗也是如此。</string>
   <string name="share_begin_title">帮助保护社区成员</string>
-  <string name="share_close_title">不分享检测结果并退出？</string>
-  <string name="share_close_detail">尽早分享您的检测结果，可以更好地保护社区成员。您之前输入的检测结果信息都会保存在该应用中，以便您日后继续修改。</string>
-  <string name="btn_resume_later">是的，退出</string>
-  <string name="verify_test_result_title">输入新冠肺炎 (COVID-19) 检测信息</string>
+  <string name="share_close_title">不分享检测结果并关闭？</string>
+  <string name="share_close_detail">帮助您所在社区的最佳方式就是尽快分享您的检测结果。如果您现在不分享检测结果并关闭，在日后改变主意时，您可以从上次停下的地方继续操作。</string>
+  <string name="btn_resume_later">是，关闭</string>
+  <string name="verify_test_result_title">输入您的验证码</string>
   <string name="enter_your_test_identifier">验证码</string>
   <string name="share_test_identifier_help">这个一次性验证码用于验证您的检测结果。</string>
   <string name="share_test_identifier_verified">验证码已通过验证</string>
@@ -73,30 +74,29 @@
   <string name="test_date_label">开始出现症状的日期</string>
   <string name="share_onset_symptoms">是</string>
   <string name="share_onset_no_symptoms">否</string>
-  <string name="share_onset_no_answer">不想回答</string>
+  <string name="share_onset_no_answer">我不想回答</string>
   <string name="share_travel_title">您在过去 14 天内是否有旅行史？</string>
   <string name="share_travel_confirmed">是</string>
   <string name="share_travel_no_travel">否</string>
-  <string name="share_travel_no_answer">不想回答</string>
+  <string name="share_travel_no_answer">我不想回答</string>
   <string name="share_review_title">查看您的信息</string>
   <string name="share_review_status_subtitle">COVID-19 感染状况</string>
   <string name="share_review_status_confirmed">阳性</string>
   <string name="share_review_status_likely">疑似</string>
   <string name="share_review_status_negative">阴性</string>
-  <string name="share_review_onset_subtitle">症状信息</string>
-  <string name="share_review_onset_date">从 %1$s开始出现症状</string>
+  <string name="share_review_onset_subtitle">症状</string>
+  <string name="share_review_onset_date">开始日期：%1$s</string>
   <string name="share_review_onset_no_symptoms">无症状</string>
   <string name="share_review_onset_no_answer">未回答</string>
-  <string name="share_review_travel_subtitle">旅行史</string>
-  <string name="share_review_travel_confirmed">过去 14 天内有旅行史</string>
+  <string name="share_review_travel_subtitle">旅行</string>
+  <string name="share_review_travel_confirmed">过去 14 天内</string>
   <string name="share_review_travel_no_travel">过去 14 天内没有旅行史</string>
   <string name="share_review_travel_no_answer">未回答</string>
-  <string name="share_confirm_title">感谢您分享自己的新冠肺炎 (COVID-19) 感染状况</string>
+  <string name="share_confirm_title">感谢您分享自己的新冠肺炎 (COVID-19) 检测结果</string>
   <string name="not_shared_confirm_title">您的检测结果未分享</string>
   <string name="not_shared_confirm_detail">您的新冠肺炎 (COVID-19) 检测结果未分享。请重试。</string>
   <string name="status_shared_detail_title">分享的 COVID-19 感染状况</string>
-  <string name="delete_test_result_title">要删除新冠肺炎 (COVID-19) 检测结果吗？</string>
-  <string name="delete_test_result_detail">您的检测结果详情将从此应用中删除。</string>
+  <string name="delete_test_result_title">要删除您的检测结果吗？</string>
   <string name="delete_test_result_confirmed">检测结果已删除</string>
   <string name="share_error_no_internet">无法离线分享检验结果。请检查互联网连接情况，然后重试。</string>
   <string name="share_vaccination_title">您是否已接种新冠肺炎 (COVID-19) 疫苗？</string>
@@ -104,7 +104,30 @@
   <string name="share_vaccination_learn_more">了解详情</string>
   <string name="share_vaccination_vaccinated">是，我已接种疫苗</string>
   <string name="share_vaccination_not_vaccinated">否</string>
-  <string name="share_vaccination_unknown">不想回答</string>
+  <string name="share_vaccination_unknown">我不想回答</string>
+  <string name="do_you_have_code_title">您收到验证码了吗？</string>
+  <string name="do_you_have_code_content">如果您的新冠肺炎 (COVID-19) 检测结果呈阳性，卫生机构通常会通过电话或短信提供验证码，以便您可以分享自己的检测结果。</string>
+  <string name="btn_i_have_code">是，我有验证码</string>
+  <string name="btn_i_need_code">我需要验证码</string>
+  <string name="get_verification_code_title">获取验证码</string>
+  <string name="phone_number_prompt">电话号码</string>
+  <string name="phone_number_help">借助验证码，您可以分享自己的检测结果。系统会将验证码发送到您提供的号码。</string>
+  <string name="phone_number_may_be_stored_help">为防止有人提交多个检测结果，公共卫生机构可能会临时存储您的电话号码。</string>
+  <string name="test_date_prompt">检测日期</string>
+  <string name="test_date_help">检测日期应为过去 14 天内的日期。</string>
+  <string name="tested_for_covid_checkbox_text">我在过去 14 天内接受过新冠肺炎 (COVID-19) 检测，结果为阳性。</string>
+  <string name="btn_send_code">发送验证码</string>
+  <string name="enter_code_help">输入%1$s发送给您的验证码。</string>
+  <string name="positive_result_already_reported_title">您最近已经报告过一次检测结果。</string>
+  <string name="positive_result_already_reported_content">如果您想报告另一次检测结果，请与%1$s联系。</string>
+  <string name="self_report_bad_code">验证码无效。请确保您申请验证码和输入验证码所用的是同一部设备。</string>
+  <string name="self_report_bad_phone_number">请检查您的号码，然后重试。%1$s</string>
+  <string name="self_report_code_requested_too_many_times">申请次数过多。如果您仍然需要验证码，请与%1$s联系。</string>
+  <plurals name="self_report_code_already_requested">
+    <item quantity="one">申请次数过多。您可以在 %1$d 分钟后再次申请验证码。</item>
+    <item quantity="other">申请次数过多。您可以在 %1$d 分钟后再次申请验证码。</item>
+  </plurals>
+  <string name="notify_others_notification_title">帮助通知可能与您接触过的人员</string>
   <string name="settings_exposure_notifications_subtitle">接触史通知</string>
   <string name="settings_app_analytics_subtitle">分享应用使用情况和性能数据</string>
   <string name="settings_privacy_policy">隐私权政策</string>
@@ -114,10 +137,10 @@
   <string name="settings_share">帮助遏制新冠肺炎 (COVID-19) 的传播。与社区成员分享此应用，以便他们在可能接触到 COVID-19 患者时收到通知，协助他们妥善保护自身安全。</string>
   <string name="settings_share_message">帮助遏制新冠肺炎 (COVID-19) 在社区的传播。下载应用请前往 %1$s</string>
   <string name="settings_open_source">开源许可</string>
-  <string name="settings_exposure_notifications_on">开启</string>
-  <string name="settings_exposure_notifications_off">关闭</string>
-  <string name="settings_analytics_on">开启</string>
-  <string name="settings_analytics_off">关闭</string>
+  <string name="settings_exposure_notifications_on">已开启</string>
+  <string name="settings_exposure_notifications_off">已关闭</string>
+  <string name="settings_analytics_on">已开启</string>
+  <string name="settings_analytics_off">已关闭</string>
   <string name="exposure_about_title">接触史通知</string>
   <string name="exposure_about_toggle">使用接触史通知功能</string>
   <string name="exposure_about_detail">开启接触史通知，这样如果您与报告确诊新冠肺炎 (COVID-19) 的人员有过近距离接触，%1$s可通知您。
@@ -166,4 +189,9 @@
   <string name="private_analytics_footer_learn_more">了解详情</string>
   <string name="diagnosis_subtitle_template">%1$s，时间：%2$s</string>
   <string name="empty_share_history_body">没有任何分享记录</string>
+  <string name="share_diagnosis_share_test_result_title">通过“%1$s”应用分享您的检测结果</string>
+  <string name="share_diagnosis_share_test_result_subtitle">感谢您为遏制新冠肺炎 (COVID-19) 的传播尽一份力。</string>
+  <string name="share_diagnosis_share_test_result_body">您在分享检测结果时，还可以选择分享您开始出现症状的时间。这些信息可能有助于遏制 COVID-19 的传播，挽救生命。</string>
+  <string name="sms_intercept_notice_title">新功能</string>
+  <string name="sms_intercept_notice_content">如果您当地的卫生部门向您发送了检测结果，您的应用可以提醒您提交您的检测结果，并帮助提醒其他可能与您有过接触的人员。您可以随时在设置中停用此功能。</string>
 </resources>

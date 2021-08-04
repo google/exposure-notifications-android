@@ -17,13 +17,13 @@
 
 package com.google.android.apps.exposurenotification.common;
 
-import android.util.Log;
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
+import com.google.android.apps.exposurenotification.common.logging.Logger;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
@@ -38,7 +38,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  */
 public class SingleLiveEvent<T> extends MutableLiveData<T> {
 
-  private static final String TAG = "SingleLiveEvent";
+  private static final Logger logger = Logger.getLogger("SingleLiveEvent");
 
   private final AtomicBoolean mPending = new AtomicBoolean(false);
 
@@ -46,7 +46,7 @@ public class SingleLiveEvent<T> extends MutableLiveData<T> {
   @Override
   public void observe(@NonNull LifecycleOwner owner, @NonNull final Observer<? super T> observer) {
     if (hasActiveObservers()) {
-      Log.w(TAG, "Multiple observers registered but only one will be notified of changes.");
+      logger.w("Multiple observers registered but only one will be notified of changes.");
     }
 
     // Observe the internal MutableLiveData

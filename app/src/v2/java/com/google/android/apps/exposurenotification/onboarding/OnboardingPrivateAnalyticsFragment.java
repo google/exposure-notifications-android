@@ -20,7 +20,6 @@ package com.google.android.apps.exposurenotification.onboarding;
 import static com.google.android.apps.exposurenotification.home.BaseActivity.MAIN_FRAGMENT_TAG;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +28,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.common.logging.Logger;
 import com.google.android.apps.exposurenotification.databinding.FragmentOnboardingPrivateAnalyticsBinding;
 import com.google.android.apps.exposurenotification.home.SinglePageHomeFragment;
 import dagger.hilt.android.AndroidEntryPoint;
@@ -39,7 +39,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class OnboardingPrivateAnalyticsFragment extends AbstractOnboardingPrivateAnalyticsFragment {
 
-  private static final String TAG = "PrioOnboarding";
+  private static final Logger logger = Logger.getLogger("OnboardingPrivateAnalyticsFragment");
 
   private FragmentOnboardingPrivateAnalyticsBinding binding;
 
@@ -77,7 +77,7 @@ public class OnboardingPrivateAnalyticsFragment extends AbstractOnboardingPrivat
 
   @Override
   void sharePrivateAnalytics() {
-    Log.d(TAG, "Onboarding complete: private analytics enabled.");
+    logger.d("Onboarding complete: private analytics enabled.");
     onboardingViewModel.setPrivateAnalyticsState(true);
   }
 

@@ -21,7 +21,7 @@ import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.security.keystore.KeyGenParameterSpec.Builder;
 import android.security.keystore.KeyProperties;
-import android.util.Log;
+import com.google.android.apps.exposurenotification.common.logging.Logger;
 import com.google.android.apps.exposurenotification.proto.SignatureInfo;
 import com.google.common.io.BaseEncoding;
 import java.io.IOException;
@@ -47,7 +47,7 @@ import java.security.spec.ECGenParameterSpec;
  * <p>Uses a randomly generated public/private keypair to sign files.
  */
 public class KeyFileSigner {
-  private static final String TAG = "KeyFileSigner";
+  private static final Logger logger = Logger.getLogger("KeyFileSigner");
 
   private static final String KEY_STORE_NAME = "AndroidKeyStore";
   private static final String KEY_NAME = "KeyFileSigningKey";
@@ -129,7 +129,7 @@ public class KeyFileSigner {
   }
 
   byte[] sign(byte[] message) {
-    Log.d(TAG, "Signing " + message.length + " bytes: " + BASE16.encode(message));
+    logger.d("Signing " + message.length + " bytes: " + BASE16.encode(message));
     checkKeyStoreInit();
     try {
       Signature sig = Signature.getInstance(SIG_ALGO);

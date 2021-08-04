@@ -30,7 +30,8 @@
   <string name="onboarding_exposure_notifications_title">Skakel Blootstellingkennisgewings aan</string>
   <string name="onboarding_exposure_notifications_detail">Word in kennis gestel wanneer jy naby iemand was wat aangemeld het dat hulle COVID-19 het.
     \n\nJou foon gebruik Bluetooth om ewekansige ID\'s veilig in te samel en met ander fone in die omtrek te deel.
-    \n\nDie datum, tydsduur en seinsterkte wat met \'n moontlike blootstelling geassosieer word, sal gebruik word om te bepaal of jy in kennis gestel word op grond van parameters wat deur jou publiekegesondheidowerheid gestel is.</string>
+    \n\nDie datum, tydsduur en seinsterkte wat met \'n moontlike blootstelling geassosieer word, sal gebruik word om te bepaal of jy in kennis gestel word op grond van parameters wat deur jou publiekegesondheidowerheid gestel is.
+    \n\nAs jy positief toets, kan jy dalk \'n onthounota ontvang om jou resultate met jou gesondheidsowerheid te deel.</string>
   <string name="onboarding_metrics_title">Help om hierdie program beter te maak</string>
   <string name="onboarding_metrics_subtitle">Deel programgebruik- en -werkverrigtingdata met Google</string>
   <string name="onboarding_metrics_description">Sekere beperkte, gedeïdentifiseerde data oor programwerkverrigting en -gebruik sal met Google gedeel word om te help om die program te onderhou en beter te maak. Hierdie data identifiseer jou nie. %1$s</string>
@@ -60,10 +61,10 @@
   <string name="notify_turn_on_exposure_notifications_header">Skakel Blootstellingkennisgewings aan om in kennis gestel te word van moontlike COVID-19-blootstelling. %1$s</string>
   <string name="using_en_helps_even_if_vaccinated">As jy hierdie diens gebruik, help jy om jou gemeenskap te beskerm – selfs al is jy ingeënt.</string>
   <string name="share_begin_title">Help om jou gemeenskap te beskerm</string>
-  <string name="share_close_title">Gaan uit sonder om te deel?</string>
-  <string name="share_close_detail">Jy kan jou gemeenskap beter help deur jou toetsuitslag gouer te deel. Die toetsuitslaginligting wat jy sover ingedien het, word egter in die program gestoor sodat jy dit later verder kan wysig</string>
-  <string name="btn_resume_later">Ja, gaan uit</string>
-  <string name="verify_test_result_title">Voer COVID-19-toetsinligting in</string>
+  <string name="share_close_title">Maak toe sonder om te deel?</string>
+  <string name="share_close_detail">Die beste manier waarop jy jou gemeenskap kan help, is om jou uitslae so gou moontlik te deel. As jy nou toemaak sonder om te deel, kan jy aangaan waar jy opgehou het as jy later van plan verander.</string>
+  <string name="btn_resume_later">Ja, maak toe</string>
+  <string name="verify_test_result_title">Voer jou verifikasiekode in</string>
   <string name="enter_your_test_identifier">Verifikasiekode</string>
   <string name="share_test_identifier_help">Hierdie eenmalige kode word gebruik om jou toetsuitslag te verifieer.</string>
   <string name="share_test_identifier_verified">Kode is geverifieer</string>
@@ -73,30 +74,29 @@
   <string name="test_date_label">Datum waarop simptome begin het</string>
   <string name="share_onset_symptoms">Ja</string>
   <string name="share_onset_no_symptoms">Nee</string>
-  <string name="share_onset_no_answer">Verkies om nie te antwoord nie</string>
+  <string name="share_onset_no_answer">Ek wil eerder nie antwoord nie</string>
   <string name="share_travel_title">Het jy in die afgelope 14 dae gereis?</string>
   <string name="share_travel_confirmed">Ja</string>
   <string name="share_travel_no_travel">Nee</string>
-  <string name="share_travel_no_answer">Verkies om nie te antwoord nie</string>
+  <string name="share_travel_no_answer">Ek wil eerder nie antwoord nie</string>
   <string name="share_review_title">Gaan jou inligting na</string>
   <string name="share_review_status_subtitle">COVID-19-status</string>
   <string name="share_review_status_confirmed">Positief</string>
   <string name="share_review_status_likely">Waarskynlik</string>
   <string name="share_review_status_negative">Negatief</string>
-  <string name="share_review_onset_subtitle">Simptoominligting</string>
-  <string name="share_review_onset_date">Simptome vanaf %1$s</string>
+  <string name="share_review_onset_subtitle">Simptome</string>
+  <string name="share_review_onset_date">Het op %1$s begin</string>
   <string name="share_review_onset_no_symptoms">Geen simptome nie</string>
   <string name="share_review_onset_no_answer">Nie beantwoord nie</string>
-  <string name="share_review_travel_subtitle">Reisgeskiedenis</string>
-  <string name="share_review_travel_confirmed">Het in afgelope 14 dae gereis</string>
+  <string name="share_review_travel_subtitle">Reis</string>
+  <string name="share_review_travel_confirmed">In die afgelope 14 dae</string>
   <string name="share_review_travel_no_travel">Het nie in afgelope 14 dae gereis nie</string>
   <string name="share_review_travel_no_answer">Nie beantwoord nie</string>
-  <string name="share_confirm_title">Dankie dat jy jou COVID-19-status deel</string>
+  <string name="share_confirm_title">Dankie dat jy jou COVID-19-uitslag deel</string>
   <string name="not_shared_confirm_title">Jou toetsuitslag is nie gedeel nie</string>
   <string name="not_shared_confirm_detail">Jou COVID-19-toetsuitslag is nie gedeel nie. Probeer weer.</string>
   <string name="status_shared_detail_title">Gedeelde COVID-19-status</string>
-  <string name="delete_test_result_title">Vee COVID-19-toetsuitslag uit?</string>
-  <string name="delete_test_result_detail">Jou toetsuitslagbesonderhede sal in hierdie program uitgevee word.</string>
+  <string name="delete_test_result_title">Vee jou toetsuitslag uit?</string>
   <string name="delete_test_result_confirmed">Toetsuitslag is uitgevee</string>
   <string name="share_error_no_internet">Kan toetsresultate nie vanlyn deel nie. Gaan jou internetverbinding na en probeer weer.</string>
   <string name="share_vaccination_title">Is jy al teen COVID-19 ingeënt?</string>
@@ -104,7 +104,30 @@
   <string name="share_vaccination_learn_more">Kom meer te wete</string>
   <string name="share_vaccination_vaccinated">Ja, ek is ingeënt</string>
   <string name="share_vaccination_not_vaccinated">Nee</string>
-  <string name="share_vaccination_unknown">Verkies om nie te antwoord nie</string>
+  <string name="share_vaccination_unknown">Ek wil eerder nie antwoord nie</string>
+  <string name="do_you_have_code_title">Het jy \'n kode ontvang?</string>
+  <string name="do_you_have_code_content">As jy positief toets vir COVID-19, verskaf jou gesondheidowerheid gewoonlik \'n verifikasiekode via foon of SMS sodat jy jou uitslae kan deel.</string>
+  <string name="btn_i_have_code">Ja, ek het \'n kode</string>
+  <string name="btn_i_need_code">Ek het \'n kode nodig</string>
+  <string name="get_verification_code_title">Ontvang \'n verifikasiekode</string>
+  <string name="phone_number_prompt">Foonnommer</string>
+  <string name="phone_number_help">\'n Verifikasiekode stel jou in staat om jou toetsuitslae te deel. Jou kode sal gestuur word na die nommer wat jy verskaf.</string>
+  <string name="phone_number_may_be_stored_help">Om te verhoed dat mense meer as een uitslag indien, kan jou foonnommer tydelik deur jou publiekegesondheidowerheid gestoor word.</string>
+  <string name="test_date_prompt">Toetsdatum</string>
+  <string name="test_date_help">Toetsdatum moet in die afgelope 14 dae wees.</string>
+  <string name="tested_for_covid_checkbox_text">Ek het in die afgelope 14 dae \'n positiewe COVID-19-toetsuitslag ontvang.</string>
+  <string name="btn_send_code">Stuur kode</string>
+  <string name="enter_code_help">Voer die kode in wat %1$s vir jou gestuur het.</string>
+  <string name="positive_result_already_reported_title">Jy het reeds onlangs \'n toetsuitslag ingedien.</string>
+  <string name="positive_result_already_reported_content">Kontak %1$s as jy \'n ander toetsuitslag wil indien.</string>
+  <string name="self_report_bad_code">Ongeldige kode. Maak seker dat jy dieselfde toestel gebruik om jou verifikasiekode te versoek én in te voer.</string>
+  <string name="self_report_bad_phone_number">Gaan jou nommer na en probeer weer. %1$s</string>
+  <string name="self_report_code_requested_too_many_times">Jy het te veel versoeke ingedien. Kontak %1$s as jy steeds \'n kode nodig het.</string>
+  <plurals name="self_report_code_already_requested">
+    <item quantity="one">Jy het te veel versoeke ingedien. Jy kan oor %1$d minuut nog \'n kode versoek.</item>
+    <item quantity="other">Jy het te veel versoeke ingedien. Jy kan oor %1$d minute nog \'n kode versoek.</item>
+  </plurals>
+  <string name="notify_others_notification_title">Help om ander wat dalk blootgestel is, in kennis te stel</string>
   <string name="settings_exposure_notifications_subtitle">Blootstellingkennisgewings</string>
   <string name="settings_app_analytics_subtitle">Programgebruik- en -werkverrigtingdeling</string>
   <string name="settings_privacy_policy">Privaatheidsbeleid</string>
@@ -167,4 +190,9 @@ ontledings met jou gesondheidowerheid</string>
   <string name="private_analytics_footer_learn_more">Kom meer te wete</string>
   <string name="diagnosis_subtitle_template">%1$s op %2$s</string>
   <string name="empty_share_history_body">Geen delinggeskiedenis nie</string>
+  <string name="share_diagnosis_share_test_result_title">Deel jou toetsuitslag met %1$s</string>
+  <string name="share_diagnosis_share_test_result_subtitle">Dankie dat jy help om COVID-19 te bekamp.</string>
+  <string name="share_diagnosis_share_test_result_body">Wanneer jy jou uitslag deel, kan jy ook kies om te deel wanneer jou simptome begin het. Hierdie inligting kan help om die verspreiding van COVID-19 te bekamp en lewens te red.</string>
+  <string name="sms_intercept_notice_title">Wat\'s nuut</string>
+  <string name="sms_intercept_notice_content">As jou plaaslike gesondheidsowerheid vir jou \'n toetsresultaat stuur, kan jou program jou met \'n onthounota in kennis stel om jou resultaat in te dien en te help om ander oor moontlike blootstelling in te lig. Jy kan dit enige tyd in instellings verander.</string>
 </resources>

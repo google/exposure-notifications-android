@@ -23,6 +23,7 @@ import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.keyupload.Qualifiers.UploadUri;
 import com.google.android.apps.exposurenotification.keyupload.Qualifiers.VerificationCertUri;
 import com.google.android.apps.exposurenotification.keyupload.Qualifiers.VerificationCodeUri;
+import com.google.android.apps.exposurenotification.keyupload.Qualifiers.VerificationUserReportUri;
 import dagger.Module;
 import dagger.Provides;
 import dagger.hilt.InstallIn;
@@ -54,5 +55,11 @@ public class UploadUrisModule {
   @VerificationCertUri
   public Uri provideCertUri(@ApplicationContext Context context) {
     return Uri.parse(context.getString(R.string.enx_testVerificationCertificateURL));
+  }
+
+  @Provides
+  @VerificationUserReportUri
+  public Uri provideUserReportUri(@ApplicationContext Context context) {
+    return Uri.parse(context.getString(R.string.enx_testVerificationUserReportURL));
   }
 }

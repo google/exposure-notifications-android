@@ -17,14 +17,17 @@
 
 package com.google.android.apps.exposurenotification.work;
 
-import android.util.Log;
+import androidx.annotation.VisibleForTesting;
+import androidx.annotation.WorkerThread;
 import com.google.android.apps.exposurenotification.common.Qualifiers.BackgroundExecutor;
 import com.google.android.apps.exposurenotification.common.Qualifiers.ScheduledExecutor;
 import com.google.android.apps.exposurenotification.common.TaskToFutureAdapter;
+import com.google.android.apps.exposurenotification.common.logging.Logger;
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.nearby.ExposureNotificationClientWrapper;
 import com.google.android.apps.exposurenotification.nearby.PackageConfigurationHelper;
 import com.google.android.apps.exposurenotification.storage.ExposureCheckRepository;
+import com.google.android.apps.exposurenotification.storage.VerificationCodeRequestRepository;
 import com.google.common.util.concurrent.FluentFuture;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
@@ -63,19 +66,24 @@ import org.threeten.bp.Duration;
  */
 public class WorkerStartupManager {
 
-  private static final String TAG = "WorkerStartupManager";
+  private static final Logger logger = Logger.getLogger("WorkerStartupManager");
 
   private static final Duration IS_ENABLED_TIMEOUT = Duration.ofSeconds(10);
   private static final Duration GET_PACKAGE_CONFIGURATION_TIMEOUT = Duration.ofSeconds(10);
   // Used to determine the threshold beyond which we mark the exposure checks as obsolete.
   // Currently, all exposure checks captured earlier than two weeks ago are deemed obsolete.
-  private static final Duration TWO_WEEKS = Duration.ofDays(14);
+  @VisibleForTesting static final Duration EXPOSURE_CHECK_MAX_AGE = Duration.ofDays(14);
+  // Used to determine the threshold beyond which we mark the requests for a verification code
+  // as obsolete. Currently, all verification code requests made earlier than thirty days ago are
+  // deemed obsolete.
+  @VisibleForTesting static final Duration VERIFICATION_CODE_REQUEST_MAX_AGE = Duration.ofDays(30);
 
   private final ExposureNotificationClientWrapper exposureNotificationClientWrapper;
   private final ExecutorService backgroundExecutor;
   private final ScheduledExecutorService scheduledExecutor;
   private final PackageConfigurationHelper packageConfigurationHelper;
   private final ExposureCheckRepository exposureCheckRepo;
+  private final VerificationCodeRequestRepository verificationCodeRequestRepo;
   private final Clock clock;
 
   @Inject
@@ -85,12 +93,14 @@ public class WorkerStartupManager {
       @ScheduledExecutor ScheduledExecutorService scheduledExecutor,
       PackageConfigurationHelper packageConfigurationHelper,
       ExposureCheckRepository exposureCheckRepo,
+      VerificationCodeRequestRepository verificationCodeRequestRepo,
       Clock clock) {
     this.exposureNotificationClientWrapper = exposureNotificationClientWrapper;
     this.backgroundExecutor = backgroundExecutor;
     this.scheduledExecutor = scheduledExecutor;
     this.packageConfigurationHelper = packageConfigurationHelper;
     this.exposureCheckRepo = exposureCheckRepo;
+    this.verificationCodeRequestRepo = verificationCodeRequestRepo;
     this.clock = clock;
   }
 
@@ -98,7 +108,8 @@ public class WorkerStartupManager {
    * Checks if the API isEnabled. If so, performs some startup tasks then returns true once done,
    * otherwise immediately returns false.
    *
-   * Also deletes obsolete exposure checks, if any.
+   * <p> Also deletes obsolete exposure checks and verification code requests and resets nonces for
+   * expired verification code requests, if any.
    */
   public ListenableFuture<Boolean> getIsEnabledWithStartupTasks() {
     return FluentFuture.from(TaskToFutureAdapter.getFutureWithTimeout(
@@ -106,7 +117,7 @@ public class WorkerStartupManager {
         IS_ENABLED_TIMEOUT,
         scheduledExecutor))
         .transformAsync(isEnabled -> {
-          exposureCheckRepo.deleteObsoleteChecksIfAny(clock.now().minus(TWO_WEEKS));
+          deleteObsoletesAndResetValues();
           if (isEnabled) {
             return maybeUpdateAnalyticsState().transform(v -> true, backgroundExecutor);
           } else {
@@ -114,9 +125,20 @@ public class WorkerStartupManager {
           }
         }, backgroundExecutor)
         .catchingAsync(Exception.class, e -> {
-          exposureCheckRepo.deleteObsoleteChecksIfAny(clock.now().minus(TWO_WEEKS));
+          deleteObsoletesAndResetValues();
           return Futures.immediateFailedFuture(e);
         }, backgroundExecutor);
+  }
+
+  @WorkerThread
+  private void deleteObsoletesAndResetValues() {
+    // Delete obsolete exposure checks.
+    exposureCheckRepo.deleteObsoleteChecksIfAny(clock.now().minus(EXPOSURE_CHECK_MAX_AGE));
+    // Delete obsolete requests for a verification code.
+    verificationCodeRequestRepo.deleteObsoleteRequestsIfAny(
+        clock.now().minus(VERIFICATION_CODE_REQUEST_MAX_AGE));
+    // Reset nonces for expired requests for a verification code.
+    verificationCodeRequestRepo.resetNonceForExpiredRequestsIfAny(clock.now());
   }
 
   private FluentFuture<Void> maybeUpdateAnalyticsState() {
@@ -129,7 +151,7 @@ public class WorkerStartupManager {
           return Futures.immediateVoidFuture();
         }, backgroundExecutor)
         .catchingAsync(Exception.class, t -> {
-          Log.e(TAG, "Unable to update app analytics state", t);
+          logger.e("Unable to update app analytics state", t);
           return Futures.immediateVoidFuture();
         }, backgroundExecutor);
   }

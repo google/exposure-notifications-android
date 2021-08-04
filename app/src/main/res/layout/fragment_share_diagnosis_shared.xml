@@ -57,8 +57,16 @@
         <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:layout_marginTop="@dimen/padding_normal"
           android:orientation="vertical">
+
+          <ImageView
+            android:layout_width="@dimen/sharing_flow_shared_check_size"
+            android:layout_height="@dimen/sharing_flow_shared_check_size"
+            android:layout_gravity="center"
+            android:layout_marginVertical="@dimen/padding_large"
+            android:contentDescription="@null"
+            android:importantForAccessibility="no"
+            app:srcCompat="@drawable/ic_check_filled" />
 
           <include
             layout="@layout/card_notify_vaccination_status"

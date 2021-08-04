@@ -54,7 +54,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_marginTop="@dimen/padding_small"
-        android:layout_marginBottom="@dimen/padding_extra_large"
+        android:layout_marginBottom="@dimen/padding_huge"
         android:paddingHorizontal="@dimen/padding_large"
         android:text="@string/private_analytics_subtitle"
         android:textAppearance="?attr/textAppearanceBody2" />
@@ -136,7 +136,7 @@
       android:layout_height="wrap_content"
       android:text="@string/btn_share"
       android:elevation="0dp"
-      style="@style/Widget.V3.Button"/>
+      style="@style/Widget.ExposureNotifications.Button"/>
 
     <Button
       android:id="@+id/private_analytics_dismiss"
@@ -144,7 +144,7 @@
       android:layout_height="wrap_content"
       android:text="@string/btn_dont_share"
       app:strokeColor="@color/horizontal_divider_color"
-      style="@style/Widget.V3.Button.OutlinedButton"/>
+      style="@style/Widget.ExposureNotifications.Button.OutlinedButton"/>
 
   </LinearLayout>
 

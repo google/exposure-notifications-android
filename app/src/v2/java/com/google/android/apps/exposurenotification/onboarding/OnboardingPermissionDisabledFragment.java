@@ -154,6 +154,7 @@ public class OnboardingPermissionDisabledFragment extends AbstractOnboardingFrag
 
   @Override
   void nextAction() {
+    onboardingViewModel.markSmsInterceptNoticeSeenAsync();
     if (ExposureNotificationState.STORAGE_LOW.equals(this.state)) {
       showManageStorageDialog();
     } else {

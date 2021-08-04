@@ -19,11 +19,9 @@
 <com.google.android.material.card.MaterialCardView
   xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
-  android:id="@+id/share_test_result_card"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
   android:layout_gravity="center"
-  android:layout_marginVertical="@dimen/padding_small"
   android:background="@drawable/card_background"
   app:cardElevation="0dp"
   app:cardCornerRadius="@dimen/card_corner_radius"
@@ -37,16 +35,6 @@
     android:paddingHorizontal="@dimen/padding_large"
     android:paddingVertical="@dimen/padding_normal"
     android:orientation="vertical">
-
-    <ImageView
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:paddingHorizontal="@dimen/padding_extra_large"
-      android:paddingVertical="@dimen/padding_small"
-      android:layout_marginVertical="@dimen/padding_small"
-      app:srcCompat="@drawable/ic_check_filled"
-      android:contentDescription="@null"
-      android:importantForAccessibility="no" />
 
       <TextView
         android:layout_width="match_parent"

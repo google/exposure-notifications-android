@@ -18,13 +18,13 @@
 package com.google.android.apps.exposurenotification.privateanalytics;
 
 import android.net.Uri;
-import android.util.Log;
 import androidx.annotation.VisibleForTesting;
 import androidx.concurrent.futures.CallbackToFutureAdapter;
 import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
 import com.android.volley.VolleyError;
 import com.google.android.apps.exposurenotification.common.Qualifiers.LightweightExecutor;
+import com.google.android.apps.exposurenotification.common.logging.Logger;
 import com.google.android.apps.exposurenotification.network.RequestQueueWrapper;
 import com.google.android.apps.exposurenotification.privateanalytics.MetricsRemoteConfigs.Builder;
 import com.google.android.libraries.privateanalytics.PrivateAnalyticsEventListener;
@@ -44,8 +44,7 @@ import org.json.JSONObject;
  */
 public class PrivateAnalyticsMetricsRemoteConfig {
 
-  // Logging TAG
-  private static final String TAG = "ENPARemoteConfig";
+  private static final Logger logcat = Logger.getLogger("ENPARemoteConfig");
 
   // Metric "Periodic Exposure Interaction"
   @VisibleForTesting
@@ -128,7 +127,7 @@ public class PrivateAnalyticsMetricsRemoteConfig {
         .transform(this::convertToRemoteConfig, lightweightExecutor)
         .catching(Exception.class, e -> {
           // Output the default RemoteConfigs for any exception thrown.
-          Log.e(TAG, "Failed to fetch or convert remote configuration.", e);
+          logcat.e("Failed to fetch or convert remote configuration.", e);
           return DEFAULT_REMOTE_CONFIGS;
         }, lightweightExecutor);
   }
@@ -159,22 +158,20 @@ public class PrivateAnalyticsMetricsRemoteConfig {
           .onPrivateAnalyticsRemoteConfigCallSuccess(
               response.toString().length());
     }
-    Log.d(TAG, "Successfully fetched remote configs.");
+    logcat.d("Successfully fetched remote configs.");
   }
 
   private void logFailure(VolleyError err) {
     if (logger.isPresent()) {
       logger.get().onPrivateAnalyticsRemoteConfigCallFailure(err);
     }
-    Log.d(TAG,
-        "Remote Config Fetch Failed: "
-            + VolleyUtils.getErrorBody(err).toString());
+    logcat.d("Remote Config Fetch Failed: " + VolleyUtils.getErrorBody(err).toString());
   }
 
   @VisibleForTesting
   MetricsRemoteConfigs convertToRemoteConfig(JSONObject jsonObject) {
     if (jsonObject == null) {
-      Log.e(TAG, "Invalid jsonObj, using default remote configs");
+      logcat.e("Invalid jsonObj, using default remote configs");
       return DEFAULT_REMOTE_CONFIGS;
     }
 
@@ -252,7 +249,7 @@ public class PrivateAnalyticsMetricsRemoteConfig {
       }
 
     } catch (JSONException e) {
-      Log.e(TAG, "Failed to parse remote config json, using defaults", e);
+      logcat.e("Failed to parse remote config json, using defaults", e);
       return DEFAULT_REMOTE_CONFIGS;
     }
     return remoteConfigBuilder.build();

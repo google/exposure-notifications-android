@@ -92,17 +92,8 @@ public class VerificationFlowEdgeCaseFragment extends AbstractEdgeCaseFragment {
             setContainerVisibility(containerView, !isEnabled);
           }
 
-          binding.home.setOnClickListener(v -> {
-            // Only show a warning dialog if the diagnosis has been verified.
-            Fragment shareDiagnosisFragment = getParentFragment().getChildFragmentManager()
-                .findFragmentById(R.id.notify_others_fragment);
-            if (shareDiagnosisFragment != null
-                && DiagnosisEntityHelper.hasVerified(currentDiagnosis)) {
-              ((ShareDiagnosisBaseFragment) shareDiagnosisFragment).showCloseWarningAlertDialog();
-            } else {
-              ((ShareDiagnosisFragment) getParentFragment()).onBackPressed();
-            }
-          });
+          binding.home.setOnClickListener(v ->
+              ((ShareDiagnosisFragment) getParentFragment()).onBackPressed());
         });
 
     TextView title = binding.edgecaseMainTitle;

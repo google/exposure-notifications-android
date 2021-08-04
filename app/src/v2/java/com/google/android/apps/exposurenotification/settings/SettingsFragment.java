@@ -29,7 +29,6 @@ import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.databinding.FragmentSettingsBinding;
 import com.google.android.apps.exposurenotification.home.BaseFragment;
 import com.google.android.apps.exposurenotification.utils.UrlUtils;
-import com.mikepenz.aboutlibraries.LibsBuilder;
 import dagger.hilt.android.AndroidEntryPoint;
 
 /**
@@ -37,8 +36,6 @@ import dagger.hilt.android.AndroidEntryPoint;
  */
 @AndroidEntryPoint
 public class SettingsFragment extends BaseFragment {
-
-  private static final String TAG = "SettingsFragment";
 
   private FragmentSettingsBinding binding;
 
@@ -180,10 +177,7 @@ public class SettingsFragment extends BaseFragment {
   }
 
   private void showOsLicenses() {
-    new LibsBuilder()
-        .withFields(R.string.class.getFields())
-        .withLicenseShown(true)
-        .start(requireContext());
+    transitionToFragmentWithBackStack(OpenSourceLicensesFragment.newInstance());
   }
 
 }

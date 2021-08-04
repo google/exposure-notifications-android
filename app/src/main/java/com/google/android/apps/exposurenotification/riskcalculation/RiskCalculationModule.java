@@ -19,8 +19,8 @@ package com.google.android.apps.exposurenotification.riskcalculation;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.util.Log;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.common.logging.Logger;
 import com.google.android.gms.nearby.exposurenotification.DailySummariesConfig;
 import com.google.android.gms.nearby.exposurenotification.DailySummariesConfig.DailySummariesConfigBuilder;
 import com.google.android.gms.nearby.exposurenotification.DiagnosisKeysDataMapping;
@@ -38,7 +38,7 @@ import java.util.Arrays;
 @InstallIn(SingletonComponent.class)
 public class RiskCalculationModule {
 
-  private static final String TAG = "RiskCalculationModule";
+  private static final Logger logger = Logger.getLogger("RiskCalculationModule");
 
   @Provides
   public DailySummaryRiskCalculator DailySummaryRiskCalculator(
@@ -78,7 +78,7 @@ public class RiskCalculationModule {
 
     DiagnosisKeysDataMapping diagnosisKeysDataMapping = DiagnosisKeyDataMappingHelper
         .createDiagnosisKeysDataMapping(symptomOnsetToInfectiousnessString, reportTypeWhenMissing);
-    Log.d(TAG, "Created diagnosisKeysDataMapping: "+diagnosisKeysDataMapping);
+    logger.d("Created diagnosisKeysDataMapping: " + diagnosisKeysDataMapping);
     return diagnosisKeysDataMapping;
   }
 
@@ -144,7 +144,7 @@ public class RiskCalculationModule {
          * .setMinimumWindowScore(0)
          */
         .build();
-        Log.d(TAG, "Created dailySummaryConfig: "+dailySummariesConfig);
+        logger.d("Created dailySummaryConfig: " + dailySummariesConfig);
         return dailySummariesConfig;
   }
 

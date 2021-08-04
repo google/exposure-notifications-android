@@ -65,6 +65,14 @@ public class FakeClock implements Clock {
     now = now.plus(increment);
   }
 
+  public void moveBack() {
+    moveBackBy(Duration.ofMillis(1));
+  }
+
+  public void moveBackBy(Duration decrement) {
+    now = now.minus(decrement);
+  }
+
   public void set(Instant time) {
     now = time;
   }

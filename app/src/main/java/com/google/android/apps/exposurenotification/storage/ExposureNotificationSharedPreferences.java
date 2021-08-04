@@ -19,12 +19,14 @@ package com.google.android.apps.exposurenotification.storage;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
+import androidx.annotation.AnyThread;
+import androidx.annotation.WorkerThread;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Transformations;
 import com.google.android.apps.exposurenotification.common.BooleanSharedPreferenceLiveData;
 import com.google.android.apps.exposurenotification.common.ContainsSharedPreferenceLiveData;
 import com.google.android.apps.exposurenotification.common.SharedPreferenceLiveData;
+import com.google.android.apps.exposurenotification.common.logging.Logger;
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.home.ExposureNotificationViewModel.ExposureNotificationState;
 import com.google.android.apps.exposurenotification.riskcalculation.ExposureClassification;
@@ -41,7 +43,7 @@ import org.threeten.bp.Instant;
  */
 public class ExposureNotificationSharedPreferences {
 
-  private static final String TAG = "Preferences"; // Logging TAG
+  private static final Logger logger = Logger.getLogger("Preferences");
 
   private static final String SHARED_PREFERENCES_FILE =
       "ExposureNotificationSharedPreferences.SHARED_PREFERENCES_FILE";
@@ -74,10 +76,14 @@ public class ExposureNotificationSharedPreferences {
       "ExposureNotificationSharedPreferences.ANALYTICS_LOGGING_LAST_TIMESTAMP";
   private static final String PROVIDED_DIAGNOSIS_KEY_HEX_TO_LOG_KEY =
       "ExposureNotificationSharedPreferences.PROVIDE_DIAGNOSIS_KEY_TO_LOG_KEY";
+  private static final String HAS_PENDING_RESTORE_NOTIFICATION =
+      "ExposureNotificationSharedPreferences.HAS_PENDING_RESTORE_NOTIFICATION";
   private static final String BLE_LOC_OFF_NOTIFICATION_SEEN =
       "ExposureNotificationSharedPreferences.BLE_LOC_OFF_NOTIFICATION_SEEN";
   private static final String BEGIN_TIMESTAMP_BLE_LOC_OFF =
       "ExposureNotificationSharedPreferences.BEGIN_TIMESTAMP_BLE_LOC_OFF";
+  private static final String IS_IN_APP_SMS_NOTICE_SEEN =
+      "ExposureNotificationSharedPreferences.IS_IN_APP_SMS_NOTICE_SEEN";
   // Private analytics
   private static final String SHARE_PRIVATE_ANALYTICS_KEY =
       "ExposureNotificationSharedPreferences.SHARE_PRIVATE_ANALYTICS_KEY";
@@ -117,6 +123,7 @@ public class ExposureNotificationSharedPreferences {
   private final LiveData<BadgeStatus> isExposureClassificationNewLiveData;
   private final LiveData<BadgeStatus> isExposureClassificationDateNewLiveData;
   private final LiveData<String> providedDiagnosisKeyHexToLogLiveData;
+  private final LiveData<Boolean> inAppSmsNoticeSeenLiveData;
 
   /**
    * Enum for onboarding status.
@@ -266,6 +273,8 @@ public class ExposureNotificationSharedPreferences {
         new ContainsSharedPreferenceLiveData(sharedPreferences, ONBOARDING_STATE_KEY);
     this.isPrivateAnalyticsStateSetLiveData =
         new ContainsSharedPreferenceLiveData(sharedPreferences, SHARE_PRIVATE_ANALYTICS_KEY);
+    this.inAppSmsNoticeSeenLiveData = new BooleanSharedPreferenceLiveData(
+        sharedPreferences, IS_IN_APP_SMS_NOTICE_SEEN, false);
 
     this.exposureClassificationLiveData =
         new SharedPreferenceLiveData<ExposureClassification>(
@@ -305,6 +314,18 @@ public class ExposureNotificationSharedPreferences {
         setValue(getProvidedDiagnosisKeyHexToLog());
       }
     };
+  }
+
+  public void setHasPendingRestoreNotificationState(boolean enabled) {
+    sharedPreferences.edit().putBoolean(HAS_PENDING_RESTORE_NOTIFICATION, enabled).commit();
+  }
+
+  public boolean hasPendingRestoreNotification() {
+    return sharedPreferences.getBoolean(HAS_PENDING_RESTORE_NOTIFICATION, false);
+  }
+
+  public void removeHasPendingRestoreNotificationState() {
+    sharedPreferences.edit().remove(HAS_PENDING_RESTORE_NOTIFICATION).commit();
   }
 
   public void setOnboardedState(boolean onboardedState) {
@@ -369,7 +390,7 @@ public class ExposureNotificationSharedPreferences {
   }
 
   public void setPrivateAnalyticsState(boolean isEnabled) {
-    Log.d(TAG, "PrivateAnalyticsState changed, isEnabled= " + isEnabled);
+    logger.d("PrivateAnalyticsState changed, isEnabled= " + isEnabled);
     sharedPreferences.edit().putBoolean(SHARE_PRIVATE_ANALYTICS_KEY, isEnabled).commit();
   }
 
@@ -704,6 +725,24 @@ public class ExposureNotificationSharedPreferences {
 
   public LiveData<String> getProvidedDiagnosisKeyHexToLogLiveData() {
     return providedDiagnosisKeyHexToLogLiveData;
+  }
+
+  @AnyThread
+  public void markInAppSmsNoticeSeenAsync() {
+    sharedPreferences.edit().putBoolean(IS_IN_APP_SMS_NOTICE_SEEN, true).apply();
+  }
+
+  @WorkerThread
+  public void markInAppSmsNoticeSeen() {
+    sharedPreferences.edit().putBoolean(IS_IN_APP_SMS_NOTICE_SEEN, true).commit();
+  }
+
+  public boolean isInAppSmsNoticeSeen() {
+    return sharedPreferences.getBoolean(IS_IN_APP_SMS_NOTICE_SEEN, false);
+  }
+
+  public LiveData<Boolean> isInAppSmsNoticeSeenLiveData() {
+    return inAppSmsNoticeSeenLiveData;
   }
 
   public interface AnalyticsStateListener {

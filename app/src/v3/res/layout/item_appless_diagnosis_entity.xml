@@ -79,7 +79,7 @@
       android:layout_width="wrap_content"
       android:layout_height="match_parent"
       android:adjustViewBounds="true"
-      android:paddingStart="@dimen/padding_extra_large"
+      android:paddingStart="@dimen/padding_huge"
       android:paddingEnd="@dimen/padding_large"
       android:background="?attr/selectableItemBackgroundBorderless"
       android:contentDescription="@string/delete_shared_diagnosis"

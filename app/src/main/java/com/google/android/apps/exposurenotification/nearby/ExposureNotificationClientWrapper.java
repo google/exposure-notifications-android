@@ -17,7 +17,7 @@
 
 package com.google.android.apps.exposurenotification.nearby;
 
-import android.util.Log;
+import com.google.android.apps.exposurenotification.common.logging.Logger;
 import com.google.android.apps.exposurenotification.logging.AnalyticsLogger;
 import com.google.android.apps.exposurenotification.nearby.DailySummaryWrapper.ExposureSummaryDataWrapper;
 import com.google.android.apps.exposurenotification.proto.ApiCall.ApiCallType;
@@ -44,12 +44,18 @@ import java.util.Set;
  */
 public class ExposureNotificationClientWrapper {
 
-  private static final String TAG = "ENClientWrapper";
+  private static final Logger logcat = Logger.getLogger("ENClientWrapper");
 
   public static final String GMSCORE_PACKAGE_NAME = "com.google.android.gms";
 
   public static final String EN_MODULE_PERMISSION =
       "com.google.android.gms.nearby.exposurenotification.EXPOSURE_CALLBACK";
+
+  public static final String ACTION_WAKE_UP =
+      "com.google.android.gms.exposurenotification.ACTION_WAKE_UP";
+
+  public static final String ACTION_VERIFICATION_LINK =
+      "com.google.android.gms.nearby.exposurenotification.ACTION_VERIFICATION_LINK";
 
   private final ExposureNotificationClient exposureNotificationClient;
   private final AnalyticsLogger logger;
@@ -198,7 +204,7 @@ public class ExposureNotificationClientWrapper {
           // convert back to a long for easy comparison.
           return Long.parseLong(Long.toString(result.getResult()).substring(0, 2)) >= 17;
         } catch (NumberFormatException nfe) {
-          Log.e(TAG, "Unable to parse version");
+          logcat.e("Unable to parse version");
         }
       }
       return false;

@@ -30,7 +30,8 @@
   <string name="onboarding_exposure_notifications_title">એક્સપોઝર નોટિફિકેશન ચાલુ કરો</string>
   <string name="onboarding_exposure_notifications_detail">જ્યારે તમે COVID-19ની ઝપેટમાં આવેલી કોઈ વ્યક્તિના સંપર્કમાં આવો ત્યારે સૂચના મેળવો.
     \n\nનજીકમાં રહેલા અન્ય ફોન સાથે રેન્ડમ IDs સુરક્ષિત રીતે એકત્રિત અને શેર કરવા માટે, તમારો ફોન બ્લૂટૂથનો ઉપયોગ કરે છે.
-    \n\nતમારા જાહેર આરોગ્ય અધિકારી દ્વારા સેટ કરેલા પેરામીટરના આધારે, તમને સૂચના આપવી કે નહીં તે નક્કી કરવા માટે, એક્સપોઝર સાથે સંકળાયેલી તારીખ, અવધિ અને સંકેતની પ્રબળતાનો ઉપયોગ કરવામાં આવશે.</string>
+    \n\nતમારા જાહેર આરોગ્ય અધિકારી દ્વારા સેટ કરેલા પરિબળોના આધારે, તમને સૂચના આપવી કે નહીં તે નક્કી કરવા માટે, સંભવિત એક્સપોઝર સાથે સંકળાયેલી તારીખ, અવધિ અને લક્ષણોની પ્રબળતાનો ઉપયોગ કરવામાં આવશે.
+    \n\nજો તમારા પરીક્ષણનું પરિણામ પૉઝિટિવ આવે, તો તમારા આરોગ્ય અધિકારી સાથે તમારા પરિણામો શેર કરવા માટે, તમે કદાચ કોઈ રિમાઇન્ડર મેળવી શકો છો.</string>
   <string name="onboarding_metrics_title">આ ઍપને બહેતર બનાવવામાં સહાય કરો</string>
   <string name="onboarding_metrics_subtitle">Google સાથે ઍપના વપરાશ અને કાર્યપ્રદર્શનનો ડેટા શેર કરો</string>
   <string name="onboarding_metrics_description">આ ઍપની જાળવણી તેમજ બહેતર બનાવવામાં સહાય કરવા માટે, Google સાથે ઍપના કાર્યપ્રદર્શન અને વપરાશ વિશેનો મર્યાદિત પ્રમાણમાં અમુક છુપાવેલી ઓળખાણવાળો ડેટા શેર કરવામાં આવે છે. આ ડેટા તમારી ઓળખ છતી કરી શકશે નહીં. %1$s</string>
@@ -60,10 +61,10 @@
   <string name="notify_turn_on_exposure_notifications_header">COVID-19ના સંભવિત એક્સપોઝર માટે સૂચના મેળવવા માટે, એક્સપોઝર નોટિફિકેશન ચાલુ કરો. %1$s</string>
   <string name="using_en_helps_even_if_vaccinated">આ સેવાનો ઉપયોગ કરવાથી તમને તમારા સમુદાયનું રક્ષણ કરવામાં સહાય મળે છે - તમે રસી મુકાવી હોય તો પણ.</string>
   <string name="share_begin_title">તમારા સમુદાયની રક્ષા માટે સહાય કરો</string>
-  <string name="share_close_title">શેર કર્યા વિના બહાર નીકળીએ?</string>
-  <string name="share_close_detail">પરીક્ષણનું પરિણામ જલ્દી શેર કરીને તમારા સમુદાયની ઉત્તમ સહાય કરશો. જો કે, અત્યાર સુધીમાં તમે દાખલ કરેલી પરીક્ષણના પરિણામની માહિતી આ ઍપમાં સાચવી છે, જેથી તમે પછીથી તેમાં ફેરફાર કરવાનું ફરી શરૂ કરી શકો.</string>
-  <string name="btn_resume_later">હા, બહાર નીકળો</string>
-  <string name="verify_test_result_title">COVID-19 પરીક્ષણની માહિતી દાખલ કરો</string>
+  <string name="share_close_title">શું શેર કર્યા વિના બંધ કરીએ?</string>
+  <string name="share_close_detail">જેટલી જલદી પરિણામો શેર કરશો એટલી બહેતર તમે સમુદાયની સહાય કરી શકશો. જો હમણાં શેર કર્યા વિના બંધ કરી દો અને થોડા સમય પછી તમારો વિચાર બદલાઈ જાય, તો તમે જ્યાંથી છોડ્યું હોય ત્યાંથી ફરી શરૂ કરી શકો છો.</string>
+  <string name="btn_resume_later">હા, બંધ કરો</string>
+  <string name="verify_test_result_title">તમારો ચકાસણી કોડ દાખલ કરો</string>
   <string name="enter_your_test_identifier">ચકાસણી કોડ</string>
   <string name="share_test_identifier_help">તમારા પરીક્ષણ પરિણામની ચકાસણી કરવા માટે આ એક વારના કોડનો ઉપયોગ કરવામાં આવે છે.</string>
   <string name="share_test_identifier_verified">કોડની ચકાસણી થઈ ગઈ છે</string>
@@ -73,30 +74,29 @@
   <string name="test_date_label">લક્ષણો શરૂ થવાની તારીખ</string>
   <string name="share_onset_symptoms">હા</string>
   <string name="share_onset_no_symptoms">ના</string>
-  <string name="share_onset_no_answer">જવાબ નથી આપવો</string>
+  <string name="share_onset_no_answer">જવાબ ન આપવાનું પસંદ કરું છું</string>
   <string name="share_travel_title">શું તમે છેલ્લા 14 દિવસમાં કોઈ પ્રવાસ કર્યો છે?</string>
   <string name="share_travel_confirmed">હા</string>
   <string name="share_travel_no_travel">ના</string>
-  <string name="share_travel_no_answer">જવાબ નથી આપવો</string>
+  <string name="share_travel_no_answer">જવાબ ન આપવાનું પસંદ કરું છું</string>
   <string name="share_review_title">તમારી માહિતી રિવ્યૂ કરો</string>
   <string name="share_review_status_subtitle">COVID-19 સ્ટેટસ</string>
   <string name="share_review_status_confirmed">પૉઝિટિવ</string>
   <string name="share_review_status_likely">શક્યતા છે</string>
   <string name="share_review_status_negative">નેગેટિવ</string>
-  <string name="share_review_onset_subtitle">લક્ષણની માહિતી</string>
-  <string name="share_review_onset_date">%1$sના રોજથી લક્ષણો</string>
+  <string name="share_review_onset_subtitle">લક્ષણો</string>
+  <string name="share_review_onset_date">શરૂ થવાની તારીખ %1$s</string>
   <string name="share_review_onset_no_symptoms">કોઈ લક્ષણ નથી</string>
   <string name="share_review_onset_no_answer">કોઈ જવાબ આપ્યો નથી</string>
-  <string name="share_review_travel_subtitle">પ્રવાસનો ઇતિહાસ</string>
-  <string name="share_review_travel_confirmed">છેલ્લા 14 દિવસમાં કરેલો પ્રવાસ</string>
+  <string name="share_review_travel_subtitle">મુસાફરી</string>
+  <string name="share_review_travel_confirmed">પાછલા 14 દિવસમાં</string>
   <string name="share_review_travel_no_travel">છેલ્લા 14 દિવસમાં કોઈ પ્રવાસ કર્યો નથી</string>
   <string name="share_review_travel_no_answer">કોઈ જવાબ આપ્યો નથી</string>
-  <string name="share_confirm_title">તમારું COVID-19નું સ્ટેટસ શેર કરવા બદલ આભાર</string>
+  <string name="share_confirm_title">તમારું COVID-19નું પરિણામ શેર કરવા બદલ આપનો આભાર</string>
   <string name="not_shared_confirm_title">તમારું પરીક્ષણનું પરિણામ શેર કરાયું નથી</string>
   <string name="not_shared_confirm_detail">તમારું COVID-19 પરીક્ષણનું પરિણામ શેર કરાયું નથી. કૃપા કરીને ફરી પ્રયાસ કરો.</string>
   <string name="status_shared_detail_title">COVID-19 સંબંધિત શેર કરેલું સ્ટેટસ</string>
-  <string name="delete_test_result_title">COVID-19 પરીક્ષણનું પરિણામ ડિલીટ કરીએ?</string>
-  <string name="delete_test_result_detail">તમારા પરીક્ષણ પરિણામની વિગતો આ ઍપમાંથી ડિલીટ કરવામાં આવશે.</string>
+  <string name="delete_test_result_title">શું તમારા પરીક્ષણનું પરિણામ ડિલીટ કરીએ?</string>
   <string name="delete_test_result_confirmed">પરીક્ષણનું પરિણામ ડિલીટ કર્યું</string>
   <string name="share_error_no_internet">પરીક્ષણના પરિણામો ઑફલાઇન શેર કરી શકાશે નહીં. તમારું ઇન્ટરનેટ કનેક્શન ચેક કરો અને ફરી પ્રયાસ કરો.</string>
   <string name="share_vaccination_title">શું તમે COVID-19 વિરોધી રસી મુકાવી છે?</string>
@@ -105,6 +105,29 @@
   <string name="share_vaccination_vaccinated">હા, મેં રસી મુકાવી છે</string>
   <string name="share_vaccination_not_vaccinated">ના</string>
   <string name="share_vaccination_unknown">જવાબ ન આપવાનું પસંદ કરું છું</string>
+  <string name="do_you_have_code_title">શું તમે કોઈ કોડ મેળવ્યો?</string>
+  <string name="do_you_have_code_content">જો COVID-19 માટેનો તમારો પરીક્ષણ રિપોર્ટ પૉઝિટિવ આવે, તો સામાન્યપણે તમારા જાહેર આરોગ્ય અધિકારી ફોન કે SMS દ્વારા કોઈ ચકાસણી કોડ આપવામાં આવે છે જેથી તમે તમારા પરિણામો શેર કરી શકો.</string>
+  <string name="btn_i_have_code">હા, મારી પાસે કોઈ કોડ છે</string>
+  <string name="btn_i_need_code">મારે કોડની જરૂર છે</string>
+  <string name="get_verification_code_title">કોઈ ચકાસણી કોડ મેળવો</string>
+  <string name="phone_number_prompt">ફોન નંબર</string>
+  <string name="phone_number_help">કોઈ ચકાસણી કોડ તમને તમારા પરીક્ષણના પરિણામો શેર કરવાની સુવિધા આપે છે. તમે આપેલા નંબર પર કોડ મોકલવામાં આવશે.</string>
+  <string name="phone_number_may_be_stored_help">લોકોને એક કરતાં વધુ પરિણામ સબમિટ કરવાથી રોકવા માટે, તમારા જાહેર આરોગ્ય અધિકારી દ્વારા તમારો ફોન નંબર હંગામી રૂપે સ્ટોર કરવામાં આવી શકે છે.</string>
+  <string name="test_date_prompt">પરીક્ષણની તારીખ</string>
+  <string name="test_date_help">પરીક્ષણની તારીખ પાછલા 14 દિવસમાંની હોવી જોઈએ.</string>
+  <string name="tested_for_covid_checkbox_text">પાછલા 14 દિવસમાં COVID-19 વિશેનું મારું નિદાન પૉઝિટિવ આવ્યું છે.</string>
+  <string name="btn_send_code">કોડ મોકલો</string>
+  <string name="enter_code_help">%1$s દ્વારા તમને મોકલવામાં આવેલો કોડ દાખલ કરો.</string>
+  <string name="positive_result_already_reported_title">તમે પહેલેથી જ તાજેતરમાં કોઈ પરીક્ષણનું પરિણામ જણાવ્યું છે.</string>
+  <string name="positive_result_already_reported_content">જો તમે હજી એક પરીક્ષણનું પરિણામ જણાવવા માગતા હો, તો કૃપા કરીને %1$sનો સંપર્ક કરો.</string>
+  <string name="self_report_bad_code">અમાન્ય કોડ. તમે બન્ને વિનંતી માટે એક જ ડિવાઇસનો ઉપયોગ તથા તમારો ચકાસણી કોડ દાખલ કરતા હોવાની ખાતરી કરો.</string>
+  <string name="self_report_bad_phone_number">તમારો નંબર ચેક કરો અને ફરી પ્રયાસ કરો. %1$s</string>
+  <string name="self_report_code_requested_too_many_times">તમે ઘણી વધુ વિનંતીઓ કરી છે. જો હજી પણ તમને કોઈ કોડની જરૂર હોય, તો %1$sનો સંપર્ક કરો.</string>
+  <plurals name="self_report_code_already_requested">
+    <item quantity="one">તમે ઘણી વધુ વિનંતીઓ કરી છે. તમે %1$d મિનિટમાં વધુ એક કોડની વિનંતી કરી શકશો.</item>
+    <item quantity="other">તમે ઘણી વધુ વિનંતીઓ કરી છે. તમે %1$d મિનિટમાં વધુ એક કોડની વિનંતી કરી શકશો.</item>
+  </plurals>
+  <string name="notify_others_notification_title">જે અન્ય લોકો સંપર્કમાં આવ્યા હોઈ શકે છે, તેમને સૂચિત કરવામાં સહાય કરો</string>
   <string name="settings_exposure_notifications_subtitle">એક્સપોઝર નોટિફિકેશન</string>
   <string name="settings_app_analytics_subtitle">ઍપ વપરાશ અને કાર્યપ્રદર્શન શેરિંગ</string>
   <string name="settings_privacy_policy">પ્રાઇવસી પૉલિસી</string>
@@ -166,4 +189,9 @@
   <string name="private_analytics_footer_learn_more">વધુ જાણો</string>
   <string name="diagnosis_subtitle_template">%2$sના રોજ %1$s</string>
   <string name="empty_share_history_body">શેરિંગનો કોઈ ઇતિહાસ નથી</string>
+  <string name="share_diagnosis_share_test_result_title">%1$s વડે તમારું પરીક્ષણનું પરિણામ શેર કરો</string>
+  <string name="share_diagnosis_share_test_result_subtitle">COVID-19નો ફેલાવો રોકવામાં સહાય માટે આપનો આભાર.</string>
+  <string name="share_diagnosis_share_test_result_body">જ્યારે તમે તમારું પરિણામ શેર કરો, ત્યારે તમારા લક્ષણો ક્યારથી શરૂ થયા, તમે તે શેર કરવાનું પણ પસંદ કરી શકો છો. આ માહિતી COVID-19નો ફેલાવો રોકવામાં અને જીંદગીઓ બચાવવામાં સહાય કરી શકે છે.</string>
+  <string name="sms_intercept_notice_title">નવું શું છે</string>
+  <string name="sms_intercept_notice_content">જો તમારા સ્થાનિક સ્વાસ્થ્ય અધિકારી તમને પરીક્ષણનું પરિણામ મોકલે, તો તમારા પરિણામને સબમિટ કરવા માટે, તમારી ઍપ તમને રિમાઇન્ડર સાથે સૂચિત કરી શકે છે અને સંભવિત એક્સપોઝર વિશે અન્ય લોકોને અલર્ટ કરવામાં સહાય કરી શકે છે. તમે સેટિંગમાં જઈને કોઈપણ સમયે આને બંધ કરી શકો છો.</string>
 </resources>

@@ -30,7 +30,8 @@
   <string name="onboarding_exposure_notifications_title">Laita altistumisilmoitukset päälle</string>
   <string name="onboarding_exposure_notifications_detail">Voit saada ilmoituksen, jos joku lähelläsi ollut ilmoittaa COVID-19-tartunnastaan.
     \n\nBluetoothin avulla puhelimesi kerää satunnaisia tunnuksia suojatusti ja jakaa niitä muille lähellä oleville puhelimille.
-    \n\nAltistumisen päivämäärä, kesto ja signaalin vahvuus sen aikana vaikuttavat siihen, saatko ilmoituksen julkisen terveydenhuollon viranomaisten valitsemien parametrien perusteella.</string>
+    \n\nAltistumisen päivämäärä, kesto ja signaalin vahvuus sen aikana vaikuttavat siihen, saatko ilmoituksen julkisen terveydenhuollon viranomaisten valitsemien parametrien perusteella.
+    \n\nJos testituloksesi on positiivinen, saatat saada muistutuksen tulosten jakamisesta terveydenhuollon viranomaisille.</string>
   <string name="onboarding_metrics_title">Auta parantamaan tätä sovellusta</string>
   <string name="onboarding_metrics_subtitle">Jaa käyttö- ja toimintadataa Googlelle</string>
   <string name="onboarding_metrics_description">Sovelluksen ylläpitoa ja kehittämistä varten Googlelle voidaan lähettää jotakin rajoitettua ja nimetöntä dataa sovelluksen toiminnasta ja käytöstä. Tästä datasta ei voi tunnistaa sinua. %1$s</string>
@@ -61,9 +62,9 @@
   <string name="using_en_helps_even_if_vaccinated">Tämän palvelun käyttö auttaa sinua suojelemaan muita, vaikka olisitkin jo rokotettu.</string>
   <string name="share_begin_title">Auta suojelemaan muita</string>
   <string name="share_close_title">Poistutaanko jakamatta?</string>
-  <string name="share_close_detail">Autat muita parhaiten jakamalla testituloksesi mahdollisimman pian. Tähän mennessä ilmoittamasi testitulostiedot tallennetaan kuitenkin sovellukseen, jotta voit jatkaa niiden muokkaamista myöhemmin.</string>
+  <string name="share_close_detail">Paras tapa auttaa muita on jakaa tuloksesi mahdollisimman pian. Vaikka poistuisit nyt jakamatta tulostasi, voit jatkaa myöhemmin siitä, mihin jäit, jos muutat mielesi.</string>
   <string name="btn_resume_later">Kyllä, poistu</string>
-  <string name="verify_test_result_title">Lisää COVID-19-testin tiedot</string>
+  <string name="verify_test_result_title">Lisää vahvistuskoodisi</string>
   <string name="enter_your_test_identifier">Vahvistuskoodi</string>
   <string name="share_test_identifier_help">Kertakäyttöistä koodia käytetään testituloksen vahvistamiseen.</string>
   <string name="share_test_identifier_verified">Koodi vahvistettu</string>
@@ -83,20 +84,19 @@
   <string name="share_review_status_confirmed">Positiivinen</string>
   <string name="share_review_status_likely">Todennäköinen tartunta</string>
   <string name="share_review_status_negative">Negatiivinen</string>
-  <string name="share_review_onset_subtitle">Oiretiedot</string>
-  <string name="share_review_onset_date">Oireet alkoivat %1$s</string>
+  <string name="share_review_onset_subtitle">Oireet</string>
+  <string name="share_review_onset_date">Alkoivat %1$s</string>
   <string name="share_review_onset_no_symptoms">Ei oireita</string>
   <string name="share_review_onset_no_answer">Ei vastausta</string>
-  <string name="share_review_travel_subtitle">Matkustushistoria</string>
-  <string name="share_review_travel_confirmed">Matkustanut viimeisten 14 päivän aikana</string>
+  <string name="share_review_travel_subtitle">Matkustaminen</string>
+  <string name="share_review_travel_confirmed">14 viime päivän aikana</string>
   <string name="share_review_travel_no_travel">Ei matkustamista viimeisten 14 päivän aikana</string>
   <string name="share_review_travel_no_answer">Ei vastausta</string>
-  <string name="share_confirm_title">Kiitos COVID-19-statuksesi jakamisesta</string>
+  <string name="share_confirm_title">Kiitos COVID-19-tuloksesi jakamisesta</string>
   <string name="not_shared_confirm_title">Testitulostasi ei jaettu</string>
   <string name="not_shared_confirm_detail">COVID-19-testitulostasi ei jaettu. Yritä uudelleen.</string>
   <string name="status_shared_detail_title">Jaettu COVID-19-tila</string>
-  <string name="delete_test_result_title">Poistetaanko COVID-19-testitulos?</string>
-  <string name="delete_test_result_detail">Testituloksesi poistetaan tästä sovelluksesta.</string>
+  <string name="delete_test_result_title">Poistetaanko testitulos?</string>
   <string name="delete_test_result_confirmed">Testitulos poistettu</string>
   <string name="share_error_no_internet">Testituloksia ei voi jakaa offline-tilassa. Tarkista internetyhteytesi ja yritä uudelleen.</string>
   <string name="share_vaccination_title">Oletko saanut COVID-19-rokotuksen?</string>
@@ -105,6 +105,29 @@
   <string name="share_vaccination_vaccinated">Kyllä, olen saanut rokotuksen</string>
   <string name="share_vaccination_not_vaccinated">Ei</string>
   <string name="share_vaccination_unknown">En halua vastata</string>
+  <string name="do_you_have_code_title">Saitko koodin?</string>
+  <string name="do_you_have_code_content">Jos saat positiivisen COVID-19-testituloksen, terveydenhuollon viranomainen antaa yleensä vahvistuskoodin puhelimitse tai tekstiviestillä, jotta voit jakaa tuloksesi.</string>
+  <string name="btn_i_have_code">Kyllä, minulla on koodi</string>
+  <string name="btn_i_need_code">Tarvitsen koodin</string>
+  <string name="get_verification_code_title">Pyydä vahvistuskoodi</string>
+  <string name="phone_number_prompt">Puhelinnumero</string>
+  <string name="phone_number_help">Voit jakaa testituloksesi vahvistuskoodin avulla. Koodi lähetetään ilmoittamaasi numeroon.</string>
+  <string name="phone_number_may_be_stored_help">Jotta ihmiset eivät ilmoita useita tuloksia, julkisen terveydenhuollon viranomainen voi tallentaa puhelinnumerosi tilapäisesti.</string>
+  <string name="test_date_prompt">Testauspäivä</string>
+  <string name="test_date_help">Testauspäivän tulee olla 14 viime päivän aikana.</string>
+  <string name="tested_for_covid_checkbox_text">Olen saanut positiivisen COVID-19-testituloksen 14 viime päivän aikana.</string>
+  <string name="btn_send_code">Lähetä koodi</string>
+  <string name="enter_code_help">Lisää koodi, jonka %1$s lähetti sinulle.</string>
+  <string name="positive_result_already_reported_title">Olet jo ilmoittanut testituloksesta äskettäin.</string>
+  <string name="positive_result_already_reported_content">Jos haluat ilmoittaa toisesta testituloksesta, ota yhteyttä: %1$s.</string>
+  <string name="self_report_bad_code">Virheellinen koodi. Varmista, että käytät samaa laitetta vahvistuskoodin pyytämiseen ja lisäämiseen.</string>
+  <string name="self_report_bad_phone_number">Tarkista numero ja yritä uudelleen. %1$s</string>
+  <string name="self_report_code_requested_too_many_times">Olet tehnyt liian monta pyyntöä. Jos tarvitset vielä koodin, ota yhteyttä: %1$s.</string>
+  <plurals name="self_report_code_already_requested">
+    <item quantity="one">Olet tehnyt liian monta pyyntöä. Voit pyytää uutta koodia %1$d minuutin kuluttua.</item>
+    <item quantity="other">Olet tehnyt liian monta pyyntöä. Voit pyytää uutta koodia %1$d minuutin kuluttua.</item>
+  </plurals>
+  <string name="notify_others_notification_title">Auta ilmoittamaan muille mahdollisesta altistumisesta</string>
   <string name="settings_exposure_notifications_subtitle">Altistumisilmoitukset</string>
   <string name="settings_app_analytics_subtitle">Sovelluksen käytön ja toiminnan jako</string>
   <string name="settings_privacy_policy">Tietosuojakäytäntö</string>
@@ -166,4 +189,9 @@
   <string name="private_analytics_footer_learn_more">Lue lisää</string>
   <string name="diagnosis_subtitle_template">%1$s %2$s</string>
   <string name="empty_share_history_body">Ei jakamishistoriaa</string>
+  <string name="share_diagnosis_share_test_result_title">Jaa testituloksesi: %1$s</string>
+  <string name="share_diagnosis_share_test_result_subtitle">Kiitos, että autat estämään COVID-19:n leviämistä.</string>
+  <string name="share_diagnosis_share_test_result_body">Kun jaat tuloksesi, voit myös kertoa, milloin oireesi alkoivat. Näiden tietojen avulla voit auttaa estämään COVID-19:n leviämistä ja pelastamaan henkiä.</string>
+  <string name="sms_intercept_notice_title">Uutta</string>
+  <string name="sms_intercept_notice_content">Jos saat testituloksen paikallisilta terveysviranomaisilta, sovellus voi muistuttaa sinua lähettämään tuloksesi ja ilmoittaa muille mahdollisesta altistumisesta. Voit estää tämän koska tahansa asetuksista.</string>
 </resources>

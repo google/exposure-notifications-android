@@ -18,11 +18,11 @@
 package com.google.android.apps.exposurenotification.logging;
 
 import android.content.Context;
-import android.util.Log;
 import androidx.annotation.AnyThread;
 import androidx.annotation.Nullable;
 import androidx.annotation.UiThread;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.common.logging.Logger;
 import com.google.android.apps.exposurenotification.network.VolleyUtils;
 import com.google.android.apps.exposurenotification.proto.ApiCall.ApiCallType;
 import com.google.android.apps.exposurenotification.proto.RpcCall.RpcCallResult;
@@ -44,31 +44,30 @@ import javax.inject.Inject;
  */
 public class LogcatAnalyticsLogger implements AnalyticsLogger {
 
+  private static final Logger logger = Logger.getLogger("LogcatAnalyticsLogger");
   private final String healthAuthorityCode;
-  private final String tag;
 
   @Inject
   public LogcatAnalyticsLogger(@ApplicationContext Context context) {
     Context appContext = context.getApplicationContext();
     healthAuthorityCode = appContext.getResources().getString(R.string.enx_regionIdentifier);
-    tag = "ENX." + healthAuthorityCode;
-    Log.i(tag, "Using logcat analytics logger.");
+    logger.i("Using logcat analytics logger.");
   }
 
   @Override
   @UiThread
   public void logUiInteraction(EventType event) {
     if (event == EventType.LOW_STORAGE_WARNING_SHOWN) {
-      Log.e(tag, event.toString());
+      logger.e(event.toString());
     } else {
-      Log.i(tag, event.toString());
+      logger.i(event.toString());
     }
   }
 
   @Override
   @AnyThread
   public void logWorkManagerTaskStarted(WorkerTask workerTask) {
-    Log.i(tag, workerTask + " started.");
+    logger.i(workerTask + " started.");
   }
 
   @Override
@@ -77,17 +76,17 @@ public class LogcatAnalyticsLogger implements AnalyticsLogger {
     if (exception instanceof ApiException) {
       if (((ApiException) exception).getStatusCode()
             == ExposureNotificationStatusCodes.RESOLUTION_REQUIRED) {
-        Log.i(tag, apiCallType + " requires resolution");
+        logger.i(apiCallType + " requires resolution");
         return;
       }
     }
-    Log.e(tag, apiCallType + " failed.", exception);
+    logger.e(apiCallType + " failed.", exception);
   }
 
   @Override
   @AnyThread
   public void logApiCallSuccess(ApiCallType apiCallType) {
-    Log.i(tag, apiCallType + " succeeded.");
+    logger.i(apiCallType + " succeeded.");
   }
 
   @Override
@@ -108,7 +107,7 @@ public class LogcatAnalyticsLogger implements AnalyticsLogger {
   @Override
   @AnyThread
   public void logRpcCallSuccess(RpcCallType rpcCallType, int payloadSize) {
-    Log.i(tag, rpcCallType + " succeeded with payload size: " + payloadSize);
+    logger.i(rpcCallType + " succeeded with payload size: " + payloadSize);
   }
 
   @Override
@@ -119,7 +118,7 @@ public class LogcatAnalyticsLogger implements AnalyticsLogger {
     String errorCode = VolleyUtils.getErrorCode(error);
     String errorMessage = VolleyUtils.getErrorMessage(error);
 
-    Log.e(tag, rpcCallType + " failed. "
+    logger.e(rpcCallType + " failed. "
         + " Result:[" + rpcCallResult + "]"
         + " HTTP status:[" + httpStatus + "]"
         + " Server error:[" + errorCode + ":" + errorMessage + "]");
@@ -142,7 +141,7 @@ public class LogcatAnalyticsLogger implements AnalyticsLogger {
   @Override
   @AnyThread
   public void logWorkManagerTaskSuccess(WorkerTask workerTask) {
-    Log.i(tag, workerTask + " finished with status: " + Status.STATUS_SUCCESS);
+    logger.i(workerTask + " finished with status: " + Status.STATUS_SUCCESS);
   }
 
   @Override
@@ -152,20 +151,20 @@ public class LogcatAnalyticsLogger implements AnalyticsLogger {
     if (t instanceof TimeoutException) {
       status = Status.STATUS_TIMEOUT;
     }
-    Log.e(tag, workerTask + " failed with status: " + status);
+    logger.e(workerTask + " failed with status: " + status);
   }
 
   @Override
   @AnyThread
   public void logWorkManagerTaskAbandoned(WorkerTask workerTask) {
-    Log.e(tag, workerTask + " finished with status: " + Status.STATUS_ABANDONED);
+    logger.e(workerTask + " finished with status: " + Status.STATUS_ABANDONED);
   }
 
   @Override
   @AnyThread
   public ListenableFuture<Void> sendLoggingBatchIfConsented(boolean isENEnabled) {
     // No action as logcat logger doesn't send anything off device
-    Log.i(tag, "LogcatAnalytics logger - no batch upload operation specified");
+    logger.i("LogcatAnalytics logger - no batch upload operation specified");
     return Futures.immediateVoidFuture();
   }
 }

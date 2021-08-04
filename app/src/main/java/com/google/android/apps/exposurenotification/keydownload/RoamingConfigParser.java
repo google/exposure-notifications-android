@@ -17,7 +17,7 @@
 
 package com.google.android.apps.exposurenotification.keydownload;
 
-import android.util.Log;
+import com.google.android.apps.exposurenotification.common.logging.Logger;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import java.util.HashMap;
@@ -32,7 +32,7 @@ import org.json.JSONObject;
  */
 class RoamingConfigParser {
 
-  private static final String TAG = "RoamingConfigParser";
+  private static final Logger logger = Logger.getLogger("RoamingConfigParser");
 
   /**
    * Parses a JSON string like:
@@ -75,12 +75,12 @@ class RoamingConfigParser {
         outBuilder.put(countryCode, uriPairsBuilder.build());
       }
 
-      Log.d(TAG, "Parsed " + outBuilder.build().size() + " region(s) roaming config");
+      logger.d("Parsed " + outBuilder.build().size() + " region(s) roaming config");
       return outBuilder.build();
     } catch (Exception e) {
       // Swallow all failures to parse this config and continue with no roaming servers.
       // TODO: log this failure to Firelog.
-      Log.e(TAG,
+      logger.e(
           "Failed to parse JSON roaming download config, continuing with no roaming servers.", e);
       return new HashMap<>();
     }

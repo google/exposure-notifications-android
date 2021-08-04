@@ -30,7 +30,8 @@
   <string name="onboarding_exposure_notifications_title">Kveikja á tilkynningum um útsetningu</string>
   <string name="onboarding_exposure_notifications_detail">Fáðu tilkynningu ef þú hefur verið nálægt einhverjum sem greinist með COVID-19.
     \n\nSíminn notar Bluetooth til að safna og deila handahófsvöldum auðkennum á öruggan máta með öðrum símum í nágrenninu.
-    \n\nUpplýsingar um dagsetningu, tímalengd og sendistyrk sem tengjast útsetningunni verða notaðar til að ákvarða hvort þú færð tilkynningu í samræmi við viðmið heilbrigðisyfirvalda á þínu svæði.</string>
+    \n\nUpplýsingar um dagsetningu, tímalengd og sendistyrk sem tengjast útsetningunni verða notaðar til að ákvarða hvort þú færð tilkynningu í samræmi við viðmið heilbrigðisyfirvalda á þínu svæði.
+    \n\nEf þú greinist jákvæð(ur) færðu hugsanlega áminningu um að deila niðurstöðunum með heilbrigðisyfirvöldum á þínu svæði.</string>
   <string name="onboarding_metrics_title">Hjálpaðu við að bæta þetta forrit</string>
   <string name="onboarding_metrics_subtitle">Deila forritanotkun og afkastagögnum með Google</string>
   <string name="onboarding_metrics_description">Til að hjálpa við að bæta og þróa forritið er ópersónugreinanlegum gögnum um afköst og notkun forritsins deilt með Google. Ekki eru borin kennsl á þig út frá þessum gögnum. %1$s</string>
@@ -60,10 +61,10 @@
   <string name="notify_turn_on_exposure_notifications_header">Til að fá tilkynningar um mögulega útsetningu fyrir COVID-19 skaltu kveikja á tilkynningum um útsetningu. %1$s</string>
   <string name="using_en_helps_even_if_vaccinated">Þjónustan hjálpar þér að vernda samfélagið – jafnvel þótt þú hafir fengið bólusetningu.</string>
   <string name="share_begin_title">Hjálpaðu við að vernda samfélagið þitt</string>
-  <string name="share_close_title">Hætta án þess að deila?</string>
-  <string name="share_close_detail">Samfélagið græðir mest á því að þú deilir prófniðurstöðum sem fyrst. Prófniðurstöðurnar sem þú hefur slegið inn hingað til verða vistaðar í forritinu svo þú getir haldið áfram að breyta þeim síðar.</string>
+  <string name="share_close_title">Loka án þess að deila?</string>
+  <string name="share_close_detail">Það gagnast samfélaginu best að þú deilir niðurstöðunni sem fyrst. Ef þú lokar núna án þess að deila geturðu haldið áfram seinna þar sem frá var horfið ef þú skiptir um skoðun.</string>
   <string name="btn_resume_later">Já, loka</string>
-  <string name="verify_test_result_title">Sláðu inn upplýsingar úr COVID-19 prófi</string>
+  <string name="verify_test_result_title">Sláðu inn staðfestingarkóðann</string>
   <string name="enter_your_test_identifier">Staðfestingarkóði</string>
   <string name="share_test_identifier_help">Þessi einnota kóði er notaður til að staðfesta niðurstöður prófsins.</string>
   <string name="share_test_identifier_verified">Kóði staðfestur</string>
@@ -73,30 +74,29 @@
   <string name="test_date_label">Dagsetning fyrstu einkenna</string>
   <string name="share_onset_symptoms">Já</string>
   <string name="share_onset_no_symptoms">Nei</string>
-  <string name="share_onset_no_answer">Vil ekki svara</string>
+  <string name="share_onset_no_answer">Ég vil ekki svara</string>
   <string name="share_travel_title">Hefurðu ferðast síðustu 14 daga?</string>
   <string name="share_travel_confirmed">Já</string>
   <string name="share_travel_no_travel">Nei</string>
-  <string name="share_travel_no_answer">Vil ekki svara</string>
+  <string name="share_travel_no_answer">Ég vil ekki svara</string>
   <string name="share_review_title">Farðu yfir upplýsingarnar</string>
   <string name="share_review_status_subtitle">COVID-19 staða</string>
   <string name="share_review_status_confirmed">Smit til staðar</string>
   <string name="share_review_status_likely">Smit líklegt</string>
   <string name="share_review_status_negative">Smit ekki til staðar</string>
-  <string name="share_review_onset_subtitle">Upplýsingar um einkenni</string>
-  <string name="share_review_onset_date">Einkenni frá %1$s</string>
+  <string name="share_review_onset_subtitle">Einkenni</string>
+  <string name="share_review_onset_date">Komu fram %1$s</string>
   <string name="share_review_onset_no_symptoms">Engin einkenni</string>
   <string name="share_review_onset_no_answer">Ekki svarað</string>
-  <string name="share_review_travel_subtitle">Ferðasaga</string>
-  <string name="share_review_travel_confirmed">Hefur ferðast á síðustu 14 dögum</string>
+  <string name="share_review_travel_subtitle">Ferðalög</string>
+  <string name="share_review_travel_confirmed">Á síðustu 14 dögum</string>
   <string name="share_review_travel_no_travel">Hefur ekki ferðast á síðustu 14 dögum</string>
   <string name="share_review_travel_no_answer">Ekki svarað</string>
-  <string name="share_confirm_title">Takk fyrir að deila COVID-19-stöðunni þinni</string>
+  <string name="share_confirm_title">Takk fyrir að deila COVID-19-niðurstöðunni þinni</string>
   <string name="not_shared_confirm_title">Niðurstöðum skimunar var ekki deilt</string>
   <string name="not_shared_confirm_detail">Niðurstöðum COVID-19-skimunar var ekki deilt. Reyndu aftur.</string>
   <string name="status_shared_detail_title">COVID-19-staða sem er deilt</string>
-  <string name="delete_test_result_title">Viltu eyða niðurstöðum COVID-19 prófs?</string>
-  <string name="delete_test_result_detail">Upplýsingum úr prófinu þínu verður eytt úr þessu forriti.</string>
+  <string name="delete_test_result_title">Eyða niðurstöðu úr skimun?</string>
   <string name="delete_test_result_confirmed">Prófniðurstöðu eytt</string>
   <string name="share_error_no_internet">Ekki er hægt að deila niðurstöðum rannsóknar án nettengingar. Athugaðu nettenginguna og reyndu aftur.</string>
   <string name="share_vaccination_title">Hefurðu fengið bólusetningu gegn Covid-19?</string>
@@ -104,7 +104,30 @@
   <string name="share_vaccination_learn_more">Nánar</string>
   <string name="share_vaccination_vaccinated">Já, ég hef fengið bólusetningu</string>
   <string name="share_vaccination_not_vaccinated">Nei</string>
-  <string name="share_vaccination_unknown">Vil ekki svara</string>
+  <string name="share_vaccination_unknown">Ég vil ekki svara</string>
+  <string name="do_you_have_code_title">Fékkstu kóða?</string>
+  <string name="do_you_have_code_content">Ef þú greinist með COVID-19 útvega heilbrigðisyfirvöld yfirleitt staðfestingarkóða með símtali eða SMS-skilaboðum svo þú getir deilt niðurstöðunni.</string>
+  <string name="btn_i_have_code">Já, ég fékk kóða</string>
+  <string name="btn_i_need_code">Ég þarf að fá kóða</string>
+  <string name="get_verification_code_title">Fá staðfestingarkóða</string>
+  <string name="phone_number_prompt">Símanúmer</string>
+  <string name="phone_number_help">Staðfestingarkóði gerir þér kleift að deila niðurstöðu úr skimun. Kóðinn verður sendur í símanúmerið sem þú gefur upp.</string>
+  <string name="phone_number_may_be_stored_help">Símanúmerið þitt kann að vera vistað tímabundið hjá viðkomandi heilbrigðisyfirvöldum til að koma í veg fyrir að fólk sendi fleiri en eina niðurstöðu úr skimun.</string>
+  <string name="test_date_prompt">Skimunardagur</string>
+  <string name="test_date_help">Skimunardagur verður að vera á síðustu 14 dögum.</string>
+  <string name="tested_for_covid_checkbox_text">Ég greindist með COVID-19 á síðustu 14 dögum.</string>
+  <string name="btn_send_code">Senda kóða</string>
+  <string name="enter_code_help">Sláðu inn kóðann sem þú fékkst frá %1$s.</string>
+  <string name="positive_result_already_reported_title">Þú hefur þegar tilkynnt um niðurstöðu úr skimun nýverið.</string>
+  <string name="positive_result_already_reported_content">Hafðu samband við %1$s ef þú vilt tilkynna um aðra niðurstöðu úr skimun.</string>
+  <string name="self_report_bad_code">Ógildur kóði. Gættu þess að nota sama tæki til að senda beiðni um og slá inn staðfestingarkóða.</string>
+  <string name="self_report_bad_phone_number">Athugaðu númerið þitt og reyndu aftur. %1$s</string>
+  <string name="self_report_code_requested_too_many_times">Þú hefur lagt fram of margar beiðnir. Hafðu samband við %1$s ef þú þarft enn á kóða að halda.</string>
+  <plurals name="self_report_code_already_requested">
+    <item quantity="one">Þú hefur lagt fram of margar beiðnir. Þú getur beðið um annan kóða eftir %1$d mínútu.</item>
+    <item quantity="other">Þú hefur lagt fram of margar beiðnir. Þú getur beðið um annan kóða eftir %1$d mínútur.</item>
+  </plurals>
+  <string name="notify_others_notification_title">Aðstoðaðu við að láta aðra vita sem kunna að hafa verið útsettir</string>
   <string name="settings_exposure_notifications_subtitle">Tilkynningar um útsetningu</string>
   <string name="settings_app_analytics_subtitle">Deiling forritanotkunar og afkasta</string>
   <string name="settings_privacy_policy">Persónuverndarstefna</string>
@@ -166,4 +189,9 @@
   <string name="private_analytics_footer_learn_more">Frekari upplýsingar</string>
   <string name="diagnosis_subtitle_template">%1$s %2$s</string>
   <string name="empty_share_history_body">Enginn deilingaferill</string>
+  <string name="share_diagnosis_share_test_result_title">Deildu niðurstöðu úr skimun með %1$s</string>
+  <string name="share_diagnosis_share_test_result_subtitle">Þakka þér fyrir að aðstoða við að stöðva útbreiðslu COVID-19.</string>
+  <string name="share_diagnosis_share_test_result_body">Um leið og þú deilir niðurstöðunni geturðu einnig valið að deila því hvenær einkennin komu fyrst fram. Þessar upplýsingar koma að gagni við að hindra útbreiðslu COVID-19 og geta bjargað mannslífum.</string>
+  <string name="sms_intercept_notice_title">Nýjungar</string>
+  <string name="sms_intercept_notice_content">Þegar staðbundin heilbrigðisyfirvöld senda þér prófniðurstöður getur forritið sent þér áminningu um að skila inn niðurstöðunum og vara aðra við hugsanlegri útsetningu. Þú getur slökkt á þessu hvenær sem er í stillingum.</string>
 </resources>

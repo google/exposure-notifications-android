@@ -17,6 +17,7 @@
 
 package com.google.android.apps.exposurenotification.common;
 
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 import androidx.annotation.Nullable;
@@ -29,13 +30,14 @@ import com.google.android.material.snackbar.Snackbar;
 public class SnackbarUtil {
 
   /**
-   * Shows a regular {@link Snackbar} attached to the given view but only if that view is not null.
+   * Shows a regular {@link Snackbar} attached to the given view but only if that view is not null
+   * and the provided message is not empty (or null).
    *
    * @param view the view to attach the snackbar to
    * @param message the message to show
    */
   public static void maybeShowRegularSnackbar(@Nullable View view, String message) {
-    if (view != null) {
+    if (view != null && !TextUtils.isEmpty(message)) {
       SnackbarUtil.createRegularSnackbar(view, message).show();
     }
   }

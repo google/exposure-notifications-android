@@ -30,7 +30,8 @@
   <string name="onboarding_exposure_notifications_title">የተጋላጭነት ማስታወቂያዎችን አብራ</string>
   <string name="onboarding_exposure_notifications_detail">ኮቪድ-19 እንዳለበት ሪፖርት ካደረገ ሰው አጠገብ እንደነበሩ ለማወቅ ማሳወቂያ ያግኙ።
     \n\nየእርስዎ ስልክ ደህንነቱ በተጠበቀ መንገድ በአቅራቢያ ካሉ ሌሎች ስልኮች የዘፈቀደ መታወቂያዎችን መሰብሰብ እና ማጋራት እንዲችል ብሉቱዝን ይጠቀማል።
-    \n\nከተጋላጭነት ጋር የሚጎዳኘው ቀን፣ የቆይታ ጊዜ እና የሲግናል ጥንካሬ በሕዝብ ጤና ባለሥልጣንዎ በተቀመጡት መለኪያዎች መሠረት ማሳወቂያ ይላክልዎት እንደሆነ ለማወቅ ስራ ላይ ይውላሉ።</string>
+    \n\nከተጋላጭነት ጋር የሚጎዳኘው ቀን፣ የቆይታ ጊዜ እና የሲግናል ጥንካሬ በሕዝብ ጤና ባለሥልጣንዎ በተቀመጡት መለኪያዎች መሠረት ማሳወቂያ ይላክልዎት እንደሆነ ለማወቅ ሥራ ላይ ይውላሉ።
+    \n\nየምርመራ ውጤትዎ ፖዘቲቭ ከሆነ፣ ለእርስዎ የጤና ባለሥልጣን የእርስዎን ውጤት ለማጋራት እንዲችሉ አስታዋሽ ሊያገኙ ይችሉ ይሆናል።</string>
   <string name="onboarding_metrics_title">ይህ መተግበሪያ የተሻለ እንዲሆን ያግዙ</string>
   <string name="onboarding_metrics_subtitle">የመተግበሪያ አጠቃቀም እና የአፈፃፀም ውሂብን በGoogle ያጋሩ</string>
   <string name="onboarding_metrics_description">መተግበሪያውን ጠብቆ ለማቆየት እና ለማሻሻል ለማገዝ ስለመተግበሪያ አፈፃፀም እና አጠቃቀም አንዳንድ የተወሰነ ማንነት እንዳይገለጽ የሚከለክል ውሂብ ዕውቅና ለGoogle ይጋራል። ይህ ውሂብ እርስዎን ለይቶ አያውቀዎትም። %1$s</string>
@@ -60,10 +61,10 @@
   <string name="notify_turn_on_exposure_notifications_header">ሊሆኑ ስለሚችሉ የኮቪድ-19 ተጋላጭነት ማሳወቂያ እንዲደርሰዎት የተጋላጭነት ማሳወቂያዎችን ያብሩ።%1$s</string>
   <string name="using_en_helps_even_if_vaccinated">ይህን አገልግሎት መጠቀም ማህበረሰብዎን እንዲጠብቁ ይረዳዎታል - ክትባት ቢወስዱም እንኳ።</string>
   <string name="share_begin_title">ማህበረሰብዎን ለመጠበቅ ያግዙ</string>
-  <string name="share_close_title">ሳያጋሩ ይወጣሉ?</string>
-  <string name="share_close_detail">የእርስዎን የምርመራ ውጤት በቅርቡ የሚያጋሩ ከሆነ የእርስዎን ማኅበረሰብ በይበልጥ በተሻለ ሁኔታ ማገዝ ይችላሉ። ይሁንና፣ እስካሁን ያስገቡት የምርመራ ውጤት መረጃ በኋላ ላይ እርስዎ አርትዖት ካቆሙበት መቀጠል እንዲችሉ በመተግበሪያው ውስጥ ተቀምጦልዎለታል።</string>
-  <string name="btn_resume_later">አዎ፣ ውጣ</string>
-  <string name="verify_test_result_title">የCOVID-19 የምርመራ መረጃ ያስገቡ</string>
+  <string name="share_close_title">ሳያጋሩ ይዘጋ?</string>
+  <string name="share_close_detail">ማህበረሰብዎን የሚያግዙበት ምርጡ መንገድ ውጤትዎን በተቻለ ፍጥነት ማጋራት ነው። ሳያጋሩ አሁኑኑ የሚዘጉ ከሆነ በኋላ ላይ ሀሳብዎን ከቀየሩ ካቆሙበት ቦታ መቀጠል ይችላሉ።</string>
+  <string name="btn_resume_later">አዎ፣ ዝጋ</string>
+  <string name="verify_test_result_title">የማረጋገጫ ኮድዎን ያስገቡ</string>
   <string name="enter_your_test_identifier">የማረጋገጫ ኮድ</string>
   <string name="share_test_identifier_help">ይህ የአንድ ጊዜ ኮድ የእርስዎን የምርመራ ውጤት ለማረጋገጥ ጥቅም ላይ ይውላል።</string>
   <string name="share_test_identifier_verified">ኮድ ተረጋግጧል</string>
@@ -73,30 +74,29 @@
   <string name="test_date_label">የበሽታ ምልክቶች የጀመሩበት ቀን</string>
   <string name="share_onset_symptoms">አዎ</string>
   <string name="share_onset_no_symptoms">አይ</string>
-  <string name="share_onset_no_answer">መመለስ አልፈለኩም</string>
+  <string name="share_onset_no_answer">መልስ አለመስጠት እመርጣለሁ።</string>
   <string name="share_travel_title">ባለፉት 14 ቀኖች ውስጥ ተጉዘዋል\?</string>
   <string name="share_travel_confirmed">አዎ</string>
   <string name="share_travel_no_travel">አይ</string>
-  <string name="share_travel_no_answer">መመለስ አልፈለኩም</string>
+  <string name="share_travel_no_answer">መልስ አለመስጠት እመርጣለሁ።</string>
   <string name="share_review_title">መረጃዎን ይገምግሙ</string>
   <string name="share_review_status_subtitle">የኮቪድ-19 ሁኔታ</string>
   <string name="share_review_status_confirmed">ፖዘቲቭ</string>
   <string name="share_review_status_likely">ሊሆን የሚችል</string>
   <string name="share_review_status_negative">ነገቲቭ</string>
-  <string name="share_review_onset_subtitle">የምልክት መረጃ</string>
-  <string name="share_review_onset_date">ምልክቶች ከ%1$s</string>
+  <string name="share_review_onset_subtitle">የበሽታ ምልክቶች</string>
+  <string name="share_review_onset_date">የተጀመረው በ%1$s</string>
   <string name="share_review_onset_no_symptoms">ምንም ምልክቶች የሉም</string>
   <string name="share_review_onset_no_answer">ምላሽ አልተሰጠውም</string>
-  <string name="share_review_travel_subtitle">የጉዞ ታሪክ</string>
-  <string name="share_review_travel_confirmed">በአለፉት 14 ቀኖች ውስጥ ተጉዘዋል</string>
+  <string name="share_review_travel_subtitle">ጉዞ</string>
+  <string name="share_review_travel_confirmed">ባለፉት 14 ቀኖች ውስጥ</string>
   <string name="share_review_travel_no_travel">በአለፉት 14 ቀኖች አልተጓዙም</string>
   <string name="share_review_travel_no_answer">ምላሽ አልተሰጠውም</string>
-  <string name="share_confirm_title">የኮቪድ-19 ሁኔታዎን ስላጋሩ እናመሰግናለን</string>
+  <string name="share_confirm_title">የኮቪድ-19 ውጤትዎን ስላጋሩ እናመሰግናለን</string>
   <string name="not_shared_confirm_title">የእርስዎ የምርመራ ውጤት አልተጋራም</string>
   <string name="not_shared_confirm_detail">የእርስዎ የኮቪድ-19 የምርመራ ውጤት አልተጋራም። እባክዎ እንደገና ይሞክሩ።</string>
   <string name="status_shared_detail_title">የተጋራ የኮቪድ-19 ሁነታ</string>
-  <string name="delete_test_result_title">የኮቪድ 19 መርመራ ውጤት ይሰረዝ?</string>
-  <string name="delete_test_result_detail">የእርስዎ የምርመራ ውጤት ዝርዝሮች ከዚህ መተግበሪያ ይሰረዛሉ።</string>
+  <string name="delete_test_result_title">የምርመራ ውጤትዎ ይሰረዝ?</string>
   <string name="delete_test_result_confirmed">የሙከራ ውጤት ተሰርዟል</string>
   <string name="share_error_no_internet">የሙከራ ውጤቶችን ከመስመር ውጭ ማጋራት አይቻልም። የበይነመረብ ግንኙነትዎን ይፈትሹት እና እንደገና ይሞክሩ።</string>
   <string name="share_vaccination_title">ከኮቪድ-19 ራስዎን ለመከላከል ክትባት ተከትበዋል\?</string>
@@ -104,7 +104,30 @@
   <string name="share_vaccination_learn_more">የበለጠ ለመረዳት</string>
   <string name="share_vaccination_vaccinated">አዎ ክትባት ተከትቤያለሁ</string>
   <string name="share_vaccination_not_vaccinated">አይ</string>
-  <string name="share_vaccination_unknown">መመለስ አልፈለግኩም</string>
+  <string name="share_vaccination_unknown">መልስ አለመስጠት እመርጣለሁ።</string>
+  <string name="do_you_have_code_title">ኮድ ደርስዎታል?</string>
+  <string name="do_you_have_code_content">ለኮቪድ-19 ፖዘቲቨ ከሆኑ የእርስዎ ጤና ባለሥልጣን አብዛኛውን ጊዜ ውጤቶችን ማጋራት እንዲችሉ የማረጋገጫ ኮዱን በስልክ ወይም በጽሑፍ ይሰጣል።</string>
+  <string name="btn_i_have_code">አዎ፣ ኮድ አለኝ</string>
+  <string name="btn_i_need_code">ኮድ እፈልጋለሁ</string>
+  <string name="get_verification_code_title">የማረጋገጫ ኮድ ያግኙ</string>
+  <string name="phone_number_prompt">ስልክ ቁጥር</string>
+  <string name="phone_number_help">የማረጋገጫ ኮድ የምርመራ ውጤቶችዎን እንዲያጋሩ ያስችልዎታል። ኮድዎ ወደሚሰጡት ቁጥር ይላካል።</string>
+  <string name="phone_number_may_be_stored_help">ከአንድ በላይ ውጤቶችን እንዳያስገቡ ለመከላከል የስልክ ቁጥርዎ ለጊዜው በእርስዎ የሕዝብ ጤና ባለሥልጣን ሊከማች ይችላል።</string>
+  <string name="test_date_prompt">የምርመራ ቀን</string>
+  <string name="test_date_help">የምርመራ ቀን ባለፉት 14 ቀኖች ውስጥ መሆን አለበት።</string>
+  <string name="tested_for_covid_checkbox_text">ባለፉት 14 ቀኖች ውስጥ ፖዘቲቨ የኮቪድ-19 ምርመራ ደርሶኛል።</string>
+  <string name="btn_send_code">ኮድ ላክ</string>
+  <string name="enter_code_help">በ%1$s የተላከልዎትን ኮድ ያስገቡ።</string>
+  <string name="positive_result_already_reported_title">በቅርቡ የምርመራ ውጤት አስቀድመው ሪፖርት አድርገዋል።</string>
+  <string name="positive_result_already_reported_content">ሌላ የምርመራ ውጤት ሪፖርት ማድረግ ከፈለጉ እባክዎ %1$sን ያነጋግሩ።</string>
+  <string name="self_report_bad_code">ልክ ያልሆነ ኮድ። ለሁለቱም የማረጋገጫ ኮድዎን ለመጠየቅ እና ለማስገባት ተመሳሳይ መሣሪያ እየተጠቀሙ መሆንዎን ያረጋግጡ።</string>
+  <string name="self_report_bad_phone_number">ቁጥርዎን ይፈትሹ እና እንደገና ይሞክሩ። %1$s</string>
+  <string name="self_report_code_requested_too_many_times">በጣም ብዙ ጥያቄዎችን ጠይቀዋል። አሁንም ኮድ የሚፈልጉ ከሆነ %1$sን ያነጋግሩ።</string>
+  <plurals name="self_report_code_already_requested">
+    <item quantity="one">በጣም ብዙ ጥያቄዎችን ጠይቀዋል። በ%1$d ደቂቃዎች ውስጥ ሌላ ኮድ መጠየቅ ይችላሉ።</item>
+    <item quantity="other">በጣም ብዙ ጥያቄዎችን ጠይቀዋል። በ%1$d ደቂቃዎች ውስጥ ሌላ ኮድ መጠየቅ ይችላሉ።</item>
+  </plurals>
+  <string name="notify_others_notification_title">ተጋላጭ ሊሆኑ የሚችሉትን ለሎች ሰዎች ለማሳወቅ ያግዙ</string>
   <string name="settings_exposure_notifications_subtitle">የተጋላጭነት ማሳወቂያዎች</string>
   <string name="settings_app_analytics_subtitle">የመተግበሪያ አጠቃቀም እና የአፈፃፀም ማጋራት</string>
   <string name="settings_privacy_policy">የግላዊነት መመሪያ</string>
@@ -166,4 +189,9 @@
   <string name="private_analytics_footer_learn_more">የበለጠ ለመረዳት</string>
   <string name="diagnosis_subtitle_template">%1$s በ%2$s ላይ</string>
   <string name="empty_share_history_body">የማጋራት ታሪክ የለም</string>
+  <string name="share_diagnosis_share_test_result_title">የምርመራ ውጤትዎን ለ%1$s ያጋሩ</string>
+  <string name="share_diagnosis_share_test_result_subtitle">ኮቪድ-19ን ለማስቆም ስላገዙን እናመሰግናለን።</string>
+  <string name="share_diagnosis_share_test_result_body">ውጤትዎን ሲያጋሩ ምልክቶችዎ ሲጀምሩ ለማጋራትም መምረጥ ይችላሉ። ይህ መረጃ የኮቪድ-19 ስርጭትን ለማስቆም እና ህይወትን ለማዳን ሊያግዝ ይችላል።</string>
+  <string name="sms_intercept_notice_title">ምን አዲስ ነገር አለ</string>
+  <string name="sms_intercept_notice_content">የእርስዎ የአካባቢ ጤና ባለሥልጣን የምርመራ ውጤት ከላከልዎት፣ የእርስዎ መተግበሪያ የእርስዎን ውጤት እንዲያስገቡ እና ሌሎችን ለበሽታው የተጋለጡ ሰዎችን ለማስጠንቀቅ እንዲያግዝ አስታዋሽ በመላክ ለእርስዎ ያሳውቅዎታል። ይህንን በማንኛውም ጊዜ በቅንብሮች ውስጥ ማሰናከል ይችላሉ።</string>
 </resources>

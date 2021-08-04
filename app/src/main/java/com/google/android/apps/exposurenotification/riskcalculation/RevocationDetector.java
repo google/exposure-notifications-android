@@ -18,7 +18,7 @@
 package com.google.android.apps.exposurenotification.riskcalculation;
 
 import android.text.TextUtils;
-import android.util.Log;
+import com.google.android.apps.exposurenotification.common.logging.Logger;
 import com.google.android.apps.exposurenotification.nearby.DailySummaryWrapper;
 import com.google.android.apps.exposurenotification.storage.ExposureEntity;
 import com.google.android.gms.nearby.exposurenotification.DailySummariesConfig;
@@ -39,7 +39,7 @@ import org.threeten.bp.ZoneOffset;
  */
 public class RevocationDetector {
 
-  private static final String TAG = "RevocationDetector";
+  private static final Logger logger = Logger.getLogger("RevocationDetector");
 
   private static final long DEFAULT_DAYS_SINCE_EXPOSURE_THRESHOLD = 14;
 
@@ -92,7 +92,7 @@ public class RevocationDetector {
       daysSinceExposureThreshold = DEFAULT_DAYS_SINCE_EXPOSURE_THRESHOLD;
     }
 
-    Log.d(TAG, "Checking for possible revocation with "
+    logger.d("Checking for possible revocation with "
         + "previousExposureEntities [" + TextUtils.join(", ", previousExposureEntityList) + "], "
         + "currentExposureEntities [" + TextUtils.join(", ", currentExposureEntityList) + "]"
         + " and daysSinceExposureThreshold " + daysSinceExposureThreshold);
@@ -130,14 +130,13 @@ public class RevocationDetector {
             currentExposureEntityMap.get(previousExposureEntity.getDateDaysSinceEpoch());
         if (currentExposureScore == null
             || currentExposureScore < previousExposureEntity.getExposureScore()) {
-          Log.d(TAG, "Revocation detected on day "
-              + previousExposureEntity.getDateDaysSinceEpoch());
+          logger.d("Revocation detected on day " + previousExposureEntity.getDateDaysSinceEpoch());
           return true;
         }
       }
     }
 
-    Log.d(TAG, "No revocation detected");
+    logger.d("No revocation detected");
     return false;
   }
 

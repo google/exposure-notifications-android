@@ -25,8 +25,8 @@ import android.content.pm.PackageManager;
 import android.os.Binder;
 import android.os.StrictMode;
 import android.os.StrictMode.ThreadPolicy;
-import android.util.Log;
 import androidx.slice.SliceManager;
+import com.google.android.apps.exposurenotification.common.logging.Logger;
 import com.google.android.gms.common.GoogleSignatureVerifier;
 import java.util.Arrays;
 import java.util.List;
@@ -37,7 +37,7 @@ import java.util.List;
  * sensitive content is only returned to privileged callers (Google-signed GMScore).
  */
 public class SlicePermissionManagerV3Impl implements SlicePermissionManager {
-  private static final String TAG = "SlicePermissionManager";
+  private static final Logger logger = Logger.getLogger("SlicePermissionManager");
 
   private final Context context;
 
@@ -73,12 +73,12 @@ public class SlicePermissionManagerV3Impl implements SlicePermissionManager {
     PackageManager packageManager = context.getPackageManager();
     String[] packageNamesArray = packageManager.getPackagesForUid(Binder.getCallingUid());
     if (packageNamesArray == null) {
-      Log.e(TAG, "Access not allowed - could not get package name from uid");
+      logger.e("Access not allowed - could not get package name from uid");
       return false;
     }
     List<String> packageNames = Arrays.asList(packageNamesArray);
     if (!packageNames.contains(GMSCORE_PACKAGE_NAME)) {
-      Log.e(TAG, "Access not allowed for app:" + packageNames);
+      logger.e("Access not allowed for app:" + packageNames);
       return false;
     }
 
@@ -95,7 +95,7 @@ public class SlicePermissionManagerV3Impl implements SlicePermissionManager {
     } finally {
       StrictMode.setThreadPolicy(oldPolicy);
     }
-    Log.e(TAG, "Access not allowed for non-Google app:" + packageNames);
+    logger.e("Access not allowed for non-Google app:" + packageNames);
     return false;
   }
 

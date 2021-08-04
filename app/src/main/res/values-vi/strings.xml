@@ -28,9 +28,10 @@
   <string name="onboarding_opt_in_title">Bạn cần cấp quyền để bật Thông báo tiếp xúc</string>
   <string name="onboarding_finish_title">Bạn vẫn cần cấp quyền để bật Thông báo tiếp xúc</string>
   <string name="onboarding_exposure_notifications_title">Bật Thông báo tiếp xúc</string>
-  <string name="onboarding_exposure_notifications_detail">Nhận thông báo nếu bạn từng tiếp xúc gần với người đã báo là bị nhiễm COVID-19.
+  <string name="onboarding_exposure_notifications_detail">Nhận thông báo nếu bạn từng tiếp xúc gần với người đã báo cáo là bị nhiễm COVID-19.
     \n\nĐiện thoại của bạn sử dụng Bluetooth để thu thập và chia sẻ mã nhận dạng ngẫu nhiên một cách an toàn với các điện thoại khác ở gần.
-    \n\nNgày, khoảng thời gian có khả năng tiếp xúc và cường độ tín hiệu Bluetooth liên quan đến lần tiếp xúc đó sẽ được dùng để xác định xem bạn có nhận được thông báo dựa trên các thông số do cơ quan y tế cộng đồng thiết lập hay không.</string>
+    \n\nNgày, khoảng thời gian có khả năng tiếp xúc và cường độ tín hiệu Bluetooth liên quan đến lần tiếp xúc đó sẽ được dùng để xác định xem bạn có nhận được thông báo dựa trên các thông số do cơ quan y tế cộng đồng thiết lập hay không.
+    \n\nNếu có kết quả xét nghiệm dương tính, bạn có thể nhận được một lời nhắc chia sẻ kết quả xét nghiệm của mình với cơ quan y tế.</string>
   <string name="onboarding_metrics_title">Giúp cải tiến ứng dụng này</string>
   <string name="onboarding_metrics_subtitle">Chia sẻ dữ liệu hiệu suất và mức sử dụng ứng dụng với Google</string>
   <string name="onboarding_metrics_description">Nhằm giúp duy trì và cải tiến ứng dụng này, một số dữ liệu hạn chế về hiệu suất và mức sử dụng ứng dụng (đã loại bỏ thông tin nhận dạng cá nhân) sẽ được chia sẻ với Google. Dữ liệu này không xác định danh tính của bạn. %1$s</string>
@@ -60,10 +61,10 @@
   <string name="notify_turn_on_exposure_notifications_header">Để nhận thông báo về khả năng tiếp xúc COVID-19, hãy bật Thông báo tiếp xúc. %1$s</string>
   <string name="using_en_helps_even_if_vaccinated">Khi sử dụng dịch vụ này, bạn sẽ góp phần bảo vệ cộng đồng của mình – ngay cả khi bạn đã tiêm vắc-xin.</string>
   <string name="share_begin_title">Giúp bảo vệ cộng đồng của bạn</string>
-  <string name="share_close_title">Thoát mà không chia sẻ?</string>
-  <string name="share_close_detail">Nếu bạn chia sẻ kết quả sớm thì sẽ giúp ích được rất nhiều cho cộng đồng. Tuy nhiên, thông tin kết quả xét nghiệm bạn đã nhập đến nay sẽ được lưu trong ứng dụng để bạn tiếp tục chỉnh sửa sau này.</string>
-  <string name="btn_resume_later">Có, thoát</string>
-  <string name="verify_test_result_title">Nhập thông tin xét nghiệm COVID-19</string>
+  <string name="share_close_title">Đóng mà không chia sẻ?</string>
+  <string name="share_close_detail">Cách tốt nhất để bạn trợ giúp cộng đồng là chia sẻ kết quả của bạn sớm nhất có thể. Nếu đóng ngay mà không chia sẻ, bạn có thể tiếp tục từ nơi bạn đã dừng lại trong trường hợp thay đổi ý định.</string>
+  <string name="btn_resume_later">Có, đóng</string>
+  <string name="verify_test_result_title">Nhập mã xác minh của bạn</string>
   <string name="enter_your_test_identifier">Mã xác minh</string>
   <string name="share_test_identifier_help">Mã dùng một lần này là để xác minh kết quả xét nghiệm của bạn.</string>
   <string name="share_test_identifier_verified">Đã xác minh mã</string>
@@ -73,30 +74,29 @@
   <string name="test_date_label">Ngày bắt đầu có triệu chứng</string>
   <string name="share_onset_symptoms">Có</string>
   <string name="share_onset_no_symptoms">Không</string>
-  <string name="share_onset_no_answer">Không muốn trả lời</string>
+  <string name="share_onset_no_answer">Tôi không muốn trả lời</string>
   <string name="share_travel_title">Bạn có đi đâu trong 14 ngày qua không?</string>
   <string name="share_travel_confirmed">Có</string>
   <string name="share_travel_no_travel">Không</string>
-  <string name="share_travel_no_answer">Không muốn trả lời</string>
+  <string name="share_travel_no_answer">Tôi không muốn trả lời</string>
   <string name="share_review_title">Xem lại thông tin của bạn</string>
   <string name="share_review_status_subtitle">Trạng thái mắc COVID-19</string>
   <string name="share_review_status_confirmed">Dương tính</string>
   <string name="share_review_status_likely">Có khả năng</string>
   <string name="share_review_status_negative">Âm tính</string>
-  <string name="share_review_onset_subtitle">Thông tin về triệu chứng</string>
-  <string name="share_review_onset_date">Khởi phát triệu chứng từ %1$s</string>
+  <string name="share_review_onset_subtitle">Triệu chứng</string>
+  <string name="share_review_onset_date">Bắt đầu từ %1$s</string>
   <string name="share_review_onset_no_symptoms">Không có triệu chứng nào</string>
   <string name="share_review_onset_no_answer">Không trả lời</string>
-  <string name="share_review_travel_subtitle">Lịch sử đi lại</string>
-  <string name="share_review_travel_confirmed">Đã đi lại trong 14 ngày qua</string>
+  <string name="share_review_travel_subtitle">Việc đi lại</string>
+  <string name="share_review_travel_confirmed">Trong vòng 14 ngày qua</string>
   <string name="share_review_travel_no_travel">Không đi đâu trong 14 ngày qua</string>
   <string name="share_review_travel_no_answer">Không trả lời</string>
-  <string name="share_confirm_title">Cảm ơn bạn đã chia sẻ trạng thái mắc COVID-19 của mình</string>
+  <string name="share_confirm_title">Cảm ơn bạn đã chia sẻ kết quả xét nghiệm COVID-19 của mình</string>
   <string name="not_shared_confirm_title">Bạn chưa chia sẻ kết quả xét nghiệm của mình</string>
   <string name="not_shared_confirm_detail">Bạn chưa chia sẻ kết quả xét nghiệm COVID-19 của mình. Vui lòng thử lại.</string>
   <string name="status_shared_detail_title">Trạng thái mắc COVID-19 đã chia sẻ</string>
-  <string name="delete_test_result_title">Xóa kết quả xét nghiệm COVID-19?</string>
-  <string name="delete_test_result_detail">Thông tin chi tiết về kết quả xét nghiệm của bạn sẽ bị xóa khỏi ứng dụng này.</string>
+  <string name="delete_test_result_title">Xóa kết quả xét nghiệm của bạn?</string>
   <string name="delete_test_result_confirmed">Đã xóa kết quả xét nghiệm</string>
   <string name="share_error_no_internet">Không thể chia sẻ kết quả xét nghiệm khi không có mạng. Hãy kiểm tra kết nối Internet rồi thử lại.</string>
   <string name="share_vaccination_title">Bạn đã tiêm vắc-xin phòng ngừa Covid-19 chưa?</string>
@@ -104,7 +104,30 @@
   <string name="share_vaccination_learn_more">Tìm hiểu thêm</string>
   <string name="share_vaccination_vaccinated">Rồi. Tôi đã tiêm vắc-xin</string>
   <string name="share_vaccination_not_vaccinated">Chưa</string>
-  <string name="share_vaccination_unknown">Không muốn trả lời</string>
+  <string name="share_vaccination_unknown">Tôi không muốn trả lời</string>
+  <string name="do_you_have_code_title">Bạn có nhận được mã không?</string>
+  <string name="do_you_have_code_content">Nếu kết quả xét nghiệm COVID-19 của bạn là dương tính, thì thông thường, cơ quan y tế sẽ cung cấp cho bạn một mã xác minh qua điện thoại hoặc tin nhắn văn bản để bạn có thể chia sẻ kết quả của mình.</string>
+  <string name="btn_i_have_code">Có, tôi nhận được mã</string>
+  <string name="btn_i_need_code">Tôi cần có mã</string>
+  <string name="get_verification_code_title">Nhận mã xác minh</string>
+  <string name="phone_number_prompt">Số điện thoại</string>
+  <string name="phone_number_help">Với mã xác minh, bạn có thể chia sẻ kết quả xét nghiệm của mình. Mã xác minh sẽ được gửi đến số điện thoại mà bạn cung cấp.</string>
+  <string name="phone_number_may_be_stored_help">Để ngăn mọi người gửi nhiều kết quả, cơ quan y tế cộng đồng có thể tạm thời lưu trữ số điện thoại của bạn.</string>
+  <string name="test_date_prompt">Ngày xét nghiệm</string>
+  <string name="test_date_help">Ngày xét nghiệm phải trong vòng 14 ngày qua.</string>
+  <string name="tested_for_covid_checkbox_text">Tôi nhận được kết quả xét nghiệm dương tính với COVID-19 trong 14 ngày qua.</string>
+  <string name="btn_send_code">Gửi mã</string>
+  <string name="enter_code_help">Nhập mã do %1$s gửi cho bạn.</string>
+  <string name="positive_result_already_reported_title">Gần đây, bạn đã báo cáo một kết quả xét nghiệm.</string>
+  <string name="positive_result_already_reported_content">Nếu bạn muốn báo cáo một kết quả xét nghiệm khác, vui lòng liên hệ với %1$s.</string>
+  <string name="self_report_bad_code">Mã không hợp lệ. Hãy đảm bảo bạn đang dùng cùng một thiết bị để vừa yêu cầu vừa nhập mã xác minh.</string>
+  <string name="self_report_bad_phone_number">Hãy kiểm tra số điện thoại của bạn rồi thử lại. %1$s</string>
+  <string name="self_report_code_requested_too_many_times">Bạn đã đưa ra quá nhiều yêu cầu. Hãy liên hệ với %1$s nếu bạn vẫn cần có mã.</string>
+  <plurals name="self_report_code_already_requested">
+    <item quantity="one">Bạn đã đưa ra quá nhiều yêu cầu. Bạn có thể yêu cầu một mã khác sau %1$d phút nữa.</item>
+    <item quantity="other">Bạn đã đưa ra quá nhiều yêu cầu. Bạn có thể yêu cầu một mã khác sau %1$d phút nữa.</item>
+  </plurals>
+  <string name="notify_others_notification_title">Giúp thông báo cho những người khác có thể đã tiếp xúc với bạn</string>
   <string name="settings_exposure_notifications_subtitle">Thông báo tiếp xúc</string>
   <string name="settings_app_analytics_subtitle">Chia sẻ dữ liệu hiệu suất và mức sử dụng ứng dụng</string>
   <string name="settings_privacy_policy">Chính sách quyền riêng tư</string>
@@ -166,4 +189,9 @@
   <string name="private_analytics_footer_learn_more">Tìm hiểu thêm</string>
   <string name="diagnosis_subtitle_template">%1$s vào %2$s</string>
   <string name="empty_share_history_body">Không có nhật ký chia sẻ</string>
+  <string name="share_diagnosis_share_test_result_title">Chia sẻ kết quả xét nghiệm của bạn với %1$s</string>
+  <string name="share_diagnosis_share_test_result_subtitle">Cảm ơn bạn đã giúp ngăn chặn COVID-19.</string>
+  <string name="share_diagnosis_share_test_result_body">Khi chia sẻ kết quả của mình, bạn cũng có thể chọn chia sẻ lúc bắt đầu có triệu chứng. Thông tin này có thể giúp ngăn chặn COVID-19 lây lan và bảo vệ cộng đồng.</string>
+  <string name="sms_intercept_notice_title">Tính năng mới</string>
+  <string name="sms_intercept_notice_content">Nếu cơ quan y tế địa phương gửi cho bạn kết quả xét nghiệm, ứng dụng có thể nhắc bạn gửi kết quả xét nghiệm đó, đồng thời giúp thông báo cho những người khác về khả năng tiếp xúc. Bạn có thể tắt tính năng này bất cứ lúc nào trong phần cài đặt.</string>
 </resources>

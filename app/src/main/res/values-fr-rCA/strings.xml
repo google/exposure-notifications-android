@@ -29,8 +29,9 @@
   <string name="onboarding_finish_title">Suite des autorisations nécessaires pour activer les notifications d\'exposition</string>
   <string name="onboarding_exposure_notifications_title">Activer les notifications d\'exposition</string>
   <string name="onboarding_exposure_notifications_detail">Soyez avisé si vous vous êtes trouvé à proximité d\'une personne ayant déclaré avoir contracté la COVID-19.
-    \n\nVotre téléphone utilise le Bluetooth pour collecter des identifiants aléatoires et les partager avec d\'autres téléphones à proximité, de manière sécurisée.
-    \n\nLa date, la durée et l\'intensité du signal associées à une exposition potentielle seront utilisées pour déterminer si vous recevrez des notifications, en fonction des paramètres définis par les autorités publiques de santé de votre région.</string>
+    \n\nVotre téléphone utilise le Bluetooth pour collecter des identifiants aléatoires et les partager avec d\'autres téléphones à proximité, et ce, de manière sécurisée.
+    \n\nLa date, la durée et l\'intensité du signal associées à une exposition potentielle seront utilisées pour déterminer si vous recevrez des notifications en fonction des paramètres définis par les autorités publiques de santé de votre région.
+    \n\nSi vous avez obtenu un résultat positif, vous pouvez recevoir un rappel de communiquer vos résultats aux autorités publiques de santé.</string>
   <string name="onboarding_metrics_title">Contribuer à améliorer cette application</string>
   <string name="onboarding_metrics_subtitle">Partagez les données d\'usage et de performances avec Google</string>
   <string name="onboarding_metrics_description">Pour contribuer à l\'entretien et à l\'amélioration de l\'application, une quantité limitée de données dépersonnalisées concernant l\'usage et les performances est partagée avec Google. Ces données ne permettent pas de vous identifier. %1$s</string>
@@ -60,10 +61,10 @@
   <string name="notify_turn_on_exposure_notifications_header">Pour être averti en cas d\'exposition possible à la COVID-19, activez les notifications d\'exposition. %1$s</string>
   <string name="using_en_helps_even_if_vaccinated">L\'utilisation de ce service vous aide à protéger votre communauté, même si vous avez été vaccinés.</string>
   <string name="share_begin_title">Contribuer à protéger la communauté</string>
-  <string name="share_close_title">Quitter sans partager?</string>
-  <string name="share_close_detail">Plus vous partagez votre résultat de test tôt, plus vous aidez votre communauté. Les renseignements que vous avez entrés sont enregistrés dans cette appli pour que vous puissiez les modifier plus tard</string>
-  <string name="btn_resume_later">Oui, quitter</string>
-  <string name="verify_test_result_title">Entrer les renseignements relatifs au test pour la COVID-19</string>
+  <string name="share_close_title">Fermer sans partager les résultats?</string>
+  <string name="share_close_detail">La meilleure façon d\'aider votre communauté est de partager vos résultats rapidement. Si vous fermez l\'appli sans partager vos résultats, vous pourrez reprendre plus tard là où vous vous étiez arrêté.</string>
+  <string name="btn_resume_later">Oui, fermer</string>
+  <string name="verify_test_result_title">Entrer le code de vérification</string>
   <string name="enter_your_test_identifier">Code de vérification</string>
   <string name="share_test_identifier_help">Ce code unique est utilisé pour vérifier votre résultat de test.</string>
   <string name="share_test_identifier_verified">Code vérifié</string>
@@ -83,20 +84,19 @@
   <string name="share_review_status_confirmed">Positif</string>
   <string name="share_review_status_likely">Probable</string>
   <string name="share_review_status_negative">Négatif</string>
-  <string name="share_review_onset_subtitle">Renseignements sur les symptômes</string>
-  <string name="share_review_onset_date">Symptômes à partir du %1$s</string>
+  <string name="share_review_onset_subtitle">Symptômes</string>
+  <string name="share_review_onset_date">Début : %1$s</string>
   <string name="share_review_onset_no_symptoms">Aucun symptôme</string>
   <string name="share_review_onset_no_answer">Sans réponse</string>
-  <string name="share_review_travel_subtitle">Historique de voyage</string>
-  <string name="share_review_travel_confirmed">A voyagé au cours des 14 derniers jours</string>
+  <string name="share_review_travel_subtitle">Voyage</string>
+  <string name="share_review_travel_confirmed">Au cours des 14 derniers jours</string>
   <string name="share_review_travel_no_travel">N\'a pas voyagé au cours des 14 derniers jours</string>
   <string name="share_review_travel_no_answer">Sans réponse</string>
   <string name="share_confirm_title">Merci de nous avoir fait part de votre résultat de test pour la COVID-19</string>
   <string name="not_shared_confirm_title">Le résultat de votre test n\'a pas été partagé</string>
   <string name="not_shared_confirm_detail">Le résultat de votre test pour la COVID-19 n\'a pas été partagé. Réessayez.</string>
   <string name="status_shared_detail_title">Résultat de test pour la COVID-19 partagé</string>
-  <string name="delete_test_result_title">Supprimer le résultat de test COVID-19?</string>
-  <string name="delete_test_result_detail">Votre résultat de test sera supprimé de cette application.</string>
+  <string name="delete_test_result_title">Supprimer votre résultat de test?</string>
   <string name="delete_test_result_confirmed">Résultat de test supprimé</string>
   <string name="share_error_no_internet">Impossible de partager les résultats de test hors ligne. Vérifiez votre connexion Internet et réessayez.</string>
   <string name="share_vaccination_title">Avez-vous été vacciné contre la COVID-19?</string>
@@ -105,6 +105,29 @@
   <string name="share_vaccination_vaccinated">Oui, j\'ai été vacciné</string>
   <string name="share_vaccination_not_vaccinated">Non</string>
   <string name="share_vaccination_unknown">Je préfère ne pas répondre</string>
+  <string name="do_you_have_code_title">Avez-vous reçu un code?</string>
+  <string name="do_you_have_code_content">Si vous obtenez un résultat positif à un test de COVID-19, les autorités sanitaires fournissent un code de vérification par téléphone ou message texte pour que vous puissiez partager vos résultats.</string>
+  <string name="btn_i_have_code">Oui, j\'ai un code</string>
+  <string name="btn_i_need_code">J\'ai besoin d\'un code</string>
+  <string name="get_verification_code_title">Recevoir un code de vérification</string>
+  <string name="phone_number_prompt">Numéro de téléphone</string>
+  <string name="phone_number_help">Un code de vérification vous permet de partager vos résultats de test. Votre code sera envoyé au numéro que vous avez indiqué.</string>
+  <string name="phone_number_may_be_stored_help">Pour éviter que les personnes soumettent plus d\'un résultat, votre numéro de téléphone peut être stocké temporairement par vos autorités publiques de santé.</string>
+  <string name="test_date_prompt">Date du test</string>
+  <string name="test_date_help">La date du test devrait être dans les 14 derniers jours.</string>
+  <string name="tested_for_covid_checkbox_text">J\'ai reçu un test positif à la COVID-19 au cours des 14 derniers jours.</string>
+  <string name="btn_send_code">Envoyer le code</string>
+  <string name="enter_code_help">Entrer le code qui vous a été envoyé par %1$s.</string>
+  <string name="positive_result_already_reported_title">Vous avez déjà rapporté un résultat de test récemment.</string>
+  <string name="positive_result_already_reported_content">Si vous souhaitez rapporter un autre résultat de test, veuillez communiquer avec %1$s.</string>
+  <string name="self_report_bad_code">Code incorrect. Assurez-vous d\'utiliser le même appareil pour demander et pour entrer votre code de vérification.</string>
+  <string name="self_report_bad_phone_number">Vérifiez votre numéro et réessayez. %1$s</string>
+  <string name="self_report_code_requested_too_many_times">Vous avez fait trop de demandes. Communiquez avec %1$s si vous avez encore besoin d\'un code.</string>
+  <plurals name="self_report_code_already_requested">
+    <item quantity="one">Vous avez fait trop de demandes. Vous pouvez demander un autre code dans %1$d minute.</item>
+    <item quantity="other">Vous avez fait trop de demandes. Vous pouvez demander un autre code dans %1$d minutes.</item>
+  </plurals>
+  <string name="notify_others_notification_title">Aider à prévenir d\'autres personnes qu\'elles peuvent avoir été exposées</string>
   <string name="settings_exposure_notifications_subtitle">Notifications d\'exposition</string>
   <string name="settings_app_analytics_subtitle">Partage de données sur l\'application</string>
   <string name="settings_privacy_policy">Politique de confidentialité</string>
@@ -166,4 +189,9 @@
   <string name="private_analytics_footer_learn_more">En savoir plus</string>
   <string name="diagnosis_subtitle_template">%1$s le %2$s</string>
   <string name="empty_share_history_body">Aucun historique de partage</string>
+  <string name="share_diagnosis_share_test_result_title">Partager votre résultat de test avec %1$s</string>
+  <string name="share_diagnosis_share_test_result_subtitle">Merci de participer à la lutte contre la COVID-19.</string>
+  <string name="share_diagnosis_share_test_result_body">Lorsque vous partagez vos résultats, vous pouvez aussi choisir de partager quand vos symptômes ont commencé. Ces renseignements peuvent aider à arrêter la propagation de la COVID-19 et à sauver des vies.</string>
+  <string name="sms_intercept_notice_title">Nouveautés</string>
+  <string name="sms_intercept_notice_content">Si vos autorités locales de santé vous envoient un résultat de test, votre application peut vous aviser en vous rappelant d\'envoyer votre résultat et aider à alerter les autres d\'une exposition possible. Vous pouvez désactiver cette fonctionnalité en tout temps dans les paramètres.</string>
 </resources>

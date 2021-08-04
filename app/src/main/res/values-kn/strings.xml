@@ -30,7 +30,8 @@
   <string name="onboarding_exposure_notifications_title">ಎಕ್ಸ್‌ಪೋಶರ್ ಅಧಿಸೂಚನೆಗಳನ್ನು ಆನ್ ಮಾಡಿ</string>
   <string name="onboarding_exposure_notifications_detail">COVID-19 ಸೋಂಕಿಗೆ ಒಳಗಾಗಿದ್ದಾರೆ ಎಂದು ವರದಿ ಮಾಡಿರುವ ವ್ಯಕ್ತಿಯ ಸಮೀಪಕ್ಕೆ ನೀವು ಹೋಗಿದ್ದರೆ ಅಧಿಸೂಚನೆಗಳನ್ನು ಪಡೆಯಿರಿ.
     \n\nರ‍್ಯಾಂಡಮ್ ಐಡಿಗಳನ್ನು ಸಮೀಪದಲ್ಲಿರುವ ಇತರ ಫೋನ್‌ಗಳಿಂದ ಸುರಕ್ಷಿತವಾಗಿ ಸಂಗ್ರಹಿಸಲು ಮತ್ತು ಆ ಫೋನ್‌ಗಳ ಜೊತೆಗೆ ಹಂಚಿಕೊಳ್ಳಲು, ನಿಮ್ಮ ಫೋನ್ ಬ್ಲೂಟೂತ್ ಅನ್ನು ಬಳಸುತ್ತದೆ.
-    \n\nನಿಮ್ಮ ಸಾರ್ವಜನಿಕ ಆರೋಗ್ಯ ಅಧಿಕಾರಿಗಳು ಸೂಚಿಸಿರುವ ಪ್ಯಾರಾಮೀಟರ್‌ಗಳ ಆಧಾರದ ಮೇಲೆ ನಿಮಗೆ ಅಧಿಸೂಚನೆಗಳನ್ನು ನೀಡಲಾಗುತ್ತದೆಯೇ ಎಂದು ತಿಳಿಯಲು ಸಂಭವನೀಯ ಸಂಪರ್ಕಕ್ಕೆ ಬಂದಿರುವಿಕೆಗೆ ಸಂಬಂಧಿಸಿದ ದಿನಾಂಕ, ಅವಧಿ ಮತ್ತು ಸಿಗ್ನಲ್ ಸಾಮರ್ಥ್ಯವನ್ನು ಬಳಸಲಾಗುತ್ತದೆ.</string>
+    \n\nನಿಮ್ಮ ಸಾರ್ವಜನಿಕ ಆರೋಗ್ಯ ಅಧಿಕಾರಿಗಳು ಸೂಚಿಸಿರುವ ಪ್ಯಾರಾಮೀಟರ್‌ಗಳ ಆಧಾರದ ಮೇಲೆ ನಿಮಗೆ ಅಧಿಸೂಚನೆಗಳನ್ನು ನೀಡಲಾಗುತ್ತದೆಯೇ ಎಂದು ತಿಳಿಯಲು ಸಂಭವನೀಯ ಸಂಪರ್ಕಕ್ಕೆ ಬಂದಿರುವಿಕೆಗೆ ಸಂಬಂಧಿಸಿದ ದಿನಾಂಕ, ಅವಧಿ ಮತ್ತು ಸಿಗ್ನಲ್ ಸಾಮರ್ಥ್ಯವನ್ನು ಬಳಸಲಾಗುತ್ತದೆ.
+    \n\nನಿಮ್ಮ ವರದಿಯು ಪಾಸಿಟಿವ್ ಎಂದು ಬಂದರೆ, ಆ ಫಲಿತಾಂಶಗಳನ್ನು ನಿಮ್ಮ ಆರೋಗ್ಯ ಪ್ರಾಧಿಕಾರದ ಜೊತೆ ಹಂಚಿಕೊಳ್ಳಲು ನೀವು ರಿಮೈಂಡರ್ ಅನ್ನು ಪಡೆಯಬಹುದು.</string>
   <string name="onboarding_metrics_title">ಈ ಆ್ಯಪ್ ಅನ್ನು ಉತ್ತಮಗೊಳಿಸಲು ಸಹಾಯ ಮಾಡಿ</string>
   <string name="onboarding_metrics_subtitle">ಆ್ಯಪ್ ಬಳಕೆ ಮತ್ತು ಕಾರ್ಯಕ್ಷಮತೆ ಡೇಟಾವನ್ನು Google ಜೊತೆಗೆ ಹಂಚಿಕೊಳ್ಳಿ</string>
   <string name="onboarding_metrics_description">ಆ್ಯಪ್ ಅನ್ನು ನಿರ್ವಹಿಸಲು ಮತ್ತು ಸುಧಾರಿಸಲು, ಆ್ಯಪ್ ಕಾರ್ಯಕ್ಷಮತೆ ಮತ್ತು ಬಳಕೆಯ ಕುರಿತು ಕೆಲವು ಸೀಮಿತ, ಗುರುತಿಸದ ಡೇಟಾವನ್ನು Google ಜೊತೆಗೆ ಹಂಚಿಕೊಳ್ಳಲಾಗುತ್ತದೆ. ಈ ಡೇಟಾ ನಿಮ್ಮನ್ನು ಗುರುತಿಸುವುದಿಲ್ಲ. %1$s</string>
@@ -60,10 +61,10 @@
   <string name="notify_turn_on_exposure_notifications_header">ಸಂಭವನೀಯ COVID-19 ಸಂಪರ್ಕಕ್ಕೆ ಬಂದಿರುವ ಕುರಿತು ಸೂಚನೆಗಳನ್ನು ಪಡೆಯಲು, ಎಕ್ಸ್‌ಪೋಶರ್ ಅಧಿಸೂಚನೆಗಳನ್ನು ಆನ್ ಮಾಡಿ. %1$s</string>
   <string name="using_en_helps_even_if_vaccinated">ಈ ಸೇವೆಯನ್ನು ಬಳಸುವುದರಿಂದ ನಿಮ್ಮ ಸಮುದಾಯವನ್ನು ರಕ್ಷಿಸಲು ಸಹಾಯ ಮಾಡುತ್ತದೆ - ನಿಮಗೆ ಲಸಿಕೆ ನೀಡಿದ್ದರೂ ಸಹ.</string>
   <string name="share_begin_title">ನಿಮ್ಮ ಸಮುದಾಯವನ್ನು ಸುರಕ್ಷಿತವಾಗಿರಿಸಲು ಸಹಾಯ ಮಾಡಿ</string>
-  <string name="share_close_title">ಹಂಚಿಕೊಳ್ಳದೆಯೇ ನಿರ್ಗಮಿಸಬೇಕೆ?</string>
-  <string name="share_close_detail">ಪರೀಕ್ಷಾ ಫಲಿತಾಂಶವನ್ನು ನೀವು ಬೇಗ ಹಂಚಿಕೊಂಡರೆ, ನಿಮ್ಮ ಸಮುದಾಯಕ್ಕೆ ಉತ್ತಮವಾಗಿ ಸಹಾಯ ಮಾಡಬಹುದು. ಆದರೆ ಇಲ್ಲಿಯವರೆಗೆ ನಮೂದಿಸಿದ ಫಲಿತಾಂಶ ಮಾಹಿತಿಯನ್ನು ಆ್ಯಪ್‌ನಲ್ಲಿ ಉಳಿಸಲಾಗಿದೆ, ನಂತರ ಇದನ್ನು ಎಡಿಟ್ ಮಾಡುವುದನ್ನು ಪುನರಾರಂಭಿಸಬಹುದು.</string>
-  <string name="btn_resume_later">ಹೌದು, ನಿರ್ಗಮಿಸಿ</string>
-  <string name="verify_test_result_title">COVID-19 ಪರೀಕ್ಷಾ ಮಾಹಿತಿಯನ್ನು ನಮೂದಿಸಿ</string>
+  <string name="share_close_title">ಹಂಚಿಕೊಳ್ಳದೆಯೇ ಮುಚ್ಚುಬೇಕೆ?</string>
+  <string name="share_close_detail">ನಿಮ್ಮ ಫಲಿತಾಂಶಗಳನ್ನು ಶೀಘ್ರವಾಗಿ ಹಂಚಿಕೊಳ್ಳುವುದೇ ಸಮುದಾಯಕ್ಕೆ ನೀವು ಮಾಡುವ ಉತ್ತಮ ಕೆಲಸ. ಫಲಿತಾಂಶಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳದೆಯೇ ಮುಚ್ಚಿದರೆ, ಭವಿಷ್ಯದಲ್ಲಿ ನಿಮಗೆ ಬೇಕೆನಿಸಿದಾಗ ಎಲ್ಲಿಗೆ ಸ್ಥಗಿತಗೊಳಿಸಿರುವಿರೋ ಅಲ್ಲಿಂದ ಮುಂದುವರಿಯಬಹುದು.</string>
+  <string name="btn_resume_later">ಹೌದು, ಮುಚ್ಚಿರಿ</string>
+  <string name="verify_test_result_title">ನಿಮ್ಮ ಪರಿಶೀಲನೆ ಕೋಡ್ ನಮೂದಿಸಿ</string>
   <string name="enter_your_test_identifier">ಪರಿಶೀಲನಾ ಕೋಡ್‌</string>
   <string name="share_test_identifier_help">ನಿಮ್ಮ ಪರೀಕ್ಷೆಯ ಫಲಿತಾಂಶವನ್ನು ಪರಿಶೀಲಿಸಲು ಈ ಒಂದು ಬಾರಿಯ ಕೋಡ್ ಅನ್ನು ಬಳಸಲಾಗುತ್ತದೆ.</string>
   <string name="share_test_identifier_verified">ಕೋಡ್ ಪರಿಶೀಲಿಸಲಾಗಿದೆ</string>
@@ -73,30 +74,29 @@
   <string name="test_date_label">ಸೋಂಕಿನ ಲಕ್ಷಣಗಳು ಪ್ರಾರಂಭವಾದ ದಿನಾಂಕ</string>
   <string name="share_onset_symptoms">ಹೌದು</string>
   <string name="share_onset_no_symptoms">ಇಲ್ಲ</string>
-  <string name="share_onset_no_answer">ಉತ್ತರಿಸಲು ಬಯಸುವುದಿಲ್ಲ</string>
+  <string name="share_onset_no_answer">ನಾನು ಉತ್ತರಿಸಲು ಬಯಸುವುದಿಲ್ಲ</string>
   <string name="share_travel_title">ಕಳೆದ 14 ದಿನಗಳ ಅವಧಿಯಲ್ಲಿ ನೀವು ಪ್ರಯಾಣ ಮಾಡಿದ್ದೀರಾ?</string>
   <string name="share_travel_confirmed">ಹೌದು</string>
   <string name="share_travel_no_travel">ಇಲ್ಲ</string>
-  <string name="share_travel_no_answer">ಉತ್ತರಿಸಲು ಬಯಸುವುದಿಲ್ಲ</string>
+  <string name="share_travel_no_answer">ನಾನು ಉತ್ತರಿಸಲು ಬಯಸುವುದಿಲ್ಲ</string>
   <string name="share_review_title">ನಿಮ್ಮ ಮಾಹಿತಿಯನ್ನು ಪರಿಶೀಲಿಸಿ</string>
   <string name="share_review_status_subtitle">COVID-19 ಸ್ಥಿತಿ</string>
   <string name="share_review_status_confirmed">ಪಾಸಿಟಿವ್</string>
   <string name="share_review_status_likely">ಸಾಧ್ಯತೆ ಇದೆ</string>
   <string name="share_review_status_negative">ನೆಗೆಟಿವ್</string>
-  <string name="share_review_onset_subtitle">ರೋಗಲಕ್ಷಣಗಳ ಮಾಹಿತಿ</string>
-  <string name="share_review_onset_date">%1$s ನಿಂದ ರೋಗಲಕ್ಷಣಗಳು</string>
+  <string name="share_review_onset_subtitle">ಲಕ್ಷಣಗಳು</string>
+  <string name="share_review_onset_date">%1$s ರಂದು ಪ್ರಾರಂಭವಾಗಿದೆ</string>
   <string name="share_review_onset_no_symptoms">ಯಾವುದೇ ರೋಗಲಕ್ಷಣಗಳಿಲ್ಲ</string>
   <string name="share_review_onset_no_answer">ಉತ್ತರಿಸಿಲ್ಲ</string>
-  <string name="share_review_travel_subtitle">ಪ್ರಯಾಣದ ಇತಿಹಾಸ</string>
-  <string name="share_review_travel_confirmed">ಕಳೆದ 14 ದಿನಗಳಲ್ಲಿ ಪ್ರಯಾಣಿಸಿದ್ದೇನೆ</string>
+  <string name="share_review_travel_subtitle">ಪ್ರಯಾಣ</string>
+  <string name="share_review_travel_confirmed">ಕಳೆದ 14 ದಿನಗಳ ಒಳಗೆ</string>
   <string name="share_review_travel_no_travel">ಕಳೆದ 14 ದಿನಗಳಲ್ಲಿ ಪ್ರಯಾಣಿಸಿಲ್ಲ</string>
   <string name="share_review_travel_no_answer">ಉತ್ತರಿಸಿಲ್ಲ</string>
-  <string name="share_confirm_title">ನಿಮ್ಮ COVID-19 ಸ್ಥಿತಿಯನ್ನು ಹಂಚಿಕೊಂಡಿದ್ದಕ್ಕಾಗಿ ಧನ್ಯವಾದಗಳು</string>
+  <string name="share_confirm_title">ನಿಮ್ಮ COVID-19 ಫಲಿತಾಂಶವನ್ನು ಹಂಚಿಕೊಂಡಿದ್ದಕ್ಕಾಗಿ ಧನ್ಯವಾದಗಳು</string>
   <string name="not_shared_confirm_title">ನಿಮ್ಮ ಪರೀಕ್ಷೆಯ ಫಲಿತಾಂಶವನ್ನು ಹಂಚಿಕೊಳ್ಳಲಾಗಿಲ್ಲ</string>
   <string name="not_shared_confirm_detail">ನಿಮ್ಮ COVID-19 ಪರೀಕ್ಷೆಯ ಫಲಿತಾಂಶವನ್ನು ಹಂಚಿಕೊಳ್ಳಲಾಗಿಲ್ಲ. ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.</string>
   <string name="status_shared_detail_title">ಹಂಚಿಕೊಳ್ಳಲಾದ COVID-19 ಸ್ಥಿತಿ</string>
-  <string name="delete_test_result_title">COVID-19 ಪರೀಕ್ಷಾ ಫಲಿತಾಂಶವನ್ನು ಅಳಿಸುವುದೇ?</string>
-  <string name="delete_test_result_detail">ನಿಮ್ಮ ಪರೀಕ್ಷಾ ಫಲಿತಾಂಶದ ವಿವರಗಳನ್ನು ಈ ಆ್ಯಪ್‌‌ನಿಂದ ಅಳಿಸಲಾಗುತ್ತದೆ.</string>
+  <string name="delete_test_result_title">ನಿಮ್ಮ ಪರೀಕ್ಷೆಯ ಫಲಿತಾಂಶವನ್ನು ಅಳಿಸುವುದೇ?</string>
   <string name="delete_test_result_confirmed">ಟೆಸ್ಟ್ ಫಲಿತಾಂಶವನ್ನು ಅಳಿಸಲಾಗಿದೆ</string>
   <string name="share_error_no_internet">ಆಫ್‌ಲೈನ್‌ನಲ್ಲಿ ಪರೀಕ್ಷಾ ಫಲಿತಾಂಶಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳಲು ಸಾಧ್ಯವಿಲ್ಲ. ನಿಮ್ಮ ಇಂಟರ್ನೆಟ್ ಕನೆಕ್ಷನ್ ಪರಿಶೀಲಿಸಿ ಹಾಗೂ ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.</string>
   <string name="share_vaccination_title">ನಿಮಗೆ ಕೋವಿಡ್ -19 ವಿರುದ್ಧ ಲಸಿಕೆ ನೀಡಲಾಗಿದೆಯೇ\?</string>
@@ -104,7 +104,30 @@
   <string name="share_vaccination_learn_more">ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</string>
   <string name="share_vaccination_vaccinated">ಹೌದು, ನನಗೆ ಲಸಿಕೆ ನೀಡಲಾಗಿದೆ</string>
   <string name="share_vaccination_not_vaccinated">ಇಲ್ಲ</string>
-  <string name="share_vaccination_unknown">ಉತ್ತರಿಸಲು ಬಯಸುವುದಿಲ್ಲ</string>
+  <string name="share_vaccination_unknown">ನಾನು ಉತ್ತರಿಸಲು ಬಯಸುವುದಿಲ್ಲ</string>
+  <string name="do_you_have_code_title">ನೀವು ಕೋಡ್‌ ಅನ್ನು ಸ್ವೀಕರಿಸಿದಿರೇ?</string>
+  <string name="do_you_have_code_content">COVID-19 ಪರೀಕ್ಷೆಯಲ್ಲಿ ನೀವು ಪಾಸಿಟಿವ್ ಆದರೆ, ನಿಮ್ಮ ಆರೋಗ್ಯ ಪ್ರಾಧಿಕಾರವು ಸಾಮಾನ್ಯವಾಗಿ ಫೋನ್ ಅಥವಾ ಪಠ್ಯದ ಮೂಲಕ ನಿಮಗೆ ಪರಿಶೀಲನಾ ಕೋಡ್ ಅನ್ನು ಒದಗಿಸುತ್ತದೆ ಇದರಿಂದ ನಿಮ್ಮ ಫಲಿತಾಂಶಗಳನ್ನು ನೀವು ಹಂಚಿಕೊಳ್ಳಬಹುದು.</string>
+  <string name="btn_i_have_code">ಹೌದು, ನಾನು ಕೋಡ್ ಹೊಂದಿದ್ದೇನೆ</string>
+  <string name="btn_i_need_code">ನನಗೆ ಕೋಡ್ ಅಗತ್ಯವಿದೆ</string>
+  <string name="get_verification_code_title">ಪರಿಶೀಲನೆ ಕೋಡ್‌ ಅನ್ನು ಪಡೆಯಿರಿ</string>
+  <string name="phone_number_prompt">ಫೋನ್ ಸಂಖ್ಯೆ</string>
+  <string name="phone_number_help">ಪರಿಶೀಲನೆ ಕೋಡ್ ನಿಮ್ಮ ಪರೀಕ್ಷೆಯ ಫಲಿತಾಂಶಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳಲು ಅನುಮತಿಸುತ್ತದೆ. ನಿಮ್ಮ ಕೋಡ್ ಅನ್ನು ನೀವು ಒದಗಿಸಿದ ಫೋನ್ ಸಂಖ್ಯೆಗೆ ಕಳುಹಿಸಲಾಗುತ್ತದೆ.</string>
+  <string name="phone_number_may_be_stored_help">ಜನರು ಒಂದಕ್ಕಿಂತ ಹೆಚ್ಚು ಫಲಿತಾಂಶಗಳನ್ನು ಸಲ್ಲಿಸುವುದನ್ನು ತಡೆಯಲು, ನಿಮ್ಮ ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ನಿಮ್ಮ ಸಾರ್ವಜನಿಕ ಆರೋಗ್ಯ ಅಧಿಕಾರಿಗಳು ಸಂಗ್ರಹಿಸಬಹುದು.</string>
+  <string name="test_date_prompt">ಪರೀಕ್ಷಾ ದಿನಾಂಕ</string>
+  <string name="test_date_help">ಪರೀಕ್ಷಾ ದಿನಾಂಕವು ಕಳೆದ 14 ದಿನಗಳ ಒಳಗಿರಬೇಕು.</string>
+  <string name="tested_for_covid_checkbox_text">ಕಳೆದ 14 ದಿನಗಳಲ್ಲಿ ನಾನು ಪಾಸಿಟಿವ್ COVID-19 ಫಲಿತಾಂಶವನ್ನು ಪಡೆದಿದ್ದೇನೆ.</string>
+  <string name="btn_send_code">ಕೋಡ್ ಕಳುಹಿಸಿ</string>
+  <string name="enter_code_help">%1$s ಇಂದ ನಿಮಗೆ ಕಳುಹಿಸಲಾಗಿರುವ ಕೋಡ್ ಅನ್ನು ನಮೂದಿಸಿ.</string>
+  <string name="positive_result_already_reported_title">ನೀವು ಈಗಾಗಲೇ ಪರೀಕ್ಷೆಯ ಫಲಿತಾಂಶವನ್ನು ಇತ್ತೀಚೆಗಷ್ಟೇ ವರದಿ ಮಾಡಿದ್ದೀರಿ.</string>
+  <string name="positive_result_already_reported_content">ನೀವು ಮತ್ತೊಂದು ಪರೀಕ್ಷಾ ಫಲಿತಾಂಶವನ್ನು ವರದಿ ಮಾಡಲು ಬಯಸಿದಲ್ಲಿ %1$s ಅವರನ್ನು ಸಂಪರ್ಕಿಸಿ.</string>
+  <string name="self_report_bad_code">ಅಮಾನ್ಯ ಕೋಡ್. ವಿನಂತಿಸಲು ಮತ್ತು ನಿಮ್ಮ ಪರಿಶೀಲನೆ ಕೋಡ್ ಅನ್ನು ನಮೂದಿಸಲು ನೀವು ಒಂದೇ ಫೋನ್ ಸಂಖ್ಯೆ ಬಳಸುವುದನ್ನು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಿ.</string>
+  <string name="self_report_bad_phone_number">ನಿಮ್ಮ ಸಂಖ್ಯೆಯನ್ನು ಪರಿಶೀಲಿಸಿ ನಂತರ ಮತ್ತೊಮ್ಮೆ ಪ್ರಯತ್ನಿಸಿ. %1$s</string>
+  <string name="self_report_code_requested_too_many_times">ನೀವು ಹಲವಾರು ವಿನಂತಿಗಳನ್ನು ಮಾಡಿದ್ದೀರಿ. ನಿಮಗೆ ಇನ್ನೂ ಕೋಡ್ ಬೇಕಿದ್ದರೆ %1$s ಅವರನ್ನು ಸಂಪರ್ಕಿಸಿ.</string>
+  <plurals name="self_report_code_already_requested">
+    <item quantity="one">ನೀವು ಹಲವಾರು ವಿನಂತಿಗಳನ್ನು ಮಾಡಿದ್ದೀರಿ. %1$d ನಿಮಿಷಗಳಲ್ಲಿ ನೀವು ಮತ್ತೊಂದು ಕೋಡ್ ಅನ್ನು ವಿನಂತಿಸಬಹುದು.</item>
+    <item quantity="other">ನೀವು ಹಲವಾರು ವಿನಂತಿಗಳನ್ನು ಮಾಡಿದ್ದೀರಿ. %1$d ನಿಮಿಷಗಳಲ್ಲಿ ನೀವು ಮತ್ತೊಂದು ಕೋಡ್ ಅನ್ನು ವಿನಂತಿಸಬಹುದು.</item>
+  </plurals>
+  <string name="notify_others_notification_title">ನಿಮ್ಮ ಸಂಪರ್ಕಕ್ಕೆ ಬಂದಿರುವ ಇತರರಿಗೆ ಸೂಚನೆ ನೀಡಲು ಸಹಾಯ ಮಾಡಿ</string>
   <string name="settings_exposure_notifications_subtitle">ಎಕ್ಸ್‌ಪೋಶರ್ ಅಧಿಸೂಚನೆಗಳು</string>
   <string name="settings_app_analytics_subtitle">ಆ್ಯಪ್ ಬಳಕೆ ಮತ್ತು ಕಾರ್ಯಕ್ಷಮತೆ ಹಂಚಿಕೆ</string>
   <string name="settings_privacy_policy">ಗೌಪ್ಯತೆ ನೀತಿ</string>
@@ -166,4 +189,9 @@
   <string name="private_analytics_footer_learn_more">ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</string>
   <string name="diagnosis_subtitle_template">%2$s ರಂದು %1$s</string>
   <string name="empty_share_history_body">ಯಾವುದೇ ಹಂಚಿಕೊಂಡ ಇತಿಹಾಸವಿಲ್ಲ</string>
+  <string name="share_diagnosis_share_test_result_title">ನಿಮ್ಮ ಪರೀಕ್ಷಾ ಫಲಿತಾಂಶವನ್ನು %1$s ಜೊತೆಗೆ ಹಂಚಿಕೊಳ್ಳಿ</string>
+  <string name="share_diagnosis_share_test_result_subtitle">COVID-19 ಅನ್ನು ತಡೆಗಟ್ಟಲು ಸಹಾಯ ಮಾಡಿದ್ದಕ್ಕಾಗಿ ಧನ್ಯವಾದಗಳು.</string>
+  <string name="share_diagnosis_share_test_result_body">ನಿಮ್ಮ ಫಲಿತಾಂಶಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳುವಾಗ ನಿಮ್ಮ ಲಕ್ಷಣಗಳು ಎಂದಿನಿಂದ ಶುರುವಾದವು ಎಂಬುದನ್ನು ಹಂಚಿಕೊಳ್ಳುವುದನ್ನೂ ನೀವು ಆಯ್ಕೆ ಮಾಡಬಹುದು. ಈ ಮಾಹಿತಿಯು COVID-19 ಹರಡುವಿಕೆಯನ್ನು ತಡೆಗಟ್ಟಲು ಮತ್ತು ಜೀವಗಳನ್ನು ಉಳಿಸಲು ಸಹಾಯ ಮಾಡುತ್ತದೆ.</string>
+  <string name="sms_intercept_notice_title">ಹೊಸದೇನಿದೆ</string>
+  <string name="sms_intercept_notice_content">ನಿಮ್ಮ ಸ್ಥಳೀಯ ಆರೋಗ್ಯ ಪ್ರಾಧಿಕಾರವು ನಿಮಗೆ ಪರೀಕ್ಷಾ ಫಲಿತಾಂಶವನ್ನು ಕಳುಹಿಸಿದರೆ, ನಿಮ್ಮ ಫಲಿತಾಂಶವನ್ನು ಸಲ್ಲಿಸಲು ನಿಮ್ಮ ಆ್ಯಪ್ ನಿಮಗೆ ಜ್ಞಾಪನೆಯ ಮೂಲಕ ತಿಳಿಸಬಹುದು ಮತ್ತು ಸಂಭವನೀಯ ಸಂಪರ್ಕಕ್ಕೆ ಬಂದಿರುವ ಕುರಿತು ಇತರರನ್ನು ಎಚ್ಚರಿಸಲು ಸಹಾಯ ಮಾಡುತ್ತದೆ. ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ನೀವು ಇದನ್ನು ಯಾವುದೇ ಸಮಯದಲ್ಲಿ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಬಹುದು.</string>
 </resources>

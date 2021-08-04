@@ -37,6 +37,7 @@ import com.google.android.apps.exposurenotification.common.PairLiveData;
 import com.google.android.apps.exposurenotification.databinding.FragmentShareDiagnosisBinding;
 import com.google.android.apps.exposurenotification.edgecases.VerificationFlowEdgeCaseFragment;
 import com.google.android.apps.exposurenotification.home.BaseFragment;
+import com.google.android.apps.exposurenotification.notify.ShareDiagnosisFlowHelper.ShareDiagnosisFlow;
 import com.google.android.apps.exposurenotification.notify.ShareDiagnosisViewModel.Step;
 import com.google.android.apps.exposurenotification.storage.DiagnosisEntity;
 import com.google.android.apps.exposurenotification.storage.DiagnosisEntity.Shared;
@@ -44,7 +45,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 import java.util.Objects;
 
 /**
- * Main fragment that handles the Share Diagnosis flow.
+ * Main fragment that handles the Share Diagnosis flow (and is a single entry point to the flow).
  *
  * <p>
  * <ul>
@@ -71,9 +72,6 @@ public class ShareDiagnosisFragment extends BaseFragment {
 
   private ShareDiagnosisViewModel shareDiagnosisViewModel;
   private FragmentShareDiagnosisBinding binding;
-  // Both the shared status of the diagnosis and isEnabled state of the EN service determine if we
-  // need to display an edge case when viewing individual diagnoses.
-  private PairLiveData<DiagnosisEntity, Boolean> displayEdgeCaseForDiagnosisLiveData;
   private boolean restoredFromSavedInstanceState = false;
   private boolean showCloseWarningDialog = false;
 
@@ -88,7 +86,8 @@ public class ShareDiagnosisFragment extends BaseFragment {
    * Creates a {@link ShareDiagnosisFragment} to open the Share Diagnosis flow for viewing
    * an already existing diagnosis.
    */
-  public static ShareDiagnosisFragment newInstance(Context context, DiagnosisEntity entity) {
+  public static ShareDiagnosisFragment newInstanceForDiagnosis(
+      Context context, DiagnosisEntity entity) {
     Bundle fragmentArguments = new Bundle();
     fragmentArguments.putLong(EXTRA_DIAGNOSIS_ID, entity.getId());
     fragmentArguments.putString(EXTRA_STEP,
@@ -101,12 +100,23 @@ public class ShareDiagnosisFragment extends BaseFragment {
   }
 
   /**
-   * Creates a {@link ShareDiagnosisFragment} instance for the Deep Link flow.
+   * Creates a {@link ShareDiagnosisFragment} instance for the SMS Deep Link flow.
    */
-  public static ShareDiagnosisFragment newInstance(String codeFromDeepLink) {
+  public static ShareDiagnosisFragment newInstanceForCode(String codeFromDeepLink) {
     ShareDiagnosisFragment shareDiagnosisFragment = new ShareDiagnosisFragment();
     Bundle args = new Bundle();
     args.putString(EXTRA_CODE_FROM_DEEP_LINK, codeFromDeepLink);
+    shareDiagnosisFragment.setArguments(args);
+    return shareDiagnosisFragment;
+  }
+
+  /**
+   * Creates a {@link ShareDiagnosisFragment} instance for the Self-report Deep Link flow.
+   */
+  public static ShareDiagnosisFragment newInstanceForSelfReport() {
+    ShareDiagnosisFragment shareDiagnosisFragment = new ShareDiagnosisFragment();
+    Bundle args = new Bundle();
+    args.putBoolean(EXTRA_IS_SELF_REPORT_FLOW, true);
     shareDiagnosisFragment.setArguments(args);
     return shareDiagnosisFragment;
   }
@@ -139,12 +149,15 @@ public class ShareDiagnosisFragment extends BaseFragment {
           .commit();
       restoredFromSavedInstanceState = true;
     } else {
-      // This fragment can be created (1) from the Sharing History screen, (2) from within the deep
-      // link flow, or (3) from the "Share your test result" card. Check for the intent and
-      // fragment arguments to decide between these options.
+      // This fragment can be created (1) from the Sharing History screen, (2) from within the SMS
+      // deep link flow, (3) from within the deep link flow for self-reporting, or (4) from the
+      // "Share your test result" card. Check for the intent and fragment arguments to decide
+      // between these options.
       Bundle fragmentArgs = getArguments();
-      boolean isDeepLinkFlow = getArguments() != null
+      boolean isSmsDeepLinkFlow = getArguments() != null
           && getArguments().containsKey(EXTRA_CODE_FROM_DEEP_LINK);
+      boolean isSelfReport = getArguments() != null
+          && getArguments().getBoolean(EXTRA_IS_SELF_REPORT_FLOW, false);
 
       if (IntentUtil.isValidBundleToOpenShareDiagnosisFlow(fragmentArgs)) {
         // 1. Viewing an already existing flow after coming from the Sharing History screen.
@@ -152,11 +165,22 @@ public class ShareDiagnosisFragment extends BaseFragment {
         String stepName = fragmentArgs.getString(EXTRA_STEP);
         shareDiagnosisViewModel.setCurrentDiagnosisId(diagnosisId);
         shareDiagnosisViewModel.nextStepIrreversible(Step.valueOf(stepName));
-      } else if (isDeepLinkFlow) {
-        // 2. Sharing a new diagnosis from within the deep link flow.
+      } else if (isSmsDeepLinkFlow) {
+        // 2. Sharing a new diagnosis from within the SMS deep link flow.
+        shareDiagnosisViewModel.setShareDiagnosisFlow(ShareDiagnosisFlow.DEEP_LINK);
         shareDiagnosisViewModel.nextStepIrreversible(Step.BEGIN);
+      } else if (isSelfReport) {
+        // 3. Starting the flow from the Self-report deep link.
+        if (ShareDiagnosisFlowHelper.isSelfReportEnabled(requireContext())) {
+          // Self-report is enabled, so move straight to the "Get a verification code" screen.
+          shareDiagnosisViewModel.setShareDiagnosisFlow(ShareDiagnosisFlow.SELF_REPORT);
+          shareDiagnosisViewModel.nextStepIrreversible(Step.GET_CODE);
+        } else {
+          // Self-report is disabled, so go to the first step in the flow.
+          shareDiagnosisViewModel.nextStepIrreversible(Step.BEGIN);
+        }
       } else {
-        // 3. Starting the flow from the "Share your test result" card.
+        // 4. Starting the flow from the "Share your test result" card.
         exposureNotificationViewModel.getLastNotSharedDiagnosisLiveEvent()
             .observe(this, diagnosis -> {
               if (diagnosis == null || EMPTY_DIAGNOSIS.equals(diagnosis)) {
@@ -199,7 +223,7 @@ public class ShareDiagnosisFragment extends BaseFragment {
      * EN is disabled as they won't be able to share their keys in that case. But never prevent
      * users from viewing diagnoses they've already shared.
      */
-    displayEdgeCaseForDiagnosisLiveData = PairLiveData.of(
+    PairLiveData<DiagnosisEntity, Boolean> displayEdgeCaseForDiagnosisLiveData = PairLiveData.of(
         shareDiagnosisViewModel.getCurrentDiagnosisLiveData(),
         exposureNotificationViewModel.getEnEnabledLiveData());
     displayEdgeCaseForDiagnosisLiveData
@@ -211,7 +235,7 @@ public class ShareDiagnosisFragment extends BaseFragment {
                 binding.enEnabledFlipper.setDisplayedChild(VIEWFLIPPER_EN_DISABLED);
               }
               showCloseWarningDialog = DiagnosisEntityHelper.hasVerified(currentDiagnosis)
-                  && currentDiagnosis.getSharedStatus().equals(Shared.NOT_ATTEMPTED);
+                  && Shared.NOT_ATTEMPTED.equals(currentDiagnosis.getSharedStatus());
             });
 
     /*
@@ -229,19 +253,21 @@ public class ShareDiagnosisFragment extends BaseFragment {
 
   @Override
   public boolean onBackPressed() {
-    if (binding.enEnabledFlipper.getDisplayedChild() == VIEWFLIPPER_EN_DISABLED
-        || !shareDiagnosisViewModel.backStepIfPossible()) {
-      Fragment shareDiagnosisFragment = getChildFragmentManager()
-          .findFragmentById(R.id.notify_others_fragment);
-      if (showCloseWarningDialog && shareDiagnosisFragment != null) {
-        ((ShareDiagnosisBaseFragment) shareDiagnosisFragment).showCloseWarningAlertDialog();
-      } else {
-        if (!getParentFragmentManager().popBackStackImmediate()) {
-          requireActivity().finish();
-        }
-      }
+    @Nullable ShareDiagnosisBaseFragment shareDiagnosisBaseFragment = (ShareDiagnosisBaseFragment)
+        getChildFragmentManager().findFragmentById(R.id.notify_others_fragment);
+
+    if (shareDiagnosisBaseFragment == null) {
+      // We shouldn't get here. But if we somehow do, let the parent activity handle onBackPressed()
+      return false;
     }
-    return true;
+
+    if (binding.enEnabledFlipper.getDisplayedChild() == VIEWFLIPPER_EN_DISABLED) {
+      // We hit an edge case, so no need to call the child fragment's onBackPressed(). Instead
+      // immediately attempt to close the sharing flow.
+      shareDiagnosisBaseFragment.maybeCloseShareDiagnosisFlow(showCloseWarningDialog);
+      return true;
+    }
+    return shareDiagnosisBaseFragment.onBackPressed();
   }
 
   @Override
@@ -261,9 +287,20 @@ public class ShareDiagnosisFragment extends BaseFragment {
                 getChildFragmentManager().findFragmentByTag(NOTIFY_OTHERS_FRAGMENT_TAG)));
   }
 
+  /**
+   * Checks whether to show the confirmation dialog when exiting the "Share diagnosis" flow.
+   */
+  public boolean isShowCloseWarningDialog() {
+    return showCloseWarningDialog;
+  }
+
   @NonNull
   private static ShareDiagnosisBaseFragment fragmentForStep(Step step) {
     switch (step) {
+      case IS_CODE_NEEDED:
+        return new ShareDiagnosisIsCodeNeededFragment();
+      case GET_CODE:
+        return new ShareDiagnosisGetCodeFragment();
       case CODE:
         return new ShareDiagnosisCodeFragment();
       case ONSET:
@@ -278,6 +315,8 @@ public class ShareDiagnosisFragment extends BaseFragment {
         return new ShareDiagnosisTravelStatusFragment();
       case VIEW:
         return new ShareDiagnosisViewFragment();
+      case ALREADY_REPORTED:
+        return new ShareDiagnosisAlreadyReportedFragment();
       case BEGIN:
       default:
         // We "shouldn't" get here, but start at the beginning if we somehow do.

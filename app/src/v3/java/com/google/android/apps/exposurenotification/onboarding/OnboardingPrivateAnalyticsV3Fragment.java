@@ -21,7 +21,6 @@ import static com.google.android.apps.exposurenotification.onboarding.Onboarding
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +29,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.common.logging.Logger;
 import com.google.android.apps.exposurenotification.databinding.FragmentOnboardingPrivateAnalyticsV3Binding;
 import dagger.hilt.android.AndroidEntryPoint;
 
@@ -40,7 +40,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 public class OnboardingPrivateAnalyticsV3Fragment extends
     AbstractOnboardingPrivateAnalyticsFragment {
 
-  private static final String TAG = "PrioOnboardingV3";
+  private static final Logger logger = Logger.getLogger("PrioOnboardingV3");
 
   private FragmentOnboardingPrivateAnalyticsV3Binding binding;
 
@@ -67,7 +67,7 @@ public class OnboardingPrivateAnalyticsV3Fragment extends
 
   @Override
   void sharePrivateAnalytics() {
-    Log.d(TAG, "Onboarding complete: private analytics enabled.");
+    logger.d("Onboarding complete: private analytics enabled.");
     onboardingViewModel.setPrivateAnalyticsState(true);
     // Trigger a one-time submit
     onboardingViewModel.submitPrivateAnalytics();

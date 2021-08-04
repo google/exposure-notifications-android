@@ -28,9 +28,10 @@
   <string name="onboarding_opt_in_title">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‎‏‎‎‏‎‏‏‎‏‏‎‏‎‏‏‏‎‏‎‏‎‏‎‎‎‎‏‏‏‎‏‎‏‏‏‏‎‎‏‎‎‏‏‏‏‏‎‏‏‏‎‏‏‎‎‎‏‏‎‏‏‎Permissions needed to enable Exposure Notifications‎‏‎‎‏‎</string>
   <string name="onboarding_finish_title">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‎‏‎‏‏‏‏‏‎‎‏‎‎‎‎‎‎‏‎‎‎‎‎‏‏‏‏‎‏‏‏‏‎‏‏‎‏‎‎‏‏‎‏‏‎‏‏‏‏‎‏‏‏‏‏‎‏‎‏‏‎‏‎Continuation of permissions needed to enable Exposure Notifications‎‏‎‎‏‎</string>
   <string name="onboarding_exposure_notifications_title">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‎‏‏‎‏‎‏‎‏‏‎‏‏‏‎‎‎‏‎‎‎‏‏‏‎‎‎‎‏‏‎‎‎‏‏‎‏‏‏‏‎‎‏‏‎‏‏‏‏‎‏‏‎‏‎‏‏‎‎‎‎‎‏‎Turn on Exposure Notifications‎‏‎‎‏‎</string>
-  <string name="onboarding_exposure_notifications_detail">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‏‎‎‏‎‏‎‏‎‎‏‎‏‎‎‏‎‎‏‎‎‏‎‎‏‏‏‎‏‏‎‎‏‏‎‏‎‏‏‎‏‏‎‏‎‎‎‏‎‎‎‏‎‎‎‎‏‎‎‏‎‎‎Get notified if you\'ve been near someone who reported having COVID-19.
+  <string name="onboarding_exposure_notifications_detail">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‎‎‏‏‎‎‏‏‎‏‏‎‎‏‎‎‏‎‏‏‎‏‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‎‏‎‏‎‏‏‏‏‎‏‎‎‎‏‎‎‎‏‏‏‏‎Get notified if you\'ve been near someone who reported having COVID-19.
     \n\nYour phone uses Bluetooth to securely collect and share random IDs with other phones that are nearby.
-    \n\nThe date, duration, and signal strength associated with a possible exposure will be used to determine whether you will be notified based on parameters set by your public health authority.‎‏‎‎‏‎</string>
+    \n\nThe date, duration, and signal strength associated with a possible exposure will be used to determine whether you will be notified based on parameters set by your public health authority.
+    \n\nIf you test positive, you may receive a reminder to share your results with your health authority.‎‏‎‎‏‎</string>
   <string name="onboarding_metrics_title">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‎‏‏‏‏‏‏‎‏‎‏‏‎‎‎‎‏‎‎‎‎‏‏‏‎‏‎‏‎‏‎‏‎‎‎‎‎‏‏‏‏‎‎‏‎‏‏‏‏‏‏‎‎‎‏‎‏‏‎‎‎‎‎‎Help make this app better‎‏‎‎‏‎</string>
   <string name="onboarding_metrics_subtitle">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‏‎‏‏‎‏‏‎‏‎‎‎‏‏‏‎‏‏‎‎‎‏‎‎‏‎‏‏‎‎‎‏‎‎‏‎‎‎‏‎‏‏‎‏‏‏‏‏‏‏‏‏‎‎‏‎‎‎‏‎‎‎‎Share app usage &amp; performance data with Google‎‏‎‎‏‎</string>
   <string name="onboarding_metrics_description">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‏‎‏‎‎‏‏‏‏‏‎‎‏‎‎‏‏‏‎‏‎‎‏‎‏‎‎‎‏‎‏‏‎‏‏‏‎‏‏‏‏‏‏‎‏‏‏‎‏‎‎‎‏‎‎‏‏‎‏‏‎‎‎To help maintain and improve the app, some limited de-identified data about app performance and usage is shared with Google. This data does not identify you. ‎‏‎‎‏‏‎%1$s‎‏‎‎‏‏‏‎‎‏‎‎‏‎</string>
@@ -60,10 +61,10 @@
   <string name="notify_turn_on_exposure_notifications_header">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‏‎‏‏‏‎‎‏‏‎‎‎‏‏‏‏‎‎‏‏‏‎‏‎‏‎‏‎‎‎‏‏‏‎‎‎‏‏‏‎‎‏‏‏‎‏‏‎‎‎‏‏‎‎‎‎‏‎‏‏‎‏‎To get notified of possible COVID-19 exposure, turn on Exposure Notifications. ‎‏‎‎‏‏‎%1$s‎‏‎‎‏‏‏‎‎‏‎‎‏‎</string>
   <string name="using_en_helps_even_if_vaccinated">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‎‏‎‎‏‏‏‎‏‏‎‎‏‏‏‎‏‎‎‏‎‏‎‏‏‎‏‎‎‏‎‎‏‏‏‎‏‎‏‏‏‎‏‎‏‏‏‏‎‏‎‎‎‎‏‏‎‏‏‎‏‎‎‎Using this service helps you protect your community - even if you\'ve been vaccinated.‎‏‎‎‏‎</string>
   <string name="share_begin_title">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‎‏‎‎‎‎‎‏‎‏‏‎‎‏‏‏‏‏‎‎‎‏‏‎‎‏‏‏‎‏‏‎‎‏‎‎‎‏‏‏‏‏‎‎‏‏‎‎‎‎‏‏‏‎‏‎‎‎‏‏‎‏‎‎Help protect your community‎‏‎‎‏‎</string>
-  <string name="share_close_title">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‎‏‏‏‎‏‎‏‏‎‏‏‎‏‎‏‎‏‎‏‎‏‎‏‏‏‎‎‎‎‏‎‏‎‎‏‏‏‏‏‎‎‏‎‏‎‏‏‎‏‏‎‏‏‏‏‏‏‏‎‏‎‎Exit without sharing?‎‏‎‎‏‎</string>
-  <string name="share_close_detail">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‎‏‏‎‏‏‏‏‎‎‏‏‏‎‏‏‏‏‎‏‏‎‏‏‏‏‏‎‎‎‏‎‎‏‎‏‎‎‎‏‏‎‎‏‎‎‏‏‎‏‏‎‏‏‏‏‏‏‎‏‏‏‏‎You can best help your community if you share your test result sooner. However, the test result information you\'ve entered so far is saved in the app for you to resume editing later.‎‏‎‎‏‎</string>
-  <string name="btn_resume_later">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‏‏‏‏‏‎‎‎‎‏‏‏‏‏‎‎‎‎‏‎‎‏‎‏‏‎‏‎‎‏‏‎‎‎‎‎‏‏‏‏‏‏‏‎‎‏‏‎‎‏‎‎‎‎‏‏‎‏‎‏‏‎‎Yes, exit‎‏‎‎‏‎</string>
-  <string name="verify_test_result_title">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‎‏‎‏‏‏‎‎‎‎‎‎‎‏‏‏‎‎‏‏‏‏‏‎‏‎‏‎‏‎‏‎‎‏‏‎‎‏‏‎‏‏‎‏‏‏‏‎‏‎‏‎‏‏‏‎‏‏‎‎‎‏‏‎Enter COVID-19 test information‎‏‎‎‏‎</string>
+  <string name="share_close_title">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‎‎‏‏‏‎‏‏‎‏‎‏‎‎‎‎‏‎‎‎‏‎‏‏‏‎‏‏‏‏‎‎‎‏‎‏‏‎‎‏‏‎‏‏‎‏‎‏‏‎‎‎‎‏‎‏‎‎‏‏‎‏‎Close without sharing?‎‏‎‎‏‎</string>
+  <string name="share_close_detail">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‏‏‎‏‎‎‏‏‎‎‏‏‏‏‏‎‎‎‎‏‎‏‎‎‎‎‎‎‎‏‎‎‎‏‎‎‏‎‎‎‎‎‏‏‏‏‏‎‎‎‎‏‏‏‏‎‎‎‏‏‎‏‎The best way you can help your community is to share your results as soon as possible. If you do close now without sharing, you can pick up where you left off if you change your mind later.‎‏‎‎‏‎</string>
+  <string name="btn_resume_later">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‎‎‏‏‏‎‎‎‎‏‏‎‏‏‎‏‎‏‏‏‏‏‏‎‏‎‏‎‏‎‏‎‏‏‏‏‏‏‎‎‏‏‏‏‏‏‏‎‎‎‎‏‎‏‎‏‎‏‏‎‏‎‎Yes, close‎‏‎‎‏‎</string>
+  <string name="verify_test_result_title">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‎‏‏‏‎‏‎‎‏‎‎‎‎‎‎‏‎‎‏‎‎‎‏‎‏‏‎‏‎‎‏‏‏‎‏‏‏‎‏‎‎‎‏‏‎‎‎‎‏‎‏‎‏‏‏‏‏‎‏‏‎‏‎‎Enter your verification code‎‏‎‎‏‎</string>
   <string name="enter_your_test_identifier">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‎‏‎‎‏‏‏‏‏‎‏‎‏‎‏‎‏‎‏‎‏‎‏‏‎‎‎‏‎‎‏‏‎‏‎‏‏‏‎‏‏‏‎‏‎‏‏‏‏‏‎‎‏‎‏‏‎‏‏‏‎‎‎‎Verification code‎‏‎‎‏‎</string>
   <string name="share_test_identifier_help">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‏‏‏‎‎‏‎‎‏‎‏‎‏‎‏‏‎‎‎‏‏‏‏‏‏‎‎‎‎‏‎‎‎‏‏‎‎‏‏‎‎‏‏‎‎‎‏‎‏‎‏‎‎‎‏‏‏‎‏‎‎‎‎This one-time code is used to verify your test result.‎‏‎‎‏‎</string>
   <string name="share_test_identifier_verified">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‎‎‏‏‎‏‏‏‎‏‏‎‎‎‎‎‎‎‎‎‏‏‎‎‎‏‏‏‎‏‏‎‏‎‏‎‏‏‏‎‏‏‏‎‎‏‎‏‎‏‎‏‏‎‎‎‎‎‎‎‏‎‎Code verified‎‏‎‎‏‎</string>
@@ -73,30 +74,29 @@
   <string name="test_date_label">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‎‏‏‎‎‎‎‏‏‎‏‏‏‎‏‏‎‎‎‏‎‎‎‏‎‎‎‏‏‏‎‏‏‎‎‏‏‎‎‎‎‎‎‏‎‏‏‎‎‎‏‏‏‎‎‏‎‏‏‏‎‏‏‎Date symptoms started‎‏‎‎‏‎</string>
   <string name="share_onset_symptoms">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‎‏‎‎‏‎‎‎‎‎‏‏‎‏‏‏‏‎‏‎‏‎‎‎‏‎‎‎‎‏‎‎‏‎‎‏‎‏‎‏‎‎‏‎‏‎‏‏‎‎‎‎‎‎‏‏‏‎‏‏‏‎‎Yes‎‏‎‎‏‎</string>
   <string name="share_onset_no_symptoms">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‎‏‏‏‏‎‏‎‎‏‎‏‏‏‎‎‏‏‏‎‎‎‏‏‏‏‏‏‎‎‏‎‎‏‎‎‎‎‎‏‏‎‎‏‎‏‎‏‏‏‎‎‎‏‎‎‏‏‏‏‏‎‏‎No‎‏‎‎‏‎</string>
-  <string name="share_onset_no_answer">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‎‏‏‏‎‎‏‏‎‎‎‎‏‏‏‎‏‎‏‎‎‏‏‎‎‏‏‎‏‏‏‏‏‏‏‏‏‏‏‏‎‏‎‏‎‏‎‎‏‎‏‎‏‎‏‏‎‎‏‎‎‏‎Prefer not to answer‎‏‎‎‏‎</string>
+  <string name="share_onset_no_answer">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‎‏‏‏‎‏‎‏‏‏‎‎‎‎‎‎‏‎‏‎‏‎‏‏‎‏‏‎‏‏‎‏‎‏‏‎‏‏‏‎‎‎‎‏‏‎‏‎‏‎‏‎‏‎‎‎‏‏‏‎‏‏‎‎I prefer not to answer‎‏‎‎‏‎</string>
   <string name="share_travel_title">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‏‎‏‏‏‎‎‏‏‏‎‎‎‏‎‏‏‏‏‎‏‏‏‏‎‏‏‎‎‏‏‎‎‎‏‎‏‎‎‎‏‏‎‏‏‎‏‏‎‏‎‎‏‎‏‎‎‏‎‎‏‎‎Have you traveled in the last 14 days\?‎‏‎‎‏‎</string>
   <string name="share_travel_confirmed">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‎‏‏‎‎‏‎‎‏‏‎‎‎‏‏‏‏‏‏‎‎‏‎‏‏‏‏‏‎‏‎‎‏‏‎‎‏‏‎‏‏‎‏‏‎‏‎‏‎‏‎‎‏‎‏‎‎‏‎‏‎‎‎‎Yes‎‏‎‎‏‎</string>
   <string name="share_travel_no_travel">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‎‏‏‏‏‎‎‏‎‏‏‎‏‎‎‏‏‏‏‎‏‎‎‎‎‏‏‏‎‎‎‎‏‎‎‏‏‎‎‏‎‎‎‏‎‏‏‎‎‎‎‎‎‏‏‎‎‏‎‏‏‎‏‎No‎‏‎‎‏‎</string>
-  <string name="share_travel_no_answer">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‎‏‎‏‏‎‎‏‏‏‏‏‎‎‎‎‏‏‎‎‎‏‏‏‏‎‏‏‏‏‏‎‎‏‏‎‏‎‎‏‏‎‏‎‎‏‎‏‎‎‏‎‏‏‏‎‎‎‏‏‎‎‏‎Prefer not to answer‎‏‎‎‏‎</string>
+  <string name="share_travel_no_answer">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‎‎‎‎‏‏‎‎‎‏‎‏‎‏‎‎‎‎‏‏‏‏‏‏‏‏‏‎‎‏‏‏‏‎‏‏‎‎‎‎‎‎‏‎‏‎‏‏‎‎‎‎‎‎‏‏‎‎‎‏‏‎‎I prefer not to answer‎‏‎‎‏‎</string>
   <string name="share_review_title">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‎‏‏‎‏‎‎‏‏‏‎‏‎‏‏‏‏‎‎‎‏‎‎‏‏‎‎‏‏‏‎‎‏‏‎‏‎‎‏‎‎‏‏‏‏‎‏‎‏‏‏‏‎‎‎‎‎‏‎‏‏‎‎Review your information‎‏‎‎‏‎</string>
   <string name="share_review_status_subtitle">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‎‎‏‏‏‏‏‎‎‏‎‏‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‏‏‎‏‏‎‏‏‏‏‏‏‎‏‏‏‏‎‎‎‏‎‎‏‏‏‏‎‎‏‏‎‎‎‏‎COVID-19 status‎‏‎‎‏‎</string>
   <string name="share_review_status_confirmed">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‏‎‎‎‎‏‏‎‏‎‎‏‏‏‎‎‎‎‎‏‎‏‏‏‏‏‎‎‏‏‎‏‎‎‏‏‎‏‏‎‎‏‏‎‏‏‏‏‎‎‎‎‎‎‎‏‎‎‎‎‏‏‎Positive‎‏‎‎‏‎</string>
   <string name="share_review_status_likely">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‎‏‏‎‏‎‎‎‎‎‎‏‏‏‎‎‏‎‏‏‎‏‏‏‏‎‎‏‎‏‏‎‏‏‎‎‏‎‏‎‏‎‎‎‏‏‎‏‎‏‏‎‏‏‎‏‏‎‏‏‎‎‏‎Likely‎‏‎‎‏‎</string>
   <string name="share_review_status_negative">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‎‎‏‎‎‏‎‏‎‎‎‏‎‎‏‏‏‏‎‎‏‏‎‏‏‎‎‏‎‏‏‎‎‏‏‎‏‎‏‏‎‎‎‏‏‎‎‏‏‏‏‎‏‏‎‏‎‎‏‏‏‏‎Negative‎‏‎‎‏‎</string>
-  <string name="share_review_onset_subtitle">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‎‎‏‎‏‏‏‏‎‎‏‏‏‏‏‎‎‏‏‏‏‎‎‎‎‏‏‏‏‎‏‏‎‎‏‏‎‎‎‎‏‏‏‎‎‏‏‏‏‏‏‏‎‏‎‏‎‏‎‎‎‏‎Symptom info‎‏‎‎‏‎</string>
-  <string name="share_review_onset_date">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‎‏‏‏‎‏‏‏‏‎‏‎‎‎‎‎‎‎‏‎‎‏‎‎‎‎‏‎‎‎‏‏‏‏‎‎‎‏‎‎‏‏‏‎‎‎‎‎‎‎‎‎‏‏‏‏‎‏‏‏‏‎‎Symptoms from ‎‏‎‎‏‏‎%1$s‎‏‎‎‏‏‏‎‎‏‎‎‏‎</string>
+  <string name="share_review_onset_subtitle">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‎‎‏‎‏‏‎‎‏‏‏‎‏‏‏‎‏‎‏‎‎‏‏‏‎‏‎‏‎‏‎‎‏‏‏‏‎‎‎‎‎‏‎‏‎‏‏‏‎‎‎‎‎‎‏‏‏‏‎‎‎‏‎Symptoms‎‏‎‎‏‎</string>
+  <string name="share_review_onset_date">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‏‎‏‎‏‏‎‏‏‏‎‎‎‏‏‎‎‏‏‎‏‎‎‏‎‎‏‎‎‎‏‏‏‎‏‎‏‏‏‎‏‏‏‎‎‎‎‎‎‏‎‏‎‎‎‏‏‎‏‎‎‏‎Started ‎‏‎‎‏‏‎%1$s‎‏‎‎‏‏‏‎‎‏‎‎‏‎</string>
   <string name="share_review_onset_no_symptoms">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‎‏‏‏‎‎‏‎‏‎‏‎‏‏‏‏‎‏‏‏‎‎‏‏‏‎‎‎‎‎‏‏‏‏‏‎‎‎‎‏‎‎‎‏‏‏‎‎‎‏‏‎‏‏‎‏‏‏‏‏‏‏‏‎No symptoms‎‏‎‎‏‎</string>
   <string name="share_review_onset_no_answer">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‎‎‎‎‏‏‎‎‎‎‎‎‎‏‏‏‏‏‏‎‎‏‎‎‎‏‎‏‏‎‎‎‎‏‎‎‏‎‏‎‏‎‎‎‏‎‏‏‏‏‎‎‏‎‏‏‏‎‎‏‎‏‎Not answered‎‏‎‎‏‎</string>
-  <string name="share_review_travel_subtitle">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‎‏‏‏‎‏‏‏‏‏‏‎‎‎‎‏‎‎‏‏‏‏‎‎‎‏‎‏‏‎‏‏‎‏‏‎‏‎‎‏‏‏‏‏‎‎‎‏‎‎‎‏‏‏‎‏‏‎‏‎‎‎‏‎Travel history‎‏‎‎‏‎</string>
-  <string name="share_review_travel_confirmed">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‎‏‏‎‏‏‏‎‎‎‏‏‏‏‏‎‎‏‎‎‎‏‎‎‏‏‏‎‏‏‎‏‏‎‎‏‎‏‏‎‎‎‏‏‏‎‏‎‏‎‎‎‎‏‎‏‏‎‏‏‎‎‎Traveled in last 14 days‎‏‎‎‏‎</string>
+  <string name="share_review_travel_subtitle">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‎‏‎‎‏‏‏‏‎‏‏‏‎‎‏‏‏‎‏‎‏‏‎‏‎‎‏‎‎‎‏‏‎‎‏‏‏‎‏‎‏‏‎‎‎‏‎‏‎‏‏‎‏‏‏‎‏‏‏‏‏‏‎‎Travel‎‏‎‎‏‎</string>
+  <string name="share_review_travel_confirmed">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‎‎‏‎‏‏‏‏‎‏‎‎‏‎‎‎‎‎‎‏‎‏‎‏‎‏‏‏‏‎‎‎‎‎‏‎‏‏‏‏‏‎‏‏‏‎‏‏‎‎‎‎‎‎‎‏‎‎‎‏‏‎‎Within the past 14 days‎‏‎‎‏‎</string>
   <string name="share_review_travel_no_travel">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‏‏‏‏‏‎‎‏‏‎‏‏‏‏‏‎‏‏‏‏‎‎‎‏‎‎‏‏‏‎‎‎‎‏‎‎‏‏‎‏‎‏‏‏‎‎‎‏‏‎‏‎‎‎‎‎‏‎‏‎‎‎‎Not traveled in last 14 days‎‏‎‎‏‎</string>
   <string name="share_review_travel_no_answer">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‎‏‏‎‏‎‎‎‏‏‎‎‏‎‏‎‎‎‏‏‏‏‎‏‏‎‎‏‎‎‎‎‏‏‎‎‏‎‎‏‎‎‎‏‎‏‏‏‎‏‏‎‎‎‎‎‏‏‏‎‎‏‏‎Not answered‎‏‎‎‏‎</string>
-  <string name="share_confirm_title">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‎‏‏‏‎‏‎‏‎‎‏‏‎‎‎‎‎‏‎‎‏‎‎‏‏‏‎‎‏‎‏‏‏‏‎‎‎‏‎‎‏‎‏‎‎‎‎‎‎‏‏‎‏‎‏‏‏‎‏‏‏‎‎Thank you for sharing your COVID-19 status‎‏‎‎‏‎</string>
+  <string name="share_confirm_title">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‎‏‏‎‎‎‎‏‎‏‎‎‎‎‎‎‏‎‏‎‏‏‏‏‏‎‏‎‏‎‎‏‎‎‎‎‏‎‏‏‎‏‎‎‏‏‏‎‎‏‏‏‏‎‏‏‎‏‎‎‏‎‎Thank you for sharing your COVID-19 result‎‏‎‎‏‎</string>
   <string name="not_shared_confirm_title">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‎‎‎‏‎‎‏‎‎‎‏‎‏‎‎‏‎‎‎‎‎‎‏‏‎‎‏‎‏‎‏‏‏‎‏‎‏‎‎‎‏‎‏‏‏‎‏‎‏‏‎‎‎‎‎‎‎‎‏‎Your test result wasn\'t shared‎‏‎‎‏‎</string>
   <string name="not_shared_confirm_detail">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‎‎‏‏‎‎‎‏‎‏‎‏‎‎‏‎‎‏‏‏‎‎‏‎‎‏‏‎‏‏‎‎‎‎‎‏‏‏‏‎‎‎‏‏‏‏‎‏‏‎‏‎‏‏‎‏‎‎‏‎‎Your COVID-19 test result wasn\'t shared. Please try again.‎‏‎‎‏‎</string>
   <string name="status_shared_detail_title">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‏‏‎‎‎‎‎‎‎‎‏‏‎‎‏‏‎‎‏‏‎‏‎‎‎‎‏‎‎‏‏‏‎‏‏‏‎‏‏‎‏‏‏‎‏‎‎‎‎‏‏‏‎‎‏‏‏‏‎‏‎‎‎Shared COVID-19 status‎‏‎‎‏‎</string>
-  <string name="delete_test_result_title">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‏‎‏‎‏‎‎‏‎‏‏‎‎‏‏‎‎‏‎‎‏‎‏‏‎‎‏‎‎‎‏‏‎‏‏‎‎‎‎‎‎‎‏‎‎‎‎‎‎‏‎‏‏‎‏‎‎‏‎‎‎‏‎Delete COVID-19 test result?‎‏‎‎‏‎</string>
-  <string name="delete_test_result_detail">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‎‏‏‏‏‎‏‎‏‎‎‏‎‎‎‎‎‏‎‏‏‎‏‎‎‎‎‏‏‏‎‎‎‎‎‏‏‎‏‏‎‎‎‎‏‎‎‏‎‎‎‎‏‏‏‏‏‏‏‎‏‏‎Your test result details will be deleted from this app.‎‏‎‎‏‎</string>
+  <string name="delete_test_result_title">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‎‏‏‎‎‎‏‏‏‏‎‏‏‎‎‏‎‏‏‎‏‏‎‎‏‎‏‏‏‏‎‏‎‏‏‏‏‎‎‎‎‏‎‏‎‏‏‎‏‏‏‏‏‎‏‎‎‎‏‎‏‎‎Delete your test result?‎‏‎‎‏‎</string>
   <string name="delete_test_result_confirmed">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‎‏‏‏‎‏‏‎‎‎‏‏‎‏‏‏‎‎‏‎‏‏‏‏‏‎‏‎‏‏‏‎‏‏‏‎‏‎‏‎‎‎‎‏‏‎‎‏‎‏‎‏‏‎‎‎‎‎‏‏‏‎‏‎Test result deleted‎‏‎‎‏‎</string>
   <string name="share_error_no_internet">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‏‎‎‎‎‏‏‎‏‎‎‏‎‎‏‎‎‎‎‎‏‏‎‎‏‏‎‎‏‎‏‎‎‎‎‏‎‎‏‏‏‏‎‎‏‏‎‎‏‎‏‏‏‏‎‏‏‏‎‏‎‏‎Can\’t share test results offline. Check your internet connection &amp; try again.‎‏‎‎‏‎</string>
   <string name="share_vaccination_title">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‎‏‏‎‏‎‏‏‎‎‏‎‎‏‏‏‎‏‏‎‏‎‏‏‏‎‏‎‎‎‎‏‎‎‎‏‎‏‏‎‎‎‏‎‎‏‏‎‎‏‏‏‎‏‎‏‎‎‎‎‏‏‏‎Have you been vaccinated against Covid-19\?‎‏‎‎‏‎</string>
@@ -104,7 +104,30 @@
   <string name="share_vaccination_learn_more">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‎‏‏‎‏‏‎‎‏‎‎‏‏‎‎‏‎‏‏‏‎‏‏‎‎‏‎‎‎‎‎‎‏‎‏‎‏‏‏‏‎‎‏‏‎‏‏‏‎‏‎‎‏‎‏‏‎‏‎‏‏‏‎‎Learn more‎‏‎‎‏‎</string>
   <string name="share_vaccination_vaccinated">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‎‏‏‎‏‎‏‏‎‏‏‎‎‏‏‏‏‎‎‏‏‏‏‏‏‎‎‎‎‏‎‎‎‏‎‎‏‏‏‏‎‏‏‎‏‎‎‎‏‏‏‎‎‎‎‏‎‏‎‏‎‏‎Yes, I\'ve been vaccinated‎‏‎‎‏‎</string>
   <string name="share_vaccination_not_vaccinated">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‎‏‎‏‎‎‏‏‎‎‎‏‎‏‏‏‏‏‏‎‏‎‎‎‏‏‎‎‎‏‏‎‎‎‏‏‏‏‏‎‎‎‎‏‎‎‎‎‎‎‎‏‎‎‏‎‏‏‎‎‎‏‎No‎‏‎‎‏‎</string>
-  <string name="share_vaccination_unknown">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‏‎‏‎‏‎‏‎‏‎‏‏‏‏‎‏‎‎‎‎‏‏‎‏‏‏‎‎‎‏‎‏‎‎‎‎‎‏‎‎‏‎‎‎‎‏‏‏‏‎‏‏‏‎‏‎‎‎‎‎‏‎‎Prefer not to answer‎‏‎‎‏‎</string>
+  <string name="share_vaccination_unknown">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‎‎‎‏‏‎‎‏‎‏‏‏‏‏‎‏‏‏‏‏‎‎‎‏‎‏‏‏‏‏‏‏‎‎‎‎‏‎‏‏‎‏‎‎‎‎‏‏‎‎‎‎‎‏‎‏‏‏‏‎I prefer not to answer‎‏‎‎‏‎</string>
+  <string name="do_you_have_code_title">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‏‏‎‏‎‎‏‏‎‏‎‎‏‏‏‏‏‎‎‎‎‏‎‎‏‏‏‏‏‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‎‎‏‏‎‏‎‎‎‏‎‏‏‎‎‏‎Did you receive a code?‎‏‎‎‏‎</string>
+  <string name="do_you_have_code_content">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‎‏‏‏‏‏‏‎‏‏‏‏‏‎‎‎‏‏‏‏‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‏‏‏‎‎‎‎‏‏‎‏‎‎‏‎‎‎‏‎‎‏‎‎‏‏‏‎‎If you test positive for COVID-19, your health authority usually provides a verification code by phone or text so that you can share your results.‎‏‎‎‏‎</string>
+  <string name="btn_i_have_code">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‎‏‏‏‏‏‏‎‎‎‏‏‏‎‏‎‎‎‏‏‎‎‏‏‏‎‏‎‎‏‏‎‏‎‏‏‎‎‎‎‏‎‎‎‏‎‏‎‎‎‎‎‏‎‎‏‎‏‏‎‎‏‏‎Yes, I have a code‎‏‎‎‏‎</string>
+  <string name="btn_i_need_code">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‎‏‎‎‏‎‏‎‎‎‏‏‏‎‏‎‏‏‎‎‎‏‏‏‎‏‎‏‏‏‎‎‏‏‏‏‏‎‎‎‏‏‎‎‏‎‎‎‎‏‎‏‏‏‏‏‎‏‎‏‏‏‎‎I need a code‎‏‎‎‏‎</string>
+  <string name="get_verification_code_title">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‏‏‎‎‏‎‏‎‏‏‎‏‏‏‎‎‎‏‏‎‏‎‎‏‏‏‏‏‎‎‏‏‎‏‏‏‎‎‎‏‎‎‎‏‏‎‎‎‏‎‏‏‏‏‎‏‎‏‏‏‏‏‎Get a verification code‎‏‎‎‏‎</string>
+  <string name="phone_number_prompt">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‎‏‎‎‎‏‏‎‏‎‎‎‎‎‎‎‏‎‏‎‏‎‎‏‎‏‏‎‎‎‎‎‎‏‎‏‏‏‏‎‎‏‏‏‏‏‎‏‎‏‏‎‎‏‏‏‎‎‎‎‎‏‎‎Phone number‎‏‎‎‏‎</string>
+  <string name="phone_number_help">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‎‏‏‏‎‎‎‏‎‎‎‏‏‏‎‏‎‎‏‏‎‎‏‏‎‏‏‎‎‎‏‏‎‏‏‎‏‏‎‏‎‏‎‎‏‏‏‏‎‏‏‏‏‏‏‏‏‎‏‎‏‏‏‎A verification code allows you to share your test results. Your code will be sent to the number you provide.‎‏‎‎‏‎</string>
+  <string name="phone_number_may_be_stored_help">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‎‎‏‎‎‎‏‎‏‎‎‎‏‎‎‎‎‎‎‏‎‎‎‎‎‏‏‎‏‎‎‏‏‎‎‎‏‏‏‏‏‎‏‎‏‎‎‎‎‏‎‎‏‎‏‎‎‏‏‏‏‏‎To prevent people from submitting more than one result, your phone number may be temporarily stored by your public health authority.‎‏‎‎‏‎</string>
+  <string name="test_date_prompt">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‎‏‎‏‎‎‏‎‎‎‏‎‏‎‎‏‏‏‏‏‏‎‏‏‏‏‏‎‎‏‏‏‎‎‎‏‏‎‎‎‏‎‏‎‎‎‎‏‏‎‏‏‎‎‎‏‎‏‏‎‏‏‎‎Test date‎‏‎‎‏‎</string>
+  <string name="test_date_help">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‎‏‎‎‎‏‎‏‎‏‏‏‏‏‎‏‏‏‏‏‏‎‎‏‎‎‎‎‏‏‎‎‏‎‏‏‎‏‎‏‎‏‎‏‏‏‎‏‏‏‏‎‏‎‏‎‏‏‏‎‎‎‎Test date should be within the past 14 days.‎‏‎‎‏‎</string>
+  <string name="tested_for_covid_checkbox_text">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‎‏‎‏‏‎‎‎‎‏‎‎‏‏‏‏‎‏‏‎‎‏‏‏‎‏‏‎‏‏‎‎‎‏‎‎‎‏‎‎‏‏‎‎‎‎‏‎‏‏‏‎‎‏‏‎‏‏‎‏‎‎I have received a positive COVID-19 test in the past 14 days.‎‏‎‎‏‎</string>
+  <string name="btn_send_code">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‎‏‎‎‏‎‏‎‎‎‏‎‏‎‎‏‎‏‏‎‎‎‎‎‏‎‎‏‏‏‏‎‏‏‎‏‎‎‏‎‏‎‏‎‎‎‏‎‎‎‏‏‎‎‎‏‎‏‎‎‎‏‎‎Send code‎‏‎‎‏‎</string>
+  <string name="enter_code_help">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‎‏‏‎‏‏‎‏‎‏‎‏‏‏‏‎‏‏‎‏‏‏‎‏‎‎‏‎‎‎‏‎‎‏‏‎‎‎‎‎‎‏‏‏‏‏‏‏‎‏‎‎‎‏‏‏‏‏‏‎‏‎‎‎Enter the code sent to you by ‎‏‎‎‏‏‎%1$s‎‏‎‎‏‏‏‎.‎‏‎‎‏‎</string>
+  <string name="positive_result_already_reported_title">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‏‎‎‎‎‎‏‎‏‎‏‎‎‏‎‏‏‏‏‎‎‎‏‎‎‎‎‎‏‎‏‏‎‎‏‎‎‏‎‏‏‏‏‏‏‏‏‎‏‏‎‎‏‏‎‎‏‏‎‏‏‏‎You have already reported a test result recently.‎‏‎‎‏‎</string>
+  <string name="positive_result_already_reported_content">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‏‎‎‏‎‏‏‎‏‏‏‏‎‎‎‎‎‏‏‎‏‎‎‎‏‎‎‏‏‎‎‎‎‎‏‎‏‏‎‏‏‏‎‎‏‏‏‎‎‏‎‏‏‎‏‏‏‎‎‎‎‎‎If you would like to report another test result, please contact ‎‏‎‎‏‏‎%1$s‎‏‎‎‏‏‏‎.‎‏‎‎‏‎</string>
+  <string name="self_report_bad_code">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‎‎‏‏‎‎‏‎‎‎‎‏‏‎‎‎‏‏‎‎‎‏‏‏‏‎‏‎‏‏‎‏‏‎‏‏‎‎‎‎‏‏‎‏‏‏‏‎‎‏‏‎‎‎‏‏‎‎‏‎‎‎‎Invalid code. Make sure you\'re using the same device to both request and enter your verification code.‎‏‎‎‏‎</string>
+  <string name="self_report_bad_phone_number">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‎‏‎‏‏‏‏‎‎‎‏‎‎‏‏‏‎‎‎‏‎‎‎‎‎‎‎‎‏‎‏‏‎‎‏‏‏‎‏‎‏‎‎‏‏‎‎‏‎‏‎‏‏‎‎‎‎‏‎‏‎‏‎‎Check your number and try again. ‎‏‎‎‏‏‎%1$s‎‏‎‎‏‏‏‎‎‏‎‎‏‎</string>
+  <string name="self_report_code_requested_too_many_times">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‎‏‏‎‎‏‏‏‏‏‏‎‎‏‎‎‏‎‎‎‎‎‏‎‎‎‎‎‏‎‎‎‎‎‏‎‎‏‎‏‎‎‏‎‏‎‎‏‏‏‏‎‏‏‎‎‏‎‏‎‏‎‎You\'ve made too many requests. Contact ‎‏‎‎‏‏‎%1$s‎‏‎‎‏‏‏‎ if you still need a code.‎‏‎‎‏‎</string>
+  <plurals name="self_report_code_already_requested">
+    <item quantity="one">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‎‎‎‎‎‏‎‏‏‎‎‏‏‏‎‎‎‏‏‎‏‎‏‏‎‎‎‎‏‎‏‎‎‏‎‎‎‎‎‏‎‎‎‏‎‎‏‏‏‎‎‏‎‎‎‏‏‏‏‎‏‏‎You\'ve made too many requests. You can request another code in ‎‏‎‎‏‏‎%1$d‎‏‎‎‏‏‏‎ minute.‎‏‎‎‏‎</item>
+    <item quantity="other">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‎‎‎‎‎‏‎‏‏‎‎‏‏‏‎‎‎‏‏‎‏‎‏‏‎‎‎‎‏‎‏‎‎‏‎‎‎‎‎‏‎‎‎‏‎‎‏‏‏‎‎‏‎‎‎‏‏‏‏‎‏‏‎You\'ve made too many requests. You can request another code in ‎‏‎‎‏‏‎%1$d‎‏‎‎‏‏‏‎ minutes.‎‏‎‎‏‎</item>
+  </plurals>
+  <string name="notify_others_notification_title">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‎‏‎‏‎‎‏‏‏‎‏‏‏‎‏‎‎‏‎‎‎‏‏‎‎‏‏‎‎‎‎‎‏‏‏‏‏‎‏‏‎‎‏‎‏‏‎‏‎‏‎‎‏‏‏‎‏‎‏‎‏‏‎Help notify others who may have been exposed‎‏‎‎‏‎</string>
   <string name="settings_exposure_notifications_subtitle">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‏‎‎‏‏‏‏‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‏‏‎‏‎‎‏‎‏‎‏‎‎‎‏‏‎‏‏‎‎‏‎‎‎‏‏‏‏‎‎‏‎‎‎‎‎‎‏‏‎Exposure Notifications‎‏‎‎‏‎</string>
   <string name="settings_app_analytics_subtitle">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‎‏‎‏‎‎‎‎‏‎‎‏‏‏‏‎‎‎‏‏‎‏‏‏‏‎‏‎‏‏‏‏‎‏‏‏‎‏‏‏‏‎‎‎‎‏‏‎‏‏‎‏‎‎‏‎‎‎‎‏‏‎‎‎App usage &amp; performance sharing‎‏‎‎‏‎</string>
   <string name="settings_privacy_policy">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‎‏‏‏‎‏‎‎‏‎‏‏‏‎‏‏‎‏‎‏‎‎‏‎‏‏‏‏‏‏‏‎‏‎‏‏‏‏‏‏‎‎‏‎‏‏‎‏‏‎‏‎‎‏‏‏‎‎‏‏‎‎‏‎Privacy policy‎‏‎‎‏‎</string>
@@ -166,4 +189,9 @@
   <string name="private_analytics_footer_learn_more">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‎‏‏‏‏‎‎‎‏‏‎‎‎‎‏‏‏‎‎‎‏‏‏‎‎‏‎‏‎‎‎‏‏‎‎‎‎‎‎‏‏‏‎‎‎‏‎‏‏‎‎‎‎‏‏‎‏‏‎‎‏‏‏‎Learn more‎‏‎‎‏‎</string>
   <string name="diagnosis_subtitle_template">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‏‏‏‏‏‏‎‎‏‎‎‏‎‎‎‏‎‏‏‎‎‏‏‎‎‏‎‎‏‏‎‎‏‏‏‏‎‎‏‏‎‎‎‎‏‏‏‏‎‎‎‏‏‏‏‏‏‎‎‎‏‏‎‎‏‎‎‏‏‎%1$s‎‏‎‎‏‏‏‎ on ‎‏‎‎‏‏‎%2$s‎‏‎‎‏‏‏‎‎‏‎‎‏‎</string>
   <string name="empty_share_history_body">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‎‎‏‏‏‎‏‏‏‏‏‎‏‏‏‏‏‏‏‏‎‎‏‎‎‎‎‎‏‏‏‎‏‎‎‏‎‏‏‏‏‎‎‏‏‎‏‏‏‏‏‎‏‏‎‏‏‏‎‏‎No sharing history‎‏‎‎‏‎</string>
+  <string name="share_diagnosis_share_test_result_title">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‎‎‏‎‏‎‏‎‎‏‎‏‏‎‎‎‏‎‏‎‎‏‎‎‏‎‏‏‏‎‏‏‏‎‏‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‏‎‎‎‏‏‏‏‎‏‏‏‎Share your test result with ‎‏‎‎‏‏‎%1$s‎‏‎‎‏‏‏‎‎‏‎‎‏‎</string>
+  <string name="share_diagnosis_share_test_result_subtitle">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‎‎‎‎‎‏‎‏‏‎‎‏‎‎‏‎‏‎‏‎‎‏‏‎‏‎‎‏‎‏‎‎‎‎‎‏‏‏‎‏‏‎‎‏‏‏‎‏‏‎‎‏‎‎‏‏‏‎‏‏‎‎‎Thank you for helping to stop COVID-19.‎‏‎‎‏‎</string>
+  <string name="share_diagnosis_share_test_result_body">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‎‏‏‏‎‏‎‏‎‎‎‎‎‏‏‏‏‏‎‏‏‎‏‎‎‎‏‏‎‎‏‎‏‎‎‎‎‏‏‏‏‎‏‎‎‏‏‏‏‏‎‏‎‎‏‎‏‎‎‏‏‎‎‎When you share your result, you can also choose to share when your symptoms started. This information can help stop the spread of COVID-19 and save lives.‎‏‎‎‏‎</string>
+  <string name="sms_intercept_notice_title">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‎‎‏‏‏‎‎‎‏‏‎‎‎‏‎‎‏‏‎‎‎‏‏‏‎‎‎‎‏‏‎‏‎‎‏‏‎‏‏‎‏‏‏‎‎‎‎‏‏‏‏‏‎‎‏‎‏‏‏‏‎‏‎What\'s new‎‏‎‎‏‎</string>
+  <string name="sms_intercept_notice_content">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‏‏‏‎‎‏‎‎‎‏‎‎‏‏‏‏‎‎‏‎‏‎‏‏‏‎‎‎‏‏‎‏‏‎‎‎‏‏‏‎‏‎‎‏‎‎‏‎‎‏‏‎‎‎‎‎‎‎‏‎‏‎‎If your local health authority sends you a test result, your app can notify you with a reminder to submit your result and help alert others of possible exposure. You can disable this any time in settings.‎‏‎‎‏‎</string>
 </resources>

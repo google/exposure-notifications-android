@@ -51,8 +51,6 @@ import java.util.Objects;
 @AndroidEntryPoint
 public class SharingHistoryFragment extends BaseFragment {
 
-  private static final String TAG = "SharingHistoryFragment";
-
   private FragmentSharingHistoryBinding binding;
   private NotifyHomeViewModel viewModel;
 
@@ -79,9 +77,9 @@ public class SharingHistoryFragment extends BaseFragment {
     binding.home.setOnClickListener(v -> onBackPressed());
 
     DiagnosisEntityAdapter diagnosisEntityAdapter =
-        new DiagnosisEntityAdapter(
-            diagnosis -> transitionToFragmentWithBackStack(
-                ShareDiagnosisFragment.newInstance(requireContext(), diagnosis)), viewModel);
+        new DiagnosisEntityAdapter(diagnosis -> transitionToFragmentWithBackStack(
+            ShareDiagnosisFragment.newInstanceForDiagnosis(requireContext(), diagnosis)),
+            viewModel);
     final LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext());
     binding.diagnosesRecyclerView.setLayoutManager(layoutManager);
     binding.diagnosesRecyclerView.setAdapter(diagnosisEntityAdapter);
@@ -127,7 +125,6 @@ public class SharingHistoryFragment extends BaseFragment {
     viewModel.setDeleteDialogOpenAtPosition(position);
     new MaterialAlertDialogBuilder(requireContext(), R.style.ExposureNotificationAlertDialogTheme)
         .setTitle(R.string.delete_test_result_title)
-        .setMessage(R.string.delete_test_result_detail)
         .setCancelable(true)
         .setNegativeButton(R.string.btn_cancel, (d, w) -> {
           d.cancel();

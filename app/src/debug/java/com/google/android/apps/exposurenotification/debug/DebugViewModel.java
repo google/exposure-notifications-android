@@ -20,7 +20,6 @@ package com.google.android.apps.exposurenotification.debug;
 import android.content.Context;
 import android.content.res.Resources;
 import android.net.Uri;
-import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.hilt.lifecycle.ViewModelInject;
 import androidx.lifecycle.LiveData;
@@ -33,6 +32,7 @@ import androidx.work.WorkManager;
 import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.common.Qualifiers.LightweightExecutor;
 import com.google.android.apps.exposurenotification.common.SingleLiveEvent;
+import com.google.android.apps.exposurenotification.common.logging.Logger;
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.debug.VerificationCodeCreator.VerificationCode;
 import com.google.android.apps.exposurenotification.debug.VerificationCodeCreator.VerificationCodeCreateFailureException;
@@ -77,7 +77,7 @@ import org.threeten.bp.ZonedDateTime;
  */
 public class DebugViewModel extends ViewModel {
 
-  private static final String TAG = "DebugViewModel";
+  private static final Logger logger = Logger.getLogger("DebugViewModel");
   private static final Pattern DEFAULT_URI_PATTERN = Pattern.compile(".*example\\.com.*");
   private static final Splitter COMMA_SPLITER = Splitter.on(",");
   private static final String WORKMANAGER_DEBUG_PROVIDE_TAG = "provide_debug";
@@ -146,11 +146,11 @@ public class DebugViewModel extends ViewModel {
         .addOnSuccessListener(lightweightExecutor,
             version -> enModuleVersionLiveData.postValue(Long.toString(version)))
         .addOnCanceledListener(lightweightExecutor, () -> {
-          Log.w(TAG, "Cancelled fetching Version from EN API");
+          logger.w("Cancelled fetching Version from EN API");
           enModuleVersionLiveData.postValue("");
         })
         .addOnFailureListener(lightweightExecutor, (exception) -> {
-          Log.w(TAG, "Could not fetch Version from EN API");
+          logger.w("Could not fetch Version from EN API");
           enModuleVersionLiveData.postValue("");
         });
   }
@@ -196,7 +196,7 @@ public class DebugViewModel extends ViewModel {
 
           @Override
           public void onFailure(@NonNull Throwable t) {
-            Log.e(TAG, "Failed to create a verification code: " + t.getMessage(), t);
+            logger.e("Failed to create a verification code: " + t.getMessage(), t);
             String snackbarErrorMessage = t.getMessage();
             if (t instanceof VerificationCodeCreateServerFailureException) {
               snackbarErrorMessage =
@@ -287,7 +287,7 @@ public class DebugViewModel extends ViewModel {
           .catching(Exception.class, e -> {
             snackbarLiveEvent.postValue(
                 resources.getString(R.string.debug_roaming_country_code_database_error));
-            Log.w(TAG, "Error updating country code database", e);
+            logger.w("Error updating country code database", e);
             return null;
           }, lightweightExecutor);
     }
@@ -298,7 +298,7 @@ public class DebugViewModel extends ViewModel {
         .catching(Exception.class, e -> {
           snackbarLiveEvent.postValue(
               resources.getString(R.string.debug_roaming_country_code_database_error));
-          Log.w(TAG, "Error clearing country code database", e);
+          logger.w("Error clearing country code database", e);
           return null;
         }, lightweightExecutor);
   }

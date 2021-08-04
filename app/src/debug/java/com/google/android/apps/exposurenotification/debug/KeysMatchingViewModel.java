@@ -17,12 +17,12 @@
 
 package com.google.android.apps.exposurenotification.debug;
 
-import android.util.Log;
 import androidx.hilt.lifecycle.ViewModelInject;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import com.google.android.apps.exposurenotification.common.SingleLiveEvent;
+import com.google.android.apps.exposurenotification.common.logging.Logger;
 import com.google.android.apps.exposurenotification.nearby.ExposureNotificationClientWrapper;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.nearby.exposurenotification.ExposureNotificationStatusCodes;
@@ -36,7 +36,7 @@ import java.util.List;
  */
 public class KeysMatchingViewModel extends ViewModel {
 
-  private static final String TAG = "ViewKeysViewModel";
+  private static final Logger logger = Logger.getLogger("KeysMatchingViewModel");
 
   private final MutableLiveData<List<TemporaryExposureKey>> temporaryExposureKeysLiveData;
 
@@ -121,7 +121,7 @@ public class KeysMatchingViewModel extends ViewModel {
         .addOnFailureListener(
             exception -> {
               if (!(exception instanceof ApiException)) {
-                Log.e(TAG, "Unknown error when attempting to start API", exception);
+                logger.e("Unknown error when attempting to start API", exception);
                 apiErrorLiveEvent.call();
                 return;
               }
@@ -129,7 +129,7 @@ public class KeysMatchingViewModel extends ViewModel {
               if (apiException.getStatusCode()
                   == ExposureNotificationStatusCodes.RESOLUTION_REQUIRED) {
                 if (inFlightResolutionLiveData.getValue().hasInFlightResolution()) {
-                  Log.e(TAG, "Error, has in flight resolution", exception);
+                  logger.e("Error, has in flight resolution", exception);
                 } else {
                   inFlightResolutionLiveData.setValue(
                       new InFlightResolution(
@@ -139,7 +139,7 @@ public class KeysMatchingViewModel extends ViewModel {
                           apiException, ResolutionType.GET_TEMPORARY_EXPOSURE_KEY_HISTORY));
                 }
               } else {
-                Log.w(TAG, "No RESOLUTION_REQUIRED in result", apiException);
+                logger.w("No RESOLUTION_REQUIRED in result", apiException);
                 apiErrorLiveEvent.call();
               }
             });
@@ -164,7 +164,7 @@ public class KeysMatchingViewModel extends ViewModel {
         .addOnFailureListener(
             exception -> {
               if (!(exception instanceof ApiException)) {
-                Log.e(TAG, "Unknown error when attempting to start API", exception);
+                logger.e("Unknown error when attempting to start API", exception);
                 apiErrorLiveEvent.call();
                 return;
               }
@@ -172,7 +172,7 @@ public class KeysMatchingViewModel extends ViewModel {
               if (apiException.getStatusCode()
                   == ExposureNotificationStatusCodes.RESOLUTION_REQUIRED) {
                 if (inFlightResolutionLiveData.getValue().hasInFlightResolution()) {
-                  Log.e(TAG, "Error, has in flight resolution", exception);
+                  logger.e("Error, has in flight resolution", exception);
                 } else {
                   inFlightResolutionLiveData.setValue(
                       new InFlightResolution(
@@ -184,7 +184,7 @@ public class KeysMatchingViewModel extends ViewModel {
                           ResolutionType.PREAUTHORIZE_TEMPORARY_EXPOSURE_KEY_RELEASE));
                 }
               } else {
-                Log.w(TAG, "No RESOLUTION_REQUIRED in result", apiException);
+                logger.w("No RESOLUTION_REQUIRED in result", apiException);
                 apiErrorLiveEvent.call();
               }
             });
@@ -214,7 +214,7 @@ public class KeysMatchingViewModel extends ViewModel {
             })
         .addOnFailureListener(
             exception -> {
-              Log.e(TAG, "Unknown error when attempting to start API", exception);
+              logger.e("Unknown error when attempting to start API", exception);
               apiErrorLiveEvent.call();
             });
   }
@@ -234,7 +234,7 @@ public class KeysMatchingViewModel extends ViewModel {
         .addOnSuccessListener(this::handleTemporaryExposureKeys)
         .addOnFailureListener(
             exception -> {
-              Log.e(TAG, "Error handling resolution", exception);
+              logger.e("Error handling resolution", exception);
               apiErrorLiveEvent.call();
             });
   }

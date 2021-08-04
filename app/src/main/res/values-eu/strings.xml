@@ -30,7 +30,8 @@
   <string name="onboarding_exposure_notifications_title">Aktibatu esposizioari buruzko jakinarazpenak</string>
   <string name="onboarding_exposure_notifications_detail">Jakinarazpenak jasoko dituzu COVID-19a duela adierazi duen norbaitengandik hurbil egon bazara.
     \n\nTelefonoak Bluetooth bidezko konexioa erabiltzen du ausazko IDak inguruko telefonoetatik modu seguruan biltzeko eta haiekin partekatzeko.
-    \n\nEsposizio posible batekin erlazionatutako data, iraupena eta seinalearen intentsitatea erabiliko dira osasun-agintaritzak ezarritako parametroetan oinarrituta jakinarazpenik bidaliko zaizun zehazteko.</string>
+    \n\nEsposizio posible batekin erlazionatutako data, iraupena eta seinalearen intentsitatea erabiliko dira osasun-agintaritzak ezarritako parametroetan oinarrituta jakinarazpenik bidaliko zaizun zehazteko.
+    \n\nZure probaren emaitza positiboa bada, litekeena da abisu bat jasotzea emaitza osasun-agintaritzarekin parteka dezazun.</string>
   <string name="onboarding_metrics_title">Lagundu aplikazioa hobetzen</string>
   <string name="onboarding_metrics_subtitle">Partekatu Google-rekin aplikazioaren erabilera- eta errendimendu-datuak</string>
   <string name="onboarding_metrics_description">Aplikazioa mantentzen eta hobetzen laguntzeko, aplikazioaren errendimenduari eta erabilerari buruzko datu anonimoak partekatzen dira Google-rekin. Datuok ez zaituzte identifikatzen. %1$s</string>
@@ -60,10 +61,10 @@
   <string name="notify_turn_on_exposure_notifications_header">COVID-19arekiko esposizio posiblerik izan duzun jakiteko, aktibatu esposizioari buruzko jakinarazpenak. %1$s</string>
   <string name="using_en_helps_even_if_vaccinated">Zerbitzu hau erabiliz zure komunitatea babesten lagunduko duzu (baita txertoa jaso baduzu ere).</string>
   <string name="share_begin_title">Lagundu zure komunitatea babesten</string>
-  <string name="share_close_title">Partekatu gabe irten nahi duzu?</string>
-  <string name="share_close_detail">Komunitateari lagun diezaiokezu probaren emaitza lehenago partekatuz gero. Proben emaitzen inguruan orain arte idatzi duzun informazioa aplikazioan gordeko da, geroago berrekin diezaiozun editatzeari.</string>
-  <string name="btn_resume_later">Bai, irten egin nahi dut</string>
-  <string name="verify_test_result_title">Idatzi COVID-19aren probari buruzko informazioa</string>
+  <string name="share_close_title">Partekatu gabe itxi nahi duzu?</string>
+  <string name="share_close_detail">Komunitateari laguntzeko modurik onena emaitzak lehenbailehen partekatzea da. Orria partekatu gabe itxi arren, utzitako tokian irekiko zaizu itzultzen zarenean, iritziz aldatuz gero.</string>
+  <string name="btn_resume_later">Bai, itxi egin nahi dut</string>
+  <string name="verify_test_result_title">Idatzi egiaztapen-kodea</string>
   <string name="enter_your_test_identifier">Egiaztapen-kodea</string>
   <string name="share_test_identifier_help">Probaren emaitza egiaztatzeko erabiltzen da aldi bakarreko kodea.</string>
   <string name="share_test_identifier_verified">Egiaztatu da kodea</string>
@@ -83,20 +84,19 @@
   <string name="share_review_status_confirmed">Positiboa</string>
   <string name="share_review_status_likely">Positiboa izan liteke</string>
   <string name="share_review_status_negative">Negatiboa</string>
-  <string name="share_review_onset_subtitle">Sintomei buruzko informazioa</string>
-  <string name="share_review_onset_date">Data honetan hasi naiz sintomak sumatzen: %1$s</string>
+  <string name="share_review_onset_subtitle">Sintomak</string>
+  <string name="share_review_onset_date">Hasiera-data: %1$s</string>
   <string name="share_review_onset_no_symptoms">Sintomarik ez</string>
   <string name="share_review_onset_no_answer">Erantzunik gabe</string>
-  <string name="share_review_travel_subtitle">Bidaien historia</string>
-  <string name="share_review_travel_confirmed">Bidaiatu egin dut azken 14 egunetan</string>
+  <string name="share_review_travel_subtitle">Bidaiak</string>
+  <string name="share_review_travel_confirmed">Azken 14 egunetan</string>
   <string name="share_review_travel_no_travel">Ez dut bidaiatu azken 14 egunetan</string>
   <string name="share_review_travel_no_answer">Erantzunik gabe</string>
   <string name="share_confirm_title">Eskerrik asko COVID-19aren probaren emaitza partekatzeagatik</string>
   <string name="not_shared_confirm_title">Probaren emaitza ez da partekatu</string>
   <string name="not_shared_confirm_detail">COVID-19aren probaren emaitza ez da partekatu. Saiatu berriro.</string>
   <string name="status_shared_detail_title">COVID-19aren probaren emaitza partekatua</string>
-  <string name="delete_test_result_title">COVID-19aren probaren emaitza ezabatu nahi duzu?</string>
-  <string name="delete_test_result_detail">Probaren emaitzaren xehetasunak aplikaziotik ezabatuko dira.</string>
+  <string name="delete_test_result_title">Probaren emaitza ezabatu nahi duzu?</string>
   <string name="delete_test_result_confirmed">Ezabatu da probaren emaitza</string>
   <string name="share_error_no_internet">Interneteko konexiorik gabe ezin dira partekatu probaren emaitzak. Egiaztatu Internetera konektatuta zaudela eta saiatu berriro.</string>
   <string name="share_vaccination_title">COVID-19aren aurkako txertoa jaso duzu?</string>
@@ -105,6 +105,29 @@
   <string name="share_vaccination_vaccinated">Bai, txertoa jaso dut</string>
   <string name="share_vaccination_not_vaccinated">Ez</string>
   <string name="share_vaccination_unknown">Nahiago dut ez erantzun</string>
+  <string name="do_you_have_code_title">Jaso al duzu kodea?</string>
+  <string name="do_you_have_code_content">COVID-19aren probaren emaitza positiboa bada, osasun-agintaritzak egiaztapen-kode bat bidali ohi du dei edo testu-mezu bidez, emaitza partekatu ahal izan dezazun.</string>
+  <string name="btn_i_have_code">Bai, badaukat kodea</string>
+  <string name="btn_i_need_code">Kode bat behar dut</string>
+  <string name="get_verification_code_title">Eskuratu egiaztapen-kode bat</string>
+  <string name="phone_number_prompt">Telefono-zenbakia</string>
+  <string name="phone_number_help">Egiaztapen-kodearekin, probaren emaitza partekatu ahal izango duzu. Zuk emandako zenbakira bidaliko da kodea.</string>
+  <string name="phone_number_may_be_stored_help">Jendeak emaitza bat baino gehiago bidaltzea ekiditeko, baliteke osasun-agintaritzak telefono-zenbakia aldi baterako gordetzea.</string>
+  <string name="test_date_prompt">Probaren data</string>
+  <string name="test_date_help">Probaren datak azken 14 egunetakoa izan behar du.</string>
+  <string name="tested_for_covid_checkbox_text">COVID-19aren probaren emaitza positibo bat jaso dut azken 14 egunetan.</string>
+  <string name="btn_send_code">Bidali kodea</string>
+  <string name="enter_code_help">Idatzi %1$s osasun-agintaritzak bidali dizun kodea.</string>
+  <string name="positive_result_already_reported_title">Emaitza baten berri eman duzu duela gutxi.</string>
+  <string name="positive_result_already_reported_content">Beste emaitza baten berri eman nahi baduzu, jarri %1$s osasun-agintaritzarekin harremanetan.</string>
+  <string name="self_report_bad_code">Kodeak ez du balio. Ziurtatu gailu bera erabili duzula egiaztapen-kodea eskatzeko eta idazteko.</string>
+  <string name="self_report_bad_phone_number">Egiaztatu zenbakia zuzena dela eta saiatu berriro. %1$s</string>
+  <string name="self_report_code_requested_too_many_times">Eskaera gehiegi egin dituzu. Oraindik ez baduzu koderik eskuratu, jarri %1$s osasun-agintaritzarekin harremanetan.</string>
+  <plurals name="self_report_code_already_requested">
+    <item quantity="one">Eskaera gehiegi egin dituzu. %1$d minutu barru eskatu ahal izango duzu beste kode bat.</item>
+    <item quantity="other">Eskaera gehiegi egin dituzu. %1$d minutu barru eskatu ahal izango duzu beste kode bat.</item>
+  </plurals>
+  <string name="notify_others_notification_title">Jakinarazi jendeari agian arriskuan egon dela</string>
   <string name="settings_exposure_notifications_subtitle">Esposizioari buruzko jakinarazpenak</string>
   <string name="settings_app_analytics_subtitle">Aplikazioaren erabilera eta errendimendua partekatzeko aukera</string>
   <string name="settings_privacy_policy">Pribatutasun-gidalerroak</string>
@@ -156,7 +179,7 @@
   <string name="share_error">Ezin izan da partekatu probaren emaitza. Saiatu berriro geroago.</string>
   <string name="generic_error_message">Arazoren bat izan da. Saiatu berriro.</string>
   <string name="code_error_already_submitted">Kodea dagoeneko erabili da probaren emaitza partekatzeko</string>
-  <string name="gms_unavailable_error">Google Play-ren zerbitzuen azken bertsioa behar dute esposizioari buruzko jakinarazpenek.</string>
+  <string name="gms_unavailable_error">Google Play Services-en azken bertsioa behar dute esposizioari buruzko jakinarazpenek.</string>
   <string name="browser_unavailable_error">Edukia ikusteko, ziurtatu azken arakatzaileetako bat instalatuta daukazula gailuan.</string>
   <string name="settings_private_analytics_subtitle">Jakinarazpenetako estatistikak partekatzeko aukera</string>
   <string name="private_analytics_title">Lagundu osasun-agintariei COVID-19aren hedapena ulertzen</string>
@@ -166,4 +189,9 @@
   <string name="private_analytics_footer_learn_more">Lortu informazio gehiago</string>
   <string name="diagnosis_subtitle_template">%1$s (%2$s)</string>
   <string name="empty_share_history_body">Ez da aurkitu partekatze-historiarik</string>
+  <string name="share_diagnosis_share_test_result_title">Partekatu probaren emaitza %1$s bidez</string>
+  <string name="share_diagnosis_share_test_result_subtitle">Eskerrik asko COVID-19a geldiarazten laguntzeagatik.</string>
+  <string name="share_diagnosis_share_test_result_body">Emaitza partekatzen duzunean, lehen sintomak noiz nabaritu zenituen ere zehatz dezakezu. Baliteke informazio horrek COVID-19aren hedapena geldiaraztea eta bizitzak salbatzea.</string>
+  <string name="sms_intercept_notice_title">Berritasunak</string>
+  <string name="sms_intercept_notice_content">Tokiko osasun-agintaritzak probaren emaitza bidaltzen badizu, litekeena da aplikazioak abisu bat bidaltzea emaitza bidal dezazun eta besteei esposizio posiblearen berri eman diezaiezun. Funtzio hori desgaitzeko, joan Ezarpenak atalera.</string>
 </resources>

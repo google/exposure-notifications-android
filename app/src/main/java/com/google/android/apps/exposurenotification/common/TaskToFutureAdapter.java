@@ -31,8 +31,6 @@ import org.threeten.bp.Duration;
  */
 public final class TaskToFutureAdapter {
 
-  private static final String TAG = "TaskToFutureAdapter";
-
   public static <T> ListenableFuture<T> getFutureWithTimeout(
       Task<T> task, Duration timeout, ScheduledExecutorService executor) {
     return FluentFuture.<T>from(

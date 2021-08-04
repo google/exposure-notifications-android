@@ -38,7 +38,6 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class AgencyFragment extends BaseFragment {
 
-  private static final String TAG = "AgencyFragment";
   private FragmentAgencyBinding binding;
 
   public static AgencyFragment newInstance() {

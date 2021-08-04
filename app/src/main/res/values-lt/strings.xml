@@ -30,7 +30,8 @@
   <string name="onboarding_exposure_notifications_title">Pranešimų apie galimą kontaktą su užsikrėt. asmeniu įjung.</string>
   <string name="onboarding_exposure_notifications_detail">Gaukite pranešimą, jei buvote šalia žmogaus, kuris pranešė, kad serga COVID-19.
     \n\nTelefone naudojamas „Bluetooth“, kad būtų galima saugiai rinkti atsitiktinius ID ir juos bendrinti su kitais netoliese esančiais telefonais.
-    \n\nAr gausite pranešimą pagal jūsų visuomenės sveikatos institucijos nustatytus parametrus, bus vertinama atsižvelgiant į galimo kontakto su užsikrėtusiu asmeniu datą, trukmę ir signalo stiprumą.</string>
+    \n\nAr gausite pranešimą pagal jūsų visuomenės sveikatos institucijos nustatytus parametrus, bus vertinama atsižvelgiant į galimo kontakto su užsikrėtusiu asmeniu datą, trukmę ir signalo stiprumą.
+    \n\nJei jūsų testo rezultatas teigiamas, galite gauti priminimą bendrinti rezultatus su sveikatos institucijos.</string>
   <string name="onboarding_metrics_title">Padėkite tobulinti šią programą</string>
   <string name="onboarding_metrics_subtitle">Programos naudojimo ir našumo duom. bendrinimas su „Google“</string>
   <string name="onboarding_metrics_description">Siekiant padėti tvarkyti ir tobulinti programą, su „Google“ bendrinami tam tikri riboti anonimizuoti duomenys apie programos našumą ir naudojimą. Pagal šiuos duomenis negalima jūsų identifikuoti. %1$s</string>
@@ -62,10 +63,10 @@
   <string name="notify_turn_on_exposure_notifications_header">Jei norite gauti pranešimus apie galimą kontaktą su COVID-19 užsikrėtusiu asmeniu, įjunkite stebėjimo sistemą „Pranešimai apie galimą kontaktą su užsikrėtusiu asmeniu“. %1$s</string>
   <string name="using_en_helps_even_if_vaccinated">Naudodamiesi šia paslauga apsaugosite bendruomenę, net jei esate pasiskiepiję.</string>
   <string name="share_begin_title">Padėkite apsaugoti savo bendruomenę</string>
-  <string name="share_close_title">Išeiti nebendrinant?</string>
-  <string name="share_close_detail">Padėsite bendruomenei, jei greičiau bendrinsite testo rezultatą. Įvesta testo rezultato informacija yra išsaugota programoje, kad vėliau galėtumėte ją redaguoti.</string>
-  <string name="btn_resume_later">Taip, išeiti</string>
-  <string name="verify_test_result_title">Įveskite COVID-19 testo informaciją</string>
+  <string name="share_close_title">Uždaryti nebendrinant?</string>
+  <string name="share_close_detail">Geriausias būdas padėti bendruomenei yra kiek įmanoma greičiau bendrinti savo rezultatus. Jei dabar uždarysite nebendrinę rezultatų, vėliau apsigalvoję galėsite tęsti nuo ten, kur baigėte.</string>
+  <string name="btn_resume_later">Taip, uždaryti</string>
+  <string name="verify_test_result_title">Įveskite patvirtinimo kodą</string>
   <string name="enter_your_test_identifier">Patvirtinimo kodas</string>
   <string name="share_test_identifier_help">Šis vienkartinis kodas naudojamas jūsų testo rezultatui patvirtinti.</string>
   <string name="share_test_identifier_verified">Kodas patvirtintas</string>
@@ -75,30 +76,29 @@
   <string name="test_date_label">Simptomų pradžios data</string>
   <string name="share_onset_symptoms">Taip</string>
   <string name="share_onset_no_symptoms">Ne</string>
-  <string name="share_onset_no_answer">Nenoriu nurodyti</string>
+  <string name="share_onset_no_answer">Norėčiau neatsakyti</string>
   <string name="share_travel_title">Ar keliavote per pastarąsias 14 dienų?</string>
   <string name="share_travel_confirmed">Taip</string>
   <string name="share_travel_no_travel">Ne</string>
-  <string name="share_travel_no_answer">Nenoriu nurodyti</string>
+  <string name="share_travel_no_answer">Norėčiau neatsakyti</string>
   <string name="share_review_title">Peržiūrėkite informaciją</string>
   <string name="share_review_status_subtitle">COVID-19 būsena</string>
   <string name="share_review_status_confirmed">Teigiamas</string>
   <string name="share_review_status_likely">Tikėtinas</string>
   <string name="share_review_status_negative">Neigiamas</string>
-  <string name="share_review_onset_subtitle">Informacija apie simptomus</string>
-  <string name="share_review_onset_date">Simptomai pasireiškė %1$s</string>
+  <string name="share_review_onset_subtitle">Simptomai</string>
+  <string name="share_review_onset_date">Prasidėjo %1$s</string>
   <string name="share_review_onset_no_symptoms">Jokių simptomų</string>
   <string name="share_review_onset_no_answer">Nenurodyta</string>
-  <string name="share_review_travel_subtitle">Kelionių istorija</string>
-  <string name="share_review_travel_confirmed">Keliavo per pastarąsias 14 dienų</string>
+  <string name="share_review_travel_subtitle">Kelionės</string>
+  <string name="share_review_travel_confirmed">Per pastarąsias keturiolika dienų</string>
   <string name="share_review_travel_no_travel">Nekeliavo per pastarąsias 14 dienų</string>
   <string name="share_review_travel_no_answer">Nenurodyta</string>
-  <string name="share_confirm_title">Dėkojame, kad bendrinate COVID-19 būseną</string>
+  <string name="share_confirm_title">Dėkojame, kad bendrinate COVID-19 rezultatą</string>
   <string name="not_shared_confirm_title">Jūsų testo rezultatas nebendrinamas</string>
   <string name="not_shared_confirm_detail">Jūsų COVID-19 testo rezultatas nebendrinamas. Bandykite dar kartą.</string>
   <string name="status_shared_detail_title">Bendrinama informacija apie sirgimą COVID-19</string>
-  <string name="delete_test_result_title">Ištrinti COVID-19 testo rezultatą?</string>
-  <string name="delete_test_result_detail">Išsami jūsų testo rezultato informacija bus ištrinta iš šios programos.</string>
+  <string name="delete_test_result_title">Ištrinti testo rezultatą?</string>
   <string name="delete_test_result_confirmed">Testo rezultatas ištrintas</string>
   <string name="share_error_no_internet">Negalima bendrinti testo rezultatų neprisijungus. Patikrinkite interneto ryšį ir bandykite dar kartą.</string>
   <string name="share_vaccination_title">Ar esate pasiskiepiję nuo COVID-19?</string>
@@ -107,6 +107,31 @@
   <string name="share_vaccination_vaccinated">Taip, pasiskiepijau</string>
   <string name="share_vaccination_not_vaccinated">Ne</string>
   <string name="share_vaccination_unknown">Norėčiau neatsakyti</string>
+  <string name="do_you_have_code_title">Ar gavote kodą?</string>
+  <string name="do_you_have_code_content">Jei jūsų COVID-19 testo rezultatas teigiamas, visuomenės sveikatos institucija paprastai pateikia patvirtinimo kodą telefonu arba teksto pranešimu, kad galėtumėte bendrinti savo rezultatus.</string>
+  <string name="btn_i_have_code">Taip, turiu kodą</string>
+  <string name="btn_i_need_code">Man reikia kodo</string>
+  <string name="get_verification_code_title">Patvirtinimo kodo gavimas</string>
+  <string name="phone_number_prompt">Telefono numeris</string>
+  <string name="phone_number_help">Patvirtinimo kodas suteikia galimybę bendrinti testo rezultatus. Kodas bus išsiųstas jūsų nurodytu telefono numeriu.</string>
+  <string name="phone_number_may_be_stored_help">Siekiant užtikrinti, kad žmonės negalėtų pateikti kelių rezultatų, visuomenės sveikatos institucija gali laikinai išsaugoti jūsų telefono numerį.</string>
+  <string name="test_date_prompt">Testo atlikimo data</string>
+  <string name="test_date_help">Testas turi būti atliktas per pastarąsias keturiolika dienų.</string>
+  <string name="tested_for_covid_checkbox_text">Gavau teigiamą COVID-19 testo rezultatą per pastarąsias keturiolika dienų.</string>
+  <string name="btn_send_code">Siųsti kodą</string>
+  <string name="enter_code_help">Įveskite kodą, kurį jums atsiuntė %1$s.</string>
+  <string name="positive_result_already_reported_title">Neseniai jau pranešėte apie testo rezultatą.</string>
+  <string name="positive_result_already_reported_content">Jei norite pranešti apie kitą testo rezultatą, susisiekite su %1$s.</string>
+  <string name="self_report_bad_code">Netinkamas kodas. Įsitikinkite, kad prašote patvirtinimo kodo ir jį įvedate naudodami tą patį įrenginį.</string>
+  <string name="self_report_bad_phone_number">Patikrinkite telefono numerį ir bandykite dar kartą. %1$s</string>
+  <string name="self_report_code_requested_too_many_times">Pateikėte per daug užklausų. Jei vis dar reikia kodo, susisiekite su %1$s.</string>
+  <plurals name="self_report_code_already_requested">
+    <item quantity="one">Pateikėte per daug užklausų. Kitą kodo užklausą galite pateikti po %1$d minutės.</item>
+    <item quantity="few">Pateikėte per daug užklausų. Kitą kodo užklausą galite pateikti po %1$d minučių.</item>
+    <item quantity="many">Pateikėte per daug užklausų. Kitą kodo užklausą galite pateikti po %1$d minutės.</item>
+    <item quantity="other">Pateikėte per daug užklausų. Kitą kodo užklausą galite pateikti po %1$d minučių.</item>
+  </plurals>
+  <string name="notify_others_notification_title">Padėkite informuoti kitus žmones, kurie galėjo turėti kontaktą su jumis</string>
   <string name="settings_exposure_notifications_subtitle">Praneš. apie gal. kont. su užsikr. asm.</string>
   <string name="settings_app_analytics_subtitle">Progr. naud. ir našumo duom. bendrinimas</string>
   <string name="settings_privacy_policy">Privatumo politika</string>
@@ -168,4 +193,9 @@
   <string name="private_analytics_footer_learn_more">Sužinokite daugiau</string>
   <string name="diagnosis_subtitle_template">%1$s %2$s</string>
   <string name="empty_share_history_body">Bendrinimo istorijos nėra</string>
+  <string name="share_diagnosis_share_test_result_title">Bendrinkite testo rezultatą naudodami „%1$s“</string>
+  <string name="share_diagnosis_share_test_result_subtitle">Dėkojame, kad padedate stabdyti COVID-19 plitimą.</string>
+  <string name="share_diagnosis_share_test_result_body">Kai bendrinate savo rezultatą, taip pat galite nurodyti, kada pasireiškė simptomai. Ši informacija gali padėti stabdyti COVID-19 plitimą ir išgelbėti gyvybes.</string>
+  <string name="sms_intercept_notice_title">Kas naujo</string>
+  <string name="sms_intercept_notice_content">Jei vietinė sveikatos institucija išsiunčia testo rezultatą, programa gali priminti pateikti rezultatą ir padėti įspėti kitus žmones apie galimą kontaktą su užsikrėtusiu asmeniu. Bet kada galite tai išjungti nustatymuose.</string>
 </resources>

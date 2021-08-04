@@ -24,9 +24,9 @@ import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.format.DateUtils;
 import android.text.style.URLSpan;
-import android.util.Log;
 import androidx.annotation.VisibleForTesting;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.common.logging.Logger;
 import com.google.android.apps.exposurenotification.riskcalculation.ExposureClassification;
 import com.google.common.io.BaseEncoding;
 import java.security.SecureRandom;
@@ -45,7 +45,7 @@ import org.threeten.bp.format.DateTimeFormatter;
  * Simple util class for manipulating strings.
  */
 public final class StringUtils {
-  private static final String TAG = "StringUtils";
+  private static final Logger logger = Logger.getLogger("StringUtils");
 
   private static final SecureRandom RAND = new SecureRandom();
   private static final BaseEncoding BASE64 = BaseEncoding.base64();
@@ -191,7 +191,7 @@ public final class StringUtils {
   static long calculateDaysFromStartOfExposure(Instant exposureStartOfDayUTC, Instant nowUTC) {
     Duration timeSinceExposure = Duration.between(exposureStartOfDayUTC, nowUTC);
     if (timeSinceExposure.isNegative()) {
-      Log.e(TAG, "Negative time since exposure!");
+      logger.e("Negative time since exposure!");
       return 1;
     }
     long daysSinceExposureRoundedDown = timeSinceExposure.toDays();

@@ -17,6 +17,8 @@
 
 package com.google.android.apps.exposurenotification.debug;
 
+import static com.google.android.apps.exposurenotification.debug.VerifiableSmsActivity.EXTRA_VERIFICATION_CODE;
+
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -25,7 +27,6 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import androidx.annotation.NonNull;
@@ -37,6 +38,8 @@ import androidx.work.WorkInfo;
 import androidx.work.WorkInfo.State;
 import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.common.KeyboardHelper;
+import com.google.android.apps.exposurenotification.common.SnackbarUtil;
+import com.google.android.apps.exposurenotification.common.logging.Logger;
 import com.google.android.apps.exposurenotification.databinding.FragmentDebugHomeBinding;
 import com.google.android.apps.exposurenotification.debug.VerificationCodeCreator.VerificationCode;
 import com.google.android.gms.common.GoogleApiAvailability;
@@ -44,7 +47,6 @@ import com.google.android.libraries.privateanalytics.PrivateAnalyticsMetric;
 import com.google.android.material.datepicker.CalendarConstraints;
 import com.google.android.material.datepicker.CalendarConstraints.DateValidator;
 import com.google.android.material.datepicker.MaterialDatePicker;
-import com.google.android.material.snackbar.Snackbar;
 import dagger.hilt.android.AndroidEntryPoint;
 import java.util.List;
 import java.util.Locale;
@@ -59,7 +61,7 @@ import org.threeten.bp.format.FormatStyle;
 @AndroidEntryPoint
 public final class DebugActivity extends AppCompatActivity {
 
-  private static final String TAG = "DebugHomeActivity";
+  private static final Logger logger = Logger.getLogger("DebugHomeActivity");
   private static final DateTimeFormatter CODE_EXPIRY_FORMAT =
       DateTimeFormatter.ofPattern("HH:mm").withZone(ZoneOffset.UTC);
   private static final DateTimeFormatter SYMPTOM_ONSET_DATE_FORMATTER =
@@ -188,7 +190,7 @@ public final class DebugActivity extends AppCompatActivity {
             this,
             workInfos -> {
               if (workInfos == null) {
-                Log.e(TAG, "workInfos is null");
+                logger.e("workInfos is null");
                 binding.debugMatchingJobStatus.setText(getString(R.string.debug_job_status,
                     getString(R.string.debug_job_status_error)));
                 return;
@@ -213,7 +215,7 @@ public final class DebugActivity extends AppCompatActivity {
                   }
                   break;
                 default:
-                  Log.e(TAG, "workInfos.size() != 1");
+                  logger.e("workInfos.size() != 1");
                   jobStatusText = getString(
                       R.string.debug_job_status, getString(R.string.debug_job_status_error));
                   break;
@@ -259,15 +261,14 @@ public final class DebugActivity extends AppCompatActivity {
           ClipData clip = ClipData.newPlainText(
               binding.debugVerificationCode.getText(), binding.debugVerificationCode.getText());
           clipboard.setPrimaryClip(clip);
-          Snackbar.make(
+          SnackbarUtil.maybeShowRegularSnackbar(
               v,
               getString(
                   R.string.debug_snackbar_copied_text,
-                  binding.debugVerificationCode.getText()),
-              Snackbar.LENGTH_SHORT)
-              .show();
+                  binding.debugVerificationCode.getText()));
         });
 
+    binding.debugCreateVerifiableSmsButton.setEnabled(false);
     debugViewModel.getVerificationCodeLiveData().observe(
         this,
         verificationCode -> {
@@ -276,6 +277,7 @@ public final class DebugActivity extends AppCompatActivity {
           }
           if (verificationCode.equals(VerificationCode.EMPTY)) {
             binding.debugVerificationCodeContainer.setVisibility(View.GONE);
+            binding.debugCreateVerifiableSmsButton.setEnabled(false);
             return;
           }
           binding.debugVerificationCodeContainer.setVisibility(View.VISIBLE);
@@ -283,6 +285,17 @@ public final class DebugActivity extends AppCompatActivity {
           binding.debugVerificationCodeExpiry.setText(getApplicationContext()
               .getString(R.string.debug_verification_code_expiry,
                   CODE_EXPIRY_FORMAT.format(verificationCode.expiry())));
+          binding.debugCreateVerifiableSmsButton.setEnabled(true);
+          binding.debugCreateVerifiableSmsButton.setOnClickListener(
+              v -> {
+                if (VerificationCode.EMPTY.equals(verificationCode)) {
+                  maybeShowSnackbar(getString(R.string.debug_verifiable_sms_no_code_error));
+                } else {
+                  Intent intent = new Intent(this, VerifiableSmsActivity.class);
+                  intent.putExtra(EXTRA_VERIFICATION_CODE, verificationCode);
+                  startActivity(intent);
+                }
+              });
         });
   }
 
@@ -301,16 +314,14 @@ public final class DebugActivity extends AppCompatActivity {
     try {
       return getPackageManager().getPackageInfo(packageName, 0).versionName;
     } catch (NameNotFoundException e) {
-      Log.e(TAG, "Couldn't get the app version", e);
+      logger.e("Couldn't get the app version", e);
     }
     return getString(R.string.debug_version_not_available);
   }
 
   private void maybeShowSnackbar(String message) {
     View rootView = findViewById(android.R.id.content);
-    if (rootView != null) {
-      Snackbar.make(rootView, message, Snackbar.LENGTH_LONG).show();
-    }
+    SnackbarUtil.maybeShowRegularSnackbar(rootView, message);
   }
 
   private void showMaterialDatePicker() {

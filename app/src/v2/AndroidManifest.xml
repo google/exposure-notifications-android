@@ -20,8 +20,9 @@
   package="com.google.android.apps.exposurenotification">
 
   <application
-    android:allowBackup="false"
-    android:fullBackupOnly="false">
+    android:allowBackup="true"
+    android:fullBackupOnly="false"
+    android:backupAgent=".restore.ExposureNotificationBackupAgent">
 
     <activity
       android:name=".home.ExposureNotificationActivity"
@@ -29,6 +30,9 @@
       android:launchMode="singleTask"
       android:clearTaskOnLaunch="true"
       android:windowSoftInputMode="stateHidden|adjustResize">
+
+      <meta-data android:name="com.google.android.backup.api_key"
+        android:value="unused" />
 
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>

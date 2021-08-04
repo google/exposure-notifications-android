@@ -209,4 +209,42 @@
 
   <string name="debug_version">Version</string>
 
+  <string name="debug_matching_camera_permission_prompt_title">Camera permission required</string>
+
+  <string name="debug_matching_camera_permission_prompt_message">Add camera permission to scan QR code?</string>
+
+  <string name="debug_matching_camera_permission_error">Camera permission is required to scan QR code</string>
+
+  <string name="debug_verifiable_sms_create_button_text">Package into verifiable SMS</string>
+
+  <string name="debug_verifiable_sms_activity_title">Verifiable SMS</string>
+
+  <string name="debug_verifiable_sms_message_title">Sms</string>
+
+  <string name="debug_verifiable_sms_message_help">To trigger Exposure Notifications API\'s SMS verification, copy this SMS to the devices default SMS messenger app and send it to this device\'s phone number.</string>
+
+  <string name="debug_verifiable_sms_message_subtitle">SMS message</string>
+
+  <string name="debug_verifiable_sms_phone_number">Phone number</string>
+
+  <string name="debug_verifiable_generate_sms">Generate SMS</string>
+
+  <string name="debug_verifiable_sms_key_title">Signature key</string>
+
+  <string name="debug_verifiable_sms_key_help">The SMS above is signed with a randomly generated key. The Exposure Notifications API must be in debug mode and needs info about the signature. Tap each item below to copy it; then paste into Exposure Notifications debug controls.</string>
+
+  <string name="debug_verifiable_sms_no_code_error">No verification code set. Please create one and try again.</string>
+
+  <string name="debug_verifiable_sms_no_phone_number_error">Phone number could not be queried. Please enter your phone number manually.</string>
+
+  <string name="debug_verifiable_sms_invalid_phone_number_error">Could not normalize phone number. Is the entered number valid?</string>
+
+  <string name="debug_verifiable_sms_generation_error">Error creating sms.</string>
+
+  <string name="debug_verifiable_sms_phone_state_permission_prompt_title">Read phone state permission required</string>
+
+  <string name="debug_verifiable_sms_phone_state_permission_prompt_message">Add read phone state permission to auto-fill in phone number?</string>
+
+  <string name="debug_verifiable_sms_phone_state_permission_error">Read phone state permission is required to auto-fill in phone number. Please provide it manually. </string>
+
 </resources>

@@ -30,7 +30,8 @@
   <string name="onboarding_exposure_notifications_title">Temas Bildirimleri\'ni açın</string>
   <string name="onboarding_exposure_notifications_detail">COVID-19 olduğunu bildiren birinin yakınında bulunmanız durumunda bildirim alın.
     \n\nTelefonunuz, rastgele kimlikleri yakındaki diğer telefonlardan güvenli bir şekilde toplamak ve bu telefonlarla paylaşmak için Bluetooth\'u kullanır.
-    \n\nOlası temasla ilişkilendirilen tarih, süre ve sinyal gücü bilgileri, kamu sağlığı yetkiliniz tarafından belirlenen parametrelere göre size bildirim gönderilip gönderilmeyeceğini belirlemek için kullanılır.</string>
+    \n\nOlası temasla ilişkilendirilen tarih, süre ve sinyal gücü bilgileri, kamu sağlığı yetkiliniz tarafından belirlenen parametrelere göre size bildirim gönderilip gönderilmeyeceğini belirlemek için kullanılır.
+    \n\nTestiniz pozitifse sonuçlarınızı yetkili sağlık biriminizle paylaşmanız yönünde bir bildirim alabilirsiniz.</string>
   <string name="onboarding_metrics_title">Bu uygulamayı daha iyi hale getirmeye yardımcı olun</string>
   <string name="onboarding_metrics_subtitle">Uygulama kullanım ve performans verilerini Google\'la paylaşın</string>
   <string name="onboarding_metrics_description">Uygulamayı sürdürmek ve iyileştirmek için uygulama performansı ve kullanımı ile ilgili bazı sınırlı, kimlik bilgilerinden arındırılmış veriler Google\'la paylaşılır. Bu veriler kimlik bilgilerinizi tanımlamaz. %1$s</string>
@@ -60,10 +61,10 @@
   <string name="notify_turn_on_exposure_notifications_header">Olası COVID-19 temas durumu ile ilgili bilgilendirilmek için Temas Bildirimleri\'ni açın. %1$s</string>
   <string name="using_en_helps_even_if_vaccinated">Aşı olmuş olsanız bile bu hizmeti kullanmak topluluğunuzu korumanıza yardımcı olur.</string>
   <string name="share_begin_title">Topluluğunuzu korumaya yardımcı olun</string>
-  <string name="share_close_title">Paylaşmadan çıkış yapılsın mı?</string>
-  <string name="share_close_detail">Çevrenizdekilere en iyi şekilde yardımcı olmak için test sonucunu hemen paylaşın. Şu ana kadar girdiğiniz test sonucu bilgileri, daha sonra düzenlemeye devam edebilmeniz için uygulamaya kaydedildi.</string>
-  <string name="btn_resume_later">Evet, çık</string>
-  <string name="verify_test_result_title">COVID-19 test bilgilerini girin</string>
+  <string name="share_close_title">Paylaşmadan kapatılsın mı?</string>
+  <string name="share_close_detail">Topluluğunuza yardım etmenin en iyi yolu, sonuçlarınızı en kısa sürede paylaşmaktır. Şimdi paylaşmadan kapatırsanız, daha sonra fikriniz değişirse kaldığınız yerden devam edebilirsiniz.</string>
+  <string name="btn_resume_later">Evet, kapat</string>
+  <string name="verify_test_result_title">Doğrulama kodunuzu girin</string>
   <string name="enter_your_test_identifier">Doğrulama kodu</string>
   <string name="share_test_identifier_help">Bu tek kullanımlık kod, test sonucunuzu doğrulamak için kullanılır.</string>
   <string name="share_test_identifier_verified">Kod doğrulandı</string>
@@ -73,30 +74,29 @@
   <string name="test_date_label">Belirtilerin başladığı tarih</string>
   <string name="share_onset_symptoms">Evet</string>
   <string name="share_onset_no_symptoms">Hayır</string>
-  <string name="share_onset_no_answer">Yanıt vermek istemiyorum</string>
+  <string name="share_onset_no_answer">Yanıtlamamayı tercih ederim</string>
   <string name="share_travel_title">Son 14 gün içinde seyahat ettiniz mi?</string>
   <string name="share_travel_confirmed">Evet</string>
   <string name="share_travel_no_travel">Hayır</string>
-  <string name="share_travel_no_answer">Yanıt vermek istemiyorum</string>
+  <string name="share_travel_no_answer">Yanıtlamamayı tercih ederim</string>
   <string name="share_review_title">Bilgilerinizi inceleyin</string>
   <string name="share_review_status_subtitle">COVID-19 durumu</string>
   <string name="share_review_status_confirmed">Pozitif</string>
   <string name="share_review_status_likely">Olası</string>
   <string name="share_review_status_negative">Negatif</string>
-  <string name="share_review_onset_subtitle">Belirti bilgisi</string>
-  <string name="share_review_onset_date">%1$s tarihindeki belirtiler</string>
+  <string name="share_review_onset_subtitle">Belirtiler</string>
+  <string name="share_review_onset_date">%1$s tarihinde başladı</string>
   <string name="share_review_onset_no_symptoms">Belirti yok</string>
   <string name="share_review_onset_no_answer">Yanıt verilmedi</string>
-  <string name="share_review_travel_subtitle">Seyahat geçmişi</string>
-  <string name="share_review_travel_confirmed">Son 14 gün içinde seyahat edildi</string>
+  <string name="share_review_travel_subtitle">Seyahat</string>
+  <string name="share_review_travel_confirmed">Son 14 gün içinde</string>
   <string name="share_review_travel_no_travel">Son 14 gün içinde seyahat edilmedi</string>
   <string name="share_review_travel_no_answer">Yanıt verilmedi</string>
-  <string name="share_confirm_title">COVID-19 durumunuzu paylaştığınız için teşekkür ederiz</string>
+  <string name="share_confirm_title">COVID-19 sonucunuzu paylaştığınız için teşekkür ederiz</string>
   <string name="not_shared_confirm_title">Test sonucunuz paylaşılmadı</string>
   <string name="not_shared_confirm_detail">COVID-19 testi sonucunuz paylaşılmadı. Lütfen tekrar deneyin.</string>
   <string name="status_shared_detail_title">Paylaşılan COVID-19 durumu</string>
-  <string name="delete_test_result_title">COVID-19 test sonucu silinsin mi?</string>
-  <string name="delete_test_result_detail">Test sonucunuzun ayrıntıları bu uygulamadan silinecek.</string>
+  <string name="delete_test_result_title">Test sonucunuz silinsin mi?</string>
   <string name="delete_test_result_confirmed">Test sonucu silindi</string>
   <string name="share_error_no_internet">Test sonuçları çevrimdışı olarak paylaşılamaz. İnternet bağlantınızı kontrol edip tekrar deneyin.</string>
   <string name="share_vaccination_title">Covid-19 aşısı oldunuz mu?</string>
@@ -104,7 +104,30 @@
   <string name="share_vaccination_learn_more">Daha fazla bilgi</string>
   <string name="share_vaccination_vaccinated">Evet, aşı oldum</string>
   <string name="share_vaccination_not_vaccinated">Hayır</string>
-  <string name="share_vaccination_unknown">Yanıt vermek istemiyorum</string>
+  <string name="share_vaccination_unknown">Yanıtlamamayı tercih ederim</string>
+  <string name="do_you_have_code_title">Tarafınıza kod gönderildi mi?</string>
+  <string name="do_you_have_code_content">COVID-19 testiniz pozitifse sağlık yetkiliniz, sonuçlarınızı paylaşabilmeniz için genellikle telefon veya kısa mesajla bir doğrulama kodu iletir.</string>
+  <string name="btn_i_have_code">Evet, kodum var</string>
+  <string name="btn_i_need_code">Kod almam gerek</string>
+  <string name="get_verification_code_title">Doğrulama kodu alın</string>
+  <string name="phone_number_prompt">Telefon numarası</string>
+  <string name="phone_number_help">Doğrulama kodu, test sonuçlarınızı paylaşmanızı sağlar. Kodunuz, verdiğiniz numaraya gönderilir.</string>
+  <string name="phone_number_may_be_stored_help">Telefon numaranız, kişilerin birden fazla sonuç göndermesini önlemek için kamu sağlığı yetkiliniz tarafından geçici bir süreliğine saklanabilir.</string>
+  <string name="test_date_prompt">Test tarihi</string>
+  <string name="test_date_help">Test tarihi, son 14 gün içinde olmalıdır.</string>
+  <string name="tested_for_covid_checkbox_text">Son 14 gün içinde bir COVID-19 testim pozitif çıktı.</string>
+  <string name="btn_send_code">Kod gönder</string>
+  <string name="enter_code_help">%1$s tarafından size gönderilen kodu girin.</string>
+  <string name="positive_result_already_reported_title">Zaten kısa süre önce bir test sonucu paylaştınız.</string>
+  <string name="positive_result_already_reported_content">Başka bir test sonucu paylaşmak isterseniz lütfen %1$s ile iletişime geçin.</string>
+  <string name="self_report_bad_code">Geçersiz kod. Doğrulama kodunuzu istemek ve girmek için aynı cihazı kullandığınızdan emin olun.</string>
+  <string name="self_report_bad_phone_number">Numaranızı kontrol edip tekrar deneyin. %1$s</string>
+  <string name="self_report_code_requested_too_many_times">Çok fazla istek gönderdiniz. Hâlâ kod almanız gerekiyorsa %1$s ile iletişime geçin.</string>
+  <plurals name="self_report_code_already_requested">
+    <item quantity="one">Çok fazla istek gönderdiniz. %1$d dakika sonra tekrar kod isteği gönderebilirsiniz.</item>
+    <item quantity="other">Çok fazla istek gönderdiniz. %1$d dakika sonra tekrar kod isteği gönderebilirsiniz.</item>
+  </plurals>
+  <string name="notify_others_notification_title">Temasta bulunmuş olabilecek diğer kişileri bilgilendirmeye yardımcı olun</string>
   <string name="settings_exposure_notifications_subtitle">Temas Bildirimleri</string>
   <string name="settings_app_analytics_subtitle">Kullanım ve performans verisi paylaşımı</string>
   <string name="settings_privacy_policy">Gizlilik politikası</string>
@@ -166,4 +189,9 @@
   <string name="private_analytics_footer_learn_more">Daha fazla bilgi</string>
   <string name="diagnosis_subtitle_template">%2$s tarihinde %1$s</string>
   <string name="empty_share_history_body">Paylaşım geçmişi yok</string>
+  <string name="share_diagnosis_share_test_result_title">Test sonucunuzu %1$s ile paylaşın</string>
+  <string name="share_diagnosis_share_test_result_subtitle">COVID-19\'un durdurulmasına yardımcı olduğunuz için teşekkürler.</string>
+  <string name="share_diagnosis_share_test_result_body">Sonucunuzu paylaşırken isterseniz belirtilerinizin ne zaman başladığını da paylaşabilirsiniz. Bu bilgi, COVID-19\'un yayılmasını durdurmaya yardımcı olarak hayat kurtarabilir.</string>
+  <string name="sms_intercept_notice_title">Yenilikler</string>
+  <string name="sms_intercept_notice_content">Yerel sağlık yetkilileriniz size bir test sonucu gönderirse uygulamanız, sonucunuzu göndererek diğer kişileri olası temas konusunda uyarmanızı hatırlatan bildirim sunabilir. İstediğiniz zaman bunu ayarlardan devre dışı bırakabilirsiniz.</string>
 </resources>

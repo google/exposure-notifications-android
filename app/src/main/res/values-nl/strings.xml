@@ -30,7 +30,8 @@
   <string name="onboarding_exposure_notifications_title">Blootstellingsmeldingen aanzetten</string>
   <string name="onboarding_exposure_notifications_detail">Krijg een melding als je in de buurt bent geweest van iemand die heeft gemeld dat hij of zij COVID-19 heeft.
     \n\nJe telefoon gebruikt bluetooth om willekeurige ID\'s beveiligd te verzamelen en te delen met andere telefoons die in de buurt zijn.
-    \n\nDe datum, duur en signaalsterkte die zijn gekoppeld aan een mogelijke blootstelling, worden gebruikt om te bepalen of je een melding krijgt op basis van parameters van je volksgezondheidsautoriteit.</string>
+    \n\nDe datum, duur en signaalsterkte die zijn gekoppeld aan een mogelijke blootstelling, worden gebruikt om te bepalen of je een melding krijgt op basis van parameters van je volksgezondheidsautoriteit.
+    \n\nAls je positief test, kun je een herinnering krijgen om je resultaten te delen met je gezondheidsautoriteit.</string>
   <string name="onboarding_metrics_title">Help ons deze app te verbeteren</string>
   <string name="onboarding_metrics_subtitle">App-gebruik en prestatiegegevens delen met Google</string>
   <string name="onboarding_metrics_description">Bepaalde beperkte, niet-persoonlijk herkenbare gegevens over app-prestaties en gebruik worden met Google gedeeld om de app te onderhouden en te verbeteren. Je bent niet te herkennen aan deze gegevens. %1$s</string>
@@ -60,10 +61,10 @@
   <string name="notify_turn_on_exposure_notifications_header">Zet blootstellingsmeldingen aan om meldingen te krijgen over mogelijke blootstelling aan COVID-19. %1$s</string>
   <string name="using_en_helps_even_if_vaccinated">Gebruik deze service om je gemeenschap te beschermen, ook als je bent gevaccineerd.</string>
   <string name="share_begin_title">Help je gemeenschap beschermen</string>
-  <string name="share_close_title">Afsluiten zonder te delen?</string>
-  <string name="share_close_detail">Hoe eerder je je testresultaten deelt, hoe beter. Je tot nu toe ingevoerde testresultaten zijn opgeslagen in de app zodat je ze later verder kunt bewerken.</string>
-  <string name="btn_resume_later">Ja, afsluiten</string>
-  <string name="verify_test_result_title">Voer informatie over COVID-19-test in</string>
+  <string name="share_close_title">Sluiten zonder te delen?</string>
+  <string name="share_close_detail">Je kunt je omgeving het beste helpen door je resultaten zo snel mogelijk te delen. Als je nu sluit zonder te delen, kun je verdergaan waar je was gebleven als je later van gedachten verandert.</string>
+  <string name="btn_resume_later">Ja, sluiten</string>
+  <string name="verify_test_result_title">Geef je verificatiecode op</string>
   <string name="enter_your_test_identifier">Verificatiecode</string>
   <string name="share_test_identifier_help">Deze eenmalige code wordt gebruikt om je testresultaat te verifiëren.</string>
   <string name="share_test_identifier_verified">Code geverifieerd</string>
@@ -73,30 +74,29 @@
   <string name="test_date_label">Datum waarop symptomen zijn begonnen</string>
   <string name="share_onset_symptoms">Ja</string>
   <string name="share_onset_no_symptoms">Nee</string>
-  <string name="share_onset_no_answer">Zeg ik liever niet</string>
+  <string name="share_onset_no_answer">Ik geef liever geen antwoord</string>
   <string name="share_travel_title">Heb je in de afgelopen 14 dagen gereisd\?</string>
   <string name="share_travel_confirmed">Ja</string>
   <string name="share_travel_no_travel">Nee</string>
-  <string name="share_travel_no_answer">Zeg ik liever niet</string>
+  <string name="share_travel_no_answer">Ik geef liever geen antwoord</string>
   <string name="share_review_title">Check je informatie</string>
   <string name="share_review_status_subtitle">COVID-19-status</string>
   <string name="share_review_status_confirmed">Positief</string>
   <string name="share_review_status_likely">Waarschijnlijk</string>
   <string name="share_review_status_negative">Negatief</string>
-  <string name="share_review_onset_subtitle">Informatie over symptomen</string>
-  <string name="share_review_onset_date">Symptomen vanaf %1$s</string>
+  <string name="share_review_onset_subtitle">Symptomen</string>
+  <string name="share_review_onset_date">Begonnen op %1$s</string>
   <string name="share_review_onset_no_symptoms">Geen symptomen</string>
   <string name="share_review_onset_no_answer">Niet beantwoord</string>
-  <string name="share_review_travel_subtitle">Reisgeschiedenis</string>
-  <string name="share_review_travel_confirmed">Gereisd in de afgelopen 14 dagen</string>
+  <string name="share_review_travel_subtitle">Reizen</string>
+  <string name="share_review_travel_confirmed">In de afgelopen 14 dagen</string>
   <string name="share_review_travel_no_travel">Niet gereisd in de afgelopen 14 dagen</string>
   <string name="share_review_travel_no_answer">Niet beantwoord</string>
-  <string name="share_confirm_title">Bedankt dat je je COVID-19-status hebt gedeeld</string>
+  <string name="share_confirm_title">Bedankt dat je je COVID-19-resultaat hebt gedeeld</string>
   <string name="not_shared_confirm_title">Je testresultaat is niet gedeeld</string>
   <string name="not_shared_confirm_detail">Je COVID-19-testresultaat is niet gedeeld. Probeer het opnieuw.</string>
   <string name="status_shared_detail_title">Gedeelde COVID-19-status</string>
-  <string name="delete_test_result_title">COVID-19-testresultaat verwijderen?</string>
-  <string name="delete_test_result_detail">Je testresultaatgegevens worden uit deze app verwijderd.</string>
+  <string name="delete_test_result_title">Je testresultaat verwijderen?</string>
   <string name="delete_test_result_confirmed">Testresultaat verwijderd</string>
   <string name="share_error_no_internet">Kan testresultaten niet offline delen. Check de internetverbinding en probeer het opnieuw.</string>
   <string name="share_vaccination_title">Ben je gevaccineerd tegen COVID-19?</string>
@@ -104,7 +104,30 @@
   <string name="share_vaccination_learn_more">Meer informatie</string>
   <string name="share_vaccination_vaccinated">Ja, ik ben gevaccineerd</string>
   <string name="share_vaccination_not_vaccinated">Nee</string>
-  <string name="share_vaccination_unknown">Geen antwoord</string>
+  <string name="share_vaccination_unknown">Ik geef liever geen antwoord</string>
+  <string name="do_you_have_code_title">Heb je een code gekregen?</string>
+  <string name="do_you_have_code_content">Als je positief test voor COVID-19, levert je gezondheidsautoriteit meestal een verificatiecode per telefoon of sms zodat je je resultaten kunt delen.</string>
+  <string name="btn_i_have_code">Ja, ik heb een code</string>
+  <string name="btn_i_need_code">Ik heb een code nodig</string>
+  <string name="get_verification_code_title">Vraag een verificatiecode aan</string>
+  <string name="phone_number_prompt">Telefoonnummer</string>
+  <string name="phone_number_help">Met een verificatiecode kun je je testresultaten delen. Je code wordt naar het nummer gestuurd dat je opgeeft.</string>
+  <string name="phone_number_may_be_stored_help">Je telefoonnummer kan tijdelijk worden opgeslagen door je volksgezondheidsautoriteit om te voorkomen dat mensen meerdere resultaten delen.</string>
+  <string name="test_date_prompt">Testdatum</string>
+  <string name="test_date_help">De testdatum moet in de afgelopen 14 dagen zijn.</string>
+  <string name="tested_for_covid_checkbox_text">Ik ben in de afgelopen 14 dagen positief getest voor COVID-19.</string>
+  <string name="btn_send_code">Code sturen</string>
+  <string name="enter_code_help">Geef de code op die je hebt gekregen van %1$s.</string>
+  <string name="positive_result_already_reported_title">Je hebt recent al een testresultaat gemeld.</string>
+  <string name="positive_result_already_reported_content">Als je nog een testresultaat wilt melden, neem je contact op met %1$s.</string>
+  <string name="self_report_bad_code">Ongeldige code. Zorg dat je hetzelfde apparaat gebruikt om je verificatiecode aan te vragen en op te geven.</string>
+  <string name="self_report_bad_phone_number">Check je nummer en probeer het opnieuw. %1$s</string>
+  <string name="self_report_code_requested_too_many_times">Je hebt te veel verzoeken gedaan. Neem contact op met %1$s als je nog een code nodig hebt.</string>
+  <plurals name="self_report_code_already_requested">
+    <item quantity="one">Je hebt te veel verzoeken gedaan. Je kunt over %1$d minuut nog een code aanvragen.</item>
+    <item quantity="other">Je hebt te veel verzoeken gedaan. Je kunt over %1$d minuten nog een code aanvragen.</item>
+  </plurals>
+  <string name="notify_others_notification_title">Help anderen te informeren die misschien zijn blootgesteld</string>
   <string name="settings_exposure_notifications_subtitle">Blootstellingsmeldingen</string>
   <string name="settings_app_analytics_subtitle">App-gebruik en prestatiegegevens delen</string>
   <string name="settings_privacy_policy">Privacybeleid</string>
@@ -166,4 +189,9 @@
   <string name="private_analytics_footer_learn_more">Meer informatie</string>
   <string name="diagnosis_subtitle_template">%1$s op %2$s</string>
   <string name="empty_share_history_body">Geen deelgeschiedenis</string>
+  <string name="share_diagnosis_share_test_result_title">Deel je testresultaat met %1$s</string>
+  <string name="share_diagnosis_share_test_result_subtitle">Bedankt dat je helpt bij het stoppen van COVID-19.</string>
+  <string name="share_diagnosis_share_test_result_body">Als je je resultaat deelt, kun je ook delen wanneer je symptomen zijn begonnen. Aan de hand van deze informatie kan de verspreiding van COVID-19 worden gestopt en kunnen levens worden gered.</string>
+  <string name="sms_intercept_notice_title">Wat is er nieuw</string>
+  <string name="sms_intercept_notice_content">Als je lokale gezondheidsautoriteit je een testresultaat stuurt, kan je app je op de hoogte stellen met een herinnering om je resultaat in te dienen en anderen te waarschuwen voor mogelijke blootstelling. Je kunt dit op elk moment uitzetten in Instellingen.</string>
 </resources>

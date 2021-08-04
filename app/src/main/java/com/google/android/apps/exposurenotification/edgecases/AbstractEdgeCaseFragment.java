@@ -21,13 +21,13 @@ import static com.google.android.gms.nearby.exposurenotification.ExposureNotific
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import androidx.annotation.NonNull;
 import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.common.SnackbarUtil;
 import com.google.android.apps.exposurenotification.common.StorageManagementHelper;
+import com.google.android.apps.exposurenotification.common.logging.Logger;
 import com.google.android.apps.exposurenotification.home.BaseFragment;
 import com.google.android.apps.exposurenotification.home.ExposureNotificationViewModel.ExposureNotificationState;
 import com.google.android.apps.exposurenotification.proto.UiInteraction.EventType;
@@ -39,7 +39,7 @@ import com.google.android.apps.exposurenotification.utils.UrlUtils;
  */
 public abstract class AbstractEdgeCaseFragment extends BaseFragment {
 
-  private static final String TAG = "MainEdgeCaseFragment";
+  private static final Logger logger = Logger.getLogger("MainEdgeCaseFragment");
 
   // Provide arguments to the fragment via static "newInstance" constructor pattern
   private static final String KEY_HANDLE_API_ERROR_LIVE_EVENTS = "handleApiErrorLiveEvents";
@@ -51,7 +51,7 @@ public abstract class AbstractEdgeCaseFragment extends BaseFragment {
   // Both true by default, see constructor documentation
   public boolean isHandleApiErrorLiveEvents() {
     if (getArguments() == null) {
-      Log.w(TAG, NO_ARG_CONSTRUCTOR_WARNING);
+      logger.w(NO_ARG_CONSTRUCTOR_WARNING);
       return true;
     }
     return getArguments().getBoolean(KEY_HANDLE_API_ERROR_LIVE_EVENTS, true);
@@ -59,7 +59,7 @@ public abstract class AbstractEdgeCaseFragment extends BaseFragment {
 
   public boolean isHandleResolutions() {
     if (getArguments() == null) {
-      Log.w(TAG, NO_ARG_CONSTRUCTOR_WARNING);
+      logger.w(NO_ARG_CONSTRUCTOR_WARNING);
       return true;
     }
     return getArguments().getBoolean(KEY_HANDLE_RESOLUTIONS, true);

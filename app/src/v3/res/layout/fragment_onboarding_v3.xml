@@ -174,7 +174,7 @@
     android:paddingVertical="@dimen/padding_normal"
     android:orientation="vertical"
     android:background="?android:attr/colorBackground"
-    android:elevation="@dimen/onboarding_button_elevation">
+    android:elevation="@dimen/bottom_button_container_elevation">
 
     <Button
       android:id="@+id/onboarding_continue_button"
@@ -182,7 +182,7 @@
       android:layout_height="wrap_content"
       android:text="@string/btn_continue"
       android:elevation="0dp"
-      style="@style/Widget.V3.Button"/>
+      style="@style/Widget.ExposureNotifications.Button"/>
 
     <Button
       android:id="@+id/onboarding_not_now_button"
@@ -190,7 +190,7 @@
       android:layout_height="wrap_content"
       android:text="@string/btn_not_now"
       app:strokeColor="@color/horizontal_divider_color"
-      style="@style/Widget.V3.Button.OutlinedButton"/>
+      style="@style/Widget.ExposureNotifications.Button.OutlinedButton"/>
 
   </LinearLayout>
 

@@ -30,7 +30,8 @@
   <string name="onboarding_exposure_notifications_title">Vula Izaziso Zokuhlangabezana</string>
   <string name="onboarding_exposure_notifications_detail">Yaziswa uma useduze nothile ozibike njengone-COVID-19.
     \n\nIfoni yakho isebenzisa i-Bluetooth ukuze iqoqe futhi yabelane ngokuphephile ngama-ID angahleliwe namanye amafoni aseduzane.
-    \n\nUsuku, ubude besikhathi, namandla wesignali ahlobene nokuhlangabezana okunokwenzeka kuzosetshenziselwa ukunquma ukuthi uzokwaziswa yini ngokusekelwe kumapharamitha asethwe yiziphathimandla zezempilo yomphakathi wakini.</string>
+    \n\nUsuku, ubude besikhathi, namandla wesignali ahlobene nokuhlangabezana okunokwenzeka kuzosetshenziselwa ukunquma ukuthi uzokwaziswa yini ngokusekelwe kumapharamitha asethwe yiziphathimandla zezempilo yomphakathi wakini.
+    \n\nUma utholakale unokugula, ungathola isikhumbuzi sokwabelana ngemiphumela yakho nabasemagunyeni bakho bezempilo.</string>
   <string name="onboarding_metrics_title">Siza ukwenza lolu hlelo lokusebenza lube ngcono</string>
   <string name="onboarding_metrics_subtitle">Yabelana ngedatha yokusetshenziswa kohlelo neyokusebenza ne-Google</string>
   <string name="onboarding_metrics_description">Ukusiza ukugcina nokuthuthukisa uhlelo lokusebenza, enye idatha ehlonziwe enomkhawulo emayelana nokusebenza kohlelo lokusebenza nokusetshenziswa yabiwa ne-Google. Le datha ayikuhlonzi. %1$s</string>
@@ -60,10 +61,10 @@
   <string name="notify_turn_on_exposure_notifications_header">Ukuze waziswe ngokuhlangabezana ne-COVID-19 okungase kube khona, vula Izaziso Zokuhlangabezana. %1$s</string>
   <string name="using_en_helps_even_if_vaccinated">Ukusebenzisa le sevisi kukusiza ukuthi uvikele umphakathi wakho - ngisho noma ugonyiwe.</string>
   <string name="share_begin_title">Siza ukuvikela umphakathi wakho</string>
-  <string name="share_close_title">Phuma ngaphandle kokwabelana?</string>
-  <string name="share_close_detail">Ungasiza abanye ngokuveza imiphumela ngokushesha. Nokho, ulwazi lomphumela wokuhlolwa olufakile kuze kube manje lulondolozwa kuhlelo lokusebenza ukuze uqhubeke nokuhlela ngemuva kwesikhathi.</string>
-  <string name="btn_resume_later">Yebo, phuma</string>
-  <string name="verify_test_result_title">Faka ulwazi lokuhlolwa kwe-COVID-19</string>
+  <string name="share_close_title">Vala ngaphandle kokwabelana?</string>
+  <string name="share_close_detail">Indlela engcono kakhulu ongasiza ngayo umphakathi wakho ukwaba imiphumela yakho ngokushesha okukhulu. Uma uvala manje ngaphandle kokwabelana, ungaqhubeka lapho ugcine khona uma ushintsha umqondo kamuva.</string>
+  <string name="btn_resume_later">Yebo, vala</string>
+  <string name="verify_test_result_title">Faka ikhodi yakho yokuqinisekisa</string>
   <string name="enter_your_test_identifier">Ikhodi yokuqinisekisa</string>
   <string name="share_test_identifier_help">Le khodi yesikhathi esisodwa isetshenziselwa ukuqinisekisa umphumela wakho wokuhlolwa.</string>
   <string name="share_test_identifier_verified">Ikhodi iqinisekisiwe</string>
@@ -83,20 +84,19 @@
   <string name="share_review_status_confirmed">Okuhle</string>
   <string name="share_review_status_likely">Kungenzeka</string>
   <string name="share_review_status_negative">Okubi</string>
-  <string name="share_review_onset_subtitle">Ulwazi lophawu</string>
-  <string name="share_review_onset_date">Izimpawu kusuka ngomhla ka-%1$s</string>
+  <string name="share_review_onset_subtitle">Izimpawu</string>
+  <string name="share_review_onset_date">Iqale ngomhla ka-%1$s</string>
   <string name="share_review_onset_no_symptoms">Azikho izimpawu</string>
   <string name="share_review_onset_no_answer">Akuphenduliwe</string>
-  <string name="share_review_travel_subtitle">Umlando wokuhamba</string>
-  <string name="share_review_travel_confirmed">Uthathe uhambo ezinsukwini ezi-14 ezedlule</string>
+  <string name="share_review_travel_subtitle">Ukuvakasha</string>
+  <string name="share_review_travel_confirmed">Phakathi nezinsuku eziyi-14 ezedlule</string>
   <string name="share_review_travel_no_travel">Awuzange uthathe uhambo ezinsukwini ezi-14 ezedlule</string>
   <string name="share_review_travel_no_answer">Akuphenduliwe</string>
-  <string name="share_confirm_title">Siyabonga ngokwabelana ngesimo sakho se-COVID-19</string>
+  <string name="share_confirm_title">Siyabonga ngokwabelana ngemiphumela yakho ye-COVID-19</string>
   <string name="not_shared_confirm_title">Imiphumela yokuhlolwa kwakho ayabiwanga</string>
   <string name="not_shared_confirm_detail">Imiphumela yohlolo lwakho lwe-COVID-19 ayabiwanga. Sicela uzame futhi.</string>
   <string name="status_shared_detail_title">Isimo se-COVID-19 esabiwe</string>
-  <string name="delete_test_result_title">Susa umphumela wokuhlola we-COVID-19?</string>
-  <string name="delete_test_result_detail">Imininingwane yomphumela wakho wokuhlolwa izosuswa kulolu hlelo lokusebenza.</string>
+  <string name="delete_test_result_title">Sula imiphumela yakho yohlolo?</string>
   <string name="delete_test_result_confirmed">Umphumela wokuhlola ususiwe</string>
   <string name="share_error_no_internet">Ayikwazi ukwabelana ngemiphumela yokuhlolwa kungaxhunyiwe kwi-inthanethi. Hlola ukuxhumeka kwakho kwe-inthanethi uphinde uzame futhi.</string>
   <string name="share_vaccination_title">Ingabe usugonyelwe i-Covid-19?</string>
@@ -105,6 +105,29 @@
   <string name="share_vaccination_vaccinated">Yebo, ngigonyiwe</string>
   <string name="share_vaccination_not_vaccinated">Cha</string>
   <string name="share_vaccination_unknown">Ngincamela ukungaphenduli</string>
+  <string name="do_you_have_code_title">Ingabe uthole ikhodi?</string>
+  <string name="do_you_have_code_content">Uma kutholakala ukuthi une-COVID-19, iziphathimandla zakho zezempilo zivame ukuhlinzeka ngekhodi yokuqinisekisa ngefoni noma ngombhalo ukuze ukwazi ukwabelana ngemiphumela yakho.</string>
+  <string name="btn_i_have_code">Yebo, nginekhodi</string>
+  <string name="btn_i_need_code">Ngidinga ikhodi</string>
+  <string name="get_verification_code_title">Thola ikhodi yokuqinisekisa</string>
+  <string name="phone_number_prompt">Inombolo yefoni</string>
+  <string name="phone_number_help">Ikhodi yokuqinisekisa ikuvumela ukuba wabelane ngemiphumela yakho yokuhlolwa. Ikhodi yakho izothunyelwa kwinombolo oyinikezayo.</string>
+  <string name="phone_number_may_be_stored_help">Ukuvimbela abantu ekuthumeleni imiphumela engaphezu kweyodwa, inombolo yakho yocingo ingagcinwa okwesikhashana yiziphathimandla zezempilo zomphakathi.</string>
+  <string name="test_date_prompt">Ilanga lokuhlola</string>
+  <string name="test_date_help">Ilanga lokuhlola kufanele libe phakathi kwezinsuku eziyi-14 ezedlule.</string>
+  <string name="tested_for_covid_checkbox_text">Ngithole ukuhlolwa okuhle kwe-COVID-19 ezinsukwini eziyi-14 ezedlule.</string>
+  <string name="btn_send_code">Thumela ikhodi</string>
+  <string name="enter_code_help">Faka ikhodi oyithunyelwe yi-%1$s.</string>
+  <string name="positive_result_already_reported_title">Usubike imiphumela yokuhlolwa kakade muva nje.</string>
+  <string name="positive_result_already_reported_content">Uma ungathanda ukubika eminye imiphumela yokuhlolwa, sicela uxhumane ne-%1$s.</string>
+  <string name="self_report_bad_code">Ikhodi engavumelekile. Qiniseka ukuthi usebenzisa idivayisi efanayo kuzo zombili izicelo bese ufaka ikhodi yakho yokuqinisekisa.</string>
+  <string name="self_report_bad_phone_number">Hlola inombolo yakho bese uyazama futhi. %1$s</string>
+  <string name="self_report_code_requested_too_many_times">Wenze izicelo eziningi kakhulu. Xhumana ne-%1$s uma usadinga ikhodi.</string>
+  <plurals name="self_report_code_already_requested">
+    <item quantity="one">Wenze izicelo eziningi kakhulu. Ungacela enye ikhodi emizuzwini engu-%1$d.</item>
+    <item quantity="other">Wenze izicelo eziningi kakhulu. Ungacela enye ikhodi emizuzwini engu-%1$d.</item>
+  </plurals>
+  <string name="notify_others_notification_title">Siza ukwazisa abanye okungenzeka badaluliwe</string>
   <string name="settings_exposure_notifications_subtitle">Izaziso Zokuhlangabezana</string>
   <string name="settings_app_analytics_subtitle">Ukusetshenziswa kohlelo lokusebenza nokwabelana kokusebenza</string>
   <string name="settings_privacy_policy">Inqubomgomo yobumfihlo</string>
@@ -166,4 +189,9 @@
   <string name="private_analytics_footer_learn_more">Funda kabanzi</string>
   <string name="diagnosis_subtitle_template">%1$s ku-%2$s</string>
   <string name="empty_share_history_body">Awukho umlando wokwabelana</string>
+  <string name="share_diagnosis_share_test_result_title">Yabelana ngemiphumela yakho yokuhlolwa ne-%1$s</string>
+  <string name="share_diagnosis_share_test_result_subtitle">Siyakubonga ngokusiza ukuvimba i-COVID-19.</string>
+  <string name="share_diagnosis_share_test_result_body">Uma wabelana ngomphumela wakho, ungaphinda ukhethe ukwabelana lapho izimpawu zakho ziqala. Lolu lwazi lungasiza ekunqandeni ukusabalala kwe-COVID-19 futhi lusindise izimpilo.</string>
+  <string name="sms_intercept_notice_title">Yini okusha</string>
+  <string name="sms_intercept_notice_content">Uma isiphathimandla sakho sezempilo sasendaweni sikuthumela umphumela wokuhlolwa, i-app yakho ingakwazisa ngesikhumbuzo sothumela umphumela wakho futhi usize ngokuxwayisa abanye abantu ngokuhlangabezana okungase kube khona. Ungakhubaza lokhu noma kunini kumasethingi.</string>
 </resources>

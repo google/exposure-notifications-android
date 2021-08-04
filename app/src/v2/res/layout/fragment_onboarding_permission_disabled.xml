@@ -246,7 +246,7 @@
     android:padding="@dimen/padding_normal"
     android:orientation="vertical"
     android:background="?android:attr/colorBackground"
-    android:elevation="@dimen/onboarding_button_elevation">
+    android:elevation="@dimen/bottom_button_container_elevation">
 
     <ViewSwitcher
       android:id="@+id/onboarding_buttons_loading_switcher"

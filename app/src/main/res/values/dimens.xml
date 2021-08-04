@@ -18,7 +18,6 @@
 
 <resources>
   <dimen name="onboarding_logo_size">128dp</dimen>
-  <dimen name="onboarding_button_elevation">20dp</dimen>
   <dimen name="onboarding_progress_bar_size">24dp</dimen>
   <dimen name="onboarding_progress_bar_elevation">10dp</dimen>
   <dimen name="onboarding_section_header_text_size">18sp</dimen>
@@ -36,13 +35,13 @@
   <dimen name="padding_small">8dp</dimen>
   <dimen name="padding_micro">4dp</dimen>
   <dimen name="padding_large">24dp</dimen>
-  <dimen name="padding_extra_large">32dp</dimen>
+  <dimen name="padding_extra_large">28dp</dimen>
+  <dimen name="padding_huge">32dp</dimen>
 
   <dimen name="settings_row_min_height">64dp</dimen>
   <dimen name="settings_icon_field_width">72dp</dimen>
   <dimen name="settings_icon_height">24dp</dimen>
   <dimen name="settings_page_icon_width">42dp</dimen>
-
   <dimen name="settings_page_switch_text_size">14sp</dimen>
 
   <dimen name="exposure_icon_field_min_height">72dp</dimen>
@@ -59,14 +58,12 @@
   <dimen name="pulsation_circle_size">24dp</dimen>
 
   <dimen name="home_screen_banner_height">280dp</dimen>
-  <dimen name="home_screen_en_on_image_height">200dp</dimen>
   <dimen name="home_screen_en_on_image_margin_top">48dp</dimen>
   <dimen name="home_screen_pulse_size">24dp</dimen>
   <dimen name="no_exposure_padding_vertical">16dp</dimen>
 
   <dimen name="dialog_corner_radius">8dp</dimen>
 
-  <!-- New UX flow -->
   <dimen name="card_icon_size">84dp</dimen>
   <dimen name="card_border_width">1dp</dimen>
   <dimen name="card_corner_radius">24dp</dimen>
@@ -74,4 +71,16 @@
   <dimen name="round_button_corner_radius">100dp</dimen>
   <dimen name="home_page_icon_size">28dp</dimen>
   <dimen name="pulsation_area_size">56dp</dimen>
+
+  <dimen name="sharing_flow_icon_size">40dp</dimen>
+  <dimen name="sharing_flow_shared_check_size">60dp</dimen>
+  <dimen name="share_diagnosis_begin_padding_horizontal">48dp</dimen>
+
+  <dimen name="bottom_button_container_elevation">20dp</dimen>
+
+  <dimen name="dialog_image_size">200dp</dimen>
+
+  <!-- Override Open Source Libraries Text size -->
+  <dimen name="textSizeLarge_openSource">16sp</dimen>
+  <dimen name="textSizeSmall_openSource">14sp</dimen>
 </resources>

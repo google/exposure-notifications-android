@@ -36,8 +36,15 @@ android {
         dimension "ha"
         applicationId config["healthAuthorityID"]
         manifestPlaceholders = [appLinkHost: config["appLinkHost"]]
+        buildConfigField("String", "APP_LINK_HOST",
+                "\"" + config["appLinkHost"] + "\"")
         buildConfigField("boolean", "PRIVATE_ANALYTICS_SUPPORTED",
                 String.valueOf(config["enableENPA"]))
+        buildConfigField("String", "REGION",
+                "\"" + config["regionIdentifier"] + "\"")
+        buildConfigField("boolean", "QUICK_RESTORE_NOTIFICATION_SUPPORTED",
+                String.valueOf(!config["enableQuickRestoreNotification"] ? false :
+                        config["enableQuickRestoreNotification"]))
         if (!config["enableENPA"]) {
           println "Disabling google-services plugin tasks for " + name
           project.excludedTasks += [

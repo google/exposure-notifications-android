@@ -30,7 +30,8 @@
   <string name="onboarding_exposure_notifications_title">開啟「接觸通知」</string>
   <string name="onboarding_exposure_notifications_detail">在您接近過報稱感染 COVID-19 的人士時接收通知。
     \n\n您的手機會使用藍牙安全地收集附近手機的隨機 ID，並與附近手機分享隨機 ID。
-    \n\n系統會根據可能接觸的日期、持續時間和藍牙訊號強度，判斷是否根據公共衛生機關設定的參數通知您。</string>
+    \n\n系統會根據可能接觸的日期、持續時間和藍牙訊號強度，判斷是否根據公共衛生機關設定的參數通知您。
+    \n\n如您的檢測結果呈陽性，系統可能會提醒您與公共衛生機關分享檢測結果。</string>
   <string name="onboarding_metrics_title">協助改善此應用程式</string>
   <string name="onboarding_metrics_subtitle">將應用程式使用情況和效能資料分享給 Google</string>
   <string name="onboarding_metrics_description">為協助維護及改善此應用程式，部分有關應用程式效能和使用情況的去識別化資料將會與 Google 共用。請放心，這些資料無法識別您的身分。%1$s</string>
@@ -60,10 +61,10 @@
   <string name="notify_turn_on_exposure_notifications_header">如要接收可能接觸到 COVID-19 的情況通知，請開啟「接觸通知」功能。%1$s</string>
   <string name="using_en_helps_even_if_vaccinated">即使您已接種疫苗，使用此服務亦有助保護您的社區。</string>
   <string name="share_begin_title">協助保護所在社區</string>
-  <string name="share_close_title">不分享檢疫資訊並離開嗎？</string>
-  <string name="share_close_detail">盡早分享檢疫結果，可以有效保護您的社區居民。您目前為止輸入的檢測結果資料已儲存在此應用程式中，方便您日後繼續編輯。</string>
-  <string name="btn_resume_later">是，離開</string>
-  <string name="verify_test_result_title">輸入 COVID-19 檢測資料</string>
+  <string name="share_close_title">不分享檢測結果就關閉嗎？</string>
+  <string name="share_close_detail">盡快分享檢測結果是協助社區控制疫情的最佳方式。如果您現在不分享檢測結果就關閉畫面，仍可在日後改變心意時繼續完成這些步驟。</string>
+  <string name="btn_resume_later">是，關閉</string>
+  <string name="verify_test_result_title">輸入驗證碼</string>
   <string name="enter_your_test_identifier">驗證碼</string>
   <string name="share_test_identifier_help">這個單次代碼會用於驗證您的檢測結果。</string>
   <string name="share_test_identifier_verified">已驗證代碼</string>
@@ -73,30 +74,29 @@
   <string name="test_date_label">開始出現症狀的日期</string>
   <string name="share_onset_symptoms">是</string>
   <string name="share_onset_no_symptoms">否</string>
-  <string name="share_onset_no_answer">不想回答</string>
+  <string name="share_onset_no_answer">我不想回答</string>
   <string name="share_travel_title">您在過去 14 天內是否曾外遊\？</string>
   <string name="share_travel_confirmed">是</string>
   <string name="share_travel_no_travel">否</string>
-  <string name="share_travel_no_answer">不想回答</string>
+  <string name="share_travel_no_answer">我不想回答</string>
   <string name="share_review_title">查看您的資料</string>
   <string name="share_review_status_subtitle">COVID-19 檢測狀態</string>
   <string name="share_review_status_confirmed">陽性</string>
   <string name="share_review_status_likely">可能為陽性</string>
   <string name="share_review_status_negative">陰性</string>
-  <string name="share_review_onset_subtitle">症狀資訊</string>
-  <string name="share_review_onset_date">從 %1$s開始出現症狀</string>
+  <string name="share_review_onset_subtitle">症狀</string>
+  <string name="share_review_onset_date">出現日期：%1$s</string>
   <string name="share_review_onset_no_symptoms">沒有症狀</string>
   <string name="share_review_onset_no_answer">未回答</string>
-  <string name="share_review_travel_subtitle">旅遊記錄</string>
-  <string name="share_review_travel_confirmed">曾在過去 14 天內外遊</string>
+  <string name="share_review_travel_subtitle">外遊</string>
+  <string name="share_review_travel_confirmed">過去 14 天內</string>
   <string name="share_review_travel_no_travel">未在過去 14 天內外遊</string>
   <string name="share_review_travel_no_answer">未回答</string>
-  <string name="share_confirm_title">感謝您分享 COVID-19 檢測狀態</string>
+  <string name="share_confirm_title">感謝您分享 COVID-19 檢測結果</string>
   <string name="not_shared_confirm_title">您未分享檢測結果</string>
   <string name="not_shared_confirm_detail">您未分享 COVID-19 檢測結果。請再試一次。</string>
   <string name="status_shared_detail_title">已分享的 COVID-19 狀態</string>
-  <string name="delete_test_result_title">要刪除 COVID-19 檢測結果嗎？</string>
-  <string name="delete_test_result_detail">檢測結果詳情將從此應用程式中刪除。</string>
+  <string name="delete_test_result_title">要刪除檢測結果嗎？</string>
   <string name="delete_test_result_confirmed">已刪除檢測結果</string>
   <string name="share_error_no_internet">無法離線分享檢測結果。請檢查您的互聯網連線，然後再試一次。</string>
   <string name="share_vaccination_title">您是否已接種 COVID-19 疫苗？</string>
@@ -104,7 +104,30 @@
   <string name="share_vaccination_learn_more">瞭解詳情</string>
   <string name="share_vaccination_vaccinated">是，我已接種疫苗</string>
   <string name="share_vaccination_not_vaccinated">否</string>
-  <string name="share_vaccination_unknown">不想回答</string>
+  <string name="share_vaccination_unknown">我不想回答</string>
+  <string name="do_you_have_code_title">是否收到驗證碼？</string>
+  <string name="do_you_have_code_content">如您的 COVID-19 檢測結果呈陽性，公共衛生機關會透過電話或短訊提供驗證碼，以便您分享檢測結果。</string>
+  <string name="btn_i_have_code">是，我有驗證碼</string>
+  <string name="btn_i_need_code">我需要驗證碼</string>
+  <string name="get_verification_code_title">接收驗證碼</string>
+  <string name="phone_number_prompt">電話號碼</string>
+  <string name="phone_number_help">驗證碼可讓您分享檢測結果。系統會將驗證碼傳送至您提供的號碼。</string>
+  <string name="phone_number_may_be_stored_help">為防止使用者提交多項結果，公共衛生機關可能會臨時儲存您的電話號碼。</string>
+  <string name="test_date_prompt">檢測日期</string>
+  <string name="test_date_help">檢測日期必須為過去 14 天內。</string>
+  <string name="tested_for_covid_checkbox_text">我過去 14 天內的 COVID-19 檢測呈陽性。</string>
+  <string name="btn_send_code">傳送驗證碼</string>
+  <string name="enter_code_help">請輸入%1$s傳送給您的驗證碼。</string>
+  <string name="positive_result_already_reported_title">您最近已提交檢測結果報告。</string>
+  <string name="positive_result_already_reported_content">如要提交另一項檢測結果報告，請聯絡%1$s。</string>
+  <string name="self_report_bad_code">驗證碼無效。請確保您使用同一裝置要求和輸入驗證碼。</string>
+  <string name="self_report_bad_phone_number">請檢查號碼，然後再試一次。%1$s</string>
+  <string name="self_report_code_requested_too_many_times">您的要求次數太多。如果您仍然需要驗證碼，請聯絡%1$s。</string>
+  <plurals name="self_report_code_already_requested">
+    <item quantity="one">您的要求次數太多。您可以在 %1$d 分鐘後要求另一個驗證碼。</item>
+    <item quantity="other">您的要求次數太多。您可以在 %1$d 分鐘後要求另一個驗證碼。</item>
+  </plurals>
+  <string name="notify_others_notification_title">協助系統通知曾與您接觸的人</string>
   <string name="settings_exposure_notifications_subtitle">接觸通知</string>
   <string name="settings_app_analytics_subtitle">應用程式使用情況和效能資料分享</string>
   <string name="settings_privacy_policy">私隱權政策</string>
@@ -166,4 +189,9 @@
   <string name="private_analytics_footer_learn_more">瞭解詳情</string>
   <string name="diagnosis_subtitle_template">已於 %2$s%1$s</string>
   <string name="empty_share_history_body">沒有分享記錄</string>
+  <string name="share_diagnosis_share_test_result_title">與「%1$s」分享您的檢測結果</string>
+  <string name="share_diagnosis_share_test_result_subtitle">感謝您協助阻止 COVID-19 疫情擴散。</string>
+  <string name="share_diagnosis_share_test_result_body">分享檢測結果時，也可以選擇分享出現症狀的日期。這項資料可協助阻止 COVID-19 傳播並拯救生命。</string>
+  <string name="sms_intercept_notice_title">新功能</string>
+  <string name="sms_intercept_notice_content">如果當地衛生機關向您傳送檢測結果，應用程式可提醒您提交結果，讓其向其他人發出可能接觸到 COVID-19 的通知。您隨時可以在設定中變更這項功能。</string>
 </resources>

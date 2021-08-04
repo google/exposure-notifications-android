@@ -56,7 +56,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_marginBottom="@dimen/padding_extra_large"
+        android:layout_marginBottom="@dimen/padding_huge"
         android:text="@string/share_onset_title"
         android:textAppearance="?attr/textAppearanceHeadline5" />
 

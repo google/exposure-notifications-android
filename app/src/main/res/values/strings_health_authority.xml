@@ -164,4 +164,19 @@
 
   <!-- Text shown on the private analytics toggle consent page. -->
   <string name="private_analytics_message">@string/enx_enpaConsentText</string>
+
+  <!-- HA-provided URL for self-reporting. If this URL is empty, it means that HA has not enabled self-report. -->
+  <string name="self_report_website_url">@string/enx_webReportURL</string>
+
+  <!-- Text shown on the "Did you receive a code?" screen of the upload flow to provide user with information on the verification codes. This screen is displayed only if Self-Report is enabled. -->
+  <string name="self_report_intro">@string/enx_webReportIntroMessage</string>
+
+  <!-- Text shown on the "Get a verification code" screen of the upload flow to provide user with information on the phone number they provide to request a code. This screen is displayed only if Self-Report is enabled. -->
+  <string name="self_report_phone_number">@string/enx_webReportPhoneNumberMessage</string>
+
+  <!-- Text shown on the "Get a verification code" screen of the upload flow to provide user with information on the test date they provide to request a code. This screen is displayed only if Self-Report is enabled. -->
+  <string name="self_report_test_date">@string/enx_webReportDateMessage</string>
+
+  <!-- Checkbox text shown on the "Get a verification code" screen of the upload flow. This checkbox is for users to confirm that they have had a positive COVID-19 test within the past 14 days. This screen is displayed only if Self-Report is enabled. -->
+  <string name="self_report_checkbox">@string/enx_webReportLegalMessage</string>
 </resources>

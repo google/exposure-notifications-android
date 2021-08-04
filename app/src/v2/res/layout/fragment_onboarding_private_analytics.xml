@@ -45,7 +45,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/private_analytics_title"
-        android:layout_marginTop="@dimen/padding_extra_large"
+        android:layout_marginTop="@dimen/padding_huge"
         android:textAppearance="?attr/textAppearanceHeadline5" />
 
       <TextView
@@ -54,7 +54,7 @@
         android:gravity="center"
         android:text="@string/private_analytics_subtitle"
         android:layout_marginTop="@dimen/padding_small"
-        android:layout_marginBottom="@dimen/padding_extra_large"
+        android:layout_marginBottom="@dimen/padding_huge"
         android:textAppearance="?attr/textAppearanceBody2" />
 
       <LinearLayout

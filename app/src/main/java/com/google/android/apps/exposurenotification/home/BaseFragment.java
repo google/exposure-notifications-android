@@ -34,8 +34,9 @@ import com.google.common.base.Preconditions;
 public abstract class BaseFragment extends Fragment {
 
   protected static final String EXTRA_CODE_FROM_DEEP_LINK = "BaseFragment.CODE_FROM_DEEP_LINK";
-  protected static final String EXTRA_EXPOSURE_NOTIFICATION_FLOW
-      = "BaseFragment.EXTRA_EXPOSURE_NOTIFICATION_FLOW";
+  protected static final String EXTRA_IS_SELF_REPORT_FLOW = "BaseFragment.IS_SELF_REPORT_FLOW";
+  protected static final String EXTRA_EXPOSURE_NOTIFICATION_FLOW =
+      "BaseFragment.EXTRA_EXPOSURE_NOTIFICATION_FLOW";
 
   protected ExposureNotificationViewModel exposureNotificationViewModel;
 

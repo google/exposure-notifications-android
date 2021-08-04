@@ -30,7 +30,8 @@
   <string name="onboarding_exposure_notifications_title">Kitettséget jelző értesítések bekapcsolása</string>
   <string name="onboarding_exposure_notifications_detail">Értesítést kaphat, ha olyan személy közelében tartózkodott, aki bejelentette, hogy elkapta a COVID-19 betegséget.
     \n\nTelefonja Bluetootht használ, hogy biztonságosan gyűjthesse és megoszthassa a véletlenszerű azonosítókat a többi közelben lévő telefonnal.
-    \n\nA lehetséges kitettséggel kapcsolatos dátumot, időtartamot és jelerősséget arra használja a rendszer, hogy meghatározza, küldjön-e Önnek értesítést az Ön tartózkodási helyén illetékes közegészségügyi hatóságok által beállított paraméterek alapján.</string>
+    \n\nA lehetséges kitettséggel kapcsolatos dátumot, időtartamot és jelerősséget arra használja a rendszer, hogy meghatározza, küldjön-e Önnek értesítést az Ön tartózkodási helyén illetékes közegészségügyi hatóságok által beállított paraméterek alapján.
+    \n\nHa pozitív a teszteredménye, előfordulhat, hogy a rendszer üzenetben emlékezteti Önt arra, hogy megossza eredményeit az illetékes közegészségügyi hatóságokkal.</string>
   <string name="onboarding_metrics_title">Segítsen az alkalmazás fejlesztésében</string>
   <string name="onboarding_metrics_subtitle">Apphasználati és teljesítményadatok megosztása a Google-lal</string>
   <string name="onboarding_metrics_description">Az alkalmazás karbantartásának és fejlesztésének segítése érdekében bizonyos azonosításra nem alkalmas adatokat oszt meg az alkalmazás a teljesítményéről és a használatáról a Google-lal. Ezek az adatok nem használhatók az Ön azonosítására. %1$s</string>
@@ -60,10 +61,10 @@
   <string name="notify_turn_on_exposure_notifications_header">Kapcsolja be a Kitettséget jelző értesítéseket, hogy értesítést kaphasson a lehetséges COVID-19-kitettségről. %1$s</string>
   <string name="using_en_helps_even_if_vaccinated">A szolgáltatás a közössége megvédésében segít Önnek – akkor is, ha Önt már beoltották.</string>
   <string name="share_begin_title">Segítsen a közössége védelmében</string>
-  <string name="share_close_title">Kilép megosztás nélkül?</string>
-  <string name="share_close_detail">Minél hamarabb megosztja a teszteredményét, annál hatásosabban segíthet a közösségén. Az Ön által megadott teszteredményt azonban elmentettük az alkalmazásba, így később is szerkesztheti.</string>
-  <string name="btn_resume_later">Igen, kilépek</string>
-  <string name="verify_test_result_title">COVID-19-teszttel kapcsolatos adat megadása</string>
+  <string name="share_close_title">Bezárja megosztás nélkül?</string>
+  <string name="share_close_detail">A legjobban úgy tud segíteni közösségének, ha minél előbb megosztja az eredményeit. Ha most megosztás nélkül zárja be a panelt, akkor ott folytathatja, ahol abbahagyta, ha később meggondolná magát.</string>
+  <string name="btn_resume_later">Igen, bezárom</string>
+  <string name="verify_test_result_title">Ellenőrző kód beírása</string>
   <string name="enter_your_test_identifier">Ellenőrző kód</string>
   <string name="share_test_identifier_help">Ezt az egyszer használható kódot a teszteredménye ellenőrzésére használja a rendszer.</string>
   <string name="share_test_identifier_verified">Kód ellenőrizve</string>
@@ -73,30 +74,29 @@
   <string name="test_date_label">Tünetek első jelentkezésének dátuma</string>
   <string name="share_onset_symptoms">Igen</string>
   <string name="share_onset_no_symptoms">Nem</string>
-  <string name="share_onset_no_answer">Nem szeretnék válaszolni</string>
+  <string name="share_onset_no_answer">Inkább nem válaszolnék</string>
   <string name="share_travel_title">Utazott valahová az elmúlt 14 nap során\?</string>
   <string name="share_travel_confirmed">Igen</string>
   <string name="share_travel_no_travel">Nem</string>
-  <string name="share_travel_no_answer">Nem szeretnék válaszolni</string>
+  <string name="share_travel_no_answer">Inkább nem válaszolnék</string>
   <string name="share_review_title">Ellenőrizze az adatokat</string>
   <string name="share_review_status_subtitle">COVID-19-állapot</string>
   <string name="share_review_status_confirmed">Pozitív</string>
   <string name="share_review_status_likely">Valószínű</string>
   <string name="share_review_status_negative">Negatív</string>
-  <string name="share_review_onset_subtitle">Tünetekkel kapcsolatos információ</string>
-  <string name="share_review_onset_date">Tünetek megjelenésének kezdete: %1$s</string>
+  <string name="share_review_onset_subtitle">Tünetek</string>
+  <string name="share_review_onset_date">Kezdés dátuma: %1$s</string>
   <string name="share_review_onset_no_symptoms">Nem voltak tünetek</string>
   <string name="share_review_onset_no_answer">Nem válaszolt</string>
-  <string name="share_review_travel_subtitle">Utazási előzmények</string>
-  <string name="share_review_travel_confirmed">Utazott az elmúlt 14 nap során</string>
+  <string name="share_review_travel_subtitle">Utazás</string>
+  <string name="share_review_travel_confirmed">Az elmúlt 14 nap során</string>
   <string name="share_review_travel_no_travel">Nem utazott az elmúlt 14 nap során</string>
   <string name="share_review_travel_no_answer">Nem válaszolt</string>
-  <string name="share_confirm_title">Köszönjük, hogy megosztotta COVID-19-állapotát!</string>
+  <string name="share_confirm_title">Köszönjük, hogy megosztotta COVID-19-állapotát</string>
   <string name="not_shared_confirm_title">Teszteredménye nem lett megosztva</string>
   <string name="not_shared_confirm_detail">COVID-19-teszteredménye nem lett megosztva. Próbálja újra.</string>
   <string name="status_shared_detail_title">Megosztott COVID-19-állapot</string>
-  <string name="delete_test_result_title">Törli COVID-19-teszteredményét?</string>
-  <string name="delete_test_result_detail">Teszteredményének részletei törölve lesznek ebből az alkalmazásból.</string>
+  <string name="delete_test_result_title">Biztosan törli a teszteredményeket?</string>
   <string name="delete_test_result_confirmed">Teszteredmény törölve</string>
   <string name="share_error_no_internet">Offline módban a teszteredmények megosztása nem lehetséges. Ellenőrizze az internetkapcsolatot, és próbálkozzon újra.</string>
   <string name="share_vaccination_title">Beoltották már a Covid-19 ellen?</string>
@@ -104,7 +104,30 @@
   <string name="share_vaccination_learn_more">További információ</string>
   <string name="share_vaccination_vaccinated">Igen, már beoltottak</string>
   <string name="share_vaccination_not_vaccinated">Nem</string>
-  <string name="share_vaccination_unknown">Nem szeretnék válaszolni</string>
+  <string name="share_vaccination_unknown">Inkább nem válaszolnék</string>
+  <string name="do_you_have_code_title">Kapott kódot?</string>
+  <string name="do_you_have_code_content">Ha pozitív lett az Ön COVID-19-tesztje, az illetékes közegészségügyi hatóságok rendszerint ellenőrző kódot küldenek telefonon vagy szöveges üzenetben, hogy Ön megoszthassa eredményeit.</string>
+  <string name="btn_i_have_code">Igen, megkaptam a kódot</string>
+  <string name="btn_i_need_code">Kódot kérek</string>
+  <string name="get_verification_code_title">Ellenőrző kód kérése</string>
+  <string name="phone_number_prompt">Telefonszám</string>
+  <string name="phone_number_help">Az ellenőrző kód segítségével megoszthatja teszteredményeit. A kódot a megadott telefonszámra küldjük.</string>
+  <string name="phone_number_may_be_stored_help">Annak megakadályozása érdekében, hogy a felhasználók egynél több eredményt küldjenek el, előfordulhat, hogy az illetékes közegészségügyi hatóságok ideiglenesen tárolják az Ön telefonszámát.</string>
+  <string name="test_date_prompt">Tesztelés dátuma</string>
+  <string name="test_date_help">A tesztelési dátumnak az elmúlt 14 napon belül kell lennie.</string>
+  <string name="tested_for_covid_checkbox_text">Pozitív COVID-19-teszteredményt kaptam az elmúlt 14 nap során.</string>
+  <string name="btn_send_code">Kód küldése</string>
+  <string name="enter_code_help">Adja meg a(z) %1$s által Önnek küldött kódot.</string>
+  <string name="positive_result_already_reported_title">Ön nemrégiben már bejelentett teszteredményt.</string>
+  <string name="positive_result_already_reported_content">Ha másik teszteredményt szeretne bejelenteni, vegye fel a kapcsolatot a következő hatósággal: %1$s.</string>
+  <string name="self_report_bad_code">Érvénytelen kód Győződjön meg arról, hogy ugyanazt az eszközt használja mindkét kérelemhez, majd adja meg az ellenőrző kódot.</string>
+  <string name="self_report_bad_phone_number">Ellenőrizze a számot, majd próbálkozzon újra. %1$s</string>
+  <string name="self_report_code_requested_too_many_times">Túl sok kérelmet indított. Ha továbbra is kódra van szüksége, lépjen kapcsolatba a következő hatósággal: %1$s.</string>
+  <plurals name="self_report_code_already_requested">
+    <item quantity="one">Túl sok kérelmet indított. Újabb kódot %1$d perc múlva kérhet.</item>
+    <item quantity="other">Túl sok kérelmet indított. Újabb kódot %1$d perc múlva kérhet.</item>
+  </plurals>
+  <string name="notify_others_notification_title">Segíthet értesíteni azokat, akik ki lehettek téve a betegségnek</string>
   <string name="settings_exposure_notifications_subtitle">Kitettséget jelző értesítések</string>
   <string name="settings_app_analytics_subtitle">Apphasználat és teljesítmény megosztása</string>
   <string name="settings_privacy_policy">Adatvédelmi irányelvek</string>
@@ -166,4 +189,9 @@
   <string name="private_analytics_footer_learn_more">További információ</string>
   <string name="diagnosis_subtitle_template">%1$s, %2$s</string>
   <string name="empty_share_history_body">Nincsenek megosztási előzmények</string>
+  <string name="share_diagnosis_share_test_result_title">Teszteredmény megosztása a következő alkalmazással: %1$s</string>
+  <string name="share_diagnosis_share_test_result_subtitle">Köszönjük, hogy segít a COVID-19-járvány megfékezésében.</string>
+  <string name="share_diagnosis_share_test_result_body">Az eredmény megosztásakor lehetősége van megosztani a tünetei első jelentkezésének időpontját is. Ez az információ segíthet megfékezni a COVID-19-betegség terjedését, és életek menthetők meg ezáltal.</string>
+  <string name="sms_intercept_notice_title">Újdonságok</string>
+  <string name="sms_intercept_notice_content">Ha a helyi egészségügyi hatóságok teszteredményt küldenek Önnek, az alkalmazás értesítheti erről, valamint emlékeztetheti az eredmények beküldésére, és segíthet Önnek másokat figyelmeztetni a lehetséges kitettségre. A Beállításokban ezt a funkciót bármikor kikapcsolhatja.</string>
 </resources>

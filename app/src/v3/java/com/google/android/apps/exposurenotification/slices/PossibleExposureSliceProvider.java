@@ -48,8 +48,6 @@ import dagger.hilt.components.SingletonComponent;
  Enables Android settings / nearby module to embed up-to-date info in their settings via slices
  */
 public class PossibleExposureSliceProvider extends SliceProvider {
-  private static final String TAG = "PosExpSliceProvider";
-
   private static final int POSSIBLE_EXPOSURE_ACTIVITY_REQUEST_CODE = 118999;
 
   static final Uri POSSIBLE_EXPOSURE_SLICE_URI = new Uri.Builder()

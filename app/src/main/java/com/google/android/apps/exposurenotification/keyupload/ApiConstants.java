@@ -93,6 +93,8 @@ public class ApiConstants {
     public static final String PADDING = "padding";
     public static final String ERR_MESSAGE = "error";
     public static final String ERR_CODE = "errorCode";
+    public static final String TZ_OFFSET = "tzOffset";
+    public static final String NONCE = "nonce";
 
     public static class Error {
 
@@ -107,6 +109,10 @@ public class ApiConstants {
       public static final String TOKEN_INVALID = "token_invalid";
       public static final String TOKEN_EXPIRED = "token_expired";
       public static final String HMAC_INVALID = "hmac_invalid";
+      public static final String MISSING_DATE = "missing_date";
+      public static final String INVALID_DATE = "invalid_date";
+      public static final String MISSING_NONCE = "missing_nonce";
+      public static final String MISSING_PHONE = "missing_phone";
 
       // Prevent instantiation
       private Error() {

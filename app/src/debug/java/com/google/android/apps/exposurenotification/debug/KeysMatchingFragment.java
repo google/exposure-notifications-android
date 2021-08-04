@@ -27,7 +27,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.IntentSender.SendIntentException;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,12 +35,13 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.common.SnackbarUtil;
+import com.google.android.apps.exposurenotification.common.logging.Logger;
 import com.google.android.apps.exposurenotification.databinding.FragmentMatchingViewBinding;
 import com.google.android.apps.exposurenotification.debug.KeysMatchingViewModel.ResolutionRequiredEvent;
 import com.google.android.apps.exposurenotification.debug.KeysMatchingViewModel.ResolutionType;
 import com.google.android.apps.exposurenotification.utils.RequestCodes;
 import com.google.android.gms.nearby.exposurenotification.TemporaryExposureKey;
-import com.google.android.material.snackbar.Snackbar;
 import dagger.hilt.android.AndroidEntryPoint;
 import java.util.List;
 
@@ -51,7 +51,7 @@ import java.util.List;
 @AndroidEntryPoint
 public class KeysMatchingFragment extends Fragment {
 
-  private static final String TAG = "ViewKeysFragment";
+  private static final Logger logger = Logger.getLogger("KeysMatchingFragment");
 
   private FragmentMatchingViewBinding binding;
   private KeysMatchingViewModel keysMatchingViewModel;
@@ -92,7 +92,7 @@ public class KeysMatchingFragment extends Fragment {
                     .startResolutionForResult(
                         getActivity(), getRequestCodeForResolutionRequiredEvent(event));
               } catch (SendIntentException e) {
-                Log.w(TAG, "Error calling startResolutionForResult", event.getException());
+                logger.w("Error calling startResolutionForResult", event.getException());
               }
             });
 
@@ -229,9 +229,7 @@ public class KeysMatchingFragment extends Fragment {
   }
 
   private void maybeShowSnackbar(String message) {
-    View view = getView();
-    if (view != null) {
-      Snackbar.make(requireView(), message, Snackbar.LENGTH_SHORT).show();
-    }
+    logger.i("maybeShowSnackbar: " + message);
+    SnackbarUtil.maybeShowRegularSnackbar(getView(), message);
   }
 }

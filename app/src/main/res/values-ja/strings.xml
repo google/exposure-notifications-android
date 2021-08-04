@@ -30,7 +30,8 @@
   <string name="onboarding_exposure_notifications_title">接触通知システムを有効にする</string>
   <string name="onboarding_exposure_notifications_detail">COVID-19（新型コロナウイルス感染症）に感染したことを報告した人があなたの周囲にいた場合に、通知が届きます。
     \n\nスマートフォンで Bluetooth を使用して、周辺のスマートフォンとの間でランダムな ID を安全に収集、共有します。
-    \n\n陽性者との接触の可能性があった日付、期間、電波強度を使用して、公衆衛生機関で設定されたパラメータに基づきあなたに通知するかどうかが判断されます。</string>
+    \n\n陽性者との接触の可能性があった日付、期間、電波強度を使用して、公衆衛生機関で設定されたパラメータに基づきあなたに通知するかどうかが判断されます。
+    \n\n検査で陽性だった場合、検査結果を衛生機関と共有するようリマインダーを受け取ることがあります。</string>
   <string name="onboarding_metrics_title">アプリ改善にご協力ください</string>
   <string name="onboarding_metrics_subtitle">アプリの使用状況とパフォーマンスのデータを共有する</string>
   <string name="onboarding_metrics_description">アプリの保守と改善のため、アプリのパフォーマンスと使用状況に関するデータの一部が、匿名化されたうえで Google と共有されます。このデータから個人が特定されることはありません。%1$s</string>
@@ -61,9 +62,9 @@
   <string name="using_en_helps_even_if_vaccinated">ワクチンを接種していても、このサービスを利用することは、地域社会を守ることにつながります。</string>
   <string name="share_begin_title">地域社会を守りましょう</string>
   <string name="share_close_title">共有せずに終了しますか？</string>
-  <string name="share_close_detail">検査結果をいち早く共有することが、地域社会の感染拡大防止につながります。なお、これまでに入力した検査結果情報はこのアプリに保存されるため、後で編集を再開することもできます。</string>
+  <string name="share_close_detail">検査結果をできる限り早く共有することが、地域社会の感染拡大防止につながります。共有せずに終了しても、後で中断したところから再開できます。</string>
   <string name="btn_resume_later">終了する</string>
-  <string name="verify_test_result_title">COVID-19 検査情報を入力しましょう</string>
+  <string name="verify_test_result_title">確認コードを入力してください</string>
   <string name="enter_your_test_identifier">確認コード</string>
   <string name="share_test_identifier_help">このワンタイム コードは、検査結果を確認するために使用します。</string>
   <string name="share_test_identifier_verified">コード確認済み</string>
@@ -83,20 +84,19 @@
   <string name="share_review_status_confirmed">陽性</string>
   <string name="share_review_status_likely">可能性高</string>
   <string name="share_review_status_negative">陰性</string>
-  <string name="share_review_onset_subtitle">症状に関する情報</string>
+  <string name="share_review_onset_subtitle">症状</string>
   <string name="share_review_onset_date">症状が出始めたのは %1$s</string>
   <string name="share_review_onset_no_symptoms">無症状</string>
   <string name="share_review_onset_no_answer">無回答</string>
-  <string name="share_review_travel_subtitle">旅行履歴</string>
-  <string name="share_review_travel_confirmed">過去 14 日間に旅行した</string>
+  <string name="share_review_travel_subtitle">旅行</string>
+  <string name="share_review_travel_confirmed">過去 14 日以内</string>
   <string name="share_review_travel_no_travel">過去 14 日間に旅行していない</string>
   <string name="share_review_travel_no_answer">無回答</string>
-  <string name="share_confirm_title">COVID-19 感染の可能性の共有に感謝いたします</string>
+  <string name="share_confirm_title">COVID-19 検査結果の共有に感謝いたします</string>
   <string name="not_shared_confirm_title">検査結果が共有されませんでした</string>
   <string name="not_shared_confirm_detail">COVID-19（新型コロナウイルス感染症）の検査結果が共有されませんでした。もう一度お試しください。</string>
   <string name="status_shared_detail_title">共有した COVID-19 感染の可能性</string>
-  <string name="delete_test_result_title">COVID-19 の検査結果を削除しますか？</string>
-  <string name="delete_test_result_detail">検査結果の詳細がこのアプリから削除されます。</string>
+  <string name="delete_test_result_title">検査結果を削除しますか？</string>
   <string name="delete_test_result_confirmed">検査結果が削除されました</string>
   <string name="share_error_no_internet">オフラインでテスト結果を共有することはできません。インターネット接続を確認してもう一度お試しください。</string>
   <string name="share_vaccination_title">COVID-19 のワクチンを接種しましたか？</string>
@@ -105,6 +105,29 @@
   <string name="share_vaccination_vaccinated">はい、ワクチンを接種しました</string>
   <string name="share_vaccination_not_vaccinated">いいえ</string>
   <string name="share_vaccination_unknown">回答したくない</string>
+  <string name="do_you_have_code_title">コードを受け取りましたか？</string>
+  <string name="do_you_have_code_content">COVID-19（新型コロナウイルス感染症）の検査で陽性だった場合、検査結果を共有できるよう、通常、公衆衛生機関から電話またはテキスト メッセージで確認コードが提供されます。</string>
+  <string name="btn_i_have_code">コードを受け取った</string>
+  <string name="btn_i_need_code">コードが必要である</string>
+  <string name="get_verification_code_title">確認コードを受け取る</string>
+  <string name="phone_number_prompt">電話番号</string>
+  <string name="phone_number_help">確認コードによって検査結果を共有できます。コードは、指定された電話番号に送信されます。</string>
+  <string name="phone_number_may_be_stored_help">検査結果が重複して送信されないよう、電話番号が一時的に公衆衛生機関に保存されることがあります。</string>
+  <string name="test_date_prompt">検査日</string>
+  <string name="test_date_help">検査日は過去 14 日以内である必要があります。</string>
+  <string name="tested_for_covid_checkbox_text">過去 14 日以内に COVID-19 の検査結果が陽性でした。</string>
+  <string name="btn_send_code">コードを送信</string>
+  <string name="enter_code_help">%1$sから受け取ったコードを入力してください。</string>
+  <string name="positive_result_already_reported_title">検査結果はすでに報告されています。</string>
+  <string name="positive_result_already_reported_content">別の検査結果を報告したい場合は、%1$sにご連絡ください。</string>
+  <string name="self_report_bad_code">コードが無効です。確認コードのリクエストと入力には同じデバイスを使用してください。</string>
+  <string name="self_report_bad_phone_number">番号を確認し、もう一度お試しください。%1$s</string>
+  <string name="self_report_code_requested_too_many_times">リクエストが多すぎます。コードがまだ必要な場合は、%1$sにお問い合わせください。</string>
+  <plurals name="self_report_code_already_requested">
+    <item quantity="one">リクエストが多すぎます。新しいコードをリクエストできるのは、%1$d 分後です。</item>
+    <item quantity="other">リクエストが多すぎます。新しいコードをリクエストできるのは、%1$d 分後です。</item>
+  </plurals>
+  <string name="notify_others_notification_title">陽性者と接触した可能性のある人に通知できます</string>
   <string name="settings_exposure_notifications_subtitle">接触通知システム</string>
   <string name="settings_app_analytics_subtitle">アプリの使用状況とパフォーマンスの共有</string>
   <string name="settings_privacy_policy">プライバシー ポリシー</string>
@@ -166,4 +189,9 @@
   <string name="private_analytics_footer_learn_more">詳細</string>
   <string name="diagnosis_subtitle_template">%1$s（%2$s）</string>
   <string name="empty_share_history_body">共有履歴なし</string>
+  <string name="share_diagnosis_share_test_result_title">検査結果を %1$s さんと共有</string>
+  <string name="share_diagnosis_share_test_result_subtitle">COVID-19（新型コロナウイルス感染症）感染拡大防止へのご協力に感謝いたします。</string>
+  <string name="share_diagnosis_share_test_result_body">検査結果を共有する際に、症状が出始めた日も共有できます。この情報は COVID-19 の感染拡大を防ぎ、大切な命を守ることにつながります。</string>
+  <string name="sms_intercept_notice_title">新機能</string>
+  <string name="sms_intercept_notice_content">地域の公衆衛生機関から検査結果が送られてきた場合は、陽性者との接触の可能性を他のユーザーに知らせることができるよう、検査結果の送信についてアプリからリマインダーを受け取ることができます。これは設定でいつでも無効にできます。</string>
 </resources>

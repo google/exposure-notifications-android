@@ -21,8 +21,11 @@ import android.content.Context;
 import androidx.hilt.lifecycle.ViewModelInject;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
+import androidx.work.WorkManager;
+import com.google.android.apps.exposurenotification.common.NotificationHelper;
 import com.google.android.apps.exposurenotification.common.StringUtils;
 import com.google.android.apps.exposurenotification.common.time.Clock;
+import com.google.android.apps.exposurenotification.restore.RestoreNotificationWorker;
 import com.google.android.apps.exposurenotification.riskcalculation.ExposureClassification;
 import com.google.android.apps.exposurenotification.storage.ExposureCheckEntity;
 import com.google.android.apps.exposurenotification.storage.ExposureCheckRepository;
@@ -39,18 +42,24 @@ public class ExposureHomeViewModel extends ViewModel {
   private static final int NUM_CHECKS_TO_DISPLAY = 5;
 
   private final ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
+  private final NotificationHelper notificationHelper;
   private final LiveData<List<ExposureCheckEntity>> getExposureChecksLiveData;
   private final Clock clock;
+  private final WorkManager workManager;
 
   @ViewModelInject
   public ExposureHomeViewModel(
       ExposureNotificationSharedPreferences exposureNotificationSharedPreferences,
       ExposureCheckRepository exposureCheckRepository,
-      Clock clock) {
+      NotificationHelper notificationHelper,
+      Clock clock,
+      WorkManager workManager) {
     this.exposureNotificationSharedPreferences = exposureNotificationSharedPreferences;
+    this.notificationHelper = notificationHelper;
     getExposureChecksLiveData =
         exposureCheckRepository.getLastXExposureChecksLiveData(NUM_CHECKS_TO_DISPLAY);
     this.clock = clock;
+    this.workManager = workManager;
   }
 
   public LiveData<ExposureClassification> getExposureClassificationLiveData() {
@@ -94,6 +103,14 @@ public class ExposureHomeViewModel extends ViewModel {
     return getExposureChecksLiveData;
   }
 
+  /**
+   * Cancels any pending job to notify user to reactivate exposure notification
+   * and dismiss notification if currently showing.
+   */
+  public void dismissReactivateExposureNotificationAppNotificationAndPendingJob(Context context) {
+    notificationHelper.dismissReActivateENNotificationIfShowing(context);
+    RestoreNotificationWorker.cancelRestoreNotificationWorkIfExisting(workManager);
+  }
 
   public String getDaysFromStartOfExposureString(ExposureClassification exposureClassification,
       Context context) {

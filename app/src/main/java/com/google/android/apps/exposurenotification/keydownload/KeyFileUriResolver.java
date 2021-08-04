@@ -18,12 +18,12 @@
 package com.google.android.apps.exposurenotification.keydownload;
 
 import android.net.Uri;
-import android.util.Log;
 import androidx.concurrent.futures.CallbackToFutureAdapter;
 import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
 import com.google.android.apps.exposurenotification.common.Qualifiers.BackgroundExecutor;
 import com.google.android.apps.exposurenotification.common.Qualifiers.LightweightExecutor;
+import com.google.android.apps.exposurenotification.common.logging.Logger;
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.network.RequestQueueWrapper;
 import com.google.android.apps.exposurenotification.network.RespondableStringRequest;
@@ -46,7 +46,7 @@ import javax.inject.Inject;
  */
 class KeyFileUriResolver {
 
-  private static final String TAG = "KeyFileUriResolver";
+  private static final Logger logger = Logger.getLogger("KeyFileUriResolver");
   private static final Splitter WHITESPACE_SPLITTER =
       Splitter.onPattern("\\s+").trimResults().omitEmptyStrings();
 
@@ -74,7 +74,7 @@ class KeyFileUriResolver {
    * Gets URIs from which to download key files for the given {@link DownloadUriPair}s.
    */
   ListenableFuture<ImmutableList<KeyFile>> resolve(List<DownloadUriPair> downloadUriPairs) {
-    Log.d(TAG, "Getting download URIs for " + downloadUriPairs.size() + " servers.");
+    logger.d("Getting download URIs for " + downloadUriPairs.size() + " servers.");
 
     List<ListenableFuture<ImmutableList<KeyFile>>> keyfiles = new ArrayList<>();
     for (DownloadUriPair uriPair : downloadUriPairs) {
@@ -96,9 +96,9 @@ class KeyFileUriResolver {
     return FluentFuture.from(indexFileFrom(uriPair))
         .transform(
             indexContent -> {
-              Log.d(TAG, "Index content is " + indexContent);
+              logger.d("Index content is " + indexContent);
               List<String> indexEntries = WHITESPACE_SPLITTER.splitToList(indexContent);
-              Log.d(TAG, "Index file has " + indexEntries.size() + " lines.");
+              logger.d("Index file has " + indexEntries.size() + " lines.");
 
               // Parse out each line of the index file
               List<Uri> fileUris = new ArrayList<>();
@@ -125,7 +125,7 @@ class KeyFileUriResolver {
                 boolean isMostRecent = fileUri.equals(Iterables.getLast(fileUris));
                 builder.add(KeyFile.create(uriPair.indexUri(), fileUri, isMostRecent));
               }
-              Log.d(TAG, String.format(
+              logger.d(String.format(
                   "Uris for server [%s]: [%s]", uriPair.indexUri(), builder.build()));
               return builder.build();
             },
@@ -137,17 +137,17 @@ class KeyFileUriResolver {
         completer -> {
           Listener<String> responseListener =
               resp -> {
-                Log.d(TAG, "Response was " + resp);
+                logger.d("Response was " + resp);
                 completer.set(resp);
               };
 
           ErrorListener errorListener =
               err -> {
-                Log.e(TAG, "Error getting keyfile index.");
+                logger.e("Error getting keyfile index.");
                 completer.setException(err);
               };
 
-          Log.d(TAG, "Getting index file from " + uriPair.indexUri());
+          logger.d("Getting index file from " + uriPair.indexUri());
           RespondableStringRequest request =
               new RespondableStringRequest(
                   uriPair.indexUri().toString(), responseListener, errorListener, clock);

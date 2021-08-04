@@ -30,7 +30,8 @@
   <string name="onboarding_exposure_notifications_title">Kokkupuute märguannete sisselülitamine</string>
   <string name="onboarding_exposure_notifications_detail">Saate märguande, kui olete olnud kellegi läheduses, kes on teada andnud, et on COVID-19-sse nakatunud.
     \n\nTeie telefon kasutab Bluetoothi, et läheduses olevatelt telefonidelt turvaliselt juhuslikke ID-sid koguda ja neid nende telefonidega jagada.
-    \n\nVõimaliku kokkupuutega seotud kuupäeva, kestust ja signaalitugevust kasutatakse selleks, et teie tervishoiuasutuse määratud parameetrite järgi määratleda, kas teid tuleks teavitada.</string>
+    \n\nVõimaliku kokkupuutega seotud kuupäeva, kestust ja signaalitugevust kasutatakse selleks, et teie tervishoiuasutuse määratud parameetrite järgi määratleda, kas teid tuleks teavitada.
+    \n\nKui teie testi tulemus on positiivne, võite saada meeldetuletuse oma tulemuste jagamiseks tervishoiuasutusega.</string>
   <string name="onboarding_metrics_title">Aidake seda rakendust paremaks muuta</string>
   <string name="onboarding_metrics_subtitle">Jagage Google\'iga rakenduse kasutus- ja toimivusandmeid</string>
   <string name="onboarding_metrics_description">Selleks et aidata rakendust hallata ja täiustada, jagatakse Google\'iga teatud piiratud ning isikustamata andmeid rakenduse toimivuse ja kasutamise kohta. Nende andmete põhjal ei saa teid tuvastada. %1$s</string>
@@ -60,10 +61,10 @@
   <string name="notify_turn_on_exposure_notifications_header">Selleks et teid teavitataks COVID-19-ga võimaliku kokkupuute kohta, lülitage kokkupuute märguanded sisse. %1$s</string>
   <string name="using_en_helps_even_if_vaccinated">Selle teenuse kasutamine aitab teil kaitsta oma kogukonda – isegi kui olete vaktsineeritud.</string>
   <string name="share_begin_title">Aidake kaitsta oma kogukonda</string>
-  <string name="share_close_title">Soovite väljuda jagamata?</string>
-  <string name="share_close_detail">Teie kogukonna jaoks on kõige kasulikum, kui jagate oma testitulemust varem. Testitulemuste teave, mille olete seni sisestanud, salvestatakse aga rakendusse, et saaksite seda hiljem muuta.</string>
-  <string name="btn_resume_later">Jah, välju</string>
-  <string name="verify_test_result_title">Sisestage teave COVID-19 testi kohta</string>
+  <string name="share_close_title">Kas sulgeda ilma jagamata?</string>
+  <string name="share_close_detail">Parim viis oma kogukonna abistamiseks on jagada tulemusi esimesel võimalusel. Kui sulgete kohe ilma jagamata, saate poolelijäänud kohast hiljem jätkata, kui meelt muudate.</string>
+  <string name="btn_resume_later">Jah, sule</string>
+  <string name="verify_test_result_title">Sisestage oma kinnituskood</string>
   <string name="enter_your_test_identifier">Kinnituskood</string>
   <string name="share_test_identifier_help">Seda ühekordset koodi kasutatakse teie testitulemuse kinnitamiseks.</string>
   <string name="share_test_identifier_verified">Kood on kinnitatud</string>
@@ -83,20 +84,19 @@
   <string name="share_review_status_confirmed">Positiivne</string>
   <string name="share_review_status_likely">Tõenäoliselt positiivne</string>
   <string name="share_review_status_negative">Negatiivne</string>
-  <string name="share_review_onset_subtitle">Sümptomite teave</string>
-  <string name="share_review_onset_date">Sümptomid alates %1$s</string>
+  <string name="share_review_onset_subtitle">Sümptomid</string>
+  <string name="share_review_onset_date">Alates kuupäevast %1$s</string>
   <string name="share_review_onset_no_symptoms">Sümptomid puuduvad</string>
   <string name="share_review_onset_no_answer">Pole vastanud</string>
-  <string name="share_review_travel_subtitle">Reisimise ajalugu</string>
-  <string name="share_review_travel_confirmed">Viimase 14 päeva jooksul reisinud</string>
+  <string name="share_review_travel_subtitle">Reisimine</string>
+  <string name="share_review_travel_confirmed">Viimase 14 päeva jooksul</string>
   <string name="share_review_travel_no_travel">Pole viimase 14 päeva jooksul reisinud</string>
   <string name="share_review_travel_no_answer">Pole vastanud</string>
   <string name="share_confirm_title">Täname, et jagasite oma COVID-19 testitulemust</string>
   <string name="not_shared_confirm_title">Teie testitulemust ei jagatud</string>
   <string name="not_shared_confirm_detail">Teie COVID-19 testi tulemust ei jagatud. Proovige uuesti.</string>
   <string name="status_shared_detail_title">Jagatud COVID-19 olek</string>
-  <string name="delete_test_result_title">Kas kustutada COVID-19 testitulemus?</string>
-  <string name="delete_test_result_detail">Teie testitulemuse üksikasjad kustutatakse sellest rakendusest.</string>
+  <string name="delete_test_result_title">Kas kustutada teie testitulemus?</string>
   <string name="delete_test_result_confirmed">Testitulemus kustutati</string>
   <string name="share_error_no_internet">Testitulemusi ei saa võrguühenduseta jagada. Kontrollige internetiühendust ja proovige uuesti.</string>
   <string name="share_vaccination_title">Kas olete COVID-19 vastu vaktsineeritud?</string>
@@ -105,6 +105,29 @@
   <string name="share_vaccination_vaccinated">Jah, olen vaktsineeritud.</string>
   <string name="share_vaccination_not_vaccinated">Ei</string>
   <string name="share_vaccination_unknown">Eelistan mitte vastata</string>
+  <string name="do_you_have_code_title">Kas saite koodi?</string>
+  <string name="do_you_have_code_content">Kui teie COVID-19-testi tulemus on positiivne, esitab tervishoiuasutus telefoni või tekstsõnumi kaudu kinnituskoodi, et saaksite oma tulemusi jagada.</string>
+  <string name="btn_i_have_code">Jah, mul on kood</string>
+  <string name="btn_i_need_code">Vajan koodi</string>
+  <string name="get_verification_code_title">Hankige kinnituskood</string>
+  <string name="phone_number_prompt">Telefoninumber</string>
+  <string name="phone_number_help">Kinnituskood võimaldab teil oma testitulemusi jagada. Kood saadetakse teie esitatud numbrile.</string>
+  <string name="phone_number_may_be_stored_help">Selleks et inimesed ei saaks esitada mitut tulemust, võib tervishoiuasutus teie telefoninumbri ajutiselt salvestada.</string>
+  <string name="test_date_prompt">Testi kuupäev</string>
+  <string name="test_date_help">Testi kuupäev peaks jääma viimase 14 päeva vahemikku.</string>
+  <string name="tested_for_covid_checkbox_text">Sain viimase 14 päeva jooksul COVID-19-testi positiivse tulemuse.</string>
+  <string name="btn_send_code">Saada kood</string>
+  <string name="enter_code_help">Sisestage kood, mille %1$s saatis.</string>
+  <string name="positive_result_already_reported_title">Teavitasite juba hiljuti testitulemusest.</string>
+  <string name="positive_result_already_reported_content">Kui soovite teavitada veel ühest testitulemusest, võtke ühendust tervishoiuasutusega %1$s.</string>
+  <string name="self_report_bad_code">Kehtetu kood. Veenduge, et kasutaksite nii kinnituskoodi taotlemiseks kui ka sisestamiseks sama seadet.</string>
+  <string name="self_report_bad_phone_number">Kontrollige numbrit ja proovige uuesti. %1$s</string>
+  <string name="self_report_code_requested_too_many_times">Olete esitanud liiga palju taotlusi. Kui vajate siiski koodi, võtke ühendust tervishoiuasutusega %1$s.</string>
+  <plurals name="self_report_code_already_requested">
+    <item quantity="one">Olete esitanud liiga palju taotlusi. Saate uut koodi taotleda %1$d minuti pärast.</item>
+    <item quantity="other">Olete esitanud liiga palju taotlusi. Saate uut koodi taotleda %1$d minuti pärast.</item>
+  </plurals>
+  <string name="notify_others_notification_title">Aidake teavitada teisi, kes võisid viirusega kokku puutuda</string>
   <string name="settings_exposure_notifications_subtitle">Kokkupuute märguanded</string>
   <string name="settings_app_analytics_subtitle">Rakenduse kasutus- ja toimivusandmete jagamine</string>
   <string name="settings_privacy_policy">Privaatsuseeskirjad</string>
@@ -166,4 +189,9 @@
   <string name="private_analytics_footer_learn_more">Lisateave</string>
   <string name="diagnosis_subtitle_template">%1$s – %2$s</string>
   <string name="empty_share_history_body">Jagamise ajalugu pole</string>
+  <string name="share_diagnosis_share_test_result_title">Jagage oma testitulemust rakendusega %1$s</string>
+  <string name="share_diagnosis_share_test_result_subtitle">Täname, et aitate COVID-19 vastu võidelda.</string>
+  <string name="share_diagnosis_share_test_result_body">Kui jagate oma testitulemust, saate jagada ka teavet selle kohta, millal sümptomid algasid. See teave aitab peatada COVID-19 levikut ja päästa elusid.</string>
+  <string name="sms_intercept_notice_title">Mis on uut?</string>
+  <string name="sms_intercept_notice_content">Kui teie riiklik tervishoiuasutus saadab teile testitulemuse, saab rakendus saata teile meeldetuletuse tulemuse esitamiseks, et teisi võimalikust kokkupuutest teavitada. Saate selle seadetes alati keelata.</string>
 </resources>

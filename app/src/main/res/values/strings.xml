@@ -108,11 +108,12 @@
   <!-- Title of the exposure notification section on the onboarding screen explaining that exposure notifications will be turned on. This screen is shown on first use of the app when not previously enabled. [CHAR_LIMIT=60] -->
   <string name="onboarding_exposure_notifications_title">Turn on Exposure Notifications</string>
 
-  <!-- Text of the exposure notification section on the onboarding screen explaining that exposure notifications will be turned on. This screen is shown on first use of the app when not previously enabled. The placeholder string is the app name. [CHAR_LIMIT=NONE] -->
+  <!-- Text of the exposure notification section on the onboarding screen explaining that exposure notifications will be turned on. This screen is shown on first use of the app when not previously enabled. The placeholder string is the app name. [CHAR_LIMIT=NONE] [BACKUP_MESSAGE_ID=7298726664760214564] -->
   <string name="onboarding_exposure_notifications_detail">
     Get notified if you\'ve been near someone who reported having COVID-19.
     \n\nYour phone uses Bluetooth to securely collect and share random IDs with other phones that are nearby.
     \n\nThe date, duration, and signal strength associated with a possible exposure will be used to determine whether you will be notified based on parameters set by your public health authority.
+    \n\nIf you test positive, you may receive a reminder to share your results with your health authority.
   </string>
 
   <!-- Title of the metric sharing section on the onboarding screen explaining that choosing to share metrics will help improve the app. This screen is shown on first use of the app when not previously enabled. [CHAR_LIMIT=60] -->
@@ -202,17 +203,17 @@
   <!-- Title of the first screen in the notify others flow for uploading your COVID-19 diagnosis. [CHAR_LIMIT=100] -->
   <string name="share_begin_title">Help protect your community</string>
 
-  <!-- Title of the close dialog in the notify others flow. [CHAR_LIMIT=40] -->
-  <string name="share_close_title">Exit without sharing?</string>
+  <!-- Title of the close dialog in the notify others flow. [CHAR_LIMIT=40] [BACKUP_MESSAGE_ID=391062684990888954] -->
+  <string name="share_close_title">Close without sharing?</string>
 
-  <!-- Detail of the close dialog in the notify others flow. [CHAR_LIMIT=200] -->
-  <string name="share_close_detail">You can best help your community if you share your test result sooner. However, the test result information you\'ve entered so far is saved in the app for you to resume editing later.</string>
+  <!-- Detail of the close dialog in the notify others flow. [CHAR_LIMIT=200] [BACKUP_MESSAGE_ID=4007620863456819183] -->
+  <string name="share_close_detail">The best way you can help your community is to share your results as soon as possible. If you do close now without sharing, you can pick up where you left off if you change your mind later.</string>
 
-  <!-- Positive button of the close dialog button in the notify others flow to exit and resume the flow later. [CHAR_LIMIT=60] -->
-  <string name="btn_resume_later">Yes, exit</string>
+  <!-- Positive button of the close dialog button in the notify others flow to exit and resume the flow later. [CHAR_LIMIT=60] [BACKUP_MESSAGE_ID=9087992921847337174] -->
+  <string name="btn_resume_later">Yes, close</string>
 
-  <!-- Title displayed on the second screen in the notify others flow, requesting a valid COVID-19 test result verification code. [CHAR_LIMIT=60] -->
-  <string name="verify_test_result_title">Enter COVID-19 test information</string>
+  <!-- Title displayed on the second screen in the notify others flow, requesting a valid COVID-19 test result verification code. [CHAR_LIMIT=60] [BACKUP_MESSAGE_ID=3315668938958788451] -->
+  <string name="verify_test_result_title">Enter your verification code</string>
 
   <!-- Shown on the second screen in the notify others flow, prompt requesting the COVID-19 test verification PIN number the user received from their health authority. [CHAR_LIMIT=40] -->
   <string name="enter_your_test_identifier">Verification code</string>
@@ -241,8 +242,8 @@
   <!-- Shown on the third screen in the notify others flow, one of three options asking whether the user has had COVID-19 symptoms. [CHAR_LIMIT=40] -->
   <string name="share_onset_no_symptoms">No</string>
 
-  <!-- Shown on the third screen in the notify others flow, one of three options asking whether the user has had COVID-19 symptoms. [CHAR_LIMIT=40] -->
-  <string name="share_onset_no_answer">Prefer not to answer</string>
+  <!-- Shown on the third screen in the notify others flow, one of three options asking whether the user has had COVID-19 symptoms. [CHAR_LIMIT=40] [BACKUP_MESSAGE_ID=343304484087474889] -->
+  <string name="share_onset_no_answer">I prefer not to answer</string>
 
   <!-- Title of fourth screen in the notify others flow, asking whether the user has traveled while being positive with COVID-19. [CHAR_LIMIT=60] -->
   <string name="share_travel_title">Have you traveled in the last 14 days\?</string>
@@ -253,8 +254,8 @@
   <!-- Shown on the fourth screen in the notify others flow, one of three possible options in response to the question: have you traveled? [CHAR_LIMIT=40] -->
   <string name="share_travel_no_travel">No</string>
 
-  <!-- Shown on the fourth screen in the notify others flow, one of three possible options in response to the question: have you traveled? [CHAR_LIMIT=40] -->
-  <string name="share_travel_no_answer">Prefer not to answer</string>
+  <!-- Shown on the fourth screen in the notify others flow, one of three possible options in response to the question: have you traveled? [CHAR_LIMIT=40] [BACKUP_MESSAGE_ID=3240449742208145177] -->
+  <string name="share_travel_no_answer">I prefer not to answer</string>
 
   <!-- Title of last screen in the notify others flow, confirming the information the user has provided before sharing it with the health authority. [CHAR_LIMIT=60] -->
   <string name="share_review_title">Review your information</string>
@@ -271,11 +272,11 @@
   <!-- Shown on the last screen in the notify others flow, displaying the users COVID-19 test result being negative. [CHAR_LIMIT=60] -->
   <string name="share_review_status_negative">Negative</string>
 
-  <!-- Subtitle on the last screen in the notify others flow, shown above the users's symptom onset choice. [CHAR_LIMIT=60] -->
-  <string name="share_review_onset_subtitle">Symptom info</string>
+  <!-- Subtitle on the last screen in the notify others flow, shown above the users's symptom onset choice. [CHAR_LIMIT=60] [BACKUP_MESSAGE_ID=851072709708873041] -->
+  <string name="share_review_onset_subtitle">Symptoms</string>
 
-  <!-- Shown on the last screen in the notify others flow, displaying the user's chosen symptom onset date. The placeholder is a date. [CHAR_LIMIT=60] -->
-  <string name="share_review_onset_date">Symptoms from %1$s</string>
+  <!-- Shown on the last screen in the notify others flow, displaying the user's chosen symptom onset date. The placeholder is a date. [CHAR_LIMIT=60] [BACKUP_MESSAGE_ID=6766668374135538654] -->
+  <string name="share_review_onset_date">Started <xliff:g id="date" example="Jun 21, 2020">%1$s</xliff:g></string>
 
   <!-- Shown on the last screen in the notify others flow, displaying the user said they had not symptoms. [CHAR_LIMIT=60] -->
   <string name="share_review_onset_no_symptoms">No symptoms</string>
@@ -283,11 +284,11 @@
   <!-- Shown on the last screen in the notify others flow, displaying the user chose not to answer whether that had symptoms. [CHAR_LIMIT=60] -->
   <string name="share_review_onset_no_answer">Not answered</string>
 
-  <!-- Subtitle on the last screen in the notify others flow, shown above the users's choice of whether they have traveled while positive for COVID-19. [CHAR_LIMIT=60] -->
-  <string name="share_review_travel_subtitle">Travel history</string>
+  <!-- Subtitle on the last screen in the notify others flow, shown above the users's choice of whether they have traveled while positive for COVID-19. [CHAR_LIMIT=60] [BACKUP_MESSAGE_ID=4319125961795210961] -->
+  <string name="share_review_travel_subtitle">Travel</string>
 
-  <!-- Shown on the last screen in the notify others flow, displaying that the user confirmed they had traveled. [CHAR_LIMIT=60] -->
-  <string name="share_review_travel_confirmed">Traveled in last 14 days</string>
+  <!-- Shown on the last screen in the notify others flow, displaying that the user confirmed they had traveled. [CHAR_LIMIT=60] [BACKUP_MESSAGE_ID=6597651663414010220] -->
+  <string name="share_review_travel_confirmed">Within the past 14 days</string>
 
   <!-- Shown on the last screen in the notify others flow, displaying that the user confirmed they had not traveled. [CHAR_LIMIT=60] -->
   <string name="share_review_travel_no_travel">Not traveled in last 14 days</string>
@@ -295,8 +296,8 @@
   <!-- Shown on the last screen in the notify others flow, displaying that the user chose not to answer whether they had traveled. [CHAR_LIMIT=60] -->
   <string name="share_review_travel_no_answer">Not answered</string>
 
-  <!-- Title of the page shown after sharing in the notify others flow. [CHAR_LIMIT=NONE] -->
-  <string name="share_confirm_title">Thank you for sharing your COVID-19 status</string>
+  <!-- Title of the page shown after sharing in the notify others flow. [CHAR_LIMIT=NONE] [BACKUP_MESSAGE_ID=6722768628638817006] -->
+  <string name="share_confirm_title">Thank you for sharing your COVID-19 result</string>
 
   <!-- Title of the page shown after choosing not to share in the notify others flow. [CHAR_LIMIT=60] -->
   <string name="not_shared_confirm_title">Your test result wasn\'t shared</string>
@@ -307,11 +308,8 @@
   <!-- Title of the shared status detail page. [CHAR_LIMIT=60] -->
   <string name="status_shared_detail_title">Shared COVID-19 status</string>
 
-  <!-- Title of dialog confirming the user wants to delete their COVID-19 test result information from the app. [CHAR_LIMIT=40] -->
-  <string name="delete_test_result_title">Delete COVID-19 test result?</string>
-
-  <!-- Main body of text on the dialog confirming the user wants to delete their COVID-19 test result information from the app. [CHAR_LIMIT=100] -->
-  <string name="delete_test_result_detail">Your test result details will be deleted from this app.</string>
+  <!-- Title of dialog confirming the user wants to delete their COVID-19 test result information from the app. [CHAR_LIMIT=40] [BACKUP_MESSAGE_ID=7663317632263132817] -->
+  <string name="delete_test_result_title">Delete your test result?</string>
 
   <!-- Snackbar message shown as confirmation after the user chooses to delete a COVID-19 test resut from the app. [CHAR_LIMIT=60] -->
   <string name="delete_test_result_confirmed">Test result deleted</string>
@@ -334,8 +332,72 @@
   <!-- Shown on the fifth screen in the notify others flow, one of three possible options in response to the question: Have you been vaccinated against Covid-19? [CHAR_LIMIT=100] -->
   <string name="share_vaccination_not_vaccinated">No</string>
 
-  <!-- Shown on the fifth screen in the notify others flow, one of three possible options in response to the question: Have you been vaccinated against Covid-19? [CHAR_LIMIT=100] -->
-  <string name="share_vaccination_unknown">Prefer not to answer</string>
+  <!-- Shown on the fifth screen in the notify others flow, one of three possible options in response to the question: Have you been vaccinated against Covid-19? [CHAR_LIMIT=100] [BACKUP_MESSAGE_ID=7687437242647834242] -->
+  <string name="share_vaccination_unknown">I prefer not to answer</string>
+
+  <!-- Title of the second screen in the notify others flow for uploading a COVID-19 test result (when self-report is enabled). This screen allows user to confirm they already have a verification code from the Health Authority or to request a code if they don't. [CHAR_LIMIT=100] -->
+  <string name="do_you_have_code_title">Did you receive a code?</string>
+
+  <!-- Body message of the second screen in the notify others flow for uploading a COVID-19 test result (when self-report is enabled). This screen allows user either to confirm they already have a verification code from the Health Authority (HA) or to request that code from the HA. [CHAR_LIMIT=200] -->
+  <string name="do_you_have_code_content">If you test positive for COVID-19, your health authority usually provides a verification code by phone or text so that you can share your results.</string>
+
+  <!-- Displayed on the button for user to confirm that they have a verification code from the Health Authority to continue in the notify others flow. [CHAR_LIMIT=40] -->
+  <string name="btn_i_have_code">Yes, I have a code</string>
+
+  <!-- Displayed on the button for user to confirm that they don't have a verification code and, hence, need that code from the Health Authority to continue in the notify others flow. [CHAR_LIMIT=40] -->
+  <string name="btn_i_need_code">I need a code</string>
+
+  <!-- Title of the screen in a "Self-report" flow for users to report a COVID-19 test result on their own even though they don't have any verification from the Health Authority (HA). This screen allows user to get a verification code from the HA to proceed with self-reporting. [CHAR_LIMIT=100] -->
+  <string name="get_verification_code_title">Get a verification code</string>
+
+  <!-- Prompt for the input text field for the user's phone number. User provides their phone number as part of a "Self-report" flow for users to report a COVID-19 test result on their own even though they don't have verification from the Health Authority. [CHAR LIMIT=40] -->
+  <string name="phone_number_prompt">Phone number</string>
+
+  <!-- Additional text displayed below the input text field for the user's phone number. This text aims at ensuring that user will input a correct phone number in this field. [CHAR_LIMIT=NONE] -->
+  <string name="phone_number_help">A verification code allows you to share your test results. Your code will be sent to the number you provide.</string>
+
+  <!-- Additional text displayed below the input text field for the user's phone number. This text aims at communicating to the user that their phone number may be stored by the Health Authority to prevent people from submitting more than one test result (i.e. from abusing the system). [CHAR_LIMIT=NONE] -->
+  <string name="phone_number_may_be_stored_help">To prevent people from submitting more than one result, your phone number may be temporarily stored by your public health authority.</string>
+
+  <!-- Prompt for the input text field for the date when user had their COVID-19 test. User provides their COVID-19 test date in the notify others flow to report a COVID-19 test result. [CHAR LIMIT=40] -->
+  <string name="test_date_prompt">Test date</string>
+
+  <!-- Additional text displayed below the input text field for the user's COVID-19 test date. This text aims at ensuring that user will input a correct test date in this field. [CHAR LIMIT=NONE] -->
+  <string name="test_date_help">Test date should be within the past 14 days.</string>
+
+  <!-- A checkbox text for user to confirm that they've received a positive COVID-19 test result in the past 14 days. This checkbox is part of a "Self-report" flow for users to report a COVID-19 test result on their own even though they don't have any verification from the Health Authority. [CHAR_LIMIT=120] -->
+  <string name="tested_for_covid_checkbox_text">I have received a positive COVID-19 test in the past 14 days.</string>
+
+  <!-- Button text shown in the "Self-report" flow for users to report a COVID-19 test result on their own. Clicking on this button will signal the Health Authority to send to the user a verification code to proceed with self-reporting a COVID-19 test result. [CHAR_LIMIT=40] -->
+  <string name="btn_send_code">Send code</string>
+
+  <!-- Shown on the "Enter your verification code" screen in the notify others flow below the "Verification code" input field. This text describes what the requested COVID-19 verification code is. The placeholder is the Health Authority name. [CHAR_LIMIT=NONE] -->
+  <string name="enter_code_help">Enter the code sent to you by <xliff:g id="health_authority" example="Sample Health Authority">%1$s</xliff:g>.</string>
+
+  <!-- Title of the screen displayed if user attempts to start a "Self-report" flow to upload their COVID-19 test result but the user has already self-reported or reported a confirmed positive test result in the app. [CHAR_LIMIT=NONE] -->
+  <string name="positive_result_already_reported_title">You have already reported a test result recently.</string>
+
+  <!-- Content of the screen displayed if user attempts to start a "Self-report" flow to upload their COVID-19 test result but the user has already self-reported or reported a confirmed positive test result in the app. The placeholder is the Health Authority name. [CHAR_LIMIT=NONE] -->
+  <string name="positive_result_already_reported_content">If you would like to report another test result, please contact <xliff:g id="health_authority" example="Sample Health Authority">%1$s</xliff:g>.</string>
+
+  <!-- Error message telling the user that in a "Self-report" flow they need to use the same device to both request and enter a verification code. [CHAR_LIMIT=NONE] -->
+  <string name="self_report_bad_code">Invalid code. Make sure you\'re using the same device to both request and enter your verification code.</string>
+
+  <!-- Error message telling the user that they've entered a phone number in an invalid format (in the self-report flow to request a verification code from the Health Authority). The placeholder is a learn more link. [CHAR_LIMIT=NONE] -->
+  <string name="self_report_bad_phone_number">Check your number and try again. <xliff:g id="learn_more_link" example="Learn More">%1$s</xliff:g></string>
+
+  <!-- Error message telling the user that they've made too many requests for a verification code and need to contact their Health Authority (HA) if they still need a verification code. The placeholder is the HA name. [CHAR_LIMIT=NONE] -->
+  <string name="self_report_code_requested_too_many_times">You\'ve made too many requests. Contact <xliff:g id="health_authority" example="Sample Health Authority">%1$s</xliff:g> if you still need a code.</string>
+
+  <!-- Error message telling the user that they can't request a verification code now (because they've already requested one recently) but can request another one soon. The placeholder is a number of minutes left until user can make the next request. [CHAR_LIMIT=NONE] -->
+  <plurals name="self_report_code_already_requested">
+    <item quantity="zero">You\'ve made too many requests. You can request another code in <xliff:g id="minutes_remaining" example="0">%1$d</xliff:g> minutes.</item>
+    <item quantity="one">You\'ve made too many requests. You can request another code in <xliff:g id="minutes_remaining" example="1">%1$d</xliff:g> minute.</item>
+    <item quantity="other">You\'ve made too many requests. You can request another code in <xliff:g id="minutes_remaining" example="29">%1$d</xliff:g> minutes.</item>
+  </plurals>
+
+  <!-- Notification title shown when user's receive a verifiable deeplink-sms. In addition to the SMS itself, this prompts users to share their diagnosis. [CHAR_LIMIT=200] -->
+  <string name="notify_others_notification_title">Help notify others who may have been exposed</string>
 
   <!-- SETTINGS SCREENS -->
 
@@ -527,5 +589,20 @@
 
   <!-- Body text of the share history page if no diagnoses were shared. [CHAR_LIMIT=40] -->
   <string name="empty_share_history_body">No sharing history</string>
+
+  <!-- Title of the share test result text on the share diagnosis screen.  [CHAR_LIMIT=NONE] -->
+  <string name="share_diagnosis_share_test_result_title">Share your test result with <xliff:g example="ENSample" id="currently_open_app_name">%1$s</xliff:g></string>
+
+  <!-- Subtitle of the share test result text on the share diagnosis screen.  [CHAR_LIMIT=NONE] -->
+  <string name="share_diagnosis_share_test_result_subtitle">Thank you for helping to stop COVID-19.</string>
+
+  <!-- Body of the share test result text on the share diagnosis screen.  [CHAR_LIMIT=NONE] -->
+  <string name="share_diagnosis_share_test_result_body">When you share your result, you can also choose to share when your symptoms started. This information can help stop the spread of COVID-19 and save lives.</string>
+
+  <!-- Title of the SMS Intercept Notice dialog. This dialog is meant to inform users about a new SMS Intercept functionality. [CHAR_LIMIT=100] -->
+  <string name="sms_intercept_notice_title">What\'s new</string>
+
+  <!-- Body of the SMS Intercept Notice dialog. This dialog is meant to inform users about a new SMS Intercept functionality. [CHAR_LIMIT=NONE] -->
+  <string name="sms_intercept_notice_content">If your local health authority sends you a test result, your app can notify you with a reminder to submit your result and help alert others of possible exposure. You can disable this any time in settings.</string>
 
 </resources>

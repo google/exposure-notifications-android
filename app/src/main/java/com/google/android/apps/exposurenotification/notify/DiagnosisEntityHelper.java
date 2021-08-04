@@ -18,13 +18,13 @@
 package com.google.android.apps.exposurenotification.notify;
 
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.viewbinding.ViewBinding;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.common.logging.Logger;
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.storage.DiagnosisEntity;
 import com.google.android.apps.exposurenotification.storage.DiagnosisEntity.Shared;
@@ -36,7 +36,7 @@ import org.threeten.bp.ZoneOffset;
  * Helper class for functions around the {@link DiagnosisEntity}.
  */
 public final class DiagnosisEntityHelper {
-  private static final String TAG = "DiagnosisEntityHelper";
+  private static final Logger logger = Logger.getLogger("DiagnosisEntityHelper");
   /**
    * If a verification code is set and has a long term token.
    */
@@ -74,7 +74,7 @@ public final class DiagnosisEntityHelper {
   /** Returns true if the entered epoch time in millis is within last 14 days, false otherwise. */
   public static boolean isWithinLast14Days(Clock clock, long timeInMillis) {
     long minAllowedDateWithinLast14Days =
-        LocalDate.now(ZoneOffset.UTC)
+        LocalDate.from(clock.now().atZone(ZoneOffset.UTC))
             .atStartOfDay(ZoneOffset.UTC)
             .minusDays(14)
             .toInstant()
@@ -109,6 +109,7 @@ public final class DiagnosisEntityHelper {
           shareReviewStatus.setText(R.string.share_review_status_negative);
           break;
         case CONFIRMED:
+        case USER_REPORT:
         default:
           shareReviewStatus.setText(R.string.share_review_status_confirmed);
           break;
@@ -164,7 +165,7 @@ public final class DiagnosisEntityHelper {
 
   public static @StringRes int getDiagnosisTypeStringResourceFromTestResult(TestResult testResult) {
     if (testResult == null) {
-      Log.e(TAG, "Unknown TestResult=null");
+      logger.e("Unknown TestResult=null");
       return R.string.test_result_type_confirmed;
     } else {
       switch (testResult) {
@@ -173,9 +174,10 @@ public final class DiagnosisEntityHelper {
         case NEGATIVE:
           return R.string.test_result_type_negative;
         case CONFIRMED:
+        case USER_REPORT:
           return R.string.test_result_type_confirmed;
         default:
-          Log.e(TAG, "Unknown TestResult=" + testResult);
+          logger.e("Unknown TestResult=" + testResult);
           return R.string.test_result_type_confirmed;
       }
     }

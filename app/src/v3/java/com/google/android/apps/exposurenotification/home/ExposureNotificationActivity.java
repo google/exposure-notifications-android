@@ -1,3 +1,20 @@
+/*
+ * Copyright 2021 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
 package com.google.android.apps.exposurenotification.home;
 
 import android.content.Intent;
@@ -19,8 +36,6 @@ import dagger.hilt.android.AndroidEntryPoint;
  */
 @AndroidEntryPoint
 public class ExposureNotificationActivity extends BaseActivity {
-
-  private static final String TAG = "ExposureNotificationActivity";
 
   private static final String EXTRA_POSSIBLE_EXPOSURE_SLICE_DISABLED = "slice_disabled";
   public static final String EXTRA_NOT_NOW_CONFIRMATION = "not_now_confirmation";
@@ -54,13 +69,7 @@ public class ExposureNotificationActivity extends BaseActivity {
         fragment = ShareDiagnosisFragment.newInstance();
         break;
       case Intent.ACTION_VIEW:
-        Optional<String> codeFromDeepLink = IntentUtil.maybeGetCodeFromDeepLinkUri(uri);
-        if (codeFromDeepLink.isPresent()) {
-          fragment = ShareDiagnosisFragment.newInstance(codeFromDeepLink.get());
-        } else {
-          assertCallerGms();
-          fragment = ShareDiagnosisFragment.newInstance();
-        }
+        fragment = maybeLaunchFromDeeplink(uri);
         break;
       case IntentUtil.ACTION_LAUNCH_HOME:
         if (extras.getBoolean(IntentUtil.EXTRA_NOTIFICATION, false)
@@ -71,10 +80,12 @@ public class ExposureNotificationActivity extends BaseActivity {
           if (extras.getBoolean(IntentUtil.EXTRA_SLICE, false)
               && isPossibleExposurePresent) {
             fragment = PossibleExposureFragment.newInstance();
+          } else if (extras.getBoolean(IntentUtil.EXTRA_SMS_VERIFICATION, false)) {
+            Uri deeplinkUri = extras.getParcelable(IntentUtil.EXTRA_DEEP_LINK);
+            fragment = maybeLaunchFromDeeplink(deeplinkUri);
           } else {
             assertCallerGms();
-            fragment = ActiveRegionFragment
-                .newInstance(true);
+            fragment = ActiveRegionFragment.newInstance(true);
           }
         }
         break;
@@ -84,4 +95,16 @@ public class ExposureNotificationActivity extends BaseActivity {
     }
     transitionToFragmentDirect(fragment);
   }
+
+  private BaseFragment maybeLaunchFromDeeplink(@Nullable Uri uri) {
+    Optional<String> codeFromDeepLink = IntentUtil.maybeGetCodeFromDeepLinkUri(uri);
+    if (codeFromDeepLink.isPresent()) {
+      return ShareDiagnosisFragment.newInstanceForCode(codeFromDeepLink.get());
+    } else if (IntentUtil.isSelfReportUri(uri)) {
+      return ShareDiagnosisFragment.newInstanceForSelfReport();
+    } else {
+      return ShareDiagnosisFragment.newInstance();
+    }
+  }
+
 }

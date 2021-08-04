@@ -47,6 +47,7 @@ import com.google.android.apps.exposurenotification.exposure.ExposureHomeViewMod
 import com.google.android.apps.exposurenotification.exposure.PossibleExposureFragment;
 import com.google.android.apps.exposurenotification.home.ExposureNotificationViewModel.ExposureNotificationState;
 import com.google.android.apps.exposurenotification.notify.NotifyHomeViewModel;
+import com.google.android.apps.exposurenotification.notify.ShareDiagnosisFlowHelper;
 import com.google.android.apps.exposurenotification.notify.ShareDiagnosisFragment;
 import com.google.android.apps.exposurenotification.notify.SharingHistoryFragment;
 import com.google.android.apps.exposurenotification.proto.UiInteraction.EventType;
@@ -63,8 +64,6 @@ import javax.inject.Inject;
  */
 @AndroidEntryPoint
 public class SinglePageHomeFragment extends BaseFragment {
-
-  private static final String TAG = "SinglePageHomeFragment";
 
   // For children of the top EN Status ViewFlipper
   private static final int EN_ACTIVE = 0;
@@ -112,6 +111,17 @@ public class SinglePageHomeFragment extends BaseFragment {
         .get(ExposureHomeViewModel.class);
     NotifyHomeViewModel notifyHomeViewModel = new ViewModelProvider(requireActivity())
         .get(NotifyHomeViewModel.class);
+
+    if (ShareDiagnosisFlowHelper.isSmsInterceptEnabled(getContext())) {
+      exposureNotificationViewModel.getShouldShowSmsNoticeLiveData()
+          .observe(getViewLifecycleOwner(), shouldShowSmsNotice -> {
+            if (shouldShowSmsNotice) {
+              exposureNotificationViewModel.markInAppSmsInterceptNoticeSeenAsync();
+              new SmsNoticeDialogFragment()
+                  .show(getChildFragmentManager(), SmsNoticeDialogFragment.TAG);
+            }
+          });
+  }
 
     // Set up all the actionable items.
     binding.settingsButton
@@ -214,6 +224,9 @@ public class SinglePageHomeFragment extends BaseFragment {
           .replace(R.id.single_page_edge_case_fragment, childFragment)
           .commit();
     }
+
+    exposureHomeViewModel.dismissReactivateExposureNotificationAppNotificationAndPendingJob(
+        requireContext());
   }
 
   @Override

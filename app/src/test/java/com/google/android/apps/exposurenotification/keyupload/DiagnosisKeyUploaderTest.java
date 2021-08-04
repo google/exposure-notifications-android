@@ -26,6 +26,7 @@ import android.net.Uri;
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.common.SecureRandomUtil;
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.common.time.RealTimeModule;
 import com.google.android.apps.exposurenotification.keyupload.ApiConstants.UploadV1;
@@ -33,6 +34,7 @@ import com.google.android.apps.exposurenotification.keyupload.ApiConstants.Uploa
 import com.google.android.apps.exposurenotification.keyupload.Qualifiers.UploadUri;
 import com.google.android.apps.exposurenotification.keyupload.Qualifiers.VerificationCertUri;
 import com.google.android.apps.exposurenotification.keyupload.Qualifiers.VerificationCodeUri;
+import com.google.android.apps.exposurenotification.keyupload.Qualifiers.VerificationUserReportUri;
 import com.google.android.apps.exposurenotification.keyupload.UploadController.KeysSubmitFailureException;
 import com.google.android.apps.exposurenotification.keyupload.UploadController.KeysSubmitServerFailureException;
 import com.google.android.apps.exposurenotification.keyupload.UploadController.UploadException;
@@ -52,6 +54,7 @@ import dagger.hilt.android.testing.HiltAndroidTest;
 import dagger.hilt.android.testing.HiltTestApplication;
 import dagger.hilt.android.testing.UninstallModules;
 import dagger.hilt.components.SingletonComponent;
+import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
@@ -89,6 +92,9 @@ public final class DiagnosisKeyUploaderTest {
   @Inject
   DiagnosisKeyUploader keyUploader;
 
+  @Inject
+  SecureRandom secureRandom;
+
   @Module
   @InstallIn(SingletonComponent.class)
   static class SampleUrisModule {
@@ -108,6 +114,12 @@ public final class DiagnosisKeyUploaderTest {
     @Provides
     @VerificationCertUri
     public Uri provideCertUri() {
+      return Uri.EMPTY;  // Unused. Just keeping the Hilt dep graph happy.
+    }
+
+    @Provides
+    @VerificationUserReportUri
+    public Uri provideUserReportUri() {
       return Uri.EMPTY;  // Unused. Just keeping the Hilt dep graph happy.
     }
   }
@@ -466,7 +478,7 @@ public final class DiagnosisKeyUploaderTest {
   }
 
   private Upload sampleUpload(String verificationCode, DiagnosisKey... keys) {
-    return Upload.newBuilder(verificationCode)
+    return Upload.newBuilder(verificationCode, SecureRandomUtil.newHmacKey(secureRandom))
         .setKeys(Arrays.asList(keys))
         .setRegions(ImmutableList.of("US", "GB"))
         .setHmacKeyBase64("hmackey")

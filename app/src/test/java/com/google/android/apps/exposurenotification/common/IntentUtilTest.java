@@ -17,6 +17,7 @@
 
 package com.google.android.apps.exposurenotification.common;
 
+import static com.google.android.apps.exposurenotification.common.IntentUtil.SELF_REPORT_PATH;
 import static com.google.android.apps.exposurenotification.notify.ShareDiagnosisFragment.EXTRA_DIAGNOSIS_ID;
 import static com.google.android.apps.exposurenotification.notify.ShareDiagnosisFragment.EXTRA_STEP;
 import static com.google.common.truth.Truth.assertThat;
@@ -65,21 +66,21 @@ public class IntentUtilTest {
   }
 
   @Test
-  public void getNotificationContentIntent_v2_hasActionMain() {
+  public void getNotificationContentIntentExposure_v2_hasActionMain() {
     if (!BuildConfig.FLAVOR_type.equals(BuildConfig.TYPE_V2)) {
       return;
     }
-    Intent intent = IntentUtil.getNotificationContentIntent(context);
+    Intent intent = IntentUtil.getNotificationContentIntentExposure(context);
 
     assertThat(intent.getAction()).isEqualTo(Intent.ACTION_MAIN);
   }
 
   @Test
-  public void getNotificationContentIntent_v3_hasActionLaunchHome() {
+  public void getNotificationContentIntentExposure_v3_hasActionLaunchHome() {
     if (!BuildConfig.FLAVOR_type.equals(BuildConfig.TYPE_V3)) {
       return;
     }
-    Intent intent = IntentUtil.getNotificationContentIntent(context);
+    Intent intent = IntentUtil.getNotificationContentIntentExposure(context);
 
     assertThat(intent.getAction()).isEqualTo(IntentUtil.ACTION_LAUNCH_HOME);
   }
@@ -197,5 +198,41 @@ public class IntentUtilTest {
     Optional<String> codeFromDeepLink = IntentUtil.maybeGetCodeFromDeepLinkUri(uri);
 
     assertThat(codeFromDeepLink).hasValue(verificationCode);
+  }
+
+  @Test
+  public void isSelfReportUri_nullUri_returnsFalse() {
+    boolean isSelfReportUri = IntentUtil.isSelfReportUri(null);
+
+    assertThat(isSelfReportUri).isFalse();
+  }
+
+  @Test
+  public void isSelfReportUri_noReportPath_returnsFalse() {
+    Uri ensUri = Uri.parse("ens://");
+    Uri httpsUri = Uri.parse("https://" + BuildConfig.APP_LINK_HOST);
+
+    assertThat(IntentUtil.isSelfReportUri(ensUri)).isFalse();
+    assertThat(IntentUtil.isSelfReportUri(httpsUri)).isFalse();
+  }
+
+
+  @Test
+  public void isSelfReportUri_uriWithCode_returnsFalse() {
+    String verificationCode = "aA1";
+    Uri ensUri = Uri.parse("ens://v?c=" + verificationCode);
+    Uri httpsUri = Uri.parse("https://" + BuildConfig.APP_LINK_HOST + "/v?c=" + verificationCode);
+
+    assertThat(IntentUtil.isSelfReportUri(ensUri)).isFalse();
+    assertThat(IntentUtil.isSelfReportUri(httpsUri)).isFalse();
+  }
+
+  @Test
+  public void isSelfReportUri_reportPathPresent_returnsTrue() {
+    Uri ensUri = Uri.parse("ens://" + SELF_REPORT_PATH);
+    Uri httpsUri = Uri.parse("https://" + BuildConfig.APP_LINK_HOST + "/" + SELF_REPORT_PATH);
+
+    assertThat(IntentUtil.isSelfReportUri(ensUri)).isTrue();
+    assertThat(IntentUtil.isSelfReportUri(httpsUri)).isTrue();
   }
 }

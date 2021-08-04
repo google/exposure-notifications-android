@@ -30,7 +30,8 @@
   <string name="onboarding_exposure_notifications_title">නිරාවරණ දැනුම්දීම් ක්‍රියාත්මක කරන්න</string>
   <string name="onboarding_exposure_notifications_detail">ඔබ COVID-19 තිබෙන බව වාර්තා කළ යම් කෙනෙකු අසල සිට ඇති නම් දැනුම්දීම් ලබන්න.
     \n\nඅවට ඇති වෙනත් දුරකථන සමග අහඹු ID ආරක්ෂිතව රැස් කර බෙදා ගැනීමට ඔබගේ දුරකථනය බ්ලූටූත් භාවිත කරයි.
-    \n\nඔබගේ මහජන සෞඛ්‍ය අධිකාරිය විසින් නියම කර ඇති පරාමිති මත පදනම්ව ඔබට දැනුම් දෙනු ලැබේද යන්න තීරණය කිරීම සඳහා විය හැකි නිරාවරණයක් හා සම්බන්ධ දිනය, කාල සීමාව සහ සංඥා ප්‍රබලතාව භාවිත කරනු ඇත.</string>
+    \n\nඔබගේ මහජන සෞඛ්‍ය අධිකාරිය විසින් නියම කර ඇති පරාමිති මත පදනම්ව ඔබට දැනුම් දෙනු ලැබේද යන්න තීරණය කිරීම සඳහා විය හැකි නිරාවරණයක් හා සම්බන්ධ දිනය, කාල සීමාව සහ සංඥා ප්‍රබලතාව භාවිත කරනු ඇත.
+    \n\nඔබගේ පරීක්ෂාව පොසිටිව් වුවහොත්, ඔබගේ ප්‍රතිඵල ඔබගේ සෞඛ්‍ය අධිකාරිය සමඟ බෙදා ගැනීමට ඔබට සිහිකැඳවීමක් ලැබෙනු ඇත.</string>
   <string name="onboarding_metrics_title">මෙම යෙදුම වඩා යහපත් කිරීමට උදව් කරන්න</string>
   <string name="onboarding_metrics_subtitle">යෙදුම් භාවිතය සහ කාර්යසාධන දත්ත Google හා බෙදාගන්න</string>
   <string name="onboarding_metrics_description">යෙදුම නඩත්තු කිරීමට සහ වැඩිදියුණු කිරීමට උදව් කිරීම සඳහා, යෙදුම් ක්‍රියාකාරිත්වය සහ භාවිතය පිළිබඳ සීමිත හඳුනා නොගත් දත්ත Google සමඟ බෙදා ගනී. මෙම දත්ත ඔබව හඳුනා නොගනී. %1$s</string>
@@ -60,10 +61,10 @@
   <string name="notify_turn_on_exposure_notifications_header">විය හැකි COVID-19 නිරාවරණය පිළිබඳ දැනුම්දීම් ලබා ගැනීමට, නිරාවරණ දැනුම්දීම් ක්‍රියාත්මක කරන්න. %1$s</string>
   <string name="using_en_helps_even_if_vaccinated">මෙම සේවාව භාවිත කිරීම ඔබට ඔබගේ ප්‍රජාව ආරක්ෂා කිරීමට උපකාරී වේ - ඔබට එන්නත ලබා දී තිබියදී පවා.</string>
   <string name="share_begin_title">ඔබගේ ප්‍රජාව ආරක්ෂා කිරීමට උදව් කරන්න</string>
-  <string name="share_close_title">බෙදා ගැනීමෙන් තොරව පිට වන්නද?</string>
-  <string name="share_close_detail">ඔබගේ පරීක්ෂණ ප්‍රතිඵල ඉක්මනින් බෙදා ගන්නේ නම් ඔබට ඔබේ ප්‍රජාවට වඩාත් හොඳින් උදව් කළ හැකිය. කෙසේ වෙතත්, ඔබ මෙතෙක් ඇතුළු කළ පරීක්ෂණ ප්‍රතිඵල තතු පසුව සංස්කරණය කිරීම නැවත පටන් ගැනීමට යෙදුම තුළ සුරකිනු ඇත</string>
-  <string name="btn_resume_later">ඔව්, ඉවත්වන්න</string>
-  <string name="verify_test_result_title">COVID-19 පරීක්ෂණ තොරතුරු ඇතුළු කරන්න</string>
+  <string name="share_close_title">බෙදා ගැනීමෙන් තොරව වසන්නද?</string>
+  <string name="share_close_detail">ඔබට ඔබගේ ප්‍රජාවට උදව් කළ හැකි හොඳම ක්‍රමය නම් හැකි ඉක්මනින් ඔබගේ ප්‍රතිඵල බෙදා ගැනීමයි. ඔබ බෙදා නොගෙන දැන් වසන්නේ නම්, පසුව ඔබ ඔබගේ අදහස වෙනස් කර ගතහොත් ඔබට ඔබ නතර කළ තැනින් පටන් ගත හැකිය.</string>
+  <string name="btn_resume_later">ඔව්, වසන්න</string>
+  <string name="verify_test_result_title">ඔබගේ සත්‍යාපන කේතය ඇතුළු කරන්න</string>
   <string name="enter_your_test_identifier">සත්‍යාපන කේතය</string>
   <string name="share_test_identifier_help">ඔබගේ පරීක්ෂණ ප්‍රතිඵලය සත්‍යාපනය කිරීමට මෙම එක් වරක් කේතය භාවිත කෙරේ.</string>
   <string name="share_test_identifier_verified">කේතය සත්‍යාපනය කරන ලදි</string>
@@ -73,30 +74,29 @@
   <string name="test_date_label">රෝග ලක්ෂණ ආරම්භ වූ දිනය</string>
   <string name="share_onset_symptoms">ඔව්</string>
   <string name="share_onset_no_symptoms">නැහැ</string>
-  <string name="share_onset_no_answer">පිළිතුරු දීමට කැමති නැහැ</string>
+  <string name="share_onset_no_answer">මම පිළිතුරු දීමට කැමති නැහැ</string>
   <string name="share_travel_title">ඔබ පසුගිය දින 14 තුළ සංචාරය කර තිබේද\?</string>
   <string name="share_travel_confirmed">ඔව්</string>
   <string name="share_travel_no_travel">නැහැ</string>
-  <string name="share_travel_no_answer">පිළිතුරු දීමට කැමති නැහැ</string>
+  <string name="share_travel_no_answer">මම පිළිතුරු දීමට කැමති නැහැ</string>
   <string name="share_review_title">ඔබේ තොරතුරු සමාලෝචනය කරන්න</string>
   <string name="share_review_status_subtitle">COVID-19 තත්ත්වය</string>
   <string name="share_review_status_confirmed">පොසිටිව්</string>
   <string name="share_review_status_likely">බොහෝ දුරට</string>
   <string name="share_review_status_negative">නෙගටිව්</string>
-  <string name="share_review_onset_subtitle">රෝග ලක්ෂණ තොරතුරු</string>
-  <string name="share_review_onset_date">%1$s සිට රෝග ලක්ෂණ</string>
+  <string name="share_review_onset_subtitle">රෝග ලක්ෂණ</string>
+  <string name="share_review_onset_date">ආරම්භ වූයේ %1$s</string>
   <string name="share_review_onset_no_symptoms">රෝග ලක්ෂණ නැත</string>
   <string name="share_review_onset_no_answer">පිළිතුරු දී නැත</string>
-  <string name="share_review_travel_subtitle">සංචාරක ඉතිහාසය</string>
-  <string name="share_review_travel_confirmed">පසුගිය දින 14 තුළ සංචාරය කළා</string>
+  <string name="share_review_travel_subtitle">සංචාර</string>
+  <string name="share_review_travel_confirmed">පසුගිය දින 14 ඇතුළත</string>
   <string name="share_review_travel_no_travel">පසුගිය දින 14 තුළ සංචාරය කළේ නැහැ</string>
   <string name="share_review_travel_no_answer">පිළිතුරු දී නැත</string>
-  <string name="share_confirm_title">ඔබගේ COVID-19 තත්ත්වය බෙදා ගැනීම වෙනුවෙන් ස්තුතියි</string>
+  <string name="share_confirm_title">ඔබගේ COVID-19 ප්‍රතිඵලය බෙදා ගැනීම පිළිබඳව ස්තුතියි</string>
   <string name="not_shared_confirm_title">ඔබගේ පරීක්ෂණ ප්‍රතිඵල බෙදා නොගන්නා ලදි</string>
   <string name="not_shared_confirm_detail">ඔබගේ COVID-19 පරීක්ෂණ ප්‍රතිඵල බෙදා නොගන්නා ලදි. කරුණාකර නැවත උත්සාහ කරන්න.</string>
   <string name="status_shared_detail_title">බෙදා ගත් COVID-19 තත්ත්වය</string>
-  <string name="delete_test_result_title">COVID-19 පරීක්ෂණ ප්‍රතිඵල මකන්නද?</string>
-  <string name="delete_test_result_detail">ඔබගේ පරීක්ෂණ ප්‍රතිඵල විස්තර මෙම යෙදුමෙන් මකනු ඇත.</string>
+  <string name="delete_test_result_title">ඔබගේ පරීක්ෂණ ප්‍රතිඵල මකන්නද?</string>
   <string name="delete_test_result_confirmed">පරීක්ෂණ ප්‍රතිඵල මකන ලදි</string>
   <string name="share_error_no_internet">පරීක්ෂණ ප්‍රතිඵල නොබැඳිව බෙදා ගැනීමට නොහැකිය. ඔබේ අන්තර්ජාල සබැඳුම පරීක්ෂා කර නැවත උත්සාහ කරන්න.</string>
   <string name="share_vaccination_title">ඔබට Covid-19 සඳහා එන්නත් කර තිබේද\?</string>
@@ -104,7 +104,30 @@
   <string name="share_vaccination_learn_more">තව දැන ගන්න</string>
   <string name="share_vaccination_vaccinated">ඔව්, මම එන්නත් කර ගෙන ඇත</string>
   <string name="share_vaccination_not_vaccinated">නැත</string>
-  <string name="share_vaccination_unknown">පිළිතුරු දීමට කැමති නැහැ</string>
+  <string name="share_vaccination_unknown">මම පිළිතුරු දීමට කැමති නැහැ</string>
+  <string name="do_you_have_code_title">ඔබට කේතයක් ලැබුණිද?</string>
+  <string name="do_you_have_code_content">ඔබ COVID-19 සඳහා පොසිට්ව් වුවහොත්, ඔබගේ සෞඛ්‍ය අධිකාරිය සාමාන්‍යයෙන් දුරකථනයෙන් හෝ පෙළ මගින් සත්‍යාපන කේතයක් ලබා දෙන අතර එමඟින් ඔබට ඔබගේ ප්‍රතිඵල බෙදා ගත හැකිය.</string>
+  <string name="btn_i_have_code">ඔව්, මට කේතයක් ඇත</string>
+  <string name="btn_i_need_code">මට කේතයක් අවශ්‍යයි</string>
+  <string name="get_verification_code_title">සත්‍යාපන කේතයක් ලබා ගන්න</string>
+  <string name="phone_number_prompt">දුරකථන අංකය</string>
+  <string name="phone_number_help">සත්‍යාපන කේතයක් ඔබට ඔබගේ පරීක්ෂණ ප්‍රතිඵල බෙදා ගැනීමට ඉඩ දෙයි. ඔබගේ කේතය ඔබ සපයන අංකයට එවනු ඇත.</string>
+  <string name="phone_number_may_be_stored_help">ප්‍රතිඵල එකකට වඩා ඉදිරිපත් කිරීම වැළැක්වීම සඳහා, ඔබගේ දුරකථන අංකය තාවකාලිකව ඔබගේ මහජන සෞඛ්‍ය අධිකාරිය විසින් ගබඩා කළ හැකිය.</string>
+  <string name="test_date_prompt">පරීක්ෂණ දිනය</string>
+  <string name="test_date_help">පරීක්ෂණ දිනය පසුගිය දින 14 ඇතුළත විය යුතුය.</string>
+  <string name="tested_for_covid_checkbox_text">පසුගිය දින 14 තුළ මට පොසිටිව් COVID-19 පරීක්ෂණයක් ලැබී තිබේ.</string>
+  <string name="btn_send_code">කේතය එවන්න</string>
+  <string name="enter_code_help">%1$s විසින් ඔබට එවූ කේතය ඇතුළු කරන්න.</string>
+  <string name="positive_result_already_reported_title">ඔබ දැනටමත් පරීක්ෂණ ප්‍රතිඵලයක් මෑතකදී වාර්තා කර ඇත.</string>
+  <string name="positive_result_already_reported_content">ඔබ තවත් පරීක්ෂණ ප්‍රතිඵලයක් වාර්තා කිරීමට කැමති නම්, කරුණාකර %1$s අමතන්න.</string>
+  <string name="self_report_bad_code">වලංගු නොවන කේතයකි. ඉල්ලීම් දෙකටම ඔබ එකම උපාංගය භාවිත කරන බව සහතික කර ගෙන ඔබගේ සත්‍යාපන කේතය ඇතුළු කරන්න.</string>
+  <string name="self_report_bad_phone_number">ඔබගේ අංකය පරික්ෂා කර නැවත උත්සාහ කරන්න. %1$s</string>
+  <string name="self_report_code_requested_too_many_times">ඔබ ඉල්ලීම් ඉතා වැඩි ගණනක් සිදු කර ඇත. ඔබට තවමත් කේතයක් අවශ්‍ය නම් %1$s අමතන්න.</string>
+  <plurals name="self_report_code_already_requested">
+    <item quantity="one">ඔබ ඉල්ලීම් ඉතා වැඩි ගණනක් සිදු කර ඇත. ඔබට මිනිත්තු %1$dකින් තවත් කේතයක් ඉල්ලිය හැකිය.</item>
+    <item quantity="other">ඔබ ඉල්ලීම් ඉතා වැඩි ගණනක් සිදු කර ඇත. ඔබට මිනිත්තු %1$dකින් තවත් කේතයක් ඉල්ලිය හැකිය.</item>
+  </plurals>
+  <string name="notify_others_notification_title">නිරාවරණය වී තිබිය හැකි අනෙක් අයට දැනුම් දීමට උදව් වන්න</string>
   <string name="settings_exposure_notifications_subtitle">නිරාවරණ දැනුම් දීම්</string>
   <string name="settings_app_analytics_subtitle">යෙදුම් භාවිතය සහ කාර්ය සාධන බෙදා ගැනීම</string>
   <string name="settings_privacy_policy">රහස්‍යතා ප්‍රතිපත්තිය</string>
@@ -166,4 +189,9 @@
   <string name="private_analytics_footer_learn_more">තව දැන ගන්න</string>
   <string name="diagnosis_subtitle_template">%2$s %1$s හි</string>
   <string name="empty_share_history_body">බෙදා ගැනීමේ ඉතිහාසය නැත</string>
+  <string name="share_diagnosis_share_test_result_title">ඔබගේ පරීක්ෂණ ප්‍රතිඵල %1$s සමග බෙදා ගන්න</string>
+  <string name="share_diagnosis_share_test_result_subtitle">COVID-19 නතර කිරීමට උදව් කිරීම ගැන ස්තුතියි.</string>
+  <string name="share_diagnosis_share_test_result_body">ඔබ ඔබගේ ප්‍රතිඵලය බෙදා ගන්නා විට, ඔබගේ රෝග ලක්ෂණ ආරම්භ වූ දිනයබෙදා ගැනීමටද ඔබට තෝරා ගත හැකිය. මෙම තොරතුරු COVID-19 පැතිරීම නැවැත්වීමට සහ ජීවිත බේරා ගැනීමට උපකාරී විය හැකිය.</string>
+  <string name="sms_intercept_notice_title">අලුත් මොනවාද</string>
+  <string name="sms_intercept_notice_content">ඔබගේ දේශීය සෞඛ්‍ය අධිකාරිය ඔබට පරීක්ෂණ ප්‍රතිඵලයක් එවුවහොත්, ඔබගේ ප්‍රතිඵලය ඉදිරිපත් කිරීමට ඔබගේ යෙදුම ඔබට සිහිකැඳවීමකින් දැනුම් දීමට හැකි අතර නිරාවරණය වීමේ හැකියාව පිළිබඳ අන් අයට ඇඟවීමට උදව් කළ හැකිය. සැකසීම් තුළ ඔබට ඕනෑම වේලාවක මෙය අබල කළ හැකිය.</string>
 </resources>

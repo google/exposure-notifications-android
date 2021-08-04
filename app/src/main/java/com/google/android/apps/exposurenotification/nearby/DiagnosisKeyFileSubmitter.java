@@ -17,10 +17,10 @@
 
 package com.google.android.apps.exposurenotification.nearby;
 
-import android.util.Log;
 import com.google.android.apps.exposurenotification.common.Qualifiers.BackgroundExecutor;
 import com.google.android.apps.exposurenotification.common.Qualifiers.ScheduledExecutor;
 import com.google.android.apps.exposurenotification.common.TaskToFutureAdapter;
+import com.google.android.apps.exposurenotification.common.logging.Logger;
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.keydownload.KeyFile;
 import com.google.android.apps.exposurenotification.keydownload.KeyFileConstants;
@@ -57,7 +57,7 @@ import org.threeten.bp.Duration;
  */
 public class DiagnosisKeyFileSubmitter {
 
-  private static final String TAG = "KeyFileSubmitter";
+  private static final Logger logger = Logger.getLogger("KeyFileSubmitter");
   // Use a very very long timeout, in case of a stress-test that supplies a very large number of
   // diagnosis key files.
   private static final Duration PROVIDE_KEYS_TIMEOUT = Duration.ofMinutes(60);
@@ -102,14 +102,14 @@ public class DiagnosisKeyFileSubmitter {
    */
   public ListenableFuture<?> submitFiles(ImmutableList<KeyFile> keyFiles) {
     if (keyFiles.isEmpty()) {
-      Log.d(TAG, "No files to provide to google play services.");
+      logger.d("No files to provide to google play services.");
       return Futures.immediateFuture(null);
     }
-    Log.d(TAG, "Providing  " + keyFiles.size() + " diagnosis key files to google play services.");
+    logger.d("Providing  " + keyFiles.size() + " diagnosis key files to google play services.");
 
     // Log submitted keys only in debug and when debug settings are looking for a certain key.
     if (!preferences.getProvidedDiagnosisKeyHexToLog().isEmpty()) {
-      Log.d(TAG, "Logging keyfiles; keys limited to those containing ["
+      logger.d("Logging keyfiles; keys limited to those containing ["
           + preferences.getProvidedDiagnosisKeyHexToLog() + "] (hex).");
       logKeys(keyFiles, preferences.getProvidedDiagnosisKeyHexToLog());
     }
@@ -126,7 +126,7 @@ public class DiagnosisKeyFileSubmitter {
         for (KeyFile f : keyFiles) {
           if (f.isMostRecent()) {
             // On success, remember the last successful file for each server.
-            Log.d(TAG, String.format(
+            logger.d(String.format(
                 "Mark last successful download [%s] for server [%s]", f.uri(), f.index()));
             downloadServerRepo.upsert(DownloadServerEntity.create(f.index(), f.uri()));
           }
@@ -162,8 +162,8 @@ public class DiagnosisKeyFileSubmitter {
     for (KeyFile f : files) {
       try {
         FileContent fc = readFile(f.file());
-        Log.d(TAG, "File " + filenum + " has signature:\n" + fc.signature);
-        Log.d(TAG, "File " + filenum + " has [" + fc.export.getKeysCount() + "] keys.");
+        logger.d("File " + filenum + " has signature:\n" + fc.signature);
+        logger.d("File " + filenum + " has [" + fc.export.getKeysCount() + "] keys.");
         for (TemporaryExposureKey k : fc.export.getKeysList()) {
           // We don't log all keys. Sometimes that's too much to log. Log only keys matching a hex
           // substring we're interested in for debug purposes.
@@ -171,8 +171,7 @@ public class DiagnosisKeyFileSubmitter {
           if (!keyHex.contains(keyHexToLog.toLowerCase())) {
             continue;
           }
-          Log.d(
-              TAG,
+          logger.d(
               "TEK hex:["
                   + keyHex
                   + "] base64:["
@@ -187,7 +186,7 @@ public class DiagnosisKeyFileSubmitter {
         }
         filenum++;
       } catch (IOException e) {
-        Log.d(TAG, "Failed to read or parse file " + f, e);
+        logger.d("Failed to read or parse file " + f, e);
       }
     }
   }

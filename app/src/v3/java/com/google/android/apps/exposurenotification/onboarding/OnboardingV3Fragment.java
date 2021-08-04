@@ -38,8 +38,6 @@ import java.util.Objects;
 @AndroidEntryPoint
 public class OnboardingV3Fragment extends BaseFragment {
 
-  private static final String TAG = "OnboardingFragment";
-
   public static final String ONBOARDING_FRAGMENT_TAG = "OnboardingFragment.ONBOARDING_FRAGMENT_TAG";
   public static final String EXTRA_NOT_NOW_CONFIRMATION = "not_now_confirmation";
 

@@ -30,7 +30,8 @@
   <string name="onboarding_exposure_notifications_title">კონტაქტის შეტყობინებების ჩართვა</string>
   <string name="onboarding_exposure_notifications_detail">მიიღეთ შეტყობინება, თუ ახლოს იმყოფებოდით პირთან, რომელმაც მიუთითა, რომ COVID-19 აქვს.
     \n\nთქვენი ტელეფონი იყენებს Bluetooth-ს შემთხვევითი ID-ების უსაფრთხოდ შესაგროვებლად და სხვა ახლომახლო ტელეფონებისთვის გასაზიარებლად.
-    \n\nშესაძლო კონტაქტის თარიღის, ხანგრძლივობისა და სიგნალის სიძლიერის მიხედვით განისაზღვრება, მიიღებთ თუ არა შეტყობინებას, თქვენი საზოგადოებრივი ჯანდაცვის უწყების მიერ დაწესებული პარამეტრების მიხედვით.</string>
+    \n\nშესაძლო კონტაქტის თარიღის, ხანგრძლივობისა და სიგნალის სიძლიერის მიხედვით განისაზღვრება, მიიღებთ თუ არა შეტყობინებას, თქვენი საზოგადოებრივი ჯანდაცვის უწყების მიერ დაწესებული პარამეტრების მიხედვით.
+    \n\nთუ ტესტის პასუხი დადებითია, შეიძლება მიიღოთ შეხსენება, რომ თქვენი შედეგები გაუზიაროთ თქვენს ჯანდაცვის უწყებას.</string>
   <string name="onboarding_metrics_title">დაგვეხმარეთ აპის გაუმჯობესებაში</string>
   <string name="onboarding_metrics_subtitle">მოხმარების და შესრულების ინფოს გაზიარება</string>
   <string name="onboarding_metrics_description">აპის გამართულად მუშაობისა და გაუმჯობესებისთვის ზოგიერთი შეზღუდული, არამაიდენტიფიცირებელი ინფორმაცია აპის შესრულებისა და მოხმარების შესახებ გაზიარდება Google-თან. ამ მონაცემებით თქვენი იდენტიფიკაცია არ ხდება. %1$s</string>
@@ -60,10 +61,10 @@
   <string name="notify_turn_on_exposure_notifications_header">ჩართეთ კონტაქტის შეტყობინებები COVID-19-თან პოტენციური კონტაქტის შესახებ შეტყობინებების მისაღებად. %1$s</string>
   <string name="using_en_helps_even_if_vaccinated">ამ სერვისის გამოყენება იცავს თქვენს გარშემომყოფებს — მაშინაც კი, თუ თქვენ აცრილი ხართ.</string>
   <string name="share_begin_title">დახმარება საზოგადოების დასაცავად</string>
-  <string name="share_close_title">გახვალთ გაზიარების გარეშე?</string>
-  <string name="share_close_detail">საზოგადოებას უფრო დაეხმარებით, თუ თქვენი ტესტის შედეგს მალე გააზიარებთ. თუმცა, თქვენ მიერ აქამდე შეყვანილი ინფორმაცია ტესტის შედეგების შესახებ შენახულია აპში, რათა მოგვიანებით განაგრძოთ რედაქტირება.</string>
-  <string name="btn_resume_later">დიახ, გასვლა მსურს</string>
-  <string name="verify_test_result_title">შეიყვანეთ COVID-19-ის ტესტის ინფორმაცია</string>
+  <string name="share_close_title">გსურთ გაზიარების გარეშე დახურვა?</string>
+  <string name="share_close_detail">საზოგადოების დახმარების საუკეთესო გზა თქვენი შედეგების შეძლებისდაგვარად სწრაფად გაზიარებაა. თუ გაზიარების გარეშე დახურავთ, ნებისმიერ დროს შეძლებთ იქიდან გაგრძელებას, სადაც გაჩერდით.</string>
+  <string name="btn_resume_later">დიახ, დახურე</string>
+  <string name="verify_test_result_title">შეიყვანეთ თქვენი დამადასტურებელი კოდი</string>
   <string name="enter_your_test_identifier">დამადასტურებელი კოდი</string>
   <string name="share_test_identifier_help">ეს ერთჯერადი კოდი თქვენი ტესტის შედეგის დასადასტურებლად გამოიყენება.</string>
   <string name="share_test_identifier_verified">კოდი დადასტურებულია</string>
@@ -83,20 +84,19 @@
   <string name="share_review_status_confirmed">დადებითი</string>
   <string name="share_review_status_likely">სავარაუდო</string>
   <string name="share_review_status_negative">უარყოფითი</string>
-  <string name="share_review_onset_subtitle">სიმპტომის ინფორმაცია</string>
-  <string name="share_review_onset_date">სიმპტომები %1$s-დან</string>
+  <string name="share_review_onset_subtitle">სიმპტომები</string>
+  <string name="share_review_onset_date">დაწყების თარიღი: %1$s</string>
   <string name="share_review_onset_no_symptoms">უსიმპტომო</string>
   <string name="share_review_onset_no_answer">პასუხი გაცემული არ არის</string>
-  <string name="share_review_travel_subtitle">მოგზაურობის ისტორია</string>
-  <string name="share_review_travel_confirmed">იმოგზაურა ბოლო 14 დღეში</string>
+  <string name="share_review_travel_subtitle">მოგზაურობა</string>
+  <string name="share_review_travel_confirmed">ბოლო 14 დღის განმავლობაში</string>
   <string name="share_review_travel_no_travel">არ უმოგზაურია ბოლო 14 დღეში</string>
   <string name="share_review_travel_no_answer">პასუხი გაცემული არ არის</string>
-  <string name="share_confirm_title">გმადლობთ თქვენი COVID-19 სტატუსის გაზიარებისთვის</string>
+  <string name="share_confirm_title">გმადლობთ თქვენი COVID-19-ის ტესტის შედეგის გაზიარებისთვის</string>
   <string name="not_shared_confirm_title">თქვენი ტესტის შედეგი არ გაზიარდა</string>
   <string name="not_shared_confirm_detail">თქვენი COVID-19-ის ტესტის შედეგი არ გაზიარდა. ცადეთ ხელახლა.</string>
   <string name="status_shared_detail_title">ინფორმაცია თქვენი COVID-19-სტატუსის შესახებ</string>
-  <string name="delete_test_result_title">წაიშალოს COVID-19-ის ტესტის შედეგი?</string>
-  <string name="delete_test_result_detail">თქვენი ტესტის შედეგები წაიშლება ამ აპიდან.</string>
+  <string name="delete_test_result_title">წაიშალოს თქვენი ტესტის შედეგი?</string>
   <string name="delete_test_result_confirmed">ტესტის შედეგი წაიშალა</string>
   <string name="share_error_no_internet">ტესტის შედეგებს ხაზგარეშე ვერ გააზიარებთ. შეამოწმეთ ინტერნეტ-კავშირი და ხელახლა ცადეთ.</string>
   <string name="share_vaccination_title">უკვე აიცერით Covid-19-ის წინააღმდეგ?</string>
@@ -105,6 +105,29 @@
   <string name="share_vaccination_vaccinated">დიახ, მე უკვე ავეცერი</string>
   <string name="share_vaccination_not_vaccinated">არა</string>
   <string name="share_vaccination_unknown">მირჩევნია, არ ვუპასუხო</string>
+  <string name="do_you_have_code_title">მიიღეთ კოდი?</string>
+  <string name="do_you_have_code_content">თუ თქვენი COVID-19-ის ტესტის შედეგი დადებითია, ჯანდაცვის დაწესებულება შეგატყობინებთ დამადასტურებელ კოდს ზარით ან ტექსტური შეტყობინებით, რომ შეძლოთ თქვენი შედეგის გაზიარება.</string>
+  <string name="btn_i_have_code">დიახ, მე მაქვს კოდი</string>
+  <string name="btn_i_need_code">მე მჭირდება კოდი</string>
+  <string name="get_verification_code_title">დამადასტურებელი კოდის მიღება</string>
+  <string name="phone_number_prompt">ტელეფონის ნომერი</string>
+  <string name="phone_number_help">დამადასტურებელი კოდით შეძლებთ თქვენი ტესტის შედეგის გაზიარებას. თქვენი კოდი გაიგზავნება თქვენ მიერ მითითებულ ტელეფონის ნომერზე.</string>
+  <string name="phone_number_may_be_stored_help">თქვენი ტელეფონის ნომერი, შესაძლოა, დროებით შეინახოს საზოგადოებრივი ჯანდაცვის უწყებამ ერთი პირისგან ტესტის ერთზე მეტი შედეგის გაზიარების თავიდან ასაცილებლად.</string>
+  <string name="test_date_prompt">ტესტირების თარიღი</string>
+  <string name="test_date_help">ტესტირების თარიღი უნდა იყოს ბოლო 14 დღის პერიოდიდან.</string>
+  <string name="tested_for_covid_checkbox_text">მე მივიღე COVID-19-ის ტესტის დადებითი შედეგი ბოლო 14 დღის განმავლობაში.</string>
+  <string name="btn_send_code">კოდის გაგზავნა</string>
+  <string name="enter_code_help">შეიყვანეთ %1$s-სგან მიღებული კოდი.</string>
+  <string name="positive_result_already_reported_title">თქვენ უკვე გადაცემული გაქვთ ბოლოდროინდელი ტესტის შედეგი.</string>
+  <string name="positive_result_already_reported_content">თუ გსურთ კიდევ ერთი ტესტის შედეგის გადაგზავნა, დაუკავშირდით %1$s-ს.</string>
+  <string name="self_report_bad_code">არასწორი კოდი. დარწმუნდით, რომ დამადასტურებელი კოდის მოთხოვნის და შეყვანის დროს ერთსა და იმავე მოწყობილობას იყენებთ.</string>
+  <string name="self_report_bad_phone_number">შეამოწმეთ ტელეფონის ნომერი და ცადეთ ხელახლა. %1$s</string>
+  <string name="self_report_code_requested_too_many_times">თქვენ უკვე ძალიან ბევრი მოთხოვნა გაგზავნეთ. დაუკავშირდით %1$s-ს, თუ კვლავ გსურთ კოდის მიღება.</string>
+  <plurals name="self_report_code_already_requested">
+    <item quantity="one">თქვენ უკვე ძალიან ბევრი მოთხოვნა გაგზავნეთ. კოდის ხელახლა მოთხოვნას %1$d წუთში შეძლებთ.</item>
+    <item quantity="other">თქვენ უკვე ძალიან ბევრი მოთხოვნა გაგზავნეთ. კოდის ხელახლა მოთხოვნას %1$d წუთში შეძლებთ.</item>
+  </plurals>
+  <string name="notify_others_notification_title">დაგვეხმარეთ, შევატყობინოთ შესაძლო კონტაქტში მყოფ სხვა პირებს</string>
   <string name="settings_exposure_notifications_subtitle">კონტაქტის შეტყობინებები</string>
   <string name="settings_app_analytics_subtitle">აპის მოხმარების და შესრულების გაზიარება</string>
   <string name="settings_privacy_policy">კონფიდენციალურობის დებულება</string>
@@ -166,4 +189,9 @@
   <string name="private_analytics_footer_learn_more">შეიტყვეთ მეტი</string>
   <string name="diagnosis_subtitle_template">%1$s (%2$s)</string>
   <string name="empty_share_history_body">გაზიარების ისტორია არ არის</string>
+  <string name="share_diagnosis_share_test_result_title">გააზიარეთ თქვენი ტესტის შედეგი %1$s-ით</string>
+  <string name="share_diagnosis_share_test_result_subtitle">გმადლობთ COVID-19-ის გავრცელების წინააღმდეგ დახმარებისთვის.</string>
+  <string name="share_diagnosis_share_test_result_body">ტესტის შედეგის გაზიარებისას პირველი სიმპტომების გამოვლენის თარიღის გაზიარებაც შეგიძლიათ. ამ ინფორმაციამ, შესაძლოა, ხელი შეუწყოს COVID-19-ის გავრცელებასთან ბრძოლას და ადამიანების გადარჩენას.</string>
+  <string name="sms_intercept_notice_title">რა არის ახალი</string>
+  <string name="sms_intercept_notice_content">თუ თქვენი ჯანდაცვის ადგილობრივი უწყება გამოგიგზავნით ტესტის შედეგს, თქვენს აპს შეუძლია შეგახსენოთ, რომ გაგზავნოთ თქვენი შედეგი შესაძლო კონტაქტების გასაფრთხილებლად. ამის გათიშვა ნებისმიერ დროს შეგიძლიათ პარამეტრებიდან.</string>
 </resources>
