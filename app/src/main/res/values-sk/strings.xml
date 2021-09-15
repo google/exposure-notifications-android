@@ -31,7 +31,7 @@
   <string name="onboarding_exposure_notifications_detail">Dostaňte upozornenie, keď ste boli v blízkosti osoby, ktorá nahlásila ochorenie COVID‑19.
     \n\nTelefón pomocou rozhrania Bluetooth zabezpečene zhromažďuje a zdieľa náhodné identifikátory s inými telefónmi v okolí.
     \n\nPodľa dátumu, trvania a sily signálu spojeného s možným kontaktom sa určí, či dostanete upozornenie na základe parametrov stanovených vašou inštitúciou verejného zdravotníctva.
-    \n\nAk budete mať pozitívny výsledok testu, môžete dostať upozornenie, aby ste o tom informovali inštitúciu verejného zdravotníctva.</string>
+    \n\nAk dostanete SMS s výsledkom testu, môžete dostať upozornenie, aby ste zdieľali diagnostiku s inštitúciou verejného zdravotníctva.</string>
   <string name="onboarding_metrics_title">Pomôžte zlepšiť túto aplikáciu</string>
   <string name="onboarding_metrics_subtitle">Zdieľanie údajov o používaní a výkonnosti aplik. s Googlom</string>
   <string name="onboarding_metrics_description">Niektoré obmedzené údaje o výkonnosti a používaní aplikácie, ktoré neumožňujú osobnú identifikáciu, sú zdieľané s Googlom, aby sme ju mohli udržiavať v chode a zlepšovať. Podľa týchto údajov vás nie je možné identifikovať. %1$s</string>
@@ -132,6 +132,12 @@
     <item quantity="other">Odoslali ste príliš veľa žiadostí. O ďalší kód môžete požiadať o %1$d minút.</item>
   </plurals>
   <string name="notify_others_notification_title">Pomôžte upozorňovať ľudí, ktorí sa mohli dostať do kontaktu</string>
+  <string name="notify_others_if_result_updated_title">Chcete ostatných upozorňovať na aktualizácie svojho výsledku?</string>
+  <string name="notify_others_if_result_updated_content">%1$s vám môže poslať druhý kód na potvrdenie vášho výsledku testu. Môžete pomocou neho automaticky aktualizovať stav svojho testu na COVID‑19 a zdieľať náhodné identifikátory vygenerované počas ďalších dní, čím pomôžete upozorniť ostatných na možný kontakt. Vaša totožnosť sa s ostatnými nezdieľa.</string>
+  <string name="btn_pre_auth_yes">Áno, chcem pomôcť</string>
+  <string name="btn_pre_auth_no">Nie, vďaka</string>
+  <string name="thank_you_for_notifying_title">Ďakujeme vám za pomoc</string>
+  <string name="thank_you_for_notifying_content">Inštitúcia %1$s práve aktualizovala svoju časovú os kontaktov a mohla ostatných upozorniť na možný kontakt.</string>
   <string name="settings_exposure_notifications_subtitle">Upozornenia na kontakt</string>
   <string name="settings_app_analytics_subtitle">Zdieľanie údajov o používaní a výkone aplikácie</string>
   <string name="settings_privacy_policy">Pravidlá ochrany súkromia</string>
@@ -197,5 +203,19 @@
   <string name="share_diagnosis_share_test_result_subtitle">Ďakujeme vám, že pomáhate v boji proti pandémii COVID‑19.</string>
   <string name="share_diagnosis_share_test_result_body">Keď zdieľate výsledok, môžete tiež vybrať, že chcete zdieľať aj dátum začatia príznakov. Táto informácia môže pomôcť zastaviť šírenie pandémie COVID‑19 a zachrániť životy.</string>
   <string name="sms_intercept_notice_title">Novinky</string>
-  <string name="sms_intercept_notice_content">Ak vám miestny zdravotnícky úrad pošle výsledok testu, aplikácia vás môže pripomenutím upozorniť, že máte výsledok odoslať a pomôcť tak ostatných upozorniť na možný kontakt. Túto možnosť môžete kedykoľvek vypnúť v nastaveniach.</string>
+  <string name="sms_intercept_notice_content">Ak dostanete SMS s výsledkom testu, môže sa vám zobraziť upozornenie so žiadosťou, aby ste zdieľali svoju diagnózu v rámci upozornení na kontakt. Túto možnosť môžete kedykoľvek vypnúť v nastaveniach.</string>
+  <string name="share_upload_title">Zdieľajte výsledok testu a chráňte tak svoju komunitu</string>
+  <string name="share_upload_test_result_source_description">Výsledok testu odosiela inštitúcia %1$s</string>
+  <string name="share_upload_symptoms_subtitle">Príznak sa objavil</string>
+  <string name="share_upload_symptoms_date_fixed_description">Dátum príznaku poskytla inštitúcia %1$s</string>
+  <string name="share_upload_skip_choice">Preskočiť</string>
+  <string name="share_upload_travel_subtitle">História cestovania</string>
+  <string name="travel_history_travelled_recently_choice">Cestoval(a) som v posledných 14 dňoch</string>
+  <string name="travel_history_no_travel_choice">Žiadna</string>
+  <string name="share_upload_select_a_date_choice">Vybrať dátum</string>
+  <string name="share_upload_status_subtitle">Stav testu na COVID‑19</string>
+  <string name="share_upload_status_confirmed">Pozitívny</string>
+  <string name="share_upload_status_negative">Negatívny</string>
+  <string name="share_upload_status_likely">Pravdepodobne pozitívny</string>
+  <string name="share_diagnosis_progress_tracker">%1$d. krok z %2$d</string>
 </resources>

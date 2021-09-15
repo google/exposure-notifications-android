@@ -32,7 +32,8 @@ import org.robolectric.annotation.Config;
 public class MetricsRemoteConfigsTest {
 
   private static final double DEFAULT_SAMPING_RATE = 1.0;
-  private static final double DEFAULT_METRIC_EPSILON = 8.0;
+  private static final double DEFAULT_DAILY_METRIC_EPSILON = 8.0;
+  private static final double DEFAULT_BIWEEKLY_METRIC_EPSILON = 10.2;
 
   @Test
   public void testDefaultRemoteConfigValues() {
@@ -42,28 +43,51 @@ public class MetricsRemoteConfigsTest {
     assertThat(metricsRemoteConfigs.notificationCountPrioSamplingRate())
         .isEqualTo(DEFAULT_SAMPING_RATE);
     assertThat(metricsRemoteConfigs.notificationCountPrioEpsilon())
-        .isEqualTo(DEFAULT_METRIC_EPSILON);
+        .isEqualTo(DEFAULT_DAILY_METRIC_EPSILON);
 
     assertThat(metricsRemoteConfigs.interactionCountPrioSamplingRate())
         .isEqualTo(DEFAULT_SAMPING_RATE);
     assertThat(metricsRemoteConfigs.interactionCountPrioEpsilon())
-        .isEqualTo(DEFAULT_METRIC_EPSILON);
+        .isEqualTo(DEFAULT_DAILY_METRIC_EPSILON);
 
     assertThat(metricsRemoteConfigs.riskScorePrioSamplingRate()).isEqualTo(DEFAULT_SAMPING_RATE);
-    assertThat(metricsRemoteConfigs.riskScorePrioEpsilon()).isEqualTo(DEFAULT_METRIC_EPSILON);
+    assertThat(metricsRemoteConfigs.riskScorePrioEpsilon()).isEqualTo(DEFAULT_DAILY_METRIC_EPSILON);
 
     assertThat(metricsRemoteConfigs.codeVerifiedPrioSamplingRate()).isEqualTo(DEFAULT_SAMPING_RATE);
-    assertThat(metricsRemoteConfigs.codeVerifiedPrioEpsilon()).isEqualTo(DEFAULT_METRIC_EPSILON);
+    assertThat(metricsRemoteConfigs.codeVerifiedPrioEpsilon()).isEqualTo(
+        DEFAULT_DAILY_METRIC_EPSILON);
+
+    assertThat(metricsRemoteConfigs.codeVerifiedWithReportTypePrioSamplingRate())
+        .isEqualTo(DEFAULT_SAMPING_RATE);
+    assertThat(metricsRemoteConfigs.codeVerifiedWithReportTypePrioEpsilon())
+        .isEqualTo(DEFAULT_BIWEEKLY_METRIC_EPSILON);
 
     assertThat(metricsRemoteConfigs.keysUploadedPrioSamplingRate()).isEqualTo(DEFAULT_SAMPING_RATE);
-    assertThat(metricsRemoteConfigs.keysUploadedPrioEpsilon()).isEqualTo(DEFAULT_METRIC_EPSILON);
+    assertThat(metricsRemoteConfigs.keysUploadedPrioEpsilon()).isEqualTo(
+        DEFAULT_DAILY_METRIC_EPSILON);
+
+    assertThat(metricsRemoteConfigs.keysUploadedWithReportTypePrioSamplingRate())
+        .isEqualTo(DEFAULT_SAMPING_RATE);
+    assertThat(metricsRemoteConfigs.keysUploadedWithReportTypePrioEpsilon())
+        .isEqualTo(DEFAULT_BIWEEKLY_METRIC_EPSILON);
 
     assertThat(metricsRemoteConfigs.dateExposurePrioSamplingRate()).isEqualTo(DEFAULT_SAMPING_RATE);
-    assertThat(metricsRemoteConfigs.dateExposurePrioEpsilon()).isEqualTo(DEFAULT_METRIC_EPSILON);
+    assertThat(metricsRemoteConfigs.dateExposurePrioEpsilon()).isEqualTo(
+        DEFAULT_DAILY_METRIC_EPSILON);
 
     assertThat(metricsRemoteConfigs.keysUploadedVaccineStatusPrioSamplingRate())
         .isEqualTo(DEFAULT_SAMPING_RATE);
     assertThat(metricsRemoteConfigs.keysUploadedVaccineStatusPrioEpsilon())
-        .isEqualTo(DEFAULT_METRIC_EPSILON);
+        .isEqualTo(DEFAULT_DAILY_METRIC_EPSILON);
+
+    assertThat(metricsRemoteConfigs.keysUploadedAfterNotificationPrioSamplingRate())
+        .isEqualTo(DEFAULT_SAMPING_RATE);
+    assertThat(metricsRemoteConfigs.keysUploadedAfterNotificationPrioEpsilon())
+        .isEqualTo(DEFAULT_BIWEEKLY_METRIC_EPSILON);
+
+    assertThat(metricsRemoteConfigs.periodicExposureNotificationBiweeklyPrioSamplingRate())
+        .isEqualTo(DEFAULT_SAMPING_RATE);
+    assertThat(metricsRemoteConfigs.periodicExposureNotificationBiweeklyPrioEpsilon())
+        .isEqualTo(DEFAULT_BIWEEKLY_METRIC_EPSILON);
   }
 }

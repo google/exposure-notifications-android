@@ -87,7 +87,7 @@ public class KeysUploadedVaccineStatusMetricTest {
     Instant workerRunTime = clock.now().minus(Duration.ofDays(2));
     Instant keyUploadTime = workerRunTime.minus(Duration.ofDays(1));
 
-    exposureNotificationSharedPreferences.setPrivateAnalyticsWorkerLastTime(workerRunTime);
+    exposureNotificationSharedPreferences.setPrivateAnalyticsWorkerLastTimeForDaily(workerRunTime);
     exposureNotificationSharedPreferences
         .setLastVaccinationResponse(keyUploadTime, VaccinationStatus.VACCINATED);
 
@@ -110,7 +110,7 @@ public class KeysUploadedVaccineStatusMetricTest {
         .create(ExposureClassification.NO_EXPOSURE_CLASSIFICATION_INDEX,
             ExposureClassification.NO_EXPOSURE_CLASSIFICATION_NAME, workerRunTime.toEpochMilli());
 
-    exposureNotificationSharedPreferences.setPrivateAnalyticsWorkerLastTime(workerRunTime);
+    exposureNotificationSharedPreferences.setPrivateAnalyticsWorkerLastTimeForDaily(workerRunTime);
     exposureNotificationSharedPreferences
         .setLastVaccinationResponse(keyUploadTime, VaccinationStatus.VACCINATED);
     exposureNotificationSharedPreferences.setExposureClassification(exposureClassification);
@@ -134,7 +134,7 @@ public class KeysUploadedVaccineStatusMetricTest {
         .create(ExposureClassification.NO_EXPOSURE_CLASSIFICATION_INDEX + 1, "exposed",
             workerRunTime.toEpochMilli());
 
-    exposureNotificationSharedPreferences.setPrivateAnalyticsWorkerLastTime(workerRunTime);
+    exposureNotificationSharedPreferences.setPrivateAnalyticsWorkerLastTimeForDaily(workerRunTime);
     exposureNotificationSharedPreferences
         .setLastVaccinationResponse(keyUploadTime, VaccinationStatus.VACCINATED);
     exposureNotificationSharedPreferences.setExposureClassification(exposureClassification);
@@ -158,7 +158,7 @@ public class KeysUploadedVaccineStatusMetricTest {
         .create(ExposureClassification.NO_EXPOSURE_CLASSIFICATION_INDEX,
             ExposureClassification.NO_EXPOSURE_CLASSIFICATION_NAME, workerRunTime.toEpochMilli());
 
-    exposureNotificationSharedPreferences.setPrivateAnalyticsWorkerLastTime(workerRunTime);
+    exposureNotificationSharedPreferences.setPrivateAnalyticsWorkerLastTimeForDaily(workerRunTime);
     exposureNotificationSharedPreferences
         .setLastVaccinationResponse(keyUploadTime, VaccinationStatus.NOT_VACCINATED);
     exposureNotificationSharedPreferences.setExposureClassification(exposureClassification);
@@ -182,7 +182,7 @@ public class KeysUploadedVaccineStatusMetricTest {
         .create(ExposureClassification.NO_EXPOSURE_CLASSIFICATION_INDEX + 1, "exposed",
             workerRunTime.toEpochMilli());
 
-    exposureNotificationSharedPreferences.setPrivateAnalyticsWorkerLastTime(workerRunTime);
+    exposureNotificationSharedPreferences.setPrivateAnalyticsWorkerLastTimeForDaily(workerRunTime);
     exposureNotificationSharedPreferences
         .setLastVaccinationResponse(keyUploadTime, VaccinationStatus.NOT_VACCINATED);
     exposureNotificationSharedPreferences.setExposureClassification(exposureClassification);

@@ -109,7 +109,7 @@ public class IntentUtilTest {
     // GIVEN
     Bundle validBundle = new Bundle();
     validBundle.putLong(EXTRA_DIAGNOSIS_ID, 3);
-    validBundle.putString(EXTRA_STEP, "ONSET");
+    validBundle.putString(EXTRA_STEP, "CODE");
 
     // WHEN
     boolean isValidBundle = IntentUtil.isValidBundleToOpenShareDiagnosisFlow(validBundle);

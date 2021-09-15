@@ -55,7 +55,7 @@ public class PeriodicExposureNotificationMetric implements PrivateAnalyticsMetri
     Instant exposureNotificationTime = exposureNotificationSharedPreferences
         .getExposureNotificationLastShownTime();
     Instant privateAnalyticsWorkerLastTime = exposureNotificationSharedPreferences
-        .getPrivateAnalyticsWorkerLastTime();
+        .getPrivateAnalyticsWorkerLastTimeForDaily();
 
     int index = exposureNotificationSharedPreferences
         .getExposureNotificationLastShownClassification();

@@ -31,7 +31,7 @@
   <string name="onboarding_exposure_notifications_detail">ទទួលបានការជូនដំណឹង ប្រសិនបើ​អ្នកបាននៅជិត​នរណាម្នាក់​ដែលបានរាយការណ៍ថា​មានផ្ទុក COVID-19។
     \n\nទូរសព្ទរបស់អ្នក​ប្រើប៊្លូធូស ដើម្បីប្រមូល និងចែករំលែក​លេខសម្គាល់ចៃដន្យ​ដោយសុវត្ថិភាព​ជាមួយ​ទូរសព្ទផ្សេងទៀត​ដែលនៅជិត។
     \n\nកាលបរិច្ឆេទ រយៈពេល និង​កម្លាំង​រលកសញ្ញា​ដែលពាក់ព័ន្ធនឹង​ការដែលអាចនៅជិត​អ្នកមានផ្ទុក COVID-19 ​នឹងត្រូវបានប្រើ ដើម្បីកំណត់ថាតើអ្នកនឹងទទួលបានការជូនដំណឹង ដោយផ្អែកលើប៉ារ៉ាម៉ែត្រដែលកំណត់ដោយអាជ្ញាធរសុខភាព​សាធារណៈរបស់អ្នកឬអត់។
-    \n\nប្រសិនបើអ្នក​ធ្វើតេស្តរកឃើញ​វិជ្ជមាន អ្នកអាចនឹង​ទទួលបានការរំលឹក​ឱ្យចែករំលែកលទ្ធផល​របស់អ្នកជាមួយអាជ្ញាធរសុខភាព។</string>
+    \n\nអ្នកអាចទទួលបានការជូនដំណឹងដើម្បីចែករំលែកលទ្ធផលវិភាគជាមួយអាជ្ញាធរសុខភាពរបស់អ្នក ប្រសិនបើអ្នកទទួលបានសារ SMS អំពីលទ្ធផលធ្វើតេស្តរបស់អ្នក។</string>
   <string name="onboarding_metrics_title">ជួយធ្វើឱ្យកម្មវិធីនេះ​ប្រសើរជាងមុន</string>
   <string name="onboarding_metrics_subtitle">ចែករំលែកទិន្នន័យប្រតិបត្តិការ និងការប្រើប្រាស់កម្មវិធីជាមួយ Google</string>
   <string name="onboarding_metrics_description">ដើម្បីជួយរក្សា និងកែលម្អ​កម្មវិធីនេះ ទិន្នន័យមានកំណត់មួយចំនួន​ដែលមិនបញ្ជាក់អត្តសញ្ញាណ​អំពីការប្រើប្រាស់ និងប្រតិបត្តិការ​កម្មវិធីត្រូវបាន​ចែករំលែកជាមួយ Google។ ទិន្នន័យនេះ​មិនកំណត់​អត្តសញ្ញាណអ្នកទេ។ %1$s</string>
@@ -128,6 +128,12 @@
     <item quantity="other">អ្នកបាន​ធ្វើការស្នើសុំ​ច្រើនពេក។ អ្នកអាចស្នើសុំ​លេខកូដ​មួយទៀតបាន​ក្នុងរយៈពេល %1$d នាទីទៀត។</item>
   </plurals>
   <string name="notify_others_notification_title">ជួយ​ជូនដំណឹង​ដល់អ្នកដទៃ​ដែលប្រហែល​ជាបាននៅជិតអ្នក​មានផ្ទុក COVID-19</string>
+  <string name="notify_others_if_result_updated_title">តើត្រូវជូនដំណឹងដល់​អ្នកដទៃដែរទេ ប្រសិនបើ​លទ្ធផលរបស់អ្នក​ត្រូវបានធ្វើបច្ចុប្បន្នភាព?</string>
+  <string name="notify_others_if_result_updated_content">%1$s អាចផ្ញើលេខកូដទីពីរដល់អ្នក ដើម្បីបញ្ជាក់លទ្ធផលតេស្តរបស់អ្នក។ អ្នកអាចធ្វើបច្ចុប្បន្នភាពស្ថានភាព COVID-19 របស់អ្នក និងចែករំលែកលេខសម្គាល់ចៃដន្យសម្រាប់ថ្ងៃបន្ថែមដោយស្វ័យប្រវត្តិដោយប្រើលេខកូដទីពីរនេះ ដែលអាចជួយជូនដំណឹងដល់អ្នកដទៃអំពីការប៉ះពាល់ដែលអាចកើតមាន។ អត្តសញ្ញាណរបស់អ្នកមិនត្រូវបានចែករំលែកជាមួយអ្នកដទៃទេ។</string>
+  <string name="btn_pre_auth_yes">បាទ/ចាស ខ្ញុំចង់ជួយ</string>
+  <string name="btn_pre_auth_no">ទេ អរគុណ</string>
+  <string name="thank_you_for_notifying_title">សូមអរគុណ​សម្រាប់ការជួយ</string>
+  <string name="thank_you_for_notifying_content">%1$s ទើបតែបាន​ធ្វើបច្ចុប្បន្នភាពបន្ទាត់ពេលវេលា​នៃការប៉ះពាល់របស់អ្នក ហើយប្រហែលជា​បានជូនដំណឹង​ដល់អ្នកដទៃអំពី​ការប៉ះពាល់ដែល​អាចកើតមាន។</string>
   <string name="settings_exposure_notifications_subtitle">ការជូនដំណឹងអំពីការនៅជិតអ្នកមានផ្ទុក COVID-19</string>
   <string name="settings_app_analytics_subtitle">ការចែករំលែកប្រតិបត្តិការ និងការប្រើប្រាស់កម្មវិធី</string>
   <string name="settings_privacy_policy">គោលការណ៍​ឯកជនភាព</string>
@@ -193,5 +199,19 @@
   <string name="share_diagnosis_share_test_result_subtitle">សូមអរគុណ​ចំពោះការជួយ​បញ្ឈប់ COVID-19។</string>
   <string name="share_diagnosis_share_test_result_body">នៅពេលអ្នក​ចែករំលែក​លទ្ធផល​របស់អ្នក អ្នកក៏អាចជ្រើសរើស​ចែករំលែក នៅពេលដែល​រោគសញ្ញា​របស់អ្នក​បានចាប់ផ្ដើមចេញ​ផងដែរ។ ព័ត៌មាននេះ​អាចជួយបញ្ឈប់​ការឆ្លងរាលដាលនៃ COVID-19 និង​សង្គ្រោះជីវិត។</string>
   <string name="sms_intercept_notice_title">អ្វី​ដែលថ្មី</string>
-  <string name="sms_intercept_notice_content">ប្រសិនបើ​អាជ្ញាធរ​សុខាភិបាល​ក្នុងតំបន់​របស់អ្នក​ផ្ញើលទ្ធផលតេស្តដល់អ្នក កម្មវិធី​របស់អ្នក​អាចជូនដំណឹង​ដល់អ្នក ដោយមាន​ការរំលឹក​ឱ្យដាក់បញ្ជូន​លទ្ធផលរបស់អ្នក និង​ជួយជូនដំណឹង​ដល់អ្នកដទៃ​អំពី​ការដែលអាចនៅជិតអ្នកមានផ្ទុក COVID-19។ អ្នកអាចបិទ​មុខងារនេះ​បានគ្រប់ពេល​នៅក្នុង​ការកំណត់។</string>
+  <string name="sms_intercept_notice_content">ប្រសិនបើអ្នកទទួលបានសារ SMS អំពីលទ្ធផលធ្វើតេស្តរបស់អ្នក អ្នកអាចនឹងទទួលបានការជូនដំណឹងដែលស្នើឱ្យអ្នកចែករំលែកលទ្ធផលវិភាគរបស់អ្នកនៅក្នុងការជូនដំណឹងអំពីការនៅជិតអ្នកមានផ្ទុក COVID-19។ អ្នកអាចបិទ​មុខងារនេះ​បានគ្រប់ពេល​នៅក្នុង​ការកំណត់។</string>
+  <string name="share_upload_title">ចែករំលែក​លទ្ធផលតេស្ត​របស់អ្នក ដើម្បីការពារ​សហគមន៍របស់អ្នក</string>
+  <string name="share_upload_test_result_source_description">លទ្ធផលតេស្ត​ត្រូវបានផ្ញើដោយ %1$s</string>
+  <string name="share_upload_symptoms_subtitle">រោគសញ្ញា​បានចាប់ផ្ដើមពី</string>
+  <string name="share_upload_symptoms_date_fixed_description">កាលបរិច្ឆេទរោគសញ្ញា​ត្រូវបានផ្ដល់ដោយ %1$s</string>
+  <string name="share_upload_skip_choice">រំលង</string>
+  <string name="share_upload_travel_subtitle">ប្រវត្តិធ្វើដំណើរ</string>
+  <string name="travel_history_travelled_recently_choice">បានធ្វើដំណើរ​ក្នុងរយៈពេល 14 ថ្ងៃចុងក្រោយ</string>
+  <string name="travel_history_no_travel_choice">គ្មាន</string>
+  <string name="share_upload_select_a_date_choice">ជ្រើសរើស​កាលបរិច្ឆេទ</string>
+  <string name="share_upload_status_subtitle">ស្ថានភាព COVID-19</string>
+  <string name="share_upload_status_confirmed">វិជ្ជមាន</string>
+  <string name="share_upload_status_negative">អវិជ្ជមាន</string>
+  <string name="share_upload_status_likely">ទំនងជា​មានផ្ទុក</string>
+  <string name="share_diagnosis_progress_tracker">ជំហានទី %1$d នៃ %2$d</string>
 </resources>

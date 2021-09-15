@@ -25,6 +25,7 @@ import static com.google.android.apps.exposurenotification.storage.ExposureNotif
 import static com.google.android.apps.exposurenotification.storage.ExposureNotificationDatabase.MIGRATION_40_41;
 import static com.google.android.apps.exposurenotification.storage.ExposureNotificationDatabase.MIGRATION_41_42;
 import static com.google.android.apps.exposurenotification.storage.ExposureNotificationDatabase.MIGRATION_42_43;
+import static com.google.android.apps.exposurenotification.storage.ExposureNotificationDatabase.MIGRATION_43_44;
 import static com.google.common.truth.Truth.assertThat;
 
 import android.database.Cursor;
@@ -213,6 +214,14 @@ public class MigrationsTest {
     db.close();
     // MigrationTestHelper automatically verifies the schema changes.
     helper.runMigrationsAndValidate(TEST_DB, 43, true, MIGRATION_42_43);
+  }
+
+  @Test
+  public void migrate43to44() throws IOException {
+    SupportSQLiteDatabase db = helper.createDatabase(TEST_DB, 43);
+    db.close();
+    // MigrationTestHelper automatically verifies the schema changes.
+    helper.runMigrationsAndValidate(TEST_DB, 44, true, MIGRATION_43_44);
   }
 
   private ExposureNotificationDatabase createAppDatabase() {

@@ -31,7 +31,7 @@
   <string name="onboarding_exposure_notifications_detail">Atrofingizdagi kimdir COVID-19 yuqtirgani haqida ogohlantirish oling.
     \n\nTelefoningiz tasodifiy identifikatorlarni jamlash va yaqin-atrofdagi boshqa telefonlarga ulashish uchun Bluetooth aloqasidan foydalanadi.
     \n\nIlovaga uchrashilgan sana va telefonlar orqali kontakt davomiyligi hamda Bluetooth signali kuchiga oid axborot sogʻliqni saqlash idoralari tomonidan oʻrnatilgan parametrlarga asoslanib sizga xabar berish uchun ishlatiladi.
-    \n\nNatijangiz musbat chiqsa, uni sogʻliqni saqlash idoralari bilan ulashish haqida eslatma olishingiz mumkin.</string>
+    \n\nTest natijalari haqidagi SM|S kelgan boʻlsa, natijangizni sogʻliqni saqlash idoralari bilan ulashish haqida eslatma olishingiz mumkin.</string>
   <string name="onboarding_metrics_title">Bu ilovani yaxshilashga yordam bering</string>
   <string name="onboarding_metrics_subtitle">Ilova haqidagi axborotlarni Googlega yuborish</string>
   <string name="onboarding_metrics_description">Ilovaning ishlashini yaxshilash uchun Google ilovadan foydalanish va uning xususiyatlari haqida qatʼiy cheklangan anonim axborotlarni jamlaydi. Bu axborotlarda siz haqingizda maʼlumot boʻlmaydi. %1$s</string>
@@ -128,6 +128,12 @@
     <item quantity="other">Juda koʻp soʻrov yubordingiz. %1$d daqiqadan keyin yana urinib koʻrishingiz mumkin.</item>
   </plurals>
   <string name="notify_others_notification_title">Ehtimoliy zararlanish haqida boshqalarga xabar bering</string>
+  <string name="notify_others_if_result_updated_title">Test natijalari haqida boshqa foydalanuvchilarga xabar berilsinmi?</string>
+  <string name="notify_others_if_result_updated_content">%1$s sizga test natijasini tasdiqlash uchun ikkinchi kodni yuborishi mumkin. Bu ikkinchi kod bilan COVID-19 holatini avtomatik yangilash va boshqalarni ehtimoliy zararlanish haqida ogohlantiruvchi tasodifiy identifikatorni qoʻshimcha kunlarga ulashadi. Shaxsingiz boshqalarga ulashilmaydi.</string>
+  <string name="btn_pre_auth_yes">Ha, menga yordam kerak</string>
+  <string name="btn_pre_auth_no">Yopish</string>
+  <string name="thank_you_for_notifying_title">Yordam uchun rahmat</string>
+  <string name="thank_you_for_notifying_content">%1$s hozirgina holatingiz ulashuvini yangiladi va boshqalarga ehtimoliy zararlanish haqida xabar qilgan boʻlishi mumkin.</string>
   <string name="settings_exposure_notifications_subtitle">Ehtimoliy zararlanish bildirishnomalari</string>
   <string name="settings_app_analytics_subtitle">Ilova haqidagi axborotlarni yuborish</string>
   <string name="settings_privacy_policy">Maxfiylik siyosati</string>
@@ -193,5 +199,19 @@
   <string name="share_diagnosis_share_test_result_subtitle">COVID-19 tarqalishiga qarshi yordam berganingiz uchun rahmat.</string>
   <string name="share_diagnosis_share_test_result_body">Natijalarni ulashganda simptomlar qachon boshlangani haqidagi axborotni ham tanlashingiz mumkin. Bu maʼlumotlar COVID-19 tarqalishining oldini olish va koʻplab insonlarning hayotini saqlab qolishda yordam beradi.</string>
   <string name="sms_intercept_notice_title">Nima yangiliklar</string>
-  <string name="sms_intercept_notice_content">Agar mahalliy sogʻliqni saqlash idorasi sizga test natijasini yuborsa, boshqalarni ehtimoliy zararlanishdan himoyalash maqsadida ogohlantirish uchun ilova sizga eslatma chiqarishi mumkin. Buni istalgan vaqt sozlamalar orqali faolsizlantirish mumkin.</string>
+  <string name="sms_intercept_notice_content">Test natijasini SMS orqali qabul qilsangiz, natijangizni ehtimoliy zararlanish xizmatiga ulashishni istaysizmi degan bildirishnoma olasiz. Buni istalgan vaqt sozlamalar orqali faolsizlantirish mumkin.</string>
+  <string name="share_upload_title">Mahalladagilar salomatligi uchun test natijalaringizni ulashing</string>
+  <string name="share_upload_test_result_source_description">Test natijalari %1$s tomonidan yuborildi</string>
+  <string name="share_upload_symptoms_subtitle">Alomatlar boshlanishi:</string>
+  <string name="share_upload_symptoms_date_fixed_description">Simptom sanasini %1$s taqdim qilgan</string>
+  <string name="share_upload_skip_choice">Tashlab ketish</string>
+  <string name="share_upload_travel_subtitle">Sayohat tarixi</string>
+  <string name="travel_history_travelled_recently_choice">Oxirgi 14 kunda safarda boʻlgan</string>
+  <string name="travel_history_no_travel_choice">Hech qanday</string>
+  <string name="share_upload_select_a_date_choice">Sanani tanlang</string>
+  <string name="share_upload_status_subtitle">COVID-19 holati</string>
+  <string name="share_upload_status_confirmed">Musbat</string>
+  <string name="share_upload_status_negative">Manfiy</string>
+  <string name="share_upload_status_likely">Yuqqanga oʻxshaydi</string>
+  <string name="share_diagnosis_progress_tracker">Bosqich: %1$d / %2$d</string>
 </resources>

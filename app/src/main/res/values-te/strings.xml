@@ -30,8 +30,8 @@
   <string name="onboarding_exposure_notifications_title">వ్యాధి సోకగల అవకాశాన్ని తెలిపే నోటిఫికేషన్‌లు ఆన్ చేయండి</string>
   <string name="onboarding_exposure_notifications_detail">COVID-19 నిర్ధారణ అయినట్లు రిపోర్ట్ చేసిన వారు మీకు దగ్గరలో ఉన్న విషయం గురించి నోటిఫికేషన్‌ను అందుకోండి.
     \n\nర్యాండమ్ IDలను సురక్షితంగా సేకరించి, సమీపంలో ఉన్న ఇతర ఫోన్‌లతో షేర్ చేయడానికి, మీ ఫోన్, బ్లూటూత్‌ను ఉపయోగిస్తుంది.
-    \n\nమీ ప్రజారోగ్య అధికార యంత్రాంగం సెట్ చేసిన పారామీటర్‌ల ప్రకారం మీకు సమాచారం ఇవ్వాలా వద్దా అని నిర్ణయించడానికి, వ్యాధి సోకే అవకాశంతో అనుబంధంగా ఉన్న తేదీ, వ్యవధి, సిగ్నల్ బలం వివరాలను ఉపయోగించడం జరుగుతుంది.
-    \n\nమీకు COVID-19 పరీక్షలో పాజిటివ్ వచ్చినట్లయితే, మీ అధికార యంత్రాంగానికి మీ ఫలితాలను షేర్ చేయడం కోసం మీరు రిమైండర్‌ను అందుకోవచ్చు.</string>
+    \n\nమీ ప్రజారోగ్య అధికార యంత్రాంగం సెట్ చేసిన పారామీటర్‌ల ప్రకారం మీకు సమాచారం ఇవ్వాలా వద్దా అని నిర్ణయించడానికి, వ్యాధి సోకే అవకాశంతో అనుబంధంగా ఉన్న తేదీ, వ్యవధి, సిగ్నల్ సామర్థ్యానికి సంబంధించిన వివరాలను ఉపయోగించడం జరుగుతుంది.
+    \n\nమీ టెస్ట్ ఫలితం మీకు SMS వస్తే, మీ అధికార యంత్రాంగంతో సమస్య విశ్లేషణను షేర్ చేయడానికి మీరు నోటిఫికేషన్‌ను అందుకోవచ్చు.</string>
   <string name="onboarding_metrics_title">ఈ యాప్‌ను మరింత మెరుగుపరచడంలో సహాయపడండి</string>
   <string name="onboarding_metrics_subtitle">యాప్ వినియోగం &amp; పనితీరు డేటాను Googleతో షేర్ చేయండి</string>
   <string name="onboarding_metrics_description">యాప్ నిర్వహణ, మెరుగుదలలో సహాయపడటానికి యాప్ పనితీరు, వినియోగం గురించి పరిమిత పరిధిలో అనామకంగా మార్చిన కొంత డేటా Googleతో షేర్ చేయబడుతుంది. ఈ డేటా మిమ్మల్ని గుర్తించేదిగా ఉండదు. %1$s</string>
@@ -128,6 +128,12 @@
     <item quantity="other">మీరు అనేక రిక్వెస్ట్‌లు చేశారు. మీరు %1$d నిమిషాలలో మరొక కోడ్‌ను రిక్వెస్ట్ చేయవచ్చు.</item>
   </plurals>
   <string name="notify_others_notification_title">వ్యాధి సోకే అవకాశం ఉండే ఇతరులకు తెలియజేసి సహాయపడండి</string>
+  <string name="notify_others_if_result_updated_title">మీ ఫలితం అప్‌డేట్ అయినప్పుడు ఇతర వ్యక్తులకు తెలియజేయాలా?</string>
+  <string name="notify_others_if_result_updated_content">మీ పరీక్ష ఫలితాన్ని నిర్ధారించడానికి %1$s మీకు రెండవ కోడ్ పంపవచ్చు. మీరు మీ COVID-19 వ్యాధి స్టేటస్‌ను ఆటోమేటిక్‌గా అప్‌డేట్ చేయవచ్చు అలాగే ఈ రెండవ కోడ్‌ను ఉపయోగించి అదనపు రోజుల ర్యాండమ్ IDలను షేర్ చేయవచ్చు, ఇది వ్యాధి సోకే అవకాశం గురించి ఇతరులకు తెలియజేయడంలో సహాయపడుతుంది. మీ గుర్తింపు ఇతర వ్యక్తులతో షేర్ చేయడం జరగదు.</string>
+  <string name="btn_pre_auth_yes">అవును, నేను సహాయం చేస్తాను</string>
+  <string name="btn_pre_auth_no">వద్దు, ధన్యవాదాలు</string>
+  <string name="thank_you_for_notifying_title">సహాయం చేసినందుకు ధన్యవాదాలు</string>
+  <string name="thank_you_for_notifying_content">%1$s మీ వ్యాధి సోకే అవకాశ టైమ్‌లైన్‌ను ఇప్పుడే అప్‌డేట్ చేసింది అలాగే వ్యాధి సోకగల అవకాశం గురించి ఇతరులను హెచ్చరించి ఉండవచ్చు.</string>
   <string name="settings_exposure_notifications_subtitle">వ్యాధి సోకే అవకాశం తెలిపే నోటిఫికేషన్‌లు</string>
   <string name="settings_app_analytics_subtitle">యాప్ వినియోగం &amp; పనితీరు షేరింగ్</string>
   <string name="settings_privacy_policy">గోప్యతా పాలసీ</string>
@@ -193,5 +199,19 @@
   <string name="share_diagnosis_share_test_result_subtitle">COVID-19ని నిరోధించడంలో సహాయపడినందుకు ధన్యవాదాలు.</string>
   <string name="share_diagnosis_share_test_result_body">మీ ఫలితాన్ని షేర్ చేసేటప్పుడు, వ్యాధి లక్షణాలు ఎప్పుడు మొదలయ్యాయో షేర్ చేయడాన్ని కూడా మీరు ఎంచుకోవచ్చు. ఈ సమాచారం COVID-19 వ్యాప్తిని అరికట్టడంలో సహాయం చేసి ప్రాణాలను రక్షిస్తుంది.</string>
   <string name="sms_intercept_notice_title">కొత్తగా ఏమి ఉన్నాయి</string>
-  <string name="sms_intercept_notice_content">మీ స్థానిక ప్రభుత్వ ఆరోగ్య సంస్థ మీకు పరీక్ష ఫలితాన్ని పంపిస్తే, మీ ఫలితాన్ని సబ్మిట్ చేయడానికి మీ యాప్ మీకు రిమైండర్‌తో తెలియజేయవచ్చు అలాగే వ్యాధి సోకగల అవకాశం గురించి ఇతరులను అలర్ట్ చేయడంలో సహాయపడుతుంది. మీరు దీన్ని ఎప్పుడైనా సెట్టింగ్‌లలో డిజేబుల్ చేయవచ్చు.</string>
+  <string name="sms_intercept_notice_content">మీ పరీక్ష ఫలితం ఉన్న SMSను మీరు అందుకుంటే, వ్యాధి సోకగల అవకాశాన్ని తెలిపే నోటిఫికేషన్‌లలో మీ సమస్య విశ్లేషణను షేర్ చేయమని కోరుతూ మీరు ఒక నోటిఫికేషన్‌ను అందుకోవచ్చు. మీరు దీన్ని ఎప్పుడైనా సెట్టింగ్‌లలో డిజేబుల్ చేయవచ్చు.</string>
+  <string name="share_upload_title">మీ కమ్యూనిటీని రక్షించడానికి మీ పరీక్ష ఫలితాన్ని షేర్ చేయండి</string>
+  <string name="share_upload_test_result_source_description">పరీక్షా ఫలితం %1$s ద్వారా పంపబడింది</string>
+  <string name="share_upload_symptoms_subtitle">\'COVID-19 లక్షణాలు\' ప్రారంభమైనప్పటినుండి</string>
+  <string name="share_upload_symptoms_date_fixed_description">లక్షణాలు కనిపించడం ప్రారంభమైన తేదీని %1$s అందించింది</string>
+  <string name="share_upload_skip_choice">స్కిప్ చేయండి</string>
+  <string name="share_upload_travel_subtitle">ట్రావెల్ హిస్టరీ</string>
+  <string name="travel_history_travelled_recently_choice">గత 14 రోజుల్లో ప్రయాణం పూర్తయింది</string>
+  <string name="travel_history_no_travel_choice">ఏదీ లేదు</string>
+  <string name="share_upload_select_a_date_choice">తేదీని ఎంచుకోండి</string>
+  <string name="share_upload_status_subtitle">COVID-19 వ్యాధి స్టేటస్</string>
+  <string name="share_upload_status_confirmed">పాజిటివ్</string>
+  <string name="share_upload_status_negative">నెగిటివ్</string>
+  <string name="share_upload_status_likely">COVID-19 కావచ్చు</string>
+  <string name="share_diagnosis_progress_tracker">%2$dలో %1$dవ దశ</string>
 </resources>

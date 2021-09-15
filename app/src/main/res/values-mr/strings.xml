@@ -29,9 +29,9 @@
   <string name="onboarding_finish_title">लागणीबद्दलच्या सूचना सुरू करण्यासाठी आवश्यक परवानग्यांचा पुढील भाग</string>
   <string name="onboarding_exposure_notifications_title">लागणीबद्दलच्या सूचना सुरू करा</string>
   <string name="onboarding_exposure_notifications_detail">तुम्ही COVID-19 ची लागण झालेल्या व्यक्तीच्या जवळपास गेला असल्यास, सूचना मिळवा.
-    \n\nतुमचा फोन जवळपास असलेल्या इतर फोनकडून रँडम आयडी सुरक्षितरीत्या गोळा करण्यासाठी आणि शेअर करण्यासाठी ब्लूटूथ वापरतो.
+    \n\nतुमचा फोन जवळपास असलेल्या इतर फोनकडून रँडम आयडी सुरक्षितरीत्या गोळा करण्यासाठी आणि शेअर करण्याकरिता ब्लूटूथ वापरतो.
     \n\nतुमच्या सार्वजनिक आरोग्य अधिकाऱ्याने सेट केलेल्या पॅरामीटरनुसार तुम्हाला सूचित केले जावे का, हे ठरवण्यासाठी संभाव्य लागणीशी संबंधित तारीख, कालावधी आणि सिग्नलची क्षमता वापरली जाईल.
-    \n\nतुमची चाचणी पॉझिटीव्ह आल्यास, तुम्हाला कदाचित तुमचा परिणाम तुमच्या आरोग्य अधिकाऱ्याशी शेअर कारण्यासंबंधित रिमाइंडर मिळेल.</string>
+    \n\nतुम्हाला तुमच्या चाचणीच्या परिणामाबाबत एसएमएस मिळाला असल्यास, तुम्हाला तुमच्या आरोग्य अधिकाऱ्यासोबत निदान शेअर करण्याची सूचना मिळू शकते.</string>
   <string name="onboarding_metrics_title">या ॲपमध्ये सुधारणा करण्यात मदत करा</string>
   <string name="onboarding_metrics_subtitle">Google सह ॲपचा वापर व परफॉर्मन्स डेटा शेअर करा</string>
   <string name="onboarding_metrics_description">ॲपच्या देखभाल आणि सुधारणेत मदतीसाठी ॲप परफॉर्मन्स व वापराबद्दलचा काही पडताळणी न केलेला मर्यादित डेटा Google सोबत शेअर केला जातो. हा डेटा तुमची ओळख उघड करत नाही. %1$s</string>
@@ -48,7 +48,7 @@
   <string name="exposure_details_learn_more">अधिक जाणून घ्या</string>
   <string name="exposure_details_new_badge">नवीन</string>
   <string name="possible_exposures_activity_title">संभाव्य लागण</string>
-  <string name="exposure_details_explanation_link">लागणीबद्दलच्या सूचना कसे काम करतात ते पाहा</string>
+  <string name="exposure_details_explanation_link">लागणीबद्दलच्या सूचना कसे काम करतात ते पहा</string>
   <plurals name="days_from_start_of_exposure">
     <item quantity="one">%1$d दिवसापूर्वी</item>
     <item quantity="other">%1$d दिवसांपूर्वी</item>
@@ -128,6 +128,12 @@
     <item quantity="other">तुम्ही खूप जास्त विनंत्या केल्या आहेत. तुम्ही %1$d मिनिटांमध्ये दुसऱ्या कोडसाठी विनंती करू शकता.</item>
   </plurals>
   <string name="notify_others_notification_title">लागण झाल्याची शक्यता असलेल्या इतरांना सूचित करण्यात मदत करा</string>
+  <string name="notify_others_if_result_updated_title">तुमचा परिणाम अपडेट झाल्यास इतरांना सूचित करायचे का?</string>
+  <string name="notify_others_if_result_updated_content">%1$s तुम्हाला कदाचित तुमचा चाचणी परिणाम कंफर्म करण्यासाठी दुसरा कोड पाठवेल. तुम्ही तुमचा COVID-19 स्टेटस आपोआप अपडेट करू शकता व हा दुसरा कोड वापरून रँडम आयडीचे अतिरिक्त दिवस शेअर करू शकता, जे इतरांना संभाव्य लागणीबद्दल सूचित करण्यात मदत करू शकते. तुमची ओळख इतरांसह शेअर केली जात नाही.</string>
+  <string name="btn_pre_auth_yes">होय, मला मदत करायची आहे</string>
+  <string name="btn_pre_auth_no">नाही, नको</string>
+  <string name="thank_you_for_notifying_title">मदत केल्याबद्दल धन्यवाद</string>
+  <string name="thank_you_for_notifying_content">%1$s यांनी आताच तुमची लागणीची टाइमलाइन अपडेट केली आणि कदाचित इतरांना संभाव्य लागणीचा इशारा दिला आहे.</string>
   <string name="settings_exposure_notifications_subtitle">लागणीबद्दलच्या सूचना</string>
   <string name="settings_app_analytics_subtitle">ॲपचा वापर आणि परफॉर्मन्स शेअरिंग</string>
   <string name="settings_privacy_policy">गोपनीयता धोरण</string>
@@ -160,7 +166,7 @@
   <string name="location_ble_off_warning">COVID-19 च्या संभाव्य लागणीबद्दल सूचना मिळवण्यासाठी, ब्लूटूथ आणि तुमच्या डिव्हाइसचे स्थान सेटिंग सुरू करा.</string>
   <string name="storage_low_warning">COVID-19 च्या संभाव्य लागणीबद्दल सूचना मिळवण्यासाठी तुमच्या फोनवरील स्टोरेज रिकामे करा.</string>
   <string name="not_in_allowlist_warning">लागणीबद्दलच्या सूचना आता तुमच्या प्रदेशामध्ये उपलब्ध नाही.</string>
-  <string name="hw_not_supported_warning">हे डिव्हाइस लागणीबद्दलच्या सूचना ला सपोर्ट करत नाही. %1$s पाहा.</string>
+  <string name="hw_not_supported_warning">हे डिव्हाइस लागणीबद्दलच्या सूचना ला सपोर्ट करत नाही. %1$s पहा.</string>
   <string name="device_requirements_link_text">डिव्हाइसच्या आवश्यकता</string>
   <string name="switch_app_for_exposure_notifications">लागणीबद्दलच्या सूचना साठी ॲप स्विच करायचे आहे का?</string>
   <string name="focus_lost_warning">तुम्ही तुमच्या डिव्हाइसवर एका वेळी लागणीबद्दलच्या सूचना चे फक्त एक ॲप वापरू शकता.\n\nतुम्हाला %1$s ॲपवर स्विच करायचे आहे का?</string>
@@ -193,5 +199,19 @@
   <string name="share_diagnosis_share_test_result_subtitle">COVID-19 ला रोखण्यात मदत केल्याबद्दल धन्यवाद.</string>
   <string name="share_diagnosis_share_test_result_body">तुम्ही तुमच्या चाचणीचा निकाल शेअर करता तेव्हा, तुम्हाला लक्षणे कधीपासून दिसू लागली तेदेखील शेअर करणे निवडू शकता. ही माहिती COVID-19 चा प्रसार रोखण्यात मदत करू शकते आणि लोकांचे जीव वाचवू शकते.</string>
   <string name="sms_intercept_notice_title">नवीन काय आहे</string>
-  <string name="sms_intercept_notice_content">तुमच्या स्थानिक आरोग्य अधिकाऱ्याने तुम्हाला चाचणीचा अहवाल पाठवल्यास, तुमचा अहवाल सबमिट करण्यासाठी आणि संभाव्य लागणीबद्दल इतरांना सूचना देण्यात मदत करण्याकरिता तुमचे ॲप तुम्हाला रिमाइंडरद्वारे सूचित करू शकते. तुम्ही ही सेटिंग्जमधून कधीही बंद करू शकता.</string>
+  <string name="sms_intercept_notice_content">तुम्हाला तुमच्या चाचणी परिणामांसह एसएमएस मिळाल्यास, तुम्हाला कदाचित तुमचे निदान लागणीबद्दलच्या सूचनांमध्ये शेअर करण्यास सांगणारी सूचना मिळेल. तुम्ही ही सेटिंग्जमधून कधीही बंद करू शकता.</string>
+  <string name="share_upload_title">तुमच्या समुदायाचे सरंक्षण करण्यासाठी तुमचा चाचणी परिणाम शेअर करा</string>
+  <string name="share_upload_test_result_source_description">चाचणी परिणाम %1$s द्वारे पाठवला जातो</string>
+  <string name="share_upload_symptoms_subtitle">या तारखेपासून लक्षण दिसण्यास सुरुवात झाली</string>
+  <string name="share_upload_symptoms_date_fixed_description">लक्षण दिसण्याची तारीख ही %1$s ने पुरवली आहे</string>
+  <string name="share_upload_skip_choice">वगळा</string>
+  <string name="share_upload_travel_subtitle">प्रवासाचा इतिहास</string>
+  <string name="travel_history_travelled_recently_choice">मागील १४ दिवसांमध्ये प्रवास केला</string>
+  <string name="travel_history_no_travel_choice">काहीही नाही</string>
+  <string name="share_upload_select_a_date_choice">तारीख निवडा</string>
+  <string name="share_upload_status_subtitle">COVID-19 स्टेटस</string>
+  <string name="share_upload_status_confirmed">पॉझिटीव्ह</string>
+  <string name="share_upload_status_negative">निगेटीव्ह</string>
+  <string name="share_upload_status_likely">लागण झाल्याची शक्यता</string>
+  <string name="share_diagnosis_progress_tracker">%2$d पैकी %1$d पायरी</string>
 </resources>

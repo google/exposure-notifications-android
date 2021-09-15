@@ -23,9 +23,11 @@ import androidx.annotation.VisibleForTesting;
 import androidx.hilt.Assisted;
 import androidx.hilt.work.WorkerInject;
 import androidx.work.Constraints;
+import androidx.work.Data;
 import androidx.work.ExistingPeriodicWorkPolicy;
 import androidx.work.ListenableWorker;
 import androidx.work.NetworkType;
+import androidx.work.OneTimeWorkRequest;
 import androidx.work.Operation;
 import androidx.work.PeriodicWorkRequest;
 import androidx.work.WorkManager;
@@ -59,6 +61,8 @@ import org.threeten.bp.LocalDate;
  * <p>Out of 4 RPC calls made by this worker when the worker gets executed, one RPC call to request
  * a verification code is made with an additional probability (which is once over each 6 actual
  * non-skipped executions of the worker).
+ * <p>Finally, this worker also mimics the delay (which arises either from the user interaction or
+ * in the background upload flow) between submitting the verification code and submitting the keys.
  */
 public final class UploadCoverTrafficWorker extends ListenableWorker {
 
@@ -67,8 +71,10 @@ public final class UploadCoverTrafficWorker extends ListenableWorker {
   private static final int KEY_SIZE_BYTES = 16;
   private static final int FAKE_INTERVAL_NUM = 2650847; // Only size matters here, not the value.
   // The upper bound of the range for the randomly generated sleep time (in milliseconds) to mimic
-  // delay in user interaction between submitting the verification code and submitting the keys.
-  private static final int MIMIC_USER_DELAY_SLEEP_MILLIS_BOUND = 3000;
+  // a shorter delay between submitting the verification code and submitting the keys.
+  private static final int MIMIC_USER_DELAY_SLEEP_MILLIS_BOUND = 10000;
+  // The longer delay between submitting the verification code and submitting the keys.
+  private static final int KEYS_UPLOAD_DELAY_HOURS = 6;
 
   @VisibleForTesting
   static final String WORKER_NAME = "UploadCoverTrafficWorker";
@@ -78,6 +84,9 @@ public final class UploadCoverTrafficWorker extends ListenableWorker {
   static final double EXECUTION_PROBABILITY = 1.0d / 12.0d;
   @VisibleForTesting
   static final double USER_REPORT_RPC_EXECUTION_PROBABILITY = 1.0d / 6.0d;
+  @VisibleForTesting
+  static final double SHORT_DELAY_KEYS_UPLOAD_PROBABILITY = 4.0d / 5.0d;
+  static final String IS_DELAYED_EXECUTION = "UploadCoverTrafficWorker.IS_DELAYED_EXECUTION";
 
   private final UploadController uploadController;
   private final ExecutorService backgroundExecutor;
@@ -85,6 +94,7 @@ public final class UploadCoverTrafficWorker extends ListenableWorker {
   private final ListeningScheduledExecutorService scheduledExecutor;
   private final SecureRandom secureRandom;
   private final WorkerStartupManager workerStartupManager;
+  private final WorkManager workManager;
 
   /**
    * @param appContext   The application {@link Context}
@@ -99,7 +109,8 @@ public final class UploadCoverTrafficWorker extends ListenableWorker {
       @LightweightExecutor ExecutorService lightweightExecutor,
       @ScheduledExecutor ListeningScheduledExecutorService scheduledExecutor,
       SecureRandom secureRandom,
-      WorkerStartupManager workerStartupManager) {
+      WorkerStartupManager workerStartupManager,
+      WorkManager workManager) {
     super(appContext, workerParams);
     this.uploadController = uploadController;
     this.backgroundExecutor = backgroundExecutor;
@@ -107,11 +118,26 @@ public final class UploadCoverTrafficWorker extends ListenableWorker {
     this.scheduledExecutor = scheduledExecutor;
     this.secureRandom = secureRandom;
     this.workerStartupManager = workerStartupManager;
+    this.workManager = workManager;
   }
 
   @NonNull
   @Override
   public ListenableFuture<Result> startWork() {
+    boolean isDelayedExecution =
+        getInputData() != null && getInputData().getBoolean(IS_DELAYED_EXECUTION, false);
+    if (isDelayedExecution) {
+      // If this worker has been fired to run once to imitate a longer delay between calls to submit
+      // code and to submit keys, then submit the keys now.
+      return FluentFuture.from(uploadController.submitKeysForCert(fakeCertRequest()))
+          .transformAsync(
+              upload -> uploadController.upload(fakeKeyUpload()),
+              backgroundExecutor)
+          // Report success or failure.
+          .transform(unused -> Result.success(), lightweightExecutor)
+          .catching(Throwable.class, t -> Result.failure(), lightweightExecutor);
+    }
+
     if (!shouldExecute(EXECUTION_PROBABILITY)) {
       // We skip execution with random probability.
       return Futures.immediateFuture(Result.success());
@@ -124,19 +150,33 @@ public final class UploadCoverTrafficWorker extends ListenableWorker {
             isEnabled -> {
               if (!isEnabled) {
                 // If the API is not enabled, skip the upload.
-                return Futures.immediateFuture(null);
+                return Futures.immediateFailedFuture(new FinishWorkerEarlyException());
               }
               return FluentFuture.from(maybeRequestCode())
                   .transformAsync(
                       unused -> uploadController.submitCode(fakeCodeRequest()),
                       backgroundExecutor)
                   .transformAsync(
-                      upload -> scheduledExecutor
-                          .schedule(() -> uploadController.submitKeysForCert(fakeCertRequest()),
+                      upload -> {
+                        if (shouldExecute(SHORT_DELAY_KEYS_UPLOAD_PROBABILITY)) {
+                          // Have a short delay between calls to /verify and /certificate endpoints
+                          // of the verification server.
+                          return scheduledExecutor.schedule(
+                              () -> uploadController.submitKeysForCert(fakeCertRequest()),
                               Duration.ofMillis(
                                   secureRandom.nextInt(MIMIC_USER_DELAY_SLEEP_MILLIS_BOUND + 1))
                                   .toMillis(),
-                              TimeUnit.MILLISECONDS),
+                              TimeUnit.MILLISECONDS);
+                        }
+                        // Have a long delay between calls to /verify and /certificate endpoints
+                        // of the verification server by scheduling UploadCoverTrafficWorker a bit
+                        // later.
+                        return FluentFuture.from(runOnce(workManager).getResult())
+                            .transformAsync(
+                                unused ->
+                                    Futures.immediateFailedFuture(new FinishWorkerEarlyException()),
+                                lightweightExecutor);
+                      },
                       backgroundExecutor)
                   .transformAsync(
                       upload -> uploadController.upload(fakeKeyUpload()),
@@ -145,6 +185,7 @@ public final class UploadCoverTrafficWorker extends ListenableWorker {
             lightweightExecutor)
         // Report success or failure.
         .transform(unused -> Result.success(), lightweightExecutor)
+        .catching(FinishWorkerEarlyException.class, ex -> Result.success(), lightweightExecutor)
         .catching(Throwable.class, t -> Result.failure(), lightweightExecutor);
   }
 
@@ -222,6 +263,25 @@ public final class UploadCoverTrafficWorker extends ListenableWorker {
     return secureRandom.nextDouble() < executionProbability;
   }
 
+  /**
+   * Runs the worker with an initial delay of a few hours to mimic the longer delay between
+   * calls to submit the verification code and to submit the keys.
+   *
+   * <p>This method should be called only after the call to the /verify endpoint.
+   */
+  private Operation runOnce(WorkManager workManager) {
+    Data inputData = new Data.Builder()
+        .putBoolean(IS_DELAYED_EXECUTION, true)
+        .build();
+    return workManager.enqueue(
+        new OneTimeWorkRequest.Builder(UploadCoverTrafficWorker.class)
+            .setConstraints(
+                new Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED).build())
+            .setInputData(inputData)
+            .setInitialDelay(secureRandom.nextInt(KEYS_UPLOAD_DELAY_HOURS + 1), TimeUnit.HOURS)
+            .build());
+  }
+
   public static Operation schedule(WorkManager workManager) {
     logger.i("Scheduling periodic WorkManager job...");
     // WARNING: You must set ExistingPeriodicWorkPolicy.REPLACE if you want to change the params for
@@ -237,4 +297,9 @@ public final class UploadCoverTrafficWorker extends ListenableWorker {
     return workManager.enqueueUniquePeriodicWork(
         WORKER_NAME, ExistingPeriodicWorkPolicy.KEEP, workRequest);
   }
+
+  /**
+   * An {@link Exception} thrown when we want to finish the worker early.
+   */
+  private static class FinishWorkerEarlyException extends Exception {}
 }

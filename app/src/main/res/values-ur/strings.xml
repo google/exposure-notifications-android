@@ -28,10 +28,10 @@
   <string name="onboarding_opt_in_title">ایکسپوژر نوٹیفیکیشنز کو فعال کرنے کے لیے اجازتیں درکار ہیں</string>
   <string name="onboarding_finish_title">ایکسپوژر نوٹیفیکیشنز کو فعال کرنے کے لیے اجازتوں کا تسلسل درکار ہے</string>
   <string name="onboarding_exposure_notifications_title">ایکسپوژر نوٹیفیکیشنز آن کریں</string>
-  <string name="onboarding_exposure_notifications_detail">اگر آپ کسی ایسے شخص کے قریب رہے ہوں جس نے COVID-19 ہونے کی رپورٹ دی ہو تو اس بارے میں مطلع کریں۔
+  <string name="onboarding_exposure_notifications_detail">اگر آپ کسی ایسے شخص کے قریب رہے ہوں جس نے COVID-19 ہونے کی اطلاع دی ہو تو اس بارے میں مطلع کریں۔
     \n\nآپ کا فون رینڈم IDs کو محفوظ طریقے سے جمع اور دیگر قریبی فونز کے ساتھ اشتراک کرنے کے لیے بلوٹوتھ کا استعمال کرتا ہے۔
     \n\nممکنہ ایکسپوژر سے وابستہ تاریخ، مدت اور سگنل کی قوت کا استعمال اس بات کا تعین کرنے کے لیے کیا جائے گا کہ آیا آپ کو آپ کی عوامی صحت کی اتھارٹی کے ذریعے طے شدہ پیرامیٹرز کی بنیاد پر مطلع کیا جائے۔
-    \n\nاگر آپ کا ٹیسٹ مثبت ہے تو آپ کو اپنے نتائج کا اشتراک اپنی ہیلتھ اتھارٹی کے ساتھ کرنے کے لیے ایک یاد دہانی موصول ہو سکتی ہے۔</string>
+    \n\nاگر آپ کو اپنے ٹیسٹ کے نتیجے کے ساتھ SMS موصول ہوتا ہے تو آپ کو اپنی ہیلتھ اتھارٹی کے ساتھ تشخیص کا اشتراک کرنے کے لیے ایک اطلاع موصول ہو سکتی ہے۔</string>
   <string name="onboarding_metrics_title">اس ایپ کو بہتر بنانے میں مدد کریں</string>
   <string name="onboarding_metrics_subtitle">Google کے ساتھ ایپ کے استعمال اور کارکردگی کا اشتراک کریں</string>
   <string name="onboarding_metrics_description">ایپ کو برقرار رکھنے اور اسے بہتر بنانے میں مدد کیلئے، Google کے ساتھ ایپ کی کارکردگی اور استعمال سے متعلق کچھ محدود غیر شناخت کردہ ڈیٹا کا اشتراک کیا جاتا ہے۔ یہ ڈیٹا آپ کی شناخت نہیں کرتا ہے۔ %1$s</string>
@@ -128,6 +128,12 @@
     <item quantity="other">آپ نے بہت زیادہ درخواستیں کی ہیں۔ آپ %1$d منٹ میں دوسرے کوڈ کی درخواست کر سکتے ہیں۔</item>
   </plurals>
   <string name="notify_others_notification_title">دیگر افراد کو مطلع کرنے میں مدد کریں جو ممکن ہے متاثر ہوئے ہوں</string>
+  <string name="notify_others_if_result_updated_title">آپ کا نتیجہ اپ ڈیٹ ہو جانے پر دوسرے لوگوں کو مطلع کریں؟</string>
+  <string name="notify_others_if_result_updated_content">%1$s آپ کے ٹیسٹ کے نتیجے کی تصدیق کیلئے آپ کو دوسرا کوڈ بھیج سکتی ہے۔ آپ خودکار طور پر اپنے COVID-19 کے اسٹیٹس کو اپ ڈیٹ کر سکتے ہیں اور اس دوسرے کوڈ کا استعمال کر کے رینڈم IDs کے اضافی دنوں کا اشتراک کر سکتے ہیں جس سے دوسروں کو ممکنہ ایکسپوژر کے بارے میں مطلع کرنے میں مدد مل سکتی ہے۔ آپ کی شناخت کا دوسرے لوگوں کے ساتھ اشتراک نہیں کیا جاتا ہے۔</string>
+  <string name="btn_pre_auth_yes">ہاں، میں مدد کرنا چاہتا ہوں</string>
+  <string name="btn_pre_auth_no">نہیں شکریہ</string>
+  <string name="thank_you_for_notifying_title">مدد کرنے کے لیے آپ کا شکریہ</string>
+  <string name="thank_you_for_notifying_content">%1$s نے ابھی آپ کی ایکسپوژر ٹائم لائن کو اپ ڈیٹ کیا ہے اور ہو سکتا ہے کہ ممکنہ ایکسپوژر کا دوسروں کو الرٹ بھیجا گیا ہو۔</string>
   <string name="settings_exposure_notifications_subtitle">ایکسپوژر نوٹیفیکیشنز</string>
   <string name="settings_app_analytics_subtitle">ایپ کے استعمال اور کارکردگی کا اشتراک</string>
   <string name="settings_privacy_policy">رازداری کی پالیسی</string>
@@ -193,5 +199,19 @@
   <string name="share_diagnosis_share_test_result_subtitle">COVID-19 کو روکنے میں مدد کرنے کے لیے آپ کا شکریہ۔</string>
   <string name="share_diagnosis_share_test_result_body">جب آپ اپنے نتیجے کا اشتراک کرتے ہیں تو آپ اپنی علامات کے شروع ہونے کے وقت کا بھی انتخاب کر سکتے ہیں۔ اس معلومات سے COVID-19 کے پھیلاؤ کو روکنے اور زندگیوں کو بچانے میں مدد مل سکتی ہے۔</string>
   <string name="sms_intercept_notice_title">نیا کیا ہے</string>
-  <string name="sms_intercept_notice_content">اگر آپ کی مقامی ہیلتھ اتھارٹی آپ کو ٹیسٹ کا نتیجہ بھیجتی ہے تو آپ کی ایپ آپ کو اپنا نتیجہ جمع کروانے کیلئے یاد دہانی کے ساتھ مطلع اور دوسروں کو ممکنہ ایکسپوژر کے بارے میں الرٹ کرنے کیلئے مدد کر سکتی ہے۔ آپ اسے ترتیبات میں کسی بھی وقت غیر فعال کر سکتے ہیں۔</string>
+  <string name="sms_intercept_notice_content">اگر آپ کو اپنے ٹیسٹ کے نتیجے کے ساتھ SMS موصول ہوتا ہے تو آپ کو ایک ایسی اطلاع موصول ہو سکتی ہے جس میں آپ سے اپنی تشخیص کا اشتراک ایکسپوژر نوٹیفیکیشنز میں کرنے کے لیے کہا گیا ہو۔ آپ اسے ترتیبات میں کسی بھی وقت غیر فعال کر سکتے ہیں۔</string>
+  <string name="share_upload_title">اپنی کمیونٹی کی حفاظت کے لیے اپنے ٹیسٹ کے نتیجے کا اشتراک کریں</string>
+  <string name="share_upload_test_result_source_description">ٹیسٹنگ کا نتیجہ %1$s کے ذریعے بھیجا جاتا ہے</string>
+  <string name="share_upload_symptoms_subtitle">اس تاریخ سے علامات کا آغاز ہوا</string>
+  <string name="share_upload_symptoms_date_fixed_description">علامت کے آغاز کی تاریخ %1$s نے فراہم کی ہے</string>
+  <string name="share_upload_skip_choice">نظر انداز کریں</string>
+  <string name="share_upload_travel_subtitle">سفر کی سرگزشت</string>
+  <string name="travel_history_travelled_recently_choice">گزشتہ 14 دن میں کیا گیا سفر</string>
+  <string name="travel_history_no_travel_choice">کوئی نہیں</string>
+  <string name="share_upload_select_a_date_choice">تاریخ منتخب کریں</string>
+  <string name="share_upload_status_subtitle">COVID-19 اسٹیٹس</string>
+  <string name="share_upload_status_confirmed">مثبت</string>
+  <string name="share_upload_status_negative">منفی</string>
+  <string name="share_upload_status_likely">ممکنہ</string>
+  <string name="share_diagnosis_progress_tracker">مرحلہ %1$d از %2$d</string>
 </resources>

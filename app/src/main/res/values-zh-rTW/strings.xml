@@ -31,7 +31,7 @@
   <string name="onboarding_exposure_notifications_detail">如果你曾近距離接觸 COVID-19 確診者，系統就會傳送通知給你。
     \n\n你的手機會透過藍牙功能安全地收集附近手機的隨機 ID，並且將你的隨機 ID 與這些手機分享。
     \n\n系統會根據可能接觸的日期、接觸時間長度和藍牙訊號強度資訊，判斷是否要根據公共衛生主管機關設定的參數通知你。
-    \n\n如果你的檢測結果為陽性，系統可能會提醒你將檢測結果提供給衛生主管機關。</string>
+    \n\n如果你收到檢測結果的簡訊，系統可能會通知你將診斷結果提供給所在地的衛生主管機關。</string>
   <string name="onboarding_metrics_title">協助改善這個應用程式</string>
   <string name="onboarding_metrics_subtitle">將應用程式的使用情況和效能資料分享給 Google</string>
   <string name="onboarding_metrics_description">為了協助維護及改善這個應用程式，系統會將少量已去識別化的應用程式效能和使用情況資料分享給 Google。請放心，這類資料無法用於辨識你的身分。%1$s</string>
@@ -128,6 +128,12 @@
     <item quantity="other">送出要求的次數過多。請等 %1$d 分鐘後再送出另一個驗證碼要求。</item>
   </plurals>
   <string name="notify_others_notification_title">協助通知可能曾與你接觸的人</string>
+  <string name="notify_others_if_result_updated_title">是否要在最新檢測結果出爐時通知其他人？</string>
+  <string name="notify_others_if_result_updated_content">%1$s可能會傳送第二個驗證碼給你，以確認你的檢測結果。你可以透過這個第二個驗證碼自動更新 COVID-19 狀態及延長隨機 ID 的分享天數，以協助通知其他可能曾與你接觸的人。請放心，系統不會將你的身分資料提供給其他人。</string>
+  <string name="btn_pre_auth_yes">是，我願意</string>
+  <string name="btn_pre_auth_no">不用了，謝謝</string>
+  <string name="thank_you_for_notifying_title">感謝你的協助</string>
+  <string name="thank_you_for_notifying_content">%1$s剛剛更新了你的接觸時間軸，也可能已通知其他可能曾與你接觸的人。</string>
   <string name="settings_exposure_notifications_subtitle">接觸通知</string>
   <string name="settings_app_analytics_subtitle">應用程式使用情況和效能資料分享</string>
   <string name="settings_privacy_policy">隱私權政策</string>
@@ -193,5 +199,19 @@
   <string name="share_diagnosis_share_test_result_subtitle">感謝你協助防止 COVID-19 疫情擴散。</string>
   <string name="share_diagnosis_share_test_result_body">分享檢測結果時，也可以選擇分享出現症狀的日期。這項資訊可協助防止 COVID-19 傳播，拯救寶貴生命。</string>
   <string name="sms_intercept_notice_title">新功能</string>
-  <string name="sms_intercept_notice_content">如果你收到當地衛生主管機關的檢測結果，應用程式可透過提醒通知你提交檢測結果，協助通知其他可能曾與你接觸的人。你隨時可以前往設定停用這項功能。</string>
+  <string name="sms_intercept_notice_content">如果你收到檢測結果的簡訊，系統可能會通知你在接觸通知系統中分享診斷結果。你隨時可以前往設定停用這項功能。</string>
+  <string name="share_upload_title">分享你的檢測結果可保護你的社區</string>
+  <string name="share_upload_test_result_source_description">這是由%1$s傳送的檢測結果</string>
+  <string name="share_upload_symptoms_subtitle">出現症狀的日期</string>
+  <string name="share_upload_symptoms_date_fixed_description">症狀出現日期是由「%1$s」提供</string>
+  <string name="share_upload_skip_choice">略過</string>
+  <string name="share_upload_travel_subtitle">旅遊史</string>
+  <string name="travel_history_travelled_recently_choice">過去 14 天去過的地方</string>
+  <string name="travel_history_no_travel_choice">無</string>
+  <string name="share_upload_select_a_date_choice">選取日期</string>
+  <string name="share_upload_status_subtitle">COVID-19 狀態</string>
+  <string name="share_upload_status_confirmed">陽性</string>
+  <string name="share_upload_status_negative">陰性</string>
+  <string name="share_upload_status_likely">可能為陽性</string>
+  <string name="share_diagnosis_progress_tracker">步驟 %2$d 之 %1$d</string>
 </resources>

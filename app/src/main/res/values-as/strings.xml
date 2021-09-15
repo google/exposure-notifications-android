@@ -30,8 +30,8 @@
   <string name="onboarding_exposure_notifications_title">এক্সপ’জাৰ ন’টিফিকেশ্বন অন কৰক</string>
   <string name="onboarding_exposure_notifications_detail">COVID-19ত আক্ৰান্ত হোৱা বুলি জনোৱা কোনো লোকৰ কাষলৈ আহিলে আপুনি জাননী লাভ কৰক।
     \n\nযাদৃচ্ছিক আইডিসমূহ সুৰক্ষিতভাৱে সংগ্ৰহ আৰু ওচৰত থকা অন্য ফ’নসমূহৰ সৈতে শ্বেয়াৰ কৰিবলৈ আপোনাৰ ফ’নটোৱে ব্লুটুথ ব্যৱহাৰ কৰে।
-    \n\nৰাজহুৱা স্বাস্থ্য কৰ্তৃপক্ষই নিৰ্ধাৰণ কৰা পেৰামিটাৰৰ ওপৰত ভিত্তি কৰি আপোনাক সংস্পৰ্শলৈ অহাৰ বিষয়ে জনোৱা হ’বনে নাই তাৰ সিদ্ধান্ত ল’বলৈ সম্ভাব্য কোনো সংস্পৰ্শৰ সৈতে জড়িত হৈ থকা তাৰিখ, সময় অৱধি আৰু ছিগনেলৰ ক্ষমতা ব্যৱহাৰ কৰা হ’ব।
-    \n\nযদি আপোনাৰ সংক্ৰমণৰ পৰীক্ষাৰ ফলাফল ধনাত্মক ওলাইছে, আপুনি আপোনাৰ ফলাফলৰ আপোনাৰ স্বাস্থ্য প্ৰাধিকৰণৰ সৈতে শ্বেয়াৰ কৰিবলৈ এটা ৰিমাইণ্ডাৰ লাভ কৰিব পাৰে।</string>
+    \n\nআপোনাৰ ৰাজহুৱা স্বাস্থ্য কৰ্তৃপক্ষই নিৰ্ধাৰণ কৰা পেৰামিটাৰৰ ওপৰত ভিত্তি কৰি আপোনাক সংস্পৰ্শলৈ অহাৰ বিষয়ে জনোৱা হ’বনে নাই তাৰ সিদ্ধান্ত ল’বলৈ সম্ভাব্য কোনো সংস্পৰ্শৰ সৈতে জড়িত হৈ থকা তাৰিখ, সময় অৱধি আৰু ছিগনেলৰ ক্ষমতা ব্যৱহাৰ কৰা হ’ব।
+    \n\nযদি আপুনি আপোনাৰ পৰীক্ষাৰ ফলাফলৰ সৈতে এটা এছএমএছ লাভ কৰে, তেন্তে আপুনি আপোনাৰ স্বাস্থ্য কৰ্তৃপক্ষৰ সৈতে ডায়েগন’ছিছ শ্বেয়াৰ কৰিবলৈ জাননী পাব পাৰে।</string>
   <string name="onboarding_metrics_title">এই এপ্‌টো অধিক ভাল কৰাত সহায় কৰক</string>
   <string name="onboarding_metrics_subtitle">Googleৰ সৈতে এপৰ ব্যৱহাৰ আৰু কাৰ্যদক্ষতাৰ ডেটা শ্বেয়াৰ কৰক</string>
   <string name="onboarding_metrics_description">এপ্‌টো চলাই ৰখা আৰু উন্নত কৰাত সহায় কৰিবলৈ, এপ্‌টোৰ কাৰ্যদক্ষতা আৰু ব্যৱহাৰ সম্পৰ্কীয় কিছুমান সীমিত ব্যক্তিগত তথ্য প্ৰকাশ নোপোৱা ডেটা Googleৰ সৈতে শ্বেয়াৰ কৰা হয়। এই ডেটাখিনিয়ে আপোনাক চিনাক্ত নকৰে। %1$s</string>
@@ -128,6 +128,12 @@
     <item quantity="other">আপুনি বহুকেইটা অনুৰোধ দাখিল কৰিছে। আপুনি %1$d মিনিটৰ পাছত অন্য এটা ক’ডৰ বাবে অনুৰোধ কৰিব পাৰে।</item>
   </plurals>
   <string name="notify_others_notification_title">সংস্পৰ্শলৈ অহাৰ সম্ভাৱনা থকা অন্য লোকসকলক জাননী দিয়াত সহায় কৰক</string>
+  <string name="notify_others_if_result_updated_title">আপোনাৰ ফলাফল আপডে’ট হ’লে অন্য লোকক জানিবলৈ দিবনে?</string>
+  <string name="notify_others_if_result_updated_content">আপোনাৰ পৰীক্ষাৰ ফলাফল নিশ্চিত কৰিবলৈ %1$sএ আপোনালৈ এটা দ্বিতীয় ক’ড পঠিয়াব পাৰে। আপুনি নিজৰ COVID-19ৰ স্থিতি স্বয়ংক্ৰিয়ভাৱে আপডে’ট কৰিব পাৰে আৰু যাদৃচ্ছিক আইডিসমূহে এই দ্বিতীয় ক’ডটো ব্যৱহাৰ কৰি থকা অতিৰিক্ত দিন সম্পৰ্কীয় তথ্য শ্বেয়াৰ কৰিব পাৰে যিয়ে অন্য লোকক সম্ভাব্য এক্সপ’জাৰৰ বিষয়ে জাননী দিয়াত সহায় কৰিব পাৰে। আপোনাৰ পৰিচয় অন্য লোকৰ সৈতে শ্বেয়াৰ কৰা নহয়।</string>
+  <string name="btn_pre_auth_yes">হয়, মই সহায় কৰিব বিচাৰোঁ</string>
+  <string name="btn_pre_auth_no">নালাগে, ধন্যবাদ</string>
+  <string name="thank_you_for_notifying_title">সহায় কৰাৰ বাবে আপোনাক ধন্যবাদ</string>
+  <string name="thank_you_for_notifying_content">%1$sএ এইমাত্ৰ আপোনাৰ এক্সপ’জাৰৰ সময়সীমা আপডে’ট কৰিছে আৰু অন্য লোকক হয়তো সম্ভাব্য এক্সপ’জাৰৰ বিষয়ে সতৰ্কবাৰ্তা দিছে।</string>
   <string name="settings_exposure_notifications_subtitle">এক্সপ’জাৰ ন’টিফিকেশ্বন</string>
   <string name="settings_app_analytics_subtitle">এপৰ ব্যৱহাৰ আৰু কাৰ্যদক্ষতা শ্বেয়াৰ কৰা</string>
   <string name="settings_privacy_policy">গোপনীয়তা নীতি</string>
@@ -193,5 +199,19 @@
   <string name="share_diagnosis_share_test_result_subtitle">COVID-19 ৰোধ কৰাত সহায় কৰাৰ বাবে ধন্যবাদ।</string>
   <string name="share_diagnosis_share_test_result_body">আপুনি পৰীক্ষাৰ ফলাফল শ্বেয়াৰ কৰাৰ সময়ত আপুনি আপোনাৰ লক্ষণসমূহ কেতিয়া আৰম্ভ হৈছিল সেই কথাও শ্বেয়াৰ কৰিব পাৰে। এই তথ্যই COVID-19ৰ সংক্ৰমণ ৰোধ কৰাত আৰু জীৱন ৰক্ষা কৰাত সহায় কৰিব পাৰে।</string>
   <string name="sms_intercept_notice_title">নতুন কি আছে</string>
-  <string name="sms_intercept_notice_content">যদি আপোনাৰ স্থানীয় স্বাস্থ্য কৰ্তৃপক্ষই আপোনালৈ কোনো পৰীক্ষাৰ ফলাফল পঠিয়ায়, আপোনাৰ এপ্‌টোৱে আপোনাৰ ফলাফল দাখিল কৰিবলৈ এটা ৰিমাইণ্ডাৰৰ জৰিয়তে জনাব পাৰে আৰু অন্য লোকক সম্ভাব্য সংস্পৰ্শৰ বিষয়ে সতর্ক কৰাত সহায় কৰিব পাৰে। আপুনি যিকোনো সময়তে ছেটিঙত এইটো অক্ষম কৰিব পাৰে।</string>
+  <string name="sms_intercept_notice_content">যদি আপুনি আপোনাৰ পৰীক্ষাৰ ফলাফল সম্পর্কীয় এটা এছএমএছ পায়, আপুনি এক্সপ’জাৰ ন’টিফিকেশ্বনত আপোনাৰ ডায়েগন’ছিছ শ্বেয়াৰ কৰিবলৈ এটা জাননী পাব পাৰে। আপুনি যিকোনো সময়তে ছেটিঙত এইটো অক্ষম কৰিব পাৰে।</string>
+  <string name="share_upload_title">আপোনাৰ সম্প্ৰদায়ক সুৰক্ষিত কৰিবলৈ আপোনাৰ পৰীক্ষাৰ ফলাফল শ্বেয়াৰ কৰক</string>
+  <string name="share_upload_test_result_source_description">পৰীক্ষাৰ ফলাফল %1$sএ পঠিয়ায়</string>
+  <string name="share_upload_symptoms_subtitle">লক্ষণ দেখা দিয়াৰ সময়</string>
+  <string name="share_upload_symptoms_date_fixed_description">লক্ষণ আৰম্ভ হোৱাৰ তাৰিখ %1$sএ যোগান ধৰিছে</string>
+  <string name="share_upload_skip_choice">এৰি যাওক</string>
+  <string name="share_upload_travel_subtitle">ভ্ৰমণৰ ইতিহাস</string>
+  <string name="travel_history_travelled_recently_choice">যোৱা ১৪ দিনত ভ্ৰমণ কৰিছে নেকি</string>
+  <string name="travel_history_no_travel_choice">কৰ নাই</string>
+  <string name="share_upload_select_a_date_choice">তাৰিখ বাছনি কৰক</string>
+  <string name="share_upload_status_subtitle">COVID-19ৰ স্থিতি</string>
+  <string name="share_upload_status_confirmed">ধনাত্মক</string>
+  <string name="share_upload_status_negative">ঋণাত্মক</string>
+  <string name="share_upload_status_likely">সম্ভৱতঃ</string>
+  <string name="share_diagnosis_progress_tracker">%2$d টাৰ ভিতৰত %1$d নম্বৰ পদক্ষেপ</string>
 </resources>

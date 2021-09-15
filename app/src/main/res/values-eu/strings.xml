@@ -31,7 +31,7 @@
   <string name="onboarding_exposure_notifications_detail">Jakinarazpenak jasoko dituzu COVID-19a duela adierazi duen norbaitengandik hurbil egon bazara.
     \n\nTelefonoak Bluetooth bidezko konexioa erabiltzen du ausazko IDak inguruko telefonoetatik modu seguruan biltzeko eta haiekin partekatzeko.
     \n\nEsposizio posible batekin erlazionatutako data, iraupena eta seinalearen intentsitatea erabiliko dira osasun-agintaritzak ezarritako parametroetan oinarrituta jakinarazpenik bidaliko zaizun zehazteko.
-    \n\nZure probaren emaitza positiboa bada, litekeena da abisu bat jasotzea emaitza osasun-agintaritzarekin parteka dezazun.</string>
+    \n\nProbaren emaitza SMS bidez jasotzen baduzu, baliteke diagnostikoa osasun-agintaritzarekin partekatzeko jakinarazpen bat jasotzea.</string>
   <string name="onboarding_metrics_title">Lagundu aplikazioa hobetzen</string>
   <string name="onboarding_metrics_subtitle">Partekatu Google-rekin aplikazioaren erabilera- eta errendimendu-datuak</string>
   <string name="onboarding_metrics_description">Aplikazioa mantentzen eta hobetzen laguntzeko, aplikazioaren errendimenduari eta erabilerari buruzko datu anonimoak partekatzen dira Google-rekin. Datuok ez zaituzte identifikatzen. %1$s</string>
@@ -128,6 +128,12 @@
     <item quantity="other">Eskaera gehiegi egin dituzu. %1$d minutu barru eskatu ahal izango duzu beste kode bat.</item>
   </plurals>
   <string name="notify_others_notification_title">Jakinarazi jendeari agian arriskuan egon dela</string>
+  <string name="notify_others_if_result_updated_title">Emaitzari buruzko berritasunik bada jendeari jakinaraztea nahi duzu?</string>
+  <string name="notify_others_if_result_updated_content">Baliteke %1$s osasun-agintaritzak beste kode bat bidaltzea probaren emaitza berresteko. Kode horrekin, automatikoki egunera dezakezu COVID-19aren probaren emaitza, eta ausazko IDak egun gehiago egongo dira partekatuta. Hala, baliteke esposizio posiblearen berri ematea besteei. Ez da beste inorekin partekatuko zure nortasuna.</string>
+  <string name="btn_pre_auth_yes">Bai, lagundu egin nahi dut</string>
+  <string name="btn_pre_auth_no">Ez, eskerrik asko</string>
+  <string name="thank_you_for_notifying_title">Eskerrik asko laguntzeagatik</string>
+  <string name="thank_you_for_notifying_content">%1$s osasun-agintaritzak zure esposizioaren kronologia eguneratu berri du, eta baliteke esposizioaren berri eman izana besteei.</string>
   <string name="settings_exposure_notifications_subtitle">Esposizioari buruzko jakinarazpenak</string>
   <string name="settings_app_analytics_subtitle">Aplikazioaren erabilera eta errendimendua partekatzeko aukera</string>
   <string name="settings_privacy_policy">Pribatutasun-gidalerroak</string>
@@ -193,5 +199,19 @@
   <string name="share_diagnosis_share_test_result_subtitle">Eskerrik asko COVID-19a geldiarazten laguntzeagatik.</string>
   <string name="share_diagnosis_share_test_result_body">Emaitza partekatzen duzunean, lehen sintomak noiz nabaritu zenituen ere zehatz dezakezu. Baliteke informazio horrek COVID-19aren hedapena geldiaraztea eta bizitzak salbatzea.</string>
   <string name="sms_intercept_notice_title">Berritasunak</string>
-  <string name="sms_intercept_notice_content">Tokiko osasun-agintaritzak probaren emaitza bidaltzen badizu, litekeena da aplikazioak abisu bat bidaltzea emaitza bidal dezazun eta besteei esposizio posiblearen berri eman diezaiezun. Funtzio hori desgaitzeko, joan Ezarpenak atalera.</string>
+  <string name="sms_intercept_notice_content">Probaren emaitza aipatzen duen SMS bat jasotzen baduzu, baliteke diagnostikoa esposizioari buruzko jakinarazpenen bidez partekatzeko eskatzen dizun jakinarazpen bat jasotzea. Funtzio hori desgaitzeko, joan Ezarpenak atalera.</string>
+  <string name="share_upload_title">Partekatu probaren emaitza zure komunitatea babesteko</string>
+  <string name="share_upload_test_result_source_description">%1$s osasun-agintaritzak bidaltzen du probaren emaitza</string>
+  <string name="share_upload_symptoms_subtitle">Sintomak hasi ziren data:</string>
+  <string name="share_upload_symptoms_date_fixed_description">%1$s agintaritzak eman du sintomak agertu ziren data</string>
+  <string name="share_upload_skip_choice">Saltatu</string>
+  <string name="share_upload_travel_subtitle">Bidaien historia</string>
+  <string name="travel_history_travelled_recently_choice">Bidaiaren bat egin duzu azken 14 egunetan?</string>
+  <string name="travel_history_no_travel_choice">Ez dago</string>
+  <string name="share_upload_select_a_date_choice">Hautatu data bat</string>
+  <string name="share_upload_status_subtitle">COVID-19aren probaren emaitza</string>
+  <string name="share_upload_status_confirmed">Positiboa</string>
+  <string name="share_upload_status_negative">Negatiboa</string>
+  <string name="share_upload_status_likely">Seguruenik positiboa</string>
+  <string name="share_diagnosis_progress_tracker">%1$d/%2$d urratsa</string>
 </resources>

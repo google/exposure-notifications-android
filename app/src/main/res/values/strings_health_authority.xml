@@ -17,7 +17,8 @@
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-  <string name="app_name">@string/enx_appTitle</string>
+  <!-- Health authority app title. -->
+  <string name="app_title">@string/enx_appTitle</string>
 
   <string name="health_authority_id">@string/enx_healthAuthorityID</string>
 

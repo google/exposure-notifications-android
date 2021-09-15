@@ -74,7 +74,7 @@ public class PeriodicExposureNotificationMetricTest {
     for (TestVector testVector : getTestVectors()) {
       // GIVEN
       Instant workerTime = testVector.notificationTime.minus(Duration.ofDays(1));
-      exposureNotificationSharedPreferences.setPrivateAnalyticsWorkerLastTime(workerTime);
+      exposureNotificationSharedPreferences.setPrivateAnalyticsWorkerLastTimeForDaily(workerTime);
       exposureNotificationSharedPreferences
           .setExposureNotificationLastShownClassification(testVector.notificationTime,
               testVector.exposureClassification);
@@ -94,7 +94,7 @@ public class PeriodicExposureNotificationMetricTest {
     for (TestVector testVector : getTestVectors()) {
       // GIVEN
       Instant workerTime = testVector.notificationTime.plus(Duration.ofDays(1));
-      exposureNotificationSharedPreferences.setPrivateAnalyticsWorkerLastTime(workerTime);
+      exposureNotificationSharedPreferences.setPrivateAnalyticsWorkerLastTimeForDaily(workerTime);
       exposureNotificationSharedPreferences
           .setExposureNotificationLastShownClassification(testVector.notificationTime,
               testVector.exposureClassification);
@@ -114,7 +114,7 @@ public class PeriodicExposureNotificationMetricTest {
     for (TestVector testVector : getTestVectors()) {
       // GIVEN
       Instant workerTime = testVector.notificationTime.minus(Duration.ofDays(1));
-      exposureNotificationSharedPreferences.setPrivateAnalyticsWorkerLastTime(workerTime);
+      exposureNotificationSharedPreferences.setPrivateAnalyticsWorkerLastTimeForDaily(workerTime);
       exposureNotificationSharedPreferences
           .setExposureNotificationLastShownClassification(testVector.notificationTime,
               testVector.exposureClassification);

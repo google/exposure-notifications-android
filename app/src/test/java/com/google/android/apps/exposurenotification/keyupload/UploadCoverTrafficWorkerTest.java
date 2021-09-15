@@ -17,7 +17,7 @@
 
 package com.google.android.apps.exposurenotification.keyupload;
 
-import static com.google.android.apps.exposurenotification.keyupload.UploadCoverTrafficWorker.REPEAT_INTERVAL;
+import static com.google.android.apps.exposurenotification.keyupload.UploadCoverTrafficWorker.WORKER_NAME;
 import static com.google.common.truth.Truth.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.never;
@@ -27,11 +27,16 @@ import static org.mockito.Mockito.when;
 import android.content.Context;
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.work.Configuration;
 import androidx.work.ExistingPeriodicWorkPolicy;
 import androidx.work.ListenableWorker.Result;
 import androidx.work.PeriodicWorkRequest;
+import androidx.work.WorkInfo;
+import androidx.work.WorkInfo.State;
 import androidx.work.WorkManager;
 import androidx.work.WorkerParameters;
+import androidx.work.impl.utils.SynchronousExecutor;
+import androidx.work.testing.WorkManagerTestInitHelper;
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.common.time.RealTimeModule;
 import com.google.android.apps.exposurenotification.nearby.ExposureNotificationClientWrapper;
@@ -53,7 +58,7 @@ import dagger.hilt.android.testing.HiltAndroidTest;
 import dagger.hilt.android.testing.HiltTestApplication;
 import dagger.hilt.android.testing.UninstallModules;
 import java.security.SecureRandom;
-import java.util.concurrent.TimeUnit;
+import java.util.List;
 import javax.inject.Inject;
 import org.junit.Before;
 import org.junit.Rule;
@@ -83,8 +88,6 @@ public class UploadCoverTrafficWorkerTest {
   @Mock
   ExposureNotificationClientWrapper exposureNotificationClientWrapper;
   @Mock
-  WorkManager workManager;
-  @Mock
   UploadController uploadController;
 
   @Captor
@@ -105,6 +108,8 @@ public class UploadCoverTrafficWorkerTest {
   @BindValue
   Clock clock = new FakeClock();
 
+  WorkManager workManager;
+
   // The SUT.
   private UploadCoverTrafficWorker worker;
 
@@ -112,11 +117,20 @@ public class UploadCoverTrafficWorkerTest {
   public void setUp() {
     rules.hilt().inject();
     Context context = ApplicationProvider.getApplicationContext();
+    // Initialize WorkManager for testing.
+    Configuration config = new Configuration.Builder()
+        .setExecutor(new SynchronousExecutor())
+        .build();
+    WorkManagerTestInitHelper.initializeTestWorkManager(
+        context, config);
+    workManager = WorkManager.getInstance(context);
+
     // Randoms below probability result in execution. It's not great for the test to know the
     // internal implementation of the SUT like this. TODO: is there a better way to test?
     when(secureRandom.nextDouble())
         .thenReturn(UploadCoverTrafficWorker.EXECUTION_PROBABILITY - 0.1d,
-        UploadCoverTrafficWorker.USER_REPORT_RPC_EXECUTION_PROBABILITY - 0.1d);
+        UploadCoverTrafficWorker.USER_REPORT_RPC_EXECUTION_PROBABILITY - 0.1d,
+            UploadCoverTrafficWorker.SHORT_DELAY_KEYS_UPLOAD_PROBABILITY - 0.1d);
     // Set up all mocked controller operations to succeed by default.
     when(uploadController.requestCode(any()))
         .thenReturn(Futures.immediateFuture(UserReportUpload.newBuilder("dummy-phone-number",
@@ -144,7 +158,8 @@ public class UploadCoverTrafficWorkerTest {
             packageConfigurationHelper,
             exposureCheckRepository,
             verificationCodeRequestRepository,
-            clock));
+            clock),
+        workManager);
   }
 
   @Test
@@ -179,6 +194,27 @@ public class UploadCoverTrafficWorkerTest {
     verify(uploadController).submitCode(any());
     verify(uploadController).submitKeysForCert(any());
     verify(uploadController).upload(any());
+    assertThat(result).isEqualTo(Result.success());
+  }
+
+  @Test
+  public void randomExecution_decidesNotToExecuteUserReportAndToDoLongerDelay_shouldMakeVerifyRpcOnly()
+      throws Exception {
+    // Randoms below probability result in execution and above probability result in no execution.
+    // First, secureRandom.nextDouble() is called to determine if we execute the worker at all.
+    // Then, it is called to determine if we execute the RPC call to /user-report API.
+    when(secureRandom.nextDouble())
+        .thenReturn(UploadCoverTrafficWorker.EXECUTION_PROBABILITY - 0.1d,
+            UploadCoverTrafficWorker.USER_REPORT_RPC_EXECUTION_PROBABILITY + 0.1d,
+            UploadCoverTrafficWorker.SHORT_DELAY_KEYS_UPLOAD_PROBABILITY + 0.1d);
+    when(exposureNotificationClientWrapper.isEnabled()).thenReturn(Tasks.forResult(true));
+
+    Result result = worker.startWork().get();
+
+    verify(uploadController, never()).requestCode(any());
+    verify(uploadController).submitCode(any());
+    verify(uploadController, never()).submitKeysForCert(any());
+    verify(uploadController, never()).upload(any());
     assertThat(result).isEqualTo(Result.success());
   }
 
@@ -274,18 +310,13 @@ public class UploadCoverTrafficWorkerTest {
   }
 
   @Test
-  public void schedule_verifyParameters() {
+  public void schedule_verifyWorkScheduled() throws Exception {
     UploadCoverTrafficWorker.schedule(workManager);
 
-    verify(workManager)
-        .enqueueUniquePeriodicWork(workerNameCaptor.capture(),
-            existingPeriodicWorkPolicyCaptor.capture(),
-            periodicWorkRequestCaptor.capture());
-    assertThat(workerNameCaptor.getValue()).isEqualTo(UploadCoverTrafficWorker.WORKER_NAME);
-    assertThat(existingPeriodicWorkPolicyCaptor.getValue())
-        .isEqualTo(ExistingPeriodicWorkPolicy.KEEP);
-    PeriodicWorkRequest periodicWorkRequest = periodicWorkRequestCaptor.getValue();
-    assertThat(periodicWorkRequest.getWorkSpec().intervalDuration)
-        .isEqualTo(TimeUnit.HOURS.toMillis(REPEAT_INTERVAL));
+    List<WorkInfo> workInfos = workManager.getWorkInfosForUniqueWork(WORKER_NAME).get();
+
+    assertThat(workInfos).hasSize(1);
+    WorkInfo workInfo = workInfos.get(0);
+    assertThat(workInfo.getState()).isEqualTo(State.ENQUEUED);
   }
 }

@@ -20,6 +20,7 @@ package com.google.android.apps.exposurenotification.storage;
 import android.content.Context;
 import android.content.SharedPreferences;
 import androidx.annotation.AnyThread;
+import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Transformations;
@@ -30,7 +31,10 @@ import com.google.android.apps.exposurenotification.common.logging.Logger;
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.home.ExposureNotificationViewModel.ExposureNotificationState;
 import com.google.android.apps.exposurenotification.riskcalculation.ExposureClassification;
+import com.google.android.apps.exposurenotification.storage.DiagnosisEntity.TestResult;
 import com.google.common.base.Optional;
+import java.security.SecureRandom;
+import java.util.Calendar;
 import org.threeten.bp.Duration;
 import org.threeten.bp.Instant;
 
@@ -87,8 +91,11 @@ public class ExposureNotificationSharedPreferences {
   // Private analytics
   private static final String SHARE_PRIVATE_ANALYTICS_KEY =
       "ExposureNotificationSharedPreferences.SHARE_PRIVATE_ANALYTICS_KEY";
-  private static final String PRIVATE_ANALYTICS_LAST_WORKER_RUN_TIME =
+  // The constant value uses the old constant name so that data is not lost when updating the app.
+  private static final String PRIVATE_ANALYTICS_LAST_WORKER_RUN_TIME_FOR_DAILY =
       "ExposureNotificationSharedPreferences.PRIVATE_ANALYTICS_LAST_WORKER_RUN_TIME";
+  private static final String PRIVATE_ANALYTICS_LAST_WORKER_RUN_TIME_FOR_BIWEEKLY =
+      "ExposureNotificationSharedPreferences.PRIVATE_ANALYTICS_LAST_WORKER_RUN_TIME_FOR_BIWEEKLY";
   private static final String EXPOSURE_NOTIFICATION_LAST_SHOWN_TIME =
       "ExposureNotificationSharedPreferences.EXPOSURE_NOTIFICATION_LAST_SHOWN_TIME_KEY";
   private static final String EXPOSURE_NOTIFICATION_LAST_SHOWN_CLASSIFICATION =
@@ -105,13 +112,18 @@ public class ExposureNotificationSharedPreferences {
       "ExposureNotificationSharedPreferences.PRIVATE_ANALYTICS_SUBMITTED_KEYS_TIME";
   private static final String PRIVATE_ANALYTICS_LAST_EXPOSURE_TIME =
       "ExposureNotificationSharedPreferences.PRIVATE_ANALYTICS_LAST_EXPOSURE_TIME";
+  private static final String PRIVATE_ANALYTICS_LAST_REPORT_TYPE =
+      "ExposureNotificationSharedPreferences.PRIVATE_ANALYTICS_LAST_REPORT_TYPE";
   private static final String EXPOSURE_NOTIFICATION_LAST_VACCINATION_STATUS =
       "ExposureNotificationSharedPreferences.EXPOSURE_NOTIFICATION_LAST_VACCINATION_STATUS";
   private static final String EXPOSURE_NOTIFICATION_LAST_VACCINATION_STATUS_RESPONSE_TIME_MS =
       "ExposureNotificationSharedPreferences.EXPOSURE_NOTIFICATION_LAST_VACCINATION_STATUS_TIME_MS";
+  private static final String BIWEEKLY_METRICS_UPLOAD_DAY =
+      "ExposureNotificationSharedPreferences.BIWEEKLY_METRICS_UPLOAD_DAY";
 
   private final SharedPreferences sharedPreferences;
   private final Clock clock;
+  private final SecureRandom random;
   private static AnalyticsStateListener analyticsStateListener;
 
   private final LiveData<Boolean> appAnalyticsStateLiveData;
@@ -256,11 +268,12 @@ public class ExposureNotificationSharedPreferences {
     }
   }
 
-  ExposureNotificationSharedPreferences(Context context, Clock clock) {
+  ExposureNotificationSharedPreferences(Context context, Clock clock, SecureRandom random) {
     // These shared preferences are stored in {@value Context#MODE_PRIVATE} to be made only
     // accessible by the app.
     sharedPreferences = context.getSharedPreferences(SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE);
     this.clock = clock;
+    this.random = random;
 
     this.appAnalyticsStateLiveData =
         new BooleanSharedPreferenceLiveData(sharedPreferences, SHARE_ANALYTICS_KEY, false);
@@ -629,6 +642,25 @@ public class ExposureNotificationSharedPreferences {
         .ofEpochMilli(sharedPreferences.getLong(PRIVATE_ANALYTICS_SUBMITTED_KEYS_TIME, 0));
   }
 
+  // Last report type for Private Analytics.
+  public void setPrivateAnalyticsLastReportType(@Nullable TestResult testResult) {
+    if (getPrivateAnalyticState()) {
+      int testResultOrdinal = testResult != null ? testResult.ordinal() : -1;
+      sharedPreferences.edit().putInt(PRIVATE_ANALYTICS_LAST_REPORT_TYPE, testResultOrdinal)
+          .apply();
+    }
+  }
+
+  @Nullable
+  public TestResult getPrivateAnalyticsLastReportType() {
+    int testResultOrdinal = sharedPreferences.getInt(PRIVATE_ANALYTICS_LAST_REPORT_TYPE, -1);
+
+    if (testResultOrdinal < 0 || testResultOrdinal >= TestResult.values().length) {
+      return null;
+    }
+    return TestResult.values()[testResultOrdinal];
+  }
+
   // Clear the Private Analytics fields.
   public void clearPrivateAnalyticsFields() {
     sharedPreferences.edit()
@@ -638,6 +670,7 @@ public class ExposureNotificationSharedPreferences {
         .remove(EXPOSURE_NOTIFICATION_LAST_SHOWN_TIME)
         .remove(EXPOSURE_NOTIFICATION_LAST_SHOWN_CLASSIFICATION)
         .remove(PRIVATE_ANALYTICS_LAST_EXPOSURE_TIME)
+        .remove(PRIVATE_ANALYTICS_LAST_REPORT_TYPE)
         .remove(PRIVATE_ANALYTICS_VERIFICATION_CODE_TIME)
         .remove(PRIVATE_ANALYTICS_SUBMITTED_KEYS_TIME)
         .remove(EXPOSURE_NOTIFICATION_LAST_VACCINATION_STATUS)
@@ -645,23 +678,15 @@ public class ExposureNotificationSharedPreferences {
         .apply();
   }
 
-  public void clearPrivateAnalyticsFieldsBefore(Instant date) {
+  public void clearPrivateAnalyticsDailyFieldsBefore(Instant date) {
     SharedPreferences.Editor sharedPreferencesEditor = sharedPreferences.edit();
     if (getExposureNotificationLastShownTime().isBefore(date)) {
-      sharedPreferencesEditor.remove(EXPOSURE_NOTIFICATION_LAST_SHOWN_TIME)
-          .remove(EXPOSURE_NOTIFICATION_LAST_SHOWN_CLASSIFICATION)
-          .remove(PRIVATE_ANALYTICS_LAST_EXPOSURE_TIME);
+      sharedPreferencesEditor.remove(PRIVATE_ANALYTICS_LAST_EXPOSURE_TIME);
     }
     if (getExposureNotificationLastInteractionTime().isBefore(date)) {
       sharedPreferencesEditor.remove(EXPOSURE_NOTIFICATION_LAST_INTERACTION_TIME)
           .remove(EXPOSURE_NOTIFICATION_LAST_INTERACTION_TYPE)
           .remove(EXPOSURE_NOTIFICATION_LAST_INTERACTION_CLASSIFICATION);
-    }
-    if (getPrivateAnalyticsLastSubmittedCodeTime().isBefore(date)) {
-      sharedPreferencesEditor.remove(PRIVATE_ANALYTICS_VERIFICATION_CODE_TIME);
-    }
-    if (getPrivateAnalyticsLastSubmittedKeysTime().isBefore(date)) {
-      sharedPreferencesEditor.remove(PRIVATE_ANALYTICS_SUBMITTED_KEYS_TIME);
     }
     if (getLastVaccinationStatusResponseTime().isBefore(date)) {
       sharedPreferencesEditor
@@ -671,21 +696,63 @@ public class ExposureNotificationSharedPreferences {
     sharedPreferencesEditor.apply();
   }
 
-  // Last time the private analytics worker was run.
-  //
-  // NB: The existence of this value only means the private analytics are enabled in the configuration,
-  // and does not indicate whether the user enabled or disabled private analytics. It only captures
-  // when the worker has been running last (it aborts early when the user opted out of private analytics).
-  public void setPrivateAnalyticsWorkerLastTime(Instant privateAnalyticsWorkerTime) {
+  public void clearPrivateAnalyticsBiweeklyFieldsBefore(Instant date) {
+    SharedPreferences.Editor sharedPreferencesEditor = sharedPreferences.edit();
+    if (getExposureNotificationLastShownTime().isBefore(date)) {
+      sharedPreferencesEditor.remove(EXPOSURE_NOTIFICATION_LAST_SHOWN_TIME)
+          .remove(EXPOSURE_NOTIFICATION_LAST_SHOWN_CLASSIFICATION);
+    }
+    if (getPrivateAnalyticsLastSubmittedCodeTime().isBefore(date)) {
+      sharedPreferencesEditor.remove(PRIVATE_ANALYTICS_VERIFICATION_CODE_TIME)
+          .remove(PRIVATE_ANALYTICS_LAST_REPORT_TYPE);
+    }
+    if (getPrivateAnalyticsLastSubmittedKeysTime().isBefore(date)) {
+      sharedPreferencesEditor.remove(PRIVATE_ANALYTICS_SUBMITTED_KEYS_TIME);
+    }
+    sharedPreferencesEditor.apply();
+  }
+
+
+  /**
+   * Returns the last time the private analytics worker ran all daily metrics.
+   * <p>
+   * NB: The existence of this value only means the private analytics are enabled in the
+   * configuration, and does not indicate whether the user enabled or disabled private analytics. It
+   * only captures when the worker has been running last (it aborts early when the user opted out of
+   * private analytics).
+   */
+  public void setPrivateAnalyticsWorkerLastTimeForDaily(Instant privateAnalyticsWorkerTime) {
     if (getPrivateAnalyticState()) {
-      sharedPreferences.edit().putLong(PRIVATE_ANALYTICS_LAST_WORKER_RUN_TIME,
+      sharedPreferences.edit().putLong(PRIVATE_ANALYTICS_LAST_WORKER_RUN_TIME_FOR_DAILY,
           privateAnalyticsWorkerTime.toEpochMilli()).apply();
     }
   }
 
-  public Instant getPrivateAnalyticsWorkerLastTime() {
+  /**
+   * Returns the last time the private analytics worker ran all biweekly metrics.
+   * <p>
+   * NB: The existence of this value only means the private analytics are enabled in the
+   * configuration, and does not indicate whether the user enabled or disabled private analytics. It
+   * only captures when the worker has been running last (it aborts early when the user opted out of
+   * private analytics).
+   */
+  public void setPrivateAnalyticsWorkerLastTimeForBiweekly(Instant privateAnalyticsWorkerTime) {
+    if (getPrivateAnalyticState()) {
+      sharedPreferences.edit().putLong(PRIVATE_ANALYTICS_LAST_WORKER_RUN_TIME_FOR_BIWEEKLY,
+          privateAnalyticsWorkerTime.toEpochMilli()).apply();
+    }
+  }
+
+  public Instant getPrivateAnalyticsWorkerLastTimeForDaily() {
     return Instant
-        .ofEpochMilli(sharedPreferences.getLong(PRIVATE_ANALYTICS_LAST_WORKER_RUN_TIME, 0));
+        .ofEpochMilli(
+            sharedPreferences.getLong(PRIVATE_ANALYTICS_LAST_WORKER_RUN_TIME_FOR_DAILY, 0));
+  }
+
+  public Instant getPrivateAnalyticsWorkerLastTimeForBiweekly() {
+    return Instant
+        .ofEpochMilli(
+            sharedPreferences.getLong(PRIVATE_ANALYTICS_LAST_WORKER_RUN_TIME_FOR_BIWEEKLY, 0));
   }
 
   public BadgeStatus getIsExposureClassificationNew() {
@@ -734,7 +801,8 @@ public class ExposureNotificationSharedPreferences {
 
   @WorkerThread
   public void markInAppSmsNoticeSeen() {
-    sharedPreferences.edit().putBoolean(IS_IN_APP_SMS_NOTICE_SEEN, true).commit();
+    sharedPreferences.edit().putBoolean(IS_IN_APP_SMS_NOTICE_SEEN, true)
+        .commit();
   }
 
   public boolean isInAppSmsNoticeSeen() {
@@ -743,6 +811,30 @@ public class ExposureNotificationSharedPreferences {
 
   public LiveData<Boolean> isInAppSmsNoticeSeenLiveData() {
     return inAppSmsNoticeSeenLiveData;
+  }
+
+  public void setBiweeklyMetricsUploadDay(Calendar calendar) {
+    // We want the SharedPreferences field to match:
+    // field % 7 + 1 == calendar.day_of_week
+    // and field % 2 == calendar.week_of_year % 2
+    int weekDayIndex = calendar.get(Calendar.DAY_OF_WEEK) - 1;
+    int weekNumberParity = calendar.get(Calendar.WEEK_OF_YEAR) % 2;
+    sharedPreferences.edit().putInt(BIWEEKLY_METRICS_UPLOAD_DAY,
+        weekDayIndex + weekNumberParity * 7).apply();
+  }
+
+  public int getBiweeklyMetricsUploadDay() {
+    // we want to upload some metrics biweekly, but don't want everyone to upload on the same day
+    // (for example, when the new code gets rolled out), so instead we pick and memorize a random
+    // fortnightly day.
+    if (!sharedPreferences.contains(BIWEEKLY_METRICS_UPLOAD_DAY)) {
+      // Pick a value between 0 and 13 included
+      // Day of week will be (value % 7 + 1) (Calendar DAY_OF_WEEK has values between 1 and 7)
+      // and we only upload if current week number % 2 == value / 7
+      int randomDay = random.nextInt(14);
+      sharedPreferences.edit().putInt(BIWEEKLY_METRICS_UPLOAD_DAY, randomDay).commit();
+    }
+    return sharedPreferences.getInt(BIWEEKLY_METRICS_UPLOAD_DAY, 0);
   }
 
   public interface AnalyticsStateListener {

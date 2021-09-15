@@ -25,7 +25,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.common.PairLiveData;
@@ -33,7 +32,6 @@ import com.google.android.apps.exposurenotification.common.StringUtils;
 import com.google.android.apps.exposurenotification.databinding.FragmentEdgeCasesVerificationBinding;
 import com.google.android.apps.exposurenotification.home.ExposureNotificationViewModel.ExposureNotificationState;
 import com.google.android.apps.exposurenotification.notify.DiagnosisEntityHelper;
-import com.google.android.apps.exposurenotification.notify.ShareDiagnosisBaseFragment;
 import com.google.android.apps.exposurenotification.notify.ShareDiagnosisFragment;
 import com.google.android.apps.exposurenotification.notify.ShareDiagnosisViewModel;
 import com.google.android.apps.exposurenotification.proto.UiInteraction.EventType;
@@ -112,7 +110,7 @@ public class VerificationFlowEdgeCaseFragment extends AbstractEdgeCaseFragment {
       case FOCUS_LOST:
         title.setText(R.string.switch_app_for_exposure_notifications);
         text.setText(getString(R.string.focus_lost_warning,
-            StringUtils.getApplicationName(requireContext())));
+            StringUtils.getApplicationTitle(requireContext())));
         button.setText(R.string.switch_app_for_exposure_notifications_action);
         configureButtonForStartEn(button, isInFlight);
         break;

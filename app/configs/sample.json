@@ -116,6 +116,8 @@
     "agencyIconBackground": "",
     "agencyImageDarkMode": "",
     "agencyIconForegroundDarkMode": "",
-    "agencyIconBackgroundDarkMode": ""
+    "agencyIconBackgroundDarkMode": "",
+    "enableTextMessageVerification": true,
+    "testVerificationNotificationBody_EN_US": "PHA Placeholder - Sharing your [symptom status,] [travel status] and random IDs helps [PHA] notify others"
   }
 }

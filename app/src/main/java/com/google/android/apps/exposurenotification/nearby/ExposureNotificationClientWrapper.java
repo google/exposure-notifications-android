@@ -57,6 +57,9 @@ public class ExposureNotificationClientWrapper {
   public static final String ACTION_VERIFICATION_LINK =
       "com.google.android.gms.nearby.exposurenotification.ACTION_VERIFICATION_LINK";
 
+  public static final String ACTION_PRE_AUTHORIZE_RELEASE_PHONE_UNLOCKED =
+      "com.google.android.gms.exposurenotification.ACTION_PRE_AUTHORIZE_RELEASE_PHONE_UNLOCKED";
+
   private final ExposureNotificationClient exposureNotificationClient;
   private final AnalyticsLogger logger;
 
@@ -187,6 +190,11 @@ public class ExposureNotificationClientWrapper {
 
   public Task<Void> requestPreAuthorizedTemporaryExposureKeyHistory() {
     return exposureNotificationClient.requestPreAuthorizedTemporaryExposureKeyHistory();
+  }
+
+  public Task<Void> requestPreAuthorizedTemporaryExposureKeyHistoryForSelfReport() {
+    return exposureNotificationClient
+        .requestPreAuthorizedTemporaryExposureKeyHistoryForSelfReport();
   }
 
   public Task<Void> requestPreAuthorizedTemporaryExposureKeyRelease() {

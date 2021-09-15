@@ -19,9 +19,9 @@ package com.google.android.libraries.privateanalytics;
 
 import android.os.Build.VERSION_CODES;
 import android.text.TextUtils;
-import android.util.Log;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.VisibleForTesting;
+import com.google.android.libraries.privateanalytics.Qualifiers.BiweeklyMetricsUploadDay;
 import com.google.android.libraries.privateanalytics.proto.CreatePacketsParameters;
 import com.google.android.libraries.privateanalytics.proto.PrioAlgorithmParameters;
 import com.google.common.collect.ImmutableList;
@@ -30,6 +30,7 @@ import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import javax.inject.Inject;
@@ -56,7 +57,7 @@ public class PrivateAnalyticsSubmitter {
    */
   public interface PrioDataPointsProvider {
 
-    ListenableFuture<List<PrioDataPoint>> get();
+    ListenableFuture<MetricsCollection> get();
   }
 
   // PrioAlgorithmParameters default values.
@@ -69,7 +70,9 @@ public class PrivateAnalyticsSubmitter {
   private final PrivateAnalyticsRemoteConfig privateAnalyticsRemoteConfig;
   private final PrivateAnalyticsFirestoreRepository privateAnalyticsFirestoreRepository;
   private final PrivateAnalyticsEnabledProvider privateAnalyticsEnabledProvider;
-  private Prio prio = new PrioJni();
+  private final PrivateAnalyticsLogger logger;
+  private Prio prio;
+  private final int biweeklyMetricsUploadDay;
 
   // Metrics
   private final PrioDataPointsProvider prioDataPointsProvider;
@@ -79,11 +82,16 @@ public class PrivateAnalyticsSubmitter {
       PrioDataPointsProvider prioDataPointsProvider,
       PrivateAnalyticsRemoteConfig privateAnalyticsRemoteConfig,
       PrivateAnalyticsFirestoreRepository privateAnalyticsFirestoreRepository,
-      PrivateAnalyticsEnabledProvider privateAnalyticsEnabledProvider) {
+      PrivateAnalyticsEnabledProvider privateAnalyticsEnabledProvider,
+      PrivateAnalyticsLogger.Factory loggerFactory,
+      @BiweeklyMetricsUploadDay int biweeklyMetricsUploadDay) {
     this.prioDataPointsProvider = prioDataPointsProvider;
     this.privateAnalyticsRemoteConfig = privateAnalyticsRemoteConfig;
     this.privateAnalyticsFirestoreRepository = privateAnalyticsFirestoreRepository;
     this.privateAnalyticsEnabledProvider = privateAnalyticsEnabledProvider;
+    this.logger = loggerFactory.create(TAG);
+    this.prio = new PrioJni(loggerFactory);
+    this.biweeklyMetricsUploadDay = biweeklyMetricsUploadDay;
   }
 
   @RequiresApi(api = VERSION_CODES.N)
@@ -93,38 +101,77 @@ public class PrivateAnalyticsSubmitter {
           boolean remoteEnabled = remoteConfigs.enabled();
 
           if (!remoteEnabled) {
-            Log.i(TAG, "Private analytics not enabled");
+            logger.i("Private analytics not enabled");
             return Futures.immediateFuture(null);
           }
 
           if (!privateAnalyticsEnabledProvider.isEnabledForUser()) {
-            Log.i(TAG, "Private analytics enabled but not turned on");
+            logger.i("Private analytics enabled but not turned on");
             return Futures.immediateFuture(null);
           }
 
           if (TextUtils.isEmpty(remoteConfigs.facilitatorCertificate())
               || TextUtils.isEmpty(remoteConfigs.phaCertificate())) {
-            Log.i(TAG,
+            logger.i(
                 "Private analytics enabled but missing a facilitator/PHA certificate");
             return Futures.immediateFuture(null);
           }
 
-          Log.d(TAG, "Private analytics enabled, proceeding with packet submission.");
+          logger.d("Private analytics enabled, proceeding with packet submission.");
 
           return FluentFuture.from(prioDataPointsProvider.get())
-              .transform(metricsList -> {
-                List<ListenableFuture<SubmissionStatus>> submitMetricFutures = new ArrayList<>();
-                for (PrioDataPoint metric : metricsList) {
-                  if (sampleWithRate(metric.getMetric(), metric.getSampleRate())) {
-                    submitMetricFutures.add(
-                        generateAndSubmitMetric(metric, remoteConfigs));
-                  }
+              .transform(metricsCollection -> {
+                List<ListenableFuture<SubmissionStatus>> submitMetricFutures = new ArrayList<>(
+                    submitMetricsFromList(metricsCollection.getDailyMetrics(), remoteConfigs));
+
+                if (isCalendarTheBiweeklyMetricsUploadDay(
+                    biweeklyMetricsUploadDay, Calendar.getInstance())) {
+                  submitMetricFutures.addAll(
+                      submitMetricsFromList(
+                          metricsCollection.getBiweeklyMetrics(),
+                          remoteConfigs));
                 }
+
                 return Futures
-                    .transform(Futures.successfulAsList(submitMetricFutures), ImmutableList::copyOf,
+                    .transform(Futures.successfulAsList(submitMetricFutures),
+                        ImmutableList::copyOf,
                         backgroundExecutor);
-          }, backgroundExecutor);
+              }, backgroundExecutor);
         }, backgroundExecutor);
+  }
+
+  /**
+   * Checks whether the {@code calendar} matches the {@code
+   * biweeklyMetricsUpoadDay}
+   * <p>
+   * <p>
+   * The biweekly metrics upload day should follow:<ul>
+   * <li>upload_day % 7 + 1 == calendar.week_day</li>
+   * <li>upload_day % 2 == calendar.week_of_year % 2</li>
+   * </ul>
+   */
+  public static boolean isCalendarTheBiweeklyMetricsUploadDay(
+      int biweeklyMetricsUploadDay, Calendar calendar) {
+    if (calendar.get(Calendar.WEEK_OF_YEAR) % 2
+        != biweeklyMetricsUploadDay / 7) {
+      return false;
+    }
+    return calendar.get(Calendar.DAY_OF_WEEK) ==
+        (biweeklyMetricsUploadDay % 7 + 1);
+  }
+
+  @RequiresApi(api = VERSION_CODES.N)
+  private List<ListenableFuture<SubmissionStatus>> submitMetricsFromList(
+      List<PrioDataPoint> metricsList,
+      RemoteConfigs remoteConfigs) {
+    List<ListenableFuture<SubmissionStatus>> pendingMetrics = new ArrayList<>(
+        metricsList.size());
+    for (PrioDataPoint metric : metricsList) {
+      if (sampleWithRate(metric.getMetric(), metric.getSampleRate())) {
+        pendingMetrics.add(generateAndSubmitMetric(metric, remoteConfigs));
+      }
+    }
+    return pendingMetrics;
   }
 
 
@@ -157,7 +204,7 @@ public class PrivateAnalyticsSubmitter {
             backgroundExecutor)
         .transform(
             unused -> {
-              Log.d(TAG,
+              logger.d(
                   String
                       .format("Workflow for prioDataPoint %s finished successfully.", metricName));
               return SubmissionStatus.SUCCESS;
@@ -165,7 +212,7 @@ public class PrivateAnalyticsSubmitter {
         .catching(
             Exception.class,
             e -> {
-              Log.w(TAG, "Error submitting prioDataPoint" + metricName, e);
+              logger.w("Error submitting prioDataPoint" + metricName, e);
               return SubmissionStatus.FAILURE;
             },
             backgroundExecutor);
@@ -173,7 +220,7 @@ public class PrivateAnalyticsSubmitter {
 
   private boolean sampleWithRate(PrivateAnalyticsMetric privateMetric, double sampleRate) {
     if (secureRandom.nextDouble() > sampleRate) {
-      Log.d(TAG,
+      logger.d(
           "Skipping sample for metric " + privateMetric.getMetricName() + ". samplingRate="
               + sampleRate);
       return false;
@@ -189,8 +236,7 @@ public class PrivateAnalyticsSubmitter {
         .setNumberServers(NUMBER_SERVERS)
         .setPrime(PRIME).build();
 
-    Log.i(
-        TAG,
+    logger.i(
         "Generating packets w/ params: bins="
             + prioParams.getBins()
             + " epsilon="

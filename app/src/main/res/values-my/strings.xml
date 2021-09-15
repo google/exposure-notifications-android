@@ -28,10 +28,10 @@
   <string name="onboarding_opt_in_title">‘ထိတွေ့မှုအကြောင်းကြားချက်များ’ ဖွင့်ရန် လိုအပ်သောခွင့်ပြုချက်များ</string>
   <string name="onboarding_finish_title">‘ထိတွေ့မှုအကြောင်းကြားချက်များ’ ဖွင့်ရန် လိုအပ်သောခွင့်ပြုချက်များ၏ အဆက်</string>
   <string name="onboarding_exposure_notifications_title">\'ထိတွေ့မှု အကြောင်းကြားချက်များ\' ကို ဖွင့်ပါ</string>
-  <string name="onboarding_exposure_notifications_detail">COVID-19 ရှိကြောင်း သတင်းပို့ထားသူ၏ အနီးတွင် သင် ရှိနေခဲ့လျှင် အကြောင်းကြားချက်ရယူပါ။
-    \n\nသင့်ဖုန်းသည် ကျပန်း ID များကို လုံခြုံစွာစုဆောင်းရန်နှင့် အနီးတစ်ဝိုက်ရှိ အခြားဖုန်းများနှင့် မျှဝေရန် ဘလူးတုသ်ကို အသုံးပြုသည်။
-    \n\nသင်၏ ပြည်သူ့ကျန်းမာရေးအာဏာပိုင်က သတ်မှတ်ထားသည့် သတ်မှတ်ချက်ဘောင်များပေါ်အခြေခံ၍ သင့်အား အကြောင်းကြားမည်၊ မကြားမည်ကို ဆုံးဖြတ်ရန် ထိတွေ့နိုင်ခြေနှင့်ဆက်စပ်သော ရက်စွဲ၊ ကြာချိန်နှင့် လိုင်းဆွဲအားတို့ အသုံးပြုမည်။
-    \n\nသင့်တွင် ရောဂါရှိသည်ဟု စစ်ဆေးတွေ့ရှိလျှင် ထိုအဖြေကို ကျန်းမာရေး အာဏာပိုင်ထံ မျှဝေပေးရန် သတိပေးချက်ကို သင် ရရှိနိုင်သည်။</string>
+  <string name="onboarding_exposure_notifications_detail">COVID-19 ရှိကြောင်း သတင်းပို့ထားသူအနားသို့ သင်ရောက်ရှိခဲ့ပါက အကြောင်းကြားချက်ရယူပါ။
+    \n\nသင့်ဖုန်းသည် ကျပန်း ID များကို လုံခြုံစွာစုဆောင်းရန်နှင့် အနီးတစ်ဝိုက်ရှိ အခြားဖုန်းများနှင့် မျှဝေရန် \'ဘလူးတုသ်\' ကို အသုံးပြုသည်။
+    \n\nသင်၏ ပြည်သူ့ ကျန်းမာရေး အာဏာပိုင်က သတ်မှတ်ထားသည့် သတ်မှတ်ချက်ဘောင်များပေါ်အခြေခံ၍ သင့်အား အကြောင်းကြားမည်၊ မကြားမည်ကို ဆုံးဖြတ်ရန် ထိတွေ့နိုင်ခြေနှင့်ဆက်စပ်သော ရက်စွဲ၊ ကြာချိန်နှင့် လိုင်းဆွဲအားတို့ အသုံးပြုမည်။
+    \n\nသင်၏ စစ်ဆေးမှုရလဒ်နှင့်ပတ်သက်၍ SMS ရရှိပါက သင့်ကျန်းမာရေးအာဏာပိုင်ကို ရောဂါတွေ့ရှိချက် မျှဝေရန် အကြောင်းကြားချက်တစ်ခု ရရှိနိုင်သည်။</string>
   <string name="onboarding_metrics_title">ဤအက်ပ်ကို ပိုမိုကောင်းမွန်စေရန် ကူညီဆောင်ရွက်ပေးပါ</string>
   <string name="onboarding_metrics_subtitle">အက်ပ်အသုံးပြုမှုနှင့် စွမ်းဆောင်ရည်ဒေတာကို Google နှင့်မျှဝေပါ</string>
   <string name="onboarding_metrics_description">အက်ပ်ကို ကူညီထိန်းသိမ်းရန်နှင့် ပိုမိုကောင်းမွန်စေရန် အက်ပ်စွမ်းဆောင်ရည်၊ အသုံးပြုမှုတို့နှင့်ပတ်သက်သော အမည်ခွဲခြားမသိနိုင်သည့် ဒေတာအချို့ကို Google အားမျှဝေသည်။ ဤဒေတာသည် သင် မည်သူမည်ဝါဖြစ်ကြောင်း ထုတ်ဖော်မည်မဟုတ်ပါ။ %1$s</string>
@@ -128,9 +128,15 @@
     <item quantity="other">တောင်းဆိုမှု များစွာလုပ်ထားသည်။ %1$d မိနစ်အတွင်း နောက်ထပ်ကုဒ်ကို တောင်းဆိုနိုင်သည်။</item>
   </plurals>
   <string name="notify_others_notification_title">ထိတွေ့နိုင်ခြေရှိသော အခြားသူများအား အသိပေးကူညီခြင်း</string>
+  <string name="notify_others_if_result_updated_title">သင့်ရလဒ်များကို အပ်ဒိတ်လုပ်လျှင် အခြားသူများကို အကြောင်းကြားမလား။</string>
+  <string name="notify_others_if_result_updated_content">%1$s က စစ်ဆေးမှုရလဒ်အတည်ပြုရန် ဒုတိယကုဒ်ပို့နိုင်သည်။ ၎င်းကုဒ်သုံး၍ COVID-19 ရလဒ်ကိုအပ်ဒိတ်လုပ်ပြီး ကျပန်း ID ထပ်ဆောင်းရက်များကို အလိုအလျောက်မျှဝေကာ ဖြစ်နိုင်ချေရှိသည့်ထိတွေ့မှုအကြောင်း အခြားသူများကိုအသိပေးနိုင်သည်။ အခြားသူများအား သင့်အထောက်အထားကို မမျှဝေပါ။</string>
+  <string name="btn_pre_auth_yes">ကျွန်ုပ် ကူညီလိုပါသည်</string>
+  <string name="btn_pre_auth_no">မလုပ်လိုပါ</string>
+  <string name="thank_you_for_notifying_title">ကူညီပေး၍ ကျေးဇူးတင်ပါသည်</string>
+  <string name="thank_you_for_notifying_content">%1$s က သင့်ထိတွေ့မှုအချိန်ဇယားကို အပ်ဒိတ်လုပ်ခဲ့ပြီး ဖြစ်နိုင်ချေရှိသည့်ထိတွေ့မှုအကြောင်း အခြားသူများကို အသိပေးထားနိုင်သည်။</string>
   <string name="settings_exposure_notifications_subtitle">ထိတွေ့မှု အကြောင်းကြားချက်များ</string>
   <string name="settings_app_analytics_subtitle">အက်ပ်အသုံးပြုမှုနှင့် စွမ်းဆောင်ရည်မျှဝေခြင်း</string>
-  <string name="settings_privacy_policy">ပုဂ္ဂိုလ်ရေးဆိုင်ရာ မူဝါဒ</string>
+  <string name="settings_privacy_policy">ကိုယ်ရေးအချက်အလက်လုံခြုံမှုဆိုင်ရာ မူဝါဒ</string>
   <string name="settings_help_and_support">Exposure Notifications Express အကြောင်း</string>
   <string name="settings_legal_terms">ဥပဒေဆိုင်ရာ စည်းမျဉ်းများ</string>
   <string name="settings_debug">အမှားရှာပြင်ခြင်းမုဒ်</string>
@@ -193,5 +199,19 @@
   <string name="share_diagnosis_share_test_result_subtitle">COVID-19 ကို တားဆီးရန် ကူညီသည့်အတွက် ကျေးဇူးတင်ပါသည်။</string>
   <string name="share_diagnosis_share_test_result_body">သင်၏ရလဒ်ကို မျှဝေသောအခါ သင့်ရောဂါလက္ခဏာများ စတင်ချိန်ကိုလည်း မျှဝေရန် ရွေးနိုင်သည်။ ဤအချက်အလက်က COVID-19 ကူးစက်ပြန့်ပွားမှုကို တားဆီးရန် ကူညီနိုင်ပြီး အသက်များကို ကယ်တင်နိုင်သည်။</string>
   <string name="sms_intercept_notice_title">အသစ်ရှိသလား</string>
-  <string name="sms_intercept_notice_content">သင့်ထံသို့ ဒေသခံ ကျန်းမာရေးအာဏာပိုင်က စစ်ဆေးမှုရလဒ် ပို့လာလျှင် ထိုရလဒ်ကို တင်သွင်းရန် အက်ပ်က သတိပေးချက်ဖြင့် အကြောင်းကြားပေးနိုင်ပြီး အခြား ထိတွေ့မှု ရှိနိုင်သည်များကို ကူညီသတိပေးနိုင်ပါသည်။ ဤအရာကို ဆက်တင်များတွင် အချိန်မရွေး ပိတ်နိုင်သည်။</string>
+  <string name="sms_intercept_notice_content">သင်၏ စစ်ဆေးမှုရလဒ်ပါဝင်သော SMS ရရှိပါက ထိတွေ့မှု အကြောင်းကြားချက်များတွင် သင့်ရောဂါတွေ့ရှိချက်ကို မျှဝေခိုင်းသော အကြောင်းကြားချက်ကို ရရှိနိုင်သည်။ ၎င်းကို ဆက်တင်များတွင် အချိန်မရွေးပိတ်နိုင်သည်။</string>
+  <string name="share_upload_title">ကွန်မြူနတီကို ကာကွယ်ရန် သင့်စစ်ဆေးမှုရလဒ်ကို မျှဝေပါ</string>
+  <string name="share_upload_test_result_source_description">%1$s က စစ်ဆေးမှုရလဒ်ကို ပို့ထားသည်</string>
+  <string name="share_upload_symptoms_subtitle">ရောဂါလက္ခဏာစပြသည့် နေ့ရက်</string>
+  <string name="share_upload_symptoms_date_fixed_description">ရောဂါလက္ခဏာ စတင်သည့်ရက်စွဲကို %1$s က ပေးထားသည်</string>
+  <string name="share_upload_skip_choice">ကျော်ရန်</string>
+  <string name="share_upload_travel_subtitle">ခရီးသွားရာဇဝင်</string>
+  <string name="travel_history_travelled_recently_choice">လွန်ခဲ့သည့် ၁၄ ရက်အတွင်း ခရီးသွားထားသည်</string>
+  <string name="travel_history_no_travel_choice">မရှိ</string>
+  <string name="share_upload_select_a_date_choice">ရက်စွဲ ရွေးချယ်ရန်</string>
+  <string name="share_upload_status_subtitle">COVID-19 ရလဒ်</string>
+  <string name="share_upload_status_confirmed">ရောဂါပိုးရှိသည်</string>
+  <string name="share_upload_status_negative">ရောဂါပိုးမရှိပါ</string>
+  <string name="share_upload_status_likely">ဖြစ်နိုင်ခြေရှိသည်</string>
+  <string name="share_diagnosis_progress_tracker">အဆင့် %2$d ဆင့် အနက်မှ %1$d</string>
 </resources>

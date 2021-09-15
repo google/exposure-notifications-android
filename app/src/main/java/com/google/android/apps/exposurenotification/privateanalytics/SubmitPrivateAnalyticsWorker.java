@@ -19,6 +19,7 @@ package com.google.android.apps.exposurenotification.privateanalytics;
 
 import android.content.Context;
 import androidx.annotation.NonNull;
+import androidx.annotation.VisibleForTesting;
 import androidx.hilt.Assisted;
 import androidx.hilt.work.WorkerInject;
 import androidx.work.BackoffPolicy;
@@ -39,10 +40,12 @@ import com.google.android.apps.exposurenotification.work.WorkerStartupManager;
 import com.google.android.libraries.privateanalytics.DefaultPrivateAnalyticsDeviceAttestation;
 import com.google.android.libraries.privateanalytics.PrivateAnalyticsEventListener;
 import com.google.android.libraries.privateanalytics.PrivateAnalyticsSubmitter;
+import com.google.android.libraries.privateanalytics.Qualifiers.BiweeklyMetricsUploadDay;
 import com.google.common.base.Optional;
 import com.google.common.util.concurrent.FluentFuture;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
+import java.util.Calendar;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 import org.threeten.bp.Duration;
@@ -64,6 +67,8 @@ public class SubmitPrivateAnalyticsWorker extends ListenableWorker {
   private final Clock clock;
   private final WorkerStartupManager workerStartupManager;
   private final Optional<PrivateAnalyticsEventListener> analyticsListener;
+  @VisibleForTesting
+  int biweeklyMetricsUploadDay;
 
   @WorkerInject
   public SubmitPrivateAnalyticsWorker(
@@ -74,7 +79,8 @@ public class SubmitPrivateAnalyticsWorker extends ListenableWorker {
       WorkerStartupManager workerStartupManager,
       Clock clock,
       ExposureNotificationSharedPreferences exposureNotificationSharedPreferences,
-      Optional<PrivateAnalyticsEventListener> analyticsListener) {
+      Optional<PrivateAnalyticsEventListener> analyticsListener,
+      @BiweeklyMetricsUploadDay int biweeklyMetricsUploadDay) {
     super(context, workerParams);
     this.privateAnalyticsSubmitter = privateAnalyticsSubmitter;
     this.backgroundExecutor = backgroundExecutor;
@@ -82,6 +88,7 @@ public class SubmitPrivateAnalyticsWorker extends ListenableWorker {
     this.exposureNotificationSharedPreferences = exposureNotificationSharedPreferences;
     this.workerStartupManager = workerStartupManager;
     this.analyticsListener = analyticsListener;
+    this.biweeklyMetricsUploadDay = biweeklyMetricsUploadDay;
   }
 
   @NonNull
@@ -95,15 +102,7 @@ public class SubmitPrivateAnalyticsWorker extends ListenableWorker {
                 analyticsListener.get().onPrivateAnalyticsWorkerTaskStarted();
               }
 
-              Instant lastWorkerTime = exposureNotificationSharedPreferences
-                  .getPrivateAnalyticsWorkerLastTime();
-              Instant fourteenDaysAgo = clock.now().minus(Duration.ofDays(14));
-              Instant latestTimeToClear =
-                  lastWorkerTime.isAfter(fourteenDaysAgo) ? lastWorkerTime : fourteenDaysAgo;
-
-              // Clear data older than two weeks + since last run (whichever comes first).
-              exposureNotificationSharedPreferences
-                  .clearPrivateAnalyticsFieldsBefore(latestTimeToClear);
+              clearOlderPrivateAnalyticsFields();
 
               if (isEnabled && DefaultPrivateAnalyticsDeviceAttestation
                   .isDeviceAttestationAvailable()) {
@@ -119,13 +118,13 @@ public class SubmitPrivateAnalyticsWorker extends ListenableWorker {
             },
             backgroundExecutor)
         .transform(done -> {
-          exposureNotificationSharedPreferences.setPrivateAnalyticsWorkerLastTime(clock.now());
+          resetPrivateAnalyticsWorkerLastTime();
           return Result.success();
         }, backgroundExecutor)
         .catching(
             NotEnabledException.class,
             x -> {
-              exposureNotificationSharedPreferences.setPrivateAnalyticsWorkerLastTime(clock.now());
+              resetPrivateAnalyticsWorkerLastTime();
               return Result.success();
             },
             backgroundExecutor)
@@ -135,10 +134,50 @@ public class SubmitPrivateAnalyticsWorker extends ListenableWorker {
               logger.e("Failure to submit private analytics", x);
               // Even if we observe an Exception, we store the last time the worker run.
               // Note that this will prevent older data to be uploaded.
-              exposureNotificationSharedPreferences.setPrivateAnalyticsWorkerLastTime(clock.now());
+              resetPrivateAnalyticsWorkerLastTime();
               return Result.failure();
             },
             backgroundExecutor);
+  }
+
+  private void clearOlderPrivateAnalyticsFields() {
+    Instant fourteenDaysAgo = clock.now().minus(Duration.ofDays(14));
+
+    Instant lastWorkerTimeForDaily = exposureNotificationSharedPreferences
+        .getPrivateAnalyticsWorkerLastTimeForDaily();
+    Instant latestTimeToClear =
+        lastWorkerTimeForDaily.isAfter(fourteenDaysAgo) ? lastWorkerTimeForDaily
+            : fourteenDaysAgo;
+    // Clear data older than two weeks + since last daily metrics run (whichever comes first).
+    exposureNotificationSharedPreferences
+        .clearPrivateAnalyticsDailyFieldsBefore(latestTimeToClear);
+
+    if (checkThatTodayIsBiweeklyMetricsUploadDay()) {
+      Instant lastWorkerTimeForBiweekly = exposureNotificationSharedPreferences
+          .getPrivateAnalyticsWorkerLastTimeForBiweekly();
+      latestTimeToClear =
+          lastWorkerTimeForDaily.isAfter(fourteenDaysAgo)
+              ? lastWorkerTimeForBiweekly
+              : fourteenDaysAgo;
+      // Clear data older than two weeks + since last daily metrics run (whichever comes first).
+      exposureNotificationSharedPreferences
+          .clearPrivateAnalyticsBiweeklyFieldsBefore(latestTimeToClear);
+    }
+  }
+
+  private boolean checkThatTodayIsBiweeklyMetricsUploadDay() {
+    return PrivateAnalyticsSubmitter
+        .isCalendarTheBiweeklyMetricsUploadDay(biweeklyMetricsUploadDay,
+            Calendar.getInstance());
+  }
+
+  private void resetPrivateAnalyticsWorkerLastTime() {
+    exposureNotificationSharedPreferences
+        .setPrivateAnalyticsWorkerLastTimeForDaily(clock.now());
+    if (checkThatTodayIsBiweeklyMetricsUploadDay()) {
+      exposureNotificationSharedPreferences
+          .setPrivateAnalyticsWorkerLastTimeForBiweekly(clock.now());
+    }
   }
 
   /**

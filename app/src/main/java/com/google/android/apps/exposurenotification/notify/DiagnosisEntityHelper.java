@@ -20,6 +20,7 @@ package com.google.android.apps.exposurenotification.notify;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
+import androidx.annotation.IdRes;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.viewbinding.ViewBinding;
@@ -61,7 +62,7 @@ public final class DiagnosisEntityHelper {
       case YES:
         LocalDate onsetDate = diagnosisEntity.getOnsetDate();
         return onsetDate != null && isWithinLast14Days(clock, onsetDate);
-        // fall through
+      // fall through
       case NO:
       case WITHHELD:
         return true;
@@ -155,6 +156,25 @@ public final class DiagnosisEntityHelper {
       default:
         shareReviewDate.setText(R.string.share_review_onset_no_answer);
         break;
+    }
+  }
+
+  public static @StringRes int getTestResultStringResource(DiagnosisEntity diagnosisEntity) {
+    if (diagnosisEntity.getTestResult() != null) {
+      switch (diagnosisEntity.getTestResult()) {
+        case LIKELY:
+          return R.string.share_upload_status_likely;
+        case NEGATIVE:
+          return R.string.share_upload_status_negative;
+        case CONFIRMED:
+        case USER_REPORT:
+        default:
+          return R.string.share_upload_status_confirmed;
+      }
+    } else {
+      // We "shouldn't" get here, but in case, default to the most likely value rather
+      // than fail.
+      return R.string.share_review_status_confirmed;
     }
   }
 

@@ -100,6 +100,7 @@ public class ShareDiagnosisCodeFragment extends ShareDiagnosisBaseFragment {
     super.onViewCreated(view, savedInstanceState);
 
     requireActivity().setTitle(R.string.verify_test_result_title);
+    setupShadowAtBottom(binding.shareDiagnosisScrollView, binding.buttonContainer);
 
     EditText verificationCode = binding.shareTestIdentifier;
     LinearLayout verified = binding.shareTestVerified;
@@ -257,6 +258,12 @@ public class ShareDiagnosisCodeFragment extends ShareDiagnosisBaseFragment {
           if (verifiedCode != null) {
             this.verifiedCode = verifiedCode;
           }
+        });
+
+    shareDiagnosisViewModel.getStepXofYLiveData().observe(getViewLifecycleOwner(), pair -> {
+          String text = getString(R.string.share_diagnosis_progress_tracker,
+              pair.first , pair.second);
+          binding.stepXOfYTextView.setText(text);
         });
   }
 

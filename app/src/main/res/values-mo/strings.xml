@@ -31,7 +31,7 @@
   <string name="onboarding_exposure_notifications_detail">Primiți notificări dacă v-ați apropiat de o persoană care a semnalat că este infectată cu COVID-19.
     \n\nTelefonul dvs. folosește Bluetooth pentru a colecta și a trimite în siguranță ID-uri aleatorii la alte telefoane din apropiere.
     \n\nData, durata și puterea semnalului asociate unei posibile expuneri vor fi folosite pentru a se stabili dacă veți primi notificări pe baza parametrilor prevăzuți de autoritatea dvs. de sănătate publică.
-    \n\nDacă obțineți un rezultat pozitiv al testului, este posibil să primiți un memento pentru a trimite rezultatul autorității de sănătate.</string>
+    \n\nPuteți primi o notificare privind trimiterea unui diagnostic autorității de sănătate dacă primiți un SMS cu rezultatul testului.</string>
   <string name="onboarding_metrics_title">Ajutați-ne să îmbunătățim aplicația</string>
   <string name="onboarding_metrics_subtitle">Trimiteți datele despre performanță și utilizare la Google</string>
   <string name="onboarding_metrics_description">Pentru a ne ajuta să întreținem și să îmbunătățim aplicația, anumite date limitate cu informațiile de identificare eliminate despre performanța și utilizarea aplicației se trimit la Google. Aceste date nu vă identifică. %1$s</string>
@@ -130,6 +130,12 @@
     <item quantity="other">Ați trimis prea multe solicitări. Puteți solicita alt cod peste %1$d de minute.</item>
   </plurals>
   <string name="notify_others_notification_title">Ajutați-ne să notificăm alți utilizatori care au fost expuși</string>
+  <string name="notify_others_if_result_updated_title">Notificați alte persoane dacă rezultatele se actualizează?</string>
+  <string name="notify_others_if_result_updated_content">%1$s vă poate trimite un al doilea cod pentru a confirma rezultatul testului. Puteți să actualizați automat rezultatul testului privind COVID-19 și să trimiteți ID-uri aleatorii mai multe zile folosind al doilea cod, pentru a informa alte persoane referitor la o posibilă expunere. Identitatea dvs. nu este dezvăluită altor persoane.</string>
+  <string name="btn_pre_auth_yes">Da, vreau să ajut</string>
+  <string name="btn_pre_auth_no">Nu, mulțumesc</string>
+  <string name="thank_you_for_notifying_title">Vă mulțumim pentru ajutor</string>
+  <string name="thank_you_for_notifying_content">%1$s tocmai a actualizat cronologia expunerii și este posibil să fi avertizat alte persoane cu privire la o posibilă expunere.</string>
   <string name="settings_exposure_notifications_subtitle">Notificări privind expunerea</string>
   <string name="settings_app_analytics_subtitle">Permiteți accesul la performanță și utilizare</string>
   <string name="settings_privacy_policy">Politica de confidențialitate</string>
@@ -195,5 +201,19 @@
   <string name="share_diagnosis_share_test_result_subtitle">Vă mulțumim pentru că ajutați la combaterea pandemiei de COVID-19.</string>
   <string name="share_diagnosis_share_test_result_body">Când trimiteți rezultatul, puteți și să transmiteți când au debutat simptomele. Aceste informații pot contribui la combaterea răspândirii COVID-19 și la salvarea vieților.</string>
   <string name="sms_intercept_notice_title">Noutăți</string>
-  <string name="sms_intercept_notice_content">Dacă autoritatea de sănătate locală vă trimite rezultatul testului, aplicația vă poate notifica printr-un memento să trimiteți rezultatul și să avertizați alți utilizatori cu privire la expunerea potențială. Puteți dezactiva oricând opțiunea din setări.</string>
+  <string name="sms_intercept_notice_content">Dacă primiți un SMS cu rezultatul testului, puteți primi o notificare prin care vi se solicită să trimiteți diagnosticul către sistemul de notificări privind expunerea. Puteți dezactiva oricând opțiunea din setări.</string>
+  <string name="share_upload_title">Trimiteți rezultatul testului pentru a vă proteja comunitatea</string>
+  <string name="share_upload_test_result_source_description">Rezultatul testului este trimis de %1$s</string>
+  <string name="share_upload_symptoms_subtitle">Simptomul a debutat pe</string>
+  <string name="share_upload_symptoms_date_fixed_description">Data simptomului este oferită de %1$s</string>
+  <string name="share_upload_skip_choice">Omiteți</string>
+  <string name="share_upload_travel_subtitle">Istoricul călătoriilor</string>
+  <string name="travel_history_travelled_recently_choice">Ați călătorit în ultimele 14 zile</string>
+  <string name="travel_history_no_travel_choice">Fără</string>
+  <string name="share_upload_select_a_date_choice">Selectați o dată</string>
+  <string name="share_upload_status_subtitle">Rezultatul testului privind COVID-19</string>
+  <string name="share_upload_status_confirmed">Pozitiv</string>
+  <string name="share_upload_status_negative">Negativ</string>
+  <string name="share_upload_status_likely">Probabil</string>
+  <string name="share_diagnosis_progress_tracker">Pasul %1$d din %2$d</string>
 </resources>

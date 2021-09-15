@@ -31,7 +31,7 @@
   <string name="onboarding_exposure_notifications_detail">COVID-19 ಸೋಂಕಿಗೆ ಒಳಗಾಗಿದ್ದಾರೆ ಎಂದು ವರದಿ ಮಾಡಿರುವ ವ್ಯಕ್ತಿಯ ಸಮೀಪಕ್ಕೆ ನೀವು ಹೋಗಿದ್ದರೆ ಅಧಿಸೂಚನೆಗಳನ್ನು ಪಡೆಯಿರಿ.
     \n\nರ‍್ಯಾಂಡಮ್ ಐಡಿಗಳನ್ನು ಸಮೀಪದಲ್ಲಿರುವ ಇತರ ಫೋನ್‌ಗಳಿಂದ ಸುರಕ್ಷಿತವಾಗಿ ಸಂಗ್ರಹಿಸಲು ಮತ್ತು ಆ ಫೋನ್‌ಗಳ ಜೊತೆಗೆ ಹಂಚಿಕೊಳ್ಳಲು, ನಿಮ್ಮ ಫೋನ್ ಬ್ಲೂಟೂತ್ ಅನ್ನು ಬಳಸುತ್ತದೆ.
     \n\nನಿಮ್ಮ ಸಾರ್ವಜನಿಕ ಆರೋಗ್ಯ ಅಧಿಕಾರಿಗಳು ಸೂಚಿಸಿರುವ ಪ್ಯಾರಾಮೀಟರ್‌ಗಳ ಆಧಾರದ ಮೇಲೆ ನಿಮಗೆ ಅಧಿಸೂಚನೆಗಳನ್ನು ನೀಡಲಾಗುತ್ತದೆಯೇ ಎಂದು ತಿಳಿಯಲು ಸಂಭವನೀಯ ಸಂಪರ್ಕಕ್ಕೆ ಬಂದಿರುವಿಕೆಗೆ ಸಂಬಂಧಿಸಿದ ದಿನಾಂಕ, ಅವಧಿ ಮತ್ತು ಸಿಗ್ನಲ್ ಸಾಮರ್ಥ್ಯವನ್ನು ಬಳಸಲಾಗುತ್ತದೆ.
-    \n\nನಿಮ್ಮ ವರದಿಯು ಪಾಸಿಟಿವ್ ಎಂದು ಬಂದರೆ, ಆ ಫಲಿತಾಂಶಗಳನ್ನು ನಿಮ್ಮ ಆರೋಗ್ಯ ಪ್ರಾಧಿಕಾರದ ಜೊತೆ ಹಂಚಿಕೊಳ್ಳಲು ನೀವು ರಿಮೈಂಡರ್ ಅನ್ನು ಪಡೆಯಬಹುದು.</string>
+    \n\nನಿಮ್ಮ ಪರೀಕ್ಷಾ ಫಲಿತಾಂಶದ SMS ಅನ್ನು ನೀವು ಸ್ವೀಕರಿಸಿದರೆ, ನಿಮ್ಮ ಆರೋಗ್ಯ ಪ್ರಾಧಿಕಾರದಿಂದ ಡಯಾಗ್ನಾಸಿಸ್ ಮಾಹಿತಿಯನ್ನು ಹಂಚಿಕೊಳ್ಳಲು ನೀವು ಅಧಿಸೂಚನೆಯನ್ನು ಸ್ವೀಕರಿಸಬಹುದು.</string>
   <string name="onboarding_metrics_title">ಈ ಆ್ಯಪ್ ಅನ್ನು ಉತ್ತಮಗೊಳಿಸಲು ಸಹಾಯ ಮಾಡಿ</string>
   <string name="onboarding_metrics_subtitle">ಆ್ಯಪ್ ಬಳಕೆ ಮತ್ತು ಕಾರ್ಯಕ್ಷಮತೆ ಡೇಟಾವನ್ನು Google ಜೊತೆಗೆ ಹಂಚಿಕೊಳ್ಳಿ</string>
   <string name="onboarding_metrics_description">ಆ್ಯಪ್ ಅನ್ನು ನಿರ್ವಹಿಸಲು ಮತ್ತು ಸುಧಾರಿಸಲು, ಆ್ಯಪ್ ಕಾರ್ಯಕ್ಷಮತೆ ಮತ್ತು ಬಳಕೆಯ ಕುರಿತು ಕೆಲವು ಸೀಮಿತ, ಗುರುತಿಸದ ಡೇಟಾವನ್ನು Google ಜೊತೆಗೆ ಹಂಚಿಕೊಳ್ಳಲಾಗುತ್ತದೆ. ಈ ಡೇಟಾ ನಿಮ್ಮನ್ನು ಗುರುತಿಸುವುದಿಲ್ಲ. %1$s</string>
@@ -128,6 +128,12 @@
     <item quantity="other">ನೀವು ಹಲವಾರು ವಿನಂತಿಗಳನ್ನು ಮಾಡಿದ್ದೀರಿ. %1$d ನಿಮಿಷಗಳಲ್ಲಿ ನೀವು ಮತ್ತೊಂದು ಕೋಡ್ ಅನ್ನು ವಿನಂತಿಸಬಹುದು.</item>
   </plurals>
   <string name="notify_others_notification_title">ನಿಮ್ಮ ಸಂಪರ್ಕಕ್ಕೆ ಬಂದಿರುವ ಇತರರಿಗೆ ಸೂಚನೆ ನೀಡಲು ಸಹಾಯ ಮಾಡಿ</string>
+  <string name="notify_others_if_result_updated_title">ನಿಮ್ಮ ಫಲಿತಾಂಶವನ್ನು ಅಪ್‌ಡೇಟ್ ಮಾಡಿದರೆ ಇತರ ಜನರಿಗೆ ಸೂಚಿಸಬೇಕೇ?</string>
+  <string name="notify_others_if_result_updated_content">%1$s ನಿಮ್ಮ ಪರೀಕ್ಷಾ ಫಲಿತಾಂಶವನ್ನು ದೃಢೀಕರಿಸಲು ನಿಮಗೆ ಎರಡನೇ ಕೋಡ್ ಕಳುಹಿಸಬಹುದು. ನೀವು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ನಿಮ್ಮ COVID-19 ಸ್ಥಿತಿಯನ್ನು ಅಪ್‌ಡೇಟ್ ಮಾಡಬಹುದು ಮತ್ತು ಈ ಎರಡನೇ ಕೋಡ್ ಬಳಸಿ ಹೆಚ್ಚುವರಿ ದಿನಗಳ ರ‍್ಯಾಂಡಮ್ ಐಡಿಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳಬಹುದು, ಇದು ಸಂಭವನೀಯ ಸಂಪರ್ಕಕ್ಕೆ ಬಂದಿರುವ ಕುರಿತು ಇತರರಿಗೆ ಸೂಚಿಸಲು ಸಹಾಯ ಮಾಡುತ್ತದೆ. ಇತರ ಜನರ ಜೊತೆ ನಿಮ್ಮ ಗುರುತನ್ನು ಹಂಚಿಕೊಳ್ಳಲಾಗುವುದಿಲ್ಲ.</string>
+  <string name="btn_pre_auth_yes">ಹೌದು, ನಾನು ಸಹಾಯ ಮಾಡಲು ಬಯಸುತ್ತೇನೆ</string>
+  <string name="btn_pre_auth_no">ಬೇಡ</string>
+  <string name="thank_you_for_notifying_title">ಸಹಾಯ ಮಾಡಿದ್ದಕ್ಕಾಗಿ ಧನ್ಯವಾದಗಳು</string>
+  <string name="thank_you_for_notifying_content">%1$s ನಿಮ್ಮ ಎಕ್ಸ್‌ಪೋಶರ್ ಟೈಮ್‌ಲೈನ್ ಅನ್ನು ಈಗಷ್ಟೇ ಅಪ್‌ಡೇಟ್ ಮಾಡಲಾಗಿದೆ ಮತ್ತು ಸಂಭವನೀಯ ಸಂಪರ್ಕಕ್ಕೆ ಬಂದಿರುವ ಕುರಿತು ಇತರರನ್ನು ಎಚ್ಚರಿಸಿರಬಹುದು.</string>
   <string name="settings_exposure_notifications_subtitle">ಎಕ್ಸ್‌ಪೋಶರ್ ಅಧಿಸೂಚನೆಗಳು</string>
   <string name="settings_app_analytics_subtitle">ಆ್ಯಪ್ ಬಳಕೆ ಮತ್ತು ಕಾರ್ಯಕ್ಷಮತೆ ಹಂಚಿಕೆ</string>
   <string name="settings_privacy_policy">ಗೌಪ್ಯತೆ ನೀತಿ</string>
@@ -193,5 +199,19 @@
   <string name="share_diagnosis_share_test_result_subtitle">COVID-19 ಅನ್ನು ತಡೆಗಟ್ಟಲು ಸಹಾಯ ಮಾಡಿದ್ದಕ್ಕಾಗಿ ಧನ್ಯವಾದಗಳು.</string>
   <string name="share_diagnosis_share_test_result_body">ನಿಮ್ಮ ಫಲಿತಾಂಶಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳುವಾಗ ನಿಮ್ಮ ಲಕ್ಷಣಗಳು ಎಂದಿನಿಂದ ಶುರುವಾದವು ಎಂಬುದನ್ನು ಹಂಚಿಕೊಳ್ಳುವುದನ್ನೂ ನೀವು ಆಯ್ಕೆ ಮಾಡಬಹುದು. ಈ ಮಾಹಿತಿಯು COVID-19 ಹರಡುವಿಕೆಯನ್ನು ತಡೆಗಟ್ಟಲು ಮತ್ತು ಜೀವಗಳನ್ನು ಉಳಿಸಲು ಸಹಾಯ ಮಾಡುತ್ತದೆ.</string>
   <string name="sms_intercept_notice_title">ಹೊಸದೇನಿದೆ</string>
-  <string name="sms_intercept_notice_content">ನಿಮ್ಮ ಸ್ಥಳೀಯ ಆರೋಗ್ಯ ಪ್ರಾಧಿಕಾರವು ನಿಮಗೆ ಪರೀಕ್ಷಾ ಫಲಿತಾಂಶವನ್ನು ಕಳುಹಿಸಿದರೆ, ನಿಮ್ಮ ಫಲಿತಾಂಶವನ್ನು ಸಲ್ಲಿಸಲು ನಿಮ್ಮ ಆ್ಯಪ್ ನಿಮಗೆ ಜ್ಞಾಪನೆಯ ಮೂಲಕ ತಿಳಿಸಬಹುದು ಮತ್ತು ಸಂಭವನೀಯ ಸಂಪರ್ಕಕ್ಕೆ ಬಂದಿರುವ ಕುರಿತು ಇತರರನ್ನು ಎಚ್ಚರಿಸಲು ಸಹಾಯ ಮಾಡುತ್ತದೆ. ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ನೀವು ಇದನ್ನು ಯಾವುದೇ ಸಮಯದಲ್ಲಿ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಬಹುದು.</string>
+  <string name="sms_intercept_notice_content">ನಿಮ್ಮ ಪರೀಕ್ಷಾ ಫಲಿತಾಂಶವನ್ನು ಒಳಗೊಂಡಿರುವ SMS ನೀವು ಸ್ವೀಕರಿಸಿದರೆ, ಎಕ್ಸ್‌ಪೋಶರ್ ಅಧಿಸೂಚನೆಗಳಲ್ಲಿ ನಿಮ್ಮ ಡಯಾಗ್ನಾಸಿಸ್ ಮಾಹಿತಿಯನ್ನು ಹಂಚಿಕೊಳ್ಳುವಂತೆ ನಿಮ್ಮನ್ನು ಕೇಳುವ ಅಧಿಸೂಚನೆಯನ್ನು ನೀವು ಪಡೆಯಬಹುದು. ನೀವು ಇದನ್ನು ಯಾವಾಗ ಬೇಕಾದರೂ ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಬಹುದು.</string>
+  <string name="share_upload_title">ನಿಮ್ಮ ಸಮುದಾಯವನ್ನು ರಕ್ಷಿಸಲು ನಿಮ್ಮ ಪರೀಕ್ಷಾ ಫಲಿತಾಂಶವನ್ನು ಹಂಚಿಕೊಳ್ಳಿ</string>
+  <string name="share_upload_test_result_source_description">ಪರೀಕ್ಷಾ ಫಲಿತಾಂಶವನ್ನು %1$s ಅವರು ಕಳುಹಿಸಿದ್ದಾರೆ</string>
+  <string name="share_upload_symptoms_subtitle">ರೋಗಲಕ್ಷಣದ ಪ್ರಾರಂಭ ದಿನಾಂಕ</string>
+  <string name="share_upload_symptoms_date_fixed_description">ರೋಗಲಕ್ಷಣದ ಆರಂಭದ ದಿನಾಂಕವನ್ನು %1$s ಒದಗಿಸಿದ್ದಾರೆ</string>
+  <string name="share_upload_skip_choice">ಸ್ಕಿಪ್</string>
+  <string name="share_upload_travel_subtitle">ಪ್ರಯಾಣದ ಇತಿಹಾಸ</string>
+  <string name="travel_history_travelled_recently_choice">ಕಳೆದ 14 ದಿನಗಳಲ್ಲಿ ಪ್ರಯಾಣಿಸಿರುವುದು</string>
+  <string name="travel_history_no_travel_choice">ಯಾವುದೂ ಅಲ್ಲ</string>
+  <string name="share_upload_select_a_date_choice">ದಿನಾಂಕವನ್ನು ಆಯ್ಕೆಮಾಡಿ</string>
+  <string name="share_upload_status_subtitle">COVID-19 ಸ್ಥಿತಿ</string>
+  <string name="share_upload_status_confirmed">ಪಾಸಿಟಿವ್</string>
+  <string name="share_upload_status_negative">ನೆಗೆಟಿವ್</string>
+  <string name="share_upload_status_likely">ಸಾಧ್ಯತೆ ಇದೆ</string>
+  <string name="share_diagnosis_progress_tracker">%2$d ಹಂತಗಳಲ್ಲಿ %1$d ಹಂತ</string>
 </resources>

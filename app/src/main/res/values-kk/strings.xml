@@ -31,7 +31,7 @@
   <string name="onboarding_exposure_notifications_detail">COVID-19 вирусын жұқтырғанын хабарлаған адамның жанында болғанда, хабарландыру алыңыз.
     \n\nТелефон Bluetooth функциясының көмегімен кездейсоқ идентификаторларды қауіпсіз жинап, оларды маңайдағы басқа құрылғылармен бөліседі.
     \n\nДенсаулық сақтау мекемесі орнатқан параметрлер негізінде хабарлау мүмкіндігі ауру жұқтырғандармен байланыс күніне, оның ұзақтығына және сигнал күшіне байланысты болады.
-    \n\nЕгер сынағыңыз оң нәтиже көрсетсе, оны денсаулық сақтау мекемесімен бөлісу туралы еске салғыш алуыңыз мүмкін.</string>
+    \n\nСынағыңыздың нәтижесі бар SMS алсаңыз, диагнозды денсаулық сақтау мекемесімен бөлісу туралы хабарландыру алуыңыз мүмкін.</string>
   <string name="onboarding_metrics_title">Осы қолданбаны жақсартуға көмектесіңіз</string>
   <string name="onboarding_metrics_subtitle">Қолданбаның пайдаланылуы, жұмыс өнімділігі дерегін Google-мен бөлісіңіз.</string>
   <string name="onboarding_metrics_description">Қолданбаның жұмыс қалпын сақтап, ісін жақсартып отыру үшін оның пайдаланылуы мен жұмыс өнімділігі туралы кейбір деректер Google-мен бөлісіледі. Бұл деректерде жеке бас мәліметі анықталмайды. %1$s</string>
@@ -128,6 +128,12 @@
     <item quantity="other">Сұраулар саны тым көп болып кетті. Жаңа кодты %1$d минуттан кейін сұрай аласыз.</item>
   </plurals>
   <string name="notify_others_notification_title">Сізбен байланыста болуы ықтимал адамдарды хабардар етуге көмектесіңіз</string>
+  <string name="notify_others_if_result_updated_title">Нәтиже жаңартылатын болса, басқа адамдарға хабарлау керек пе?</string>
+  <string name="notify_others_if_result_updated_content">Сынақ нәтижесін растау үшін %1$s екінші код жіберуі мүмкін. Сіз COVID-19 ауруына қатысты күйді автоматты түрде жаңартып, басқаларға ауру жұқтырғандармен байланыс ықтималдығын хабарлауға көмектесетін екінші код арқылы кездейсоқ идентификаторларды тағы бірнеше күн бөлісе аласыз. Жеке басыңыз туралы ақпарат басқаларға жіберілмейді.</string>
+  <string name="btn_pre_auth_yes">Иә, көмектескім келеді</string>
+  <string name="btn_pre_auth_no">Жоқ, рақмет</string>
+  <string name="thank_you_for_notifying_title">Көмектескеніңізге рақмет</string>
+  <string name="thank_you_for_notifying_content">%1$s ауру жұқтырғандармен байланыс хронологиясын жаңартты және басқаларға ауру жұқтырғандармен байланыс ықтималдығы туралы хабарлаған болуы керек.</string>
   <string name="settings_exposure_notifications_subtitle">Ауру жұқтырғандармен байланыс туралы хабарландыру</string>
   <string name="settings_app_analytics_subtitle">Қолданбаның пайдаланылуы мен өнімділік дерегін бөлісу</string>
   <string name="settings_privacy_policy">Құпиялылық саясаты</string>
@@ -193,5 +199,19 @@
   <string name="share_diagnosis_share_test_result_subtitle">COVID-19 індетімен күресуге үлес қосқаныңыз үшін рақмет!</string>
   <string name="share_diagnosis_share_test_result_body">Нәтижені бөліскенде, ауру белгілерінің басталғаны туралы да бөлісу опциясын таңдай аласыз. Бұл ақпарат COVID-19 вирусының таралуын тоқтатып, адамдарды құтқаруы мүмкін.</string>
   <string name="sms_intercept_notice_title">Жаңалықтар</string>
-  <string name="sms_intercept_notice_content">Егер жергілікті денсаулық сақтау мекемесі сынақ нәтижесін жіберсе, қолданба еске салғыш арқылы нәтиже жіберуді хабарлайды және ауру жұқтырғандармен байланыс ықтималдығы туралы хабарлауға көмектеседі. Мұны кез келген уақытта параметрлерден өшіре аласыз.</string>
+  <string name="sms_intercept_notice_content">Сынақ нәтижесі көрсетілген SMS алсаңыз, сізден диагнозыңызды Ауру жұқтырғандармен байланыс туралы хабарландыру жүйесінде бөлісу сұралуы мүмкін. Мұны кез келген уақытта параметрлерден өшіре аласыз.</string>
+  <string name="share_upload_title">Басқаларды қорғау үшін сынақ нәтижесімен бөлісіңіз</string>
+  <string name="share_upload_test_result_source_description">%1$s сынақ нәтижесін жіберді.</string>
+  <string name="share_upload_symptoms_subtitle">Симптомдардың пайда болуы:</string>
+  <string name="share_upload_symptoms_date_fixed_description">Симптомның пайда болу күнін %1$s көрсетті.</string>
+  <string name="share_upload_skip_choice">Өткізіп жіберу</string>
+  <string name="share_upload_travel_subtitle">Сапарлар тарихы</string>
+  <string name="travel_history_travelled_recently_choice">Соңғы 14 күн ішінде сапарда болдым</string>
+  <string name="travel_history_no_travel_choice">Жоқ</string>
+  <string name="share_upload_select_a_date_choice">Күнді таңдау</string>
+  <string name="share_upload_status_subtitle">COVID-19 ауруына қатысты күй</string>
+  <string name="share_upload_status_confirmed">Оң</string>
+  <string name="share_upload_status_negative">Теріс</string>
+  <string name="share_upload_status_likely">Жұқтырған болуы мүмкін</string>
+  <string name="share_diagnosis_progress_tracker">Қадам: %1$d/%2$d</string>
 </resources>

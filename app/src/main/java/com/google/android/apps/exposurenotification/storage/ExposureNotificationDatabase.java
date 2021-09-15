@@ -54,7 +54,7 @@ import com.google.android.apps.exposurenotification.storage.Converters.ZonedDate
         VerificationCodeRequestEntity.class
     },
     exportSchema = true,
-    version = 43  // Do not increment without migration & tests.
+    version = 44  // Do not increment without migration & tests.
 )
 @TypeConverters({
     HasSymptomsConverter.class,
@@ -168,9 +168,17 @@ public abstract class ExposureNotificationDatabase extends RoomDatabase {
     }
   };
 
+  static final Migration MIGRATION_43_44 = new Migration(43, 44) {
+    @Override
+    public void migrate(SupportSQLiteDatabase database) {
+      database.execSQL(
+          "ALTER TABLE DiagnosisEntity ADD COLUMN isPreAuth INTEGER NOT NULL DEFAULT 0");
+    }
+  };
+
   static final Migration[] ALL_MIGRATIONS = new Migration[]{MIGRATION_35_36, MIGRATION_36_37,
       MIGRATION_37_38, MIGRATION_38_39, MIGRATION_39_40, MIGRATION_40_41, MIGRATION_41_42,
-      MIGRATION_42_43};
+      MIGRATION_42_43, MIGRATION_43_44};
 
   abstract AnalyticsLoggingDao analyticsLoggingDao();
 

@@ -28,10 +28,10 @@
   <string name="onboarding_opt_in_title">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‎‏‎‎‏‎‏‏‎‏‏‎‏‎‏‏‏‎‏‎‏‎‏‎‎‎‎‏‏‏‎‏‎‏‏‏‏‎‎‏‎‎‏‏‏‏‏‎‏‏‏‎‏‏‎‎‎‏‏‎‏‏‎Permissions needed to enable Exposure Notifications‎‏‎‎‏‎</string>
   <string name="onboarding_finish_title">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‎‏‎‏‏‏‏‏‎‎‏‎‎‎‎‎‎‏‎‎‎‎‎‏‏‏‏‎‏‏‏‏‎‏‏‎‏‎‎‏‏‎‏‏‎‏‏‏‏‎‏‏‏‏‏‎‏‎‏‏‎‏‎Continuation of permissions needed to enable Exposure Notifications‎‏‎‎‏‎</string>
   <string name="onboarding_exposure_notifications_title">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‎‏‏‎‏‎‏‎‏‏‎‏‏‏‎‎‎‏‎‎‎‏‏‏‎‎‎‎‏‏‎‎‎‏‏‎‏‏‏‏‎‎‏‏‎‏‏‏‏‎‏‏‎‏‎‏‏‎‎‎‎‎‏‎Turn on Exposure Notifications‎‏‎‎‏‎</string>
-  <string name="onboarding_exposure_notifications_detail">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‎‎‏‏‎‎‏‏‎‏‏‎‎‏‎‎‏‎‏‏‎‏‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‎‏‎‏‎‏‏‏‏‎‏‎‎‎‏‎‎‎‏‏‏‏‎Get notified if you\'ve been near someone who reported having COVID-19.
+  <string name="onboarding_exposure_notifications_detail">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‎‏‏‎‎‎‏‏‎‏‏‏‏‎‎‏‏‏‎‏‎‏‎‏‏‎‏‎‎‎‏‏‏‏‎‎‎‎‏‏‎‏‎‏‎‎‏‏‎‎‏‏‎‏‎‏‎‏‎‏‏‎‏‎Get notified if you\'ve been near someone who reported having COVID-19.
     \n\nYour phone uses Bluetooth to securely collect and share random IDs with other phones that are nearby.
     \n\nThe date, duration, and signal strength associated with a possible exposure will be used to determine whether you will be notified based on parameters set by your public health authority.
-    \n\nIf you test positive, you may receive a reminder to share your results with your health authority.‎‏‎‎‏‎</string>
+    \n\nYou may receive a notification to share a diagnosis with your health authority if you get an SMS with your test result.‎‏‎‎‏‎</string>
   <string name="onboarding_metrics_title">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‎‏‏‏‏‏‏‎‏‎‏‏‎‎‎‎‏‎‎‎‎‏‏‏‎‏‎‏‎‏‎‏‎‎‎‎‎‏‏‏‏‎‎‏‎‏‏‏‏‏‏‎‎‎‏‎‏‏‎‎‎‎‎‎Help make this app better‎‏‎‎‏‎</string>
   <string name="onboarding_metrics_subtitle">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‏‎‏‏‎‏‏‎‏‎‎‎‏‏‏‎‏‏‎‎‎‏‎‎‏‎‏‏‎‎‎‏‎‎‏‎‎‎‏‎‏‏‎‏‏‏‏‏‏‏‏‏‎‎‏‎‎‎‏‎‎‎‎Share app usage &amp; performance data with Google‎‏‎‎‏‎</string>
   <string name="onboarding_metrics_description">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‏‎‏‎‎‏‏‏‏‏‎‎‏‎‎‏‏‏‎‏‎‎‏‎‏‎‎‎‏‎‏‏‎‏‏‏‎‏‏‏‏‏‏‎‏‏‏‎‏‎‎‎‏‎‎‏‏‎‏‏‎‎‎To help maintain and improve the app, some limited de-identified data about app performance and usage is shared with Google. This data does not identify you. ‎‏‎‎‏‏‎%1$s‎‏‎‎‏‏‏‎‎‏‎‎‏‎</string>
@@ -128,6 +128,12 @@
     <item quantity="other">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‎‎‎‎‎‏‎‏‏‎‎‏‏‏‎‎‎‏‏‎‏‎‏‏‎‎‎‎‏‎‏‎‎‏‎‎‎‎‎‏‎‎‎‏‎‎‏‏‏‎‎‏‎‎‎‏‏‏‏‎‏‏‎You\'ve made too many requests. You can request another code in ‎‏‎‎‏‏‎%1$d‎‏‎‎‏‏‏‎ minutes.‎‏‎‎‏‎</item>
   </plurals>
   <string name="notify_others_notification_title">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‎‏‎‏‎‎‏‏‏‎‏‏‏‎‏‎‎‏‎‎‎‏‏‎‎‏‏‎‎‎‎‎‏‏‏‏‏‎‏‏‎‎‏‎‏‏‎‏‎‏‎‎‏‏‏‎‏‎‏‎‏‏‎Help notify others who may have been exposed‎‏‎‎‏‎</string>
+  <string name="notify_others_if_result_updated_title">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‏‎‏‎‎‏‏‏‏‏‏‏‎‏‎‎‎‏‎‎‏‏‎‎‎‎‎‏‎‏‏‏‏‎‎‎‏‏‏‏‎‎‏‎‎‎‏‎‎‎‎‏‎‎‎‏‏‎‎‎‎‎‎Notify other people if your result gets updated?‎‏‎‎‏‎</string>
+  <string name="notify_others_if_result_updated_content">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‎‏‎‏‏‏‎‎‎‎‏‎‎‎‏‎‏‏‎‏‏‏‎‎‎‎‏‎‎‎‏‏‏‏‎‎‏‏‏‎‎‏‎‏‏‏‏‏‎‎‏‎‏‎‎‏‏‏‏‏‎‏‎‎‏‎‎‏‏‎%1$s‎‏‎‎‏‏‏‎ may send you a second code to confirm your test result. You can automatically update your COVID-19 status &amp; share additional days of random IDs using this second code, which can help notify others about possible exposure. Your identity is not shared with other people.‎‏‎‎‏‎</string>
+  <string name="btn_pre_auth_yes">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‎‎‏‎‏‎‏‎‏‏‎‎‎‏‎‏‎‎‎‏‏‏‏‏‏‏‎‎‎‎‎‏‎‏‏‏‎‏‎‏‏‏‎‏‎‎‏‎‏‎‎‏‎‏‏‏‎‎‎‎‎‏‎Yes, I want to help‎‏‎‎‏‎</string>
+  <string name="btn_pre_auth_no">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‎‎‏‏‏‎‎‎‏‏‏‎‎‎‎‎‎‎‏‏‏‎‎‎‏‎‏‎‏‎‏‏‎‎‏‏‏‏‎‏‏‎‏‏‏‏‎‎‏‏‏‎‎‏‎‏‏‏‎‎‎‎‎No thanks‎‏‎‎‏‎</string>
+  <string name="thank_you_for_notifying_title">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‎‏‏‏‎‏‎‏‎‎‏‏‏‎‎‎‎‎‎‎‎‏‎‎‏‎‎‏‎‏‎‏‎‎‎‏‎‎‏‎‎‏‎‏‏‎‎‏‎‎‎‏‏‎‏‎‎‎‎‎‎‎‎‎Thank you for helping‎‏‎‎‏‎</string>
+  <string name="thank_you_for_notifying_content">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‎‏‏‎‏‏‎‏‏‏‎‏‎‎‏‏‏‎‎‎‎‎‎‏‏‏‏‎‏‎‏‏‎‎‏‏‎‏‎‎‏‏‎‏‏‎‏‏‎‏‏‎‎‎‎‎‏‏‎‎‏‏‎‎‏‎‎‏‏‎%1$s‎‏‎‎‏‏‏‎ just updated your exposure timeline and may have alerted others of possible exposure.‎‏‎‎‏‎</string>
   <string name="settings_exposure_notifications_subtitle">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‏‎‎‏‏‏‏‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‏‏‎‏‎‎‏‎‏‎‏‎‎‎‏‏‎‏‏‎‎‏‎‎‎‏‏‏‏‎‎‏‎‎‎‎‎‎‏‏‎Exposure Notifications‎‏‎‎‏‎</string>
   <string name="settings_app_analytics_subtitle">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‎‏‎‏‎‎‎‎‏‎‎‏‏‏‏‎‎‎‏‏‎‏‏‏‏‎‏‎‏‏‏‏‎‏‏‏‎‏‏‏‏‎‎‎‎‏‏‎‏‏‎‏‎‎‏‎‎‎‎‏‏‎‎‎App usage &amp; performance sharing‎‏‎‎‏‎</string>
   <string name="settings_privacy_policy">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‎‏‏‏‎‏‎‎‏‎‏‏‏‎‏‏‎‏‎‏‎‎‏‎‏‏‏‏‏‏‏‎‏‎‏‏‏‏‏‏‎‎‏‎‏‏‎‏‏‎‏‎‎‏‏‏‎‎‏‏‎‎‏‎Privacy policy‎‏‎‎‏‎</string>
@@ -193,5 +199,19 @@
   <string name="share_diagnosis_share_test_result_subtitle">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‎‎‎‎‎‏‎‏‏‎‎‏‎‎‏‎‏‎‏‎‎‏‏‎‏‎‎‏‎‏‎‎‎‎‎‏‏‏‎‏‏‎‎‏‏‏‎‏‏‎‎‏‎‎‏‏‏‎‏‏‎‎‎Thank you for helping to stop COVID-19.‎‏‎‎‏‎</string>
   <string name="share_diagnosis_share_test_result_body">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‎‏‏‏‎‏‎‏‎‎‎‎‎‏‏‏‏‏‎‏‏‎‏‎‎‎‏‏‎‎‏‎‏‎‎‎‎‏‏‏‏‎‏‎‎‏‏‏‏‏‎‏‎‎‏‎‏‎‎‏‏‎‎‎When you share your result, you can also choose to share when your symptoms started. This information can help stop the spread of COVID-19 and save lives.‎‏‎‎‏‎</string>
   <string name="sms_intercept_notice_title">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‎‎‏‏‏‎‎‎‏‏‎‎‎‏‎‎‏‏‎‎‎‏‏‏‎‎‎‎‏‏‎‏‎‎‏‏‎‏‏‎‏‏‏‎‎‎‎‏‏‏‏‏‎‎‏‎‏‏‏‏‎‏‎What\'s new‎‏‎‎‏‎</string>
-  <string name="sms_intercept_notice_content">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‏‏‏‎‎‏‎‎‎‏‎‎‏‏‏‏‎‎‏‎‏‎‏‏‏‎‎‎‏‏‎‏‏‎‎‎‏‏‏‎‏‎‎‏‎‎‏‎‎‏‏‎‎‎‎‎‎‎‏‎‏‎‎If your local health authority sends you a test result, your app can notify you with a reminder to submit your result and help alert others of possible exposure. You can disable this any time in settings.‎‏‎‎‏‎</string>
+  <string name="sms_intercept_notice_content">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‏‏‎‎‎‎‏‎‏‎‎‏‎‎‏‎‎‏‎‎‏‎‎‏‏‏‏‏‏‎‎‎‏‎‎‎‏‏‏‎‎‏‏‎‎‏‎‏‏‏‎‏‏‎‏‎‏‏‏‏‎‏‎If you receive an SMS with your test result, you may get a notification asking you to share your diagnosis in exposure notifications. You can disable this any time in settings.‎‏‎‎‏‎</string>
+  <string name="share_upload_title">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‎‏‎‎‎‏‎‎‎‏‏‎‏‎‏‎‎‏‎‏‏‎‎‏‎‎‏‎‏‏‏‎‎‏‏‏‎‎‎‎‏‏‎‏‏‏‏‎‎‎‎‏‎‎‏‎‏‎‏‎‏‏‎Share your test result to protect your community‎‏‎‎‏‎</string>
+  <string name="share_upload_test_result_source_description">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‎‏‎‏‎‎‏‏‏‏‎‎‏‏‏‏‎‎‎‏‎‎‏‏‎‎‎‏‎‎‏‏‏‎‏‏‎‏‎‏‏‎‏‏‎‏‏‏‏‏‎‏‏‏‏‎‎‏‏‏‏‏‏‎Testing result is sent by ‎‏‎‎‏‏‎%1$s‎‏‎‎‏‏‏‎‎‏‎‎‏‎</string>
+  <string name="share_upload_symptoms_subtitle">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‏‎‎‏‎‎‎‎‎‎‏‎‏‏‏‎‏‏‏‏‏‎‏‏‏‎‎‏‎‎‎‏‎‏‏‏‎‏‎‎‏‏‏‎‎‏‏‎‎‎‏‎‎‎‎‏‏‎‎‏‏‎‎Symptom started from‎‏‎‎‏‎</string>
+  <string name="share_upload_symptoms_date_fixed_description">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‏‎‎‏‎‏‏‏‏‏‎‎‎‎‏‏‎‏‎‏‏‏‎‏‎‏‎‎‎‏‎‎‎‏‎‏‏‏‎‎‏‏‎‏‏‎‏‎‎‏‎‎‎‎‎‎‏‏‎‏‎‎‎Symptom date is provided by ‎‏‎‎‏‏‎%1$s‎‏‎‎‏‏‏‎‎‏‎‎‏‎</string>
+  <string name="share_upload_skip_choice">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‎‎‏‏‏‏‎‏‎‎‏‎‎‏‏‎‏‏‎‎‎‏‎‎‎‏‎‏‏‏‎‎‏‏‎‏‏‎‏‎‎‎‏‏‏‎‎‎‏‏‏‏‎‏‏‏‎‏‎‎‏‏‎Skip‎‏‎‎‏‎</string>
+  <string name="share_upload_travel_subtitle">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‎‎‏‎‎‏‏‎‏‎‎‏‏‎‎‏‎‎‎‏‏‏‎‎‎‏‎‏‎‎‏‏‏‎‏‏‏‏‎‎‎‎‎‎‎‏‏‏‎‏‏‎‏‎‏‎‏‏‏‎‎‏‎Travel history‎‏‎‎‏‎</string>
+  <string name="travel_history_travelled_recently_choice">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‏‏‎‎‏‎‏‎‏‏‎‏‏‏‎‎‏‎‏‏‏‏‎‎‎‎‏‎‏‎‎‏‏‏‏‏‎‏‎‎‎‎‏‏‏‏‏‎‎‏‏‎‎‏‎‏‏‎‎‏‎‏‎Travelled in the past 14 days‎‏‎‎‏‎</string>
+  <string name="travel_history_no_travel_choice">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‏‏‏‎‎‏‏‎‏‎‏‏‏‎‏‏‎‏‎‎‏‎‏‎‏‏‎‎‏‏‏‏‏‏‏‎‏‎‏‏‎‏‎‏‏‏‏‎‎‏‏‎‎‏‏‎‏‏‏‎‎‏‎None‎‏‎‎‏‎</string>
+  <string name="share_upload_select_a_date_choice">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‎‏‎‎‏‎‏‎‏‏‏‏‏‎‏‎‏‏‎‎‏‎‏‎‎‏‎‎‎‏‏‎‏‏‎‏‎‎‏‏‎‎‎‎‎‎‎‎‎‎‏‎‎‎‎‏‎‏‏‏‏‎‎‎Select a date‎‏‎‎‏‎</string>
+  <string name="share_upload_status_subtitle">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‎‏‎‏‎‎‎‏‏‏‎‏‎‏‏‎‎‏‎‏‎‎‏‎‏‎‏‎‎‏‎‏‎‎‏‎‎‎‏‏‏‏‎‏‎‎‎‏‏‎‏‎‏‏‎‏‏‎‎‎‏‎‎‎COVID-19 status‎‏‎‎‏‎</string>
+  <string name="share_upload_status_confirmed">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‎‎‏‏‎‎‎‏‎‎‎‏‎‎‏‎‏‏‎‎‏‎‎‏‎‎‏‏‎‎‎‏‏‎‏‏‏‏‎‎‏‏‏‏‎‏‎‎‏‏‏‏‏‏‎‎‏‎‎‏‎‎‎Positive‎‏‎‎‏‎</string>
+  <string name="share_upload_status_negative">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‎‏‏‎‏‏‎‎‏‏‎‏‏‎‎‎‏‏‎‎‎‏‎‏‎‏‎‏‎‏‏‏‏‎‎‏‎‏‏‎‎‎‏‎‎‎‏‏‎‏‎‏‎‏‏‎‏‎‏‎‎‎‏‎Negative‎‏‎‎‏‎</string>
+  <string name="share_upload_status_likely">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‏‏‎‏‏‎‎‏‎‏‎‎‎‎‏‏‏‏‎‏‏‏‎‎‎‎‎‎‎‎‎‏‎‏‏‏‏‏‎‏‎‏‎‏‎‎‏‎‏‏‏‎‎‎‎‎‎‎‏‎‎‎‎Likely‎‏‎‎‏‎</string>
+  <string name="share_diagnosis_progress_tracker">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‏‏‏‎‏‎‎‏‎‏‏‏‏‎‎‏‎‎‎‎‏‏‎‎‏‏‏‎‎‎‎‎‎‎‏‎‎‏‏‎‏‎‎‎‎‏‎‎‎‏‏‏‎‏‎‏‏‎‎‎‏‏‎Step ‎‏‎‎‏‏‎%1$d‎‏‎‎‏‏‏‎ of ‎‏‎‎‏‏‎%2$d‎‏‎‎‏‏‏‎‎‏‎‎‏‎</string>
 </resources>

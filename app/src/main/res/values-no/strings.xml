@@ -31,7 +31,7 @@
   <string name="onboarding_exposure_notifications_detail">Bli varslet hvis du har vært i nærheten av noen som har rapportert at de har covid-19.
     \n\nTelefonen din bruker Bluetooth for å samle inn og dele tilfeldige ID-er med telefoner i nærheten på en trygg måte.
     \n\nDatoen, varigheten og signalstyrken knyttet til en mulig eksponering brukes til å fastslå hvorvidt du blir varslet, basert på parametere som er angitt av offentlige helsemyndigheter.
-    \n\nHvis du tester positivt, kan du motta en påminnelse om å dele resultatene dine med helsemyndighetene.</string>
+    \n\nDu kan motta et varsel for å dele en diagnose med helsemyndighetene hvis du mottar en SMS med testresultatet ditt.</string>
   <string name="onboarding_metrics_title">Bidra til å gjøre appen bedre</string>
   <string name="onboarding_metrics_subtitle">Del appbruk og ytelsesdata med Google</string>
   <string name="onboarding_metrics_description">For å vedlikeholde og forbedre appen deles noen begrensede, avidentifiserte data om appytelsen og -bruken med Google. Disse dataene identifiserer deg ikke. %1$s</string>
@@ -128,6 +128,12 @@
     <item quantity="other">Du har sendt for mange forespørsler. Du kan be om en ny kode om %1$d minutter.</item>
   </plurals>
   <string name="notify_others_notification_title">Bidra til å varsle andre som kan ha blitt eksponert</string>
+  <string name="notify_others_if_result_updated_title">Vil du varsle andre hvis resultatet ditt blir oppdatert?</string>
+  <string name="notify_others_if_result_updated_content">%1$s kan sende deg en ny kode for å bekrefte testresultatet. Du kan automatisk oppdatere covid-19-status og dele flere dager med tilfeldige ID-er med denne nye koden, noe som kan varsle andre om mulig eksponering. Identiteten din deles ikke med andre.</string>
+  <string name="btn_pre_auth_yes">Ja, jeg vil bidra</string>
+  <string name="btn_pre_auth_no">Nei takk</string>
+  <string name="thank_you_for_notifying_title">Takk for hjelpen</string>
+  <string name="thank_you_for_notifying_content">%1$s oppdaterte nettopp eksponeringstidslinjen din og kan ha varslet andre om mulig eksponering.</string>
   <string name="settings_exposure_notifications_subtitle">Eksponeringsvarsler</string>
   <string name="settings_app_analytics_subtitle">Deling av appbruk og ytelse</string>
   <string name="settings_privacy_policy">Personvernregler</string>
@@ -193,5 +199,19 @@
   <string name="share_diagnosis_share_test_result_subtitle">Takk for at du hjelper til med å bekjempe covid-19.</string>
   <string name="share_diagnosis_share_test_result_body">Når du deler resultatet ditt, kan du også velge å dele når symptomene dine startet. Denne informasjonen kan bidra til å stoppe spredningen av covid-19 og redde liv.</string>
   <string name="sms_intercept_notice_title">Nyheter</string>
-  <string name="sms_intercept_notice_content">Hvis de lokale helsemyndighetene sender deg et testresultat, kan appen varsle deg med en påminnelse om å sende inn resultatet ditt og bidra til å varsle andre om mulig eksponering. Du kan når som helst slå av dette i innstillingene.</string>
+  <string name="sms_intercept_notice_content">Hvis du mottar en SMS med testresultatet ditt, kan du få et varsel om å dele diagnosen i eksponeringsvarsler. Du kan når som helst slå av dette i innstillingene.</string>
+  <string name="share_upload_title">Del testresultatet ditt for å beskytte lokalsamfunnet</string>
+  <string name="share_upload_test_result_source_description">Testresultatet sendes av %1$s</string>
+  <string name="share_upload_symptoms_subtitle">Symptomene startet</string>
+  <string name="share_upload_symptoms_date_fixed_description">Datoen for symptomer er levert av %1$s</string>
+  <string name="share_upload_skip_choice">Hopp over</string>
+  <string name="share_upload_travel_subtitle">Reisehistorikk</string>
+  <string name="travel_history_travelled_recently_choice">Reiser de siste 14 dagene</string>
+  <string name="travel_history_no_travel_choice">Ingen</string>
+  <string name="share_upload_select_a_date_choice">Velg en dato</string>
+  <string name="share_upload_status_subtitle">Covid-19-status</string>
+  <string name="share_upload_status_confirmed">Positiv</string>
+  <string name="share_upload_status_negative">Negativ</string>
+  <string name="share_upload_status_likely">Sannsynlig</string>
+  <string name="share_diagnosis_progress_tracker">Trinn %1$d av %2$d</string>
 </resources>

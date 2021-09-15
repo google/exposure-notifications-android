@@ -31,7 +31,7 @@
   <string name="onboarding_exposure_notifications_detail">如果您与报告确诊新冠肺炎 (COVID-19) 的人员有过近距离接触，就会收到通知。
     \n\n您的手机会使用蓝牙安全地收集附近其他手机的随机 ID，并与这些手机分享您的随机 ID。
     \n\n系统会参照您所在地的公共卫生机构设定的参数，根据可能的接触事件发生的日期、时长和相关信号强度来确定是否向您发送通知。
-    \n\n如果您的检测结果呈阳性，系统可能会提醒您将检测结果分享给卫生机构。</string>
+    \n\n如果您收到检测结果短信，系统可能会通知您与卫生机构分享诊断结果。</string>
   <string name="onboarding_metrics_title">协助改进此应用</string>
   <string name="onboarding_metrics_subtitle">与 Google 分享应用使用情况和性能数据</string>
   <string name="onboarding_metrics_description">为帮助维护和改进该应用，系统会将少量与应用性能和使用情况有关的数据（去除了可用于识别个人身份的信息）提供给 Google。这些数据不会泄露您的身份。%1$s</string>
@@ -128,6 +128,12 @@
     <item quantity="other">申请次数过多。您可以在 %1$d 分钟后再次申请验证码。</item>
   </plurals>
   <string name="notify_others_notification_title">帮助通知可能与您接触过的人员</string>
+  <string name="notify_others_if_result_updated_title">如果您的检测结果有更新，是否通知其他人？</string>
+  <string name="notify_others_if_result_updated_content">%1$s可能会向您发送第二个验证码。您可以使用这个验证码自动更新自己的新冠肺炎 (COVID-19) 感染状况，以及延长随机 ID 的分享天数，以协助通知可能与您接触过的人员。系统不会将您的身份信息分享给其他人员。</string>
+  <string name="btn_pre_auth_yes">是，我愿意协助</string>
+  <string name="btn_pre_auth_no">不用了</string>
+  <string name="thank_you_for_notifying_title">感谢您的协助</string>
+  <string name="thank_you_for_notifying_content">%1$s刚刚更新了您的接触时间轴，也许已通知其他可能与您接触过的人员。</string>
   <string name="settings_exposure_notifications_subtitle">接触史通知</string>
   <string name="settings_app_analytics_subtitle">分享应用使用情况和性能数据</string>
   <string name="settings_privacy_policy">隐私权政策</string>
@@ -193,5 +199,19 @@
   <string name="share_diagnosis_share_test_result_subtitle">感谢您为遏制新冠肺炎 (COVID-19) 的传播尽一份力。</string>
   <string name="share_diagnosis_share_test_result_body">您在分享检测结果时，还可以选择分享您开始出现症状的时间。这些信息可能有助于遏制 COVID-19 的传播，挽救生命。</string>
   <string name="sms_intercept_notice_title">新功能</string>
-  <string name="sms_intercept_notice_content">如果您当地的卫生部门向您发送了检测结果，您的应用可以提醒您提交您的检测结果，并帮助提醒其他可能与您有过接触的人员。您可以随时在设置中停用此功能。</string>
+  <string name="sms_intercept_notice_content">如果您收到检测结果短信，系统可能会向您发送通知，要求您在接触史通知系统中分享诊断结果。您可以随时在设置中停用此功能。</string>
+  <string name="share_upload_title">分享您的检测结果，协助保护社区成员</string>
+  <string name="share_upload_test_result_source_description">检测结果由%1$s发送</string>
+  <string name="share_upload_symptoms_subtitle">出现症状的日期</string>
+  <string name="share_upload_symptoms_date_fixed_description">症状出现日期由%1$s提供</string>
+  <string name="share_upload_skip_choice">跳过</string>
+  <string name="share_upload_travel_subtitle">旅行史</string>
+  <string name="travel_history_travelled_recently_choice">过去 14 天内曾旅行</string>
+  <string name="travel_history_no_travel_choice">无</string>
+  <string name="share_upload_select_a_date_choice">选择日期</string>
+  <string name="share_upload_status_subtitle">新冠肺炎 (COVID-19) 感染状况</string>
+  <string name="share_upload_status_confirmed">阳性</string>
+  <string name="share_upload_status_negative">阴性</string>
+  <string name="share_upload_status_likely">疑似</string>
+  <string name="share_diagnosis_progress_tracker">第 %1$d 步（共 %2$d 步）</string>
 </resources>

@@ -31,7 +31,7 @@
   <string name="onboarding_exposure_notifications_detail">Та коронавируст халдвар (COVID-19)-тай гэж мэдээлсэн хэн нэгэнтэй ойр байсан тохиолдолд мэдэгдэл аваарай.
     \n\nТаны утас санамсаргүй ID-г аюулгүйгээр цуглуулах болон ойролцоох бусад утастай хуваалцахын тулд Bluetooth-г ашиглана.
     \n\nӨртсөн байж болзошгүй мэдээлэлтэй холбоотой огноо, үргэлжлэх хугацаа болон дохионы хүчийг танай нийгмийн эрүүл мэндийн төрийн байгууллагын тохируулсан параметрт тулгуурлан танд мэдэгдэх эсэхийг шийдвэрлэхэд ашиглана.
-    \n\nХэрэв таны шинжилгээний хариу эерэг гарвал та хариугаа эрүүл мэндийн төрийн байгууллагатайгаа хуваалцах сануулагч хүлээн авч магадгүй.</string>
+    \n\nТа шинжилгээний хариутай SMS хүлээн авсан тохиолдолд оношилгоогоо эрүүл мэндийн байгууллагатайгаа хуваалцах мэдэгдэл хүлээн авч магадгүй.</string>
   <string name="onboarding_metrics_title">Энэ аппыг илүү сайн болгоход туслах</string>
   <string name="onboarding_metrics_subtitle">Аппын ашиглалт, гүйцэтгэлийн өгөгдлийг Google-тай хуваалцаарай</string>
   <string name="onboarding_metrics_description">Аппыг хадгалах болон сайжруулахад туслахын тулд аппын гүйцэтгэл болон ашиглалтын талаарх зарим хязгаарлагдмал, танигдуулахгүй өгөгдлийг Google-тай хуваалцдаг. Энэ өгөгдөл таныг танигдуулахгүй. %1$s</string>
@@ -128,6 +128,12 @@
     <item quantity="other">Та хэт олон удаа хүсэлт тавьсан байна. Та %1$d минутын дараа өөр код хүсэх боломжтой.</item>
   </plurals>
   <string name="notify_others_notification_title">Өртсөн байж болзошгүй бусад хүнд мэдэгдэхэд тусална уу</string>
+  <string name="notify_others_if_result_updated_title">Хэрэв таны хариу эерэг гарвал бусад хүнд мэдэгдэх үү?</string>
+  <string name="notify_others_if_result_updated_content">%1$s таны шинжилгээний хариуг баталгаажуулахын тулд танд хоёр дахь кодыг илгээж болзошгүй. Та энэ өртсөн байж болзошгүй мэдээллийг бусдад мэдэгдэхэд туслах хоёр дахь кодыг ашиглан автоматаар Коронавируст халдвар (COVID-19)-ын төлөвөө шинэчилж, санамсаргүй ID-ны нэмэлт өдрийг хуваалцах боломжтой. Таны таниулбарыг бусад хүнтэй хуваалцаагүй.</string>
+  <string name="btn_pre_auth_yes">Тийм, би туслахыг хүсэж байна</string>
+  <string name="btn_pre_auth_no">Үгүй, баярлалаа</string>
+  <string name="thank_you_for_notifying_title">Тусалсанд баярлалаа</string>
+  <string name="thank_you_for_notifying_content">%1$s нь шинж тэмдэг илрэх хугацааг саяхан шинэчилсэн бөгөөд өртсөн байж болзошгүй мэдээллийг бусдад мэдээлж, сэрэмжлүүлсэн байж болзошгүй.</string>
   <string name="settings_exposure_notifications_subtitle">Өртсөн тухай мэдэгдэл</string>
   <string name="settings_app_analytics_subtitle">Аппын ашиглалт, гүйцэтгэлийг хуваалцах</string>
   <string name="settings_privacy_policy">Нууцлалын бодлого</string>
@@ -193,5 +199,19 @@
   <string name="share_diagnosis_share_test_result_subtitle">Коронавируст халдвар (COVID-19)-ыг зогсооход тусалж байгаад тань баярлалаа.</string>
   <string name="share_diagnosis_share_test_result_body">Та мөн хариугаа хуваалцах үедээ шинж тэмдэг хэзээ эхэлснээ хуваалцахаар сонгох боломжтой. Энэ мэдээлэл коронавируст халдвар (COVID-19)-ын тархалтыг зогсоож, амь насаа аврахад туслах боломжтой.</string>
   <string name="sms_intercept_notice_title">Шинэ юм юу байна</string>
-  <string name="sms_intercept_notice_content">Хэрэв танай орон нутгийн эрүүл мэндийн эрх бүхий байгууллага шинжилгээний хариу илгээвэл таны апп танд хариугаа илгээх сануулагч бүхий мэдэгдэл явуулж, бусдад өртсөн байж болзошгүй талаар сэрэмжлүүлэхэд тусалж болно. Та үүнийг хүссэн үедээ тохиргоонд идэвхгүй болгох боломжтой.</string>
+  <string name="sms_intercept_notice_content">Хэрэв та шинжилгээний хариугаа мессежээр хүлээн авсан бол оношилгоогоо Өртсөн тухай мэдэгдэлд хуваалцахыг асуусан мэдэгдэл авч болзошгүй. Та үүнийг хүссэн үедээ тохиргоо хэсэгт идэвхгүй болгох боломжтой.</string>
+  <string name="share_upload_title">Нийгэмлэгээ хамгаалахын тулд шинжилгээний хариугаа хуваалцана уу</string>
+  <string name="share_upload_test_result_source_description">%1$s-с шинжилгээний хариуг илгээсэн</string>
+  <string name="share_upload_symptoms_subtitle">Дараах өдрөөс эхлэн шинж тэмдэг илэрсэн</string>
+  <string name="share_upload_symptoms_date_fixed_description">%1$s нь шинж тэмдэг илрэх хугацааг мэдээлсэн</string>
+  <string name="share_upload_skip_choice">Алгасах</string>
+  <string name="share_upload_travel_subtitle">Аяллын түүх</string>
+  <string name="travel_history_travelled_recently_choice">Сүүлийн 14 хоногт аялсан</string>
+  <string name="travel_history_no_travel_choice">Хоосон</string>
+  <string name="share_upload_select_a_date_choice">Огноог сонгох</string>
+  <string name="share_upload_status_subtitle">Коронавируст халдвар (COVID-19)-ын төлөв</string>
+  <string name="share_upload_status_confirmed">Эерэг</string>
+  <string name="share_upload_status_negative">Сөрөг</string>
+  <string name="share_upload_status_likely">Магадлалтай</string>
+  <string name="share_diagnosis_progress_tracker">%2$d-н %1$d-р алхам</string>
 </resources>

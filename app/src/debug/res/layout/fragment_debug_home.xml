@@ -336,6 +336,17 @@
           android:text="@string/debug_submit_private_analytics_button_text" />
 
         <Button
+          android:id="@+id/debug_private_analytics_set_biweekly_upload_day"
+          style="?attr/materialButtonOutlinedStyle"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center_horizontal"
+          android:layout_marginBottom="@dimen/padding_normal"
+          android:layout_marginHorizontal="@dimen/padding_large"
+          android:text="@string/debug_private_analytics_set_biweekly_upload_day_text"
+          app:strokeColor="?attr/colorControlActivated"/>
+
+        <Button
           android:id="@+id/debug_private_analytics_clear_key_store_button"
           style="?attr/materialButtonOutlinedStyle"
           android:layout_width="match_parent"

@@ -121,8 +121,7 @@
     <item name="android:fontFamily">@font/google_sans_medium</item>
   </style>
 
-  <!-- EXPOSURE NOTIFICATION ALERT DIALOG STYLES -->
-  <!-- Dialog Title -->
+  <!-- Alert Dialog Title -->
   <style name="AlertDialogTitleTextAppearance" parent="MaterialAlertDialog.MaterialComponents.Body.Text">
     <item name="android:layout_width">match_parent</item>
     <item name="android:layout_height">wrap_content</item>
@@ -136,7 +135,7 @@
     <item name="android:textColor">?android:attr/textColorPrimary</item>
   </style>
 
-  <!-- Dialog Message -->
+  <!-- Alert Dialog Message -->
   <style name="AlertDialogMessageTextAppearance" parent="MaterialAlertDialog.MaterialComponents.Body.Text">
     <item name="android:layout_width">match_parent</item>
     <item name="android:layout_height">wrap_content</item>
@@ -147,7 +146,7 @@
     <item name="android:textColor">?android:attr/textColorPrimary</item>
   </style>
 
-  <!-- Dialog Buttons -->
+  <!-- Alert Dialog Buttons -->
   <style name="AlertDialogButtonTextAppearance" parent="@style/Widget.MaterialComponents.Button.TextButton">
     <item name="android:layout_width">wrap_content</item>
     <item name="android:layout_height">wrap_content</item>
@@ -161,12 +160,26 @@
     <item name="android:textColor">@color/colorPrimary</item>
   </style>
 
-  <!-- Dialog Theme -->
+  <!-- Alert Dialog Theme -->
   <style name="ExposureNotificationAlertDialogTheme" parent="@style/ThemeOverlay.MaterialComponents.MaterialAlertDialog.Centered">
     <item name="materialAlertDialogTitleTextStyle">@style/AlertDialogTitleTextAppearance</item>
     <item name="materialAlertDialogBodyTextStyle">@style/AlertDialogMessageTextAppearance</item>
     <item name="buttonBarPositiveButtonStyle">@style/AlertDialogButtonTextAppearance</item>
     <item name="buttonBarNegativeButtonStyle">@style/AlertDialogButtonTextAppearance</item>
+  </style>
+
+  <!--  Chip Theme-->
+  <style name="Widget.ExposureNotifications.Chip.Choice" parent="Widget.MaterialComponents.Chip.Choice">
+    <item name="chipBackgroundColor">@color/chip_background_color</item>
+    <item name="chipStrokeWidth">1dp</item>
+    <item name="chipStrokeColor">@color/chip_border_color</item>
+    <item name="android:textColor">@color/chip_text_color</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+
+  <style name="Widget.ExposureNotifications.TextInputLayout.OutlinedBox.Dense" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+    <item name="boxStrokeColor">@color/text_input_box_stroke_color</item>
+    <item name="android:textColorHint">?android:attr/textColorPrimary</item>
   </style>
 
 </resources>

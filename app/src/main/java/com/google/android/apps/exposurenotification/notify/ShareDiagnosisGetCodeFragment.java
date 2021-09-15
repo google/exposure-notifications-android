@@ -81,6 +81,7 @@ public class ShareDiagnosisGetCodeFragment extends ShareDiagnosisBaseFragment {
     super.onViewCreated(view, savedInstanceState);
 
     requireActivity().setTitle(R.string.get_verification_code_title);
+    setupShadowAtBottom(binding.shareDiagnosisScrollView, binding.buttonContainer);
 
     setUpHAProvidedValuesIfAny();
 
@@ -161,6 +162,13 @@ public class ShareDiagnosisGetCodeFragment extends ShareDiagnosisBaseFragment {
           if (testDate != null) {
             binding.testDate.setText(testDate);
           }
+        });
+
+    shareDiagnosisViewModel.getStepXofYLiveData()
+        .observe(getViewLifecycleOwner(), pair -> {
+          String text = getString(R.string.share_diagnosis_progress_tracker,
+              pair.first , pair.second);
+          binding.stepXOfYTextView.setText(text);
         });
   }
 

@@ -31,7 +31,7 @@
   <string name="onboarding_exposure_notifications_detail">รับการแจ้งเตือนหากคุณเข้าใกล้ผู้ที่เคยรายงานว่าติดเชื้อโควิด-19
     \n\nโทรศัพท์ของคุณใช้บลูทูธเพื่อรวบรวมและแชร์รหัสแบบสุ่มกับโทรศัพท์เครื่องอื่นที่อยู่ใกล้เคียงอย่างปลอดภัย
     \n\nระบบจะใช้วันที่ ระยะเวลา และความแรงของสัญญาณที่เกี่ยวข้องกับความเสี่ยงต่อการติดเชื้อเพื่อพิจารณาว่าคุณควรได้รับการแจ้งเตือนหรือไม่เมื่อดูจากปัจจัยที่หน่วยงานด้านสาธารณสุขกำหนด
-    \n\nหากผลตรวจเป็นบวก คุณอาจได้รับการแจ้งเตือนให้แชร์ผลตรวจกับหน่วยงานสาธารณสุข</string>
+    \n\nคุณอาจได้รับการแจ้งเตือนให้แชร์การวินิจฉัยกับหน่วยงานด้านสาธารณสุขเมื่อได้รับผลการตรวจหาเชื้อทาง SMS</string>
   <string name="onboarding_metrics_title">ช่วยปรับปรุงแอปนี้</string>
   <string name="onboarding_metrics_subtitle">แชร์ข้อมูลการใช้งานและประสิทธิภาพของแอปกับ Google</string>
   <string name="onboarding_metrics_description">ระบบจะแชร์ข้อมูลเกี่ยวกับประสิทธิภาพและการใช้งานแอปเพียงบางอย่างที่ลบการระบุตัวตนแล้วกับ Google เพื่อช่วยคงฟังก์ชันการทำงานและปรับปรุงแอป ข้อมูลนี้ไม่ได้ระบุตัวตนของคุณ %1$s</string>
@@ -128,6 +128,12 @@
     <item quantity="other">คุณส่งคำขอจำนวนมากเกินไป คุณขอรหัสใหม่ได้ในอีก %1$d นาที</item>
   </plurals>
   <string name="notify_others_notification_title">ช่วยแจ้งเตือนให้ผู้ที่อาจมีความเสี่ยงต่อการติดเชื้อทราบ</string>
+  <string name="notify_others_if_result_updated_title">ต้องการแจ้งให้ผู้อื่นทราบไหมหากผลลัพธ์มีการอัปเดต</string>
+  <string name="notify_others_if_result_updated_content">%1$s อาจส่งรหัสที่ 2 ให้คุณเพื่อยืนยันผลตรวจ คุณสามารถอัปเดตสถานะความเสี่ยงต่อการติดเชื้อโควิด-19 อัตโนมัติและขยายเวลาในการแชร์รหัสแบบสุ่มโดยใช้รหัสที่ 2 นี้ ซึ่งจะช่วยแจ้งเตือนผู้อื่นถึงความเสี่ยงต่อการติดเชื้อได้ ระบบจะไม่แชร์ตัวตนของคุณกับผู้ใช้คนอื่น</string>
+  <string name="btn_pre_auth_yes">ใช่ ฉันต้องการช่วย</string>
+  <string name="btn_pre_auth_no">ไม่เป็นไร</string>
+  <string name="thank_you_for_notifying_title">ขอขอบคุณที่ช่วยเหลือ</string>
+  <string name="thank_you_for_notifying_content">%1$s เพียงอัปเดตไทม์ไลน์ความเสี่ยงต่อการติดเชื้อซึ่งอาจช่วยแจ้งเตือนผู้อื่นถึงความเสี่ยงต่อการติดเชื้อได้ด้วย</string>
   <string name="settings_exposure_notifications_subtitle">การแจ้งเตือนความเสี่ยงต่อการติดเชื้อ</string>
   <string name="settings_app_analytics_subtitle">การแชร์การใช้งานและประสิทธิภาพของแอป</string>
   <string name="settings_privacy_policy">นโยบายความเป็นส่วนตัว</string>
@@ -193,5 +199,19 @@
   <string name="share_diagnosis_share_test_result_subtitle">ขอขอบคุณที่ช่วยหยุดเชื้อโควิด-19</string>
   <string name="share_diagnosis_share_test_result_body">เมื่อคุณแชร์ผลตรวจ คุณเลือกที่จะแชร์วันที่เริ่มมีอาการได้อีกด้วย ข้อมูลนี้จะช่วยหยุดการแพร่กระจายของเชื้อโควิด-19 และทำให้ผู้คนปลอดภัยได้</string>
   <string name="sms_intercept_notice_title">มีอะไรใหม่</string>
-  <string name="sms_intercept_notice_content">หากหน่วยงานด้านสาธารณสุขในท้องถิ่นส่งผลการตรวจหาเชื้อให้กับคุณ แอปจะแจ้งเตือนให้คุณส่งผลการตรวจด้วยการช่วยเตือนและช่วยแจ้งเตือนผู้อื่นถึงความเสี่ยงต่อการติดเชื้อ คุณปิดใช้งานได้ทุกเมื่อในการตั้งค่า</string>
+  <string name="sms_intercept_notice_content">หากได้รับ SMS ที่มีผลการตรวจหาเชื้อ คุณอาจได้รับการแจ้งเตือนให้แชร์การวินิจฉัยในการแจ้งเตือนความเสี่ยงต่อการติดเชื้อ คุณปิดใช้งานได้ทุกเมื่อในการตั้งค่า</string>
+  <string name="share_upload_title">แชร์ผลตรวจเพื่อปกป้องชุมชนของคุณ</string>
+  <string name="share_upload_test_result_source_description">ส่งผลตรวจโดย %1$s</string>
+  <string name="share_upload_symptoms_subtitle">เริ่มมีอาการตั้งแต่</string>
+  <string name="share_upload_symptoms_date_fixed_description">ให้ข้อมูลวันที่มีอาการโดย %1$s</string>
+  <string name="share_upload_skip_choice">ข้าม</string>
+  <string name="share_upload_travel_subtitle">ประวัติการเดินทาง</string>
+  <string name="travel_history_travelled_recently_choice">เดินทางในช่วง 14 วันที่ผ่านมา</string>
+  <string name="travel_history_no_travel_choice">ไม่มี</string>
+  <string name="share_upload_select_a_date_choice">เลือกวันที่</string>
+  <string name="share_upload_status_subtitle">สถานะความเสี่ยงต่อการติดเชื้อโควิด-19</string>
+  <string name="share_upload_status_confirmed">ติดเชื้อ</string>
+  <string name="share_upload_status_negative">ไม่ติดเชื้อ</string>
+  <string name="share_upload_status_likely">อาจติดเชื้อ</string>
+  <string name="share_diagnosis_progress_tracker">ขั้นตอนที่ %1$d จาก %2$d</string>
 </resources>

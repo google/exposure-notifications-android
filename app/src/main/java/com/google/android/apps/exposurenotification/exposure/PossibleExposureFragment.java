@@ -153,6 +153,7 @@ public class PossibleExposureFragment extends BaseFragment {
     if (isRevoked) {
       exposureDetailsUrlButton.setText(R.string.exposure_details_url_revoked);
       exposureDetailsText.setText(R.string.exposure_details_text_revoked);
+      setUrlOnClickListener(getString(R.string.exposure_details_url_revoked));
     }
 
     // All the other "normal" classifications

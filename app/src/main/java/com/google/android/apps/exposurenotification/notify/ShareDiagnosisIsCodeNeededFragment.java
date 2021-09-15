@@ -52,6 +52,7 @@ public class ShareDiagnosisIsCodeNeededFragment extends ShareDiagnosisBaseFragme
     String doYouHaveCodeTitle = getString(R.string.do_you_have_code_title);
 
     requireActivity().setTitle(doYouHaveCodeTitle);
+    setupShadowAtBottom(binding.shareDiagnosisScrollView, binding.buttonContainer);
 
     // Text for the binding.doYouHaveCodeContent view may be provided by the Health Authority (HA).
     // If that's the case, populate this view with an HA-provided value.

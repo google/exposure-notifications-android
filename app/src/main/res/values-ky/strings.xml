@@ -31,14 +31,14 @@
   <string name="onboarding_exposure_notifications_detail">COVID-19 анализинин жыйынтыгы оң чыккан адамга жакындаганыңызда кабардар болуп туруңуз.
     \n\nЖугузуу коркунучун аныктоо үчүн бири-бирине жакын турган телефондор туш келди түзүлгөн идентификаторлорду Bluetooth аркылуу топтоп, алмашышат.
     \n\nБилдирмелерди жөнөтүү үчүн мамлекеттик саламаттыкты сактоо органыңыз койгон параметрлердин негизинде телефондордун байланышуу узактыгы жана күнү, ошондой эле cигналдын күчү тууралуу маалымат колдонулат.
-    \n\nЭгер сиз тапшырган COVID-19 анализинин жыйынтыгы оң чыкса, аны бөлүшүүңүз үчүн саламаттыкты сактоо органы эстеткич жөнөтүшү мүмкүн.</string>
+    \n\nАнализиңиздин жыйынтыгы камтылган SMS алсаңыз, диагнозду cаламаттыкты сактоо органы менен бөлүшүүнү сунуштаган билдирме алышыңыз мүмкүн.</string>
   <string name="onboarding_metrics_title">Бул колдонмону жакшыртууга жардам бериңиз</string>
   <string name="onboarding_metrics_subtitle">Колдонмонун иштеши жөнүндө маалыматты Google менен бөлүшүңүз</string>
   <string name="onboarding_metrics_description">Колдонмону жакшыртып, бир калыпта иштешин камсыз кылуу үчүн Google анын колдонулушу жана иштеши тууралуу айрым маалыматты чогултуп турат. Мындай маалыматтын негизинде колдонуучунун ким экенин аныктоого болбойт. %1$s</string>
   <string name="onboarding_confirm_later_title">Ооруну жугузуп алуу коркунучу тууралуу билдирмелер өчүрүлсүнбү?</string>
   <string name="onboarding_confirm_later_detail">Билдирмелерди иштетпесеңиз, COVID-19 вирусун жугузуп алуу коркунучу тууралуу кабар албайсыз</string>
   <string name="no_recent_exposure_indicator">Ооруну жугузуп алуу коркунучу жок</string>
-  <string name="no_recent_exposure_checks">Ооруну жугузуп алуу коркунучу тууралуу маалымат төмөндө көрсөтүлөт.</string>
+  <string name="no_recent_exposure_checks">Ооруну жугузуп алуу коркунучу тууралуу маалымат төмөндө көрүнөт.</string>
   <string name="exposure_notifications_are_turned_off">Ооруну жугузуп алуу коркунучу тууралуу билдирмелер өчүрүлгөн</string>
   <string name="turn_on_exposure_notifications_action">Ооруну жугузуп алуу коркунучу тууралуу билдирмелерди күйгүзүү</string>
   <string name="exposure_details_status_subtitle">Статусу</string>
@@ -128,6 +128,12 @@
     <item quantity="other">Өтө көп сурам жөнөттүңүз. %1$d мүнөттөн кийин башка кодду жөнөтүүнү сурана аласыз.</item>
   </plurals>
   <string name="notify_others_notification_title">Вирусту жугузуп алган адамдар жөнүндө кабарлоого жардам бериңиз</string>
+  <string name="notify_others_if_result_updated_title">Жыйынтык жаңыртылганда башкаларга кабарлансынбы?</string>
+  <string name="notify_others_if_result_updated_content">Анализдин жыйынтыгын ырастоо үчүн %1$s сизге экинчи кодду жөнөтүшү мүмкүн. Ушул экинчи коддун жардамы менен COVID-19 статусуңузду автоматтык түрдө жаңыртып жана кошумча күндөр үчүн туш келди түзүлгөн идентификаторлорду бөлүшө аласыз. Анын жардамы менен башкалар ооруну жугузуп алуу коркунучу тууралуу кабарланат. Аты-жөнүңүз башкалар менен бөлүшүлбөйт.</string>
+  <string name="btn_pre_auth_yes">Ооба, жардам бергим келет</string>
+  <string name="btn_pre_auth_no">Жок, рахмат</string>
+  <string name="thank_you_for_notifying_title">Жардам бергениңиз үчүн рахмат</string>
+  <string name="thank_you_for_notifying_content">%1$s жаңы эле ооруну жугузуп алуу коркунучунун убакыт түрмөгүн жаңыртып, башкаларга ооруну жугузуп алуу коркунучу тууралуу эскерткен болушу мүмкүн.</string>
   <string name="settings_exposure_notifications_subtitle">Ооруну жугузуп алуу коркунучу тууралуу кабарлоо</string>
   <string name="settings_app_analytics_subtitle">Колдонмонун иштеши тууралуу маалыматты бөлүшүү</string>
   <string name="settings_privacy_policy">Купуялык саясаты</string>
@@ -193,5 +199,19 @@
   <string name="share_diagnosis_share_test_result_subtitle">COVID-19 оорусун токтотууга көмөктөшкөнүңүз үчүн рахмат.</string>
   <string name="share_diagnosis_share_test_result_body">Анализиңиздин жыйынтыгын бөлүшүп жатканда оорунун белгилери качан башталганын да көрсөтө аласыз. Бул маалымат COVID-19 вирусунун жайылуусун токтотууга жана өмүрлөрдү сактап калууга жардам берет.</string>
   <string name="sms_intercept_notice_title">Эмне жаңылык</string>
-  <string name="sms_intercept_notice_content">Эгер жергиликтүү саламаттыкты сактоо мекемеси сиз тапшырган анализдин жыйынтыгын жөнөтсө, колдонмо ал тууралуу маалыматты тапшыруу же башкаларга ооруну жугузуп алуу коркунучу тууралуу кабарлоо үчүн эстеткич жөнөтүшү мүмкүн. Муну жөндөөлөргө өтүп, каалаган убакта өчүрө аласыз.</string>
+  <string name="sms_intercept_notice_content">Эгер анализдин жыйынтыгын SMS билдирүү аркылуу алсаңыз, аны ооруну жугузуп алуу коркунучу тууралуу билдирмеде бөлүшүү сунушун алышыңыз мүмкүн. Муну жөндөөлөргө өтүп, каалаган убакта өчүрө аласыз.</string>
+  <string name="share_upload_title">Коомдоштугуңузду коргоо үчүн анализиңиздин жыйынтыгын бөлүшүңүз</string>
+  <string name="share_upload_test_result_source_description">Анализдин жыйынтыгын %1$s жөнөттү</string>
+  <string name="share_upload_symptoms_subtitle">Оорунун белгилери башталган күн:</string>
+  <string name="share_upload_symptoms_date_fixed_description">Ооруунун белгиси байкалган күн %1$s тарабынан көрсөтүлдү</string>
+  <string name="share_upload_skip_choice">Өткөрүп жиберүү</string>
+  <string name="share_upload_travel_subtitle">Барган жерлердин таржымалы</string>
+  <string name="travel_history_travelled_recently_choice">Акыркы 14 күндө саякаттагам</string>
+  <string name="travel_history_no_travel_choice">Жок</string>
+  <string name="share_upload_select_a_date_choice">Күндү тандоо</string>
+  <string name="share_upload_status_subtitle">COVID-19 статусу</string>
+  <string name="share_upload_status_confirmed">Оң</string>
+  <string name="share_upload_status_negative">Терс</string>
+  <string name="share_upload_status_likely">Мүмкүн</string>
+  <string name="share_diagnosis_progress_tracker">%2$d ичинен %1$d-кадам</string>
 </resources>

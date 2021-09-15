@@ -56,12 +56,13 @@ class PrivateAnalyticsMetricAdapter extends RecyclerView.Adapter<PrivateAnalytic
   @Override
   public void onBindViewHolder(
       @NonNull PrivateAnalyticsMetricViewHolder privateAnalyticsMetricViewHolder, int i) {
+    String metricName = metrics.get(i).getMetricName();
     try {
       List<Integer> data = metrics.get(i).getDataVector().get();
-      privateAnalyticsMetricViewHolder
-          .bind(metrics.get(i).getMetricName(), data.toString());
+      privateAnalyticsMetricViewHolder.bind(metricName, data.toString());
     } catch (Exception e) {
-      logger.e("Could not get data for metric: " + metrics.get(i).getMetricName(), e);
+      logger.e("Could not get data for metric: " + metricName, e);
+      privateAnalyticsMetricViewHolder.bind(metricName, e.getMessage());
     }
   }
 

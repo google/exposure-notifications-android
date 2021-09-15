@@ -19,7 +19,6 @@ package com.google.android.apps.exposurenotification.edgecases;
 
 import android.os.Bundle;
 import android.text.method.LinkMovementMethod;
-import android.text.style.URLSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -147,7 +146,7 @@ public class SingleHomePageEdgeCaseFragment extends AbstractEdgeCaseFragment {
         setContainerVisibility(containerView, true);
         title.setText(R.string.switch_app_for_exposure_notifications);
         text.setText(getString(R.string.focus_lost_warning,
-            StringUtils.getApplicationName(requireContext())));
+            StringUtils.getApplicationTitle(requireContext())));
         actionButton.setText(R.string.switch_app_for_exposure_notifications_action);
         configureButtonForStartEn(actionButton, isInFlight);
         break;

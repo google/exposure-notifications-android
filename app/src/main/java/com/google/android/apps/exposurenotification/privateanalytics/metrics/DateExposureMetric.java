@@ -55,7 +55,7 @@ public class DateExposureMetric implements PrivateAnalyticsMetric {
     Instant exposureNotificationTime = exposureNotificationSharedPreferences
         .getExposureNotificationLastShownTime();
     Instant privateAnalyticsWorkerLastTime = exposureNotificationSharedPreferences
-        .getPrivateAnalyticsWorkerLastTime();
+        .getPrivateAnalyticsWorkerLastTimeForDaily();
 
     if (exposureNotificationTime.isAfter(privateAnalyticsWorkerLastTime)) {
       // A notification has been shown since the last private analytics submission,

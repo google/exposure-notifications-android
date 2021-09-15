@@ -31,7 +31,7 @@
   <string name="onboarding_exposure_notifications_detail">Primajte obavijesti ako ste bili u blizini osobe koja je prijavila da ima COVID-19.
     \n\nNa telefonu je uključen Bluetooth da bi na siguran način prikupljao nasumične ID-jeve i dijelio ih s drugim telefonima u blizini.
     \n\nKako bi se utvrdilo hoće li vam se poslati obavijest na temelju parametara koje postavlja vaš zavod za javno zdravstvo, koristit će se datum, trajanje i jačina signala povezani s mogućom izloženošću.
-    \n\nAko se testiranjem potvrdi da ste pozitivni, možete dobiti podsjetnik da podijelite nalaze sa svojim zavodom za javno zdravstvo.</string>
+    \n\nMožda ćete dobiti obavijest da podijelite dijagnozu sa svojim zavodom za javno zdravstvo ako primite SMS s rezultatom testiranja.</string>
   <string name="onboarding_metrics_title">Pomozite nam da poboljšamo ovu aplikaciju</string>
   <string name="onboarding_metrics_subtitle">Dijelite podatke o upotrebi i izvedbi aplikacije s Googleom</string>
   <string name="onboarding_metrics_description">Radi održavanja i poboljšavanja aplikacije s Googleom se dijele određeni ograničeni podaci o izvedbi i upotrebi aplikacije bez podataka o identitetu. Ti podaci ne otkrivaju vaš identitet. %1$s</string>
@@ -130,6 +130,12 @@
     <item quantity="other">Podnijeli ste previše zahtjeva. Još jedan kôd možete zatražiti za %1$d minuta.</item>
   </plurals>
   <string name="notify_others_notification_title">Pomognite obavijestiti druge koji su možda bili izloženi</string>
+  <string name="notify_others_if_result_updated_title">Obavijestiti druge ljude ako se vaši rezultati ažuriraju?</string>
+  <string name="notify_others_if_result_updated_content">Aplikacija %1$s može vam poslati drugu šifru za potvrdu rezultata testa. Automatski ažurirajte status u vezi s bolešću COVID-19 i podijelite nasumične ID-jeve za dodatne dane pomoću te druge šifre kako biste pomogli obavijestiti druge koji su možda bili izloženi. Vaš identitet ne dijeli se s drugima.</string>
+  <string name="btn_pre_auth_yes">Da, želim pomoći</string>
+  <string name="btn_pre_auth_no">Ne, hvala</string>
+  <string name="thank_you_for_notifying_title">Hvala što pomažete</string>
+  <string name="thank_you_for_notifying_content">Aplikacija %1$s upravo je ažurirala vašu vremensku traku izloženosti i možda je upozorila druge o mogućoj izloženosti.</string>
   <string name="settings_exposure_notifications_subtitle">Obavješćivanje o izloženosti</string>
   <string name="settings_app_analytics_subtitle">Dijeljenje upotrebe i izvedbe aplikacije</string>
   <string name="settings_privacy_policy">Pravila o privatnosti</string>
@@ -195,5 +201,19 @@
   <string name="share_diagnosis_share_test_result_subtitle">Hvala vam što pomažete zaustaviti COVID-19.</string>
   <string name="share_diagnosis_share_test_result_body">Kad podijelite rezultat, možete podijeliti i datum pojave simptoma. Ti podaci mogu pomoći da se zaustavi širenje bolesti COVID-19 i spase životi.</string>
   <string name="sms_intercept_notice_title">Novosti</string>
-  <string name="sms_intercept_notice_content">Ako vam lokalni zavod za javno zdravstvo pošalje rezultat testiranja, aplikacija vam može prikazati podsjetnik da pošaljete svoj rezultat i pomognete upozoriti druge o mogućoj izloženosti. Tu funkciju uvijek možete onemogućiti u postavkama.</string>
+  <string name="sms_intercept_notice_content">Ako primite SMS s rezultatima testiranja, možda ćete dobiti obavijest da podijelite dijagnozu u obavijestima o izloženosti. To uvijek možete onemogućiti u postavkama.</string>
+  <string name="share_upload_title">Podijelite svoj rezultat da biste zaštitili svoju zajednicu</string>
+  <string name="share_upload_test_result_source_description">Rezultat testiranja šalje %1$s</string>
+  <string name="share_upload_symptoms_subtitle">Početak simptoma:</string>
+  <string name="share_upload_symptoms_date_fixed_description">Datum simptoma naveo je zavod za javno zdravstvo %1$s</string>
+  <string name="share_upload_skip_choice">Preskoči</string>
+  <string name="share_upload_travel_subtitle">Povijest putovanja</string>
+  <string name="travel_history_travelled_recently_choice">Putovao/putovala u posljednjih 14 dana</string>
+  <string name="travel_history_no_travel_choice">Nema</string>
+  <string name="share_upload_select_a_date_choice">Odaberite datum</string>
+  <string name="share_upload_status_subtitle">COVID-19: status</string>
+  <string name="share_upload_status_confirmed">Pozitivno</string>
+  <string name="share_upload_status_negative">Negativno</string>
+  <string name="share_upload_status_likely">Vjerojatno</string>
+  <string name="share_diagnosis_progress_tracker">Korak %1$d. od %2$d</string>
 </resources>

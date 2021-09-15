@@ -22,16 +22,16 @@
   <string name="navigate_up">Gå tilbage til den forrige skærm</string>
   <string name="btn_close_label">Luk</string>
   <string name="updated_permission_disabled_notification_title">Det var ikke muligt at søge efter eksponeringer</string>
-  <string name="updated_bluetooth_location_state_notification">Du skal aktivere Bluetooth og enhedens placeringsindstilling, før du kan fortsætte med at søge efter mulige eksponeringer</string>
+  <string name="updated_bluetooth_location_state_notification">Du skal aktivere Bluetooth og enhedens lokationsindstilling, før du kan fortsætte med at søge efter mulige eksponeringer</string>
   <string name="updated_bluetooth_state_notification">Du skal aktivere Bluetooth, før du kan fortsætte med at søge efter mulige eksponeringer.</string>
-  <string name="updated_location_state_notification">Du skal aktivere enhedens placeringsindstilling, før du kan fortsætte med at søge efter mulige eksponeringer</string>
+  <string name="updated_location_state_notification">Du skal aktivere enhedens lokationsindstilling, før du kan fortsætte med at søge efter mulige eksponeringer</string>
   <string name="onboarding_opt_in_title">Der kræves tilladelser for at aktivere notifikationer om eksponering</string>
   <string name="onboarding_finish_title">Fortsættelse af Der kræves tilladelser for at aktivere notifikationer om eksponering</string>
   <string name="onboarding_exposure_notifications_title">Aktivér notifikationer om eksponering</string>
   <string name="onboarding_exposure_notifications_detail">Få besked, hvis du har været i nærheden af nogen, der har rapporteret, at de er smittet med COVID-19.
     \n\nDin telefon bruger Bluetooth til sikkert at indsamle og dele vilkårlige id\'er med andre telefoner i nærheden.
     \n\nDatoen, varigheden og signalstyrken i forbindelse med en mulig eksponering bruges til at afgøre, om du skal underrettes i overensstemmelse med de parametre, som sundhedsmyndighederne har angivet.
-    \n\nHvis du bliver testet positiv, modtager du muligvis en påmindelse om at dele dit testresultat med sundhedsmyndighederne.</string>
+    \n\nDu modtager muligvis en notifikation, hvor du bliver bedt om at dele din diagnose med sundhedsmyndighederne, hvis du får en sms med dit testresultat.</string>
   <string name="onboarding_metrics_title">Hjælp med at forbedre denne app</string>
   <string name="onboarding_metrics_subtitle">Del data om appforbrug og -effektivitet med Google</string>
   <string name="onboarding_metrics_description">For at vedligeholde og forbedre appen deles visse begrænsede data om appforbrug og -effektivitet med Google. Der deles ingen personlige oplysninger. Disse data er ikke personhenførbare. %1$s</string>
@@ -128,6 +128,12 @@
     <item quantity="other">Du har foretaget for mange anmodninger. Du kan anmode om en ny kode om %1$d minutter.</item>
   </plurals>
   <string name="notify_others_notification_title">Hjælp os med at give besked til andre, som muligvis er blevet eksponeret</string>
+  <string name="notify_others_if_result_updated_title">Vil du give andre brugere besked, når dine resultater opdateres?</string>
+  <string name="notify_others_if_result_updated_content">%1$s sender dig muligvis endnu en kode for at bekræfte dit testresultat. Du kan opdatere din COVID-19-status automatisk og dele flere dage med vilkårlige id\'er vha. denne kode. Dette hjælper med at underrette andre om mulig eksponering. Din identitet deles ikke med andre.</string>
+  <string name="btn_pre_auth_yes">Ja, jeg vil gerne hjælpe</string>
+  <string name="btn_pre_auth_no">Nej tak</string>
+  <string name="thank_you_for_notifying_title">Tak for hjælpen</string>
+  <string name="thank_you_for_notifying_content">%1$s har netop opdateret din tidslinje for eksponering og muligvis underrettet andre brugere om mulig eksponering.</string>
   <string name="settings_exposure_notifications_subtitle">Notifikationer om eksponering</string>
   <string name="settings_app_analytics_subtitle">Deling af appforbrug og -effektivitet</string>
   <string name="settings_privacy_policy">Privatlivspolitik</string>
@@ -155,9 +161,9 @@
   <string name="exposure_notifications_are_inactive">Systemet til notifikationer om eksponering er inaktivt</string>
   <string name="device_settings">Enhedsindstillinger</string>
   <string name="manage_storage">Administrer lagerplads</string>
-  <string name="location_off_warning">Aktivér din enheds placeringsindstilling for at få besked om mulig eksponering for COVID-19.</string>
+  <string name="location_off_warning">Aktivér din enheds lokationsindstilling for at få besked om mulig eksponering for COVID-19.</string>
   <string name="ble_off_warning">Aktivér Bluetooth for at få besked om mulig eksponering for COVID-19.</string>
-  <string name="location_ble_off_warning">Hvis du vil have besked om mulig eksponering for COVID-19, skal du aktivere Bluetooth og din enheds placeringsindstilling.</string>
+  <string name="location_ble_off_warning">Hvis du vil have besked om mulig eksponering for COVID-19, skal du aktivere Bluetooth og din enheds lokationsindstilling.</string>
   <string name="storage_low_warning">Frigør lagerplads på din telefon for at få besked om mulig eksponering for COVID-19.</string>
   <string name="not_in_allowlist_warning">Notifikationer om eksponering er ikke længere tilgængeligt i dit område.</string>
   <string name="hw_not_supported_warning">Enheden understøtter ikke notifikationer om eksponering. Se %1$s.</string>
@@ -193,5 +199,19 @@
   <string name="share_diagnosis_share_test_result_subtitle">Tak, fordi du er med til at begrænse spredningen af COVID-19.</string>
   <string name="share_diagnosis_share_test_result_body">Når du deler dit resultat, kan du også vælge at oplyse, hvornår du begyndte at opleve symptomer. Disse oplysninger er med til at begrænse spredningen af COVID-19 og redde liv.</string>
   <string name="sms_intercept_notice_title">Nyheder</string>
-  <string name="sms_intercept_notice_content">Hvis de lokale sundhedsmyndigheder sender dig et testresultat, kan din app give dig besked med en påmindelse om at indsende dit resultat og hjælpe med at underrette andre om mulig eksponering. Du kan til enhver tid deaktivere dette i indstillingerne.</string>
+  <string name="sms_intercept_notice_content">Du modtager muligvis en notifikation, hvor du bliver bedt om at dele din diagnose i systemet til notifikationer om eksponering, hvis du får en sms med dit testresultat. Du kan til enhver tid deaktivere dette i indstillingerne.</string>
+  <string name="share_upload_title">Del dit testresultat for at hjælpe dit lokalsamfund</string>
+  <string name="share_upload_test_result_source_description">Testresultatet er sendt af %1$s</string>
+  <string name="share_upload_symptoms_subtitle">Symptomet startede</string>
+  <string name="share_upload_symptoms_date_fixed_description">Startdatoen for symptomerne angives af %1$s</string>
+  <string name="share_upload_skip_choice">Spring over</string>
+  <string name="share_upload_travel_subtitle">Rejsehistorik</string>
+  <string name="travel_history_travelled_recently_choice">Har rejst inden for de sidste 14 dage</string>
+  <string name="travel_history_no_travel_choice">Ingen</string>
+  <string name="share_upload_select_a_date_choice">Vælg en dato</string>
+  <string name="share_upload_status_subtitle">COVID-19-status</string>
+  <string name="share_upload_status_confirmed">Positiv</string>
+  <string name="share_upload_status_negative">Negativ</string>
+  <string name="share_upload_status_likely">Sandsynlig</string>
+  <string name="share_diagnosis_progress_tracker">Trin %1$d af %2$d</string>
 </resources>

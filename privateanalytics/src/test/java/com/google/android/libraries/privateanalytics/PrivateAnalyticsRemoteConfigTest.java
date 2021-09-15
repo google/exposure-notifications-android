@@ -22,6 +22,7 @@ import static com.google.common.truth.Truth.assertThat;
 import android.net.Uri;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import com.google.android.libraries.privateanalytics.Qualifiers.RemoteConfigUri;
+import com.google.android.libraries.privateanalytics.testsupport.FakePrivateAnalyticsLoggerFactory;
 import com.google.android.libraries.privateanalytics.testsupport.FakeRequestQueue;
 import com.google.android.libraries.privateanalytics.testsupport.LogcatEventListener;
 import com.google.android.libraries.privateanalytics.utils.RequestQueueWrapper;
@@ -45,8 +46,9 @@ public class PrivateAnalyticsRemoteConfigTest extends TestCase {
 
   @Before
   public void setUp() {
-    privateAnalyticsRemoteConfig = new DefaultPrivateAnalyticsRemoteConfig(REMOTE_CONFIG_URI,
-        Optional.of(logger));
+    privateAnalyticsRemoteConfig = new DefaultPrivateAnalyticsRemoteConfig(
+        REMOTE_CONFIG_URI, Optional.of(logger),
+        new FakePrivateAnalyticsLoggerFactory());
     privateAnalyticsRemoteConfig.setRequestQueue(queue);
   }
 

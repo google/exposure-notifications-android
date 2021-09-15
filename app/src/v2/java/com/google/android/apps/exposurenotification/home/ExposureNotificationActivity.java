@@ -17,6 +17,8 @@
 
 package com.google.android.apps.exposurenotification.home;
 
+import static com.google.android.gms.nearby.exposurenotification.ExposureNotificationClient.EXTRA_IS_FROM_PRE_AUTHORIZATION;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -25,6 +27,7 @@ import androidx.annotation.Nullable;
 import com.google.android.apps.exposurenotification.common.IntentUtil;
 import com.google.android.apps.exposurenotification.exposure.PossibleExposureFragment;
 import com.google.android.apps.exposurenotification.notify.ShareDiagnosisFragment;
+import com.google.android.apps.exposurenotification.notify.PreAuthTEKsReleasedFragment;
 import com.google.android.apps.exposurenotification.settings.ExposureAboutFragment;
 import com.google.common.base.Optional;
 import dagger.hilt.android.AndroidEntryPoint;
@@ -64,6 +67,12 @@ public final class ExposureNotificationActivity extends BaseActivity {
         } else if (extras.getBoolean(IntentUtil.EXTRA_SMS_VERIFICATION, false)) {
           Uri deeplinkUri = extras.getParcelable(IntentUtil.EXTRA_DEEP_LINK);
           maybeLaunchFromDeeplink(deeplinkUri);
+        } else if (extras.getBoolean(EXTRA_IS_FROM_PRE_AUTHORIZATION, false)) {
+          BaseFragment teksReleasedFragment = PreAuthTEKsReleasedFragment.newInstance();
+          transitionToFragmentThroughAnotherFragmentWithBackStack(
+              /* destinationFragment= */teksReleasedFragment,
+              /* transitFragment= */SinglePageHomeFragment.newInstance()
+          );
         } else {
           transitionToFragmentDirect(isOnNewIntent
               ? SinglePageHomeFragment.newInstance() : SplashFragment.newInstance());

@@ -28,10 +28,10 @@
   <string name="onboarding_opt_in_title">सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सूचना दिने प्रणाली अन गर्न तपाईंले दिनु पर्ने अनुमतिहरू</string>
   <string name="onboarding_finish_title">सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सूचना दिने प्रणाली अन गर्न तपाईंले दिनु पर्ने अनुमतिहरूको निरन्तरता</string>
   <string name="onboarding_exposure_notifications_title">सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सूचना दिने प्रणाली अन गर्नु…</string>
-  <string name="onboarding_exposure_notifications_detail">तपाईं आफूलाई COVID-19 लागेको जानकारी पेस गरेको कुनै व्यक्तिको नजिक पुग्नुभएको छ भने सोबारे सूचना प्राप्त गर्नुहोस्।
+  <string name="onboarding_exposure_notifications_detail">तपाईं आफूलाई COVID-19 लागेको जानकारी पेस गरेको कुनै व्यक्तिको नजिक पुग्नुभएको छ भने त्यसका बारेमा सूचना प्राप्त गर्नुहोस्।
     \n\nतपाईंको फोनले सुरक्षित रूपमा क्रमरहित ID हरू सङ्कलन गर्न र तिनलाई वरपर रहेका अन्य फोनहरूसँग सेयर गर्न ब्लुटुथ प्रयोग गर्छ।
     \n\nतपाईं सङ्क्रमित व्यक्तिको सम्पर्कमा आएको हुन सक्ने कुराका बारेमा तपाईंलाई सूचित गर्ने वा नगर्ने भन्ने कुरा निर्धारण गर्न तपाईं सम्भवतः सङ्क्रमित व्यक्तिको सम्पर्कमा आएको मिति, कति समयसम्म सो व्यक्तिको नजिक रहनुभयो र त्यस बखत नेटवर्कको सिग्नल कस्तो थियो भन्ने कुराको जानकारी प्रयोग गरिने छ। तपाईंको क्षेत्रको जनस्वास्थ्य निकायले तोकेका मापदण्डहरूका आधारमा तपाईंलाई सो कुराका बारेमा सूचित गर्ने वा नगर्ने भन्ने कुरा निर्धारण गरिने छ।
-    \n\nतपाईंको परीक्षणको नतिजा पोजेटिभ आयो भने तपाईं जनस्वास्थ्य निकायसँग आफ्नो परीक्षणको नतिजा सेयर गर्न सम्झाउने एउटा रिमाइन्डर प्राप्त गर्न सक्नुहुन्छ।</string>
+    \n\nतपाईंले SMS मार्फत आफ्नो परीक्षणको नतिजा प्राप्त गर्नुभयो भने तपाईंलाई स्वास्थ्य निकायसँग उक्त परीक्षणको नतिजा सेयर गर्न भनी एउटा सूचना पठाइन सक्छ।</string>
   <string name="onboarding_metrics_title">यो एप सुधार्न मद्दत गर्नुहोस्</string>
   <string name="onboarding_metrics_subtitle">Google लाई एपको प्रयोग र कार्यसम्पादनसम्बन्धी डेटा पठाउनुहोस्</string>
   <string name="onboarding_metrics_description">यो एप सञ्चालन गर्न तथा यसलाई सुधार्न Google लाई एपको कार्यसम्पादन तथा प्रयोगसम्बन्धी केही सीमित डेटा पठाइन्छ। ती डेटा Google लाई पठाउनुअघि ती डेटाबाट प्रयोगकर्ताको पहिचान खुलाउने विवरण हटाइन्छ। तसर्थ ती डेटाले तपाईंको पहिचान खुलाउँदैन। %1$s</string>
@@ -128,6 +128,12 @@
     <item quantity="other">तपाईंले पुष्टि कोड पठाइयोस् भनी अत्यन्त धेरै पटक अनुरोध गर्नुभएको छ। तपाईं अबको %1$d मिनेटपछि फेरि अर्को कोड पठाइयोस् भनी अनुरोध गर्न सक्नुहुन्छ।</item>
   </plurals>
   <string name="notify_others_notification_title">तपाईंको सम्पर्कमा आएका हुन सक्ने अन्य मान्छेलाई सूचित गर्न मद्दत गर्नुहोस्</string>
+  <string name="notify_others_if_result_updated_title">तपाईंको COVID-19 परीक्षणको नतिजा परिवर्तन भएका खण्डमा अन्य मान्छेहरूलाई सूचित गर्ने हो?</string>
+  <string name="notify_others_if_result_updated_content">तपाईंको परीक्षणको नतिजा पुष्टि गर्नका निम्ति %1$s ले तपाईंलाई दोस्रो कोड पठाउन सक्छ। तपाईं यो दोस्रो कोड प्रयोग गरी COVID-19 सम्बन्धी आफ्नो स्थिति स्वतः परिवर्तन गर्नुका साथै अन्य केही दिनसम्म क्रमरहित ID हरू सेयर गर्न सक्नुहुन्छ। तपाईंले यसो गर्नुभयो भने अन्य मान्छेहरू तपाईंसँग सम्पर्कमा आएको हुन सक्ने जानकारी थाहा पाउन सक्छन्। अन्य मान्छेहरूसँग तपाईंको पहिचान खुलाइने छैन।</string>
+  <string name="btn_pre_auth_yes">हो, म मद्दत गर्न चाहन्छु</string>
+  <string name="btn_pre_auth_no">पर्दैन</string>
+  <string name="thank_you_for_notifying_title">मद्दत गर्नुभएकोमा धन्यवाद</string>
+  <string name="thank_you_for_notifying_content">%1$s ले भर्खरै कोरोना भाइरस सङ्क्रमित व्यक्तिसँगको सम्पर्कसम्बन्धी तपाईंको टाइमलाइन परिवर्तन गरेको छ। साथै यसले अन्य मान्छेहरूलाई उनीहरू तपाईंसँग सम्पर्कमा आएको हुन सक्ने भनी जानकारी गराएको हुन सक्छ।</string>
   <string name="settings_exposure_notifications_subtitle">सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सूचना दिने प्रणाली</string>
   <string name="settings_app_analytics_subtitle">एपको प्रयोग र कार्यसम्पादनसम्बन्धी डेटा सेयर गर्ने</string>
   <string name="settings_privacy_policy">गोपनीयता नीति</string>
@@ -193,5 +199,19 @@
   <string name="share_diagnosis_share_test_result_subtitle">COVID-19 को सङ्क्रमण रोक्न सघाउनुभएकोमा धन्यवाद।</string>
   <string name="share_diagnosis_share_test_result_body">आफ्नो नतिजा सेयर गर्दा तपाईं आफूलाई कहिलेदेखि लक्षण देखिन थालेको हो भन्ने जानकारी पनि सेयर गर्न सक्नुहुन्छ। यो जानकारीले COVID-19 को सङ्क्रमण रोक्न र मान्छेको जीवन बचाउन मद्दत गर्न सक्छ।</string>
   <string name="sms_intercept_notice_title">नयाँ के छ</string>
-  <string name="sms_intercept_notice_content">तपाईंको स्थानीय स्वास्थ्य निकायले परीक्षणको नतिजा पठाएका खण्डमा तपाईंको एपले तपाईंलाई एउटा रिमाइन्डर पठाएर सो नतिजा पेस गर्न स्मरण गराउन सक्छ। यसरी तपाईंको एपले कोरोना भाइरस सङ्क्रमितसँग घुलमिल भएको हुन सक्ने कुराका बारेमा अरूलाई सूचित गर्न मद्दत गर्छ। तपाईं जुनसुकै बेला सेटिङमा गई यो सुविधा अफ गर्न सक्नुहुन्छ।</string>
+  <string name="sms_intercept_notice_content">तपाईंले तपाईंको परीक्षणको नतिजाका बारेमा SMS मार्फत जानकारी प्राप्त गर्नुभयो भने तपाईंलाई सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सूचना दिने प्रणालीमा निदानसम्बन्धी जानकारी उपलब्ध गराउन अनुरोध गर्दै सूचना पठाइन सक्छ तपाईं जुनसुकै बेला सेटिङमा गई यो सुविधा अफ गर्न सक्नुहुन्छ।</string>
+  <string name="share_upload_title">आफ्नो समुदाय सुरक्षित राख्नका निम्ति आफ्नो परीक्षणको नतिजा सेयर गर्नुहोस्</string>
+  <string name="share_upload_test_result_source_description">परीक्षणको नतिजा पठाउने स्वास्थ्य निकाय: %1$s</string>
+  <string name="share_upload_symptoms_subtitle">लक्षण देखिएको मिति</string>
+  <string name="share_upload_symptoms_date_fixed_description">%1$s ले लक्षण देखिन थालेको मिति प्रदान गर्नुभएको छ</string>
+  <string name="share_upload_skip_choice">स्किप गर्नुहोस्</string>
+  <string name="share_upload_travel_subtitle">यात्राको इतिहास</string>
+  <string name="travel_history_travelled_recently_choice">मैले पछिल्ला १४ दिनभित्र यात्रा गरेको छु</string>
+  <string name="travel_history_no_travel_choice">कुनै पनि होइन</string>
+  <string name="share_upload_select_a_date_choice">मिति चयन गर्नुहोस्</string>
+  <string name="share_upload_status_subtitle">COVID-19 सम्बन्धी स्थिति</string>
+  <string name="share_upload_status_confirmed">पोजेटिभ</string>
+  <string name="share_upload_status_negative">नेगेटिभ</string>
+  <string name="share_upload_status_likely">सङ्क्रमण भएको हुन सक्छ</string>
+  <string name="share_diagnosis_progress_tracker">%2$d मध्ये %1$d औँ चरण</string>
 </resources>

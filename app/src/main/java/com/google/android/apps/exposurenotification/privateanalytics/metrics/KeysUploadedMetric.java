@@ -31,14 +31,15 @@ import org.threeten.bp.Instant;
 /**
  * Class for generating an output vector that captures, when keys are uploaded, whether a
  * notification was shown in the past 14 days.
- * <p>
+ * <p><ul>
  * Bins signification:
- * - 0: Error
- * - 1: No notification in the past 14 days
- * - 2: classification 1 exposure in past 14 days
- * - 3: classification 2 exposure in past 14 days
- * - 4: classification 3 exposure in past 14 days
- * - 5: classification 4 exposure in past 14 days
+ * <li> 0: Error
+ * <li> 1: No notification in the past 14 days
+ * <li> 2: classification 1 exposure in past 14 days
+ * <li> 3: classification 2 exposure in past 14 days
+ * <li> 4: classification 3 exposure in past 14 days
+ * <li> 5: classification 4 exposure in past 14 days
+ * </ul>
  */
 public class KeysUploadedMetric implements PrivateAnalyticsMetric {
 
@@ -70,7 +71,7 @@ public class KeysUploadedMetric implements PrivateAnalyticsMetric {
     Instant lastSubmittedKeysTime = exposureNotificationSharedPreferences
         .getPrivateAnalyticsLastSubmittedKeysTime();
     Instant workerLastTime = exposureNotificationSharedPreferences
-        .getPrivateAnalyticsWorkerLastTime();
+        .getPrivateAnalyticsWorkerLastTimeForDaily();
     if (lastSubmittedKeysTime.isAfter(workerLastTime)) {
       // Keys have been submitted since the last analytics upload.
       // Check whether a notification was shown in the past NUM_DAYS and report its classification.

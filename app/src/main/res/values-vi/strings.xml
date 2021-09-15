@@ -31,7 +31,7 @@
   <string name="onboarding_exposure_notifications_detail">Nhận thông báo nếu bạn từng tiếp xúc gần với người đã báo cáo là bị nhiễm COVID-19.
     \n\nĐiện thoại của bạn sử dụng Bluetooth để thu thập và chia sẻ mã nhận dạng ngẫu nhiên một cách an toàn với các điện thoại khác ở gần.
     \n\nNgày, khoảng thời gian có khả năng tiếp xúc và cường độ tín hiệu Bluetooth liên quan đến lần tiếp xúc đó sẽ được dùng để xác định xem bạn có nhận được thông báo dựa trên các thông số do cơ quan y tế cộng đồng thiết lập hay không.
-    \n\nNếu có kết quả xét nghiệm dương tính, bạn có thể nhận được một lời nhắc chia sẻ kết quả xét nghiệm của mình với cơ quan y tế.</string>
+    \n\nBạn có thể nhận được thông báo để chia sẻ thông tin chẩn đoán với cơ quan y tế cộng đồng nếu nhận được tin nhắn SMS có kết quả xét nghiệm.</string>
   <string name="onboarding_metrics_title">Giúp cải tiến ứng dụng này</string>
   <string name="onboarding_metrics_subtitle">Chia sẻ dữ liệu hiệu suất và mức sử dụng ứng dụng với Google</string>
   <string name="onboarding_metrics_description">Nhằm giúp duy trì và cải tiến ứng dụng này, một số dữ liệu hạn chế về hiệu suất và mức sử dụng ứng dụng (đã loại bỏ thông tin nhận dạng cá nhân) sẽ được chia sẻ với Google. Dữ liệu này không xác định danh tính của bạn. %1$s</string>
@@ -128,6 +128,12 @@
     <item quantity="other">Bạn đã đưa ra quá nhiều yêu cầu. Bạn có thể yêu cầu một mã khác sau %1$d phút nữa.</item>
   </plurals>
   <string name="notify_others_notification_title">Giúp thông báo cho những người khác có thể đã tiếp xúc với bạn</string>
+  <string name="notify_others_if_result_updated_title">Thông báo cho người khác biết khi có kết quả xét nghiệm mới?</string>
+  <string name="notify_others_if_result_updated_content">%1$s có thể gửi cho bạn mã thứ hai để giúp bạn xác nhận kết quả xét nghiệm. Bạn có thể tự cập nhật trạng thái mắc COVID-19 của mình và chia sẻ mã nhận dạng ngẫu nhiên bằng mã thứ hai này trong vài ngày nữa. Nhờ vậy mà những người khác được thông báo về khả năng tiếp xúc. Những người này sẽ không biết danh tính của bạn.</string>
+  <string name="btn_pre_auth_yes">Được, tôi sẽ thông báo</string>
+  <string name="btn_pre_auth_no">Không, cảm ơn</string>
+  <string name="thank_you_for_notifying_title">Cảm ơn bạn đã trợ giúp</string>
+  <string name="thank_you_for_notifying_content">%1$s vừa cập nhật lịch trình tiếp xúc của bạn và có thể đã cảnh báo những người khác về khả năng tiếp xúc.</string>
   <string name="settings_exposure_notifications_subtitle">Thông báo tiếp xúc</string>
   <string name="settings_app_analytics_subtitle">Chia sẻ dữ liệu hiệu suất và mức sử dụng ứng dụng</string>
   <string name="settings_privacy_policy">Chính sách quyền riêng tư</string>
@@ -193,5 +199,19 @@
   <string name="share_diagnosis_share_test_result_subtitle">Cảm ơn bạn đã giúp ngăn chặn COVID-19.</string>
   <string name="share_diagnosis_share_test_result_body">Khi chia sẻ kết quả của mình, bạn cũng có thể chọn chia sẻ lúc bắt đầu có triệu chứng. Thông tin này có thể giúp ngăn chặn COVID-19 lây lan và bảo vệ cộng đồng.</string>
   <string name="sms_intercept_notice_title">Tính năng mới</string>
-  <string name="sms_intercept_notice_content">Nếu cơ quan y tế địa phương gửi cho bạn kết quả xét nghiệm, ứng dụng có thể nhắc bạn gửi kết quả xét nghiệm đó, đồng thời giúp thông báo cho những người khác về khả năng tiếp xúc. Bạn có thể tắt tính năng này bất cứ lúc nào trong phần cài đặt.</string>
+  <string name="sms_intercept_notice_content">Nếu nhận được tin nhắn SMS về kết quả xét nghiệm của mình, thì bạn có thể nhận được thông báo yêu cầu chia sẻ thông tin chẩn đoán trong thông báo tiếp xúc. Bạn có thể tắt tính năng này bất cứ lúc nào trong phần cài đặt.</string>
+  <string name="share_upload_title">Chia sẻ kết quả xét nghiệm của bạn để bảo vệ cộng đồng</string>
+  <string name="share_upload_test_result_source_description">%1$s đã gửi kết quả xét nghiệm</string>
+  <string name="share_upload_symptoms_subtitle">Ngày bắt đầu có triệu chứng</string>
+  <string name="share_upload_symptoms_date_fixed_description">Ngày khởi phát triệu chứng do %1$s cung cấp</string>
+  <string name="share_upload_skip_choice">Bỏ qua</string>
+  <string name="share_upload_travel_subtitle">Lịch trình di chuyển</string>
+  <string name="travel_history_travelled_recently_choice">Có di chuyển trong 14 ngày qua</string>
+  <string name="travel_history_no_travel_choice">Không</string>
+  <string name="share_upload_select_a_date_choice">Chọn ngày</string>
+  <string name="share_upload_status_subtitle">Trạng thái mắc COVID-19</string>
+  <string name="share_upload_status_confirmed">Dương tính</string>
+  <string name="share_upload_status_negative">Âm tính</string>
+  <string name="share_upload_status_likely">Có khả năng</string>
+  <string name="share_diagnosis_progress_tracker">Bước %1$d/%2$d</string>
 </resources>

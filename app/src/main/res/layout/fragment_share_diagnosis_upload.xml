@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright 2021 Google LLC
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      https://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  ~
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:orientation="vertical"
+  android:accessibilityPaneTitle="@string/share_upload_title">
+
+  <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize">
+
+    <ImageButton
+      android:id="@android:id/home"
+      style="?attr/borderlessButtonStyle"
+      android:layout_width="?attr/actionBarSize"
+      android:layout_height="match_parent"
+      android:background="?attr/selectableItemBackgroundBorderless"
+      android:contentDescription="@string/btn_close_label"
+      app:srcCompat="@drawable/ic_close"
+      android:layout_alignParentStart="true" />
+
+  </RelativeLayout>
+
+  <androidx.core.widget.NestedScrollView
+    android:id="@+id/share_diagnosis_scroll_view"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1"
+    android:isScrollContainer="false"
+    android:fillViewport="true">
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:paddingHorizontal="@dimen/padding_large">
+
+      <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/padding_normal"
+        android:gravity="center"
+        android:text="@string/share_upload_title"
+        android:textAppearance="?attr/textAppearanceHeadline5" />
+
+      <TextView
+        android:id="@+id/step_x_of_y_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_medium"
+        android:layout_marginBottom="@dimen/padding_normal"
+        android:layout_gravity="center_horizontal"
+        android:textAppearance="?attr/textAppearanceCaption" />
+
+      <!-- TODO merge ic_upload_info with ic_review_info -->
+      <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:importantForAccessibility="no"
+        android:layout_marginVertical="@dimen/padding_extra_large"
+        android:layout_gravity="center_horizontal"
+        android:contentDescription="@null"
+        app:srcCompat="@drawable/ic_upload_info" />
+
+      <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_large"
+        android:layout_marginBottom="@dimen/padding_small"
+        android:text="@string/share_review_status_subtitle"
+        android:textAllCaps="true"
+        android:textAppearance="?attr/textAppearanceBody2" />
+
+      <TextView
+        android:id="@+id/share_upload_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?attr/textAppearanceSubtitle1"
+        android:textStyle="bold" />
+
+      <TextView
+        android:id="@+id/share_upload_test_result_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_small"
+        android:layout_marginBottom="@dimen/padding_normal"
+        android:textAppearance="?attr/textAppearanceCaption" />
+
+      <include layout="@layout/horizontal_divider" />
+
+      <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_normal"
+        android:layout_marginBottom="@dimen/padding_small"
+        android:text="@string/share_upload_symptoms_subtitle"
+        android:textAllCaps="true"
+        android:textAppearance="?attr/textAppearanceBody2" />
+
+      <com.google.android.material.chip.ChipGroup
+        android:id="@+id/has_symptom_chip_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/padding_small"
+        app:chipSpacingHorizontal="@dimen/padding_small"
+        app:singleLine="true"
+        app:singleSelection="true"
+        app:selectionRequired="true">
+
+        <com.google.android.material.chip.Chip
+          android:id="@+id/has_symptom_confirmed_selected_date_choice"
+          style="@style/Widget.ExposureNotifications.Chip.Choice"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/share_upload_select_a_date_choice"
+          app:chipEndPadding="@dimen/padding_normal"
+          app:chipStartPadding="@dimen/padding_normal" />
+
+        <com.google.android.material.chip.Chip
+          android:id="@+id/skip_symptom_date_choice"
+          style="@style/Widget.ExposureNotifications.Chip.Choice"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/share_upload_skip_choice"
+          app:chipEndPadding="@dimen/padding_normal"
+          app:chipStartPadding="@dimen/padding_normal" />
+
+      </com.google.android.material.chip.ChipGroup>
+
+      <TextView
+        android:id="@+id/has_symptoms_date_fixed_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_small"
+        android:layout_marginBottom="@dimen/padding_small"
+        android:textAppearance="?attr/textAppearanceCaption"
+        android:visibility="gone"/>
+
+      <LinearLayout
+        android:id="@+id/travel_history_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <include layout="@layout/horizontal_divider" />
+
+        <TextView
+          android:id="@+id/share_upload_travel_subtitle"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/padding_normal"
+          android:layout_marginBottom="@dimen/padding_small"
+          android:text="@string/share_upload_travel_subtitle"
+          android:textAllCaps="true"
+          android:textAppearance="?attr/textAppearanceBody2" />
+
+        <com.google.android.material.chip.ChipGroup
+          android:id="@+id/travel_history_chip_group"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          app:chipSpacingHorizontal="@dimen/padding_small"
+          app:singleSelection="true"
+          app:selectionRequired="true">
+
+          <com.google.android.material.chip.Chip
+            android:id="@+id/travel_confirmed_choice"
+            style="@style/Widget.ExposureNotifications.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/travel_history_travelled_recently_choice"
+            app:chipEndPadding="@dimen/padding_normal"
+            app:chipStartPadding="@dimen/padding_normal"/>
+
+          <com.google.android.material.chip.Chip
+            android:id="@+id/no_travel_choice"
+            style="@style/Widget.ExposureNotifications.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/travel_history_no_travel_choice"
+            app:chipEndPadding="@dimen/padding_normal"
+            app:chipStartPadding="@dimen/padding_normal" />
+
+          <com.google.android.material.chip.Chip
+            android:id="@+id/skip_travel_history_choice"
+            style="@style/Widget.ExposureNotifications.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/share_upload_skip_choice"
+            app:chipEndPadding="@dimen/padding_normal"
+            app:chipStartPadding="@dimen/padding_normal" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+      </LinearLayout>
+
+    </LinearLayout>
+
+  </androidx.core.widget.NestedScrollView>
+
+  <LinearLayout
+    android:id="@+id/button_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingVertical="@dimen/padding_normal"
+    android:background="?android:attr/colorBackground"
+    android:elevation="@dimen/bottom_button_container_elevation"
+    android:orientation="horizontal"
+    android:baselineAligned="false">
+
+    <LinearLayout
+      android:layout_width="0dp"
+      android:layout_weight="1"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_vertical">
+
+      <Button
+        android:id="@+id/share_previous_button"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/padding_normal"
+        android:text="@string/btn_previous" />
+
+    </LinearLayout>
+
+    <FrameLayout
+      android:layout_width="0dp"
+      android:layout_weight="1"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_vertical">
+
+      <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/padding_normal"
+        android:layout_gravity="end">
+
+        <Button
+          android:id="@+id/share_button"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/btn_share"
+          android:elevation="0dp"/>
+
+        <ProgressBar
+          android:id="@+id/share_progress_bar"
+          android:layout_width="match_parent"
+          android:layout_height="24dp"
+          android:layout_gravity="center"
+          android:indeterminateTint="@android:color/white"
+          android:elevation="10dp"
+          android:visibility="invisible"/>
+
+      </FrameLayout>
+
+    </FrameLayout>
+
+  </LinearLayout>
+
+</LinearLayout>

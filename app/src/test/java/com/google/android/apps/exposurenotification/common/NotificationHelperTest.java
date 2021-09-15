@@ -27,11 +27,14 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.os.Build.VERSION;
+import android.os.Build.VERSION_CODES;
 import androidx.core.app.NotificationCompat;
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.common.BuildUtils.Type;
+import com.google.android.apps.exposurenotification.testsupport.FakeShadowResources;
 import dagger.hilt.android.testing.HiltAndroidTest;
 import dagger.hilt.android.testing.HiltTestApplication;
 import org.junit.Test;
@@ -41,7 +44,10 @@ import org.robolectric.shadows.ShadowNotificationManager;
 
 @RunWith(AndroidJUnit4.class)
 @HiltAndroidTest
-@Config(application = HiltTestApplication.class)
+@Config(
+    application = HiltTestApplication.class,
+    shadows = {FakeShadowResources.class},
+    minSdk = 21, maxSdk = 30)
 public class NotificationHelperTest {
 
   private final Context context = ApplicationProvider.getApplicationContext();
@@ -53,6 +59,8 @@ public class NotificationHelperTest {
       IntentUtil.getNotificationContentIntentExposure(context);
   private final Intent notificationDeleteIntent =
       IntentUtil.getNotificationDeleteIntent(context);
+  private final FakeShadowResources resources =
+      (FakeShadowResources) shadowOf(context.getResources());
 
   @Test
   public void showNotification_verifyNotificationInfo() {
@@ -66,14 +74,46 @@ public class NotificationHelperTest {
         .isEqualTo(context.getString(R.string.exposure_notification_title_1));
     assertThat(shadowOf(notification).getContentText())
         .isEqualTo(context.getString(R.string.exposure_notification_message_1));
-    assertThat(notification.getSmallIcon().getResId())
-        .isEqualTo(R.drawable.ic_exposure_notification);
     assertThat(notification.priority).isEqualTo(NotificationCompat.PRIORITY_MAX);
     assertThat(notification.flags & Notification.FLAG_AUTO_CANCEL)
         .isEqualTo(Notification.FLAG_AUTO_CANCEL);
     assertThat(notification.flags & Notification.FLAG_ONLY_ALERT_ONCE)
         .isEqualTo(Notification.FLAG_ONLY_ALERT_ONCE);
     assertThat(notification.visibility).isEqualTo(NotificationCompat.VISIBILITY_SECRET);
+    // Small icon only verified on M+ when small icon was introduced.
+    if (VERSION.SDK_INT >= VERSION_CODES.M) {
+      assertThat(notification.getSmallIcon().getResId())
+          .isEqualTo(R.drawable.ic_exposure_notification);
+    }
+  }
+
+  @Test
+  public void showNotification_v3NotificationSubTextSet_showsForV3NPlus() {
+    String subText = "SubText";
+    resources.addFakeResource(R.string.enx_v3NotificationSubText, subText);
+
+    notificationHelper.showNotification(context,
+        R.string.exposure_notification_title_1, R.string.exposure_notification_message_1,
+        notificationContentIntent, notificationDeleteIntent);
+
+    Notification notification = notificationManager.getNotification(0);
+    if (BuildUtils.getType() == Type.V3 && VERSION.SDK_INT >= VERSION_CODES.N) {
+      assertThat(NotificationCompat.getSubText(notification)).isEqualTo(subText);
+    } else {
+      assertThat(NotificationCompat.getSubText(notification)).isNull();
+    }
+  }
+
+  @Test
+  public void showNotification_noV3NotificationSubText_neverShows() {
+    resources.addFakeResource(R.string.enx_v3NotificationSubText, "");
+
+    notificationHelper.showNotification(context,
+        R.string.exposure_notification_title_1, R.string.exposure_notification_message_1,
+        notificationContentIntent, notificationDeleteIntent);
+
+    Notification notification = notificationManager.getNotification(0);
+    assertThat(NotificationCompat.getSubText(notification)).isNull();
   }
 
   @Test
@@ -96,15 +136,20 @@ public class NotificationHelperTest {
     assertThat(shadowOf(notification).getContentTitle())
         .isEqualTo(context.getString(R.string.reactivate_exposure_notification_app_subject));
     assertThat(shadowOf(notification).getContentText())
-        .isEqualTo(context.getString(R.string.reactivate_exposure_notification_app_body, StringUtils.getHealthAuthorityName(context)));
-    assertThat(notification.getSmallIcon().getResId())
-        .isEqualTo(R.drawable.ic_exposure_notification);
+        .isEqualTo(context.getString(R.string.reactivate_exposure_notification_app_body,
+            StringUtils.getHealthAuthorityName(context)));
     assertThat(notification.priority).isEqualTo(NotificationCompat.PRIORITY_MAX);
     assertThat(notification.flags & Notification.FLAG_AUTO_CANCEL)
         .isEqualTo(Notification.FLAG_AUTO_CANCEL);
     assertThat(notification.flags & Notification.FLAG_ONLY_ALERT_ONCE)
         .isEqualTo(Notification.FLAG_ONLY_ALERT_ONCE);
     assertThat(notification.visibility).isEqualTo(NotificationCompat.VISIBILITY_SECRET);
+    assertThat(NotificationCompat.getSubText(notification)).isNull();
+    // Small icon only verified on M+ when small icon was introduced.
+    if (VERSION.SDK_INT >= VERSION_CODES.M) {
+      assertThat(notification.getSmallIcon().getResId())
+          .isEqualTo(R.drawable.ic_exposure_notification);
+    }
   }
 
   @Test

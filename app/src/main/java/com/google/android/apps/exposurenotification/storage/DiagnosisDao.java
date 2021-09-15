@@ -61,6 +61,9 @@ abstract class DiagnosisDao {
   abstract ListenableFuture<DiagnosisEntity> maybeGetLastDiagnosisWithSharedStatusInStatusesAsync(
       List<Shared> statuses);
 
+  @Query("SELECT * FROM DiagnosisEntity WHERE isPreAuth == 1"
+      + " ORDER BY createdTimestampMs DESC LIMIT 1")
+  abstract ListenableFuture<Optional<DiagnosisEntity>> maybeGetLastPreAuthDiagnosisAsync();
 
   @Query("SELECT * FROM DiagnosisEntity WHERE testResult IN (:testResults)"
       + " AND sharedStatus IN (:statuses) AND lastUpdatedTimestampMs > :minTimestampMs"

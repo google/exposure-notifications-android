@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><!--
+<?xml version="1.0" encoding="utf-8"?>
+<!--
   ~ Copyright 2020 Google LLC
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,6 +18,10 @@
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-  <string name="app_name">@string/enx_agencyDisplayName</string>
+  <!-- The label of the app in Settings > Apps. -->
+  <string name="app_label">@string/enx_v3AppLabel</string>
+
+  <!-- The label used in EN settings. -->
+  <string name="en_settings_label">@string/health_authority_name</string>
 
 </resources>

@@ -31,4 +31,8 @@ public class Qualifiers {
   @Retention(RetentionPolicy.RUNTIME)
   public @interface PackageName {}
 
+  @Qualifier
+  @Retention(RetentionPolicy.RUNTIME)
+  public @interface BiweeklyMetricsUploadDay {}
+
 }

@@ -31,7 +31,7 @@
   <string name="onboarding_exposure_notifications_detail">ኮቪድ-19 እንዳለበት ሪፖርት ካደረገ ሰው አጠገብ እንደነበሩ ለማወቅ ማሳወቂያ ያግኙ።
     \n\nየእርስዎ ስልክ ደህንነቱ በተጠበቀ መንገድ በአቅራቢያ ካሉ ሌሎች ስልኮች የዘፈቀደ መታወቂያዎችን መሰብሰብ እና ማጋራት እንዲችል ብሉቱዝን ይጠቀማል።
     \n\nከተጋላጭነት ጋር የሚጎዳኘው ቀን፣ የቆይታ ጊዜ እና የሲግናል ጥንካሬ በሕዝብ ጤና ባለሥልጣንዎ በተቀመጡት መለኪያዎች መሠረት ማሳወቂያ ይላክልዎት እንደሆነ ለማወቅ ሥራ ላይ ይውላሉ።
-    \n\nየምርመራ ውጤትዎ ፖዘቲቭ ከሆነ፣ ለእርስዎ የጤና ባለሥልጣን የእርስዎን ውጤት ለማጋራት እንዲችሉ አስታዋሽ ሊያገኙ ይችሉ ይሆናል።</string>
+    \n\nየምርመራ ውጤትዎን የያዘ ኤስኤምኤስ ከደረሰዎት ምርመራን ለጤና ባለሥልጣንዎ ለማጋራት ማሳወቂያ ሊደርሰዎት ይችላሉ።</string>
   <string name="onboarding_metrics_title">ይህ መተግበሪያ የተሻለ እንዲሆን ያግዙ</string>
   <string name="onboarding_metrics_subtitle">የመተግበሪያ አጠቃቀም እና የአፈፃፀም ውሂብን በGoogle ያጋሩ</string>
   <string name="onboarding_metrics_description">መተግበሪያውን ጠብቆ ለማቆየት እና ለማሻሻል ለማገዝ ስለመተግበሪያ አፈፃፀም እና አጠቃቀም አንዳንድ የተወሰነ ማንነት እንዳይገለጽ የሚከለክል ውሂብ ዕውቅና ለGoogle ይጋራል። ይህ ውሂብ እርስዎን ለይቶ አያውቀዎትም። %1$s</string>
@@ -128,6 +128,12 @@
     <item quantity="other">በጣም ብዙ ጥያቄዎችን ጠይቀዋል። በ%1$d ደቂቃዎች ውስጥ ሌላ ኮድ መጠየቅ ይችላሉ።</item>
   </plurals>
   <string name="notify_others_notification_title">ተጋላጭ ሊሆኑ የሚችሉትን ለሎች ሰዎች ለማሳወቅ ያግዙ</string>
+  <string name="notify_others_if_result_updated_title">የእርስዎ ውጤቶች ከተዘመኑ ሌሎች ሰዎች እንዲውቁ ይደረጉ?</string>
+  <string name="notify_others_if_result_updated_content">%1$s የፈተና ውጤትዎን ለማረጋገጥ ሁለተኛ ኮድ ሊልክልዎት ይችላል። ይህንን ሁለተኛ ኮድ በመጠቀም የእርስዎን የኮቪድ-19 ሁኔታ በራስ-ሰር ማዘመን እና የዘፈቀደ መታወቂያዎችን ተጨማሪ ቀኖች ማጋራት ይችላሉ፣ ይህም ስለ ሊከሰት የሚችል ተጋላጭነት ለሌሎች ለማሳወቅ ሊያግዝ ይችላል። ማንነትዎ ከሌሎች ሰዎች ጋር አይጋራም።</string>
+  <string name="btn_pre_auth_yes">አዎ፣ ማገዝ እፈልጋለሁ</string>
+  <string name="btn_pre_auth_no">አይ፣ አመሰግናለሁ</string>
+  <string name="thank_you_for_notifying_title">ስላገዙን እናመሰግናለን</string>
+  <string name="thank_you_for_notifying_content">%1$s የተጋላጭነት ጊዜ መስመርዎን አዘምኗል፣ እንዲሁም ሊከሰት የሚችል ተጋላጭነትን ለሌሎች አሳውቆ ሊሆን ይችላል።</string>
   <string name="settings_exposure_notifications_subtitle">የተጋላጭነት ማሳወቂያዎች</string>
   <string name="settings_app_analytics_subtitle">የመተግበሪያ አጠቃቀም እና የአፈፃፀም ማጋራት</string>
   <string name="settings_privacy_policy">የግላዊነት መመሪያ</string>
@@ -193,5 +199,19 @@
   <string name="share_diagnosis_share_test_result_subtitle">ኮቪድ-19ን ለማስቆም ስላገዙን እናመሰግናለን።</string>
   <string name="share_diagnosis_share_test_result_body">ውጤትዎን ሲያጋሩ ምልክቶችዎ ሲጀምሩ ለማጋራትም መምረጥ ይችላሉ። ይህ መረጃ የኮቪድ-19 ስርጭትን ለማስቆም እና ህይወትን ለማዳን ሊያግዝ ይችላል።</string>
   <string name="sms_intercept_notice_title">ምን አዲስ ነገር አለ</string>
-  <string name="sms_intercept_notice_content">የእርስዎ የአካባቢ ጤና ባለሥልጣን የምርመራ ውጤት ከላከልዎት፣ የእርስዎ መተግበሪያ የእርስዎን ውጤት እንዲያስገቡ እና ሌሎችን ለበሽታው የተጋለጡ ሰዎችን ለማስጠንቀቅ እንዲያግዝ አስታዋሽ በመላክ ለእርስዎ ያሳውቅዎታል። ይህንን በማንኛውም ጊዜ በቅንብሮች ውስጥ ማሰናከል ይችላሉ።</string>
+  <string name="sms_intercept_notice_content">የሙከራ ውጤትዎን የያዘ ኤስኤምኤስ ከተቀበሉ በተጋላጭነት ማሳወቂያዎች ውስጥ ምርመራዎን እንዲያጋሩ የሚጠይቀዎት ማሳወቂያ ሊያገኙ ይችላሉ። ይህን በማንኛውም ጊዜ በቅንብሮች ውስጥ ማሰናከል ይችላሉ።</string>
+  <string name="share_upload_title">ማህበረሰብዎን ለመጠበቅ የፈተና ውጤትዎን ያጋሩ</string>
+  <string name="share_upload_test_result_source_description">የሙከራ ውጤት በ%1$s ተልኳል</string>
+  <string name="share_upload_symptoms_subtitle">ምልክቱ የጀመረው ከ</string>
+  <string name="share_upload_symptoms_date_fixed_description">የበሽታ ምልክት ቀን የሚቀርበው በ%1$s ነው</string>
+  <string name="share_upload_skip_choice">ዝለል</string>
+  <string name="share_upload_travel_subtitle">የጉዞ ታሪክ</string>
+  <string name="travel_history_travelled_recently_choice">ባለፉት 14 ቀኖች ውስጥ ተጉዘዋል</string>
+  <string name="travel_history_no_travel_choice">ምንም</string>
+  <string name="share_upload_select_a_date_choice">ቀን ይምረጡ</string>
+  <string name="share_upload_status_subtitle">የኮቪድ-19 ሁኔታ</string>
+  <string name="share_upload_status_confirmed">ፖዘቲቭ</string>
+  <string name="share_upload_status_negative">ነገቲቭ</string>
+  <string name="share_upload_status_likely">ሊሆን የሚችል</string>
+  <string name="share_diagnosis_progress_tracker">ደረጃ %1$d ከ%2$d</string>
 </resources>

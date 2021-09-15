@@ -146,6 +146,7 @@ public class OnboardingPermissionV3Fragment extends AbstractOnboardingFragment {
   }
 
   private void transitionNext() {
+    onboardingViewModel.markSmsInterceptNoticeSeenAsync();
     if (privateAnalyticsViewModel.showPrivateAnalyticsSection()) {
       OnboardingPrivateAnalyticsV3Fragment.transitionToOnboardingPrivateAnalyticsV3Fragment(this);
     } else {

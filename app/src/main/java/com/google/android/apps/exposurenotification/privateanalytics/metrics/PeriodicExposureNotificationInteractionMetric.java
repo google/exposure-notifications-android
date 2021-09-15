@@ -68,7 +68,7 @@ public class PeriodicExposureNotificationInteractionMetric implements PrivateAna
     Instant interactionLastTime = exposureNotificationSharedPreferences
         .getExposureNotificationLastInteractionTime();
     Instant privateAnalyticsWorkerLastTime = exposureNotificationSharedPreferences
-        .getPrivateAnalyticsWorkerLastTime();
+        .getPrivateAnalyticsWorkerLastTimeForDaily();
 
     if (interactionLastTime.equals(Instant.EPOCH)) {
       // If Instant.EPOCH is returned, it means that no interaction was performed.

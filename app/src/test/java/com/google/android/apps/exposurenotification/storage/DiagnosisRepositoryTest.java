@@ -675,6 +675,52 @@ public class DiagnosisRepositoryTest {
     assertEqualIgnoringLastUpdatedTime(diagnosisOptional.get(), confirmedDiagnosis);
   }
 
+  @Test
+  public void maybeGetLastPreAutDiagnosisAsync_nonePresent_returnOptionalAbsent() throws Exception {
+    DiagnosisEntity notPreAuthDiagnosis = DiagnosisEntity.newBuilder()
+        .setId(1).setCreatedTimestampMs(1L).setIsPreAuth(false)
+        .build();
+    diagnosisRepo.upsertAsync(notPreAuthDiagnosis).get();
+
+    Optional<DiagnosisEntity> diagnosis =
+        diagnosisRepo.maybeGetLastPreAuthDiagnosisAsync().get();
+
+    assertThat(diagnosis).isAbsent();
+  }
+
+  @Test
+  public void maybeGetLastPreAutDiagnosisAsync_onePresent_returnsThatOne() throws Exception {
+    DiagnosisEntity preAuthDiagnosis = DiagnosisEntity.newBuilder()
+        .setId(1).setCreatedTimestampMs(1L).setIsPreAuth(true)
+        .build();
+    diagnosisRepo.upsertAsync(preAuthDiagnosis).get();
+
+    Optional<DiagnosisEntity> diagnosis =
+        diagnosisRepo.maybeGetLastPreAuthDiagnosisAsync().get();
+
+    assertThat(diagnosis).isPresent();
+    assertEqualIgnoringLastUpdatedTime(diagnosis.get(), preAuthDiagnosis);
+  }
+
+  @Test
+  public void maybeGetLastPreAutDiagnosisAsync_twoPresent_returnsLastUpdated() throws Exception {
+    DiagnosisEntity preAuthDiagnosis = DiagnosisEntity.newBuilder()
+        .setId(1).setCreatedTimestampMs(1L).setIsPreAuth(true)
+        .build();
+    DiagnosisEntity expectedPreAuthDiagnosis = DiagnosisEntity.newBuilder()
+        .setId(2).setCreatedTimestampMs(2L).setIsPreAuth(true)
+        .build();
+    diagnosisRepo.upsertAsync(preAuthDiagnosis).get();
+    ((FakeClock) clock).advance();
+    diagnosisRepo.upsertAsync(expectedPreAuthDiagnosis).get();
+
+    Optional<DiagnosisEntity> diagnosis =
+        diagnosisRepo.maybeGetLastPreAuthDiagnosisAsync().get();
+
+    assertThat(diagnosis).isPresent();
+    assertEqualIgnoringLastUpdatedTime(diagnosis.get(), expectedPreAuthDiagnosis);
+  }
+
   /**
    * Check that two {@link DiagnosisEntity} objects are the same, ignoring the {@code id} field.
    */

@@ -78,7 +78,7 @@ public class CodeVerifiedMetricTest {
     Instant submittedCodeTime = clock.now().minus(Duration.ofDays(1));
     Instant workerRunTime = clock.now().minus(Duration.ofDays(2));
 
-    exposureNotificationSharedPreferences.setPrivateAnalyticsWorkerLastTime(workerRunTime);
+    exposureNotificationSharedPreferences.setPrivateAnalyticsWorkerLastTimeForDaily(workerRunTime);
     exposureNotificationSharedPreferences
         .setPrivateAnalyticsLastSubmittedCodeTime(submittedCodeTime);
 
@@ -100,7 +100,7 @@ public class CodeVerifiedMetricTest {
     Instant notificationTime = submittedCodeTime.minus(13, DAYS).minus(23, HOURS);
     Instant exposureTime = notificationTime.minus(Duration.ofDays(2));
 
-    exposureNotificationSharedPreferences.setPrivateAnalyticsWorkerLastTime(workerRunTime);
+    exposureNotificationSharedPreferences.setPrivateAnalyticsWorkerLastTimeForDaily(workerRunTime);
     exposureNotificationSharedPreferences
         .setPrivateAnalyticsLastSubmittedCodeTime(submittedCodeTime);
 
@@ -129,7 +129,7 @@ public class CodeVerifiedMetricTest {
     Instant notificationTime = submittedCodeTime.minus(14, DAYS).minus(1, MINUTES);
     Instant exposureTime = notificationTime.minus(Duration.ofDays(2));
 
-    exposureNotificationSharedPreferences.setPrivateAnalyticsWorkerLastTime(workerRunTime);
+    exposureNotificationSharedPreferences.setPrivateAnalyticsWorkerLastTimeForDaily(workerRunTime);
     exposureNotificationSharedPreferences
         .setPrivateAnalyticsLastSubmittedCodeTime(submittedCodeTime);
 
@@ -155,7 +155,7 @@ public class CodeVerifiedMetricTest {
     Instant workerRunTime = clock.now().minus(Duration.ofDays(1));
     Instant submittedCodeTime = clock.now().minus(Duration.ofDays(2));
 
-    exposureNotificationSharedPreferences.setPrivateAnalyticsWorkerLastTime(workerRunTime);
+    exposureNotificationSharedPreferences.setPrivateAnalyticsWorkerLastTimeForDaily(workerRunTime);
     exposureNotificationSharedPreferences
         .setPrivateAnalyticsLastSubmittedCodeTime(submittedCodeTime);
 
@@ -173,7 +173,7 @@ public class CodeVerifiedMetricTest {
     // GIVEN
     Instant workerRunTime = clock.now().minus(Duration.ofDays(1));
 
-    exposureNotificationSharedPreferences.setPrivateAnalyticsWorkerLastTime(workerRunTime);
+    exposureNotificationSharedPreferences.setPrivateAnalyticsWorkerLastTimeForDaily(workerRunTime);
 
     // WHEN
     List<Integer> vector = codeVerifiedMetric.getDataVector().get();

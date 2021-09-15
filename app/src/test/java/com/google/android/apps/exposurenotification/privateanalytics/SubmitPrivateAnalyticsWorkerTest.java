@@ -31,6 +31,7 @@ import com.google.android.apps.exposurenotification.testsupport.ExposureNotifica
 import com.google.android.libraries.privateanalytics.PrivateAnalyticsDeviceAttestation;
 import com.google.android.libraries.privateanalytics.PrivateAnalyticsEnabledProvider;
 import com.google.android.libraries.privateanalytics.PrivateAnalyticsEventListener;
+import com.google.android.libraries.privateanalytics.PrivateAnalyticsLogger;
 import com.google.android.libraries.privateanalytics.PrivateAnalyticsRemoteConfig;
 import com.google.android.libraries.privateanalytics.Qualifiers.RemoteConfigUri;
 import com.google.common.base.Optional;
@@ -78,6 +79,8 @@ public class SubmitPrivateAnalyticsWorkerTest {
   @BindValue
   @Mock
   RequestQueueWrapper requestQueueWrapper;
+  @BindValue
+  PrivateAnalyticsLogger.Factory loggerFactory = new FakePrivateAnalyticsLoggerFactory();
 
 
   @Before

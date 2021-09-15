@@ -29,9 +29,9 @@
   <string name="onboarding_finish_title">ادامه اجازه‌های لازم برای فعال کردن «اعلان تماس‌های پرخطر»</string>
   <string name="onboarding_exposure_notifications_title">روشن کردن اعلان تماس‌های پرخطر</string>
   <string name="onboarding_exposure_notifications_detail">اگر نزدیک فردی قرار گرفته باشید که آزمایش کووید-۱۹ او مثبت گزارش شده است، اعلان دریافت می‌کنید.
-    \n\nتلفنتان برای جمع‌آوری و هم‌رسانی ایمن شناسه‌های تصادفی با دیگر تلفن‌های اطراف از بلوتوث استفاده می‌کند.
-    \n\nبااستفاده از تاریخ، مدت‌زمان، و قدرت سیگنال مرتبط با تماس پرخطر احتمالی مشخص می‌شود آیا براساس پارامترهایی تعیین‌شده توسط مرجع بهداشت عمومی‌تان اعلان دریافت خواهید کرد یا نه.
-    \n\nاگر نتایج آزمایش شما مثبت باشد، ممکن است برای هم‌رسانی این نتایج با مرجع بهداشتی‌تان یادآوری دریافت کنید.</string>
+    \n\nتلفنتان از بلوتوث برای جمع‌آوری و هم‌رسانی ایمن شناسه‌های تصادفی با دیگر تلفن‌های اطراف استفاده می‌کند.
+    \n\nبااستفاده از تاریخ، مدت‌زمان، و قدرت سیگنال مرتبط با تماس پرخطر احتمالی مشخص می‌شود که آیا براساس پارامترهایی تعیین‌شده توسط مرجع بهداشت عمومی‌تان اعلان دریافت خواهید کرد یا نه.
+    \n\nاگر پیامکی حاوی نتیجه آزمایشتان دریافت کردید، ممکن است اعلانی برای هم‌رسانی تشخیص پزشکی با مرجع بهداشتی‌تان دریافت کنید.</string>
   <string name="onboarding_metrics_title">به بهبود این برنامه کمک کنید</string>
   <string name="onboarding_metrics_subtitle">داده عملکرد و استفاده از برنامه را با Google هم‌رسانی کنید</string>
   <string name="onboarding_metrics_description">برای کمک به نگهداری و بهبود برنامه، برخی داده‌هایی محدود و غیرقابل‌شناسایی درباره عملکرد و استفاده از برنامه، با Google هم‌رسانی می‌شود. این داده‌ها هویت شما را فاش نمی‌کند. %1$s</string>
@@ -128,6 +128,12 @@
     <item quantity="other">تعداد درخواست‌های شما بیش‌ازحد مجاز است. تا %1$d دقیقه دیگر، می‌توانید کد دیگری درخواست کنید.</item>
   </plurals>
   <string name="notify_others_notification_title">کمک کنید به افرادی که ممکن است تماس پرخطر داشته‌اند اطلاع داده شود</string>
+  <string name="notify_others_if_result_updated_title">اگر نتیجه شما به‌روزرسانی شد به افراد دیگر اعلام شود؟</string>
+  <string name="notify_others_if_result_updated_content">%1$s ممکن است کد دومی برای تأیید نتیجه آزمایشتان ارسال کند. بااستفاده از این کد دوم، می‌توانید وضعیت کووید-۱۹ خود را خودکار به‌روزرسانی کنید و روزهای بیشتری شناسه‌های تصادفی را هم‌رسانی کنید که می‌تواند به مطلع کردن افراد از تماس‌های پرخطر احتمالی کمک کند. هویتتان با دیگران هم‌رسانی نمی‌شود.</string>
+  <string name="btn_pre_auth_yes">بله، مایلم کمک کنم</string>
+  <string name="btn_pre_auth_no">نه متشکرم</string>
+  <string name="thank_you_for_notifying_title">از کمکتان سپاس‌گزاریم</string>
+  <string name="thank_you_for_notifying_content">%1$s لحظاتی پیش خط زمان تماس‌های پرخطرتان را به‌روزرسانی کرد و ممکن است به دیگران درباره تماس‌های پرخطر احتمالی هشدار داده باشد.</string>
   <string name="settings_exposure_notifications_subtitle">اعلان تماس‌های پرخطر</string>
   <string name="settings_app_analytics_subtitle">هم‌رسانی عملکرد و استفاده از برنامه</string>
   <string name="settings_privacy_policy">خط‌مشی رازداری</string>
@@ -193,5 +199,19 @@
   <string name="share_diagnosis_share_test_result_subtitle">بابت کمک شما برای جلوگیری از شیوع کووید-۱۹ سپاس‌گزاریم.</string>
   <string name="share_diagnosis_share_test_result_body">وقتی نتیجه‌تان را هم‌رسانی می‌کنید، می‌توانید انتخاب کنید که زمان شروع شدن علائم نیز هم‌رسانی شود. این اطلاعات می‌تواند به جلوگیری از شیوع کووید-۱۹ و نجات جان افراد کمک کند.</string>
   <string name="sms_intercept_notice_title">تازه‌ها</string>
-  <string name="sms_intercept_notice_content">اگر مرجع بهداشت محلی‌تان نتیجه آزمایشی را برایتان ارسال کرد، ممکن است برنامه ازطریق یادآوری به شما اطلاع دهد که نتیجه را ارسال کنید و دیگران را از تماس‌های پرخطر احتمالی مطلع کنید. هر وقت خواستید می‌توانید این ویژگی را در تنظیمات غیرفعال کنید.</string>
+  <string name="sms_intercept_notice_content">اگر پیامکی حاوی نتیجه آزمایشتان دریافت کردید، ممکن است اعلانی دریافت کنید که از شما می‌خواهد تشخیص پزشکی‌تان را در اعلان تماس‌های پرخطر هم‌رسانی کنید. هرزمان بخواهید می‌توانید این ویژگی را در تنظیمات غیرفعال کنید.</string>
+  <string name="share_upload_title">برای محافظت از جامعه، نتیجه آزمایشتان را هم‌رسانی کنید</string>
+  <string name="share_upload_test_result_source_description">%1$s نتیجه آزمایش را ارسال می‌کند</string>
+  <string name="share_upload_symptoms_subtitle">شروع نشانه‌ها از</string>
+  <string name="share_upload_symptoms_date_fixed_description">%1$s تاریخ نشانه را گزارش کرده است</string>
+  <string name="share_upload_skip_choice">رد شدن</string>
+  <string name="share_upload_travel_subtitle">سوابق سفر</string>
+  <string name="travel_history_travelled_recently_choice">سفر کردن در ۱۴ روز گذشته</string>
+  <string name="travel_history_no_travel_choice">هیچ‌کدام</string>
+  <string name="share_upload_select_a_date_choice">تاریخی انتخاب کنید</string>
+  <string name="share_upload_status_subtitle">وضعیت کووید-۱۹</string>
+  <string name="share_upload_status_confirmed">مثبت</string>
+  <string name="share_upload_status_negative">منفی</string>
+  <string name="share_upload_status_likely">محتمل</string>
+  <string name="share_diagnosis_progress_tracker">مرحله %1$d از %2$d</string>
 </resources>

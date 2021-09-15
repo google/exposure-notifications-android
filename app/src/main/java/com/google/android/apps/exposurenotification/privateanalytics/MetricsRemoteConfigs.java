@@ -37,14 +37,26 @@ public abstract class MetricsRemoteConfigs {
   private static final double DEFAULT_CODE_VERIFIED_METRIC_SAMPLING_RATE = 1.0;
   private static final double DEFAULT_CODE_VERIFIED_METRIC_EPSILON = 8.0;
 
+  private static final double DEFAULT_CODE_VERIFIED_WITH_REPORT_TYPE_METRIC_SAMPLING_RATE = 1.0;
+  private static final double DEFAULT_CODE_VERIFIED_WITH_REPORT_TYPE_METRIC_EPSILON = 10.2;
+
   private static final double DEFAULT_KEYS_UPLOADED_METRIC_SAMPLING_RATE = 1.0;
   private static final double DEFAULT_KEYS_UPLOADED_METRIC_EPSILON = 8.0;
+
+  private static final double DEFAULT_KEYS_UPLOADED_WITH_REPORT_TYPE_METRIC_SAMPLING_RATE = 1.0;
+  private static final double DEFAULT_KEYS_UPLOADED_WITH_REPORT_TYPE_METRIC_EPSILON = 10.2;
 
   private static final double DEFAULT_DATE_EXPOSURE_METRIC_SAMPLING_RATE = 1.0;
   private static final double DEFAULT_DATE_EXPOSURE_METRIC_EPSILON = 8.0;
 
   private static final double DEFAULT_KEYS_UPLOADED_VACCINE_STATUS_METRIC_SAMPLING_RATE = 1.0;
   private static final double DEFAULT_KEYS_UPLOADED_VACCINE_STATUS_METRIC_EPSILON = 8.0;
+
+  private static final double DEFAULT_KEYS_UPLOADED_AFTER_NOTIFICATION_METRIC_SAMPLING_RATE = 1.0;
+  private static final double DEFAULT_KEYS_UPLOADED_AFTER_NOTIFICATION_METRIC_EPSILON = 10.2;
+
+  private static final double DEFAULT_PERIODIC_EXPOSURE_NOTIFICATION_BIWEEKLY_METRIC_SAMPLING_RATE = 1.0;
+  private static final double DEFAULT_PERIODIC_EXPOSURE_NOTIFICATION_BIWEEKLY_METRIC_EPSILON = 10.2;
 
   public abstract double interactionCountPrioEpsilon();
 
@@ -62,9 +74,17 @@ public abstract class MetricsRemoteConfigs {
 
   public abstract double codeVerifiedPrioSamplingRate();
 
+  public abstract double codeVerifiedWithReportTypePrioEpsilon();
+
+  public abstract double codeVerifiedWithReportTypePrioSamplingRate();
+
   public abstract double keysUploadedPrioEpsilon();
 
   public abstract double keysUploadedPrioSamplingRate();
+
+  public abstract double keysUploadedWithReportTypePrioEpsilon();
+
+  public abstract double keysUploadedWithReportTypePrioSamplingRate();
 
   public abstract double dateExposurePrioEpsilon();
 
@@ -73,6 +93,14 @@ public abstract class MetricsRemoteConfigs {
   public abstract double keysUploadedVaccineStatusPrioEpsilon();
 
   public abstract double keysUploadedVaccineStatusPrioSamplingRate();
+
+  public abstract double keysUploadedAfterNotificationPrioEpsilon();
+
+  public abstract double keysUploadedAfterNotificationPrioSamplingRate();
+
+  public abstract double periodicExposureNotificationBiweeklyPrioEpsilon();
+
+  public abstract double periodicExposureNotificationBiweeklyPrioSamplingRate();
 
   public static MetricsRemoteConfigs.Builder newBuilder() {
     return new AutoValue_MetricsRemoteConfigs.Builder()
@@ -84,14 +112,30 @@ public abstract class MetricsRemoteConfigs {
         .setRiskScorePrioEpsilon(DEFAULT_RISK_SCORE_COUNT_METRIC_EPSILON)
         .setCodeVerifiedPrioSamplingRate(DEFAULT_CODE_VERIFIED_METRIC_SAMPLING_RATE)
         .setCodeVerifiedPrioEpsilon(DEFAULT_CODE_VERIFIED_METRIC_EPSILON)
+        .setCodeVerifiedWithReportTypePrioSamplingRate(
+            DEFAULT_CODE_VERIFIED_WITH_REPORT_TYPE_METRIC_SAMPLING_RATE)
+        .setCodeVerifiedWithReportTypePrioEpsilon(
+            DEFAULT_CODE_VERIFIED_WITH_REPORT_TYPE_METRIC_EPSILON)
         .setKeysUploadedPrioSamplingRate(DEFAULT_KEYS_UPLOADED_METRIC_SAMPLING_RATE)
         .setKeysUploadedPrioEpsilon(DEFAULT_KEYS_UPLOADED_METRIC_EPSILON)
+        .setKeysUploadedWithReportTypePrioSamplingRate(
+            DEFAULT_KEYS_UPLOADED_WITH_REPORT_TYPE_METRIC_SAMPLING_RATE)
+        .setKeysUploadedWithReportTypePrioEpsilon(
+            DEFAULT_KEYS_UPLOADED_WITH_REPORT_TYPE_METRIC_EPSILON)
         .setDateExposurePrioSamplingRate(DEFAULT_DATE_EXPOSURE_METRIC_SAMPLING_RATE)
         .setDateExposurePrioEpsilon(DEFAULT_DATE_EXPOSURE_METRIC_EPSILON)
         .setKeysUploadedVaccineStatusPrioSamplingRate(
             DEFAULT_KEYS_UPLOADED_VACCINE_STATUS_METRIC_SAMPLING_RATE)
         .setKeysUploadedVaccineStatusPrioEpsilon(
-            DEFAULT_KEYS_UPLOADED_VACCINE_STATUS_METRIC_EPSILON);
+            DEFAULT_KEYS_UPLOADED_VACCINE_STATUS_METRIC_EPSILON)
+        .setKeysUploadedAfterNotificationPrioSamplingRate(
+            DEFAULT_KEYS_UPLOADED_AFTER_NOTIFICATION_METRIC_SAMPLING_RATE)
+        .setKeysUploadedAfterNotificationPrioEpsilon(
+            DEFAULT_KEYS_UPLOADED_AFTER_NOTIFICATION_METRIC_EPSILON)
+        .setPeriodicExposureNotificationBiweeklyPrioSamplingRate(
+            DEFAULT_PERIODIC_EXPOSURE_NOTIFICATION_BIWEEKLY_METRIC_SAMPLING_RATE)
+        .setPeriodicExposureNotificationBiweeklyPrioEpsilon(
+            DEFAULT_PERIODIC_EXPOSURE_NOTIFICATION_BIWEEKLY_METRIC_EPSILON);
   }
 
   @AutoValue.Builder
@@ -113,9 +157,21 @@ public abstract class MetricsRemoteConfigs {
 
     public abstract MetricsRemoteConfigs.Builder setCodeVerifiedPrioSamplingRate(double value);
 
+    public abstract MetricsRemoteConfigs.Builder setCodeVerifiedWithReportTypePrioEpsilon(
+        double value);
+
+    public abstract MetricsRemoteConfigs.Builder setCodeVerifiedWithReportTypePrioSamplingRate(
+        double value);
+
     public abstract MetricsRemoteConfigs.Builder setKeysUploadedPrioEpsilon(double value);
 
     public abstract MetricsRemoteConfigs.Builder setKeysUploadedPrioSamplingRate(double value);
+
+    public abstract MetricsRemoteConfigs.Builder setKeysUploadedWithReportTypePrioEpsilon(
+        double value);
+
+    public abstract MetricsRemoteConfigs.Builder setKeysUploadedWithReportTypePrioSamplingRate(
+        double value);
 
     public abstract MetricsRemoteConfigs.Builder setDateExposurePrioEpsilon(double value);
 
@@ -125,6 +181,18 @@ public abstract class MetricsRemoteConfigs {
         double value);
 
     public abstract MetricsRemoteConfigs.Builder setKeysUploadedVaccineStatusPrioSamplingRate(
+        double value);
+
+    public abstract MetricsRemoteConfigs.Builder setKeysUploadedAfterNotificationPrioEpsilon(
+        double value);
+
+    public abstract MetricsRemoteConfigs.Builder setKeysUploadedAfterNotificationPrioSamplingRate(
+        double value);
+
+    public abstract MetricsRemoteConfigs.Builder setPeriodicExposureNotificationBiweeklyPrioEpsilon(
+        double value);
+
+    public abstract MetricsRemoteConfigs.Builder setPeriodicExposureNotificationBiweeklyPrioSamplingRate(
         double value);
 
     public abstract MetricsRemoteConfigs build();

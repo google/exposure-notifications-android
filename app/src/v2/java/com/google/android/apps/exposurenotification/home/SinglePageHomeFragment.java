@@ -103,7 +103,7 @@ public class SinglePageHomeFragment extends BaseFragment {
   public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
 
-    requireActivity().setTitle(R.string.app_name);
+    requireActivity().setTitle(StringUtils.getApplicationTitle(requireContext()));
 
     FragmentManager childFragmentManager = getChildFragmentManager();
 

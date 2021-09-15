@@ -31,7 +31,7 @@
   <string name="onboarding_exposure_notifications_detail">يمكن أن يتم تنبيهك إذا كنت بالقرب من شخص أبلغ أنه مصاب بفيروس كورونا المستجد (كوفيد-19).
     \n\nيستخدم هاتفك البلوتوث لجمع أرقام التعريف العشوائية ومشاركتها بأمان مع الهواتف الأخرى القريبة.
     \n\nبعض البيانات المحدّدة، التي تشمل التاريخ والمدة المرتبطين بالتعرّض المحتمل للفيروس من الأجهزة المجاورة وقوة إشارة البلوتوث الخاصة بهذه الأجهزة، سيتم استخدامها لتحديد ما إذا كان سيتم تنبيهك بناءً على المعلَمات التي حددتها هيئة الصحة العامة.
-    \n\nإذا كانت نتيجة اختبار إصابتك بفيروس كورونا إيجابية، قد تتلقّى تذكيرًا لمشاركة هذه النتائج مع هيئة الصحة العامة.</string>
+    \n\nقد تتلقّى إشعارًا لمشاركة تشخيص مع هيئة الصحة إذا تلقّيت رسالة قصيرة SMS تحتوي على نتيجة اختبارك.</string>
   <string name="onboarding_metrics_title">المساعدة في تحسين هذا التطبيق</string>
   <string name="onboarding_metrics_subtitle">مشاركة بيانات استخدام التطبيق وأدائه مع Google</string>
   <string name="onboarding_metrics_description">للمساعدة في الحفاظ على التطبيق وتحسينه، تتم مشاركة بعض البيانات المجهولة الهوية عن استخدام التطبيق وأدائه مع Google. وهذه المعلومات لا تحدّد هويتك. %1$s</string>
@@ -136,6 +136,12 @@
     <item quantity="other">لقد أرسلت عددًا كبيرًا جدًا من الطلبات. يمكنك طلب رمز آخر خلال %1$d دقيقة.</item>
   </plurals>
   <string name="notify_others_notification_title">يمكنك المساعدة في إشعار الآخرين الذين قد يكونوا تعرضوا للفيروس</string>
+  <string name="notify_others_if_result_updated_title">هل تريد إشعار المستخدمين الآخرين إذا تم تعديل النتائج؟</string>
+  <string name="notify_others_if_result_updated_content">قد يصلك رمز ثانٍ من %1$s لتأكيد نتيجة الاختبار. يمكن تعديل حالة إصابتك بالفيروس تلقائيًا ومشاركة أرقام التعريف العشوائية لأيام إضافية بهذا الرمز الثاني، ما يساعد في إشعار الآخرين بالتعرض المحتمل. لا نشارك هويتك مع الآخرين.</string>
+  <string name="btn_pre_auth_yes">نعم أود تقديم المساعدة</string>
+  <string name="btn_pre_auth_no">لا، شكرًا</string>
+  <string name="thank_you_for_notifying_title">نشكرك على مساعدتك</string>
+  <string name="thank_you_for_notifying_content">عدّلت %1$s المخطط الزمني لتعرّضك للفيروس وربما حذرت الآخرين بالتعرّض المحتمل للفيروس.</string>
   <string name="settings_exposure_notifications_subtitle">إشعارات التعرّض لفيروس كورونا</string>
   <string name="settings_app_analytics_subtitle">مشاركة استخدام التطبيق وأدائه</string>
   <string name="settings_privacy_policy">سياسة الخصوصية</string>
@@ -201,5 +207,19 @@
   <string name="share_diagnosis_share_test_result_subtitle">نشكرك على المساعدة في منع انتشار فيروس كورونا المستجد (كوفيد-19)</string>
   <string name="share_diagnosis_share_test_result_body">عندما تشارك نتيجة الاختبار، يمكنك أيضًا مشاركة الوقت الذي بدأت فيه الأعراض. يمكن أن تساعد هذه المعلومات في منع انتشار فيروس كورونا المستجد وفي إنقاذ أرواح الناس.</string>
   <string name="sms_intercept_notice_title">الميزة الجديدة</string>
-  <string name="sms_intercept_notice_content">إذا أرسلت هيئة الصحة العامة إليك نتيجة اختبار، يمكن للتطبيق إرسال إشعار إليك لتذكيرك بإرسال نتيجة اختبارك والمساعدة في تنبيه الآخرين بشأن التعرّض المحتمل للفيروس. يمكنك إيقاف هذه الميزة في أي وقت من الإعدادات.</string>
+  <string name="sms_intercept_notice_content">إذا تلقّيت رسالة قصيرة SMS تحتوي على نتيجة اختبارك، قد تتلقّى إشعارًا يطلب منك مشاركة تشخيصك في نظام \"إشعارات التعرّض لفيروس كورونا\". يمكنك إيقاف هذه الميزة في أي وقت من الإعدادات.</string>
+  <string name="share_upload_title">مشاركة نتائج الاختبار لحماية المجتمع</string>
+  <string name="share_upload_test_result_source_description">تم إرسال نتائج الاختبار من %1$s.</string>
+  <string name="share_upload_symptoms_subtitle">بدأت الأعراض من</string>
+  <string name="share_upload_symptoms_date_fixed_description">توفّر %1$s تاريخ ظهور الأعراض.</string>
+  <string name="share_upload_skip_choice">التخطي</string>
+  <string name="share_upload_travel_subtitle">سجلّ السفر</string>
+  <string name="travel_history_travelled_recently_choice">سافرت خلال آخر 14 يومًا.</string>
+  <string name="travel_history_no_travel_choice">لم أسافر.</string>
+  <string name="share_upload_select_a_date_choice">اختَر تاريخًا.</string>
+  <string name="share_upload_status_subtitle">حالة إصابتك بفيروس كورونا المستجد (كوفيد-19)</string>
+  <string name="share_upload_status_confirmed">إيجابية</string>
+  <string name="share_upload_status_negative">سلبية</string>
+  <string name="share_upload_status_likely">محتملة</string>
+  <string name="share_diagnosis_progress_tracker">الخطوة %1$d من إجمالي %2$d</string>
 </resources>

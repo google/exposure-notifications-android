@@ -31,7 +31,7 @@
   <string name="onboarding_exposure_notifications_detail">Атрымлівайце апавяшчэнні, калі вы знаходзіліся побач з асобай, якая паведаміла пра заражэнне COVID-19.
     \n\nВаш тэлефон выкарыстоўвае Bluetooth, каб бяспечна збіраць выпадковыя ідэнтыфікатары і абагульваць іх з іншымі тэлефонамі паблізу.
     \n\nДата, працягласць і ўзровень сігналу, звязаныя з рызыкай заражэння, будуць уплываць на тое, ці атрымаеце вы апавяшчэнне на падставе паказчыкаў, зададзеных дзяржаўнымі органамі аховы здароўя.
-    \n\nКалі вынік вашага тэста будзе станоўчым, вы можаце атрымаць напамін аб неабходнасці абагуліць гэту інфармацыю з органамі аховы здароўя.</string>
+    \n\nВы можаце атрымаць апавяшчэнне з заклікам абагуліць звесткі пра дыягназ з дзяржаўнымі органамі аховы здароўя, калі вам прыйдзе SMS з вынікамі тэста.</string>
   <string name="onboarding_metrics_title">Дапамажыце ўдасканаліць гэту праграму</string>
   <string name="onboarding_metrics_subtitle">Абагульвайце даныя пра выкарыстанне праграмы з Google</string>
   <string name="onboarding_metrics_description">Дзеля падтрымкі і ўдасканалення нашай праграмы частка інфармацыі пра яе прадукцыйнасць і выкарыстанне будзе ананімна абагульвацца з Google. Гэтыя даныя не дазволяць вызначыць вашу асобу. %1$s</string>
@@ -132,6 +132,12 @@
     <item quantity="other">Вы адправілі занадта шмат запытаў. Іншы код вы можаце запытаць праз %1$d хвіліны.</item>
   </plurals>
   <string name="notify_others_notification_title">Дапамажыце апавясціць іншых карыстальнікаў, якія маглі заразіцца</string>
+  <string name="notify_others_if_result_updated_title">Апавясціць іншых людзей пасля абнаўлення вынікаў вашага тэста?</string>
+  <string name="notify_others_if_result_updated_content">Для пацвярджэння выніку %1$s адправіць вам другі код, дзякуючы якому вы зможаце аўтаматычна абнавіць свой стан COVID-19 і з мэтай апавяшчэння абагуліць выпадковыя ідэнтыфікатары, сабраныя за большую колькасць дзён. Асабістыя звесткі не абагульваюцца.</string>
+  <string name="btn_pre_auth_yes">Так, я хачу дапамагчы</string>
+  <string name="btn_pre_auth_no">Не, дзякуй</string>
+  <string name="thank_you_for_notifying_title">Дзякуй за дапамогу</string>
+  <string name="thank_you_for_notifying_content">Арганізацыя аховы здароўя \"%1$s\" толькі што абнавіла вашу храналогію заражэння і можа апавясціць іншых пра рызыку.</string>
   <string name="settings_exposure_notifications_subtitle">Апавяшчэнні пра рызыку заражэння</string>
   <string name="settings_app_analytics_subtitle">Абагульваюцца даныя пра выкарыстанне</string>
   <string name="settings_privacy_policy">Палітыка прыватнасці</string>
@@ -197,5 +203,19 @@
   <string name="share_diagnosis_share_test_result_subtitle">Дзякуй за дапамогу ў спыненні распаўсюджвання COVID-19.</string>
   <string name="share_diagnosis_share_test_result_body">Падчас абагульвання вынікаў тэста вы можаце абагуліць і звесткі пра тое, калі ў вас з\'явіліся сімптомы. Гэта інфармацыя дапаможа спыніць распаўсюджванне COVID-19 і зберагчы жыццё іншым людзям.</string>
   <string name="sms_intercept_notice_title">Што новага</string>
-  <string name="sms_intercept_notice_content">Калі мясцовыя органы аховы здароўя прышлюць вынікі вашага тэста, праграма можа напомніць вам пра неабходнасць адпраўкі гэтай інфармацыі, каб апавясціць іншых карыстальнікаў пра рызыку заражэння. Вы можаце ў любы час адключыць гэту функцыю ў наладах.</string>
+  <string name="sms_intercept_notice_content">Калі вам прыйдзе SMS з вынікам тэста, вы можаце атрымаць апавяшчэнне з заклікам абагуліць звесткі пра дыягназ у апавяшчэннях пра рызыку заражэння. Вы можаце ў любы час адключыць гэту функцыю ў наладах.</string>
+  <string name="share_upload_title">Абагульце вынікі свайго тэста, каб абараніць супольнасць</string>
+  <string name="share_upload_test_result_source_description">Вынікі тэста адпраўлены арганізацыяй \"%1$s\"</string>
+  <string name="share_upload_symptoms_subtitle">Дата ўзнікнення сімптомаў</string>
+  <string name="share_upload_symptoms_date_fixed_description">Дата ўзнікнення сімптомаў пададзена арганізацыяй \"%1$s\"</string>
+  <string name="share_upload_skip_choice">Прапусціць</string>
+  <string name="share_upload_travel_subtitle">Гісторыя падарожжаў</string>
+  <string name="travel_history_travelled_recently_choice">Падарожжы ў апошнія 14 дзён</string>
+  <string name="travel_history_no_travel_choice">Няма</string>
+  <string name="share_upload_select_a_date_choice">Выберыце дату</string>
+  <string name="share_upload_status_subtitle">Стан COVID-19</string>
+  <string name="share_upload_status_confirmed">Станоўчы</string>
+  <string name="share_upload_status_negative">Адмоўны</string>
+  <string name="share_upload_status_likely">Верагодны</string>
+  <string name="share_diagnosis_progress_tracker">Крок %1$d з %2$d</string>
 </resources>

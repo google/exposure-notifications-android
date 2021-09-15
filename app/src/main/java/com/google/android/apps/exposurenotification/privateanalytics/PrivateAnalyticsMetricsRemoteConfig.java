@@ -27,8 +27,8 @@ import com.google.android.apps.exposurenotification.common.Qualifiers.Lightweigh
 import com.google.android.apps.exposurenotification.common.logging.Logger;
 import com.google.android.apps.exposurenotification.network.RequestQueueWrapper;
 import com.google.android.apps.exposurenotification.privateanalytics.MetricsRemoteConfigs.Builder;
-import com.google.android.libraries.privateanalytics.PrivateAnalyticsEventListener;
 import com.google.android.libraries.privateanalytics.DefaultPrivateAnalyticsRemoteConfig.FetchRemoteConfigRequest;
+import com.google.android.libraries.privateanalytics.PrivateAnalyticsEventListener;
 import com.google.android.libraries.privateanalytics.Qualifiers.RemoteConfigUri;
 import com.google.android.libraries.privateanalytics.utils.VolleyUtils;
 import com.google.common.base.Optional;
@@ -78,6 +78,14 @@ public class PrivateAnalyticsMetricsRemoteConfig {
   static final String CONFIG_METRIC_CODE_VERIFIED_PRIO_EPSILON_KEY =
       "enpa_metric_code_verified_v1_prio_epsilon";
 
+  // Metric "Code Verified with Report Type"
+  @VisibleForTesting
+  static final String CONFIG_METRIC_CODE_VERIFIED_WITH_REPORT_TYPE_SAMPLING_PROB_KEY =
+      "enpa_metric_code_verified_with_report_type_v1_sampling_prob";
+  @VisibleForTesting
+  static final String CONFIG_METRIC_CODE_VERIFIED_WITH_REPORT_TYPE_PRIO_EPSILON_KEY =
+      "enpa_metric_code_verified_with_report_type_v1_prio_epsilon";
+
   // Metric "Keys Uploaded"
   @VisibleForTesting
   static final String CONFIG_METRIC_KEYS_UPLOADED_SAMPLING_PROB_KEY =
@@ -85,6 +93,14 @@ public class PrivateAnalyticsMetricsRemoteConfig {
   @VisibleForTesting
   static final String CONFIG_METRIC_KEYS_UPLOADED_PRIO_EPSILON_KEY =
       "enpa_metric_keys_uploaded_v1_prio_epsilon";
+
+  // Metric "Keys Uploaded with Report Type"
+  @VisibleForTesting
+  static final String CONFIG_METRIC_KEYS_UPLOADED_WITH_REPORT_TYPE_SAMPLING_PROB_KEY =
+      "enpa_metric_keys_uploaded_with_report_type_v1_sampling_prob";
+  @VisibleForTesting
+  static final String CONFIG_METRIC_KEYS_UPLOADED_WITH_REPORT_TYPE_PRIO_EPSILON_KEY =
+      "enpa_metric_keys_uploaded_with_report_type_v1_prio_epsilon";
 
   // Metric "Date Exposure"
   @VisibleForTesting
@@ -101,6 +117,22 @@ public class PrivateAnalyticsMetricsRemoteConfig {
   @VisibleForTesting
   static final String CONFIG_METRIC_KEYS_UPLOADED_VACCINE_STATUS_PRIO_EPSILON_KEY =
       "enpa_metric_keys_uploaded_vaccine_status_v1_prio_epsilon";
+
+  // Metric "Exposure Notification followed by keys upload"
+  @VisibleForTesting
+  static final String CONFIG_METRIC_KEYS_UPLOADED_AFTER_NOTIFICATION_SAMPLING_PROB_KEY =
+      "enpa_metric_secondary_attack_v1_sampling_prob";
+  @VisibleForTesting
+  static final String CONFIG_METRIC_KEYS_UPLOADED_AFTER_NOTIFICATION_PRIO_EPSILON_KEY =
+      "enpa_metric_secondary_attack_v1_prio_epsilon";
+
+  // Metric "Periodic Exposure Notification followed by keys upload"
+  @VisibleForTesting
+  static final String CONFIG_METRIC_PERIODIC_EXPOSURE_NOTIFICATION_BIWEEKLY_SAMPLING_PROB_KEY =
+      "enpa_metric_periodic_exposure_notification_biweekly_v1_sampling_prob";
+  @VisibleForTesting
+  static final String CONFIG_METRIC_PERIODIC_EXPOSURE_NOTIFICATION_BIWEEKLY_PRIO_EPSILON_KEY =
+      "enpa_metric_periodic_exposure_notification_biweekly_v1_prio_epsilon";
 
   private final static MetricsRemoteConfigs DEFAULT_REMOTE_CONFIGS = MetricsRemoteConfigs
       .newBuilder().build();
@@ -218,6 +250,16 @@ public class PrivateAnalyticsMetricsRemoteConfig {
             jsonObject.getDouble(CONFIG_METRIC_CODE_VERIFIED_PRIO_EPSILON_KEY));
       }
 
+      // Code verified with report type metric params
+      if (jsonObject.has(CONFIG_METRIC_CODE_VERIFIED_WITH_REPORT_TYPE_SAMPLING_PROB_KEY)) {
+        remoteConfigBuilder.setCodeVerifiedWithReportTypePrioSamplingRate(
+            jsonObject.getDouble(CONFIG_METRIC_CODE_VERIFIED_WITH_REPORT_TYPE_SAMPLING_PROB_KEY));
+      }
+      if (jsonObject.has(CONFIG_METRIC_CODE_VERIFIED_WITH_REPORT_TYPE_PRIO_EPSILON_KEY)) {
+        remoteConfigBuilder.setCodeVerifiedWithReportTypePrioEpsilon(
+            jsonObject.getDouble(CONFIG_METRIC_CODE_VERIFIED_WITH_REPORT_TYPE_PRIO_EPSILON_KEY));
+      }
+
       // Keys uploaded metric params
       if (jsonObject.has(CONFIG_METRIC_KEYS_UPLOADED_SAMPLING_PROB_KEY)) {
         remoteConfigBuilder.setKeysUploadedPrioSamplingRate(
@@ -226,6 +268,16 @@ public class PrivateAnalyticsMetricsRemoteConfig {
       if (jsonObject.has(CONFIG_METRIC_KEYS_UPLOADED_PRIO_EPSILON_KEY)) {
         remoteConfigBuilder.setKeysUploadedPrioEpsilon(
             jsonObject.getDouble(CONFIG_METRIC_KEYS_UPLOADED_PRIO_EPSILON_KEY));
+      }
+
+      // Keys uploaded with report type metric params
+      if (jsonObject.has(CONFIG_METRIC_KEYS_UPLOADED_WITH_REPORT_TYPE_SAMPLING_PROB_KEY)) {
+        remoteConfigBuilder.setKeysUploadedWithReportTypePrioSamplingRate(
+            jsonObject.getDouble(CONFIG_METRIC_KEYS_UPLOADED_WITH_REPORT_TYPE_SAMPLING_PROB_KEY));
+      }
+      if (jsonObject.has(CONFIG_METRIC_KEYS_UPLOADED_WITH_REPORT_TYPE_PRIO_EPSILON_KEY)) {
+        remoteConfigBuilder.setKeysUploadedWithReportTypePrioEpsilon(
+            jsonObject.getDouble(CONFIG_METRIC_KEYS_UPLOADED_WITH_REPORT_TYPE_PRIO_EPSILON_KEY));
       }
 
       // Keys uploaded metric params
@@ -246,6 +298,28 @@ public class PrivateAnalyticsMetricsRemoteConfig {
       if (jsonObject.has(CONFIG_METRIC_KEYS_UPLOADED_VACCINE_STATUS_PRIO_EPSILON_KEY)) {
         remoteConfigBuilder.setKeysUploadedVaccineStatusPrioEpsilon(
             jsonObject.getDouble(CONFIG_METRIC_KEYS_UPLOADED_VACCINE_STATUS_PRIO_EPSILON_KEY));
+      }
+
+      // Keys uploaded vaccine status metric params
+      if (jsonObject.has(CONFIG_METRIC_KEYS_UPLOADED_AFTER_NOTIFICATION_SAMPLING_PROB_KEY)) {
+        remoteConfigBuilder.setKeysUploadedAfterNotificationPrioSamplingRate(
+            jsonObject.getDouble(CONFIG_METRIC_KEYS_UPLOADED_AFTER_NOTIFICATION_SAMPLING_PROB_KEY));
+      }
+      if (jsonObject.has(CONFIG_METRIC_KEYS_UPLOADED_AFTER_NOTIFICATION_PRIO_EPSILON_KEY)) {
+        remoteConfigBuilder.setKeysUploadedAfterNotificationPrioEpsilon(
+            jsonObject.getDouble(CONFIG_METRIC_KEYS_UPLOADED_AFTER_NOTIFICATION_PRIO_EPSILON_KEY));
+      }
+
+      // Periodic exposure notification biweekly metric params
+      if (jsonObject.has(CONFIG_METRIC_PERIODIC_EXPOSURE_NOTIFICATION_BIWEEKLY_SAMPLING_PROB_KEY)) {
+        remoteConfigBuilder.setPeriodicExposureNotificationBiweeklyPrioSamplingRate(
+            jsonObject.getDouble(
+                CONFIG_METRIC_PERIODIC_EXPOSURE_NOTIFICATION_BIWEEKLY_SAMPLING_PROB_KEY));
+      }
+      if (jsonObject.has(CONFIG_METRIC_PERIODIC_EXPOSURE_NOTIFICATION_BIWEEKLY_PRIO_EPSILON_KEY)) {
+        remoteConfigBuilder.setPeriodicExposureNotificationBiweeklyPrioEpsilon(
+            jsonObject
+                .getDouble(CONFIG_METRIC_PERIODIC_EXPOSURE_NOTIFICATION_BIWEEKLY_PRIO_EPSILON_KEY));
       }
 
     } catch (JSONException e) {

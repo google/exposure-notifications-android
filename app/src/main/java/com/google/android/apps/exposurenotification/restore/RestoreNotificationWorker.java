@@ -63,6 +63,7 @@ public class RestoreNotificationWorker extends ListenableWorker {
   @NonNull
   @Override
   public ListenableFuture<Result> startWork() {
+
     RestoreNotificationUtil
         .doRestoreNotificationWork(context, exposureNotificationSharedPreferences,
         notificationHelper);

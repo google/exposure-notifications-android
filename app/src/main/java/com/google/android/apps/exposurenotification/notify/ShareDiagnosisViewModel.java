@@ -17,22 +17,19 @@
 
 package com.google.android.apps.exposurenotification.notify;
 
-import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Pair;
 import android.view.View;
-import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.IntentSenderRequest;
-import androidx.activity.result.contract.ActivityResultContracts.StartIntentSenderForResult;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.UiThread;
 import androidx.annotation.VisibleForTesting;
-import androidx.fragment.app.Fragment;
 import androidx.hilt.Assisted;
 import androidx.hilt.lifecycle.ViewModelInject;
 import androidx.lifecycle.LiveData;
@@ -57,6 +54,7 @@ import com.google.android.apps.exposurenotification.keyupload.UploadController.N
 import com.google.android.apps.exposurenotification.keyupload.UploadController.UploadException;
 import com.google.android.apps.exposurenotification.keyupload.UserReportUpload;
 import com.google.android.apps.exposurenotification.nearby.ExposureNotificationClientWrapper;
+import com.google.android.apps.exposurenotification.network.Connectivity;
 import com.google.android.apps.exposurenotification.network.DiagnosisKey;
 import com.google.android.apps.exposurenotification.notify.ShareDiagnosisFlowHelper.ShareDiagnosisFlow;
 import com.google.android.apps.exposurenotification.storage.DiagnosisEntity;
@@ -130,6 +128,8 @@ public class ShareDiagnosisViewModel extends ViewModel {
   // positive COVID-19 test result. Used to mitigate an abuse of a Self-report functionality.
   private static final int SELF_REPORT_DISABLED_NUM_OF_DAYS = 90;
 
+  private static final Duration REQUEST_PRE_AUTH_TEKS_HISTORY_API_TIMEOUT = Duration.ofSeconds(5);
+
   // Keys for storing UI state data in the SavedStateHandle.
   @VisibleForTesting static final String SAVED_STATE_CODE_IS_INVALID =
       "ShareDiagnosisViewModel.SAVED_STATE_CODE_IS_INVALID";
@@ -173,6 +173,7 @@ public class ShareDiagnosisViewModel extends ViewModel {
   private final Clock clock;
   private final TelephonyHelper telephonyHelper;
   private final SecureRandom secureRandom;
+  private final Connectivity connectivity;
 
   private final MutableLiveData<Long> currentDiagnosisId = new MutableLiveData<>(NO_EXISTING_ID);
 
@@ -180,11 +181,13 @@ public class ShareDiagnosisViewModel extends ViewModel {
 
   private final SingleLiveEvent<Void> deletedLiveEvent = new SingleLiveEvent<>();
   private final SingleLiveEvent<String> snackbarLiveEvent = new SingleLiveEvent<>();
-  private final SingleLiveEvent<ApiException> resolutionRequiredLiveEvent = new SingleLiveEvent<>();
+  private final SingleLiveEvent<ApiException> teksReleaseResolutionRequiredLiveEvent =
+      new SingleLiveEvent<>();
+  private final SingleLiveEvent<ApiException> teksPreReleaseResolutionRequiredLiveEvent =
+      new SingleLiveEvent<>();
   private final SingleLiveEvent<Boolean> sharedLiveEvent = new SingleLiveEvent<>();
   private final SingleLiveEvent<Boolean> revealCodeStepEvent = new SingleLiveEvent<>();
-  private final SingleLiveEvent<DiagnosisEntity> recentlySharedPositiveDiagnosisLiveEvent =
-      new SingleLiveEvent<>();
+  private final SingleLiveEvent<Boolean> preAuthFlowCompletedLiveEvent = new SingleLiveEvent<>();
 
   private final MutableLiveData<Optional<VaccinationStatus>> vaccinationStatusForUILiveData =
       new MutableLiveData<>(Optional.absent());
@@ -219,8 +222,8 @@ public class ShareDiagnosisViewModel extends ViewModel {
    * current diagnosis is on.
    */
   enum Step {
-    BEGIN, IS_CODE_NEEDED, GET_CODE, CODE, ONSET, REVIEW, SHARED, NOT_SHARED, TRAVEL_STATUS, VIEW,
-    ALREADY_REPORTED
+    BEGIN, IS_CODE_NEEDED, GET_CODE, CODE, UPLOAD, SHARED, NOT_SHARED, VIEW, ALREADY_REPORTED,
+    PRE_AUTH, VACCINATION
   }
 
   @ViewModelInject
@@ -236,6 +239,7 @@ public class ShareDiagnosisViewModel extends ViewModel {
       Clock clock,
       TelephonyHelper telephonyHelper,
       SecureRandom secureRandom,
+      Connectivity connectivity,
       @BackgroundExecutor ExecutorService backgroundExecutor,
       @LightweightExecutor ExecutorService lightweightExecutor,
       @ScheduledExecutor ScheduledExecutorService scheduledExecutor) {
@@ -250,6 +254,7 @@ public class ShareDiagnosisViewModel extends ViewModel {
     this.clock = clock;
     this.telephonyHelper = telephonyHelper;
     this.secureRandom = secureRandom;
+    this.connectivity = connectivity;
     this.backgroundExecutor = backgroundExecutor;
     this.lightweightExecutor = lightweightExecutor;
     this.scheduledExecutor = scheduledExecutor;
@@ -264,31 +269,17 @@ public class ShareDiagnosisViewModel extends ViewModel {
     return stepNames;
   }
 
+  public boolean deviceHasInternet() {
+    return connectivity.hasInternet();
+  }
+
   /**
-   * Helper methods to make it easy for activities to add resolution handling for releasing TEKs.
+   * A helper method to launch the resolution for a particular {@link ApiException}.
+   *
+   * @param apiException API Exception which might need a resolution.
+   * @param resolutionActivityResultLauncher A launcher of the actual resolution.
    */
-  public void registerResolutionForActivityResult(Fragment fragment) {
-    ActivityResultLauncher<IntentSenderRequest> resolutionActivityResultLauncher =
-        fragment.registerForActivityResult(
-            new StartIntentSenderForResult(), this::onResolutionComplete);
-
-    getResolutionRequiredLiveEvent()
-        .observe(
-            fragment,
-            apiException -> startResolution(apiException, resolutionActivityResultLauncher));
-  }
-
-  public void onResolutionComplete(ActivityResult activityResult) {
-    if (activityResult.getResultCode() == Activity.RESULT_OK) {
-      // Okay to share, submit data.
-      uploadKeys();
-    } else {
-      inFlightLiveData.setValue(false);
-      setIsShared(Shared.NOT_ATTEMPTED);
-    }
-  }
-
-  private void startResolution(ApiException apiException,
+  public void startResolution(ApiException apiException,
       ActivityResultLauncher<IntentSenderRequest> resolutionActivityResultLauncher) {
     PendingIntent resolution = apiException.getStatus().getResolution();
     if (resolution != null) {
@@ -329,12 +320,43 @@ public class ShareDiagnosisViewModel extends ViewModel {
   }
 
   /**
+   * Gets both the current step and the total number of steps of the shareDiagnosisFlow we're in
+   * based on the state of the current diagnosis.
+   * Returns a {@link Pair} (currentStep, total Number of step)
+   */
+  public LiveData<Pair<Integer, Integer>> getStepXofYLiveData() {
+    return Transformations.map(currentStepLiveData, currentStep -> {
+      int total = ShareDiagnosisFlowHelper.getTotalNumberOfStepsInDiagnosisFlow(
+          getShareDiagnosisFlow());
+      int currentStepNumber = ShareDiagnosisFlowHelper.getNumberForCurrentStepInDiagnosisFlow(
+          getShareDiagnosisFlow(), currentStep);
+      return Pair.create(currentStepNumber, total);
+    });
+  }
+
+  /**
    * Tells what is the next step of the flow depending on the current step and current diagnosis.
+   *
+   * @param currentStep the step we want to calculate the next step for
+   * @return the next step value
    */
   public LiveData<Step> getNextStepLiveData(Step currentStep) {
     return Transformations.map(
-        getCurrentDiagnosisLiveData(), diagnosis -> ShareDiagnosisFlowHelper.getNextStep(
-            currentStep, diagnosis, getShareDiagnosisFlow(), context));
+        getCurrentDiagnosisLiveData(), diagnosis ->
+            ShareDiagnosisFlowHelper.getNextStep(currentStep, diagnosis, getShareDiagnosisFlow(),
+                showVaccinationQuestion(resources), context));
+  }
+
+  /**
+   * Tells what is the next step of the flow depending on the current step and current diagnosis.
+   *
+   * @param currentStep the step we want to calculate the next step for
+   * @return {@link Optional} of the next step value
+   */
+  public LiveData<Optional<Step>> maybeGetNextStepLiveData(Step currentStep) {
+    return Transformations.map(
+        getNextStepLiveData(currentStep), step ->
+            step == null ? Optional.absent() : Optional.of(step));
   }
 
   /**
@@ -568,8 +590,7 @@ public class ShareDiagnosisViewModel extends ViewModel {
     return FluentFuture.from(getRecentKeys())
         .transform(
             this::toDiagnosisKeysWithTransmissionRisk, lightweightExecutor)
-        .transformAsync(
-            this::getCertAndUploadKeys, backgroundExecutor)
+        .transformAsync(this::getCertAndUploadKeys, backgroundExecutor)
         .transform(
             unused -> {
               inFlightLiveData.postValue(false);
@@ -589,7 +610,7 @@ public class ShareDiagnosisViewModel extends ViewModel {
         }, lightweightExecutor)
         .catching(ApiException.class, ex -> {
           if (ex.getStatusCode() == ExposureNotificationStatusCodes.RESOLUTION_REQUIRED) {
-            resolutionRequiredLiveEvent.postValue(ex);
+            teksReleaseResolutionRequiredLiveEvent.postValue(ex);
             return null;
           } else {
             logger.w("No RESOLUTION_REQUIRED in result", ex);
@@ -914,8 +935,8 @@ public class ShareDiagnosisViewModel extends ViewModel {
                 skipCodeStep(diagnosisEntity);
               } else {
                 revealCodeStepEvent.postValue(true);
-                nextStep(ShareDiagnosisFlowHelper.getNextStep(
-                    Step.CODE, diagnosisEntity, getShareDiagnosisFlow(), context));
+                nextStep(ShareDiagnosisFlowHelper.getNextStep(Step.CODE, diagnosisEntity,
+                    getShareDiagnosisFlow(), showVaccinationQuestion(resources), context));
               }
               return null;
             }, lightweightExecutor)
@@ -958,8 +979,8 @@ public class ShareDiagnosisViewModel extends ViewModel {
 
   void skipCodeStep(DiagnosisEntity diagnosisEntity) {
     removeCurrentStepFromBackStack();
-    nextStep(ShareDiagnosisFlowHelper.getNextStep(
-        Step.CODE, diagnosisEntity, getShareDiagnosisFlow(), context));
+    nextStep(ShareDiagnosisFlowHelper.getNextStep(Step.CODE, diagnosisEntity,
+        getShareDiagnosisFlow(), showVaccinationQuestion(resources), context));
   }
 
   /**
@@ -1005,6 +1026,7 @@ public class ShareDiagnosisViewModel extends ViewModel {
                     .setSymptomOnset(diagnosis.getOnsetDate())
                     .setCertificate(diagnosis.getCertificate())
                     .setHasTraveled(TravelStatus.TRAVELED.equals(diagnosis.getTravelStatus()))
+                    .setTestType(diagnosis.getTestResult().toApiType())
                     .build(),
             lightweightExecutor)
         .transformAsync(
@@ -1038,9 +1060,19 @@ public class ShareDiagnosisViewModel extends ViewModel {
                       .setSharedStatus(Shared.SHARED)
                       .build());
               sharedLiveEvent.postValue(true);
-              // Store in the preferences that keys have been successfully uploaded.
+              // Store in the preferences that keys have been successfully uploaded and the
+              // associated report type.
               exposureNotificationSharedPreferences
                   .setPrivateAnalyticsLastSubmittedKeysTime(clock.now());
+
+              TestResult testResult = null;
+              try {
+                testResult = TestResult.of(upload.testType());
+              } catch (IllegalArgumentException | NullPointerException e) {
+                // Do nothing: testResult is already null, which is the right behavior
+              }
+              exposureNotificationSharedPreferences.setPrivateAnalyticsLastReportType(testResult);
+
               return Shared.SHARED;
             },
             lightweightExecutor)
@@ -1063,6 +1095,57 @@ public class ShareDiagnosisViewModel extends ViewModel {
   }
 
   /**
+   * Requests user authorization to get {@link TemporaryExposureKey}s in the background and stores
+   * the user decision.
+   *
+   * <p>If approved, the app will be able to get the TEKs in the background once in the next 5 days.
+   */
+  public ListenableFuture<?> preAuthorizeTeksRelease() {
+    inFlightLiveData.postValue(true);
+    return FluentFuture.from(requestPreAuthorizedTemporaryExposureKeyHistory())
+        .transform(
+            unused -> {
+              preAuthFlowCompletedLiveEvent.postValue(true);
+              inFlightLiveData.postValue(false);
+              return null;
+            }, lightweightExecutor)
+        .catching(ApiException.class, ex -> {
+          if (ex.getStatusCode() == ExposureNotificationStatusCodes.RESOLUTION_REQUIRED) {
+            teksPreReleaseResolutionRequiredLiveEvent.postValue(ex);
+            return null;
+          }
+          snackbarLiveEvent.postValue(resources.getString(R.string.generic_error_message));
+          inFlightLiveData.postValue(false);
+          return null;
+        }, lightweightExecutor)
+        .catching(Exception.class, ex -> {
+          snackbarLiveEvent.postValue(resources.getString(R.string.generic_error_message));
+          inFlightLiveData.postValue(false);
+          return null;
+        }, lightweightExecutor);
+  }
+
+  /**
+   * Marks the flow to pre-authorize TEKs release as completed in case the user opts out of
+   * releasing TEKs in the background.
+   */
+  public void skipPreAuthorizedTEKsRelease() {
+    preAuthFlowCompletedLiveEvent.postValue(true);
+  }
+
+  /**
+   * Requests user authorization to release {@link TemporaryExposureKey}s for the self-report flow
+   * in the background.
+   */
+  private ListenableFuture<Void> requestPreAuthorizedTemporaryExposureKeyHistory() {
+    return TaskToFutureAdapter.getFutureWithTimeout(
+        exposureNotificationClientWrapper
+            .requestPreAuthorizedTemporaryExposureKeyHistoryForSelfReport(),
+        REQUEST_PRE_AUTH_TEKS_HISTORY_API_TIMEOUT,
+        scheduledExecutor);
+  }
+
+  /**
    * A {@link SingleLiveEvent} to trigger a snackbar.
    */
   public SingleLiveEvent<String> getSnackbarSingleLiveEvent() {
@@ -1077,11 +1160,27 @@ public class ShareDiagnosisViewModel extends ViewModel {
   }
 
   /**
-   * A {@link SingleLiveEvent} that returns {@link ApiException} to help with starting the
-   * resolution.
+   * A {@link SingleLiveEvent} that signifies a completion of the pre-auth flow (which might be
+   * completed with either user opting in or opting out of pre-releasing TEKs).
    */
-  public SingleLiveEvent<ApiException> getResolutionRequiredLiveEvent() {
-    return resolutionRequiredLiveEvent;
+  public SingleLiveEvent<Boolean> getPreAuthFlowCompletedLiveEvent() {
+    return preAuthFlowCompletedLiveEvent;
+  }
+
+  /**
+   * A {@link SingleLiveEvent} that returns {@link ApiException} to help with starting the
+   * resolution for releasing TEKs.
+   */
+  public SingleLiveEvent<ApiException> getTeksReleaseResolutionRequiredLiveEvent() {
+    return teksReleaseResolutionRequiredLiveEvent;
+  }
+
+  /**
+   * A {@link SingleLiveEvent} that returns {@link ApiException} to help with starting the
+   * resolution for consenting to pre-release TEKs.
+   */
+  public SingleLiveEvent<ApiException> getTeksPreReleaseResolutionRequiredLiveEvent() {
+    return teksPreReleaseResolutionRequiredLiveEvent;
   }
 
   /**

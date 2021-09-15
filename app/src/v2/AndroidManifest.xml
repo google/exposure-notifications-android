@@ -22,7 +22,8 @@
   <application
     android:allowBackup="true"
     android:fullBackupOnly="false"
-    android:backupAgent=".restore.ExposureNotificationBackupAgent">
+    android:backupAgent=".restore.ExposureNotificationBackupAgent"
+    android:icon="@mipmap/ic_launcher">
 
     <activity
       android:name=".home.ExposureNotificationActivity"

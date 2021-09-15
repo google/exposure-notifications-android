@@ -31,7 +31,7 @@
   <string name="onboarding_exposure_notifications_detail">Primajte obavještenja ako ste bili u blizini osobe koja je prijavila da je zaražena virusom COVID-19.
     \n\nVaš telefon koristi Bluetooth da na siguran način prikuplja i dijeli nasumične ID-ove s drugim telefonima u blizini.
     \n\nDatum, trajanje i jačina signala povezanog s mogućom izloženošću će se koristiti da se utvrdi hoćete li biti obavješteni na osnovu parametara koje je postavila institucija za javno zdravstvo.
-    \n\nAko se testiranjem potvrdi da ste pozitivni, primit ćete podsjetnik da podijelite rezultate sa svojom institucijom za javno zdravstvo.</string>
+    \n\nMožete primiti obavještenje da podijelite dijagnozu s institucijom za javno zdravstvo ako primite SMS s rezultatom testa.</string>
   <string name="onboarding_metrics_title">Pomozite nam da poboljšamo aplikaciju</string>
   <string name="onboarding_metrics_subtitle">Dijelite s Googleom podatke o korištenju i radu aplikacije</string>
   <string name="onboarding_metrics_description">Radi pomoći u održavanju i poboljšanju aplikacije, s Googleom se dijele neki podaci o radu i korištenju aplikacije bez informacija o identitetu. Ti podaci ne otkrivaju vaš identitet. %1$s</string>
@@ -81,7 +81,7 @@
   <string name="share_travel_no_travel">Ne</string>
   <string name="share_travel_no_answer">Radije ne bih odgovorio/la</string>
   <string name="share_review_title">Pregledajte svoje informacije</string>
-  <string name="share_review_status_subtitle">Status testa na COVID-19</string>
+  <string name="share_review_status_subtitle">Status u vezi s virusom COVID-19</string>
   <string name="share_review_status_confirmed">Pozitivno</string>
   <string name="share_review_status_likely">Vjerovatno</string>
   <string name="share_review_status_negative">Negativno</string>
@@ -96,7 +96,7 @@
   <string name="share_confirm_title">Hvala vam što dijelite rezultat testa na COVID-19</string>
   <string name="not_shared_confirm_title">Rezultat testa nije dijeljen</string>
   <string name="not_shared_confirm_detail">Rezultat testa na COVID-19 nije dijeljen. Pokušajte ponovo.</string>
-  <string name="status_shared_detail_title">Podijeljeni status testa na COVID-19</string>
+  <string name="status_shared_detail_title">Podijeljeni status u vezi s virusom COVID-19</string>
   <string name="delete_test_result_title">Izbrisati rezultat testa?</string>
   <string name="delete_test_result_confirmed">Rezultat testa je izbrisan</string>
   <string name="share_error_no_internet">Nije moguće dijeliti rezultate testa van mreže. Provjerite internetsku vezu i pokušajte ponovo.</string>
@@ -130,6 +130,12 @@
     <item quantity="other">Poslali ste previše zahtjeva. Drugi kôd možete zatražiti za %1$d minuta.</item>
   </plurals>
   <string name="notify_others_notification_title">Pomozite obavijestiti osobe koje su možda bile izložene.</string>
+  <string name="notify_others_if_result_updated_title">Obavijestiti druge osobe ako se vaši rezultati ažuriraju?</string>
+  <string name="notify_others_if_result_updated_content">%1$s vam može poslati drugi kôd za potvrdu rezultata testa. Možete automatski ažurirati status u vezi s virusom COVID-19 i podijeliti nasumične ID-ove za dodatne dane pomoću drugog koda da obavijestite druge o mogućoj izloženosti. Vaš identitet se ne dijeli s drugima.</string>
+  <string name="btn_pre_auth_yes">Da, želim pomoći</string>
+  <string name="btn_pre_auth_no">Ne, hvala</string>
+  <string name="thank_you_for_notifying_title">Hvala na pomoći</string>
+  <string name="thank_you_for_notifying_content">Institucija %1$s je upravo ažurirala vaš vremenski slijed izloženosti i možda je upozorila druge o mogućoj izloženosti.</string>
   <string name="settings_exposure_notifications_subtitle">Obavještenja o izloženosti</string>
   <string name="settings_app_analytics_subtitle">Dijeljenje korištenja i rada aplikacije</string>
   <string name="settings_privacy_policy">Pravila privatnosti</string>
@@ -195,5 +201,19 @@
   <string name="share_diagnosis_share_test_result_subtitle">Hvala vam što pomažete da zaustavimo širenje virusa COVID-19.</string>
   <string name="share_diagnosis_share_test_result_body">Kada podijelite rezultat, možete odabrati i da podijelite kada su se simptomi pojavili. Ova informacija može pomoći da zaustavimo širenje virusa COVID-19 i spasimo živote.</string>
   <string name="sms_intercept_notice_title">Šta ima novo</string>
-  <string name="sms_intercept_notice_content">Ako vam vaša lokalna institucija za zdravstvo pošalje rezultat testiranja, aplikacija vas može podsjetiti da pošaljete rezultat i pomognete da upozorimo druge o mogućoj izloženosti. To možete bilo kada onemogućiti u postavkama.</string>
+  <string name="sms_intercept_notice_content">Ako primite SMS s rezultatom testiranja, možda ćete dobiti obavještenje da podijelite dijagnozu u Obavještenjima o izloženosti. To možete bilo kada onemogućiti u postavkama.</string>
+  <string name="share_upload_title">Podijelite rezultat testa da zaštitite svoju zajednicu</string>
+  <string name="share_upload_test_result_source_description">Rezultat testa šalje %1$s</string>
+  <string name="share_upload_symptoms_subtitle">Simptomi su počeli</string>
+  <string name="share_upload_symptoms_date_fixed_description">Datum pojave simptoma pruža %1$s</string>
+  <string name="share_upload_skip_choice">Preskoči</string>
+  <string name="share_upload_travel_subtitle">Historija putovanja</string>
+  <string name="travel_history_travelled_recently_choice">Putovao/la u posljednjih 14 dana</string>
+  <string name="travel_history_no_travel_choice">Nema</string>
+  <string name="share_upload_select_a_date_choice">Odaberite datum</string>
+  <string name="share_upload_status_subtitle">Status u vezi s virusom COVID-19</string>
+  <string name="share_upload_status_confirmed">Pozitivan</string>
+  <string name="share_upload_status_negative">Negativan</string>
+  <string name="share_upload_status_likely">Vjerovatno</string>
+  <string name="share_diagnosis_progress_tracker">%1$d. korak od %2$d</string>
 </resources>

@@ -30,8 +30,8 @@
   <string name="onboarding_exposure_notifications_title">I-on ang Mga Notification sa Exposure</string>
   <string name="onboarding_exposure_notifications_detail">Maabisuhan kung nalapitan mo ang isang taong nag-ulat na may COVID-19.
     \n\nGumagamit ang iyong telepono ng Bluetooth para secure na makakolekta at makapagbahagi ng mga random na ID sa iba pang telepono sa malapit.
-    \n\nGagamitin ang petsa, tagal, at lakas ng signal na nauugnay sa isang posibleng exposure para tukuyin kung aabisuhan ka ba batay sa mga parameter na itinakda ng iyong awtoridad sa pampublikong kalusugan.
-    \n\nKung magpositibo ka, puwede kang makatanggap ng paalala na ibahagi ang mga resulta mo sa iyong awtoridad sa kalusugan.</string>
+    \n\nGagamitin ang petsa, tagal, at lakas ng signal na nauugnay sa isang posibleng exposure para tukuyin kung aabisuhan ka batay sa mga parameter na itinakda ng iyong awtoridad sa pampublikong kalusugan.
+    \n\nPosibleng makatanggap ka ng notification na magbahagi ng diagnosis sa iyong awtoridad sa kalusugan kung makatanggap ka ng SMS na nagsasaad ng resulta ng test mo.</string>
   <string name="onboarding_metrics_title">Tumulong na pahusayin ang app na ito</string>
   <string name="onboarding_metrics_subtitle">Magbahagi ng data ng app usage at performance sa Google</string>
   <string name="onboarding_metrics_description">Para makatulong na mapanatili at mapahusay ang app, ibinabahagi sa Google ang ilang limitado at walang pagkakakilanlang data tungkol sa performance at paggamit ng app. Hindi ka makikilala sa data na ito. %1$s</string>
@@ -128,6 +128,12 @@
     <item quantity="other">Masyadong marami na ang nagawa mong kahilingan. Makakahiling ka ng isa pang code pagkatapos ng %1$d na minuto.</item>
   </plurals>
   <string name="notify_others_notification_title">Tumulong na maabisuhan ang ibang tao na posibleng na-expose</string>
+  <string name="notify_others_if_result_updated_title">Abisuhan ang ibang tao kung ma-update ang iyong resulta?</string>
+  <string name="notify_others_if_result_updated_content">Puwede kang padalhan ng %1$s ng pangalawang code para kumpirmahin ang resulta ng test mo. Puwede mong i-autoupdate ang status mo sa COVID-19 at magbahagi ng karagdagang araw ng random na ID gamit ang pangalawang code, na makakatulong sa pag-abiso sa iba tungkol sa posibleng exposure. Hindi ibabahagi ang pagkakakilanlan mo sa iba.</string>
+  <string name="btn_pre_auth_yes">Oo, gusto kong makatulong</string>
+  <string name="btn_pre_auth_no">Huwag na lang</string>
+  <string name="thank_you_for_notifying_title">Salamat sa pagtulong</string>
+  <string name="thank_you_for_notifying_content">Kaka-update lang ng %1$s sa iyong timeline ng exposure at posibleng inalertuhan nito ang iba tungkol sa posibleng exposure.</string>
   <string name="settings_exposure_notifications_subtitle">Mga Notification sa Exposure</string>
   <string name="settings_app_analytics_subtitle">Pagbabahagi ng app usage at performance</string>
   <string name="settings_privacy_policy">Patakaran sa privacy</string>
@@ -193,5 +199,19 @@
   <string name="share_diagnosis_share_test_result_subtitle">Salamat sa pagtulong sa pagpigil sa COVID-19.</string>
   <string name="share_diagnosis_share_test_result_body">Kapag nagbahagi ka ng iyong resulta, puwede mo ring piliing ibahagi kung kailan nagsimula ang iyong mga sintomas. Makakatulong ang impormasyong ito na mapigilan ang paglaganap ng COVID-19 at makaligtas ng mga buhay.</string>
   <string name="sms_intercept_notice_title">Ano\'ng bago</string>
-  <string name="sms_intercept_notice_content">Kung padalhan ka ng iyong lokal na awtoridad sa kalusugan ng resulta ng test, maaabisuhan ka ng app mo ng paalala na isumite ang iyong resulta at tulungang alertuhan ang iba ng posibleng exposure. Puwede mo itong i-disable anumang oras sa mga setting.</string>
+  <string name="sms_intercept_notice_content">Kung makakatanggap ka ng SMS na may resulta ng iyong test, posibleng makatanggap ka ng notification na humihiling sa iyong ibahagi ang diagnosis mo sa mga notification sa exposure. Puwede mo itong i-disable anumang oras sa mga setting.</string>
+  <string name="share_upload_title">Ibahagi ang iyong resulta para protektahan ang komunidad mo</string>
+  <string name="share_upload_test_result_source_description">%1$s ang nagpapadala ng resulta ng test</string>
+  <string name="share_upload_symptoms_subtitle">Nagsimula ang sintomas noong</string>
+  <string name="share_upload_symptoms_date_fixed_description">Nagmula sa %1$s ang petsa ng sintomas</string>
+  <string name="share_upload_skip_choice">Laktawan</string>
+  <string name="share_upload_travel_subtitle">History ng paglalakbay</string>
+  <string name="travel_history_travelled_recently_choice">Naglakbay sa nakalipas na 14 na araw</string>
+  <string name="travel_history_no_travel_choice">Wala</string>
+  <string name="share_upload_select_a_date_choice">Pumili ng petsa</string>
+  <string name="share_upload_status_subtitle">Status sa COVID-19</string>
+  <string name="share_upload_status_confirmed">Positibo</string>
+  <string name="share_upload_status_negative">Negatibo</string>
+  <string name="share_upload_status_likely">Malamang na Positibo</string>
+  <string name="share_diagnosis_progress_tracker">Hakbang %1$d sa %2$d</string>
 </resources>

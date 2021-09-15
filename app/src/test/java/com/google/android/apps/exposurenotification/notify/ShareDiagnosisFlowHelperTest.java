@@ -30,6 +30,7 @@ import com.google.android.apps.exposurenotification.notify.ShareDiagnosisFlowHel
 import com.google.android.apps.exposurenotification.notify.ShareDiagnosisViewModel.Step;
 import com.google.android.apps.exposurenotification.storage.DiagnosisEntity;
 import com.google.android.apps.exposurenotification.storage.DiagnosisEntity.Shared;
+import com.google.android.apps.exposurenotification.storage.DiagnosisEntity.TestResult;
 import com.google.android.apps.exposurenotification.testsupport.FakeShadowResources;
 import com.google.common.collect.ImmutableList;
 import dagger.hilt.android.testing.HiltAndroidTest;
@@ -158,6 +159,28 @@ public class ShareDiagnosisFlowHelperTest {
     }
   }
 
+  @Test
+  public void isPreAuthForSelfReportEnabled_preAuthorizeAfterSelfReportSetToFalse_returnsFalse() {
+    FakeShadowResources resources = (FakeShadowResources) shadowOf(context.getResources());
+    resources.addFakeResource(R.bool.enx_preAuthorizeAfterSelfReport, false);
+
+    boolean isPreAuthForSelfReportEnabled =
+        ShareDiagnosisFlowHelper.isPreAuthForSelfReportEnabled(context);
+
+    assertThat(isPreAuthForSelfReportEnabled).isFalse();
+  }
+
+  @Test
+  public void isPreAuthForSelfReportEnabled_preAuthorizeAfterSelfReportSetToTrue_returnsTrue() {
+    FakeShadowResources resources = (FakeShadowResources) shadowOf(context.getResources());
+    resources.addFakeResource(R.bool.enx_preAuthorizeAfterSelfReport, true);
+
+    boolean isPreAuthForSelfReportEnabled =
+        ShareDiagnosisFlowHelper.isPreAuthForSelfReportEnabled(context);
+
+    assertThat(isPreAuthForSelfReportEnabled).isTrue();
+  }
+
   /* Testing previous step API. */
   @Test
   public void isCodeNeeded_previousStep_alwaysReturnsStepBegin() {
@@ -232,70 +255,14 @@ public class ShareDiagnosisFlowHelperTest {
   }
 
   @Test
-  public void onset_previousStep_returnsAsExpected() {
-    assertThat(ShareDiagnosisFlowHelper.getPreviousStep(
-        Step.ONSET, EMPTY_DIAGNOSIS, ShareDiagnosisFlow.DEFAULT, context)).isEqualTo(Step.CODE);
-    assertThat(ShareDiagnosisFlowHelper.getPreviousStep(
-        Step.ONSET, DIAGNOSIS_THAT_SKIPS_CODE_STEP, ShareDiagnosisFlow.DEFAULT, context))
-        .isEqualTo(Step.BEGIN);
-  }
-
-  @Test
-  public void travelStatus_previousStep_returnsAsExpected() {
-    DiagnosisEntity skipsCodeButNoOnsetDiagnosis = DIAGNOSIS_THAT_SKIPS_CODE_STEP.toBuilder()
-        .setIsServerOnsetDate(false)
-        .build();
-    DiagnosisEntity skipsCodeAndOnsetDateSetDiagnosis = DIAGNOSIS_THAT_SKIPS_CODE_STEP.toBuilder()
-        .setIsServerOnsetDate(true)
-        .build();
-    DiagnosisEntity codeNotSkippedAndOnsetDateSetDiagnosis = DiagnosisEntity.newBuilder()
-        .setIsServerOnsetDate(true)
-        .build();
-
-    assertThat(ShareDiagnosisFlowHelper.getPreviousStep(Step.TRAVEL_STATUS,
-        skipsCodeButNoOnsetDiagnosis, ShareDiagnosisFlow.DEFAULT, context))
-        .isEqualTo(Step.ONSET);
-    assertThat(ShareDiagnosisFlowHelper.getPreviousStep(Step.TRAVEL_STATUS,
-        skipsCodeAndOnsetDateSetDiagnosis, ShareDiagnosisFlow.DEFAULT, context))
-        .isEqualTo(Step.BEGIN);
-    assertThat(ShareDiagnosisFlowHelper.getPreviousStep(Step.TRAVEL_STATUS,
-        codeNotSkippedAndOnsetDateSetDiagnosis, ShareDiagnosisFlow.DEFAULT, context))
-        .isEqualTo(Step.CODE);
-  }
-
-  @Test
-  public void review_previousStep_travelQuestionEnabled_returnsStepTravelStatus() {
-    FakeShadowResources resources = (FakeShadowResources) shadowOf(context.getResources());
-    resources.addFakeResource(R.string.share_travel_detail, "non-empty");
-
-    assertThat(ShareDiagnosisFlowHelper.getPreviousStep(Step.REVIEW,
+  public void upload_previousStep_returnsAsExpected() {
+    assertThat(ShareDiagnosisFlowHelper.getPreviousStep(Step.UPLOAD,
         EMPTY_DIAGNOSIS, ShareDiagnosisFlow.DEFAULT, context))
-        .isEqualTo(Step.TRAVEL_STATUS);
-  }
-
-  @Test
-  public void review_previousStep_travelQuestionDisabled_returnsAsExpected() {
-    FakeShadowResources resources = (FakeShadowResources) shadowOf(context.getResources());
-    resources.addFakeResource(R.string.share_travel_detail, "");
-    DiagnosisEntity skipsCodeButNoOnsetDiagnosis = DIAGNOSIS_THAT_SKIPS_CODE_STEP.toBuilder()
-        .setIsServerOnsetDate(false)
-        .build();
-    DiagnosisEntity skipsCodeAndOnsetDateSetDiagnosis = DIAGNOSIS_THAT_SKIPS_CODE_STEP.toBuilder()
-        .setIsServerOnsetDate(true)
-        .build();
-    DiagnosisEntity codeNotSkippedAndOnsetDateSetDiagnosis = DiagnosisEntity.newBuilder()
-        .setIsServerOnsetDate(true)
-        .build();
-
-    assertThat(ShareDiagnosisFlowHelper.getPreviousStep(Step.REVIEW,
-        skipsCodeButNoOnsetDiagnosis, ShareDiagnosisFlow.DEFAULT, context))
-        .isEqualTo(Step.ONSET);
-    assertThat(ShareDiagnosisFlowHelper.getPreviousStep(Step.REVIEW,
-        skipsCodeAndOnsetDateSetDiagnosis, ShareDiagnosisFlow.DEFAULT, context))
-        .isEqualTo(Step.BEGIN);
-    assertThat(ShareDiagnosisFlowHelper.getPreviousStep(Step.REVIEW,
-        codeNotSkippedAndOnsetDateSetDiagnosis, ShareDiagnosisFlow.DEFAULT, context))
         .isEqualTo(Step.CODE);
+
+    assertThat(ShareDiagnosisFlowHelper.getPreviousStep(Step.UPLOAD,
+        DIAGNOSIS_THAT_SKIPS_CODE_STEP, ShareDiagnosisFlow.DEFAULT, context))
+        .isEqualTo(Step.BEGIN);
   }
 
   /* Testing next step API. */
@@ -304,10 +271,10 @@ public class ShareDiagnosisFlowHelperTest {
     FakeShadowResources resources = (FakeShadowResources) shadowOf(context.getResources());
     resources.addFakeResource(R.string.self_report_website_url, "self-report-url");
 
-    Step nextStep = ShareDiagnosisFlowHelper.getNextStep(
-        Step.BEGIN, EMPTY_DIAGNOSIS, ShareDiagnosisFlow.DEFAULT, context);
-    Step nextStepDeepLinkFlow = ShareDiagnosisFlowHelper.getNextStep(
-        Step.BEGIN, EMPTY_DIAGNOSIS, ShareDiagnosisFlow.DEEP_LINK, context);
+    Step nextStep = ShareDiagnosisFlowHelper.getNextStep(Step.BEGIN, EMPTY_DIAGNOSIS,
+        ShareDiagnosisFlow.DEFAULT, /* showVaccinationQuestion= */false, context);
+    Step nextStepDeepLinkFlow = ShareDiagnosisFlowHelper.getNextStep(Step.BEGIN, EMPTY_DIAGNOSIS,
+        ShareDiagnosisFlow.DEEP_LINK, /* showVaccinationQuestion= */false, context);
 
     assertThat(nextStep).isEqualTo(Step.IS_CODE_NEEDED);
     assertThat(nextStepDeepLinkFlow).isEqualTo(Step.CODE);
@@ -318,10 +285,10 @@ public class ShareDiagnosisFlowHelperTest {
     FakeShadowResources resources = (FakeShadowResources) shadowOf(context.getResources());
     resources.addFakeResource(R.string.self_report_website_url, "self-report-url");
 
-    Step nextStep = ShareDiagnosisFlowHelper.getNextStep(
-        Step.BEGIN, DIAGNOSIS, ShareDiagnosisFlow.DEFAULT, context);
-    Step nextStepDeepLinkFlow = ShareDiagnosisFlowHelper.getNextStep(
-        Step.BEGIN, DIAGNOSIS, ShareDiagnosisFlow.DEEP_LINK, context);
+    Step nextStep = ShareDiagnosisFlowHelper.getNextStep(Step.BEGIN, DIAGNOSIS,
+        ShareDiagnosisFlow.DEFAULT, /* showVaccinationQuestion= */false, context);
+    Step nextStepDeepLinkFlow = ShareDiagnosisFlowHelper.getNextStep(Step.BEGIN, DIAGNOSIS,
+        ShareDiagnosisFlow.DEEP_LINK, /* showVaccinationQuestion= */false, context);
 
     assertThat(nextStep).isEqualTo(Step.CODE);
     assertThat(nextStepDeepLinkFlow).isEqualTo(Step.CODE);
@@ -332,14 +299,15 @@ public class ShareDiagnosisFlowHelperTest {
     FakeShadowResources resources = (FakeShadowResources) shadowOf(context.getResources());
     resources.addFakeResource(R.string.self_report_website_url, "");
 
-    Step nextStepNoDiagnosis = ShareDiagnosisFlowHelper.getNextStep(
-        Step.BEGIN, EMPTY_DIAGNOSIS, ShareDiagnosisFlow.DEFAULT, context);
-    Step nextStepNoDiagnosisDeepLinkFlow = ShareDiagnosisFlowHelper.getNextStep(
-        Step.BEGIN, EMPTY_DIAGNOSIS, ShareDiagnosisFlow.DEEP_LINK, context);
-    Step nextStepDiagnosisExists = ShareDiagnosisFlowHelper.getNextStep(
-        Step.BEGIN, DIAGNOSIS, ShareDiagnosisFlow.DEFAULT, context);
-    Step nextStepDiagnosisExistsDeepLinkFlow = ShareDiagnosisFlowHelper.getNextStep(
-        Step.BEGIN, DIAGNOSIS, ShareDiagnosisFlow.DEEP_LINK, context);
+    Step nextStepNoDiagnosis = ShareDiagnosisFlowHelper.getNextStep(Step.BEGIN, EMPTY_DIAGNOSIS,
+        ShareDiagnosisFlow.DEFAULT, /* showVaccinationQuestion= */false, context);
+    Step nextStepNoDiagnosisDeepLinkFlow = ShareDiagnosisFlowHelper.getNextStep(Step.BEGIN,
+        EMPTY_DIAGNOSIS, ShareDiagnosisFlow.DEEP_LINK,
+        /* showVaccinationQuestion= */false, context);
+    Step nextStepDiagnosisExists = ShareDiagnosisFlowHelper.getNextStep(Step.BEGIN,
+        DIAGNOSIS, ShareDiagnosisFlow.DEFAULT, /* showVaccinationQuestion= */false, context);
+    Step nextStepDiagnosisExistsDeepLinkFlow = ShareDiagnosisFlowHelper.getNextStep(Step.BEGIN,
+        DIAGNOSIS, ShareDiagnosisFlow.DEEP_LINK, /* showVaccinationQuestion= */false, context);
 
     assertThat(nextStepNoDiagnosis).isEqualTo(Step.CODE);
     assertThat(nextStepNoDiagnosisDeepLinkFlow).isEqualTo(Step.CODE);
@@ -350,70 +318,171 @@ public class ShareDiagnosisFlowHelperTest {
   @Test
   public void getCode_nextStep_alwaysReturnsStepCode() {
     for (ShareDiagnosisFlow flow : ShareDiagnosisFlow.values()) {
-      Step nextStep = ShareDiagnosisFlowHelper
-          .getNextStep(Step.GET_CODE, EMPTY_DIAGNOSIS, flow, context);
+      Step nextStep = ShareDiagnosisFlowHelper.getNextStep(Step.GET_CODE, EMPTY_DIAGNOSIS,
+          flow, /* showVaccinationQuestion= */false, context);
       assertThat(nextStep).isEqualTo(Step.CODE);
     }
   }
 
   @Test
-  public void code_nextStep_travelStatusDisabled_returnsAsExpected() {
-    FakeShadowResources resources = (FakeShadowResources) shadowOf(context.getResources());
-    resources.addFakeResource(R.string.share_travel_detail, "");
-    DiagnosisEntity onsetDateSetDiagnosis = DiagnosisEntity.newBuilder()
-        .setIsServerOnsetDate(true)
-        .build();
-
-    assertThat(ShareDiagnosisFlowHelper
-        .getNextStep(Step.CODE, EMPTY_DIAGNOSIS, ShareDiagnosisFlow.DEFAULT, context))
-        .isEqualTo(Step.ONSET);
-    assertThat(ShareDiagnosisFlowHelper
-        .getNextStep(Step.CODE, onsetDateSetDiagnosis, ShareDiagnosisFlow.DEFAULT, context))
-        .isEqualTo(Step.REVIEW);
-  }
-
-  @Test
-  public void code_nextStep_travelStatusEnabled_returnsAsExpected() {
-    FakeShadowResources resources = (FakeShadowResources) shadowOf(context.getResources());
-    resources.addFakeResource(R.string.share_travel_detail, "travel-question");
-    DiagnosisEntity onsetDateSetDiagnosis = DiagnosisEntity.newBuilder()
-        .setIsServerOnsetDate(true)
-        .build();
-
-    assertThat(ShareDiagnosisFlowHelper
-        .getNextStep(Step.CODE, EMPTY_DIAGNOSIS, ShareDiagnosisFlow.DEFAULT, context))
-        .isEqualTo(Step.ONSET);
-    assertThat(ShareDiagnosisFlowHelper
-        .getNextStep(Step.CODE, onsetDateSetDiagnosis, ShareDiagnosisFlow.DEFAULT, context))
-        .isEqualTo(Step.TRAVEL_STATUS);
-  }
-
-  @Test
-  public void onset_nextStep_travelStatusDisabled_returnsStepReview() {
-    FakeShadowResources resources = (FakeShadowResources) shadowOf(context.getResources());
-    resources.addFakeResource(R.string.share_travel_detail, "");
-
-    assertThat(ShareDiagnosisFlowHelper
-        .getNextStep(Step.ONSET, EMPTY_DIAGNOSIS, ShareDiagnosisFlow.DEFAULT, context))
-        .isEqualTo(Step.REVIEW);
-  }
-
-  @Test
-  public void onset_nextStep_travelStatusEnabled_returnsStepTravelStatus() {
-    FakeShadowResources resources = (FakeShadowResources) shadowOf(context.getResources());
-    resources.addFakeResource(R.string.share_travel_detail, "travel-question");
-
-    assertThat(ShareDiagnosisFlowHelper
-        .getNextStep(Step.ONSET, EMPTY_DIAGNOSIS, ShareDiagnosisFlow.DEFAULT, context))
-        .isEqualTo(Step.TRAVEL_STATUS);
-  }
-
-  @Test
-  public void travelStatus_nextStep_alwaysReturnsReview() {
+  public void uploadNextStep_isSharedParamAbsent_alwaysReturnsNull() {
     for (ShareDiagnosisFlow flow : ShareDiagnosisFlow.values()) {
-      Step nextStep = ShareDiagnosisFlowHelper
-          .getNextStep(Step.TRAVEL_STATUS, EMPTY_DIAGNOSIS, flow, context);
-      assertThat(nextStep).isEqualTo(Step.REVIEW);
+      assertThat(ShareDiagnosisFlowHelper.getNextStep(Step.UPLOAD, DIAGNOSIS, flow,
+          /* showVaccinationQuestion= */ false, context))
+          .isNull();
+      assertThat(ShareDiagnosisFlowHelper.getNextStep(Step.UPLOAD, DIAGNOSIS, flow,
+          /* showVaccinationQuestion= */ true, context))
+          .isNull();
     }
+  }
+
+  @Test
+  public void uploadNextStep_notShared_alwaysReturnsNotShared() {
+    for (ShareDiagnosisFlow flow : ShareDiagnosisFlow.values()) {
+      assertThat(ShareDiagnosisFlowHelper.getNextStep(Step.UPLOAD, DIAGNOSIS, flow,
+          /* showVaccinationQuestion= */false, /* isShared= */false, context))
+          .isEqualTo(Step.NOT_SHARED);
+      assertThat(ShareDiagnosisFlowHelper.getNextStep(Step.UPLOAD, DIAGNOSIS, flow,
+          /* showVaccinationQuestion= */true, /* isShared= */false, context))
+          .isEqualTo(Step.NOT_SHARED);
+    }
+  }
+
+  @Test
+  public void uploadNextStep_sharedNotSelfReportedNoVacc_returnsShared() {
+    ImmutableList<DiagnosisEntity> notSelfReportedDiagnoses = ImmutableList.of(
+        DiagnosisEntity.newBuilder()
+            .setTestResult(TestResult.CONFIRMED)
+            .build(),
+        DiagnosisEntity.newBuilder()
+            .setTestResult(TestResult.LIKELY)
+            .build(),
+        DiagnosisEntity.newBuilder()
+            .setTestResult(TestResult.NEGATIVE)
+            .build()
+    );
+
+    for (DiagnosisEntity diagnosis : notSelfReportedDiagnoses) {
+      assertThat(ShareDiagnosisFlowHelper.getNextStep(Step.UPLOAD, diagnosis,
+          ShareDiagnosisFlow.DEFAULT, /* showVaccinationQuestion= */false, /* isShared= */true,
+          context)).isEqualTo(Step.SHARED);
+    }
+  }
+
+  @Test
+  public void uploadNextStep_sharedNotSelfReportedButVacc_returnsVacc() {
+    ImmutableList<DiagnosisEntity> notSelfReportedDiagnoses = ImmutableList.of(
+        DiagnosisEntity.newBuilder()
+            .setTestResult(TestResult.CONFIRMED)
+            .build(),
+        DiagnosisEntity.newBuilder()
+            .setTestResult(TestResult.LIKELY)
+            .build(),
+        DiagnosisEntity.newBuilder()
+            .setTestResult(TestResult.NEGATIVE)
+            .build()
+    );
+
+    for (DiagnosisEntity diagnosis : notSelfReportedDiagnoses) {
+      assertThat(ShareDiagnosisFlowHelper.getNextStep(Step.UPLOAD, diagnosis,
+          ShareDiagnosisFlow.DEFAULT, /* showVaccinationQuestion= */true, /* isShared= */true,
+          context)).isEqualTo(Step.VACCINATION);
+    }
+  }
+
+  @Test
+  public void uploadNextStep_sharedSelfReportedDiagnosisAndPreAuthIsOffAndVaccIsOn_returnsVacc() {
+    // Set up resources needed...
+    FakeShadowResources resources = (FakeShadowResources) shadowOf(context.getResources());
+    resources.addFakeResource(R.string.self_report_website_url, "not-empty");
+    resources.addFakeResource(R.bool.enx_preAuthorizeAfterSelfReport, false);
+    // ...and shared self-reported diagnosis.
+    DiagnosisEntity selfReportedDiagnosis = DiagnosisEntity.newBuilder()
+        .setTestResult(TestResult.USER_REPORT)
+        .build();
+
+    assertThat(ShareDiagnosisFlowHelper.getNextStep(Step.UPLOAD, selfReportedDiagnosis,
+        ShareDiagnosisFlow.SELF_REPORT, /* showVaccinationQuestion= */true, /* isShared= */true,
+        context)).isEqualTo(Step.VACCINATION);
+  }
+
+  @Test
+  public void uploadNextStep_sharedSelfReportedDiagnosisAndPreAuthIsOn_alwaysReturnsPreAuth() {
+    // Set up resources needed...
+    FakeShadowResources resources = (FakeShadowResources) shadowOf(context.getResources());
+    resources.addFakeResource(R.string.self_report_website_url, "not-empty");
+    resources.addFakeResource(R.bool.enx_preAuthorizeAfterSelfReport, true);
+    // ...and shared self-reported diagnosis.
+    DiagnosisEntity selfReportedDiagnosis = DiagnosisEntity.newBuilder()
+        .setTestResult(TestResult.USER_REPORT)
+        .build();
+
+    assertThat(ShareDiagnosisFlowHelper.getNextStep(Step.UPLOAD, selfReportedDiagnosis,
+        ShareDiagnosisFlow.SELF_REPORT, /* showVaccinationQuestion= */false, /* isShared= */true,
+        context)).isEqualTo(Step.PRE_AUTH);
+    assertThat(ShareDiagnosisFlowHelper.getNextStep(Step.UPLOAD, selfReportedDiagnosis,
+        ShareDiagnosisFlow.SELF_REPORT, /* showVaccinationQuestion= */true, /* isShared= */true,
+        context)).isEqualTo(Step.PRE_AUTH);
+  }
+
+  @Test
+  public void preAuth_nextStep_vaccIsOff_returnsNull() {
+    DiagnosisEntity selfReportedSharedDiagnosis = DiagnosisEntity.newBuilder()
+        .setSharedStatus(Shared.SHARED)
+        .setTestResult(TestResult.USER_REPORT)
+        .build();
+
+    assertThat(ShareDiagnosisFlowHelper.getNextStep(Step.PRE_AUTH, selfReportedSharedDiagnosis,
+        ShareDiagnosisFlow.DEFAULT, /* showVaccinationQuestion= */false, context))
+        .isEqualTo(null);
+  }
+
+  @Test
+  public void preAuth_nextStep_vaccIsOn_returnsVacc() {
+    DiagnosisEntity selfReportedSharedDiagnosis = DiagnosisEntity.newBuilder()
+        .setSharedStatus(Shared.SHARED)
+        .setTestResult(TestResult.USER_REPORT)
+        .build();
+
+    assertThat(ShareDiagnosisFlowHelper.getNextStep(Step.PRE_AUTH, selfReportedSharedDiagnosis,
+        ShareDiagnosisFlow.DEFAULT, /* showVaccinationQuestion= */true, context))
+        .isEqualTo(Step.VACCINATION);
+  }
+
+  /*  Testing Add Step X of Y */
+  @Test
+  public void getTotalNumberOfStepsInDiagnosisFlow_returnsAsExpected() {
+    assertThat(ShareDiagnosisFlowHelper.getTotalNumberOfStepsInDiagnosisFlow(
+        ShareDiagnosisFlow.SELF_REPORT)).isEqualTo(3);
+    assertThat(ShareDiagnosisFlowHelper.getTotalNumberOfStepsInDiagnosisFlow(
+        ShareDiagnosisFlow.DEEP_LINK)).isEqualTo(2);
+    assertThat(ShareDiagnosisFlowHelper.getTotalNumberOfStepsInDiagnosisFlow(
+        ShareDiagnosisFlow.DEFAULT)).isEqualTo(2);
+  }
+
+  @Test
+  public void getNumberForCurrentStepInDiagnosisFlow_defaultFlow_returnsAsExpected() {
+    assertThat(ShareDiagnosisFlowHelper.getNumberForCurrentStepInDiagnosisFlow(
+        ShareDiagnosisFlow.DEFAULT, Step.CODE)).isEqualTo(1);
+    assertThat(ShareDiagnosisFlowHelper.getNumberForCurrentStepInDiagnosisFlow(
+        ShareDiagnosisFlow.DEFAULT, Step.UPLOAD)).isEqualTo(2);
+  }
+
+  @Test
+  public void getNumberForCurrentStepInDiagnosisFlow_deepLinkFlow_returnsAsExpected() {
+    assertThat(ShareDiagnosisFlowHelper.getNumberForCurrentStepInDiagnosisFlow(
+        ShareDiagnosisFlow.DEEP_LINK, Step.CODE)).isEqualTo(1);
+    assertThat(ShareDiagnosisFlowHelper.getNumberForCurrentStepInDiagnosisFlow(
+        ShareDiagnosisFlow.DEEP_LINK, Step.UPLOAD)).isEqualTo(2);
+  }
+
+  @Test
+  public void getNumberForCurrentStepInDiagnosisFlow_selfReportFlow_returnsAsExpected() {
+    assertThat(ShareDiagnosisFlowHelper.getNumberForCurrentStepInDiagnosisFlow(
+        ShareDiagnosisFlow.SELF_REPORT, Step.GET_CODE)).isEqualTo(1);
+    assertThat(ShareDiagnosisFlowHelper.getNumberForCurrentStepInDiagnosisFlow(
+        ShareDiagnosisFlow.SELF_REPORT, Step.CODE)).isEqualTo(2);
+    assertThat(ShareDiagnosisFlowHelper.getNumberForCurrentStepInDiagnosisFlow(
+        ShareDiagnosisFlow.SELF_REPORT, Step.UPLOAD)).isEqualTo(3);
   }
 }

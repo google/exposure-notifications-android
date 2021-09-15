@@ -31,7 +31,7 @@
   <string name="onboarding_exposure_notifications_detail">Ricevi notifiche se hai avuto contatti ravvicinati con una persona che ha segnalato di aver contratto il COVID-19.
     \n\nIl tuo telefono usa il Bluetooth per raccogliere e condividere in modo sicuro gli ID casuali con altri telefoni nelle vicinanze.
     \n\nLa data, la durata e l\'intensità del segnale associate a una possibile esposizione verranno usate per stabilire se riceverai una notifica in base ai parametri stabiliti dall\'autorità per la salute pubblica locale.
-    \n\nSe il risultato del tuo test è positivo, potresti ricevere un promemoria che ti ricorda di condividere i risultati con l\'autorità per la salute locale.</string>
+    \n\nPotresti ricevere una notifica che ti invita a condividere la diagnosi con l\'autorità per la salute locale se ricevi un SMS con il risultato del tuo test.</string>
   <string name="onboarding_metrics_title">Contribuisci a migliorare questa app</string>
   <string name="onboarding_metrics_subtitle">Condividi dati su prestazioni e utilizzo dell\'app con Google</string>
   <string name="onboarding_metrics_description">Per contribuire a gestire e migliorare l\'app, alcuni dati anonimizzati e limitati relativi alle prestazioni e all\'utilizzo dell\'app vengono condivisi con Google. Questi dati non consentono la tua identificazione. %1$s</string>
@@ -128,6 +128,12 @@
     <item quantity="other">Hai effettuato troppe richieste. Puoi richiedere un altro codice tra %1$d minuti.</item>
   </plurals>
   <string name="notify_others_notification_title">Aiuta ad avvisare le altre persone che potrebbero essere state esposte</string>
+  <string name="notify_others_if_result_updated_title">Vuoi informare altre persone se il tuo risultato viene aggiornato?</string>
+  <string name="notify_others_if_result_updated_content">%1$s può inviarti un secondo codice a conferma del risultato del test. Puoi aggiornare automaticamente la tua condizione COVID-19 e condividere ID casuali per altri giorni utilizzando il secondo codice, il che può essere utile per avvisare altri della possibile esposizione. La tua identità non viene condivisa con altre persone.</string>
+  <string name="btn_pre_auth_yes">Sì, voglio aiutare</string>
+  <string name="btn_pre_auth_no">No, grazie</string>
+  <string name="thank_you_for_notifying_title">Grazie per il tuo aiuto</string>
+  <string name="thank_you_for_notifying_content">%1$s ha appena aggiornato la tua cronologia di esposizione e potrebbe aver avvisato altri della possibile esposizione.</string>
   <string name="settings_exposure_notifications_subtitle">Notifiche di esposizione</string>
   <string name="settings_app_analytics_subtitle">Condivisione prestazioni e uso dell\'app</string>
   <string name="settings_privacy_policy">Norme sulla privacy</string>
@@ -193,5 +199,19 @@
   <string name="share_diagnosis_share_test_result_subtitle">Grazie per aver scelto di contribuire ad arrestare la diffusione del COVID-19.</string>
   <string name="share_diagnosis_share_test_result_body">Quando condividi il tuo risultato, puoi anche decidere di condividere la data in cui sono iniziati i sintomi. Queste informazioni possono aiutare ad arrestare la diffusione del COVID-19 e a salvare vite.</string>
   <string name="sms_intercept_notice_title">Novità</string>
-  <string name="sms_intercept_notice_content">Se la tua autorità sanitaria locale ti invia il risultato di un test, la tua app può inviarti una notifica con un promemoria, che ti ricorda di inviare il risultato e ti aiuta ad avvisare le altre persone di una possibile esposizione. Puoi disattivare quest\'opzione in qualsiasi momento nelle impostazioni.</string>
+  <string name="sms_intercept_notice_content">Se ricevi un SMS con il risultato del test, potresti ricevere una notifica che ti invita a condividere la diagnosi nelle notifiche di esposizione. Puoi disattivare questa funzionalità in qualsiasi momento nelle impostazioni.</string>
+  <string name="share_upload_title">Condividi il risultato del test per proteggere la tua comunità</string>
+  <string name="share_upload_test_result_source_description">Il risultato del test è inviato da %1$s</string>
+  <string name="share_upload_symptoms_subtitle">Il sintomo è iniziato dal giorno</string>
+  <string name="share_upload_symptoms_date_fixed_description">La data di comparsa dei sintomi è fornita da %1$s</string>
+  <string name="share_upload_skip_choice">Ignora</string>
+  <string name="share_upload_travel_subtitle">Cronologia viaggi</string>
+  <string name="travel_history_travelled_recently_choice">Ho viaggiato negli ultimi 14 giorni</string>
+  <string name="travel_history_no_travel_choice">Nessuna</string>
+  <string name="share_upload_select_a_date_choice">Seleziona una data</string>
+  <string name="share_upload_status_subtitle">Condizione COVID-19</string>
+  <string name="share_upload_status_confirmed">Positivo</string>
+  <string name="share_upload_status_negative">Negativo</string>
+  <string name="share_upload_status_likely">Probabile positività</string>
+  <string name="share_diagnosis_progress_tracker">Passaggio %1$d di %2$d</string>
 </resources>

@@ -31,7 +31,7 @@
   <string name="onboarding_exposure_notifications_detail">COVID-19 xəstəliyinə yoluxduğunu bildirmiş bir şəxsə yaxınlaşdığınız zaman bildiriş alın.
     \n\nTelefonunuz yaxında olan digər telefonlardan təsadüfi ID\'ləri toplamaq və onlarla paylaşmaq üçün Bluetooth\'dan istifadə edir.
     \n\nEhtimal yoluxma ilə əlaqəli tarix, müddət və siqnal gücü səhiyyə orqanınız tərəfindən təyin olunan parametrlərə əsasən sizə xəbər verilib-verilməməsini təyin etmək üçün istifadə ediləcəkdir.
-    \n\nTest nəticəniz müsbət olarsa, nəticələrinizi səhiyyə orqanınızla paylaşmaq üçün xatırlatma ala bilərsiniz.</string>
+    \n\nTest nəticəniz olan SMS alsanız, diaqnozu səhiyyə orqanınızla paylaşmaq üçün bildiriş ala bilərsiniz.</string>
   <string name="onboarding_metrics_title">Bu tətbiqi təkmilləşdirməyə kömək edin</string>
   <string name="onboarding_metrics_subtitle">Tətbiq istifadəsi, məhsuldarlıq datasını Google ilə paylaşın</string>
   <string name="onboarding_metrics_description">Tətbiqin dəstəklənməsi və təkmilləşdirilməsinə kömək etmək üçün tətbiq məhsuldarlığı və istifadəsi barədə şəxsiyyəti müəyyənləşdirməyən bəzi məhdud məlumatlar Google ilə paylaşılır. Bu məlumatlar kimliyinizi müəyyənləşdirmir. %1$s</string>
@@ -128,6 +128,12 @@
     <item quantity="other">Həddindən artıq sorğu göndərmisiniz. %1$d dəqiqə sonra başqa bir kod üçün sorğu göndərə bilərsiniz.</item>
   </plurals>
   <string name="notify_others_notification_title">Yoluxma ehtimalı olan digər insanlara xəbərdarlıq etməyə kömək edin</string>
+  <string name="notify_others_if_result_updated_title">Nəticələr güncəlləndikdə başqalarına bildiriş göndərilsin?</string>
+  <string name="notify_others_if_result_updated_content">%1$s test nəticənizi təsdiqləmək üçün sizə ikinci kod göndərə bilər. Bu ikinci kodu istifadə edərək COVID-19 statusunuzu avtomatik olaraq yeniləyə və əlavə təsadüfi ID günlərini paylaşa bilərsiniz ki, bu da başqalarına ehtimal yoluxma barədə məlumat verməyə kömək edə bilər. Kimliyiniz başqaları ilə paylaşılmayacaq.</string>
+  <string name="btn_pre_auth_yes">Bəli, kömək etmək istəyirəm</string>
+  <string name="btn_pre_auth_no">Xeyr, təşəkkür</string>
+  <string name="thank_you_for_notifying_title">Yardım üçün təşəkkür edirik</string>
+  <string name="thank_you_for_notifying_content">%1$s indicə yoluxma taymlaynını yeniləyib və başqalarına ehtimal yoluxma barədə xəbərdarlıq etmiş ola bilər.</string>
   <string name="settings_exposure_notifications_subtitle">Yoluxma Bildirişləri</string>
   <string name="settings_app_analytics_subtitle">Tətbiqdən istifadə, məhsuldarlıq datasının paylaşılması</string>
   <string name="settings_privacy_policy">Məxfilik siyasəti</string>
@@ -193,5 +199,19 @@
   <string name="share_diagnosis_share_test_result_subtitle">COVID-19 xəstəliyini dayandırmağa kömək etdiyiniz üçün təşəkkür edirik.</string>
   <string name="share_diagnosis_share_test_result_body">Nəticənizi paylaşdığınız zaman simptomlarınızın başladığı vaxtı da paylaşmağı seçə bilərsiniz. Bu məlumatlar COVID-19 xəstəliyinin yayılmasını dayandırmağa və insanları xilas etməyə kömək edə bilər.</string>
   <string name="sms_intercept_notice_title">Yeniliklər</string>
-  <string name="sms_intercept_notice_content">Yerli səhiyyə orqanınız sizə bir test nəticəsi göndərsə, tətbiqiniz nəticənizi təqdim etməyiniz və başqalarına mümkün yoluxma barədə xəbər verməyiniz üçün bir xatırlatma göndərə bilər. Bunu istənilən vaxt Ayarlarda deaktiv edə bilərsiniz.</string>
+  <string name="sms_intercept_notice_content">Test nəticəniz olan SMS alsanız, diaqnozunuzu yoluxma bildirişlərində paylaşmağınızı tələb edən bir bildiriş ala bilərsiniz. Bunu istənilən vaxt Ayarlarda deaktiv edə bilərsiniz.</string>
+  <string name="share_upload_title">İcmanızı qorumaq üçün test nəticənizi paylaşın</string>
+  <string name="share_upload_test_result_source_description">Test nəticəsi %1$s tərəfindən göndərilir</string>
+  <string name="share_upload_symptoms_subtitle">Simptomun başlama vaxtı:</string>
+  <string name="share_upload_symptoms_date_fixed_description">Simptom tarixi %1$s tərəfindən təmin edilib</string>
+  <string name="share_upload_skip_choice">Keçin</string>
+  <string name="share_upload_travel_subtitle">Səyahət tarixçəsi</string>
+  <string name="travel_history_travelled_recently_choice">Son 14 gündə səyahət edib</string>
+  <string name="travel_history_no_travel_choice">Heç bir</string>
+  <string name="share_upload_select_a_date_choice">Tarix seçin</string>
+  <string name="share_upload_status_subtitle">COVID-19 statusu</string>
+  <string name="share_upload_status_confirmed">Pozitiv</string>
+  <string name="share_upload_status_negative">Neqativ</string>
+  <string name="share_upload_status_likely">Güman ki</string>
+  <string name="share_diagnosis_progress_tracker">%1$d/%2$d mərhələ</string>
 </resources>

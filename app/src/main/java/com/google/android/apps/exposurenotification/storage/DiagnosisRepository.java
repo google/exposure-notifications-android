@@ -74,6 +74,11 @@ public class DiagnosisRepository {
   }
 
   @AnyThread
+  public ListenableFuture<Optional<DiagnosisEntity>> maybeGetLastPreAuthDiagnosisAsync() {
+    return diagnosisDao.maybeGetLastPreAuthDiagnosisAsync();
+  }
+
+  @AnyThread
   public LiveData<Optional<DiagnosisEntity>> getPositiveDiagnosisSharedAfterThresholdLiveData(
       long minTimestampMs) {
     return diagnosisDao.getDiagnosisWithTestResultAndStatusLastUpdatedAfterThresholdLiveData(

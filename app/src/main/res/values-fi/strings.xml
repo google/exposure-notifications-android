@@ -31,7 +31,7 @@
   <string name="onboarding_exposure_notifications_detail">Voit saada ilmoituksen, jos joku lähelläsi ollut ilmoittaa COVID-19-tartunnastaan.
     \n\nBluetoothin avulla puhelimesi kerää satunnaisia tunnuksia suojatusti ja jakaa niitä muille lähellä oleville puhelimille.
     \n\nAltistumisen päivämäärä, kesto ja signaalin vahvuus sen aikana vaikuttavat siihen, saatko ilmoituksen julkisen terveydenhuollon viranomaisten valitsemien parametrien perusteella.
-    \n\nJos testituloksesi on positiivinen, saatat saada muistutuksen tulosten jakamisesta terveydenhuollon viranomaisille.</string>
+    \n\nVoit saada kehotteen diagnoosin jakamisesta terveydenhuollon viranomaisille, jos saat testituloksen tekstiviestinä.</string>
   <string name="onboarding_metrics_title">Auta parantamaan tätä sovellusta</string>
   <string name="onboarding_metrics_subtitle">Jaa käyttö- ja toimintadataa Googlelle</string>
   <string name="onboarding_metrics_description">Sovelluksen ylläpitoa ja kehittämistä varten Googlelle voidaan lähettää jotakin rajoitettua ja nimetöntä dataa sovelluksen toiminnasta ja käytöstä. Tästä datasta ei voi tunnistaa sinua. %1$s</string>
@@ -128,6 +128,12 @@
     <item quantity="other">Olet tehnyt liian monta pyyntöä. Voit pyytää uutta koodia %1$d minuutin kuluttua.</item>
   </plurals>
   <string name="notify_others_notification_title">Auta ilmoittamaan muille mahdollisesta altistumisesta</string>
+  <string name="notify_others_if_result_updated_title">Ilmoitetaanko muille, jos tuloksiasi päivitetään?</string>
+  <string name="notify_others_if_result_updated_content">%1$s voi vahvistaa testituloksesi lähettämällä toisen koodin. Toisella koodilla voit päivittää statuksesi ja saada satunnaisia tunnuksia useammille päiville. Tämä voi auttaa ilmoittamaan muille mahdollisesta altistumisesta. Muut eivät saa tietää henkilöllisyyttäsi.</string>
+  <string name="btn_pre_auth_yes">Kyllä, haluan osallistua</string>
+  <string name="btn_pre_auth_no">Ei kiitos</string>
+  <string name="thank_you_for_notifying_title">Kiitos avustasi</string>
+  <string name="thank_you_for_notifying_content">%1$s päivitti juuri altistumisesi aikajanaa ja on voinut ilmoittaa muille mahdollisesta altistumisesta.</string>
   <string name="settings_exposure_notifications_subtitle">Altistumisilmoitukset</string>
   <string name="settings_app_analytics_subtitle">Sovelluksen käytön ja toiminnan jako</string>
   <string name="settings_privacy_policy">Tietosuojakäytäntö</string>
@@ -193,5 +199,19 @@
   <string name="share_diagnosis_share_test_result_subtitle">Kiitos, että autat estämään COVID-19:n leviämistä.</string>
   <string name="share_diagnosis_share_test_result_body">Kun jaat tuloksesi, voit myös kertoa, milloin oireesi alkoivat. Näiden tietojen avulla voit auttaa estämään COVID-19:n leviämistä ja pelastamaan henkiä.</string>
   <string name="sms_intercept_notice_title">Uutta</string>
-  <string name="sms_intercept_notice_content">Jos saat testituloksen paikallisilta terveysviranomaisilta, sovellus voi muistuttaa sinua lähettämään tuloksesi ja ilmoittaa muille mahdollisesta altistumisesta. Voit estää tämän koska tahansa asetuksista.</string>
+  <string name="sms_intercept_notice_content">Jos saat testituloksen tekstiviestinä, voit saada kehotteen diagnoosin jakamisesta altistumisilmoituksissa. Voit estää tämän koska tahansa asetuksista.</string>
+  <string name="share_upload_title">Jaa testituloksesi muiden suojaamiseksi</string>
+  <string name="share_upload_test_result_source_description">%1$s lähettää testituloksen</string>
+  <string name="share_upload_symptoms_subtitle">Oireet alkoivat</string>
+  <string name="share_upload_symptoms_date_fixed_description">%1$s on ilmoittanut oireilupäivän</string>
+  <string name="share_upload_skip_choice">Ohita</string>
+  <string name="share_upload_travel_subtitle">Matkustushistoria</string>
+  <string name="travel_history_travelled_recently_choice">Matkustanut viimeisten 14 päivän aikana</string>
+  <string name="travel_history_no_travel_choice">Ei mitään</string>
+  <string name="share_upload_select_a_date_choice">Valitse päivämäärä</string>
+  <string name="share_upload_status_subtitle">COVID-19-status</string>
+  <string name="share_upload_status_confirmed">Positiivinen</string>
+  <string name="share_upload_status_negative">Negatiivinen</string>
+  <string name="share_upload_status_likely">Todennäköinen</string>
+  <string name="share_diagnosis_progress_tracker">Vaihe %1$d/%2$d</string>
 </resources>

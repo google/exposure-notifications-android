@@ -31,7 +31,7 @@
   <string name="onboarding_exposure_notifications_detail">코로나19에 걸렸다고 신고한 사람의 근처에 간 적이 있다면 알려 줍니다.
     \n\n휴대전화에서 블루투스를 사용하여 근처 휴대전화의 임의 ID를 안전하게 수집 및 공유합니다.
     \n\n잠재적인 노출과 관련된 날짜, 기간, 신호 강도는 공공 보건 당국에서 설정한 매개변수를 기준으로 알림을 보낼지 결정하는 데 사용됩니다.
-    \n\n양성 판정을 받으면 결과를 보건 당국과 공유하라는 알림을 받을 수 있습니다.</string>
+    \n\n검사 결과를 SMS로 받은 경우 검사 결과를 보건 당국과 공유하라는 알림을 받을 수도 있습니다.</string>
   <string name="onboarding_metrics_title">앱 개선에 참여하기</string>
   <string name="onboarding_metrics_subtitle">Google에 앱 사용 정보 및 성능 데이터 공유</string>
   <string name="onboarding_metrics_description">앱을 유지관리하고 개선하기 위해 앱 성능 및 사용과 관련된 일부 익명화된 데이터가 Google과 제한적으로 공유됩니다. 이 데이터로는 사용자 식별이 불가능합니다. %1$s</string>
@@ -128,6 +128,12 @@
     <item quantity="other">요청 횟수가 너무 많습니다. %1$d분 후에 다시 코드를 요청할 수 있습니다.</item>
   </plurals>
   <string name="notify_others_notification_title">코로나19에 노출되었을 가능성이 있는 다른 사람들에게 알리기</string>
+  <string name="notify_others_if_result_updated_title">결과가 업데이트되면 다른 사용자에게 알리시겠습니까?</string>
+  <string name="notify_others_if_result_updated_content">%1$s에서 검사 결과 확인을 위해 두 번째 코드를 보낼 수 있습니다. 두 번째 코드를 사용하면 코로나19 검사 결과를 자동으로 업데이트하고 임의 ID의 공유 기간을 연장하여 다른 사용자에게 노출 가능성을 알릴 수 있습니다. 내 신원은 다른 사용자에게 공개되지 않습니다.</string>
+  <string name="btn_pre_auth_yes">예, 알리겠습니다</string>
+  <string name="btn_pre_auth_no">아니요</string>
+  <string name="thank_you_for_notifying_title">도움을 주셔서 감사합니다</string>
+  <string name="thank_you_for_notifying_content">%1$s에서 방금 노출 시간대를 업데이트했으며 다른 사용자에게 노출 가능성을 알렸을 수 있습니다.</string>
   <string name="settings_exposure_notifications_subtitle">노출 알림</string>
   <string name="settings_app_analytics_subtitle">앱 사용 정보 및 성능 데이터 공유</string>
   <string name="settings_privacy_policy">개인정보처리방침</string>
@@ -193,5 +199,19 @@
   <string name="share_diagnosis_share_test_result_subtitle">코로나19 확산 방지에 도움을 주셔서 감사합니다</string>
   <string name="share_diagnosis_share_test_result_body">검사 결과를 공유할 때 원하는 경우 증상이 나타난 시기도 공유할 수 있습니다. 이 정보는 코로나19의 확산을 막고 생명을 구하는 데 도움이 될 수 있습니다.</string>
   <string name="sms_intercept_notice_title">새로운 기능</string>
-  <string name="sms_intercept_notice_content">현지 보건 당국에서 검사 결과를 보내면 앱에서 결과를 제출하고 노출 가능성을 다른 사람에게 알리도록 알림을 보낼 수 있습니다. 설정에서 언제든지 사용 중지할 수 있습니다.</string>
+  <string name="sms_intercept_notice_content">검사 결과가 포함된 SMS를 받으면 노출 알림에서 진단 결과를 공유할지 묻는 알림을 보낼 수 있습니다. 설정에서 언제든지 사용 중지할 수 있습니다.</string>
+  <string name="share_upload_title">검사 결과를 공유하여 지역사회를 안전하게 보호하세요</string>
+  <string name="share_upload_test_result_source_description">%1$s에서 보낸 검사 결과</string>
+  <string name="share_upload_symptoms_subtitle">증상 시작일:</string>
+  <string name="share_upload_symptoms_date_fixed_description">증상 발현 날짜는 %1$s에서 제공합니다.</string>
+  <string name="share_upload_skip_choice">건너뛰기</string>
+  <string name="share_upload_travel_subtitle">여행 이력</string>
+  <string name="travel_history_travelled_recently_choice">지난 14일간 여행한 적이 있음</string>
+  <string name="travel_history_no_travel_choice">없음</string>
+  <string name="share_upload_select_a_date_choice">날짜 선택</string>
+  <string name="share_upload_status_subtitle">코로나19 검사 결과</string>
+  <string name="share_upload_status_confirmed">양성</string>
+  <string name="share_upload_status_negative">음성</string>
+  <string name="share_upload_status_likely">양성일 가능성 있음</string>
+  <string name="share_diagnosis_progress_tracker">총 %2$d단계 중 %1$d단계</string>
 </resources>

@@ -31,7 +31,7 @@
   <string name="onboarding_exposure_notifications_detail">Получавайте известия, ако сте били в близост до човек, който е подал сигнал, че е носител на COVID-19.
     \n\nТелефонът ви използва Bluetooth, за да събира и споделя надеждно произволните идентификатори с други телефони, които са в близост.
     \n\nДатата, продължителността и силата на сигнала, свързани с възможно излагане на опасност от заразяване, ще бъдат използвани въз основа на параметри, посочени от органа за обществено здравеопазване, за да бъде определено дали да получите известие.
-    \n\nАко резултатът от теста ви е положителен, може да получите напомняне да го споделите със здравните органи.</string>
+    \n\nМоже да получите известие да споделите диагнозата си със здравните власти, ако получите SMS с резултата от теста си.</string>
   <string name="onboarding_metrics_title">Помогнете ни да подобрим това приложение</string>
   <string name="onboarding_metrics_subtitle">Споделяне с Google на данни за употребата и ефективността</string>
   <string name="onboarding_metrics_description">С цел поддръжка и подобряване на приложението с Google ще се споделят ограничени данни за ефективността и употребата му, непозволяващи лично идентифициране. Тази информация не ви идентифицира. %1$s</string>
@@ -128,6 +128,12 @@
     <item quantity="other">Направили сте прекалено много заявки. Можете да изпратите нова заявка за код след %1$d минути.</item>
   </plurals>
   <string name="notify_others_notification_title">Помогнете за уведомяването на други хора, които може да са били изложени на опасност от заразяване</string>
+  <string name="notify_others_if_result_updated_title">Да се известят ли другите хора, ако резултатът ви бъде актуализиран?</string>
+  <string name="notify_others_if_result_updated_content">%1$s може да ви изпрати втори код с цел потвържд. на резултата от теста. Чрез него можете авт. да актуал. състоянието си във връзка с COVID-19 и да споделите произволните идентификатори допълнителен брой дни. Това ще помогне за известяването на др. хора за възможно излагане на опасност от заразяване. Самоличността ви не се споделя.</string>
+  <string name="btn_pre_auth_yes">Да, искам да помогна</string>
+  <string name="btn_pre_auth_no">Не, благодаря</string>
+  <string name="thank_you_for_notifying_title">Благодарим ви, че помагате</string>
+  <string name="thank_you_for_notifying_content">%1$s току-що актуализира времевия интервал, през който сте били изложени на опасност от заразяване. Здравният орган може да е изпратил сигнали до другите хора за възможно излагане на опасност от заразяване.</string>
   <string name="settings_exposure_notifications_subtitle">Известия за излагане на опасност от заразяване</string>
   <string name="settings_app_analytics_subtitle">Споделяне на данни за приложението</string>
   <string name="settings_privacy_policy">Декларация за поверителност</string>
@@ -193,5 +199,19 @@
   <string name="share_diagnosis_share_test_result_subtitle">Благодарим ви, че помагате за спирането на COVID-19.</string>
   <string name="share_diagnosis_share_test_result_body">Когато споделите резултата си, можете също да изберете да споделите началната дата на симптомите си. Тази информация може да помогне за спиране на разпространението на COVID-19 и да спаси човешки животи.</string>
   <string name="sms_intercept_notice_title">Новите неща</string>
-  <string name="sms_intercept_notice_content">Ако местните здравни власти ви изпратят резултати от теста, приложението може да ви извести с напомняне да изпратите резултатите и да сигнализира на другите хора за възможно излагане на опасност от заразяване. Можете да деактивирате това по всяко време от „Настройки“.</string>
+  <string name="sms_intercept_notice_content">Ако получите SMS с резултата от теста си, може да получите и известие да споделите диагнозата си в системата за известия за излагане на опасност от заразяване. Можете да деактивирате това по всяко време от „Настройки“.</string>
+  <string name="share_upload_title">Споделете резултата от теста си, за да защитите общността си</string>
+  <string name="share_upload_test_result_source_description">Резултатът от теста е изпратен от %1$s</string>
+  <string name="share_upload_symptoms_subtitle">Симптомите започнаха на</string>
+  <string name="share_upload_symptoms_date_fixed_description">Датата на симптома се предоставя от %1$s</string>
+  <string name="share_upload_skip_choice">Пропускане</string>
+  <string name="share_upload_travel_subtitle">История на пътуванията</string>
+  <string name="travel_history_travelled_recently_choice">Пътувах през последните 14 дни</string>
+  <string name="travel_history_no_travel_choice">Няма</string>
+  <string name="share_upload_select_a_date_choice">Изберете дата</string>
+  <string name="share_upload_status_subtitle">Състояние във връзка с COVID-19</string>
+  <string name="share_upload_status_confirmed">Положителен резултат</string>
+  <string name="share_upload_status_negative">Отрицателен резултат</string>
+  <string name="share_upload_status_likely">Вероятно положителен резултат</string>
+  <string name="share_diagnosis_progress_tracker">Стъпка %1$d от %2$d</string>
 </resources>

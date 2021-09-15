@@ -127,6 +127,8 @@
 
   <string name="debug_matching_category">Matching</string>
 
+  <string name="debug_set_biweekly_upload_day_enqueued">Set biweekly metrics upload day to today</string>
+
   <string name="debug_provide_keys_enqueued">Enqueued background job</string>
 
   <string name="debug_network_default_uri">App was built with default URIs. Non-default URIs are required to use servers.</string>
@@ -178,6 +180,8 @@
   <string name="debug_submit_private_analytics_button_text">Submit Private Analytics</string>
 
   <string name="debug_private_analytics_clear_key_store_text">Clear Keystore</string>
+
+  <string name="debug_private_analytics_set_biweekly_upload_day_text">Set biweekly metrics upload to today</string>
 
   <string name="debug_private_analytics_metric_values">Private Analytics Metric Values</string>
 

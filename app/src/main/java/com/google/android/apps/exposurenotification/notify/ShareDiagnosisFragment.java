@@ -303,20 +303,20 @@ public class ShareDiagnosisFragment extends BaseFragment {
         return new ShareDiagnosisGetCodeFragment();
       case CODE:
         return new ShareDiagnosisCodeFragment();
-      case ONSET:
-        return new ShareDiagnosisOnsetDateFragment();
-      case REVIEW:
-        return new ShareDiagnosisReviewFragment();
+      case UPLOAD:
+        return new ShareDiagnosisUploadFragment();
       case SHARED:
         return new ShareDiagnosisSharedFragment();
       case NOT_SHARED:
         return new ShareDiagnosisNotSharedFragment();
-      case TRAVEL_STATUS:
-        return new ShareDiagnosisTravelStatusFragment();
       case VIEW:
         return new ShareDiagnosisViewFragment();
       case ALREADY_REPORTED:
         return new ShareDiagnosisAlreadyReportedFragment();
+      case VACCINATION:
+        return new ShareDiagnosisVaccinationFragment();
+      case PRE_AUTH:
+        return new ShareDiagnosisPreAuthFragment();
       case BEGIN:
       default:
         // We "shouldn't" get here, but start at the beginning if we somehow do.

@@ -28,7 +28,6 @@ import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyProperties;
-import android.util.Log;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.VisibleForTesting;
 import com.google.android.libraries.privateanalytics.Qualifiers.PackageName;
@@ -82,13 +81,15 @@ public class DefaultPrivateAnalyticsDeviceAttestation implements PrivateAnalytic
 
   private final Context context;
   private final String packageName;
+  private final PrivateAnalyticsLogger logger;
   private Clock clock = Instant::now;
 
   @Inject
   public DefaultPrivateAnalyticsDeviceAttestation(Context context,
-      @PackageName String packageName) {
+      @PackageName String packageName, PrivateAnalyticsLogger.Factory loggerFactory) {
     this.context = context;
     this.packageName = packageName;
+    this.logger = loggerFactory.create(TAG);
   }
 
   // Device attestation is only available on Android N and above.
@@ -120,7 +121,7 @@ public class DefaultPrivateAnalyticsDeviceAttestation implements PrivateAnalytic
     // If this is the case, throws an exception as no submission is needed.
     String keyAlias = getDailyAlias(metricName);
     if (keyStore.containsAlias(keyAlias)) {
-      Log.w(TAG, "Cancelling: private analytic already shared today for this metric.");
+      logger.w("Cancelling: private analytic already shared today for this metric.");
       return false;
     }
 
@@ -156,14 +157,14 @@ public class DefaultPrivateAnalyticsDeviceAttestation implements PrivateAnalytic
       keyStore.load(null, null);
 
       for (String metric : listOfMetrics) {
-        Log.d(TAG, "PrioPrivateAnalytics: deleting key for metric " + metric);
+        logger.d("PrioPrivateAnalytics: deleting key for metric " + metric);
         String keyAlias = getDailyAlias(metric);
         if (keyStore.containsAlias(keyAlias)) {
           keyStore.deleteEntry(keyAlias);
         }
       }
     } catch (KeyStoreException | CertificateException | IOException | NoSuchAlgorithmException e) {
-      Log.w(TAG, "Error clearing keystore", e);
+      logger.w("Error clearing keystore", e);
     }
   }
 

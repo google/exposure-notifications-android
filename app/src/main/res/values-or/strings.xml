@@ -28,10 +28,10 @@
   <string name="onboarding_opt_in_title">ସଂକ୍ରମଣ ବିଜ୍ଞପ୍ତିଗୁଡ଼ିକୁ ସକ୍ଷମ କରିବା ପାଇଁ ଅନୁମତି ଆବଶ୍ୟକ</string>
   <string name="onboarding_finish_title">ସଂକ୍ରମଣ ବିଜ୍ଞପ୍ତିଗୁଡ଼ିକୁ ସକ୍ଷମ କରିବା ପାଇଁ ନିୟମିତ ଅନୁମତି ଆବଶ୍ୟକ</string>
   <string name="onboarding_exposure_notifications_title">ସଂକ୍ରମଣ ବିଜ୍ଞପ୍ତିଗୁଡ଼ିକ ଚାଲୁ କରନ୍ତୁ</string>
-  <string name="onboarding_exposure_notifications_detail">ଯଦି ଆପଣ COVID-19 ଟେଷ୍ଟ ରିପୋର୍ଟରେ ପଜିଟିଭ୍ ଆସିଥିବା କେହି ଜଣେ ବ୍ୟକ୍ତିଙ୍କ ନିକଟରେ ଅଛନ୍ତି, ତେବେ ସୂଚନା ପାଆନ୍ତୁ।
+  <string name="onboarding_exposure_notifications_detail">ଯଦି ଆପଣ କୋଭିଡ-19 ଟେଷ୍ଟ ରିପୋର୍ଟରେ ପଜିଟିଭ୍ ଆସିଥିବା କେହି ଜଣେ ବ୍ୟକ୍ତିଙ୍କ ନିକଟରେ ଅଛନ୍ତି, ତେବେ ସୂଚନା ପାଆନ୍ତୁ।
     \n\nଆଖପାଖରେ ଥିବା ଅନ୍ୟ ଫୋନଗୁଡ଼ିକ ସହ ରେଣ୍ଡମ୍ IDଗୁଡ଼ିକୁ ସୁରକ୍ଷିତ ଭାବେ ସଂଗ୍ରହ ଏବଂ ସେୟାର୍ କରିବାକୁ ଆପଣଙ୍କ ଫୋନ୍ ବ୍ଲୁଟୁଥ୍ ବ୍ୟବହାର କରେ।
-    \n\nଆପଣଙ୍କ ଜନ ସ୍ୱାସ୍ଥ୍ୟ କର୍ତ୍ତୃପକ୍ଷଙ୍କ ଦ୍ୱାରା ସେଟ୍ କରାଯାଇଥିବା ପାରାମିଟରଗୁଡ଼ିକ ଆଧାରରେ ଆପଣଙ୍କୁ ସୂଚିତ କରାଯିବ ନା ନାହିଁ ତାହା ସ୍ଥିର କରିବାକୁ ଏକ ସମ୍ଭାବ୍ୟ ସଂକ୍ରମଣ ସହ ସମ୍ବନ୍ଧିତ ତାରିଖ, ଅବଧି ଏବଂ ସିଗନାଲର କ୍ଷମତାକୁ ବ୍ୟବହାର କରାଯିବ।
-    \n\nଯଦି ଆପଣ ସଂକ୍ରମିତ ହୋଇଛନ୍ତି, ତେବେ ଆପଣଙ୍କ ସ୍ୱାସ୍ଥ୍ୟ କର୍ତ୍ତୃପକ୍ଷଙ୍କ ସହ ଆପଣଙ୍କ ରିପୋର୍ଟଗୁଡ଼ିକୁ ସେୟାର୍ କରିବା ପାଇଁ ଆପଣ ଏକ ରିମାଇଣ୍ଡର୍ ପାଇପାରନ୍ତି।</string>
+    \n\nଆପଣଙ୍କ ଜନ ସ୍ୱାସ୍ଥ୍ୟ କର୍ତ୍ତୃପକ୍ଷଙ୍କ ଦ୍ୱାରା ସେଟ୍ କରାଯାଇଥିବା ପାରାମିଟରଗୁଡ଼ିକ ଆଧାରରେ ଆପଣଙ୍କୁ ସୂଚିତ କରାଯିବ ନା ନାହିଁ ତାହା ସ୍ଥିର କରିବାକୁ ଏକ ସମ୍ଭାବ୍ୟ ସଂକ୍ରମଣ ସହ ସମ୍ବନ୍ଧିତ ତାରିଖ, ଅବଧି ଏବଂ ସିଗନାଲ୍ କ୍ଷମତାକୁ ବ୍ୟବହାର କରାଯିବ।
+    \n\nଯଦି ଆପଣ ଆପଣଙ୍କ ଟେଷ୍ଟ ରିପୋର୍ଟ ଥିବା ଏକ SMS ପାଆନ୍ତି ତେବେ ଆପଣଙ୍କ ସ୍ୱାସ୍ଥ୍ୟ କର୍ତ୍ତୃପକ୍ଷଙ୍କ ସହ ଡାଏଗ୍ନୋସିସ୍ ରିପୋର୍ଟ ସେୟାର୍ କରିବାକୁ ଆପଣ ଏକ ବିଜ୍ଞପ୍ତି ପାଇପାରନ୍ତି।</string>
   <string name="onboarding_metrics_title">ଏହି ଆପକୁ ଉନ୍ନତ କରିବାରେ ସାହାଯ୍ୟ କରନ୍ତୁ</string>
   <string name="onboarding_metrics_subtitle">ଆପର ବ୍ୟବହାର ଏବଂ କାର୍ଯ୍ୟଦକ୍ଷତା ଡାଟା Google ସହିତ ସେୟାର୍ କରନ୍ତୁ</string>
   <string name="onboarding_metrics_description">ଆପକୁ ପରିଚାଳନା କରିବା ଏବଂ ଉନ୍ନତ କରିବାରେ ସାହାଯ୍ୟ କରିବା ପାଇଁ, ଆପର କାର୍ଯ୍ୟଦକ୍ଷତା ଏବଂ ବ୍ୟବହାର ବିଷୟରେ ବ୍ୟକ୍ତିଗତ ଚିହ୍ନଟକାରୀ ସୂଚନା-ବିନା କିଛି ସୀମିତ ଡାଟା Google ସହ ସେୟାର୍ କରାଯାଏ। ଏହି ଡାଟା ଆପଣଙ୍କୁ ଚିହ୍ନଟ କରେ ନାହିଁ। %1$s</string>
@@ -128,6 +128,12 @@
     <item quantity="other">ଆପଣ ଅନେକଗୁଡ଼ିଏ ଅନୁରୋଧ କରିଛନ୍ତି। ଆପଣ %1$d ମିନିଟରେ ଅନ୍ୟ ଏକ କୋଡ୍ ପାଇଁ ଅନୁରୋଧ କରିପାରିବେ।</item>
   </plurals>
   <string name="notify_others_notification_title">ଯେଉଁମାନେ ସଂସ୍ପର୍ଶରେ ଆସିଥାଇପାରନ୍ତି, ସେମାନଙ୍କୁ ସୂଚିତ କରିବାରେ ସାହାଯ୍ୟ କରନ୍ତୁ</string>
+  <string name="notify_others_if_result_updated_title">ଆପଣଙ୍କ ଟେଷ୍ଟ ରିପୋର୍ଟ ଅପଡେଟ୍ ହେଲେ ଅନ୍ୟ ଲୋକଙ୍କୁ ସୂଚିତ କରିବେ କି?</string>
+  <string name="notify_others_if_result_updated_content">ଆପଣଙ୍କ ଟେଷ୍ଟ ରିପୋର୍ଟକୁ ସୁନିଶ୍ଚିତ କରିବାକୁ %1$s ଆପଣଙ୍କୁ ଦ୍ୱିତୀୟ କୋଡ୍ ପଠାଇପାରେ। ଆପଣ ଏହି ଦ୍ୱିତୀୟ କୋଡ୍ ବ୍ୟବହାର କରି ଆପଣଙ୍କ କୋଭିଡ-19 ସ୍ଥିତି ସ୍ୱଚାଳିତ ଭାବେ ଅପଡେଟ୍ କରିପାରିବେ ଏବଂ ଅତିରିକ୍ତ ଦିନ ପାଇଁ ରେଣ୍ଡମ୍ IDଗୁଡ଼ିକୁ ସେୟାର୍ କରିପାରିବେ, ଯାହା ସମ୍ଭାବ୍ୟ ସଂକ୍ରମଣ ବିଷୟରେ ଅନ୍ୟମାନଙ୍କୁ ସୂଚିତ କରିବାରେ ସାହାଯ୍ୟ କରିପାରିବ। ଆପଣଙ୍କ ପରିଚୟ ଅନ୍ୟମାନଙ୍କ ସହିତ ସେୟାର୍ କରାଯାଏ ନାହିଁ।</string>
+  <string name="btn_pre_auth_yes">ହଁ, ମୁଁ ସାହାଯ୍ୟ କରିବାକୁ ଚାହେଁ</string>
+  <string name="btn_pre_auth_no">ନା, ଧନ୍ୟବାଦ</string>
+  <string name="thank_you_for_notifying_title">ସାହାଯ୍ୟ କରିଥିବା ଯୋଗୁଁ ଆପଣଙ୍କୁ ଧନ୍ୟବାଦ</string>
+  <string name="thank_you_for_notifying_content">%1$s ଏବେ ଆପଣଙ୍କ ସଂକ୍ରମଣ ଟାଇମଲାଇନକୁ ଅପଡେଟ୍ କରିଛନ୍ତି ଏବଂ ସମ୍ଭାବ୍ୟ ସଂକ୍ରମଣ ବିଷୟରେ ଅନ୍ୟମାନଙ୍କୁ ସୂଚିତ କରିଥାଇପାରନ୍ତି।</string>
   <string name="settings_exposure_notifications_subtitle">ସଂକ୍ରମଣ ବିଜ୍ଞପ୍ତି</string>
   <string name="settings_app_analytics_subtitle">ଆପର ବ୍ୟବହାର ଏବଂ କାର୍ଯ୍ୟଦକ୍ଷତା ସେୟାରିଂ</string>
   <string name="settings_privacy_policy">ଗୋପନୀୟତା ନୀତି</string>
@@ -193,5 +199,19 @@
   <string name="share_diagnosis_share_test_result_subtitle">କୋଭିଡ-19ର ସଂକ୍ରମଣକୁ ପ୍ରତିରୋଧ କରିବାରେ ସାହାଯ୍ୟ କରିଥିବା ଯୋଗୁଁ ଆପଣଙ୍କୁ ଧନ୍ୟବାଦ।</string>
   <string name="share_diagnosis_share_test_result_body">ଆପଣ ଆପଣଙ୍କ ରିପୋର୍ଟ ସେୟାର୍ କରିବା ସମୟରେ ଆପଣଙ୍କ ଲକ୍ଷଣ କେବେଠାରୁ ଆରମ୍ଭ ହୋଇଥିଲା ତାହା ସେୟାର୍ କରିବାକୁ ମଧ୍ୟ ବାଛିପାରିବେ। ଏହି ସୂଚନା କୋଭିଡ-19କୁ ବ୍ୟାପିବାରୁ ପ୍ରତିରୋଧ କରିବା ଏବଂ ଜୀବନ ବଞ୍ଚାଇବାରେ ସାହାଯ୍ୟ କରିପାରିବ।</string>
   <string name="sms_intercept_notice_title">ନୂଆ କଣ ଅଛି</string>
-  <string name="sms_intercept_notice_content">ଯଦି ଆପଣଙ୍କ ସ୍ଥାନୀୟ ସ୍ୱାସ୍ଥ୍ୟ କର୍ତ୍ତୃପକ୍ଷ ଆପଣଙ୍କୁ ଏକ ଟେଷ୍ଟ ରିପୋର୍ଟ ପଠାନ୍ତି, ତେବେ ଆପଣଙ୍କ ରିପୋର୍ଟ ଦାଖଲ କରିବାକୁ ଏବଂ ସମ୍ଭାବ୍ୟ ସଂକ୍ରମଣ ସମ୍ପର୍କରେ ଅନ୍ୟମାନଙ୍କୁ ଆଲର୍ଟ କରିବାରେ ସାହାଯ୍ୟ କରିବା ପାଇଁ ଆପଣଙ୍କ ଆପ୍ ଏକ ରିମାଇଣ୍ଡର୍ ମାଧ୍ୟମରେ ଆପଣଙ୍କୁ ସୂଚିତ କରିପାରିବ। ଆପଣ ଯେ କୌଣସି ସମୟରେ ସେଟିଂସରେ ଏହାକୁ ଅକ୍ଷମ କରିପାରିବେ।</string>
+  <string name="sms_intercept_notice_content">ଯଦି ଆପଣ ଆପଣଙ୍କ ଟେଷ୍ଟ ରିପୋର୍ଟ ଥିବା ଏକ SMS ପ୍ରାପ୍ତ କରନ୍ତି, ତେବେ ସଂକ୍ରମଣ ବିଜ୍ଞପ୍ତିଗୁଡ଼ିକରେ ଆପଣଙ୍କ ଡାଏଗ୍ନୋସିସ୍ ସେୟାର୍ କରିବାକୁ କହୁଥିବା ଏକ ବିଜ୍ଞପ୍ତି ଆପଣ ପାଇପାରନ୍ତି। ଆପଣ ଯେ କୌଣସି ସମୟରେ ସେଟିଂସରେ ଏହାକୁ ଅକ୍ଷମ କରିପାରିବେ।</string>
+  <string name="share_upload_title">ଆପଣଙ୍କ କମ୍ୟୁନିଟୀକୁ ସୁରକ୍ଷିତ ରଖିବା ପାଇଁ ଆପଣଙ୍କ ଟେଷ୍ଟ ରିପୋର୍ଟ ସେୟାର୍ କରନ୍ତୁ</string>
+  <string name="share_upload_test_result_source_description">%1$s ଟେଷ୍ଟ ରିପୋର୍ଟ ପଠାଇଛନ୍ତି</string>
+  <string name="share_upload_symptoms_subtitle">ଏହି ତାରିଖରୁ ଲକ୍ଷଣ ଆରମ୍ଭ ହୋଇଛି</string>
+  <string name="share_upload_symptoms_date_fixed_description">ଲକ୍ଷଣ ଆରମ୍ଭ ହେବାର ତାରିଖ %1$s ଦ୍ୱାରା ପ୍ରଦାନ କରାଯାଇଛି</string>
+  <string name="share_upload_skip_choice">ବାଦ୍ ଦିଅନ୍ତୁ</string>
+  <string name="share_upload_travel_subtitle">ଭ୍ରମଣର ଇତିହାସ</string>
+  <string name="travel_history_travelled_recently_choice">ଗତ 14 ଦିନ ଭିତରେ ଭ୍ରମଣ କରିଛନ୍ତି</string>
+  <string name="travel_history_no_travel_choice">କିଛି ନାହିଁ</string>
+  <string name="share_upload_select_a_date_choice">ଏକ ତାରିଖ ଚୟନ କରନ୍ତୁ</string>
+  <string name="share_upload_status_subtitle">କୋଭିଡ-19 ସ୍ଥିତି</string>
+  <string name="share_upload_status_confirmed">ପଜିଟିଭ୍</string>
+  <string name="share_upload_status_negative">ନେଗେଟିଭ୍</string>
+  <string name="share_upload_status_likely">ସମ୍ଭାବନା ଅଛି</string>
+  <string name="share_diagnosis_progress_tracker">%2$dଟିରୁ %1$d ନମ୍ବର ଷ୍ଟେପ୍</string>
 </resources>

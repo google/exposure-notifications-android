@@ -21,9 +21,13 @@ import android.os.Bundle;
 import android.os.Parcel;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.widget.NestedScrollView;
+import androidx.core.widget.NestedScrollView.OnScrollChangeListener;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import com.google.android.apps.exposurenotification.R;
@@ -36,6 +40,7 @@ import com.google.android.material.datepicker.CalendarConstraints.DateValidator;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.common.base.Function;
+import com.google.common.base.Optional;
 import dagger.hilt.android.AndroidEntryPoint;
 import javax.inject.Inject;
 import org.threeten.bp.Instant;
@@ -49,6 +54,8 @@ import org.threeten.bp.format.FormatStyle;
 public abstract class ShareDiagnosisBaseFragment extends BaseFragment {
 
   protected ShareDiagnosisViewModel shareDiagnosisViewModel;
+
+  private Optional<Boolean> lastUpdateAtBottom = Optional.absent();
 
   @Inject
   Clock clock;
@@ -74,6 +81,46 @@ public abstract class ShareDiagnosisBaseFragment extends BaseFragment {
     }
     return true;
   }
+
+  /**
+   * Set up UI components to update the shadow depending on the scrolling.
+   */
+  protected void setupShadowAtBottom(NestedScrollView scroller, ViewGroup buttonContainer) {
+    scroller.setOnScrollChangeListener(
+        (OnScrollChangeListener) (v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
+          if (scroller.getChildAt(0).getBottom()
+              <= (scroller.getHeight() + scroller.getScrollY())) {
+            updateShadowAtBottom(buttonContainer, true);
+          } else {
+            updateShadowAtBottom( buttonContainer, false);
+          }
+        });
+    ViewTreeObserver observer = scroller.getViewTreeObserver();
+    observer.addOnGlobalLayoutListener(() -> {
+      if (scroller.getMeasuredHeight() >= scroller.getChildAt(0).getHeight()) {
+        // Not scrollable so set at bottom.
+        updateShadowAtBottom(buttonContainer, true);
+      }
+    });
+  }
+
+  /**
+   * Update the shadow depending on whether scrolling is at the bottom or not.
+   */
+  private void updateShadowAtBottom(ViewGroup buttonContainer, boolean atBottom) {
+    if (lastUpdateAtBottom.isPresent() && lastUpdateAtBottom.get() == atBottom) {
+      // Don't update if already at set.
+      return;
+    }
+    lastUpdateAtBottom = Optional.of(atBottom);
+    if (atBottom) {
+      buttonContainer.setElevation(0F);
+    } else {
+      buttonContainer
+          .setElevation(getResources().getDimension(R.dimen.bottom_button_container_elevation));
+    }
+  }
+
 
   /**
    * Attempts to close the "Share diagnosis" flow. If we need to show a confirmation dialog, we

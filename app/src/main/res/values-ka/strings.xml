@@ -31,7 +31,7 @@
   <string name="onboarding_exposure_notifications_detail">მიიღეთ შეტყობინება, თუ ახლოს იმყოფებოდით პირთან, რომელმაც მიუთითა, რომ COVID-19 აქვს.
     \n\nთქვენი ტელეფონი იყენებს Bluetooth-ს შემთხვევითი ID-ების უსაფრთხოდ შესაგროვებლად და სხვა ახლომახლო ტელეფონებისთვის გასაზიარებლად.
     \n\nშესაძლო კონტაქტის თარიღის, ხანგრძლივობისა და სიგნალის სიძლიერის მიხედვით განისაზღვრება, მიიღებთ თუ არა შეტყობინებას, თქვენი საზოგადოებრივი ჯანდაცვის უწყების მიერ დაწესებული პარამეტრების მიხედვით.
-    \n\nთუ ტესტის პასუხი დადებითია, შეიძლება მიიღოთ შეხსენება, რომ თქვენი შედეგები გაუზიაროთ თქვენს ჯანდაცვის უწყებას.</string>
+    \n\nშესაძლოა, მიიღოთ შეტყობინება ჯანდაცვის უწყებისთვის დიაგნოზის გაზიარების შესახებ, თუ მიიღებთ თქვენი ტესტის პასუხს SMS-ით.</string>
   <string name="onboarding_metrics_title">დაგვეხმარეთ აპის გაუმჯობესებაში</string>
   <string name="onboarding_metrics_subtitle">მოხმარების და შესრულების ინფოს გაზიარება</string>
   <string name="onboarding_metrics_description">აპის გამართულად მუშაობისა და გაუმჯობესებისთვის ზოგიერთი შეზღუდული, არამაიდენტიფიცირებელი ინფორმაცია აპის შესრულებისა და მოხმარების შესახებ გაზიარდება Google-თან. ამ მონაცემებით თქვენი იდენტიფიკაცია არ ხდება. %1$s</string>
@@ -128,6 +128,12 @@
     <item quantity="other">თქვენ უკვე ძალიან ბევრი მოთხოვნა გაგზავნეთ. კოდის ხელახლა მოთხოვნას %1$d წუთში შეძლებთ.</item>
   </plurals>
   <string name="notify_others_notification_title">დაგვეხმარეთ, შევატყობინოთ შესაძლო კონტაქტში მყოფ სხვა პირებს</string>
+  <string name="notify_others_if_result_updated_title">შეეტყობინოს სხვებს, თუ თქვენი შედეგი განახლდება?</string>
+  <string name="notify_others_if_result_updated_content">%1$s-მა შეიძლება მეორე კოდი გამოგიგზავნოთ თქვენი ტესტის შედეგის დასადასტურებლად. ამ მეორე კოდის გამოყენებით შეგიძლიათ, ავტომატურად განაახლოთ თქვენი COVID-19 სტატუსი და დაამატოთ შემთხვევითი ID-ების გაზიარების დღეები, რაც ხელს შეუწყობს სხვების შეტყობინებას შესაძლო კონტაქტის შესახებ. სხვებს თქვენი ვინაობა არ გაუმჟღავნდებათ.</string>
+  <string name="btn_pre_auth_yes">დიახ, მინდა დაგეხმაროთ</string>
+  <string name="btn_pre_auth_no">არა, გმადლობთ</string>
+  <string name="thank_you_for_notifying_title">გმადლობთ დახმარებისთვის</string>
+  <string name="thank_you_for_notifying_content">%1$s-მა სწორედ ახლა განაახლა თქვენი კონტაქტის ქრონოლოგია და შეიძლება უკვე გააფრთხილა სხვები შესაძლო კონტაქტის შესახებ.</string>
   <string name="settings_exposure_notifications_subtitle">კონტაქტის შეტყობინებები</string>
   <string name="settings_app_analytics_subtitle">აპის მოხმარების და შესრულების გაზიარება</string>
   <string name="settings_privacy_policy">კონფიდენციალურობის დებულება</string>
@@ -193,5 +199,19 @@
   <string name="share_diagnosis_share_test_result_subtitle">გმადლობთ COVID-19-ის გავრცელების წინააღმდეგ დახმარებისთვის.</string>
   <string name="share_diagnosis_share_test_result_body">ტესტის შედეგის გაზიარებისას პირველი სიმპტომების გამოვლენის თარიღის გაზიარებაც შეგიძლიათ. ამ ინფორმაციამ, შესაძლოა, ხელი შეუწყოს COVID-19-ის გავრცელებასთან ბრძოლას და ადამიანების გადარჩენას.</string>
   <string name="sms_intercept_notice_title">რა არის ახალი</string>
-  <string name="sms_intercept_notice_content">თუ თქვენი ჯანდაცვის ადგილობრივი უწყება გამოგიგზავნით ტესტის შედეგს, თქვენს აპს შეუძლია შეგახსენოთ, რომ გაგზავნოთ თქვენი შედეგი შესაძლო კონტაქტების გასაფრთხილებლად. ამის გათიშვა ნებისმიერ დროს შეგიძლიათ პარამეტრებიდან.</string>
+  <string name="sms_intercept_notice_content">თუ მიიღებთ SMS-ს, რომელიც თქვენი ტესტის შედეგს გაცნობებთ, შეიძლება მიიღოთ შეტყობინება თხოვნით, გააზიაროთ თქვენი დიაგნოზი კონტაქტის შეტყობინებებში. ამის გათიშვა ნებისმიერ დროს შეგიძლიათ პარამეტრებიდან.</string>
+  <string name="share_upload_title">გააზიარეთ თქვენი ტესტის შედეგი, რათა დაიცვათ საზოგადოება</string>
+  <string name="share_upload_test_result_source_description">ტესტის შედეგის გამომგზავნია %1$s</string>
+  <string name="share_upload_symptoms_subtitle">სიმპტომის დაწყების თარიღი:</string>
+  <string name="share_upload_symptoms_date_fixed_description">სიმპტომის თარიღის მომწოდებელია %1$s</string>
+  <string name="share_upload_skip_choice">გამოტოვება</string>
+  <string name="share_upload_travel_subtitle">მოგზაურობის ისტორია</string>
+  <string name="travel_history_travelled_recently_choice">მოგზაურობა გასული 14 დღის განმავლობაში</string>
+  <string name="travel_history_no_travel_choice">არა</string>
+  <string name="share_upload_select_a_date_choice">აირჩიეთ თარიღი</string>
+  <string name="share_upload_status_subtitle">COVID-19 სტატუსი</string>
+  <string name="share_upload_status_confirmed">დადებითი</string>
+  <string name="share_upload_status_negative">უარყოფითი</string>
+  <string name="share_upload_status_likely">შესაძლებელი</string>
+  <string name="share_diagnosis_progress_tracker">ნაბიჯი %1$d / %2$d-დან</string>
 </resources>

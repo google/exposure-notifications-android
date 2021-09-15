@@ -48,6 +48,7 @@ import com.google.android.material.datepicker.CalendarConstraints;
 import com.google.android.material.datepicker.CalendarConstraints.DateValidator;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import dagger.hilt.android.AndroidEntryPoint;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 import org.threeten.bp.Instant;
@@ -230,6 +231,12 @@ public final class DebugActivity extends AppCompatActivity {
           v -> {
             debugViewModel.submitPrivateAnalytics();
             maybeShowSnackbar(getString(R.string.debug_provide_keys_enqueued));
+          });
+
+      binding.debugPrivateAnalyticsSetBiweeklyUploadDay.setOnClickListener(
+          v -> {
+            debugViewModel.setBiweeklyMetricsUploadDay(Calendar.getInstance());
+            maybeShowSnackbar(getString(R.string.debug_set_biweekly_upload_day_enqueued));
           });
 
       binding.debugPrivateAnalyticsClearKeyStoreButton.setOnClickListener(

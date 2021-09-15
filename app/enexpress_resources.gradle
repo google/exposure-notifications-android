@@ -186,7 +186,8 @@ def emitLocaleStrings(config, defaultLocale, locale, outputDir) {
     destXmlMkp.yield "\r\n"
     destXml.resources() {
       config.each { itemKey, itemValue ->
-        if (itemKey == "files" || itemKey.startsWith("playStore") ||
+        if (itemKey == "files" ||
+            (itemKey.startsWith("playStore") && !itemKey.startsWith("playStoreAppTitle")) ||
             itemKey == "serviceAccount") {
           return
         }
@@ -241,16 +242,20 @@ static def setUpSelfReportFields(config, localeSuffix) {
   if (webReportURLMissing || testVerificationUserReportURLMissing) {
     // If either a webReportURL or testVerificationUserReportURL entry is empty or does not exist,
     // this means that self-reporting is disabled. So, we set these and other related self-reporting
-    // entries to empty values.
-    config["webReportURL"] = "";
+    // entries to default values.
+    config["webReportURL"] = ""
     config["testVerificationUserReportURL"] = ""
+    config["preAuthorizeAfterSelfReport"] = false
     selfReportStrings.each {
       config[it] = ""
     }
   } else {
-    // Even if self-reporting is enabled, the related self-reporting entries may be missing.
-    // If an entry is missing, set it to a default empty value, so that app can fall back to the
-    // app-owned (i.e. not HA-provided) strings.
+    // Even if self-reporting is enabled, the related self-reporting entries may be missing. If this
+    // is the case, set each entry to a default value. In case of the string entries, this will
+    // ensure that app will fall back to the app-owned string alternatives.
+    if (!config.get("preAuthorizeAfterSelfReport")) {
+      config["preAuthorizeAfterSelfReport"] = false
+    }
     selfReportStrings.each {
       if (!config.get(it)) {
         config[it] = ""
@@ -297,6 +302,14 @@ def generateResources(configData) {
       // If a testVerificationNotificationBody entry does not exist, we set it to the empty string.
       if (!config.get("testVerificationNotificationBody_" + localeSuffix)) {
         config["testVerificationNotificationBody_" + localeSuffix] = "";
+      }
+      // If a v3 app label doesn't exist, set it to agencyDisplayName by default.
+      if (!config.get("v3AppLabel_" + localeSuffix)) {
+        config["v3AppLabel_" + localeSuffix] = config["agencyDisplayName_" + localeSuffix];
+      }
+      // If a v3 sub text doesn't exist, set it to the empty string.
+      if (!config.get("v3NotificationSubText_" + localeSuffix)) {
+        config["v3NotificationSubText_" + localeSuffix] = "";
       }
       setUpSelfReportFields(config, localeSuffix)
       doFirst {

@@ -30,8 +30,8 @@
   <string name="onboarding_exposure_notifications_title">Aktifkan Notifikasi Paparan</string>
   <string name="onboarding_exposure_notifications_detail">Dapatkan notifikasi jika Anda berada di dekat seseorang yang dilaporkan terinfeksi COVID-19.
     \n\nPonsel Anda menggunakan Bluetooth untuk mengumpulkan dan membagikan ID acak secara aman ke ponsel lain yang ada di sekitar.
-    \n\nTanggal, durasi, dan kekuatan sinyal yang terkait dengan kemungkinan paparan akan digunakan untuk menentukan apakah Anda akan diberi tahu berdasarkan parameter yang ditetapkan oleh otoritas kesehatan masyarakat.
-    \n\nJika hasil tes COVID-19 Anda positif, Anda akan menerima pengingat untuk membagikan hasil tes kepada otoritas kesehatan.</string>
+    \n\nTanggal, durasi, dan kekuatan sinyal yang terkait dengan kemungkinan paparan akan digunakan untuk menentukan apakah Anda akan mendapatkan notifikasi berdasarkan parameter yang ditetapkan oleh otoritas kesehatan masyarakat.
+    \n\nAnda mungkin menerima notifikasi untuk membagikan diagnosis kepada otoritas kesehatan jika mendapatkan SMS yang berisi hasil tes Anda.</string>
   <string name="onboarding_metrics_title">Bantu agar aplikasi ini menjadi lebih baik</string>
   <string name="onboarding_metrics_subtitle">Bagikan data penggunaan &amp; performa aplikasi kepada Google</string>
   <string name="onboarding_metrics_description">Untuk membantu memelihara dan menyempurnakan aplikasi, beberapa data terbatas yang tidak diidentifikasi tentang performa dan penggunaan aplikasi dibagikan kepada Google. Data ini tidak mengidentifikasikan Anda. %1$s</string>
@@ -128,6 +128,12 @@
     <item quantity="other">Anda telah membuat terlalu banyak permintaan. Anda dapat meminta kode lain dalam %1$d menit.</item>
   </plurals>
   <string name="notify_others_notification_title">Bantu beri tahu orang lain yang mungkin telah terpapar</string>
+  <string name="notify_others_if_result_updated_title">Beri tahu orang lain jika hasil tes Anda diperbarui?</string>
+  <string name="notify_others_if_result_updated_content">%1$s dapat mengirim kode kedua untuk mengonfirmasi hasil tes Anda. Anda dapat otomatis memperbarui hasil tes COVID-19 &amp; membagikan ID acak untuk hari tambahan menggunakan kode kedua ini. Hal ini dapat membantu memberi tahu orang lain tentang kemungkinan paparan. Identitas Anda tidak akan dibagikan kepada orang lain.</string>
+  <string name="btn_pre_auth_yes">Ya, saya ingin membantu</string>
+  <string name="btn_pre_auth_no">Lain kali</string>
+  <string name="thank_you_for_notifying_title">Terima kasih sudah membantu</string>
+  <string name="thank_you_for_notifying_content">%1$s baru saja memperbarui linimasa paparan Anda dan mungkin telah memberi tahu orang lain tentang kemungkinan paparan.</string>
   <string name="settings_exposure_notifications_subtitle">Notifikasi Paparan</string>
   <string name="settings_app_analytics_subtitle">Berbagi penggunaan &amp; performa aplikasi</string>
   <string name="settings_privacy_policy">Kebijakan privasi</string>
@@ -193,5 +199,19 @@
   <string name="share_diagnosis_share_test_result_subtitle">Terima kasih telah membantu menghentikan COVID-19.</string>
   <string name="share_diagnosis_share_test_result_body">Jika membagikan hasil tes, Anda juga dapat memilih untuk membagikan kapan gejala Anda dimulai. Informasi ini dapat membantu menghentikan penyebaran COVID-19 dan menyelamatkan nyawa.</string>
   <string name="sms_intercept_notice_title">Yang baru</string>
-  <string name="sms_intercept_notice_content">Jika otoritas kesehatan setempat mengirimkan hasil tes kepada Anda, aplikasi dapat memberi tahu dengan pengingat agar Anda mengirimkan hasil tes dan membantu memberi tahu orang lain tentang kemungkinan paparan. Anda dapat menonaktifkannya kapan saja di setelan.</string>
+  <string name="sms_intercept_notice_content">Jika Anda menerima SMS yang berisi hasil tes, Anda mungkin mendapatkan notifikasi yang meminta untuk membagikan diagnosis di notifikasi paparan. Anda dapat menonaktifkannya kapan saja di setelan.</string>
+  <string name="share_upload_title">Bagikan hasil tes Anda untuk melindungi masyarakat sekitar</string>
+  <string name="share_upload_test_result_source_description">Hasil tes dikirim oleh %1$s</string>
+  <string name="share_upload_symptoms_subtitle">Gejala dimulai sejak</string>
+  <string name="share_upload_symptoms_date_fixed_description">Tanggal munculnya gejala diberikan oleh %1$s</string>
+  <string name="share_upload_skip_choice">Lewati</string>
+  <string name="share_upload_travel_subtitle">Histori bepergian</string>
+  <string name="travel_history_travelled_recently_choice">Bepergian dalam 14 hari terakhir</string>
+  <string name="travel_history_no_travel_choice">Tidak ada</string>
+  <string name="share_upload_select_a_date_choice">Pilih tanggal</string>
+  <string name="share_upload_status_subtitle">Hasil tes COVID-19</string>
+  <string name="share_upload_status_confirmed">Positif</string>
+  <string name="share_upload_status_negative">Negatif</string>
+  <string name="share_upload_status_likely">Mungkin</string>
+  <string name="share_diagnosis_progress_tracker">Langkah %1$d dari %2$d</string>
 </resources>

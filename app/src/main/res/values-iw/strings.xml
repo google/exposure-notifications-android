@@ -29,9 +29,9 @@
   <string name="onboarding_finish_title">המשך ההרשאות שנדרשות כדי להפעיל את התראות החשיפה</string>
   <string name="onboarding_exposure_notifications_title">הפעלת התראות החשיפה</string>
   <string name="onboarding_exposure_notifications_detail">יישלחו אליך התראות אם שהית בקרבת אדם שדיווח על תוצאה חיובית של בדיקת נגיף הקורונה (COVID-19).
-    \n\nבטלפון שלך נעשה שימוש בחיבור Bluetooth כדי לאסוף מזהים רנדומליים ולשתף אותם באופן מאובטח עם טלפונים אחרים שנמצאים בקרבת מקום.
-    \n\nהנתונים שבהם ייעשה שימוש כדי לקבוע אם תישלח אליך התראה הם התאריך, משך הזמן וחוזק האות שמשויכים לחשיפה אפשרית לנגיף. הנתונים האלה נקבעים לפי פרמטרים שהוגדרו על ידי הרשות לבריאות הציבור.
-    \n\nאם תתקבל תוצאה חיובית לבדיקה שלך, ייתכן שתישלח לך תזכורת לשיתוף התוצאות עם הרשות לבריאות הציבור.</string>
+    \n\nבטלפון שלך נעשה שימוש בחיבור Bluetooth כדי לאסוף מזהים רנדומליים ולשתף אותם באופן מאובטח עם טלפונים אחרים בקרבת מקום.
+    \n\nהנתונים שבהם ייעשה שימוש כדי לקבוע אם תישלח אליך התראה הם התאריך, משך הזמן וחוזק האות שמשויכים לחשיפה אפשרית לנגיף, וזאת על סמך פרמטרים שנקבעו על ידי הרשות לבריאות הציבור.
+    \n\nאם תתקבל הודעת SMS עם תוצאת הבדיקה שלך, יכול להיות שתישלח התראה לשיתוף האבחנה עם הרשות לבריאות הציבור.</string>
   <string name="onboarding_metrics_title">נשמח לעזרתך בשיפור האפליקציה</string>
   <string name="onboarding_metrics_subtitle">שיתוף נתוני שימוש וביצועים עם Google</string>
   <string name="onboarding_metrics_description">כדי לעזור בתחזוקה ובשיפור של האפליקציה, נתונים מסוימים ומוגבלים לגבי ביצועי האפליקציה והשימוש בה משותפים עם Google לאחר הסרת פרטי הזיהוי. לא ניתן לזהות אותך לפי הנתונים האלו. %1$s</string>
@@ -132,6 +132,12 @@
     <item quantity="other">שלחת יותר מדי בקשות. ניתן יהיה לבקש קוד נוסף בעוד %1$d דקות.</item>
   </plurals>
   <string name="notify_others_notification_title">רוצה לעזור לעדכן אחרים לגבי חשיפה אפשרית לנגיף?</string>
+  <string name="notify_others_if_result_updated_title">להודיע לאנשים אחרים אם התוצאה שלך תעודכן?</string>
+  <string name="notify_others_if_result_updated_content">יכול להיות שיישלח אליך קוד שני מ%1$s לאישור תוצאות הבדיקה. אפשר לעדכן אוטומטית את סטטוס הקורונה ולשתף מזהים רנדומליים במשך עוד ימים עם הקוד השני, כדי לעדכן אחרים על חשיפה אפשרית. הזהות שלך לא תשותף.</string>
+  <string name="btn_pre_auth_yes">כן, אני רוצה לעזור</string>
+  <string name="btn_pre_auth_no">לא תודה</string>
+  <string name="thank_you_for_notifying_title">תודה על העזרה</string>
+  <string name="thank_you_for_notifying_content">ציר הזמן של החשיפה שלך עודכן עכשיו על ידי %1$s, ויכול להיות שנשלחו התראות לאחרים על חשיפה אפשרית.</string>
   <string name="settings_exposure_notifications_subtitle">התראות חשיפה</string>
   <string name="settings_app_analytics_subtitle">שיתוף נתוני שימוש וביצועים של האפליקציה</string>
   <string name="settings_privacy_policy">מדיניות פרטיות</string>
@@ -197,5 +203,19 @@
   <string name="share_diagnosis_share_test_result_subtitle">תודה על עזרתך בבלימת ההתפשטות של נגיף הקורונה (COVID-19).</string>
   <string name="share_diagnosis_share_test_result_body">לאחר השיתוף של תוצאת הבדיקה שלך, ניתן יהיה לשתף גם את התאריך שבו החלו התסמינים. המידע הזה עוזר בבלימת ההתפשטות של נגיף הקורונה (COVID-19) ובהצלת חיים.</string>
   <string name="sms_intercept_notice_title">מה חדש</string>
-  <string name="sms_intercept_notice_content">אם שולחים לך תוצאת בדיקה ממשרד הבריאות, האפליקציה יכולה לשלוח לך תזכורת לגבי שליחת התוצאה ולעזור בשליחה של התראות לאחרים לגבי חשיפה אפשרית לנגיף. ניתן להשבית זאת בכל שלב בהגדרות.</string>
+  <string name="sms_intercept_notice_content">אם קיבלת SMS עם תוצאת הבדיקה שלך, ייתכן שתישלח לך תזכורת לשתף את האבחנה במערכת התראות החשיפה. ניתן להשבית זאת בכל שלב בהגדרות.</string>
+  <string name="share_upload_title">שיתוף תוצאות הבדיקה כדי לעזור בהגנה על הקהילה</string>
+  <string name="share_upload_test_result_source_description">תוצאה הבדיקה נשלחת על ידי %1$s</string>
+  <string name="share_upload_symptoms_subtitle">זמן ההתחלה של התסמין:</string>
+  <string name="share_upload_symptoms_date_fixed_description">תאריך התחלת התסמינים סופק על ידי %1$s</string>
+  <string name="share_upload_skip_choice">דילוג</string>
+  <string name="share_upload_travel_subtitle">היסטוריית נסיעות</string>
+  <string name="travel_history_travelled_recently_choice">טיילת במהלך 14 הימים האחרונים?</string>
+  <string name="travel_history_no_travel_choice">ללא</string>
+  <string name="share_upload_select_a_date_choice">בחירת תאריך</string>
+  <string name="share_upload_status_subtitle">סטטוס קורונה (COVID-19)</string>
+  <string name="share_upload_status_confirmed">חיובית</string>
+  <string name="share_upload_status_negative">שלילית</string>
+  <string name="share_upload_status_likely">סבירות גבוהה</string>
+  <string name="share_diagnosis_progress_tracker">שלב %1$d מתוך %2$d</string>
 </resources>

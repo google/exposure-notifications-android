@@ -19,7 +19,7 @@
   <string name="share_test_result_card_title">ساعد على مكافحة فيروس كورونا المستجد (كوفيد-19) في مجتمعك</string>
   <string name="share_test_result_card_content">في كل مرة يشارك فيها شخص أن نتيجة اختبار إصابته بالفيروس إيجابية، يساعد في منع إصابة شخص آخر بالفيروس. لن تؤدي مشاركة نتيجة الاختبار إلى تعرّف الآخرين على هويتك.</string>
   <string name="see_history_button">عرض السجلّ</string>
-  <string name="share_positive_diagnosis_card_content">شارِك نتيجة اختبارك للمساعدة في منع انتشار فيروس كورونا.</string>
+  <string name="share_positive_diagnosis_card_content">مشاركة نتيجة اختبارك للمساعدة في منع انتشار فيروس كورونا.</string>
   <string name="share_app_card_content">شارِك هذا التطبيق للمساعدة في حماية المجتمع بشكلٍ أفضل.</string>
   <string name="how_en_works_card_content">تعرّف على المزيد من المعلومات عن كيفية عمل نظام \"إشعارات التعرّض لفيروس كورونا\".</string>
 </resources>

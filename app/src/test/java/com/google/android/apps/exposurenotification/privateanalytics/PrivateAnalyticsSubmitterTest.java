@@ -40,6 +40,7 @@ import com.google.android.libraries.privateanalytics.PrivateAnalyticsDeviceAttes
 import com.google.android.libraries.privateanalytics.PrivateAnalyticsEnabledProvider;
 import com.google.android.libraries.privateanalytics.PrivateAnalyticsEventListener;
 import com.google.android.libraries.privateanalytics.PrivateAnalyticsFirestoreRepository;
+import com.google.android.libraries.privateanalytics.PrivateAnalyticsLogger;
 import com.google.android.libraries.privateanalytics.PrivateAnalyticsRemoteConfig;
 import com.google.android.libraries.privateanalytics.PrivateAnalyticsSubmitter;
 import com.google.android.libraries.privateanalytics.PrivateAnalyticsSubmitter.PrioDataPointsProvider;
@@ -64,6 +65,7 @@ import dagger.hilt.android.testing.HiltTestApplication;
 import dagger.hilt.android.testing.UninstallModules;
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ScheduledExecutorService;
@@ -83,6 +85,9 @@ import org.robolectric.annotation.Config;
 @UninstallModules({ExecutorsModule.class, ExposureNotificationsClientModule.class,
     PrivateAnalyticsFirebaseModule.class, RealTimeModule.class, PrivateAnalyticsModule.class})
 public class PrivateAnalyticsSubmitterTest {
+
+  private static final int DAILY_METRICS = 7;
+  private static final int BIWEEKLY_METRICS = 4;
 
   @Rule
   public ExposureNotificationRules rules = ExposureNotificationRules.forTest(this).withMocks()
@@ -134,6 +139,8 @@ public class PrivateAnalyticsSubmitterTest {
   PrioDataPointsProvider prioDataPointsProvider;
   @Inject
   PrivateAnalyticsFirestoreRepository firestoreRepository;
+  @BindValue
+  PrivateAnalyticsLogger.Factory loggerFactory = new FakePrivateAnalyticsLoggerFactory();
 
 
   PrivateAnalyticsSubmitter privateAnalyticsSubmitter;
@@ -179,14 +186,18 @@ public class PrivateAnalyticsSubmitterTest {
     // of the modules provides method needs the mock's output.
     rules.hilt().inject();
 
+    // We use a default non-existent day, so that tests always behave the same, regardless of the
+    // day of week they're running.
+    int weeklyMetricsUploadDay = 0;
+
     privateAnalyticsSubmitter = new PrivateAnalyticsSubmitter(prioDataPointsProvider,
-        sdkRemoteConfig, firestoreRepository, privateAnalyticsEnabledProvider);
+        sdkRemoteConfig, firestoreRepository, privateAnalyticsEnabledProvider, loggerFactory,
+        weeklyMetricsUploadDay);
     exposureNotificationSharedPreferences.setPrivateAnalyticsState(true);
   }
 
   @Test
-  public void testSubmitPackets_doesNotUploadSharesIfKeysOrCertificatesMissing()
-      throws ExecutionException, InterruptedException {
+  public void testSubmitPackets_doesNotUploadSharesIfKeysOrCertificatesMissing() {
     RemoteConfigs remoteConfig = RemoteConfigs.newBuilder()
         .setEnabled(true)
         .setDeviceAttestationRequired(false)
@@ -200,6 +211,34 @@ public class PrivateAnalyticsSubmitterTest {
   @Test
   public void testSubmitPackets_uploadsShares()
       throws ExecutionException, InterruptedException {
+    setupSubmissionFixture();
+
+    // The following function should submit the _five_ metrics available.
+    privateAnalyticsSubmitter.submitPackets().get();
+    verify(documentReference, times(DAILY_METRICS)).set(documentsCaptor.capture());
+  }
+
+  @Test
+  public void testSubmitPackets_uploadsWeeklySharesOnCorrectDay()
+      throws ExecutionException, InterruptedException {
+    Calendar calendar = Calendar.getInstance();
+    int dayIndex = calendar.get(Calendar.DAY_OF_WEEK) - 1;
+    int weekIndex = calendar.get(Calendar.WEEK_OF_YEAR) % 2;
+    int currentDay = dayIndex + 7 * weekIndex;
+    privateAnalyticsSubmitter = new PrivateAnalyticsSubmitter(
+        prioDataPointsProvider, sdkRemoteConfig, firestoreRepository,
+        privateAnalyticsEnabledProvider, loggerFactory, currentDay);
+    setupSubmissionFixture();
+
+    // The following function should submit the _five_ metrics available.
+    privateAnalyticsSubmitter.submitPackets().get();
+    verify(documentReference, times(DAILY_METRICS + BIWEEKLY_METRICS))
+        .set(documentsCaptor.capture());
+  }
+
+  // This creates a configuration where privateAnalyticsSubmitter will run all the way
+  // (creating the datashare files in the firebaseFirestore mock).
+  private void setupSubmissionFixture() {
     RemoteConfigs remoteConfig = RemoteConfigs.newBuilder()
         .setEnabled(true)
         .setDeviceAttestationRequired(false)
@@ -223,10 +262,6 @@ public class PrivateAnalyticsSubmitterTest {
 
     when(exposureNotificationClientWrapper.getExposureWindows())
         .thenReturn(Tasks.forResult(new ArrayList<>()));
-
-    // The following function should submit the _five_ metrics available.
-    privateAnalyticsSubmitter.submitPackets().get();
-    verify(documentReference, times(7)).set(documentsCaptor.capture());
   }
 
   private ByteString generateRandomByteString() {

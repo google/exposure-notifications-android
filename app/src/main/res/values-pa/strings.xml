@@ -31,7 +31,7 @@
   <string name="onboarding_exposure_notifications_detail">COVID-19 ਪ੍ਰਭਾਵਿਤ ਵਿਅਕਤੀ ਦੇ ਨੇੜੇ ਗਏ ਹੋਣ \'ਤੇ ਸੂਚਨਾ ਪ੍ਰਾਪਤ ਕਰੋ।
     \n\nਨੇੜਲੇ ਹੋਰ ਫ਼ੋਨਾਂ ਨਾਲ ਬੇਤਰਤੀਬ ਆਈਡੀਆਂ ਨੂੰ ਇਕੱਤਰ ਕਰਨ ਅਤੇ ਸਾਂਝਾ ਕਰਨ ਲਈ ਤੁਹਾਡਾ ਫ਼ੋਨ ਬਲੂਟੁੱਥ ਵਰਤਦਾ ਹੈ।
     \n\nਕਿਸੇ ਪ੍ਰਭਾਵਿਤ ਵਿਅਕਤੀ ਦੇ ਨੇੜੇ ਹੋਣ ਸੰਬੰਧੀ ਤਾਰੀਖ, ਸਮਾਂ ਅਤੇ ਸਿਗਨਲ ਦੀ ਤੀਬਰਤਾ ਦੀ ਵਰਤੋਂ ਇਹ ਨਿਰਧਾਰਿਤ ਕਰਨ ਲਈ ਕੀਤੀ ਜਾਵੇਗੀ ਕਿ ਕੀ ਤੁਹਾਡੇ ਜਨਤਕ ਸਿਹਤ ਅਧਿਕਾਰੀ ਵੱਲੋਂ ਸੈੱਟ ਕੀਤੇ ਮਾਪਦੰਡਾਂ ਦੇ ਆਧਾਰ \'ਤੇ ਤੁਹਾਨੂੰ ਸੂਚਿਤ ਕੀਤਾ ਜਾਵੇ ਜਾਂ ਨਹੀਂ।
-    \n\nਜੇ ਤੁਹਾਡੀ ਜਾਂਚ ਰਿਪੋਰਟ ਸਕਾਰਾਤਮਕ ਆਉਂਦੀ ਹੈ, ਤਾਂ ਤੁਹਾਨੂੰ ਆਪਣੇ ਨਤੀਜੇ ਆਪਣੇ ਸਿਹਤ ਅਧਿਕਾਰੀ ਨਾਲ ਸਾਂਝਾ ਕਰਨ ਲਈ ਰਿਮਾਈਂਡਰ ਪ੍ਰਾਪਤ ਹੋ ਸਕਦਾ ਹੈ।</string>
+    \n\nਜੇ ਤੁਹਾਨੂੰ ਆਪਣੇ ਟੈਸਟ ਨਤੀਜੇ ਵਾਲਾ SMS ਮਿਲਦਾ ਹੈ, ਤਾਂ ਤੁਹਾਨੂੰ ਆਪਣੇ ਸਿਹਤ ਅਧਿਕਾਰੀ ਨਾਲ ਤਸ਼ਖੀਸ ਸਾਂਝੀ ਕਰਨ ਲਈ ਸੂਚਨਾ ਪ੍ਰਾਪਤ ਹੋ ਸਕਦੀ ਹੈ।</string>
   <string name="onboarding_metrics_title">ਇਸ ਐਪ ਨੂੰ ਬਿਹਤਰ ਬਣਾਉਣ ਵਿੱਚ ਮਦਦ ਕਰੋ</string>
   <string name="onboarding_metrics_subtitle">Google ਦੇ ਨਾਲ ਐਪ ਵਰਤੋਂ ਅਤੇ ਕਾਰਗੁਜ਼ਾਰੀ ਸੰਬੰਧੀ ਡਾਟਾ ਸਾਂਝਾ ਕਰੋ</string>
   <string name="onboarding_metrics_description">ਐਪ ਨੂੰ ਬਣਾਈ ਰੱਖਣ ਅਤੇ ਬਿਹਤਰ ਬਣਾਉਣ ਵਿੱਚ ਮਦਦ ਕਰਨ ਲਈ, Google ਨਾਲ ਐਪ ਦੀ ਕਾਰਗੁਜ਼ਾਰੀ ਅਤੇ ਵਰਤੋਂ ਬਾਰੇ ਕੁਝ ਸੀਮਤ ਗੈਰ-ਪਛਾਣਯੋਗ ਡਾਟਾ ਸਾਂਝਾ ਕੀਤਾ ਗਿਆ ਹੈ। ਇਹ ਡਾਟਾ ਤੁਹਾਡੀ ਪਛਾਣ ਨਹੀਂ ਕਰਦਾ ਹੈ। %1$s</string>
@@ -128,6 +128,12 @@
     <item quantity="other">ਤੁਸੀਂ ਬਹੁਤ ਸਾਰੀਆਂ ਬੇਨਤੀਆਂ ਕੀਤੀਆਂ ਹਨ। ਤੁਸੀਂ %1$d ਮਿੰਟਾਂ ਵਿੱਚ ਕਿਸੇ ਦੂਜੇ ਕੋਡ ਲਈ ਬੇਨਤੀ ਕਰ ਸਕਦੇ ਹੋ।</item>
   </plurals>
   <string name="notify_others_notification_title">ਉਹਨਾਂ ਲੋਕਾਂ ਨੂੰ ਸੂਚਿਤ ਕਰਨ ਵਿੱਚ ਮਦਦ ਕਰੋ ਜੋ ਸ਼ਾਇਦ ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਗਏ ਹੋਣ</string>
+  <string name="notify_others_if_result_updated_title">ਕੀ ਤੁਹਾਡਾ ਨਤੀਜਾ ਅੱਪਡੇਟ ਹੋਣ \'ਤੇ ਹੋਰ ਲੋਕਾਂ ਨੂੰ ਸੂਚਿਤ ਕਰਨਾ ਹੈ?</string>
+  <string name="notify_others_if_result_updated_content">ਤੁਹਾਡੇ ਜਾਂਚ ਨਤੀਜੇ ਦੀ ਤਸਦੀਕ ਕਰਨ ਲਈ %1$s ਵੱਲੋਂ ਤੁਹਾਨੂੰ ਦੂਜਾ ਕੋਡ ਭੇਜਿਆ ਜਾ ਸਕਦਾ ਹੈ। ਤੁਸੀਂ ਸਵੈਚਲਿਤ ਤੌਰ \'ਤੇ ਆਪਣਾ COVID-19 ਜਾਂਚ ਦਾ ਨਤੀਜਾ ਅੱਪਡੇਟ ਕਰ ਸਕਦੇ ਹੋ ਅਤੇ ਇਸ ਦੂਜੇ ਕੋਡ ਦੀ ਵਰਤੋਂ ਕਰਕੇ ਬੇਤਰਤੀਬ ਆਈਡੀਆਂ ਦੇ ਵਾਧੂ ਦਿਨ ਸਾਂਝੇ ਕਰ ਸਕਦੇ ਹੋ, ਜੋ ਸੰਭਾਵੀ ਤੌਰ \'ਤੇ ਪ੍ਰਭਾਵਿਤ ਵਿਅਕਤੀ ਦੇ ਨੇੜੇ ਹੋਣ ਬਾਰੇ ਹੋਰਾਂ ਨੂੰ ਸੂਚਿਤ ਕਰਨ ਵਿੱਚ ਮਦਦ ਕਰ ਸਕਦੇ ਹਨ। ਤੁਹਾਡੀ ਪਛਾਣ ਹੋਰ ਲੋਕਾਂ ਨਾਲ ਸਾਂਝੀ ਨਹੀਂ ਕੀਤੀ ਜਾਂਦੀ।</string>
+  <string name="btn_pre_auth_yes">ਹਾਂ, ਮੇਰੀ ਮਦਦ ਕਰਨ ਦੀ ਇੱਛਾ ਹੈ</string>
+  <string name="btn_pre_auth_no">ਨਹੀਂ ਧੰਨਵਾਦ</string>
+  <string name="thank_you_for_notifying_title">ਮਦਦ ਕਰਨ ਲਈ ਤੁਹਾਡਾ ਧੰਨਵਾਦ</string>
+  <string name="thank_you_for_notifying_content">%1$s ਨੇ ਹੁਣੇ ਹੀ ਤੁਹਾਡੀ ਪ੍ਰਭਾਵਿਤ ਵਿਅਕਤੀ ਦੇ ਨੇੜੇ ਹੋਣ ਦੀ ਸਮਾਂਰੇਖਾ ਨੂੰ ਅੱਪਡੇਟ ਕੀਤਾ ਹੈ ਅਤੇ ਸ਼ਾਇਦ ਹੋਰਾਂ ਨੂੰ ਸੰਭਾਵੀ ਤੌਰ \'ਤੇ ਪ੍ਰਭਾਵਿਤ ਵਿਅਕਤੀ ਦੇ ਨੇੜੇ ਹੋਣ ਬਾਰੇ ਸੁਚੇਤ ਕੀਤਾ ਹੋਵੇ।</string>
   <string name="settings_exposure_notifications_subtitle">ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਦੀਆਂ ਸੂਚਨਾਵਾਂ</string>
   <string name="settings_app_analytics_subtitle">ਐਪ ਵਰਤੋਂ ਅਤੇ ਕਾਰਗੁਜ਼ਾਰੀ ਸਾਂਝਾਕਰਨ</string>
   <string name="settings_privacy_policy">ਪਰਦੇਦਾਰੀ ਨੀਤੀ</string>
@@ -193,5 +199,19 @@
   <string name="share_diagnosis_share_test_result_subtitle">COVID-19 ਨੂੰ ਰੋਕਣ ਵਿੱਚ ਮਦਦ ਕਰਨ ਲਈ ਤੁਹਾਡਾ ਧੰਨਵਾਦ।</string>
   <string name="share_diagnosis_share_test_result_body">ਆਪਣਾ ਜਾਂਚ ਨਤੀਜਾ ਸਾਂਝਾ ਕਰਨ ਵੇਲੇ, ਤੁਸੀਂ ਆਪਣੇ ਲੱਛਣ ਸ਼ੁਰੂ ਹੋਣ ਦੀ ਤਾਰੀਖ ਨੂੰ ਸਾਂਝਾ ਕਰਨ ਦੀ ਵੀ ਚੋਣ ਕਰ ਸਕਦੇ ਹੋ। ਇਹ ਜਾਣਕਾਰੀ COVID-19 ਨੂੰ ਵਧਣ ਤੋਂ ਰੋਕਣ ਅਤੇ ਜਾਨਾਂ ਬਚਾਉਣ ਵਿੱਚ ਮਦਦ ਕਰ ਸਕਦੀ ਹੈ।</string>
   <string name="sms_intercept_notice_title">ਨਵਾਂ ਕੀ ਹੈ</string>
-  <string name="sms_intercept_notice_content">ਜੇ ਤੁਹਾਡਾ ਸਥਾਨਕ ਸਿਹਤ ਅਧਿਕਾਰੀ ਤੁਹਾਨੂੰ ਜਾਂਚ ਦਾ ਨਤੀਜਾ ਭੇਜਦਾ ਹੈ, ਤਾਂ ਤੁਹਾਡੀ ਐਪ ਤੁਹਾਨੂੰ ਆਪਣਾ ਨਤੀਜਾ ਸਪੁਰਦ ਕਰਨ ਅਤੇ ਸੰਭਾਵੀ ਤੌਰ \'ਤੇ ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਬਾਰੇ ਹੋਰ ਲੋਕਾਂ ਨੂੰ ਸੁਚੇਤ ਕਰਨ ਵਿੱਚ ਮਦਦ ਕਰਨ ਲਈ ਰਿਮਾਈਂਡਰ ਨਾਲ ਸੂਚਿਤ ਕਰ ਸਕਦੀ ਹੈ। ਤੁਸੀਂ ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਕਿਸੇ ਵੀ ਸਮੇਂ ਇਸ ਨੂੰ ਬੰਦ ਕਰ ਸਕਦੇ ਹੋ।</string>
+  <string name="sms_intercept_notice_content">ਜੇ ਤੁਹਾਨੂੰ ਤੁਹਾਡੇ ਟੈਸਟ ਨਤੀਜੇ ਵਾਲਾ SMS ਪ੍ਰਾਪਤ ਹੁੰਦਾ ਹੈ, ਤਾਂ ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਦੀਆਂ ਸੂਚਨਾਵਾਂ ਵਿੱਚ ਤੁਹਾਨੂੰ ਆਪਣੀ ਤਸ਼ਖੀਸ ਸਾਂਝੀ ਕਰਨ ਲਈ ਸੂਚਨਾ ਪ੍ਰਾਪਤ ਹੋ ਸਕਦੀ ਹੈ। ਤੁਸੀਂ ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਕਿਸੇ ਵੀ ਸਮੇਂ ਇਸ ਨੂੰ ਬੰਦ ਕਰ ਸਕਦੇ ਹੋ।</string>
+  <string name="share_upload_title">ਆਪਣੇ ਭਾਈਚਾਰੇ ਨੂੰ ਸੁਰੱਖਿਅਤ ਰੱਖਣ ਲਈ ਆਪਣਾ ਜਾਂਚ ਨਤੀਜਾ ਸਾਂਝਾ ਕਰੋ</string>
+  <string name="share_upload_test_result_source_description">ਜਾਂਚ ਨਤੀਜਾ %1$s ਵੱਲੋਂ ਭੇਜਿਆ ਗਿਆ ਹੈ</string>
+  <string name="share_upload_symptoms_subtitle">ਇਸ ਤਾਰੀਖ ਤੋਂ ਲੱਛਣ ਸ਼ੁਰੂ ਹੋਏ</string>
+  <string name="share_upload_symptoms_date_fixed_description">ਲੱਛਣ ਦਿਖਣ ਦੀ ਤਾਰੀਖ %1$s ਵੱਲੋਂ ਮੁਹੱਈਆ ਕਰਵਾਈ ਗਈ ਹੈ</string>
+  <string name="share_upload_skip_choice">ਛੱਡੋ</string>
+  <string name="share_upload_travel_subtitle">ਯਾਤਰਾ ਦਾ ਇਤਿਹਾਸ</string>
+  <string name="travel_history_travelled_recently_choice">ਪਿਛਲੇ 14 ਦਿਨਾਂ ਵਿੱਚ ਕੀਤੀ ਗਈ ਯਾਤਰਾ</string>
+  <string name="travel_history_no_travel_choice">ਕੋਈ ਨਹੀਂ</string>
+  <string name="share_upload_select_a_date_choice">ਕੋਈ ਤਾਰੀਖ ਚੁਣੋ</string>
+  <string name="share_upload_status_subtitle">COVID-19 ਜਾਂਚ ਦਾ ਨਤੀਜਾ</string>
+  <string name="share_upload_status_confirmed">ਸਕਾਰਾਤਮਕ</string>
+  <string name="share_upload_status_negative">ਨਕਾਰਾਤਮਕ</string>
+  <string name="share_upload_status_likely">ਸੰਭਾਵਿਤ</string>
+  <string name="share_diagnosis_progress_tracker">%2$d ਵਿੱਚੋਂ %1$d ਪੜਾਅ</string>
 </resources>

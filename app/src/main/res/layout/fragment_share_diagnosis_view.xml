@@ -37,6 +37,7 @@
   </LinearLayout>
 
   <androidx.core.widget.NestedScrollView
+    android:id="@+id/share_diagnosis_scroll_view"
     android:layout_width="match_parent"
     android:layout_height="0dp"
     android:layout_weight="1"
@@ -67,7 +68,6 @@
         android:layout_marginBottom="@dimen/padding_small"
         android:text="@string/share_review_status_subtitle"
         android:textAppearance="?attr/textAppearanceBody2"
-        android:textSize="@dimen/notify_review_subtitle_text_size"
         android:textAllCaps="true" />
 
       <TextView
@@ -75,8 +75,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/padding_normal"
-        android:textAppearance="?attr/textAppearanceHeadline6"
-        android:textSize="@dimen/notify_review_text_size" />
+        android:textAppearance="?attr/textAppearanceHeadline6" />
 
       <include layout="@layout/horizontal_divider" />
 
@@ -88,7 +87,6 @@
         android:layout_marginBottom="@dimen/padding_small"
         android:text="@string/share_review_travel_subtitle"
         android:textAppearance="?attr/textAppearanceBody2"
-        android:textSize="@dimen/notify_review_subtitle_text_size"
         android:textAllCaps="true"
         android:visibility="gone" />
 
@@ -98,7 +96,6 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/padding_normal"
         android:textAppearance="?attr/textAppearanceHeadline6"
-        android:textSize="@dimen/notify_review_text_size"
         android:visibility="gone" />
 
       <include layout="@layout/horizontal_divider" />
@@ -110,7 +107,6 @@
         android:layout_marginBottom="@dimen/padding_small"
         android:text="@string/share_review_onset_subtitle"
         android:textAppearance="?attr/textAppearanceBody2"
-        android:textSize="@dimen/notify_review_subtitle_text_size"
         android:textAllCaps="true" />
 
       <TextView
@@ -118,17 +114,19 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/padding_normal"
-        android:textAppearance="?attr/textAppearanceHeadline6"
-        android:textSize="@dimen/notify_review_text_size" />
+        android:textAppearance="?attr/textAppearanceHeadline6" />
 
     </LinearLayout>
 
   </androidx.core.widget.NestedScrollView>
 
   <RelativeLayout
+    android:id="@+id/button_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginVertical="@dimen/padding_normal"
+    android:paddingVertical="@dimen/padding_normal"
+    android:background="?android:attr/colorBackground"
+    android:elevation="@dimen/bottom_button_container_elevation"
     android:orientation="horizontal">
 
     <Button

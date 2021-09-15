@@ -15,7 +15,7 @@
  *
  */
 
-package com.google.android.apps.exposurenotification.notify;
+package com.google.android.apps.exposurenotification.nearby;
 
 import static com.google.android.apps.exposurenotification.nearby.ExposureNotificationClientWrapper.ACTION_VERIFICATION_LINK;
 
@@ -23,14 +23,13 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import com.google.android.apps.exposurenotification.R;
-import com.google.android.apps.exposurenotification.common.IntentUtil;
-import com.google.android.apps.exposurenotification.common.NotificationHelper;
+import androidx.work.WorkManager;
 import dagger.hilt.android.AndroidEntryPoint;
 import javax.inject.Inject;
 
 /**
- * Broadcast receiver that accepts SMSVerification broadcasts from EN module and displays a
+ * Broadcast receiver that accepts SMSVerification broadcasts from EN module and triggers work to
+ * either perform the automatic upload of a test result per user's earlier consent or to display
  * "share your diagnosis" notification to the user. The notification serves as an additional
  * entry-point to the deep-linked sharing flow.
  */
@@ -38,7 +37,7 @@ import javax.inject.Inject;
 public class SmsVerificationBroadcastReceiver extends Hilt_SmsVerificationBroadcastReceiver {
 
   @Inject
-  NotificationHelper notificationHelper;
+  WorkManager workManager;
 
   @Override
   public void onReceive(Context context, Intent intent) {
@@ -50,19 +49,11 @@ public class SmsVerificationBroadcastReceiver extends Hilt_SmsVerificationBroadc
     }
 
     Uri deeplinkUri = intent.getData();
-    if (deeplinkUri == null || Uri.EMPTY.equals(deeplinkUri)) {
+    if (deeplinkUri == null) {
       return;
     }
 
-    if (!ShareDiagnosisFlowHelper.isSmsInterceptEnabled(context)) {
-      return;
-    }
-
-    notificationHelper.showNotification(context,
-        R.string.notify_others_notification_title,
-        R.string.enx_testVerificationNotificationBody,
-        IntentUtil.getNotificationContentIntentSmsVerification(context, deeplinkUri),
-        IntentUtil.getNotificationDeleteIntentSmsVerification(context));
-
+    SmsVerificationWorker.runOnce(workManager, deeplinkUri);
   }
+
 }

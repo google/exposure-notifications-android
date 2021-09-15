@@ -17,6 +17,8 @@
 
 package com.google.android.apps.exposurenotification.nearby;
 
+import static com.google.android.gms.nearby.exposurenotification.ExposureNotificationClient.EXTRA_TEMPORARY_EXPOSURE_KEY_LIST;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -24,7 +26,6 @@ import android.widget.Toast;
 import androidx.work.WorkManager;
 import com.google.android.apps.exposurenotification.BuildConfig;
 import com.google.android.apps.exposurenotification.common.NotificationHelper;
-import com.google.android.apps.exposurenotification.common.logging.Logger;
 import com.google.android.apps.exposurenotification.restore.RestoreNotificationUtil;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
 import com.google.android.gms.nearby.exposurenotification.ExposureNotificationClient;
@@ -37,8 +38,6 @@ import javax.inject.Inject;
 @AndroidEntryPoint(BroadcastReceiver.class)
 public class ExposureNotificationBroadcastReceiver extends
     Hilt_ExposureNotificationBroadcastReceiver {
-
-  private static final Logger logger = Logger.getLogger("ENBroadcastReceiver");
 
   @Inject
   WorkManager workManager;
@@ -71,6 +70,13 @@ public class ExposureNotificationBroadcastReceiver extends
       case ExposureNotificationClientWrapper.ACTION_WAKE_UP:
         RestoreNotificationUtil.onENApiWakeupEvent(context,
             exposureNotificationSharedPreferences, workManager, notificationHelper);
+        break;
+      case ExposureNotificationClient.ACTION_PRE_AUTHORIZE_RELEASE_PHONE_UNLOCKED:
+        // Keys have been released in the background
+        if (intent.hasExtra(EXTRA_TEMPORARY_EXPOSURE_KEY_LIST)) {
+          PreAuthTEKsReceivedWorker.runOnce(workManager,
+              intent.getParcelableArrayListExtra(EXTRA_TEMPORARY_EXPOSURE_KEY_LIST));
+        }
         break;
     }
   }

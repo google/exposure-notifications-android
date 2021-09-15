@@ -18,7 +18,7 @@
 package com.google.android.apps.exposurenotification;
 
 import android.app.Application;
-import android.os.Build.VERSION_CODES;
+import android.util.Log;
 import androidx.annotation.Keep;
 import androidx.annotation.Nullable;
 import androidx.hilt.work.HiltWorkerFactory;
@@ -43,8 +43,6 @@ import javax.inject.Inject;
 @HiltAndroidApp
 public final class ExposureNotificationApplication extends Application implements
     Configuration.Provider {
-
-  public static final int DEBUG = 3;
 
   @Inject
   HiltWorkerFactory workerFactory;
@@ -83,7 +81,7 @@ public final class ExposureNotificationApplication extends Application implement
     super.onCreate();
 
     // Grant slice runtime permission
-    if (slicePermissionManager.isPresent() && android.os.Build.VERSION.SDK_INT < VERSION_CODES.P) {
+    if (slicePermissionManager.isPresent()) {
       backgroundExecutor.execute(() -> slicePermissionManager.get().grantSlicePermission());
     }
 
@@ -100,7 +98,7 @@ public final class ExposureNotificationApplication extends Application implement
 
     // Enable debug logging for debug builds.
     if (BuildConfig.DEBUG) {
-      builder.setMinimumLoggingLevel(DEBUG);
+      builder.setMinimumLoggingLevel(Log.DEBUG);
     }
     return builder.build();
   }

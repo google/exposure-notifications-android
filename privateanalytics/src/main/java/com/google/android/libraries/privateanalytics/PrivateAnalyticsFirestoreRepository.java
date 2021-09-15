@@ -19,7 +19,6 @@ package com.google.android.libraries.privateanalytics;
 import static java.util.UUID.randomUUID;
 
 import android.os.Build.VERSION_CODES;
-import android.util.Log;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import com.google.android.gms.tasks.Task;
@@ -83,6 +82,7 @@ public class PrivateAnalyticsFirestoreRepository {
 
   private final PrivateAnalyticsDeviceAttestation deviceAttestation;
   private final FirebaseFirestore db;
+  private final PrivateAnalyticsLogger logger;
 
   private final ScheduledExecutorService scheduledExecutor = Executors.getScheduledExecutor();
   private final SecureRandom random = new SecureRandom();
@@ -90,7 +90,8 @@ public class PrivateAnalyticsFirestoreRepository {
   @Inject
   PrivateAnalyticsFirestoreRepository(
       PrivateAnalyticsDeviceAttestation deviceAttestation,
-      @Nullable FirebaseFirestore firebaseFireStore) {
+      @Nullable FirebaseFirestore firebaseFireStore,
+      PrivateAnalyticsLogger.Factory loggerFactory) {
     this.deviceAttestation = deviceAttestation;
     this.db = firebaseFireStore;
     if (firebaseFireStore != null) {
@@ -99,6 +100,7 @@ public class PrivateAnalyticsFirestoreRepository {
           .build();
       db.setFirestoreSettings(settings);
     }
+    this.logger = loggerFactory.create(TAG);
   }
 
   @RequiresApi(api = VERSION_CODES.N)
@@ -119,7 +121,7 @@ public class PrivateAnalyticsFirestoreRepository {
     PrioAlgorithmParameters params =
         prioPacketPayload.createPacketsParameters().getPrioParameters();
     if (response.getResponseStatus().getStatusCode() != StatusCode.OK) {
-      Log.w(TAG, "Cannot write failed response: " + response.getResponseStatus().getErrorDetails());
+      logger.w("Cannot write failed response: " + response.getResponseStatus().getErrorDetails());
       return Tasks.forCanceled();
     }
 
@@ -136,13 +138,13 @@ public class PrivateAnalyticsFirestoreRepository {
         return Tasks.forCanceled();
       }
     } catch (Exception e) {
-      Log.w(TAG, "Device attestation failed, requireAttestation=" + isDeviceAttestationRequired, e);
+      logger.w("Device attestation failed, requireAttestation=" + isDeviceAttestationRequired, e);
       if (isDeviceAttestationRequired) {
         return Tasks.forException(e);
       }
     }
 
-    Log.d(TAG, "Writing packets to Firestore for metric=" + metricName);
+    logger.d("Writing packets to Firestore for metric=" + metricName);
 
     // Sharding top-level Firestore prefix to improve back-end performance:
     String rootCollection = UUID + random.nextInt(100);
@@ -188,7 +190,7 @@ public class PrivateAnalyticsFirestoreRepository {
         BASE64.encode(response.getShares(0).toByteArray()),
         ENCRYPTION_KEY_ID,
         phaKeyId));
-    Log.d(TAG, "PHA encryption key id:: " + phaKeyId);
+    logger.d("PHA encryption key id:: " + phaKeyId);
 
     String facilitatorKeyId = remoteConfigs.facilitatorEncryptionKeyId();
     listBuilder.add(ImmutableMap.of(
@@ -196,7 +198,7 @@ public class PrivateAnalyticsFirestoreRepository {
         BASE64.encode(response.getShares(1).toByteArray()),
         ENCRYPTION_KEY_ID,
         facilitatorKeyId));
-    Log.d(TAG, "Facilitator encryption key id: " + facilitatorKeyId);
+    logger.d("Facilitator encryption key id: " + facilitatorKeyId);
     return listBuilder.build();
   }
 

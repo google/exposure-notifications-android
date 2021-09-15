@@ -28,10 +28,10 @@
   <string name="onboarding_opt_in_title">Щоб увімкнути Сповіщення про ризик зараження, потрібні дозволи</string>
   <string name="onboarding_finish_title">Щоб увімкнути Сповіщення про ризик зараження, потрібно подовжити дію дозволів</string>
   <string name="onboarding_exposure_notifications_title">Увімкніть сповіщення про ризик зараження</string>
-  <string name="onboarding_exposure_notifications_detail">Отримуйте сповіщення про те, що поряд із вами перебувала людина, яка повідомила про захворювання на COVID-19.
-    \n\nЩоб ваш телефон міг безпечно обмінюватися випадковими ідентифікаторами з іншими пристроями поблизу, на ньому потрібно ввімкнути Bluetooth.
-    \n\nЗгідно з параметрами, визначеними державним органом охорони здоров’я, можливість отримання сповіщення залежатиме від даних про дату й тривалість імовірного контакту, а також зафіксованої потужності сигналу від іншого пристрою.
-    \n\nIЯкщо результат тесту буде позитивний, ви можете отримати нагадування поділитися ним з органом охорони здоров’я.</string>
+  <string name="onboarding_exposure_notifications_detail">Отримуйте сповіщення про те, що поряд із вами перебувала людина, у якої COVID-19.
+    \n\nЩоб ваш телефон міг обмінюватися випадковими ідентифікаторами з іншими пристроями поблизу, на ньому потрібно ввімкнути Bluetooth.
+    \n\nЗгідно з параметрами, визначеними державним органом охорони здоров’я, ймовірність отримати сповіщення залежатиме від даних про дату й тривалість імовірного контакту, а також зафіксованої потужності сигналу від іншого пристрою.
+    \n\nЯкщо ви отримаєте SMS із результатами тесту, то вам може надійти сповіщення з пропозицією повідомити свій діагноз місцевому органу охорони здоров’я.</string>
   <string name="onboarding_metrics_title">Допоможіть покращити цей додаток</string>
   <string name="onboarding_metrics_subtitle">Діліться даними про використання додатка</string>
   <string name="onboarding_metrics_description">Google отримає обмежений доступ до загальних даних про використання та продуктивність додатка, щоб підтримувати й покращувати його роботу. За цією інформацією неможливо встановити вашу особу. %1$s</string>
@@ -132,6 +132,12 @@
     <item quantity="other">Ви подали забагато запитів на коди. Новий можна надіслати через %1$d хвилини.</item>
   </plurals>
   <string name="notify_others_notification_title">Допоможіть сповістити людей, які могли заразитися</string>
+  <string name="notify_others_if_result_updated_title">Сповіщати інших про результати тестів?</string>
+  <string name="notify_others_if_result_updated_content">Щоб підтвердити результат, \"%1$s\" може надіслати вам другий код. Тоді ви зможете автоматично оновити статус COVID-19 і надавати випадкові ідентифікатори ще кілька днів, щоб сповіщати інших про можливий ризик зараження. Особисті дані не повідомляються.</string>
+  <string name="btn_pre_auth_yes">Так, я хочу допомогти</string>
+  <string name="btn_pre_auth_no">Ні, дякую</string>
+  <string name="thank_you_for_notifying_title">Дякуємо за допомогу</string>
+  <string name="thank_you_for_notifying_content">Орган охорони здоров’я \"%1$s\" щойно оновив часовий проміжок, протягом якого ви могли заразитися, і, можливо, попередив інших про можливий ризик зараження.</string>
   <string name="settings_exposure_notifications_subtitle">Сповіщення про ризик зараження</string>
   <string name="settings_app_analytics_subtitle">Використання та продуктивність додатка</string>
   <string name="settings_privacy_policy">Політика конфіденційності</string>
@@ -197,5 +203,19 @@
   <string name="share_diagnosis_share_test_result_subtitle">Дякуємо, що допомагаєте зупинити поширення COVID-19.</string>
   <string name="share_diagnosis_share_test_result_body">Надсилаючи результат тесту, ви також можете вказати, коли почали проявлятися симптоми. Ця інформація може допомогти зупинити поширення COVID-19 і врятувати життя.</string>
   <string name="sms_intercept_notice_title">Що нового</string>
-  <string name="sms_intercept_notice_content">Коли місцеві органи охорони здоров’я надсилають вам результати тесту, додаток може показувати нагадування поділитися результатом і допомогти попередити інших про можливий ризик зараження. Цю функцію можна будь-коли вимкнути в налаштуваннях.</string>
+  <string name="sms_intercept_notice_content">Якщо ви отримаєте SMS із результатами тесту, то вам може надійти пропозиція вказати свій діагноз у Системі сповіщення про ризик зараження. Цю функцію можна будь-коли вимкнути в налаштуваннях.</string>
+  <string name="share_upload_title">Поділіться своїм результатом тесту, щоб захистити інших</string>
+  <string name="share_upload_test_result_source_description">Орган охорони здоров’я \"%1$s\" надіслав результат тесту</string>
+  <string name="share_upload_symptoms_subtitle">Симптоми проявилися</string>
+  <string name="share_upload_symptoms_date_fixed_description">Дату появи симптомів надав орган охорони здоров’я \"%1$s\"</string>
+  <string name="share_upload_skip_choice">Пропустити</string>
+  <string name="share_upload_travel_subtitle">Історія подорожей</string>
+  <string name="travel_history_travelled_recently_choice">Була подорож упродовж останніх 14 днів</string>
+  <string name="travel_history_no_travel_choice">Немає</string>
+  <string name="share_upload_select_a_date_choice">Виберіть дату</string>
+  <string name="share_upload_status_subtitle">Статус COVID-19</string>
+  <string name="share_upload_status_confirmed">Позитивний</string>
+  <string name="share_upload_status_negative">Негативний</string>
+  <string name="share_upload_status_likely">Імовірний</string>
+  <string name="share_diagnosis_progress_tracker">Крок %1$d з %2$d</string>
 </resources>

@@ -142,7 +142,7 @@
       android:id="@+id/private_analytics_dismiss"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:text="@string/btn_dont_share"
+      android:text="@string/btn_pre_auth_no"
       app:strokeColor="@color/horizontal_divider_color"
       style="@style/Widget.ExposureNotifications.Button.OutlinedButton"/>
 

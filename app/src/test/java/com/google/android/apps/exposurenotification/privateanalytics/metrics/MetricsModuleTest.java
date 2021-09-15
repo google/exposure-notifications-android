@@ -102,7 +102,7 @@ public class MetricsModuleTest {
     FakeShadowResources resources = (FakeShadowResources) shadowOf(context.getResources());
     resources.addFakeResource(R.string.share_vaccination_detail, "non-empty");
 
-    List<PrioDataPoint> metricsList = metricsModule.get().get();
+    List<PrioDataPoint> metricsList = metricsModule.get().get().getDailyMetrics();
     List<String> metricNames = metricsList.stream()
         .map(dataPoint -> dataPoint.getMetric().getMetricName()).collect(Collectors.toList());
 
@@ -115,7 +115,7 @@ public class MetricsModuleTest {
     FakeShadowResources resources = (FakeShadowResources) shadowOf(context.getResources());
     resources.addFakeResource(R.string.share_vaccination_detail, "");
 
-    List<PrioDataPoint> metricsList = metricsModule.get().get();
+    List<PrioDataPoint> metricsList = metricsModule.get().get().getDailyMetrics();
     List<String> metricNames = metricsList.stream()
         .map(dataPoint -> dataPoint.getMetric().getMetricName()).collect(Collectors.toList());
 

@@ -31,7 +31,7 @@
   <string name="onboarding_exposure_notifications_detail">Dapatkan pemberitahuan jika anda pernah berada berdekatan dengan seseorang yang melaporkan dirinya positif COVID-19.
     \n\nTelefon anda menggunakan Bluetooth untuk mengumpul dan berkongsi ID rawak secara selamat dengan telefon lain yang berdekatan.
     \n\nTarikh, tempoh dan kekuatan isyarat yang dikaitkan dengan kemungkinan pendedahan akan digunakan untuk menentukan sama ada anda akan menerima pemberitahuan berdasarkan parameter yang ditetapkan oleh pihak berkuasa kesihatan awam anda atau tidak.
-    \n\nJika anda didapati positif, anda mungkin menerima peringatan untuk berkongsi keputusan anda dengan pihak berkuasa kesihatan anda.</string>
+    \n\nAnda mungkin menerima pemberitahuan untuk berkongsi diagnosis dengan pihak berkuasa kesihatan anda jika anda menerima SMS yang mengandungi keputusan ujian anda.</string>
   <string name="onboarding_metrics_title">Jadikan apl ini lebih baik</string>
   <string name="onboarding_metrics_subtitle">Kongsikan data penggunaan &amp; prestasi apl dengan Google</string>
   <string name="onboarding_metrics_description">Untuk membantu penyenggaraan dan peningkatan apl, beberapa data yang dinyahkenal pasti tentang prestasi dan penggunaan apl dikongsikan dengan Google. Data ini tidak mengenal pasti anda. %1$s</string>
@@ -128,6 +128,12 @@
     <item quantity="other">Anda telah membuat terlalu banyak permintaan. Anda boleh meminta kod lain dalam %1$d minit.</item>
   </plurals>
   <string name="notify_others_notification_title">Bantu memberitahu orang lain yang mungkin telah terdedah</string>
+  <string name="notify_others_if_result_updated_title">Beritahu orang lain jika keputusan anda dikemas kini?</string>
+  <string name="notify_others_if_result_updated_content">%1$s mungkin menghantar kod kedua kepada anda untuk mengesahkan keputusan ujian anda. Anda boleh mengemas kini status COVID-19 anda &amp; berkongsi hari tambahan ID rawak secara automatik menggunakan kod kedua ini, yang boleh membantu memberitahu orang lain tentang kemungkinan pendedahan. Identiti anda tidak dikongsikan dengan orang lain.</string>
+  <string name="btn_pre_auth_yes">Ya, saya mahu membantu</string>
+  <string name="btn_pre_auth_no">Tidak perlu</string>
+  <string name="thank_you_for_notifying_title">Terima kasih kerana membantu</string>
+  <string name="thank_you_for_notifying_content">%1$s baru sahaja mengemas kini garis masa pendedahan anda dan mungkin telah memberikan amaran kepada orang lain tentang kemungkinan pendedahan.</string>
   <string name="settings_exposure_notifications_subtitle">Pemberitahuan Pendedahan</string>
   <string name="settings_app_analytics_subtitle">Perkongsian penggunaan &amp; prestasi apl</string>
   <string name="settings_privacy_policy">Dasar privasi</string>
@@ -193,5 +199,19 @@
   <string name="share_diagnosis_share_test_result_subtitle">Terima kasih kerana membantu menghentikan COVID-19.</string>
   <string name="share_diagnosis_share_test_result_body">Apabila anda berkongsi keputusan, anda juga boleh memilih untuk berkongsi ketika gejala anda bermula. Maklumat ini boleh membantu menghentikan penyebaran COVID-19 dan menyelamatkan nyawa.</string>
   <string name="sms_intercept_notice_title">Ciri baharu</string>
-  <string name="sms_intercept_notice_content">Jika pihak berkuasa kesihatan tempatan menghantar keputusan ujian kepada anda, apl anda boleh memberitahu anda dengan satu peringatan untuk menyerahkan keputusan anda dan membantu memberikan amaran kepada orang lain tentang kemungkinan pendedahan. Anda boleh melumpuhkan fungsi tersebut pada bila-bila masa dalam tetapan.</string>
+  <string name="sms_intercept_notice_content">Jika anda menerima SMS dengan keputusan ujian, anda mungkin mendapat pemberitahuan yang meminta anda berkongsi diagnosis anda dalam pemberitahuan pendedahan. Anda boleh melumpuhkan fungsi ini pada bila-bila masa dalam tetapan.</string>
+  <string name="share_upload_title">Kongsi keputusan ujian anda untuk melindungi komuniti anda</string>
+  <string name="share_upload_test_result_source_description">Keputusan ujian dihantar oleh %1$s</string>
+  <string name="share_upload_symptoms_subtitle">Gejala bermula dari</string>
+  <string name="share_upload_symptoms_date_fixed_description">Tarikh gejala disediakan oleh %1$s</string>
+  <string name="share_upload_skip_choice">Langkau</string>
+  <string name="share_upload_travel_subtitle">Sejarah perjalanan</string>
+  <string name="travel_history_travelled_recently_choice">Membuat perjalanan dalam 14 hari yang lalu</string>
+  <string name="travel_history_no_travel_choice">Tiada</string>
+  <string name="share_upload_select_a_date_choice">Pilih tarikh</string>
+  <string name="share_upload_status_subtitle">Status COVID-19</string>
+  <string name="share_upload_status_confirmed">Positif</string>
+  <string name="share_upload_status_negative">Negatif</string>
+  <string name="share_upload_status_likely">Mungkin</string>
+  <string name="share_diagnosis_progress_tracker">Langkah %1$d daripada %2$d</string>
 </resources>

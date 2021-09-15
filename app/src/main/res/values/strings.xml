@@ -108,12 +108,12 @@
   <!-- Title of the exposure notification section on the onboarding screen explaining that exposure notifications will be turned on. This screen is shown on first use of the app when not previously enabled. [CHAR_LIMIT=60] -->
   <string name="onboarding_exposure_notifications_title">Turn on Exposure Notifications</string>
 
-  <!-- Text of the exposure notification section on the onboarding screen explaining that exposure notifications will be turned on. This screen is shown on first use of the app when not previously enabled. The placeholder string is the app name. [CHAR_LIMIT=NONE] [BACKUP_MESSAGE_ID=7298726664760214564] -->
+  <!-- Text of the exposure notification section on the onboarding screen explaining that exposure notifications will be turned on. This screen is shown on first use of the app when not previously enabled. The placeholder string is the app name. [CHAR_LIMIT=NONE] -->
   <string name="onboarding_exposure_notifications_detail">
     Get notified if you\'ve been near someone who reported having COVID-19.
     \n\nYour phone uses Bluetooth to securely collect and share random IDs with other phones that are nearby.
     \n\nThe date, duration, and signal strength associated with a possible exposure will be used to determine whether you will be notified based on parameters set by your public health authority.
-    \n\nIf you test positive, you may receive a reminder to share your results with your health authority.
+    \n\nYou may receive a notification to share a diagnosis with your health authority if you get an SMS with your test result.
   </string>
 
   <!-- Title of the metric sharing section on the onboarding screen explaining that choosing to share metrics will help improve the app. This screen is shown on first use of the app when not previously enabled. [CHAR_LIMIT=60] -->
@@ -127,10 +127,10 @@
     To help maintain and improve the app, some limited de-identified data about app performance and usage is shared with Google. This data does not identify you. <xliff:g id="learn_more" example="Learn more">%1$s</xliff:g>
   </string>
 
-  <!-- Title of the dialog shown in onboarding when the user chooses not to turn on exposure notifications. [CHAR_LIMIT=60] [BACKUP_MESSAGE_ID=1247024365104702354] -->
+  <!-- Title of the dialog shown in onboarding when the user chooses not to turn on exposure notifications. [CHAR_LIMIT=60] -->
   <string name="onboarding_confirm_later_title">Keep Exposure Notifications turned off?</string>
 
-  <!-- Detail text of the dialog shown in onboarding when the user chooses not to turn on exposure notifications. [CHAR_LIMIT=200] [BACKUP_MESSAGE_ID=6529903517457532093] -->
+  <!-- Detail text of the dialog shown in onboarding when the user chooses not to turn on exposure notifications. [CHAR_LIMIT=200] -->
   <string name="onboarding_confirm_later_detail">Until Exposure Notifications is turned on, you won’t be notified of possible exposure to COVID-19</string>
 
   <!-- EXPOSURES SCREENS -->
@@ -144,7 +144,7 @@
   <!-- Title of both the notify others and exposures home pages, shown when the user lands on the page and exposure notifications is currently disabled. [CHAR_LIMIT=60] -->
   <string name="exposure_notifications_are_turned_off">Exposure Notifications is turned off</string>
 
-  <!-- Button text on the home screen to allow the user to turn on exposure notifications when it is currently disabled. [CHAR_LIMIT=40] [BACKUP_MESSAGE_ID=4318016711427032767] -->
+  <!-- Button text on the home screen to allow the user to turn on exposure notifications when it is currently disabled. [CHAR_LIMIT=40] -->
   <string name="turn_on_exposure_notifications_action">Turn on Exposure Notifications</string>
 
   <!-- Subtitle shown above the COVID-19 status on the exposure details page. [CHAR_LIMIT=60] -->
@@ -203,22 +203,22 @@
   <!-- Title of the first screen in the notify others flow for uploading your COVID-19 diagnosis. [CHAR_LIMIT=100] -->
   <string name="share_begin_title">Help protect your community</string>
 
-  <!-- Title of the close dialog in the notify others flow. [CHAR_LIMIT=40] [BACKUP_MESSAGE_ID=391062684990888954] -->
+  <!-- Title of the close dialog in the notify others flow. [CHAR_LIMIT=40] -->
   <string name="share_close_title">Close without sharing?</string>
 
-  <!-- Detail of the close dialog in the notify others flow. [CHAR_LIMIT=200] [BACKUP_MESSAGE_ID=4007620863456819183] -->
+  <!-- Detail of the close dialog in the notify others flow. [CHAR_LIMIT=200] -->
   <string name="share_close_detail">The best way you can help your community is to share your results as soon as possible. If you do close now without sharing, you can pick up where you left off if you change your mind later.</string>
 
-  <!-- Positive button of the close dialog button in the notify others flow to exit and resume the flow later. [CHAR_LIMIT=60] [BACKUP_MESSAGE_ID=9087992921847337174] -->
+  <!-- Positive button of the close dialog button in the notify others flow to exit and resume the flow later. [CHAR_LIMIT=60] -->
   <string name="btn_resume_later">Yes, close</string>
 
-  <!-- Title displayed on the second screen in the notify others flow, requesting a valid COVID-19 test result verification code. [CHAR_LIMIT=60] [BACKUP_MESSAGE_ID=3315668938958788451] -->
+  <!-- Title displayed on the second screen in the notify others flow, requesting a valid COVID-19 test result verification code. [CHAR_LIMIT=60] -->
   <string name="verify_test_result_title">Enter your verification code</string>
 
   <!-- Shown on the second screen in the notify others flow, prompt requesting the COVID-19 test verification PIN number the user received from their health authority. [CHAR_LIMIT=40] -->
   <string name="enter_your_test_identifier">Verification code</string>
 
-  <!-- Shown on the second screen in the notify others flow, text describing what the requested COVID-19 verification code is. [CHAR_LIMIT=NONE] [BACKUP_MESSAGE_ID=5723597171401693016] -->
+  <!-- Shown on the second screen in the notify others flow, text describing what the requested COVID-19 verification code is. [CHAR_LIMIT=NONE] -->
   <string name="share_test_identifier_help">This one-time code is used to verify your test result.</string>
 
   <!-- Shown on the second screen in the notify others flow, this text appears under the disabled verification code checkbox after the verification code has been validated. [CHAR_LIMIT=100]-->
@@ -242,7 +242,7 @@
   <!-- Shown on the third screen in the notify others flow, one of three options asking whether the user has had COVID-19 symptoms. [CHAR_LIMIT=40] -->
   <string name="share_onset_no_symptoms">No</string>
 
-  <!-- Shown on the third screen in the notify others flow, one of three options asking whether the user has had COVID-19 symptoms. [CHAR_LIMIT=40] [BACKUP_MESSAGE_ID=343304484087474889] -->
+  <!-- Shown on the third screen in the notify others flow, one of three options asking whether the user has had COVID-19 symptoms. [CHAR_LIMIT=40] -->
   <string name="share_onset_no_answer">I prefer not to answer</string>
 
   <!-- Title of fourth screen in the notify others flow, asking whether the user has traveled while being positive with COVID-19. [CHAR_LIMIT=60] -->
@@ -254,7 +254,7 @@
   <!-- Shown on the fourth screen in the notify others flow, one of three possible options in response to the question: have you traveled? [CHAR_LIMIT=40] -->
   <string name="share_travel_no_travel">No</string>
 
-  <!-- Shown on the fourth screen in the notify others flow, one of three possible options in response to the question: have you traveled? [CHAR_LIMIT=40] [BACKUP_MESSAGE_ID=3240449742208145177] -->
+  <!-- Shown on the fourth screen in the notify others flow, one of three possible options in response to the question: have you traveled? [CHAR_LIMIT=40] -->
   <string name="share_travel_no_answer">I prefer not to answer</string>
 
   <!-- Title of last screen in the notify others flow, confirming the information the user has provided before sharing it with the health authority. [CHAR_LIMIT=60] -->
@@ -272,10 +272,10 @@
   <!-- Shown on the last screen in the notify others flow, displaying the users COVID-19 test result being negative. [CHAR_LIMIT=60] -->
   <string name="share_review_status_negative">Negative</string>
 
-  <!-- Subtitle on the last screen in the notify others flow, shown above the users's symptom onset choice. [CHAR_LIMIT=60] [BACKUP_MESSAGE_ID=851072709708873041] -->
+  <!-- Subtitle on the last screen in the notify others flow, shown above the users's symptom onset choice. [CHAR_LIMIT=60] -->
   <string name="share_review_onset_subtitle">Symptoms</string>
 
-  <!-- Shown on the last screen in the notify others flow, displaying the user's chosen symptom onset date. The placeholder is a date. [CHAR_LIMIT=60] [BACKUP_MESSAGE_ID=6766668374135538654] -->
+  <!-- Shown on the last screen in the notify others flow, displaying the user's chosen symptom onset date. The placeholder is a date. [CHAR_LIMIT=60] -->
   <string name="share_review_onset_date">Started <xliff:g id="date" example="Jun 21, 2020">%1$s</xliff:g></string>
 
   <!-- Shown on the last screen in the notify others flow, displaying the user said they had not symptoms. [CHAR_LIMIT=60] -->
@@ -284,10 +284,10 @@
   <!-- Shown on the last screen in the notify others flow, displaying the user chose not to answer whether that had symptoms. [CHAR_LIMIT=60] -->
   <string name="share_review_onset_no_answer">Not answered</string>
 
-  <!-- Subtitle on the last screen in the notify others flow, shown above the users's choice of whether they have traveled while positive for COVID-19. [CHAR_LIMIT=60] [BACKUP_MESSAGE_ID=4319125961795210961] -->
+  <!-- Subtitle on the last screen in the notify others flow, shown above the users's choice of whether they have traveled while positive for COVID-19. [CHAR_LIMIT=60] -->
   <string name="share_review_travel_subtitle">Travel</string>
 
-  <!-- Shown on the last screen in the notify others flow, displaying that the user confirmed they had traveled. [CHAR_LIMIT=60] [BACKUP_MESSAGE_ID=6597651663414010220] -->
+  <!-- Shown on the last screen in the notify others flow, displaying that the user confirmed they had traveled. [CHAR_LIMIT=60] -->
   <string name="share_review_travel_confirmed">Within the past 14 days</string>
 
   <!-- Shown on the last screen in the notify others flow, displaying that the user confirmed they had not traveled. [CHAR_LIMIT=60] -->
@@ -296,7 +296,7 @@
   <!-- Shown on the last screen in the notify others flow, displaying that the user chose not to answer whether they had traveled. [CHAR_LIMIT=60] -->
   <string name="share_review_travel_no_answer">Not answered</string>
 
-  <!-- Title of the page shown after sharing in the notify others flow. [CHAR_LIMIT=NONE] [BACKUP_MESSAGE_ID=6722768628638817006] -->
+  <!-- Title of the page shown after sharing in the notify others flow. [CHAR_LIMIT=NONE] -->
   <string name="share_confirm_title">Thank you for sharing your COVID-19 result</string>
 
   <!-- Title of the page shown after choosing not to share in the notify others flow. [CHAR_LIMIT=60] -->
@@ -308,7 +308,7 @@
   <!-- Title of the shared status detail page. [CHAR_LIMIT=60] -->
   <string name="status_shared_detail_title">Shared COVID-19 status</string>
 
-  <!-- Title of dialog confirming the user wants to delete their COVID-19 test result information from the app. [CHAR_LIMIT=40] [BACKUP_MESSAGE_ID=7663317632263132817] -->
+  <!-- Title of dialog confirming the user wants to delete their COVID-19 test result information from the app. [CHAR_LIMIT=40] -->
   <string name="delete_test_result_title">Delete your test result?</string>
 
   <!-- Snackbar message shown as confirmation after the user chooses to delete a COVID-19 test resut from the app. [CHAR_LIMIT=60] -->
@@ -332,7 +332,7 @@
   <!-- Shown on the fifth screen in the notify others flow, one of three possible options in response to the question: Have you been vaccinated against Covid-19? [CHAR_LIMIT=100] -->
   <string name="share_vaccination_not_vaccinated">No</string>
 
-  <!-- Shown on the fifth screen in the notify others flow, one of three possible options in response to the question: Have you been vaccinated against Covid-19? [CHAR_LIMIT=100] [BACKUP_MESSAGE_ID=7687437242647834242] -->
+  <!-- Shown on the fifth screen in the notify others flow, one of three possible options in response to the question: Have you been vaccinated against Covid-19? [CHAR_LIMIT=100] -->
   <string name="share_vaccination_unknown">I prefer not to answer</string>
 
   <!-- Title of the second screen in the notify others flow for uploading a COVID-19 test result (when self-report is enabled). This screen allows user to confirm they already have a verification code from the Health Authority or to request a code if they don't. [CHAR_LIMIT=100] -->
@@ -399,9 +399,27 @@
   <!-- Notification title shown when user's receive a verifiable deeplink-sms. In addition to the SMS itself, this prompts users to share their diagnosis. [CHAR_LIMIT=200] -->
   <string name="notify_others_notification_title">Help notify others who may have been exposed</string>
 
+  <!-- Title of the card displayed after user has shared a self-reported test result. This card informs user about an option to pre-authorize sharing their random IDs if they get a positive test result from the HA in the future. Pre-authorization of sharing random IDs helps with detecting possible exposures. [CHAR_LIMIT=100] -->
+  <string name="notify_others_if_result_updated_title">Notify other people if your result gets updated?</string>
+
+  <!-- Contents of the card displayed after user has shared a self-reported test result. This card allows user to pre-authorize sharing their random IDs if they get a positive test result from the HA in the future. Pre-authorization of sharing random IDs helps with detecting possible exposures. The placeholder is the Health Authority name. [CHAR_LIMIT=400] -->
+  <string name="notify_others_if_result_updated_content"><xliff:g id="health_authority" example="Sample Health Authority">%1$s</xliff:g> may send you a second code to confirm your test result. You can automatically update your COVID-19 status &amp; share additional days of random IDs using this second code, which can help notify others about possible exposure. Your identity is not shared with other people.</string>
+
+  <!-- Text on the button displayed at the bottom of the "Notify other people if your result gets updated?" card that allows user to pre-authorize sharing their random IDs if they get a positive test result from the HA in the future. [CHAR_LIMIT=40] -->
+  <string name="btn_pre_auth_yes">Yes, I want to help</string>
+
+  <!-- Text on the button displayed at the bottom of the "Notify other people if your result gets updated?" card that allows user to confirm they don't want to pre-authorize sharing their random IDs if they get a positive test result from the HA in the future. [CHAR_LIMIT=40] -->
+  <string name="btn_pre_auth_no">No thanks</string>
+
+  <!-- Title of the screen displayed upon clicking the notification from the Exposure Notifications System, which confirms that as per user's pre-authorization the user's random IDs have been shared with their HA based on their positive test result. [CHAR_LIMIT=NONE] -->
+  <string name="thank_you_for_notifying_title">Thank you for helping</string>
+
+  <!-- Content of the "Thank you for helping" screen displayed upon clicking the notification from the Exposure Notifications System, which confirms that as per user's pre-authorization the user's random IDs have been shared with their HA based on their positive test result. The placeholder is the Health Authority name. [CHAR_LIMIT=NONE] -->
+  <string name="thank_you_for_notifying_content"><xliff:g id="health_authority" example="Sample Health Authority">%1$s</xliff:g> just updated your exposure timeline and may have alerted others of possible exposure.</string>
+
   <!-- SETTINGS SCREENS -->
 
-  <!-- Text displayed on the link going to the exposure notifications about page and displayed above the current exposure notification on / off status.  This is displayed on the settings tab home page. [CHAR_LIMIT=40] [BACKUP_MESSAGE_ID=3785392145357451432] -->
+  <!-- Text displayed on the link going to the exposure notifications about page and displayed above the current exposure notification on / off status.  This is displayed on the settings tab home page. [CHAR_LIMIT=40] -->
   <string name="settings_exposure_notifications_subtitle">Exposure Notifications</string>
 
   <!-- Text displayed on the link going to the app analytics settings page and displayed above the current setting status.  This is displayed on the settings tab home page. [CHAR_LIMIT=40] -->
@@ -440,10 +458,10 @@
   <!-- Displayed on the settings tab home page to indicate app analytics sharing is turned off. [CHAR_LIMIT=40] -->
   <string name="settings_analytics_off">Off</string>
 
-  <!-- Title of the exposure notifications about page, where the user is able to get more information about what exposure notifications is and can find the system settings page. [CHAR_LIMIT=60] [BACKUP_MESSAGE_ID=3331809739334735023] -->
+  <!-- Title of the exposure notifications about page, where the user is able to get more information about what exposure notifications is and can find the system settings page. [CHAR_LIMIT=60] -->
   <string name="exposure_about_title">Exposure Notifications</string>
 
-  <!-- Text shown on the exposure notifications about page. It appears next to the toggle that turns on or off the exposure notification system. [CHAR_LIMIT=40] [BACKUP_MESSAGE_ID=497555767917752977] -->
+  <!-- Text shown on the exposure notifications about page. It appears next to the toggle that turns on or off the exposure notification system. [CHAR_LIMIT=40] -->
   <string name="exposure_about_toggle">Use Exposure Notifications</string>
 
   <!-- The body of text shown on the exposure notifications about page. This describes how exposure notifications work. [CHAR_LIMIT=NONE] -->
@@ -453,7 +471,7 @@
     \n\nThe date, duration, and signal strength associated with an exposure will be shared with the app.
   </string>
 
-  <!-- Title of the dialog that appears when turning off exposure notifications. [CHAR_LIMIT=60] [BACKUP_MESSAGE_ID=720244511397391417] -->
+  <!-- Title of the dialog that appears when turning off exposure notifications. [CHAR_LIMIT=60] -->
   <string name="exposure_turn_off_title">Turn off Exposure Notifications?</string>
 
   <!-- Body text of the dialog that appears when turning off exposure notifications. [CHAR_LIMIT=200] -->
@@ -473,7 +491,7 @@
 
   <!-- EDGE CASES -->
 
-  <!-- Title of both the notify others and exposures home pages, shown when the user lands on the page and exposure notifications are on but not running because bluetooth or device location are disabled. [CHAR_LIMIT=60] [BACKUP_MESSAGE_ID=8642771878163741629] -->
+  <!-- Title of both the notify others and exposures home pages, shown when the user lands on the page and exposure notifications are on but not running because bluetooth or device location are disabled. [CHAR_LIMIT=60] -->
   <string name="exposure_notifications_are_inactive">Exposure Notifications is inactive</string>
 
   <!-- Displayed on the button when the user needs to go to the device settings page to correct location / bluetooth off. [CHAR_LIMIT=40] -->
@@ -603,6 +621,47 @@
   <string name="sms_intercept_notice_title">What\'s new</string>
 
   <!-- Body of the SMS Intercept Notice dialog. This dialog is meant to inform users about a new SMS Intercept functionality. [CHAR_LIMIT=NONE] -->
-  <string name="sms_intercept_notice_content">If your local health authority sends you a test result, your app can notify you with a reminder to submit your result and help alert others of possible exposure. You can disable this any time in settings.</string>
+  <string name="sms_intercept_notice_content">If you receive an SMS with your test result, you may get a notification asking you to share your diagnosis in exposure notifications. You can disable this any time in settings.</string>
 
+  <!-- Title of the share diagnosis upload screen in the notify others flow.  [CHAR_LIMIT=NONE] -->
+  <string name="share_upload_title">Share your test result to protect your community</string>
+
+  <!-- Shown on the upload screen in the notify others flow, the text informs on the health authority that sent the test result. [CHAR_LIMIT=NONE] -->
+  <string name="share_upload_test_result_source_description">Testing result is sent by <xliff:g example="Sample Health Authority" id="health_authority">%1$s</xliff:g></string>
+
+  <!-- Subtitle on the upload screen in the notify others flow, asking the user when the COVID-19 symptoms started. [CHAR_LIMIT=60] -->
+  <string name="share_upload_symptoms_subtitle">Symptom started from</string>
+
+  <!-- Shown on the upload screen in the notify others flow, the text informs that the symptom onset date can not be changed because it was provided by the health authority. [CHAR_LIMIT=60] -->
+  <string name="share_upload_symptoms_date_fixed_description">Symptom date is provided by <xliff:g example="Sample Health Authority" id="health_authority">%1$s</xliff:g></string>
+
+  <!-- One of the options on the upload screen in the notify others flow, prompting the user if they want to skip the current question. [CHAR_LIMIT=NONE] -->
+  <string name="share_upload_skip_choice">Skip</string>
+
+  <!-- Subtitle on the upload screen in the notify others flow, asking the user about their travel history. [CHAR_LIMIT=40] -->
+  <string name="share_upload_travel_subtitle">Travel history</string>
+
+  <!-- One of the options on the upload screen in the notify others flow, asking the user if they have travelled within the last 14 days. [CHAR_LIMIT=60] -->
+  <string name="travel_history_travelled_recently_choice">Travelled in the past 14 days</string>
+
+  <!-- One of the options on the upload screen in the notify others flow, the user selects this option when they have no travel history within the last 14 days. [CHAR_LIMIT=60] -->
+  <string name="travel_history_no_travel_choice">None</string>
+
+  <!--  One of the options on the upload screen in the notify others flow, acts as a placeholder prompting the user to provide the date symptoms started. [CHAR_LIMIT=60] -->
+  <string name="share_upload_select_a_date_choice">Select a date</string>
+
+  <!-- Title shown on the upload screen in the notify others flow, displaying the user's COVID-19 test result. [CHAR_LIMIT=60] -->
+  <string name="share_upload_status_subtitle">COVID-19 status</string>
+
+  <!-- Shown on the upload screen in the notify others flow, displaying the users COVID-19 test result being likely positive. [CHAR_LIMIT=60] -->
+  <string name="share_upload_status_confirmed">Positive</string>
+
+  <!-- Shown on the upload screen in the notify others flow, displaying the users COVID-19 test result being likely negative. [CHAR_LIMIT=60] [BACKUP_MESSAGE_ID=851072709708873041] -->
+  <string name="share_upload_status_negative">Negative</string>
+
+  <!-- Shown on the upload screen in the notify others flow, displaying the users COVID-19 test result  was confirmed as likely. [CHAR_LIMIT=60]-->
+  <string name="share_upload_status_likely">Likely</string>
+
+  <!-- Shown in the notify others flow, displaying the user's progress on the flow. [CHAR_LIMIT=60] -->
+  <string name="share_diagnosis_progress_tracker">Step <xliff:g id="current_step" example="1">%1$d</xliff:g> of <xliff:g id="total_number_of_steps" example="2">%2$d</xliff:g></string>
 </resources>

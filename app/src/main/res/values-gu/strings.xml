@@ -30,8 +30,8 @@
   <string name="onboarding_exposure_notifications_title">એક્સપોઝર નોટિફિકેશન ચાલુ કરો</string>
   <string name="onboarding_exposure_notifications_detail">જ્યારે તમે COVID-19ની ઝપેટમાં આવેલી કોઈ વ્યક્તિના સંપર્કમાં આવો ત્યારે સૂચના મેળવો.
     \n\nનજીકમાં રહેલા અન્ય ફોન સાથે રેન્ડમ IDs સુરક્ષિત રીતે એકત્રિત અને શેર કરવા માટે, તમારો ફોન બ્લૂટૂથનો ઉપયોગ કરે છે.
-    \n\nતમારા જાહેર આરોગ્ય અધિકારી દ્વારા સેટ કરેલા પરિબળોના આધારે, તમને સૂચના આપવી કે નહીં તે નક્કી કરવા માટે, સંભવિત એક્સપોઝર સાથે સંકળાયેલી તારીખ, અવધિ અને લક્ષણોની પ્રબળતાનો ઉપયોગ કરવામાં આવશે.
-    \n\nજો તમારા પરીક્ષણનું પરિણામ પૉઝિટિવ આવે, તો તમારા આરોગ્ય અધિકારી સાથે તમારા પરિણામો શેર કરવા માટે, તમે કદાચ કોઈ રિમાઇન્ડર મેળવી શકો છો.</string>
+    \n\nતમારા જાહેર આરોગ્ય અધિકારી દ્વારા સેટ કરેલા પેરામીટરના આધારે, તમને સૂચના આપવી કે નહીં તે નક્કી કરવા માટે, એક્સપોઝર સાથે સંકળાયેલી તારીખ, અવધિ અને સિગ્નલની પ્રબળતાનો ઉપયોગ કરવામાં આવશે.
+    \n\nજો તમને તમારા પરીક્ષણનું પરિણામ ધરાવતો SMS મળે, તો તમને તમારા આરોગ્ય અધિકારી સાથે નિદાન શેર કરવા માટેનું નોટિફિકેશન મળી શકે છે.</string>
   <string name="onboarding_metrics_title">આ ઍપને બહેતર બનાવવામાં સહાય કરો</string>
   <string name="onboarding_metrics_subtitle">Google સાથે ઍપના વપરાશ અને કાર્યપ્રદર્શનનો ડેટા શેર કરો</string>
   <string name="onboarding_metrics_description">આ ઍપની જાળવણી તેમજ બહેતર બનાવવામાં સહાય કરવા માટે, Google સાથે ઍપના કાર્યપ્રદર્શન અને વપરાશ વિશેનો મર્યાદિત પ્રમાણમાં અમુક છુપાવેલી ઓળખાણવાળો ડેટા શેર કરવામાં આવે છે. આ ડેટા તમારી ઓળખ છતી કરી શકશે નહીં. %1$s</string>
@@ -128,6 +128,12 @@
     <item quantity="other">તમે ઘણી વધુ વિનંતીઓ કરી છે. તમે %1$d મિનિટમાં વધુ એક કોડની વિનંતી કરી શકશો.</item>
   </plurals>
   <string name="notify_others_notification_title">જે અન્ય લોકો સંપર્કમાં આવ્યા હોઈ શકે છે, તેમને સૂચિત કરવામાં સહાય કરો</string>
+  <string name="notify_others_if_result_updated_title">જો તમારા પરિણામો અપડેટ કરવામાં આવે તો અન્ય લોકોને સૂચના આપીએ?</string>
+  <string name="notify_others_if_result_updated_content">તમારા પરીક્ષણનું પરિણામ કન્ફર્મ કરવા માટે, %1$s દ્વારા તમને કોઈ બીજો કોડ મોકલવામાં આવી શકે છે. તમે તમારું COVID-19 સ્ટેટસ ઑટોમૅટિક રીતે અપડેટ કરી શકો છો તેમજ આ બીજા કોડ વડે રેન્ડમ IDs જનરેટ થયા પછીના વધારાના દિવસોની માહિતી પણ શેર કરી શકો છો, જેનાથી અન્યોને સંભવિત એક્સપોઝર વિશે સૂચિત કરવામાં સહાયતા મળી રહે છે. તમારી ઓળખ અન્ય લોકો સાથે શેર કરવામાં આવી નથી.</string>
+  <string name="btn_pre_auth_yes">હા, હું સહાય કરવા માગુ છું</string>
+  <string name="btn_pre_auth_no">ના, આભાર</string>
+  <string name="thank_you_for_notifying_title">સહાય કરવા બદલ આપનો આભાર</string>
+  <string name="thank_you_for_notifying_content">%1$s દ્વારા તમારા એક્સપોઝરની સમયરેખા હમણાં જ અપડેટ કરવામાં આવી છે સંભવિત એક્સપોઝર વિશે અન્યોને અલર્ટ કરવામાં આવ્યા હોઈ શકે છે.</string>
   <string name="settings_exposure_notifications_subtitle">એક્સપોઝર નોટિફિકેશન</string>
   <string name="settings_app_analytics_subtitle">ઍપ વપરાશ અને કાર્યપ્રદર્શન શેરિંગ</string>
   <string name="settings_privacy_policy">પ્રાઇવસી પૉલિસી</string>
@@ -193,5 +199,19 @@
   <string name="share_diagnosis_share_test_result_subtitle">COVID-19નો ફેલાવો રોકવામાં સહાય માટે આપનો આભાર.</string>
   <string name="share_diagnosis_share_test_result_body">જ્યારે તમે તમારું પરિણામ શેર કરો, ત્યારે તમારા લક્ષણો ક્યારથી શરૂ થયા, તમે તે શેર કરવાનું પણ પસંદ કરી શકો છો. આ માહિતી COVID-19નો ફેલાવો રોકવામાં અને જીંદગીઓ બચાવવામાં સહાય કરી શકે છે.</string>
   <string name="sms_intercept_notice_title">નવું શું છે</string>
-  <string name="sms_intercept_notice_content">જો તમારા સ્થાનિક સ્વાસ્થ્ય અધિકારી તમને પરીક્ષણનું પરિણામ મોકલે, તો તમારા પરિણામને સબમિટ કરવા માટે, તમારી ઍપ તમને રિમાઇન્ડર સાથે સૂચિત કરી શકે છે અને સંભવિત એક્સપોઝર વિશે અન્ય લોકોને અલર્ટ કરવામાં સહાય કરી શકે છે. તમે સેટિંગમાં જઈને કોઈપણ સમયે આને બંધ કરી શકો છો.</string>
+  <string name="sms_intercept_notice_content">જો તમે તમારા પરીક્ષણ પરિણામ સાથે કોઈ SMS મેળવો, તો એક્સપોઝર નોટિફિકેશનમાં તમને તમારું નિદાન શેર કરવા જણાવતું કોઈ નોટિફિકેશન પણ તમે મેળવી શકો છો. તમે સેટિંગમાં જઈને કોઈપણ સમયે આને બંધ કરી શકો છો.</string>
+  <string name="share_upload_title">તમારા સમુદાયની સુરક્ષા માટે, તમારું પરીક્ષણનું પરિણામ શેર કરો</string>
+  <string name="share_upload_test_result_source_description">%1$s દ્વારા પરીક્ષણનું પરિણામ મોકલવામાં આવ્યું છે</string>
+  <string name="share_upload_symptoms_subtitle">લક્ષણો દેખાવાની તારીખ</string>
+  <string name="share_upload_symptoms_date_fixed_description">લક્ષણ દેખાવાની તારીખ %1$s દ્વારા પ્રદાન કરવામાં આવે છે</string>
+  <string name="share_upload_skip_choice">છોડો</string>
+  <string name="share_upload_travel_subtitle">મુસાફરીનો ઇતિહાસ</string>
+  <string name="travel_history_travelled_recently_choice">છેલ્લા 14 દિવસમાં કરેલી મુસાફરી</string>
+  <string name="travel_history_no_travel_choice">એકપણ નહીં</string>
+  <string name="share_upload_select_a_date_choice">કોઈ તારીખ પસંદ કરો</string>
+  <string name="share_upload_status_subtitle">COVID-19 સ્ટેટસ</string>
+  <string name="share_upload_status_confirmed">પૉઝિટિવ</string>
+  <string name="share_upload_status_negative">નેગેટિવ</string>
+  <string name="share_upload_status_likely">શક્યતા છે</string>
+  <string name="share_diagnosis_progress_tracker">%2$dમાંથી %1$d પગલું</string>
 </resources>

@@ -31,7 +31,7 @@
   <string name="onboarding_exposure_notifications_detail">Yaziswa uma useduze nothile ozibike njengone-COVID-19.
     \n\nIfoni yakho isebenzisa i-Bluetooth ukuze iqoqe futhi yabelane ngokuphephile ngama-ID angahleliwe namanye amafoni aseduzane.
     \n\nUsuku, ubude besikhathi, namandla wesignali ahlobene nokuhlangabezana okunokwenzeka kuzosetshenziselwa ukunquma ukuthi uzokwaziswa yini ngokusekelwe kumapharamitha asethwe yiziphathimandla zezempilo yomphakathi wakini.
-    \n\nUma utholakale unokugula, ungathola isikhumbuzi sokwabelana ngemiphumela yakho nabasemagunyeni bakho bezempilo.</string>
+    \n\nUngathola isaziso sokwabelana ngokuxilongwa neziphathimandla zakho zezempilo uma uthola i-SMS nomphumela wakho wokuhlolwa.</string>
   <string name="onboarding_metrics_title">Siza ukwenza lolu hlelo lokusebenza lube ngcono</string>
   <string name="onboarding_metrics_subtitle">Yabelana ngedatha yokusetshenziswa kohlelo neyokusebenza ne-Google</string>
   <string name="onboarding_metrics_description">Ukusiza ukugcina nokuthuthukisa uhlelo lokusebenza, enye idatha ehlonziwe enomkhawulo emayelana nokusebenza kohlelo lokusebenza nokusetshenziswa yabiwa ne-Google. Le datha ayikuhlonzi. %1$s</string>
@@ -128,6 +128,12 @@
     <item quantity="other">Wenze izicelo eziningi kakhulu. Ungacela enye ikhodi emizuzwini engu-%1$d.</item>
   </plurals>
   <string name="notify_others_notification_title">Siza ukwazisa abanye okungenzeka badaluliwe</string>
+  <string name="notify_others_if_result_updated_title">Yazisa abanye abantu uma imiphumela yakho ibuyekezwa?</string>
+  <string name="notify_others_if_result_updated_content">I-%1$s ingase ikuthumele ikhodi yesibili ukuqinisekisa umphumela wakho wokuhlolwa. Ungase ubuyekeze ngokuzenzekelayo isimo sakho se-COVID-19 futhi wabelane ngezinsuku ezengeziwe zama-ID angahleliwe usebenzisa le khodi yesibili, engasiza ukwazisa abanye mayelana nokuhlangabezana okungase kube khona. Ukuthi ungubani akwabiwa nabanye abantu.</string>
+  <string name="btn_pre_auth_yes">Yebo, ngifuna ukusiza</string>
+  <string name="btn_pre_auth_no">Cha ngiyabonga</string>
+  <string name="thank_you_for_notifying_title">Siyabonga ngokusiza</string>
+  <string name="thank_you_for_notifying_content">I-%1$s isanda kubuyekeza isikhathi sakho esimisiwe sokuhlangabezana kwakho futhi kungenzeka itshele abanye ngokuhlangabezana okungase kube khona.</string>
   <string name="settings_exposure_notifications_subtitle">Izaziso Zokuhlangabezana</string>
   <string name="settings_app_analytics_subtitle">Ukusetshenziswa kohlelo lokusebenza nokwabelana kokusebenza</string>
   <string name="settings_privacy_policy">Inqubomgomo yobumfihlo</string>
@@ -193,5 +199,19 @@
   <string name="share_diagnosis_share_test_result_subtitle">Siyakubonga ngokusiza ukuvimba i-COVID-19.</string>
   <string name="share_diagnosis_share_test_result_body">Uma wabelana ngomphumela wakho, ungaphinda ukhethe ukwabelana lapho izimpawu zakho ziqala. Lolu lwazi lungasiza ekunqandeni ukusabalala kwe-COVID-19 futhi lusindise izimpilo.</string>
   <string name="sms_intercept_notice_title">Yini okusha</string>
-  <string name="sms_intercept_notice_content">Uma isiphathimandla sakho sezempilo sasendaweni sikuthumela umphumela wokuhlolwa, i-app yakho ingakwazisa ngesikhumbuzo sothumela umphumela wakho futhi usize ngokuxwayisa abanye abantu ngokuhlangabezana okungase kube khona. Ungakhubaza lokhu noma kunini kumasethingi.</string>
+  <string name="sms_intercept_notice_content">Uma uthola i-SMS enomphumela wakho wokuhlolwa, ungase uthole isaziso esikucela ukuthi wabelane ngokuxilongwa kwakho kwizaziso zokuhlangabezana. Ungakhubaza lokhu noma kunini kumasethingi.</string>
+  <string name="share_upload_title">Yabelana ngomphumela wakho ukuvikela umphakathi wakho</string>
+  <string name="share_upload_test_result_source_description">Umphumela wokuhlolwa uthunyelwa i-%1$s</string>
+  <string name="share_upload_symptoms_subtitle">Uphawu luqale ngo-</string>
+  <string name="share_upload_symptoms_date_fixed_description">Ilanga lophawu luhlinzekwa i-%1$s</string>
+  <string name="share_upload_skip_choice">Yeqa</string>
+  <string name="share_upload_travel_subtitle">Umlando wokuhamba</string>
+  <string name="travel_history_travelled_recently_choice">Uthathe uhambo ezinsukwini ezi-14 ezedlule</string>
+  <string name="travel_history_no_travel_choice">Lutho</string>
+  <string name="share_upload_select_a_date_choice">Khetha idethi</string>
+  <string name="share_upload_status_subtitle">Isimo se-COVID-19</string>
+  <string name="share_upload_status_confirmed">Okuhle</string>
+  <string name="share_upload_status_negative">Okubi</string>
+  <string name="share_upload_status_likely">Kungenzeka</string>
+  <string name="share_diagnosis_progress_tracker">Isinyathelo esingu-%1$d kwezingu-%2$d</string>
 </resources>

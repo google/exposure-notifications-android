@@ -115,6 +115,8 @@ public abstract class DiagnosisEntity {
 
   public abstract long getLastUpdatedTimestampMs();
 
+  public abstract boolean getIsPreAuth();
+
   public abstract Builder toBuilder();
 
   public static Builder newBuilder() {
@@ -127,7 +129,8 @@ public abstract class DiagnosisEntity {
         .setHasSymptoms(HasSymptoms.UNSET)
         .setTravelStatus(TravelStatus.NOT_ATTEMPTED)
         .setIsCodeFromLink(false)
-        .setLastUpdatedTimestampMs(0L);
+        .setLastUpdatedTimestampMs(0L)
+        .setIsPreAuth(false);
   }
 
   @AutoValue.Builder
@@ -161,6 +164,8 @@ public abstract class DiagnosisEntity {
 
     public abstract Builder setLastUpdatedTimestampMs(long lastUpdatedTimestampMs);
 
+    public abstract Builder setIsPreAuth(boolean isPreAuth);
+
     public abstract DiagnosisEntity build();
   }
 
@@ -182,7 +187,8 @@ public abstract class DiagnosisEntity {
       String revisionToken,
       TravelStatus travelStatus,
       boolean isCodeFromLink,
-      long lastUpdatedTimestampMs) {
+      long lastUpdatedTimestampMs,
+      boolean isPreAuth) {
     return newBuilder()
         .setId(id)
         .setCreatedTimestampMs(createdTimestampMs)
@@ -198,6 +204,7 @@ public abstract class DiagnosisEntity {
         .setTravelStatus(travelStatus)
         .setIsCodeFromLink(isCodeFromLink)
         .setLastUpdatedTimestampMs(lastUpdatedTimestampMs)
+        .setIsPreAuth(isPreAuth)
         .build();
   }
 }

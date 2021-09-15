@@ -28,10 +28,10 @@
   <string name="onboarding_opt_in_title">Վարակման վտանգի մասին ծանուցումները միացնելու համար պահանջվում են թույլտվություններ</string>
   <string name="onboarding_finish_title">Վարակման վտանգի մասին ծանուցումները միացնելու համար պահանջվում են այլ թույլտվություններ</string>
   <string name="onboarding_exposure_notifications_title">Միացնել վարակման վտանգի մասին ծանուցումները</string>
-  <string name="onboarding_exposure_notifications_detail">Ստացեք ծանուցում, եթե անձը, որին մոտ եք գտնվել, հաղորդի COVID-19-ի իր թեստի դրական արդյունքի մասին։
+  <string name="onboarding_exposure_notifications_detail">Ստացեք ծանուցում, եթե որևէ անձ, որին մոտ եք գտնվել, հաղորդի COVID-19-ի իր թեստի դրական արդյունքի մասին։
     \n\nՁեր հեռախոսը Bluetooth-ի օգնությամբ հավաքում է պատահական նույնացուցիչներ և ուղարկում դրանք մոտակայքում գտնվող այլ հեռախոսների։
     \n\nՀամաձայն հանրային առողջապահական մարմինների սահմանած պարամետրերի՝ ծանուցումների ուղարկումը կախված է վարակակրի հետ շփման ամսաթվից, տևողությունից, ինչպես նաև այդ պահին Bluetooth ազդանշանի ուժգնությունից։
-    \n\nԵթե ձեր թեստի արդյունքը դրական է, դուք կարող եք հիշեցում ստանալ՝ այդ մասին առողջապահական մարմիններին հայտնելու համար։</string>
+    \n\nԵթե ձեզ ուղարկվի թեստի արդյունքով SMS, դուք նաև կարող եք ստանալ ծանուցում՝ ախտորոշման պատասխանը առողջապահական մարմիններին տրամադրելու առաջարկով։</string>
   <string name="onboarding_metrics_title">Օգնեք ավելի լավը դարձնել այս հավելվածը</string>
   <string name="onboarding_metrics_subtitle">Ուղարկել հավելվածի մասին տվյալները Google-ին</string>
   <string name="onboarding_metrics_description">Հավելվածի պատշաճ աշխատանքն ապահովելու և այն կատարելագործելու նպատակով հավելվածի աշխատանքի և օգտագործման մասին որոշ անանուն տվյալներ կուղարկվեն Google-ին։ Այդ տվյալները չեն նույնականացնի ձեզ։ %1$s</string>
@@ -128,6 +128,12 @@
     <item quantity="other">Դուք գերազանցել եք հարցումների սահմանաչափը։ Կարող եք նորից փորձել %1$d րոպեից։</item>
   </plurals>
   <string name="notify_others_notification_title">Օգնեք տեղեկացնել այլ մարդկանց հնարավոր վարակման վտանգի մասին</string>
+  <string name="notify_others_if_result_updated_title">Ծանուցե՞լ այլ մարդկանց, եթե ձեր արդյունքը թարմացվում է</string>
+  <string name="notify_others_if_result_updated_content">«%1$s» հաստատությունը կարող է ձեզ երկրորդ կոդն ուղարկել՝ ձեր թեստի պատասխանը հաստատելու համար։ Դուք կարող եք ավտոմատ թարմացնել ձեր COVID-19 կարգավիճակն ու ևս մի քանի օր պատահական նույնացուցիչներ ուղարկել՝ օգտագործելով այս երկրորդ կոդը, որը կօգնի տեղեկացնել այլ օգտատերերին հնարավոր վարակման վտանգի մասին։ Ձեր ինքնությունը չի հրապարակվի։</string>
+  <string name="btn_pre_auth_yes">Այո, ուզում եմ օգնել</string>
+  <string name="btn_pre_auth_no">Ոչ, շնորհակալություն</string>
+  <string name="thank_you_for_notifying_title">Շնորհակալություն օգնելու համար</string>
+  <string name="thank_you_for_notifying_content">«%1$s» ծառայությունը թարմացրեց վարակակրի հետ շփման ձեր ժամանակագրությունը, և այն կարող է տեղեկացնել մյուսներին՝ վարակման հնարավոր վտանգի մասին։</string>
   <string name="settings_exposure_notifications_subtitle">Ծանուցումներ վարակման վտանգի մասին</string>
   <string name="settings_app_analytics_subtitle">Հավելվածի մասին տվյալների ուղարկում</string>
   <string name="settings_privacy_policy">Գաղտնիության քաղաքականություն</string>
@@ -193,5 +199,19 @@
   <string name="share_diagnosis_share_test_result_subtitle">Շնորհակալություն, որ օգնում եք պայքարել COVID-19-ի տարածման դեմ։</string>
   <string name="share_diagnosis_share_test_result_body">Հաղորդելով ձեր թեստի արդյունքը՝ դուք կարող եք նաև հայտնել, թե երբ են ձեզ մոտ սկսվել ախտանիշները։ Այս տեղեկություններն օգնում են կանխել COVID-19-ի տարածումը և փրկել կյանքեր։</string>
   <string name="sms_intercept_notice_title">Նոր գործառույթ</string>
-  <string name="sms_intercept_notice_content">Եթե տեղական առողջապահական մարմիններից դուք ստանաք թեստի պատասխանը, հավելվածը կարող է ծանուցում ուղարկել ձեզ՝ հիշեցներով թեստի պատասխանը վերբեռնելու անհրաժեշտության մասին։ Դա կօգնի զգուշացնել մյուսներին հնարավոր վարակման վտանգի մասին։ Ցանկացած ժամանակ կարող եք այս գործառույթն անջատել կարգավորումներում։</string>
+  <string name="sms_intercept_notice_content">Եթե ձեզ ուղարկվի թեստի արդյունքով SMS, դուք նաև կարող եք ստանալ ծանուցում՝ ախտորոշման պատասխանը վարակման վտանգի մասին ծանուցումների համակարգում հրապարակելու առաջարկով։ Ցանկացած ժամանակ կարող եք այս գործառույթն անջատել կարգավորումներում։</string>
+  <string name="share_upload_title">Հաղորդեք ձեր թեստի պատասխանի մասին՝ ձեր համայնքի բնակիչներին վտանգից զերծ պահելու համար</string>
+  <string name="share_upload_test_result_source_description">Թեստի պատասխանն ուղարկվել է «%1$s» հաստատության կողմից</string>
+  <string name="share_upload_symptoms_subtitle">Որ օրվանից են ի հայտ եկել ախտանիշները</string>
+  <string name="share_upload_symptoms_date_fixed_description">Ախտանիշների առաջացման ամսաթիվը տրվել է %1$s կազմակերպության կողմից</string>
+  <string name="share_upload_skip_choice">Բաց թողնել</string>
+  <string name="share_upload_travel_subtitle">Ճամփորդությունների պատմություն</string>
+  <string name="travel_history_travelled_recently_choice">Ճամփորդություններ վերջին 14 օրվա ընթացքում</string>
+  <string name="travel_history_no_travel_choice">Չկա</string>
+  <string name="share_upload_select_a_date_choice">Ընտրեք ամսաթիվը</string>
+  <string name="share_upload_status_subtitle">COVID-19 կարգավիճակ</string>
+  <string name="share_upload_status_confirmed">Դրական</string>
+  <string name="share_upload_status_negative">Բացասական</string>
+  <string name="share_upload_status_likely">Հավանական</string>
+  <string name="share_diagnosis_progress_tracker">Քայլ %1$d/%2$d</string>
 </resources>

@@ -23,6 +23,7 @@ import androidx.lifecycle.LiveData;
 import androidx.test.core.app.ApplicationProvider;
 import com.google.android.apps.exposurenotification.home.ExposureNotificationViewModel.ExposureNotificationState;
 import com.google.android.apps.exposurenotification.riskcalculation.ExposureClassification;
+import com.google.android.apps.exposurenotification.storage.DiagnosisEntity.TestResult;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.NotificationInteraction;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.OnboardingStatus;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.VaccinationStatus;
@@ -31,7 +32,9 @@ import com.google.android.apps.exposurenotification.testsupport.FakeClock;
 import com.google.common.base.Optional;
 import dagger.hilt.android.testing.HiltAndroidTest;
 import dagger.hilt.android.testing.HiltTestApplication;
+import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
@@ -63,7 +66,7 @@ public class ExposureNotificationSharedPreferencesTest {
     clock = new FakeClock();
     exposureNotificationSharedPreferences =
         new ExposureNotificationSharedPreferences(ApplicationProvider.getApplicationContext(),
-            clock);
+            clock, new SecureRandom());
   }
 
   @Test
@@ -126,11 +129,14 @@ public class ExposureNotificationSharedPreferencesTest {
     Instant workerTime = Instant.ofEpochMilli(123L);
     Instant codeMetricTime = Instant.ofEpochMilli(124L);
     Instant keysMetricTime = Instant.ofEpochMilli(125L);
-    exposureNotificationSharedPreferences.setPrivateAnalyticsWorkerLastTime(workerTime);
+    exposureNotificationSharedPreferences.setPrivateAnalyticsWorkerLastTimeForDaily(workerTime);
+    exposureNotificationSharedPreferences.setPrivateAnalyticsWorkerLastTimeForBiweekly(workerTime);
     exposureNotificationSharedPreferences.setPrivateAnalyticsLastSubmittedCodeTime(codeMetricTime);
     exposureNotificationSharedPreferences.setPrivateAnalyticsLastSubmittedKeysTime(keysMetricTime);
 
-    assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsWorkerLastTime())
+    assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsWorkerLastTimeForDaily())
+        .isEqualTo(workerTime);
+    assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsWorkerLastTimeForBiweekly())
         .isEqualTo(workerTime);
     assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsLastSubmittedCodeTime())
         .isEqualTo(codeMetricTime);
@@ -146,7 +152,8 @@ public class ExposureNotificationSharedPreferencesTest {
     long exposureDay = (time.getEpochSecond() / TimeUnit.DAYS.toSeconds(1)) - 10;
     ExposureClassification exposureClassification = ExposureClassification
         .create(classificationIndex, "", exposureDay);
-    exposureNotificationSharedPreferences.setPrivateAnalyticsWorkerLastTime(time);
+    exposureNotificationSharedPreferences.setPrivateAnalyticsWorkerLastTimeForDaily(time);
+    exposureNotificationSharedPreferences.setPrivateAnalyticsWorkerLastTimeForBiweekly(time);
     exposureNotificationSharedPreferences.setPrivateAnalyticsLastSubmittedCodeTime(time);
     exposureNotificationSharedPreferences.setPrivateAnalyticsLastSubmittedKeysTime(time);
     exposureNotificationSharedPreferences
@@ -155,8 +162,11 @@ public class ExposureNotificationSharedPreferencesTest {
         .setExposureNotificationLastInteraction(time, NotificationInteraction.CLICKED, 2);
     exposureNotificationSharedPreferences
         .setLastVaccinationResponse(time, VaccinationStatus.VACCINATED);
+    exposureNotificationSharedPreferences.setPrivateAnalyticsLastReportType(TestResult.CONFIRMED);
 
-    assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsWorkerLastTime())
+    assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsWorkerLastTimeForDaily())
+        .isEqualTo(time);
+    assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsWorkerLastTimeForBiweekly())
         .isEqualTo(time);
     assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsLastSubmittedCodeTime())
         .isEqualTo(time);
@@ -181,6 +191,8 @@ public class ExposureNotificationSharedPreferencesTest {
         .isEqualTo(time);
     assertThat(exposureNotificationSharedPreferences.getLastVaccinationStatus())
         .isEqualTo(VaccinationStatus.VACCINATED);
+    assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsLastReportType())
+        .isEqualTo(TestResult.CONFIRMED);
 
     // Clear all the Private Analytics fields.
     exposureNotificationSharedPreferences.clearPrivateAnalyticsFields();
@@ -207,9 +219,12 @@ public class ExposureNotificationSharedPreferencesTest {
         .isEqualTo(Instant.EPOCH);
     assertThat(exposureNotificationSharedPreferences.getLastVaccinationStatus())
         .isEqualTo(VaccinationStatus.UNKNOWN);
+    assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsLastReportType()).isNull();
 
-    // The worker time is the only field not cleared.
-    assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsWorkerLastTime())
+    // The worker times are the only fields not cleared.
+    assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsWorkerLastTimeForDaily())
+        .isEqualTo(time);
+    assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsWorkerLastTimeForBiweekly())
         .isEqualTo(time);
   }
 
@@ -221,7 +236,8 @@ public class ExposureNotificationSharedPreferencesTest {
     long exposureDay = (time.getEpochSecond() / TimeUnit.DAYS.toSeconds(1)) - 10;
     ExposureClassification exposureClassification = ExposureClassification
         .create(classificationIndex, "", exposureDay);
-    exposureNotificationSharedPreferences.setPrivateAnalyticsWorkerLastTime(time);
+    exposureNotificationSharedPreferences.setPrivateAnalyticsWorkerLastTimeForDaily(time);
+    exposureNotificationSharedPreferences.setPrivateAnalyticsWorkerLastTimeForBiweekly(time);
     exposureNotificationSharedPreferences.setPrivateAnalyticsLastSubmittedCodeTime(time);
     exposureNotificationSharedPreferences.setPrivateAnalyticsLastSubmittedKeysTime(time);
     exposureNotificationSharedPreferences
@@ -230,8 +246,11 @@ public class ExposureNotificationSharedPreferencesTest {
         .setExposureNotificationLastInteraction(time, NotificationInteraction.CLICKED, 2);
     exposureNotificationSharedPreferences
         .setLastVaccinationResponse(time, VaccinationStatus.VACCINATED);
+    exposureNotificationSharedPreferences.setPrivateAnalyticsLastReportType(TestResult.CONFIRMED);
 
-    assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsWorkerLastTime())
+    assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsWorkerLastTimeForDaily())
+        .isEqualTo(time);
+    assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsWorkerLastTimeForBiweekly())
         .isEqualTo(time);
     assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsLastSubmittedCodeTime())
         .isEqualTo(time);
@@ -256,10 +275,14 @@ public class ExposureNotificationSharedPreferencesTest {
         .isEqualTo(time);
     assertThat(exposureNotificationSharedPreferences.getLastVaccinationStatus())
         .isEqualTo(VaccinationStatus.VACCINATED);
+    assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsLastReportType())
+        .isEqualTo(TestResult.CONFIRMED);
 
     // Clear all the Private Analytics fields.
     exposureNotificationSharedPreferences
-        .clearPrivateAnalyticsFieldsBefore(time.plus(Duration.ofDays(14)));
+        .clearPrivateAnalyticsDailyFieldsBefore(time.plus(Duration.ofDays(14)));
+    exposureNotificationSharedPreferences
+        .clearPrivateAnalyticsBiweeklyFieldsBefore(time.plus(Duration.ofDays(14)));
 
     assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsLastSubmittedCodeTime())
         .isEqualTo(Instant.EPOCH);
@@ -283,9 +306,12 @@ public class ExposureNotificationSharedPreferencesTest {
         .isEqualTo(Instant.EPOCH);
     assertThat(exposureNotificationSharedPreferences.getLastVaccinationStatus())
         .isEqualTo(VaccinationStatus.UNKNOWN);
+    assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsLastReportType()).isNull();
 
-    // The worker time is the only field not cleared.
-    assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsWorkerLastTime())
+    // The worker times are the only fields not cleared.
+    assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsWorkerLastTimeForDaily())
+        .isEqualTo(time);
+    assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsWorkerLastTimeForBiweekly())
         .isEqualTo(time);
   }
 
@@ -310,7 +336,8 @@ public class ExposureNotificationSharedPreferencesTest {
             classificationIndex);
 
     // Clear all the expired Private Analytics fields.
-    exposureNotificationSharedPreferences.clearPrivateAnalyticsFieldsBefore(time);
+    exposureNotificationSharedPreferences.clearPrivateAnalyticsDailyFieldsBefore(time);
+    exposureNotificationSharedPreferences.clearPrivateAnalyticsBiweeklyFieldsBefore(time);
 
     // Valid times should be recovered.
     assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsLastSubmittedCodeTime())
@@ -355,7 +382,8 @@ public class ExposureNotificationSharedPreferencesTest {
             classificationIndex);
 
     // Clear all the expired Private Analytics fields.
-    exposureNotificationSharedPreferences.clearPrivateAnalyticsFieldsBefore(time);
+    exposureNotificationSharedPreferences.clearPrivateAnalyticsDailyFieldsBefore(time);
+    exposureNotificationSharedPreferences.clearPrivateAnalyticsBiweeklyFieldsBefore(time);
 
     // Default values should be recovered.
     assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsLastSubmittedCodeTime())
@@ -499,6 +527,20 @@ public class ExposureNotificationSharedPreferencesTest {
     exposureNotificationSharedPreferences.setPrivateAnalyticsState(true);
 
     assertThat(exposureNotificationSharedPreferences.isPrivateAnalyticsStateSet()).isTrue();
+  }
+
+  @Test
+  public void getPrivateAnalyticsLastReportTypes_convertsTestResultValues() {
+    exposureNotificationSharedPreferences.setPrivateAnalyticsState(true);
+    for (TestResult testResultValue : TestResult.values()) {
+      exposureNotificationSharedPreferences.setPrivateAnalyticsLastReportType(testResultValue);
+      assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsLastReportType())
+          .isEqualTo(
+              testResultValue);
+    }
+
+    exposureNotificationSharedPreferences.setPrivateAnalyticsLastReportType(null);
+    assertThat(exposureNotificationSharedPreferences.getPrivateAnalyticsLastReportType()).isNull();
   }
 
   @Test
@@ -697,4 +739,21 @@ public class ExposureNotificationSharedPreferencesTest {
     assertThat(values).containsExactly(false, true);
   }
 
+  @Test
+  public void setBiweeklyMetricsUploadDay_coversAllDays() {
+    Calendar calendar = Calendar.getInstance();
+    exposureNotificationSharedPreferences.setBiweeklyMetricsUploadDay(calendar);
+    int startBiweeklyDay = exposureNotificationSharedPreferences
+        .getBiweeklyMetricsUploadDay();
+
+    assertThat(startBiweeklyDay % 7 + 1 == calendar.get(Calendar.DAY_OF_WEEK));
+    assertThat(startBiweeklyDay / 7 == calendar.get(Calendar.WEEK_OF_YEAR) % 2);
+
+    for (int i = 1; i < 14; i++) {
+      calendar.add(Calendar.DAY_OF_YEAR, 1);
+      assertThat(
+          exposureNotificationSharedPreferences.getBiweeklyMetricsUploadDay()
+              == (startBiweeklyDay + i) % 14);
+    }
+  }
 }

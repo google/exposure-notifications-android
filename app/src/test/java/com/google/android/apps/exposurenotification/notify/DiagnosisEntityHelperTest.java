@@ -20,10 +20,12 @@ package com.google.android.apps.exposurenotification.notify;
 import static com.google.common.truth.Truth.assertThat;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
+import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.common.time.RealTimeModule;
 import com.google.android.apps.exposurenotification.storage.DiagnosisEntity;
 import com.google.android.apps.exposurenotification.storage.DiagnosisEntity.Shared;
+import com.google.android.apps.exposurenotification.storage.DiagnosisEntity.TestResult;
 import com.google.android.apps.exposurenotification.testsupport.ExposureNotificationRules;
 import com.google.android.apps.exposurenotification.testsupport.FakeClock;
 import dagger.hilt.android.testing.BindValue;
@@ -140,6 +142,38 @@ public class DiagnosisEntityHelperTest {
     assertThat(DiagnosisEntityHelper.isNotInFuture(clock, today.toEpochMilli())).isTrue();
     assertThat(DiagnosisEntityHelper.isNotInFuture(clock, twoDaysAgo.toEpochMilli())).isTrue();
     assertThat(DiagnosisEntityHelper.isNotInFuture(clock, threeWeeksAgo.toEpochMilli())).isTrue();
+  }
+
+  @Test
+  public void getTestResultStringResource_testLikely_returnsLikelyString() {
+    int stringres =
+        DiagnosisEntityHelper.getDiagnosisTypeStringResourceFromTestResult(TestResult.LIKELY);
+
+    assertThat(stringres).isEqualTo(R.string.test_result_type_likely);
+  }
+
+  @Test
+  public void getTestResultStringResource_testNegative_returnsNegativeString() {
+    int stringres =
+        DiagnosisEntityHelper.getDiagnosisTypeStringResourceFromTestResult(TestResult.NEGATIVE);
+
+    assertThat(stringres).isEqualTo(R.string.test_result_type_negative);
+  }
+
+  @Test
+  public void getTestResultStringResource_testUserReport_returnsConfirmedString() {
+    int stringres =
+        DiagnosisEntityHelper.getDiagnosisTypeStringResourceFromTestResult(TestResult.USER_REPORT);
+
+    assertThat(stringres).isEqualTo(R.string.test_result_type_confirmed);
+  }
+
+  @Test
+  public void getTestResultStringResource_testNull_returnsConfirmedString() {
+    int stringres =
+        DiagnosisEntityHelper.getDiagnosisTypeStringResourceFromTestResult(null);
+
+    assertThat(stringres).isEqualTo(R.string.test_result_type_confirmed);
   }
 
 }

@@ -31,7 +31,7 @@
   <string name="onboarding_exposure_notifications_detail">Otrzymuj powiadomienia o narażeniu na kontakt po zgłoszeniu zachorowania na COVID-19 przez osoby, które przebywały w pobliżu Ciebie.
     \n\nTelefon korzysta z Bluetootha, aby w bezpieczny sposób zbierać losowe identyfikatory i udostępniać je innym telefonom w pobliżu.
     \n\nTo, czy otrzymasz powiadomienie, będzie zależało od daty, czasu trwania oraz siły sygnału związanych z możliwym narażeniem na kontakt, zgodnie z parametrami określonymi przez instytucję zdrowia publicznego, której podlegasz.
-    \n\nJeśli otrzymasz dodatni wynik testu, możesz zobaczyć przypomnienie o udostępnieniu wyniku instytucji zdrowia publicznego.</string>
+    \n\nJeśli przyjdzie do Ciebie SMS z wynikiem testu, możesz otrzymać powiadomienie z prośbą o udostępnienie diagnozy instytucji zdrowia publicznego.</string>
   <string name="onboarding_metrics_title">Pomóż ulepszyć tę aplikację</string>
   <string name="onboarding_metrics_subtitle">Udostępnij Google dane o użyciu i wydajności aplikacji</string>
   <string name="onboarding_metrics_description">Do Google wysyłane są pewne dane o użyciu i wydajności aplikacji, ponieważ pomaga to w utrzymywaniu i ulepszaniu aplikacji. Informacje te nie umożliwiają identyfikacji użytkownika. Na ich podstawie nie można Cię rozpoznać. %1$s</string>
@@ -132,6 +132,12 @@
     <item quantity="other">Zbyt wiele próśb. Możesz poprosić o następny kod za %1$d minuty.</item>
   </plurals>
   <string name="notify_others_notification_title">Pomóż powiadomić innych o potencjalnym narażeniu na kontakt</string>
+  <string name="notify_others_if_result_updated_title">Powiadomić innych, jeśli Twój wynik się zmieni?</string>
+  <string name="notify_others_if_result_updated_content">%1$s może wysłać Ci drugi kod, aby potwierdzić wynik testu. Za jego pomocą możesz automatycznie zmienić swój wynik badania na koronawirusa i udostępniać losowe identyfikatory przez kolejne dni, aby pomóc powiadomić innych o możliwym narażeniu na kontakt. Twoja tożsamość nie zostanie ujawniona.</string>
+  <string name="btn_pre_auth_yes">Tak, chcę pomóc</string>
+  <string name="btn_pre_auth_no">Nie, dziękuję</string>
+  <string name="thank_you_for_notifying_title">Dziękujemy za pomoc</string>
+  <string name="thank_you_for_notifying_content">Instytucja %1$s zmieniła właśnie oś czasu narażenia na kontakt. Inne osoby mogły zostać powiadomione o możliwym kontakcie.</string>
   <string name="settings_exposure_notifications_subtitle">Powiadomienia o narażeniu na kontakt</string>
   <string name="settings_app_analytics_subtitle">Udostępnianie danych o użyciu i wydajności</string>
   <string name="settings_privacy_policy">Polityka prywatności</string>
@@ -197,5 +203,19 @@
   <string name="share_diagnosis_share_test_result_subtitle">Dziękujemy za pomoc w powstrzymywaniu COVID-19.</string>
   <string name="share_diagnosis_share_test_result_body">Po udostępnieniu wyniku możesz też przekazać informację o tym, kiedy zaczęły się objawy. Pomoże to powstrzymać rozprzestrzenianie się COVID-19. W ten sposób możesz ocalić czyjeś życie.</string>
   <string name="sms_intercept_notice_title">Nowości</string>
-  <string name="sms_intercept_notice_content">Jeśli lokalna instytucja zdrowia publicznego wyśle Ci wynik testu, aplikacja może wyświetlić przypomnienie o przesłaniu tej informacji, aby powiadomić innych o potencjalnym narażeniu na kontakt z COVID-19. Możesz wyłączyć tę funkcję w dowolnej chwili w Ustawieniach.</string>
+  <string name="sms_intercept_notice_content">Jeśli otrzymasz SMS-a z wynikiem testu, możesz zobaczyć powiadomienie z prośbą o udostępnienie diagnozy na potrzeby powiadomień o narażeniu na kontakt. Możesz wyłączyć tę funkcję w dowolnej chwili w ustawieniach.</string>
+  <string name="share_upload_title">Udostępnij wynik testu, aby chronić swoją społeczność</string>
+  <string name="share_upload_test_result_source_description">Wynik testu wysyła instytucja %1$s</string>
+  <string name="share_upload_symptoms_subtitle">Początek występowania objawów</string>
+  <string name="share_upload_symptoms_date_fixed_description">Data wytąpienia symptomu została podana przez: %1$s</string>
+  <string name="share_upload_skip_choice">Pomiń</string>
+  <string name="share_upload_travel_subtitle">Historia podróżowania</string>
+  <string name="travel_history_travelled_recently_choice">Podróżowano w ciągu ostatnich 14 dni</string>
+  <string name="travel_history_no_travel_choice">Brak</string>
+  <string name="share_upload_select_a_date_choice">Wybierz datę</string>
+  <string name="share_upload_status_subtitle">Wynik badania na koronawirusa</string>
+  <string name="share_upload_status_confirmed">Pozytywny</string>
+  <string name="share_upload_status_negative">Negatywny</string>
+  <string name="share_upload_status_likely">Prawdopodobnie pozytywny</string>
+  <string name="share_diagnosis_progress_tracker">Krok %1$d z %2$d</string>
 </resources>

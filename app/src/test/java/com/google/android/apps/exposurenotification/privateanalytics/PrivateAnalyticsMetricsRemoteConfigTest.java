@@ -66,9 +66,23 @@ public class PrivateAnalyticsMetricsRemoteConfigTest {
         .put(PrivateAnalyticsMetricsRemoteConfig.CONFIG_METRIC_CODE_VERIFIED_PRIO_EPSILON_KEY,
             new Random().nextDouble())
 
+        .put(
+            PrivateAnalyticsMetricsRemoteConfig.CONFIG_METRIC_CODE_VERIFIED_WITH_REPORT_TYPE_SAMPLING_PROB_KEY,
+            new Random().nextDouble())
+        .put(
+            PrivateAnalyticsMetricsRemoteConfig.CONFIG_METRIC_CODE_VERIFIED_WITH_REPORT_TYPE_PRIO_EPSILON_KEY,
+            new Random().nextDouble())
+
         .put(PrivateAnalyticsMetricsRemoteConfig.CONFIG_METRIC_KEYS_UPLOADED_SAMPLING_PROB_KEY,
             new Random().nextDouble())
         .put(PrivateAnalyticsMetricsRemoteConfig.CONFIG_METRIC_KEYS_UPLOADED_PRIO_EPSILON_KEY,
+            new Random().nextDouble())
+
+        .put(
+            PrivateAnalyticsMetricsRemoteConfig.CONFIG_METRIC_KEYS_UPLOADED_WITH_REPORT_TYPE_SAMPLING_PROB_KEY,
+            new Random().nextDouble())
+        .put(
+            PrivateAnalyticsMetricsRemoteConfig.CONFIG_METRIC_KEYS_UPLOADED_WITH_REPORT_TYPE_PRIO_EPSILON_KEY,
             new Random().nextDouble())
 
         .put(PrivateAnalyticsMetricsRemoteConfig.CONFIG_METRIC_DATE_EXPOSURE_SAMPLING_PROB_KEY,
@@ -83,6 +97,24 @@ public class PrivateAnalyticsMetricsRemoteConfigTest {
         .put(
             PrivateAnalyticsMetricsRemoteConfig
                 .CONFIG_METRIC_KEYS_UPLOADED_VACCINE_STATUS_PRIO_EPSILON_KEY,
+            new Random().nextDouble())
+
+        .put(
+            PrivateAnalyticsMetricsRemoteConfig
+                .CONFIG_METRIC_KEYS_UPLOADED_AFTER_NOTIFICATION_SAMPLING_PROB_KEY,
+            new Random().nextDouble())
+        .put(
+            PrivateAnalyticsMetricsRemoteConfig
+                .CONFIG_METRIC_KEYS_UPLOADED_AFTER_NOTIFICATION_PRIO_EPSILON_KEY,
+            new Random().nextDouble())
+
+        .put(
+            PrivateAnalyticsMetricsRemoteConfig
+                .CONFIG_METRIC_PERIODIC_EXPOSURE_NOTIFICATION_BIWEEKLY_SAMPLING_PROB_KEY,
+            new Random().nextDouble())
+        .put(
+            PrivateAnalyticsMetricsRemoteConfig
+                .CONFIG_METRIC_PERIODIC_EXPOSURE_NOTIFICATION_BIWEEKLY_PRIO_EPSILON_KEY,
             new Random().nextDouble());
 
     MetricsRemoteConfigs metricsRemoteConfig = privateAnalyticsMetricsRemoteConfig
@@ -108,10 +140,26 @@ public class PrivateAnalyticsMetricsRemoteConfigTest {
     assertThat(metricsRemoteConfig.codeVerifiedPrioEpsilon()).isEqualTo(remoteJsonObj
         .get(PrivateAnalyticsMetricsRemoteConfig.CONFIG_METRIC_CODE_VERIFIED_PRIO_EPSILON_KEY));
 
+    assertThat(metricsRemoteConfig.codeVerifiedWithReportTypePrioSamplingRate())
+        .isEqualTo(remoteJsonObj
+            .get(
+                PrivateAnalyticsMetricsRemoteConfig.CONFIG_METRIC_CODE_VERIFIED_WITH_REPORT_TYPE_SAMPLING_PROB_KEY));
+    assertThat(metricsRemoteConfig.codeVerifiedWithReportTypePrioEpsilon()).isEqualTo(remoteJsonObj
+        .get(
+            PrivateAnalyticsMetricsRemoteConfig.CONFIG_METRIC_CODE_VERIFIED_WITH_REPORT_TYPE_PRIO_EPSILON_KEY));
+
     assertThat(metricsRemoteConfig.keysUploadedPrioSamplingRate()).isEqualTo(remoteJsonObj
         .get(PrivateAnalyticsMetricsRemoteConfig.CONFIG_METRIC_KEYS_UPLOADED_SAMPLING_PROB_KEY));
     assertThat(metricsRemoteConfig.keysUploadedPrioEpsilon()).isEqualTo(remoteJsonObj
         .get(PrivateAnalyticsMetricsRemoteConfig.CONFIG_METRIC_KEYS_UPLOADED_PRIO_EPSILON_KEY));
+
+    assertThat(metricsRemoteConfig.keysUploadedWithReportTypePrioSamplingRate())
+        .isEqualTo(remoteJsonObj
+            .get(
+                PrivateAnalyticsMetricsRemoteConfig.CONFIG_METRIC_KEYS_UPLOADED_WITH_REPORT_TYPE_SAMPLING_PROB_KEY));
+    assertThat(metricsRemoteConfig.keysUploadedWithReportTypePrioEpsilon()).isEqualTo(remoteJsonObj
+        .get(
+            PrivateAnalyticsMetricsRemoteConfig.CONFIG_METRIC_KEYS_UPLOADED_WITH_REPORT_TYPE_PRIO_EPSILON_KEY));
 
     assertThat(metricsRemoteConfig.dateExposurePrioSamplingRate()).isEqualTo(remoteJsonObj
         .get(PrivateAnalyticsMetricsRemoteConfig.CONFIG_METRIC_DATE_EXPOSURE_SAMPLING_PROB_KEY));
@@ -126,6 +174,27 @@ public class PrivateAnalyticsMetricsRemoteConfigTest {
         .get(
             PrivateAnalyticsMetricsRemoteConfig
                 .CONFIG_METRIC_KEYS_UPLOADED_VACCINE_STATUS_PRIO_EPSILON_KEY));
+
+    assertThat(metricsRemoteConfig.keysUploadedAfterNotificationPrioSamplingRate()).isEqualTo(
+        remoteJsonObj.get(
+            PrivateAnalyticsMetricsRemoteConfig
+                .CONFIG_METRIC_KEYS_UPLOADED_AFTER_NOTIFICATION_SAMPLING_PROB_KEY));
+    assertThat(metricsRemoteConfig.keysUploadedAfterNotificationPrioEpsilon())
+        .isEqualTo(remoteJsonObj
+            .get(
+                PrivateAnalyticsMetricsRemoteConfig
+                    .CONFIG_METRIC_KEYS_UPLOADED_AFTER_NOTIFICATION_PRIO_EPSILON_KEY));
+
+    assertThat(metricsRemoteConfig.periodicExposureNotificationBiweeklyPrioSamplingRate())
+        .isEqualTo(
+            remoteJsonObj.get(
+                PrivateAnalyticsMetricsRemoteConfig
+                    .CONFIG_METRIC_PERIODIC_EXPOSURE_NOTIFICATION_BIWEEKLY_SAMPLING_PROB_KEY));
+    assertThat(metricsRemoteConfig.periodicExposureNotificationBiweeklyPrioEpsilon())
+        .isEqualTo(remoteJsonObj
+            .get(
+                PrivateAnalyticsMetricsRemoteConfig
+                    .CONFIG_METRIC_PERIODIC_EXPOSURE_NOTIFICATION_BIWEEKLY_PRIO_EPSILON_KEY));
   }
 
   @Test

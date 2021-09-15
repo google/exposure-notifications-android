@@ -132,7 +132,7 @@ def composeIcon(fg, bg, color, scale, dst) {
   emitImage(resizeImage(newImage, 1.0 / 4), dst)
 }
 
-def generateIconSizes(fg, bg, color, dir, filename) {
+def generateIconSizes(fg, bg, color, dir, resDir, filename) {
   // Generate icons in all the major sizes for compatibility.
   [
     ['-ldpi', 36],
@@ -142,7 +142,7 @@ def generateIconSizes(fg, bg, color, dir, filename) {
     ['-xxhdpi', 144],
     ['-xxxhdpi', 192],
   ].each { name, scale ->
-    def subpath = dir + "/mipmap" + name
+    def subpath = dir + "/" + resDir + name
     mkdir subpath
     if (color != null) {
       composeIcon(fg, null, color, scale,
@@ -238,9 +238,11 @@ def produceAdaptiveIcon(config, outDir, outDrawablePath, iconForegroundKey, icon
   if (config.containsKey(iconBackgroundKey) && config[iconBackgroundKey] != "") {
     def (bg, bgPNG) = downloadImages(config, iconBackgroundKey)
     writeImage(bg, outDrawablePath + "/ic_launcher_background")
-    generateIconSizes(fgPNG, bgPNG, null, outDir, "ic_launcher")
+    generateIconSizes(fgPNG, bgPNG, null, outDir, "mipmap", "ic_launcher")
+    generateIconSizes(fgPNG, bgPNG, null, outDir, "drawable", "en_settings_icon")
   } else {
-    generateIconSizes(fgPNG, null, null, outDir, "ic_launcher")
+    generateIconSizes(fgPNG, null, null, outDir, "mipmap", "ic_launcher")
+    generateIconSizes(fgPNG, null, null, outDir, "drawable", "en_settings_icon")
     writeBackground(outDrawablePath)
   }
 }
@@ -259,7 +261,8 @@ def emitDrawablesLightMode(config, outDir) {
             "agencyIconForeground", "agencyIconBackground")
   } else {
     // If there are no icon resources, synthesize icon from agencyImage
-    generateIconSizes(imgPNG, null, config["agencyColor"], outDir, "ic_launcher")
+    generateIconSizes(imgPNG, null, config["agencyColor"], outDir, "mipmap", "ic_launcher")
+    generateIconSizes(imgPNG, null, config["agencyColor"], outDir, "drawable", "en_settings_icon")
     writeImage(img, outDrawablePath + "/ic_launcher_foreground")
     writeBackground(outDrawablePath)
   }
@@ -308,7 +311,8 @@ def emitDrawablesDarkMode(config, outDir) {
             "agencyIconForeground", "agencyIconBackground")
   } else {
     // Else, synthesize icon from agencyImage
-    generateIconSizes(imgPNG, null, config["agencyColor"], outDir, "ic_launcher")
+    generateIconSizes(imgPNG, null, config["agencyColor"], outDir, "mipmap", "ic_launcher")
+    generateIconSizes(imgPNG, null, config["agencyColor"], outDir, "drawable", "en_settings_icon")
     writeImage(img, outDrawablePath + "/ic_launcher_foreground")
     writeBackground(outDrawablePath)
   }

@@ -28,10 +28,10 @@
   <string name="onboarding_opt_in_title">නිරාවරණ දැනුම්දීම් සබල කිරීමට අවශ්‍ය අවසර</string>
   <string name="onboarding_finish_title">නිරාවරණ දැනුම්දීම් සබල කිරීමට අවශ්‍ය අවසරවල පවත්වා ගෙන යෑම</string>
   <string name="onboarding_exposure_notifications_title">නිරාවරණ දැනුම්දීම් ක්‍රියාත්මක කරන්න</string>
-  <string name="onboarding_exposure_notifications_detail">ඔබ COVID-19 තිබෙන බව වාර්තා කළ යම් කෙනෙකු අසල සිට ඇති නම් දැනුම්දීම් ලබන්න.
+  <string name="onboarding_exposure_notifications_detail">ඔබ COVID-19 තිබෙන බව වාර්තා වූ යම් කෙනෙකු අසල සිට ඇති නම් දැනුම්දීම් ලබන්න.
     \n\nඅවට ඇති වෙනත් දුරකථන සමග අහඹු ID ආරක්ෂිතව රැස් කර බෙදා ගැනීමට ඔබගේ දුරකථනය බ්ලූටූත් භාවිත කරයි.
     \n\nඔබගේ මහජන සෞඛ්‍ය අධිකාරිය විසින් නියම කර ඇති පරාමිති මත පදනම්ව ඔබට දැනුම් දෙනු ලැබේද යන්න තීරණය කිරීම සඳහා විය හැකි නිරාවරණයක් හා සම්බන්ධ දිනය, කාල සීමාව සහ සංඥා ප්‍රබලතාව භාවිත කරනු ඇත.
-    \n\nඔබගේ පරීක්ෂාව පොසිටිව් වුවහොත්, ඔබගේ ප්‍රතිඵල ඔබගේ සෞඛ්‍ය අධිකාරිය සමඟ බෙදා ගැනීමට ඔබට සිහිකැඳවීමක් ලැබෙනු ඇත.</string>
+    \n\nඔබගේ පරීක්ෂණ ප්‍රතිඵලය සමඟ SMS එකක් ලැබුණහොත් රෝග විනිශ්චය ඔබගේ සෞඛ්‍ය අධිකාරිය සමඟ බෙදා ගැනීමට ඔබට දැනුම් දීමක් ලැබිය හැකිය.</string>
   <string name="onboarding_metrics_title">මෙම යෙදුම වඩා යහපත් කිරීමට උදව් කරන්න</string>
   <string name="onboarding_metrics_subtitle">යෙදුම් භාවිතය සහ කාර්යසාධන දත්ත Google හා බෙදාගන්න</string>
   <string name="onboarding_metrics_description">යෙදුම නඩත්තු කිරීමට සහ වැඩිදියුණු කිරීමට උදව් කිරීම සඳහා, යෙදුම් ක්‍රියාකාරිත්වය සහ භාවිතය පිළිබඳ සීමිත හඳුනා නොගත් දත්ත Google සමඟ බෙදා ගනී. මෙම දත්ත ඔබව හඳුනා නොගනී. %1$s</string>
@@ -128,6 +128,12 @@
     <item quantity="other">ඔබ ඉල්ලීම් ඉතා වැඩි ගණනක් සිදු කර ඇත. ඔබට මිනිත්තු %1$dකින් තවත් කේතයක් ඉල්ලිය හැකිය.</item>
   </plurals>
   <string name="notify_others_notification_title">නිරාවරණය වී තිබිය හැකි අනෙක් අයට දැනුම් දීමට උදව් වන්න</string>
+  <string name="notify_others_if_result_updated_title">ඔබේ ප්‍රතිඵලය යාවත්කාලීන වුවහොත් අනෙක් පුද්ගලයන්ට දැනුම් දෙන්නද?</string>
+  <string name="notify_others_if_result_updated_content">%1$s ඔබේ පරීක්ෂණ ප්‍රතිඵලය තහවුරු කිරීමට ඔබට දෙවන කේතයක් එවිය හැකිය. ඔබට මෙම දෙවන කේතය භාවිත කර ස්වයංක්‍රියව ඔබේ COVID-19 තත්ත්වය යාවත්කාලීන කිරීමට සහ අහඹු ID හි අතිරේක දින බෙදා ගැනීමට හැකි අතර, එය විය හැකි නිරාවරණය ගැන අන් අයට දැනුම් දීමට උදවු වේ. ඔබේ අනන්‍යතාව අන්‍යයන් සමග බෙදා නොගැනේ.</string>
+  <string name="btn_pre_auth_yes">ඔව්, මට උපකාර කිරීමට අවශ්‍යයි</string>
+  <string name="btn_pre_auth_no">එපා ස්තුතියි</string>
+  <string name="thank_you_for_notifying_title">උදවු කිරීම පිළිබඳව ස්තුතියි</string>
+  <string name="thank_you_for_notifying_content">%1$s ඔබේ නිරාවරණ කාලරේඛාව යාවත්කාලීන කළ අතර විය හැකි නිරාවරණය වීම පිළිබඳව අන් අයට අනතුරු ඇඟවීමට ඉඩ ඇත.</string>
   <string name="settings_exposure_notifications_subtitle">නිරාවරණ දැනුම් දීම්</string>
   <string name="settings_app_analytics_subtitle">යෙදුම් භාවිතය සහ කාර්ය සාධන බෙදා ගැනීම</string>
   <string name="settings_privacy_policy">රහස්‍යතා ප්‍රතිපත්තිය</string>
@@ -193,5 +199,19 @@
   <string name="share_diagnosis_share_test_result_subtitle">COVID-19 නතර කිරීමට උදව් කිරීම ගැන ස්තුතියි.</string>
   <string name="share_diagnosis_share_test_result_body">ඔබ ඔබගේ ප්‍රතිඵලය බෙදා ගන්නා විට, ඔබගේ රෝග ලක්ෂණ ආරම්භ වූ දිනයබෙදා ගැනීමටද ඔබට තෝරා ගත හැකිය. මෙම තොරතුරු COVID-19 පැතිරීම නැවැත්වීමට සහ ජීවිත බේරා ගැනීමට උපකාරී විය හැකිය.</string>
   <string name="sms_intercept_notice_title">අලුත් මොනවාද</string>
-  <string name="sms_intercept_notice_content">ඔබගේ දේශීය සෞඛ්‍ය අධිකාරිය ඔබට පරීක්ෂණ ප්‍රතිඵලයක් එවුවහොත්, ඔබගේ ප්‍රතිඵලය ඉදිරිපත් කිරීමට ඔබගේ යෙදුම ඔබට සිහිකැඳවීමකින් දැනුම් දීමට හැකි අතර නිරාවරණය වීමේ හැකියාව පිළිබඳ අන් අයට ඇඟවීමට උදව් කළ හැකිය. සැකසීම් තුළ ඔබට ඕනෑම වේලාවක මෙය අබල කළ හැකිය.</string>
+  <string name="sms_intercept_notice_content">ඔබගේ පරීක්ෂණ ප්‍රතිඵලය සමඟ ඔබට SMS එකක් ලැබුණහොත්, නිරාවරණ දැනුම්දීම් තුළ ඔබගේ රෝග විනිශ්චය බෙදා ගන්නා ලෙස ඉල්ලමින් ඔබට දැනුම් දීමක් ලැබිය හැකිය. සැකසීම් තුළ ඔබට ඕනෑම වේලාවක මෙය අබල කළ හැකිය.</string>
+  <string name="share_upload_title">ඔබේ ප්‍රජාව සුරැකීමට ඔබේ පරීක්ෂණ ප්‍රතිඵලය බෙදා ගන්න</string>
+  <string name="share_upload_test_result_source_description">පරීක්ෂා කිරීමේ ප්‍රතිඵල %1$s විසින් එවනු ලැබේ</string>
+  <string name="share_upload_symptoms_subtitle">රෝග ලක්ෂණ ආරම්භ වූයේ</string>
+  <string name="share_upload_symptoms_date_fixed_description">රෝග ලක්ෂණ දිනය %1$s විසින් සපයනු ලැබේ</string>
+  <string name="share_upload_skip_choice">මඟ හරින්න</string>
+  <string name="share_upload_travel_subtitle">සංචාරක ඉතිහාසය</string>
+  <string name="travel_history_travelled_recently_choice">පසුගිය දින 14 තුළ සංචාරය කළේය</string>
+  <string name="travel_history_no_travel_choice">කිසිවක් නැත</string>
+  <string name="share_upload_select_a_date_choice">දිනයක් තෝරන්න</string>
+  <string name="share_upload_status_subtitle">COVID-19 තත්ත්වය</string>
+  <string name="share_upload_status_confirmed">පොසිටිව්</string>
+  <string name="share_upload_status_negative">නෙගටිව්</string>
+  <string name="share_upload_status_likely">බොහෝ දුරට</string>
+  <string name="share_diagnosis_progress_tracker">පියවර %2$dහි %1$d</string>
 </resources>

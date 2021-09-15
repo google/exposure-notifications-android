@@ -30,8 +30,8 @@
   <string name="onboarding_exposure_notifications_title">Kitettséget jelző értesítések bekapcsolása</string>
   <string name="onboarding_exposure_notifications_detail">Értesítést kaphat, ha olyan személy közelében tartózkodott, aki bejelentette, hogy elkapta a COVID-19 betegséget.
     \n\nTelefonja Bluetootht használ, hogy biztonságosan gyűjthesse és megoszthassa a véletlenszerű azonosítókat a többi közelben lévő telefonnal.
-    \n\nA lehetséges kitettséggel kapcsolatos dátumot, időtartamot és jelerősséget arra használja a rendszer, hogy meghatározza, küldjön-e Önnek értesítést az Ön tartózkodási helyén illetékes közegészségügyi hatóságok által beállított paraméterek alapján.
-    \n\nHa pozitív a teszteredménye, előfordulhat, hogy a rendszer üzenetben emlékezteti Önt arra, hogy megossza eredményeit az illetékes közegészségügyi hatóságokkal.</string>
+    \n\nA lehetséges kitettséggel kapcsolatos dátumot, időtartamot és jelerősséget arra használja a rendszer, hogy meghatározza, küldjön-e Önnek értesítést az Ön tartózkodási helyén illetékes közegészségügyi hatóság által beállított paraméterek alapján.
+    \n\nHa SMS-t kap a vizsgálati eredményéről, értesítésben kérheti a rendszer arra, hogy ossza meg a diagnózist az egészségügyi hatósággal.</string>
   <string name="onboarding_metrics_title">Segítsen az alkalmazás fejlesztésében</string>
   <string name="onboarding_metrics_subtitle">Apphasználati és teljesítményadatok megosztása a Google-lal</string>
   <string name="onboarding_metrics_description">Az alkalmazás karbantartásának és fejlesztésének segítése érdekében bizonyos azonosításra nem alkalmas adatokat oszt meg az alkalmazás a teljesítményéről és a használatáról a Google-lal. Ezek az adatok nem használhatók az Ön azonosítására. %1$s</string>
@@ -128,6 +128,12 @@
     <item quantity="other">Túl sok kérelmet indított. Újabb kódot %1$d perc múlva kérhet.</item>
   </plurals>
   <string name="notify_others_notification_title">Segíthet értesíteni azokat, akik ki lehettek téve a betegségnek</string>
+  <string name="notify_others_if_result_updated_title">Értesíteni szeretne másokat, amikor a teszteredményei frissülnek?</string>
+  <string name="notify_others_if_result_updated_content">Előfordulhat, hogy a(z) %1$s második kódot küld a teszteredmény megerősítéséhez. A második kód használatával automatikusan frissítheti COVID-19-állapotát, és további, véletlenszerű azonosítójú napokat adhat meg, így másokat is értesíthet a lehetséges kitettségről. Személyazonosságát nem osztjuk meg másokkal.</string>
+  <string name="btn_pre_auth_yes">Szívesen segítek</string>
+  <string name="btn_pre_auth_no">Most nem</string>
+  <string name="thank_you_for_notifying_title">Köszönjük a segítségét</string>
+  <string name="thank_you_for_notifying_content">A(z) %1$s épp most frissítette az Ön kitettségi idővonalát, és előfordulhat, hogy másokat is értesített a lehetséges kitettséggel kapcsolatban.</string>
   <string name="settings_exposure_notifications_subtitle">Kitettséget jelző értesítések</string>
   <string name="settings_app_analytics_subtitle">Apphasználat és teljesítmény megosztása</string>
   <string name="settings_privacy_policy">Adatvédelmi irányelvek</string>
@@ -193,5 +199,19 @@
   <string name="share_diagnosis_share_test_result_subtitle">Köszönjük, hogy segít a COVID-19-járvány megfékezésében.</string>
   <string name="share_diagnosis_share_test_result_body">Az eredmény megosztásakor lehetősége van megosztani a tünetei első jelentkezésének időpontját is. Ez az információ segíthet megfékezni a COVID-19-betegség terjedését, és életek menthetők meg ezáltal.</string>
   <string name="sms_intercept_notice_title">Újdonságok</string>
-  <string name="sms_intercept_notice_content">Ha a helyi egészségügyi hatóságok teszteredményt küldenek Önnek, az alkalmazás értesítheti erről, valamint emlékeztetheti az eredmények beküldésére, és segíthet Önnek másokat figyelmeztetni a lehetséges kitettségre. A Beállításokban ezt a funkciót bármikor kikapcsolhatja.</string>
+  <string name="sms_intercept_notice_content">Ha SMS-t kap a teszteredményéről, értesítésben arra kérheti a rendszer, hogy ossza meg a diagnózist az Kitettséget jelző értesítésekben. A Beállításokban ezt a funkciót bármikor kikapcsolhatja.</string>
+  <string name="share_upload_title">Teszteredmény megosztása a közösség védelmének biztosítása érdekében</string>
+  <string name="share_upload_test_result_source_description">A teszteredményt küldte: %1$s</string>
+  <string name="share_upload_symptoms_subtitle">Tünetek megjelenésének időpontja:</string>
+  <string name="share_upload_symptoms_date_fixed_description">A tünet dátumát a következő biztosította: %1$s</string>
+  <string name="share_upload_skip_choice">Kihagyás</string>
+  <string name="share_upload_travel_subtitle">Utazási előzmények</string>
+  <string name="travel_history_travelled_recently_choice">Utaztam az elmúlt 14 napban</string>
+  <string name="travel_history_no_travel_choice">Nem</string>
+  <string name="share_upload_select_a_date_choice">Válasszon dátumot</string>
+  <string name="share_upload_status_subtitle">COVID-19-állapot</string>
+  <string name="share_upload_status_confirmed">Pozitív</string>
+  <string name="share_upload_status_negative">Negatív</string>
+  <string name="share_upload_status_likely">Valószínű</string>
+  <string name="share_diagnosis_progress_tracker">%2$d/%1$d. lépés</string>
 </resources>

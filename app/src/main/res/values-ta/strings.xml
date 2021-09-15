@@ -29,9 +29,9 @@
   <string name="onboarding_finish_title">கோவிட்-19 தொற்று சாத்தியத்தை எச்சரிக்கும் அறிவிப்புகளை இயக்கத் தேவையான அனுமதிகளின் தொடர்ச்சி</string>
   <string name="onboarding_exposure_notifications_title">கோவிட்-19 தொற்று சாத்திய எச்சரிக்கைகளை இயக்கு</string>
   <string name="onboarding_exposure_notifications_detail">கோவிட்-19 நோய்த் தொற்று இருக்கிறது என்று தெரிவித்திருக்கும் யாருக்கேனும் அருகில் நீங்கள் இருந்திருந்தால் அது குறித்த அறிவிப்புகளைப் பெறுங்கள்.
-    \n\nரேண்டம் ஐடிகளைப் பாதுகாப்பாகப் பெற்று அருகிலிருக்கும் பிற மொபைல்களுடன் பகிர, புளூடூத்தை உங்கள் மொபைல் பயன்படுத்தும்.
+    \n\nரேண்டம் ஐடிகளைப் பாதுகாப்பாகப் பெற்று அருகிலிருக்கும் பிற மொபைல்களுடன் பகிர்வதற்கு புளூடூத்தை உங்கள் மொபைல் பயன்படுத்தும்.
     \n\nஉங்கள் பொது சுகாதாரத் துறையால் அமைக்கப்பட்ட அளவுருக்களின் அடிப்படையில் நீங்கள் அறிவிப்பைப் பெறுவீர்களா என்பதைத் தீர்மானிக்க, தொற்றின் சாத்தியத்துடன் தொடர்புடைய தேதி, காலம், சிக்னல் அளவு ஆகியவை பயன்படுத்தப்படும்.
-    \n\nஉங்களுக்குத் தொற்று இருப்பது உறுதிசெய்யப்பட்டால் பரிசோதனை முடிவுகளைச் சுகாதாரத் துறையுடன் பகிர்வதற்கான நினைவூட்டலை நீங்கள் பெறக்கூடும்.</string>
+    \n\nஉங்கள் பரிசோதனை முடிவு குறித்துத் தெரிவிக்கும் மெசேஜைப் பெற்றால் உங்கள் சுகாதாரத் துறையிடம் அந்த முடிவைப் பகிரச் சொல்லும் அறிவிப்பை நீங்கள் பெறக்கூடும்.</string>
   <string name="onboarding_metrics_title">இந்த ஆப்ஸை மேம்படுத்த உதவுங்கள்</string>
   <string name="onboarding_metrics_subtitle">ஆப்ஸ் பயன்பாடு &amp; செயல்திறன் தரவை Googleளுடன் பகிருங்கள்</string>
   <string name="onboarding_metrics_description">ஆப்ஸை நிர்வகிக்கவும் மேம்படுத்தவும் உதவ, ஆப்ஸின் செயல்திறன் மற்றும் பயன்பாடு குறித்த சில வரையறுக்கப்பட்ட, அடையாளம் நீக்கிய தகவல்கள் Googleளுடன் பகிரப்படுகின்றன. இந்தத் தரவின் மூலம் உங்களை அடையாளம் காணமுடியாது. %1$s</string>
@@ -128,6 +128,12 @@
     <item quantity="other">குறியீட்டை அதிக முறை கோரியுள்ளீர்கள். %1$d நிமிடங்களில் மற்றொரு குறியீட்டைக் கோரலாம்.</item>
   </plurals>
   <string name="notify_others_notification_title">தொற்றின் சாத்தியம் குறித்துப் பிறருக்குத் தெரியப்படுத்த உதவுங்கள்</string>
+  <string name="notify_others_if_result_updated_title">உங்கள் பரிசோதனை முடிவைப் பெற்றால் அதைப் பிறருக்குத் தெரிவிக்கவா?</string>
+  <string name="notify_others_if_result_updated_content">உங்கள் பரிசோதனை முடிவை உறுதிசெய்ய, %1$s இரண்டாவது குறியீட்டை அனுப்பக்கூடும். இந்த இரண்டாவது குறியீட்டைப் பயன்படுத்தி உங்கள் கோவிட்-19 பாதிப்பு நிலையைத் தானாக மாற்றலாம், ரேண்டம் ஐடிகளைக் கூடுதலாகச் சில நாட்களுக்குப் பகிரலாம். இது தொற்றின் சாத்தியம் பற்றிப் பிறருக்கு அறிவிக்க உதவும். உங்கள் அடையாளம் பிறருடன் பகிரப்படாது.</string>
+  <string name="btn_pre_auth_yes">ஆம். உதவ விரும்புகிறேன்</string>
+  <string name="btn_pre_auth_no">வேண்டாம்</string>
+  <string name="thank_you_for_notifying_title">உதவியதற்கு நன்றி</string>
+  <string name="thank_you_for_notifying_content">தொற்றின் சாத்தியத்திற்கான உங்கள் காலப்பதிவை %1$s புதுப்பித்துள்ளது. மேலும் தொற்றின் சாத்தியம் பற்றிய அறிவிப்பையும் பிறருக்கு அனுப்பியிருக்கலாம்.</string>
   <string name="settings_exposure_notifications_subtitle">கோவிட்-19 தொற்று சாத்திய எச்சரிக்கைகள்</string>
   <string name="settings_app_analytics_subtitle">ஆப்ஸின் பயன்பாடு &amp; செயல்திறன் பகிர்வு</string>
   <string name="settings_privacy_policy">தனியுரிமைக் கொள்கை</string>
@@ -193,5 +199,19 @@
   <string name="share_diagnosis_share_test_result_subtitle">கோவிட்-19 பரவாமல் தடுக்க உதவுவதற்கு நன்றி.</string>
   <string name="share_diagnosis_share_test_result_body">பரிசோதனை முடிவைப் பகிரும்போது உங்களுக்கு எப்போது அறிகுறிகள் தொடங்கின என்பதையும் பகிரலாம். இந்தத் தகவல்கள் கோவிட்-19 பரவலைத் தடுத்து மனித உயிர்களைக் காப்பாற்ற உதவும்.</string>
   <string name="sms_intercept_notice_title">புதியவை</string>
-  <string name="sms_intercept_notice_content">உள்ளூர்ச் சுகாதாரத் துறை பரிசோதனை முடிவை உங்களுக்கு அனுப்பினால் அதைச் சமர்ப்பிக்குமாறு ஒரு நினைவூட்டலை உங்கள் ஆப்ஸால் அனுப்ப முடியும். மேலும் இது தொற்றின் சாத்தியம் குறித்து மற்றவர்களுக்கு விழிப்பூட்ட உதவும். அமைப்புகளில் இதை எப்போது வேண்டுமானாலும் முடக்கலாம்.</string>
+  <string name="sms_intercept_notice_content">உங்கள் பரிசோதனை முடிவை மெசேஜ் மூலம் பெற்றால் \'கோவிட்-19 தொற்று சாத்திய எச்சரிக்கைகளில்\' அந்த முடிவைப் பகிரச் சொல்லி நீங்கள் அறிவிப்பைப் பெறக்கூடும். அமைப்புகளில் இதை எப்போது வேண்டுமானாலும் முடக்கலாம்.</string>
+  <string name="share_upload_title">சமூகத்தைப் பாதுகாக்க உங்கள் பரிசோதனை முடிவுகளைப் பகிருங்கள்</string>
+  <string name="share_upload_test_result_source_description">பரிசோதனை முடிவுகளை %1$s அனுப்பியுள்ளது</string>
+  <string name="share_upload_symptoms_subtitle">அறிகுறியை உணரத் தொடங்கிய தேதி</string>
+  <string name="share_upload_symptoms_date_fixed_description">அறிகுறி ஆரம்பித்த தேதியை வழங்கியது: %1$s</string>
+  <string name="share_upload_skip_choice">தவிர்</string>
+  <string name="share_upload_travel_subtitle">மேற்கொண்ட பயணங்கள்</string>
+  <string name="travel_history_travelled_recently_choice">கடந்த 14 நாட்களில் மேற்கொண்ட பயணங்கள்</string>
+  <string name="travel_history_no_travel_choice">ஏதுமில்லை</string>
+  <string name="share_upload_select_a_date_choice">தேதியைத் தேர்ந்தெடுங்கள்</string>
+  <string name="share_upload_status_subtitle">கோவிட்-19 பாதிப்பு நிலை</string>
+  <string name="share_upload_status_confirmed">பாசிட்டிவ்</string>
+  <string name="share_upload_status_negative">நெகட்டிவ்</string>
+  <string name="share_upload_status_likely">இருக்கக்கூடும்</string>
+  <string name="share_diagnosis_progress_tracker">படி %1$d / %2$d</string>
 </resources>

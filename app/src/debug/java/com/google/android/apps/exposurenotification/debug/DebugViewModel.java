@@ -46,10 +46,14 @@ import com.google.android.apps.exposurenotification.nearby.ProvideDiagnosisKeysW
 import com.google.android.apps.exposurenotification.network.RequestQueueWrapper;
 import com.google.android.apps.exposurenotification.privateanalytics.SubmitPrivateAnalyticsWorker;
 import com.google.android.apps.exposurenotification.privateanalytics.metrics.CodeVerifiedMetric;
+import com.google.android.apps.exposurenotification.privateanalytics.metrics.CodeVerifiedWithReportTypeMetric;
 import com.google.android.apps.exposurenotification.privateanalytics.metrics.DateExposureMetric;
 import com.google.android.apps.exposurenotification.privateanalytics.metrics.HistogramMetric;
+import com.google.android.apps.exposurenotification.privateanalytics.metrics.KeysUploadedAfterNotificationMetric;
 import com.google.android.apps.exposurenotification.privateanalytics.metrics.KeysUploadedMetric;
 import com.google.android.apps.exposurenotification.privateanalytics.metrics.KeysUploadedVaccineStatusMetric;
+import com.google.android.apps.exposurenotification.privateanalytics.metrics.KeysUploadedWithReportTypeMetric;
+import com.google.android.apps.exposurenotification.privateanalytics.metrics.PeriodicExposureNotificationBiweeklyMetric;
 import com.google.android.apps.exposurenotification.privateanalytics.metrics.PeriodicExposureNotificationInteractionMetric;
 import com.google.android.apps.exposurenotification.privateanalytics.metrics.PeriodicExposureNotificationMetric;
 import com.google.android.apps.exposurenotification.storage.CountryRepository;
@@ -65,6 +69,7 @@ import com.google.common.util.concurrent.FluentFuture;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import dagger.hilt.android.qualifiers.ApplicationContext;
+import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.regex.Pattern;
@@ -117,9 +122,13 @@ public class DebugViewModel extends ViewModel {
       PeriodicExposureNotificationMetric periodicExposureNotificationMetric,
       PeriodicExposureNotificationInteractionMetric periodicExposureNotificationInteractionMetric,
       CodeVerifiedMetric codeVerifiedMetric,
+      CodeVerifiedWithReportTypeMetric codeVerifiedWithReportTypeMetric,
       KeysUploadedMetric keysUploadedMetric,
+      KeysUploadedWithReportTypeMetric keysUploadedWithReportTypeMetric,
       DateExposureMetric dateExposureMetric,
       KeysUploadedVaccineStatusMetric keysUploadedVaccineStatusMetric,
+      KeysUploadedAfterNotificationMetric keysUploadedAfterNotificationMetric,
+      PeriodicExposureNotificationBiweeklyMetric periodicExposureNotificationBiweeklyMetric,
       Clock clock,
       ExposureNotificationClientWrapper exposureNotificationClientWrapper,
       ExposureNotificationSharedPreferences exposureNotificationSharedPreferences,
@@ -134,8 +143,10 @@ public class DebugViewModel extends ViewModel {
     this.exposureNotificationSharedPreferences = exposureNotificationSharedPreferences;
     this.privateAnalyticsEnabledProvider = privateAnalyticsEnabledProvider;
     this.privateAnalyticsMetrics = Lists.newArrayList(periodicExposureNotificationMetric,
-        periodicExposureNotificationInteractionMetric, codeVerifiedMetric, keysUploadedMetric,
-        dateExposureMetric, keysUploadedVaccineStatusMetric);
+        periodicExposureNotificationInteractionMetric, codeVerifiedMetric,
+        codeVerifiedWithReportTypeMetric, keysUploadedMetric, keysUploadedWithReportTypeMetric,
+        dateExposureMetric, keysUploadedVaccineStatusMetric, keysUploadedAfterNotificationMetric,
+        periodicExposureNotificationBiweeklyMetric);
     codeCreator = new VerificationCodeCreator(context, requestQueueWrapper);
     resources = context.getResources();
 
@@ -253,7 +264,13 @@ public class DebugViewModel extends ViewModel {
    * Triggers a one off submit private analytics job.
    */
   public void submitPrivateAnalytics() {
-    workManager.enqueue(new OneTimeWorkRequest.Builder(SubmitPrivateAnalyticsWorker.class).build());
+    workManager.enqueue(
+        new OneTimeWorkRequest.Builder(SubmitPrivateAnalyticsWorker.class)
+            .build());
+  }
+
+  public void setBiweeklyMetricsUploadDay(Calendar calendar) {
+    exposureNotificationSharedPreferences.setBiweeklyMetricsUploadDay(calendar);
   }
 
   /**
@@ -265,9 +282,13 @@ public class DebugViewModel extends ViewModel {
         PeriodicExposureNotificationMetric.METRIC_NAME,
         PeriodicExposureNotificationInteractionMetric.METRIC_NAME,
         CodeVerifiedMetric.METRIC_NAME,
+        CodeVerifiedWithReportTypeMetric.METRIC_NAME,
         KeysUploadedMetric.METRIC_NAME,
+        KeysUploadedWithReportTypeMetric.METRIC_NAME,
         DateExposureMetric.METRIC_NAME,
-        KeysUploadedVaccineStatusMetric.METRIC_NAME
+        KeysUploadedVaccineStatusMetric.METRIC_NAME,
+        KeysUploadedAfterNotificationMetric.METRIC_NAME,
+        PeriodicExposureNotificationBiweeklyMetric.METRIC_NAME
     ));
   }
 

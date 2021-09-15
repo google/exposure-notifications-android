@@ -22,14 +22,16 @@ import android.text.TextUtils;
 import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.common.Qualifiers.BackgroundExecutor;
 import com.google.android.apps.exposurenotification.privateanalytics.PrivateAnalyticsMetricsRemoteConfig;
+import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
+import com.google.android.libraries.privateanalytics.MetricsCollection;
 import com.google.android.libraries.privateanalytics.PrioDataPoint;
 import com.google.android.libraries.privateanalytics.PrivateAnalyticsSubmitter.PrioDataPointsProvider;
+import com.google.android.libraries.privateanalytics.Qualifiers.BiweeklyMetricsUploadDay;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListeningExecutorService;
 import dagger.Module;
 import dagger.Provides;
 import dagger.hilt.InstallIn;
-import dagger.hilt.android.components.ApplicationComponent;
 import dagger.hilt.android.qualifiers.ApplicationContext;
 import dagger.hilt.components.SingletonComponent;
 import java.util.ArrayList;
@@ -41,6 +43,13 @@ import java.util.List;
 public class MetricsModule {
 
   @Provides
+  @BiweeklyMetricsUploadDay
+  public int providesBiweeklyMetricsUploadDay(
+      ExposureNotificationSharedPreferences sharedPreferences) {
+    return sharedPreferences.getBiweeklyMetricsUploadDay();
+  }
+
+  @Provides
   public PrioDataPointsProvider providesMetrics(
       @ApplicationContext Context context,
       PrivateAnalyticsMetricsRemoteConfig privateAnalyticsMetricsRemoteConfig,
@@ -49,9 +58,13 @@ public class MetricsModule {
       HistogramMetric histogramMetric,
       PeriodicExposureNotificationInteractionMetric periodicExposureNotificationInteractionMetric,
       CodeVerifiedMetric codeVerifiedMetric,
+      CodeVerifiedWithReportTypeMetric codeVerifiedWithReportTypeMetric,
       KeysUploadedMetric keysUploadedMetric,
+      KeysUploadedWithReportTypeMetric keysUploadedWithReportTypeMetric,
       DateExposureMetric dateExposureMetric,
-      KeysUploadedVaccineStatusMetric keysUploadedVaccineStatusMetric
+      KeysUploadedVaccineStatusMetric keysUploadedVaccineStatusMetric,
+      KeysUploadedAfterNotificationMetric keysUploadedAfterNotificationMetric,
+      PeriodicExposureNotificationBiweeklyMetric periodicExposureNotificationBiweeklyMetric
   ) {
     return () -> Futures
         .transform(privateAnalyticsMetricsRemoteConfig.fetchUpdatedConfigs(), remoteConfigs -> {
@@ -63,16 +76,32 @@ public class MetricsModule {
           double interactionCountEpsilon = remoteConfigs.interactionCountPrioEpsilon();
           double codeVerifiedSamplingRate = remoteConfigs.codeVerifiedPrioSamplingRate();
           double codeVerifiedEpsilon = remoteConfigs.codeVerifiedPrioEpsilon();
+          double codeVerifiedWithReportTypeSamplingRate = remoteConfigs
+              .codeVerifiedWithReportTypePrioSamplingRate();
+          double codeVerifiedWithReportTypeEpsilon = remoteConfigs
+              .codeVerifiedWithReportTypePrioEpsilon();
           double keysUploadedSamplingRate = remoteConfigs.keysUploadedPrioSamplingRate();
           double keysUploadedEpsilon = remoteConfigs.keysUploadedPrioEpsilon();
+          double keysUploadedWithReportTypeSamplingRate = remoteConfigs
+              .keysUploadedWithReportTypePrioSamplingRate();
+          double keysUploadedWithReportTypeEpsilon = remoteConfigs
+              .keysUploadedWithReportTypePrioEpsilon();
           double dateExposureSamplingRate = remoteConfigs.dateExposurePrioSamplingRate();
           double dateExposureEpsilon = remoteConfigs.dateExposurePrioEpsilon();
           double keysUploadedVaccineStatusSamplingRate = remoteConfigs
               .keysUploadedVaccineStatusPrioSamplingRate();
           double keysUploadedVaccineStatusEpsilon = remoteConfigs
               .keysUploadedVaccineStatusPrioEpsilon();
+          double keysUploadedAfterNotificationSamplingRate = remoteConfigs
+              .keysUploadedAfterNotificationPrioSamplingRate();
+          double keysUploadedAfterNotificationEpsilon = remoteConfigs
+              .keysUploadedAfterNotificationPrioEpsilon();
+          double periodicExposureBiweeklySamplingRate = remoteConfigs
+              .periodicExposureNotificationBiweeklyPrioSamplingRate();
+          double periodicExposureBiweeklyEpsilon = remoteConfigs
+              .periodicExposureNotificationBiweeklyPrioEpsilon();
 
-          List<PrioDataPoint> metricsList = new ArrayList<>(
+          List<PrioDataPoint> dailyMetricsList = new ArrayList<>(
               Arrays.asList(
                   new PrioDataPoint(periodicExposureNotificationMetric, notificationCountEpsilon,
                       notificationCountSampleRate),
@@ -88,11 +117,34 @@ public class MetricsModule {
               ));
           if (!TextUtils
               .isEmpty(context.getResources().getString(R.string.share_vaccination_detail))) {
-            metricsList.add(
+            dailyMetricsList.add(
                 new PrioDataPoint(keysUploadedVaccineStatusMetric, keysUploadedVaccineStatusEpsilon,
                     keysUploadedVaccineStatusSamplingRate));
           }
-          return metricsList;
+          List<PrioDataPoint> biweeklyMetricsList = Arrays.asList(
+              new PrioDataPoint(codeVerifiedWithReportTypeMetric, codeVerifiedWithReportTypeEpsilon,
+                  codeVerifiedWithReportTypeSamplingRate),
+              new PrioDataPoint(keysUploadedWithReportTypeMetric, keysUploadedWithReportTypeEpsilon,
+                  keysUploadedWithReportTypeSamplingRate),
+              new PrioDataPoint(keysUploadedAfterNotificationMetric,
+                  keysUploadedAfterNotificationEpsilon,
+                  keysUploadedAfterNotificationSamplingRate),
+              new PrioDataPoint(periodicExposureNotificationBiweeklyMetric,
+                  periodicExposureBiweeklySamplingRate,
+                  periodicExposureBiweeklyEpsilon)
+          );
+
+          return new MetricsCollection() {
+            @Override
+            public List<PrioDataPoint> getDailyMetrics() {
+              return dailyMetricsList;
+            }
+
+            @Override
+            public List<PrioDataPoint> getBiweeklyMetrics() {
+              return biweeklyMetricsList;
+            }
+          };
         }, backgroundExecutor);
   }
 }

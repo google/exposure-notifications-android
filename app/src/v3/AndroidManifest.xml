@@ -20,7 +20,9 @@
 
   <application
     android:allowBackup="false"
-    android:fullBackupOnly="false">
+    android:fullBackupOnly="false"
+    android:icon="@mipmap/ic_launcher_v3"
+    android:roundIcon="@mipmap/ic_launcher_v3_round">
 
     <activity
       android:name=".home.ExposureNotificationActivity"

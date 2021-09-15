@@ -24,6 +24,7 @@ import dagger.Provides;
 import dagger.hilt.InstallIn;
 import dagger.hilt.android.qualifiers.ApplicationContext;
 import dagger.hilt.components.SingletonComponent;
+import java.security.SecureRandom;
 
 @Module
 @InstallIn(SingletonComponent.class)
@@ -31,7 +32,7 @@ public class StorageModule {
 
   @Provides
   public ExposureNotificationSharedPreferences provideExposureNotificationSharedPreferences(
-      @ApplicationContext Context context, Clock clock) {
-    return new ExposureNotificationSharedPreferences(context, clock);
+      @ApplicationContext Context context, Clock clock, SecureRandom secureRandom) {
+    return new ExposureNotificationSharedPreferences(context, clock, secureRandom);
   }
 }

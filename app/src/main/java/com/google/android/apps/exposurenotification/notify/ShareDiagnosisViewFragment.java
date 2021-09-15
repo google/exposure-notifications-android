@@ -25,8 +25,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.databinding.FragmentShareDiagnosisViewBinding;
-import com.google.android.apps.exposurenotification.storage.DiagnosisEntity;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import dagger.hilt.android.AndroidEntryPoint;
 import org.threeten.bp.format.DateTimeFormatter;
 import org.threeten.bp.format.FormatStyle;
@@ -55,6 +53,7 @@ public class ShareDiagnosisViewFragment extends ShareDiagnosisBaseFragment {
     super.onViewCreated(view, savedInstanceState);
 
     requireActivity().setTitle(R.string.status_shared_detail_title);
+    setupShadowAtBottom(binding.shareDiagnosisScrollView, binding.buttonContainer);
 
     binding.home.setOnClickListener(v -> closeShareDiagnosisFlowImmediately());
 

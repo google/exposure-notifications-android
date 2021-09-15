@@ -31,7 +31,7 @@
   <string name="onboarding_exposure_notifications_detail">Krijg een melding als je in de buurt bent geweest van iemand die heeft gemeld dat hij of zij COVID-19 heeft.
     \n\nJe telefoon gebruikt bluetooth om willekeurige ID\'s beveiligd te verzamelen en te delen met andere telefoons die in de buurt zijn.
     \n\nDe datum, duur en signaalsterkte die zijn gekoppeld aan een mogelijke blootstelling, worden gebruikt om te bepalen of je een melding krijgt op basis van parameters van je volksgezondheidsautoriteit.
-    \n\nAls je positief test, kun je een herinnering krijgen om je resultaten te delen met je gezondheidsautoriteit.</string>
+    \n\nJe kunt een melding krijgen om een diagnose met je volksgezondheidsautoriteit te delen als je een sms krijgt met je testresultaat.</string>
   <string name="onboarding_metrics_title">Help ons deze app te verbeteren</string>
   <string name="onboarding_metrics_subtitle">App-gebruik en prestatiegegevens delen met Google</string>
   <string name="onboarding_metrics_description">Bepaalde beperkte, niet-persoonlijk herkenbare gegevens over app-prestaties en gebruik worden met Google gedeeld om de app te onderhouden en te verbeteren. Je bent niet te herkennen aan deze gegevens. %1$s</string>
@@ -128,6 +128,12 @@
     <item quantity="other">Je hebt te veel verzoeken gedaan. Je kunt over %1$d minuten nog een code aanvragen.</item>
   </plurals>
   <string name="notify_others_notification_title">Help anderen te informeren die misschien zijn blootgesteld</string>
+  <string name="notify_others_if_result_updated_title">Andere mensen informeren als je resultaat wordt geüpdatet?</string>
+  <string name="notify_others_if_result_updated_content">%1$s kan je een tweede code sturen om je testresultaat te bevestigen. Met deze tweede code kun je je COVID-19-status automatisch updaten en gedurende extra dagen willekeurige ID\'s delen. Zo kun je anderen informeren over mogelijke blootstelling. Je identiteit wordt niet gedeeld met andere mensen.</string>
+  <string name="btn_pre_auth_yes">Ja, ik help graag mee</string>
+  <string name="btn_pre_auth_no">Nee</string>
+  <string name="thank_you_for_notifying_title">Bedankt voor je hulp</string>
+  <string name="thank_you_for_notifying_content">%1$s heeft je tijdlijn voor blootstelling zojuist geüpdatet en heeft anderen misschien geïnformeerd over mogelijke blootstelling.</string>
   <string name="settings_exposure_notifications_subtitle">Blootstellingsmeldingen</string>
   <string name="settings_app_analytics_subtitle">App-gebruik en prestatiegegevens delen</string>
   <string name="settings_privacy_policy">Privacybeleid</string>
@@ -193,5 +199,19 @@
   <string name="share_diagnosis_share_test_result_subtitle">Bedankt dat je helpt bij het stoppen van COVID-19.</string>
   <string name="share_diagnosis_share_test_result_body">Als je je resultaat deelt, kun je ook delen wanneer je symptomen zijn begonnen. Aan de hand van deze informatie kan de verspreiding van COVID-19 worden gestopt en kunnen levens worden gered.</string>
   <string name="sms_intercept_notice_title">Wat is er nieuw</string>
-  <string name="sms_intercept_notice_content">Als je lokale gezondheidsautoriteit je een testresultaat stuurt, kan je app je op de hoogte stellen met een herinnering om je resultaat in te dienen en anderen te waarschuwen voor mogelijke blootstelling. Je kunt dit op elk moment uitzetten in Instellingen.</string>
+  <string name="sms_intercept_notice_content">Als je een sms krijgt met je testresultaat, kun je een melding krijgen waarin je wordt gevraagd je diagnose te delen in blootstellingsmeldingen. Je kunt dit op elk moment uitzetten in Instellingen.</string>
+  <string name="share_upload_title">Deel je testresultaat om je gemeenschap te beschermen</string>
+  <string name="share_upload_test_result_source_description">Testresultaat is gestuurd door %1$s</string>
+  <string name="share_upload_symptoms_subtitle">Symptoom is begonnen op</string>
+  <string name="share_upload_symptoms_date_fixed_description">Datum van symptoom is geleverd door %1$s</string>
+  <string name="share_upload_skip_choice">Overslaan</string>
+  <string name="share_upload_travel_subtitle">Reisgeschiedenis</string>
+  <string name="travel_history_travelled_recently_choice">Gereisd in de afgelopen 14 dagen</string>
+  <string name="travel_history_no_travel_choice">Geen</string>
+  <string name="share_upload_select_a_date_choice">Selecteer een datum</string>
+  <string name="share_upload_status_subtitle">COVID-19-status</string>
+  <string name="share_upload_status_confirmed">Positief</string>
+  <string name="share_upload_status_negative">Negatief</string>
+  <string name="share_upload_status_likely">Waarschijnlijk</string>
+  <string name="share_diagnosis_progress_tracker">Stap %1$d van %2$d</string>
 </resources>

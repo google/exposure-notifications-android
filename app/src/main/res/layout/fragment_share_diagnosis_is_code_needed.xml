@@ -40,6 +40,7 @@
   </RelativeLayout>
 
   <androidx.core.widget.NestedScrollView
+    android:id="@+id/share_diagnosis_scroll_view"
     android:layout_width="match_parent"
     android:layout_height="0dp"
     android:layout_weight="1"
@@ -81,12 +82,14 @@
   </androidx.core.widget.NestedScrollView>
 
   <LinearLayout
+    android:id="@+id/button_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingHorizontal="@dimen/padding_extra_large"
     android:paddingBottom="@dimen/padding_huge"
     android:orientation="vertical"
-    android:background="?android:attr/colorBackground">
+    android:background="?android:attr/colorBackground"
+    android:elevation="@dimen/bottom_button_container_elevation">
 
     <Button
       android:id="@+id/btn_i_have_code"

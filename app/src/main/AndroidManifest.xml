@@ -29,8 +29,7 @@
 
   <application
       android:name=".ExposureNotificationApplication"
-      android:icon="@mipmap/ic_launcher"
-      android:label="@string/app_name"
+      android:label="@string/app_label"
       android:supportsRtl="true"
       android:theme="@style/ExposureNotification">
 
@@ -43,6 +42,7 @@
         <action android:name="com.google.android.gms.exposurenotification.ACTION_EXPOSURE_STATE_UPDATED" />
         <action android:name="com.google.android.gms.exposurenotification.ACTION_EXPOSURE_NOT_FOUND" />
         <action android:name="com.google.android.gms.exposurenotification.ACTION_WAKE_UP" />
+        <action android:name="com.google.android.gms.exposurenotification.ACTION_PRE_AUTHORIZE_RELEASE_PHONE_UNLOCKED" />
       </intent-filter>
     </receiver>
 
@@ -54,7 +54,7 @@
     </receiver>
 
     <receiver
-      android:name=".notify.SmsVerificationBroadcastReceiver"
+      android:name=".nearby.SmsVerificationBroadcastReceiver"
       android:permission="com.google.android.gms.nearby.exposurenotification.EXPOSURE_CALLBACK"
       android:exported="true">
       <intent-filter>

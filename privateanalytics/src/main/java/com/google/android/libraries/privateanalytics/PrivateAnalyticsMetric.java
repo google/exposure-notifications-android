@@ -27,24 +27,16 @@ public interface PrivateAnalyticsMetric {
 
   /**
    * Access the name of the metric.
-   * <p>
-   * Must be overwritten in the class implementing the metric.
    **/
-  default String getMetricName() {
-    throw new UnknownError("Metric name should be provided in the class");
-  }
+  String getMetricName();
 
   /**
    * Returns the Hamming weight of the metric.
    * <p>
    * A nonzero Hamming weight indicates what will be the Hamming weight of the data, and will be
    * populated in the PrioAlgorithmParameters and verified on the server.
-   * <p>
-   * Must be overwritten in the class implementing the metric.
    **/
-  default int getMetricHammingWeight() {
-    throw new UnknownError("Hamming weight should be provided in the class");
-  }
+  int getMetricHammingWeight();
 
   /**
    * Generates the data vector associated with this metric. The vector will be represented as a

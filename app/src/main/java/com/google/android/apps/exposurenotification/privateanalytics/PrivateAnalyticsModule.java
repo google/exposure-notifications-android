@@ -21,6 +21,7 @@ import android.content.Context;
 import android.net.Uri;
 import com.google.android.apps.exposurenotification.BuildConfig;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.common.logging.Logger;
 import com.google.android.apps.exposurenotification.logging.AnalyticsLogger;
 import com.google.android.apps.exposurenotification.logging.FirelogAnalyticsLogger;
 import com.google.android.apps.exposurenotification.logging.LogcatAnalyticsLogger;
@@ -32,6 +33,7 @@ import com.google.android.libraries.privateanalytics.DefaultPrivateAnalyticsRemo
 import com.google.android.libraries.privateanalytics.PrivateAnalyticsDeviceAttestation;
 import com.google.android.libraries.privateanalytics.PrivateAnalyticsEnabledProvider;
 import com.google.android.libraries.privateanalytics.PrivateAnalyticsEventListener;
+import com.google.android.libraries.privateanalytics.PrivateAnalyticsLogger;
 import com.google.android.libraries.privateanalytics.PrivateAnalyticsRemoteConfig;
 import com.google.android.libraries.privateanalytics.Qualifiers.PackageName;
 import com.google.android.libraries.privateanalytics.Qualifiers.RemoteConfigUri;
@@ -48,14 +50,16 @@ public class PrivateAnalyticsModule {
 
   @Provides
   public PrivateAnalyticsDeviceAttestation providesDeviceAttestation(
-      @ApplicationContext Context context, @PackageName String packageName) {
-    return new DefaultPrivateAnalyticsDeviceAttestation(context, packageName);
+      @ApplicationContext Context context, @PackageName String packageName,
+      PrivateAnalyticsLogger.Factory loggerFactory) {
+    return new DefaultPrivateAnalyticsDeviceAttestation(context, packageName, loggerFactory);
   }
 
   @Provides
   public PrivateAnalyticsRemoteConfig providesRemoteConfig(@RemoteConfigUri Uri remoteConfigUri,
-      Optional<PrivateAnalyticsEventListener> listener) {
-    return new DefaultPrivateAnalyticsRemoteConfig(remoteConfigUri, listener);
+      Optional<PrivateAnalyticsEventListener> listener,
+      PrivateAnalyticsLogger.Factory loggerFactory) {
+    return new DefaultPrivateAnalyticsRemoteConfig(remoteConfigUri, listener, loggerFactory);
   }
 
   @Provides
@@ -115,5 +119,43 @@ public class PrivateAnalyticsModule {
         logger.logRpcCallFailureAsync(RpcCallType.RPC_TYPE_ENPA_REMOTE_CONFIG_FETCH, err);
       }
     });
+  }
+
+  @Provides
+  public PrivateAnalyticsLogger.Factory providesPrivateAnalyticsLogger() {
+    return tag -> {
+      Logger logger = Logger.getLogger(tag);
+      return new PrivateAnalyticsLogger() {
+        @Override
+        public void d(String msg) {
+          logger.d(msg);
+        }
+
+        @Override
+        public void i(String msg) {
+          logger.i(msg);
+        }
+
+        @Override
+        public void w(String msg) {
+          logger.w(msg);
+        }
+
+        @Override
+        public void w(String msg, Throwable throwable) {
+          logger.w(msg, throwable);
+        }
+
+        @Override
+        public void e(String msg) {
+          logger.e(msg);
+        }
+
+        @Override
+        public void e(String msg, Throwable throwable) {
+          logger.e(msg, throwable);
+        }
+      };
+    };
   }
 }

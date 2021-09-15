@@ -31,7 +31,7 @@
   <string name="onboarding_exposure_notifications_detail">Gaukite pranešimą, jei buvote šalia žmogaus, kuris pranešė, kad serga COVID-19.
     \n\nTelefone naudojamas „Bluetooth“, kad būtų galima saugiai rinkti atsitiktinius ID ir juos bendrinti su kitais netoliese esančiais telefonais.
     \n\nAr gausite pranešimą pagal jūsų visuomenės sveikatos institucijos nustatytus parametrus, bus vertinama atsižvelgiant į galimo kontakto su užsikrėtusiu asmeniu datą, trukmę ir signalo stiprumą.
-    \n\nJei jūsų testo rezultatas teigiamas, galite gauti priminimą bendrinti rezultatus su sveikatos institucijos.</string>
+    \n\nGalite gauti pranešimą bendrinti diagnozės informaciją su visuomenės sveikatos institucija, jei bus atsiųstas SMS su testo rezultatais.</string>
   <string name="onboarding_metrics_title">Padėkite tobulinti šią programą</string>
   <string name="onboarding_metrics_subtitle">Programos naudojimo ir našumo duom. bendrinimas su „Google“</string>
   <string name="onboarding_metrics_description">Siekiant padėti tvarkyti ir tobulinti programą, su „Google“ bendrinami tam tikri riboti anonimizuoti duomenys apie programos našumą ir naudojimą. Pagal šiuos duomenis negalima jūsų identifikuoti. %1$s</string>
@@ -132,6 +132,12 @@
     <item quantity="other">Pateikėte per daug užklausų. Kitą kodo užklausą galite pateikti po %1$d minučių.</item>
   </plurals>
   <string name="notify_others_notification_title">Padėkite informuoti kitus žmones, kurie galėjo turėti kontaktą su jumis</string>
+  <string name="notify_others_if_result_updated_title">Pranešti kitiems žmonėms apie atnaujintą rezultatą?</string>
+  <string name="notify_others_if_result_updated_content">%1$s gali atsiųsti antrą kodą, kad patvirtintų testo rezultatą. Naudojant antrą kodą, automatiškai atnaujinama COVID-19 būsena ir atsitiktiniai ID bendrinami papildomas dienas, tai padeda įspėti kitus apie galimą kontaktą su užsikrėtusiu asmeniu. Jūsų tapatybė nebus nurodyta kitiems žmonėms.</string>
+  <string name="btn_pre_auth_yes">Taip, noriu padėti</string>
+  <string name="btn_pre_auth_no">Ne, ačiū</string>
+  <string name="thank_you_for_notifying_title">Dėkojame už pagalbą</string>
+  <string name="thank_you_for_notifying_content">%1$s ką tik atnaujino jūsų galimo kontakto su užsikrėtusiu asmeniu laiko juostą ir galbūt įspėjo kitus žmones apie galimą kontaktą su užsikrėtusiu asmeniu.</string>
   <string name="settings_exposure_notifications_subtitle">Praneš. apie gal. kont. su užsikr. asm.</string>
   <string name="settings_app_analytics_subtitle">Progr. naud. ir našumo duom. bendrinimas</string>
   <string name="settings_privacy_policy">Privatumo politika</string>
@@ -197,5 +203,19 @@
   <string name="share_diagnosis_share_test_result_subtitle">Dėkojame, kad padedate stabdyti COVID-19 plitimą.</string>
   <string name="share_diagnosis_share_test_result_body">Kai bendrinate savo rezultatą, taip pat galite nurodyti, kada pasireiškė simptomai. Ši informacija gali padėti stabdyti COVID-19 plitimą ir išgelbėti gyvybes.</string>
   <string name="sms_intercept_notice_title">Kas naujo</string>
-  <string name="sms_intercept_notice_content">Jei vietinė sveikatos institucija išsiunčia testo rezultatą, programa gali priminti pateikti rezultatą ir padėti įspėti kitus žmones apie galimą kontaktą su užsikrėtusiu asmeniu. Bet kada galite tai išjungti nustatymuose.</string>
+  <string name="sms_intercept_notice_content">Jei bus atsiųstas SMS su testo rezultatais, galite gauti pranešimą bendrinti diagnozės informaciją pranešimuose apie galimą kontaktą su užsikrėtusiu asmeniu. Bet kada galite tai išjungti nustatymuose.</string>
+  <string name="share_upload_title">Bendrinkite testo rezultatą, kad apsaugotumėte savo bendruomenę</string>
+  <string name="share_upload_test_result_source_description">Testo rezultatą išsiuntė %1$s</string>
+  <string name="share_upload_symptoms_subtitle">Simptomų atsirado</string>
+  <string name="share_upload_symptoms_date_fixed_description">Simptomo datą pateikė: %1$s</string>
+  <string name="share_upload_skip_choice">Praleisti</string>
+  <string name="share_upload_travel_subtitle">Kelionių istorija</string>
+  <string name="travel_history_travelled_recently_choice">Kelionės per pastarąsias 14 dienų</string>
+  <string name="travel_history_no_travel_choice">Nėra</string>
+  <string name="share_upload_select_a_date_choice">Pasirinkite datą</string>
+  <string name="share_upload_status_subtitle">COVID-19 būsena</string>
+  <string name="share_upload_status_confirmed">Teigiamas</string>
+  <string name="share_upload_status_negative">Neigiamas</string>
+  <string name="share_upload_status_likely">Tikėtinas</string>
+  <string name="share_diagnosis_progress_tracker">%1$d veiksmas iš %2$d</string>
 </resources>

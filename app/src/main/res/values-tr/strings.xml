@@ -31,7 +31,7 @@
   <string name="onboarding_exposure_notifications_detail">COVID-19 olduğunu bildiren birinin yakınında bulunmanız durumunda bildirim alın.
     \n\nTelefonunuz, rastgele kimlikleri yakındaki diğer telefonlardan güvenli bir şekilde toplamak ve bu telefonlarla paylaşmak için Bluetooth\'u kullanır.
     \n\nOlası temasla ilişkilendirilen tarih, süre ve sinyal gücü bilgileri, kamu sağlığı yetkiliniz tarafından belirlenen parametrelere göre size bildirim gönderilip gönderilmeyeceğini belirlemek için kullanılır.
-    \n\nTestiniz pozitifse sonuçlarınızı yetkili sağlık biriminizle paylaşmanız yönünde bir bildirim alabilirsiniz.</string>
+    \n\nTest sonucunuzun olduğu bir SMS alırsanız sağlık yetkilinizle teşhisi paylaşmanız doğrultusunda bir bildirim alabilirsiniz.</string>
   <string name="onboarding_metrics_title">Bu uygulamayı daha iyi hale getirmeye yardımcı olun</string>
   <string name="onboarding_metrics_subtitle">Uygulama kullanım ve performans verilerini Google\'la paylaşın</string>
   <string name="onboarding_metrics_description">Uygulamayı sürdürmek ve iyileştirmek için uygulama performansı ve kullanımı ile ilgili bazı sınırlı, kimlik bilgilerinden arındırılmış veriler Google\'la paylaşılır. Bu veriler kimlik bilgilerinizi tanımlamaz. %1$s</string>
@@ -128,6 +128,12 @@
     <item quantity="other">Çok fazla istek gönderdiniz. %1$d dakika sonra tekrar kod isteği gönderebilirsiniz.</item>
   </plurals>
   <string name="notify_others_notification_title">Temasta bulunmuş olabilecek diğer kişileri bilgilendirmeye yardımcı olun</string>
+  <string name="notify_others_if_result_updated_title">Sonuçlarınız güncellenirse diğer kişiler bilgilendirilsin mi?</string>
+  <string name="notify_others_if_result_updated_content">%1$s, test sonucunuzu onaylamak için ikinci bir kod gönderebilir. Bu ikinci kodu kullanıp COVID-19 durumunuzu otomatik olarak güncelleyerek ve rastgele kimlikler için ek günleri paylaşarak temas ihtimali konusunda diğer kişileri bilgilendirebilirsiniz. Kimliğiniz başka kişilerle paylaşılmaz.</string>
+  <string name="btn_pre_auth_yes">Evet, yardım etmek istiyorum</string>
+  <string name="btn_pre_auth_no">Hayır, teşekkürler</string>
+  <string name="thank_you_for_notifying_title">Yardımınız için teşekkür ederiz</string>
+  <string name="thank_you_for_notifying_content">%1$s, temas zaman çizelgenizi güncelledi. Ayrıca diğer kişileri de temas ihtimaline karşı uyarmış olabilir.</string>
   <string name="settings_exposure_notifications_subtitle">Temas Bildirimleri</string>
   <string name="settings_app_analytics_subtitle">Kullanım ve performans verisi paylaşımı</string>
   <string name="settings_privacy_policy">Gizlilik politikası</string>
@@ -193,5 +199,19 @@
   <string name="share_diagnosis_share_test_result_subtitle">COVID-19\'un durdurulmasına yardımcı olduğunuz için teşekkürler.</string>
   <string name="share_diagnosis_share_test_result_body">Sonucunuzu paylaşırken isterseniz belirtilerinizin ne zaman başladığını da paylaşabilirsiniz. Bu bilgi, COVID-19\'un yayılmasını durdurmaya yardımcı olarak hayat kurtarabilir.</string>
   <string name="sms_intercept_notice_title">Yenilikler</string>
-  <string name="sms_intercept_notice_content">Yerel sağlık yetkilileriniz size bir test sonucu gönderirse uygulamanız, sonucunuzu göndererek diğer kişileri olası temas konusunda uyarmanızı hatırlatan bildirim sunabilir. İstediğiniz zaman bunu ayarlardan devre dışı bırakabilirsiniz.</string>
+  <string name="sms_intercept_notice_content">Test sonucunuzun olduğu bir SMS alırsanız teşhisinizi temas bildirimlerinde paylaşmanızı isteyen bir bildirim görebilirsiniz. İstediğiniz zaman bunu ayarlardan devre dışı bırakabilirsiniz.</string>
+  <string name="share_upload_title">Bulunduğunuz topluluğu korumak için test sonucunuzu paylaşın</string>
+  <string name="share_upload_test_result_source_description">Test sonucu %1$s tarafından gönderildi</string>
+  <string name="share_upload_symptoms_subtitle">Belirtilerin başladığı tarih:</string>
+  <string name="share_upload_symptoms_date_fixed_description">Belirti tarihi %1$s tarafından sağlanmıştır</string>
+  <string name="share_upload_skip_choice">Atla</string>
+  <string name="share_upload_travel_subtitle">Seyahat geçmişi</string>
+  <string name="travel_history_travelled_recently_choice">14 gün içinde seyahat edildi</string>
+  <string name="travel_history_no_travel_choice">Hayır</string>
+  <string name="share_upload_select_a_date_choice">Tarih seçin</string>
+  <string name="share_upload_status_subtitle">COVID-19 durumu</string>
+  <string name="share_upload_status_confirmed">Pozitif</string>
+  <string name="share_upload_status_negative">Negatif</string>
+  <string name="share_upload_status_likely">Olası</string>
+  <string name="share_diagnosis_progress_tracker">Adım %1$d/%2$d</string>
 </resources>

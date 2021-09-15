@@ -28,10 +28,10 @@
   <string name="onboarding_opt_in_title">Nevojiten lejet për të aktivizuar \"Njoftimet rreth ekspozimit\"</string>
   <string name="onboarding_finish_title">Vazhdimi për lejet që nevojiten për të aktivizuar \"Njoftimet rreth ekspozimit\"</string>
   <string name="onboarding_exposure_notifications_title">Aktivizo \"Njoftimet rreth ekspozimit\"</string>
-  <string name="onboarding_exposure_notifications_detail">Merr njoftime nëse ke qenë afër dikujt që është raportuar se ka COVID-19.
+  <string name="onboarding_exposure_notifications_detail">Merr njoftim nëse ke qenë pranë dikujt që ka raportuar se ka COVID-19.
     \n\nTelefoni yt përdor Bluetooth-in për të mbledhur dhe ndarë në mënyrë të sigurt ID-të e rastësishme me telefonat e tjerë që janë në afërsi.
-    \n\nData, kohëzgjatja dhe fuqia e sinjalit në lidhje me një ekspozim të mundshëm do të përdoren për të përcaktuar nëse do të njoftohesh bazuar në parametrat e caktuar nga autoritetet e shëndetit publik.
-    \n\nNëse rezulton pozitiv, mund të marrësh një rikujtesë për t\'i ndarë rezultatet e tua me autoritetet shëndetësore.</string>
+    \n\nData, kohëzgjatja dhe fuqia e sinjalit në lidhje me një ekspozim të mundshëm do të përdoren për të përcaktuar nëse do të njoftohesh bazuar në parametrat e caktuar nga autoriteti i shëndetit publik.
+    \n\nMund të marrësh një njoftim për të ndarë diagnostikimin me autoritetet shëndetësore nëse merr një SMS me rezultatet e testit.</string>
   <string name="onboarding_metrics_title">Ndihmo në përmirësimin e këtij aplikacioni</string>
   <string name="onboarding_metrics_subtitle">Ndaj me Google të dhënat e përdorimit dhe të cilësisë së funksionimit të aplikacionit</string>
   <string name="onboarding_metrics_description">Për të ndihmuar në mirëmbajtjen dhe përmirësimin e aplikacionit, disa të dhëna të kufizuara të anonimizuara për cilësinë e funksionimit dhe përdorimin e aplikacionit ndahen me Google. Këto të dhëna nuk të identifikojnë ty. %1$s</string>
@@ -128,6 +128,12 @@
     <item quantity="other">Ke bërë shumë kërkesa. Mund të kërkosh një kod tjetër pas %1$d minutash.</item>
   </plurals>
   <string name="notify_others_notification_title">Ndihmo për t\'i njoftuar të tjerët që mund të jenë ekspozuar</string>
+  <string name="notify_others_if_result_updated_title">Të njoftohen personat e tjerë nëse përditësohen rezultatet e tua?</string>
+  <string name="notify_others_if_result_updated_content">%1$s mund të të dërgojë një kod të dytë për të konfirmuar rezultatin e testit tënd. Mund ta përditësosh automatikisht statusin tënd të COVID-19 dhe të ndash ID të rastësishme në ditët në vijim duke përdorur këtë kod të dytë, i cili mund të ndihmojë për t\'i njoftuar të tjerët për ekspozimin e mundshëm. Identiteti yt nuk ndahet me njerëzit e tjerë.</string>
+  <string name="btn_pre_auth_yes">Po, dua të ndihmoj</string>
+  <string name="btn_pre_auth_no">Jo, faleminderit</string>
+  <string name="thank_you_for_notifying_title">Faleminderit për ndihmën</string>
+  <string name="thank_you_for_notifying_content">%1$s sapo përditësoi kronologjinë e ekspozimit tënd dhe mund të ketë sinjalizuar të tjerët për ekspozimin e mundshëm.</string>
   <string name="settings_exposure_notifications_subtitle">Njoftimet rreth ekspozimit</string>
   <string name="settings_app_analytics_subtitle">Ndarja e përdorimit dhe cilësisë së funksionimit të aplikacionit</string>
   <string name="settings_privacy_policy">Politika e privatësisë</string>
@@ -193,5 +199,19 @@
   <string name="share_diagnosis_share_test_result_subtitle">Faleminderit që ndihmon për të ndaluar COVID-19.</string>
   <string name="share_diagnosis_share_test_result_body">Kur ndan rezultatin tënd, mund të zgjedhësh po ashtu që të ndash se kur të kanë filluar simptomat. Këto informacione mund të ndihmojnë për të ndaluar përhapjen e COVID-19 dhe për të shpëtuar jetë.</string>
   <string name="sms_intercept_notice_title">Ç\'të reja ka</string>
-  <string name="sms_intercept_notice_content">Nëse autoritetet lokale shëndetësore të dërgojnë një rezultat testi, aplikacioni yt mund të të njoftojë me një rikujtesë për ta dorëzuar rezultatin tënd dhe për të ndihmuar në sinjalizimin e të tjerëve për ekspozimin e mundshëm. Mund ta çaktivizosh këtë në çdo kohë te cilësimet.</string>
+  <string name="sms_intercept_notice_content">Nëse merr një SMS me rezultatin e testit, mund të marrësh një njoftim që të kërkon të ndash diagnostikimin te njoftimet rreth ekspozimit. Mund ta çaktivizosh këtë në çdo kohë te cilësimet.</string>
+  <string name="share_upload_title">Ndaj rezultatin e testit tënd për të mbrojtur komunitetin tënd</string>
+  <string name="share_upload_test_result_source_description">Rezultati i testit dërgohet nga %1$s</string>
+  <string name="share_upload_symptoms_subtitle">Simptomat filluan nga data</string>
+  <string name="share_upload_symptoms_date_fixed_description">Data e simptomave jepet nga %1$s</string>
+  <string name="share_upload_skip_choice">Kapërce</string>
+  <string name="share_upload_travel_subtitle">Historiku i udhëtimeve</string>
+  <string name="travel_history_travelled_recently_choice">Udhëtimet në 14 ditët e fundit</string>
+  <string name="travel_history_no_travel_choice">Asnjë</string>
+  <string name="share_upload_select_a_date_choice">Zgjidh një datë</string>
+  <string name="share_upload_status_subtitle">Statusi i COVID-19</string>
+  <string name="share_upload_status_confirmed">Pozitiv</string>
+  <string name="share_upload_status_negative">Negativ</string>
+  <string name="share_upload_status_likely">I mundshëm</string>
+  <string name="share_diagnosis_progress_tracker">Hapi %1$d nga %2$d</string>
 </resources>

@@ -28,10 +28,10 @@
   <string name="onboarding_opt_in_title">Чтобы включить Уведомления о риске инфицирования, предоставьте необходимые разрешения</string>
   <string name="onboarding_finish_title">Чтобы включить Уведомления о риске инфицирования, предоставьте все необходимые разрешения</string>
   <string name="onboarding_exposure_notifications_title">Включите уведомления о риске инфицирования</string>
-  <string name="onboarding_exposure_notifications_detail">Получайте оповещения, когда вы находитесь рядом с человеком, который сообщил о наличии у себя коронавирусной инфекции COVID-19.
+  <string name="onboarding_exposure_notifications_detail">Получайте оповещения, если вы находитесь рядом с человеком, который сообщил о заражении инфекцией COVID-19.
     \n\nВаш телефон использует Bluetooth, чтобы безопасно собирать случайные идентификаторы и обмениваться ими с другими устройствами поблизости.
-    \n\nВы получите уведомление, если сведения о дате и продолжительности контакта между телефонами, а также о силе Bluetooth-сигнала будут соответствовать параметрам, которые установили государственные органы здравоохранения вашего региона.
-    \n\nЕсли ваш анализ на COVID-19 окажется положительным, вы можете получить напоминание о том, что нужно передать эту информацию органам здравоохранения.</string>
+    \n\nДля отправки сообщений используются сведения о дате и продолжительности контакта между телефонами, а также о силе Bluetooth-сигнала, попадающие в пределы значений, установленных местными государственными органами здравоохранения.
+    \n\nЕсли вы получите SMS с результатом теста, может появиться уведомление с предложением сообщить о диагнозе в местный орган здравоохранения.</string>
   <string name="onboarding_metrics_title">Помогите улучшить приложение</string>
   <string name="onboarding_metrics_subtitle">Включите отправку данных о приложении в Google.</string>
   <string name="onboarding_metrics_description">Чтобы улучшать и поддерживать работу приложения, Google собирает ограниченный набор анонимных данных о его использовании и производительности. Идентифицировать пользователя по этим данным невозможно. %1$s</string>
@@ -132,6 +132,12 @@
     <item quantity="other">Вы отправили слишком много запросов. Повторить попытку можно через %1$d минуты.</item>
   </plurals>
   <string name="notify_others_notification_title">Помогите уведомить окружающих о риске инфицирования</string>
+  <string name="notify_others_if_result_updated_title">Сообщать другим пользователям о будущих результатах анализов?</string>
+  <string name="notify_others_if_result_updated_content">Если %1$s пришлет второй код, он будет использоваться для автоматического обновления статуса COVID-19 и обмена случайными идентификаторами в течение дополнительного времени. Это поможет предупредить других о риске инфицирования. Сведения о вас никому не передаются.</string>
+  <string name="btn_pre_auth_yes">Да, сообщать</string>
+  <string name="btn_pre_auth_no">Нет</string>
+  <string name="thank_you_for_notifying_title">Спасибо за помощь!</string>
+  <string name="thank_you_for_notifying_content">Организация \"%1$s\" обновила историю ваших контактов и, возможно, оповестила других о риске инфицирования.</string>
   <string name="settings_exposure_notifications_subtitle">Уведомления о риске инфицирования</string>
   <string name="settings_app_analytics_subtitle">Отправка данных о приложении</string>
   <string name="settings_privacy_policy">Политика конфиденциальности</string>
@@ -197,5 +203,19 @@
   <string name="share_diagnosis_share_test_result_subtitle">Спасибо, что помогаете бороться с распространением COVID-19.</string>
   <string name="share_diagnosis_share_test_result_body">Сообщая результат, вы можете рассказать о том, когда у вас появились симптомы. Эти данные помогут остановить распространение COVID-19 и спасти жизни.</string>
   <string name="sms_intercept_notice_title">Новая функция</string>
-  <string name="sms_intercept_notice_content">Если вы получите результат теста от местных органов здравоохранения, приложение может прислать вам уведомление о необходимости загрузки результата. Это поможет оповестить других об опасности заражения. Эту функцию можно отключить в любое время в настройках.</string>
+  <string name="sms_intercept_notice_content">Если вы получите SMS с результатами анализа, то вам может поступить предложение указать свой диагноз в Системе уведомлений о риске инфицирования. Эту функцию можно отключить в любое время в настройках.</string>
+  <string name="share_upload_title">Поделитесь результатом анализа и помогите защитить окружающих</string>
+  <string name="share_upload_test_result_source_description">Результат анализа отправлен организацией \"%1$s\".</string>
+  <string name="share_upload_symptoms_subtitle">Время появления симптомов:</string>
+  <string name="share_upload_symptoms_date_fixed_description">Дата проявления симптомов получена от этой организации: %1$s.</string>
+  <string name="share_upload_skip_choice">Пропустить</string>
+  <string name="share_upload_travel_subtitle">История перемещений</string>
+  <string name="travel_history_travelled_recently_choice">Были поездки за последние 14 дней</string>
+  <string name="travel_history_no_travel_choice">Не было поездок</string>
+  <string name="share_upload_select_a_date_choice">Выберите дату</string>
+  <string name="share_upload_status_subtitle">Статус COVID-19</string>
+  <string name="share_upload_status_confirmed">Положительный</string>
+  <string name="share_upload_status_negative">Отрицательный</string>
+  <string name="share_upload_status_likely">Возможное инфицирование</string>
+  <string name="share_diagnosis_progress_tracker">Шаг %1$d из %2$d</string>
 </resources>

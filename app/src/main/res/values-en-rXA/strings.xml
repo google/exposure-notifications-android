@@ -31,7 +31,7 @@
   <string name="onboarding_exposure_notifications_detail">[Ĝéţ ñöţîƒîéð îƒ ýöû\'vé бééñ ñéåŕ šöméöñé ŵĥö ŕéþöŕţéð ĥåvîñĝ ÇÖVÎÐ-19.
     \ñ\ñÝöûŕ þĥöñé ûšéš Бļûéţööţĥ ţö šéçûŕéļý çöļļéçţ åñð šĥåŕé ŕåñðöm ÎÐš ŵîţĥ öţĥéŕ þĥöñéš ţĥåţ åŕé ñéåŕбý.
     \ñ\ñŢĥé ðåţé, ðûŕåţîöñ, åñð šîĝñåļ šţŕéñĝţĥ åššöçîåţéð ŵîţĥ å þöššîбļé éxþöšûŕé ŵîļļ бé ûšéð ţö ðéţéŕmîñé ŵĥéţĥéŕ ýöû ŵîļļ бé ñöţîƒîéð бåšéð öñ þåŕåméţéŕš šéţ бý ýöûŕ þûбļîç ĥéåļţĥ åûţĥöŕîţý.
-    \ñ\ñÎƒ ýöû ţéšţ þöšîţîvé, ýöû måý ŕéçéîvé å ŕémîñðéŕ ţö šĥåŕé ýöûŕ ŕéšûļţš ŵîţĥ ýöûŕ ĥéåļţĥ åûţĥöŕîţý. one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty twentyone twentytwo twentythree twentyfour twentyfive twentysix twentyseven twentyeight twentynine thirty thirtyone thirtytwo thirtythree thirtyfour thirtyfive thirtysix thirtyseven thirtyeight thirtynine forty one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty twentyone]</string>
+    \ñ\ñÝöû måý ŕéçéîvé å ñöţîƒîçåţîöñ ţö šĥåŕé å ðîåĝñöšîš ŵîţĥ ýöûŕ ĥéåļţĥ åûţĥöŕîţý îƒ ýöû ĝéţ åñ ŠMŠ ŵîţĥ ýöûŕ ţéšţ ŕéšûļţ. one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty twentyone twentytwo twentythree twentyfour twentyfive twentysix twentyseven twentyeight twentynine thirty thirtyone thirtytwo thirtythree thirtyfour thirtyfive thirtysix thirtyseven thirtyeight thirtynine forty one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty twentyone twentytwo twentythree]</string>
   <string name="onboarding_metrics_title">[Ĥéļþ måķé ţĥîš åþþ бéţţéŕ one two three four five six]</string>
   <string name="onboarding_metrics_subtitle">[Šĥåŕé åþþ ûšåĝé &amp; þéŕƒöŕmåñçé ðåţå ŵîţĥ Ĝööĝļé one two three four five six seven eight nine ten]</string>
   <string name="onboarding_metrics_description">[Ţö ĥéļþ måîñţåîñ åñð îmþŕövé ţĥé åþþ, šömé ļîmîţéð ðé-îðéñţîƒîéð ðåţå åбöûţ åþþ þéŕƒöŕmåñçé åñð ûšåĝé îš šĥåŕéð ŵîţĥ Ĝööĝļé. Ţĥîš ðåţå ðöéš ñöţ îðéñţîƒý ýöû. ᐅ%1$sᐊ one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty twentyone twentytwo twentythree]</string>
@@ -128,6 +128,12 @@
     <item quantity="other">[Ýöû\'vé måðé ţöö måñý ŕéqûéšţš. Ýöû çåñ ŕéqûéšţ åñöţĥéŕ çöðé îñ ᐅ%1$dᐊ mîñûţéš. one two three four five six seven eight nine ten eleven twelve thirteen fourteen]</item>
   </plurals>
   <string name="notify_others_notification_title">[Ĥéļþ ñöţîƒý öţĥéŕš ŵĥö måý ĥåvé бééñ éxþöšéð one two three four five six seven eight nine]</string>
+  <string name="notify_others_if_result_updated_title">[Ñöţîƒý öţĥéŕ þéöþļé îƒ ýöûŕ ŕéšûļţ ĝéţš ûþðåţéð¿ one two three four five six seven eight nine ten]</string>
+  <string name="notify_others_if_result_updated_content">[ᐅ%1$sᐊ måý šéñð ýöû å šéçöñð çöðé ţö çöñƒîŕm ýöûŕ ţéšţ ŕéšûļţ. Ýöû çåñ åûţömåţîçåļļý ûþðåţé ýöûŕ ÇÖVÎÐ-19 šţåţûš &amp; šĥåŕé åððîţîöñåļ ðåýš öƒ ŕåñðöm ÎÐš ûšîñĝ ţĥîš šéçöñð çöðé, ŵĥîçĥ çåñ ĥéļþ ñöţîƒý öţĥéŕš åбöûţ þöššîбļé éxþöšûŕé. Ýöûŕ îðéñţîţý îš ñöţ šĥåŕéð ŵîţĥ öţĥéŕ þéöþļé. one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty twentyone twentytwo twentythree twentyfour twentyfive twentysix twentyseven twentyeight twentynine thirty thirtyone thirtytwo thirtythree thirtyfour]</string>
+  <string name="btn_pre_auth_yes">[Ýéš, Î ŵåñţ ţö ĥéļþ one two three four]</string>
+  <string name="btn_pre_auth_no">[Ñö ţĥåñķš one two]</string>
+  <string name="thank_you_for_notifying_title">[Ţĥåñķ ýöû ƒöŕ ĥéļþîñĝ one two three four five]</string>
+  <string name="thank_you_for_notifying_content">[ᐅ%1$sᐊ ĵûšţ ûþðåţéð ýöûŕ éxþöšûŕé ţîméļîñé åñð måý ĥåvé åļéŕţéð öţĥéŕš öƒ þöššîбļé éxþöšûŕé. one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen]</string>
   <string name="settings_exposure_notifications_subtitle">[Éxþöšûŕé Ñöţîƒîçåţîöñš one two three]</string>
   <string name="settings_app_analytics_subtitle">[Åþþ ûšåĝé &amp; þéŕƒöŕmåñçé šĥåŕîñĝ one two three four five six seven]</string>
   <string name="settings_privacy_policy">[Þŕîvåçý þöļîçý one two]</string>
@@ -193,5 +199,19 @@
   <string name="share_diagnosis_share_test_result_subtitle">[Ţĥåñķ ýöû ƒöŕ ĥéļþîñĝ ţö šţöþ ÇÖVÎÐ-19. one two three four five six seven eight]</string>
   <string name="share_diagnosis_share_test_result_body">[Ŵĥéñ ýöû šĥåŕé ýöûŕ ŕéšûļţ, ýöû çåñ åļšö çĥööšé ţö šĥåŕé ŵĥéñ ýöûŕ šýmþţömš šţåŕţéð. Ţĥîš îñƒöŕmåţîöñ çåñ ĥéļþ šţöþ ţĥé šþŕéåð öƒ ÇÖVÎÐ-19 åñð šåvé ļîvéš. one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty twentyone twentytwo twentythree]</string>
   <string name="sms_intercept_notice_title">[Ŵĥåţ\'š ñéŵ one two]</string>
-  <string name="sms_intercept_notice_content">[Îƒ ýöûŕ ļöçåļ ĥéåļţĥ åûţĥöŕîţý šéñðš ýöû å ţéšţ ŕéšûļţ, ýöûŕ åþþ çåñ ñöţîƒý ýöû ŵîţĥ å ŕémîñðéŕ ţö šûбmîţ ýöûŕ ŕéšûļţ åñð ĥéļþ åļéŕţ öţĥéŕš öƒ þöššîбļé éxþöšûŕé. Ýöû çåñ ðîšåбļé ţĥîš åñý ţîmé îñ šéţţîñĝš. one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty twentyone twentytwo twentythree twentyfour twentyfive twentysix twentyseven]</string>
+  <string name="sms_intercept_notice_content">[Îƒ ýöû ŕéçéîvé åñ ŠMŠ ŵîţĥ ýöûŕ ţéšţ ŕéšûļţ, ýöû måý ĝéţ å ñöţîƒîçåţîöñ åšķîñĝ ýöû ţö šĥåŕé ýöûŕ ðîåĝñöšîš îñ éxþöšûŕé ñöţîƒîçåţîöñš. Ýöû çåñ ðîšåбļé ţĥîš åñý ţîmé îñ šéţţîñĝš. one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty twentyone twentytwo twentythree twentyfour twentyfive]</string>
+  <string name="share_upload_title">[Šĥåŕé ýöûŕ ţéšţ ŕéšûļţ ţö þŕöţéçţ ýöûŕ çömmûñîţý one two three four five six seven eight nine ten]</string>
+  <string name="share_upload_test_result_source_description">[Ţéšţîñĝ ŕéšûļţ îš šéñţ бý ᐅ%1$sᐊ one two three four five six seven]</string>
+  <string name="share_upload_symptoms_subtitle">[Šýmþţöm šţåŕţéð ƒŕöm one two three]</string>
+  <string name="share_upload_symptoms_date_fixed_description">[Šýmþţöm ðåţé îš þŕövîðéð бý ᐅ%1$sᐊ one two three four five six seven]</string>
+  <string name="share_upload_skip_choice">[Šķîþ one]</string>
+  <string name="share_upload_travel_subtitle">[Ţŕåvéļ ĥîšţöŕý one two]</string>
+  <string name="travel_history_travelled_recently_choice">[Ţŕåvéļļéð îñ ţĥé þåšţ 14 ðåýš one two three four five six seven]</string>
+  <string name="travel_history_no_travel_choice">[Ñöñé one]</string>
+  <string name="share_upload_select_a_date_choice">[Šéļéçţ å ðåţé one two]</string>
+  <string name="share_upload_status_subtitle">[ÇÖVÎÐ-19 šţåţûš one two]</string>
+  <string name="share_upload_status_confirmed">[Þöšîţîvé one]</string>
+  <string name="share_upload_status_negative">[Ñéĝåţîvé one]</string>
+  <string name="share_upload_status_likely">[Ļîķéļý one]</string>
+  <string name="share_diagnosis_progress_tracker">[Šţéþ ᐅ%1$dᐊ öƒ ᐅ%2$dᐊ one two three four]</string>
 </resources>

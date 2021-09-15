@@ -203,6 +203,7 @@ public class ShareDiagnosisViewModelTest {
         clock,
         telephonyHelper,
         secureRandom,
+        connectivity,
         MoreExecutors.newDirectExecutorService(),
         MoreExecutors.newDirectExecutorService(),
         TestingExecutors.sameThreadScheduledExecutor());
@@ -233,6 +234,7 @@ public class ShareDiagnosisViewModelTest {
         clock,
         telephonyHelper,
         secureRandom,
+        connectivity,
         MoreExecutors.newDirectExecutorService(),
         MoreExecutors.newDirectExecutorService(),
         TestingExecutors.sameThreadScheduledExecutor());
@@ -432,7 +434,7 @@ public class ShareDiagnosisViewModelTest {
     assertThat(diagnosisRepository.getByIdAsync(observedDiagnosisId.get()).get()
         .getVerificationCode())
         .isEqualTo("code");
-    assertThat(observedStep.get()).isEqualTo(Step.ONSET);
+    assertThat(observedStep.get()).isEqualTo(Step.UPLOAD);
   }
 
   @Test
@@ -475,7 +477,7 @@ public class ShareDiagnosisViewModelTest {
     viewModel.submitCode("code", true).get();
 
     assertThat(observedRevealCodeStepEvent.get()).isFalse();
-    assertThat(observeFlowStep().get()).isEqualTo(Step.ONSET);
+    assertThat(observeFlowStep().get()).isEqualTo(Step.UPLOAD);
   }
 
   @Test
@@ -613,101 +615,6 @@ public class ShareDiagnosisViewModelTest {
 
     assertThat(returnValue.revealPage()).isTrue();
     assertThat(returnValue.verificationCodeToPrefill()).isAbsent();
-  }
-
-  @Test
-  public void nextStep_afterOnsetStepAndTravelQuestionEnabled_shouldBeTravelStatusStep()
-      throws Exception {
-    // GIVEN
-    // Enable travel step by providing a non-empty value for the share_travel_detail string,
-    // which is an optional health authority config field
-    FakeShadowResources resources = (FakeShadowResources) shadowOf(context.getResources());
-    resources.addFakeResource(R.string.share_travel_detail, "Sample travel question");
-    // Imitate the submission of code with symptom onset date
-    viewModel.nextStep(Step.CODE);
-    viewModel.submitCode("code", false).get();
-    viewModel.nextStep(Step.ONSET);
-    viewModel.setSymptomOnsetDate(LocalDate.parse("2020-04-01"));
-
-    // WHEN
-    Step nextStep = observeNextStep(Step.ONSET).get();
-    viewModel.nextStep(nextStep);
-
-    // THEN
-    // As Travel step is enabled, the next step after an Onset step should be a Travel Status step.
-    assertThat(observeFlowStep().get()).isEqualTo(Step.TRAVEL_STATUS);
-  }
-
-  @Test
-  public void nextStep_afterOnsetStepAndTravelQuestionDisabled_shouldBeReviewStep()
-      throws Exception {
-    // GIVEN
-    // Disable travel step by providing an empty value for the share_travel_detail string,
-    // which is an optional health authority config field
-    FakeShadowResources resources = (FakeShadowResources) shadowOf(context.getResources());
-    resources.addFakeResource(R.string.share_travel_detail, "");
-    // Imitate the submission of code with symptom onset date
-    viewModel.nextStep(Step.CODE);
-    viewModel.submitCode("code", false).get();
-    viewModel.nextStep(Step.ONSET);
-    viewModel.setSymptomOnsetDate(LocalDate.parse("2020-04-01"));
-
-    // WHEN
-    Step nextStep = observeNextStep(Step.ONSET).get();
-    viewModel.nextStep(nextStep);
-
-    // THEN
-    // As Travel step is disabled, the next step after an Onset step should be a Review step.
-    assertThat(observeFlowStep().get()).isEqualTo(Step.REVIEW);
-  }
-
-  @Test
-  public void previousStep_beforeReviewStepAndTravelQuestionEnabled_shouldBeTravelStatusStep()
-      throws Exception {
-    // GIVEN
-    // Enable travel step by providing a non-empty value for the share_travel_detail string,
-    // which is an optional health authority config field
-    FakeShadowResources resources = (FakeShadowResources) shadowOf(context.getResources());
-    resources.addFakeResource(R.string.share_travel_detail, "Sample travel question");
-    // Imitate the submission of code with symptom onset date
-    viewModel.nextStep(Step.CODE);
-    viewModel.submitCode("code", false).get();
-    viewModel.nextStep(Step.ONSET);
-    viewModel.setSymptomOnsetDate(LocalDate.parse("2020-04-01"));
-    viewModel.nextStep(Step.REVIEW);
-
-    // WHEN
-    Step previousStep = observePreviousStep(Step.REVIEW).get();
-    viewModel.previousStep(previousStep);
-
-    // THEN
-    // As Travel step is enabled, the previous step before a Review step should be a Travel Status
-    // step.
-    assertThat(observeFlowStep().get()).isEqualTo(Step.TRAVEL_STATUS);
-  }
-
-  @Test
-  public void previousStep_beforeReviewStepAndTravelQuestionDisabled_shouldBeOnsetStep()
-      throws Exception {
-    // GIVEN
-    // Disable travel step by providing an empty value for the share_travel_detail string,
-    // which is an optional health authority config field
-    FakeShadowResources resources = (FakeShadowResources) shadowOf(context.getResources());
-    resources.addFakeResource(R.string.share_travel_detail, "");
-    // Imitate the submission of code with symptom onset date
-    viewModel.nextStep(Step.CODE);
-    viewModel.submitCode("code", false).get();
-    viewModel.nextStep(Step.ONSET);
-    viewModel.setSymptomOnsetDate(LocalDate.parse("2021-04-01"));
-    viewModel.nextStep(Step.REVIEW);
-
-    // WHEN
-    Step previousStep = observePreviousStep(Step.REVIEW).get();
-    viewModel.previousStep(previousStep);
-
-    // THEN
-    // As Travel step is disabled, the previous step before a Review step should be an Onset step.
-    assertThat(observeFlowStep().get()).isEqualTo(Step.ONSET);
   }
 
   // TODO: Lots more narrow tests of specific steps in the flow and specific expectations.
@@ -946,6 +853,7 @@ public class ShareDiagnosisViewModelTest {
         clock,
         telephonyHelper,
         secureRandom,
+        connectivity,
         MoreExecutors.newDirectExecutorService(),
         MoreExecutors.newDirectExecutorService(),
         TestingExecutors.sameThreadScheduledExecutor());

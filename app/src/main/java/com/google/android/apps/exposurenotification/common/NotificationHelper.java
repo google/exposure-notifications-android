@@ -23,6 +23,8 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.os.Build.VERSION;
+import android.text.TextUtils;
 import androidx.annotation.StringRes;
 import androidx.annotation.VisibleForTesting;
 import androidx.core.app.NotificationCompat;
@@ -32,12 +34,14 @@ import androidx.core.content.ContextCompat;
 import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.common.BuildUtils.Type;
 import com.google.android.apps.exposurenotification.common.logging.Logger;
+import com.google.common.base.Optional;
 import java.util.Objects;
 
 /**
  * Helper class for managing notifications in the app.
  */
 public final class NotificationHelper {
+
   private static final Logger logger = Logger.getLogger("NotificationHelper");
 
   @VisibleForTesting
@@ -69,21 +73,8 @@ public final class NotificationHelper {
     PendingIntent deletePendingIntent = PendingIntent
         .getBroadcast(context, 0, deleteIntent, PendingIntent.FLAG_CANCEL_CURRENT);
 
-    NotificationCompat.Builder builder =
-        new Builder(context, EXPOSURE_NOTIFICATION_CHANNEL_ID)
-            .setSmallIcon(R.drawable.ic_exposure_notification)
-            .setColor(ContextCompat.getColor(context, R.color.notification_color))
-            .setContentTitle(titleString)
-            .setContentText(messageString)
-            .setStyle(new NotificationCompat.BigTextStyle()
-                .bigText(messageString))
-            .setPriority(NotificationCompat.PRIORITY_MAX)
-            .setContentIntent(pendingIntent)
-            .setDeleteIntent(deletePendingIntent)
-            .setOnlyAlertOnce(true)
-            .setAutoCancel(true)
-            // Do not reveal this notification on a secure lockscreen.
-            .setVisibility(NotificationCompat.VISIBILITY_SECRET);
+    NotificationCompat.Builder builder = createBuilder(context, titleString, messageString,
+        pendingIntent, Optional.of(deletePendingIntent));
 
     NotificationManagerCompat notificationManager = NotificationManagerCompat
         .from(context);
@@ -91,8 +82,8 @@ public final class NotificationHelper {
   }
 
   /**
-   * Shows a notification, notifying user to reactivate the exposure notifications app.
-   * This notification is disabled for V3 apps
+   * Shows a notification, notifying user to reactivate the exposure notifications app. This
+   * notification is disabled for V3 apps
    */
   public void showReActivateENAppNotification(Context context,
       @StringRes int titleResource, @StringRes int messageResource) {
@@ -107,21 +98,13 @@ public final class NotificationHelper {
     PendingIntent pendingIntent = PendingIntent.getActivity(context, 0,
         notificationIntent, 0);
 
-    NotificationCompat.Builder builder =
-        new Builder(context, EXPOSURE_NOTIFICATION_CHANNEL_ID)
-        .setSmallIcon(R.drawable.ic_exposure_notification)
-        .setColor(ContextCompat.getColor(context, R.color.notification_color))
-        .setContentTitle(context.getString(titleResource))
-        .setContentText(context.getString(messageResource,
-            StringUtils.getHealthAuthorityName(context)))
-        .setStyle(new NotificationCompat.BigTextStyle()
-            .bigText(context.getString(messageResource,
-                StringUtils.getHealthAuthorityName(context))))
-        .setPriority(NotificationCompat.PRIORITY_MAX)
-        .setContentIntent(pendingIntent)
-        .setOnlyAlertOnce(true)
-        .setAutoCancel(true)
-        .setVisibility(NotificationCompat.VISIBILITY_SECRET);
+    NotificationCompat.Builder builder = createBuilder(
+        context,
+        context.getString(titleResource),
+        context.getString(messageResource,
+            StringUtils.getHealthAuthorityName(context)),
+        pendingIntent,
+        Optional.absent());
 
     NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
     notificationManager.notify(REACTIVATE_APPLICATION_NOTIFICATION_ID, builder.build());
@@ -150,6 +133,45 @@ public final class NotificationHelper {
       channel.setDescription(context.getString(R.string.notification_channel_description));
       NotificationManager notificationManager = context.getSystemService(NotificationManager.class);
       Objects.requireNonNull(notificationManager).createNotificationChannel(channel);
+    }
+  }
+
+  private static NotificationCompat.Builder createBuilder(
+      Context context,
+      String titleString,
+      String messageString,
+      PendingIntent pendingIntent,
+      Optional<PendingIntent> deletePendingIntent) {
+    NotificationCompat.Builder builder =
+        new Builder(context, EXPOSURE_NOTIFICATION_CHANNEL_ID)
+            .setSmallIcon(R.drawable.ic_exposure_notification)
+            .setColor(ContextCompat.getColor(context, R.color.notification_color))
+            .setContentTitle(titleString)
+            .setContentText(messageString)
+            .setStyle(new NotificationCompat.BigTextStyle()
+                .bigText(messageString))
+            .setPriority(NotificationCompat.PRIORITY_MAX)
+            .setContentIntent(pendingIntent)
+            .setOnlyAlertOnce(true)
+            .setAutoCancel(true)
+            // Do not reveal this notification on a secure lockscreen.
+            .setVisibility(NotificationCompat.VISIBILITY_SECRET);
+    if (deletePendingIntent.isPresent()) {
+      builder.setDeleteIntent(deletePendingIntent.get());
+    }
+    maybeAppendSubText(context, builder);
+    return builder;
+  }
+
+  /**
+   * Appends a sub text for N+, v3 apps that have the extra v3SubText specified.
+   */
+  private static void maybeAppendSubText(Context context, NotificationCompat.Builder builder) {
+    if (VERSION.SDK_INT >= Build.VERSION_CODES.N && BuildUtils.getType() == Type.V3) {
+      String subText = context.getString(R.string.enx_v3NotificationSubText);
+      if (!TextUtils.isEmpty(subText)) {
+        builder.setSubText(subText);
+      }
     }
   }
 

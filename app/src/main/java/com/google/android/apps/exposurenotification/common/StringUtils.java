@@ -119,13 +119,13 @@ public final class StringUtils {
   }
 
   /**
-   * Returns the current application name.
+   * Returns the current application title.
    *
    * @param context Application context.
-   * @return application name
+   * @return application title
    */
-  public static String getApplicationName(Context context)  {
-    return context.getString(R.string.app_name);
+  public static String getApplicationTitle(Context context)  {
+    return context.getString(R.string.app_title);
   }
 
   /**

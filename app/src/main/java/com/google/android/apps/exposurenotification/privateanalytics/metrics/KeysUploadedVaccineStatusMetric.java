@@ -70,7 +70,7 @@ public class KeysUploadedVaccineStatusMetric implements PrivateAnalyticsMetric {
     Instant lastVaccinationStatusResponseTime = exposureNotificationSharedPreferences
         .getLastVaccinationStatusResponseTime();
     Instant privateAnalyticsWorkerLastTime = exposureNotificationSharedPreferences
-        .getPrivateAnalyticsWorkerLastTime();
+        .getPrivateAnalyticsWorkerLastTimeForDaily();
     ExposureClassification exposureClassification = exposureNotificationSharedPreferences
         .getExposureClassification();
 

@@ -49,57 +49,12 @@
         android:text="@string/share_confirm_title"
         android:textAppearance="?attr/textAppearanceHeadline5" />
 
-      <ViewSwitcher
-        android:id="@+id/vaccination_question_switcher"
+      <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:orientation="vertical">
-
-          <ImageView
-            android:layout_width="@dimen/sharing_flow_shared_check_size"
-            android:layout_height="@dimen/sharing_flow_shared_check_size"
-            android:layout_gravity="center"
-            android:layout_marginVertical="@dimen/padding_large"
-            android:contentDescription="@null"
-            android:importantForAccessibility="no"
-            app:srcCompat="@drawable/ic_check_filled" />
-
-          <include
-            layout="@layout/card_notify_vaccination_status"
-            android:id="@+id/vaccination_status_layout" />
-
-          <TextView
-            android:id="@+id/help_more_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:paddingTop="@dimen/padding_small"
-            android:text="@string/share_vaccination_description"
-            android:textAppearance="?attr/textAppearanceBody2"
-            android:textColor="?attr/colorControlNormal" />
-
-          <Button
-            android:id="@+id/learn_more_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="0dp"
-            android:text="@string/share_vaccination_learn_more"
-            style="@style/Widget.MaterialComponents.Button.TextButton" />
-
-        </LinearLayout>
-
-        <ImageView
-          android:layout_width="match_parent"
-          android:layout_height="@dimen/home_screen_banner_height"
-          android:importantForAccessibility="no"
-          android:contentDescription="@null"
-          app:srcCompat="@drawable/ic_test_result_shared" />
-
-      </ViewSwitcher>
+        android:layout_height="@dimen/home_screen_banner_height"
+        android:importantForAccessibility="no"
+        android:contentDescription="@null"
+        app:srcCompat="@drawable/ic_test_result_shared" />
 
     </LinearLayout>
 

@@ -18,7 +18,6 @@
 package com.google.android.libraries.privateanalytics;
 
 import android.net.Uri;
-import android.util.Log;
 import androidx.annotation.VisibleForTesting;
 import androidx.concurrent.futures.CallbackToFutureAdapter;
 import com.android.volley.DefaultRetryPolicy;
@@ -77,13 +76,16 @@ public class DefaultPrivateAnalyticsRemoteConfig implements PrivateAnalyticsRemo
   private final Uri remoteConfigUri;
   private final ListeningExecutorService lightweightExecutor = Executors.getLightweightListeningExecutor();
   private final Optional<PrivateAnalyticsEventListener> listener;
+  private final PrivateAnalyticsLogger logger;
 
   @Inject
   public DefaultPrivateAnalyticsRemoteConfig(
       @RemoteConfigUri Uri remoteConfigUri,
-      Optional<PrivateAnalyticsEventListener> listener) {
+      Optional<PrivateAnalyticsEventListener> listener,
+      PrivateAnalyticsLogger.Factory loggerFactory) {
     this.remoteConfigUri = remoteConfigUri;
     this.listener = listener;
+    this.logger = loggerFactory.create(TAG);
 
     RequestQueue queue = new RequestQueue(new NoCache(), new BasicNetwork(new HurlStack()));
     queue.start();
@@ -96,7 +98,7 @@ public class DefaultPrivateAnalyticsRemoteConfig implements PrivateAnalyticsRemo
         .transform(this::convertToRemoteConfig, lightweightExecutor)
         .catching(Exception.class, e -> {
           // Output the default RemoteConfigs for any exception thrown.
-          Log.e(TAG, "Failed to fetch or convert remote configuration.", e);
+          logger.e("Failed to fetch or convert remote configuration.", e);
           return DEFAULT_REMOTE_CONFIGS;
         }, lightweightExecutor);
   }
@@ -127,21 +129,21 @@ public class DefaultPrivateAnalyticsRemoteConfig implements PrivateAnalyticsRemo
           .onPrivateAnalyticsRemoteConfigCallSuccess(
               response.toString().length());
     }
-    Log.d(TAG, "Successfully fetched remote configs.");
+    logger.d("Successfully fetched remote configs.");
   }
 
   private void logFailure(VolleyError err) {
     if (listener.isPresent()) {
       listener.get().onPrivateAnalyticsRemoteConfigCallFailure(err);
     }
-    Log.d(TAG,
+    logger.d(
         "Remote Config Fetch Failed: "
             + VolleyUtils.getErrorBody(err).toString());
   }
 
   private RemoteConfigs convertToRemoteConfig(JSONObject jsonObject) {
     if (jsonObject == null) {
-      Log.e(TAG, "Invalid jsonObj, using default remote configs");
+      logger.e("Invalid jsonObj, using default remote configs");
       return DEFAULT_REMOTE_CONFIGS;
     }
 
@@ -181,7 +183,7 @@ public class DefaultPrivateAnalyticsRemoteConfig implements PrivateAnalyticsRemo
             jsonObject.getString(CONFIG_FACILITATOR_ENCRYPTION_KEY_ID));
       }
     } catch (JSONException e) {
-      Log.e(TAG, "Failed to parse remote config json, using defaults", e);
+      logger.e("Failed to parse remote config json, using defaults", e);
       return DEFAULT_REMOTE_CONFIGS;
     }
     return remoteConfigBuilder.build();

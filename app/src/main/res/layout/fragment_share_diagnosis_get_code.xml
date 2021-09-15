@@ -39,6 +39,7 @@
   </RelativeLayout>
 
   <androidx.core.widget.NestedScrollView
+    android:id="@+id/share_diagnosis_scroll_view"
     android:layout_width="match_parent"
     android:layout_height="0dp"
     android:layout_weight="1"
@@ -60,11 +61,20 @@
         <TextView
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:paddingTop="@dimen/padding_extra_large"
-          android:paddingBottom="@dimen/padding_huge"
+          android:paddingTop="@dimen/padding_large"
           android:gravity="center"
           android:text="@string/get_verification_code_title"
           android:textAppearance="?attr/textAppearanceHeadline5" />
+
+        <TextView
+          android:id="@+id/step_x_of_y_text_view"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/padding_medium"
+          android:layout_marginBottom="@dimen/padding_huge"
+          android:layout_gravity="center_horizontal"
+          android:textAppearance="?attr/textAppearanceCaption"
+          tools:text="@string/share_diagnosis_progress_tracker" />
 
         <!-- 1. Phone number input field -->
         <com.google.android.material.textfield.TextInputLayout
@@ -72,8 +82,7 @@
           android:layout_height="wrap_content"
           android:layout_marginTop="@dimen/padding_normal"
           android:hint="@string/phone_number_prompt"
-          android:textColorHint="?android:attr/textColorPrimary"
-          style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+          style="@style/Widget.ExposureNotifications.TextInputLayout.OutlinedBox.Dense">
 
           <com.google.android.apps.exposurenotification.common.ui.NoAutofillTextInputEditText
             android:id="@+id/phone_number"
@@ -134,8 +143,7 @@
           android:layout_height="wrap_content"
           android:layout_marginTop="@dimen/padding_large"
           android:hint="@string/test_date_prompt"
-          android:textColorHint="?android:attr/textColorPrimary"
-          style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+          style="@style/Widget.ExposureNotifications.TextInputLayout.OutlinedBox.Dense">
 
           <com.google.android.apps.exposurenotification.common.ui.NoAutofillTextInputEditText
             android:id="@+id/test_date"
@@ -174,11 +182,14 @@
   </androidx.core.widget.NestedScrollView>
 
   <LinearLayout
+    android:id="@+id/button_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/padding_medium"
-    android:layout_marginBottom="@dimen/padding_normal"
-    android:layout_marginHorizontal="@dimen/padding_normal"
+    android:paddingTop="@dimen/padding_medium"
+    android:paddingBottom="@dimen/padding_normal"
+    android:paddingHorizontal="@dimen/padding_normal"
+    android:background="?android:attr/colorBackground"
+    android:elevation="@dimen/bottom_button_container_elevation"
     android:orientation="horizontal"
     android:baselineAligned="false">
 
