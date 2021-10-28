@@ -12,4 +12,6 @@
   <string name="possible_exposure">Магчымае заражэнне</string>
   <string name="share_history_delete_test_result_title">Выдаліць вынікі гэтага тэста?</string>
   <string name="share_history_delete_test_result_detail">Вынікі вашага тэста на COVID-19 ад %1$s будуць выдалены з вашага тэлефона.</string>
+  <string name="sms_intercept_notice_card_title">Вы можаце атрымаць напамін пра абагульванне вынікаў</string>
+  <string name="sms_intercept_notice_card_content">Пры атрыманні спраўджанага SMS са станоўчымі вынікамі тэста</string>
 </resources>

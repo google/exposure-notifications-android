@@ -13,7 +13,7 @@
   <string name="btn_done">Valmis</string>
   <string name="btn_previous">Edellinen</string>
   <string name="btn_verify">Vahvista</string>
-  <string name="btn_dont_share">Jatka jakamatta</string>
+  <string name="btn_no_thanks">Ei kiitos</string>
   <string name="btn_share">Jaa</string>
   <string name="learn_more">Lue lisää</string>
   <string name="home_tab_settings_text">Asetukset</string>
@@ -201,13 +201,13 @@
   <string name="sms_intercept_notice_title">Uutta</string>
   <string name="sms_intercept_notice_content">Jos saat testituloksen tekstiviestinä, voit saada kehotteen diagnoosin jakamisesta altistumisilmoituksissa. Voit estää tämän koska tahansa asetuksista.</string>
   <string name="share_upload_title">Jaa testituloksesi muiden suojaamiseksi</string>
-  <string name="share_upload_test_result_source_description">%1$s lähettää testituloksen</string>
+  <string name="share_upload_test_result_source_description">%1$s lähetti tulokset</string>
   <string name="share_upload_symptoms_subtitle">Oireet alkoivat</string>
   <string name="share_upload_symptoms_date_fixed_description">%1$s on ilmoittanut oireilupäivän</string>
   <string name="share_upload_skip_choice">Ohita</string>
   <string name="share_upload_travel_subtitle">Matkustushistoria</string>
   <string name="travel_history_travelled_recently_choice">Matkustanut viimeisten 14 päivän aikana</string>
-  <string name="travel_history_no_travel_choice">Ei mitään</string>
+  <string name="travel_history_no_travel_choice">En matkustanut</string>
   <string name="share_upload_select_a_date_choice">Valitse päivämäärä</string>
   <string name="share_upload_status_subtitle">COVID-19-status</string>
   <string name="share_upload_status_confirmed">Positiivinen</string>

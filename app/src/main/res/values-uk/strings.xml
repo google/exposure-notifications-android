@@ -13,7 +13,7 @@
   <string name="btn_done">Готово</string>
   <string name="btn_previous">Назад</string>
   <string name="btn_verify">Підтвердити</string>
-  <string name="btn_dont_share">Продовжити без надання доступу</string>
+  <string name="btn_no_thanks">Ні, дякую</string>
   <string name="btn_share">Повідомити</string>
   <string name="learn_more">Докладніше</string>
   <string name="home_tab_settings_text">Налаштування</string>
@@ -205,13 +205,13 @@
   <string name="sms_intercept_notice_title">Що нового</string>
   <string name="sms_intercept_notice_content">Якщо ви отримаєте SMS із результатами тесту, то вам може надійти пропозиція вказати свій діагноз у Системі сповіщення про ризик зараження. Цю функцію можна будь-коли вимкнути в налаштуваннях.</string>
   <string name="share_upload_title">Поділіться своїм результатом тесту, щоб захистити інших</string>
-  <string name="share_upload_test_result_source_description">Орган охорони здоров’я \"%1$s\" надіслав результат тесту</string>
-  <string name="share_upload_symptoms_subtitle">Симптоми проявилися</string>
+  <string name="share_upload_test_result_source_description">Орган охорони здоров’я, що надіслав результати: %1$s</string>
+  <string name="share_upload_symptoms_subtitle">Дата початку симптомів</string>
   <string name="share_upload_symptoms_date_fixed_description">Дату появи симптомів надав орган охорони здоров’я \"%1$s\"</string>
   <string name="share_upload_skip_choice">Пропустити</string>
   <string name="share_upload_travel_subtitle">Історія подорожей</string>
   <string name="travel_history_travelled_recently_choice">Була подорож упродовж останніх 14 днів</string>
-  <string name="travel_history_no_travel_choice">Немає</string>
+  <string name="travel_history_no_travel_choice">Я не подорожував(-ла)</string>
   <string name="share_upload_select_a_date_choice">Виберіть дату</string>
   <string name="share_upload_status_subtitle">Статус COVID-19</string>
   <string name="share_upload_status_confirmed">Позитивний</string>

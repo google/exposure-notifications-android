@@ -80,6 +80,8 @@ public class ExposureNotificationActivity extends BaseActivity {
           if (extras.getBoolean(IntentUtil.EXTRA_SLICE, false)
               && isPossibleExposurePresent) {
             fragment = PossibleExposureFragment.newInstance();
+          } else if (extras.getBoolean(IntentUtil.EXTRA_SMS_NOTICE_SLICE, false)) {
+            fragment = SmsNoticeFragment.newInstance(true);
           } else if (extras.getBoolean(IntentUtil.EXTRA_SMS_VERIFICATION, false)) {
             Uri deeplinkUri = extras.getParcelable(IntentUtil.EXTRA_DEEP_LINK);
             fragment = maybeLaunchFromDeeplink(deeplinkUri);

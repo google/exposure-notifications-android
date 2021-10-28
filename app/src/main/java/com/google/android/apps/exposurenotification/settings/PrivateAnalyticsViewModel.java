@@ -17,21 +17,23 @@
 
 package com.google.android.apps.exposurenotification.settings;
 
-import androidx.hilt.lifecycle.ViewModelInject;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
 import com.google.android.libraries.privateanalytics.PrivateAnalyticsEnabledProvider;
+import dagger.hilt.android.lifecycle.HiltViewModel;
+import javax.inject.Inject;
 
 /**
  * View model for {@link PrivateAnalyticsFragment}.
  */
+@HiltViewModel
 public class PrivateAnalyticsViewModel extends ViewModel {
 
   private final ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
   private final PrivateAnalyticsEnabledProvider privateAnalyticsEnabledProvider;
 
-  @ViewModelInject
+  @Inject
   public PrivateAnalyticsViewModel(
       ExposureNotificationSharedPreferences exposureNotificationSharedPreferences,
       PrivateAnalyticsEnabledProvider privateAnalyticsEnabledProvider) {

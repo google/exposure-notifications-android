@@ -20,11 +20,11 @@ package com.google.android.apps.exposurenotification.keyupload;
 import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
-import androidx.hilt.Assisted;
-import androidx.hilt.work.WorkerInject;
+import androidx.hilt.work.HiltWorker;
 import androidx.work.Constraints;
 import androidx.work.Data;
 import androidx.work.ExistingPeriodicWorkPolicy;
+import androidx.work.ExistingWorkPolicy;
 import androidx.work.ListenableWorker;
 import androidx.work.NetworkType;
 import androidx.work.OneTimeWorkRequest;
@@ -46,6 +46,8 @@ import com.google.common.util.concurrent.FluentFuture;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.common.util.concurrent.ListeningScheduledExecutorService;
+import dagger.assisted.Assisted;
+import dagger.assisted.AssistedInject;
 import java.security.SecureRandom;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -61,9 +63,11 @@ import org.threeten.bp.LocalDate;
  * <p>Out of 4 RPC calls made by this worker when the worker gets executed, one RPC call to request
  * a verification code is made with an additional probability (which is once over each 6 actual
  * non-skipped executions of the worker).
- * <p>Finally, this worker also mimics the delay (which arises either from the user interaction or
- * in the background upload flow) between submitting the verification code and submitting the keys.
+ * <p>Finally, this worker also mimics the delay between submitting the verification code and
+ * submitting the keys: a short delay (up to 10s) in case of the user interaction and a long delay
+ * (up to 24 hours) in case of the background upload flow triggered by the pre-auth flow.
  */
+@HiltWorker
 public final class UploadCoverTrafficWorker extends ListenableWorker {
 
   private static final Logger logger = Logger.getLogger("UploadCoverTrafficWrk");
@@ -71,10 +75,11 @@ public final class UploadCoverTrafficWorker extends ListenableWorker {
   private static final int KEY_SIZE_BYTES = 16;
   private static final int FAKE_INTERVAL_NUM = 2650847; // Only size matters here, not the value.
   // The upper bound of the range for the randomly generated sleep time (in milliseconds) to mimic
-  // a shorter delay between submitting the verification code and submitting the keys.
-  private static final int MIMIC_USER_DELAY_SLEEP_MILLIS_BOUND = 10000;
-  // The longer delay between submitting the verification code and submitting the keys.
-  private static final int KEYS_UPLOAD_DELAY_HOURS = 6;
+  // a short delay between submitting the code and submitting the keys.
+  private static final Duration MIMIC_USER_DELAY_SLEEP_MAX = Duration.ofMillis(10000L);
+  // The upper bound of the range for the randomly generated sleep time (in hours) to mimic a long
+  // delay between submitting the code and submitting the keys.
+  private static final Duration KEYS_UPLOAD_DELAY_MAX = Duration.ofHours(25L);
 
   @VisibleForTesting
   static final String WORKER_NAME = "UploadCoverTrafficWorker";
@@ -86,6 +91,10 @@ public final class UploadCoverTrafficWorker extends ListenableWorker {
   static final double USER_REPORT_RPC_EXECUTION_PROBABILITY = 1.0d / 6.0d;
   @VisibleForTesting
   static final double SHORT_DELAY_KEYS_UPLOAD_PROBABILITY = 4.0d / 5.0d;
+  // The threshold for the longer delay between the code and keys submission. Delays above this
+  // threshold should skip the keys submission.
+  @VisibleForTesting
+  static final Duration KEYS_UPLOAD_DELAY_THRESHOLD = Duration.ofHours(24L);
   static final String IS_DELAYED_EXECUTION = "UploadCoverTrafficWorker.IS_DELAYED_EXECUTION";
 
   private final UploadController uploadController;
@@ -100,7 +109,7 @@ public final class UploadCoverTrafficWorker extends ListenableWorker {
    * @param appContext   The application {@link Context}
    * @param workerParams Parameters to setup the internal state of this worker
    */
-  @WorkerInject
+  @AssistedInject
   public UploadCoverTrafficWorker(
       @Assisted @NonNull Context appContext,
       @Assisted @NonNull WorkerParameters workerParams,
@@ -159,19 +168,22 @@ public final class UploadCoverTrafficWorker extends ListenableWorker {
                   .transformAsync(
                       upload -> {
                         if (shouldExecute(SHORT_DELAY_KEYS_UPLOAD_PROBABILITY)) {
-                          // Have a short delay between calls to /verify and /certificate endpoints
-                          // of the verification server.
+                          // Have a short delay between the code and keys submission.
                           return scheduledExecutor.schedule(
                               () -> uploadController.submitKeysForCert(fakeCertRequest()),
                               Duration.ofMillis(
-                                  secureRandom.nextInt(MIMIC_USER_DELAY_SLEEP_MILLIS_BOUND + 1))
+                                      secureRandom.nextInt(
+                                          (int) MIMIC_USER_DELAY_SLEEP_MAX.toMillis() + 1))
                                   .toMillis(),
                               TimeUnit.MILLISECONDS);
                         }
-                        // Have a long delay between calls to /verify and /certificate endpoints
-                        // of the verification server by scheduling UploadCoverTrafficWorker a bit
-                        // later.
-                        return FluentFuture.from(runOnce(workManager).getResult())
+                        // Have a long delay between the code and keys submission.
+                        long longDelaySecs = getLongDelayInSecs();
+                        // Finish early if the long delay calculated above is more than a threshold.
+                        if (!triggerOneTimeExecutionAfterLongDelay(longDelaySecs)) {
+                          return Futures.immediateFailedFuture(new FinishWorkerEarlyException());
+                        }
+                        return FluentFuture.from(runOnce(workManager, longDelaySecs).getResult())
                             .transformAsync(
                                 unused ->
                                     Futures.immediateFailedFuture(new FinishWorkerEarlyException()),
@@ -257,29 +269,64 @@ public final class UploadCoverTrafficWorker extends ListenableWorker {
    * executionProbability.
    *
    * @param executionProbability probability of execution
-   * @return true the execution should happen and false otherwise.
+   * @return true if the execution should happen and false otherwise.
    */
   private boolean shouldExecute(double executionProbability) {
     return secureRandom.nextDouble() < executionProbability;
   }
 
   /**
-   * Runs the worker with an initial delay of a few hours to mimic the longer delay between
-   * calls to submit the verification code and to submit the keys.
+   * Determines whether the one-time execution of this worker should happen.
+   *
+   * <p>We want to skip some one-time executions of this worker to simulate real life scenarios,
+   * where during the background submission of the test result, the requests to submit the keys may
+   * never get triggered after a request to verify the verification code.
+   *
+   * <p>The one-time worker execution should happen only if the long delay is less than or equal to
+   * (<=) 24 * 60 * 60 seconds.
+   *
+   * @param longDelaySecs long delay value (in seconds)
+   * @return true if the one-time execution should happen and false otherwise
+   */
+  private boolean triggerOneTimeExecutionAfterLongDelay(long longDelaySecs) {
+    long longDelayThresholdSecs = KEYS_UPLOAD_DELAY_THRESHOLD.getSeconds();
+    return longDelaySecs <= longDelayThresholdSecs;
+  }
+
+  /**
+   * Picks the long delay between the code and keys submission from the range between 0s and 25
+   * hours.
+   *
+   * @return the long delay between the code and keys submission, which is a pseudo-random uniformly
+   *     distributed value in [0s, 25 * 60 * 60s]
+   */
+  private long getLongDelayInSecs() {
+    return secureRandom.nextInt((int) KEYS_UPLOAD_DELAY_MAX.getSeconds() + 1);
+  }
+
+  /**
+   * Runs the worker with an initial delay of a few hours to mimic the longer delay between calls to
+   * submit the verification code and to submit the keys.
    *
    * <p>This method should be called only after the call to the /verify endpoint.
+   *
+   * <p>This method triggers calls to the /certificate and /publish endpoints (i.e. to submit keys).
+   *
+   * @param initialDelaySecs initial delay in seconds.
    */
-  private Operation runOnce(WorkManager workManager) {
+  private Operation runOnce(WorkManager workManager, long initialDelaySecs) {
     Data inputData = new Data.Builder()
         .putBoolean(IS_DELAYED_EXECUTION, true)
         .build();
-    return workManager.enqueue(
+    OneTimeWorkRequest oneTimeWorkRequest =
         new OneTimeWorkRequest.Builder(UploadCoverTrafficWorker.class)
             .setConstraints(
                 new Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED).build())
             .setInputData(inputData)
-            .setInitialDelay(secureRandom.nextInt(KEYS_UPLOAD_DELAY_HOURS + 1), TimeUnit.HOURS)
-            .build());
+            .setInitialDelay(initialDelaySecs, TimeUnit.SECONDS)
+            .build();
+    return workManager.enqueueUniqueWork(
+        WORKER_NAME, ExistingWorkPolicy.KEEP, oneTimeWorkRequest);
   }
 
   public static Operation schedule(WorkManager workManager) {

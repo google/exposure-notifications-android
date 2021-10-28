@@ -56,6 +56,10 @@ public class ShareDiagnosisFlowHelperTest {
       .setSharedStatus(Shared.NOT_ATTEMPTED)
       .build();
   private static final DiagnosisEntity DIAGNOSIS = DiagnosisEntity.newBuilder().setId(1L).build();
+  private static final DiagnosisEntity SELF_REPORT_DIAGNOSIS = DiagnosisEntity.newBuilder()
+      .setTestResult(TestResult.USER_REPORT)
+      .setId(1L)
+      .build();
 
   private final Context context = ApplicationProvider.getApplicationContext();
 
@@ -144,7 +148,7 @@ public class ShareDiagnosisFlowHelperTest {
     assertThat(isTextMessageVerificationEnabled).isFalse();
   }
 
-  public void isSmsInterceptEnabled_bothConfigsProvided_returnsTrueIfV2() {
+  public void isSmsInterceptEnabled_bothConfigsProvided_returnsTrue() {
     FakeShadowResources resources = (FakeShadowResources) shadowOf(context.getResources());
     resources.addFakeResource(R.bool.enx_enableTextMessageVerification, true);
     resources.addFakeResource(R.string.enx_testVerificationNotificationBody, "non-empty");
@@ -152,11 +156,7 @@ public class ShareDiagnosisFlowHelperTest {
     boolean isTextMessageVerificationEnabled =  ShareDiagnosisFlowHelper
         .isSmsInterceptEnabled(context);
 
-    if (BuildUtils.getType().equals(Type.V2)) {
-      assertThat(isTextMessageVerificationEnabled).isTrue();
-    } else {
-      assertThat(isTextMessageVerificationEnabled).isFalse();
-    }
+    assertThat(isTextMessageVerificationEnabled).isTrue();
   }
 
   @Test
@@ -179,6 +179,55 @@ public class ShareDiagnosisFlowHelperTest {
         ShareDiagnosisFlowHelper.isPreAuthForSelfReportEnabled(context);
 
     assertThat(isPreAuthForSelfReportEnabled).isTrue();
+  }
+
+  @Test
+  public void shouldDisplayPreAuthStep_notUserReportDiagnosis_returnsFalse() {
+    assertThat(ShareDiagnosisFlowHelper.shouldDisplayPreAuthStep(DIAGNOSIS, context))
+        .isFalse();
+  }
+
+  @Test
+  public void shouldDisplayPreAuthStep_selfReportIsOff_returnsFalse() {
+    FakeShadowResources resources = (FakeShadowResources) shadowOf(context.getResources());
+    resources.addFakeResource(R.string.self_report_website_url, "");
+
+    assertThat(ShareDiagnosisFlowHelper.shouldDisplayPreAuthStep(SELF_REPORT_DIAGNOSIS, context))
+        .isFalse();
+  }
+
+  @Test
+  public void shouldDisplayPreAuthStep_preAuthIsOff_returnsFalse() {
+    FakeShadowResources resources = (FakeShadowResources) shadowOf(context.getResources());
+    resources.addFakeResource(R.bool.enx_preAuthorizeAfterSelfReport, false);
+
+    assertThat(ShareDiagnosisFlowHelper.shouldDisplayPreAuthStep(SELF_REPORT_DIAGNOSIS, context))
+        .isFalse();
+  }
+
+  @Test
+  public void shouldDisplayPreAuthStep_smsInterceptIsOff_returnsFalse() {
+    FakeShadowResources resources = (FakeShadowResources) shadowOf(context.getResources());
+    resources.addFakeResource(R.bool.enx_enableTextMessageVerification, true);
+    resources.addFakeResource(R.string.enx_testVerificationNotificationBody, "");
+
+    assertThat(ShareDiagnosisFlowHelper.shouldDisplayPreAuthStep(SELF_REPORT_DIAGNOSIS, context))
+        .isFalse();
+  }
+
+  @Test
+  public void shouldDisplayPreAuthStep_selfReportAndPreAuthIsEnabledProperly_returnsTrue() {
+    FakeShadowResources resources = (FakeShadowResources) shadowOf(context.getResources());
+    // Self-report is on
+    resources.addFakeResource(R.string.self_report_website_url, "self-report-url");
+    // Pre-auth is on
+    resources.addFakeResource(R.bool.enx_preAuthorizeAfterSelfReport, true);
+    // SMS intercept is on
+    resources.addFakeResource(R.bool.enx_enableTextMessageVerification, true);
+    resources.addFakeResource(R.string.enx_testVerificationNotificationBody, "non-empty");
+
+    assertThat(ShareDiagnosisFlowHelper.shouldDisplayPreAuthStep(SELF_REPORT_DIAGNOSIS, context))
+        .isTrue();
   }
 
   /* Testing previous step API. */
@@ -407,12 +456,16 @@ public class ShareDiagnosisFlowHelperTest {
   }
 
   @Test
-  public void uploadNextStep_sharedSelfReportedDiagnosisAndPreAuthIsOn_alwaysReturnsPreAuth() {
-    // Set up resources needed...
+  public void uploadNextStep_sharedSelfReportedDiagnosisAndPreAuthIsProperlyOn_alwaysReturnsPreAuth() {
     FakeShadowResources resources = (FakeShadowResources) shadowOf(context.getResources());
-    resources.addFakeResource(R.string.self_report_website_url, "not-empty");
+    // Self-report is on
+    resources.addFakeResource(R.string.self_report_website_url, "self-report-url");
+    // Pre-auth is on
     resources.addFakeResource(R.bool.enx_preAuthorizeAfterSelfReport, true);
-    // ...and shared self-reported diagnosis.
+    // SMS intercept is on
+    resources.addFakeResource(R.bool.enx_enableTextMessageVerification, true);
+    resources.addFakeResource(R.string.enx_testVerificationNotificationBody, "non-empty");
+    // Self-reported diagnosis
     DiagnosisEntity selfReportedDiagnosis = DiagnosisEntity.newBuilder()
         .setTestResult(TestResult.USER_REPORT)
         .build();
@@ -423,6 +476,7 @@ public class ShareDiagnosisFlowHelperTest {
     assertThat(ShareDiagnosisFlowHelper.getNextStep(Step.UPLOAD, selfReportedDiagnosis,
         ShareDiagnosisFlow.SELF_REPORT, /* showVaccinationQuestion= */true, /* isShared= */true,
         context)).isEqualTo(Step.PRE_AUTH);
+
   }
 
   @Test

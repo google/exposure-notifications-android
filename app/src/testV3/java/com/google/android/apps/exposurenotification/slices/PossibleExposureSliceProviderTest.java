@@ -20,19 +20,14 @@ package com.google.android.apps.exposurenotification.slices;
 import static com.google.android.apps.exposurenotification.slices.PossibleExposureSliceProvider.POSSIBLE_EXPOSURE_SLICE_URI;
 import static com.google.common.truth.Truth.assertThat;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.clearInvocations;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyZeroInteractions;
 import static org.mockito.Mockito.when;
+import static org.robolectric.Shadows.shadowOf;
 
 import android.app.Application;
 import android.app.slice.SliceManager;
 import android.app.slice.SliceSpec;
 import android.content.Context;
 import android.content.pm.ProviderInfo;
-import android.os.Build;
-import android.os.Build.VERSION_CODES;
 import androidx.slice.Slice;
 import androidx.slice.SliceItem;
 import androidx.test.core.app.ApplicationProvider;
@@ -46,6 +41,7 @@ import com.google.android.apps.exposurenotification.riskcalculation.ExposureClas
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
 import com.google.android.apps.exposurenotification.testsupport.ExposureNotificationRules;
 import com.google.android.apps.exposurenotification.testsupport.FakeClock;
+import com.google.android.apps.exposurenotification.testsupport.FakeShadowResources;
 import com.google.common.collect.Sets;
 import dagger.hilt.android.testing.BindValue;
 import dagger.hilt.android.testing.HiltAndroidTest;
@@ -69,7 +65,7 @@ import org.threeten.bp.ZoneOffset;
 
 @RunWith(AndroidJUnit4.class)
 @HiltAndroidTest
-@Config(application = HiltTestApplication.class)
+@Config(application = HiltTestApplication.class, shadows = {FakeShadowResources.class})
 @UninstallModules({SlicesModuleImpl.class, RealTimeModule.class})
 public class PossibleExposureSliceProviderTest {
 
@@ -98,6 +94,9 @@ public class PossibleExposureSliceProviderTest {
     rules.hilt().inject();
     context = ApplicationProvider.getApplicationContext();
     possibleExposureSliceProvider = setupPossibleExposureSliceProviderForTest(sliceManager);
+    FakeShadowResources resources = (FakeShadowResources) shadowOf(context.getResources());
+    resources.addFakeResource(R.bool.enx_enableTextMessageVerification, true);
+    resources.addFakeResource(R.string.enx_testVerificationNotificationBody, "non-empty");
   }
 
   @Test
@@ -110,11 +109,12 @@ public class PossibleExposureSliceProviderTest {
   }
 
   @Test
-  public void onBindSlice_noExposure_returnsNull() {
-    // Given permission to access slice and no exposure
+  public void onBindSlice_noExposureSmsNoticeSeenInApp_returnsNull() {
+    // Given permission to access slice, no exposure, and sms notice seen
     when(slicePermissionManager.callingUidHasAccess()).thenReturn(true);
     exposureNotificationSharedPreferences.setExposureClassification(ExposureClassification
         .create(0,ExposureClassification.NO_EXPOSURE_CLASSIFICATION_NAME, 0));
+    exposureNotificationSharedPreferences.markInAppSmsNoticeSeen();
 
     Slice slice = possibleExposureSliceProvider.onBindSlice(POSSIBLE_EXPOSURE_SLICE_URI);
 
@@ -122,19 +122,48 @@ public class PossibleExposureSliceProviderTest {
   }
 
   @Test
-  public void onBindSlice_revocation_returnSlice() {
-    // Given permission to access slice and a revocation
+  public void onBindSlice_noExposureSmsNoticeSeenPlay_returnsNull() {
+    // Given permission to access slice, no exposure, and sms notice seen in play
+    when(slicePermissionManager.callingUidHasAccess()).thenReturn(true);
+    exposureNotificationSharedPreferences.setExposureClassification(ExposureClassification
+        .create(0,ExposureClassification.NO_EXPOSURE_CLASSIFICATION_NAME, 0));
+    exposureNotificationSharedPreferences.setPlaySmsNoticeSeen(true);
+
+    Slice slice = possibleExposureSliceProvider.onBindSlice(POSSIBLE_EXPOSURE_SLICE_URI);
+
+    assertThat(slice).isNull();
+  }
+
+  @Test
+  public void onBindSlice_noExposureSmsInterceptDisabled_returnsNull() {
+    // Given permission to access slice, no exposure, and disable SMS intercept
+    when(slicePermissionManager.callingUidHasAccess()).thenReturn(true);
+    exposureNotificationSharedPreferences.setExposureClassification(ExposureClassification
+        .create(0, ExposureClassification.NO_EXPOSURE_CLASSIFICATION_NAME, 0));
+    exposureNotificationSharedPreferences.markInAppSmsNoticeSeen();
+    FakeShadowResources resources = (FakeShadowResources) shadowOf(context.getResources());
+    resources.addFakeResource(R.bool.enx_enableTextMessageVerification, false);
+
+    Slice slice = possibleExposureSliceProvider.onBindSlice(POSSIBLE_EXPOSURE_SLICE_URI);
+
+    assertThat(slice).isNull();
+  }
+
+  @Test
+  public void onBindSlice_revocationAndSmsNoticeNotSeen_returnNonEmptySliceAndSmsNotice() {
+    // Given permission to access slice, a revocation, and sms notice not seen (default)
     when(slicePermissionManager.callingUidHasAccess()).thenReturn(true);
     exposureNotificationSharedPreferences.setIsExposureClassificationRevoked(true);
 
     Slice slice = possibleExposureSliceProvider.onBindSlice(POSSIBLE_EXPOSURE_SLICE_URI);
 
     assertThat(slice).isNotNull();
+    assertSliceIsSmsNoticeSlice(slice.getItems().get(2).getSlice());
   }
 
   @Test
-  public void onBindSlice_exposure_returnSlice() {
-    // GIVEN - permission to access slice and exposure
+  public void onBindSlice_exposureSmsNoticeNotSeen_returnPossibleExposureSliceAndSmsNotice() {
+    // GIVEN - permission to access slice, an exposure, and sms notice not seen (default)
     when(slicePermissionManager.callingUidHasAccess()).thenReturn(true);
     ExposureClassification exposureClassification = ExposureClassification
         .create(1,"exp", LocalDate.of(2021,2,6).toEpochDay());
@@ -147,14 +176,23 @@ public class PossibleExposureSliceProviderTest {
 
     // THEN
     assertThat(slice).isNotNull();
-    List<SliceItem> sliceItems = slice.getItems().get(1).getSlice().getItems();
-    assertThat(sliceItems.get(0).getSlice().getItems().get(0).getFormat()).isEqualTo("image");
-    assertThat(sliceItems.get(1).getText()).isEqualTo( /*"Possible COVID-19 exposure"*/
-        context.getString(R.string.exposure_details_status_exposure));
-    assertThat(sliceItems.get(2).getText()).isEqualTo( /*"2 days ago"*/
-        StringUtils.daysFromStartOfExposure(exposureClassification, clock.now(), context));
-    assertThat(sliceItems.get(3).getAction().getCreatorPackage())
-        .isEqualTo(BuildConfig.APPLICATION_ID);
+    assertSliceIsPossibleExposureSlice(slice.getItems().get(1).getSlice(), exposureClassification);
+    assertSliceIsSmsNoticeSlice(slice.getItems().get(2).getSlice());
+  }
+
+  @Test
+  public void onBindSlice_noExposureSmsNoticeNotSeen_returnSmsNoticeSlice() {
+    // GIVEN - permission to access slice, no exposure, and sms notice not seen (default)
+    when(slicePermissionManager.callingUidHasAccess()).thenReturn(true);
+    exposureNotificationSharedPreferences.setExposureClassification(ExposureClassification
+        .create(0, ExposureClassification.NO_EXPOSURE_CLASSIFICATION_NAME, 0));
+
+    // WHEN
+    Slice slice = possibleExposureSliceProvider.onBindSlice(POSSIBLE_EXPOSURE_SLICE_URI);
+
+    // THEN
+    assertThat(slice).isNotNull();
+    assertSliceIsSmsNoticeSlice(slice.getItems().get(1).getSlice());
   }
 
   private static PossibleExposureSliceProvider setupPossibleExposureSliceProviderForTest(
@@ -178,4 +216,28 @@ public class PossibleExposureSliceProviderTest {
     shadowContext.setSystemService("slice", sliceManagerMock);
     return sliceProvider;
   }
+
+  private void assertSliceIsPossibleExposureSlice(Slice slice,
+      ExposureClassification exposureClassification) {
+    List<SliceItem> sliceItems = slice.getItems();
+    assertThat(sliceItems.get(0).getSlice().getItems().get(0).getFormat()).isEqualTo("image");
+    assertThat(sliceItems.get(1).getText()).isEqualTo( /*"Possible COVID-19 exposure"*/
+        context.getString(R.string.exposure_details_status_exposure));
+    assertThat(sliceItems.get(2).getText()).isEqualTo( /*"2 days ago"*/
+        StringUtils.daysFromStartOfExposure(exposureClassification, clock.now(), context));
+    assertThat(sliceItems.get(3).getAction().getCreatorPackage())
+        .isEqualTo(BuildConfig.APPLICATION_ID);
+  }
+
+  private void assertSliceIsSmsNoticeSlice(Slice slice) {
+    List<SliceItem> sliceItems = slice.getItems();
+    assertThat(sliceItems.get(0).getSlice().getItems().get(0).getFormat()).isEqualTo("image");
+    assertThat(sliceItems.get(1).getText()).isEqualTo(
+        context.getString(R.string.sms_intercept_notice_card_title));
+    assertThat(sliceItems.get(2).getText()).isEqualTo(
+        context.getString(R.string.sms_intercept_notice_card_content));
+    assertThat(sliceItems.get(3).getAction().getCreatorPackage())
+        .isEqualTo(BuildConfig.APPLICATION_ID);
+  }
+
 }

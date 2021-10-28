@@ -52,12 +52,16 @@ public class PrivateAnalyticsSubmitter {
   }
 
   /**
-   * Instances of this interface are tasked with collecting and providing the metrics data that will
-   * then be submitted through Prio.
+   * Instances of this interface are tasked with collecting and providing the
+   * metrics data that will then be submitted through Prio.
    */
   public interface PrioDataPointsProvider {
 
     ListenableFuture<MetricsCollection> get();
+  }
+
+  public static class NotEnabledException extends Exception {
+
   }
 
   // PrioAlgorithmParameters default values.
@@ -65,7 +69,8 @@ public class PrivateAnalyticsSubmitter {
   private static final long PRIME = 4293918721L;
   // Logging TAG
   private static final String TAG = "PAPrioSubmitter";
-  private final ExecutorService backgroundExecutor = Executors.getBackgroundListeningExecutor();
+  private final ExecutorService backgroundExecutor = Executors
+      .getBackgroundListeningExecutor();
   private final SecureRandom secureRandom = new SecureRandom();
   private final PrivateAnalyticsRemoteConfig privateAnalyticsRemoteConfig;
   private final PrivateAnalyticsFirestoreRepository privateAnalyticsFirestoreRepository;
@@ -95,34 +100,35 @@ public class PrivateAnalyticsSubmitter {
   }
 
   @RequiresApi(api = VERSION_CODES.N)
-  public ListenableFuture<?> submitPackets() {
+  public ListenableFuture<ImmutableList<SubmissionStatus>> submitPackets() {
     return FluentFuture.from(privateAnalyticsRemoteConfig.fetchUpdatedConfigs())
-        .transform(remoteConfigs -> {
+        .transformAsync(remoteConfigs -> {
           boolean remoteEnabled = remoteConfigs.enabled();
 
           if (!remoteEnabled) {
             logger.i("Private analytics not enabled");
-            return Futures.immediateFuture(null);
+            return Futures.immediateFailedFuture(new NotEnabledException());
           }
 
           if (!privateAnalyticsEnabledProvider.isEnabledForUser()) {
             logger.i("Private analytics enabled but not turned on");
-            return Futures.immediateFuture(null);
+            return Futures.immediateFailedFuture(new NotEnabledException());
           }
 
           if (TextUtils.isEmpty(remoteConfigs.facilitatorCertificate())
               || TextUtils.isEmpty(remoteConfigs.phaCertificate())) {
             logger.i(
                 "Private analytics enabled but missing a facilitator/PHA certificate");
-            return Futures.immediateFuture(null);
+            return Futures.immediateFailedFuture(new NotEnabledException());
           }
 
           logger.d("Private analytics enabled, proceeding with packet submission.");
 
           return FluentFuture.from(prioDataPointsProvider.get())
-              .transform(metricsCollection -> {
+              .transformAsync(metricsCollection -> {
                 List<ListenableFuture<SubmissionStatus>> submitMetricFutures = new ArrayList<>(
-                    submitMetricsFromList(metricsCollection.getDailyMetrics(), remoteConfigs));
+                    submitMetricsFromList(metricsCollection.getDailyMetrics(),
+                        remoteConfigs));
 
                 if (isCalendarTheBiweeklyMetricsUploadDay(
                     biweeklyMetricsUploadDay, Calendar.getInstance())) {

@@ -12,4 +12,6 @@
   <string name="possible_exposure">可能接觸過確診者</string>
   <string name="share_history_delete_test_result_title">要刪除這項檢測結果嗎？</string>
   <string name="share_history_delete_test_result_detail">你在 %1$s的 COVID-19 檢測結果將從手機中刪除。</string>
+  <string name="sms_intercept_notice_card_title">你可能會收到分享檢測結果的提醒</string>
+  <string name="sms_intercept_notice_card_content">如果檢測結果為陽性並收到已驗證簡訊，系統會提醒你分享結果</string>
 </resources>

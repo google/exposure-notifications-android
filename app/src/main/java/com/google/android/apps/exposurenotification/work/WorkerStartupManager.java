@@ -119,7 +119,7 @@ public class WorkerStartupManager {
         .transformAsync(isEnabled -> {
           deleteObsoletesAndResetValues();
           if (isEnabled) {
-            return maybeUpdateAnalyticsState().transform(v -> true, backgroundExecutor);
+            return maybeUpdatePackageConfigurationState().transform(v -> true, backgroundExecutor);
           } else {
             return Futures.immediateFuture(false);
           }
@@ -141,13 +141,14 @@ public class WorkerStartupManager {
     verificationCodeRequestRepo.resetNonceForExpiredRequestsIfAny(clock.now());
   }
 
-  private FluentFuture<Void> maybeUpdateAnalyticsState() {
+  private FluentFuture<Void> maybeUpdatePackageConfigurationState() {
     return FluentFuture.from(TaskToFutureAdapter.getFutureWithTimeout(
         exposureNotificationClientWrapper.getPackageConfiguration(),
         GET_PACKAGE_CONFIGURATION_TIMEOUT,
         scheduledExecutor))
         .transformAsync(packageConfiguration -> {
           packageConfigurationHelper.maybeUpdateAnalyticsState(packageConfiguration);
+          packageConfigurationHelper.maybeUpdateSmsNoticeState(packageConfiguration);
           return Futures.immediateVoidFuture();
         }, backgroundExecutor)
         .catchingAsync(Exception.class, t -> {

@@ -16,7 +16,7 @@
   -->
 
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-  <item android:alpha="0.12" android:color="@color/colorPrimary" android:state_checked="true"
+  <item android:alpha="0.12" android:color="?attr/colorPrimary" android:state_checked="true"
     android:state_enabled="true" />
   <item android:alpha="0.124" android:color="?attr/colorControlNormal"
     android:state_enabled="false" />

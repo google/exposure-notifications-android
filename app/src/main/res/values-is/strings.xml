@@ -13,7 +13,7 @@
   <string name="btn_done">Loka</string>
   <string name="btn_previous">Til baka</string>
   <string name="btn_verify">Staðfesta</string>
-  <string name="btn_dont_share">Halda áfram án þess að deila</string>
+  <string name="btn_no_thanks">Nei, takk</string>
   <string name="btn_share">Deila</string>
   <string name="learn_more">Frekari upplýsingar</string>
   <string name="home_tab_settings_text">Stillingar</string>
@@ -201,13 +201,13 @@
   <string name="sms_intercept_notice_title">Nýjungar</string>
   <string name="sms_intercept_notice_content">Ef þú færð niðurstöður úr skimun í SMS-skilaboðum færðu hugsanlega beiðni um að deila greiningunni í tilkynningum um útsetningu. Þú getur slökkt á þessu hvenær sem er í stillingum.</string>
   <string name="share_upload_title">Deildu niðurstöðu þinni úr skimun til að vernda aðra í samfélaginu</string>
-  <string name="share_upload_test_result_source_description">Niðurstöður úr skimun koma frá %1$s</string>
-  <string name="share_upload_symptoms_subtitle">Einkenni komu fram</string>
+  <string name="share_upload_test_result_source_description">%1$s sendi niðurstöðurnar</string>
+  <string name="share_upload_symptoms_subtitle">Einkenni komu fyrst fram</string>
   <string name="share_upload_symptoms_date_fixed_description">Dagsetning einkenna er frá %1$s</string>
   <string name="share_upload_skip_choice">Sleppa</string>
   <string name="share_upload_travel_subtitle">Ferðasaga</string>
   <string name="travel_history_travelled_recently_choice">Ferðaðist á s.l. 14 dögum</string>
-  <string name="travel_history_no_travel_choice">Engin</string>
+  <string name="travel_history_no_travel_choice">Ég hef ekki ferðast</string>
   <string name="share_upload_select_a_date_choice">Veldu dagsetningu</string>
   <string name="share_upload_status_subtitle">COVID-19-staða</string>
   <string name="share_upload_status_confirmed">Smit til staðar</string>

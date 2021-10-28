@@ -74,6 +74,21 @@ public class PackageConfigurationHelper {
   }
 
   /**
+   * Checks whether the app analytics opt-in exists in the given {@link PackageConfiguration}.
+   */
+  public static boolean isAppAnalyticsPresentInPackageConfiguration(
+      @Nullable PackageConfiguration packageConfiguration) {
+    if (packageConfiguration == null) {
+      return false;
+    }
+    Bundle values = packageConfiguration.getValues();
+    if (values != null) {
+      return values.containsKey(APP_ANALYTICS_OPT_IN);
+    }
+    return false;
+  }
+
+  /**
    * Fetches the app analytics state from a {@link PackageConfiguration} if it exists. Otherwise
    * false.
    */
@@ -133,6 +148,17 @@ public class PackageConfigurationHelper {
       return values.getBoolean(SMS_NOTICE, false);
     }
     return false;
+  }
+
+  /**
+   * Fetches the sms notice via
+   * {@link PackageConfigurationHelper#getSmsNoticeFromPackageConfiguration} and writes it's value
+   * into a SharedPreference.
+   */
+  public void maybeUpdateSmsNoticeState(
+      @Nullable PackageConfiguration packageConfiguration) {
+      exposureNotificationSharedPreferences
+          .setPlaySmsNoticeSeen(getSmsNoticeFromPackageConfiguration(packageConfiguration));
   }
 
 }

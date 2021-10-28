@@ -12,4 +12,6 @@
   <string name="possible_exposure">Możliwe narażenie na kontakt</string>
   <string name="share_history_delete_test_result_title">Usunąć ten wynik testu?</string>
   <string name="share_history_delete_test_result_detail">Wynik testu na COVID-19 z %1$s zostanie usunięty z telefonu.</string>
+  <string name="sms_intercept_notice_card_title">Możesz otrzymać przypomnienie o udostępnieniu wyniku</string>
+  <string name="sms_intercept_notice_card_content">Jeśli uzyskasz wynik dodatni i otrzymasz zweryfikowanego SMS-a</string>
 </resources>

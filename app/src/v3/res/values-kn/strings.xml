@@ -12,4 +12,6 @@
   <string name="possible_exposure">ಸಂಭವನೀಯ ಸಂಪರ್ಕಕ್ಕೆ ಬಂದಿರುವಿಕೆ</string>
   <string name="share_history_delete_test_result_title">ಈ ಪರೀಕ್ಷೆಯ ಫಲಿತಾಂಶವನ್ನು ಅಳಿಸುವುದೇ?</string>
   <string name="share_history_delete_test_result_detail">%1$s ದಿನಾಂಕದಿಂದ ನಿಮ್ಮ COVID-19 ಪರೀಕ್ಷೆಯ ಫಲಿತಾಂಶಗಳನ್ನು ನಿಮ್ಮ ಫೋನ್‌ನಿಂದ ಅಳಿಸಲಾಗುತ್ತದೆ.</string>
+  <string name="sms_intercept_notice_card_title">ನಿಮ್ಮ ಫಲಿತಾಂಶವನ್ನು ಹಂಚಿಕೊಳ್ಳಲು ನೀವು ರಿಮೈಂಡರ್ ಅನ್ನು ಪಡೆಯಬಹುದು</string>
+  <string name="sms_intercept_notice_card_content">ಪರೀಕ್ಷೆಯಲ್ಲಿ ಪಾಸಿಟೀವ್ ಬಂದರೆ ಹಾಗೂ ಪರಿಶೀಲಿಸಿದ ಎಸ್‌ಎಂಎಸ್ ಪಡೆದರೆ</string>
 </resources>

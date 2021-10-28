@@ -740,6 +740,41 @@ public class ExposureNotificationSharedPreferencesTest {
   }
 
   @Test
+  public void isPlaySmsNoticeSeen_default_isFalse() {
+    assertThat(exposureNotificationSharedPreferences.isPlaySmsNoticeSeen()).isFalse();
+  }
+
+  @Test
+  public void isPlaySmsNoticeSeen_setSeenAsyncTrue_isTrue() throws InterruptedException {
+    exposureNotificationSharedPreferences.setPlaySmsNoticeSeenAsync(true);
+    Thread.sleep(1000); // just wait a second incase async write not complete.
+
+    assertThat(exposureNotificationSharedPreferences.isPlaySmsNoticeSeen()).isTrue();
+  }
+
+  @Test
+  public void isPlaySmsNoticeSeen_setSeenAsyncFalse_isFalse() throws InterruptedException {
+    exposureNotificationSharedPreferences.setPlaySmsNoticeSeenAsync(false);
+    Thread.sleep(1000); // just wait a second incase async write not complete.
+
+    assertThat(exposureNotificationSharedPreferences.isPlaySmsNoticeSeen()).isFalse();
+  }
+
+  @Test
+  public void isPlaySmsNoticeSeen_setSeenTrue_isTrue() {
+    exposureNotificationSharedPreferences.setPlaySmsNoticeSeen(true);
+
+    assertThat(exposureNotificationSharedPreferences.isPlaySmsNoticeSeen()).isTrue();
+  }
+
+  @Test
+  public void isPlaySmsNoticeSeen_setSeenFalse_isFalse() {
+    exposureNotificationSharedPreferences.setPlaySmsNoticeSeen(false);
+
+    assertThat(exposureNotificationSharedPreferences.isPlaySmsNoticeSeen()).isFalse();
+  }
+
+  @Test
   public void setBiweeklyMetricsUploadDay_coversAllDays() {
     Calendar calendar = Calendar.getInstance();
     exposureNotificationSharedPreferences.setBiweeklyMetricsUploadDay(calendar);

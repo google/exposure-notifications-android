@@ -12,4 +12,6 @@
   <string name="possible_exposure">Posibleng exposure</string>
   <string name="share_history_delete_test_result_title">I-delete ang resulta ng test na ito?</string>
   <string name="share_history_delete_test_result_detail">Made-delete sa iyong telepono ang resulta ng COVID-19 test mo noong %1$s.</string>
+  <string name="sms_intercept_notice_card_title">Posibleng makatanggap ka ng paalalang ibahagi ang resulta mo</string>
+  <string name="sms_intercept_notice_card_content">Kung magpositibo ka at makakuha ng na-verify na SMS</string>
 </resources>

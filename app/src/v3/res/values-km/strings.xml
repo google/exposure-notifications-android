@@ -12,4 +12,6 @@
   <string name="possible_exposure">ការដែលអាចនៅជិតអ្នកមានផ្ទុក COVID-19</string>
   <string name="share_history_delete_test_result_title">លុបលទ្ធផលតេស្តនេះឬ?</string>
   <string name="share_history_delete_test_result_detail">លទ្ធផលតេស្ត COVID-19 របស់អ្នកពីថ្ងៃទី %1$s នឹងត្រូវលុបចេញពីទូរសព្ទរបស់អ្នក។</string>
+  <string name="sms_intercept_notice_card_title">អ្នកអាច​នឹងទទួលបាន​ការរំលឹកឱ្យ​ចែករំលែក​លទ្ធផលរបស់អ្នក</string>
+  <string name="sms_intercept_notice_card_content">ប្រសិនបើអ្នកធ្វើតេស្តរកឃើញវិជ្ជមាន និងទទួលបានសារ SMS ដែលមានការផ្ទៀងផ្ទាត់</string>
 </resources>

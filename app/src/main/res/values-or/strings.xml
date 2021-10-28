@@ -13,7 +13,7 @@
   <string name="btn_done">ହୋଇଗଲା</string>
   <string name="btn_previous">ପୂର୍ବବର୍ତ୍ତୀ</string>
   <string name="btn_verify">ଯାଞ୍ଚ କରନ୍ତୁ</string>
-  <string name="btn_dont_share">ସେୟାର୍ ନକରି ଜାରି ରଖନ୍ତୁ</string>
+  <string name="btn_no_thanks">ନା, ଧନ୍ୟବାଦ</string>
   <string name="btn_share">ସେୟାର୍ କରନ୍ତୁ</string>
   <string name="learn_more">ଅଧିକ ଜାଣନ୍ତୁ</string>
   <string name="home_tab_settings_text">ସେଟିଂସ୍</string>
@@ -201,13 +201,13 @@
   <string name="sms_intercept_notice_title">ନୂଆ କଣ ଅଛି</string>
   <string name="sms_intercept_notice_content">ଯଦି ଆପଣ ଆପଣଙ୍କ ଟେଷ୍ଟ ରିପୋର୍ଟ ଥିବା ଏକ SMS ପ୍ରାପ୍ତ କରନ୍ତି, ତେବେ ସଂକ୍ରମଣ ବିଜ୍ଞପ୍ତିଗୁଡ଼ିକରେ ଆପଣଙ୍କ ଡାଏଗ୍ନୋସିସ୍ ସେୟାର୍ କରିବାକୁ କହୁଥିବା ଏକ ବିଜ୍ଞପ୍ତି ଆପଣ ପାଇପାରନ୍ତି। ଆପଣ ଯେ କୌଣସି ସମୟରେ ସେଟିଂସରେ ଏହାକୁ ଅକ୍ଷମ କରିପାରିବେ।</string>
   <string name="share_upload_title">ଆପଣଙ୍କ କମ୍ୟୁନିଟୀକୁ ସୁରକ୍ଷିତ ରଖିବା ପାଇଁ ଆପଣଙ୍କ ଟେଷ୍ଟ ରିପୋର୍ଟ ସେୟାର୍ କରନ୍ତୁ</string>
-  <string name="share_upload_test_result_source_description">%1$s ଟେଷ୍ଟ ରିପୋର୍ଟ ପଠାଇଛନ୍ତି</string>
-  <string name="share_upload_symptoms_subtitle">ଏହି ତାରିଖରୁ ଲକ୍ଷଣ ଆରମ୍ଭ ହୋଇଛି</string>
+  <string name="share_upload_test_result_source_description">%1$s ଫଳାଫଳ ପଠାଇଛନ୍ତି</string>
+  <string name="share_upload_symptoms_subtitle">ଏହି ତାରିଖରୁ ଲକ୍ଷଣ ଆରମ୍ଭ ହୋଇଥିଲା</string>
   <string name="share_upload_symptoms_date_fixed_description">ଲକ୍ଷଣ ଆରମ୍ଭ ହେବାର ତାରିଖ %1$s ଦ୍ୱାରା ପ୍ରଦାନ କରାଯାଇଛି</string>
   <string name="share_upload_skip_choice">ବାଦ୍ ଦିଅନ୍ତୁ</string>
   <string name="share_upload_travel_subtitle">ଭ୍ରମଣର ଇତିହାସ</string>
   <string name="travel_history_travelled_recently_choice">ଗତ 14 ଦିନ ଭିତରେ ଭ୍ରମଣ କରିଛନ୍ତି</string>
-  <string name="travel_history_no_travel_choice">କିଛି ନାହିଁ</string>
+  <string name="travel_history_no_travel_choice">ମୁଁ ଭ୍ରମଣ କରିନାହିଁ</string>
   <string name="share_upload_select_a_date_choice">ଏକ ତାରିଖ ଚୟନ କରନ୍ତୁ</string>
   <string name="share_upload_status_subtitle">କୋଭିଡ-19 ସ୍ଥିତି</string>
   <string name="share_upload_status_confirmed">ପଜିଟିଭ୍</string>

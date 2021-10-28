@@ -17,6 +17,7 @@
 
 package com.google.android.apps.exposurenotification.network;
 
+import static com.google.android.apps.exposurenotification.network.CustomRetryPolicy.SERVER_TIMEOUT_SECS;
 import static com.google.common.truth.Truth.assertThat;
 import static org.junit.Assert.assertThrows;
 
@@ -55,6 +56,14 @@ public class CustomRetryPolicyTest {
   private static final DateTimeFormatter RETRY_TIME_FORMAT = DateTimeFormatter.RFC_1123_DATE_TIME;
 
   private final FakeClock clock = new FakeClock();
+
+  @Test
+  public void delay_shouldEqualServerTimeoutSecs() {
+    CustomRetryPolicy policy = new CustomRetryPolicy(clock);
+    long serverTimeoutMs = Duration.ofSeconds(SERVER_TIMEOUT_SECS).toMillis();
+
+    assertThat(policy.getCurrentTimeout()).isEqualTo(serverTimeoutMs);
+  }
 
   @Test
   public void http4xx_shouldNotRetry_exceptFor429() {

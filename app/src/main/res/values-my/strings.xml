@@ -13,7 +13,7 @@
   <string name="btn_done">ပြီးပြီ</string>
   <string name="btn_previous">ယခင်</string>
   <string name="btn_verify">စိစစ်ရန်</string>
-  <string name="btn_dont_share">မမျှဝေဘဲ ရှေ့ဆက်ရန်</string>
+  <string name="btn_no_thanks">မလိုပါ</string>
   <string name="btn_share">မျှဝေရန်</string>
   <string name="learn_more">ပိုမိုလေ့လာရန်</string>
   <string name="home_tab_settings_text">ဆက်တင်များ</string>
@@ -201,13 +201,13 @@
   <string name="sms_intercept_notice_title">အသစ်ရှိသလား</string>
   <string name="sms_intercept_notice_content">သင်၏ စစ်ဆေးမှုရလဒ်ပါဝင်သော SMS ရရှိပါက ထိတွေ့မှု အကြောင်းကြားချက်များတွင် သင့်ရောဂါတွေ့ရှိချက်ကို မျှဝေခိုင်းသော အကြောင်းကြားချက်ကို ရရှိနိုင်သည်။ ၎င်းကို ဆက်တင်များတွင် အချိန်မရွေးပိတ်နိုင်သည်။</string>
   <string name="share_upload_title">ကွန်မြူနတီကို ကာကွယ်ရန် သင့်စစ်ဆေးမှုရလဒ်ကို မျှဝေပါ</string>
-  <string name="share_upload_test_result_source_description">%1$s က စစ်ဆေးမှုရလဒ်ကို ပို့ထားသည်</string>
-  <string name="share_upload_symptoms_subtitle">ရောဂါလက္ခဏာစပြသည့် နေ့ရက်</string>
+  <string name="share_upload_test_result_source_description">%1$s က ရလဒ်များကို ပို့ထားသည်</string>
+  <string name="share_upload_symptoms_subtitle">ရောဂါလက္ခဏာ စတင်ချိန်</string>
   <string name="share_upload_symptoms_date_fixed_description">ရောဂါလက္ခဏာ စတင်သည့်ရက်စွဲကို %1$s က ပေးထားသည်</string>
   <string name="share_upload_skip_choice">ကျော်ရန်</string>
   <string name="share_upload_travel_subtitle">ခရီးသွားရာဇဝင်</string>
   <string name="travel_history_travelled_recently_choice">လွန်ခဲ့သည့် ၁၄ ရက်အတွင်း ခရီးသွားထားသည်</string>
-  <string name="travel_history_no_travel_choice">မရှိ</string>
+  <string name="travel_history_no_travel_choice">ခရီးသွားလာခြင်း မရှိပါ</string>
   <string name="share_upload_select_a_date_choice">ရက်စွဲ ရွေးချယ်ရန်</string>
   <string name="share_upload_status_subtitle">COVID-19 ရလဒ်</string>
   <string name="share_upload_status_confirmed">ရောဂါပိုးရှိသည်</string>

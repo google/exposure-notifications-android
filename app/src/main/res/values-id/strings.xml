@@ -13,7 +13,7 @@
   <string name="btn_done">Selesai</string>
   <string name="btn_previous">Sebelumnya</string>
   <string name="btn_verify">Verifikasi</string>
-  <string name="btn_dont_share">Lanjutkan tanpa berbagi</string>
+  <string name="btn_no_thanks">Tidak</string>
   <string name="btn_share">Bagikan</string>
   <string name="learn_more">Pelajari lebih lanjut</string>
   <string name="home_tab_settings_text">Setelan</string>
@@ -201,13 +201,13 @@
   <string name="sms_intercept_notice_title">Yang baru</string>
   <string name="sms_intercept_notice_content">Jika Anda menerima SMS yang berisi hasil tes, Anda mungkin mendapatkan notifikasi yang meminta untuk membagikan diagnosis di notifikasi paparan. Anda dapat menonaktifkannya kapan saja di setelan.</string>
   <string name="share_upload_title">Bagikan hasil tes Anda untuk melindungi masyarakat sekitar</string>
-  <string name="share_upload_test_result_source_description">Hasil tes dikirim oleh %1$s</string>
-  <string name="share_upload_symptoms_subtitle">Gejala dimulai sejak</string>
+  <string name="share_upload_test_result_source_description">Hasil dikirim oleh %1$s</string>
+  <string name="share_upload_symptoms_subtitle">Gejala dimulai pada</string>
   <string name="share_upload_symptoms_date_fixed_description">Tanggal munculnya gejala diberikan oleh %1$s</string>
   <string name="share_upload_skip_choice">Lewati</string>
   <string name="share_upload_travel_subtitle">Histori bepergian</string>
   <string name="travel_history_travelled_recently_choice">Bepergian dalam 14 hari terakhir</string>
-  <string name="travel_history_no_travel_choice">Tidak ada</string>
+  <string name="travel_history_no_travel_choice">Saya tidak bepergian</string>
   <string name="share_upload_select_a_date_choice">Pilih tanggal</string>
   <string name="share_upload_status_subtitle">Hasil tes COVID-19</string>
   <string name="share_upload_status_confirmed">Positif</string>

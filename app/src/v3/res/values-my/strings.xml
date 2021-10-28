@@ -12,4 +12,6 @@
   <string name="possible_exposure">ထိတွေ့နိုင်ခြေ</string>
   <string name="share_history_delete_test_result_title">ဤစစ်ဆေးချက်ရလဒ်ကို ဖျက်မလား။</string>
   <string name="share_history_delete_test_result_detail">%1$s က သင်၏ COVID-19 စစ်ဆေးချက်ရလဒ်ကို သင့်ဖုန်းမှဖျက်ပါမည်။</string>
+  <string name="sms_intercept_notice_card_title">ရလဒ်ကိုမျှဝေရန် သတိပေးချက် ရရှိနိုင်သည်</string>
+  <string name="sms_intercept_notice_card_content">ရောဂါပိုးတွေ့ပါကအတည်ပြုထားသော SMS ရယူနိုင်သည်</string>
 </resources>

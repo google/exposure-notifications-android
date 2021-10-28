@@ -72,6 +72,8 @@ public final class IntentUtil {
 
   public static final String EXTRA_SLICE = "IntentUtil.EXTRA_SLICE";
 
+  public static final String EXTRA_SMS_NOTICE_SLICE = "IntentUtil.EXTRA_SMS_NOTICE_SLICE";
+
   protected static final String NOTIFICATION_DISMISSED_ACTION_ID =
       "ApolloExposureNotificationCallback.NOTIFICATION_DISMISSED_ACTION_ID";
 
@@ -85,6 +87,12 @@ public final class IntentUtil {
   public static Intent getPossibleExposureSliceIntent(Context context) {
     Intent intent = getActionLaunchHomeIntent(context);
     intent.putExtra(EXTRA_SLICE, true);
+    return intent;
+  }
+
+  public static Intent getSmsNoticeSliceIntent(Context context) {
+    Intent intent = getActionLaunchHomeIntent(context);
+    intent.putExtra(EXTRA_SMS_NOTICE_SLICE, true);
     return intent;
   }
 

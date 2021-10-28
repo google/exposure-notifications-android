@@ -260,7 +260,7 @@
 
         <Button
           android:id="@+id/onboarding_no_thanks_button"
-          style="@style/Widget.MaterialComponents.Button.TextButton"
+          style="@style/Widget.ExposureNotifications.Button.TextButton"
           android:layout_alignParentStart="true"
           android:layout_width="wrap_content"
           android:layout_marginHorizontal="@dimen/padding_small"
@@ -275,7 +275,7 @@
 
           <Button
             android:id="@+id/onboarding_next_button"
-            style="@style/Widget.MaterialComponents.Button"
+            style="@style/Widget.ExposureNotifications.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/btn_continue"

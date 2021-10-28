@@ -12,4 +12,6 @@
   <string name="possible_exposure">Möguleg útsetning</string>
   <string name="share_history_delete_test_result_title">Eyða þessum niðurstöðum úr skimun?</string>
   <string name="share_history_delete_test_result_detail">Niðurstöðum þínum úr COVID-19 skimun frá %1$s verður eytt úr símanum.</string>
+  <string name="sms_intercept_notice_card_title">Þú kannt að fá áminningu um að deila niðurstöðunum</string>
+  <string name="sms_intercept_notice_card_content">Ef þú greinist jákvæð(ur) og færð staðfest SMS</string>
 </resources>

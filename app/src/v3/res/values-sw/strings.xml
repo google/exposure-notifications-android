@@ -12,4 +12,6 @@
   <string name="possible_exposure">Kukaribia aliyeambukizwa</string>
   <string name="share_history_delete_test_result_title">Ungependa kufuta matokeo haya ya vipimo?</string>
   <string name="share_history_delete_test_result_detail">Matokeo yako ya COVID-19 ya tarehe %1$s yatafutwa kwenye simu yako.</string>
+  <string name="sms_intercept_notice_card_title">Huenda ukapokea kikumbusho ili ushiriki matokeo yako</string>
+  <string name="sms_intercept_notice_card_content">Ukithibitishwa umeambukizwa na upokee SMS iliyothibitishwa</string>
 </resources>

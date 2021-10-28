@@ -12,4 +12,6 @@
   <string name="possible_exposure">Iespējama saskare</string>
   <string name="share_history_delete_test_result_title">Vai dzēst šo testa rezultātu?</string>
   <string name="share_history_delete_test_result_detail">No tālruņa tiks izdzēsts Covid-19 testa rezultāts, kas iegūts šajā datumā: %1$s.</string>
+  <string name="sms_intercept_notice_card_title">Varat saņemt atgādinājumu par rezultāta kopīgošanu</string>
+  <string name="sms_intercept_notice_card_content">Ja saņemat verificētu īsziņu ar pozitīvu testa rezultātu</string>
 </resources>

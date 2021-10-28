@@ -66,7 +66,7 @@
         android:layout_gravity="center"
         android:importantForAccessibility="no"
         android:contentDescription="@null"
-        app:srcCompat="@drawable/ic_review_info" />
+        app:srcCompat="@drawable/ic_upload_info" />
 
       <TextView
         android:id="@+id/do_you_have_code_content"
@@ -94,7 +94,7 @@
       android:gravity="start"
       android:text="@string/learn_more"
       android:paddingHorizontal="0dp"
-      style="@style/Widget.MaterialComponents.Button.TextButton" />
+      style="@style/Widget.ExposureNotifications.Button.TextButton" />
 
     <Button
       android:id="@+id/btn_ok"
@@ -104,7 +104,7 @@
       android:gravity="end"
       android:text="@string/btn_got_it"
       android:paddingHorizontal="0dp"
-      style="@style/Widget.MaterialComponents.Button.TextButton" />
+      style="@style/Widget.ExposureNotifications.Button.TextButton" />
 
   </LinearLayout>
 

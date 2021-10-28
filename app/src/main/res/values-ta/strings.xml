@@ -13,7 +13,7 @@
   <string name="btn_done">சரி</string>
   <string name="btn_previous">முந்தையது</string>
   <string name="btn_verify">சரிபார்</string>
-  <string name="btn_dont_share">பகிராமல் தொடர்க</string>
+  <string name="btn_no_thanks">வேண்டாம்</string>
   <string name="btn_share">பகிர்</string>
   <string name="learn_more">மேலும் அறிக</string>
   <string name="home_tab_settings_text">அமைப்புகள்</string>
@@ -201,13 +201,13 @@
   <string name="sms_intercept_notice_title">புதியவை</string>
   <string name="sms_intercept_notice_content">உங்கள் பரிசோதனை முடிவை மெசேஜ் மூலம் பெற்றால் \'கோவிட்-19 தொற்று சாத்திய எச்சரிக்கைகளில்\' அந்த முடிவைப் பகிரச் சொல்லி நீங்கள் அறிவிப்பைப் பெறக்கூடும். அமைப்புகளில் இதை எப்போது வேண்டுமானாலும் முடக்கலாம்.</string>
   <string name="share_upload_title">சமூகத்தைப் பாதுகாக்க உங்கள் பரிசோதனை முடிவுகளைப் பகிருங்கள்</string>
-  <string name="share_upload_test_result_source_description">பரிசோதனை முடிவுகளை %1$s அனுப்பியுள்ளது</string>
-  <string name="share_upload_symptoms_subtitle">அறிகுறியை உணரத் தொடங்கிய தேதி</string>
+  <string name="share_upload_test_result_source_description">%1$s அனுப்பிய முடிவுகள்</string>
+  <string name="share_upload_symptoms_subtitle">அறிகுறிகள் தொடங்கிய நாள்</string>
   <string name="share_upload_symptoms_date_fixed_description">அறிகுறி ஆரம்பித்த தேதியை வழங்கியது: %1$s</string>
   <string name="share_upload_skip_choice">தவிர்</string>
   <string name="share_upload_travel_subtitle">மேற்கொண்ட பயணங்கள்</string>
   <string name="travel_history_travelled_recently_choice">கடந்த 14 நாட்களில் மேற்கொண்ட பயணங்கள்</string>
-  <string name="travel_history_no_travel_choice">ஏதுமில்லை</string>
+  <string name="travel_history_no_travel_choice">நான் பயணிக்கவில்லை</string>
   <string name="share_upload_select_a_date_choice">தேதியைத் தேர்ந்தெடுங்கள்</string>
   <string name="share_upload_status_subtitle">கோவிட்-19 பாதிப்பு நிலை</string>
   <string name="share_upload_status_confirmed">பாசிட்டிவ்</string>

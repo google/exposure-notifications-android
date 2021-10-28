@@ -13,7 +13,7 @@
   <string name="btn_done">Klaar</string>
   <string name="btn_previous">Vorige</string>
   <string name="btn_verify">Verifieer</string>
-  <string name="btn_dont_share">Gaan voort sonder om te deel</string>
+  <string name="btn_no_thanks">Nee, dankie</string>
   <string name="btn_share">Deel</string>
   <string name="learn_more">Kom meer te wete</string>
   <string name="home_tab_settings_text">Instellings</string>
@@ -202,13 +202,13 @@ ontledings met jou gesondheidowerheid</string>
   <string name="sms_intercept_notice_title">Wat\'s nuut</string>
   <string name="sms_intercept_notice_content">As jy \'n SMS met jou toetsuitslag ontvang, sal jy dalk \'n kennisgewing kry waarin jy gevra word om jou diagnose in blootstellingkennisgewings te deel. Jy kan dit enige tyd in instellings verander.</string>
   <string name="share_upload_title">Deel jou toetsuitslag om jou gemeenskap te beskerm</string>
-  <string name="share_upload_test_result_source_description">Toetsuitslag word deur %1$s gestuur</string>
-  <string name="share_upload_symptoms_subtitle">Het simptome sedert</string>
+  <string name="share_upload_test_result_source_description">Resultate is gestuur deur %1$s</string>
+  <string name="share_upload_symptoms_subtitle">Simptome het begin op</string>
   <string name="share_upload_symptoms_date_fixed_description">Data oor simptome is deur %1$s verskaf</string>
   <string name="share_upload_skip_choice">Slaan oor</string>
   <string name="share_upload_travel_subtitle">Reisgeskiedenis</string>
   <string name="travel_history_travelled_recently_choice">Het die afgelope 14 dae gereis</string>
-  <string name="travel_history_no_travel_choice">Geen</string>
+  <string name="travel_history_no_travel_choice">Ek het nie gereis nie</string>
   <string name="share_upload_select_a_date_choice">Kies \'n datum</string>
   <string name="share_upload_status_subtitle">COVID-19-status</string>
   <string name="share_upload_status_confirmed">Positief</string>

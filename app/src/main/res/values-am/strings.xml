@@ -13,7 +13,7 @@
   <string name="btn_done">ተከናውኗል</string>
   <string name="btn_previous">ቀዳሚ</string>
   <string name="btn_verify">ያረጋግጡ</string>
-  <string name="btn_dont_share">ሳያጋሩ ይቀጥሉ</string>
+  <string name="btn_no_thanks">አይ፣ አመሰግናለሁ</string>
   <string name="btn_share">አጋራ</string>
   <string name="learn_more">የበለጠ ለመረዳት</string>
   <string name="home_tab_settings_text">ቅንብሮች</string>
@@ -201,13 +201,13 @@
   <string name="sms_intercept_notice_title">ምን አዲስ ነገር አለ</string>
   <string name="sms_intercept_notice_content">የሙከራ ውጤትዎን የያዘ ኤስኤምኤስ ከተቀበሉ በተጋላጭነት ማሳወቂያዎች ውስጥ ምርመራዎን እንዲያጋሩ የሚጠይቀዎት ማሳወቂያ ሊያገኙ ይችላሉ። ይህን በማንኛውም ጊዜ በቅንብሮች ውስጥ ማሰናከል ይችላሉ።</string>
   <string name="share_upload_title">ማህበረሰብዎን ለመጠበቅ የፈተና ውጤትዎን ያጋሩ</string>
-  <string name="share_upload_test_result_source_description">የሙከራ ውጤት በ%1$s ተልኳል</string>
-  <string name="share_upload_symptoms_subtitle">ምልክቱ የጀመረው ከ</string>
+  <string name="share_upload_test_result_source_description">ውጤቶች በ%1$s ተልከዋል</string>
+  <string name="share_upload_symptoms_subtitle">የበሽታ ምልክቶች የጀመሩት በ</string>
   <string name="share_upload_symptoms_date_fixed_description">የበሽታ ምልክት ቀን የሚቀርበው በ%1$s ነው</string>
   <string name="share_upload_skip_choice">ዝለል</string>
   <string name="share_upload_travel_subtitle">የጉዞ ታሪክ</string>
   <string name="travel_history_travelled_recently_choice">ባለፉት 14 ቀኖች ውስጥ ተጉዘዋል</string>
-  <string name="travel_history_no_travel_choice">ምንም</string>
+  <string name="travel_history_no_travel_choice">አልተጓዝኩም</string>
   <string name="share_upload_select_a_date_choice">ቀን ይምረጡ</string>
   <string name="share_upload_status_subtitle">የኮቪድ-19 ሁኔታ</string>
   <string name="share_upload_status_confirmed">ፖዘቲቭ</string>

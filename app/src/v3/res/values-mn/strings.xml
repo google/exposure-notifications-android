@@ -12,4 +12,6 @@
   <string name="possible_exposure">Өртсөн байж болзошгүй мэдээлэл</string>
   <string name="share_history_delete_test_result_title">Энэ шинжилгээний хариуг устгах уу?</string>
   <string name="share_history_delete_test_result_detail">Таны %1$s-н коронавируст халдвар (COVID-19)-ын шинжилгээний хариуг утаснаас тань устгана.</string>
+  <string name="sms_intercept_notice_card_title">Та илэрцээ хуваалцах сануулагч авч магадгүй</string>
+  <string name="sms_intercept_notice_card_content">Хэрэв таны шинжилгээний хариу эерэг ба баталгаажсан SMS авах</string>
 </resources>

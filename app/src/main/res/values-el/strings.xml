@@ -13,7 +13,7 @@
   <string name="btn_done">Τέλος</string>
   <string name="btn_previous">Προηγούμενο</string>
   <string name="btn_verify">Επαλήθευση</string>
-  <string name="btn_dont_share">Συνέχεια χωρίς κοινοποίηση</string>
+  <string name="btn_no_thanks">Όχι, ευχαριστώ</string>
   <string name="btn_share">Κοινοποίηση</string>
   <string name="learn_more">Μάθετε περισσότερα</string>
   <string name="home_tab_settings_text">Ρυθμίσεις</string>
@@ -201,13 +201,13 @@
   <string name="sms_intercept_notice_title">Τι νέο υπάρχει</string>
   <string name="sms_intercept_notice_content">Εάν λάβετε ένα SMS με το αποτέλεσμα της εξέτασής σας, μπορεί να λάβετε μια ειδοποίηση που θα σας ζητά να μοιραστείτε το αποτέλεσμα της διάγνωσης στις ειδοποιήσεις έκθεσης. Μπορείτε να απενεργοποιήσετε αυτήν τη λειτουργία ανά πάσα στιγμή από τις ρυθμίσεις.</string>
   <string name="share_upload_title">Μοιραστείτε το αποτέλεσμα της εξέτασής σας για να προστατεύσετε την κοινότητά σας</string>
-  <string name="share_upload_test_result_source_description">Το αποτέλεσμα της εξέτασης στάλθηκε από την υπηρεσία %1$s.</string>
-  <string name="share_upload_symptoms_subtitle">Το σύμπτωμα ξεκίνησε από</string>
+  <string name="share_upload_test_result_source_description">Τα αποτελέσματα στάλθηκαν από %1$s</string>
+  <string name="share_upload_symptoms_subtitle">Τα συμπτώματα εκδηλώθηκαν στις</string>
   <string name="share_upload_symptoms_date_fixed_description">Η ημερομηνία έναρξης συμπτωμάτων παρέχεται από %1$s</string>
   <string name="share_upload_skip_choice">Παράβλεψη</string>
   <string name="share_upload_travel_subtitle">Ιστορικό ταξιδιών</string>
   <string name="travel_history_travelled_recently_choice">Ταξίδι τις τελευταίες 14 ημέρες</string>
-  <string name="travel_history_no_travel_choice">Κανένα</string>
+  <string name="travel_history_no_travel_choice">Δεν ταξίδεψα</string>
   <string name="share_upload_select_a_date_choice">Επιλέξτε ημερομηνία</string>
   <string name="share_upload_status_subtitle">Κατάσταση COVID-19</string>
   <string name="share_upload_status_confirmed">Θετικό</string>

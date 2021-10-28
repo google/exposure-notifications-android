@@ -19,8 +19,7 @@ package com.google.android.apps.exposurenotification.nearby;
 
 import android.content.Context;
 import androidx.annotation.NonNull;
-import androidx.hilt.Assisted;
-import androidx.hilt.work.WorkerInject;
+import androidx.hilt.work.HiltWorker;
 import androidx.work.BackoffPolicy;
 import androidx.work.Constraints;
 import androidx.work.ExistingPeriodicWorkPolicy;
@@ -43,6 +42,8 @@ import com.google.android.gms.nearby.exposurenotification.DiagnosisKeysDataMappi
 import com.google.common.util.concurrent.FluentFuture;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
+import dagger.assisted.Assisted;
+import dagger.assisted.AssistedInject;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -51,6 +52,7 @@ import org.threeten.bp.Duration;
 /**
  * Performs work to provide diagnosis keys to the exposure notifications API.
  */
+@HiltWorker
 public class ProvideDiagnosisKeysWorker extends ListenableWorker {
 
   /*
@@ -75,7 +77,7 @@ public class ProvideDiagnosisKeysWorker extends ListenableWorker {
   private final WorkerStartupManager workerStartupManager;
   private final AnalyticsLogger logger;
 
-  @WorkerInject
+  @AssistedInject
   public ProvideDiagnosisKeysWorker(
       @Assisted @NonNull Context context,
       @Assisted @NonNull WorkerParameters workerParams,

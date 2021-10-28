@@ -13,7 +13,7 @@
   <string name="btn_done">Fet</string>
   <string name="btn_previous">Anterior</string>
   <string name="btn_verify">Verifica</string>
-  <string name="btn_dont_share">Continua sense compartir</string>
+  <string name="btn_no_thanks">No, gràcies</string>
   <string name="btn_share">Comparteix</string>
   <string name="learn_more">Més informació</string>
   <string name="home_tab_settings_text">Configuració</string>
@@ -201,13 +201,13 @@
   <string name="sms_intercept_notice_title">Novetats</string>
   <string name="sms_intercept_notice_content">Si reps un SMS amb el resultat de la prova, és possible que rebis una notificació en què se\'t demani que comparteixis el diagnòstic al sistema Notificacions d\'exposició. Pots desactivar aquesta opció en qualsevol moment a la configuració.</string>
   <string name="share_upload_title">Comparteix el resultat de la prova per protegir la teva comunitat</string>
-  <string name="share_upload_test_result_source_description">%1$s ha enviat el resultat de la prova</string>
-  <string name="share_upload_symptoms_subtitle">El símptoma va començar el dia</string>
+  <string name="share_upload_test_result_source_description">Resultats enviats per %1$s</string>
+  <string name="share_upload_symptoms_subtitle">Els símptomes van començar el dia</string>
   <string name="share_upload_symptoms_date_fixed_description">%1$s ha proporcionat la data del símptoma</string>
   <string name="share_upload_skip_choice">Omet</string>
   <string name="share_upload_travel_subtitle">Historial de viatges</string>
   <string name="travel_history_travelled_recently_choice">He viatjat durant els 14 darrers dies</string>
-  <string name="travel_history_no_travel_choice">Cap</string>
+  <string name="travel_history_no_travel_choice">No he viatjat</string>
   <string name="share_upload_select_a_date_choice">Selecciona una data</string>
   <string name="share_upload_status_subtitle">Resultat de la prova de la COVID-19</string>
   <string name="share_upload_status_confirmed">Positiu</string>

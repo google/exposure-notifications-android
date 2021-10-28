@@ -13,7 +13,7 @@
   <string name="btn_done">થઈ ગયું</string>
   <string name="btn_previous">પાછળ</string>
   <string name="btn_verify">ચકાસો</string>
-  <string name="btn_dont_share">શેર કર્યા વિના ચાલુ રાખો</string>
+  <string name="btn_no_thanks">ના, આભાર</string>
   <string name="btn_share">શેર કરો</string>
   <string name="learn_more">વધુ જાણો</string>
   <string name="home_tab_settings_text">સેટિંગ</string>
@@ -201,13 +201,13 @@
   <string name="sms_intercept_notice_title">નવું શું છે</string>
   <string name="sms_intercept_notice_content">જો તમે તમારા પરીક્ષણ પરિણામ સાથે કોઈ SMS મેળવો, તો એક્સપોઝર નોટિફિકેશનમાં તમને તમારું નિદાન શેર કરવા જણાવતું કોઈ નોટિફિકેશન પણ તમે મેળવી શકો છો. તમે સેટિંગમાં જઈને કોઈપણ સમયે આને બંધ કરી શકો છો.</string>
   <string name="share_upload_title">તમારા સમુદાયની સુરક્ષા માટે, તમારું પરીક્ષણનું પરિણામ શેર કરો</string>
-  <string name="share_upload_test_result_source_description">%1$s દ્વારા પરીક્ષણનું પરિણામ મોકલવામાં આવ્યું છે</string>
+  <string name="share_upload_test_result_source_description">%1$s દ્વારા પરિણામો મોકલવામાં આવ્યા હતા</string>
   <string name="share_upload_symptoms_subtitle">લક્ષણો દેખાવાની તારીખ</string>
   <string name="share_upload_symptoms_date_fixed_description">લક્ષણ દેખાવાની તારીખ %1$s દ્વારા પ્રદાન કરવામાં આવે છે</string>
   <string name="share_upload_skip_choice">છોડો</string>
   <string name="share_upload_travel_subtitle">મુસાફરીનો ઇતિહાસ</string>
   <string name="travel_history_travelled_recently_choice">છેલ્લા 14 દિવસમાં કરેલી મુસાફરી</string>
-  <string name="travel_history_no_travel_choice">એકપણ નહીં</string>
+  <string name="travel_history_no_travel_choice">મેં કોઈ મુસાફરી કરી નથી</string>
   <string name="share_upload_select_a_date_choice">કોઈ તારીખ પસંદ કરો</string>
   <string name="share_upload_status_subtitle">COVID-19 સ્ટેટસ</string>
   <string name="share_upload_status_confirmed">પૉઝિટિવ</string>

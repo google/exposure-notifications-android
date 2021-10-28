@@ -13,7 +13,7 @@
   <string name="btn_done">Listo</string>
   <string name="btn_previous">Anterior</string>
   <string name="btn_verify">Verificar</string>
-  <string name="btn_dont_share">Continuar sin compartir</string>
+  <string name="btn_no_thanks">No, gracias</string>
   <string name="btn_share">Compartir</string>
   <string name="learn_more">Más información</string>
   <string name="home_tab_settings_text">Configuración</string>
@@ -201,13 +201,13 @@
   <string name="sms_intercept_notice_title">Novedades</string>
   <string name="sms_intercept_notice_content">Si recibes un SMS con el resultado de tu prueba, es posible que también veas una notificación que te solicitará que compartas tu diagnóstico en las notificaciones de exposición. Puedes cambiar este parámetro cuando lo desees en Configuración.</string>
   <string name="share_upload_title">Comparte los resultados de tu prueba para ayudar a proteger a tu comunidad</string>
-  <string name="share_upload_test_result_source_description">%1$s envía los resultados de las pruebas</string>
-  <string name="share_upload_symptoms_subtitle">Fecha de inicio de los síntomas</string>
+  <string name="share_upload_test_result_source_description">%1$s envió los resultados</string>
+  <string name="share_upload_symptoms_subtitle">Los síntomas comenzaron el</string>
   <string name="share_upload_symptoms_date_fixed_description">%1$s proporcionó la fecha de los síntomas</string>
   <string name="share_upload_skip_choice">Omitir</string>
   <string name="share_upload_travel_subtitle">Historial de viajes</string>
   <string name="travel_history_travelled_recently_choice">¿Viajaste en los últimos 14 días?</string>
-  <string name="travel_history_no_travel_choice">Ninguno</string>
+  <string name="travel_history_no_travel_choice">No viajé</string>
   <string name="share_upload_select_a_date_choice">Selecciona una fecha</string>
   <string name="share_upload_status_subtitle">Resultado de la prueba de COVID-19</string>
   <string name="share_upload_status_confirmed">Positivo</string>

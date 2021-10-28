@@ -12,4 +12,6 @@
   <string name="possible_exposure">தொற்றின் சாத்தியம்</string>
   <string name="share_history_delete_test_result_title">இந்தப் பரிசோதனை முடிவை நீக்கவா?</string>
   <string name="share_history_delete_test_result_detail">%1$s அன்று பெறப்பட்ட கோவிட்-19 பரிசோதனை முடிவு உங்கள் மொபைலிலிருந்து நீக்கப்படும்.</string>
+  <string name="sms_intercept_notice_card_title">முடிவைப் பகிர நினைவூட்டலைப் பெறலாம்</string>
+  <string name="sms_intercept_notice_card_content">தொற்று உறுதியாகி, சரிபார்க்கப்பட்ட மெசேஜை பெற்றால்</string>
 </resources>

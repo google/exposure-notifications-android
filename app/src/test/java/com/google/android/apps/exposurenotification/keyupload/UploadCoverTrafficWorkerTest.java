@@ -17,9 +17,11 @@
 
 package com.google.android.apps.exposurenotification.keyupload;
 
+import static com.google.android.apps.exposurenotification.keyupload.UploadCoverTrafficWorker.KEYS_UPLOAD_DELAY_THRESHOLD;
 import static com.google.android.apps.exposurenotification.keyupload.UploadCoverTrafficWorker.WORKER_NAME;
 import static com.google.common.truth.Truth.assertThat;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -198,15 +200,21 @@ public class UploadCoverTrafficWorkerTest {
   }
 
   @Test
-  public void randomExecution_decidesNotToExecuteUserReportAndToDoLongerDelay_shouldMakeVerifyRpcOnly()
+  public void randomExecution_decidesNotToMakeUserReportRpcAndToRunOnceLater_shouldMakeVerifyRpcOnly()
       throws Exception {
     // Randoms below probability result in execution and above probability result in no execution.
     // First, secureRandom.nextDouble() is called to determine if we execute the worker at all.
-    // Then, it is called to determine if we execute the RPC call to /user-report API.
+    // Second, it's called to determine if we execute the RPC call to /user-report API.
+    // Finally, it's called to determine if we should execute RPC calls to /certificate and /publish
+    // endpoints with a short (up 10 s) delay.
     when(secureRandom.nextDouble())
         .thenReturn(UploadCoverTrafficWorker.EXECUTION_PROBABILITY - 0.1d,
             UploadCoverTrafficWorker.USER_REPORT_RPC_EXECUTION_PROBABILITY + 0.1d,
             UploadCoverTrafficWorker.SHORT_DELAY_KEYS_UPLOAD_PROBABILITY + 0.1d);
+    // secureRandom.nextInt() is called to determine if we schedule one-time execution of worker
+    // after a long delay.
+    when(secureRandom.nextInt(anyInt()))
+        .thenReturn((int) KEYS_UPLOAD_DELAY_THRESHOLD.getSeconds() - 1);
     when(exposureNotificationClientWrapper.isEnabled()).thenReturn(Tasks.forResult(true));
 
     Result result = worker.startWork().get();
@@ -216,6 +224,37 @@ public class UploadCoverTrafficWorkerTest {
     verify(uploadController, never()).submitKeysForCert(any());
     verify(uploadController, never()).upload(any());
     assertThat(result).isEqualTo(Result.success());
+    // And verify that the one-time execution of this worker has been scheduled.
+    verifyWorkScheduled();
+  }
+
+  @Test
+  public void randomExecution_decidesNotToMakeUserReportRpcAndNotToRunOnceLater_shouldMakeVerifyRpcOnly()
+      throws Exception {
+    // Randoms below probability result in execution and above probability result in no execution.
+    // First, secureRandom.nextDouble() is called to determine if we execute the worker at all.
+    // Then, it is called to determine if we execute the RPC call to /user-report API.
+    // Finally, it's called to determine if we should execute RPC calls to /certificate and /publish
+    // endpoints with a short (up 10 s) delay.
+    when(secureRandom.nextDouble())
+        .thenReturn(UploadCoverTrafficWorker.EXECUTION_PROBABILITY - 0.1d,
+            UploadCoverTrafficWorker.USER_REPORT_RPC_EXECUTION_PROBABILITY + 0.1d,
+            UploadCoverTrafficWorker.SHORT_DELAY_KEYS_UPLOAD_PROBABILITY + 0.1d);
+    // secureRandom.nextInt() is called to determine if we schedule one-time execution of worker
+    // after a long delay.
+    when(secureRandom.nextInt(anyInt()))
+        .thenReturn((int) KEYS_UPLOAD_DELAY_THRESHOLD.getSeconds() + 1);
+    when(exposureNotificationClientWrapper.isEnabled()).thenReturn(Tasks.forResult(true));
+
+    Result result = worker.startWork().get();
+
+    verify(uploadController, never()).requestCode(any());
+    verify(uploadController).submitCode(any());
+    verify(uploadController, never()).submitKeysForCert(any());
+    verify(uploadController, never()).upload(any());
+    assertThat(result).isEqualTo(Result.success());
+    // Ensure no work has been scheduled.
+    verifyNoWorkScheduled();
   }
 
   @Test
@@ -313,10 +352,21 @@ public class UploadCoverTrafficWorkerTest {
   public void schedule_verifyWorkScheduled() throws Exception {
     UploadCoverTrafficWorker.schedule(workManager);
 
+    verifyWorkScheduled();
+  }
+
+  private void verifyWorkScheduled() throws Exception {
     List<WorkInfo> workInfos = workManager.getWorkInfosForUniqueWork(WORKER_NAME).get();
 
     assertThat(workInfos).hasSize(1);
     WorkInfo workInfo = workInfos.get(0);
     assertThat(workInfo.getState()).isEqualTo(State.ENQUEUED);
   }
+
+  private void verifyNoWorkScheduled() throws Exception {
+    List<WorkInfo> workInfos = workManager.getWorkInfosForUniqueWork(WORKER_NAME).get();
+
+    assertThat(workInfos).isEmpty();
+  }
+
 }

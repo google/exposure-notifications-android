@@ -13,7 +13,7 @@
   <string name="btn_done">Ok</string>
   <string name="btn_previous">Anterior</string>
   <string name="btn_verify">Verificar</string>
-  <string name="btn_dont_share">Continuar sem compartilhar</string>
+  <string name="btn_no_thanks">Agora não</string>
   <string name="btn_share">Compartilhar</string>
   <string name="learn_more">Saiba mais</string>
   <string name="home_tab_settings_text">Configurações</string>
@@ -201,13 +201,13 @@
   <string name="sms_intercept_notice_title">Novidades</string>
   <string name="sms_intercept_notice_content">Se você receber um SMS com o resultado do teste, é possível que também veja uma notificação para compartilhar o diagnóstico nas Notificações de Exposição. Você pode desativar essa opção a qualquer momento nas configurações.</string>
   <string name="share_upload_title">Compartilhe o resultado do seu teste para proteger a comunidade</string>
-  <string name="share_upload_test_result_source_description">O resultado do teste foi enviado pela %1$s</string>
+  <string name="share_upload_test_result_source_description">Resultados enviados por: %1$s</string>
   <string name="share_upload_symptoms_subtitle">Início dos sintomas:</string>
   <string name="share_upload_symptoms_date_fixed_description">Fonte da data de início dos sintomas: %1$s</string>
   <string name="share_upload_skip_choice">Pular</string>
   <string name="share_upload_travel_subtitle">Histórico de viagens</string>
   <string name="travel_history_travelled_recently_choice">Viajou nos últimos 14 dias</string>
-  <string name="travel_history_no_travel_choice">Nenhuma</string>
+  <string name="travel_history_no_travel_choice">Não viajei</string>
   <string name="share_upload_select_a_date_choice">Selecione uma data</string>
   <string name="share_upload_status_subtitle">Status do teste de COVID-19</string>
   <string name="share_upload_status_confirmed">Positivo</string>

@@ -62,7 +62,7 @@
       android:layout_height="wrap_content"
       android:paddingHorizontal="0dp"
       android:text="@string/device_settings"
-      style="@style/Widget.MaterialComponents.Button.TextButton" />
+      style="@style/Widget.ExposureNotifications.Button.TextButton" />
 
   </LinearLayout>
 

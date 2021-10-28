@@ -12,4 +12,6 @@
   <string name="possible_exposure">સંભવિત એક્સપોઝર</string>
   <string name="share_history_delete_test_result_title">આ પરીક્ષણનું પરિણામ ડિલીટ કરીએ?</string>
   <string name="share_history_delete_test_result_detail">%1$sના રોજ મેળવેલું તમારું COVID-19 પરીક્ષણનું પરિણામ, તમારા ફોનમાંથી ડિલીટ કરવામાં આવશે.</string>
+  <string name="sms_intercept_notice_card_title">તમારું પરિણામ શેર કરવા માટે, તમે કોઈ રિમાઇન્ડર મેળવી શકો છો</string>
+  <string name="sms_intercept_notice_card_content">જો પરીક્ષણ રિપોર્ટ પૉઝિટિવ આવે અને ચકાસણી કરાયેલો SMS મળે</string>
 </resources>

@@ -13,7 +13,7 @@
   <string name="btn_done">მზადაა</string>
   <string name="btn_previous">წინა</string>
   <string name="btn_verify">დადასტურება</string>
-  <string name="btn_dont_share">გაზიარების გარეშე გაგრძელება</string>
+  <string name="btn_no_thanks">არა, გმადლობთ</string>
   <string name="btn_share">გაზიარება</string>
   <string name="learn_more">შეიტყვეთ მეტი</string>
   <string name="home_tab_settings_text">პარამეტრები</string>
@@ -201,13 +201,13 @@
   <string name="sms_intercept_notice_title">რა არის ახალი</string>
   <string name="sms_intercept_notice_content">თუ მიიღებთ SMS-ს, რომელიც თქვენი ტესტის შედეგს გაცნობებთ, შეიძლება მიიღოთ შეტყობინება თხოვნით, გააზიაროთ თქვენი დიაგნოზი კონტაქტის შეტყობინებებში. ამის გათიშვა ნებისმიერ დროს შეგიძლიათ პარამეტრებიდან.</string>
   <string name="share_upload_title">გააზიარეთ თქვენი ტესტის შედეგი, რათა დაიცვათ საზოგადოება</string>
-  <string name="share_upload_test_result_source_description">ტესტის შედეგის გამომგზავნია %1$s</string>
-  <string name="share_upload_symptoms_subtitle">სიმპტომის დაწყების თარიღი:</string>
+  <string name="share_upload_test_result_source_description">შედეგების გამომგზავნია %1$s</string>
+  <string name="share_upload_symptoms_subtitle">სიმპტომების დაწყების თარიღია</string>
   <string name="share_upload_symptoms_date_fixed_description">სიმპტომის თარიღის მომწოდებელია %1$s</string>
   <string name="share_upload_skip_choice">გამოტოვება</string>
   <string name="share_upload_travel_subtitle">მოგზაურობის ისტორია</string>
   <string name="travel_history_travelled_recently_choice">მოგზაურობა გასული 14 დღის განმავლობაში</string>
-  <string name="travel_history_no_travel_choice">არა</string>
+  <string name="travel_history_no_travel_choice">არ მიმოგზაურია</string>
   <string name="share_upload_select_a_date_choice">აირჩიეთ თარიღი</string>
   <string name="share_upload_status_subtitle">COVID-19 სტატუსი</string>
   <string name="share_upload_status_confirmed">დადებითი</string>

@@ -13,7 +13,7 @@
   <string name="btn_done">Hotovo</string>
   <string name="btn_previous">Naspäť</string>
   <string name="btn_verify">Overiť</string>
-  <string name="btn_dont_share">Pokračovať bez zdieľania</string>
+  <string name="btn_no_thanks">Nie, vďaka</string>
   <string name="btn_share">Zdieľať</string>
   <string name="learn_more">Ďalšie informácie</string>
   <string name="home_tab_settings_text">Nastavenia</string>
@@ -205,13 +205,13 @@
   <string name="sms_intercept_notice_title">Novinky</string>
   <string name="sms_intercept_notice_content">Ak dostanete SMS s výsledkom testu, môže sa vám zobraziť upozornenie so žiadosťou, aby ste zdieľali svoju diagnózu v rámci upozornení na kontakt. Túto možnosť môžete kedykoľvek vypnúť v nastaveniach.</string>
   <string name="share_upload_title">Zdieľajte výsledok testu a chráňte tak svoju komunitu</string>
-  <string name="share_upload_test_result_source_description">Výsledok testu odosiela inštitúcia %1$s</string>
-  <string name="share_upload_symptoms_subtitle">Príznak sa objavil</string>
+  <string name="share_upload_test_result_source_description">Výsledky poslal úrad %1$s</string>
+  <string name="share_upload_symptoms_subtitle">Príznaky sa začali</string>
   <string name="share_upload_symptoms_date_fixed_description">Dátum príznaku poskytla inštitúcia %1$s</string>
   <string name="share_upload_skip_choice">Preskočiť</string>
   <string name="share_upload_travel_subtitle">História cestovania</string>
   <string name="travel_history_travelled_recently_choice">Cestoval(a) som v posledných 14 dňoch</string>
-  <string name="travel_history_no_travel_choice">Žiadna</string>
+  <string name="travel_history_no_travel_choice">Necestoval(a) som</string>
   <string name="share_upload_select_a_date_choice">Vybrať dátum</string>
   <string name="share_upload_status_subtitle">Stav testu na COVID‑19</string>
   <string name="share_upload_status_confirmed">Pozitívny</string>

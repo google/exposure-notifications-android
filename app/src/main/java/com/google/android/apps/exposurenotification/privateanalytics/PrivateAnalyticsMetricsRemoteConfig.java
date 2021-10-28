@@ -81,10 +81,10 @@ public class PrivateAnalyticsMetricsRemoteConfig {
   // Metric "Code Verified with Report Type"
   @VisibleForTesting
   static final String CONFIG_METRIC_CODE_VERIFIED_WITH_REPORT_TYPE_SAMPLING_PROB_KEY =
-      "enpa_metric_code_verified_with_report_type_v1_sampling_prob";
+      "enpa_metric_code_verified_with_report_type_v2_sampling_prob";
   @VisibleForTesting
   static final String CONFIG_METRIC_CODE_VERIFIED_WITH_REPORT_TYPE_PRIO_EPSILON_KEY =
-      "enpa_metric_code_verified_with_report_type_v1_prio_epsilon";
+      "enpa_metric_code_verified_with_report_type_v2_prio_epsilon";
 
   // Metric "Keys Uploaded"
   @VisibleForTesting
@@ -97,10 +97,10 @@ public class PrivateAnalyticsMetricsRemoteConfig {
   // Metric "Keys Uploaded with Report Type"
   @VisibleForTesting
   static final String CONFIG_METRIC_KEYS_UPLOADED_WITH_REPORT_TYPE_SAMPLING_PROB_KEY =
-      "enpa_metric_keys_uploaded_with_report_type_v1_sampling_prob";
+      "enpa_metric_keys_uploaded_with_report_type_v2_sampling_prob";
   @VisibleForTesting
   static final String CONFIG_METRIC_KEYS_UPLOADED_WITH_REPORT_TYPE_PRIO_EPSILON_KEY =
-      "enpa_metric_keys_uploaded_with_report_type_v1_prio_epsilon";
+      "enpa_metric_keys_uploaded_with_report_type_v2_prio_epsilon";
 
   // Metric "Date Exposure"
   @VisibleForTesting
@@ -121,18 +121,18 @@ public class PrivateAnalyticsMetricsRemoteConfig {
   // Metric "Exposure Notification followed by keys upload"
   @VisibleForTesting
   static final String CONFIG_METRIC_KEYS_UPLOADED_AFTER_NOTIFICATION_SAMPLING_PROB_KEY =
-      "enpa_metric_secondary_attack_v1_sampling_prob";
+      "enpa_metric_secondary_attack_v2_sampling_prob";
   @VisibleForTesting
   static final String CONFIG_METRIC_KEYS_UPLOADED_AFTER_NOTIFICATION_PRIO_EPSILON_KEY =
-      "enpa_metric_secondary_attack_v1_prio_epsilon";
+      "enpa_metric_secondary_attack_v2_prio_epsilon";
 
   // Metric "Periodic Exposure Notification followed by keys upload"
   @VisibleForTesting
   static final String CONFIG_METRIC_PERIODIC_EXPOSURE_NOTIFICATION_BIWEEKLY_SAMPLING_PROB_KEY =
-      "enpa_metric_periodic_exposure_notification_biweekly_v1_sampling_prob";
+      "enpa_metric_periodic_exposure_notification_biweekly_v2_sampling_prob";
   @VisibleForTesting
   static final String CONFIG_METRIC_PERIODIC_EXPOSURE_NOTIFICATION_BIWEEKLY_PRIO_EPSILON_KEY =
-      "enpa_metric_periodic_exposure_notification_biweekly_v1_prio_epsilon";
+      "enpa_metric_periodic_exposure_notification_biweekly_v2_prio_epsilon";
 
   private final static MetricsRemoteConfigs DEFAULT_REMOTE_CONFIGS = MetricsRemoteConfigs
       .newBuilder().build();

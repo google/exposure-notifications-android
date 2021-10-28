@@ -18,7 +18,6 @@
 package com.google.android.apps.exposurenotification.exposure;
 
 import android.content.Context;
-import androidx.hilt.lifecycle.ViewModelInject;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.work.WorkManager;
@@ -31,11 +30,14 @@ import com.google.android.apps.exposurenotification.storage.ExposureCheckEntity;
 import com.google.android.apps.exposurenotification.storage.ExposureCheckRepository;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.BadgeStatus;
+import dagger.hilt.android.lifecycle.HiltViewModel;
 import java.util.List;
+import javax.inject.Inject;
 
 /**
  * View model that updates on the exposures and the exposure checks.
  */
+@HiltViewModel
 public class ExposureHomeViewModel extends ViewModel {
 
   // Number of exposure checks we want to display.
@@ -47,7 +49,7 @@ public class ExposureHomeViewModel extends ViewModel {
   private final Clock clock;
   private final WorkManager workManager;
 
-  @ViewModelInject
+  @Inject
   public ExposureHomeViewModel(
       ExposureNotificationSharedPreferences exposureNotificationSharedPreferences,
       ExposureCheckRepository exposureCheckRepository,

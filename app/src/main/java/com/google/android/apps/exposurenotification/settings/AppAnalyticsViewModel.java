@@ -17,19 +17,21 @@
 
 package com.google.android.apps.exposurenotification.settings;
 
-import androidx.hilt.lifecycle.ViewModelInject;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
+import dagger.hilt.android.lifecycle.HiltViewModel;
+import javax.inject.Inject;
 
 /**
  * View model for {@link AppAnalyticsFragment}.
  */
+@HiltViewModel
 public class AppAnalyticsViewModel extends ViewModel {
 
   private final ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
 
-  @ViewModelInject
+  @Inject
   public AppAnalyticsViewModel(
       ExposureNotificationSharedPreferences exposureNotificationSharedPreferences) {
     this.exposureNotificationSharedPreferences = exposureNotificationSharedPreferences;

@@ -72,7 +72,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/padding_normal"
         android:layout_alignParentEnd="true"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
+        style="@style/Widget.ExposureNotifications.Button.TextButton"
         android:text="@android:string/ok" />
 
   </RelativeLayout>

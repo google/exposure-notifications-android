@@ -13,7 +13,7 @@
   <string name="btn_done">تمام</string>
   <string name="btn_previous">قبلی</string>
   <string name="btn_verify">‌تأیید کردن</string>
-  <string name="btn_dont_share">ادامه بدون هم‌رسانی</string>
+  <string name="btn_no_thanks">نه متشکرم</string>
   <string name="btn_share">هم‌رسانی</string>
   <string name="learn_more">بیشتر بدانید</string>
   <string name="home_tab_settings_text">تنظیمات</string>
@@ -201,13 +201,13 @@
   <string name="sms_intercept_notice_title">تازه‌ها</string>
   <string name="sms_intercept_notice_content">اگر پیامکی حاوی نتیجه آزمایشتان دریافت کردید، ممکن است اعلانی دریافت کنید که از شما می‌خواهد تشخیص پزشکی‌تان را در اعلان تماس‌های پرخطر هم‌رسانی کنید. هرزمان بخواهید می‌توانید این ویژگی را در تنظیمات غیرفعال کنید.</string>
   <string name="share_upload_title">برای محافظت از جامعه، نتیجه آزمایشتان را هم‌رسانی کنید</string>
-  <string name="share_upload_test_result_source_description">%1$s نتیجه آزمایش را ارسال می‌کند</string>
-  <string name="share_upload_symptoms_subtitle">شروع نشانه‌ها از</string>
+  <string name="share_upload_test_result_source_description">%1$s نتایج را ارسال کرد</string>
+  <string name="share_upload_symptoms_subtitle">علائم در این تاریخ شروع شد:</string>
   <string name="share_upload_symptoms_date_fixed_description">%1$s تاریخ نشانه را گزارش کرده است</string>
   <string name="share_upload_skip_choice">رد شدن</string>
   <string name="share_upload_travel_subtitle">سوابق سفر</string>
   <string name="travel_history_travelled_recently_choice">سفر کردن در ۱۴ روز گذشته</string>
-  <string name="travel_history_no_travel_choice">هیچ‌کدام</string>
+  <string name="travel_history_no_travel_choice">سفر نکردم</string>
   <string name="share_upload_select_a_date_choice">تاریخی انتخاب کنید</string>
   <string name="share_upload_status_subtitle">وضعیت کووید-۱۹</string>
   <string name="share_upload_status_confirmed">مثبت</string>

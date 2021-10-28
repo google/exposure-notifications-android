@@ -125,7 +125,7 @@
               android:layout_marginStart="@dimen/settings_icon_field_width"
               android:paddingHorizontal="0dp"
               android:text="@string/learn_more"
-              style="@style/Widget.MaterialComponents.Button.TextButton" />
+              style="@style/Widget.ExposureNotifications.Button.TextButton" />
 
           </LinearLayout>
 

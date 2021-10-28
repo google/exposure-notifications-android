@@ -13,7 +13,7 @@
   <string name="btn_done">হয়ে গেছে</string>
   <string name="btn_previous">পূর্ববর্তী</string>
   <string name="btn_verify">যাচাই করুন</string>
-  <string name="btn_dont_share">শেয়ার না করেই চালিয়ে যান</string>
+  <string name="btn_no_thanks">না থাক</string>
   <string name="btn_share">শেয়ার করুন</string>
   <string name="learn_more">আরও জানুন</string>
   <string name="home_tab_settings_text">সেটিংস</string>
@@ -201,13 +201,13 @@
   <string name="sms_intercept_notice_title">নতুন কী রয়েছে</string>
   <string name="sms_intercept_notice_content">আপনি যদি পরীক্ষার ফলাফল সম্পর্কিত এসএমএস পান, তাহলে এক্সপোজার বিজ্ঞপ্তি পেতে পারেন। এই বিজ্ঞপ্তিতে আপনাকে ফলাফল শেয়ার করতে বলা হতে পারে। আপনি সেটিংস থেকে এটি যেকোনও সময় বন্ধ করে দিতে পারেন।</string>
   <string name="share_upload_title">আপনার কমিউনিটি সুরক্ষিত রাখতে আপনার পরীক্ষার ফলাফল শেয়ার করুন</string>
-  <string name="share_upload_test_result_source_description">%1$s এই পরীক্ষার ফলাফল পাঠিয়েছে</string>
-  <string name="share_upload_symptoms_subtitle">এই তারিখ থেকে উপসর্গ শুরু হয়েছে</string>
+  <string name="share_upload_test_result_source_description">পরীক্ষার ফলাফল %1$s পাঠিয়েছে</string>
+  <string name="share_upload_symptoms_subtitle">উপসর্গ শুরু হয়েছে</string>
   <string name="share_upload_symptoms_date_fixed_description">উপসর্গ যে তারিখে দেখা গেছে সেই সম্পর্কিত তথ্য %1$s দিয়েছে</string>
   <string name="share_upload_skip_choice">এড়িয়ে যান</string>
   <string name="share_upload_travel_subtitle">ভ্রমণের ইতিহাস</string>
   <string name="travel_history_travelled_recently_choice">শেষ ১৪ দিনে করা ভ্রমণ</string>
-  <string name="travel_history_no_travel_choice">কোনওটিই নয়</string>
+  <string name="travel_history_no_travel_choice">আমি ভ্রমণ করিনি</string>
   <string name="share_upload_select_a_date_choice">একটি তারিখ বেছে নিন</string>
   <string name="share_upload_status_subtitle">COVID-19 সংক্রান্ত স্ট্যাটাস</string>
   <string name="share_upload_status_confirmed">পজিটিভ</string>

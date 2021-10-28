@@ -21,8 +21,7 @@ import android.content.Context;
 import android.text.TextUtils;
 import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
-import androidx.hilt.Assisted;
-import androidx.hilt.work.WorkerInject;
+import androidx.hilt.work.HiltWorker;
 import androidx.work.BackoffPolicy;
 import androidx.work.Constraints;
 import androidx.work.Data;
@@ -53,6 +52,8 @@ import com.google.common.base.Optional;
 import com.google.common.util.concurrent.FluentFuture;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
+import dagger.assisted.Assisted;
+import dagger.assisted.AssistedInject;
 import java.security.SecureRandom;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -62,6 +63,7 @@ import java.util.concurrent.TimeUnit;
  * Performs work for {@link com.google.android.gms.nearby.exposurenotification.ExposureNotificationClient#ACTION_PRE_AUTHORIZE_RELEASE_PHONE_UNLOCKED}
  * broadcast from the Exposure Notifications API.
  */
+@HiltWorker
 public class PreAuthTEKsReceivedWorker extends ListenableWorker {
 
   private static final long WORK_REQUEST_BACK_OFF_DELAY_MINUTES = 30;
@@ -79,7 +81,7 @@ public class PreAuthTEKsReceivedWorker extends ListenableWorker {
   private final Clock clock;
   private final ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
 
-  @WorkerInject
+  @AssistedInject
   public PreAuthTEKsReceivedWorker(
       @Assisted @NonNull Context context,
       @Assisted @NonNull WorkerParameters workerParams,

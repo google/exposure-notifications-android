@@ -19,7 +19,6 @@ package com.google.android.apps.exposurenotification.common.time;
 import dagger.Module;
 import dagger.Provides;
 import dagger.hilt.InstallIn;
-import dagger.hilt.android.components.ApplicationComponent;
 import dagger.hilt.components.SingletonComponent;
 
 /**

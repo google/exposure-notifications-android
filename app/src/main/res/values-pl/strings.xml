@@ -13,7 +13,7 @@
   <string name="btn_done">Gotowe</string>
   <string name="btn_previous">Wstecz</string>
   <string name="btn_verify">Zweryfikuj</string>
-  <string name="btn_dont_share">Kontynuuj bez udostępniania</string>
+  <string name="btn_no_thanks">Nie, dziękuję</string>
   <string name="btn_share">Udostępnij</string>
   <string name="learn_more">Więcej</string>
   <string name="home_tab_settings_text">Ustawienia</string>
@@ -205,13 +205,13 @@
   <string name="sms_intercept_notice_title">Nowości</string>
   <string name="sms_intercept_notice_content">Jeśli otrzymasz SMS-a z wynikiem testu, możesz zobaczyć powiadomienie z prośbą o udostępnienie diagnozy na potrzeby powiadomień o narażeniu na kontakt. Możesz wyłączyć tę funkcję w dowolnej chwili w ustawieniach.</string>
   <string name="share_upload_title">Udostępnij wynik testu, aby chronić swoją społeczność</string>
-  <string name="share_upload_test_result_source_description">Wynik testu wysyła instytucja %1$s</string>
+  <string name="share_upload_test_result_source_description">Wyniki wysłała instytucja %1$s</string>
   <string name="share_upload_symptoms_subtitle">Początek występowania objawów</string>
   <string name="share_upload_symptoms_date_fixed_description">Data wytąpienia symptomu została podana przez: %1$s</string>
   <string name="share_upload_skip_choice">Pomiń</string>
   <string name="share_upload_travel_subtitle">Historia podróżowania</string>
   <string name="travel_history_travelled_recently_choice">Podróżowano w ciągu ostatnich 14 dni</string>
-  <string name="travel_history_no_travel_choice">Brak</string>
+  <string name="travel_history_no_travel_choice">Brak podróży</string>
   <string name="share_upload_select_a_date_choice">Wybierz datę</string>
   <string name="share_upload_status_subtitle">Wynik badania na koronawirusa</string>
   <string name="share_upload_status_confirmed">Pozytywny</string>

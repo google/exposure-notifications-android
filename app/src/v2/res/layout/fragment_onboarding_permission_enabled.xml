@@ -16,42 +16,20 @@
   ~
   -->
 
-<androidx.constraintlayout.widget.ConstraintLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
+  android:orientation="vertical"
   android:accessibilityPaneTitle="@string/onboarding_finish_title">
-
-  <RelativeLayout
-    android:id="@+id/onboarding_buttons"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="@dimen/padding_normal"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    android:background="?android:attr/colorBackground"
-    android:elevation="@dimen/bottom_button_container_elevation">
-
-    <Button
-      android:id="@+id/onboarding_next_button"
-      style="@style/Widget.MaterialComponents.Button.TextButton"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_alignParentEnd="true"
-      android:text="@string/btn_continue" />
-
-  </RelativeLayout>
 
   <androidx.core.widget.NestedScrollView
     android:id="@+id/onboarding_scroll"
     android:layout_width="match_parent"
     android:layout_height="0dp"
-    app:layout_constraintBottom_toTopOf="@id/onboarding_buttons"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent">
+    android:layout_weight="1"
+    android:isScrollContainer="false"
+    android:fillViewport="true">
 
     <LinearLayout
       android:layout_width="match_parent"
@@ -67,6 +45,82 @@
         android:importantForAccessibility="no"
         app:srcCompat="@drawable/enx_agency_image"
         android:background="@color/enx_agencyImageBackgroundColor" />
+
+      <!-- App Analytics section -->
+      <LinearLayout
+        android:id="@+id/app_analytics_section"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal">
+
+          <ImageView
+            android:layout_width="@dimen/onboarding_section_header_image_width"
+            android:layout_height="@dimen/onboarding_section_header_image_height"
+            android:layout_gravity="center_vertical"
+            android:paddingHorizontal="@dimen/padding_small"
+            android:importantForAccessibility="no"
+            android:contentDescription="@null"
+            app:srcCompat="@drawable/ic_onboarding_analytics" />
+
+          <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="@string/onboarding_metrics_title"
+              android:layout_gravity="center_vertical"
+              android:textAppearance="?attr/textAppearanceHeadline6"
+              android:textSize="@dimen/onboarding_section_header_text_size" />
+
+            <TextView
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="@string/onboarding_metrics_subtitle"
+              android:layout_gravity="center_vertical"
+              android:textAppearance="?attr/textAppearanceBody2"
+              android:textColor="?attr/colorControlNormal" />
+
+          </LinearLayout>
+
+          <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/onboarding_app_analytics_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:layout_gravity="center_vertical"/>
+
+        </LinearLayout>
+
+        <TextView
+          android:id="@+id/app_analytics_detail"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="@dimen/onboarding_section_header_image_width"
+          android:layout_marginTop="@dimen/padding_normal"
+          android:textAppearance="?attr/textAppearanceBody2" />
+
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:paddingVertical="@dimen/padding_large"
+          android:layout_marginStart="@dimen/onboarding_section_header_image_width">
+
+          <include layout="@layout/horizontal_divider" />
+
+        </LinearLayout>
+
+      </LinearLayout>
 
       <LinearLayout
         android:layout_width="match_parent"
@@ -129,4 +183,22 @@
 
   </androidx.core.widget.NestedScrollView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+  <RelativeLayout
+    android:id="@+id/onboarding_buttons"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/padding_normal"
+    android:background="?android:attr/colorBackground"
+    android:elevation="@dimen/bottom_button_container_elevation">
+
+    <Button
+      android:id="@+id/onboarding_next_button"
+      style="@style/Widget.ExposureNotifications.Button"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentEnd="true"
+      android:text="@string/btn_got_it" />
+
+  </RelativeLayout>
+
+</LinearLayout>

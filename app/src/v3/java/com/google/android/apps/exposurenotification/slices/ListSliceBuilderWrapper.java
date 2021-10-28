@@ -39,6 +39,7 @@ import com.google.common.collect.ImmutableList;
 @RequiresApi(VERSION_CODES.KITKAT)
 public abstract class ListSliceBuilderWrapper {
   private static final Logger logger = Logger.getLogger("ListSliceBuilderWrapper");
+  private int size = 0;
 
   /** Creates a {@link ListSliceBuilderWrapper}. */
   public static ListSliceBuilderWrapper createListSliceBuilderWrapper(
@@ -64,7 +65,14 @@ public abstract class ListSliceBuilderWrapper {
   }
 
   /** Adds a row in the SliceBuilder. */
-  public abstract void addRow(PendingIntent action, IconCompat icon, String title, String subtitle);
+  public void addRow(PendingIntent action, IconCompat icon, String title, String subtitle) {
+    size++;
+  }
+
+  /** Returns true if at least one row was added */
+  public boolean isEmpty() {
+    return size == 0;
+  }
 
   /** Builds {@link Slice} from builder. */
   public abstract Slice build();
@@ -81,6 +89,7 @@ public abstract class ListSliceBuilderWrapper {
 
     @Override
     public void addRow(PendingIntent action, IconCompat iconCompat, String title, String subtitle) {
+      super.addRow(action, iconCompat, title, subtitle);
       listBuilder.addRow(
           new RowBuilder()
               .setTitleItem(iconCompat, ListBuilder.ICON_IMAGE)
@@ -120,6 +129,7 @@ public abstract class ListSliceBuilderWrapper {
 
     @Override
     public void addRow(PendingIntent action, IconCompat iconCompat, String title, String subtitle) {
+      super.addRow(action, iconCompat, title, subtitle);
       builder.addSubSlice(
           new Builder(builder)
               .addSubSlice(
@@ -156,7 +166,9 @@ public abstract class ListSliceBuilderWrapper {
     }
 
     @Override
-    public void addRow(PendingIntent action, IconCompat icon, String title, String subtitle) {}
+    public void addRow(PendingIntent action, IconCompat icon, String title, String subtitle) {
+      super.addRow(action, icon, title, subtitle);
+    }
 
     @Nullable
     @Override

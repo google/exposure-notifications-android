@@ -13,7 +13,7 @@
   <string name="btn_done">Atlikta</string>
   <string name="btn_previous">Ankstesnis</string>
   <string name="btn_verify">Patvirtinti</string>
-  <string name="btn_dont_share">Tęsti nebendrinant</string>
+  <string name="btn_no_thanks">Ne, ačiū</string>
   <string name="btn_share">Bendrinti</string>
   <string name="learn_more">Sužinokite daugiau</string>
   <string name="home_tab_settings_text">Nustatymai</string>
@@ -205,13 +205,13 @@
   <string name="sms_intercept_notice_title">Kas naujo</string>
   <string name="sms_intercept_notice_content">Jei bus atsiųstas SMS su testo rezultatais, galite gauti pranešimą bendrinti diagnozės informaciją pranešimuose apie galimą kontaktą su užsikrėtusiu asmeniu. Bet kada galite tai išjungti nustatymuose.</string>
   <string name="share_upload_title">Bendrinkite testo rezultatą, kad apsaugotumėte savo bendruomenę</string>
-  <string name="share_upload_test_result_source_description">Testo rezultatą išsiuntė %1$s</string>
-  <string name="share_upload_symptoms_subtitle">Simptomų atsirado</string>
+  <string name="share_upload_test_result_source_description">Rezultatus siuntė %1$s</string>
+  <string name="share_upload_symptoms_subtitle">Simptomai pasireiškė</string>
   <string name="share_upload_symptoms_date_fixed_description">Simptomo datą pateikė: %1$s</string>
   <string name="share_upload_skip_choice">Praleisti</string>
   <string name="share_upload_travel_subtitle">Kelionių istorija</string>
   <string name="travel_history_travelled_recently_choice">Kelionės per pastarąsias 14 dienų</string>
-  <string name="travel_history_no_travel_choice">Nėra</string>
+  <string name="travel_history_no_travel_choice">Nekeliavau</string>
   <string name="share_upload_select_a_date_choice">Pasirinkite datą</string>
   <string name="share_upload_status_subtitle">COVID-19 būsena</string>
   <string name="share_upload_status_confirmed">Teigiamas</string>

@@ -12,4 +12,6 @@
   <string name="possible_exposure">Kemungkinan paparan</string>
   <string name="share_history_delete_test_result_title">Hapus hasil tes ini?</string>
   <string name="share_history_delete_test_result_detail">Hasil tes COVID-19 Anda dari %1$s akan dihapus dari ponsel.</string>
+  <string name="sms_intercept_notice_card_title">Anda mungkin mendapat pengingat untuk membagikan hasil tes</string>
+  <string name="sms_intercept_notice_card_content">Jika mendapat hasil tes positif &amp; menerima SMS terverifikasi</string>
 </resources>

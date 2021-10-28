@@ -13,7 +13,7 @@
   <string name="btn_done">Luk</string>
   <string name="btn_previous">Forrige</string>
   <string name="btn_verify">Bekræft</string>
-  <string name="btn_dont_share">Fortsæt uden at dele</string>
+  <string name="btn_no_thanks">Nej tak</string>
   <string name="btn_share">Del</string>
   <string name="learn_more">Få flere oplysninger</string>
   <string name="home_tab_settings_text">Indstillinger</string>
@@ -201,13 +201,13 @@
   <string name="sms_intercept_notice_title">Nyheder</string>
   <string name="sms_intercept_notice_content">Du modtager muligvis en notifikation, hvor du bliver bedt om at dele din diagnose i systemet til notifikationer om eksponering, hvis du får en sms med dit testresultat. Du kan til enhver tid deaktivere dette i indstillingerne.</string>
   <string name="share_upload_title">Del dit testresultat for at hjælpe dit lokalsamfund</string>
-  <string name="share_upload_test_result_source_description">Testresultatet er sendt af %1$s</string>
-  <string name="share_upload_symptoms_subtitle">Symptomet startede</string>
+  <string name="share_upload_test_result_source_description">Resultaterne kommer fra %1$s</string>
+  <string name="share_upload_symptoms_subtitle">Symptomerne begyndte</string>
   <string name="share_upload_symptoms_date_fixed_description">Startdatoen for symptomerne angives af %1$s</string>
   <string name="share_upload_skip_choice">Spring over</string>
   <string name="share_upload_travel_subtitle">Rejsehistorik</string>
   <string name="travel_history_travelled_recently_choice">Har rejst inden for de sidste 14 dage</string>
-  <string name="travel_history_no_travel_choice">Ingen</string>
+  <string name="travel_history_no_travel_choice">Jeg har ikke været ude at rejse</string>
   <string name="share_upload_select_a_date_choice">Vælg en dato</string>
   <string name="share_upload_status_subtitle">COVID-19-status</string>
   <string name="share_upload_status_confirmed">Positiv</string>

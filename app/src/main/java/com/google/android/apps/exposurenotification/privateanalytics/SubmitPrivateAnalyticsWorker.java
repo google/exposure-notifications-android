@@ -20,8 +20,7 @@ package com.google.android.apps.exposurenotification.privateanalytics;
 import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
-import androidx.hilt.Assisted;
-import androidx.hilt.work.WorkerInject;
+import androidx.hilt.work.HiltWorker;
 import androidx.work.BackoffPolicy;
 import androidx.work.Constraints;
 import androidx.work.ExistingPeriodicWorkPolicy;
@@ -40,11 +39,14 @@ import com.google.android.apps.exposurenotification.work.WorkerStartupManager;
 import com.google.android.libraries.privateanalytics.DefaultPrivateAnalyticsDeviceAttestation;
 import com.google.android.libraries.privateanalytics.PrivateAnalyticsEventListener;
 import com.google.android.libraries.privateanalytics.PrivateAnalyticsSubmitter;
+import com.google.android.libraries.privateanalytics.PrivateAnalyticsSubmitter.NotEnabledException;
 import com.google.android.libraries.privateanalytics.Qualifiers.BiweeklyMetricsUploadDay;
 import com.google.common.base.Optional;
 import com.google.common.util.concurrent.FluentFuture;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
+import dagger.assisted.Assisted;
+import dagger.assisted.AssistedInject;
 import java.util.Calendar;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -54,6 +56,7 @@ import org.threeten.bp.Instant;
 /**
  * Performs work to submit private analytics to the configured ingestion server.
  */
+@HiltWorker
 public class SubmitPrivateAnalyticsWorker extends ListenableWorker {
 
   private static final Logger logger = Logger.getLogger("PrioSubmitWorker");
@@ -70,7 +73,7 @@ public class SubmitPrivateAnalyticsWorker extends ListenableWorker {
   @VisibleForTesting
   int biweeklyMetricsUploadDay;
 
-  @WorkerInject
+  @AssistedInject
   public SubmitPrivateAnalyticsWorker(
       @Assisted @NonNull Context context,
       @Assisted @NonNull WorkerParameters workerParams,
@@ -140,7 +143,8 @@ public class SubmitPrivateAnalyticsWorker extends ListenableWorker {
             backgroundExecutor);
   }
 
-  private void clearOlderPrivateAnalyticsFields() {
+  @VisibleForTesting
+  void clearOlderPrivateAnalyticsFields() {
     Instant fourteenDaysAgo = clock.now().minus(Duration.ofDays(14));
 
     Instant lastWorkerTimeForDaily = exposureNotificationSharedPreferences
@@ -156,7 +160,7 @@ public class SubmitPrivateAnalyticsWorker extends ListenableWorker {
       Instant lastWorkerTimeForBiweekly = exposureNotificationSharedPreferences
           .getPrivateAnalyticsWorkerLastTimeForBiweekly();
       latestTimeToClear =
-          lastWorkerTimeForDaily.isAfter(fourteenDaysAgo)
+          lastWorkerTimeForBiweekly.isAfter(fourteenDaysAgo)
               ? lastWorkerTimeForBiweekly
               : fourteenDaysAgo;
       // Clear data older than two weeks + since last daily metrics run (whichever comes first).
@@ -205,9 +209,5 @@ public class SubmitPrivateAnalyticsWorker extends ListenableWorker {
             .build();
     return workManager.enqueueUniquePeriodicWork(
         WORKER_NAME, ExistingPeriodicWorkPolicy.KEEP, workRequest);
-  }
-
-  private static class NotEnabledException extends Exception {
-
   }
 }

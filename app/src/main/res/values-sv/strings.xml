@@ -13,7 +13,7 @@
   <string name="btn_done">Klar</string>
   <string name="btn_previous">Föregående</string>
   <string name="btn_verify">Verifiera</string>
-  <string name="btn_dont_share">Fortsätt utan att dela</string>
+  <string name="btn_no_thanks">Nej tack</string>
   <string name="btn_share">Dela</string>
   <string name="learn_more">Läs mer</string>
   <string name="home_tab_settings_text">Inställningar</string>
@@ -201,13 +201,13 @@
   <string name="sms_intercept_notice_title">Nyheter</string>
   <string name="sms_intercept_notice_content">Om du får ett sms med ditt testresultat kan du få en avisering om att dela en diagnos i Aviseringar om exponering. Du kan när som helst ändra detta i inställningarna.</string>
   <string name="share_upload_title">Dela ditt testresultat för att skydda andra</string>
-  <string name="share_upload_test_result_source_description">Testresultat skickas av %1$s</string>
-  <string name="share_upload_symptoms_subtitle">Symptom från:</string>
+  <string name="share_upload_test_result_source_description">Resultaten skickades av %1$s</string>
+  <string name="share_upload_symptoms_subtitle">Symptom från den</string>
   <string name="share_upload_symptoms_date_fixed_description">Datum för symptom tillhandahålls av %1$s</string>
   <string name="share_upload_skip_choice">Hoppa över</string>
   <string name="share_upload_travel_subtitle">Resehistorik</string>
   <string name="travel_history_travelled_recently_choice">Har rest under de senaste 14 dagarna</string>
-  <string name="travel_history_no_travel_choice">Ingen</string>
+  <string name="travel_history_no_travel_choice">Jag har inte rest</string>
   <string name="share_upload_select_a_date_choice">Välj ett datum</string>
   <string name="share_upload_status_subtitle">Status för covid-19</string>
   <string name="share_upload_status_confirmed">Positiv</string>

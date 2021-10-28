@@ -13,7 +13,7 @@
   <string name="btn_done">Bitti</string>
   <string name="btn_previous">Önceki</string>
   <string name="btn_verify">Doğrula</string>
-  <string name="btn_dont_share">Paylaşmadan devam et</string>
+  <string name="btn_no_thanks">Hayır, teşekkürler</string>
   <string name="btn_share">Paylaş</string>
   <string name="learn_more">Daha fazla bilgi</string>
   <string name="home_tab_settings_text">Ayarlar</string>
@@ -201,13 +201,13 @@
   <string name="sms_intercept_notice_title">Yenilikler</string>
   <string name="sms_intercept_notice_content">Test sonucunuzun olduğu bir SMS alırsanız teşhisinizi temas bildirimlerinde paylaşmanızı isteyen bir bildirim görebilirsiniz. İstediğiniz zaman bunu ayarlardan devre dışı bırakabilirsiniz.</string>
   <string name="share_upload_title">Bulunduğunuz topluluğu korumak için test sonucunuzu paylaşın</string>
-  <string name="share_upload_test_result_source_description">Test sonucu %1$s tarafından gönderildi</string>
-  <string name="share_upload_symptoms_subtitle">Belirtilerin başladığı tarih:</string>
+  <string name="share_upload_test_result_source_description">Sonuçlar %1$s tarafından gönderilmiştir</string>
+  <string name="share_upload_symptoms_subtitle">Belirtilerin başladığı tarih</string>
   <string name="share_upload_symptoms_date_fixed_description">Belirti tarihi %1$s tarafından sağlanmıştır</string>
   <string name="share_upload_skip_choice">Atla</string>
   <string name="share_upload_travel_subtitle">Seyahat geçmişi</string>
   <string name="travel_history_travelled_recently_choice">14 gün içinde seyahat edildi</string>
-  <string name="travel_history_no_travel_choice">Hayır</string>
+  <string name="travel_history_no_travel_choice">Seyahat etmedim</string>
   <string name="share_upload_select_a_date_choice">Tarih seçin</string>
   <string name="share_upload_status_subtitle">COVID-19 durumu</string>
   <string name="share_upload_status_confirmed">Pozitif</string>

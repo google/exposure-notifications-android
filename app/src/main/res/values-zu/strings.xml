@@ -13,7 +13,7 @@
   <string name="btn_done">Kwenziwe</string>
   <string name="btn_previous">Okwangaphambilini</string>
   <string name="btn_verify">Qinisekisa</string>
-  <string name="btn_dont_share">Qhubeka ngaphandle kokwabelana</string>
+  <string name="btn_no_thanks">Cha ngiyabonga</string>
   <string name="btn_share">Yabelana</string>
   <string name="learn_more">Funda kabanzi</string>
   <string name="home_tab_settings_text">Izilungiselelo</string>
@@ -201,13 +201,13 @@
   <string name="sms_intercept_notice_title">Yini okusha</string>
   <string name="sms_intercept_notice_content">Uma uthola i-SMS enomphumela wakho wokuhlolwa, ungase uthole isaziso esikucela ukuthi wabelane ngokuxilongwa kwakho kwizaziso zokuhlangabezana. Ungakhubaza lokhu noma kunini kumasethingi.</string>
   <string name="share_upload_title">Yabelana ngomphumela wakho ukuvikela umphakathi wakho</string>
-  <string name="share_upload_test_result_source_description">Umphumela wokuhlolwa uthunyelwa i-%1$s</string>
-  <string name="share_upload_symptoms_subtitle">Uphawu luqale ngo-</string>
+  <string name="share_upload_test_result_source_description">Imiphumela ithunyelwe nge-%1$s</string>
+  <string name="share_upload_symptoms_subtitle">Izimpawu ziqale ngo-</string>
   <string name="share_upload_symptoms_date_fixed_description">Ilanga lophawu luhlinzekwa i-%1$s</string>
   <string name="share_upload_skip_choice">Yeqa</string>
   <string name="share_upload_travel_subtitle">Umlando wokuhamba</string>
   <string name="travel_history_travelled_recently_choice">Uthathe uhambo ezinsukwini ezi-14 ezedlule</string>
-  <string name="travel_history_no_travel_choice">Lutho</string>
+  <string name="travel_history_no_travel_choice">Angizange ngihambe</string>
   <string name="share_upload_select_a_date_choice">Khetha idethi</string>
   <string name="share_upload_status_subtitle">Isimo se-COVID-19</string>
   <string name="share_upload_status_confirmed">Okuhle</string>

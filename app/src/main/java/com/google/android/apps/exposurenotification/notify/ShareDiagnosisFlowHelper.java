@@ -170,9 +170,7 @@ public class ShareDiagnosisFlowHelper {
         if (!isSharedOptional.get()) {
           return Step.NOT_SHARED;
         }
-        if (TestResult.USER_REPORT.equals(diagnosisEntity.getTestResult())
-            && ShareDiagnosisFlowHelper.isSelfReportEnabled(context)
-            && ShareDiagnosisFlowHelper.isPreAuthForSelfReportEnabled(context)) {
+        if (shouldDisplayPreAuthStep(diagnosisEntity, context)) {
           // Always move to the Pre-auth step first if it's enabled.
           return Step.PRE_AUTH;
         } else if (showVaccinationQuestion) {
@@ -238,16 +236,14 @@ public class ShareDiagnosisFlowHelper {
    */
   public static boolean isSmsInterceptEnabled(Context context) {
     return context.getResources().getBoolean(R.bool.enx_enableTextMessageVerification)
-        && !TextUtils.isEmpty(context.getString(R.string.enx_testVerificationNotificationBody))
-        && BuildUtils.getType().equals(Type.V2);
+        && !TextUtils.isEmpty(context.getString(R.string.enx_testVerificationNotificationBody));
   }
 
   /**
    * Calculates the maximum step a given diagnosis entity can be in. Useful for resuming a flow at
    * the right point.
    */
-  public static Step getMaxStepForDiagnosisEntity(
-      DiagnosisEntity diagnosisEntity, Context context) {
+  public static Step getMaxStepForDiagnosisEntity(DiagnosisEntity diagnosisEntity) {
     if (Shared.SHARED.equals(diagnosisEntity.getSharedStatus())) {
       return Step.VIEW;
     } else {
@@ -292,6 +288,28 @@ public class ShareDiagnosisFlowHelper {
     } else {
       return 2;
     }
+  }
+
+  /**
+   * Checks whether we should display the {@link Step#PRE_AUTH} after the diagnosis has been
+   * shared.
+   *
+   * <p>Pre-auth step should be displayed only if all of the following apply:
+   * <ul>
+   *   <li> the current diagnosis carries a self-reported test result
+   *   <li> the self-report feature is enabled
+   *   <li> the pre-auth for self-report feature is enabled
+   *   <li> the SMS intercept feature is enabled
+   * </ul>
+   * @param diagnosis the current diagnosis
+   * @param context application context
+   * @return true if we should display Pre-Auth screen and false otherwise.
+   */
+  public static boolean shouldDisplayPreAuthStep(DiagnosisEntity diagnosis, Context context) {
+    return TestResult.USER_REPORT.equals(diagnosis.getTestResult())
+        && ShareDiagnosisFlowHelper.isSelfReportEnabled(context)
+        && ShareDiagnosisFlowHelper.isPreAuthForSelfReportEnabled(context)
+        && ShareDiagnosisFlowHelper.isSmsInterceptEnabled(context);
   }
 
   private ShareDiagnosisFlowHelper() {

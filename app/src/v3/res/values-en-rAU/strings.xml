@@ -12,4 +12,6 @@
   <string name="possible_exposure">Possible exposure</string>
   <string name="share_history_delete_test_result_title">Delete this test result?</string>
   <string name="share_history_delete_test_result_detail">Your COVID-19 test result from %1$s will get deleted from your phone.</string>
+  <string name="sms_intercept_notice_card_title">You may get a reminder to share your result</string>
+  <string name="sms_intercept_notice_card_content">If you test positive and get a Verified SMS</string>
 </resources>

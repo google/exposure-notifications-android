@@ -18,9 +18,9 @@
 
 <resources>
   <array name="preloaded_fonts" translatable="false">
-    <item>@font/roboto_medium</item>
-    <item>@font/roboto_regular</item>
     <item>@font/google_sans_medium</item>
     <item>@font/google_sans_regular</item>
+    <item>@font/google_sans_text_medium</item>
+    <item>@font/google_sans_text_regular</item>
   </array>
 </resources>

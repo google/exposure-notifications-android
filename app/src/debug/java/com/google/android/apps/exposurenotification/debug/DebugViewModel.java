@@ -21,7 +21,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.net.Uri;
 import androidx.annotation.NonNull;
-import androidx.hilt.lifecycle.ViewModelInject;
+import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
@@ -68,18 +68,20 @@ import com.google.common.collect.Lists;
 import com.google.common.util.concurrent.FluentFuture;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
+import dagger.hilt.android.lifecycle.HiltViewModel;
 import dagger.hilt.android.qualifiers.ApplicationContext;
 import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.regex.Pattern;
-import org.checkerframework.checker.nullness.compatqual.NullableDecl;
+import javax.inject.Inject;
 import org.threeten.bp.Instant;
 import org.threeten.bp.ZonedDateTime;
 
 /**
  * View model for the {@link DebugActivity}.
  */
+@HiltViewModel
 public class DebugViewModel extends ViewModel {
 
   private static final Logger logger = Logger.getLogger("DebugViewModel");
@@ -109,7 +111,7 @@ public class DebugViewModel extends ViewModel {
   private final List<PrivateAnalyticsMetric> privateAnalyticsMetrics;
   private final PrivateAnalyticsEnabledProvider privateAnalyticsEnabledProvider;
 
-  @ViewModelInject
+  @Inject
   public DebugViewModel(
       @ApplicationContext Context context,
       CountryRepository countryRepository,
@@ -201,7 +203,7 @@ public class DebugViewModel extends ViewModel {
             convertTestTypeStrToServerValue(testTypeStr)),
         new FutureCallback<VerificationCode>() {
           @Override
-          public void onSuccess(@NullableDecl VerificationCode result) {
+          public void onSuccess(@Nullable VerificationCode result) {
             verificationCodeLiveData.postValue(result);
           }
 

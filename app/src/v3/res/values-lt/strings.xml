@@ -12,4 +12,6 @@
   <string name="possible_exposure">Galimas kontaktas su užsikrėtusiu asmeniu</string>
   <string name="share_history_delete_test_result_title">Ištrinti šio testo rezultatą?</string>
   <string name="share_history_delete_test_result_detail">Jūsų %1$s COVID-19 testo rezultatai bus ištrinti iš jūsų telefono.</string>
+  <string name="sms_intercept_notice_card_title">Galite gauti priminimą bendrinti rezultatą</string>
+  <string name="sms_intercept_notice_card_content">Jei testo rez. teig. ir gaunate patvirt. SMS</string>
 </resources>

@@ -12,4 +12,6 @@
   <string name="possible_exposure">[Þöššîбļé éxþöšûŕé one two three]</string>
   <string name="share_history_delete_test_result_title">[Ðéļéţé ţĥîš ţéšţ ŕéšûļţ¿ one two three four five]</string>
   <string name="share_history_delete_test_result_detail">[Ýöûŕ ÇÖVÎÐ-19 ţéšţ ŕéšûļţ ƒŕöm ᐅ%1$sᐊ ŵîļļ ĝéţ ðéļéţéð ƒŕöm ýöûŕ þĥöñé. one two three four five six seven eight nine ten eleven twelve thirteen]</string>
+  <string name="sms_intercept_notice_card_title">[Ýöû måý ĝéţ å ŕémîñðéŕ ţö šĥåŕé ýöûŕ ŕéšûļţ one two three four five six seven eight nine]</string>
+  <string name="sms_intercept_notice_card_content">[Îƒ ýöû ţéšţ þöšîţîvé åñð ĝéţ å véŕîƒîéð ŠMŠ one two three four five six seven eight nine]</string>
 </resources>

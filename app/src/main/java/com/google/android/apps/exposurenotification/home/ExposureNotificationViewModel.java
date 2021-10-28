@@ -30,11 +30,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.hilt.lifecycle.ViewModelInject;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
+import com.google.android.apps.exposurenotification.common.BuildUtils;
+import com.google.android.apps.exposurenotification.common.BuildUtils.Type;
 import com.google.android.apps.exposurenotification.common.PairLiveData;
 import com.google.android.apps.exposurenotification.common.Qualifiers.LightweightExecutor;
 import com.google.android.apps.exposurenotification.common.SingleLiveEvent;
@@ -58,12 +59,15 @@ import com.google.android.gms.tasks.Tasks;
 import com.google.common.base.Optional;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
+import dagger.hilt.android.lifecycle.HiltViewModel;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
+import javax.inject.Inject;
 
 /**
  * View model for the {@link ExposureNotificationActivity} and fragments.
  */
+@HiltViewModel
 public class ExposureNotificationViewModel extends ViewModel {
 
   private static final Logger logcat = Logger.getLogger("ExposureNotificationVM");
@@ -117,7 +121,7 @@ public class ExposureNotificationViewModel extends ViewModel {
     PAUSED_USER_PROFILE_NOT_SUPPORT
   }
 
-  @ViewModelInject
+  @Inject
   public ExposureNotificationViewModel(
       ExposureNotificationSharedPreferences exposureNotificationSharedPreferences,
       ExposureNotificationClientWrapper exposureNotificationClientWrapper,
@@ -206,7 +210,8 @@ public class ExposureNotificationViewModel extends ViewModel {
   }
 
   /**
-   * Whether EN is enabled and the SMS notice has not been shown in the app or play onboarding.
+   * Whether SMS notice has not been shown in the app or play onboarding.
+   * On V2 versions, always returns false if EN is disabled.
    */
   public LiveData<Boolean> getShouldShowSmsNoticeLiveData() {
     if (shouldShowSmsNoticeLiveData == null) {
@@ -216,8 +221,8 @@ public class ExposureNotificationViewModel extends ViewModel {
                   PairLiveData.of(enEnabledLiveData, hasShownSmsNoticeLiveData()),
                   combined -> {
                     boolean enEnabled = combined.first;
-                    if (!enEnabled) {
-                      return false; // don't show when en not enabled
+                    if (BuildUtils.getType() == Type.V2 && !enEnabled) {
+                      return false; // don't show when en not enabled on V2 versions
                     }
                     Optional<Boolean> hasShownSmsNotice = combined.second;
                     if (hasShownSmsNotice.isPresent()) {
@@ -341,6 +346,7 @@ public class ExposureNotificationViewModel extends ViewModel {
     exposureNotificationClientWrapper.getPackageConfiguration()
         .addOnSuccessListener(packageConfiguration -> {
           packageConfigurationHelper.maybeUpdateAnalyticsState(packageConfiguration);
+          packageConfigurationHelper.maybeUpdateSmsNoticeState(packageConfiguration);
           isPackageConfigurationSmsNoticeSeenLiveData.postValue(
               Optional.of(
                   PackageConfigurationHelper.getSmsNoticeFromPackageConfiguration(

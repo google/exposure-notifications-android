@@ -12,4 +12,6 @@
   <string name="possible_exposure">Mulig eksponering</string>
   <string name="share_history_delete_test_result_title">Vil du slette dette testresultat?</string>
   <string name="share_history_delete_test_result_detail">Dit COVID-19-testresultat fra den %1$s slettes fra din telefon.</string>
+  <string name="sms_intercept_notice_card_title">Du får muligvis en påmindelse om at dele dit resultat</string>
+  <string name="sms_intercept_notice_card_content">Ved positiv test og modtagelse af bekræftet sms</string>
 </resources>

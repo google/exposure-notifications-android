@@ -13,7 +13,7 @@
   <string name="btn_done">Եղավ</string>
   <string name="btn_previous">Նախորդը</string>
   <string name="btn_verify">Հաստատել</string>
-  <string name="btn_dont_share">Շարունակել առանց ուղարկելու</string>
+  <string name="btn_no_thanks">Ոչ, շնորհակալություն</string>
   <string name="btn_share">Կիսվել</string>
   <string name="learn_more">Իմանալ ավելին</string>
   <string name="home_tab_settings_text">Կարգավորումներ</string>
@@ -201,13 +201,13 @@
   <string name="sms_intercept_notice_title">Նոր գործառույթ</string>
   <string name="sms_intercept_notice_content">Եթե ձեզ ուղարկվի թեստի արդյունքով SMS, դուք նաև կարող եք ստանալ ծանուցում՝ ախտորոշման պատասխանը վարակման վտանգի մասին ծանուցումների համակարգում հրապարակելու առաջարկով։ Ցանկացած ժամանակ կարող եք այս գործառույթն անջատել կարգավորումներում։</string>
   <string name="share_upload_title">Հաղորդեք ձեր թեստի պատասխանի մասին՝ ձեր համայնքի բնակիչներին վտանգից զերծ պահելու համար</string>
-  <string name="share_upload_test_result_source_description">Թեստի պատասխանն ուղարկվել է «%1$s» հաստատության կողմից</string>
-  <string name="share_upload_symptoms_subtitle">Որ օրվանից են ի հայտ եկել ախտանիշները</string>
+  <string name="share_upload_test_result_source_description">Արդյունքներն ուղարկվել են «%1$s» հաստատության կողմից</string>
+  <string name="share_upload_symptoms_subtitle">Ախտանիշները ի հայտ են եկել</string>
   <string name="share_upload_symptoms_date_fixed_description">Ախտանիշների առաջացման ամսաթիվը տրվել է %1$s կազմակերպության կողմից</string>
   <string name="share_upload_skip_choice">Բաց թողնել</string>
   <string name="share_upload_travel_subtitle">Ճամփորդությունների պատմություն</string>
   <string name="travel_history_travelled_recently_choice">Ճամփորդություններ վերջին 14 օրվա ընթացքում</string>
-  <string name="travel_history_no_travel_choice">Չկա</string>
+  <string name="travel_history_no_travel_choice">Ես չեմ ճամփորդել</string>
   <string name="share_upload_select_a_date_choice">Ընտրեք ամսաթիվը</string>
   <string name="share_upload_status_subtitle">COVID-19 կարգավիճակ</string>
   <string name="share_upload_status_confirmed">Դրական</string>

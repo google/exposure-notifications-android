@@ -237,4 +237,107 @@ public class PackageConfigurationHelperTest {
 
     assertThat(checkboxConsent).isEqualTo(true);
   }
+
+  @Test
+  public void isAppAnalyticsPresentInPackageConfiguration_nullPackageConfiguration_returnsFalse() {
+    assertThat(PackageConfigurationHelper.isAppAnalyticsPresentInPackageConfiguration(null))
+        .isFalse();
+  }
+
+  @Test
+  public void isAppAnalyticsPresentInPackageConfiguration_nullConfigurationBundle_returnsFalse() {
+    PackageConfiguration pckgConfig = new PackageConfigurationBuilder().build();
+
+    assertThat(PackageConfigurationHelper.isAppAnalyticsPresentInPackageConfiguration(pckgConfig))
+        .isFalse();
+  }
+
+  @Test
+  public void isAppAnalyticsPresentInPackageConfiguration_appAnalyticsNotPresent_returnsFalse() {
+    Bundle bundle = new Bundle();
+    PackageConfiguration packageConfiguration =
+        new PackageConfigurationBuilder().setValues(bundle).build();
+
+    boolean isAppAnalyticsPresent = PackageConfigurationHelper
+        .isAppAnalyticsPresentInPackageConfiguration(packageConfiguration);
+
+    assertThat(isAppAnalyticsPresent).isFalse();
+  }
+
+  @Test
+  public void isAppAnalyticsPresentInPackageConfiguration_appAnalyticsPresentAndIsFalse_returnsTrue() {
+    Bundle bundle = new Bundle();
+    bundle.putBoolean(PackageConfigurationHelper.APP_ANALYTICS_OPT_IN, false);
+    PackageConfiguration packageConfiguration =
+        new PackageConfigurationBuilder().setValues(bundle).build();
+
+    boolean isAppAnalyticsPresent = PackageConfigurationHelper
+        .isAppAnalyticsPresentInPackageConfiguration(packageConfiguration);
+
+    assertThat(isAppAnalyticsPresent).isTrue();
+  }
+
+  @Test
+  public void isAppAnalyticsPresentInPackageConfiguration_appAnalyticsPresentAndIsTrue_returnsTrue() {
+    Bundle bundle = new Bundle();
+    bundle.putBoolean(PackageConfigurationHelper.APP_ANALYTICS_OPT_IN, true);
+    PackageConfiguration packageConfiguration =
+        new PackageConfigurationBuilder().setValues(bundle).build();
+
+    boolean isAppAnalyticsPresent = PackageConfigurationHelper
+        .isAppAnalyticsPresentInPackageConfiguration(packageConfiguration);
+
+    assertThat(isAppAnalyticsPresent).isTrue();
+  }
+
+  @Test
+  public void maybeUpdateSmsNoticeState_nullConfiguration_sharedPrefFalse() {
+    packageConfigurationHelper.maybeUpdateSmsNoticeState(null);
+
+    assertThat(exposureNotificationSharedPreferences.isPlaySmsNoticeSeen()).isEqualTo(false);
+  }
+
+  @Test
+  public void maybeUpdateSmsNoticeState_nullConfigurationBundle_sharedPrefFalse() {
+    PackageConfiguration packageConfiguration = new PackageConfigurationBuilder().build();
+
+    packageConfigurationHelper.maybeUpdateSmsNoticeState(packageConfiguration);
+
+    assertThat(exposureNotificationSharedPreferences.isPlaySmsNoticeSeen()).isEqualTo(false);
+  }
+
+  @Test
+  public void maybeUpdateSmsNoticeState_nullConfigurationBundlePlaySmsNoticeAlreadySeen_sharedPrefFalse() {
+    exposureNotificationSharedPreferences.setPlaySmsNoticeSeen(true);
+    PackageConfiguration packageConfiguration = new PackageConfigurationBuilder().build();
+
+    packageConfigurationHelper.maybeUpdateSmsNoticeState(packageConfiguration);
+
+    assertThat(exposureNotificationSharedPreferences.isPlaySmsNoticeSeen()).isEqualTo(false);
+  }
+
+  @Test
+  public void maybeUpdateSmsNoticeState_packageConfigurationSmsNoticeSeen_sharedPrefTrue() {
+    Bundle bundle = new Bundle();
+    bundle.putBoolean(PackageConfigurationHelper.SMS_NOTICE, true);
+    PackageConfiguration packageConfiguration =
+        new PackageConfigurationBuilder().setValues(bundle).build();
+
+    packageConfigurationHelper.maybeUpdateSmsNoticeState(packageConfiguration);
+
+    assertThat(exposureNotificationSharedPreferences.isPlaySmsNoticeSeen()).isEqualTo(true);
+  }
+
+  @Test
+  public void maybeUpdateSmsNoticeState_packageConfigurationSmsNoticeNotSeen_sharedPrefFalse() {
+    Bundle bundle = new Bundle();
+    bundle.putBoolean(PackageConfigurationHelper.SMS_NOTICE, false);
+    PackageConfiguration packageConfiguration =
+        new PackageConfigurationBuilder().setValues(bundle).build();
+
+    packageConfigurationHelper.maybeUpdateSmsNoticeState(packageConfiguration);
+
+    assertThat(exposureNotificationSharedPreferences.isPlaySmsNoticeSeen()).isEqualTo(false);
+  }
+
 }

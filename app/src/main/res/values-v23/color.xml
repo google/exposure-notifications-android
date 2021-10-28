@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ Copyright 2020 Google LLC
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright 2021 Google LLC
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -16,9 +15,6 @@
   ~
   -->
 
-<font-family xmlns:app="http://schemas.android.com/apk/res-auto"
-        app:fontProviderAuthority="com.google.android.gms.fonts"
-        app:fontProviderPackage="com.google.android.gms"
-        app:fontProviderQuery="name=Roboto&amp;weight=500"
-        app:fontProviderCerts="@array/com_google_android_gms_fonts_certs">
-</font-family>
+<resources>
+  <color name="status_bar_color">@android:color/transparent</color>
+</resources>

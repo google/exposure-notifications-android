@@ -12,4 +12,6 @@
   <string name="possible_exposure">Risque d\'exposition</string>
   <string name="share_history_delete_test_result_title">Supprimer ce résultat de test ?</string>
   <string name="share_history_delete_test_result_detail">Le résultat de votre test de dépistage de la COVID-19 du %1$s sera supprimé de votre téléphone.</string>
+  <string name="sms_intercept_notice_card_title">Vous recevrez peut-être un rappel de partage du résultat</string>
+  <string name="sms_intercept_notice_card_content">Si vous êtes testé positif et que vous recevez SMS vérifié</string>
 </resources>

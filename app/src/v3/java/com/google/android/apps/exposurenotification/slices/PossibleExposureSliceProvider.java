@@ -19,14 +19,17 @@ package com.google.android.apps.exposurenotification.slices;
 
 import static com.google.android.apps.exposurenotification.nearby.ExposureNotificationClientWrapper.EN_MODULE_PERMISSION;
 
+import android.annotation.SuppressLint;
 import android.app.PendingIntent;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.IconCompat;
@@ -37,6 +40,7 @@ import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.common.IntentUtil;
 import com.google.android.apps.exposurenotification.common.StringUtils;
 import com.google.android.apps.exposurenotification.common.time.Clock;
+import com.google.android.apps.exposurenotification.notify.ShareDiagnosisFlowHelper;
 import com.google.android.apps.exposurenotification.riskcalculation.ExposureClassification;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
 import dagger.hilt.EntryPoint;
@@ -107,29 +111,16 @@ public class PossibleExposureSliceProvider extends SliceProvider {
       return null;
     }
 
+    // If a different slice URI was requested, we return no slice
+    if (!POSSIBLE_EXPOSURE_SLICE_URI.getPath().equals(sliceUri.getPath())) {
+      return null;
+    }
+
     // Make sure we only return the slice to a Google-signed GMSCore
     if (!slicePermissionManager.callingUidHasAccess()) {
       return null;
     }
 
-    // Return slices depending on the requested sliceUri
-    if (POSSIBLE_EXPOSURE_SLICE_URI.getPath().equals(sliceUri.getPath())) {
-      // createPossibleExposureSlice might return null itself if there are no exposures
-      return createPossibleExposureSlice(context, sliceUri);
-    } else {
-      return null;
-    }
-  }
-
-
-
-  /**
-   * Fetches recent exposure information from shared preferences and builds an exposure slice.
-   *
-   * @return a slice with exposure information filled in if there is an active exposure, null
-   * otherwise
-   */
-  private Slice createPossibleExposureSlice(Context context, Uri sliceUri) {
     // Get clock and ExposureNotificationSharedPreferences via DI
     PossibleExposureSliceProviderInterface possibleExposureSliceProviderInterface =
         EntryPoints.get(context, PossibleExposureSliceProviderInterface.class);
@@ -144,17 +135,58 @@ public class PossibleExposureSliceProvider extends SliceProvider {
         exposureNotificationSharedPreferences.getExposureClassification();
     boolean isRevoked = exposureNotificationSharedPreferences.getIsExposureClassificationRevoked();
 
-    // Only create a slice if there actually is an exposure (or a revocation)
+    ListSliceBuilderWrapper listBuilder =
+        ListSliceBuilderWrapper.createListSliceBuilderWrapper(getContext(), sliceUri);
+
+    // Create a possible exposure slice if there actually is an exposure (or a revocation)
     if (exposureClassification.getClassificationIndex()
-        == ExposureClassification.NO_EXPOSURE_CLASSIFICATION_INDEX
-        && !isRevoked) {
-      return null;
+        != ExposureClassification.NO_EXPOSURE_CLASSIFICATION_INDEX
+        || isRevoked) {
+      createPossibleExposureSlice(listBuilder, context, exposureClassification, isRevoked, clock);
     }
 
-    // Create the actual slice
-    PendingIntent action = PendingIntent.getActivity(
-        context, POSSIBLE_EXPOSURE_ACTIVITY_REQUEST_CODE,
-        IntentUtil.getPossibleExposureSliceIntent(context), 0);
+    // Manually fetch SMS notice information
+    boolean isInAppSmsNoticeSeen = exposureNotificationSharedPreferences.isInAppSmsNoticeSeen();
+    boolean isPlaySmsNoticeSeen = exposureNotificationSharedPreferences.isPlaySmsNoticeSeen();
+
+    // Create a SMS notice slice if SMS intercept is enabled and we've not shown a notice in-app
+    // or during play onboarding
+    if (!isInAppSmsNoticeSeen && !isPlaySmsNoticeSeen &&
+        ShareDiagnosisFlowHelper.isSmsInterceptEnabled(context)) {
+      createSmsNoticeSlice(listBuilder, context);
+    }
+
+    // Check if we added any rows until here, otherwise return null
+    if (!listBuilder.isEmpty()) {
+      return listBuilder.build();
+    } else {
+      return null;
+    }
+  }
+
+  /**
+   * Build Sms-notice slice and add it to the provided ListSliceBuilderWrapper.
+   */
+  private void createSmsNoticeSlice(ListSliceBuilderWrapper listBuilder, Context context) {
+    PendingIntent action = createPendingIntent(context, POSSIBLE_EXPOSURE_ACTIVITY_REQUEST_CODE,
+        IntentUtil.getSmsNoticeSliceIntent(context));
+    IconCompat icon = IconCompat.createWithBitmap(
+        getBitmapFromVectorDrawable(getContext(), R.drawable.ic_check_filled));
+    String title = context.getString(R.string.sms_intercept_notice_card_title);
+    String subtitle = context.getString(R.string.sms_intercept_notice_card_content);
+
+    listBuilder.addRow(action, icon, title, subtitle);
+  }
+
+  /**
+   * Build possible-exposure slice and add it to the provided ListSliceBuilderWrapper.
+   * All information required for its content (exposureClassification, isRevoked, clock) is
+   * passed via arguments.
+   */
+  private void createPossibleExposureSlice(ListSliceBuilderWrapper listBuilder, Context context,
+      ExposureClassification exposureClassification, boolean isRevoked, Clock clock) {
+    PendingIntent action = createPendingIntent(context, POSSIBLE_EXPOSURE_ACTIVITY_REQUEST_CODE,
+        IntentUtil.getPossibleExposureSliceIntent(context));
     IconCompat icon = IconCompat.createWithBitmap(
         getBitmapFromVectorDrawable(getContext(), R.drawable.ic_exposure_card));
     icon.setTint(ContextCompat.getColor(context, R.color.notification_color));
@@ -163,10 +195,7 @@ public class PossibleExposureSliceProvider extends SliceProvider {
     String subtitle =
         StringUtils.daysFromStartOfExposure(exposureClassification, clock.now(), context);
 
-    ListSliceBuilderWrapper listBuilder =
-        ListSliceBuilderWrapper.createListSliceBuilderWrapper(getContext(), sliceUri);
     listBuilder.addRow(action, icon, title, subtitle);
-    return listBuilder.build();
   }
 
   private static Bitmap getBitmapFromVectorDrawable(Context context, int drawableId) {
@@ -179,4 +208,19 @@ public class PossibleExposureSliceProvider extends SliceProvider {
     drawable.draw(canvas);
     return bitmap;
   }
+
+  // Immutable flags are only available on Android 23+. To cover older Android versions, we
+  // intentionally omit this flag on pre Android 23.
+  @SuppressLint("UnspecifiedImmutableFlag")
+  private static PendingIntent createPendingIntent(Context context, int requestCode,
+      Intent intent) {
+    if (VERSION.SDK_INT >= VERSION_CODES.M) {
+      return PendingIntent.getActivity(context, requestCode, intent,
+          PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+    } else {
+      return PendingIntent.getActivity(context, requestCode, intent,
+          PendingIntent.FLAG_UPDATE_CURRENT);
+    }
+  }
+
 }

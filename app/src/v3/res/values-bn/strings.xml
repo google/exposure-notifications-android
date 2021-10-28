@@ -12,4 +12,6 @@
   <string name="possible_exposure">সম্ভাব্য এক্সপোজার</string>
   <string name="share_history_delete_test_result_title">পরীক্ষার ফলাফল মুছতে চান?</string>
   <string name="share_history_delete_test_result_detail">%1$s তারিখ থেকে পাওয়া আপনার COVID-19 পরীক্ষার ফলাফল আপনার ফোন থেকে মুছে দেওয়া হবে।</string>
+  <string name="sms_intercept_notice_card_title">ফলাফল শেয়ার করার জন্য আপনি রিমাইন্ডার পেতে পারেন</string>
+  <string name="sms_intercept_notice_card_content">আপনি সংক্রমিত হলে, পরীক্ষার ফলাফলের যাচাই করা এসএমএস পাবেন</string>
 </resources>

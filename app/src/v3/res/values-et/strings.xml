@@ -12,4 +12,6 @@
   <string name="possible_exposure">Võimalik kokkupuude</string>
   <string name="share_history_delete_test_result_title">Kas kustutada see testitulemus?</string>
   <string name="share_history_delete_test_result_detail">Teie COVID-19 testi tulemus kuupäevast %1$s kustutatakse teie telefonist.</string>
+  <string name="sms_intercept_notice_card_title">Võite saada tulemuse jagamise meeldetuletuse</string>
+  <string name="sms_intercept_notice_card_content">Kui tulemus on pos. ja saate kinnitatud SMS-i</string>
 </resources>

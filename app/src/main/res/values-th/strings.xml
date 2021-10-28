@@ -13,7 +13,7 @@
   <string name="btn_done">เสร็จ</string>
   <string name="btn_previous">ก่อนหน้า</string>
   <string name="btn_verify">ยืนยัน</string>
-  <string name="btn_dont_share">ดำเนินการต่อโดยไม่แชร์</string>
+  <string name="btn_no_thanks">ไม่เป็นไร</string>
   <string name="btn_share">แชร์</string>
   <string name="learn_more">ดูข้อมูลเพิ่มเติม</string>
   <string name="home_tab_settings_text">การตั้งค่า</string>
@@ -201,13 +201,13 @@
   <string name="sms_intercept_notice_title">มีอะไรใหม่</string>
   <string name="sms_intercept_notice_content">หากได้รับ SMS ที่มีผลการตรวจหาเชื้อ คุณอาจได้รับการแจ้งเตือนให้แชร์การวินิจฉัยในการแจ้งเตือนความเสี่ยงต่อการติดเชื้อ คุณปิดใช้งานได้ทุกเมื่อในการตั้งค่า</string>
   <string name="share_upload_title">แชร์ผลตรวจเพื่อปกป้องชุมชนของคุณ</string>
-  <string name="share_upload_test_result_source_description">ส่งผลตรวจโดย %1$s</string>
-  <string name="share_upload_symptoms_subtitle">เริ่มมีอาการตั้งแต่</string>
+  <string name="share_upload_test_result_source_description">ส่งผลการตรวจโดย %1$s</string>
+  <string name="share_upload_symptoms_subtitle">เริ่มมีอาการเมื่อ</string>
   <string name="share_upload_symptoms_date_fixed_description">ให้ข้อมูลวันที่มีอาการโดย %1$s</string>
   <string name="share_upload_skip_choice">ข้าม</string>
   <string name="share_upload_travel_subtitle">ประวัติการเดินทาง</string>
   <string name="travel_history_travelled_recently_choice">เดินทางในช่วง 14 วันที่ผ่านมา</string>
-  <string name="travel_history_no_travel_choice">ไม่มี</string>
+  <string name="travel_history_no_travel_choice">ฉันไม่ได้เดินทาง</string>
   <string name="share_upload_select_a_date_choice">เลือกวันที่</string>
   <string name="share_upload_status_subtitle">สถานะความเสี่ยงต่อการติดเชื้อโควิด-19</string>
   <string name="share_upload_status_confirmed">ติดเชื้อ</string>

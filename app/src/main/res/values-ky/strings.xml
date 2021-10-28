@@ -13,7 +13,7 @@
   <string name="btn_done">Бүттү</string>
   <string name="btn_previous">Мурунку</string>
   <string name="btn_verify">Ырастоо</string>
-  <string name="btn_dont_share">Бөлүшпөй туруп улантуу</string>
+  <string name="btn_no_thanks">Жок, рахмат</string>
   <string name="btn_share">Бөлүшүү</string>
   <string name="learn_more">Кененирээк</string>
   <string name="home_tab_settings_text">Жөндөөлөр</string>
@@ -161,9 +161,9 @@
   <string name="exposure_notifications_are_inactive">Ооруну жугузуп алуу коркунучу тууралуу билдирмелер жигерсиз</string>
   <string name="device_settings">Түзмөктүн жөндөөлөрү</string>
   <string name="manage_storage">Сактагычты башкаруу</string>
-  <string name="location_off_warning">COVID-19 вирусун жугузуп алуу коркунучу тууралуу билдирмелерди алуу үчүн түзмөгүңүздүн жайгашкан жерин аныктоо жөндөөсүн күйгүзүңүз.</string>
+  <string name="location_off_warning">COVID-19 вирусун жугузуп алуу коркунучу тууралуу билдирмелерди алуу үчүн түзмөгүңүздүн жайгашкан жерин аныктоо функциясын күйгүзүңүз.</string>
   <string name="ble_off_warning">COVID-19 вирусун жугузуп алуу коркунучу тууралуу билдирмелерди алуу үчүн Bluetooth\'ду күйгүзүңүз.</string>
-  <string name="location_ble_off_warning">COVID-19 вирусун жугузуп алуу коркунучу тууралуу билдирмелерди алуу үчүн Bluetooth\'ду жана түзмөгүңүздүн жайгашкан жерин аныктоо жөндөөсүн күйгүзүңүз.</string>
+  <string name="location_ble_off_warning">COVID-19 вирусун жугузуп алуу коркунучу тууралуу билдирмелерди алуу үчүн Bluetooth\'ду жана түзмөгүңүздүн жайгашкан жерин аныктоо функциясын күйгүзүңүз.</string>
   <string name="storage_low_warning">COVID-19 вирусун жугузуп алуу коркунучу тууралуу билдирмелерди алуу үчүн телефонуңуздун сактагычынан орун бошотуңуз.</string>
   <string name="not_in_allowlist_warning">Ооруну жугузуп алуу коркунучу тууралуу билдирмелер сиздин аймакта жеткиликтүү болбой калды.</string>
   <string name="hw_not_supported_warning">Бул түзмөктө ооруну жугузуп алуу коркунучу тууралуу кабарлоо колдоого алынбайт. %1$s карап көрүңүз.</string>
@@ -201,13 +201,13 @@
   <string name="sms_intercept_notice_title">Эмне жаңылык</string>
   <string name="sms_intercept_notice_content">Эгер анализдин жыйынтыгын SMS билдирүү аркылуу алсаңыз, аны ооруну жугузуп алуу коркунучу тууралуу билдирмеде бөлүшүү сунушун алышыңыз мүмкүн. Муну жөндөөлөргө өтүп, каалаган убакта өчүрө аласыз.</string>
   <string name="share_upload_title">Коомдоштугуңузду коргоо үчүн анализиңиздин жыйынтыгын бөлүшүңүз</string>
-  <string name="share_upload_test_result_source_description">Анализдин жыйынтыгын %1$s жөнөттү</string>
-  <string name="share_upload_symptoms_subtitle">Оорунун белгилери башталган күн:</string>
+  <string name="share_upload_test_result_source_description">Жыйынтыктарды %1$s жөнөттү</string>
+  <string name="share_upload_symptoms_subtitle">Оорунун белгилери байкала баштаган күн</string>
   <string name="share_upload_symptoms_date_fixed_description">Ооруунун белгиси байкалган күн %1$s тарабынан көрсөтүлдү</string>
   <string name="share_upload_skip_choice">Өткөрүп жиберүү</string>
   <string name="share_upload_travel_subtitle">Барган жерлердин таржымалы</string>
   <string name="travel_history_travelled_recently_choice">Акыркы 14 күндө саякаттагам</string>
-  <string name="travel_history_no_travel_choice">Жок</string>
+  <string name="travel_history_no_travel_choice">Cаякаттаган жокмун</string>
   <string name="share_upload_select_a_date_choice">Күндү тандоо</string>
   <string name="share_upload_status_subtitle">COVID-19 статусу</string>
   <string name="share_upload_status_confirmed">Оң</string>

@@ -45,7 +45,7 @@ import org.threeten.bp.Instant;
  */
 public class KeysUploadedAfterNotificationMetric implements PrivateAnalyticsMetric {
 
-  private static final String VERSION = "v1";
+  private static final String VERSION = "v2";
   public static final String METRIC_NAME = "SecondaryAttack14d-" + VERSION;
 
   private static final Duration NUM_DAYS = Duration.ofDays(14);

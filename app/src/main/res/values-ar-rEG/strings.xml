@@ -13,7 +13,7 @@
   <string name="btn_done">تم</string>
   <string name="btn_previous">الشاشة السابقة</string>
   <string name="btn_verify">تأكيد</string>
-  <string name="btn_dont_share">المتابعة بدون مشاركة</string>
+  <string name="btn_no_thanks">لا، شكرًا</string>
   <string name="btn_share">مشاركة</string>
   <string name="learn_more">مزيد من المعلومات</string>
   <string name="home_tab_settings_text">الإعدادات</string>
@@ -209,8 +209,8 @@
   <string name="sms_intercept_notice_title">الميزة الجديدة</string>
   <string name="sms_intercept_notice_content">إذا تلقّيت رسالة قصيرة SMS تحتوي على نتيجة اختبارك، قد تتلقّى إشعارًا يطلب منك مشاركة تشخيصك في نظام \"إشعارات التعرّض لفيروس كورونا\". يمكنك إيقاف هذه الميزة في أي وقت من الإعدادات.</string>
   <string name="share_upload_title">مشاركة نتائج الاختبار لحماية المجتمع</string>
-  <string name="share_upload_test_result_source_description">تم إرسال نتائج الاختبار من %1$s.</string>
-  <string name="share_upload_symptoms_subtitle">بدأت الأعراض من</string>
+  <string name="share_upload_test_result_source_description">تم إرسال النتائج من %1$s.</string>
+  <string name="share_upload_symptoms_subtitle">بدأت الأعراض في</string>
   <string name="share_upload_symptoms_date_fixed_description">توفّر %1$s تاريخ ظهور الأعراض.</string>
   <string name="share_upload_skip_choice">التخطي</string>
   <string name="share_upload_travel_subtitle">سجلّ السفر</string>

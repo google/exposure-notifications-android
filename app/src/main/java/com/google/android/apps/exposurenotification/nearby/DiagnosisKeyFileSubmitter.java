@@ -17,6 +17,7 @@
 
 package com.google.android.apps.exposurenotification.nearby;
 
+import androidx.annotation.Nullable;
 import com.google.android.apps.exposurenotification.common.Qualifiers.BackgroundExecutor;
 import com.google.android.apps.exposurenotification.common.Qualifiers.ScheduledExecutor;
 import com.google.android.apps.exposurenotification.common.TaskToFutureAdapter;
@@ -48,7 +49,6 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 import javax.inject.Inject;
 import org.apache.commons.io.IOUtils;
-import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 import org.threeten.bp.Duration;
 
 /**
@@ -122,7 +122,7 @@ public class DiagnosisKeyFileSubmitter {
 
     Futures.addCallback(allDone, new FutureCallback<Void>() {
       @Override
-      public void onSuccess(@NullableDecl Void result) {
+      public void onSuccess(@Nullable Void result) {
         for (KeyFile f : keyFiles) {
           if (f.isMostRecent()) {
             // On success, remember the last successful file for each server.

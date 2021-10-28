@@ -20,6 +20,7 @@ package com.google.android.apps.exposurenotification.keydownload;
 import android.content.Context;
 import android.net.Uri;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.concurrent.futures.CallbackToFutureAdapter;
 import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
@@ -54,7 +55,6 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import javax.inject.Inject;
 import org.apache.commons.io.FileUtils;
-import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 import org.threeten.bp.Duration;
 
 /**
@@ -210,7 +210,7 @@ public class DiagnosisKeyDownloader {
   private final FutureCallback<ImmutableList<KeyFile>> LOG_OUTCOME =
       new FutureCallback<ImmutableList<KeyFile>>() {
         @Override
-        public void onSuccess(@NullableDecl ImmutableList<KeyFile> files) {
+        public void onSuccess(@Nullable ImmutableList<KeyFile> files) {
           int totalBytesDownloaded = 0;
           for (KeyFile file : files) {
             totalBytesDownloaded += file.file().length();

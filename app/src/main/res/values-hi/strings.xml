@@ -13,7 +13,7 @@
   <string name="btn_done">हो गया</string>
   <string name="btn_previous">पीछे जाएं</string>
   <string name="btn_verify">जांच के नतीजे की पुष्टि करें</string>
-  <string name="btn_dont_share">शेयर किए बिना जारी रखें</string>
+  <string name="btn_no_thanks">नहीं, रहने दें</string>
   <string name="btn_share">शेयर करें</string>
   <string name="learn_more">ज़्यादा जानें</string>
   <string name="home_tab_settings_text">सेटिंग</string>
@@ -201,13 +201,13 @@
   <string name="sms_intercept_notice_title">नया क्या है</string>
   <string name="sms_intercept_notice_content">अगर आपको जांच के नतीजे वाला एसएमएस मिलता है, तो हो सकता है कि आपको संक्रमित व्यक्ति से संपर्क की सूचना मिले. इस सूचना में, आपको अपने नतीजे शेयर करने के लिए कहा जा सकता है. आप जब चाहें, सेटिंग में जाकर इसे बंद कर सकते हैं.</string>
   <string name="share_upload_title">अपने समुदाय को सुरक्षित रखने के लिए, अपनी जांच का नतीजा शेयर करें</string>
-  <string name="share_upload_test_result_source_description">जांच का नतीजा %1$s ने भेजा है</string>
-  <string name="share_upload_symptoms_subtitle">इस तारीख से लक्षण दिखना शुरू हुए</string>
+  <string name="share_upload_test_result_source_description">%1$s ने नतीजे भेजे थे</string>
+  <string name="share_upload_symptoms_subtitle">इस तारीख को लक्षण दिखने शुरू हुए</string>
   <string name="share_upload_symptoms_date_fixed_description">लक्षण दिखने की तारीख की जानकारी %1$s ने दी है</string>
   <string name="share_upload_skip_choice">अभी नहीं</string>
   <string name="share_upload_travel_subtitle">यात्रा का इतिहास</string>
   <string name="travel_history_travelled_recently_choice">पिछले 14 दिन के अंदर की गई यात्रा</string>
-  <string name="travel_history_no_travel_choice">कोई नहीं</string>
+  <string name="travel_history_no_travel_choice">मैंने कोई यात्रा नहीं की थी</string>
   <string name="share_upload_select_a_date_choice">कोई तारीख चुनें</string>
   <string name="share_upload_status_subtitle">COVID-19 की जांच का नतीजा</string>
   <string name="share_upload_status_confirmed">पॉज़िटिव पाए गए</string>

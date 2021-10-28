@@ -17,5 +17,5 @@
 
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
   <item android:color="?android:attr/textColorPrimary" android:state_enabled="false" />
-  <item android:color="@color/colorPrimary" />
+  <item android:color="?attr/colorPrimary" />
 </selector>

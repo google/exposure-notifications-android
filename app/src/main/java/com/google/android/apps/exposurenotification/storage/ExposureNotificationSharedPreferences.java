@@ -88,6 +88,8 @@ public class ExposureNotificationSharedPreferences {
       "ExposureNotificationSharedPreferences.BEGIN_TIMESTAMP_BLE_LOC_OFF";
   private static final String IS_IN_APP_SMS_NOTICE_SEEN =
       "ExposureNotificationSharedPreferences.IS_IN_APP_SMS_NOTICE_SEEN";
+  private static final String IS_PLAY_SMS_NOTICE_SEEN =
+      "ExposureNotificationSharedPreferences.IS_PLAY_SMS_NOTICE_SEEN";
   // Private analytics
   private static final String SHARE_PRIVATE_ANALYTICS_KEY =
       "ExposureNotificationSharedPreferences.SHARE_PRIVATE_ANALYTICS_KEY";
@@ -120,6 +122,9 @@ public class ExposureNotificationSharedPreferences {
       "ExposureNotificationSharedPreferences.EXPOSURE_NOTIFICATION_LAST_VACCINATION_STATUS_TIME_MS";
   private static final String BIWEEKLY_METRICS_UPLOAD_DAY =
       "ExposureNotificationSharedPreferences.BIWEEKLY_METRICS_UPLOAD_DAY";
+
+  private static final String MIGRATION_RUN_OR_NOT_NEEDED =
+      "ExposureNotificationSharedPreferences.MIGRATION_RUN_OR_NOT_NEEDED";
 
   private final SharedPreferences sharedPreferences;
   private final Clock clock;
@@ -813,6 +818,21 @@ public class ExposureNotificationSharedPreferences {
     return inAppSmsNoticeSeenLiveData;
   }
 
+  @AnyThread
+  public void setPlaySmsNoticeSeenAsync(boolean isSeen) {
+    sharedPreferences.edit().putBoolean(IS_PLAY_SMS_NOTICE_SEEN, isSeen).apply();
+  }
+
+  @WorkerThread
+  public void setPlaySmsNoticeSeen(boolean isSeen) {
+    sharedPreferences.edit().putBoolean(IS_PLAY_SMS_NOTICE_SEEN, isSeen)
+        .commit();
+  }
+
+  public boolean isPlaySmsNoticeSeen() {
+    return sharedPreferences.getBoolean(IS_PLAY_SMS_NOTICE_SEEN, false);
+  }
+
   public void setBiweeklyMetricsUploadDay(Calendar calendar) {
     // We want the SharedPreferences field to match:
     // field % 7 + 1 == calendar.day_of_week
@@ -835,6 +855,14 @@ public class ExposureNotificationSharedPreferences {
       sharedPreferences.edit().putInt(BIWEEKLY_METRICS_UPLOAD_DAY, randomDay).commit();
     }
     return sharedPreferences.getInt(BIWEEKLY_METRICS_UPLOAD_DAY, 0);
+  }
+
+  public boolean isMigrationRunOrNotNeeded() {
+    return sharedPreferences.getBoolean(MIGRATION_RUN_OR_NOT_NEEDED, false);
+  }
+
+  public void markMigrationAsRunOrNotNeeded() {
+    sharedPreferences.edit().putBoolean(MIGRATION_RUN_OR_NOT_NEEDED, true).apply();
   }
 
   public interface AnalyticsStateListener {

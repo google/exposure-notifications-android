@@ -12,4 +12,6 @@
   <string name="possible_exposure">ممکنہ ایکسپوژر</string>
   <string name="share_history_delete_test_result_title">اس ٹیسٹ کے نتیجے کو حذف کریں؟</string>
   <string name="share_history_delete_test_result_detail">آپ کا COVID-19 ٹیسٹ کا نتیجہ %1$s سے آپ کے فون سے حذف ہو جائے گا۔</string>
+  <string name="sms_intercept_notice_card_title">نتیجے کا اشتراک کرنے کیلئے آپ کو یاد دہانی حاصل ہو سکتی ہے</string>
+  <string name="sms_intercept_notice_card_content">اگر آپ کا ٹیسٹ مثبت ہے اور آپ تصدیق شدہ SMS حاصل کرتے ہیں</string>
 </resources>

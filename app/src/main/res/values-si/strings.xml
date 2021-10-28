@@ -13,7 +13,7 @@
   <string name="btn_done">නිමයි</string>
   <string name="btn_previous">පෙර</string>
   <string name="btn_verify">සත්‍යාපනය කරන්න</string>
-  <string name="btn_dont_share">බෙදා ගැනීමෙන් තොරව ඉදිරියට යන්න</string>
+  <string name="btn_no_thanks">එපා ස්තුතියි</string>
   <string name="btn_share">බෙදා ගන්න</string>
   <string name="learn_more">තව දැන ගන්න</string>
   <string name="home_tab_settings_text">සැකසීම්</string>
@@ -201,13 +201,13 @@
   <string name="sms_intercept_notice_title">අලුත් මොනවාද</string>
   <string name="sms_intercept_notice_content">ඔබගේ පරීක්ෂණ ප්‍රතිඵලය සමඟ ඔබට SMS එකක් ලැබුණහොත්, නිරාවරණ දැනුම්දීම් තුළ ඔබගේ රෝග විනිශ්චය බෙදා ගන්නා ලෙස ඉල්ලමින් ඔබට දැනුම් දීමක් ලැබිය හැකිය. සැකසීම් තුළ ඔබට ඕනෑම වේලාවක මෙය අබල කළ හැකිය.</string>
   <string name="share_upload_title">ඔබේ ප්‍රජාව සුරැකීමට ඔබේ පරීක්ෂණ ප්‍රතිඵලය බෙදා ගන්න</string>
-  <string name="share_upload_test_result_source_description">පරීක්ෂා කිරීමේ ප්‍රතිඵල %1$s විසින් එවනු ලැබේ</string>
+  <string name="share_upload_test_result_source_description">ප්‍රතිඵල %1$s විසින් එවන ලදි</string>
   <string name="share_upload_symptoms_subtitle">රෝග ලක්ෂණ ආරම්භ වූයේ</string>
   <string name="share_upload_symptoms_date_fixed_description">රෝග ලක්ෂණ දිනය %1$s විසින් සපයනු ලැබේ</string>
   <string name="share_upload_skip_choice">මඟ හරින්න</string>
   <string name="share_upload_travel_subtitle">සංචාරක ඉතිහාසය</string>
   <string name="travel_history_travelled_recently_choice">පසුගිය දින 14 තුළ සංචාරය කළේය</string>
-  <string name="travel_history_no_travel_choice">කිසිවක් නැත</string>
+  <string name="travel_history_no_travel_choice">මම සංචාරය නොකළෙමි</string>
   <string name="share_upload_select_a_date_choice">දිනයක් තෝරන්න</string>
   <string name="share_upload_status_subtitle">COVID-19 තත්ත්වය</string>
   <string name="share_upload_status_confirmed">පොසිටිව්</string>

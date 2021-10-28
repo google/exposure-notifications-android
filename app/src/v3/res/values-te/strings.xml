@@ -12,4 +12,6 @@
   <string name="possible_exposure">వ్యాధి సోకగల అవకాశం</string>
   <string name="share_history_delete_test_result_title">ఈ పరీక్షా ఫలితాన్ని తొలగించాలా?</string>
   <string name="share_history_delete_test_result_detail">%1$s నుండి మీ COVID-19 పరీక్ష ఫలితం మీ ఫోన్ నుండి తొలగించబడుతుంది.</string>
+  <string name="sms_intercept_notice_card_title">మీ ఫలితాన్ని షేర్ చేయడం కోసం మీరు రిమైండర్‌ను అందుకోవచ్చు</string>
+  <string name="sms_intercept_notice_card_content">మీకు టెస్ట్‌లో పాజిటివ్ వస్తే, మీకు వెరిఫై అయిన SMS వస్తుంది</string>
 </resources>

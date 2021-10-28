@@ -85,6 +85,7 @@
 
     <Button
       android:id="@+id/see_recent_checks_button"
+      style="@style/Widget.ExposureNotifications.Button"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_gravity="end"

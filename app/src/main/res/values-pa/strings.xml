@@ -13,7 +13,7 @@
   <string name="btn_done">ਹੋ ਗਿਆ</string>
   <string name="btn_previous">ਪਿੱਛੇ</string>
   <string name="btn_verify">ਪੁਸ਼ਟੀ ਕਰੋ</string>
-  <string name="btn_dont_share">ਸਾਂਝੇਕਰਨ ਤੋਂ ਬਿਨਾਂ ਜਾਰੀ ਰੱਖੋ</string>
+  <string name="btn_no_thanks">ਨਹੀਂ ਧੰਨਵਾਦ</string>
   <string name="btn_share">ਸਾਂਝਾ ਕਰੋ</string>
   <string name="learn_more">ਹੋਰ ਜਾਣੋ</string>
   <string name="home_tab_settings_text">ਸੈਟਿੰਗਾਂ</string>
@@ -201,13 +201,13 @@
   <string name="sms_intercept_notice_title">ਨਵਾਂ ਕੀ ਹੈ</string>
   <string name="sms_intercept_notice_content">ਜੇ ਤੁਹਾਨੂੰ ਤੁਹਾਡੇ ਟੈਸਟ ਨਤੀਜੇ ਵਾਲਾ SMS ਪ੍ਰਾਪਤ ਹੁੰਦਾ ਹੈ, ਤਾਂ ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਦੀਆਂ ਸੂਚਨਾਵਾਂ ਵਿੱਚ ਤੁਹਾਨੂੰ ਆਪਣੀ ਤਸ਼ਖੀਸ ਸਾਂਝੀ ਕਰਨ ਲਈ ਸੂਚਨਾ ਪ੍ਰਾਪਤ ਹੋ ਸਕਦੀ ਹੈ। ਤੁਸੀਂ ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਕਿਸੇ ਵੀ ਸਮੇਂ ਇਸ ਨੂੰ ਬੰਦ ਕਰ ਸਕਦੇ ਹੋ।</string>
   <string name="share_upload_title">ਆਪਣੇ ਭਾਈਚਾਰੇ ਨੂੰ ਸੁਰੱਖਿਅਤ ਰੱਖਣ ਲਈ ਆਪਣਾ ਜਾਂਚ ਨਤੀਜਾ ਸਾਂਝਾ ਕਰੋ</string>
-  <string name="share_upload_test_result_source_description">ਜਾਂਚ ਨਤੀਜਾ %1$s ਵੱਲੋਂ ਭੇਜਿਆ ਗਿਆ ਹੈ</string>
-  <string name="share_upload_symptoms_subtitle">ਇਸ ਤਾਰੀਖ ਤੋਂ ਲੱਛਣ ਸ਼ੁਰੂ ਹੋਏ</string>
+  <string name="share_upload_test_result_source_description">ਨਤੀਜੇ %1$s ਵੱਲੋਂ ਭੇਜੇ ਗਏ ਸਨ</string>
+  <string name="share_upload_symptoms_subtitle">ਲੱਛਣ ਇਸ ਤਾਰੀਖ ਨੂੰ ਦਿਸਣੇ ਸ਼ੁਰੂ ਹੋਏ</string>
   <string name="share_upload_symptoms_date_fixed_description">ਲੱਛਣ ਦਿਖਣ ਦੀ ਤਾਰੀਖ %1$s ਵੱਲੋਂ ਮੁਹੱਈਆ ਕਰਵਾਈ ਗਈ ਹੈ</string>
   <string name="share_upload_skip_choice">ਛੱਡੋ</string>
   <string name="share_upload_travel_subtitle">ਯਾਤਰਾ ਦਾ ਇਤਿਹਾਸ</string>
   <string name="travel_history_travelled_recently_choice">ਪਿਛਲੇ 14 ਦਿਨਾਂ ਵਿੱਚ ਕੀਤੀ ਗਈ ਯਾਤਰਾ</string>
-  <string name="travel_history_no_travel_choice">ਕੋਈ ਨਹੀਂ</string>
+  <string name="travel_history_no_travel_choice">ਮੈਂ ਯਾਤਰਾ ਨਹੀਂ ਕੀਤੀ</string>
   <string name="share_upload_select_a_date_choice">ਕੋਈ ਤਾਰੀਖ ਚੁਣੋ</string>
   <string name="share_upload_status_subtitle">COVID-19 ਜਾਂਚ ਦਾ ਨਤੀਜਾ</string>
   <string name="share_upload_status_confirmed">ਸਕਾਰਾਤਮਕ</string>

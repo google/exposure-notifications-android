@@ -13,7 +13,7 @@
   <string name="btn_done">పూర్తయింది</string>
   <string name="btn_previous">మునుపటి స్క్రీన్</string>
   <string name="btn_verify">వెరిఫై చేయి</string>
-  <string name="btn_dont_share">షేర్ చేయకుండా కొనసాగించు</string>
+  <string name="btn_no_thanks">వద్దు</string>
   <string name="btn_share">షేర్ చేయి</string>
   <string name="learn_more">మరింత తెలుసుకోండి</string>
   <string name="home_tab_settings_text">సెట్టింగ్‌లు</string>
@@ -201,13 +201,13 @@
   <string name="sms_intercept_notice_title">కొత్తగా ఏమి ఉన్నాయి</string>
   <string name="sms_intercept_notice_content">మీ పరీక్ష ఫలితం ఉన్న SMSను మీరు అందుకుంటే, వ్యాధి సోకగల అవకాశాన్ని తెలిపే నోటిఫికేషన్‌లలో మీ సమస్య విశ్లేషణను షేర్ చేయమని కోరుతూ మీరు ఒక నోటిఫికేషన్‌ను అందుకోవచ్చు. మీరు దీన్ని ఎప్పుడైనా సెట్టింగ్‌లలో డిజేబుల్ చేయవచ్చు.</string>
   <string name="share_upload_title">మీ కమ్యూనిటీని రక్షించడానికి మీ పరీక్ష ఫలితాన్ని షేర్ చేయండి</string>
-  <string name="share_upload_test_result_source_description">పరీక్షా ఫలితం %1$s ద్వారా పంపబడింది</string>
-  <string name="share_upload_symptoms_subtitle">\'COVID-19 లక్షణాలు\' ప్రారంభమైనప్పటినుండి</string>
+  <string name="share_upload_test_result_source_description">ఫలితాలు %1$s ద్వారా పంపబడ్డాయి</string>
+  <string name="share_upload_symptoms_subtitle">వ్యాధి లక్షణాలు ఎప్పుడు మొదలయ్యాయి</string>
   <string name="share_upload_symptoms_date_fixed_description">లక్షణాలు కనిపించడం ప్రారంభమైన తేదీని %1$s అందించింది</string>
   <string name="share_upload_skip_choice">స్కిప్ చేయండి</string>
   <string name="share_upload_travel_subtitle">ట్రావెల్ హిస్టరీ</string>
   <string name="travel_history_travelled_recently_choice">గత 14 రోజుల్లో ప్రయాణం పూర్తయింది</string>
-  <string name="travel_history_no_travel_choice">ఏదీ లేదు</string>
+  <string name="travel_history_no_travel_choice">నేను ప్రయాణం చేయలేదు</string>
   <string name="share_upload_select_a_date_choice">తేదీని ఎంచుకోండి</string>
   <string name="share_upload_status_subtitle">COVID-19 వ్యాధి స్టేటస్</string>
   <string name="share_upload_status_confirmed">పాజిటివ్</string>

@@ -18,7 +18,7 @@
 package com.google.android.apps.exposurenotification.notify;
 
 import androidx.annotation.NonNull;
-import androidx.hilt.lifecycle.ViewModelInject;
+import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 import com.google.android.apps.exposurenotification.common.Qualifiers.LightweightExecutor;
@@ -29,13 +29,15 @@ import com.google.android.apps.exposurenotification.storage.DiagnosisRepository;
 import com.google.common.base.Optional;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
+import dagger.hilt.android.lifecycle.HiltViewModel;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
-import org.checkerframework.checker.nullness.compatqual.NullableDecl;
+import javax.inject.Inject;
 
 /**
  * View model that updates on the current {@link DiagnosisEntity} objects.
  */
+@HiltViewModel
 public class NotifyHomeViewModel extends ViewModel {
 
   private static final Logger logger = Logger.getLogger("NotifyHomeViewModel");
@@ -50,7 +52,7 @@ public class NotifyHomeViewModel extends ViewModel {
   // preserve the delete dialog state upon rotations.
   private int deleteDialogOpenAtPosition = DELETE_DIALOG_CLOSED;
 
-  @ViewModelInject
+  @Inject
   public NotifyHomeViewModel(
       DiagnosisRepository diagnosisRepository,
       @LightweightExecutor ExecutorService lightweightExecutor) {
@@ -81,7 +83,7 @@ public class NotifyHomeViewModel extends ViewModel {
         diagnosisRepository.deleteByIdAsync(diagnosis.getId()),
         new FutureCallback<Void>() {
           @Override
-          public void onSuccess(@NullableDecl Void result) {
+          public void onSuccess(@Nullable Void result) {
             deletedLiveEvent.postCall();
           }
 

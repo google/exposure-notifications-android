@@ -19,8 +19,7 @@ package com.google.android.apps.exposurenotification.logging;
 
 import android.content.Context;
 import androidx.annotation.NonNull;
-import androidx.hilt.Assisted;
-import androidx.hilt.work.WorkerInject;
+import androidx.hilt.work.HiltWorker;
 import androidx.work.ExistingPeriodicWorkPolicy;
 import androidx.work.ListenableWorker;
 import androidx.work.Operation;
@@ -33,6 +32,8 @@ import com.google.android.apps.exposurenotification.proto.WorkManagerTask.Worker
 import com.google.android.apps.exposurenotification.work.WorkerStartupManager;
 import com.google.common.util.concurrent.FluentFuture;
 import com.google.common.util.concurrent.ListenableFuture;
+import dagger.assisted.Assisted;
+import dagger.assisted.AssistedInject;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 import org.threeten.bp.Duration;
@@ -40,6 +41,7 @@ import org.threeten.bp.Duration;
 /**
  * A worker that uploads analytical logs through firelog.
  */
+@HiltWorker
 public class FirelogAnalyticsWorker extends ListenableWorker {
 
   public static final String WORKER_NAME = "FirelogAnalyticsUploadWorker";
@@ -52,7 +54,7 @@ public class FirelogAnalyticsWorker extends ListenableWorker {
    * @param appContext   The application {@link Context}
    * @param workerParams Parameters to setup the internal state of this worker
    */
-  @WorkerInject
+  @AssistedInject
   public FirelogAnalyticsWorker(
       @Assisted @NonNull Context appContext,
       @Assisted @NonNull WorkerParameters workerParams,

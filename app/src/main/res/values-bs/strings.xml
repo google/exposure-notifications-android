@@ -13,7 +13,7 @@
   <string name="btn_done">Gotovo</string>
   <string name="btn_previous">Nazad</string>
   <string name="btn_verify">Potvrdi</string>
-  <string name="btn_dont_share">Nastavi bez dijeljenja</string>
+  <string name="btn_no_thanks">Ne, hvala</string>
   <string name="btn_share">Dijeli</string>
   <string name="learn_more">Saznajte više</string>
   <string name="home_tab_settings_text">Postavke</string>
@@ -203,13 +203,13 @@
   <string name="sms_intercept_notice_title">Šta ima novo</string>
   <string name="sms_intercept_notice_content">Ako primite SMS s rezultatom testiranja, možda ćete dobiti obavještenje da podijelite dijagnozu u Obavještenjima o izloženosti. To možete bilo kada onemogućiti u postavkama.</string>
   <string name="share_upload_title">Podijelite rezultat testa da zaštitite svoju zajednicu</string>
-  <string name="share_upload_test_result_source_description">Rezultat testa šalje %1$s</string>
+  <string name="share_upload_test_result_source_description">Rezultate šalje %1$s</string>
   <string name="share_upload_symptoms_subtitle">Simptomi su počeli</string>
   <string name="share_upload_symptoms_date_fixed_description">Datum pojave simptoma pruža %1$s</string>
   <string name="share_upload_skip_choice">Preskoči</string>
   <string name="share_upload_travel_subtitle">Historija putovanja</string>
   <string name="travel_history_travelled_recently_choice">Putovao/la u posljednjih 14 dana</string>
-  <string name="travel_history_no_travel_choice">Nema</string>
+  <string name="travel_history_no_travel_choice">Nisam putovao/la</string>
   <string name="share_upload_select_a_date_choice">Odaberite datum</string>
   <string name="share_upload_status_subtitle">Status u vezi s virusom COVID-19</string>
   <string name="share_upload_status_confirmed">Pozitivan</string>

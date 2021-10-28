@@ -32,6 +32,8 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.net.Uri;
+import android.os.Build.VERSION;
+import android.os.Build.VERSION_CODES;
 import androidx.core.app.NotificationCompat;
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
@@ -84,7 +86,8 @@ import org.robolectric.shadows.ShadowNotificationManager;
  */
 @RunWith(AndroidJUnit4.class)
 @HiltAndroidTest
-@Config(application = HiltTestApplication.class, shadows = {FakeShadowResources.class})
+@Config(application = HiltTestApplication.class, shadows = {FakeShadowResources.class},
+    minSdk = 21, maxSdk = 30)
 @UninstallModules({DbModule.class})
 public class SmsVerificationWorkerTest {
 
@@ -224,7 +227,7 @@ public class SmsVerificationWorkerTest {
   }
 
   @Test
-  public void smsVerificationWorker_noInternetConnection_resultRetryForV2() throws Exception {
+  public void smsVerificationWorker_noInternetConnection_resultRetry() throws Exception {
     // GIVEN
     Data inputData = new Data.Builder()
         .putString(DEEP_LINK_URI_STRING, SAMPLE_DEEPLINK.toString())
@@ -241,15 +244,11 @@ public class SmsVerificationWorkerTest {
     Result result = smsVerificationWorker.startWork().get();
 
     // THEN
-    if (BuildUtils.getType() == Type.V2) {
-      assertThat(result).isEqualTo(Result.retry());
-    } else {
-      verifyResultSuccessAndNoWorkDone(result);
-    }
+    assertThat(result).isEqualTo(Result.retry());
   }
 
   @Test
-  public void smsVerificationWorker_validDataAndPreAuthPermissionGiven_triggerUploadAndShowNoNotificationForV2()
+  public void smsVerificationWorker_validDataAndPreAuthPermissionGiven_triggerUploadAndShowNoNotification()
       throws Exception {
     // GIVEN
     Data inputData = new Data.Builder()
@@ -264,18 +263,14 @@ public class SmsVerificationWorkerTest {
     Result result = smsVerificationWorker.startWork().get();
 
     // THEN
-    if (BuildUtils.getType() == Type.V2) {
-      assertThat(result).isEqualTo(Result.success());
-      verify(exposureNotificationClientWrapper).requestPreAuthorizedTemporaryExposureKeyRelease();
-      verify(uploadController).submitCode(any());
-      assertThat(notificationManager.getAllNotifications()).isEmpty();
-    } else {
-      verifyResultSuccessAndNoWorkDone(result);
-    }
+    assertThat(result).isEqualTo(Result.success());
+    verify(exposureNotificationClientWrapper).requestPreAuthorizedTemporaryExposureKeyRelease();
+    verify(uploadController).submitCode(any());
+    assertThat(notificationManager.getAllNotifications()).isEmpty();
   }
 
   @Test
-  public void smsVerificationWorker_validDataNoPreAuthPermission_uploadNotTriggeredAndShowNotificationForV2()
+  public void smsVerificationWorker_validDataNoPreAuthPermission_uploadNotTriggeredAndShowNotification()
       throws Exception {
     // GIVEN
     Data inputData = new Data.Builder()
@@ -294,33 +289,40 @@ public class SmsVerificationWorkerTest {
     Result result = smsVerificationWorker.startWork().get();
 
     // THEN
-    if (BuildUtils.getType() == Type.V2) {
-      assertThat(result).isEqualTo(Result.success());
-      verify(exposureNotificationClientWrapper).requestPreAuthorizedTemporaryExposureKeyRelease();
-      verify(uploadController, never()).submitCode(any());
-      // THEN We launch a notification that contains a deeplinking Intent
-      assertThat(notificationManager.getAllNotifications()).hasSize(1);
-      Notification notification = notificationManager.getNotification(0);
-      assertThat(shadowOf(notification).getContentTitle())
-          .isEqualTo(context.getString(R.string.notify_others_notification_title));
-      assertThat(shadowOf(notification).getContentText())
-          .isEqualTo(context.getString(R.string.enx_testVerificationNotificationBody,
-              context.getString(R.string.health_authority_name)));
+    assertThat(result).isEqualTo(Result.success());
+    verify(exposureNotificationClientWrapper).requestPreAuthorizedTemporaryExposureKeyRelease();
+    verify(uploadController, never()).submitCode(any());
+    // THEN We launch a notification that contains a deeplinking Intent
+    assertThat(notificationManager.getAllNotifications()).hasSize(1);
+    Notification notification = notificationManager.getNotification(0);
+    assertThat(shadowOf(notification).getContentTitle())
+        .isEqualTo(context.getString(R.string.notify_others_notification_title));
+    assertThat(shadowOf(notification).getContentText())
+        .isEqualTo(context.getString(R.string.enx_testVerificationNotificationBody,
+            context.getString(R.string.health_authority_name)));
+    if (VERSION.SDK_INT >= VERSION_CODES.M) {
       assertThat(notification.getSmallIcon().getResId())
           .isEqualTo(R.drawable.ic_exposure_notification);
-      assertThat(notification.priority).isEqualTo(NotificationCompat.PRIORITY_MAX);
-      assertThat(notification.flags & Notification.FLAG_AUTO_CANCEL)
-          .isEqualTo(Notification.FLAG_AUTO_CANCEL);
-      assertThat(notification.flags & Notification.FLAG_ONLY_ALERT_ONCE)
-          .isEqualTo(Notification.FLAG_ONLY_ALERT_ONCE);
-      assertThat(notification.visibility).isEqualTo(NotificationCompat.VISIBILITY_SECRET);
+    }
+    assertThat(notification.priority).isEqualTo(NotificationCompat.PRIORITY_MAX);
+    assertThat(notification.flags & Notification.FLAG_AUTO_CANCEL)
+        .isEqualTo(Notification.FLAG_AUTO_CANCEL);
+    assertThat(notification.flags & Notification.FLAG_ONLY_ALERT_ONCE)
+        .isEqualTo(Notification.FLAG_ONLY_ALERT_ONCE);
+    assertThat(notification.visibility).isEqualTo(NotificationCompat.VISIBILITY_SECRET);
+
+    if (VERSION.SDK_INT >= VERSION_CODES.M) {
+      assertThat(notification.contentIntent).isEqualTo(
+          PendingIntent.getActivity(context, 0,
+              IntentUtil.getNotificationContentIntentSmsVerification(context,
+                  SAMPLE_DEEPLINK), PendingIntent.FLAG_IMMUTABLE));
+    } else {
       assertThat(notification.contentIntent).isEqualTo(
           PendingIntent.getActivity(context, 0,
               IntentUtil.getNotificationContentIntentSmsVerification(context,
                   SAMPLE_DEEPLINK), 0));
-    } else {
-      verifyResultSuccessAndNoWorkDone(result);
     }
+
   }
 
   private void verifyResultSuccessAndNoWorkDone(Result result) {

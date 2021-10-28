@@ -49,39 +49,9 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:padding="@dimen/padding_large"
-          android:orientation="vertical">
-
-          <ImageView
-            android:layout_width="@dimen/touch_area_min_size"
-            android:layout_height="@dimen/touch_area_min_size"
-            android:layout_gravity="center"
-            android:importantForAccessibility="no"
-            android:contentDescription="@null"
-            app:srcCompat="@mipmap/ic_launcher" />
-
-          <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginVertical="@dimen/padding_small"
-            android:text="@string/agency_message_subtitle_region"
-            android:textAppearance="?attr/textAppearanceHeadline6"
-            android:textStyle="bold" />
-
-          <TextView
-            android:id="@+id/active_region_subtitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/active_region_subtitle"
-            android:textAppearance="?attr/textAppearanceSubtitle2"
-            android:textColor="?attr/colorControlNormal" />
-
-        </LinearLayout>
+        <include
+          android:id="@+id/active_region_header"
+          layout="@layout/active_region_header" />
 
         <!-- "Possible exposure" card -->
         <LinearLayout
@@ -107,7 +77,25 @@
           android:paddingHorizontal="@dimen/padding_normal"
           android:visibility="gone">
 
-          <include layout="@layout/card_en_is_off"/>
+          <include
+            android:id="@+id/card_en_is_off"
+            layout="@layout/card_en_is_off"
+            />
+
+        </LinearLayout>
+
+        <!-- "SMS notice" card -->
+        <LinearLayout
+          android:id="@+id/sms_notice_view"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:paddingBottom="@dimen/padding_normal"
+          android:paddingHorizontal="@dimen/padding_normal"
+          android:visibility="gone">
+
+          <include
+            layout="@layout/card_sms_notice"
+            android:id="@+id/sms_notice_layout"/>
 
         </LinearLayout>
 

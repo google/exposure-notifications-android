@@ -12,4 +12,6 @@
   <string name="possible_exposure">Morebitna izpostavljenost</string>
   <string name="share_history_delete_test_result_title">Želite izbrisati ta rezultat testa?</string>
   <string name="share_history_delete_test_result_detail">Rezultat testa za COVID-19 z dne %1$s bo izbrisan iz telefona.</string>
+  <string name="sms_intercept_notice_card_title">Morda boste prejeli opomnik za deljenje rezultata</string>
+  <string name="sms_intercept_notice_card_content">Če ste pozitivni na testu in prejmete preverjen SMS.</string>
 </resources>

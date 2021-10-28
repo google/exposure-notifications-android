@@ -12,4 +12,6 @@
   <string name="possible_exposure">Ауру жұқтырғандармен байланыс ықтималдығы</string>
   <string name="share_history_delete_test_result_title">Сынақ нәтижесі жойылсын ба?</string>
   <string name="share_history_delete_test_result_detail">%1$s күні шыққан COVID-19 сынағының нәтижесі телефоныңыздан жойылады.</string>
+  <string name="sms_intercept_notice_card_title">Нәтиже бөлісу туралы еске салғыш аласыз</string>
+  <string name="sms_intercept_notice_card_content">Нәтиже оң болып, тексерілген SMS алсаңыз.</string>
 </resources>

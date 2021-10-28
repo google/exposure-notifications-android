@@ -26,6 +26,8 @@ import static org.mockito.Mockito.when;
 
 import android.os.Bundle;
 import android.util.Pair;
+import com.google.android.apps.exposurenotification.common.BuildUtils;
+import com.google.android.apps.exposurenotification.common.BuildUtils.Type;
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.common.time.RealTimeModule;
 import com.google.android.apps.exposurenotification.home.ExposureNotificationViewModel.ExposureNotificationState;
@@ -779,7 +781,7 @@ public class ExposureNotificationViewModelTest {
   }
 
   @Test
-  public void getShouldShowSmsNoticeLiveData_enDisabled_returnsFalse() {
+  public void getShouldShowSmsNoticeLiveData_enDisabled_returnsFalseForV2TrueForV3() {
     when(exposureNotificationClientWrapper.isEnabled()).thenReturn(TASK_FOR_RESULT_FALSE);
     when(exposureNotificationClientWrapper.getStatus()).thenReturn(TASK_FOR_ACTIVATED);
     when(exposureNotificationClientWrapper.getPackageConfiguration())
@@ -792,7 +794,12 @@ public class ExposureNotificationViewModelTest {
 
     verify(exposureNotificationClientWrapper).isEnabled();
     verify(exposureNotificationClientWrapper).getPackageConfiguration();
-    assertThat(shouldShowSmsNotice.get()).isEqualTo(false);
+
+    if (BuildUtils.getType() == Type.V2) {
+      assertThat(shouldShowSmsNotice.get()).isEqualTo(false);
+    } else {
+      assertThat(shouldShowSmsNotice.get()).isEqualTo(true);
+    }
   }
 
   @Test

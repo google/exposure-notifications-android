@@ -13,7 +13,7 @@
   <string name="btn_done">[Ðöñé one]</string>
   <string name="btn_previous">[Þŕévîöûš one]</string>
   <string name="btn_verify">[Véŕîƒý one]</string>
-  <string name="btn_dont_share">[Çöñţîñûé ŵîţĥöûţ šĥåŕîñĝ one two three]</string>
+  <string name="btn_no_thanks">[Ñö ţĥåñķš one two]</string>
   <string name="btn_share">[Šĥåŕé one]</string>
   <string name="learn_more">[Ļéåŕñ möŕé one two]</string>
   <string name="home_tab_settings_text">[Šéţţîñĝš one]</string>
@@ -201,13 +201,13 @@
   <string name="sms_intercept_notice_title">[Ŵĥåţ\'š ñéŵ one two]</string>
   <string name="sms_intercept_notice_content">[Îƒ ýöû ŕéçéîvé åñ ŠMŠ ŵîţĥ ýöûŕ ţéšţ ŕéšûļţ, ýöû måý ĝéţ å ñöţîƒîçåţîöñ åšķîñĝ ýöû ţö šĥåŕé ýöûŕ ðîåĝñöšîš îñ éxþöšûŕé ñöţîƒîçåţîöñš. Ýöû çåñ ðîšåбļé ţĥîš åñý ţîmé îñ šéţţîñĝš. one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty twentyone twentytwo twentythree twentyfour twentyfive]</string>
   <string name="share_upload_title">[Šĥåŕé ýöûŕ ţéšţ ŕéšûļţ ţö þŕöţéçţ ýöûŕ çömmûñîţý one two three four five six seven eight nine ten]</string>
-  <string name="share_upload_test_result_source_description">[Ţéšţîñĝ ŕéšûļţ îš šéñţ бý ᐅ%1$sᐊ one two three four five six seven]</string>
-  <string name="share_upload_symptoms_subtitle">[Šýmþţöm šţåŕţéð ƒŕöm one two three]</string>
+  <string name="share_upload_test_result_source_description">[Ŕéšûļţš ŵéŕé šéñţ бý ᐅ%1$sᐊ one two three four five]</string>
+  <string name="share_upload_symptoms_subtitle">[Šýmþţömš бéĝåñ öñ one two three]</string>
   <string name="share_upload_symptoms_date_fixed_description">[Šýmþţöm ðåţé îš þŕövîðéð бý ᐅ%1$sᐊ one two three four five six seven]</string>
   <string name="share_upload_skip_choice">[Šķîþ one]</string>
   <string name="share_upload_travel_subtitle">[Ţŕåvéļ ĥîšţöŕý one two]</string>
   <string name="travel_history_travelled_recently_choice">[Ţŕåvéļļéð îñ ţĥé þåšţ 14 ðåýš one two three four five six seven]</string>
-  <string name="travel_history_no_travel_choice">[Ñöñé one]</string>
+  <string name="travel_history_no_travel_choice">[Î ðîðñ\'ţ ţŕåvéļ one two]</string>
   <string name="share_upload_select_a_date_choice">[Šéļéçţ å ðåţé one two]</string>
   <string name="share_upload_status_subtitle">[ÇÖVÎÐ-19 šţåţûš one two]</string>
   <string name="share_upload_status_confirmed">[Þöšîţîvé one]</string>

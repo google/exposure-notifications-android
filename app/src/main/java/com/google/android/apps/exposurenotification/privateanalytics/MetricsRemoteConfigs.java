@@ -38,13 +38,13 @@ public abstract class MetricsRemoteConfigs {
   private static final double DEFAULT_CODE_VERIFIED_METRIC_EPSILON = 8.0;
 
   private static final double DEFAULT_CODE_VERIFIED_WITH_REPORT_TYPE_METRIC_SAMPLING_RATE = 1.0;
-  private static final double DEFAULT_CODE_VERIFIED_WITH_REPORT_TYPE_METRIC_EPSILON = 10.2;
+  private static final double DEFAULT_CODE_VERIFIED_WITH_REPORT_TYPE_METRIC_EPSILON = 8.0;
 
   private static final double DEFAULT_KEYS_UPLOADED_METRIC_SAMPLING_RATE = 1.0;
   private static final double DEFAULT_KEYS_UPLOADED_METRIC_EPSILON = 8.0;
 
   private static final double DEFAULT_KEYS_UPLOADED_WITH_REPORT_TYPE_METRIC_SAMPLING_RATE = 1.0;
-  private static final double DEFAULT_KEYS_UPLOADED_WITH_REPORT_TYPE_METRIC_EPSILON = 10.2;
+  private static final double DEFAULT_KEYS_UPLOADED_WITH_REPORT_TYPE_METRIC_EPSILON = 8.0;
 
   private static final double DEFAULT_DATE_EXPOSURE_METRIC_SAMPLING_RATE = 1.0;
   private static final double DEFAULT_DATE_EXPOSURE_METRIC_EPSILON = 8.0;
@@ -53,10 +53,10 @@ public abstract class MetricsRemoteConfigs {
   private static final double DEFAULT_KEYS_UPLOADED_VACCINE_STATUS_METRIC_EPSILON = 8.0;
 
   private static final double DEFAULT_KEYS_UPLOADED_AFTER_NOTIFICATION_METRIC_SAMPLING_RATE = 1.0;
-  private static final double DEFAULT_KEYS_UPLOADED_AFTER_NOTIFICATION_METRIC_EPSILON = 10.2;
+  private static final double DEFAULT_KEYS_UPLOADED_AFTER_NOTIFICATION_METRIC_EPSILON = 8.0;
 
   private static final double DEFAULT_PERIODIC_EXPOSURE_NOTIFICATION_BIWEEKLY_METRIC_SAMPLING_RATE = 1.0;
-  private static final double DEFAULT_PERIODIC_EXPOSURE_NOTIFICATION_BIWEEKLY_METRIC_EPSILON = 10.2;
+  private static final double DEFAULT_PERIODIC_EXPOSURE_NOTIFICATION_BIWEEKLY_METRIC_EPSILON = 8.0;
 
   public abstract double interactionCountPrioEpsilon();
 

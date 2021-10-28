@@ -18,22 +18,24 @@
 package com.google.android.apps.exposurenotification.home;
 
 import androidx.fragment.app.Fragment;
-import androidx.hilt.lifecycle.ViewModelInject;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
 import com.google.android.libraries.privateanalytics.PrivateAnalyticsEnabledProvider;
+import dagger.hilt.android.lifecycle.HiltViewModel;
+import javax.inject.Inject;
 
 /**
  * View model for the {@link SplashFragment}.
  */
+@HiltViewModel
 public class SplashViewModel extends ViewModel {
 
   private final ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
   private final PrivateAnalyticsEnabledProvider privateAnalyticsEnabledProvider;
 
-  @ViewModelInject
+  @Inject
   public SplashViewModel(
       ExposureNotificationSharedPreferences exposureNotificationSharedPreferences,
       PrivateAnalyticsEnabledProvider privateAnalyticsEnabledProvider) {

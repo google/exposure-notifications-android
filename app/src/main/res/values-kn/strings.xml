@@ -13,7 +13,7 @@
   <string name="btn_done">ಆಯಿತು</string>
   <string name="btn_previous">ಹಿಂದಿನದು</string>
   <string name="btn_verify">ಪರಿಶೀಲಿಸಿ</string>
-  <string name="btn_dont_share">ಹಂಚಿಕೊಳ್ಳದೆಯೇ ಮುಂದುವರಿಸಿ</string>
+  <string name="btn_no_thanks">ಬೇಡ</string>
   <string name="btn_share">ಹಂಚಿಕೊಳ್ಳಿ</string>
   <string name="learn_more">ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</string>
   <string name="home_tab_settings_text">ಸೆಟ್ಟಿಂಗ್‌ಗಳು</string>
@@ -201,13 +201,13 @@
   <string name="sms_intercept_notice_title">ಹೊಸದೇನಿದೆ</string>
   <string name="sms_intercept_notice_content">ನಿಮ್ಮ ಪರೀಕ್ಷಾ ಫಲಿತಾಂಶವನ್ನು ಒಳಗೊಂಡಿರುವ SMS ನೀವು ಸ್ವೀಕರಿಸಿದರೆ, ಎಕ್ಸ್‌ಪೋಶರ್ ಅಧಿಸೂಚನೆಗಳಲ್ಲಿ ನಿಮ್ಮ ಡಯಾಗ್ನಾಸಿಸ್ ಮಾಹಿತಿಯನ್ನು ಹಂಚಿಕೊಳ್ಳುವಂತೆ ನಿಮ್ಮನ್ನು ಕೇಳುವ ಅಧಿಸೂಚನೆಯನ್ನು ನೀವು ಪಡೆಯಬಹುದು. ನೀವು ಇದನ್ನು ಯಾವಾಗ ಬೇಕಾದರೂ ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಬಹುದು.</string>
   <string name="share_upload_title">ನಿಮ್ಮ ಸಮುದಾಯವನ್ನು ರಕ್ಷಿಸಲು ನಿಮ್ಮ ಪರೀಕ್ಷಾ ಫಲಿತಾಂಶವನ್ನು ಹಂಚಿಕೊಳ್ಳಿ</string>
-  <string name="share_upload_test_result_source_description">ಪರೀಕ್ಷಾ ಫಲಿತಾಂಶವನ್ನು %1$s ಅವರು ಕಳುಹಿಸಿದ್ದಾರೆ</string>
-  <string name="share_upload_symptoms_subtitle">ರೋಗಲಕ್ಷಣದ ಪ್ರಾರಂಭ ದಿನಾಂಕ</string>
+  <string name="share_upload_test_result_source_description">%1$s ಅವರಿಂದ ಫಲಿತಾಂಶಗಳನ್ನು ಕಳುಹಿಸಲಾಗಿದೆ</string>
+  <string name="share_upload_symptoms_subtitle">ರೋಗಲಕ್ಷಣಗಳು ಪ್ರಾರಂಭವಾದ ದಿನಾಂಕ</string>
   <string name="share_upload_symptoms_date_fixed_description">ರೋಗಲಕ್ಷಣದ ಆರಂಭದ ದಿನಾಂಕವನ್ನು %1$s ಒದಗಿಸಿದ್ದಾರೆ</string>
   <string name="share_upload_skip_choice">ಸ್ಕಿಪ್</string>
   <string name="share_upload_travel_subtitle">ಪ್ರಯಾಣದ ಇತಿಹಾಸ</string>
   <string name="travel_history_travelled_recently_choice">ಕಳೆದ 14 ದಿನಗಳಲ್ಲಿ ಪ್ರಯಾಣಿಸಿರುವುದು</string>
-  <string name="travel_history_no_travel_choice">ಯಾವುದೂ ಅಲ್ಲ</string>
+  <string name="travel_history_no_travel_choice">ನಾನು ಯಾವುದೇ ಪ್ರಯಾಣ ಮಾಡಿಲ್ಲ</string>
   <string name="share_upload_select_a_date_choice">ದಿನಾಂಕವನ್ನು ಆಯ್ಕೆಮಾಡಿ</string>
   <string name="share_upload_status_subtitle">COVID-19 ಸ್ಥಿತಿ</string>
   <string name="share_upload_status_confirmed">ಪಾಸಿಟಿವ್</string>

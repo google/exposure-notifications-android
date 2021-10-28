@@ -12,4 +12,6 @@
   <string name="possible_exposure">ሊሆን የሚችል ተጋላጭነት</string>
   <string name="share_history_delete_test_result_title">ይህ የምርመራ ውጤት ይሰረዝ?</string>
   <string name="share_history_delete_test_result_detail">ከ%1$s ጀምሮ ያለው የእርስዎ የኮቪድ-19 ምርመራ ውጤት ከስልክዎ ይሰረዛል።</string>
+  <string name="sms_intercept_notice_card_title">ውጤትዎን እንዲያጋሩ አስታዋሽ ሊደርስዎ ይችላል።</string>
+  <string name="sms_intercept_notice_card_content">አዎንታዊ ምርመራ ካደረጉ እና የተረጋገጠ ኤስኤምኤስ ካገኙ</string>
 </resources>

@@ -33,6 +33,7 @@ import com.google.android.apps.exposurenotification.databinding.FragmentActiveRe
 import com.google.android.apps.exposurenotification.exposure.ExposureHomeViewModel;
 import com.google.android.apps.exposurenotification.exposure.PossibleExposureFragment;
 import com.google.android.apps.exposurenotification.home.ExposureNotificationViewModel.ExposureNotificationState;
+import com.google.android.apps.exposurenotification.notify.ShareDiagnosisFlowHelper;
 import com.google.android.apps.exposurenotification.riskcalculation.ExposureClassification;
 import com.google.android.apps.exposurenotification.settings.AgencyFragment;
 import com.google.android.apps.exposurenotification.settings.LegalTermsFragment;
@@ -96,6 +97,14 @@ public class ActiveRegionFragment extends BaseFragment {
           .getBoolean(STATE_REMOVE_REGION_DIALOG_OPEN, false);
     }
 
+    // Decide whether to show the SMS notice card
+    if (ShareDiagnosisFlowHelper.isSmsInterceptEnabled(getContext())) {
+      exposureNotificationViewModel.getShouldShowSmsNoticeLiveData()
+          .observe(getViewLifecycleOwner(),
+              shouldShowSmsNotice -> binding.smsNoticeView.setVisibility(
+                  shouldShowSmsNotice ? View.VISIBLE : View.GONE));
+    }
+
     // Ensure we keep the open dialogs open upon rotations.
     if (isRemoveRegionDialogOpen) {
       showRemoveRegionDialog();
@@ -111,12 +120,12 @@ public class ActiveRegionFragment extends BaseFragment {
         .observe(getViewLifecycleOwner(), state -> {
           if (state == ExposureNotificationState.ENABLED) {
             binding.enOffView.setVisibility(View.GONE);
-            binding.activeRegionSubtitle.setText(
+            binding.activeRegionHeader.activeRegionSubtitle.setText(
                 getString(R.string.active_region_subtitle,
                     getString(R.string.agency_message_subtitle_region)));
           } else {
             binding.enOffView.setVisibility(View.VISIBLE);
-            binding.activeRegionSubtitle.setText(
+            binding.activeRegionHeader.activeRegionSubtitle.setText(
                 getString(R.string.active_region_subtitle_en_off,
                     getString(R.string.agency_message_subtitle_region)));
           }
@@ -156,6 +165,8 @@ public class ActiveRegionFragment extends BaseFragment {
         v -> transitionToFragmentWithBackStack(PossibleExposureFragment.newInstance()));
     binding.removeRegion.setOnClickListener(v -> showRemoveRegionDialog());
     binding.enOffView.setOnClickListener(v -> requireActivity().onBackPressed());
+    binding.smsNoticeLayout.smsNoticeCard.setOnClickListener(
+        v -> transitionToFragmentWithBackStack(SmsNoticeFragment.newInstance(false)));
 
     // Set up the Toolbar.
     Toolbar toolbar = binding.activeRegionToolbar;

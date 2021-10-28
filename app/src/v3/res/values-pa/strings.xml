@@ -12,4 +12,6 @@
   <string name="possible_exposure">ਸੰਭਾਵੀ ਤੌਰ \'ਤੇ ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣਾ</string>
   <string name="share_history_delete_test_result_title">ਕੀ ਇਸ ਜਾਂਚ ਨਤੀਜੇ ਨੂੰ ਮਿਟਾਉਣਾ ਹੈ?</string>
   <string name="share_history_delete_test_result_detail">ਤੁਹਾਡੇ ਫ਼ੋਨ ਤੋਂ %1$s ਦੇ ਤੁਹਾਡੇ COVID-19 ਜਾਂਚ ਨਤੀਜੇ ਨੂੰ ਮਿਟਾ ਦਿੱਤਾ ਜਾਵੇਗਾ।</string>
+  <string name="sms_intercept_notice_card_title">ਆਪਣਾ ਨਤੀਜਾ ਸਾਂਝਾ ਕਰਨ ਲਈ ਤੁਹਾਨੂੰ ਕੋਈ ਰਿਮਾਈਂਡਰ ਮਿਲ ਸਕਦਾ ਹੈ</string>
+  <string name="sms_intercept_notice_card_content">ਜੇ ਤੁਹਾਡੀ ਜਾਂਚ ਸਕਾਰਾਤਮਕ ਆਉਂਦੀ ਹੈ ਅਤੇ ਪੁਸ਼ਟੀਕਿਰਤ SMS ਮਿਲਦਾ ਹੈ</string>
 </resources>

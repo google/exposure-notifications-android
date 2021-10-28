@@ -30,8 +30,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.UiThread;
 import androidx.annotation.VisibleForTesting;
-import androidx.hilt.Assisted;
-import androidx.hilt.lifecycle.ViewModelInject;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.SavedStateHandle;
@@ -82,6 +80,7 @@ import com.google.common.util.concurrent.FluentFuture;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
+import dagger.hilt.android.lifecycle.HiltViewModel;
 import dagger.hilt.android.qualifiers.ApplicationContext;
 import java.security.SecureRandom;
 import java.util.HashSet;
@@ -90,6 +89,7 @@ import java.util.Set;
 import java.util.Stack;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ScheduledExecutorService;
+import javax.inject.Inject;
 import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 import org.threeten.bp.Duration;
 import org.threeten.bp.Instant;
@@ -109,6 +109,7 @@ import org.threeten.bp.LocalDate;
  *       abandoned by the user or failed.
  * </ul>
  */
+@HiltViewModel
 public class ShareDiagnosisViewModel extends ViewModel {
 
   private static final Logger logger = Logger.getLogger("ShareDiagnosisViewModel");
@@ -226,10 +227,10 @@ public class ShareDiagnosisViewModel extends ViewModel {
     PRE_AUTH, VACCINATION
   }
 
-  @ViewModelInject
+  @Inject
   public ShareDiagnosisViewModel(
       @ApplicationContext Context context,
-      @Assisted SavedStateHandle savedStateHandle,
+      SavedStateHandle savedStateHandle,
       UploadController uploadController,
       DiagnosisRepository diagnosisRepository,
       VerificationCodeRequestRepository requestRepository,
@@ -568,7 +569,7 @@ public class ShareDiagnosisViewModel extends ViewModel {
         diagnosisRepository.deleteByIdAsync(diagnosis.getId()),
         new FutureCallback<Void>() {
           @Override
-          public void onSuccess(@NullableDecl Void result) {
+          public void onSuccess(@Nullable Void result) {
             currentDiagnosisId.postValue(NO_EXISTING_ID);
             deletedLiveEvent.postCall();
           }

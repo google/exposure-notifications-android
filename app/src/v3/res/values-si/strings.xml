@@ -12,4 +12,6 @@
   <string name="possible_exposure">විය හැකි නිරාවරණය</string>
   <string name="share_history_delete_test_result_title">මෙම පරීක්ෂණ ප්‍රතිඵල මකන්නද?</string>
   <string name="share_history_delete_test_result_detail">%1$s ලැබුණ ඔබගේ COVID-19 පරීක්ෂණ ප්‍රතිඵල ඔබගේ දුරකථනයෙන් මැකෙනු ඇත.</string>
+  <string name="sms_intercept_notice_card_title">ඔබට ඔබගේ ප්‍රතිඵලය බෙදා ගැනීමට සිහිකැඳවීමක් ලැබිය හැකිය</string>
+  <string name="sms_intercept_notice_card_content">ඔබගේ පරීක්ෂණය පොසිටිව් නම් සහ සත්‍යාපිත SMS එකක් ලැබුණේ නම්</string>
 </resources>

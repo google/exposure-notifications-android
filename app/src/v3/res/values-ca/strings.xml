@@ -12,4 +12,6 @@
   <string name="possible_exposure">Possible exposició</string>
   <string name="share_history_delete_test_result_title">Vols suprimir aquest resultat de la prova?</string>
   <string name="share_history_delete_test_result_detail">El teu resultat de la prova de la COVID-19 del dia %1$s se suprimirà del telèfon.</string>
+  <string name="sms_intercept_notice_card_title">Pot ser que rebis un recordatori per compartir el resultat</string>
+  <string name="sms_intercept_notice_card_content">Si dones positiu i reps un SMS verificat</string>
 </resources>

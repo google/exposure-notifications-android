@@ -50,6 +50,7 @@
 
             <Button
               android:id="@+id/debug_matching_view_request_keys_button"
+              style="@style/Widget.ExposureNotifications.Button"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:layout_marginHorizontal="@dimen/padding_normal"
@@ -73,6 +74,7 @@
 
             <Button
               android:id="@+id/debug_matching_view_request_keys_preauthorization_button"
+              style="@style/Widget.ExposureNotifications.Button"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:layout_marginHorizontal="@dimen/padding_normal"
@@ -96,6 +98,7 @@
 
             <Button
               android:id="@+id/debug_matching_view_request_keys_preauthorization_get_button"
+              style="@style/Widget.ExposureNotifications.Button"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:layout_marginHorizontal="@dimen/padding_normal"
@@ -119,7 +122,7 @@
           android:id="@+id/temporary_exposure_key_recycler_view"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          style="@style/Widget.MaterialComponents.TabLayout"
+          style="@style/Widget.ExposureNotifications.TabLayout"
           tools:itemCount="2"
           tools:listitem="@layout/item_exposure_entity"
           android:nestedScrollingEnabled="false"/>

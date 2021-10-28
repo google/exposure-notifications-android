@@ -115,6 +115,7 @@
         android:layout_marginHorizontal="@dimen/padding_large"
         android:layout_marginBottom="@dimen/padding_normal"
         android:layout_gravity="center_horizontal"
+        style="@style/Widget.ExposureNotifications.Button"
         android:text="@string/debug_matching_manual_button_text" />
 
       <TextView
@@ -132,6 +133,7 @@
         android:layout_marginHorizontal="@dimen/padding_large"
         android:layout_marginVertical="@dimen/padding_normal"
         android:layout_gravity="center_horizontal"
+        style="@style/Widget.ExposureNotifications.Button"
         android:text="@string/debug_provide_now_text" />
 
       <com.google.android.material.textfield.TextInputLayout
@@ -139,7 +141,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/padding_large"
         android:layout_marginVertical="@dimen/padding_small"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        style="@style/Widget.ExposureNotifications.TextInputLayout.OutlinedBox.Dense">
 
         <com.google.android.material.textfield.TextInputEditText
           android:id="@+id/key_to_log"
@@ -163,7 +165,7 @@
         android:layout_gravity="center" />
 
       <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        style="@style/Widget.ExposureNotifications.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/padding_large"
@@ -188,7 +190,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/padding_large"
         android:layout_marginVertical="@dimen/padding_small"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        style="@style/Widget.ExposureNotifications.TextInputLayout.OutlinedBox.Dense">
 
         <com.google.android.material.textfield.TextInputEditText
           android:id="@+id/symptom_onset_date"
@@ -210,6 +212,7 @@
         android:layout_marginBottom="@dimen/padding_normal"
         android:layout_gravity="center_horizontal"
         android:layout_marginHorizontal="@dimen/padding_large"
+        style="@style/Widget.ExposureNotifications.Button"
         android:text="@string/debug_verification_code_create_button_text" />
 
       <Button
@@ -219,6 +222,7 @@
         android:layout_marginBottom="@dimen/padding_normal"
         android:layout_gravity="center_horizontal"
         android:layout_marginHorizontal="@dimen/padding_large"
+        style="@style/Widget.ExposureNotifications.Button"
         android:text="@string/debug_verifiable_sms_create_button_text" />
 
       <LinearLayout
@@ -268,7 +272,7 @@
         android:hint="@string/debug_roaming_country_code_input_text"
         app:endIconMode="clear_text"
         app:hintAnimationEnabled="false"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        style="@style/Widget.ExposureNotifications.TextInputLayout.OutlinedBox.Dense">
 
         <com.google.android.material.textfield.TextInputEditText
           android:id="@+id/debug_roaming_country_code_input"
@@ -285,7 +289,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/padding_large"
         android:layout_gravity="center_horizontal"
-        style="?attr/materialButtonOutlinedStyle"
+        style="@style/Widget.ExposureNotifications.Button.OutlinedButton"
         app:strokeColor="?attr/colorControlActivated"
         android:text="@string/debug_roaming_country_code_insert_button_text" />
 
@@ -296,7 +300,7 @@
         android:layout_marginHorizontal="@dimen/padding_large"
         android:layout_marginBottom="@dimen/padding_normal"
         android:layout_gravity="center_horizontal"
-        style="?attr/materialButtonOutlinedStyle"
+        style="@style/Widget.ExposureNotifications.Button.OutlinedButton"
         app:strokeColor="?attr/colorControlActivated"
         android:text="@string/debug_roaming_country_code_clear_button_text" />
 
@@ -328,6 +332,7 @@
 
         <Button
           android:id="@+id/debug_submit_private_analytics_button"
+          style="@style/Widget.ExposureNotifications.Button"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_marginBottom="@dimen/padding_normal"
@@ -337,7 +342,7 @@
 
         <Button
           android:id="@+id/debug_private_analytics_set_biweekly_upload_day"
-          style="?attr/materialButtonOutlinedStyle"
+          style="@style/Widget.ExposureNotifications.Button.OutlinedButton"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_gravity="center_horizontal"
@@ -348,7 +353,7 @@
 
         <Button
           android:id="@+id/debug_private_analytics_clear_key_store_button"
-          style="?attr/materialButtonOutlinedStyle"
+          style="@style/Widget.ExposureNotifications.Button.OutlinedButton"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_marginBottom="@dimen/padding_normal"
@@ -366,7 +371,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
           android:id="@+id/debug_private_analytics_metrics_recycler"
-          style="@style/Widget.MaterialComponents.TabLayout"
+          style="@style/Widget.ExposureNotifications.TabLayout"
           android:layout_width="match_parent"
           android:layout_height="match_parent"
           android:nestedScrollingEnabled="false"

@@ -20,7 +20,6 @@ package com.google.android.apps.exposurenotification.debug;
 import android.content.Context;
 import android.content.res.Resources;
 import android.text.TextUtils;
-import androidx.hilt.lifecycle.ViewModelInject;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import com.google.android.apps.exposurenotification.R;
@@ -29,11 +28,14 @@ import com.google.android.apps.exposurenotification.common.TelephonyHelper;
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.debug.VerificationCodeCreator.VerificationCode;
 import com.google.common.base.Optional;
+import dagger.hilt.android.lifecycle.HiltViewModel;
 import dagger.hilt.android.qualifiers.ApplicationContext;
+import javax.inject.Inject;
 
 /**
  * View model for the {@link VerifiableSmsActivity}.
  */
+@HiltViewModel
 public class VerifiableSmsViewModel extends ViewModel {
 
   private static final SingleLiveEvent<String> snackbarLiveEvent = new SingleLiveEvent<>();
@@ -46,7 +48,7 @@ public class VerifiableSmsViewModel extends ViewModel {
 
   private VerificationCode verificationCode;
 
-  @ViewModelInject
+  @Inject
   public VerifiableSmsViewModel(
       @ApplicationContext Context context,
       TelephonyHelper telephonyHelper,

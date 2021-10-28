@@ -13,7 +13,7 @@
   <string name="btn_done">Tayyor</string>
   <string name="btn_previous">Avvalgisi</string>
   <string name="btn_verify">Tasdiqlash</string>
-  <string name="btn_dont_share">Ulashmasdan davom etish</string>
+  <string name="btn_no_thanks">Kerak emas</string>
   <string name="btn_share">Ulashish</string>
   <string name="learn_more">Batafsil</string>
   <string name="home_tab_settings_text">Sozlamalar</string>
@@ -201,13 +201,13 @@
   <string name="sms_intercept_notice_title">Nima yangiliklar</string>
   <string name="sms_intercept_notice_content">Test natijasini SMS orqali qabul qilsangiz, natijangizni ehtimoliy zararlanish xizmatiga ulashishni istaysizmi degan bildirishnoma olasiz. Buni istalgan vaqt sozlamalar orqali faolsizlantirish mumkin.</string>
   <string name="share_upload_title">Mahalladagilar salomatligi uchun test natijalaringizni ulashing</string>
-  <string name="share_upload_test_result_source_description">Test natijalari %1$s tomonidan yuborildi</string>
-  <string name="share_upload_symptoms_subtitle">Alomatlar boshlanishi:</string>
+  <string name="share_upload_test_result_source_description">Natijalarni %1$s yuborgan</string>
+  <string name="share_upload_symptoms_subtitle">Alomatlari boshlangan:</string>
   <string name="share_upload_symptoms_date_fixed_description">Simptom sanasini %1$s taqdim qilgan</string>
   <string name="share_upload_skip_choice">Tashlab ketish</string>
   <string name="share_upload_travel_subtitle">Sayohat tarixi</string>
   <string name="travel_history_travelled_recently_choice">Oxirgi 14 kunda safarda boʻlgan</string>
-  <string name="travel_history_no_travel_choice">Hech qanday</string>
+  <string name="travel_history_no_travel_choice">Sayohatga chiqmaganman</string>
   <string name="share_upload_select_a_date_choice">Sanani tanlang</string>
   <string name="share_upload_status_subtitle">COVID-19 holati</string>
   <string name="share_upload_status_confirmed">Musbat</string>

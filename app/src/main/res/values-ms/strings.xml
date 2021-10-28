@@ -13,7 +13,7 @@
   <string name="btn_done">Selesai</string>
   <string name="btn_previous">Sebelumnya</string>
   <string name="btn_verify">Sahkan</string>
-  <string name="btn_dont_share">Teruskan tanpa berkongsi</string>
+  <string name="btn_no_thanks">Tidak perlu</string>
   <string name="btn_share">Kongsi</string>
   <string name="learn_more">Ketahui lebih lanjut</string>
   <string name="home_tab_settings_text">Tetapan</string>
@@ -201,13 +201,13 @@
   <string name="sms_intercept_notice_title">Ciri baharu</string>
   <string name="sms_intercept_notice_content">Jika anda menerima SMS dengan keputusan ujian, anda mungkin mendapat pemberitahuan yang meminta anda berkongsi diagnosis anda dalam pemberitahuan pendedahan. Anda boleh melumpuhkan fungsi ini pada bila-bila masa dalam tetapan.</string>
   <string name="share_upload_title">Kongsi keputusan ujian anda untuk melindungi komuniti anda</string>
-  <string name="share_upload_test_result_source_description">Keputusan ujian dihantar oleh %1$s</string>
-  <string name="share_upload_symptoms_subtitle">Gejala bermula dari</string>
+  <string name="share_upload_test_result_source_description">Keputusan telah dihantar oleh %1$s</string>
+  <string name="share_upload_symptoms_subtitle">Gejala bermula pada</string>
   <string name="share_upload_symptoms_date_fixed_description">Tarikh gejala disediakan oleh %1$s</string>
   <string name="share_upload_skip_choice">Langkau</string>
   <string name="share_upload_travel_subtitle">Sejarah perjalanan</string>
   <string name="travel_history_travelled_recently_choice">Membuat perjalanan dalam 14 hari yang lalu</string>
-  <string name="travel_history_no_travel_choice">Tiada</string>
+  <string name="travel_history_no_travel_choice">Saya tidak melakukan sebarang perjalanan</string>
   <string name="share_upload_select_a_date_choice">Pilih tarikh</string>
   <string name="share_upload_status_subtitle">Status COVID-19</string>
   <string name="share_upload_status_confirmed">Positif</string>

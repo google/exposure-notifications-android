@@ -68,7 +68,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/padding_large"
         android:layout_marginVertical="@dimen/padding_small"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        style="@style/Widget.ExposureNotifications.TextInputLayout.OutlinedBox.Dense">
 
         <com.google.android.material.textfield.TextInputEditText
           android:id="@+id/phone_number"
@@ -87,6 +87,7 @@
         android:layout_marginHorizontal="@dimen/padding_large"
         android:layout_marginBottom="@dimen/padding_normal"
         android:layout_gravity="center_horizontal"
+        style="@style/Widget.ExposureNotifications.Button"
         android:text="@string/debug_verifiable_generate_sms" />
 
       <include layout="@layout/horizontal_divider" />

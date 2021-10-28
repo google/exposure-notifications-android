@@ -12,4 +12,6 @@
   <string name="possible_exposure">ຄວາມສ່ຽງຕິດເຊື້ອທີ່ເປັນໄປໄດ້</string>
   <string name="share_history_delete_test_result_title">ລຶບຜົນກວດນີ້ອອກບໍ?</string>
   <string name="share_history_delete_test_result_detail">ຜົນກວດ COVID-19 ຂອງທ່ານຈາກ %1$s ຈະຖືກລຶບອອກຈາກໂທລະສັບຂອງທ່ານ.</string>
+  <string name="sms_intercept_notice_card_title">ທ່ານອາດໄດ້ຮັບການແຈ້ງເຕືອນໃຫ້ແບ່ງປັນຜົນກວດຂອງທ່ານ</string>
+  <string name="sms_intercept_notice_card_content">ຫາກຜົນກວດຂອງທ່ານເປັນບວກ ແລະ ໄດ້ຮັບ SMS ທີ່ຢັ້ງຢືນແລ້ວ</string>
 </resources>

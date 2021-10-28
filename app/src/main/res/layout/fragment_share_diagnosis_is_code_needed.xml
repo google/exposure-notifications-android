@@ -66,7 +66,8 @@
         android:layout_height="@dimen/home_screen_banner_height"
         android:importantForAccessibility="no"
         android:contentDescription="@null"
-        app:srcCompat="@drawable/ic_review_info" />
+        android:layout_marginVertical="@dimen/padding_extra_large"
+        app:srcCompat="@drawable/ic_upload_info" />
 
       <TextView
         android:id="@+id/do_you_have_code_content"
@@ -86,7 +87,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingHorizontal="@dimen/padding_extra_large"
-    android:paddingBottom="@dimen/padding_huge"
+    android:paddingVertical="@dimen/padding_normal"
     android:orientation="vertical"
     android:background="?android:attr/colorBackground"
     android:elevation="@dimen/bottom_button_container_elevation">
@@ -105,7 +106,7 @@
       android:text="@string/btn_i_need_code"
       android:textColor="?android:attr/textColorPrimary"
       app:strokeColor="@color/horizontal_divider_color"
-      style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+      style="@style/Widget.ExposureNotifications.Button.OutlinedButton"/>
 
   </LinearLayout>
 

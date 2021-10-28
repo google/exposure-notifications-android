@@ -13,7 +13,7 @@
   <string name="btn_done">Готово</string>
   <string name="btn_previous">Претходно</string>
   <string name="btn_verify">Потврди</string>
-  <string name="btn_dont_share">Продолжи без споделување</string>
+  <string name="btn_no_thanks">Не, фала</string>
   <string name="btn_share">Сподели</string>
   <string name="learn_more">Дознајте повеќе</string>
   <string name="home_tab_settings_text">Поставки</string>
@@ -201,13 +201,13 @@
   <string name="sms_intercept_notice_title">Што има ново</string>
   <string name="sms_intercept_notice_content">Ако добиете SMS-порака со резултат од тестот, може да добиете известување со кое се бара да ја споделите дијагнозата во „Известувањата за изложеност“. Може да го оневозможите ова во „Поставки“ во секое време.</string>
   <string name="share_upload_title">Споделете ги резултатите од тестот за да ја заштитите заедницата</string>
-  <string name="share_upload_test_result_source_description">Резултатите од тестирање ги испраќа %1$s</string>
-  <string name="share_upload_symptoms_subtitle">Симптомите започнаа од</string>
+  <string name="share_upload_test_result_source_description">Резултатите беа испратени од %1$s</string>
+  <string name="share_upload_symptoms_subtitle">Симптомите започнаа на</string>
   <string name="share_upload_symptoms_date_fixed_description">Датумот на симптомите го обезбедува %1$s</string>
   <string name="share_upload_skip_choice">Прескокни</string>
   <string name="share_upload_travel_subtitle">Историја на патување</string>
   <string name="travel_history_travelled_recently_choice">Патував во изминатите 14 дена</string>
-  <string name="travel_history_no_travel_choice">Нема</string>
+  <string name="travel_history_no_travel_choice">Не патував</string>
   <string name="share_upload_select_a_date_choice">Изберете датум</string>
   <string name="share_upload_status_subtitle">Статус на COVID-19</string>
   <string name="share_upload_status_confirmed">Позитивен</string>

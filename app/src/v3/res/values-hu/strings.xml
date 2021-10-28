@@ -12,4 +12,6 @@
   <string name="possible_exposure">Lehetséges kitettség</string>
   <string name="share_history_delete_test_result_title">Törli ezt a teszteredményt?</string>
   <string name="share_history_delete_test_result_detail">COVID-19-teszteredménye (%1$s) törölve lesz a telefonjáról.</string>
+  <string name="sms_intercept_notice_card_title">Emlékeztetőt kaphat eredményei megosztásáról</string>
+  <string name="sms_intercept_notice_card_content">Ha az eredménye pozitív, és erről SMS-t kap</string>
 </resources>

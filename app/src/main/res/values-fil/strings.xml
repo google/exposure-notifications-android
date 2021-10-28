@@ -13,7 +13,7 @@
   <string name="btn_done">Tapos na</string>
   <string name="btn_previous">Nakaraan</string>
   <string name="btn_verify">I-verify</string>
-  <string name="btn_dont_share">Magpatuloy nang hindi nagbabahagi</string>
+  <string name="btn_no_thanks">Huwag na lang</string>
   <string name="btn_share">Ibahagi</string>
   <string name="learn_more">Matuto pa</string>
   <string name="home_tab_settings_text">Mga Setting</string>
@@ -201,13 +201,13 @@
   <string name="sms_intercept_notice_title">Ano\'ng bago</string>
   <string name="sms_intercept_notice_content">Kung makakatanggap ka ng SMS na may resulta ng iyong test, posibleng makatanggap ka ng notification na humihiling sa iyong ibahagi ang diagnosis mo sa mga notification sa exposure. Puwede mo itong i-disable anumang oras sa mga setting.</string>
   <string name="share_upload_title">Ibahagi ang iyong resulta para protektahan ang komunidad mo</string>
-  <string name="share_upload_test_result_source_description">%1$s ang nagpapadala ng resulta ng test</string>
-  <string name="share_upload_symptoms_subtitle">Nagsimula ang sintomas noong</string>
+  <string name="share_upload_test_result_source_description">Ang %1$s ang nagpadala ng mga resulta</string>
+  <string name="share_upload_symptoms_subtitle">Nagsimula ang mga sintomas noong</string>
   <string name="share_upload_symptoms_date_fixed_description">Nagmula sa %1$s ang petsa ng sintomas</string>
   <string name="share_upload_skip_choice">Laktawan</string>
   <string name="share_upload_travel_subtitle">History ng paglalakbay</string>
   <string name="travel_history_travelled_recently_choice">Naglakbay sa nakalipas na 14 na araw</string>
-  <string name="travel_history_no_travel_choice">Wala</string>
+  <string name="travel_history_no_travel_choice">Hindi ako bumiyahe</string>
   <string name="share_upload_select_a_date_choice">Pumili ng petsa</string>
   <string name="share_upload_status_subtitle">Status sa COVID-19</string>
   <string name="share_upload_status_confirmed">Positibo</string>

@@ -56,4 +56,10 @@
   <!-- Main body of text on the dialog confirming the user wants to delete their COVID-19 test result information from the app. [CHAR_LIMIT=200] -->
   <string name="share_history_delete_test_result_detail">Your COVID-19 test result from <xliff:g id="date" example="Mar 18">%1$s</xliff:g> will get deleted from your phone.</string>
 
+  <!-- Title of the SMS Intercept Notice card. This dialog is meant to inform users about a new SMS Intercept functionality. It forms a full sentence together with sms_intercept_notice_card_content (sms_intercept_notice_card_title & sms_intercept_notice_card_content are displayed together). Feel free to distribute the final translation between these two strings (it would be great if they both had roughly the same length). This string will get truncated at 40 chars on some devices, so please only go over 40 characters if absolutely necessary. [CHAR_LIMIT=60] -->
+  <string name="sms_intercept_notice_card_title">You may get a reminder to share your result</string>
+
+  <!-- Body of the SMS Intercept Notice card. This dialog is meant to inform users about a new SMS Intercept functionality. It forms a full sentence together with sms_intercept_notice_card_title (sms_intercept_notice_card_title & sms_intercept_notice_card_content are displayed together). Feel free to distribute the final translation between these two strings (it would be great if they both had roughly the same length). This string will get truncated at 45 chars on some devices, so please only go over 45 characters if absolutely necessary. [CHAR_LIMIT=60] -->
+  <string name="sms_intercept_notice_card_content">If you test positive and get a verified SMS</string>
+
 </resources>

@@ -13,7 +13,7 @@
   <string name="btn_done">Eginda</string>
   <string name="btn_previous">Aurrekoa</string>
   <string name="btn_verify">Egiaztatu</string>
-  <string name="btn_dont_share">Egin aurrera partekatu gabe</string>
+  <string name="btn_no_thanks">Ez, eskerrik asko</string>
   <string name="btn_share">Partekatu</string>
   <string name="learn_more">Lortu informazio gehiago</string>
   <string name="home_tab_settings_text">Ezarpenak</string>
@@ -201,13 +201,13 @@
   <string name="sms_intercept_notice_title">Berritasunak</string>
   <string name="sms_intercept_notice_content">Probaren emaitza aipatzen duen SMS bat jasotzen baduzu, baliteke diagnostikoa esposizioari buruzko jakinarazpenen bidez partekatzeko eskatzen dizun jakinarazpen bat jasotzea. Funtzio hori desgaitzeko, joan Ezarpenak atalera.</string>
   <string name="share_upload_title">Partekatu probaren emaitza zure komunitatea babesteko</string>
-  <string name="share_upload_test_result_source_description">%1$s osasun-agintaritzak bidaltzen du probaren emaitza</string>
-  <string name="share_upload_symptoms_subtitle">Sintomak hasi ziren data:</string>
+  <string name="share_upload_test_result_source_description">%1$s osasun-agintaritzak bidali ditu emaitzak</string>
+  <string name="share_upload_symptoms_subtitle">Egun honetan hasi ziren sintomak:</string>
   <string name="share_upload_symptoms_date_fixed_description">%1$s agintaritzak eman du sintomak agertu ziren data</string>
   <string name="share_upload_skip_choice">Saltatu</string>
   <string name="share_upload_travel_subtitle">Bidaien historia</string>
   <string name="travel_history_travelled_recently_choice">Bidaiaren bat egin duzu azken 14 egunetan?</string>
-  <string name="travel_history_no_travel_choice">Ez dago</string>
+  <string name="travel_history_no_travel_choice">Ez dut bidaiatu</string>
   <string name="share_upload_select_a_date_choice">Hautatu data bat</string>
   <string name="share_upload_status_subtitle">COVID-19aren probaren emaitza</string>
   <string name="share_upload_status_confirmed">Positiboa</string>

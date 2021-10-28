@@ -19,4 +19,6 @@
 <resources>
   <color name="vertical_divider_color">#36ffffff</color>
   <color name="colorPrimary">#8AB4F8</color>
+  <color name="semantic_banner_background_color">#333124</color>
+  <color name="semantic_banner_tint_color">#F0E3A8</color>
 </resources>

@@ -13,7 +13,7 @@
   <string name="btn_done">Kész</string>
   <string name="btn_previous">Előző</string>
   <string name="btn_verify">Ellenőrzés</string>
-  <string name="btn_dont_share">Folytatás megosztás nélkül</string>
+  <string name="btn_no_thanks">Most nem</string>
   <string name="btn_share">Megosztás</string>
   <string name="learn_more">További információ</string>
   <string name="home_tab_settings_text">Beállítások</string>
@@ -201,13 +201,13 @@
   <string name="sms_intercept_notice_title">Újdonságok</string>
   <string name="sms_intercept_notice_content">Ha SMS-t kap a teszteredményéről, értesítésben arra kérheti a rendszer, hogy ossza meg a diagnózist az Kitettséget jelző értesítésekben. A Beállításokban ezt a funkciót bármikor kikapcsolhatja.</string>
   <string name="share_upload_title">Teszteredmény megosztása a közösség védelmének biztosítása érdekében</string>
-  <string name="share_upload_test_result_source_description">A teszteredményt küldte: %1$s</string>
-  <string name="share_upload_symptoms_subtitle">Tünetek megjelenésének időpontja:</string>
+  <string name="share_upload_test_result_source_description">Az eredményeket a következő küldte: %1$s</string>
+  <string name="share_upload_symptoms_subtitle">Tünetek jelentkezésének kezdete:</string>
   <string name="share_upload_symptoms_date_fixed_description">A tünet dátumát a következő biztosította: %1$s</string>
   <string name="share_upload_skip_choice">Kihagyás</string>
   <string name="share_upload_travel_subtitle">Utazási előzmények</string>
   <string name="travel_history_travelled_recently_choice">Utaztam az elmúlt 14 napban</string>
-  <string name="travel_history_no_travel_choice">Nem</string>
+  <string name="travel_history_no_travel_choice">Nem utaztam</string>
   <string name="share_upload_select_a_date_choice">Válasszon dátumot</string>
   <string name="share_upload_status_subtitle">COVID-19-állapot</string>
   <string name="share_upload_status_confirmed">Pozitív</string>

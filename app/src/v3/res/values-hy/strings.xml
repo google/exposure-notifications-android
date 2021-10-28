@@ -12,4 +12,6 @@
   <string name="possible_exposure">Վարակակիրների հետ հնարավոր շփումներ</string>
   <string name="share_history_delete_test_result_title">Ջնջե՞լ այս թեստի արդյունքը</string>
   <string name="share_history_delete_test_result_detail">COVID-19-ի ձեր թեստի արդյունքը (%1$s) կջնջվի ձեր հեռախոսից։</string>
+  <string name="sms_intercept_notice_card_title">Դուք կարող եք ստանալ թեստի արդյունքով կիսվելու հիշեցում</string>
+  <string name="sms_intercept_notice_card_content">Եթե ձեր թեստի արդյունքը դրական է և հաստատված SMS եք ստացել</string>
 </resources>

@@ -19,7 +19,6 @@ package com.google.android.apps.exposurenotification.debug;
 
 import android.content.Context;
 import android.content.res.Resources;
-import androidx.hilt.lifecycle.ViewModelInject;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -40,18 +39,21 @@ import com.google.common.collect.Lists;
 import com.google.common.io.BaseEncoding;
 import com.google.common.util.concurrent.FluentFuture;
 import com.google.common.util.concurrent.Futures;
+import dagger.hilt.android.lifecycle.HiltViewModel;
 import dagger.hilt.android.qualifiers.ApplicationContext;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ScheduledExecutorService;
+import javax.inject.Inject;
 import org.threeten.bp.Duration;
 import org.threeten.bp.Instant;
 
 /**
  * View model for {@link ProvideMatchingFragment}.
  */
+@HiltViewModel
 public class ProvideMatchingViewModel extends ViewModel {
 
   private static final Logger logger = Logger.getLogger("ProvideMatchingViewModel");
@@ -76,7 +78,7 @@ public class ProvideMatchingViewModel extends ViewModel {
   private final ExecutorService lightweightExecutor;
   private final ScheduledExecutorService scheduledExecutor;
 
-  @ViewModelInject
+  @Inject
   public ProvideMatchingViewModel(@ApplicationContext Context context,
       ExposureNotificationClientWrapper exposureNotificationClientWrapper,
       DiagnosisKeyFileSubmitter diagnosisKeyFileSubmitter,

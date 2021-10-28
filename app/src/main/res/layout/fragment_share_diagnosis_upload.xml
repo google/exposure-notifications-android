@@ -69,12 +69,10 @@
         android:layout_gravity="center_horizontal"
         android:textAppearance="?attr/textAppearanceCaption" />
 
-      <!-- TODO merge ic_upload_info with ic_review_info -->
       <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/upload_screen_banner_size"
         android:importantForAccessibility="no"
-        android:layout_marginVertical="@dimen/padding_extra_large"
         android:layout_gravity="center_horizontal"
         android:contentDescription="@null"
         app:srcCompat="@drawable/ic_upload_info" />
@@ -85,7 +83,7 @@
         android:layout_marginTop="@dimen/padding_large"
         android:layout_marginBottom="@dimen/padding_small"
         android:text="@string/share_review_status_subtitle"
-        android:textAllCaps="true"
+        android:textAllCaps="@bool/capitalize_captions"
         android:textAppearance="?attr/textAppearanceBody2" />
 
       <TextView
@@ -111,7 +109,7 @@
         android:layout_marginTop="@dimen/padding_normal"
         android:layout_marginBottom="@dimen/padding_small"
         android:text="@string/share_upload_symptoms_subtitle"
-        android:textAllCaps="true"
+        android:textAllCaps="@bool/capitalize_captions"
         android:textAppearance="?attr/textAppearanceBody2" />
 
       <com.google.android.material.chip.ChipGroup
@@ -169,7 +167,7 @@
           android:layout_marginTop="@dimen/padding_normal"
           android:layout_marginBottom="@dimen/padding_small"
           android:text="@string/share_upload_travel_subtitle"
-          android:textAllCaps="true"
+          android:textAllCaps="@bool/capitalize_captions"
           android:textAppearance="?attr/textAppearanceBody2" />
 
         <com.google.android.material.chip.ChipGroup
@@ -233,7 +231,7 @@
 
       <Button
         android:id="@+id/share_previous_button"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
+        style="@style/Widget.ExposureNotifications.Button.TextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/padding_normal"
@@ -257,6 +255,7 @@
           android:id="@+id/share_button"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
+          style="@style/Widget.ExposureNotifications.Button"
           android:text="@string/btn_share"
           android:elevation="0dp"/>
 

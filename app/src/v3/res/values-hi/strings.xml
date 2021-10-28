@@ -12,4 +12,6 @@
   <string name="possible_exposure">संक्रमित व्यक्ति के संपर्क में आने की संभावना से जुड़ी जानकारी</string>
   <string name="share_history_delete_test_result_title">क्या आप इस जांच के नतीजे को मिटाना चाहते हैं?</string>
   <string name="share_history_delete_test_result_detail">%1$s से मिला आपकी COVID-19 जांच का नतीजा, आपके फ़ोन से मिट जाएगा.</string>
+  <string name="sms_intercept_notice_card_title">जांच का नतीजा शेयर करने के लिए आपको रिमाइंडर मिल सकता है</string>
+  <string name="sms_intercept_notice_card_content">संक्रमित होने पर नतीजे के साथ पुष्टि वाला एसएमएस मिलता है</string>
 </resources>

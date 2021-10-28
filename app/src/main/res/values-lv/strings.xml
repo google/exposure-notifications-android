@@ -13,7 +13,7 @@
   <string name="btn_done">Gatavs</string>
   <string name="btn_previous">Atpakaļ</string>
   <string name="btn_verify">Verificēt</string>
-  <string name="btn_dont_share">Turpināt bez kopīgošanas</string>
+  <string name="btn_no_thanks">Nē, paldies</string>
   <string name="btn_share">Kopīgot</string>
   <string name="learn_more">Uzzināt vairāk</string>
   <string name="home_tab_settings_text">Iestatījumi</string>
@@ -203,13 +203,13 @@
   <string name="sms_intercept_notice_title">Jaunumi</string>
   <string name="sms_intercept_notice_content">Ja saņemat īsziņu ar savu testa rezultātu, jums var tikt parādīts paziņojums ar aicinājumu kopīgot diagnozi sistēmā paziņojumiem par saskari. Iestatījumos varat to jebkurā laikā atspējot.</string>
   <string name="share_upload_title">Testa rezultāta kopīgošana, lai aizsargātu sabiedrību</string>
-  <string name="share_upload_test_result_source_description">Testa rezultātu nosūtīja %1$s</string>
-  <string name="share_upload_symptoms_subtitle">Simptomu sākuma datums:</string>
+  <string name="share_upload_test_result_source_description">Organizācija, kas nosūtīja rezultātus: %1$s</string>
+  <string name="share_upload_symptoms_subtitle">Simptomu parādīšanās datums</string>
   <string name="share_upload_symptoms_date_fixed_description">Simptomu datumu nodrošina %1$s.</string>
   <string name="share_upload_skip_choice">Izlaist</string>
   <string name="share_upload_travel_subtitle">Ceļošanas vēsture</string>
   <string name="travel_history_travelled_recently_choice">Ceļošana pēdējo 14 dienu laikā</string>
-  <string name="travel_history_no_travel_choice">Nav</string>
+  <string name="travel_history_no_travel_choice">Es neesmu ceļojis</string>
   <string name="share_upload_select_a_date_choice">Atlasiet datumu</string>
   <string name="share_upload_status_subtitle">Covid-19 statuss</string>
   <string name="share_upload_status_confirmed">Pozitīvs</string>

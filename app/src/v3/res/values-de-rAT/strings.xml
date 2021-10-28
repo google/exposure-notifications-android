@@ -12,4 +12,6 @@
   <string name="possible_exposure">Mögliche Begegnung mit infizierter Person</string>
   <string name="share_history_delete_test_result_title">Dieses Testergebnis löschen?</string>
   <string name="share_history_delete_test_result_detail">Dein COVID-19-Testergebnis vom %1$s wird von deinem Smartphone gelöscht.</string>
+  <string name="sms_intercept_notice_card_title">Du wirst eventuell daran erinnert, dein Ergebnis zu teilen</string>
+  <string name="sms_intercept_notice_card_content">Bei positivem Test und Erhalt einer SMS mit Absenderüberprüfung</string>
 </resources>

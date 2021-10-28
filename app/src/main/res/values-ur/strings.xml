@@ -13,7 +13,7 @@
   <string name="btn_done">ہوگیا</string>
   <string name="btn_previous">پچھلا</string>
   <string name="btn_verify">توثیق کریں</string>
-  <string name="btn_dont_share">اشتراک کے بغیر جاری رکھیں</string>
+  <string name="btn_no_thanks">نہیں شکریہ</string>
   <string name="btn_share">اشتراک کریں</string>
   <string name="learn_more">مزید جانیں</string>
   <string name="home_tab_settings_text">ترتیبات</string>
@@ -201,13 +201,13 @@
   <string name="sms_intercept_notice_title">نیا کیا ہے</string>
   <string name="sms_intercept_notice_content">اگر آپ کو اپنے ٹیسٹ کے نتیجے کے ساتھ SMS موصول ہوتا ہے تو آپ کو ایک ایسی اطلاع موصول ہو سکتی ہے جس میں آپ سے اپنی تشخیص کا اشتراک ایکسپوژر نوٹیفیکیشنز میں کرنے کے لیے کہا گیا ہو۔ آپ اسے ترتیبات میں کسی بھی وقت غیر فعال کر سکتے ہیں۔</string>
   <string name="share_upload_title">اپنی کمیونٹی کی حفاظت کے لیے اپنے ٹیسٹ کے نتیجے کا اشتراک کریں</string>
-  <string name="share_upload_test_result_source_description">ٹیسٹنگ کا نتیجہ %1$s کے ذریعے بھیجا جاتا ہے</string>
-  <string name="share_upload_symptoms_subtitle">اس تاریخ سے علامات کا آغاز ہوا</string>
+  <string name="share_upload_test_result_source_description">نتائج %1$s کے ذریعے بھیجے گئے</string>
+  <string name="share_upload_symptoms_subtitle">اس تاریخ کو علامات شروع ہوئیں</string>
   <string name="share_upload_symptoms_date_fixed_description">علامت کے آغاز کی تاریخ %1$s نے فراہم کی ہے</string>
   <string name="share_upload_skip_choice">نظر انداز کریں</string>
   <string name="share_upload_travel_subtitle">سفر کی سرگزشت</string>
   <string name="travel_history_travelled_recently_choice">گزشتہ 14 دن میں کیا گیا سفر</string>
-  <string name="travel_history_no_travel_choice">کوئی نہیں</string>
+  <string name="travel_history_no_travel_choice">میں نے سفر نہیں کیا</string>
   <string name="share_upload_select_a_date_choice">تاریخ منتخب کریں</string>
   <string name="share_upload_status_subtitle">COVID-19 اسٹیٹس</string>
   <string name="share_upload_status_confirmed">مثبت</string>

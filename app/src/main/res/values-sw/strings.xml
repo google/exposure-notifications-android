@@ -13,7 +13,7 @@
   <string name="btn_done">Nimemaliza</string>
   <string name="btn_previous">Iliyotangulia</string>
   <string name="btn_verify">Thibitisha</string>
-  <string name="btn_dont_share">Endelea bila kushiriki</string>
+  <string name="btn_no_thanks">Hapana</string>
   <string name="btn_share">Shiriki</string>
   <string name="learn_more">Pata maelezo zaidi</string>
   <string name="home_tab_settings_text">Mipangilio</string>
@@ -201,13 +201,13 @@
   <string name="sms_intercept_notice_title">Mambo mapya</string>
   <string name="sms_intercept_notice_content">Ukipokea SMS yenye matokeo yako baada ya kupimwa, huenda ukapokea arifa inayokuomba kushiriki matokeo yako baada ya uchunguzi katika mfumo wa arifa kuhusu kukaribia aliye na COVID-19. Unaweza kuzima kipengele hiki wakati wowote katika mipangilio.</string>
   <string name="share_upload_title">Shiriki matokeo yako baada ya kupimwa ili ulinde jumuiya yako</string>
-  <string name="share_upload_test_result_source_description">Matokeo baada ya kupimwa yanatumwa na %1$s</string>
-  <string name="share_upload_symptoms_subtitle">Dalili zilianza</string>
+  <string name="share_upload_test_result_source_description">Majibu yalitumwa na %1$s</string>
+  <string name="share_upload_symptoms_subtitle">Dalili zilianza mnamo</string>
   <string name="share_upload_symptoms_date_fixed_description">Tarehe ambayo dalili zilianza ilitolewa na %1$s</string>
   <string name="share_upload_skip_choice">Ruka</string>
   <string name="share_upload_travel_subtitle">Historia ya usafiri</string>
   <string name="travel_history_travelled_recently_choice">Ulisafiri katika siku 14 zilizopita.</string>
-  <string name="travel_history_no_travel_choice">Hamna</string>
+  <string name="travel_history_no_travel_choice">Sikusafiri</string>
   <string name="share_upload_select_a_date_choice">Chagua tarehe</string>
   <string name="share_upload_status_subtitle">Hali ya COVID-19</string>
   <string name="share_upload_status_confirmed">Umeambukizwa</string>

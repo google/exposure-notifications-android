@@ -17,7 +17,6 @@
 
 package com.google.android.apps.exposurenotification.debug;
 
-import androidx.hilt.lifecycle.ViewModelInject;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -28,12 +27,15 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.nearby.exposurenotification.ExposureNotificationStatusCodes;
 import com.google.android.gms.nearby.exposurenotification.TemporaryExposureKey;
 import com.google.android.gms.tasks.Tasks;
+import dagger.hilt.android.lifecycle.HiltViewModel;
 import java.util.ArrayList;
 import java.util.List;
+import javax.inject.Inject;
 
 /**
  * View model for {@link KeysMatchingFragment}.
  */
+@HiltViewModel
 public class KeysMatchingViewModel extends ViewModel {
 
   private static final Logger logger = Logger.getLogger("KeysMatchingViewModel");
@@ -51,7 +53,7 @@ public class KeysMatchingViewModel extends ViewModel {
 
   private final ExposureNotificationClientWrapper exposureNotificationClientWrapper;
 
-  @ViewModelInject
+  @Inject
   public KeysMatchingViewModel(
       ExposureNotificationClientWrapper exposureNotificationClientWrapper) {
     this.exposureNotificationClientWrapper = exposureNotificationClientWrapper;

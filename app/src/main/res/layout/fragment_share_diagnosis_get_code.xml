@@ -133,7 +133,7 @@
             android:layout_height="wrap_content"
             android:paddingHorizontal="0dp"
             android:text="@string/learn_more"
-            style="@style/Widget.MaterialComponents.Button.TextButton" />
+            style="@style/Widget.ExposureNotifications.Button.TextButton" />
 
         </LinearLayout>
 
@@ -204,7 +204,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btn_previous"
-        style="@style/Widget.MaterialComponents.Button.TextButton" />
+        style="@style/Widget.ExposureNotifications.Button.TextButton" />
 
     </LinearLayout>
 
@@ -226,6 +226,7 @@
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:enabled="false"
+          style="@style/Widget.ExposureNotifications.Button"
           android:text="@string/btn_send_code"
           android:elevation="0dp"/>
 

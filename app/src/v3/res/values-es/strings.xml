@@ -12,4 +12,6 @@
   <string name="possible_exposure">Posible exposición</string>
   <string name="share_history_delete_test_result_title">¿Eliminar este resultado de prueba?</string>
   <string name="share_history_delete_test_result_detail">El resultado de tu prueba de COVID-19 del %1$s se eliminará de tu teléfono.</string>
+  <string name="sms_intercept_notice_card_title">Recordatorio para compartir tu resultado</string>
+  <string name="sms_intercept_notice_card_content">Si das positivo y recibes un SMS verificado</string>
 </resources>

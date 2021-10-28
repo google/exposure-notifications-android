@@ -20,6 +20,7 @@ package com.google.android.apps.exposurenotification;
 import android.app.Application;
 import android.util.Log;
 import androidx.annotation.Keep;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.hilt.work.HiltWorkerFactory;
 import androidx.lifecycle.ProcessLifecycleOwner;
@@ -27,10 +28,16 @@ import androidx.work.Configuration;
 import androidx.work.Configuration.Builder;
 import androidx.work.WorkManager;
 import com.google.android.apps.exposurenotification.common.Qualifiers.BackgroundExecutor;
+import com.google.android.apps.exposurenotification.common.ThemeUtils;
 import com.google.android.apps.exposurenotification.logging.ApplicationObserver;
+import com.google.android.apps.exposurenotification.migrate.Migration.MigrationRuntimeException;
+import com.google.android.apps.exposurenotification.migrate.MigrationManager;
 import com.google.android.apps.exposurenotification.slices.SlicePermissionManager;
 import com.google.android.apps.exposurenotification.work.WorkScheduler;
+import com.google.android.material.color.DynamicColors;
 import com.google.common.base.Optional;
+import com.google.common.util.concurrent.FutureCallback;
+import com.google.common.util.concurrent.Futures;
 import com.google.firebase.FirebaseApp;
 import com.jakewharton.threetenabp.AndroidThreeTen;
 import dagger.hilt.android.HiltAndroidApp;
@@ -76,9 +83,17 @@ public final class ExposureNotificationApplication extends Application implement
   @Nullable
   FirebaseApp firebaseApp;
 
+  @Inject
+  MigrationManager migrationManager;
+
   @Override
   public void onCreate() {
     super.onCreate();
+
+    // Apply dynamic colors to all activities if device is running Android S+.
+    if (ThemeUtils.supportsMaterialYou()) {
+      DynamicColors.applyToActivitiesIfAvailable(this);
+    }
 
     // Grant slice runtime permission
     if (slicePermissionManager.isPresent()) {
@@ -86,9 +101,23 @@ public final class ExposureNotificationApplication extends Application implement
     }
 
     AndroidThreeTen.init(this);
-    workScheduler.schedule();
 
-    // Add ProcessLifecycleObserver that loggs APP_OPENED if the app is in foreground
+    Futures.addCallback(
+        migrationManager.maybeMigrate(this),
+        new FutureCallback<Object>() {
+          @Override
+          public void onSuccess(@Nullable Object result) {
+            workScheduler.schedule();
+          }
+
+          @Override
+          public void onFailure(@NonNull Throwable t) {
+            throw new MigrationRuntimeException(t);
+          }
+        },
+        backgroundExecutor);
+
+    // Add ProcessLifecycleObserver that logs APP_OPENED if the app is in foreground
     applicationObserver.observeLifecycle(ProcessLifecycleOwner.get());
   }
 
@@ -102,4 +131,5 @@ public final class ExposureNotificationApplication extends Application implement
     }
     return builder.build();
   }
+
 }

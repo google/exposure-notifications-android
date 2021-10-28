@@ -12,4 +12,6 @@
   <string name="possible_exposure">Mahdollinen altistuminen</string>
   <string name="share_history_delete_test_result_title">Poistetaanko testitulos?</string>
   <string name="share_history_delete_test_result_detail">COVID-19-testituloksesi (%1$s) poistetaan puhelimestasi.</string>
+  <string name="sms_intercept_notice_card_title">Saat muistutuksen tuloksen jakamisesta</string>
+  <string name="sms_intercept_notice_card_content">Jos tulos on posit. ja tulee vahv. viestillä</string>
 </resources>

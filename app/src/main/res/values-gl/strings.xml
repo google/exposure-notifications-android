@@ -13,7 +13,7 @@
   <string name="btn_done">Feito</string>
   <string name="btn_previous">Atrás</string>
   <string name="btn_verify">Verificar</string>
-  <string name="btn_dont_share">Continuar sen compartir</string>
+  <string name="btn_no_thanks">Non, grazas</string>
   <string name="btn_share">Compartir</string>
   <string name="learn_more">Máis información</string>
   <string name="home_tab_settings_text">Configuración</string>
@@ -201,13 +201,13 @@
   <string name="sms_intercept_notice_title">Novidades</string>
   <string name="sms_intercept_notice_content">Se recibes unha SMS co resultado da túa proba, pode que apareza unha notificación na que se che pida que compartas o teu diagnóstico nas notificacións por exposición. Podes desactivar esta opción cando queiras desde a configuración.</string>
   <string name="share_upload_title">Comparte o teu resultado da proba para protexer a comunidade</string>
-  <string name="share_upload_test_result_source_description">%1$s enviou o resultado da proba</string>
-  <string name="share_upload_symptoms_subtitle">Comezo dos síntomas:</string>
+  <string name="share_upload_test_result_source_description">Os resultados enviounos esta autoridade sanitaria: %1$s</string>
+  <string name="share_upload_symptoms_subtitle">Os síntomas comezaron o</string>
   <string name="share_upload_symptoms_date_fixed_description">%1$s proporciona a data do síntoma</string>
   <string name="share_upload_skip_choice">Omitir</string>
   <string name="share_upload_travel_subtitle">Historial de viaxes</string>
   <string name="travel_history_travelled_recently_choice">Viaxaches nos últimos 14 días?</string>
-  <string name="travel_history_no_travel_choice">Non</string>
+  <string name="travel_history_no_travel_choice">Non viaxei</string>
   <string name="share_upload_select_a_date_choice">Seleccionar unha data</string>
   <string name="share_upload_status_subtitle">Estado relativo á COVID-19</string>
   <string name="share_upload_status_confirmed">Positivo</string>

@@ -12,4 +12,6 @@
   <string name="possible_exposure">Esposizio posiblea</string>
   <string name="share_history_delete_test_result_title">Probaren emaitza ezabatu nahi duzu?</string>
   <string name="share_history_delete_test_result_detail">COVID-19aren probaren emaitza (%1$s) ezabatu egingo da telefonotik.</string>
+  <string name="sms_intercept_notice_card_title">Baliteke emaitza partekatzeko abisu bat jasotzea</string>
+  <string name="sms_intercept_notice_card_content">Emaitza positiboa bada eta SMS egiaztatu bat jasotzen baduzu</string>
 </resources>

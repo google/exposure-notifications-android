@@ -13,7 +13,7 @@
   <string name="btn_done">Valmis</string>
   <string name="btn_previous">Tagasi</string>
   <string name="btn_verify">Kinnita</string>
-  <string name="btn_dont_share">Jätka ilma jagamata</string>
+  <string name="btn_no_thanks">Tänan, ei</string>
   <string name="btn_share">Jaga</string>
   <string name="learn_more">Lisateave</string>
   <string name="home_tab_settings_text">Seaded</string>
@@ -201,13 +201,13 @@
   <string name="sms_intercept_notice_title">Mis on uut?</string>
   <string name="sms_intercept_notice_content">Kui saite oma testitulemusega SMS-i, võite saada märguande, milles palutakse diagnoosi jagada kokkupuute märguannete rakendusega. Saate selle seadetes alati keelata.</string>
   <string name="share_upload_title">Jagage oma testitulemust, et oma kogukonda kaitsta</string>
-  <string name="share_upload_test_result_source_description">Testitulemuse saadab %1$s</string>
-  <string name="share_upload_symptoms_subtitle">Sümptomite algusaeg:</string>
+  <string name="share_upload_test_result_source_description">Tulemused saatis tervishoiuasutus %1$s</string>
+  <string name="share_upload_symptoms_subtitle">Sümptomid algasid:</string>
   <string name="share_upload_symptoms_date_fixed_description">Sümptomi kuupäeva on esitanud %1$s</string>
   <string name="share_upload_skip_choice">Jäta vahele</string>
   <string name="share_upload_travel_subtitle">Reisimise ajalugu</string>
   <string name="travel_history_travelled_recently_choice">Reisinud viimase 14 päeva jooksul</string>
-  <string name="travel_history_no_travel_choice">Puudub</string>
+  <string name="travel_history_no_travel_choice">Ma ei reisinud</string>
   <string name="share_upload_select_a_date_choice">Valige kuupäev</string>
   <string name="share_upload_status_subtitle">COVID-19 olek</string>
   <string name="share_upload_status_confirmed">Positiivne</string>

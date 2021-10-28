@@ -12,4 +12,6 @@
   <string name="possible_exposure">Možný kontakt</string>
   <string name="share_history_delete_test_result_title">Smazat tento výsledek?</string>
   <string name="share_history_delete_test_result_detail">Váš test na covid-19 z %1$s bude z telefonu smazán.</string>
+  <string name="sms_intercept_notice_card_title">Můžete dostat připomenutí o sdílení výsledku</string>
+  <string name="sms_intercept_notice_card_content">Pokud váš test byl pozitivní a dostanete ověřenou SMS</string>
 </resources>

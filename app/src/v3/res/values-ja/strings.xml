@@ -12,4 +12,6 @@
   <string name="possible_exposure">陽性者との接触の可能性</string>
   <string name="share_history_delete_test_result_title">この検査結果を削除しますか？</string>
   <string name="share_history_delete_test_result_detail">%1$sの COVID-19 の検査結果をスマートフォンから削除します。</string>
+  <string name="sms_intercept_notice_card_title">結果を共有するようリマインダーが届きます</string>
+  <string name="sms_intercept_notice_card_content">検査が陽性で確認済み SMS で届いた場合</string>
 </resources>

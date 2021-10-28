@@ -13,7 +13,7 @@
   <string name="btn_done">U krye</string>
   <string name="btn_previous">Prapa</string>
   <string name="btn_verify">Verifiko</string>
-  <string name="btn_dont_share">Vazhdo pa i ndarë</string>
+  <string name="btn_no_thanks">Jo, faleminderit</string>
   <string name="btn_share">Ndaj</string>
   <string name="learn_more">Mëso më shumë</string>
   <string name="home_tab_settings_text">Cilësimet</string>
@@ -201,13 +201,13 @@
   <string name="sms_intercept_notice_title">Ç\'të reja ka</string>
   <string name="sms_intercept_notice_content">Nëse merr një SMS me rezultatin e testit, mund të marrësh një njoftim që të kërkon të ndash diagnostikimin te njoftimet rreth ekspozimit. Mund ta çaktivizosh këtë në çdo kohë te cilësimet.</string>
   <string name="share_upload_title">Ndaj rezultatin e testit tënd për të mbrojtur komunitetin tënd</string>
-  <string name="share_upload_test_result_source_description">Rezultati i testit dërgohet nga %1$s</string>
-  <string name="share_upload_symptoms_subtitle">Simptomat filluan nga data</string>
+  <string name="share_upload_test_result_source_description">Rezultatet u dërguan nga %1$s</string>
+  <string name="share_upload_symptoms_subtitle">Simptomat filluan në</string>
   <string name="share_upload_symptoms_date_fixed_description">Data e simptomave jepet nga %1$s</string>
   <string name="share_upload_skip_choice">Kapërce</string>
   <string name="share_upload_travel_subtitle">Historiku i udhëtimeve</string>
   <string name="travel_history_travelled_recently_choice">Udhëtimet në 14 ditët e fundit</string>
-  <string name="travel_history_no_travel_choice">Asnjë</string>
+  <string name="travel_history_no_travel_choice">Nuk kam udhëtuar</string>
   <string name="share_upload_select_a_date_choice">Zgjidh një datë</string>
   <string name="share_upload_status_subtitle">Statusi i COVID-19</string>
   <string name="share_upload_status_confirmed">Pozitiv</string>

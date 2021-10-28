@@ -57,7 +57,7 @@
       android:layout_height="wrap_content"
       android:paddingHorizontal="0dp"
       android:text="@string/share_vaccination_learn_more"
-      style="@style/Widget.MaterialComponents.Button.TextButton" />
+      style="@style/Widget.ExposureNotifications.Button.TextButton" />
 
     <LinearLayout
       android:layout_width="match_parent"
@@ -73,7 +73,7 @@
         android:layout_marginEnd="@dimen/padding_small"
         android:layout_gravity="top"
         android:text="@string/btn_pre_auth_no"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        style="@style/Widget.ExposureNotifications.Button.OutlinedButton"
         app:cornerRadius="@dimen/round_button_corner_radius"
         app:strokeColor="@color/card_border_color" />
 
@@ -83,7 +83,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="top"
         android:text="@string/btn_pre_auth_yes"
-        style="@style/Widget.MaterialComponents.Button"
+        style="@style/Widget.ExposureNotifications.Button"
         app:cornerRadius="@dimen/round_button_corner_radius"
         app:strokeColor="@color/card_border_color" />
 

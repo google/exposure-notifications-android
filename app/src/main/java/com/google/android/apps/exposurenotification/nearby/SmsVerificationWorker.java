@@ -21,8 +21,7 @@ import android.content.Context;
 import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
-import androidx.hilt.Assisted;
-import androidx.hilt.work.WorkerInject;
+import androidx.hilt.work.HiltWorker;
 import androidx.work.BackoffPolicy;
 import androidx.work.Constraints;
 import androidx.work.Data;
@@ -60,6 +59,8 @@ import com.google.common.util.concurrent.FluentFuture;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.common.util.concurrent.ListeningScheduledExecutorService;
+import dagger.assisted.Assisted;
+import dagger.assisted.AssistedInject;
 import java.security.SecureRandom;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -69,6 +70,7 @@ import org.threeten.bp.Duration;
  * Performs work for {@link ExposureNotificationClientWrapper#ACTION_VERIFICATION_LINK}
  * broadcast from the Exposure Notifications API.
  */
+@HiltWorker
 public class SmsVerificationWorker extends ListenableWorker {
 
   private static final Duration REQUEST_PRE_AUTH_TEKS_RELEASE_API_TIMEOUT = Duration.ofSeconds(10);
@@ -89,7 +91,7 @@ public class SmsVerificationWorker extends ListenableWorker {
   private final Clock clock;
   private final ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
 
-  @WorkerInject
+  @AssistedInject
   public SmsVerificationWorker(
       @Assisted @NonNull Context context,
       @Assisted @NonNull WorkerParameters workerParams,

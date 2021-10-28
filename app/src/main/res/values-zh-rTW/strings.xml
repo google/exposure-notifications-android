@@ -13,7 +13,7 @@
   <string name="btn_done">完成</string>
   <string name="btn_previous">返回</string>
   <string name="btn_verify">驗證</string>
-  <string name="btn_dont_share">繼續但不分享</string>
+  <string name="btn_no_thanks">不用了，謝謝</string>
   <string name="btn_share">分享</string>
   <string name="learn_more">瞭解詳情</string>
   <string name="home_tab_settings_text">設定</string>
@@ -202,12 +202,12 @@
   <string name="sms_intercept_notice_content">如果你收到檢測結果的簡訊，系統可能會通知你在接觸通知系統中分享診斷結果。你隨時可以前往設定停用這項功能。</string>
   <string name="share_upload_title">分享你的檢測結果可保護你的社區</string>
   <string name="share_upload_test_result_source_description">這是由%1$s傳送的檢測結果</string>
-  <string name="share_upload_symptoms_subtitle">出現症狀的日期</string>
+  <string name="share_upload_symptoms_subtitle">開始有症狀的日期</string>
   <string name="share_upload_symptoms_date_fixed_description">症狀出現日期是由「%1$s」提供</string>
   <string name="share_upload_skip_choice">略過</string>
   <string name="share_upload_travel_subtitle">旅遊史</string>
   <string name="travel_history_travelled_recently_choice">過去 14 天去過的地方</string>
-  <string name="travel_history_no_travel_choice">無</string>
+  <string name="travel_history_no_travel_choice">我沒有旅遊史</string>
   <string name="share_upload_select_a_date_choice">選取日期</string>
   <string name="share_upload_status_subtitle">COVID-19 狀態</string>
   <string name="share_upload_status_confirmed">陽性</string>

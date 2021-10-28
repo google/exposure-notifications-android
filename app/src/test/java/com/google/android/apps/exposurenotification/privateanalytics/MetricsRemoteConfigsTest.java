@@ -33,7 +33,7 @@ public class MetricsRemoteConfigsTest {
 
   private static final double DEFAULT_SAMPING_RATE = 1.0;
   private static final double DEFAULT_DAILY_METRIC_EPSILON = 8.0;
-  private static final double DEFAULT_BIWEEKLY_METRIC_EPSILON = 10.2;
+  private static final double DEFAULT_BIWEEKLY_METRIC_EPSILON = 8.0;
 
   @Test
   public void testDefaultRemoteConfigValues() {

@@ -32,4 +32,6 @@
   <color name="material_error_color">#D93025</color>
   <color name="enx_agencyImageBackgroundColor">@android:color/transparent</color>
   <color name="pulse_color">#1E8E3E</color>
+  <color name="status_bar_color">@color/navigation_bar_color</color>
+
 </resources>

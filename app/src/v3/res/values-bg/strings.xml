@@ -12,4 +12,6 @@
   <string name="possible_exposure">Възможно излагане на опасност от заразяване</string>
   <string name="share_history_delete_test_result_title">Да се изтрие ли резултатът от този тест?</string>
   <string name="share_history_delete_test_result_detail">Резултатът от теста ви за COVID-19 от %1$s ще бъде изтрит от телефона ви.</string>
+  <string name="sms_intercept_notice_card_title">Може да получите напомняне да споделите резултата си</string>
+  <string name="sms_intercept_notice_card_content">Ако резултатът от теста ви е + и получите потвърден SMS</string>
 </resources>

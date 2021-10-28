@@ -13,7 +13,7 @@
   <string name="btn_done">Гатова</string>
   <string name="btn_previous">Назад</string>
   <string name="btn_verify">Спраўдзіць</string>
-  <string name="btn_dont_share">Працягнуць без абагульвання</string>
+  <string name="btn_no_thanks">Не, дзякуй</string>
   <string name="btn_share">Абагуліць</string>
   <string name="learn_more">Даведацца больш</string>
   <string name="home_tab_settings_text">Налады</string>
@@ -205,13 +205,13 @@
   <string name="sms_intercept_notice_title">Што новага</string>
   <string name="sms_intercept_notice_content">Калі вам прыйдзе SMS з вынікам тэста, вы можаце атрымаць апавяшчэнне з заклікам абагуліць звесткі пра дыягназ у апавяшчэннях пра рызыку заражэння. Вы можаце ў любы час адключыць гэту функцыю ў наладах.</string>
   <string name="share_upload_title">Абагульце вынікі свайго тэста, каб абараніць супольнасць</string>
-  <string name="share_upload_test_result_source_description">Вынікі тэста адпраўлены арганізацыяй \"%1$s\"</string>
-  <string name="share_upload_symptoms_subtitle">Дата ўзнікнення сімптомаў</string>
+  <string name="share_upload_test_result_source_description">Вынікі адпраўлены арганізацыяй \"%1$s\"</string>
+  <string name="share_upload_symptoms_subtitle">Сімптомы з\'явіліся</string>
   <string name="share_upload_symptoms_date_fixed_description">Дата ўзнікнення сімптомаў пададзена арганізацыяй \"%1$s\"</string>
   <string name="share_upload_skip_choice">Прапусціць</string>
   <string name="share_upload_travel_subtitle">Гісторыя падарожжаў</string>
   <string name="travel_history_travelled_recently_choice">Падарожжы ў апошнія 14 дзён</string>
-  <string name="travel_history_no_travel_choice">Няма</string>
+  <string name="travel_history_no_travel_choice">Падарожжаў не было</string>
   <string name="share_upload_select_a_date_choice">Выберыце дату</string>
   <string name="share_upload_status_subtitle">Стан COVID-19</string>
   <string name="share_upload_status_confirmed">Станоўчы</string>

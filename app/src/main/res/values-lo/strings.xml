@@ -13,7 +13,7 @@
   <string name="btn_done">ແລ້ວໆ</string>
   <string name="btn_previous">ກ່ອນໜ້າ</string>
   <string name="btn_verify">ຢັ້ງຢືນ</string>
-  <string name="btn_dont_share">ສືບຕໍ່ໂດຍບໍ່ມີການແບ່ງປັນ</string>
+  <string name="btn_no_thanks">ບໍ່, ຂອບໃຈ</string>
   <string name="btn_share">ແບ່ງປັນ</string>
   <string name="learn_more">ສຶກສາເພີ່ມເຕີມ</string>
   <string name="home_tab_settings_text">ການຕັ້ງຄ່າ</string>
@@ -201,13 +201,13 @@
   <string name="sms_intercept_notice_title">ມີຫຍັງໃໝ່</string>
   <string name="sms_intercept_notice_content">ຫາກທ່ານໄດ້ຮັບ SMS ພ້ອມຜົນກວດຂອງທ່ານ, ທ່ານອາດໄດ້ຮັບການແຈ້ງເຕືອນຖາມໃຫ້ທ່ານແບ່ງປັນການວິນິໄສຂອງທ່ານໃນການແຈ້ງເຕືອນຄວາມສ່ຽງຕິດເຊື້ອ. ທ່ານສາມາດປິດຄຸນສົມບັດນີ້ຕອນໃດກໍໄດ້ໃນການຕັ້ງຄ່າ.</string>
   <string name="share_upload_title">ແບ່ງປັນຜົນກວດຂອງທ່ານເພື່ອປົກປ້ອງຊຸມຊົນຂອງທ່ານ</string>
-  <string name="share_upload_test_result_source_description">ຜົນກວດແມ່ນສົ່ງໂດຍ %1$s</string>
-  <string name="share_upload_symptoms_subtitle">ອາການເລີ່ມຕົ້ນຈາກ</string>
+  <string name="share_upload_test_result_source_description">ຜົນກວດຖືກສົ່ງໂດຍ %1$s</string>
+  <string name="share_upload_symptoms_subtitle">ເລີ່ມມີອາການເມື່ອ</string>
   <string name="share_upload_symptoms_date_fixed_description">ວັນທີຂອງອາການແມ່ນສະໜອງໃຫ້ໂດຍ %1$s</string>
   <string name="share_upload_skip_choice">ຂ້າມ</string>
   <string name="share_upload_travel_subtitle">ປະຫວັດການເດີນທາງ</string>
   <string name="travel_history_travelled_recently_choice">ເດີນທາງໃນຮອບ 14 ມື້ທີ່ຜ່ານມາ</string>
-  <string name="travel_history_no_travel_choice">ບໍ່ມີ</string>
+  <string name="travel_history_no_travel_choice">ຂ້ອຍບໍ່ໄດ້ເດີນທາງໄປໃສ</string>
   <string name="share_upload_select_a_date_choice">ເລືອກວັນທີ</string>
   <string name="share_upload_status_subtitle">ສະຖານະ COVID-19</string>
   <string name="share_upload_status_confirmed">ຜົນບວກ</string>

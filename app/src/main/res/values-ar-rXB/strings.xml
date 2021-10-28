@@ -13,7 +13,7 @@
   <string name="btn_done">‏‮Done‬‏</string>
   <string name="btn_previous">‏‮Previous‬‏</string>
   <string name="btn_verify">‏‮Verify‬‏</string>
-  <string name="btn_dont_share">‏‮Continue‬‏ ‏‮without‬‏ ‏‮sharing‬‏</string>
+  <string name="btn_no_thanks">‏‮No‬‏ ‏‮thanks‬‏</string>
   <string name="btn_share">‏‮Share‬‏</string>
   <string name="learn_more">‏‮Learn‬‏ ‏‮more‬‏</string>
   <string name="home_tab_settings_text">‏‮Settings‬‏</string>
@@ -209,13 +209,13 @@
   <string name="sms_intercept_notice_title">‏‮What‬‏\'‏‮s‬‏ ‏‮new‬‏</string>
   <string name="sms_intercept_notice_content">‏‮If‬‏ ‏‮you‬‏ ‏‮receive‬‏ ‏‮an‬‏ ‏‮SMS‬‏ ‏‮with‬‏ ‏‮your‬‏ ‏‮test‬‏ ‏‮result‬‏, ‏‮you‬‏ ‏‮may‬‏ ‏‮get‬‏ ‏‮a‬‏ ‏‮notification‬‏ ‏‮asking‬‏ ‏‮you‬‏ ‏‮to‬‏ ‏‮share‬‏ ‏‮your‬‏ ‏‮diagnosis‬‏ ‏‮in‬‏ ‏‮exposure‬‏ ‏‮notifications‬‏. ‏‮You‬‏ ‏‮can‬‏ ‏‮disable‬‏ ‏‮this‬‏ ‏‮any‬‏ ‏‮time‬‏ ‏‮in‬‏ ‏‮settings‬‏.</string>
   <string name="share_upload_title">‏‮Share‬‏ ‏‮your‬‏ ‏‮test‬‏ ‏‮result‬‏ ‏‮to‬‏ ‏‮protect‬‏ ‏‮your‬‏ ‏‮community‬‏</string>
-  <string name="share_upload_test_result_source_description">‏‮Testing‬‏ ‏‮result‬‏ ‏‮is‬‏ ‏‮sent‬‏ ‏‮by‬‏ %1$s</string>
-  <string name="share_upload_symptoms_subtitle">‏‮Symptom‬‏ ‏‮started‬‏ ‏‮from‬‏</string>
+  <string name="share_upload_test_result_source_description">‏‮Results‬‏ ‏‮were‬‏ ‏‮sent‬‏ ‏‮by‬‏ %1$s</string>
+  <string name="share_upload_symptoms_subtitle">‏‮Symptoms‬‏ ‏‮began‬‏ ‏‮on‬‏</string>
   <string name="share_upload_symptoms_date_fixed_description">‏‮Symptom‬‏ ‏‮date‬‏ ‏‮is‬‏ ‏‮provided‬‏ ‏‮by‬‏ %1$s</string>
   <string name="share_upload_skip_choice">‏‮Skip‬‏</string>
   <string name="share_upload_travel_subtitle">‏‮Travel‬‏ ‏‮history‬‏</string>
   <string name="travel_history_travelled_recently_choice">‏‮Travelled‬‏ ‏‮in‬‏ ‏‮the‬‏ ‏‮past‬‏ 14 ‏‮days‬‏</string>
-  <string name="travel_history_no_travel_choice">‏‮None‬‏</string>
+  <string name="travel_history_no_travel_choice">‏‮I‬‏ ‏‮didn‬‏\'‏‮t‬‏ ‏‮travel‬‏</string>
   <string name="share_upload_select_a_date_choice">‏‮Select‬‏ ‏‮a‬‏ ‏‮date‬‏</string>
   <string name="share_upload_status_subtitle">‏‮COVID‬‏-19 ‏‮status‬‏</string>
   <string name="share_upload_status_confirmed">‏‮Positive‬‏</string>

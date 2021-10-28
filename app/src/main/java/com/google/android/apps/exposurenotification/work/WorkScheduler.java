@@ -17,6 +17,7 @@
 
 package com.google.android.apps.exposurenotification.work;
 
+import androidx.annotation.Nullable;
 import androidx.work.Operation.State.SUCCESS;
 import androidx.work.WorkManager;
 import com.google.android.apps.exposurenotification.common.Qualifiers.LightweightExecutor;
@@ -27,12 +28,11 @@ import com.google.android.apps.exposurenotification.nearby.ProvideDiagnosisKeysW
 import com.google.android.apps.exposurenotification.privateanalytics.SubmitPrivateAnalyticsWorker;
 import com.google.android.apps.exposurenotification.roaming.CountryCheckingWorker;
 import com.google.android.libraries.privateanalytics.DefaultPrivateAnalyticsDeviceAttestation;
-import com.google.android.libraries.privateanalytics.PrivateAnalyticsRemoteConfig;
 import com.google.android.libraries.privateanalytics.PrivateAnalyticsEnabledProvider;
+import com.google.android.libraries.privateanalytics.PrivateAnalyticsRemoteConfig;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListeningExecutorService;
-import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 import org.threeten.bp.Duration;
 
 /**
@@ -67,7 +67,7 @@ public class WorkScheduler {
         UploadCoverTrafficWorker.schedule(workManager).getResult(),
         new FutureCallback<SUCCESS>() {
           @Override
-          public void onSuccess(@NullableDecl SUCCESS result) {
+          public void onSuccess(@Nullable SUCCESS result) {
             logger.i("Scheduled UploadCoverTrafficWorker.");
           }
 
@@ -81,7 +81,7 @@ public class WorkScheduler {
         ProvideDiagnosisKeysWorker.schedule(workManager, tekPublishInterval).getResult(),
         new FutureCallback<SUCCESS>() {
           @Override
-          public void onSuccess(@NullableDecl SUCCESS result) {
+          public void onSuccess(@Nullable SUCCESS result) {
             logger.i("Scheduled ProvideDiagnosisKeysWorker.");
           }
 
@@ -95,7 +95,7 @@ public class WorkScheduler {
         CountryCheckingWorker.schedule(workManager).getResult(),
         new FutureCallback<SUCCESS>() {
           @Override
-          public void onSuccess(@NullableDecl SUCCESS result) {
+          public void onSuccess(@Nullable SUCCESS result) {
             logger.i("Scheduled CountryCheckingWorker.");
           }
 
@@ -109,7 +109,7 @@ public class WorkScheduler {
         FirelogAnalyticsWorker.schedule(workManager).getResult(),
         new FutureCallback<SUCCESS>() {
           @Override
-          public void onSuccess(@NullableDecl SUCCESS result) {
+          public void onSuccess(@Nullable SUCCESS result) {
             logger.i("Scheduled FirelogAnalyticsWorker.");
           }
 
@@ -125,7 +125,7 @@ public class WorkScheduler {
           SubmitPrivateAnalyticsWorker.schedule(workManager).getResult(),
           new FutureCallback<SUCCESS>() {
             @Override
-            public void onSuccess(@NullableDecl SUCCESS result) {
+            public void onSuccess(@Nullable SUCCESS result) {
               logger.i("Scheduled SubmitPrivateAnalyticsWorker.");
             }
 

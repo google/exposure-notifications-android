@@ -13,7 +13,7 @@
   <string name="btn_done">सम्पन्न भयो</string>
   <string name="btn_previous">अघिल्लो</string>
   <string name="btn_verify">पुष्टि गर्नुहोस्</string>
-  <string name="btn_dont_share">सेयर नगरिकन अगाडि बढ्नुहोस्</string>
+  <string name="btn_no_thanks">पर्दैन</string>
   <string name="btn_share">सेयर गर्नुहोस्</string>
   <string name="learn_more">थप जान्नुहोस्</string>
   <string name="home_tab_settings_text">सेटिङ</string>
@@ -201,13 +201,13 @@
   <string name="sms_intercept_notice_title">नयाँ के छ</string>
   <string name="sms_intercept_notice_content">तपाईंले तपाईंको परीक्षणको नतिजाका बारेमा SMS मार्फत जानकारी प्राप्त गर्नुभयो भने तपाईंलाई सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सूचना दिने प्रणालीमा निदानसम्बन्धी जानकारी उपलब्ध गराउन अनुरोध गर्दै सूचना पठाइन सक्छ तपाईं जुनसुकै बेला सेटिङमा गई यो सुविधा अफ गर्न सक्नुहुन्छ।</string>
   <string name="share_upload_title">आफ्नो समुदाय सुरक्षित राख्नका निम्ति आफ्नो परीक्षणको नतिजा सेयर गर्नुहोस्</string>
-  <string name="share_upload_test_result_source_description">परीक्षणको नतिजा पठाउने स्वास्थ्य निकाय: %1$s</string>
-  <string name="share_upload_symptoms_subtitle">लक्षण देखिएको मिति</string>
+  <string name="share_upload_test_result_source_description">नतिजा पठाउने जनस्वास्थ्य प्राधिकरण: %1$s</string>
+  <string name="share_upload_symptoms_subtitle">लक्षणहरू देखिन थालेको समय</string>
   <string name="share_upload_symptoms_date_fixed_description">%1$s ले लक्षण देखिन थालेको मिति प्रदान गर्नुभएको छ</string>
   <string name="share_upload_skip_choice">स्किप गर्नुहोस्</string>
   <string name="share_upload_travel_subtitle">यात्राको इतिहास</string>
   <string name="travel_history_travelled_recently_choice">मैले पछिल्ला १४ दिनभित्र यात्रा गरेको छु</string>
-  <string name="travel_history_no_travel_choice">कुनै पनि होइन</string>
+  <string name="travel_history_no_travel_choice">मैले कतै पनि यात्रा गरेको छुइन</string>
   <string name="share_upload_select_a_date_choice">मिति चयन गर्नुहोस्</string>
   <string name="share_upload_status_subtitle">COVID-19 सम्बन्धी स्थिति</string>
   <string name="share_upload_status_confirmed">पोजेटिभ</string>

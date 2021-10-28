@@ -13,7 +13,7 @@
   <string name="btn_done">Ferdig</string>
   <string name="btn_previous">Forrige</string>
   <string name="btn_verify">Bekreft</string>
-  <string name="btn_dont_share">Fortsett uten å dele</string>
+  <string name="btn_no_thanks">Nei takk</string>
   <string name="btn_share">Del</string>
   <string name="learn_more">Finn ut mer</string>
   <string name="home_tab_settings_text">Innstillinger</string>
@@ -201,13 +201,13 @@
   <string name="sms_intercept_notice_title">Nyheter</string>
   <string name="sms_intercept_notice_content">Hvis du mottar en SMS med testresultatet ditt, kan du få et varsel om å dele diagnosen i eksponeringsvarsler. Du kan når som helst slå av dette i innstillingene.</string>
   <string name="share_upload_title">Del testresultatet ditt for å beskytte lokalsamfunnet</string>
-  <string name="share_upload_test_result_source_description">Testresultatet sendes av %1$s</string>
+  <string name="share_upload_test_result_source_description">Resultatene ble sendt av %1$s</string>
   <string name="share_upload_symptoms_subtitle">Symptomene startet</string>
   <string name="share_upload_symptoms_date_fixed_description">Datoen for symptomer er levert av %1$s</string>
   <string name="share_upload_skip_choice">Hopp over</string>
   <string name="share_upload_travel_subtitle">Reisehistorikk</string>
   <string name="travel_history_travelled_recently_choice">Reiser de siste 14 dagene</string>
-  <string name="travel_history_no_travel_choice">Ingen</string>
+  <string name="travel_history_no_travel_choice">Jeg har ikke reist</string>
   <string name="share_upload_select_a_date_choice">Velg en dato</string>
   <string name="share_upload_status_subtitle">Covid-19-status</string>
   <string name="share_upload_status_confirmed">Positiv</string>

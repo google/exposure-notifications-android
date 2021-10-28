@@ -13,7 +13,7 @@
   <string name="btn_done">Terminat</string>
   <string name="btn_previous">Înapoi</string>
   <string name="btn_verify">Confirmați</string>
-  <string name="btn_dont_share">Continuați fără a trimite</string>
+  <string name="btn_no_thanks">Nu, mulțumesc</string>
   <string name="btn_share">Trimiteți</string>
   <string name="learn_more">Aflați mai multe</string>
   <string name="home_tab_settings_text">Setări</string>
@@ -203,13 +203,13 @@
   <string name="sms_intercept_notice_title">Noutăți</string>
   <string name="sms_intercept_notice_content">Dacă primiți un SMS cu rezultatul testului, puteți primi o notificare prin care vi se solicită să trimiteți diagnosticul către sistemul de notificări privind expunerea. Puteți dezactiva oricând opțiunea din setări.</string>
   <string name="share_upload_title">Trimiteți rezultatul testului pentru a vă proteja comunitatea</string>
-  <string name="share_upload_test_result_source_description">Rezultatul testului este trimis de %1$s</string>
-  <string name="share_upload_symptoms_subtitle">Simptomul a debutat pe</string>
+  <string name="share_upload_test_result_source_description">Rezultatele au fost trimise de %1$s</string>
+  <string name="share_upload_symptoms_subtitle">Simptomele au apărut pe</string>
   <string name="share_upload_symptoms_date_fixed_description">Data simptomului este oferită de %1$s</string>
   <string name="share_upload_skip_choice">Omiteți</string>
   <string name="share_upload_travel_subtitle">Istoricul călătoriilor</string>
   <string name="travel_history_travelled_recently_choice">Ați călătorit în ultimele 14 zile</string>
-  <string name="travel_history_no_travel_choice">Fără</string>
+  <string name="travel_history_no_travel_choice">Nu am călătorit</string>
   <string name="share_upload_select_a_date_choice">Selectați o dată</string>
   <string name="share_upload_status_subtitle">Rezultatul testului privind COVID-19</string>
   <string name="share_upload_status_confirmed">Pozitiv</string>

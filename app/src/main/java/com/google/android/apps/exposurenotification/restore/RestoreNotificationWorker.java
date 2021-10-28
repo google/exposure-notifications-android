@@ -19,8 +19,7 @@ package com.google.android.apps.exposurenotification.restore;
 
 import android.content.Context;
 import androidx.annotation.NonNull;
-import androidx.hilt.Assisted;
-import androidx.hilt.work.WorkerInject;
+import androidx.hilt.work.HiltWorker;
 import androidx.work.ExistingWorkPolicy;
 import androidx.work.ListenableWorker;
 import androidx.work.OneTimeWorkRequest;
@@ -31,6 +30,8 @@ import com.google.android.apps.exposurenotification.common.NotificationHelper;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
+import dagger.assisted.Assisted;
+import dagger.assisted.AssistedInject;
 import java.util.concurrent.TimeUnit;
 import org.threeten.bp.Duration;
 
@@ -38,6 +39,7 @@ import org.threeten.bp.Duration;
  * Performs work to notify user to reactivate exposure notification application after
  * device restore.
  */
+@HiltWorker
 public class RestoreNotificationWorker extends ListenableWorker {
 
   private static final Duration RESTORE_NOTIFICATION_DELAY = Duration.ofHours(24);
@@ -48,7 +50,7 @@ public class RestoreNotificationWorker extends ListenableWorker {
   private final NotificationHelper notificationHelper;
   private final ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
 
-  @WorkerInject
+  @AssistedInject
   public RestoreNotificationWorker(
       @Assisted @NonNull Context context,
       @Assisted @NonNull WorkerParameters params,

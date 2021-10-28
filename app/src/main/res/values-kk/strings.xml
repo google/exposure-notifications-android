@@ -13,7 +13,7 @@
   <string name="btn_done">Дайын</string>
   <string name="btn_previous">Алдыңғы</string>
   <string name="btn_verify">Растау</string>
-  <string name="btn_dont_share">Бөліспеcтен жалғастыру</string>
+  <string name="btn_no_thanks">Жоқ, рақмет</string>
   <string name="btn_share">Бөлісу</string>
   <string name="learn_more">Толығырақ</string>
   <string name="home_tab_settings_text">Параметрлер</string>
@@ -201,13 +201,13 @@
   <string name="sms_intercept_notice_title">Жаңалықтар</string>
   <string name="sms_intercept_notice_content">Сынақ нәтижесі көрсетілген SMS алсаңыз, сізден диагнозыңызды Ауру жұқтырғандармен байланыс туралы хабарландыру жүйесінде бөлісу сұралуы мүмкін. Мұны кез келген уақытта параметрлерден өшіре аласыз.</string>
   <string name="share_upload_title">Басқаларды қорғау үшін сынақ нәтижесімен бөлісіңіз</string>
-  <string name="share_upload_test_result_source_description">%1$s сынақ нәтижесін жіберді.</string>
-  <string name="share_upload_symptoms_subtitle">Симптомдардың пайда болуы:</string>
+  <string name="share_upload_test_result_source_description">Нәтижелерді %1$s жіберді.</string>
+  <string name="share_upload_symptoms_subtitle">Симптомдар пайда болған уақыт:</string>
   <string name="share_upload_symptoms_date_fixed_description">Симптомның пайда болу күнін %1$s көрсетті.</string>
   <string name="share_upload_skip_choice">Өткізіп жіберу</string>
   <string name="share_upload_travel_subtitle">Сапарлар тарихы</string>
   <string name="travel_history_travelled_recently_choice">Соңғы 14 күн ішінде сапарда болдым</string>
-  <string name="travel_history_no_travel_choice">Жоқ</string>
+  <string name="travel_history_no_travel_choice">Саяхаттамадым</string>
   <string name="share_upload_select_a_date_choice">Күнді таңдау</string>
   <string name="share_upload_status_subtitle">COVID-19 ауруына қатысты күй</string>
   <string name="share_upload_status_confirmed">Оң</string>

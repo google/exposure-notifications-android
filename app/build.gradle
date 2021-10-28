@@ -169,34 +169,36 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
     implementation project(':privateanalytics')
 
-    annotationProcessor 'androidx.hilt:hilt-compiler:1.0.0-alpha02'
+    annotationProcessor 'androidx.hilt:hilt-compiler:1.0.0'
     annotationProcessor 'androidx.room:room-compiler:2.2.5'
     annotationProcessor 'com.google.auto.value:auto-value:1.7.3'
-    annotationProcessor 'com.google.dagger:hilt-android-compiler:2.30-alpha'
+    annotationProcessor 'com.google.dagger:hilt-android-compiler:2.38.1'
 
-    debugImplementation 'androidx.fragment:fragment-testing:1.3.0'
+    debugImplementation ("androidx.fragment:fragment-testing:1.3.6") {
+        exclude group: "androidx.test", module : "core"
+    }
 
-    implementation 'androidx.appcompat:appcompat:1.3.0-alpha02'
+    implementation 'androidx.appcompat:appcompat:1.4.0-alpha03'
     implementation "androidx.cardview:cardview:1.0.0"
     implementation 'androidx.concurrent:concurrent-futures:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
-    implementation 'androidx.fragment:fragment:1.3.0'
-    implementation 'androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha02'
-    implementation 'androidx.hilt:hilt-work:1.0.0-alpha02'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
+    implementation 'androidx.fragment:fragment:1.3.6'
+    implementation 'androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03'
+    implementation 'androidx.hilt:hilt-work:1.0.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel:2.2.0'
     implementation 'androidx.lifecycle:lifecycle-process:2.3.0'
     implementation 'androidx.navigation:navigation-fragment:2.3.0'
     implementation 'androidx.room:room-guava:2.2.5'
     implementation 'androidx.room:room-runtime:2.2.5'
     implementation 'androidx.slice:slice-builders:1.0.0'
-    implementation 'androidx.work:work-runtime:2.5.0-beta01'
+    implementation 'androidx.work:work-runtime:2.7.0-rc01'
     implementation 'com.android.volley:volley:1.1.1'
     implementation 'com.google.android.gms:play-services-base:17.4.0'
     implementation 'com.google.android.gms:play-services-basement:17.4.0'
     implementation 'com.google.android.gms:play-services-tasks:17.2.0'
-    implementation 'com.google.android.material:material:1.3.0-rc01'
+    implementation 'com.google.android.material:material:1.5.0-alpha03'
     implementation 'com.google.auto.value:auto-value-annotations:1.7.3'
-    implementation 'com.google.dagger:hilt-android:2.30-alpha'
+    implementation 'com.google.dagger:hilt-android:2.38.1'
     implementation 'com.google.firebase:firebase-firestore:21.6.0'
     implementation 'com.google.firebase:firebase-datatransport:17.0.8'
     implementation 'com.google.guava:guava:29.0-android'
@@ -205,45 +207,44 @@ dependencies {
     implementation 'commons-io:commons-io:2.6'
     implementation 'org.apache.httpcomponents:httpclient:4.5.12'
     implementation "com.mikepenz:aboutlibraries:8.5.0"
-    implementation 'com.googlecode.libphonenumber:libphonenumber:8.2.0'
+    implementation 'com.googlecode.libphonenumber:libphonenumber:8.12.33'
 
     // Debug-only libraries
     debugImplementation 'com.google.zxing:core:3.3.0'
-    debugImplementation('com.journeyapps:zxing-android-embedded:4.1.0') { 
+    debugImplementation('com.journeyapps:zxing-android-embedded:4.1.0') {
         transitive = false
     }
 
     // JVM test dependencies
-    testImplementation 'org.mockito:mockito-core:2.25.0'
-    testImplementation 'org.mockito:mockito-inline:2.25.0'
+    testImplementation 'org.mockito:mockito-core:3.12.4'
+    testImplementation 'org.mockito:mockito-inline:3.12.4'
     //noinspection FragmentGradleConfiguration
-    testImplementation 'androidx.fragment:fragment-testing:1.3.0'
     testImplementation 'androidx.lifecycle:lifecycle-runtime-testing:2.3.0'
     testImplementation 'androidx.room:room-testing:2.2.5'
-    testImplementation 'androidx.test.ext:junit:1.1.2-rc01'
-    testImplementation 'androidx.test:core:1.3.0-rc01'
-    testImplementation "androidx.work:work-testing:2.5.0"
+    testImplementation 'androidx.test.ext:junit:1.1.4-alpha01'
+    testImplementation 'androidx.test:core:1.4.1-alpha01'
+    testImplementation "androidx.work:work-testing:2.7.0-rc01"
     testImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     testImplementation 'com.android.support.test:runner:1.0.2'
     testImplementation 'com.google.guava:guava-testlib:29.0-jre'
-    testImplementation 'com.google.dagger:hilt-android-testing:2.30-alpha'
+    testImplementation 'com.google.dagger:hilt-android-testing:2.38.1'
     testImplementation 'com.google.truth:truth:1.0.1'
     testImplementation 'commons-io:commons-io:2.6'
-    testImplementation 'junit:junit:4.13'
+    testImplementation 'junit:junit:4.13.2'
     testImplementation 'org.robolectric:robolectric:4.3.1'
     testImplementation 'androidx.arch.core:core-testing:2.1.0'
     testImplementation ('org.threeten:threetenbp:1.2.4'){
         exclude group:'com.jakewharton.threetenabp', module:'threetenabp'
     }
-    testAnnotationProcessor 'com.google.dagger:hilt-android-compiler:2.30-alpha'
+    testAnnotationProcessor 'com.google.dagger:hilt-android-compiler:2.38.1'
 
     // Instrumented test dependencies
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2-rc01'
-    androidTestImplementation 'androidx.test:core:1.2.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.4-alpha01'
+    androidTestImplementation 'androidx.test:core:1.4.1-alpha01'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.google.dagger:hilt-android-testing:2.30-alpha'
-    androidTestAnnotationProcessor 'com.google.dagger:hilt-android-compiler:2.30-alpha'
+    androidTestImplementation 'com.google.dagger:hilt-android-testing:2.38.1'
+    androidTestAnnotationProcessor 'com.google.dagger:hilt-android-compiler:2.38.1'
 }
 
 aboutLibraries {

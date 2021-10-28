@@ -18,16 +18,28 @@
 package com.google.android.apps.exposurenotification.onboarding;
 
 import static com.google.common.truth.Truth.assertThat;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import static org.robolectric.Shadows.shadowOf;
 
+import android.content.Context;
+import android.os.Bundle;
 import androidx.test.core.app.ApplicationProvider;
 import androidx.work.WorkManager;
+import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.nearby.ExposureNotificationClientWrapper;
+import com.google.android.apps.exposurenotification.nearby.PackageConfigurationHelper;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.OnboardingStatus;
 import com.google.android.apps.exposurenotification.testsupport.ExposureNotificationRules;
+import com.google.android.apps.exposurenotification.testsupport.FakeShadowResources;
+import com.google.android.gms.nearby.exposurenotification.PackageConfiguration.PackageConfigurationBuilder;
+import com.google.android.gms.tasks.Tasks;
 import com.google.android.libraries.privateanalytics.PrivateAnalyticsEnabledProvider;
-import com.google.firebase.FirebaseApp;
+import com.google.common.base.Optional;
 import dagger.hilt.android.testing.HiltAndroidTest;
 import dagger.hilt.android.testing.HiltTestApplication;
+import java.util.concurrent.atomic.AtomicReference;
 import javax.inject.Inject;
 import org.junit.Before;
 import org.junit.Rule;
@@ -42,11 +54,14 @@ import org.robolectric.annotation.Config;
  */
 @HiltAndroidTest
 @RunWith(RobolectricTestRunner.class)
-@Config(application = HiltTestApplication.class)
+@Config(application = HiltTestApplication.class, shadows = {FakeShadowResources.class})
 public class OnboardingViewModelTest {
 
+  private final Context context = ApplicationProvider.getApplicationContext();
+
   @Rule
-  public ExposureNotificationRules rules = ExposureNotificationRules.forTest(this).build();
+  public ExposureNotificationRules rules = ExposureNotificationRules.forTest(this).withMocks()
+      .build();
 
   @Inject
   ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
@@ -57,15 +72,22 @@ public class OnboardingViewModelTest {
   @Mock
   WorkManager workManager;
 
+  @Mock
+  ExposureNotificationClientWrapper exposureNotificationClientWrapper;
+
   OnboardingViewModel onboardingViewModel;
 
   @Before
   public void setup() {
-    FirebaseApp.initializeApp(ApplicationProvider.getApplicationContext());
     rules.hilt().inject();
-    onboardingViewModel = new OnboardingViewModel(exposureNotificationSharedPreferences,
+    onboardingViewModel = new OnboardingViewModel(
+        exposureNotificationClientWrapper,
+        exposureNotificationSharedPreferences,
         privateAnalyticsEnabledProvider,
         workManager);
+    // Provide an empty package configuration by default.
+    when(exposureNotificationClientWrapper.getPackageConfiguration())
+        .thenReturn(Tasks.forResult(new PackageConfigurationBuilder().build()));
   }
 
   @Test
@@ -96,11 +118,98 @@ public class OnboardingViewModelTest {
 
     assertThat(onboardingViewModel.isResultOkSet()).isTrue();
 
-    onboardingViewModel = new OnboardingViewModel(exposureNotificationSharedPreferences,
+    onboardingViewModel = new OnboardingViewModel(
+        exposureNotificationClientWrapper,
+        exposureNotificationSharedPreferences,
         privateAnalyticsEnabledProvider,
         workManager);
 
     assertThat(onboardingViewModel.isResultOkSet()).isFalse();
+  }
+
+  @Test
+  public void getShouldShowAppAnalyticsLiveData_enableV1toENXMigrationIsFalse_returnsFalse() {
+    FakeShadowResources resources = (FakeShadowResources) shadowOf(context.getResources());
+    resources.addFakeResource(R.bool.enx_enableV1toENXMigration, false);
+    AtomicReference<Optional<Boolean>> showAppAnalytics = new AtomicReference<>(Optional.absent());
+    onboardingViewModel.getShouldShowAppAnalyticsLiveData()
+        .observeForever(showAppAnalytics::set);
+
+    onboardingViewModel.updateShouldShowAppAnalytics(context.getResources());
+
+    verify(exposureNotificationClientWrapper).getPackageConfiguration();
+    Optional<Boolean> showAppAnalyticsOptional = showAppAnalytics.get();
+    assertThat(showAppAnalyticsOptional).isPresent();
+    assertThat(showAppAnalyticsOptional.get()).isFalse();
+  }
+
+  @Test
+  public void getShouldShowAppAnalyticsLiveData_enableV1toENXMigrationIsTrueAndPckgConfigHasAppAnalytics_returnsFalse() {
+    FakeShadowResources resources = (FakeShadowResources) shadowOf(context.getResources());
+    resources.addFakeResource(R.bool.enx_enableV1toENXMigration, true);
+    Bundle values = new Bundle();
+    values.putBoolean(PackageConfigurationHelper.APP_ANALYTICS_OPT_IN, true);
+    when(exposureNotificationClientWrapper.getPackageConfiguration())
+        .thenReturn(Tasks.forResult(new PackageConfigurationBuilder().setValues(values).build()));
+    onboardingViewModel = new OnboardingViewModel(
+        exposureNotificationClientWrapper,
+        exposureNotificationSharedPreferences,
+        privateAnalyticsEnabledProvider,
+        workManager);
+    AtomicReference<Optional<Boolean>> showAppAnalytics = new AtomicReference<>(Optional.absent());
+    onboardingViewModel.getShouldShowAppAnalyticsLiveData()
+        .observeForever(showAppAnalytics::set);
+
+    onboardingViewModel.updateShouldShowAppAnalytics(context.getResources());
+
+    verify(exposureNotificationClientWrapper).getPackageConfiguration();
+    Optional<Boolean> showAppAnalyticsOptional = showAppAnalytics.get();
+    assertThat(showAppAnalyticsOptional).isPresent();
+    assertThat(showAppAnalyticsOptional.get()).isFalse();
+  }
+
+  @Test
+  public void getShouldShowAppAnalyticsLiveData_enableV1toENXMigrationIsTrueAndPckgConfigIsNull_returnsTrue() {
+    FakeShadowResources resources = (FakeShadowResources) shadowOf(context.getResources());
+    resources.addFakeResource(R.bool.enx_enableV1toENXMigration, true);
+    when(exposureNotificationClientWrapper.getPackageConfiguration())
+        .thenReturn(Tasks.forResult(null));
+    onboardingViewModel = new OnboardingViewModel(
+        exposureNotificationClientWrapper,
+        exposureNotificationSharedPreferences,
+        privateAnalyticsEnabledProvider,
+        workManager);
+    AtomicReference<Optional<Boolean>> showAppAnalytics = new AtomicReference<>(Optional.absent());
+    onboardingViewModel.getShouldShowAppAnalyticsLiveData()
+        .observeForever(showAppAnalytics::set);
+
+    onboardingViewModel.updateShouldShowAppAnalytics(context.getResources());
+
+    verify(exposureNotificationClientWrapper).getPackageConfiguration();
+    Optional<Boolean> showAppAnalyticsOptional = showAppAnalytics.get();
+    assertThat(showAppAnalyticsOptional).isPresent();
+    assertThat(showAppAnalyticsOptional.get()).isTrue();
+  }
+
+  @Test
+  public void getShouldShowAppAnalyticsLiveData_enableV1toENXMigrationIsTrueAndPckgConfigHasNoAppAnalytics_returnsTrue() {
+    FakeShadowResources resources = (FakeShadowResources) shadowOf(context.getResources());
+    resources.addFakeResource(R.bool.enx_enableV1toENXMigration, true);
+    onboardingViewModel = new OnboardingViewModel(
+        exposureNotificationClientWrapper,
+        exposureNotificationSharedPreferences,
+        privateAnalyticsEnabledProvider,
+        workManager);
+    AtomicReference<Optional<Boolean>> showAppAnalytics = new AtomicReference<>(Optional.absent());
+    onboardingViewModel.getShouldShowAppAnalyticsLiveData()
+        .observeForever(showAppAnalytics::set);
+
+    onboardingViewModel.updateShouldShowAppAnalytics(context.getResources());
+
+    verify(exposureNotificationClientWrapper).getPackageConfiguration();
+    Optional<Boolean> showAppAnalyticsOptional = showAppAnalytics.get();
+    assertThat(showAppAnalyticsOptional).isPresent();
+    assertThat(showAppAnalyticsOptional.get()).isTrue();
   }
 
 }

@@ -13,7 +13,7 @@
   <string name="btn_done">完了</string>
   <string name="btn_previous">前へ</string>
   <string name="btn_verify">確認</string>
-  <string name="btn_dont_share">共有せずに続行</string>
+  <string name="btn_no_thanks">参加しない</string>
   <string name="btn_share">共有</string>
   <string name="learn_more">詳細</string>
   <string name="home_tab_settings_text">設定</string>
@@ -201,13 +201,13 @@
   <string name="sms_intercept_notice_title">新機能</string>
   <string name="sms_intercept_notice_content">検査結果を SMS で受け取った場合、接触通知システムで診断結果の共有を求める通知が届く場合があります。これは設定でいつでも無効にできます。</string>
   <string name="share_upload_title">検査結果を共有して、地域社会を守りましょう</string>
-  <string name="share_upload_test_result_source_description">%1$s から検査結果が送られました</string>
+  <string name="share_upload_test_result_source_description">%1$s から送信された結果</string>
   <string name="share_upload_symptoms_subtitle">発症日</string>
   <string name="share_upload_symptoms_date_fixed_description">発症日は %1$s から提供されています</string>
   <string name="share_upload_skip_choice">スキップ</string>
   <string name="share_upload_travel_subtitle">旅行履歴</string>
   <string name="travel_history_travelled_recently_choice">過去 14 日間の旅行履歴</string>
-  <string name="travel_history_no_travel_choice">なし</string>
+  <string name="travel_history_no_travel_choice">旅行していない</string>
   <string name="share_upload_select_a_date_choice">日付を選択</string>
   <string name="share_upload_status_subtitle">COVID-19 感染の可能性</string>
   <string name="share_upload_status_confirmed">陽性</string>

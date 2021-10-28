@@ -13,7 +13,7 @@
   <string name="btn_done">完成</string>
   <string name="btn_previous">返回</string>
   <string name="btn_verify">驗證</string>
-  <string name="btn_dont_share">繼續但不分享</string>
+  <string name="btn_no_thanks">不用了，謝謝</string>
   <string name="btn_share">分享</string>
   <string name="learn_more">瞭解詳情</string>
   <string name="home_tab_settings_text">設定</string>
@@ -201,13 +201,13 @@
   <string name="sms_intercept_notice_title">新功能</string>
   <string name="sms_intercept_notice_content">如果您收到檢測結果短訊，系統便可能會向您傳送通知，要求您在接觸通知系統中分享診斷結果。您隨時可以在設定中變更這項功能。</string>
   <string name="share_upload_title">分享檢測結果，協助保護您的社區</string>
-  <string name="share_upload_test_result_source_description">檢測結果由%1$s傳送</string>
-  <string name="share_upload_symptoms_subtitle">出現症狀的日期</string>
+  <string name="share_upload_test_result_source_description">結果由%1$s傳送</string>
+  <string name="share_upload_symptoms_subtitle">症狀出現日期</string>
   <string name="share_upload_symptoms_date_fixed_description">症狀出現日期由 %1$s 提供</string>
   <string name="share_upload_skip_choice">略過</string>
   <string name="share_upload_travel_subtitle">旅遊記錄</string>
   <string name="travel_history_travelled_recently_choice">過去 14 天去過的地方</string>
-  <string name="travel_history_no_travel_choice">無</string>
+  <string name="travel_history_no_travel_choice">我沒有外遊</string>
   <string name="share_upload_select_a_date_choice">選取日期</string>
   <string name="share_upload_status_subtitle">COVID-19 檢測狀態</string>
   <string name="share_upload_status_confirmed">陽性</string>

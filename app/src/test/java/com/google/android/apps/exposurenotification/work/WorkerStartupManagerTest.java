@@ -23,6 +23,7 @@ import static com.google.common.truth.Truth.assertThat;
 import static org.junit.Assert.assertThrows;
 import static org.mockito.Mockito.when;
 
+import android.os.Bundle;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.common.time.RealTimeModule;
@@ -32,11 +33,13 @@ import com.google.android.apps.exposurenotification.storage.DbModule;
 import com.google.android.apps.exposurenotification.storage.ExposureCheckEntity;
 import com.google.android.apps.exposurenotification.storage.ExposureCheckRepository;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationDatabase;
+import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
 import com.google.android.apps.exposurenotification.storage.VerificationCodeRequestEntity;
 import com.google.android.apps.exposurenotification.storage.VerificationCodeRequestRepository;
 import com.google.android.apps.exposurenotification.testsupport.ExposureNotificationRules;
 import com.google.android.apps.exposurenotification.testsupport.FakeClock;
 import com.google.android.apps.exposurenotification.testsupport.InMemoryDb;
+import com.google.android.gms.nearby.exposurenotification.PackageConfiguration;
 import com.google.android.gms.nearby.exposurenotification.PackageConfiguration.PackageConfigurationBuilder;
 import com.google.android.gms.tasks.Tasks;
 import com.google.common.collect.ImmutableList;
@@ -76,6 +79,8 @@ public class WorkerStartupManagerTest {
   ExposureCheckRepository exposureCheckRepository;
   @Inject
   VerificationCodeRequestRepository verificationCodeRequestRepository;
+  @Inject
+  ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
 
   @Mock
   ExposureNotificationClientWrapper exposureNotificationClientWrapper;
@@ -160,6 +165,36 @@ public class WorkerStartupManagerTest {
     assertThat(isEnabledWithStartupTasks).isTrue();
     assertThatObsoleteExposureChecksDeleted();
     assertThatObsoleteRequestsDeletedAndNoncesForExpiredRequestsReset();
+  }
+
+  @Test
+  public void getIsEnabledWithStartupTasks_packageConfigWithSmsNoticeSeen_updatesSmsNoticeSharedPref()
+      throws Exception {
+    assertThat(exposureNotificationSharedPreferences.isPlaySmsNoticeSeen()).isFalse();
+    when(exposureNotificationClientWrapper.isEnabled()).thenReturn(Tasks.forResult(true));
+    Bundle bundle = new Bundle();
+    bundle.putBoolean(PackageConfigurationHelper.SMS_NOTICE, true);
+    PackageConfiguration packageConfiguration =
+        new PackageConfigurationBuilder().setValues(bundle).build();
+    when(exposureNotificationClientWrapper.getPackageConfiguration())
+        .thenReturn(Tasks.forResult(packageConfiguration));
+
+    boolean isEnabledWithStartupTasks = workerStartupManager.getIsEnabledWithStartupTasks().get();
+
+    assertThat(isEnabledWithStartupTasks).isTrue();
+    assertThat(exposureNotificationSharedPreferences.isPlaySmsNoticeSeen()).isTrue();
+  }
+
+  @Test
+  public void getIsEnabledWithStartupTasks_enNotEnabled_doesNotChangeSharedPrefs()
+      throws Exception {
+    exposureNotificationSharedPreferences.setPlaySmsNoticeSeen(true);
+    when(exposureNotificationClientWrapper.isEnabled()).thenReturn(Tasks.forResult(false));
+
+    boolean isEnabledWithStartupTasks = workerStartupManager.getIsEnabledWithStartupTasks().get();
+
+    assertThat(isEnabledWithStartupTasks).isFalse();
+    assertThat(exposureNotificationSharedPreferences.isPlaySmsNoticeSeen()).isTrue();
   }
 
   private void assertThatObsoleteExposureChecksDeleted() {

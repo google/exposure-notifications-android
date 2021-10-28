@@ -41,6 +41,7 @@
 
       <Button
         android:id="@+id/scan_button"
+        style="@style/Widget.ExposureNotifications.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/padding_large"
@@ -54,7 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/padding_large"
         android:layout_marginVertical="@dimen/padding_small"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        style="@style/Widget.ExposureNotifications.TextInputLayout.OutlinedBox.Dense">
 
         <com.google.android.material.textfield.TextInputEditText
           android:id="@+id/input_single_key"
@@ -73,7 +74,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/padding_large"
         android:layout_marginVertical="@dimen/padding_small"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        style="@style/Widget.ExposureNotifications.TextInputLayout.OutlinedBox.Dense">
 
         <com.google.android.material.textfield.TextInputEditText
           android:id="@+id/input_single_interval_number"
@@ -91,7 +92,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/padding_large"
         android:layout_marginVertical="@dimen/padding_small"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        style="@style/Widget.ExposureNotifications.TextInputLayout.OutlinedBox.Dense">
 
         <com.google.android.material.textfield.TextInputEditText
           android:id="@+id/input_single_rolling_period"
@@ -109,7 +110,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/padding_large"
         android:layout_marginVertical="@dimen/padding_small"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        style="@style/Widget.ExposureNotifications.TextInputLayout.OutlinedBox.Dense">
 
         <com.google.android.material.textfield.TextInputEditText
           android:id="@+id/input_single_transmission_risk_level"
@@ -123,7 +124,7 @@
       </com.google.android.material.textfield.TextInputLayout>
 
       <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        style="@style/Widget.ExposureNotifications.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/padding_large"
@@ -144,7 +145,7 @@
       </com.google.android.material.textfield.TextInputLayout>
 
       <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        style="@style/Widget.ExposureNotifications.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/padding_large"
@@ -182,7 +183,7 @@
         android:layout_marginHorizontal="@dimen/padding_large"
         android:layout_marginVertical="@dimen/padding_normal"
         android:text="@string/debug_matching_provide_button_text"
-        style="@style/Widget.MaterialComponents.Button" />
+        style="@style/Widget.ExposureNotifications.Button" />
 
       <include layout="@layout/horizontal_divider" />
 

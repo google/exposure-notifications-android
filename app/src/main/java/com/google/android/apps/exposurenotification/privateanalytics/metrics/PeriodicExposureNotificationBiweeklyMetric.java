@@ -33,7 +33,7 @@ import org.threeten.bp.Instant;
  */
 public class PeriodicExposureNotificationBiweeklyMetric implements PrivateAnalyticsMetric {
 
-  private static final String VERSION = "v1";
+  private static final String VERSION = "v2";
   public static final String METRIC_NAME = "PeriodicExposureNotification14d-" + VERSION;
   @VisibleForTesting
   static final int NO_EXPOSURE_BIN_ID = 0;

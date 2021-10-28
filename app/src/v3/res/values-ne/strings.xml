@@ -12,4 +12,6 @@
   <string name="possible_exposure">सङ्क्रमित व्यक्तिको सम्पर्कमा आएको हुन सक्ने</string>
   <string name="share_history_delete_test_result_title">यो परीक्षणको नतिजा मेटाउने हो?</string>
   <string name="share_history_delete_test_result_detail">%1$s मा प्राप्त भएको तपाईंको COVID-19 परीक्षणको नतिजा तपाईंको फोनबाट मेटाइने छ।</string>
+  <string name="sms_intercept_notice_card_title">तपाईं आफ्नो नतिजा सेयर गर्न सम्झाउने रिमाइन्डर प्राप्त गर्न सक्नुहुन्छ</string>
+  <string name="sms_intercept_notice_card_content">COVID-19 परीक्षण गर्दा तपाईंको नतिजा पोजेटिभ देखियो र तपाईंले उक्त कुरा पुष्टि गरिएको SMS प्राप्त गर्नुभएको अवस्थामा</string>
 </resources>

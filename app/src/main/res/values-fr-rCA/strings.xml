@@ -13,7 +13,7 @@
   <string name="btn_done">Terminé</string>
   <string name="btn_previous">Précédent</string>
   <string name="btn_verify">Vérifier</string>
-  <string name="btn_dont_share">Continuer sans partager</string>
+  <string name="btn_no_thanks">Non merci</string>
   <string name="btn_share">Partager</string>
   <string name="learn_more">En savoir plus</string>
   <string name="home_tab_settings_text">Paramètres</string>
@@ -201,13 +201,13 @@
   <string name="sms_intercept_notice_title">Nouveautés</string>
   <string name="sms_intercept_notice_content">Si vous recevez un message texte comportant vos résultats de test, vous pourriez recevoir une notification vous demandant de partager votre diagnostic dans le système de notifications d\'exposition. Vous pouvez désactiver cette fonctionnalité en tout temps dans les paramètres.</string>
   <string name="share_upload_title">Partager vos résultats de test pour protéger votre communauté</string>
-  <string name="share_upload_test_result_source_description">Le résultat de test vous a été envoyé par %1$s</string>
-  <string name="share_upload_symptoms_subtitle">Début des symptômes :</string>
+  <string name="share_upload_test_result_source_description">Les résultats vous ont été envoyés par %1$s</string>
+  <string name="share_upload_symptoms_subtitle">Les symptômes ont commencé le</string>
   <string name="share_upload_symptoms_date_fixed_description">La date des symptômes est fournie par %1$s</string>
   <string name="share_upload_skip_choice">Ignorer</string>
   <string name="share_upload_travel_subtitle">Historique de voyage</string>
   <string name="travel_history_travelled_recently_choice">Voyages effectués au cours des 14 derniers jours</string>
-  <string name="travel_history_no_travel_choice">Aucun</string>
+  <string name="travel_history_no_travel_choice">Je n\'ai pas voyagé</string>
   <string name="share_upload_select_a_date_choice">Sélectionnez une date</string>
   <string name="share_upload_status_subtitle">Résultat de test de la COVID-19</string>
   <string name="share_upload_status_confirmed">Positif</string>

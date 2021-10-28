@@ -19,8 +19,7 @@ package com.google.android.apps.exposurenotification.roaming;
 
 import android.content.Context;
 import androidx.annotation.NonNull;
-import androidx.hilt.Assisted;
-import androidx.hilt.work.WorkerInject;
+import androidx.hilt.work.HiltWorker;
 import androidx.work.ExistingPeriodicWorkPolicy;
 import androidx.work.ListenableWorker;
 import androidx.work.Operation;
@@ -35,9 +34,12 @@ import com.google.android.apps.exposurenotification.work.WorkerStartupManager;
 import com.google.common.util.concurrent.FluentFuture;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
+import dagger.assisted.Assisted;
+import dagger.assisted.AssistedInject;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 
+@HiltWorker
 public class CountryCheckingWorker extends ListenableWorker {
 
   private static final Logger logcat = Logger.getLogger("CountryCheckingWorker");
@@ -48,7 +50,7 @@ public class CountryCheckingWorker extends ListenableWorker {
   private final WorkerStartupManager workerStartupManager;
   private final AnalyticsLogger logger;
 
-  @WorkerInject
+  @AssistedInject
   public CountryCheckingWorker(
       @Assisted @NonNull Context context,
       @Assisted @NonNull WorkerParameters workerParams,

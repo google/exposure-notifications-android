@@ -24,6 +24,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Build.VERSION;
+import android.os.Build.VERSION_CODES;
 import android.text.TextUtils;
 import androidx.annotation.StringRes;
 import androidx.annotation.VisibleForTesting;
@@ -68,10 +69,20 @@ public final class NotificationHelper {
       String messageString, Intent contentIntent, Intent deleteIntent) {
     createNotificationChannel(context);
 
-    PendingIntent pendingIntent = PendingIntent
-        .getActivity(context, 0, contentIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-    PendingIntent deletePendingIntent = PendingIntent
-        .getBroadcast(context, 0, deleteIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+    PendingIntent pendingIntent;
+    PendingIntent deletePendingIntent;
+
+    if (VERSION.SDK_INT >= VERSION_CODES.M) {
+      pendingIntent = PendingIntent.getActivity(context, 0, contentIntent,
+              PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
+      deletePendingIntent = PendingIntent.getBroadcast(context, 0, deleteIntent,
+              PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_CANCEL_CURRENT);
+    } else {
+      pendingIntent = PendingIntent
+          .getActivity(context, 0, contentIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+      deletePendingIntent = PendingIntent
+          .getBroadcast(context, 0, deleteIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+    }
 
     NotificationCompat.Builder builder = createBuilder(context, titleString, messageString,
         pendingIntent, Optional.of(deletePendingIntent));
@@ -95,8 +106,15 @@ public final class NotificationHelper {
     createNotificationChannel(context);
 
     Intent notificationIntent = IntentUtil.getNotificationContentIntentExposure(context);
-    PendingIntent pendingIntent = PendingIntent.getActivity(context, 0,
-        notificationIntent, 0);
+    PendingIntent pendingIntent;
+
+    if (VERSION.SDK_INT >= VERSION_CODES.M) {
+      pendingIntent = PendingIntent.getActivity(context, 0, notificationIntent,
+              PendingIntent.FLAG_IMMUTABLE);
+    } else {
+      pendingIntent = PendingIntent.getActivity(context, 0,
+          notificationIntent, 0);
+    }
 
     NotificationCompat.Builder builder = createBuilder(
         context,

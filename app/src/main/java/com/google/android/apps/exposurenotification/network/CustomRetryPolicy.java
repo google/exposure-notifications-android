@@ -17,6 +17,7 @@
 
 package com.google.android.apps.exposurenotification.network;
 
+import androidx.annotation.VisibleForTesting;
 import com.android.volley.NetworkError;
 import com.android.volley.RetryPolicy;
 import com.android.volley.TimeoutError;
@@ -46,14 +47,16 @@ public class CustomRetryPolicy implements RetryPolicy {
   private static final DateTimeFormatter RATE_LIMITED_HEADER_FORMAT =
       DateTimeFormatter.RFC_1123_DATE_TIME;
 
+  @VisibleForTesting
+  static final long SERVER_TIMEOUT_SECS = 10;
+
   private final Clock clock;
-  private Duration delay = Duration.ofSeconds(3);
+  private Duration delay = Duration.ofSeconds(SERVER_TIMEOUT_SECS);
   private int currentRetryCount = 0;
 
   public CustomRetryPolicy(Clock clock) {
     this.clock = clock;
   }
-
 
   @Override
   public int getCurrentTimeout() {

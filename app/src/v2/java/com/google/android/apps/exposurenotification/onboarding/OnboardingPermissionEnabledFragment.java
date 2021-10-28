@@ -18,6 +18,10 @@
 package com.google.android.apps.exposurenotification.onboarding;
 
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
+import android.text.style.URLSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +37,7 @@ import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.databinding.FragmentOnboardingPermissionEnabledBinding;
 import com.google.android.apps.exposurenotification.home.BaseFragment;
 import com.google.android.apps.exposurenotification.home.SinglePageHomeFragment;
+import com.google.android.apps.exposurenotification.utils.UrlUtils;
 import dagger.hilt.android.AndroidEntryPoint;
 
 /**
@@ -67,6 +72,32 @@ public class OnboardingPermissionEnabledFragment extends BaseFragment {
     nextButton = binding.onboardingNextButton;
     scroller = binding.onboardingScroll;
 
+    // Set up additional information text for the app analytics.
+    String learnMore = getString(R.string.learn_more);
+    URLSpan learnMoreClickableSpan = UrlUtils.createURLSpan(getString(R.string.app_analytics_link));
+    String onboardingMetricsDescription =
+        getString(R.string.onboarding_metrics_description, learnMore);
+    SpannableString spannableString = new SpannableString(onboardingMetricsDescription);
+    int learnMoreStart = onboardingMetricsDescription.indexOf(learnMore);
+    spannableString
+        .setSpan(learnMoreClickableSpan, learnMoreStart, learnMoreStart + learnMore.length(),
+            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+    binding.appAnalyticsDetail.setText(spannableString);
+    binding.appAnalyticsDetail.setMovementMethod(LinkMovementMethod.getInstance());
+
+    // Display the app analytics section only for those apps that should migrate and haven't
+    // had the app analytics opt-in during Play onboarding.
+    onboardingViewModel
+        .getShouldShowAppAnalyticsLiveData()
+        .observe(
+            getViewLifecycleOwner(),
+            optionalShowAppAnalytics -> {
+              if (optionalShowAppAnalytics.isPresent()) {
+                binding.appAnalyticsSection.setVisibility(
+                    optionalShowAppAnalytics.get() ? View.VISIBLE : View.GONE);
+              }
+            });
+
     // Set to false, this will be overridden by scroll events or if not scrollable.
     updateAtBottom(false);
     scroller.setOnScrollChangeListener(
@@ -93,6 +124,12 @@ public class OnboardingPermissionEnabledFragment extends BaseFragment {
   }
 
   @Override
+  public void onResume() {
+    super.onResume();
+    onboardingViewModel.updateShouldShowAppAnalytics(requireContext().getResources());
+  }
+
+  @Override
   public void onDestroyView() {
     super.onDestroyView();
     binding = null;
@@ -106,6 +143,11 @@ public class OnboardingPermissionEnabledFragment extends BaseFragment {
       nextButton.setText(R.string.btn_got_it);
       nextButton.setOnClickListener(v2 -> {
         onboardingViewModel.setOnboardedState(true);
+        if (binding.appAnalyticsSection.getVisibility() == View.VISIBLE) {
+          // Store whether the user opted into the app analytics.
+          onboardingViewModel.setAppAnalyticsState(
+              binding.onboardingAppAnalyticsSwitch.isChecked());
+        }
         transitionNext();
       });
       onboardingButtons.setElevation(0F);

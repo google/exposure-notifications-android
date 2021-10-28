@@ -12,4 +12,6 @@
   <string name="possible_exposure">חשיפה אפשרית לנגיף</string>
   <string name="share_history_delete_test_result_title">למחוק את תוצאת הבדיקה הזו?</string>
   <string name="share_history_delete_test_result_detail">תוצאת הבדיקה שלך לנגיף הקורונה (COVID-19) מ-%1$s תימחק מהטלפון.</string>
+  <string name="sms_intercept_notice_card_title">יש לך אפשרות לקבל תזכורת לשיתוף תוצאת הבדיקה</string>
+  <string name="sms_intercept_notice_card_content">אם תוצאת הבדיקה שלך תהיה חיובית ותתקבל הודעת SMS מאומתת</string>
 </resources>

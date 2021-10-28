@@ -12,4 +12,6 @@
   <string name="possible_exposure">Moontlike blootstelling</string>
   <string name="share_history_delete_test_result_title">Vee hierdie toetsuitslag uit?</string>
   <string name="share_history_delete_test_result_detail">Jou COVID-19-toetsuitslag van %1$s sal van jou foon af uitgevee word.</string>
+  <string name="sms_intercept_notice_card_title">Jy kan dalk \'n onthounota kry om jou resultaat te deel</string>
+  <string name="sms_intercept_notice_card_content">As jy positief toets en \'n geverifieerde SMS ontvang</string>
 </resources>

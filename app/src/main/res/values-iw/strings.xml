@@ -13,7 +13,7 @@
   <string name="btn_done">סיום</string>
   <string name="btn_previous">הקודם</string>
   <string name="btn_verify">אימות</string>
-  <string name="btn_dont_share">המשך ללא שיתוף</string>
+  <string name="btn_no_thanks">לא תודה</string>
   <string name="btn_share">שיתוף</string>
   <string name="learn_more">מידע נוסף</string>
   <string name="home_tab_settings_text">הגדרות</string>
@@ -205,13 +205,13 @@
   <string name="sms_intercept_notice_title">מה חדש</string>
   <string name="sms_intercept_notice_content">אם קיבלת SMS עם תוצאת הבדיקה שלך, ייתכן שתישלח לך תזכורת לשתף את האבחנה במערכת התראות החשיפה. ניתן להשבית זאת בכל שלב בהגדרות.</string>
   <string name="share_upload_title">שיתוף תוצאות הבדיקה כדי לעזור בהגנה על הקהילה</string>
-  <string name="share_upload_test_result_source_description">תוצאה הבדיקה נשלחת על ידי %1$s</string>
-  <string name="share_upload_symptoms_subtitle">זמן ההתחלה של התסמין:</string>
+  <string name="share_upload_test_result_source_description">התוצאות נשלחו על ידי %1$s</string>
+  <string name="share_upload_symptoms_subtitle">התסמינים התחילו ב-</string>
   <string name="share_upload_symptoms_date_fixed_description">תאריך התחלת התסמינים סופק על ידי %1$s</string>
   <string name="share_upload_skip_choice">דילוג</string>
   <string name="share_upload_travel_subtitle">היסטוריית נסיעות</string>
   <string name="travel_history_travelled_recently_choice">טיילת במהלך 14 הימים האחרונים?</string>
-  <string name="travel_history_no_travel_choice">ללא</string>
+  <string name="travel_history_no_travel_choice">לא נסעתי</string>
   <string name="share_upload_select_a_date_choice">בחירת תאריך</string>
   <string name="share_upload_status_subtitle">סטטוס קורונה (COVID-19)</string>
   <string name="share_upload_status_confirmed">חיובית</string>

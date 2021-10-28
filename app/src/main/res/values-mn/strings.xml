@@ -13,7 +13,7 @@
   <string name="btn_done">Болсон</string>
   <string name="btn_previous">Өмнөх</string>
   <string name="btn_verify">Бататгах</string>
-  <string name="btn_dont_share">Хуваалцахгүйгээр үргэлжлүүлэх</string>
+  <string name="btn_no_thanks">Үгүй баярлалаа</string>
   <string name="btn_share">Хуваалцах</string>
   <string name="learn_more">Нэмэлт мэдээлэл авах</string>
   <string name="home_tab_settings_text">Тохиргоо</string>
@@ -201,13 +201,13 @@
   <string name="sms_intercept_notice_title">Шинэ юм юу байна</string>
   <string name="sms_intercept_notice_content">Хэрэв та шинжилгээний хариугаа мессежээр хүлээн авсан бол оношилгоогоо Өртсөн тухай мэдэгдэлд хуваалцахыг асуусан мэдэгдэл авч болзошгүй. Та үүнийг хүссэн үедээ тохиргоо хэсэгт идэвхгүй болгох боломжтой.</string>
   <string name="share_upload_title">Нийгэмлэгээ хамгаалахын тулд шинжилгээний хариугаа хуваалцана уу</string>
-  <string name="share_upload_test_result_source_description">%1$s-с шинжилгээний хариуг илгээсэн</string>
-  <string name="share_upload_symptoms_subtitle">Дараах өдрөөс эхлэн шинж тэмдэг илэрсэн</string>
+  <string name="share_upload_test_result_source_description">%1$s хариу илгээсэн</string>
+  <string name="share_upload_symptoms_subtitle">Шинж тэмдэг илэрсэн</string>
   <string name="share_upload_symptoms_date_fixed_description">%1$s нь шинж тэмдэг илрэх хугацааг мэдээлсэн</string>
   <string name="share_upload_skip_choice">Алгасах</string>
   <string name="share_upload_travel_subtitle">Аяллын түүх</string>
   <string name="travel_history_travelled_recently_choice">Сүүлийн 14 хоногт аялсан</string>
-  <string name="travel_history_no_travel_choice">Хоосон</string>
+  <string name="travel_history_no_travel_choice">Би аялаагүй</string>
   <string name="share_upload_select_a_date_choice">Огноог сонгох</string>
   <string name="share_upload_status_subtitle">Коронавируст халдвар (COVID-19)-ын төлөв</string>
   <string name="share_upload_status_confirmed">Эерэг</string>

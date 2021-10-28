@@ -13,7 +13,7 @@
   <string name="btn_done">완료</string>
   <string name="btn_previous">이전</string>
   <string name="btn_verify">확인</string>
-  <string name="btn_dont_share">공유하지 않고 계속</string>
+  <string name="btn_no_thanks">거부</string>
   <string name="btn_share">공유</string>
   <string name="learn_more">자세히 알아보기</string>
   <string name="home_tab_settings_text">설정</string>
@@ -201,13 +201,13 @@
   <string name="sms_intercept_notice_title">새로운 기능</string>
   <string name="sms_intercept_notice_content">검사 결과가 포함된 SMS를 받으면 노출 알림에서 진단 결과를 공유할지 묻는 알림을 보낼 수 있습니다. 설정에서 언제든지 사용 중지할 수 있습니다.</string>
   <string name="share_upload_title">검사 결과를 공유하여 지역사회를 안전하게 보호하세요</string>
-  <string name="share_upload_test_result_source_description">%1$s에서 보낸 검사 결과</string>
-  <string name="share_upload_symptoms_subtitle">증상 시작일:</string>
+  <string name="share_upload_test_result_source_description">%1$s에서 보낸 결과입니다.</string>
+  <string name="share_upload_symptoms_subtitle">증상 발현일:</string>
   <string name="share_upload_symptoms_date_fixed_description">증상 발현 날짜는 %1$s에서 제공합니다.</string>
   <string name="share_upload_skip_choice">건너뛰기</string>
   <string name="share_upload_travel_subtitle">여행 이력</string>
   <string name="travel_history_travelled_recently_choice">지난 14일간 여행한 적이 있음</string>
-  <string name="travel_history_no_travel_choice">없음</string>
+  <string name="travel_history_no_travel_choice">여행한 적 없음</string>
   <string name="share_upload_select_a_date_choice">날짜 선택</string>
   <string name="share_upload_status_subtitle">코로나19 검사 결과</string>
   <string name="share_upload_status_confirmed">양성</string>

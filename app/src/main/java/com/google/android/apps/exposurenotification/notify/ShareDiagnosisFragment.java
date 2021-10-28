@@ -91,7 +91,7 @@ public class ShareDiagnosisFragment extends BaseFragment {
     Bundle fragmentArguments = new Bundle();
     fragmentArguments.putLong(EXTRA_DIAGNOSIS_ID, entity.getId());
     fragmentArguments.putString(EXTRA_STEP,
-        ShareDiagnosisFlowHelper.getMaxStepForDiagnosisEntity(entity, context).name());
+        ShareDiagnosisFlowHelper.getMaxStepForDiagnosisEntity(entity).name());
 
     ShareDiagnosisFragment shareDiagnosisFragment = ShareDiagnosisFragment.newInstance();
     shareDiagnosisFragment.setArguments(fragmentArguments);

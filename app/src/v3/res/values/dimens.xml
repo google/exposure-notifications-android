@@ -18,6 +18,7 @@
 <resources>
   <dimen name="active_app_screen_card_icon_size">24dp</dimen>
   <dimen name="active_app_screen_card_corner_radius">8dp</dimen>
+  <dimen name="active_app_screen_semantic_banner_corner_radius">28dp</dimen>
   <dimen name="onboarding_padding_horizontal">24dp</dimen>
   <dimen name="onboarding_private_analytics_title_margin_top">32dp</dimen>
 </resources>

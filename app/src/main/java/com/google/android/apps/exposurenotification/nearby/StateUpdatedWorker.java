@@ -22,8 +22,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.annotation.VisibleForTesting;
 import androidx.core.content.res.ResourcesCompat;
-import androidx.hilt.Assisted;
-import androidx.hilt.work.WorkerInject;
+import androidx.hilt.work.HiltWorker;
 import androidx.work.ListenableWorker;
 import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkManager;
@@ -51,6 +50,8 @@ import com.google.common.base.Optional;
 import com.google.common.util.concurrent.FluentFuture;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
+import dagger.assisted.Assisted;
+import dagger.assisted.AssistedInject;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
@@ -62,6 +63,7 @@ import org.threeten.bp.Instant;
  * Performs work for {@value com.google.android.gms.nearby.exposurenotification.ExposureNotificationClient#ACTION_EXPOSURE_STATE_UPDATED}
  * broadcast from exposure notification API.
  */
+@HiltWorker
 public class StateUpdatedWorker extends ListenableWorker {
 
   private static final Logger logcat = Logger.getLogger("StateUpdatedWorker");
@@ -84,7 +86,7 @@ public class StateUpdatedWorker extends ListenableWorker {
 
   ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
 
-  @WorkerInject
+  @AssistedInject
   public StateUpdatedWorker(
       @Assisted @NonNull Context context,
       @Assisted @NonNull WorkerParameters workerParams,

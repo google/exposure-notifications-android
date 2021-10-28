@@ -13,7 +13,7 @@
   <string name="btn_done">Xong</string>
   <string name="btn_previous">Trước</string>
   <string name="btn_verify">Xác minh</string>
-  <string name="btn_dont_share">Tiếp tục mà không chia sẻ</string>
+  <string name="btn_no_thanks">Không, cảm ơn</string>
   <string name="btn_share">Chia sẻ</string>
   <string name="learn_more">Tìm hiểu thêm</string>
   <string name="home_tab_settings_text">Cài đặt</string>
@@ -201,13 +201,13 @@
   <string name="sms_intercept_notice_title">Tính năng mới</string>
   <string name="sms_intercept_notice_content">Nếu nhận được tin nhắn SMS về kết quả xét nghiệm của mình, thì bạn có thể nhận được thông báo yêu cầu chia sẻ thông tin chẩn đoán trong thông báo tiếp xúc. Bạn có thể tắt tính năng này bất cứ lúc nào trong phần cài đặt.</string>
   <string name="share_upload_title">Chia sẻ kết quả xét nghiệm của bạn để bảo vệ cộng đồng</string>
-  <string name="share_upload_test_result_source_description">%1$s đã gửi kết quả xét nghiệm</string>
-  <string name="share_upload_symptoms_subtitle">Ngày bắt đầu có triệu chứng</string>
+  <string name="share_upload_test_result_source_description">Kết quả do %1$s gửi</string>
+  <string name="share_upload_symptoms_subtitle">Thời điểm bắt đầu xuất hiện triệu chứng</string>
   <string name="share_upload_symptoms_date_fixed_description">Ngày khởi phát triệu chứng do %1$s cung cấp</string>
   <string name="share_upload_skip_choice">Bỏ qua</string>
   <string name="share_upload_travel_subtitle">Lịch trình di chuyển</string>
   <string name="travel_history_travelled_recently_choice">Có di chuyển trong 14 ngày qua</string>
-  <string name="travel_history_no_travel_choice">Không</string>
+  <string name="travel_history_no_travel_choice">Tôi không di chuyển</string>
   <string name="share_upload_select_a_date_choice">Chọn ngày</string>
   <string name="share_upload_status_subtitle">Trạng thái mắc COVID-19</string>
   <string name="share_upload_status_confirmed">Dương tính</string>

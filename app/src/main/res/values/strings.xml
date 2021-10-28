@@ -62,7 +62,7 @@
   <string name="btn_verify">Verify</string>
 
   <!-- Button text shown on the onboarding flow. Clicking will opt-out to private analytics to help contain the spread of COVID-19. [CHAR_LIMIT=40] -->
-  <string name="btn_dont_share">Continue without sharing</string>
+  <string name="btn_no_thanks">No thanks</string>
 
   <!-- Button text shown on the onboarding flow. Clicking will opt-in to private analytics to help contain the spread of COVID-19. [CHAR_LIMIT=40] -->
   <string name="btn_share">Share</string>
@@ -627,10 +627,10 @@
   <string name="share_upload_title">Share your test result to protect your community</string>
 
   <!-- Shown on the upload screen in the notify others flow, the text informs on the health authority that sent the test result. [CHAR_LIMIT=NONE] -->
-  <string name="share_upload_test_result_source_description">Testing result is sent by <xliff:g example="Sample Health Authority" id="health_authority">%1$s</xliff:g></string>
+  <string name="share_upload_test_result_source_description">Results were sent by <xliff:g example="Sample Health Authority" id="health_authority">%1$s</xliff:g></string>
 
   <!-- Subtitle on the upload screen in the notify others flow, asking the user when the COVID-19 symptoms started. [CHAR_LIMIT=60] -->
-  <string name="share_upload_symptoms_subtitle">Symptom started from</string>
+  <string name="share_upload_symptoms_subtitle">Symptoms began on</string>
 
   <!-- Shown on the upload screen in the notify others flow, the text informs that the symptom onset date can not be changed because it was provided by the health authority. [CHAR_LIMIT=60] -->
   <string name="share_upload_symptoms_date_fixed_description">Symptom date is provided by <xliff:g example="Sample Health Authority" id="health_authority">%1$s</xliff:g></string>
@@ -645,7 +645,7 @@
   <string name="travel_history_travelled_recently_choice">Travelled in the past 14 days</string>
 
   <!-- One of the options on the upload screen in the notify others flow, the user selects this option when they have no travel history within the last 14 days. [CHAR_LIMIT=60] -->
-  <string name="travel_history_no_travel_choice">None</string>
+  <string name="travel_history_no_travel_choice">I didn\'t travel</string>
 
   <!--  One of the options on the upload screen in the notify others flow, acts as a placeholder prompting the user to provide the date symptoms started. [CHAR_LIMIT=60] -->
   <string name="share_upload_select_a_date_choice">Select a date</string>

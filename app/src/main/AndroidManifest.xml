@@ -47,7 +47,8 @@
     </receiver>
 
     <receiver
-      android:name=".common.ExposureNotificationDismissedReceiver">
+      android:name=".common.ExposureNotificationDismissedReceiver"
+      android:exported="false">
       <intent-filter>
         <action android:name="com.google.android.apps.exposurenotification.common.NotificationHelper.NOTIFICATION_DISMISSED_ACTION_ID" />
       </intent-filter>
@@ -68,9 +69,16 @@
       android:resource="@array/preloaded_fonts" />
 
     <provider
-      android:name="androidx.work.impl.WorkManagerInitializer"
-      android:authorities="${applicationId}.workmanager-init"
-      tools:node="remove" />
+      android:authorities="${applicationId}.androidx-startup"
+      android:exported="false"
+      android:name="androidx.startup.InitializationProvider"
+      tools:node="merge">
+      <!-- If you are using androidx.startup to initialize other components -->
+      <meta-data
+        android:name="androidx.work.WorkManagerInitializer"
+        android:value="androidx.startup"
+        tools:node="remove" />
+    </provider>
 
   </application>
 

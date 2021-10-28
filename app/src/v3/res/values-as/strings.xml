@@ -12,4 +12,6 @@
   <string name="possible_exposure">সংস্পৰ্শলৈ অহাৰ সম্ভাৱনা</string>
   <string name="share_history_delete_test_result_title">এই পৰীক্ষাৰ ফলাফলটো মচিবনে?</string>
   <string name="share_history_delete_test_result_detail">%1$sৰ পৰা আপোনাৰ COVID-19ৰ পৰীক্ষাৰ ফলাফল আপোনাৰ ফ’নৰ পৰা মচা যাব।</string>
+  <string name="sms_intercept_notice_card_title">আপোনাৰ ফলাফল শ্বেয়াৰ কৰিবলৈ আপুনি এটা ৰিমাইণ্ডাৰ পাব পাৰে</string>
+  <string name="sms_intercept_notice_card_content">যদি আপোনাৰ ফলাফল ধনাত্মক ওলাইছে, সত্যাপন কৰা এছএমএছ পাইছে</string>
 </resources>
