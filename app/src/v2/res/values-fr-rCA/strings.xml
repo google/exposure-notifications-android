@@ -22,4 +22,7 @@
   <string name="share_positive_diagnosis_card_content">Partagez votre résultat de test pour contribuer à arrêter la propagation de la COVID-19</string>
   <string name="share_app_card_content">Partagez cette application pour contribuer à la protection de votre communauté</string>
   <string name="how_en_works_card_content">Apprenez-en plus sur le fonctionnement des notifications d\'exposition</string>
+  <string name="en_turndown_for_area_contents">Alors que les autorités sanitaires de votre région adaptent leurs interventions dans la lutte contre la COVID-19, elles ne soutiennent plus l\'utilisation de cette application. Nous vous remercions d\'avoir utilisé cette application et d\'avoir contribué à protéger votre communauté.</string>
+  <string name="en_turndown_contents">Alors que les autorités sanitaires adaptent leurs interventions dans la lutte contre la COVID-19, elles ne soutiennent plus l\'utilisation de cette application. Nous vous remercions d\'avoir utilisé cette application et d\'avoir contribué à protéger votre communauté.</string>
+  <string name="en_turndown_see_test_results_card_content">Vous pouvez toujours consulter les résultats de test que vous avez précédemment téléversés dans le système de notifications d\'exposition</string>
 </resources>

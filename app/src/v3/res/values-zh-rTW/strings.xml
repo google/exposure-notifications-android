@@ -14,4 +14,6 @@
   <string name="share_history_delete_test_result_detail">你在 %1$s的 COVID-19 檢測結果將從手機中刪除。</string>
   <string name="sms_intercept_notice_card_title">你可能會收到分享檢測結果的提醒</string>
   <string name="sms_intercept_notice_card_content">如果檢測結果為陽性並收到已驗證簡訊，系統會提醒你分享結果</string>
+  <string name="en_turndown_contents">衛生主管機關調整了 COVID-19 因應措施，因此不再支援接觸通知系統。感謝你使用這項服務及協助保護你的社區。</string>
+  <string name="en_turndown_for_area_contents">你的衛生主管機關調整了 COVID-19 因應措施，因此不再支援接觸通知系統。感謝你使用這項服務及協助保護你的社區。</string>
 </resources>

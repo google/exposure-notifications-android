@@ -14,4 +14,6 @@
   <string name="share_history_delete_test_result_detail">Le résultat de votre test de dépistage de la COVID-19 du %1$s sera supprimé de votre téléphone.</string>
   <string name="sms_intercept_notice_card_title">Vous recevrez peut-être un rappel de partage du résultat</string>
   <string name="sms_intercept_notice_card_content">Si vous êtes testé positif et que vous recevez SMS vérifié</string>
+  <string name="en_turndown_contents">Les autorités sanitaires adaptent leur stratégie de lutte contre la COVID-19, et les notifications d\'exposition ne sont plus acceptées. Merci de les avoir utilisées et d\'avoir contribué à protéger votre communauté.</string>
+  <string name="en_turndown_for_area_contents">Votre autorité sanitaire adapte sa stratégie de lutte contre la COVID-19 et n\'accepte plus les notifications d\'exposition. Merci de les avoir utilisées et d\'avoir contribué à protéger votre communauté.</string>
 </resources>

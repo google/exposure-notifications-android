@@ -721,6 +721,46 @@ public class DiagnosisRepositoryTest {
     assertEqualIgnoringLastUpdatedTime(diagnosis.get(), expectedPreAuthDiagnosis);
   }
 
+  @Test
+  public void deleteAllRevisionTokens_shouldDeleteAllRevisionTokens() throws Exception {
+    DiagnosisEntity diagnosis1 = DiagnosisEntity.newBuilder()
+        .setVerificationCode("code1")
+        .setCreatedTimestampMs(10L)
+        .setRevisionToken("revisionToken1")
+        .build();
+    diagnosisRepo.upsertAsync(diagnosis1).get();
+    DiagnosisEntity diagnosis2 = DiagnosisEntity.newBuilder()
+        .setVerificationCode("code2")
+        .setCreatedTimestampMs(42L)
+        .setRevisionToken("revisionToken2")
+        .build();
+    diagnosisRepo.upsertAsync(diagnosis2).get();
+    DiagnosisEntity diagnosis3 = DiagnosisEntity.newBuilder()
+        .setVerificationCode("code3")
+        .setCreatedTimestampMs(43L)
+        .setRevisionToken("revisionToken3")
+        .build();
+    diagnosisRepo.upsertAsync(diagnosis3).get();
+    DiagnosisEntity diagnosis4 = DiagnosisEntity.newBuilder()
+        .setVerificationCode("code4")
+        .setCreatedTimestampMs(44L)
+        // No revision token.
+        .build();
+    diagnosisRepo.upsertAsync(diagnosis4).get();
+
+    List<DiagnosisEntity> observer = new ArrayList<>();
+    diagnosisRepo.getAllLiveData().observeForever(observer::addAll);
+    diagnosisRepo.deleteAllRevisionTokensAsync().get();
+
+    assertThat(diagnosisRepo.getMostRecentRevisionTokenAsync().get()).isNull();
+    // Ensure that diagnosis entities are untouched. We should not delete them.
+    assertThat(observer).hasSize(4);
+    List<String> verificationCodes = observer.stream()
+        .map(DiagnosisEntity::getVerificationCode)
+        .collect(Collectors.toList());
+    assertThat(verificationCodes).containsExactly("code1", "code2", "code3", "code4");
+  }
+
   /**
    * Check that two {@link DiagnosisEntity} objects are the same, ignoring the {@code id} field.
    */

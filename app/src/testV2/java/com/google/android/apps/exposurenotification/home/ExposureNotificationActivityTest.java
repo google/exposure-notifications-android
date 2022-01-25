@@ -20,8 +20,13 @@ package com.google.android.apps.exposurenotification.home;
 import static com.google.common.truth.Truth.assertThat;
 import static org.mockito.Mockito.when;
 
+import android.content.Context;
 import androidx.test.core.app.ActivityScenario;
 import androidx.test.core.app.ApplicationProvider;
+import androidx.work.Configuration;
+import androidx.work.WorkManager;
+import androidx.work.impl.utils.SynchronousExecutor;
+import androidx.work.testing.WorkManagerTestInitHelper;
 import com.google.android.libraries.privateanalytics.PrivateAnalyticsRemoteConfig;
 import com.google.android.libraries.privateanalytics.RemoteConfigs;
 import com.google.android.apps.exposurenotification.testsupport.ExposureNotificationRules;
@@ -29,6 +34,7 @@ import com.google.common.util.concurrent.Futures;
 import com.google.firebase.FirebaseApp;
 import dagger.hilt.android.testing.HiltAndroidTest;
 import dagger.hilt.android.testing.HiltTestApplication;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -46,11 +52,26 @@ import org.robolectric.annotation.LooperMode;
 @Config(application = HiltTestApplication.class)
 public class ExposureNotificationActivityTest {
 
+  private final Context context = ApplicationProvider.getApplicationContext();
+
   @Mock
   PrivateAnalyticsRemoteConfig privateAnalyticsRemoteConfig;
 
   @Rule
-  public ExposureNotificationRules rules = ExposureNotificationRules.forTest(this).withMocks().build();
+  public ExposureNotificationRules rules =
+      ExposureNotificationRules.forTest(this).withMocks().build();
+
+  WorkManager workManager;
+
+  @Before
+  public void setUp() {
+    Configuration config = new Configuration.Builder()
+        .setExecutor(new SynchronousExecutor())
+        .build();
+    WorkManagerTestInitHelper.initializeTestWorkManager(
+        context, config);
+    workManager = WorkManager.getInstance(context);
+  }
 
   @Test
   public void setupActivity_isNotNull() {

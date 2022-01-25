@@ -17,12 +17,14 @@
 
 package com.google.android.apps.exposurenotification.storage;
 
+import androidx.annotation.AnyThread;
 import androidx.annotation.WorkerThread;
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import com.google.common.util.concurrent.ListenableFuture;
 import java.util.List;
 import org.threeten.bp.Instant;
 
@@ -47,4 +49,9 @@ public abstract class ExposureCheckDao {
   @WorkerThread
   @Query("DELETE FROM ExposureCheckEntity WHERE checkTime < :earliestThreshold")
   abstract void deleteOlderThanThreshold(Instant earliestThreshold);
+
+  @AnyThread
+  @Query("DELETE FROM ExposureCheckEntity")
+  abstract ListenableFuture<Void> deleteAll();
+
 }

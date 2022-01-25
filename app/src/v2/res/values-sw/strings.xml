@@ -22,4 +22,7 @@
   <string name="share_positive_diagnosis_card_content">Shiriki matokeo yako baada ya kupimwa ili usaidie kuzuia kuenea kwa COVID-19</string>
   <string name="share_app_card_content">Shiriki programu hii ili ulinde jumuiya yako vyema</string>
   <string name="how_en_works_card_content">Pata maelezo zaidi kuhusu jinsi Arifa Kuhusu Kukaribia Aliye na COVID-19 zinavyofanya kazi</string>
+  <string name="en_turndown_for_area_contents">Mamlaka ya afya ya mahali ulipo inavyobadilisha jinsi inavyoshughulikia COVID-19, haitumii programu hii tena. Asante kwa kutumia programu na kusaidia kulinda jumuiya yako.</string>
+  <string name="en_turndown_contents">Mamlaka za afya zinavyobadilisha jinsi zinavyoshughulikia COVID-19, programu hii haitumiki tena. Asante kwa kutumia programu na kusaidia kulinda jumuiya yako.</string>
+  <string name="en_turndown_see_test_results_card_content">Bado unaweza kuona matokeo ya kupimwa uliyopakia awali kwenye Arifa Kuhusu Kukaribia Aliye na COVID-19</string>
 </resources>

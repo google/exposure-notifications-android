@@ -115,6 +115,9 @@ public class VolleyUtils {
     // Other kinds of VolleyError are ServerError, ClientError, and AuthFailureError. We log these
     // 400 and 500 class errors based on HTTP status code instead of Volley exception types.
     int httpStatus = getHttpStatus(error);
+    if (httpStatus == 401) {
+      return RpcCallResult.RESULT_FAILED_UNAUTHORIZED_CLIENT;
+    }
     if (httpStatus / 100 == 5) {
       return RpcCallResult.RESULT_FAILED_GENERIC_5XX;
     }

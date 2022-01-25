@@ -22,6 +22,7 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import com.google.common.util.concurrent.ListenableFuture;
 
 @Dao
 abstract class DownloadServerDao {
@@ -31,5 +32,8 @@ abstract class DownloadServerDao {
 
   @Insert(onConflict = OnConflictStrategy.REPLACE)
   abstract void upsert(DownloadServerEntity server);
+
+  @Query("DELETE FROM DownloadServerEntity")
+  abstract ListenableFuture<Void> deleteAll();
 
 }

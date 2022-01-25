@@ -15,6 +15,7 @@
   <string name="btn_verify">Patvirtinti</string>
   <string name="btn_no_thanks">Ne, ačiū</string>
   <string name="btn_share">Bendrinti</string>
+  <string name="btn_close_app">Uždaryti programą</string>
   <string name="learn_more">Sužinokite daugiau</string>
   <string name="home_tab_settings_text">Nustatymai</string>
   <string name="notification_channel_name">Galimas kont. su COVID-19 užsikr. asm.</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">Norint įgalinti pranešimus apie galimą kontaktą su užsikrėtusiu asmeniu, reikia leidimų</string>
   <string name="onboarding_finish_title">Norint įgalinti pranešimus apie galimą kontaktą su užsikrėtusiu asmeniu, reikia pratęsti leidimus</string>
   <string name="onboarding_exposure_notifications_title">Pranešimų apie galimą kontaktą su užsikrėt. asmeniu įjung.</string>
-  <string name="onboarding_exposure_notifications_detail">Gaukite pranešimą, jei buvote šalia žmogaus, kuris pranešė, kad serga COVID-19.
+  <string name="onboarding_exposure_notifications_description">Gaukite pranešimą, jei buvote šalia žmogaus, kuris pranešė, kad serga COVID-19.
     \n\nTelefone naudojamas „Bluetooth“, kad būtų galima saugiai rinkti atsitiktinius ID ir juos bendrinti su kitais netoliese esančiais telefonais.
     \n\nAr gausite pranešimą pagal jūsų visuomenės sveikatos institucijos nustatytus parametrus, bus vertinama atsižvelgiant į galimo kontakto su užsikrėtusiu asmeniu datą, trukmę ir signalo stiprumą.
-    \n\nGalite gauti pranešimą bendrinti diagnozės informaciją su visuomenės sveikatos institucija, jei bus atsiųstas SMS su testo rezultatais.</string>
+    \n\nGalite gauti pranešimą bendrinti diagnozės informaciją su visuomenės sveikatos institucija, jei bus atsiųstas SMS su testo rezultatais. %1$s</string>
   <string name="onboarding_metrics_title">Padėkite tobulinti šią programą</string>
   <string name="onboarding_metrics_subtitle">Programos naudojimo ir našumo duom. bendrinimas su „Google“</string>
   <string name="onboarding_metrics_description">Siekiant padėti tvarkyti ir tobulinti programą, su „Google“ bendrinami tam tikri riboti anonimizuoti duomenys apie programos našumą ir naudojimą. Pagal šiuos duomenis negalima jūsų identifikuoti. %1$s</string>
@@ -218,4 +219,11 @@
   <string name="share_upload_status_negative">Neigiamas</string>
   <string name="share_upload_status_likely">Tikėtinas</string>
   <string name="share_diagnosis_progress_tracker">%1$d veiksmas iš %2$d</string>
+  <string name="see_history_device_authentication_title">Tapatybės patvirtinimas</string>
+  <string name="update_app_dialog_title">Atnaujinkite programą</string>
+  <string name="update_app_dialog_content">Atnaujinkite Pranešimų apie galimą kontaktą su užsikrėtusiu asmeniu versiją į naujausią, kad baigtumėte bendrinti testo rezultatus.</string>
+  <string name="btn_update">Atnaujinti</string>
+  <string name="try_again_later_error_message">Kažkas nepavyko. Po kelių valandų bandykite dar kartą.</string>
+  <string name="en_turndown_for_area_title">Jūsų sveikatos institucija nebepalaiko pranešimų apie galimą kontaktą su užsikrėtusiu asmeniu</string>
+  <string name="en_turndown_title">Pranešimai apie galimą kontaktą su užsikrėtusiu asmeniu išjungti</string>
 </resources>

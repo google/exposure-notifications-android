@@ -14,4 +14,6 @@
   <string name="share_history_delete_test_result_detail">Made-delete sa iyong telepono ang resulta ng COVID-19 test mo noong %1$s.</string>
   <string name="sms_intercept_notice_card_title">Posibleng makatanggap ka ng paalalang ibahagi ang resulta mo</string>
   <string name="sms_intercept_notice_card_content">Kung magpositibo ka at makakuha ng na-verify na SMS</string>
+  <string name="en_turndown_contents">Bunsod ng pagbago ng mga awtoridad sa kalusugan sa pagtugon nila sa COVID-19, hindi na sinusuportahan ang Mga Notification sa Exposure. Salamat sa paggamit sa serbisyo at pagtulong na protektahan ang iyong komunidad.</string>
+  <string name="en_turndown_for_area_contents">Bunsod ng pagbago ng iyong awtoridad sa kalusugan sa pagtugon nila sa COVID-19, hindi na nila sinusuportahan ang Mga Notification sa Exposure. Salamat sa paggamit sa serbisyo at pagtulong na protektahan ang iyong komunidad.</string>
 </resources>

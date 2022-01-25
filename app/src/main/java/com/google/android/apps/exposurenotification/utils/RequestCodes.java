@@ -23,6 +23,7 @@ public final class RequestCodes {
   public static final int REQUEST_CODE_START_EXPOSURE_NOTIFICATION = 1111;
   public static final int REQUEST_CODE_GET_TEMP_EXPOSURE_KEY_HISTORY = 2222;
   public static final int REQUEST_CODE_PREAUTHORIZE_TEMP_EXPOSURE_KEY_RELEASE = 3333;
+  public static final int REQUEST_CODE_APP_UPDATE = 4444;
 
   private RequestCodes() {
   }

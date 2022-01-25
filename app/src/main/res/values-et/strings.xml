@@ -15,6 +15,7 @@
   <string name="btn_verify">Kinnita</string>
   <string name="btn_no_thanks">Tänan, ei</string>
   <string name="btn_share">Jaga</string>
+  <string name="btn_close_app">Sule rakendus</string>
   <string name="learn_more">Lisateave</string>
   <string name="home_tab_settings_text">Seaded</string>
   <string name="notification_channel_name">Võimalik kokkupuude COVID-19-ga</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">Kokkupuute märguannete lubamiseks on vaja lube</string>
   <string name="onboarding_finish_title">Kokkupuute märguannete lubamiseks on vaja lubade kestust pikendada</string>
   <string name="onboarding_exposure_notifications_title">Kokkupuute märguannete sisselülitamine</string>
-  <string name="onboarding_exposure_notifications_detail">Saate märguande, kui olete olnud kellegi läheduses, kes on teada andnud, et on COVID-19-sse nakatunud.
+  <string name="onboarding_exposure_notifications_description">Saate märguande, kui olete olnud kellegi läheduses, kes on teada andnud, et on COVID-19-sse nakatunud.
     \n\nTeie telefon kasutab Bluetoothi, et läheduses olevatelt telefonidelt turvaliselt juhuslikke ID-sid koguda ja neid nende telefonidega jagada.
     \n\nVõimaliku kokkupuutega seotud kuupäeva, kestust ja signaalitugevust kasutatakse selleks, et teie tervishoiuasutuse määratud parameetrite järgi määratleda, kas teid tuleks teavitada.
-    \n\nVõite saada märguande oma diagnoosi jagamiseks tervishoiuasutusega, kui saate testitulemustega SMS-i.</string>
+    \n\nVõite saada märguande oma diagnoosi jagamiseks tervishoiuasutusega, kui saate testitulemustega SMS-i. %1$s</string>
   <string name="onboarding_metrics_title">Aidake seda rakendust paremaks muuta</string>
   <string name="onboarding_metrics_subtitle">Jagage Google\'iga rakenduse kasutus- ja toimivusandmeid</string>
   <string name="onboarding_metrics_description">Selleks et aidata rakendust hallata ja täiustada, jagatakse Google\'iga teatud piiratud ning isikustamata andmeid rakenduse toimivuse ja kasutamise kohta. Nende andmete põhjal ei saa teid tuvastada. %1$s</string>
@@ -214,4 +215,11 @@
   <string name="share_upload_status_negative">Negatiivne</string>
   <string name="share_upload_status_likely">Tõenäoliselt positiivne</string>
   <string name="share_diagnosis_progress_tracker">Toiming %1$d/%2$d</string>
+  <string name="see_history_device_authentication_title">Kinnitage, et see olete teie</string>
+  <string name="update_app_dialog_title">Värskendage rakendust</string>
+  <string name="update_app_dialog_content">Oma testitulemuste jagamise lõpuleviimiseks värskendage rakendus Kokkupuute märguanded uusimale versioonile.</string>
+  <string name="btn_update">Värskenda</string>
+  <string name="try_again_later_error_message">Midagi läks valesti. Proovige mõne tunni pärast uuesti.</string>
+  <string name="en_turndown_for_area_title">Teie tervishoiuasutus ei toeta enam rakendust Kokkupuute märguanded</string>
+  <string name="en_turndown_title">Kokkupuute märguanded on välja lülitatud</string>
 </resources>

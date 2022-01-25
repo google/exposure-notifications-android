@@ -50,7 +50,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
   protected ExposureNotificationViewModel exposureNotificationViewModel;
   private @Nullable BroadcastReceiver refreshStateBroadcastReceiver = null;
-  private ActivityExposureNotificationBinding binding;
+  protected ActivityExposureNotificationBinding binding;
 
   @CallSuper
   @Override
@@ -69,9 +69,11 @@ public abstract class BaseActivity extends AppCompatActivity {
     if (savedInstanceState != null) {
       // If this is a configuration change such as rotation, restore the fragment that was
       // previously saved in onSaveInstanceState
-      transitionToFragmentDirect(
-          (BaseFragment) Objects.requireNonNull(getSupportFragmentManager()
-              .getFragment(savedInstanceState, SAVED_INSTANCE_STATE_FRAGMENT_KEY)));
+      @Nullable BaseFragment currentFragment = (BaseFragment) getSupportFragmentManager()
+          .getFragment(savedInstanceState, SAVED_INSTANCE_STATE_FRAGMENT_KEY);
+      if (currentFragment != null) {
+        transitionToFragmentDirect(Objects.requireNonNull(currentFragment));
+      }
     } else {
       // This is a fresh launch.
       handleIntent(getIntent(), /* isOnNewIntent= */false);
@@ -180,11 +182,15 @@ public abstract class BaseActivity extends AppCompatActivity {
   @Override
   protected void onSaveInstanceState(@NonNull Bundle outState) {
     super.onSaveInstanceState(outState);
-    getSupportFragmentManager()
-        .putFragment(
-            outState,
-            SAVED_INSTANCE_STATE_FRAGMENT_KEY,
-            Objects.requireNonNull(getCurrentMainFragment()));
+    @Nullable BaseFragment currentFragment = getCurrentMainFragment();
+
+    if (currentFragment != null) {
+      getSupportFragmentManager()
+          .putFragment(
+              outState,
+              SAVED_INSTANCE_STATE_FRAGMENT_KEY,
+              Objects.requireNonNull(currentFragment));
+    }
   }
 
   @Override

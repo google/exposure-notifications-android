@@ -17,9 +17,11 @@
 
 package com.google.android.apps.exposurenotification.storage;
 
+import androidx.annotation.AnyThread;
 import androidx.annotation.WorkerThread;
 import com.google.android.apps.exposurenotification.proto.WorkManagerTask.WorkerTask;
 import com.google.common.base.Optional;
+import com.google.common.util.concurrent.ListenableFuture;
 import javax.inject.Inject;
 import org.threeten.bp.Instant;
 
@@ -50,4 +52,10 @@ public class WorkerStatusRepository {
     workerStatusDao.upsert(WorkerStatusEntity
         .create(workerTask.name() + ":" + status, lastRunTimestamp.toEpochMilli()));
   }
+
+  @AnyThread
+  public ListenableFuture<Void> deleteWorkerStatusEntities() {
+    return workerStatusDao.deleteAll();
+  }
+
 }

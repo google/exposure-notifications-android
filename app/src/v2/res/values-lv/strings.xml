@@ -22,4 +22,7 @@
   <string name="share_positive_diagnosis_card_content">Kopīgot savu testa rezultātu, lai palīdzētu apturēt Covid-19 izplatību</string>
   <string name="share_app_card_content">Kopīgot šo lietotni, lai palīdzētu aizsargāt apkārtējos</string>
   <string name="how_en_works_card_content">Uzzināt vairāk par sistēmas “Paziņojumi par saskari” darbības principiem</string>
+  <string name="en_turndown_for_area_contents">Pielāgojot ar Covid-19 infekcijas izplatību saistītos pasākumus, vietējā veselības aizsardzības iestāde vairs neatbalsta šo lietotni. Paldies, ka izmantojāt šo lietotni un palīdzējāt aizsargāt apkārtējos!</string>
+  <string name="en_turndown_contents">Pielāgojot ar Covid-19 infekcijas izplatību saistītos pasākumus, veselības aizsardzības iestādes vairs neatbalsta šo lietotni. Paldies, ka izmantojāt šo lietotni un palīdzējāt aizsargāt apkārtējos!</string>
+  <string name="en_turndown_see_test_results_card_content">Joprojām varat skatīt testēšanas rezultātus, ko iepriekš augšupielādējāt sistēmā Paziņojumi par saskari</string>
 </resources>

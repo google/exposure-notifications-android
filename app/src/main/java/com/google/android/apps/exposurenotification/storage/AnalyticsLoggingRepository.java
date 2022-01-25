@@ -17,9 +17,11 @@
 
 package com.google.android.apps.exposurenotification.storage;
 
+import androidx.annotation.AnyThread;
 import androidx.annotation.WorkerThread;
 import com.google.android.apps.exposurenotification.proto.EnxLogExtension;
 import com.google.common.io.BaseEncoding;
+import com.google.common.util.concurrent.ListenableFuture;
 import java.util.List;
 import javax.inject.Inject;
 
@@ -36,12 +38,17 @@ public class AnalyticsLoggingRepository {
   }
 
   @WorkerThread
-  public void eraseEventsBatch() {
-      loggingDao.deleteLogEvents();
+  public void deleteEventsBatch() {
+    loggingDao.deleteLogEvents();
+  }
+
+  @AnyThread
+  public ListenableFuture<Void> deleteEventsBatchAsync() {
+    return loggingDao.deleteLogEvents();
   }
 
   @WorkerThread
-  public void eraseEventsBatchUpToIncludingEvent(AnalyticsLoggingEntity analyticsLoggingEntity) {
+  public void deleteEventsBatchUpToIncludingEvent(AnalyticsLoggingEntity analyticsLoggingEntity) {
     loggingDao.deleteLogEventsUpToIncludingEvent(analyticsLoggingEntity.getKey());
   }
 

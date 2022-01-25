@@ -135,7 +135,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/padding_small"
-            android:gravity="center"
+            android:layout_marginHorizontal="@dimen/padding_small"
+            android:gravity="@integer/header_gravity"
             android:text="@string/no_recent_exposure_title"
             android:textAppearance="?attr/textAppearanceHeadline5"/>
 
@@ -143,7 +144,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/padding_small"
-            android:gravity="center"
+            android:gravity="@integer/header_gravity"
             android:text="@string/app_active_and_checking_info"
             android:textAppearance="?attr/textAppearanceBody2"
             android:textColor="?attr/colorControlNormal"/>
@@ -159,13 +160,15 @@
         <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:layout_marginVertical="@dimen/padding_small"
+          android:layout_marginTop="@dimen/home_screen_header_margin_top"
+          android:layout_marginBottom="@dimen/padding_small"
           android:orientation="vertical">
 
           <ImageView
             android:layout_width="@dimen/home_page_icon_size"
             android:layout_height="@dimen/home_page_icon_size"
-            android:layout_gravity="center"
+            android:layout_gravity="@integer/header_gravity"
+            android:layout_marginStart="@dimen/home_screen_en_off_header_image_margin_start"
             android:importantForAccessibility="no"
             android:contentDescription="@null"
             app:srcCompat="@drawable/ic_not_checking_for_exposure" />
@@ -175,7 +178,7 @@
             android:id="@+id/single_page_edge_case_fragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="@dimen/padding_large"
+            android:paddingHorizontal="@dimen/home_screen_en_off_header_horizontal_padding"
             android:orientation="vertical"
             android:animateLayoutChanges="false"
             android:visibility="gone" />
@@ -186,12 +189,14 @@
         <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/home_screen_header_margin_top"
           android:orientation="vertical">
 
           <ImageView
             android:layout_width="@dimen/home_page_icon_size"
             android:layout_height="@dimen/home_page_icon_size"
-            android:layout_gravity="center"
+            android:layout_gravity="@integer/header_gravity"
+            android:layout_marginStart="@dimen/padding_small"
             android:importantForAccessibility="no"
             android:contentDescription="@null"
             app:srcCompat="@drawable/ic_possible_exposure_alert" />
@@ -199,9 +204,9 @@
           <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:gravity="@integer/header_gravity"
             android:layout_marginVertical="@dimen/padding_small"
-            android:paddingHorizontal="@dimen/padding_normal"
+            android:layout_marginStart="@dimen/padding_small"
             android:text="@string/possible_exposure_title"
             android:textAppearance="?attr/textAppearanceHeadline5" />
 
@@ -216,12 +221,14 @@
         <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/home_screen_header_margin_top"
           android:orientation="vertical">
 
           <ImageView
             android:layout_width="@dimen/home_page_icon_size"
             android:layout_height="@dimen/home_page_icon_size"
-            android:layout_gravity="center"
+            android:layout_gravity="@integer/header_gravity"
+            android:layout_marginStart="@dimen/padding_small"
             android:importantForAccessibility="no"
             android:contentDescription="@null"
             app:srcCompat="@drawable/ic_share_test_result_home_icon" />
@@ -229,9 +236,9 @@
           <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:gravity="@integer/header_gravity"
             android:layout_marginVertical="@dimen/padding_small"
-            android:paddingHorizontal="@dimen/padding_normal"
+            android:layout_marginStart="@dimen/padding_small"
             android:text="@string/share_test_result_home_screen_title"
             android:textAppearance="?attr/textAppearanceHeadline5" />
 
@@ -278,6 +285,32 @@
 
       </LinearLayout>
 
+      <!-- "See previously shared test results even after EN turndown" card -->
+      <LinearLayout
+        android:id="@+id/see_test_results_in_turndown"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <include layout="@layout/card_see_test_results_in_turndown"
+          android:id="@+id/see_test_results_in_turndown_card" />
+
+      </LinearLayout>
+
+      <!-- PHA message that may be displayed in case of the PHA-turndown -->
+      <TextView
+        android:id="@+id/health_authority_turndown_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|start"
+        android:layout_marginVertical="@dimen/padding_medium"
+        android:paddingStart="@dimen/padding_medium"
+        android:autoLink="web"
+        android:text="@string/turndown_agency_message"
+        android:textAppearance="?attr/textAppearanceBody2"
+        android:textColor="?attr/colorControlNormal"
+        android:visibility="gone"/>
+
       <TextView
         android:id="@+id/check_exposure_status_section_title"
         android:layout_width="wrap_content"
@@ -319,9 +352,17 @@
         android:visibility="gone" />
 
       <!-- "Learn how EN works" card -->
-      <include
-        layout="@layout/card_learn_how_en_works"
-        android:id="@+id/learn_how_en_works_layout" />
+      <LinearLayout
+        android:id="@+id/learn_how_en_works"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <include
+          layout="@layout/card_learn_how_en_works"
+          android:id="@+id/learn_how_en_works_layout" />
+
+      </LinearLayout>
 
     </LinearLayout>
 

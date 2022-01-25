@@ -18,6 +18,8 @@
 package com.google.android.apps.exposurenotification.migrate;
 
 import static com.google.android.apps.exposurenotification.migrate.Migration.EN_SHARED_PREFS_FILE;
+import static com.google.android.apps.exposurenotification.migrate.Migration.LIBS_DIR;
+import static com.google.android.apps.exposurenotification.migrate.Migration.SHARED_PREFS_DIR;
 import static com.google.android.apps.exposurenotification.migrate.Migration.WORK_MANAGER_DIR;
 import static com.google.common.truth.Truth.assertThat;
 import static org.junit.Assert.assertThrows;
@@ -37,12 +39,12 @@ import androidx.work.WorkManager;
 import com.google.android.apps.exposurenotification.migrate.Migration.MigrationFailedException;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
 import com.google.android.apps.exposurenotification.testsupport.ExposureNotificationRules;
-import com.google.common.collect.ImmutableMap;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.MoreExecutors;
 import dagger.hilt.android.testing.HiltAndroidTest;
 import dagger.hilt.android.testing.HiltTestApplication;
 import java.io.File;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import javax.inject.Inject;
@@ -67,19 +69,21 @@ public class MigrationTest {
   private final Context context = spy(ApplicationProvider.getApplicationContext());
 
   private final String APP_DIR_NAME = context.getPackageName();
-  private final String CACHE_DIR_NAME = "cache";
   private final String DB_DIR_NAME ="databases";
-  private final Map<String, File> MOCK_APP_STORAGE_FILES = ImmutableMap.of(
-      APP_DIR_NAME, setupMockFile(APP_DIR_NAME),
-      CACHE_DIR_NAME, setupMockFile(CACHE_DIR_NAME),
-      DB_DIR_NAME, setupMockFile(DB_DIR_NAME),
-      WORK_MANAGER_DIR, setupMockFile(WORK_MANAGER_DIR),
-      EN_SHARED_PREFS_FILE, setupMockFile(EN_SHARED_PREFS_FILE)
-  );
+  private final Map<String, File> MOCK_APP_STORAGE_FILES = new HashMap<String, File>() {{
+    put(APP_DIR_NAME, setupMockFile(APP_DIR_NAME));
+    put(DB_DIR_NAME, setupMockFile(DB_DIR_NAME));
+    put(WORK_MANAGER_DIR, setupMockFile(WORK_MANAGER_DIR));
+    put(EN_SHARED_PREFS_FILE, setupMockFile(EN_SHARED_PREFS_FILE));
+    put(LIBS_DIR, setupMockFile(LIBS_DIR));
+    put(SHARED_PREFS_DIR, setupMockFile(SHARED_PREFS_DIR));
+  }};
   private final String[] APP_DIR_CHILD_NAMES = {
-      WORK_MANAGER_DIR, EN_SHARED_PREFS_FILE, DB_DIR_NAME, CACHE_DIR_NAME
+      WORK_MANAGER_DIR, EN_SHARED_PREFS_FILE, DB_DIR_NAME, LIBS_DIR, SHARED_PREFS_DIR
   };
   private final String[] DEFAULT_DIR_CHILD_NAMES = {};
+  private final String[] LIBS_DIR_CHILD_NAMES = {"libprioclient.so"};
+  private final String[] SHARED_PREFS_DIR_CHILD_NAMES = {EN_SHARED_PREFS_FILE};
 
   @Inject
   ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
@@ -132,15 +136,49 @@ public class MigrationTest {
     Exception thrownException = assertThrows(ExecutionException.class, execute);
     assertThat(thrownException.getCause()).isInstanceOf(NullPointerException.class);
     verify(workManager).cancelAllWork();
+    verifyNotDeleted();
+  }
+
+  @Test
+  public void migrate_deletionFailedInTheMiddle_hasFailed() {
+    // Fail any of the deletions (except for those that should never happen).
+    when(MOCK_APP_STORAGE_FILES.get(DB_DIR_NAME).delete()).thenReturn(false);
+
+    ThrowingRunnable execute = () -> migration.migrate(context).get();
+
+    Exception thrownException = assertThrows(ExecutionException.class, execute);
+    assertThat(thrownException.getCause()).isInstanceOf(MigrationFailedException.class);
+    verify(workManager).cancelAllWork();
+    verifyNotDeleted();
+  }
+
+  @Test
+  public void migrate_deletionFailedInTheBeginning_hasFailed() {
+    // Fail a deletion of the database.
+    when(MOCK_APP_STORAGE_FILES.get(DB_DIR_NAME).delete()).thenReturn(false);
+    // And ensure the failure occurs in the beginning.
+    File appDir = MOCK_APP_STORAGE_FILES.get(APP_DIR_NAME);
+    when(appDir.list()).thenReturn(new String[]{
+        DB_DIR_NAME, WORK_MANAGER_DIR, EN_SHARED_PREFS_FILE, LIBS_DIR, SHARED_PREFS_DIR});
+
+    ThrowingRunnable execute = () -> migration.migrate(context).get();
+
+    Exception thrownException = assertThrows(ExecutionException.class, execute);
+    assertThat(thrownException.getCause()).isInstanceOf(MigrationFailedException.class);
+    verify(workManager).cancelAllWork();
     // We should never delete WorkManager directory and EN Shared Preferences file when migrating.
     verify(MOCK_APP_STORAGE_FILES.get(WORK_MANAGER_DIR), never()).delete();
     verify(MOCK_APP_STORAGE_FILES.get(EN_SHARED_PREFS_FILE), never()).delete();
   }
 
   @Test
-  public void migrate_deletionFailed_hasFailed() {
-    // Fail any of the deletions.
-    when(MOCK_APP_STORAGE_FILES.get(CACHE_DIR_NAME).delete()).thenReturn(false);
+  public void migrate_deletionFailedInTheEnd_hasFailed() {
+    // Fail a deletion of the database.
+    when(MOCK_APP_STORAGE_FILES.get(DB_DIR_NAME).delete()).thenReturn(false);
+    // And ensure the failure occurs in the end.
+    File appDir = MOCK_APP_STORAGE_FILES.get(APP_DIR_NAME);
+    when(appDir.list()).thenReturn(new String[]{
+        WORK_MANAGER_DIR, EN_SHARED_PREFS_FILE, LIBS_DIR, DB_DIR_NAME, SHARED_PREFS_DIR});
 
     ThrowingRunnable execute = () -> migration.migrate(context).get();
 
@@ -157,9 +195,16 @@ public class MigrationTest {
     migration.migrate(context).get();
 
     verify(workManager).cancelAllWork();
-    // We should never delete WorkManager directory and EN Shared Preferences file when migrating.
+    verifyNotDeleted();
+  }
+
+  private void verifyNotDeleted() {
+    // We should never delete WorkManager, lib/, shared_prefs directories and EN Shared Preferences
+    // file when migrating.
     verify(MOCK_APP_STORAGE_FILES.get(WORK_MANAGER_DIR), never()).delete();
+    verify(MOCK_APP_STORAGE_FILES.get(LIBS_DIR), never()).delete();
     verify(MOCK_APP_STORAGE_FILES.get(EN_SHARED_PREFS_FILE), never()).delete();
+    verify(MOCK_APP_STORAGE_FILES.get(SHARED_PREFS_DIR), never()).delete();
   }
 
   private File setupMockFile(String name) {
@@ -184,17 +229,19 @@ public class MigrationTest {
 
   private void setupAppStorageFromMocks() {
     File appDir = MOCK_APP_STORAGE_FILES.get(APP_DIR_NAME);
-    File cacheDir = MOCK_APP_STORAGE_FILES.get(CACHE_DIR_NAME);
+    File libsDir = MOCK_APP_STORAGE_FILES.get(LIBS_DIR);
     File databaseDir = MOCK_APP_STORAGE_FILES.get(DB_DIR_NAME);
     File wmDir = MOCK_APP_STORAGE_FILES.get(WORK_MANAGER_DIR);
     File enSharedPrefs = MOCK_APP_STORAGE_FILES.get(EN_SHARED_PREFS_FILE);
+    File sharedPrefsDir = MOCK_APP_STORAGE_FILES.get(SHARED_PREFS_DIR);
 
     // Mark each pathname as file or directory.
     when(appDir.isDirectory()).thenReturn(true);
-    when(cacheDir.isDirectory()).thenReturn(true);
+    when(libsDir.isDirectory()).thenReturn(true);
     when(databaseDir.isDirectory()).thenReturn(true);
     when(wmDir.isDirectory()).thenReturn(true);
     when(enSharedPrefs.isDirectory()).thenReturn(false);
+    when(sharedPrefsDir.isDirectory()).thenReturn(true);
 
     // Set up appDir directory.
     ApplicationInfo mApplicationInfo = new ApplicationInfo();
@@ -204,17 +251,20 @@ public class MigrationTest {
     when(appDir.list()).thenReturn(APP_DIR_CHILD_NAMES);
 
     // Set up other directories.
-    when(cacheDir.list()).thenReturn(DEFAULT_DIR_CHILD_NAMES);
+    when(libsDir.list()).thenReturn(LIBS_DIR_CHILD_NAMES);
     when(databaseDir.list()).thenReturn(DEFAULT_DIR_CHILD_NAMES);
     when(wmDir.list()).thenReturn(DEFAULT_DIR_CHILD_NAMES);
+    when(sharedPrefsDir.list()).thenReturn(DEFAULT_DIR_CHILD_NAMES);
 
     // Now ensure that the correct File objects are created in the SUT.
     doReturn(appDir).when(migration).getFileFromStringPathname(APP_DIR_NAME);
-    doReturn(cacheDir).when(migration).getFileFromParentAndChild(appDir, CACHE_DIR_NAME);
+    doReturn(libsDir).when(migration).getFileFromParentAndChild(appDir, LIBS_DIR);
     doReturn(databaseDir).when(migration).getFileFromParentAndChild(appDir, DB_DIR_NAME);
     doReturn(wmDir).when(migration).getFileFromParentAndChild(appDir, WORK_MANAGER_DIR);
     doReturn(enSharedPrefs).when(migration)
         .getFileFromParentAndChild(appDir, EN_SHARED_PREFS_FILE);
+    doReturn(sharedPrefsDir).when(migration)
+        .getFileFromParentAndChild(appDir, SHARED_PREFS_DIR);
   }
 
 }

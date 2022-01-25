@@ -62,4 +62,11 @@
   <!-- Body of the SMS Intercept Notice card. This dialog is meant to inform users about a new SMS Intercept functionality. It forms a full sentence together with sms_intercept_notice_card_title (sms_intercept_notice_card_title & sms_intercept_notice_card_content are displayed together). Feel free to distribute the final translation between these two strings (it would be great if they both had roughly the same length). This string will get truncated at 45 chars on some devices, so please only go over 45 characters if absolutely necessary. [CHAR_LIMIT=60] -->
   <string name="sms_intercept_notice_card_content">If you test positive and get a verified SMS</string>
 
+  <!-- EN TURNED DOWN STATE -->
+  <!-- Contents of the turndown info page, shown when the clicks on the "Exposure Notifications is off" card on the Active Region page and Exposure Notifications has been turned down as an entire system. [CHAR_LIMIT=NONE] -->
+  <string name="en_turndown_contents">As health authorities adapt their COVID-19 response, Exposure Notifications isn\'t supported anymore. Thank you for using the service and for helping protect your community.</string>
+
+  <!-- Contents of the turndown info page, shown when the clicks on the "Exposure Notifications is off" card on the Active Region page and Exposure Notifications has been turned down for the user's area. [CHAR_LIMIT=NONE] -->
+  <string name="en_turndown_for_area_contents">As your health authority adapts its COVID-19 response, they don\'t support Exposure Notifications anymore. Thank you for using the service and for helping protect your community.</string>
+
 </resources>

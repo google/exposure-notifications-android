@@ -22,4 +22,7 @@
   <string name="share_positive_diagnosis_card_content">የኮቪድ-19 ስርጭትን ለማስቆም የምርመራዎን ውጤት ያጋሩ</string>
   <string name="share_app_card_content">ማህበረሰብዎን በተሻለ ሁኔታ ለመጠበቅ ይህን መተግበሪያ ያጋሩ</string>
   <string name="how_en_works_card_content">የተጋላጭነት ማሳወቂያዎች እንዴት እንደሚሠሩ የበለጠ ይወቁ</string>
+  <string name="en_turndown_for_area_contents">የእርስዎ የጤና ባለስልጣን ኮቪድ 19 ምላሽ ሰጪን ስላለማመደ ይህን መተግበሪያ ከእንግዲህ እየደገፈ አይደለም። መተግበሪያውን ስለተጠቀሙ እና ማህበረሰብዎን ለመጠበቅ ስላገዙ እናመሰግናለን።</string>
+  <string name="en_turndown_contents">የእርስዎ የጤና ባለስልጣን ኮቪድ 19 ምላሽ ሰጪን ስላለማመደ ይህ መተግበሪያ ከእንግዲህ አይደገፍም። መተግበሪያውን ስለተጠቀሙ እና ማህበረሰብዎን ለመጠበቅ ስላገዙ እናመሰግናለን።</string>
+  <string name="en_turndown_see_test_results_card_content">ከዚህ ቀደም ወደ የተጋላጭነት ማሳወቂያዎች የሰቀሏቸውን የሙከራ ውጤቶች አሁንም ማየት ይችላሉ</string>
 </resources>

@@ -52,6 +52,7 @@ import com.google.android.apps.exposurenotification.storage.DiagnosisEntity.Test
 import com.google.android.apps.exposurenotification.storage.DiagnosisRepository;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
 import com.google.android.apps.exposurenotification.work.WorkerStartupManager;
+import com.google.android.apps.exposurenotification.work.WorkerStartupManager.IsEnabledWithStartupTasksException;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.nearby.exposurenotification.TemporaryExposureKey;
 import com.google.common.base.Optional;
@@ -147,17 +148,18 @@ public class SmsVerificationWorker extends ListenableWorker {
                 // to enable the API if needed.
                 return Futures.immediateFailedFuture(new TEKsNotReleasedException());
               }
-              return requestPreAuthorizedTemporaryExposureKeyRelease();
+              return FluentFuture.from(requestPreAuthorizedTemporaryExposureKeyRelease())
+                  .catchingAsync(
+                      ApiException.class,
+                      // If there's an ApiException from the GMSCore upon request to release keys,
+                      // this means that keys cannot be released and automatic upload is not
+                      // possible. So, display the notification instead.
+                      ex -> Futures.immediateFailedFuture(new TEKsNotReleasedException()),
+                      lightweightExecutor);
             },
             lightweightExecutor)
         .transformAsync(unused -> submitCode(optionalCode), lightweightExecutor)
         .transform(unused -> Result.success(), lightweightExecutor)
-        .catchingAsync(
-            ApiException.class,
-            // If there's any ApiException from the GMSCore, then automatic upload is not possible.
-            // Display the notification instead.
-            ex -> Futures.immediateFailedFuture(new TEKsNotReleasedException()),
-            lightweightExecutor)
         .catching(
             VerificationServerRetryException.class, ex -> Result.retry(), lightweightExecutor)
         .catching(
@@ -175,6 +177,8 @@ public class SmsVerificationWorker extends ListenableWorker {
                   IntentUtil.getNotificationDeleteIntentSmsVerification(getApplicationContext()));
               return Result.success();
             },
+            lightweightExecutor)
+        .catching(IsEnabledWithStartupTasksException.class, e -> Result.failure(),
             lightweightExecutor)
         .catching(Throwable.class, t -> Result.failure(), lightweightExecutor);
   }

@@ -17,12 +17,14 @@
 
 package com.google.android.apps.exposurenotification.storage;
 
+import androidx.annotation.AnyThread;
 import androidx.annotation.WorkerThread;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Transaction;
+import com.google.common.util.concurrent.ListenableFuture;
 import java.util.List;
 
 /**
@@ -43,13 +45,18 @@ abstract class ExposureDao {
   @Query("DELETE FROM ExposureEntity")
   abstract void deleteAll();
 
+  @AnyThread
+  @Query("DELETE FROM ExposureEntity")
+  abstract ListenableFuture<Void> deleteAllAsync();
+
   /**
-   * Wipe the ExposureEntity table and insert the ExposureEntites in this list
+   * Wipe the ExposureEntity table and insert the ExposureEntites in this list.
+   *
    * @param exposureEntities the computed from DailySummaries {@link ExposureEntity}s
    */
   @WorkerThread
   @Transaction
-  public void clearInsertExposureEntities(List<ExposureEntity> exposureEntities) {
+  public void deleteInsertExposureEntities(List<ExposureEntity> exposureEntities) {
     deleteAll();
     upsertAll(exposureEntities);
   }

@@ -109,4 +109,8 @@ abstract class DiagnosisDao {
 
   @Query("DELETE FROM DiagnosisEntity WHERE id = :id")
   abstract ListenableFuture<Void> deleteById(long id);
+
+  @Query("DELETE FROM RevisionTokenEntity")
+  abstract ListenableFuture<Void> deleteAllRevisionTokens();
+
 }

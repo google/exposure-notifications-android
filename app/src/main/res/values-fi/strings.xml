@@ -15,6 +15,7 @@
   <string name="btn_verify">Vahvista</string>
   <string name="btn_no_thanks">Ei kiitos</string>
   <string name="btn_share">Jaa</string>
+  <string name="btn_close_app">Sulje sovellus</string>
   <string name="learn_more">Lue lisää</string>
   <string name="home_tab_settings_text">Asetukset</string>
   <string name="notification_channel_name">Mahdollinen COVID-19-altistuminen</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">Altistumisilmoitusten käyttöönotto edellyttää lupia</string>
   <string name="onboarding_finish_title">Altistumisilmoitusten käyttöönotto edellyttää lupien jatkamista</string>
   <string name="onboarding_exposure_notifications_title">Laita altistumisilmoitukset päälle</string>
-  <string name="onboarding_exposure_notifications_detail">Voit saada ilmoituksen, jos joku lähelläsi ollut ilmoittaa COVID-19-tartunnastaan.
+  <string name="onboarding_exposure_notifications_description">Voit saada ilmoituksen, jos joku lähelläsi ollut ilmoittaa COVID-19-tartunnastaan.
     \n\nBluetoothin avulla puhelimesi kerää satunnaisia tunnuksia suojatusti ja jakaa niitä muille lähellä oleville puhelimille.
     \n\nAltistumisen päivämäärä, kesto ja signaalin vahvuus sen aikana vaikuttavat siihen, saatko ilmoituksen julkisen terveydenhuollon viranomaisten valitsemien parametrien perusteella.
-    \n\nVoit saada kehotteen diagnoosin jakamisesta terveydenhuollon viranomaisille, jos saat testituloksen tekstiviestinä.</string>
+    \n\nVoit saada kehotteen diagnoosin jakamisesta terveydenhuollon viranomaisille, jos saat testituloksen tekstiviestinä. %1$s</string>
   <string name="onboarding_metrics_title">Auta parantamaan tätä sovellusta</string>
   <string name="onboarding_metrics_subtitle">Jaa käyttö- ja toimintadataa Googlelle</string>
   <string name="onboarding_metrics_description">Sovelluksen ylläpitoa ja kehittämistä varten Googlelle voidaan lähettää jotakin rajoitettua ja nimetöntä dataa sovelluksen toiminnasta ja käytöstä. Tästä datasta ei voi tunnistaa sinua. %1$s</string>
@@ -214,4 +215,11 @@
   <string name="share_upload_status_negative">Negatiivinen</string>
   <string name="share_upload_status_likely">Todennäköinen</string>
   <string name="share_diagnosis_progress_tracker">Vaihe %1$d/%2$d</string>
+  <string name="see_history_device_authentication_title">Vahvista henkilöllisyytesi</string>
+  <string name="update_app_dialog_title">Päivitä sovellus</string>
+  <string name="update_app_dialog_content">Päivitä altistumisilmoitukset uusimpaan versioon, niin voit jakaa testituloksesi.</string>
+  <string name="btn_update">Päivitä</string>
+  <string name="try_again_later_error_message">Jotain meni pieleen. Yritä uudelleen muutaman tunnin kuluttua.</string>
+  <string name="en_turndown_for_area_title">Terveydenhuoltoviranomainen ei enää tue altistumisilmoituksia</string>
+  <string name="en_turndown_title">Altistumisilmoitukset on laitettu pois päältä</string>
 </resources>

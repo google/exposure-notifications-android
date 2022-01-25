@@ -17,7 +17,9 @@
 
 package com.google.android.apps.exposurenotification.storage;
 
+import androidx.annotation.AnyThread;
 import androidx.annotation.WorkerThread;
+import com.google.common.util.concurrent.ListenableFuture;
 import java.util.List;
 import javax.inject.Inject;
 
@@ -47,8 +49,16 @@ public class ExposureRepository {
    * @param exposureEntities the computed from DailySummaries {@link ExposureEntity}s
    */
   @WorkerThread
-  public void clearInsertExposureEntities(List<ExposureEntity> exposureEntities) {
-    exposureDao.clearInsertExposureEntities(exposureEntities);
+  public void deleteInsertExposureEntities(List<ExposureEntity> exposureEntities) {
+    exposureDao.deleteInsertExposureEntities(exposureEntities);
+  }
+
+  /**
+   * Wipe the ExposureEntity table.
+   */
+  @AnyThread
+  public ListenableFuture<Void> deleteExposureEntitiesAsync() {
+    return exposureDao.deleteAllAsync();
   }
 
 }

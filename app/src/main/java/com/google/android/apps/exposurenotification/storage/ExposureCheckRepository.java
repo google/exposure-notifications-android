@@ -17,9 +17,10 @@
 
 package com.google.android.apps.exposurenotification.storage;
 
-import androidx.annotation.VisibleForTesting;
+import androidx.annotation.AnyThread;
 import androidx.annotation.WorkerThread;
 import androidx.lifecycle.LiveData;
+import com.google.common.util.concurrent.ListenableFuture;
 import java.util.List;
 import javax.inject.Inject;
 import org.threeten.bp.Instant;
@@ -46,19 +47,21 @@ public class ExposureCheckRepository {
   }
 
   /**
-   * Delete obsolete ExposureCheckEntities (i.e. those captured earlier than a given
+   * Delete outdated ExposureCheckEntities (i.e. those captured earlier than a given
    * threshold, if any).
+   *
    * @param earliestThreshold delete all the {@link ExposureCheckEntity}s captured earlier than this
    *                          threshold value
    */
   @WorkerThread
-  public void deleteObsoleteChecksIfAny(Instant earliestThreshold) {
+  public void deleteOutdatedChecksIfAny(Instant earliestThreshold) {
     exposureCheckDao.deleteOlderThanThreshold(earliestThreshold);
   }
 
   /**
    * Retrieve the specified number of the most recently captured ExposureCheckEntities to be
    * displayed on the UI.
+   *
    * @param numOfChecksToRetrieve number of the most recently captured checks to retrieve
    * @return the most recently captured {@link ExposureCheckEntity}s
    */
@@ -70,12 +73,20 @@ public class ExposureCheckRepository {
 
   /**
    * Retrieve all the captured ExposureCheckEntities currently stored in the database.
+   *
    * @return all {@link ExposureCheckEntity}s in the database
    */
-  @VisibleForTesting
   @WorkerThread
-  List<ExposureCheckEntity> getAllExposureChecks() {
+  public List<ExposureCheckEntity> getAllExposureChecks() {
     return exposureCheckDao.getAll();
+  }
+
+  /**
+   * Delete all ExposureCheckEntities.
+   */
+  @AnyThread
+  public ListenableFuture<Void> deleteExposureCheckEntitiesAsync() {
+    return exposureCheckDao.deleteAll();
   }
 
 }

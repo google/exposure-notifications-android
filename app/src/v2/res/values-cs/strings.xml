@@ -22,4 +22,7 @@
   <string name="share_positive_diagnosis_card_content">Sdílejte výsledek testu a pomozte zabránit šíření onemocnění COVID-19</string>
   <string name="share_app_card_content">Sdílejte tuto aplikaci, abyste ochránili své okolí</string>
   <string name="how_en_works_card_content">Další informace o principu oznámení o možném kontaktu</string>
+  <string name="en_turndown_for_area_contents">Místní zdravotní úřad mění strategii boje proti covidu-19 a tuto aplikaci už nepodporuje. Děkujeme vám, že jste tuto aplikaci používali a pomáhali chránit své okolí.</string>
+  <string name="en_turndown_contents">Zdravotní úřady mění strategii boje proti covidu-19 a tuto aplikaci už nepodporují. Děkujeme vám, že jste tuto aplikaci používali a pomáhali chránit své okolí.</string>
+  <string name="en_turndown_see_test_results_card_content">Nadále si můžete prohlížet výsledky testů, které jste do oznámení o možném kontaktu dříve nahráli</string>
 </resources>

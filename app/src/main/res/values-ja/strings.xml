@@ -15,6 +15,7 @@
   <string name="btn_verify">確認</string>
   <string name="btn_no_thanks">参加しない</string>
   <string name="btn_share">共有</string>
+  <string name="btn_close_app">アプリを閉じる</string>
   <string name="learn_more">詳細</string>
   <string name="home_tab_settings_text">設定</string>
   <string name="notification_channel_name">COVID-19 陽性者との接触の可能性</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">接触通知システムを有効にするために必要な権限</string>
   <string name="onboarding_finish_title">接触通知システムを有効にするために必要な権限（続き）</string>
   <string name="onboarding_exposure_notifications_title">接触通知システムを有効にする</string>
-  <string name="onboarding_exposure_notifications_detail">COVID-19（新型コロナウイルス感染症）に感染したことを報告した人があなたの周囲にいた場合に、通知が届きます。
+  <string name="onboarding_exposure_notifications_description">COVID-19（新型コロナウイルス感染症）に感染したことを報告した人があなたの周囲にいた場合に、通知が届きます。
     \n\nスマートフォンで Bluetooth を使用して、周辺のスマートフォンとの間でランダムな ID を安全に収集、共有します。
     \n\n陽性者との接触の可能性があった日付、期間、電波強度を使用して、公衆衛生機関で設定されたパラメータに基づきあなたに通知するかどうかが判断されます。
-    \n\n検査結果を SMS で受け取った場合、診断結果を衛生機関と共有するための通知が届く場合があります。</string>
+    \n\n検査結果を SMS で受け取った場合、診断結果を衛生機関と共有するための通知が届く場合があります。%1$s</string>
   <string name="onboarding_metrics_title">アプリ改善にご協力ください</string>
   <string name="onboarding_metrics_subtitle">アプリの使用状況とパフォーマンスのデータを共有する</string>
   <string name="onboarding_metrics_description">アプリの保守と改善のため、アプリのパフォーマンスと使用状況に関するデータの一部が、匿名化されたうえで Google と共有されます。このデータから個人が特定されることはありません。%1$s</string>
@@ -214,4 +215,11 @@
   <string name="share_upload_status_negative">陰性</string>
   <string name="share_upload_status_likely">可能性が高い</string>
   <string name="share_diagnosis_progress_tracker">ステップ %1$d/%2$d</string>
+  <string name="see_history_device_authentication_title">本人確認</string>
+  <string name="update_app_dialog_title">アプリの更新</string>
+  <string name="update_app_dialog_content">検査結果の共有を完了するには、接触通知システムの最新バージョンに更新してください。</string>
+  <string name="btn_update">更新</string>
+  <string name="try_again_later_error_message">エラーが発生しました。数時間後にもう一度お試しください。</string>
+  <string name="en_turndown_for_area_title">お住まいの地域の衛生機関が接触通知システムのサポートを終了しました</string>
+  <string name="en_turndown_title">接触通知システムが OFF になっています</string>
 </resources>

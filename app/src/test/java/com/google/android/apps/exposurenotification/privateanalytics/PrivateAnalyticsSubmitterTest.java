@@ -87,7 +87,7 @@ import org.robolectric.annotation.Config;
 public class PrivateAnalyticsSubmitterTest {
 
   private static final int DAILY_METRICS = 7;
-  private static final int BIWEEKLY_METRICS = 4;
+  private static final int BIWEEKLY_METRICS = 6;
 
   @Rule
   public ExposureNotificationRules rules = ExposureNotificationRules.forTest(this).withMocks()

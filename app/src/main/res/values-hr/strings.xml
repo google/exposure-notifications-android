@@ -15,6 +15,7 @@
   <string name="btn_verify">Potvrdi</string>
   <string name="btn_no_thanks">Ne, hvala</string>
   <string name="btn_share">Dijeli</string>
+  <string name="btn_close_app">Zatvori aplikaciju</string>
   <string name="learn_more">Saznajte više</string>
   <string name="home_tab_settings_text">Postavke</string>
   <string name="notification_channel_name">Moguća izloženost bolesti COVID-19</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">Za omogućivanje Obavješćivanja o izloženosti potrebna su dopuštenja</string>
   <string name="onboarding_finish_title">Za omogućivanje Obavješćivanja o izloženosti i dalje su potrebna dopuštenja</string>
   <string name="onboarding_exposure_notifications_title">Uključi obavijesti o izloženosti</string>
-  <string name="onboarding_exposure_notifications_detail">Primajte obavijesti ako ste bili u blizini osobe koja je prijavila da ima COVID-19.
+  <string name="onboarding_exposure_notifications_description">Primajte obavijesti ako ste bili u blizini osobe koja je prijavila da ima COVID-19.
     \n\nNa telefonu je uključen Bluetooth da bi na siguran način prikupljao nasumične ID-jeve i dijelio ih s drugim telefonima u blizini.
     \n\nKako bi se utvrdilo hoće li vam se poslati obavijest na temelju parametara koje postavlja vaš zavod za javno zdravstvo, koristit će se datum, trajanje i jačina signala povezani s mogućom izloženošću.
-    \n\nMožda ćete dobiti obavijest da podijelite dijagnozu sa svojim zavodom za javno zdravstvo ako primite SMS s rezultatom testiranja.</string>
+    \n\nMožda ćete dobiti obavijest da podijelite dijagnozu sa svojim zavodom za javno zdravstvo ako primite SMS s rezultatom testiranja. %1$s</string>
   <string name="onboarding_metrics_title">Pomozite nam da poboljšamo ovu aplikaciju</string>
   <string name="onboarding_metrics_subtitle">Dijelite podatke o upotrebi i izvedbi aplikacije s Googleom</string>
   <string name="onboarding_metrics_description">Radi održavanja i poboljšavanja aplikacije s Googleom se dijele određeni ograničeni podaci o izvedbi i upotrebi aplikacije bez podataka o identitetu. Ti podaci ne otkrivaju vaš identitet. %1$s</string>
@@ -216,4 +217,11 @@
   <string name="share_upload_status_negative">Negativno</string>
   <string name="share_upload_status_likely">Vjerojatno</string>
   <string name="share_diagnosis_progress_tracker">Korak %1$d. od %2$d</string>
+  <string name="see_history_device_authentication_title">Potvrđivanje identiteta</string>
+  <string name="update_app_dialog_title">Ažurirajte aplikaciju</string>
+  <string name="update_app_dialog_content">Da biste dovršili dijeljenje rezultata testiranja, ažurirajte Obavješćivanje o izloženosti na najnoviju verziju.</string>
+  <string name="btn_update">Ažuriraj</string>
+  <string name="try_again_later_error_message">Nešto nije u redu. Pokušajte ponovo za nekoliko sati.</string>
+  <string name="en_turndown_for_area_title">Vaš zavod za javno zdravstvo više ne podržava Obavješćivanje o izloženosti</string>
+  <string name="en_turndown_title">Obavješćivanje o izloženosti je isključeno</string>
 </resources>

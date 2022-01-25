@@ -86,24 +86,23 @@
     <item name="buttonBarNegativeButtonStyle">@style/AlertDialogButtonTextAppearance</item>
   </style>
 
-  <!--  Chip Theme-->
-  <style name="Widget.ExposureNotifications.Chip.Choice" parent="@style/Widget.Material3.Chip.Suggestion">
-    <item name="chipBackgroundColor">@color/chip_background_color</item>
-    <item name="chipStrokeWidth">1dp</item>
-    <item name="chipStrokeColor">@color/chip_border_color</item>
-    <item name="android:textColor">@color/chip_text_color</item>
-    <item name="android:textStyle">bold</item>
-  </style>
-
   <style name="Widget.ExposureNotifications.TextInputLayout.OutlinedBox.Dense" parent="Widget.Material3.TextInputLayout.OutlinedBox.Dense">
     <item name="boxStrokeColor">@color/text_input_box_stroke_color</item>
     <item name="android:textColorHint">?android:attr/textColorPrimary</item>
+    <item name="boxCornerRadiusTopStart">@dimen/default_corner_radius</item>
+    <item name="boxCornerRadiusTopEnd">@dimen/default_corner_radius</item>
+    <item name="boxCornerRadiusBottomStart">@dimen/default_corner_radius</item>
+    <item name="boxCornerRadiusBottomEnd">@dimen/default_corner_radius</item>
   </style>
 
   <style name="Widget.ExposureNotifications.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
     parent="Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
     <item name="boxStrokeColor">@color/text_input_box_stroke_color</item>
     <item name="android:textColorHint">?android:attr/textColorPrimary</item>
+    <item name="boxCornerRadiusBottomEnd">@dimen/default_corner_radius</item>
+    <item name="boxCornerRadiusTopEnd">@dimen/default_corner_radius</item>
+    <item name="boxCornerRadiusBottomStart">@dimen/default_corner_radius</item>
+    <item name="boxCornerRadiusTopStart">@dimen/default_corner_radius</item>
   </style>
 
   <style name="Widget.ExposureNotifications.TabLayout" parent="Widget.Material3.TabLayout" />

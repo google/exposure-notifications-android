@@ -40,6 +40,7 @@ import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.common.IntentUtil;
 import com.google.android.apps.exposurenotification.common.StringUtils;
 import com.google.android.apps.exposurenotification.common.time.Clock;
+import com.google.android.apps.exposurenotification.nearby.ExposureInformationHelper;
 import com.google.android.apps.exposurenotification.notify.ShareDiagnosisFlowHelper;
 import com.google.android.apps.exposurenotification.riskcalculation.ExposureClassification;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
@@ -80,6 +81,7 @@ public class PossibleExposureSliceProvider extends SliceProvider {
     SlicePermissionManager getSlicePermissionManager();
     ExposureNotificationSharedPreferences getExposureNotificationSharedPreferences();
     Clock getClock();
+    ExposureInformationHelper getExposureInformationHelper();
   }
 
   /**
@@ -121,7 +123,7 @@ public class PossibleExposureSliceProvider extends SliceProvider {
       return null;
     }
 
-    // Get clock and ExposureNotificationSharedPreferences via DI
+    // Get clock, ExposureNotificationSharedPreferences, and ExposureInformationHelper via DI
     PossibleExposureSliceProviderInterface possibleExposureSliceProviderInterface =
         EntryPoints.get(context, PossibleExposureSliceProviderInterface.class);
 
@@ -129,6 +131,9 @@ public class PossibleExposureSliceProvider extends SliceProvider {
 
     ExposureNotificationSharedPreferences exposureNotificationSharedPreferences =
         possibleExposureSliceProviderInterface.getExposureNotificationSharedPreferences();
+
+    ExposureInformationHelper exposureInformationHelper =
+        possibleExposureSliceProviderInterface.getExposureInformationHelper();
 
     // Manually fetch current exposureClassification and revocation data
     ExposureClassification exposureClassification =
@@ -138,10 +143,12 @@ public class PossibleExposureSliceProvider extends SliceProvider {
     ListSliceBuilderWrapper listBuilder =
         ListSliceBuilderWrapper.createListSliceBuilderWrapper(getContext(), sliceUri);
 
-    // Create a possible exposure slice if there actually is an exposure (or a revocation)
-    if (exposureClassification.getClassificationIndex()
+    // Create a possible exposure slice if there actually is an exposure (or a revocation) and this
+    // exposure (or a revocation) are active.
+    if ((exposureClassification.getClassificationIndex()
         != ExposureClassification.NO_EXPOSURE_CLASSIFICATION_INDEX
-        || isRevoked) {
+        || isRevoked)
+        && exposureInformationHelper.isActiveExposurePresent()) {
       createPossibleExposureSlice(listBuilder, context, exposureClassification, isRevoked, clock);
     }
 

@@ -30,28 +30,28 @@ import android.content.Context;
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.work.Configuration;
-import androidx.work.ExistingPeriodicWorkPolicy;
 import androidx.work.ListenableWorker.Result;
-import androidx.work.PeriodicWorkRequest;
 import androidx.work.WorkInfo;
 import androidx.work.WorkInfo.State;
 import androidx.work.WorkManager;
 import androidx.work.WorkerParameters;
 import androidx.work.impl.utils.SynchronousExecutor;
 import androidx.work.testing.WorkManagerTestInitHelper;
+import com.google.android.apps.exposurenotification.common.CleanupHelper;
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.common.time.RealTimeModule;
 import com.google.android.apps.exposurenotification.nearby.ExposureNotificationClientWrapper;
 import com.google.android.apps.exposurenotification.nearby.PackageConfigurationHelper;
 import com.google.android.apps.exposurenotification.storage.DbModule;
-import com.google.android.apps.exposurenotification.storage.ExposureCheckRepository;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationDatabase;
-import com.google.android.apps.exposurenotification.storage.VerificationCodeRequestRepository;
+import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
 import com.google.android.apps.exposurenotification.testsupport.ExposureNotificationRules;
 import com.google.android.apps.exposurenotification.testsupport.FakeClock;
 import com.google.android.apps.exposurenotification.testsupport.InMemoryDb;
 import com.google.android.apps.exposurenotification.work.WorkerStartupManager;
+import com.google.android.gms.nearby.exposurenotification.ExposureNotificationStatus;
 import com.google.android.gms.tasks.Tasks;
+import com.google.common.collect.ImmutableSet;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.MoreExecutors;
 import com.google.common.util.concurrent.testing.TestingExecutors;
@@ -67,7 +67,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
-import org.mockito.Captor;
 import org.mockito.Mock;
 import org.robolectric.annotation.Config;
 import org.threeten.bp.LocalDate;
@@ -91,19 +90,13 @@ public class UploadCoverTrafficWorkerTest {
   ExposureNotificationClientWrapper exposureNotificationClientWrapper;
   @Mock
   UploadController uploadController;
+  @Mock
+  CleanupHelper cleanupHelper;
 
-  @Captor
-  ArgumentCaptor<String> workerNameCaptor;
-  @Captor
-  ArgumentCaptor<ExistingPeriodicWorkPolicy> existingPeriodicWorkPolicyCaptor;
-  @Captor
-  ArgumentCaptor<PeriodicWorkRequest> periodicWorkRequestCaptor;
+  @Inject
+  ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
   @Inject
   PackageConfigurationHelper packageConfigurationHelper;
-  @Inject
-  ExposureCheckRepository exposureCheckRepository;
-  @Inject
-  VerificationCodeRequestRepository verificationCodeRequestRepository;
 
   @BindValue
   ExposureNotificationDatabase db = InMemoryDb.create();
@@ -158,9 +151,8 @@ public class UploadCoverTrafficWorkerTest {
             MoreExecutors.newDirectExecutorService(),
             TestingExecutors.sameThreadScheduledExecutor(),
             packageConfigurationHelper,
-            exposureCheckRepository,
-            verificationCodeRequestRepository,
-            clock),
+            cleanupHelper
+        ),
         workManager);
   }
 
@@ -274,6 +266,8 @@ public class UploadCoverTrafficWorkerTest {
   @Test
   public void isEnabledFalse_shouldAbortExecutionAndReturnSuccess() throws Exception {
     when(exposureNotificationClientWrapper.isEnabled()).thenReturn(Tasks.forResult(false));
+    when(exposureNotificationClientWrapper.getStatus()).thenReturn(
+        Tasks.forResult(ImmutableSet.of(ExposureNotificationStatus.INACTIVATED)));
 
     Result result = worker.startWork().get();
 

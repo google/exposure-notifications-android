@@ -14,4 +14,6 @@
   <string name="share_history_delete_test_result_detail">%1$s tarihli COVID-19 test sonucunuz telefonunuzdan silinecek.</string>
   <string name="sms_intercept_notice_card_title">Sonucu paylaşmak için hatırlatıcı alabilirsiniz</string>
   <string name="sms_intercept_notice_card_content">Sonuç pozitif çıkar ve doğrulanmış SMS alırsanız</string>
+  <string name="en_turndown_contents">Resmi sağlık kurumları COVID-19\'la mücadelede kendi yöntemlerini kullandığından Temas Bildirimleri artık desteklenmiyor. Bu hizmeti kullandığınız ve topluluğunuzun korunmasına yardımcı olduğunuz için teşekkür ederiz.</string>
+  <string name="en_turndown_for_area_contents">Resmi sağlık kurumunuz COVID-19\'la mücadelede kendi yöntemini kullandığından artık Temas Bildirimleri\'ni desteklemiyor. Bu hizmeti kullandığınız ve topluluğunuzun korunmasına yardımcı olduğunuz için teşekkür ederiz.</string>
 </resources>

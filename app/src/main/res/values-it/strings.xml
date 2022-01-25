@@ -15,6 +15,7 @@
   <string name="btn_verify">Verifica</string>
   <string name="btn_no_thanks">No, grazie</string>
   <string name="btn_share">Condividi</string>
+  <string name="btn_close_app">Chiudi app</string>
   <string name="learn_more">Scopri di più</string>
   <string name="home_tab_settings_text">Impostazioni</string>
   <string name="notification_channel_name">Possibile esposizione al COVID-19</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">Autorizzazioni necessarie per attivare le Notifiche di esposizione</string>
   <string name="onboarding_finish_title">Altre autorizzazioni necessarie per attivare le Notifiche di esposizione</string>
   <string name="onboarding_exposure_notifications_title">Attiva le Notifiche di esposizione</string>
-  <string name="onboarding_exposure_notifications_detail">Ricevi notifiche se hai avuto contatti ravvicinati con una persona che ha segnalato di aver contratto il COVID-19.
+  <string name="onboarding_exposure_notifications_description">Ricevi notifiche se hai avuto contatti ravvicinati con una persona che ha segnalato di aver contratto il COVID-19.
     \n\nIl tuo telefono usa il Bluetooth per raccogliere e condividere in modo sicuro gli ID casuali con altri telefoni nelle vicinanze.
     \n\nLa data, la durata e l\'intensità del segnale associate a una possibile esposizione verranno usate per stabilire se riceverai una notifica in base ai parametri stabiliti dall\'autorità per la salute pubblica locale.
-    \n\nPotresti ricevere una notifica che ti invita a condividere la diagnosi con l\'autorità per la salute locale se ricevi un SMS con il risultato del tuo test.</string>
+    \n\nPotresti ricevere una notifica che ti invita a condividere la diagnosi con l\'autorità sanitaria locale se ricevi un SMS con il risultato del tuo test. %1$s</string>
   <string name="onboarding_metrics_title">Contribuisci a migliorare questa app</string>
   <string name="onboarding_metrics_subtitle">Condividi dati su prestazioni e utilizzo dell\'app con Google</string>
   <string name="onboarding_metrics_description">Per contribuire a gestire e migliorare l\'app, alcuni dati anonimizzati e limitati relativi alle prestazioni e all\'utilizzo dell\'app vengono condivisi con Google. Questi dati non consentono la tua identificazione. %1$s</string>
@@ -214,4 +215,11 @@
   <string name="share_upload_status_negative">Negativo</string>
   <string name="share_upload_status_likely">Probabile positività</string>
   <string name="share_diagnosis_progress_tracker">Passaggio %1$d di %2$d</string>
+  <string name="see_history_device_authentication_title">Verificare l\'identità</string>
+  <string name="update_app_dialog_title">Aggiorna la tua app</string>
+  <string name="update_app_dialog_content">Per completare la condivisione dei risultati del tuo test, devi eseguire l\'aggiornamento all\'ultima versione del sistema Notifiche di esposizione.</string>
+  <string name="btn_update">Aggiorna</string>
+  <string name="try_again_later_error_message">Si è verificato un errore. Riprova tra qualche ora.</string>
+  <string name="en_turndown_for_area_title">La tua autorità sanitaria non supporta più la funzionalità Notifiche di esposizione</string>
+  <string name="en_turndown_title">La funzionalità Notifiche di esposizione è stata disattivata</string>
 </resources>

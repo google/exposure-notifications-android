@@ -24,6 +24,7 @@ import androidx.test.core.app.ApplicationProvider;
 import com.google.android.apps.exposurenotification.home.ExposureNotificationViewModel.ExposureNotificationState;
 import com.google.android.apps.exposurenotification.riskcalculation.ExposureClassification;
 import com.google.android.apps.exposurenotification.storage.DiagnosisEntity.TestResult;
+import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.BadgeStatus;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.NotificationInteraction;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.OnboardingStatus;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.VaccinationStatus;
@@ -564,6 +565,20 @@ public class ExposureNotificationSharedPreferencesTest {
   }
 
   @Test
+  public void clearAnalyticsLoggingLastTimestamp_clearsAsExpected() {
+    clock.set(Instant.ofEpochMilli(2));
+    exposureNotificationSharedPreferences.resetAnalyticsLoggingLastTimestamp();
+    Optional<Instant> instant =
+        exposureNotificationSharedPreferences.maybeGetAnalyticsLoggingLastTimestamp();
+
+    assertThat(instant.get()).isEqualTo(Instant.ofEpochMilli(2));
+    exposureNotificationSharedPreferences.clearAnalyticsLoggingLastTimestamp();
+
+    instant = exposureNotificationSharedPreferences.maybeGetAnalyticsLoggingLastTimestamp();
+    assertThat(instant).isAbsent();
+  }
+
+  @Test
   public void providedDiagnosisKeyToLog_isEmptyByDefault() {
     assertThat(exposureNotificationSharedPreferences.getProvidedDiagnosisKeyHexToLog()).isEmpty();
   }
@@ -791,4 +806,53 @@ public class ExposureNotificationSharedPreferencesTest {
               == (startBiweeklyDay + i) % 14);
     }
   }
+
+  @Test
+  public void clearExposureClassification_exposureInformationGetsWipedOut() {
+    ExposureClassification noExposure = ExposureClassification.createNoExposureClassification();
+    ExposureClassification exposure = ExposureClassification.create(
+        /* classificationIndex= */1, /* classificationName= */"", clock.now().toEpochMilli());
+    // Store the exposure.
+    exposureNotificationSharedPreferences.setExposureClassification(exposure);
+    // Mark it as a revoked exposure.
+    exposureNotificationSharedPreferences.setIsExposureClassificationRevoked(true);
+    // And also mark both this exposure and this exposure date as dismissed.
+    exposureNotificationSharedPreferences
+        .setIsExposureClassificationNewAsync(BadgeStatus.DISMISSED);
+    exposureNotificationSharedPreferences
+        .setIsExposureClassificationDateNewAsync(BadgeStatus.DISMISSED);
+
+    assertThat(exposureNotificationSharedPreferences.getExposureClassification())
+        .isEqualTo(exposure);
+    assertThat(exposureNotificationSharedPreferences.getIsExposureClassificationRevoked()).isTrue();
+    assertThat(exposureNotificationSharedPreferences.getIsExposureClassificationNew())
+        .isEqualTo(BadgeStatus.DISMISSED);
+    assertThat(exposureNotificationSharedPreferences.getIsExposureClassificationDateNew())
+        .isEqualTo(BadgeStatus.DISMISSED);
+    exposureNotificationSharedPreferences.deleteExposureInformation();
+
+    assertThat(exposureNotificationSharedPreferences.getExposureClassification())
+        .isEqualTo(noExposure);
+    assertThat(exposureNotificationSharedPreferences.getIsExposureClassificationRevoked())
+        .isFalse();
+    assertThat(exposureNotificationSharedPreferences.getIsExposureClassificationNew())
+        .isEqualTo(BadgeStatus.NEW);
+    assertThat(exposureNotificationSharedPreferences.getIsExposureClassificationDateNew())
+        .isEqualTo(BadgeStatus.NEW);
+  }
+
+  @Test
+  public void isMigratingUserOnboarded_defaultIsFalse() {
+    assertThat(exposureNotificationSharedPreferences.isMigratingUserOnboarded())
+        .isFalse();
+  }
+
+  @Test
+  public void markMigratingUserAsOnboardedAsync_isMigratingUserOnboarded_returnsTrue() {
+    exposureNotificationSharedPreferences.markMigratingUserAsOnboardedAsync();
+
+    assertThat(exposureNotificationSharedPreferences.isMigratingUserOnboarded())
+        .isTrue();
+  }
+
 }

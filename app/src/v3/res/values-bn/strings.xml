@@ -14,4 +14,6 @@
   <string name="share_history_delete_test_result_detail">%1$s তারিখ থেকে পাওয়া আপনার COVID-19 পরীক্ষার ফলাফল আপনার ফোন থেকে মুছে দেওয়া হবে।</string>
   <string name="sms_intercept_notice_card_title">ফলাফল শেয়ার করার জন্য আপনি রিমাইন্ডার পেতে পারেন</string>
   <string name="sms_intercept_notice_card_content">আপনি সংক্রমিত হলে, পরীক্ষার ফলাফলের যাচাই করা এসএমএস পাবেন</string>
+  <string name="en_turndown_contents">স্বাস্থ্য কর্তৃপক্ষ যেহেতু COVID-19 সংক্রান্ত প্রতিক্রিয়াতে প্রয়োজনীয় পরিবর্তন করেছেন, তাই Exposure Notifications আর কাজ করবে না। এই পরিষেবা ব্যবহার করার জন্য এবং আপনার কমিউনিটি সুরক্ষিত রাখতে সাহায্য করার জন্য আপনাকে ধন্যবাদ।</string>
+  <string name="en_turndown_for_area_contents">আপনার স্বাস্থ্য কর্তৃপক্ষ আর Exposure Notifications সংক্রান্ত তথ্য গ্রহণ করছেন না কারণ তারা COVID-19 সংক্রান্ত প্রতিক্রিয়াতে প্রয়োজনীয় পরিবর্তন করেছেন। এই পরিষেবা ব্যবহার করার জন্য এবং আপনার কমিউনিটি সুরক্ষিত রাখতে সাহায্য করার জন্য আপনাকে ধন্যবাদ।</string>
 </resources>

@@ -14,4 +14,6 @@
   <string name="share_history_delete_test_result_detail">Teie COVID-19 testi tulemus kuupäevast %1$s kustutatakse teie telefonist.</string>
   <string name="sms_intercept_notice_card_title">Võite saada tulemuse jagamise meeldetuletuse</string>
   <string name="sms_intercept_notice_card_content">Kui tulemus on pos. ja saate kinnitatud SMS-i</string>
+  <string name="en_turndown_contents">Kuna tervishoiuasutused kohandavad reageerimist COVID-19-le, ei toetata enam rakendust Kokkupuute märguanded. Täname teid teenuse kasutamise ja kogukonna kaitsmisele panustamise eest.</string>
+  <string name="en_turndown_for_area_contents">Kuna teie tervishoiuasutus kohandab reageerimist COVID-19-le, ei toeta see enam rakendust Kokkupuute märguanded. Täname teid teenuse kasutamise ja kogukonna kaitsmisele panustamise eest.</string>
 </resources>

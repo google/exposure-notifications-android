@@ -14,4 +14,6 @@
   <string name="share_history_delete_test_result_detail">%1$s tarixinə aid COVID-19 test nəticəniz telefonunuzdan silinəcək.</string>
   <string name="sms_intercept_notice_card_title">Nəticənizi paylaşmaq üçün xatırlatma ala bilərsiniz</string>
   <string name="sms_intercept_notice_card_content">Testinizin nəticəsi müsbət olsa və doğrulanmış SMS alsanız</string>
+  <string name="en_turndown_contents">Səhiyyə orqanları COVID-19 cavabını uyğunlaşdırdığına görə Yoluxma Bildirişləri daha dəstəklənmir. Xidmətdən istifadə etdiyiniz və icmanızı qorumağa kömək etdiyiniz üçün təşəkkür edirik.</string>
+  <string name="en_turndown_for_area_contents">Səhiyyə orqanı COVID-19 cavabını uyğunlaşdırdığına görə Yoluxma Bildirişləri daha dəstəklənmir. Xidmətdən istifadə etdiyiniz və icmanızı qorumağa kömək etdiyiniz üçün təşəkkür edirik.</string>
 </resources>

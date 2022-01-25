@@ -15,6 +15,7 @@
   <string name="btn_verify">Xác minh</string>
   <string name="btn_no_thanks">Không, cảm ơn</string>
   <string name="btn_share">Chia sẻ</string>
+  <string name="btn_close_app">Đóng ứng dụng</string>
   <string name="learn_more">Tìm hiểu thêm</string>
   <string name="home_tab_settings_text">Cài đặt</string>
   <string name="notification_channel_name">Khả năng tiếp xúc COVID-19</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">Bạn cần cấp quyền để bật Thông báo tiếp xúc</string>
   <string name="onboarding_finish_title">Bạn vẫn cần cấp quyền để bật Thông báo tiếp xúc</string>
   <string name="onboarding_exposure_notifications_title">Bật Thông báo tiếp xúc</string>
-  <string name="onboarding_exposure_notifications_detail">Nhận thông báo nếu bạn từng tiếp xúc gần với người đã báo cáo là bị nhiễm COVID-19.
+  <string name="onboarding_exposure_notifications_description">Nhận thông báo nếu bạn từng tiếp xúc gần với người đã báo cáo là bị nhiễm COVID-19.
     \n\nĐiện thoại của bạn sử dụng Bluetooth để thu thập và chia sẻ mã nhận dạng ngẫu nhiên một cách an toàn với các điện thoại khác ở gần.
     \n\nNgày, khoảng thời gian có khả năng tiếp xúc và cường độ tín hiệu Bluetooth liên quan đến lần tiếp xúc đó sẽ được dùng để xác định xem bạn có nhận được thông báo dựa trên các thông số do cơ quan y tế cộng đồng thiết lập hay không.
-    \n\nBạn có thể nhận được thông báo để chia sẻ thông tin chẩn đoán với cơ quan y tế cộng đồng nếu nhận được tin nhắn SMS có kết quả xét nghiệm.</string>
+    \n\nBạn có thể nhận được thông báo để chia sẻ thông tin chẩn đoán với cơ quan y tế cộng đồng nếu nhận được tin nhắn SMS có kết quả xét nghiệm. %1$s</string>
   <string name="onboarding_metrics_title">Giúp cải tiến ứng dụng này</string>
   <string name="onboarding_metrics_subtitle">Chia sẻ dữ liệu hiệu suất và mức sử dụng ứng dụng với Google</string>
   <string name="onboarding_metrics_description">Nhằm giúp duy trì và cải tiến ứng dụng này, một số dữ liệu hạn chế về hiệu suất và mức sử dụng ứng dụng (đã loại bỏ thông tin nhận dạng cá nhân) sẽ được chia sẻ với Google. Dữ liệu này không xác định danh tính của bạn. %1$s</string>
@@ -214,4 +215,11 @@
   <string name="share_upload_status_negative">Âm tính</string>
   <string name="share_upload_status_likely">Có khả năng</string>
   <string name="share_diagnosis_progress_tracker">Bước %1$d/%2$d</string>
+  <string name="see_history_device_authentication_title">Xác minh danh tính của bạn</string>
+  <string name="update_app_dialog_title">Cập nhật ứng dụng</string>
+  <string name="update_app_dialog_content">Cập nhật lên phiên bản mới nhất của ứng dụng Thông báo tiếp xúc để hoàn tất việc chia sẻ kết quả xét nghiệm của bạn.</string>
+  <string name="btn_update">Cập nhật</string>
+  <string name="try_again_later_error_message">Đã xảy ra lỗi. Hãy thử lại sau vài giờ.</string>
+  <string name="en_turndown_for_area_title">Cơ quan y tế không còn hỗ trợ ứng dụng Thông báo tiếp xúc</string>
+  <string name="en_turndown_title">Đã tắt Thông báo tiếp xúc</string>
 </resources>

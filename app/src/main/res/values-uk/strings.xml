@@ -15,6 +15,7 @@
   <string name="btn_verify">Підтвердити</string>
   <string name="btn_no_thanks">Ні, дякую</string>
   <string name="btn_share">Повідомити</string>
+  <string name="btn_close_app">Закрити додаток</string>
   <string name="learn_more">Докладніше</string>
   <string name="home_tab_settings_text">Налаштування</string>
   <string name="notification_channel_name">Можливе зараження COVID-19</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">Щоб увімкнути Сповіщення про ризик зараження, потрібні дозволи</string>
   <string name="onboarding_finish_title">Щоб увімкнути Сповіщення про ризик зараження, потрібно подовжити дію дозволів</string>
   <string name="onboarding_exposure_notifications_title">Увімкніть сповіщення про ризик зараження</string>
-  <string name="onboarding_exposure_notifications_detail">Отримуйте сповіщення про те, що поряд із вами перебувала людина, у якої COVID-19.
+  <string name="onboarding_exposure_notifications_description">Отримуйте сповіщення про те, що поряд із вами перебувала людина, яка повідомила про захворювання на COVID-19.
     \n\nЩоб ваш телефон міг обмінюватися випадковими ідентифікаторами з іншими пристроями поблизу, на ньому потрібно ввімкнути Bluetooth.
-    \n\nЗгідно з параметрами, визначеними державним органом охорони здоров’я, ймовірність отримати сповіщення залежатиме від даних про дату й тривалість імовірного контакту, а також зафіксованої потужності сигналу від іншого пристрою.
-    \n\nЯкщо ви отримаєте SMS із результатами тесту, то вам може надійти сповіщення з пропозицією повідомити свій діагноз місцевому органу охорони здоров’я.</string>
+    \n\nЗгідно з параметрами, визначеними державним органом охорони здоров’я, імовірність отримати сповіщення залежатиме від даних про дату й тривалість імовірного контакту, а також зафіксованої потужності сигналу від іншого пристрою.
+    \n\nЯкщо ви отримаєте SMS із результатами тесту, то вам може надійти сповіщення з пропозицією повідомити свій діагноз місцевому органу охорони здоров’я. %1$s</string>
   <string name="onboarding_metrics_title">Допоможіть покращити цей додаток</string>
   <string name="onboarding_metrics_subtitle">Діліться даними про використання додатка</string>
   <string name="onboarding_metrics_description">Google отримає обмежений доступ до загальних даних про використання та продуктивність додатка, щоб підтримувати й покращувати його роботу. За цією інформацією неможливо встановити вашу особу. %1$s</string>
@@ -218,4 +219,11 @@
   <string name="share_upload_status_negative">Негативний</string>
   <string name="share_upload_status_likely">Імовірний</string>
   <string name="share_diagnosis_progress_tracker">Крок %1$d з %2$d</string>
+  <string name="see_history_device_authentication_title">Підтвердьте свою особу</string>
+  <string name="update_app_dialog_title">Оновіть додаток</string>
+  <string name="update_app_dialog_content">Щоб поділитися результатами свого тесту, онововіть Сповіщення про ризик зараження до останньої версії.</string>
+  <string name="btn_update">Оновити</string>
+  <string name="try_again_later_error_message">Сталася помилка. Повторіть спробу через кілька годин.</string>
+  <string name="en_turndown_for_area_title">Ваш орган охорони здоров’я більше не підтримує Сповіщення про ризик зараження</string>
+  <string name="en_turndown_title">Сповіщення про ризик зараження вимкнено</string>
 </resources>

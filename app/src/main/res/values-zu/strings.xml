@@ -15,6 +15,7 @@
   <string name="btn_verify">Qinisekisa</string>
   <string name="btn_no_thanks">Cha ngiyabonga</string>
   <string name="btn_share">Yabelana</string>
+  <string name="btn_close_app">Vala i-app</string>
   <string name="learn_more">Funda kabanzi</string>
   <string name="home_tab_settings_text">Izilungiselelo</string>
   <string name="notification_channel_name">Ukuhlangabezana ne-COVID-19 okungaba khona</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">Izimvume zidinga ukunika amandla Izaziso Zokuhlangabezana</string>
   <string name="onboarding_finish_title">Ukuqhubeka kwezimvume ezidingekile zokunika amandla Izaziso Zokuhlangabezana</string>
   <string name="onboarding_exposure_notifications_title">Vula Izaziso Zokuhlangabezana</string>
-  <string name="onboarding_exposure_notifications_detail">Yaziswa uma useduze nothile ozibike njengone-COVID-19.
+  <string name="onboarding_exposure_notifications_description">Yaziswa uma useduze nothile ozibike njengone-COVID-19.
     \n\nIfoni yakho isebenzisa i-Bluetooth ukuze iqoqe futhi yabelane ngokuphephile ngama-ID angahleliwe namanye amafoni aseduzane.
     \n\nUsuku, ubude besikhathi, namandla wesignali ahlobene nokuhlangabezana okunokwenzeka kuzosetshenziselwa ukunquma ukuthi uzokwaziswa yini ngokusekelwe kumapharamitha asethwe yiziphathimandla zezempilo yomphakathi wakini.
-    \n\nUngathola isaziso sokwabelana ngokuxilongwa neziphathimandla zakho zezempilo uma uthola i-SMS nomphumela wakho wokuhlolwa.</string>
+    \n\nUngathola isaziso sokwabelana ngokuxilongwa neziphathimandla zakho zezempilo uma uthola i-SMS nomphumela wakho wokuhlolwa. %1$s</string>
   <string name="onboarding_metrics_title">Siza ukwenza lolu hlelo lokusebenza lube ngcono</string>
   <string name="onboarding_metrics_subtitle">Yabelana ngedatha yokusetshenziswa kohlelo neyokusebenza ne-Google</string>
   <string name="onboarding_metrics_description">Ukusiza ukugcina nokuthuthukisa uhlelo lokusebenza, enye idatha ehlonziwe enomkhawulo emayelana nokusebenza kohlelo lokusebenza nokusetshenziswa yabiwa ne-Google. Le datha ayikuhlonzi. %1$s</string>
@@ -214,4 +215,11 @@
   <string name="share_upload_status_negative">Okubi</string>
   <string name="share_upload_status_likely">Kungenzeka</string>
   <string name="share_diagnosis_progress_tracker">Isinyathelo esingu-%1$d kwezingu-%2$d</string>
+  <string name="see_history_device_authentication_title">Qinisekisa ukuthi nguwe</string>
+  <string name="update_app_dialog_title">Buyekeza i-app yakho</string>
+  <string name="update_app_dialog_content">Buyekezela kuhlobo lwakamuva Lwezaziso Zokuhlangabezana ukuze uqedele ukwabelana ngemiphumela yakho yokuhlolwa.</string>
+  <string name="btn_update">Buyekeza</string>
+  <string name="try_again_later_error_message">Kunento engahambanga kahle. Zama futhi emahoreni ambalwa.</string>
+  <string name="en_turndown_for_area_title">Iziphathimandla zakho Zezempilo azisasekeli Izaziso Zokuhlangabezana</string>
+  <string name="en_turndown_title">Izaziso Zokuhlangabezana zivaliwe</string>
 </resources>

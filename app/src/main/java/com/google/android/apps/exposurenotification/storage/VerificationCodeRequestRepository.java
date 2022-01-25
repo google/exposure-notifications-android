@@ -42,7 +42,7 @@ public class VerificationCodeRequestRepository {
    */
   @VisibleForTesting
   @WorkerThread
-  List<VerificationCodeRequestEntity> getAll() {
+  public List<VerificationCodeRequestEntity> getAll() {
     return verificationCodeRequestDao.getAll();
   }
 
@@ -78,14 +78,14 @@ public class VerificationCodeRequestRepository {
   }
 
   /**
-   * Delete obsolete VerificationCodeRequestEntities if any (i.e. those sent earlier than a given
+   * Delete outdated VerificationCodeRequestEntities if any (i.e. those sent earlier than a given
    * threshold).
    *
    * @param earliestThreshold delete all the {@link VerificationCodeRequestEntity}s sent earlier
    *                          than this threshold value
    */
   @WorkerThread
-  public void deleteObsoleteRequestsIfAny(Instant earliestThreshold) {
+  public void deleteOutdatedRequestsIfAny(Instant earliestThreshold) {
     verificationCodeRequestDao.deleteOlderThanThreshold(earliestThreshold);
   }
 
@@ -132,6 +132,14 @@ public class VerificationCodeRequestRepository {
       Instant earliestThreshold, int numOfRequestsToRetrieve) {
     return verificationCodeRequestDao
         .getLastXRequestsNotOlderThanThresholdAsync(earliestThreshold, numOfRequestsToRetrieve);
+  }
+
+  /**
+   * Delete all stored requests.
+   */
+  @AnyThread
+  public ListenableFuture<Void> deleteVerificationCodeRequestEntities() {
+    return verificationCodeRequestDao.deleteAll();
   }
 
 }

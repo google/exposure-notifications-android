@@ -15,6 +15,7 @@
   <string name="btn_verify">ચકાસો</string>
   <string name="btn_no_thanks">ના, આભાર</string>
   <string name="btn_share">શેર કરો</string>
+  <string name="btn_close_app">ઍપ બંધ કરો</string>
   <string name="learn_more">વધુ જાણો</string>
   <string name="home_tab_settings_text">સેટિંગ</string>
   <string name="notification_channel_name">સંભવિત COVID-19 એક્સપોઝર</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">એક્સપોઝર નોટિફિકેશન ચાલુ કરવા માટે જરૂરી પરવાનગીઓ</string>
   <string name="onboarding_finish_title">એક્સપોઝર નોટિફિકેશન ચાલુ કરવા માટે જરૂરી પરવાનગીઓ સાથે આગળ વધો</string>
   <string name="onboarding_exposure_notifications_title">એક્સપોઝર નોટિફિકેશન ચાલુ કરો</string>
-  <string name="onboarding_exposure_notifications_detail">જ્યારે તમે COVID-19ની ઝપેટમાં આવેલી કોઈ વ્યક્તિના સંપર્કમાં આવો ત્યારે સૂચના મેળવો.
+  <string name="onboarding_exposure_notifications_description">જ્યારે તમે COVID-19ની ઝપેટમાં આવેલી કોઈ વ્યક્તિના સંપર્કમાં આવો ત્યારે સૂચના મેળવો.
     \n\nનજીકમાં રહેલા અન્ય ફોન સાથે રેન્ડમ IDs સુરક્ષિત રીતે એકત્રિત અને શેર કરવા માટે, તમારો ફોન બ્લૂટૂથનો ઉપયોગ કરે છે.
-    \n\nતમારા જાહેર આરોગ્ય અધિકારી દ્વારા સેટ કરેલા પેરામીટરના આધારે, તમને સૂચના આપવી કે નહીં તે નક્કી કરવા માટે, એક્સપોઝર સાથે સંકળાયેલી તારીખ, અવધિ અને સિગ્નલની પ્રબળતાનો ઉપયોગ કરવામાં આવશે.
-    \n\nજો તમને તમારા પરીક્ષણનું પરિણામ ધરાવતો SMS મળે, તો તમને તમારા આરોગ્ય અધિકારી સાથે નિદાન શેર કરવા માટેનું નોટિફિકેશન મળી શકે છે.</string>
+    \n\nતમારા જાહેર આરોગ્ય અધિકારી દ્વારા સેટ કરેલા પેરામીટરના આધારે, તમને સૂચના આપવી કે નહીં તે નક્કી કરવા માટે, સંભવિત એક્સપોઝર સાથે સંકળાયેલી તારીખ, અવધિ અને સંકેતની પ્રબળતાનો ઉપયોગ કરવામાં આવશે.
+    \n\nજો તમને તમારા પરીક્ષણનું પરિણામ ધરાવતો SMS મળે, તો તમને તમારા આરોગ્ય અધિકારી સાથે નિદાન શેર કરવા માટેનું નોટિફિકેશન મળી શકે છે. %1$s</string>
   <string name="onboarding_metrics_title">આ ઍપને બહેતર બનાવવામાં સહાય કરો</string>
   <string name="onboarding_metrics_subtitle">Google સાથે ઍપના વપરાશ અને કાર્યપ્રદર્શનનો ડેટા શેર કરો</string>
   <string name="onboarding_metrics_description">આ ઍપની જાળવણી તેમજ બહેતર બનાવવામાં સહાય કરવા માટે, Google સાથે ઍપના કાર્યપ્રદર્શન અને વપરાશ વિશેનો મર્યાદિત પ્રમાણમાં અમુક છુપાવેલી ઓળખાણવાળો ડેટા શેર કરવામાં આવે છે. આ ડેટા તમારી ઓળખ છતી કરી શકશે નહીં. %1$s</string>
@@ -214,4 +215,11 @@
   <string name="share_upload_status_negative">નેગેટિવ</string>
   <string name="share_upload_status_likely">શક્યતા છે</string>
   <string name="share_diagnosis_progress_tracker">%2$dમાંથી %1$d પગલું</string>
+  <string name="see_history_device_authentication_title">આ તમે જ છો તેનો પુરાવો આપો</string>
+  <string name="update_app_dialog_title">તમારી ઍપ અપડેટ કરો</string>
+  <string name="update_app_dialog_content">તમારા પરીક્ષણના પરિણામો શેર કરવાનું સમાપ્ત કરવા માટે, એક્સપોઝર નોટિફિકેશનના એકદમ નવા વર્ઝન પર અપડેટ કરો.</string>
+  <string name="btn_update">અપડેટ કરો</string>
+  <string name="try_again_later_error_message">કંઈક ખોટું થયું. થોડા કલાકમાં ફરી પ્રયાસ કરો.</string>
+  <string name="en_turndown_for_area_title">તમારા આરોગ્ય અધિકારી દ્વારા અપાતી એક્સપોઝર નોટિફિકેશનની સુવિધા હવે તમારા વિસ્તારમાં બંધ કરવામાં આવી છે</string>
+  <string name="en_turndown_title">એક્સપોઝર નોટિફિકેશનની સુવિધા બંધ કરવામાં આવી છે</string>
 </resources>

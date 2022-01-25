@@ -14,4 +14,6 @@
   <string name="share_history_delete_test_result_detail">Ваш результат тесту на COVID-19 від %1$s буде видалено з телефона.</string>
   <string name="sms_intercept_notice_card_title">Вам можуть нагадати поділитися результатом</string>
   <string name="sms_intercept_notice_card_content">Якщо отримаєте позитивний тест і підтверджене SMS</string>
+  <string name="en_turndown_contents">Органи охорони здоров’я змінюють стратегії реагування на COVID-19, тому Сповіщення про ризик зараження більше не підтримуються. Дякуємо, що користувалися сервісом і допомагали захищати свою спільноту.</string>
+  <string name="en_turndown_for_area_contents">Ваш орган охорони здоров’я змінює стратегію реагування на COVID-19, тому Сповіщення про ризик зараження більше не підтримуються. Дякуємо, що користувалися сервісом і допомагали захищати свою спільноту.</string>
 </resources>

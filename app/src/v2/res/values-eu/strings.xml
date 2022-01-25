@@ -22,4 +22,7 @@
   <string name="share_positive_diagnosis_card_content">Partekatu probaren emaitza COVID-19aren hedapena gelditzen laguntzeko</string>
   <string name="share_app_card_content">Partekatu aplikazio hau zure komunitatea hobeto babesteko</string>
   <string name="how_en_works_card_content">Lortu informazio gehiago esposizioari buruzko jakinarazpenen funtzionamenduari buruz</string>
+  <string name="en_turndown_for_area_contents">Zure osasun-agintaritza COVID-19ari aurre egiteko duen modua egokitzen ari denez, aurrerantzean ez du onartuko aplikazioa. Eskerrik asko aplikazioa erabiltzeagatik eta zure komunitatea babesteagatik.</string>
+  <string name="en_turndown_contents">Osasun-agintaritzak COVID-19ari aurre egiteko duten modua egokitzen ari direnez, aurrerantzean ez dute onartuko aplikazioa. Eskerrik asko aplikazioa erabiltzeagatik eta zure komunitatea babesteagatik.</string>
+  <string name="en_turndown_see_test_results_card_content">Esposizioari buruzko jakinarazpenen sistemara aurrez kargatutako proba-emaitzak ikusten jarrai dezakezu</string>
 </resources>

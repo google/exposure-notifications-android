@@ -18,20 +18,27 @@
 package com.google.android.apps.exposurenotification.exposure;
 
 import android.content.Context;
+import androidx.annotation.AnyThread;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.work.WorkManager;
 import com.google.android.apps.exposurenotification.common.NotificationHelper;
+import com.google.android.apps.exposurenotification.common.Qualifiers.BackgroundExecutor;
 import com.google.android.apps.exposurenotification.common.StringUtils;
 import com.google.android.apps.exposurenotification.common.time.Clock;
+import com.google.android.apps.exposurenotification.nearby.ExposureInformationHelper;
 import com.google.android.apps.exposurenotification.restore.RestoreNotificationWorker;
 import com.google.android.apps.exposurenotification.riskcalculation.ExposureClassification;
 import com.google.android.apps.exposurenotification.storage.ExposureCheckEntity;
 import com.google.android.apps.exposurenotification.storage.ExposureCheckRepository;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.BadgeStatus;
+import com.google.common.util.concurrent.FluentFuture;
+import com.google.common.util.concurrent.Futures;
+import com.google.common.util.concurrent.ListenableFuture;
 import dagger.hilt.android.lifecycle.HiltViewModel;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
 import javax.inject.Inject;
 
 /**
@@ -44,24 +51,30 @@ public class ExposureHomeViewModel extends ViewModel {
   private static final int NUM_CHECKS_TO_DISPLAY = 5;
 
   private final ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
+  private final ExposureInformationHelper exposureInformationHelper;
   private final NotificationHelper notificationHelper;
   private final LiveData<List<ExposureCheckEntity>> getExposureChecksLiveData;
   private final Clock clock;
   private final WorkManager workManager;
+  private final ExecutorService backgroundExecutor;
 
   @Inject
   public ExposureHomeViewModel(
       ExposureNotificationSharedPreferences exposureNotificationSharedPreferences,
+      ExposureInformationHelper exposureInformationHelper,
       ExposureCheckRepository exposureCheckRepository,
       NotificationHelper notificationHelper,
       Clock clock,
-      WorkManager workManager) {
+      WorkManager workManager,
+      @BackgroundExecutor ExecutorService backgroundExecutor) {
     this.exposureNotificationSharedPreferences = exposureNotificationSharedPreferences;
+    this.exposureInformationHelper = exposureInformationHelper;
     this.notificationHelper = notificationHelper;
     getExposureChecksLiveData =
         exposureCheckRepository.getLastXExposureChecksLiveData(NUM_CHECKS_TO_DISPLAY);
     this.clock = clock;
     this.workManager = workManager;
+    this.backgroundExecutor = backgroundExecutor;
   }
 
   public LiveData<ExposureClassification> getExposureClassificationLiveData() {
@@ -106,17 +119,26 @@ public class ExposureHomeViewModel extends ViewModel {
   }
 
   /**
-   * Cancels any pending job to notify user to reactivate exposure notification
-   * and dismiss notification if currently showing.
+   * Cancels any pending job to notify users to reactivate exposure notification and dismisses
+   * restore notification if currently showing.
    */
-  public void dismissReactivateExposureNotificationAppNotificationAndPendingJob(Context context) {
-    notificationHelper.dismissReActivateENNotificationIfShowing(context);
-    RestoreNotificationWorker.cancelRestoreNotificationWorkIfExisting(workManager);
+  public ListenableFuture<Void> dismissReactivateENAppNotificationAndPendingJob(Context context) {
+
+    return FluentFuture.from(
+        RestoreNotificationWorker.cancelRestoreNotificationWorkIfExisting(workManager).getResult())
+        .transformAsync(unused -> {
+          notificationHelper.dismissReActivateENNotificationIfShowing(context);
+          return Futures.immediateVoidFuture();
+        }, backgroundExecutor);
   }
 
   public String getDaysFromStartOfExposureString(ExposureClassification exposureClassification,
       Context context) {
     return StringUtils.daysFromStartOfExposure(exposureClassification, clock.now(), context);
+  }
+
+  public boolean isActiveExposurePresent() {
+    return exposureInformationHelper.isActiveExposurePresent();
   }
 
 }

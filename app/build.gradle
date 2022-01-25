@@ -179,6 +179,7 @@ dependencies {
     }
 
     implementation 'androidx.appcompat:appcompat:1.4.0-alpha03'
+    implementation "androidx.biometric:biometric:1.1.0"
     implementation "androidx.cardview:cardview:1.0.0"
     implementation 'androidx.concurrent:concurrent-futures:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
@@ -196,7 +197,8 @@ dependencies {
     implementation 'com.google.android.gms:play-services-base:17.4.0'
     implementation 'com.google.android.gms:play-services-basement:17.4.0'
     implementation 'com.google.android.gms:play-services-tasks:17.2.0'
-    implementation 'com.google.android.material:material:1.5.0-alpha03'
+    implementation 'com.google.android.material:material:1.5.0-beta01'
+    implementation 'com.google.android.play:core:1.10.2'
     implementation 'com.google.auto.value:auto-value-annotations:1.7.3'
     implementation 'com.google.dagger:hilt-android:2.38.1'
     implementation 'com.google.firebase:firebase-firestore:21.6.0'
@@ -231,7 +233,7 @@ dependencies {
     testImplementation 'com.google.truth:truth:1.0.1'
     testImplementation 'commons-io:commons-io:2.6'
     testImplementation 'junit:junit:4.13.2'
-    testImplementation 'org.robolectric:robolectric:4.3.1'
+    testImplementation 'org.robolectric:robolectric:4.6.1'
     testImplementation 'androidx.arch.core:core-testing:2.1.0'
     testImplementation ('org.threeten:threetenbp:1.2.4'){
         exclude group:'com.jakewharton.threetenabp', module:'threetenabp'

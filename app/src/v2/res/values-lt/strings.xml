@@ -22,4 +22,7 @@
   <string name="share_positive_diagnosis_card_content">Bendrinkite testo rezultatus, kad sustabdytumėte COVID-19 platinimą</string>
   <string name="share_app_card_content">Bendrinkite šią programą, kad geriau apsaugotumėte bendruomenę</string>
   <string name="how_en_works_card_content">Sužinokite daugiau apie tai, kaip veikia „Pranešimai apie galimą kontaktą su užsikrėtusiu asmeniu“</string>
+  <string name="en_turndown_for_area_contents">Jūsų sveikatos institucijai ėmusis kitų kovos su COVID-19 būdų, joje ši programa nebepalaikoma. Dėkojame, kad naudojotės programa, taip padėdami apsaugoti bendruomenę.</string>
+  <string name="en_turndown_contents">Jūsų sveikatos institucijoms ėmusis kitų kovos su COVID-19 būdų, jose ši programa nebepalaikoma. Dėkojame, kad naudojotės programa, taip padėdami apsaugoti bendruomenę.</string>
+  <string name="en_turndown_see_test_results_card_content">Vis dar galite peržiūrėti testų rezultatus, anksčiau įkeltus į pranešimų apie galimą kontaktą su užsikrėtusiu asmeniu sistemą</string>
 </resources>

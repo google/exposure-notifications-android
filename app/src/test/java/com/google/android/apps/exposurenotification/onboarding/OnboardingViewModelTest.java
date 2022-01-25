@@ -18,6 +18,7 @@
 package com.google.android.apps.exposurenotification.onboarding;
 
 import static com.google.common.truth.Truth.assertThat;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.robolectric.Shadows.shadowOf;
@@ -27,6 +28,7 @@ import android.os.Bundle;
 import androidx.test.core.app.ApplicationProvider;
 import androidx.work.WorkManager;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.migrate.MigrationManager;
 import com.google.android.apps.exposurenotification.nearby.ExposureNotificationClientWrapper;
 import com.google.android.apps.exposurenotification.nearby.PackageConfigurationHelper;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
@@ -48,12 +50,15 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
+import org.robolectric.annotation.LooperMode;
+import org.robolectric.annotation.LooperMode.Mode;
 
 /**
  * Tests of {@link OnboardingViewModel}.
  */
 @HiltAndroidTest
 @RunWith(RobolectricTestRunner.class)
+@LooperMode(Mode.LEGACY)
 @Config(application = HiltTestApplication.class, shadows = {FakeShadowResources.class})
 public class OnboardingViewModelTest {
 
@@ -75,6 +80,9 @@ public class OnboardingViewModelTest {
   @Mock
   ExposureNotificationClientWrapper exposureNotificationClientWrapper;
 
+  @Mock
+  MigrationManager migrationManager;
+
   OnboardingViewModel onboardingViewModel;
 
   @Before
@@ -84,7 +92,8 @@ public class OnboardingViewModelTest {
         exposureNotificationClientWrapper,
         exposureNotificationSharedPreferences,
         privateAnalyticsEnabledProvider,
-        workManager);
+        workManager,
+        migrationManager);
     // Provide an empty package configuration by default.
     when(exposureNotificationClientWrapper.getPackageConfiguration())
         .thenReturn(Tasks.forResult(new PackageConfigurationBuilder().build()));
@@ -122,7 +131,8 @@ public class OnboardingViewModelTest {
         exposureNotificationClientWrapper,
         exposureNotificationSharedPreferences,
         privateAnalyticsEnabledProvider,
-        workManager);
+        workManager,
+        migrationManager);
 
     assertThat(onboardingViewModel.isResultOkSet()).isFalse();
   }
@@ -155,7 +165,8 @@ public class OnboardingViewModelTest {
         exposureNotificationClientWrapper,
         exposureNotificationSharedPreferences,
         privateAnalyticsEnabledProvider,
-        workManager);
+        workManager,
+        migrationManager);
     AtomicReference<Optional<Boolean>> showAppAnalytics = new AtomicReference<>(Optional.absent());
     onboardingViewModel.getShouldShowAppAnalyticsLiveData()
         .observeForever(showAppAnalytics::set);
@@ -178,7 +189,8 @@ public class OnboardingViewModelTest {
         exposureNotificationClientWrapper,
         exposureNotificationSharedPreferences,
         privateAnalyticsEnabledProvider,
-        workManager);
+        workManager,
+        migrationManager);
     AtomicReference<Optional<Boolean>> showAppAnalytics = new AtomicReference<>(Optional.absent());
     onboardingViewModel.getShouldShowAppAnalyticsLiveData()
         .observeForever(showAppAnalytics::set);
@@ -199,7 +211,8 @@ public class OnboardingViewModelTest {
         exposureNotificationClientWrapper,
         exposureNotificationSharedPreferences,
         privateAnalyticsEnabledProvider,
-        workManager);
+        workManager,
+        migrationManager);
     AtomicReference<Optional<Boolean>> showAppAnalytics = new AtomicReference<>(Optional.absent());
     onboardingViewModel.getShouldShowAppAnalyticsLiveData()
         .observeForever(showAppAnalytics::set);
@@ -212,4 +225,21 @@ public class OnboardingViewModelTest {
     assertThat(showAppAnalyticsOptional.get()).isTrue();
   }
 
+  @Test
+  public void onboardAsMigratingUser_notOnboardedMigratingUser_doesNotMarkMigratingUserAsOnboarded() {
+    when(migrationManager.shouldOnboardAsMigratingUser(context)).thenReturn(false);
+
+    onboardingViewModel.maybeMarkMigratingUserAsOnboarded(context);
+
+    verify(migrationManager, never()).markMigratingUserAsOnboarded();
+  }
+
+  @Test
+  public void onboardAsMigratingUser_onboardedMigratingUser_marksMigratingUserAsOnboardede() {
+    when(migrationManager.shouldOnboardAsMigratingUser(context)).thenReturn(true);
+
+    onboardingViewModel.maybeMarkMigratingUserAsOnboarded(context);
+
+    verify(migrationManager).markMigratingUserAsOnboarded();
+  }
 }

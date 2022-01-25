@@ -15,6 +15,7 @@
   <string name="btn_verify">সত্যাপন কৰক</string>
   <string name="btn_no_thanks">নালাগে, ধন্যবাদ</string>
   <string name="btn_share">শ্বেয়াৰ কৰক</string>
+  <string name="btn_close_app">এপ্‌টো বন্ধ কৰক</string>
   <string name="learn_more">অধিক জানক</string>
   <string name="home_tab_settings_text">ছেটিং</string>
   <string name="notification_channel_name">সম্ভাব্য COVID-19ৰ এক্সপ’জাৰ</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">এক্সপ’জাৰ ন’টিফিকেশ্বন সক্ষম কৰিবলৈ লগা অনুমতি</string>
   <string name="onboarding_finish_title">এক্সপ’জাৰ ন’টিফিকেশ্বন সক্ষম কৰিবলৈ লগা অনুমতিসমূহৰ বাকী থকা অংশ</string>
   <string name="onboarding_exposure_notifications_title">এক্সপ’জাৰ ন’টিফিকেশ্বন অন কৰক</string>
-  <string name="onboarding_exposure_notifications_detail">COVID-19ত আক্ৰান্ত হোৱা বুলি জনোৱা কোনো লোকৰ কাষলৈ আহিলে আপুনি জাননী লাভ কৰক।
+  <string name="onboarding_exposure_notifications_description">COVID-19ত আক্ৰান্ত হোৱা বুলি জনোৱা কোনো লোকৰ কাষলৈ আহিলে আপুনি জাননী লাভ কৰক।
     \n\nযাদৃচ্ছিক আইডিসমূহ সুৰক্ষিতভাৱে সংগ্ৰহ আৰু ওচৰত থকা অন্য ফ’নসমূহৰ সৈতে শ্বেয়াৰ কৰিবলৈ আপোনাৰ ফ’নটোৱে ব্লুটুথ ব্যৱহাৰ কৰে।
     \n\nআপোনাৰ ৰাজহুৱা স্বাস্থ্য কৰ্তৃপক্ষই নিৰ্ধাৰণ কৰা পেৰামিটাৰৰ ওপৰত ভিত্তি কৰি আপোনাক সংস্পৰ্শলৈ অহাৰ বিষয়ে জনোৱা হ’বনে নাই তাৰ সিদ্ধান্ত ল’বলৈ সম্ভাব্য কোনো সংস্পৰ্শৰ সৈতে জড়িত হৈ থকা তাৰিখ, সময় অৱধি আৰু ছিগনেলৰ ক্ষমতা ব্যৱহাৰ কৰা হ’ব।
-    \n\nযদি আপুনি আপোনাৰ পৰীক্ষাৰ ফলাফলৰ সৈতে এটা এছএমএছ লাভ কৰে, তেন্তে আপুনি আপোনাৰ স্বাস্থ্য কৰ্তৃপক্ষৰ সৈতে ডায়েগন’ছিছ শ্বেয়াৰ কৰিবলৈ জাননী পাব পাৰে।</string>
+    \n\nযদি আপুনি আপোনাৰ পৰীক্ষাৰ ফলাফলৰ সৈতে এটা এছএমএছ লাভ কৰে, তেন্তে আপুনি আপোনাৰ স্বাস্থ্য কৰ্তৃপক্ষৰ সৈতে ডায়েগন’ছিছ শ্বেয়াৰ কৰিবলৈ জাননী পাব পাৰে।%1$s</string>
   <string name="onboarding_metrics_title">এই এপ্‌টো অধিক ভাল কৰাত সহায় কৰক</string>
   <string name="onboarding_metrics_subtitle">Googleৰ সৈতে এপৰ ব্যৱহাৰ আৰু কাৰ্যদক্ষতাৰ ডেটা শ্বেয়াৰ কৰক</string>
   <string name="onboarding_metrics_description">এপ্‌টো চলাই ৰখা আৰু উন্নত কৰাত সহায় কৰিবলৈ, এপ্‌টোৰ কাৰ্যদক্ষতা আৰু ব্যৱহাৰ সম্পৰ্কীয় কিছুমান সীমিত ব্যক্তিগত তথ্য প্ৰকাশ নোপোৱা ডেটা Googleৰ সৈতে শ্বেয়াৰ কৰা হয়। এই ডেটাখিনিয়ে আপোনাক চিনাক্ত নকৰে। %1$s</string>
@@ -214,4 +215,11 @@
   <string name="share_upload_status_negative">ঋণাত্মক</string>
   <string name="share_upload_status_likely">সম্ভৱতঃ</string>
   <string name="share_diagnosis_progress_tracker">%2$d টাৰ ভিতৰত %1$d নম্বৰ পদক্ষেপ</string>
+  <string name="see_history_device_authentication_title">এয়া আপুনিয়েই বুলি সত্যাপন কৰক</string>
+  <string name="update_app_dialog_title">আপোনাৰ এপ্‌টো আপডে’ট কৰক</string>
+  <string name="update_app_dialog_content">আপোনাৰ পৰীক্ষাৰ ফলাফল সম্পূর্ণ কৰিবলৈ এক্সপ’জাৰ ন’টিফিকেশ্বনৰ শেহতীয়া সংস্কৰণটোলৈ আপডে\'ট কৰক।</string>
+  <string name="btn_update">আপডে’ট কৰক</string>
+  <string name="try_again_later_error_message">কিবা ভুল হ’ল। কেইঘণ্টামানৰ পাছত আকৌ চেষ্টা কৰক।</string>
+  <string name="en_turndown_for_area_title">আপোনাৰ স্বাস্থ্য প্ৰাধিকৰণে এক্সপ’জাৰ ন’টিফিকেশ্বন আৰু সমৰ্থন নকৰে</string>
+  <string name="en_turndown_title">এক্সপ’জাৰ ন’টিফিকেশ্বন অফ কৰা হৈছে</string>
 </resources>

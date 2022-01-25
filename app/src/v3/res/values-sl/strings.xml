@@ -14,4 +14,6 @@
   <string name="share_history_delete_test_result_detail">Rezultat testa za COVID-19 z dne %1$s bo izbrisan iz telefona.</string>
   <string name="sms_intercept_notice_card_title">Morda boste prejeli opomnik za deljenje rezultata</string>
   <string name="sms_intercept_notice_card_content">Če ste pozitivni na testu in prejmete preverjen SMS.</string>
+  <string name="en_turndown_contents">Organi za javno zdravje prilagajajo odziv na COVID-19, zato obveščanje o izpostavljenosti ni več podprto. Hvala, ker ste uporabljali storitev in pomagali varovati svojo skupnost.</string>
+  <string name="en_turndown_for_area_contents">Organ za javno zdravje prilagaja odziv na COVID-19, zato ne podpira več obveščanja o izpostavljenosti. Hvala, ker ste uporabljali storitev in pomagali varovati svojo skupnost.</string>
 </resources>

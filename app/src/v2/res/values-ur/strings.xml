@@ -22,4 +22,7 @@
   <string name="share_positive_diagnosis_card_content">COVID-19 کے پھیلاؤ کو روکنے میں مدد کرنے کیلئے اپنے ٹیسٹ کے نتیجے کا اشتراک کریں</string>
   <string name="share_app_card_content">اپنی کمیونٹی کی بہتر حفاظت کیلئے اس ایپ کا اشتراک کریں</string>
   <string name="how_en_works_card_content">ایکسپوژر نوٹیفیکیشنز کے کام کرنے طریقے کے بارے میں مزید جانیں</string>
+  <string name="en_turndown_for_area_contents">چونکہ آپ کی ہیلتھ اتھارٹی اپنے COVID-19 سے متعلق ردعمل کو موافق بناتی ہے اس لیے یہ اس ایپ کو اب مزید سپورٹ نہیں کر رہی ہے۔ ایپ کا استعمال کرنے کے لیے اور اپنی کمیونٹی کی حفاظت میں مدد کے لیے آپ کا شکریہ۔</string>
+  <string name="en_turndown_contents">چونکہ ہیلتھ اتھارٹیز اپنے COVID-19 سے متعلق ردعمل کو موافق بناتی ہیں اس لیے یہ ایپ اب مزید تعاون یافتہ نہیں ہے۔ ایپ کا استعمال کرنے کے لیے اور اپنی کمیونٹی کی حفاظت میں مدد کے لیے آپ کا شکریہ۔</string>
+  <string name="en_turndown_see_test_results_card_content">آپ اب بھی ٹیسٹ کے نتائج دیکھ سکتے ہیں جنہیں آپ نے پہلے ایکسپوژر نوٹیفیکیشنز میں اپ لوڈ کیا ہے</string>
 </resources>

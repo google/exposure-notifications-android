@@ -180,4 +180,8 @@
 
   <!-- Checkbox text shown on the "Get a verification code" screen of the upload flow. This checkbox is for users to confirm that they have had a positive COVID-19 test within the past 14 days. This screen is displayed only if Self-Report is enabled. -->
   <string name="self_report_checkbox">@string/enx_webReportLegalMessage</string>
+
+  <!-- Message provided by Health Authority in case of the Exposure Notifications being turned down by this Health Authority. For V2 apps, this message is shown on the home screen and in the upload flow. For V3 apps, it is shown in the turndown notice and in the upload flow. -->
+  <string name="turndown_agency_message">@string/enx_agencyTurndownMessage</string>
+
 </resources>

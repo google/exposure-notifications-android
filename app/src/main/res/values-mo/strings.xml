@@ -15,6 +15,7 @@
   <string name="btn_verify">Confirmați</string>
   <string name="btn_no_thanks">Nu, mulțumesc</string>
   <string name="btn_share">Trimiteți</string>
+  <string name="btn_close_app">Închideți aplicația</string>
   <string name="learn_more">Aflați mai multe</string>
   <string name="home_tab_settings_text">Setări</string>
   <string name="notification_channel_name">Expunere posibilă la COVID-19</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">Sunt necesare permisiuni pentru a activa Notificările privind expunerea</string>
   <string name="onboarding_finish_title">Este necesară confirmarea permisiunilor pentru a activa Notificările privind expunerea</string>
   <string name="onboarding_exposure_notifications_title">Activați Notificările privind expunerea</string>
-  <string name="onboarding_exposure_notifications_detail">Primiți notificări dacă v-ați apropiat de o persoană care a semnalat că este infectată cu COVID-19.
+  <string name="onboarding_exposure_notifications_description">Primiți notificări dacă v-ați apropiat de o persoană care a semnalat că este infectată cu COVID-19.
     \n\nTelefonul dvs. folosește Bluetooth pentru a colecta și a trimite în siguranță ID-uri aleatorii la alte telefoane din apropiere.
     \n\nData, durata și puterea semnalului asociate unei posibile expuneri vor fi folosite pentru a se stabili dacă veți primi notificări pe baza parametrilor prevăzuți de autoritatea dvs. de sănătate publică.
-    \n\nPuteți primi o notificare privind trimiterea unui diagnostic autorității de sănătate dacă primiți un SMS cu rezultatul testului.</string>
+    \n\nPuteți primi o notificare privind trimiterea unui diagnostic autorității în domeniul sănătății dacă primiți un SMS cu rezultatul testului. %1$s</string>
   <string name="onboarding_metrics_title">Ajutați-ne să îmbunătățim aplicația</string>
   <string name="onboarding_metrics_subtitle">Trimiteți datele despre performanță și utilizare la Google</string>
   <string name="onboarding_metrics_description">Pentru a ne ajuta să întreținem și să îmbunătățim aplicația, anumite date limitate cu informațiile de identificare eliminate despre performanța și utilizarea aplicației se trimit la Google. Aceste date nu vă identifică. %1$s</string>
@@ -216,4 +217,11 @@
   <string name="share_upload_status_negative">Negativ</string>
   <string name="share_upload_status_likely">Probabil</string>
   <string name="share_diagnosis_progress_tracker">Pasul %1$d din %2$d</string>
+  <string name="see_history_device_authentication_title">Confirmați-vă identitatea</string>
+  <string name="update_app_dialog_title">Actualizați aplicația</string>
+  <string name="update_app_dialog_content">Actualizați la cea mai recentă versiune a aplicației Notificări privind expunerea pentru a finaliza trimiterea rezultatelor testului.</string>
+  <string name="btn_update">Actualizați</string>
+  <string name="try_again_later_error_message">A apărut o eroare. Încercați din nou peste câteva ore.</string>
+  <string name="en_turndown_for_area_title">Autoritatea dvs. în domeniul sănătății nu mai acceptă Notificări privind expunerea</string>
+  <string name="en_turndown_title">Notificările privind expunerea au fost dezactivate</string>
 </resources>

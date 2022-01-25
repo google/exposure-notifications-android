@@ -14,4 +14,6 @@
   <string name="share_history_delete_test_result_detail">Covid-19-testresultatet ditt fra %1$s blir slettet fra telefonen.</string>
   <string name="sms_intercept_notice_card_title">Du bli minnet på om å dele resultatet</string>
   <string name="sms_intercept_notice_card_content">Hvis du tester positivt og får en bekreftet SMS</string>
+  <string name="en_turndown_contents">Siden helsemyndighetene har tilpasset covid-19-tiltakene, støttes ikke eksponeringsvarsler lenger. Takk for at du har brukt tjenesten, og for at du bidrar til å beskytte lokalsamfunnet ditt.</string>
+  <string name="en_turndown_for_area_contents">Siden helsemyndighetene har tilpasset covid-19-tiltakene, støtter de ikke eksponeringsvarsler lenger. Takk for at du har brukt tjenesten, og for at du bidrar til å beskytte lokalsamfunnet ditt.</string>
 </resources>

@@ -15,6 +15,7 @@
   <string name="btn_verify">Verificēt</string>
   <string name="btn_no_thanks">Nē, paldies</string>
   <string name="btn_share">Kopīgot</string>
+  <string name="btn_close_app">Aizvērt lietotni</string>
   <string name="learn_more">Uzzināt vairāk</string>
   <string name="home_tab_settings_text">Iestatījumi</string>
   <string name="notification_channel_name">Iespējama saskare ar Covid-19</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">Atļaujas, kas nepieciešamas, lai iespējotu paziņojumus par saskari</string>
   <string name="onboarding_finish_title">Citas atļaujas, kas nepieciešamas, lai iespējotu paziņojumus par saskari</string>
   <string name="onboarding_exposure_notifications_title">Paziņojumu par saskari ieslēgšana</string>
-  <string name="onboarding_exposure_notifications_detail">Saņemiet paziņojumu, ja esat bijis tuvumā personai, kas ir ziņojusi par inficēšanos ar Covid-19.
+  <string name="onboarding_exposure_notifications_description">Saņemiet paziņojumu, ja esat bijis tuvumā personai, kas ir ziņojusi par inficēšanos ar Covid-19.
     \n\nJūsu tālrunī tiek izmantots Bluetooth savienojums, lai droši vāktu un kopīgotu nejauši izveidotos ID ar citiem tuvumā esošiem tālruņiem.
     \n\nŅemot vērā iespējamās saskares datumu, ilgumu un signāla stiprumu, atbilstoši jūsu veselības aizsardzības iestādes iestatītajiem parametriem tiks noteikts, vai jums paziņot.
-    \n\nJa saņemat īsziņu ar savu testa rezultātu, jums var tikt parādīts paziņojums ar aicinājumu kopīgot diagnozi ar savu veselības aizsardzības iestādi.</string>
+    \n\nJa saņemat īsziņu ar savu testa rezultātu, jums var tikt parādīts paziņojums ar aicinājumu kopīgot diagnozi ar savu veselības aizsardzības iestādi. %1$s</string>
   <string name="onboarding_metrics_title">Lietotnes uzlabošana</string>
   <string name="onboarding_metrics_subtitle">Kopīgojiet lietotnes izmantojuma un veiktsp. datus ar Google</string>
   <string name="onboarding_metrics_description">Lai palīdzētu uzturēt un uzlabot lietotni, ar uzņēmumu Google tiek kopīgoti noteikti anonimizēti dati par lietotnes veiktspēju un izmantojumu. Šos datus nevar izmantot, lai jūs identificētu. %1$s</string>
@@ -216,4 +217,11 @@
   <string name="share_upload_status_negative">Negatīvs</string>
   <string name="share_upload_status_likely">Iespējams</string>
   <string name="share_diagnosis_progress_tracker">%1$d. darbība no %2$d</string>
+  <string name="see_history_device_authentication_title">Identitātes apstiprināšana</string>
+  <string name="update_app_dialog_title">Lietotnes atjaunināšana</string>
+  <string name="update_app_dialog_content">Lai pabeigtu testa rezultātu kopīgošanu, atjauniniet sistēmu paziņojumiem par saskari uz visjaunāko versiju.</string>
+  <string name="btn_update">Atjaunināt</string>
+  <string name="try_again_later_error_message">Radās kļūda. Mēģiniet vēlreiz pēc dažām stundām.</string>
+  <string name="en_turndown_for_area_title">Jūsu vietējā veselības aizsardzības iestāde vairs neatbalsta sistēmu Paziņojumi par saskari</string>
+  <string name="en_turndown_title">Sistēma “Paziņojumi par saskari” ir izslēgta</string>
 </resources>

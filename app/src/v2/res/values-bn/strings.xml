@@ -22,4 +22,7 @@
   <string name="share_positive_diagnosis_card_content">আপনার পরীক্ষার ফলাফল শেয়ার করে COVID-19 আটকাতে সাহায্য করুন</string>
   <string name="share_app_card_content">আপনার কমিউনিটিকে আরও ভালভাবে সুরক্ষিত রাখতে এই অ্যাপ শেয়ার করুন</string>
   <string name="how_en_works_card_content">Exposure Notifications কীভাবে কাজ করে সেই সম্পর্কে আরও জানুন</string>
+  <string name="en_turndown_for_area_contents">আপনার স্বাস্থ্য কর্তৃপক্ষ এই অ্যাপের তথ্য আর গ্রহণ করছেন না, কারণ তারা COVID-19 সংক্রান্ত প্রতিক্রিয়াতে প্রয়োজনীয় পরিবর্তন করেছেন। এই অ্যাপ ব্যবহার করার জন্য এবং আপনার কমিউনিটি সুরক্ষিত রাখতে সাহায্য করার জন্য আপনাকে ধন্যবাদ।</string>
+  <string name="en_turndown_contents">স্বাস্থ্য কর্তৃপক্ষ যেহেতু COVID-19 সংক্রান্ত প্রতিক্রিয়াতে প্রয়োজনীয় পরিবর্তন করেছেন, তাই এই অ্যাপ আর কাজ করবে না। এই অ্যাপ ব্যবহার করার জন্য এবং আপনার কমিউনিটি সুরক্ষিত রাখতে সাহায্য করার জন্য আপনাকে ধন্যবাদ।</string>
+  <string name="en_turndown_see_test_results_card_content">Exposure Notifications-এ আপনার আগে আপলোড করা পরীক্ষার ফলাফল এখনও দেখতে পাবেন</string>
 </resources>

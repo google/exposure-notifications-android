@@ -14,4 +14,6 @@
   <string name="share_history_delete_test_result_detail">No tālruņa tiks izdzēsts Covid-19 testa rezultāts, kas iegūts šajā datumā: %1$s.</string>
   <string name="sms_intercept_notice_card_title">Varat saņemt atgādinājumu par rezultāta kopīgošanu</string>
   <string name="sms_intercept_notice_card_content">Ja saņemat verificētu īsziņu ar pozitīvu testa rezultātu</string>
+  <string name="en_turndown_contents">Pielāgojot ar Covid-19 infekcijas izplatību saistītos pasākumus, veselības aizsardzības iestādes vairs neatbalsta sistēmu Paziņojumi par saskari. Paldies, ka izmantojāt šo sistēmu un palīdzējāt aizsargāt apkārtējos!</string>
+  <string name="en_turndown_for_area_contents">Pielāgojot ar Covid-19 infekcijas izplatību saistītos pasākumus, vietējā veselības aizsardzības iestāde vairs neatbalsta sistēmu Paziņojumi par saskari. Paldies, ka izmantojāt šo sistēmu un palīdzējāt aizsargāt apkārtējos!</string>
 </resources>

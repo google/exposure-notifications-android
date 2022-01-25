@@ -14,4 +14,6 @@
   <string name="share_history_delete_test_result_detail">Keputusan ujian COVID-19 anda dari %1$s akan dipadamkan daripada telefon anda.</string>
   <string name="sms_intercept_notice_card_title">Anda mungkin menerima peringatan untuk kongsi keputusan anda</string>
   <string name="sms_intercept_notice_card_content">Jika anda didapati positif dan menerima SMS yang disahkan</string>
+  <string name="en_turndown_contents">Memandangkan pihak berkuasa kesihatan menyesuaikan respons COVID-19 mereka, Pemberitahuan Pendedahan tidak disokong lagi. Terima kasih kerana menggunakan perkhidmatan tersebut dan membantu melindungi komuniti anda.</string>
+  <string name="en_turndown_for_area_contents">Memandangkan pihak berkuasa kesihatan anda menyesuaikan respons COVID-19, mereka tidak menyokong Pemberitahuan Pendedahan lagi. Terima kasih kerana menggunakan perkhidmatan tersebut dan membantu melindungi komuniti anda.</string>
 </resources>

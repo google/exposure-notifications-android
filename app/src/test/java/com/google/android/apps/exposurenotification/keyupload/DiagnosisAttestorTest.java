@@ -399,22 +399,32 @@ public class DiagnosisAttestorTest {
   }
 
   @Test
-  public void codeStatus401_anyErrorCode_throwsVerificationFailureException_withAppError() {
+  public void userReport401_anyErrorCode_throwsVerificationFailureException_withUnauthClientError()
+      throws Exception {
+    doUserReportErrorResponseTest(
+        401,
+        "", // Error code in response ignored.
+        VerificationFailureException.class,
+        UploadError.UNAUTHORIZED_CLIENT);
+  }
+
+  @Test
+  public void codeStatus401_anyErrorCode_throwsVerificationFailureException_withUnauthClientError() {
     doCodeErrorResponseTest(
         401,
         "", // Error code in response ignored.
         VerificationFailureException.class,
-        UploadError.APP_ERROR);
+        UploadError.UNAUTHORIZED_CLIENT);
   }
 
   @Test
-  public void certStatus401_anyErrorCode_throwsVerificationFailureException_withAppError()
+  public void certStatus401_anyErrorCode_throwsVerificationFailureException_withUnauthClientError()
       throws Exception {
     doCertErrorResponseTest(
         401,
         "", // Error code in response ignored.
         VerificationFailureException.class,
-        UploadError.APP_ERROR);
+        UploadError.UNAUTHORIZED_CLIENT);
   }
 
   @Test
@@ -619,8 +629,8 @@ public class DiagnosisAttestorTest {
     assertThat(thrown.getCause()).isInstanceOf(thrownException);
     // The UploadError is also important
     assertThat(errorCodeFrom(thrown)).isEqualTo(expectedErrorCode);
-    // Verify that the RPC call's failure has been logged (and success has not been logged).
-    verify(analyticsLogger, times(1))
+    // Verify that the RPC call's failure has been logged once (and success has not been logged).
+    verify(analyticsLogger)
         .logRpcCallFailureAsync(eq(RpcCallType.RPC_TYPE_VERIFICATION), any());
     verify(analyticsLogger, never())
         .logRpcCallSuccessAsync(eq(RpcCallType.RPC_TYPE_VERIFICATION), anyInt());
@@ -642,8 +652,8 @@ public class DiagnosisAttestorTest {
     assertThat(thrown.getCause()).isInstanceOf(thrownException);
     // The UploadError is also important
     assertThat(errorCodeFrom(thrown)).isEqualTo(expectedErrorCode);
-    // Verify that the RPC call's failure has been logged (and success has not been logged).
-    verify(analyticsLogger, times(1))
+    // Verify that the RPC call's failure has been logged once (and success has not been logged).
+    verify(analyticsLogger)
         .logRpcCallFailureAsync(eq(RpcCallType.RPC_TYPE_VERIFICATION), any());
     verify(analyticsLogger, never())
         .logRpcCallSuccessAsync(eq(RpcCallType.RPC_TYPE_VERIFICATION), anyInt());
@@ -665,8 +675,8 @@ public class DiagnosisAttestorTest {
     assertThat(thrown.getCause()).isInstanceOf(thrownException);
     // The UploadError is also important
     assertThat(errorCodeFrom(thrown)).isEqualTo(expectedErrorCode);
-    // Verify that the RPC call's failure has been logged (and success has not been logged).
-    verify(analyticsLogger, times(1))
+    // Verify that the RPC call's failure has been logged once (and success has not been logged).
+    verify(analyticsLogger)
         .logRpcCallFailureAsync(eq(RpcCallType.RPC_TYPE_VERIFICATION), any());
     verify(analyticsLogger, never())
         .logRpcCallSuccessAsync(eq(RpcCallType.RPC_TYPE_VERIFICATION), anyInt());

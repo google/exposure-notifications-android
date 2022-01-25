@@ -15,6 +15,7 @@
   <string name="btn_verify">Спраўдзіць</string>
   <string name="btn_no_thanks">Не, дзякуй</string>
   <string name="btn_share">Абагуліць</string>
+  <string name="btn_close_app">Закрыць праграму</string>
   <string name="learn_more">Даведацца больш</string>
   <string name="home_tab_settings_text">Налады</string>
   <string name="notification_channel_name">Магчымая рызыка заражэння COVID-19</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">Дазволы, неабходныя для ўключэння Апавяшчэнняў пра рызыку заражэння</string>
   <string name="onboarding_finish_title">Для ўключэння Апавяшчэнняў пра рызыку заражэння патрабуецца падаўжэнне дазволаў</string>
   <string name="onboarding_exposure_notifications_title">Уключыць Апавяшчэнні пра рызыку заражэння</string>
-  <string name="onboarding_exposure_notifications_detail">Атрымлівайце апавяшчэнні, калі вы знаходзіліся побач з асобай, якая паведаміла пра заражэнне COVID-19.
+  <string name="onboarding_exposure_notifications_description">Атрымлівайце апавяшчэнні, калі вы знаходзіліся побач з асобай, якая паведаміла пра заражэнне COVID-19.
     \n\nВаш тэлефон выкарыстоўвае Bluetooth, каб бяспечна збіраць выпадковыя ідэнтыфікатары і абагульваць іх з іншымі тэлефонамі паблізу.
     \n\nДата, працягласць і ўзровень сігналу, звязаныя з рызыкай заражэння, будуць уплываць на тое, ці атрымаеце вы апавяшчэнне на падставе паказчыкаў, зададзеных дзяржаўнымі органамі аховы здароўя.
-    \n\nВы можаце атрымаць апавяшчэнне з заклікам абагуліць звесткі пра дыягназ з дзяржаўнымі органамі аховы здароўя, калі вам прыйдзе SMS з вынікамі тэста.</string>
+    \n\nВы можаце атрымаць апавяшчэнне з заклікам абагуліць звесткі пра дыягназ з дзяржаўнымі органамі аховы здароўя, калі вам прыйдзе SMS з вынікамі тэста.%1$s</string>
   <string name="onboarding_metrics_title">Дапамажыце ўдасканаліць гэту праграму</string>
   <string name="onboarding_metrics_subtitle">Абагульвайце даныя пра выкарыстанне праграмы з Google</string>
   <string name="onboarding_metrics_description">Дзеля падтрымкі і ўдасканалення нашай праграмы частка інфармацыі пра яе прадукцыйнасць і выкарыстанне будзе ананімна абагульвацца з Google. Гэтыя даныя не дазволяць вызначыць вашу асобу. %1$s</string>
@@ -218,4 +219,11 @@
   <string name="share_upload_status_negative">Адмоўны</string>
   <string name="share_upload_status_likely">Верагодны</string>
   <string name="share_diagnosis_progress_tracker">Крок %1$d з %2$d</string>
+  <string name="see_history_device_authentication_title">Пацвердзіце сваю асобу</string>
+  <string name="update_app_dialog_title">Абнавіце праграму</string>
+  <string name="update_app_dialog_content">Абнавіце Апавяшчэнні пра рызыку заражэння да апошняй версіі, каб завяршыць абагульванне вынікаў тэста.</string>
+  <string name="btn_update">Абнавіць</string>
+  <string name="try_again_later_error_message">Нешта пайшло не так. Паўтарыце спробу праз некалькі гадзін.</string>
+  <string name="en_turndown_for_area_title">Орган аховы здароўя вашай мясцовасці больш не падтрымлівае Апавяшчэнні пра рызыку заражэння</string>
+  <string name="en_turndown_title">Апавяшчэнні пра рызыку заражэння выключаны</string>
 </resources>

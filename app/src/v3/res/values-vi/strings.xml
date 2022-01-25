@@ -14,4 +14,6 @@
   <string name="share_history_delete_test_result_detail">Kết quả xét nghiệm COVID-19 của bạn vào %1$s sẽ bị xóa khỏi điện thoại.</string>
   <string name="sms_intercept_notice_card_title">Bạn có thể nhận được lời nhắc chia sẻ kết quả</string>
   <string name="sms_intercept_notice_card_content">Nếu bạn có kết quả xét nghiệm dương tính và nhận được SMS đã xác minh</string>
+  <string name="en_turndown_contents">Vì các cơ quan y tế điều chỉnh biện pháp ứng phó với dịch COVID-19 nên sẽ không hỗ trợ ứng dụng Thông báo tiếp xúc nữa. Cảm ơn bạn đã sử dụng dịch vụ và góp sức bảo vệ cộng đồng.</string>
+  <string name="en_turndown_for_area_contents">Vì cơ quan y tế điều chỉnh biện pháp ứng phó với dịch COVID-19 nên họ không hỗ trợ ứng dụng Thông báo tiếp xúc nữa. Cảm ơn bạn đã sử dụng dịch vụ và góp sức bảo vệ cộng đồng.</string>
 </resources>

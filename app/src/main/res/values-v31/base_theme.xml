@@ -29,7 +29,7 @@
     <item name="colorSurfaceVariant">@color/colorSurfaceVariant</item>
     <item name="android:colorBackground">@color/colorBackground</item>
     <item name="android:statusBarColor">@color/status_bar_color</item>
-    <item name="cardBackgroundColor">?android:colorBackground</item>
+    <item name="cardBackgroundColor">?colorSurface</item>
     <item name="aboutLibrariesStyle">@style/AboutLibrariesStyle</item>
   </style>
 </resources>

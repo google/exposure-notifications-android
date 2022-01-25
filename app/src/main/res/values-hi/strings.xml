@@ -15,6 +15,7 @@
   <string name="btn_verify">जांच के नतीजे की पुष्टि करें</string>
   <string name="btn_no_thanks">नहीं, रहने दें</string>
   <string name="btn_share">शेयर करें</string>
+  <string name="btn_close_app">ऐप्लिकेशन बंद करें</string>
   <string name="learn_more">ज़्यादा जानें</string>
   <string name="home_tab_settings_text">सेटिंग</string>
   <string name="notification_channel_name">COVID-19 से संक्रमित व्यक्ति से हुआ संभावित संपर्क</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">एक्सपोज़र नोटिफ़िकेशन की सुविधा चालू करने के लिए ज़रूरी अनुमतियां</string>
   <string name="onboarding_finish_title">एक्सपोज़र नोटिफ़िकेशन की सुविधा चालू करने के लिए, ज़रूरी अनुमतियों के साथ आगे बढ़ें</string>
   <string name="onboarding_exposure_notifications_title">\'एक्सपोज़र नोटिफ़िकेशन\' चालू करें</string>
-  <string name="onboarding_exposure_notifications_detail">अगर आप COVID-19 से संक्रमित किसी व्यक्ति के आस-पास थे, तो इसकी सूचना पाएं.
+  <string name="onboarding_exposure_notifications_description">COVID-19 से संक्रमित किसी व्यक्ति के संपर्क में आने पर, इसकी सूचना पाएं.
     \n\nआपका फ़ोन, सुरक्षित तरीके से आस-पास मौजूद फ़ोन के रैंडम आईडी इकट्ठा करने और शेयर करने के लिए, ब्लूटूथ का इस्तेमाल करता है.
     \n\nआपके स्वास्थ्य विभाग के मापदंडों के हिसाब से यह तय किया जाएगा कि आपको सूचना दी जानी चाहिए या नहीं. इन मापदंडों में यह जानकारी शामिल है, जैसे कि संक्रमित व्यक्ति के फ़ोन के आस-पास आपका फ़ोन किस दिन था, कितनी देर तक दोनों फ़ोन आस-पास थे, और उस दौरान दोनों फ़ोन के ब्लूटूथ के सिग्नल कितने अच्छे थे.
-    \n\nअगर आपको COVID-19 की आपकी जांच के नतीजे वाला एसएमएस मिलता है, तो आपको स्वास्थ्य विभाग के साथ यह नतीजा शेयर करने की सूचना मिल सकती है.</string>
+    \n\nअगर आपको COVID-19 की आपकी जांच के नतीजे वाला एसएमएस मिलता है, तो आपको स्वास्थ्य विभाग के साथ यह नतीजा शेयर करने की सूचना मिल सकती है. %1$s</string>
   <string name="onboarding_metrics_title">इस ऐप्लिकेशन को बेहतर बनाने में हमारी मदद करें</string>
   <string name="onboarding_metrics_subtitle">ऐप को इस्तेमाल करने और परफ़ॉर्मेंस डेटा Google से शेयर करें</string>
   <string name="onboarding_metrics_description">ऐप्लिकेशन को बेहतर बनाने और इसके रखरखाव में मदद के लिए, ऐप्लिकेशन की परफ़ॉर्मेंस और इसके इस्तेमाल से जुड़ा कुछ सीमित डेटा, Google के साथ शेयर किया जाता है. इस डेटा से आपकी पहचान से जुड़ी जानकारी हटा दी जाती है. %1$s</string>
@@ -214,4 +215,11 @@
   <string name="share_upload_status_negative">पॉज़िटिव नहीं पाए गए</string>
   <string name="share_upload_status_likely">पॉज़िटिव पाए जाने की संभावना है</string>
   <string name="share_diagnosis_progress_tracker">%2$d में से %1$d चरण</string>
+  <string name="see_history_device_authentication_title">अपनी पहचान की पुष्टि करें</string>
+  <string name="update_app_dialog_title">अपना ऐप्लिकेशन अपडेट करें</string>
+  <string name="update_app_dialog_content">टेस्ट के नतीजों को शेयर करने की प्रोसेस को बंद करने के लिए, एक्सपोज़र नोटिफ़िकेशन के नए वर्शन पर अपडेट करें.</string>
+  <string name="btn_update">अपडेट करें</string>
+  <string name="try_again_later_error_message">कोई गड़बड़ी हुई. कुछ देर बाद कोशिश करें.</string>
+  <string name="en_turndown_for_area_title">आपके स्वास्थ्य विभाग के लिए, एक्सपोज़र नोटिफ़िकेशन की सुविधा अब आपके इलाके में उपलब्ध नहीं है</string>
+  <string name="en_turndown_title">एक्सपोज़र नोटिफ़िकेशन की सुविधा को बंद कर दिया गया है</string>
 </resources>

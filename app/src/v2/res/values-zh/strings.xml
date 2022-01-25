@@ -22,4 +22,7 @@
   <string name="share_positive_diagnosis_card_content">分享您的检测结果，帮助阻止新冠肺炎 (COVID-19) 的传播</string>
   <string name="share_app_card_content">分享该应用，帮助更好地保护您所在的社区</string>
   <string name="how_en_works_card_content">详细了解“接触史通知”应用的运作方式</string>
+  <string name="en_turndown_for_area_contents">由于您当地的卫生机构调整了 COVID-19 应对措施，因此不再支持此应用。感谢您使用此应用，同时感谢您为自己社区的疫情防控工作做出的积极努力。</string>
+  <string name="en_turndown_contents">由于卫生机构调整了 COVID-19 应对措施，因此不再支持此应用。感谢您使用此应用，同时感谢您为自己社区的疫情防控工作做出的积极努力。</string>
+  <string name="en_turndown_see_test_results_card_content">您仍可以查看之前上传到“接触史通知”的检测结果</string>
 </resources>

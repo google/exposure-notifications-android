@@ -71,7 +71,8 @@ public class SplashFragment extends BaseFragment {
 
     SplashViewModel splashViewModel = new ViewModelProvider(this).get(SplashViewModel.class);
     splashViewModel
-        .getNextFragmentLiveData(exposureNotificationViewModel.getEnEnabledLiveData())
+        .getNextFragmentLiveData(exposureNotificationViewModel.getEnEnabledLiveData(),
+            exposureNotificationViewModel.getStateLiveData(), requireContext())
         .observe(getViewLifecycleOwner(), nextFragment -> this.nextFragment = nextFragment);
 
     view.setOnClickListener(v -> {

@@ -31,12 +31,17 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import androidx.annotation.NonNull;
+import androidx.biometric.BiometricPrompt;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import com.google.android.apps.exposurenotification.BuildConfig;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.common.AuthenticationUtils;
+import com.google.android.apps.exposurenotification.common.BiometricUtil;
+import com.google.android.apps.exposurenotification.common.BiometricUtil.BiometricAuthenticationCallback;
+import com.google.android.apps.exposurenotification.common.KeyboardHelper;
 import com.google.android.apps.exposurenotification.common.StringUtils;
 import com.google.android.apps.exposurenotification.common.TripleLiveData;
 import com.google.android.apps.exposurenotification.common.time.Clock;
@@ -46,7 +51,7 @@ import com.google.android.apps.exposurenotification.exposure.ExposureChecksFragm
 import com.google.android.apps.exposurenotification.exposure.ExposureHomeViewModel;
 import com.google.android.apps.exposurenotification.exposure.PossibleExposureFragment;
 import com.google.android.apps.exposurenotification.home.ExposureNotificationViewModel.ExposureNotificationState;
-import com.google.android.apps.exposurenotification.notify.NotifyHomeViewModel;
+import com.google.android.apps.exposurenotification.nearby.EnStateUtil;
 import com.google.android.apps.exposurenotification.notify.ShareDiagnosisFlowHelper;
 import com.google.android.apps.exposurenotification.notify.ShareDiagnosisFragment;
 import com.google.android.apps.exposurenotification.notify.SharingHistoryFragment;
@@ -76,12 +81,15 @@ public class SinglePageHomeFragment extends BaseFragment {
   // For children of the exposure cards ViewFlipper (in the "Check your exposure status" section)
   private static final int NO_EXPOSURE = 0;
   private static final int EXPOSURE = 1;
+  private static final String SAVED_INSTANCE_STATE_IS_BIOMETRIC_PROMPT_SHOWING_KEY =
+      "is_biometric_prompt_showing";
 
   private FragmentHomeSinglePageBinding binding;
   private ExposureHomeViewModel exposureHomeViewModel;
   private Animation pulseSmall;
   private Animation pulseMedium;
   private Animation pulseLarge;
+  private boolean biometricInProgress;
 
   @Inject
   Clock clock;
@@ -100,6 +108,14 @@ public class SinglePageHomeFragment extends BaseFragment {
     return binding.getRoot();
   }
 
+  @Override
+  public void onSaveInstanceState(@NonNull Bundle savedInstanceState) {
+    super.onSaveInstanceState(savedInstanceState);
+
+    savedInstanceState.putBoolean(SAVED_INSTANCE_STATE_IS_BIOMETRIC_PROMPT_SHOWING_KEY,
+        biometricInProgress);
+  }
+
   public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
 
@@ -109,8 +125,6 @@ public class SinglePageHomeFragment extends BaseFragment {
 
     exposureHomeViewModel = new ViewModelProvider(requireActivity())
         .get(ExposureHomeViewModel.class);
-    NotifyHomeViewModel notifyHomeViewModel = new ViewModelProvider(requireActivity())
-        .get(NotifyHomeViewModel.class);
 
     if (ShareDiagnosisFlowHelper.isSmsInterceptEnabled(getContext())) {
       exposureNotificationViewModel.getShouldShowSmsNoticeLiveData()
@@ -121,11 +135,11 @@ public class SinglePageHomeFragment extends BaseFragment {
                   .show(getChildFragmentManager(), SmsNoticeDialogFragment.TAG);
             }
           });
-  }
+    }
 
     // Set up all the actionable items.
-    binding.settingsButton
-        .setOnClickListener(v -> transitionToFragmentWithBackStack(SettingsFragment.newInstance()));
+    binding.settingsButton.setOnClickListener(
+        v -> transitionToFragmentWithBackStack(SettingsFragment.newInstance()));
 
     binding.possibleExposureLayout.seeDetailsButton.setOnClickListener(
         v -> transitionToFragmentWithBackStack(PossibleExposureFragment.newInstance()));
@@ -135,7 +149,7 @@ public class SinglePageHomeFragment extends BaseFragment {
     binding.shareTestResultCard.notifyOthersButton.setOnClickListener(
         v -> transitionToFragmentWithBackStack(ShareDiagnosisFragment.newInstance()));
     binding.shareTestResultCard.seeHistoryButton.setOnClickListener(
-        v -> transitionToFragmentWithBackStack(SharingHistoryFragment.newInstance()));
+        v -> authenticateUserAndMaybeShowShareHistory());
 
     binding.noRecentExposureLayout.seeRecentChecksButton.setOnClickListener(
         v -> transitionToFragmentWithBackStack(ExposureChecksFragment.newInstance()));
@@ -147,7 +161,7 @@ public class SinglePageHomeFragment extends BaseFragment {
     binding.secondaryShareTestResultCard.cardShareTestResultRootView.setOnClickListener(
         v -> transitionToFragmentWithBackStack(ShareDiagnosisFragment.newInstance()));
     binding.secondaryShareTestResultCard.seeHistoryButton.setOnClickListener(
-        v -> transitionToFragmentWithBackStack(SharingHistoryFragment.newInstance()));
+        v -> authenticateUserAndMaybeShowShareHistory());
 
     binding.shareAppLayout.setOnClickListener(v -> launchShareApp());
 
@@ -160,6 +174,9 @@ public class SinglePageHomeFragment extends BaseFragment {
 
     binding.possibleExposureSecondaryLayout.possibleExposureCard.setOnClickListener(
         v -> transitionToFragmentWithBackStack(PossibleExposureFragment.newInstance()));
+
+    binding.seeTestResultsInTurndownCard.cardSeeTestResultsInTurndownRootView.setOnClickListener(
+        v -> authenticateUserAndMaybeShowShareHistory());
 
     // Set additional top padding for card titles where needed.
     int paddingSmallInPixels = (int) getResources().getDimension(R.dimen.padding_small);
@@ -199,15 +216,6 @@ public class SinglePageHomeFragment extends BaseFragment {
           }
         });
 
-    notifyHomeViewModel
-        .getAllDiagnosisEntityLiveData()
-        .observe(getViewLifecycleOwner(), diagnosisEntities -> {
-          binding.shareTestResultCard.seeHistoryButton.setVisibility(
-              diagnosisEntities.isEmpty() ? View.GONE : View.VISIBLE);
-          binding.secondaryShareTestResultCard.seeHistoryButton.setVisibility(
-              diagnosisEntities.isEmpty() ? View.GONE : View.VISIBLE);
-        });
-
     // Add a pulse animation.
     pulseSmall = AnimationUtils.loadAnimation(requireContext(), R.anim.pulsation_small);
     pulseMedium = AnimationUtils.loadAnimation(requireContext(), R.anim.pulsation_medium);
@@ -225,8 +233,15 @@ public class SinglePageHomeFragment extends BaseFragment {
           .commit();
     }
 
-    exposureHomeViewModel.dismissReactivateExposureNotificationAppNotificationAndPendingJob(
+    exposureHomeViewModel.dismissReactivateENAppNotificationAndPendingJob(
         requireContext());
+
+    if (savedInstanceState != null &&
+        savedInstanceState.getBoolean(SAVED_INSTANCE_STATE_IS_BIOMETRIC_PROMPT_SHOWING_KEY,
+            false)) {
+      biometricInProgress = true;
+      BiometricUtil.createBiometricPrompt(this, authenticationCallback);
+    }
   }
 
   @Override
@@ -283,10 +298,15 @@ public class SinglePageHomeFragment extends BaseFragment {
     }
 
     boolean isEnabled = state == ExposureNotificationState.ENABLED;
+    boolean shouldDisplayTurndownMessage = EnStateUtil.isEnTurndownForRegion(state)
+        && EnStateUtil.isAgencyTurndownMessagePresent(requireContext());
+    boolean isTurndown = EnStateUtil.isEnTurndown(state);
     boolean noDiagnosis = EMPTY_DIAGNOSIS.equals(lastNotSharedDiagnosis);
-    boolean noExposure = exposureClassification.getClassificationIndex()
+    boolean noExposure = (exposureClassification.getClassificationIndex()
         == ExposureClassification.NO_EXPOSURE_CLASSIFICATION_INDEX
-        && !exposureHomeViewModel.getIsExposureClassificationRevoked();
+        && !exposureHomeViewModel.getIsExposureClassificationRevoked())
+        // Ward off an outdated possible exposure information.
+        || !exposureHomeViewModel.isActiveExposurePresent();
 
     binding.enStatusFlipper.setDisplayedChild(isEnabled ? EN_ACTIVE : EN_INACTIVE);
 
@@ -298,10 +318,6 @@ public class SinglePageHomeFragment extends BaseFragment {
     binding.secondaryShareTestResultCard.notifyOthersButton.setEnabled(
         !exposureNotificationViewModel.isStateBlockingSharingFlow(state));
 
-    // Always display "Help protect your community" section.
-    binding.helpProtectCommunitySectionTitle.setVisibility(View.VISIBLE);
-    binding.shareAppLayout.setVisibility(View.VISIBLE);
-
     if (noDiagnosis) {
       if (noExposure) {
         // 1. No non-shared diagnoses and no exposure.
@@ -312,10 +328,26 @@ public class SinglePageHomeFragment extends BaseFragment {
         binding.enStatusFlipper.setVisibility(View.VISIBLE);
         binding.mainUiFlipper.setDisplayedChild(POSSIBLE_EXPOSURE);
       }
-      // Display secondary "Share your test results" card.
-      binding.secondaryShareTestResultLayout.setVisibility(View.VISIBLE);
-      // Display "Have questions?" section.
-      binding.haveQuestionsSectionTitle.setVisibility(View.VISIBLE);
+      if (isTurndown) {
+        // EN has been turned down!
+        binding.seeTestResultsInTurndown.setVisibility(View.VISIBLE);
+        binding.healthAuthorityTurndownContent
+            .setVisibility(shouldDisplayTurndownMessage ? View.VISIBLE : View.GONE);
+        binding.secondaryShareTestResultLayout.setVisibility(View.GONE);
+        binding.haveQuestionsSectionTitle.setVisibility(View.GONE);
+        binding.learnHowEnWorks.setVisibility(View.GONE);
+        binding.helpProtectCommunitySectionTitle.setVisibility(View.GONE);
+        binding.shareAppLayout.setVisibility(View.GONE);
+      } else {
+        // EN not turned down.
+        binding.seeTestResultsInTurndown.setVisibility(View.GONE);
+        binding.healthAuthorityTurndownContent.setVisibility(View.GONE);
+        binding.secondaryShareTestResultLayout.setVisibility(View.VISIBLE);
+        binding.haveQuestionsSectionTitle.setVisibility(View.VISIBLE);
+        binding.learnHowEnWorks.setVisibility(View.VISIBLE);
+        binding.helpProtectCommunitySectionTitle.setVisibility(View.VISIBLE);
+        binding.shareAppLayout.setVisibility(View.VISIBLE);
+      }
       // Hide "Check your exposure status" section.
       binding.checkExposureStatusSectionTitle.setVisibility(View.GONE);
       binding.checkExposureStatusSection.setVisibility(View.GONE);
@@ -338,23 +370,40 @@ public class SinglePageHomeFragment extends BaseFragment {
         binding.enStatusFlipper.setVisibility(View.VISIBLE);
         binding.mainUiFlipper.setDisplayedChild(isEnabled ? POSITIVE_DIAGNOSIS : POSSIBLE_EXPOSURE);
       }
-      // Display secondary "Share your test results" card only if EN is disabled.
-      binding.secondaryShareTestResultLayout.setVisibility(isEnabled ? View.GONE : View.VISIBLE);
-      // Display "Have questions" only if EN is disabled.
-      binding.haveQuestionsSectionTitle.setVisibility(isEnabled ? View.GONE : View.VISIBLE);
-      // Display "Check your exposure status" only if EN is enabled.
-      binding.checkExposureStatusSectionTitle.setVisibility(isEnabled ? View.VISIBLE : View.GONE);
-      binding.checkExposureStatusSection.setVisibility(isEnabled ? View.VISIBLE : View.GONE);
-      /*
-       * Display "Continue" button on the secondary "Share your test result" card and, thus, disable
-       * this card. Also ensure that TalkBack will not confuse users by announcing this card as
-       * disabled. Instead TalkBack should focus on the card contents before moving on to read out
-       * the "See history" and "Continue" buttons.
-       */
-      binding.secondaryShareTestResultCard.notifyOthersButton.setVisibility(View.VISIBLE);
-      binding.secondaryShareTestResultCard.cardShareTestResultRootView.setEnabled(false);
-      binding.secondaryShareTestResultCard.cardShareTestResultRootView
-          .setImportantForAccessibility(IMPORTANT_FOR_ACCESSIBILITY_NO);
+      if (isTurndown) {
+        // EN has been turned down!
+        binding.seeTestResultsInTurndown.setVisibility(View.VISIBLE);
+        binding.healthAuthorityTurndownContent
+            .setVisibility(shouldDisplayTurndownMessage ? View.VISIBLE : View.GONE);
+        binding.secondaryShareTestResultLayout.setVisibility(View.GONE);
+        binding.haveQuestionsSectionTitle.setVisibility(View.GONE);
+        binding.checkExposureStatusSectionTitle.setVisibility(View.GONE);
+        binding.checkExposureStatusSection.setVisibility(View.GONE);
+      } else {
+        // EN not turned down.
+        binding.seeTestResultsInTurndown.setVisibility(View.GONE);
+        binding.healthAuthorityTurndownContent.setVisibility(View.GONE);
+        binding.learnHowEnWorks.setVisibility(View.VISIBLE);
+        binding.helpProtectCommunitySectionTitle.setVisibility(View.VISIBLE);
+        binding.shareAppLayout.setVisibility(View.VISIBLE);
+        // Display secondary "Share your test results" card only if EN is disabled.
+        binding.secondaryShareTestResultLayout.setVisibility(isEnabled ? View.GONE : View.VISIBLE);
+        // Display "Have questions" only if EN is disabled.
+        binding.haveQuestionsSectionTitle.setVisibility(isEnabled ? View.GONE : View.VISIBLE);
+        // Display "Check your exposure status" only if EN is enabled.
+        binding.checkExposureStatusSectionTitle.setVisibility(isEnabled ? View.VISIBLE : View.GONE);
+        binding.checkExposureStatusSection.setVisibility(isEnabled ? View.VISIBLE : View.GONE);
+        /*
+         * Display "Continue" button on the secondary "Share your test result" card and, thus, disable
+         * this card. Also ensure that TalkBack will not confuse users by announcing this card as
+         * disabled. Instead TalkBack should focus on the card contents before moving on to read out
+         * the "See history" and "Continue" buttons.
+         */
+        binding.secondaryShareTestResultCard.notifyOthersButton.setVisibility(View.VISIBLE);
+        binding.secondaryShareTestResultCard.cardShareTestResultRootView.setEnabled(false);
+        binding.secondaryShareTestResultCard.cardShareTestResultRootView
+            .setImportantForAccessibility(IMPORTANT_FOR_ACCESSIBILITY_NO);
+      }
     }
   }
 
@@ -380,6 +429,50 @@ public class SinglePageHomeFragment extends BaseFragment {
             BuildConfig.APPLICATION_ID)));
     startActivity(Intent.createChooser(sendIntent, null));
     exposureNotificationViewModel.logUiInteraction(EventType.SHARE_APP_CLICKED);
+  }
+
+  /**
+   * This method is called for the user to authenticate when the share history button is clicked.
+   */
+  private void authenticateUserAndMaybeShowShareHistory() {
+    if (!AuthenticationUtils.isAuthenticationAvailable(requireBaseActivity())) {
+      transitionToSharingHistoryFragment();
+      return;
+    }
+
+    biometricInProgress = true;
+    BiometricPrompt biometricPrompt = BiometricUtil.createBiometricPrompt(this,
+        authenticationCallback);
+    BiometricUtil.startBiometricPromptAuthentication(requireContext(), biometricPrompt);
+  }
+
+  BiometricAuthenticationCallback authenticationCallback = new BiometricAuthenticationCallback() {
+    @Override
+    public void onAuthenticationSucceeded() {
+      transitionToSharingHistoryFragment();
+      biometricInProgress = false;
+      KeyboardHelper.maybeHideKeyboard(requireActivity(), binding.getRoot());
+    }
+
+    @Override
+    public void onAuthenticationError(boolean isBiometricErrorSkippable) {
+      if (isBiometricErrorSkippable) {
+        transitionToSharingHistoryFragment();
+      } else {
+        biometricInProgress = false;
+      }
+      KeyboardHelper.maybeHideKeyboard(requireActivity(), binding.getRoot());
+    }
+
+    @Override
+    public void onAuthenticationFailed() {
+      biometricInProgress = false;
+      KeyboardHelper.maybeHideKeyboard(requireActivity(), binding.getRoot());
+    }
+  };
+
+  private void transitionToSharingHistoryFragment() {
+    transitionToFragmentWithBackStack(SharingHistoryFragment.newInstance());
   }
 
 }

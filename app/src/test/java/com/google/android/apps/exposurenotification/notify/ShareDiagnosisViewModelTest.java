@@ -26,16 +26,29 @@ import static com.google.android.apps.exposurenotification.notify.ShareDiagnosis
 import static com.google.android.apps.exposurenotification.notify.ShareDiagnosisViewModel.SAVED_STATE_SHARE_ADVANCE_SWITCHER_CHILD;
 import static com.google.android.apps.exposurenotification.notify.ShareDiagnosisViewModel.SAVED_STATE_VERIFIED_CODE;
 import static com.google.common.truth.Truth.assertThat;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.robolectric.Shadows.shadowOf;
 
 import android.content.Context;
+import android.content.IntentSender.SendIntentException;
 import android.net.Uri;
 import android.support.test.espresso.core.internal.deps.guava.collect.ImmutableList;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.IntentSenderRequest;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.SavedStateHandle;
 import androidx.test.core.app.ApplicationProvider;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.appupdate.AppUpdateManagerModule;
+import com.google.android.apps.exposurenotification.appupdate.EnxAppUpdateManager;
+import com.google.android.apps.exposurenotification.common.BuildUtils;
+import com.google.android.apps.exposurenotification.common.BuildUtils.Type;
 import com.google.android.apps.exposurenotification.common.IntentUtil;
 import com.google.android.apps.exposurenotification.common.TelephonyHelper;
 import com.google.android.apps.exposurenotification.common.time.Clock;
@@ -47,6 +60,7 @@ import com.google.android.apps.exposurenotification.keyupload.Qualifiers.Verific
 import com.google.android.apps.exposurenotification.keyupload.Qualifiers.VerificationCodeUri;
 import com.google.android.apps.exposurenotification.keyupload.Qualifiers.VerificationUserReportUri;
 import com.google.android.apps.exposurenotification.keyupload.UploadController;
+import com.google.android.apps.exposurenotification.keyupload.UploadError;
 import com.google.android.apps.exposurenotification.keyupload.UploadUrisModule;
 import com.google.android.apps.exposurenotification.nearby.ExposureNotificationClientWrapper;
 import com.google.android.apps.exposurenotification.nearby.ExposureNotificationsClientModule;
@@ -78,6 +92,13 @@ import com.google.android.gms.nearby.exposurenotification.TemporaryExposureKey.T
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.Tasks;
 import com.google.android.libraries.privateanalytics.PrivateAnalyticsEnabledProvider;
+import com.google.android.play.core.appupdate.AppUpdateInfo;
+import com.google.android.play.core.appupdate.AppUpdateManager;
+import com.google.android.play.core.appupdate.testing.FakeAppUpdateManager;
+import com.google.android.play.core.common.IntentSenderForResultStarter;
+import com.google.android.play.core.install.model.AppUpdateType;
+import com.google.android.play.core.tasks.OnCompleteListener;
+import com.google.android.play.core.tasks.OnSuccessListener;
 import com.google.common.base.Optional;
 import com.google.common.util.concurrent.MoreExecutors;
 import com.google.common.util.concurrent.testing.TestingExecutors;
@@ -114,7 +135,7 @@ import org.threeten.bp.ZoneOffset;
 @RunWith(RobolectricTestRunner.class)
 @Config(application = HiltTestApplication.class, shadows = {FakeShadowResources.class})
 @UninstallModules({DbModule.class, RealRequestQueueModule.class, UploadUrisModule.class,
-    ExposureNotificationsClientModule.class, RealTimeModule.class})
+    ExposureNotificationsClientModule.class, RealTimeModule.class, AppUpdateManagerModule.class})
 public class ShareDiagnosisViewModelTest {
 
   private static final Uri UPLOAD_URI = Uri.parse("http://sampleurls.com/upload");
@@ -124,6 +145,7 @@ public class ShareDiagnosisViewModelTest {
   private static final LocalDate ONSET_DATE = LocalDate.parse("2020-04-01");
   private static final String PHONE_NUMBER_GB_INTERNATIONAL = "+447911123456";
   private static final String EXPIRES_AT_STR = "2021-06-08";
+  private static final int AVAILABLE_UPDATE_VERSION_CODE = 10;
 
   @Rule
   public ExposureNotificationRules rules =
@@ -152,10 +174,18 @@ public class ShareDiagnosisViewModelTest {
   TelephonyHelper telephonyHelper;
   @Mock
   PrivateAnalyticsEnabledProvider privateAnalyticsEnabledProvider;
+  @Mock
+  com.google.android.play.core.tasks.Task<AppUpdateInfo> mockTask;
+  @Mock
+  ActivityResultLauncher<IntentSenderRequest> launcher;
   @BindValue
   Clock clock = new FakeClock();
   @Inject
   SecureRandom secureRandom;
+  @BindValue
+  AppUpdateManager appUpdateManager = spy(new FakeAppUpdateManager(context));
+
+  EnxAppUpdateManager enxAppUpdateManager;
 
   @Module
   @InstallIn(SingletonComponent.class)
@@ -191,6 +221,11 @@ public class ShareDiagnosisViewModelTest {
   @Before
   public void setup() {
     rules.hilt().inject();
+
+    enxAppUpdateManager = spy(new EnxAppUpdateManager(appUpdateManager,
+        MoreExecutors.newDirectExecutorService(),
+        TestingExecutors.sameThreadScheduledExecutor()));
+
     viewModel = new ShareDiagnosisViewModel(
         context,
         new SavedStateHandle(),
@@ -204,6 +239,7 @@ public class ShareDiagnosisViewModelTest {
         telephonyHelper,
         secureRandom,
         connectivity,
+        enxAppUpdateManager,
         MoreExecutors.newDirectExecutorService(),
         MoreExecutors.newDirectExecutorService(),
         TestingExecutors.sameThreadScheduledExecutor());
@@ -235,6 +271,7 @@ public class ShareDiagnosisViewModelTest {
         telephonyHelper,
         secureRandom,
         connectivity,
+        enxAppUpdateManager,
         MoreExecutors.newDirectExecutorService(),
         MoreExecutors.newDirectExecutorService(),
         TestingExecutors.sameThreadScheduledExecutor());
@@ -364,7 +401,8 @@ public class ShareDiagnosisViewModelTest {
   }
 
   @Test
-  public void requestCode_secondRequestInThirtyMinutes_shouldCancelSecondAndFireError() throws Exception {
+  public void requestCode_secondRequestInThirtyMinutes_shouldCancelSecondAndFireError()
+      throws Exception {
     // GIVEN
     LocalDate testDate = LocalDate.from(clock.now().atZone(ZoneOffset.UTC));
     AtomicReference<String> errorMessageObserved = new AtomicReference<>();
@@ -382,7 +420,8 @@ public class ShareDiagnosisViewModelTest {
   }
 
   @Test
-  public void requestCode_fourthRequestInThirtyDays_shouldCancelFourthAndFireError() throws Exception {
+  public void requestCode_fourthRequestInThirtyDays_shouldCancelFourthAndFireError()
+      throws Exception {
     // GIVEN
     LocalDate testDate = LocalDate.from(clock.now().atZone(ZoneOffset.UTC));
     AtomicReference<String> errorMessageObserved = new AtomicReference<>();
@@ -401,6 +440,75 @@ public class ShareDiagnosisViewModelTest {
     // THEN
     assertThat(queue().numRpcs()).isEqualTo(3);
     assertThat(errorMessageObserved.get()).isNotEmpty();
+  }
+
+  @Test
+  public void requestCode_401ServerErrorNoAppUpdate_shouldNotTriggerAppUpdate() throws Exception {
+    // GIVEN
+    LocalDate testDate = LocalDate.from(clock.now().atZone(ZoneOffset.UTC));
+    // Look out for liveDatas that are to be updated upon 401 & app update availability checks.
+    AtomicBoolean isInFlight = new AtomicBoolean(true);
+    AtomicReference<String> requestCodeErrorMessage = new AtomicReference<>();
+    AtomicBoolean isAppUpdateAvailable = new AtomicBoolean();
+    viewModel.getInFlightLiveData().observeForever(isInFlight::set);
+    viewModel.getRequestCodeErrorLiveData().observeForever(requestCodeErrorMessage::set);
+    viewModel.getAppUpdateAvailableLiveEvent()
+        .observeForever(unused -> isAppUpdateAvailable.set(true));
+    // We get the 401.
+    queue().addResponse(USER_REPORT_URI.toString(), /* httpStatus= */ 401, /* responseBody= */ "");
+    // And app update is not available.
+    ((FakeAppUpdateManager) appUpdateManager).setUpdateNotAvailable();
+    // Set up an appUpdateManager.
+    setUpAppUpdateManager();
+
+    // WHEN
+    viewModel.requestCode(PHONE_NUMBER_GB_INTERNATIONAL, testDate).get();
+
+    // THEN
+    if (BuildUtils.getType() == Type.V2) {
+      verify(enxAppUpdateManager).isImmediateAppUpdateAvailable(any());
+    }
+    assertThat(queue().numRpcs()).isEqualTo(1);
+    assertThat(isInFlight.get()).isFalse();
+    assertThat(requestCodeErrorMessage.get()).isEqualTo(getErrorMessageFor401UploadError(true));
+    assertThat(isAppUpdateAvailable.get()).isFalse();
+  }
+
+  @Test
+  public void requestCode_401ServerErrorAndAppUpdateAvailable_shouldTriggerAppUpdateForV2()
+      throws Exception {
+    // GIVEN
+    LocalDate testDate = LocalDate.from(clock.now().atZone(ZoneOffset.UTC));
+    // Look out for liveDatas that are to be updated upon 401 & app update availability checks.
+    AtomicBoolean isInFlight = new AtomicBoolean(true);
+    AtomicReference<String> requestCodeErrorMessage = new AtomicReference<>();
+    AtomicBoolean isAppUpdateAvailable = new AtomicBoolean(false);
+    viewModel.getInFlightLiveData().observeForever(isInFlight::set);
+    viewModel.getRequestCodeErrorLiveData().observeForever(requestCodeErrorMessage::set);
+    viewModel.getAppUpdateAvailableLiveEvent()
+        .observeForever(unused -> isAppUpdateAvailable.set(true));
+    // We get the 401.
+    queue().addResponse(USER_REPORT_URI.toString(), /* httpStatus= */ 401, /* responseBody= */ "");
+    // And app update is available.
+    ((FakeAppUpdateManager) appUpdateManager).setUpdateAvailable(AVAILABLE_UPDATE_VERSION_CODE,
+        AppUpdateType.IMMEDIATE);
+    // Set up an appUpdateManager.
+    setUpAppUpdateManager();
+
+    // WHEN
+    viewModel.requestCode(PHONE_NUMBER_GB_INTERNATIONAL, testDate).get();
+
+    // THEN
+    assertThat(queue().numRpcs()).isEqualTo(1);
+    assertThat(isInFlight.get()).isFalse();
+    if (BuildUtils.getType() == Type.V2) {
+      verify(enxAppUpdateManager).isImmediateAppUpdateAvailable(any());
+      assertThat(requestCodeErrorMessage.get()).isNull();
+      assertThat(isAppUpdateAvailable.get()).isTrue();
+    } else {
+      assertThat(requestCodeErrorMessage.get()).isEqualTo(getErrorMessageFor401UploadError(false));
+      assertThat(isAppUpdateAvailable.get()).isFalse();
+    }
   }
 
   @Test
@@ -537,6 +645,160 @@ public class ShareDiagnosisViewModelTest {
 
     // THEN
     assertThat(viewModel.isResumingAndNotConfirmed()).isFalse();
+  }
+
+  @Test
+  public void submitCode_401ServerErrorNoAppUpdate_shouldNotTriggerAppUpdate() throws Exception {
+    // GIVEN
+    // Look out for liveDatas that are to be updated upon 401 & app update availability checks.
+    AtomicBoolean isInFlight = new AtomicBoolean(true);
+    AtomicReference<String> verificationErrorMessage = new AtomicReference<>();
+    AtomicBoolean isAppUpdateAvailable = new AtomicBoolean();
+    viewModel.getInFlightLiveData().observeForever(isInFlight::set);
+    viewModel.getVerificationErrorLiveData().observeForever(verificationErrorMessage::set);
+    viewModel.getAppUpdateAvailableLiveEvent()
+        .observeForever(unused -> isAppUpdateAvailable.set(true));
+    // We get the 401.
+    queue().addResponse(CODE_URI.toString(), /* httpStatus= */ 401, /* responseBody= */ "");
+    // And app update is not available.
+    ((FakeAppUpdateManager) appUpdateManager).setUpdateNotAvailable();
+    // Set up an appUpdateManager.
+    setUpAppUpdateManager();
+
+    // WHEN
+    viewModel.submitCode("code", true).get();
+
+    // THEN
+    if (BuildUtils.getType() == Type.V2) {
+      verify(enxAppUpdateManager).isImmediateAppUpdateAvailable(any());
+    }
+    assertThat(queue().numRpcs()).isEqualTo(1);
+    assertThat(isInFlight.get()).isFalse();
+    assertThat(verificationErrorMessage.get()).isEqualTo(getErrorMessageFor401UploadError(false));
+    assertThat(isAppUpdateAvailable.get()).isFalse();
+  }
+
+  @Test
+  public void submitCode_401ServerErrorAndAppUpdateAvailable_shouldTriggerAppUpdateForV2()
+      throws Exception {
+    // GIVEN
+    // Look out for liveDatas that are to be updated upon 401 & app update availability checks.
+    AtomicBoolean isInFlight = new AtomicBoolean(true);
+    AtomicReference<String> verificationErrorMessage = new AtomicReference<>();
+    AtomicBoolean isAppUpdateAvailable = new AtomicBoolean(false);
+    viewModel.getInFlightLiveData().observeForever(isInFlight::set);
+    viewModel.getVerificationErrorLiveData().observeForever(verificationErrorMessage::set);
+    viewModel.getAppUpdateAvailableLiveEvent()
+        .observeForever(unused -> isAppUpdateAvailable.set(true));
+    // We get the 401.
+    queue().addResponse(CODE_URI.toString(), /* httpStatus= */ 401, /* responseBody= */ "");
+    // And app update is available.
+    ((FakeAppUpdateManager) appUpdateManager).setUpdateAvailable(AVAILABLE_UPDATE_VERSION_CODE,
+        AppUpdateType.IMMEDIATE);
+    // Set up an appUpdateManager.
+    setUpAppUpdateManager();
+
+    // WHEN
+    viewModel.submitCode("code", true).get();
+
+    // THEN
+    assertThat(queue().numRpcs()).isEqualTo(1);
+    assertThat(isInFlight.get()).isFalse();
+    if (BuildUtils.getType() == Type.V2) {
+      verify(enxAppUpdateManager).isImmediateAppUpdateAvailable(any());
+      assertThat(verificationErrorMessage.get()).isNull();
+      assertThat(isAppUpdateAvailable.get()).isTrue();
+    } else {
+      assertThat(verificationErrorMessage.get()).isEqualTo(getErrorMessageFor401UploadError(false));
+      assertThat(isAppUpdateAvailable.get()).isFalse();
+    }
+  }
+
+  @Test
+  public void uploadKeys_401ServerErrorNoAppUpdate_shouldNotTriggerAppUpdate() throws Exception {
+    // GIVEN
+    // Look out for liveDatas that are to be updated upon 401 & app update availability checks.
+    AtomicBoolean isInFlight = new AtomicBoolean(true);
+    AtomicReference<String> snackBarErrorMessage = new AtomicReference<>();
+    AtomicBoolean isAppUpdateAvailable = new AtomicBoolean();
+    viewModel.getInFlightLiveData().observeForever(isInFlight::set);
+    viewModel.getSnackbarSingleLiveEvent().observeForever(snackBarErrorMessage::set);
+    viewModel.getAppUpdateAvailableLiveEvent()
+        .observeForever(unused -> isAppUpdateAvailable.set(true));
+    // We successfully submit verification code to get the diagnosis created and ready to be
+    // uploaded but we get the 401 when exchanging the long-lived token for a certificate.
+    queue().addResponse(
+        CODE_URI.toString(),
+        200,
+        codeResponse("token", /* testType= */ "confirmed", /* onsetDate= */ null));
+    queue().addResponse(CERT_URI.toString(), 401, "");
+    // Also we'll need some keys from GMSCore.
+    Task<List<TemporaryExposureKey>> keys = Tasks.forResult(ImmutableList.of(key("key1")));
+    when(exposureNotificationClient.getTemporaryExposureKeyHistory()).thenReturn(keys);
+    // And app update is not available.
+    ((FakeAppUpdateManager) appUpdateManager).setUpdateNotAvailable();
+    // Set up an appUpdateManager.
+    setUpAppUpdateManager();
+
+    // WHEN
+    // We should have the existing diagnosis when uploading keys.
+    viewModel.submitCode("code", false).get();
+    viewModel.uploadKeys().get();
+
+    // THEN
+    if (BuildUtils.getType() == Type.V2) {
+      verify(enxAppUpdateManager).isImmediateAppUpdateAvailable(any());
+    }
+    assertThat(queue().numRpcs()).isEqualTo(2);
+    assertThat(isInFlight.get()).isFalse();
+    assertThat(snackBarErrorMessage.get()).isEqualTo(getErrorMessageFor401UploadError(false));
+    assertThat(isAppUpdateAvailable.get()).isFalse();
+  }
+
+  @Test
+  public void uploadKeys_401ServerErrorAndAppUpdateAvailable_shouldTriggerAppUpdateForV2()
+      throws Exception {
+    // GIVEN
+    // Look out for liveDatas that are to be updated upon 401 & app update availability checks.
+    AtomicBoolean isInFlight = new AtomicBoolean(true);
+    AtomicReference<String> snackBarErrorMessage = new AtomicReference<>();
+    AtomicBoolean isAppUpdateAvailable = new AtomicBoolean(false);
+    viewModel.getInFlightLiveData().observeForever(isInFlight::set);
+    viewModel.getSnackbarSingleLiveEvent().observeForever(snackBarErrorMessage::set);
+    viewModel.getAppUpdateAvailableLiveEvent()
+        .observeForever(unused -> isAppUpdateAvailable.set(true));
+    // We successfully submit verification code to get the diagnosis created and ready to be
+    // uploaded but we get the 401 when exchanging the long-lived token for a certificate.
+    queue().addResponse(
+        CODE_URI.toString(),
+        200,
+        codeResponse("token", /* testType= */ "confirmed", /* onsetDate= */ null));
+    queue().addResponse(CERT_URI.toString(), 401, "");
+    // Also we'll need some keys from GMSCore.
+    Task<List<TemporaryExposureKey>> keys = Tasks.forResult(ImmutableList.of(key("key1")));
+    when(exposureNotificationClient.getTemporaryExposureKeyHistory()).thenReturn(keys);
+    // And app update is available.
+    ((FakeAppUpdateManager) appUpdateManager).setUpdateAvailable(AVAILABLE_UPDATE_VERSION_CODE,
+        AppUpdateType.IMMEDIATE);
+    // Set up an appUpdateManager.
+    setUpAppUpdateManager();
+
+    // WHEN
+    // We should have the existing diagnosis when uploading keys.
+    viewModel.submitCode("code", false).get();
+    viewModel.uploadKeys().get();
+
+    // THEN
+    assertThat(queue().numRpcs()).isEqualTo(2);
+    assertThat(isInFlight.get()).isFalse();
+    if (BuildUtils.getType() == Type.V2) {
+      verify(enxAppUpdateManager).isImmediateAppUpdateAvailable(any());
+      assertThat(snackBarErrorMessage.get()).isNull();
+      assertThat(isAppUpdateAvailable.get()).isTrue();
+    } else {
+      assertThat(snackBarErrorMessage.get()).isEqualTo(getErrorMessageFor401UploadError(false));
+      assertThat(isAppUpdateAvailable.get()).isFalse();
+    }
   }
 
   @Test
@@ -854,6 +1116,7 @@ public class ShareDiagnosisViewModelTest {
         telephonyHelper,
         secureRandom,
         connectivity,
+        enxAppUpdateManager,
         MoreExecutors.newDirectExecutorService(),
         MoreExecutors.newDirectExecutorService(),
         TestingExecutors.sameThreadScheduledExecutor());
@@ -874,17 +1137,127 @@ public class ShareDiagnosisViewModelTest {
     assertThat(viewModel.getTestDateForGetCodeStepLiveData().getValue()).isEqualTo("Jul 2, 2021");
   }
 
+  @Test
+  public void triggerAppUpdateFlow_appUpdateFlowNotLaunched_errorLiveDataUpdated()
+      throws SendIntentException {
+    AtomicReference<String> appUpdateFlowErrorMessage = new AtomicReference<>();
+    viewModel.getAppUpdateFlowErrorLiveData().observeForever(appUpdateFlowErrorMessage::set);
+    // Ensure that app update is available.
+    ((FakeAppUpdateManager) appUpdateManager).setUpdateAvailable(AVAILABLE_UPDATE_VERSION_CODE,
+        AppUpdateType.IMMEDIATE);
+    // Set up appUpdateManager.
+    setUpAppUpdateManagerWithExecutors(/* userAcceptsUpdate= */true);
+    // But now make the update flow fail.
+    doReturn(false).when(appUpdateManager).startUpdateFlowForResult(any(), anyInt(),
+        any(IntentSenderForResultStarter.class), anyInt());
+
+    viewModel.triggerAppUpdateFlow(launcher);
+    // Ensure that the download of a new app version is complete.
+    ((FakeAppUpdateManager) appUpdateManager).downloadStarts();
+    ((FakeAppUpdateManager) appUpdateManager).downloadCompletes();
+
+    verify(appUpdateManager).startUpdateFlowForResult(any(), anyInt(),
+        any(IntentSenderForResultStarter.class), anyInt());
+    assertThat(appUpdateFlowErrorMessage.get()).isEqualTo(getErrorMessageFor401UploadError(false));
+  }
+
+  @Test
+  public void triggerAppUpdateFlow_appUpdateFlowLaunched_errorLiveDataNotUpdated()
+      throws SendIntentException {
+    AtomicReference<String> appUpdateFlowErrorMessage = new AtomicReference<>();
+    viewModel.getAppUpdateFlowErrorLiveData().observeForever(appUpdateFlowErrorMessage::set);
+    // Ensure that app update is available.
+    ((FakeAppUpdateManager) appUpdateManager).setUpdateAvailable(AVAILABLE_UPDATE_VERSION_CODE,
+        AppUpdateType.IMMEDIATE);
+    // Set up appUpdateManager.
+    setUpAppUpdateManagerWithExecutors(/* userAcceptsUpdate= */true);
+
+    viewModel.triggerAppUpdateFlow(launcher);
+    // Ensure that the download of a new app version is complete.
+    ((FakeAppUpdateManager) appUpdateManager).downloadStarts();
+    ((FakeAppUpdateManager) appUpdateManager).downloadCompletes();
+
+    verify(appUpdateManager).startUpdateFlowForResult(any(), anyInt(),
+        any(IntentSenderForResultStarter.class), anyInt());
+    assertThat(appUpdateFlowErrorMessage.get()).isNull();
+  }
+
+  @Test
+  public void maybeTriggerAppUpdateFlowIfUpdateInProgress_updateInProgressButFlowNotStarted_errorMessageUpdated()
+      throws SendIntentException {
+    AtomicReference<String> appUpdateFlowErrorMessage = new AtomicReference<>();
+    viewModel.getAppUpdateFlowErrorLiveData().observeForever(appUpdateFlowErrorMessage::set);
+    // Ensure that app update is available.
+    ((FakeAppUpdateManager) appUpdateManager).setUpdateAvailable(AVAILABLE_UPDATE_VERSION_CODE,
+        AppUpdateType.IMMEDIATE);
+    // Set up appUpdateManager.
+    setUpAppUpdateManagerWithExecutors(/* userAcceptsUpdate= */true);
+    // Mark app update as in-progress.
+    doReturn(true).when(enxAppUpdateManager).isAppUpdateInProgress(any());
+    // But now make the update flow fail.
+    doReturn(false).when(appUpdateManager).startUpdateFlowForResult(any(), anyInt(),
+        any(IntentSenderForResultStarter.class), anyInt());
+
+    viewModel.maybeTriggerAppUpdateFlowIfUpdateInProgress(launcher);
+    // Ensure that the download of a new app version is complete.
+    ((FakeAppUpdateManager) appUpdateManager).downloadStarts();
+    ((FakeAppUpdateManager) appUpdateManager).downloadCompletes();
+
+    verify(enxAppUpdateManager).isAppUpdateInProgress(any());
+    verify(appUpdateManager).startUpdateFlowForResult(any(), anyInt(),
+        any(IntentSenderForResultStarter.class), anyInt());
+    assertThat(appUpdateFlowErrorMessage.get()).isEqualTo(getErrorMessageFor401UploadError(false));
+  }
+
+  @Test
+  public void maybeTriggerAppUpdateFlowIfUpdateInProgress_updateInProgressAndFlowStarted_noErrorMessage()
+      throws SendIntentException {
+    AtomicReference<String> appUpdateFlowErrorMessage = new AtomicReference<>();
+    viewModel.getAppUpdateFlowErrorLiveData().observeForever(appUpdateFlowErrorMessage::set);
+    // Ensure that app update is available.
+    ((FakeAppUpdateManager) appUpdateManager).setUpdateAvailable(AVAILABLE_UPDATE_VERSION_CODE,
+        AppUpdateType.IMMEDIATE);
+    // Set up appUpdateManager.
+    setUpAppUpdateManagerWithExecutors(/* userAcceptsUpdate= */true);
+    // Mark app update as in-progress.
+    doReturn(true).when(enxAppUpdateManager).isAppUpdateInProgress(any());
+
+    viewModel.maybeTriggerAppUpdateFlowIfUpdateInProgress(launcher);
+    // Ensure that the download of a new app version is complete.
+    ((FakeAppUpdateManager) appUpdateManager).downloadStarts();
+    ((FakeAppUpdateManager) appUpdateManager).downloadCompletes();
+
+    verify(enxAppUpdateManager).isAppUpdateInProgress(any());
+    verify(appUpdateManager).startUpdateFlowForResult(any(), anyInt(),
+        any(IntentSenderForResultStarter.class), anyInt());
+    assertThat(appUpdateFlowErrorMessage.get()).isNull();
+  }
+
+  @Test
+  public void maybeTriggerAppUpdateFlowIfUpdateInProgress_updateNotInProgress_updateFlowNotLaunched()
+      throws SendIntentException {
+    AtomicReference<String> appUpdateFlowErrorMessage = new AtomicReference<>();
+    viewModel.getAppUpdateFlowErrorLiveData().observeForever(appUpdateFlowErrorMessage::set);
+    // Ensure that app update is available.
+    ((FakeAppUpdateManager) appUpdateManager).setUpdateAvailable(AVAILABLE_UPDATE_VERSION_CODE,
+        AppUpdateType.IMMEDIATE);
+    // Set up appUpdateManager.
+    setUpAppUpdateManagerWithExecutors(/* userAcceptsUpdate= */true);
+    // But mark app update as not in-progress.
+    doReturn(false).when(enxAppUpdateManager).isAppUpdateInProgress(any());
+
+    viewModel.maybeTriggerAppUpdateFlowIfUpdateInProgress(launcher);
+
+    verify(enxAppUpdateManager).isAppUpdateInProgress(any());
+    verify(appUpdateManager, never()).startUpdateFlowForResult(any(), anyInt(),
+        any(IntentSenderForResultStarter.class), anyInt());
+    assertThat(appUpdateFlowErrorMessage.get()).isNull();
+  }
+
   private static String userReportResponse() throws Exception {
     return new JSONObject()
         .put(VerifyV1.EXPIRY_STR, EXPIRES_AT_STR)
         .put(VerifyV1.EXPIRY_TIMESTAMP, 0)
-        .toString();
-  }
-
-  private static String userReportErrorResponse() throws Exception {
-    return new JSONObject()
-        .put(VerifyV1.ERR_MESSAGE, "error")
-        .put(VerifyV1.ERR_CODE, "error-code")
         .toString();
   }
 
@@ -944,18 +1317,6 @@ public class ShareDiagnosisViewModelTest {
     return observedRevealCodeStepEvent;
   }
 
-  private AtomicReference<Step> observeNextStep(Step currentStep) {
-    AtomicReference<Step> observedNextStep = new AtomicReference<>();
-    viewModel.getNextStepLiveData(currentStep).observeForever(observedNextStep::set);
-    return observedNextStep;
-  }
-
-  private AtomicReference<Step> observePreviousStep(Step previousStep) {
-    AtomicReference<Step> observedPreviousStep = new AtomicReference<>();
-    viewModel.getPreviousStepLiveData(previousStep).observeForever(observedPreviousStep::set);
-    return observedPreviousStep;
-  }
-
   private FakeRequestQueue queue() {
     return (FakeRequestQueue) queue;
   }
@@ -972,4 +1333,64 @@ public class ShareDiagnosisViewModelTest {
     savedStateHandle.set(SAVED_STATE_GET_CODE_TEST_DATE, "Jul 2, 2021");
     return savedStateHandle;
   }
+
+  private String getErrorMessageFor401UploadError(boolean isSelfReportFlow) {
+    return UploadError.UNAUTHORIZED_CLIENT
+        .getErrorMessage(context.getResources(), isSelfReportFlow);
+  }
+
+  private void setUpAppUpdateManager() {
+    AppUpdateInfo appUpdateInfo = appUpdateManager.getAppUpdateInfo().getResult();
+    // Invoke onCompleteListener immediately after adding.
+    when(mockTask.addOnCompleteListener(any())).then(
+        invocation -> {
+          OnCompleteListener<AppUpdateInfo> listener = invocation.getArgument(0);
+          listener.onComplete(mockTask);
+          return mockTask;
+        }
+    );
+    // ...and also invoke onSuccessListener immediately after adding.
+    when(mockTask.addOnSuccessListener(any())).then(
+        invocation -> {
+          OnSuccessListener<AppUpdateInfo> listener = invocation.getArgument(0);
+          listener.onSuccess(appUpdateInfo);
+          return mockTask;
+        });
+    // Don't invoke addOnFailureListener.
+    when(mockTask.addOnFailureListener(any())).then(invocation -> mockTask);
+    // Mark this task as successfully completed.
+    when(mockTask.isComplete()).thenReturn(true);
+    when(mockTask.isSuccessful()).thenReturn(true);
+    doReturn(mockTask).when(appUpdateManager).getAppUpdateInfo();
+  }
+
+  private void setUpAppUpdateManagerWithExecutors(boolean userAcceptsUpdate) {
+    AppUpdateInfo appUpdateInfo = appUpdateManager.getAppUpdateInfo().getResult();
+    // Invoke onCompleteListener immediately after adding...
+    when(mockTask.addOnCompleteListener(/* executor= */any(), any())).then(
+        invocation -> {
+          OnCompleteListener<AppUpdateInfo> listener = invocation.getArgument(1);
+          listener.onComplete(mockTask);
+          return mockTask;
+        }
+    );
+    // ...and also invoke onSuccessListener immediately after adding.
+    when(mockTask.addOnSuccessListener(/* executor= */any(), any())).then(
+        invocation -> {
+          OnSuccessListener<AppUpdateInfo> listener = invocation.getArgument(1);
+          listener.onSuccess(appUpdateInfo);
+          return mockTask;
+        });
+    // Don't invoke addOnFailureListener.
+    when(mockTask.addOnFailureListener(/* executor= */any(), any())).then(invocation -> mockTask);
+    // Mark this task as successfully completed.
+    when(mockTask.isComplete()).thenReturn(true);
+    when(mockTask.isSuccessful()).thenReturn(true);
+    doReturn(mockTask).when(appUpdateManager).getAppUpdateInfo();
+    // Mark update as accepted if needed.
+    if (userAcceptsUpdate) {
+      ((FakeAppUpdateManager) appUpdateManager).userAcceptsUpdate();
+    }
+  }
+
 }

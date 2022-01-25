@@ -49,9 +49,11 @@
 
     <TextView
       android:layout_width="0dp"
-      android:layout_height="match_parent"
+      android:layout_height="wrap_content"
       android:layout_weight="1"
+      android:layout_gravity="center_vertical"
       android:gravity="center|start"
+      android:paddingVertical="@dimen/padding_medium"
       android:text="@string/how_en_works_card_content"
       android:textAppearance="?attr/textAppearanceSubtitle1" />
 

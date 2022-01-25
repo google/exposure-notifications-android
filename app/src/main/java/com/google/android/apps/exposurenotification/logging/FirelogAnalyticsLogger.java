@@ -127,7 +127,7 @@ public class FirelogAnalyticsLogger implements AnalyticsLogger {
           logger.i("Firelog analytics logging enabled");
         } else {
           logger.i("Firelog analytics logging disabled");
-          repository.eraseEventsBatch();
+          repository.deleteEventsBatch();
         }
       });
     }
@@ -392,7 +392,7 @@ public class FirelogAnalyticsLogger implements AnalyticsLogger {
               if (!consent) {
                 // If we don't have checkbox consent
                 logger.i("Skipped firelog upload.");
-                repository.eraseEventsBatch();
+                repository.deleteEventsBatch();
                 return Futures.immediateFailedFuture(new NoConsentException());
               } else {
                 return CallbackToFutureAdapter.getFuture(
@@ -414,9 +414,9 @@ public class FirelogAnalyticsLogger implements AnalyticsLogger {
           // If we have a lastEntryToSend, we only erase logs up until (including this log)
           if (lastEntryToSend != null) {
             logger.d("ErasingEventsBatchUpToIncludingEvent " + lastEntryToSend);
-            repository.eraseEventsBatchUpToIncludingEvent(lastEntryToSend);
+            repository.deleteEventsBatchUpToIncludingEvent(lastEntryToSend);
           } else {
-            repository.eraseEventsBatch();
+            repository.deleteEventsBatch();
           }
           logger.i("Analytics log batch sent to Firelog.");
           return null;
@@ -447,7 +447,7 @@ public class FirelogAnalyticsLogger implements AnalyticsLogger {
               logger.i("App analytics enabled via checkbox. Sending log event.");
             } else /* consent not granted via checkbox*/ {
               // Clear recorded events, but only if there were any to avoid unnecessary DB-calls
-              repository.eraseEventsBatch();
+              repository.deleteEventsBatch();
               logger.d("App analytics disabled via checkbox. Not sending log event and "
                   + "clearing previous event record.");
             }

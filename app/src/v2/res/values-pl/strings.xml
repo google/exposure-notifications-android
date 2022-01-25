@@ -22,4 +22,7 @@
   <string name="share_positive_diagnosis_card_content">Udostępnij wynik testu, aby pomóc zahamować rozprzestrzenianie się COVID-19</string>
   <string name="share_app_card_content">Podziel się tą aplikacją z innymi – aby chronić ich i Waszych najbliższych</string>
   <string name="how_en_works_card_content">Dowiedz się więcej o tym, jak działają powiadomienia o narażeniu na kontakt</string>
+  <string name="en_turndown_for_area_contents">Instytucja zdrowia publicznego wdraża inne rozwiązania w ramach walki z pandemią COVID-19 i nie obsługuje już tej aplikacji. Dziękujemy za korzystanie z aplikacji i chronienie Twoich najbliższych oraz innych osób.</string>
+  <string name="en_turndown_contents">Ta aplikacja nie jest już obsługiwana, ponieważ instytucja zdrowia publicznego wdraża inne rozwiązania w ramach walki z pandemią COVID-19. Dziękujemy za korzystanie z aplikacji i chronienie Twoich najbliższych oraz innych osób.</string>
+  <string name="en_turndown_see_test_results_card_content">Wciąż możesz wyświetlić wyniki testów wprowadzonych wcześniej do powiadomień o narażeniu na kontakt</string>
 </resources>

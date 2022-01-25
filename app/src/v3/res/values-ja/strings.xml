@@ -14,4 +14,6 @@
   <string name="share_history_delete_test_result_detail">%1$sの COVID-19 の検査結果をスマートフォンから削除します。</string>
   <string name="sms_intercept_notice_card_title">結果を共有するようリマインダーが届きます</string>
   <string name="sms_intercept_notice_card_content">検査が陽性で確認済み SMS で届いた場合</string>
+  <string name="en_turndown_contents">衛生機関が COVID-19（新型コロナウイルス感染症）の対応状況に合わせ、接触通知システムのサポートを終了しました。本サービスをご利用いただき、また地域社会の保護にご協力いただきありがとうございました。</string>
+  <string name="en_turndown_for_area_contents">お住まいの地域の衛生機関が COVID-19（新型コロナウイルス感染症）の対応状況に合わせ、接触通知システムのサポートを終了しました。本サービスをご利用いただき、また地域社会の保護にご協力いただきありがとうございました。</string>
 </resources>

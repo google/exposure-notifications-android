@@ -27,10 +27,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProvider;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.common.BuildUtils;
+import com.google.android.apps.exposurenotification.common.BuildUtils.Type;
 import com.google.android.apps.exposurenotification.common.PairLiveData;
 import com.google.android.apps.exposurenotification.common.StringUtils;
 import com.google.android.apps.exposurenotification.databinding.FragmentEdgeCasesVerificationBinding;
 import com.google.android.apps.exposurenotification.home.ExposureNotificationViewModel.ExposureNotificationState;
+import com.google.android.apps.exposurenotification.nearby.EnStateUtil;
 import com.google.android.apps.exposurenotification.notify.DiagnosisEntityHelper;
 import com.google.android.apps.exposurenotification.notify.ShareDiagnosisFragment;
 import com.google.android.apps.exposurenotification.notify.ShareDiagnosisViewModel;
@@ -97,6 +100,7 @@ public class VerificationFlowEdgeCaseFragment extends AbstractEdgeCaseFragment {
     TextView title = binding.edgecaseMainTitle;
     TextView text = binding.edgecaseMainText;
     Button button = binding.edgecaseMainButton;
+    TextView healthAuthorityTurndownMessage = binding.healthAuthorityTurndownContent;
     button.setEnabled(true);
 
     switch (state) {
@@ -105,6 +109,7 @@ public class VerificationFlowEdgeCaseFragment extends AbstractEdgeCaseFragment {
         text.setText(getString(R.string.notify_turn_on_exposure_notifications_header,
             getString(R.string.using_en_helps_even_if_vaccinated)));
         button.setText(R.string.turn_on_exposure_notifications_action);
+        healthAuthorityTurndownMessage.setVisibility(View.GONE);
         configureButtonForStartEn(button, isInFlight);
         break;
       case FOCUS_LOST:
@@ -112,12 +117,14 @@ public class VerificationFlowEdgeCaseFragment extends AbstractEdgeCaseFragment {
         text.setText(getString(R.string.focus_lost_warning,
             StringUtils.getApplicationTitle(requireContext())));
         button.setText(R.string.switch_app_for_exposure_notifications_action);
+        healthAuthorityTurndownMessage.setVisibility(View.GONE);
         configureButtonForStartEn(button, isInFlight);
         break;
       case STORAGE_LOW:
         title.setText(R.string.exposure_notifications_are_turned_off);
         text.setText(R.string.storage_low_warning);
         button.setText(R.string.manage_storage);
+        healthAuthorityTurndownMessage.setVisibility(View.GONE);
         configureButtonForManageStorage(button);
         logUiInteraction(EventType.LOW_STORAGE_WARNING_SHOWN);
         break;
@@ -125,12 +132,19 @@ public class VerificationFlowEdgeCaseFragment extends AbstractEdgeCaseFragment {
         title.setText(R.string.exposure_notifications_are_turned_off);
         text.setText(R.string.user_profile_not_supported_warning);
         button.setVisibility(View.GONE);
+        healthAuthorityTurndownMessage.setVisibility(View.GONE);
         break;
       case PAUSED_NOT_IN_ALLOWLIST:
-        title.setText(R.string.exposure_notifications_are_turned_off);
-        text.setText(R.string.not_in_allowlist_warning);
-        text.setMovementMethod(LinkMovementMethod.getInstance());
+        title.setText(R.string.en_turndown_for_area_title);
+        text.setText(R.string.en_turndown_for_area_contents);
         button.setVisibility(View.GONE);
+        if (BuildUtils.getType() == Type.V3
+            && EnStateUtil.isAgencyTurndownMessagePresent(requireContext())) {
+          // Display PHA-provided turndown message.
+          healthAuthorityTurndownMessage.setVisibility(View.VISIBLE);
+        } else {
+          healthAuthorityTurndownMessage.setVisibility(View.GONE);
+        }
         break;
       case PAUSED_HW_NOT_SUPPORT:
         String deviceRequirementsLinkText = getString(R.string.device_requirements_link_text);
@@ -144,15 +158,10 @@ public class VerificationFlowEdgeCaseFragment extends AbstractEdgeCaseFragment {
         button.setVisibility(View.GONE);
         break;
       case PAUSED_EN_NOT_SUPPORT:
-        String learnMoreLinkText = getString(R.string.learn_more);
-
-        title.setText(R.string.exposure_notifications_are_turned_off);
-        text.setText(StringUtils.generateTextWithHyperlink(
-            UrlUtils.createURLSpan(getString(R.string.en_info_main_page_link)),
-            getString(R.string.en_not_supported_warning, learnMoreLinkText),
-            learnMoreLinkText));
-        text.setMovementMethod(LinkMovementMethod.getInstance());
+        title.setText(R.string.en_turndown_title);
+        text.setText(R.string.en_turndown_contents);
         button.setVisibility(View.GONE);
+        healthAuthorityTurndownMessage.setVisibility(View.GONE);
         break;
       default:
         break;

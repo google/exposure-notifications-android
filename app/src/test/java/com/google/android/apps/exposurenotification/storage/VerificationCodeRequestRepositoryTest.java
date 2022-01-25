@@ -112,7 +112,7 @@ public class VerificationCodeRequestRepositoryTest {
     }
 
     // WHEN
-    verificationCodeRequestRepo.deleteObsoleteRequestsIfAny(thirtyDaysThreshold);
+    verificationCodeRequestRepo.deleteOutdatedRequestsIfAny(thirtyDaysThreshold);
 
     // THEN
     List<VerificationCodeRequestEntity> storedRequests = verificationCodeRequestRepo.getAll();
@@ -260,6 +260,21 @@ public class VerificationCodeRequestRepositoryTest {
     // THEN
     assertThat(retrievedRequests).hasSize(1);
     assertThat(retrievedRequests.get(0)).isEqualTo(requestMadeExactly30DaysAgo);
+  }
+
+  @Test
+  public void clearVerificationCodeRequestEntities_clearsAllEntities() throws Exception {
+    // GIVEN
+    List<VerificationCodeRequestEntity> requests = getRequestEntities();
+    for (VerificationCodeRequestEntity request : requests) {
+      verificationCodeRequestRepo.upsertAsync(request).get();
+    }
+
+    // WHEN
+    verificationCodeRequestRepo.deleteVerificationCodeRequestEntities().get();
+
+    // THEN
+    assertThat(verificationCodeRequestRepo.getAll()).isEmpty();
   }
 
   private List<VerificationCodeRequestEntity> getRequestEntities() {

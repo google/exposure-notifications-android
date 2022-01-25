@@ -15,6 +15,7 @@
   <string name="btn_verify">Ověřit</string>
   <string name="btn_no_thanks">Ne, díky</string>
   <string name="btn_share">Sdílet</string>
+  <string name="btn_close_app">Zavřít aplikaci</string>
   <string name="learn_more">Další informace</string>
   <string name="home_tab_settings_text">Nastavení</string>
   <string name="notification_channel_name">Možný kontakt s COVID-19</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">Oznámení o možném kontaktu vyžadují oprávnění</string>
   <string name="onboarding_finish_title">Oznámení o možném kontaktu vyžadují trvalá oprávnění</string>
   <string name="onboarding_exposure_notifications_title">Zapněte oznámení o možném kontaktu</string>
-  <string name="onboarding_exposure_notifications_detail">Nechte se upozornit, pokud jste se ocitli blízko někoho, kdo nahlásil, že má covid-19.
+  <string name="onboarding_exposure_notifications_description">Nechte se upozornit, pokud jste se ocitli blízko někoho, kdo nahlásil, že má covid-19.
     \n\nK bezpečnému shromažďování a sdílení náhodných ID s ostatními telefony v okolí používá telefon rozhraní Bluetooth.
     \n\nK určení, zda na základě parametrů stanovených státním zdravotnickým úřadem budete upozorněni, se použije datum vašeho kontaktu s tímto onemocněním, jeho trvání a s ním spojená síla signálu.
-    \n\nPokud obdržíte SMS s výsledkem testu, můžete dostat oznámení, abyste svoji diagnózu mohli sdílet se zdravotnickými úřady.</string>
+    \n\nPokud obdržíte SMS s výsledkem testu, můžete dostat oznámení, abyste svoji diagnózu mohli sdílet se zdravotnickými úřady. %1$s</string>
   <string name="onboarding_metrics_title">Pomozte aplikaci vylepšit</string>
   <string name="onboarding_metrics_subtitle">Sdílejte data o využití aplikace a výkonu s Googlem</string>
   <string name="onboarding_metrics_description">Za účelem údržby a vylepšování aplikace jsou s Googlem sdílena omezená data o využití a výkonu aplikace. Tato data neumožňují identifikaci uživatele. %1$s</string>
@@ -218,4 +219,11 @@
   <string name="share_upload_status_negative">Negativní</string>
   <string name="share_upload_status_likely">Pravděpodobně pozitivní</string>
   <string name="share_diagnosis_progress_tracker">Krok %1$d z %2$d</string>
+  <string name="see_history_device_authentication_title">Ověřte svou totožnost</string>
+  <string name="update_app_dialog_title">Aktualizujte aplikaci</string>
+  <string name="update_app_dialog_content">Dokončení sdílení výsledků testu vyžaduje aktualizaci na nejnovější verzi aplikace Oznámení o možném kontaktu.</string>
+  <string name="btn_update">Aktualizovat</string>
+  <string name="try_again_later_error_message">Něco se pokazilo. Zkuste to znovu za několik hodin.</string>
+  <string name="en_turndown_for_area_title">Místní zdravotní úřad už nepodporuje oznámení o možném kontaktu</string>
+  <string name="en_turndown_title">Oznámení o možném kontaktu byla vypnuta</string>
 </resources>

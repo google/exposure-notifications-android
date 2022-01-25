@@ -15,6 +15,7 @@
   <string name="btn_verify">Verifiëren</string>
   <string name="btn_no_thanks">Nee</string>
   <string name="btn_share">Delen</string>
+  <string name="btn_close_app">App sluiten</string>
   <string name="learn_more">Meer informatie</string>
   <string name="home_tab_settings_text">Instellingen</string>
   <string name="notification_channel_name">Mogelijke blootstelling aan COVID-19</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">Rechten die nodig zijn om blootstellingsmeldingen aan te zetten</string>
   <string name="onboarding_finish_title">Voortzetting van rechten die nodig zijn om blootstellingsmeldingen aan te zetten</string>
   <string name="onboarding_exposure_notifications_title">Blootstellingsmeldingen aanzetten</string>
-  <string name="onboarding_exposure_notifications_detail">Krijg een melding als je in de buurt bent geweest van iemand die heeft gemeld dat hij of zij COVID-19 heeft.
+  <string name="onboarding_exposure_notifications_description">Krijg een melding als je in de buurt bent geweest van iemand die heeft gemeld dat hij of zij COVID-19 heeft.
     \n\nJe telefoon gebruikt bluetooth om willekeurige ID\'s beveiligd te verzamelen en te delen met andere telefoons die in de buurt zijn.
     \n\nDe datum, duur en signaalsterkte die zijn gekoppeld aan een mogelijke blootstelling, worden gebruikt om te bepalen of je een melding krijgt op basis van parameters van je volksgezondheidsautoriteit.
-    \n\nJe kunt een melding krijgen om een diagnose met je volksgezondheidsautoriteit te delen als je een sms krijgt met je testresultaat.</string>
+    \n\nJe kunt een melding krijgen om een diagnose met je volksgezondheidsautoriteit te delen als je een sms krijgt met je testresultaat. %1$s</string>
   <string name="onboarding_metrics_title">Help ons deze app te verbeteren</string>
   <string name="onboarding_metrics_subtitle">App-gebruik en prestatiegegevens delen met Google</string>
   <string name="onboarding_metrics_description">Bepaalde beperkte, niet-persoonlijk herkenbare gegevens over app-prestaties en gebruik worden met Google gedeeld om de app te onderhouden en te verbeteren. Je bent niet te herkennen aan deze gegevens. %1$s</string>
@@ -214,4 +215,11 @@
   <string name="share_upload_status_negative">Negatief</string>
   <string name="share_upload_status_likely">Waarschijnlijk</string>
   <string name="share_diagnosis_progress_tracker">Stap %1$d van %2$d</string>
+  <string name="see_history_device_authentication_title">Bevestigen dat jij het bent</string>
+  <string name="update_app_dialog_title">Je app updaten</string>
+  <string name="update_app_dialog_content">Voer een update uit naar de nieuwste versie van Blootstellingsmeldingen om het delen van je testresultaten af te ronden.</string>
+  <string name="btn_update">Updaten</string>
+  <string name="try_again_later_error_message">Er is iets misgegaan. Probeer het over een paar uur opnieuw.</string>
+  <string name="en_turndown_for_area_title">Je gezondheidsautoriteit ondersteunt Blootstellingsmeldingen niet meer</string>
+  <string name="en_turndown_title">Blootstellingsmeldingen is uitgezet</string>
 </resources>

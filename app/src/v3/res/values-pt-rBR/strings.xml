@@ -14,4 +14,6 @@
   <string name="share_history_delete_test_result_detail">O resultado do seu teste de COVID-19 de %1$s será excluído do smartphone.</string>
   <string name="sms_intercept_notice_card_title">Você pode receber um lembrete para compartilhar o resultado</string>
   <string name="sms_intercept_notice_card_content">Se o teste der positivo e você receber um SMS verificado</string>
+  <string name="en_turndown_contents">No processo de adaptação da resposta à COVID-19, o suporte ao Notificações de Exposição foi suspenso pela autoridade de saúde local. Agradecemos por usar o serviço e ajudar a proteger sua comunidade.</string>
+  <string name="en_turndown_for_area_contents">No processo de adaptação da resposta à COVID-19, sua autoridade de saúde suspendeu o suporte ao Notificações de Exposição. Agradecemos por usar o serviço e ajudar a proteger sua comunidade.</string>
 </resources>

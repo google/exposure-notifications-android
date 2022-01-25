@@ -15,6 +15,7 @@
   <string name="btn_verify">Sahkan</string>
   <string name="btn_no_thanks">Tidak perlu</string>
   <string name="btn_share">Kongsi</string>
+  <string name="btn_close_app">Tutup apl</string>
   <string name="learn_more">Ketahui lebih lanjut</string>
   <string name="home_tab_settings_text">Tetapan</string>
   <string name="notification_channel_name">Kemungkinan pendedahan COVID-19</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">Kebenaran diperlukan untuk mendayakan Pemberitahuan Pendedahan</string>
   <string name="onboarding_finish_title">Kebenaran berterusan diperlukan untuk mendayakan Pemberitahuan Pendedahan</string>
   <string name="onboarding_exposure_notifications_title">Hidupkan Pemberitahuan Pendedahan</string>
-  <string name="onboarding_exposure_notifications_detail">Dapatkan pemberitahuan jika anda pernah berada berdekatan dengan seseorang yang melaporkan dirinya positif COVID-19.
+  <string name="onboarding_exposure_notifications_description">Dapatkan pemberitahuan jika anda pernah berada berdekatan dengan seseorang yang melaporkan dirinya positif COVID-19.
     \n\nTelefon anda menggunakan Bluetooth untuk mengumpul dan berkongsi ID rawak secara selamat dengan telefon lain yang berdekatan.
     \n\nTarikh, tempoh dan kekuatan isyarat yang dikaitkan dengan kemungkinan pendedahan akan digunakan untuk menentukan sama ada anda akan menerima pemberitahuan berdasarkan parameter yang ditetapkan oleh pihak berkuasa kesihatan awam anda atau tidak.
-    \n\nAnda mungkin menerima pemberitahuan untuk berkongsi diagnosis dengan pihak berkuasa kesihatan anda jika anda menerima SMS yang mengandungi keputusan ujian anda.</string>
+    \n\nAnda mungkin menerima pemberitahuan untuk berkongsi diagnosis dengan pihak berkuasa kesihatan anda jika anda menerima SMS yang mengandungi keputusan ujian anda. %1$s</string>
   <string name="onboarding_metrics_title">Jadikan apl ini lebih baik</string>
   <string name="onboarding_metrics_subtitle">Kongsikan data penggunaan &amp; prestasi apl dengan Google</string>
   <string name="onboarding_metrics_description">Untuk membantu penyenggaraan dan peningkatan apl, beberapa data yang dinyahkenal pasti tentang prestasi dan penggunaan apl dikongsikan dengan Google. Data ini tidak mengenal pasti anda. %1$s</string>
@@ -214,4 +215,11 @@
   <string name="share_upload_status_negative">Negatif</string>
   <string name="share_upload_status_likely">Mungkin</string>
   <string name="share_diagnosis_progress_tracker">Langkah %1$d daripada %2$d</string>
+  <string name="see_history_device_authentication_title">Sahkan identiti anda</string>
+  <string name="update_app_dialog_title">Kemas kini apl anda</string>
+  <string name="update_app_dialog_content">Kemas kini kepada versi terbaharu Pemberitahuan Pendedahan untuk melengkapkan perkongsian keputusan ujian anda.</string>
+  <string name="btn_update">Kemas kini</string>
+  <string name="try_again_later_error_message">Kesilapan telah berlaku. Cuba lagi dalam beberapa jam.</string>
+  <string name="en_turndown_for_area_title">Pihak Berkuasa Kesihatan anda tidak lagi menyokong Pemberitahuan Pendedahan</string>
+  <string name="en_turndown_title">Pemberitahuan Pendedahan telah dimatikan</string>
 </resources>

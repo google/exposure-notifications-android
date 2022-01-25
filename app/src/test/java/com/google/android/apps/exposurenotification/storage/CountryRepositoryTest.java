@@ -151,4 +151,21 @@ public class CountryRepositoryTest {
     assertThat(countryRepository.getRecentlySeenCountryCodes(Instant.ofEpochMilli(0)))
         .containsExactly("CA");
   }
+
+  @Test
+  public void clearCountryEntitiesAsync_shouldClearAllCountryData() throws Exception {
+    // GIVEN
+    countryRepository.markCountrySeen("US");
+    ((FakeClock) clock).advance();
+    countryRepository.markCountrySeen("KW");
+    ((FakeClock) clock).advance();
+    countryRepository.markCountrySeen("MN");
+
+    // WHEN
+    countryRepository.deleteCountryEntitiesAsync().get();
+
+    // THEN
+    assertThat(countryRepository.getRecentlySeenCountryCodes(Instant.ofEpochMilli(0)))
+        .isEmpty();
+  }
 }

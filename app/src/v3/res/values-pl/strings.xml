@@ -14,4 +14,6 @@
   <string name="share_history_delete_test_result_detail">Wynik testu na COVID-19 z %1$s zostanie usunięty z telefonu.</string>
   <string name="sms_intercept_notice_card_title">Możesz otrzymać przypomnienie o udostępnieniu wyniku</string>
   <string name="sms_intercept_notice_card_content">Jeśli uzyskasz wynik dodatni i otrzymasz zweryfikowanego SMS-a</string>
+  <string name="en_turndown_contents">Powiadomienia o narażeniu na kontakt nie są już obsługiwane, ponieważ instytucja zdrowia publicznego wdraża inne rozwiązania w ramach walki z pandemią COVID-19. Dziękujemy za korzystanie z usługi i chronienie Twoich najbliższych oraz innych osób.</string>
+  <string name="en_turndown_for_area_contents">Instytucja zdrowia publicznego wdraża inne rozwiązania w ramach walki z pandemią COVID-19 i nie obsługuje już powiadomień o narażeniu na kontakt. Dziękujemy za korzystanie z usługi i chronienie Twoich najbliższych oraz innych osób.</string>
 </resources>

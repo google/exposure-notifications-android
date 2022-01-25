@@ -15,6 +15,7 @@
   <string name="btn_verify">Հաստատել</string>
   <string name="btn_no_thanks">Ոչ, շնորհակալություն</string>
   <string name="btn_share">Կիսվել</string>
+  <string name="btn_close_app">Փակել հավելվածը</string>
   <string name="learn_more">Իմանալ ավելին</string>
   <string name="home_tab_settings_text">Կարգավորումներ</string>
   <string name="notification_channel_name">COVID-19 վարակակրի հետ հնարավոր շփում</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">Վարակման վտանգի մասին ծանուցումները միացնելու համար պահանջվում են թույլտվություններ</string>
   <string name="onboarding_finish_title">Վարակման վտանգի մասին ծանուցումները միացնելու համար պահանջվում են այլ թույլտվություններ</string>
   <string name="onboarding_exposure_notifications_title">Միացնել վարակման վտանգի մասին ծանուցումները</string>
-  <string name="onboarding_exposure_notifications_detail">Ստացեք ծանուցում, եթե որևէ անձ, որին մոտ եք գտնվել, հաղորդի COVID-19-ի իր թեստի դրական արդյունքի մասին։
+  <string name="onboarding_exposure_notifications_description">Ստացեք ծանուցում, եթե որևէ անձ, որին մոտ եք գտնվել, հաղորդի COVID-19-ի իր թեստի դրական արդյունքի մասին։
     \n\nՁեր հեռախոսը Bluetooth-ի օգնությամբ հավաքում է պատահական նույնացուցիչներ և ուղարկում դրանք մոտակայքում գտնվող այլ հեռախոսների։
     \n\nՀամաձայն հանրային առողջապահական մարմինների սահմանած պարամետրերի՝ ծանուցումների ուղարկումը կախված է վարակակրի հետ շփման ամսաթվից, տևողությունից, ինչպես նաև այդ պահին Bluetooth ազդանշանի ուժգնությունից։
-    \n\nԵթե ձեզ ուղարկվի թեստի արդյունքով SMS, դուք նաև կարող եք ստանալ ծանուցում՝ ախտորոշման պատասխանը առողջապահական մարմիններին տրամադրելու առաջարկով։</string>
+    \n\nԵթե ձեզ ուղարկվի թեստի արդյունքով SMS, դուք նաև կարող եք ստանալ ծանուցում՝ ախտորոշման պատասխանը առողջապահական մարմիններին տրամադրելու առաջարկով։ %1$s</string>
   <string name="onboarding_metrics_title">Օգնեք ավելի լավը դարձնել այս հավելվածը</string>
   <string name="onboarding_metrics_subtitle">Ուղարկել հավելվածի մասին տվյալները Google-ին</string>
   <string name="onboarding_metrics_description">Հավելվածի պատշաճ աշխատանքն ապահովելու և այն կատարելագործելու նպատակով հավելվածի աշխատանքի և օգտագործման մասին որոշ անանուն տվյալներ կուղարկվեն Google-ին։ Այդ տվյալները չեն նույնականացնի ձեզ։ %1$s</string>
@@ -214,4 +215,11 @@
   <string name="share_upload_status_negative">Բացասական</string>
   <string name="share_upload_status_likely">Հավանական</string>
   <string name="share_diagnosis_progress_tracker">Քայլ %1$d/%2$d</string>
+  <string name="see_history_device_authentication_title">Հաստատեք ձեր ինքնությունը</string>
+  <string name="update_app_dialog_title">Թարմացրեք հավելվածը</string>
+  <string name="update_app_dialog_content">Թարմացրեք «Ծանուցումներ վարակման վտանգի մասին» հավելվածը վերջին տարբերակով՝ ձեր թեստի արդյունքների ուղարկումն ավարտելու համար։</string>
+  <string name="btn_update">Թարմացնել</string>
+  <string name="try_again_later_error_message">Սխալ առաջացավ։ Մի քանի ժամից նորից փորձեք։</string>
+  <string name="en_turndown_for_area_title">Ձեր առողջապահական մարմիններն այլևս չեն աջակցում վարակման վտանգի մասին ծանուցումները</string>
+  <string name="en_turndown_title">Վարակման վտանգի մասին ծանուցումներն անջատվել են</string>
 </resources>

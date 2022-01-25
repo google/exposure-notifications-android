@@ -25,6 +25,7 @@ import android.content.res.Resources;
 import androidx.annotation.VisibleForTesting;
 import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.common.Qualifiers.BackgroundExecutor;
+import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
 import com.google.common.util.concurrent.FluentFuture;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
@@ -35,13 +36,16 @@ import javax.inject.Inject;
 public final class MigrationManager {
 
   private final Migration migration;
+  private final ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
   private final ExecutorService backgroundExecutor;
 
   @Inject
   public MigrationManager(
       Migration migration,
+      ExposureNotificationSharedPreferences exposureNotificationSharedPreferences,
       @BackgroundExecutor ExecutorService backgroundExecutor) {
     this.migration = migration;
+    this.exposureNotificationSharedPreferences = exposureNotificationSharedPreferences;
     this.backgroundExecutor = backgroundExecutor;
   }
 
@@ -73,6 +77,40 @@ public final class MigrationManager {
   }
 
   /**
+   * Checks if we need to onboard a current user as a migrating user.
+   *
+   * @return true a current user is a migrating user and needs to be onboarded or false otherwise.
+   */
+  public boolean shouldOnboardAsMigratingUser(Context context) {
+    return isMigratingUser(context)
+        && !exposureNotificationSharedPreferences.isMigratingUserOnboarded();
+  }
+
+  /**
+   * Checks if a current user is a migrating user
+   *
+   * <p>The current user is a migrating user if the following holds:
+   * <ul>
+   *   <li>Migration is enabled via a config flag.
+   *   <li>This is the app update (which together with the item above should trigger migration from
+   *       the previously V1 app to the ENX app).
+   * </ul>
+   *
+   * @return true a current user is a migrating user or false otherwise.
+   */
+  public boolean isMigratingUser(Context context) {
+    return isMigrationEnabled(context.getResources())
+        && !isFirstInstall(context.getPackageManager(), context.getPackageName());
+  }
+
+  /**
+   * Marks that the current migrating user has onboarded.
+   */
+  public void markMigratingUserAsOnboarded() {
+    exposureNotificationSharedPreferences.markMigratingUserAsOnboardedAsync();
+  }
+
+  /**
    * Checks if we should run migration for the current app.
    *
    * <p>We should run migration if all of the following hold:
@@ -81,7 +119,7 @@ public final class MigrationManager {
    *   <li>Migration is enabled via a config flag.
    *   <li>This is the app update (which together with the item above should trigger migration from
    *       the previously V1 app to the ENX app).
-   *   <li>Migration has not been run yet.
+   *   <li>Migration has not been run yet (so that we run migration only once).
    * </ul>
    *
    * @return true if we should run the migration and false otherwise.

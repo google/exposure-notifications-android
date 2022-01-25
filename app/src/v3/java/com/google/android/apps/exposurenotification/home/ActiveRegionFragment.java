@@ -29,6 +29,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
 import com.google.android.apps.exposurenotification.BuildConfig;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.nearby.EnStateUtil;
 import com.google.android.apps.exposurenotification.databinding.FragmentActiveRegionBinding;
 import com.google.android.apps.exposurenotification.exposure.ExposureHomeViewModel;
 import com.google.android.apps.exposurenotification.exposure.PossibleExposureFragment;
@@ -128,6 +129,12 @@ public class ActiveRegionFragment extends BaseFragment {
             binding.activeRegionHeader.activeRegionSubtitle.setText(
                 getString(R.string.active_region_subtitle_en_off,
                     getString(R.string.agency_message_subtitle_region)));
+            if (EnStateUtil.isEnTurndown(state)) {
+              binding.enOffView.setOnClickListener(v ->
+                  transitionToFragmentWithBackStack(EnTurndownNoticeFragment.newInstance()));
+            } else {
+              binding.enOffView.setOnClickListener(v -> requireActivity().onBackPressed());
+            }
           }
         });
 
@@ -164,7 +171,6 @@ public class ActiveRegionFragment extends BaseFragment {
     binding.possibleExposureLayout.possibleExposureCard.setOnClickListener(
         v -> transitionToFragmentWithBackStack(PossibleExposureFragment.newInstance()));
     binding.removeRegion.setOnClickListener(v -> showRemoveRegionDialog());
-    binding.enOffView.setOnClickListener(v -> requireActivity().onBackPressed());
     binding.smsNoticeLayout.smsNoticeCard.setOnClickListener(
         v -> transitionToFragmentWithBackStack(SmsNoticeFragment.newInstance(false)));
 
@@ -218,7 +224,9 @@ public class ActiveRegionFragment extends BaseFragment {
   private void refreshUiForClassification(
       ExposureClassification exposureClassification, boolean isRevoked) {
     boolean isExposure = (exposureClassification.getClassificationIndex()
-        != ExposureClassification.NO_EXPOSURE_CLASSIFICATION_INDEX) || isRevoked;
+        != ExposureClassification.NO_EXPOSURE_CLASSIFICATION_INDEX || isRevoked)
+        // Ward off an outdated possible exposure information.
+        && exposureHomeViewModel.isActiveExposurePresent();
 
     if (showPossibleExposureIfAny && isExposure) {
       binding.possibleExposureView.setVisibility(View.VISIBLE);

@@ -17,12 +17,13 @@
 
 package com.google.android.apps.exposurenotification.storage;
 
+import static com.google.common.truth.Truth.assertThat;
+
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import com.google.android.apps.exposurenotification.testsupport.InMemoryDb;
+import com.google.common.collect.ImmutableList;
 import dagger.hilt.android.testing.HiltAndroidTest;
 import dagger.hilt.android.testing.HiltTestApplication;
-import static com.google.common.truth.Truth.assertThat;
-import com.google.common.collect.ImmutableList;
 import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
@@ -77,7 +78,7 @@ public class ExposureDaoTest {
     ExposureEntity exposureEntity3 = createExposureEntity(1337L, 97252L);
 
     exposureDao.upsertAll(ImmutableList.of(exposureEntity1, exposureEntity2));
-    exposureDao.clearInsertExposureEntities(ImmutableList.of(exposureEntity3));
+    exposureDao.deleteInsertExposureEntities(ImmutableList.of(exposureEntity3));
 
     List<ExposureEntity> entities = exposureDao.getAll();
 

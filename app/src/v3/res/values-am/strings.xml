@@ -14,4 +14,6 @@
   <string name="share_history_delete_test_result_detail">ከ%1$s ጀምሮ ያለው የእርስዎ የኮቪድ-19 ምርመራ ውጤት ከስልክዎ ይሰረዛል።</string>
   <string name="sms_intercept_notice_card_title">ውጤትዎን እንዲያጋሩ አስታዋሽ ሊደርስዎ ይችላል።</string>
   <string name="sms_intercept_notice_card_content">አዎንታዊ ምርመራ ካደረጉ እና የተረጋገጠ ኤስኤምኤስ ካገኙ</string>
+  <string name="en_turndown_contents">የእርስዎ የጤና ባለስልጣን ኮቪድ 19 ምላሽ ሰጪን ስላለማመደ የተጋላጭነት ማስታወቂያዎች ከእንግዲህ አይደገፍም። አገልግሎቱን ስለተጠቀሙ እና ማህበረሰብዎን ለመጠበቅ ስላገዙ እናመሰግናለን።</string>
+  <string name="en_turndown_for_area_contents">የእርስዎ የጤና ባለስልጣን ኮቪድ 19 ምላሽ ሰጪውን ስላለማመደ የተጋላጭነት ማሳወቂያዎችን አይደግፉም። አገልግሎቱን ስለተጠቀሙ እና ማህበረሰብዎን ለመጠበቅ ስላገዙ እናመሰግናለን።</string>
 </resources>

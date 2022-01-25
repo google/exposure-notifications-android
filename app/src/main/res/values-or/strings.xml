@@ -15,6 +15,7 @@
   <string name="btn_verify">ଯାଞ୍ଚ କରନ୍ତୁ</string>
   <string name="btn_no_thanks">ନା, ଧନ୍ୟବାଦ</string>
   <string name="btn_share">ସେୟାର୍ କରନ୍ତୁ</string>
+  <string name="btn_close_app">ଆପକୁ ବନ୍ଦ କରନ୍ତୁ</string>
   <string name="learn_more">ଅଧିକ ଜାଣନ୍ତୁ</string>
   <string name="home_tab_settings_text">ସେଟିଂସ୍</string>
   <string name="notification_channel_name">ସମ୍ଭାବ୍ୟ COVID-19 ସଂକ୍ରମଣ</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">ସଂକ୍ରମଣ ବିଜ୍ଞପ୍ତିଗୁଡ଼ିକୁ ସକ୍ଷମ କରିବା ପାଇଁ ଅନୁମତି ଆବଶ୍ୟକ</string>
   <string name="onboarding_finish_title">ସଂକ୍ରମଣ ବିଜ୍ଞପ୍ତିଗୁଡ଼ିକୁ ସକ୍ଷମ କରିବା ପାଇଁ ନିୟମିତ ଅନୁମତି ଆବଶ୍ୟକ</string>
   <string name="onboarding_exposure_notifications_title">ସଂକ୍ରମଣ ବିଜ୍ଞପ୍ତିଗୁଡ଼ିକ ଚାଲୁ କରନ୍ତୁ</string>
-  <string name="onboarding_exposure_notifications_detail">ଯଦି ଆପଣ କୋଭିଡ-19 ଟେଷ୍ଟ ରିପୋର୍ଟରେ ପଜିଟିଭ୍ ଆସିଥିବା କେହି ଜଣେ ବ୍ୟକ୍ତିଙ୍କ ନିକଟରେ ଅଛନ୍ତି, ତେବେ ସୂଚନା ପାଆନ୍ତୁ।
-    \n\nଆଖପାଖରେ ଥିବା ଅନ୍ୟ ଫୋନଗୁଡ଼ିକ ସହ ରେଣ୍ଡମ୍ IDଗୁଡ଼ିକୁ ସୁରକ୍ଷିତ ଭାବେ ସଂଗ୍ରହ ଏବଂ ସେୟାର୍ କରିବାକୁ ଆପଣଙ୍କ ଫୋନ୍ ବ୍ଲୁଟୁଥ୍ ବ୍ୟବହାର କରେ।
-    \n\nଆପଣଙ୍କ ଜନ ସ୍ୱାସ୍ଥ୍ୟ କର୍ତ୍ତୃପକ୍ଷଙ୍କ ଦ୍ୱାରା ସେଟ୍ କରାଯାଇଥିବା ପାରାମିଟରଗୁଡ଼ିକ ଆଧାରରେ ଆପଣଙ୍କୁ ସୂଚିତ କରାଯିବ ନା ନାହିଁ ତାହା ସ୍ଥିର କରିବାକୁ ଏକ ସମ୍ଭାବ୍ୟ ସଂକ୍ରମଣ ସହ ସମ୍ବନ୍ଧିତ ତାରିଖ, ଅବଧି ଏବଂ ସିଗନାଲ୍ କ୍ଷମତାକୁ ବ୍ୟବହାର କରାଯିବ।
-    \n\nଯଦି ଆପଣ ଆପଣଙ୍କ ଟେଷ୍ଟ ରିପୋର୍ଟ ଥିବା ଏକ SMS ପାଆନ୍ତି ତେବେ ଆପଣଙ୍କ ସ୍ୱାସ୍ଥ୍ୟ କର୍ତ୍ତୃପକ୍ଷଙ୍କ ସହ ଡାଏଗ୍ନୋସିସ୍ ରିପୋର୍ଟ ସେୟାର୍ କରିବାକୁ ଆପଣ ଏକ ବିଜ୍ଞପ୍ତି ପାଇପାରନ୍ତି।</string>
+  <string name="onboarding_exposure_notifications_description">ଯଦି ଆପଣ କୋଭିଡ-19 ଟେଷ୍ଟ ରିପୋର୍ଟରେ ପଜିଟିଭ ଆସିଥିବା କୌଣସି ବ୍ୟକ୍ତିଙ୍କ ନିକଟରେ ଅଛନ୍ତି, ତେବେ ସୂଚନା ପାଆନ୍ତୁ।
+    \n\nଆଖପାଖରେ ଥିବା ଅନ୍ୟ ଫୋନଗୁଡ଼ିକ ସହ ରେଣ୍ଡମ IDଗୁଡ଼ିକୁ ସୁରକ୍ଷିତ ଭାବେ ସଂଗ୍ରହ ଏବଂ ସେୟାର କରିବାକୁ ଆପଣଙ୍କ ଫୋନ ବ୍ଲୁଟୁଥ ବ୍ୟବହାର କରେ।
+    \n\nଆପଣଙ୍କ ଜନ ସ୍ୱାସ୍ଥ୍ୟ କର୍ତ୍ତୃପକ୍ଷଙ୍କ ଦ୍ୱାରା ସେଟ କରାଯାଇଥିବା ପାରାମିଟରଗୁଡ଼ିକ ଆଧାରରେ ଆପଣଙ୍କୁ ସୂଚିତ କରାଯିବ ନା ନାହିଁ ତାହା ସ୍ଥିର କରିବାକୁ ଏକ ସମ୍ଭାବ୍ୟ ସଂକ୍ରମଣ ସହ ସମ୍ବନ୍ଧିତ ତାରିଖ, ଅବଧି ଏବଂ ସିଗନାଲ କ୍ଷମତାକୁ ବ୍ୟବହାର କରାଯିବ।
+    \n\nଯଦି ଆପଣ ଆପଣଙ୍କ ଟେଷ୍ଟ ରିପୋର୍ଟ ଥିବା ଏକ SMS ପାଆନ୍ତି ତେବେ ଆପଣଙ୍କ ସ୍ୱାସ୍ଥ୍ୟ କର୍ତ୍ତୃପକ୍ଷଙ୍କ ସହ ଡାଏଗ୍ନୋସିସ ରିପୋର୍ଟ ସେୟାର କରିବାକୁ ଆପଣ ଏକ ବିଜ୍ଞପ୍ତି ପାଇପାରନ୍ତି। %1$s</string>
   <string name="onboarding_metrics_title">ଏହି ଆପକୁ ଉନ୍ନତ କରିବାରେ ସାହାଯ୍ୟ କରନ୍ତୁ</string>
   <string name="onboarding_metrics_subtitle">ଆପର ବ୍ୟବହାର ଏବଂ କାର୍ଯ୍ୟଦକ୍ଷତା ଡାଟା Google ସହିତ ସେୟାର୍ କରନ୍ତୁ</string>
   <string name="onboarding_metrics_description">ଆପକୁ ପରିଚାଳନା କରିବା ଏବଂ ଉନ୍ନତ କରିବାରେ ସାହାଯ୍ୟ କରିବା ପାଇଁ, ଆପର କାର୍ଯ୍ୟଦକ୍ଷତା ଏବଂ ବ୍ୟବହାର ବିଷୟରେ ବ୍ୟକ୍ତିଗତ ଚିହ୍ନଟକାରୀ ସୂଚନା-ବିନା କିଛି ସୀମିତ ଡାଟା Google ସହ ସେୟାର୍ କରାଯାଏ। ଏହି ଡାଟା ଆପଣଙ୍କୁ ଚିହ୍ନଟ କରେ ନାହିଁ। %1$s</string>
@@ -214,4 +215,11 @@
   <string name="share_upload_status_negative">ନେଗେଟିଭ୍</string>
   <string name="share_upload_status_likely">ସମ୍ଭାବନା ଅଛି</string>
   <string name="share_diagnosis_progress_tracker">%2$dଟିରୁ %1$d ନମ୍ବର ଷ୍ଟେପ୍</string>
+  <string name="see_history_device_authentication_title">ଏହା ଆପଣ ବୋଲି ଯାଞ୍ଚ କରନ୍ତୁ</string>
+  <string name="update_app_dialog_title">ଆପଣଙ୍କ ଆପ ଅପଡେଟ କରନ୍ତୁ</string>
+  <string name="update_app_dialog_content">ଆପଣଙ୍କ ଟେଷ୍ଟ ରିପୋର୍ଟଗୁଡ଼ିକର ସେୟାରିଂ ସମ୍ପୂର୍ଣ୍ଣ କରିବା ପାଇଁ ସଂକ୍ରମଣ ବିଜ୍ଞପ୍ତିର ନବୀନତମ ସଂସ୍କରଣକୁ ଅପଡେଟ କରନ୍ତୁ।</string>
+  <string name="btn_update">ଅପଡେଟ କରନ୍ତୁ</string>
+  <string name="try_again_later_error_message">କିଛି ତ୍ରୁଟି ହୋଇଛି। କିଛି ଘଣ୍ଟା ପରେ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।</string>
+  <string name="en_turndown_for_area_title">ସଂକ୍ରମଣ ବିଜ୍ଞପ୍ତିକୁ ଆପଣଙ୍କ ସ୍ୱାସ୍ଥ୍ୟ କର୍ତ୍ତୃପକ୍ଷ ଆଉ ସମର୍ଥନ କରୁନାହାଁନ୍ତି</string>
+  <string name="en_turndown_title">ସଂକ୍ରମଣ ବିଜ୍ଞପ୍ତିକୁ ବନ୍ଦ କରାଯାଇଛି</string>
 </resources>

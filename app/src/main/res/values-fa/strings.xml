@@ -15,6 +15,7 @@
   <string name="btn_verify">‌تأیید کردن</string>
   <string name="btn_no_thanks">نه متشکرم</string>
   <string name="btn_share">هم‌رسانی</string>
+  <string name="btn_close_app">بستن برنامه</string>
   <string name="learn_more">بیشتر بدانید</string>
   <string name="home_tab_settings_text">تنظیمات</string>
   <string name="notification_channel_name">تماس پرخطر احتمالی با کووید-۱۹</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">اجازه‌های لازم برای فعال کردن «اعلان تماس‌های پرخطر»</string>
   <string name="onboarding_finish_title">ادامه اجازه‌های لازم برای فعال کردن «اعلان تماس‌های پرخطر»</string>
   <string name="onboarding_exposure_notifications_title">روشن کردن اعلان تماس‌های پرخطر</string>
-  <string name="onboarding_exposure_notifications_detail">اگر نزدیک فردی قرار گرفته باشید که آزمایش کووید-۱۹ او مثبت گزارش شده است، اعلان دریافت می‌کنید.
-    \n\nتلفنتان از بلوتوث برای جمع‌آوری و هم‌رسانی ایمن شناسه‌های تصادفی با دیگر تلفن‌های اطراف استفاده می‌کند.
-    \n\nبااستفاده از تاریخ، مدت‌زمان، و قدرت سیگنال مرتبط با تماس پرخطر احتمالی مشخص می‌شود که آیا براساس پارامترهایی تعیین‌شده توسط مرجع بهداشت عمومی‌تان اعلان دریافت خواهید کرد یا نه.
-    \n\nاگر پیامکی حاوی نتیجه آزمایشتان دریافت کردید، ممکن است اعلانی برای هم‌رسانی تشخیص پزشکی با مرجع بهداشتی‌تان دریافت کنید.</string>
+  <string name="onboarding_exposure_notifications_description">اگر نزدیک فردی قرار گرفته باشید که آزمایش کووید-۱۹ او مثبت گزارش شده است، اعلان دریافت می‌کنید.
+    \n\nتلفنتان برای جمع‌آوری و هم‌رسانی ایمن شناسه‌های تصادفی با دیگر تلفن‌های اطراف از بلوتوث استفاده می‌کند.
+    \n\nبااستفاده از تاریخ، مدت‌زمان، و قدرت سیگنال مرتبط با تماس پرخطر احتمالی مشخص می‌شود آیا براساس پارامترهای تعیین‌شده توسط مرجع بهداشت عمومی‌تان اعلان دریافت خواهید کرد یا نه.
+    \n\nاگر پیامکی حاوی نتیجه آزمایشتان دریافت کردید، ممکن است اعلانی برای هم‌رسانی تشخیص پزشکی با مرجع بهداشتی‌تان دریافت کنید. %1$s</string>
   <string name="onboarding_metrics_title">به بهبود این برنامه کمک کنید</string>
   <string name="onboarding_metrics_subtitle">داده عملکرد و استفاده از برنامه را با Google هم‌رسانی کنید</string>
   <string name="onboarding_metrics_description">برای کمک به نگهداری و بهبود برنامه، برخی داده‌هایی محدود و غیرقابل‌شناسایی درباره عملکرد و استفاده از برنامه، با Google هم‌رسانی می‌شود. این داده‌ها هویت شما را فاش نمی‌کند. %1$s</string>
@@ -214,4 +215,11 @@
   <string name="share_upload_status_negative">منفی</string>
   <string name="share_upload_status_likely">محتمل</string>
   <string name="share_diagnosis_progress_tracker">مرحله %1$d از %2$d</string>
+  <string name="see_history_device_authentication_title">تأیید کنید خودتان هستید</string>
+  <string name="update_app_dialog_title">به‌روزرسانی برنامه</string>
+  <string name="update_app_dialog_content">برای تکمیل کردن هم‌رسانی نتایج آزمایش، جدیدترین نسخه «اعلان تماس‌های پرخطر» را نصب کنید.</string>
+  <string name="btn_update">به‌روزرسانی</string>
+  <string name="try_again_later_error_message">مشکلی پیش آمد. چند ساعت دیگر دوباره امتحان کنید.</string>
+  <string name="en_turndown_for_area_title">«مقام بهداشتی» شما دیگر از «اعلان تماس‌های پرخطر» پشتیبانی نمی‌کند</string>
+  <string name="en_turndown_title">«اعلان تماس‌های پرخطر» خاموش شده است</string>
 </resources>

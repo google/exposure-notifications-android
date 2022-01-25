@@ -15,6 +15,7 @@
   <string name="btn_verify">Overiť</string>
   <string name="btn_no_thanks">Nie, vďaka</string>
   <string name="btn_share">Zdieľať</string>
+  <string name="btn_close_app">Zavrieť aplikáciu</string>
   <string name="learn_more">Ďalšie informácie</string>
   <string name="home_tab_settings_text">Nastavenia</string>
   <string name="notification_channel_name">Možný kontakt s ochorením COVID‑19</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">Na povolenie upozornení na kontakt sa vyžadujú povolenia</string>
   <string name="onboarding_finish_title">Na povolenie upozornení na kontakt sa vyžaduje trvalá platnosť povolení</string>
   <string name="onboarding_exposure_notifications_title">Zapnutie upozornení na kontakt</string>
-  <string name="onboarding_exposure_notifications_detail">Dostaňte upozornenie, keď ste boli v blízkosti osoby, ktorá nahlásila ochorenie COVID‑19.
+  <string name="onboarding_exposure_notifications_description">Dostaňte upozornenie, keď ste boli v blízkosti osoby, ktorá nahlásila ochorenie COVID‑19.
     \n\nTelefón pomocou rozhrania Bluetooth zabezpečene zhromažďuje a zdieľa náhodné identifikátory s inými telefónmi v okolí.
     \n\nPodľa dátumu, trvania a sily signálu spojeného s možným kontaktom sa určí, či dostanete upozornenie na základe parametrov stanovených vašou inštitúciou verejného zdravotníctva.
-    \n\nAk dostanete SMS s výsledkom testu, môžete dostať upozornenie, aby ste zdieľali diagnostiku s inštitúciou verejného zdravotníctva.</string>
+    \n\nAk dostanete SMS s výsledkom testu, môžete dostať upozornenie, aby ste zdieľali diagnózu so zdravotníckym úradom. %1$s</string>
   <string name="onboarding_metrics_title">Pomôžte zlepšiť túto aplikáciu</string>
   <string name="onboarding_metrics_subtitle">Zdieľanie údajov o používaní a výkonnosti aplik. s Googlom</string>
   <string name="onboarding_metrics_description">Niektoré obmedzené údaje o výkonnosti a používaní aplikácie, ktoré neumožňujú osobnú identifikáciu, sú zdieľané s Googlom, aby sme ju mohli udržiavať v chode a zlepšovať. Podľa týchto údajov vás nie je možné identifikovať. %1$s</string>
@@ -218,4 +219,11 @@
   <string name="share_upload_status_negative">Negatívny</string>
   <string name="share_upload_status_likely">Pravdepodobne pozitívny</string>
   <string name="share_diagnosis_progress_tracker">%1$d. krok z %2$d</string>
+  <string name="see_history_device_authentication_title">Overte, že ste to vy</string>
+  <string name="update_app_dialog_title">Aktualizujte si aplikáciu</string>
+  <string name="update_app_dialog_content">Dokončenie zdieľania výsledkov testu vyžaduje aktualizáciu na najnovšiu verziu upozornení na kontakt.</string>
+  <string name="btn_update">Aktualizovať</string>
+  <string name="try_again_later_error_message">Vyskytla sa chyba. Skúste to znova o niekoľko hodín.</string>
+  <string name="en_turndown_for_area_title">Váš zdravotnícky úrad už nepodporuje upozornenia na kontakt</string>
+  <string name="en_turndown_title">Upozornenia na kontakt boli vypnuté</string>
 </resources>

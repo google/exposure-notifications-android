@@ -15,6 +15,7 @@
   <string name="btn_verify">Растау</string>
   <string name="btn_no_thanks">Жоқ, рақмет</string>
   <string name="btn_share">Бөлісу</string>
+  <string name="btn_close_app">Қолданбаны жабу</string>
   <string name="learn_more">Толығырақ</string>
   <string name="home_tab_settings_text">Параметрлер</string>
   <string name="notification_channel_name">COVID-19 жұқтыру қаупі бар</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">Ауру жұқтырғандармен байланыс туралы хабарландыруды қосу үшін рұқсаттар қажет</string>
   <string name="onboarding_finish_title">Ауру жұқтырғандармен байланыс туралы хабарландыруды қосу үшін әрі қарай рұқсаттар қажет</string>
   <string name="onboarding_exposure_notifications_title">Ауру жұқтырғандармен байланыс туралы хабарландыруды қосу</string>
-  <string name="onboarding_exposure_notifications_detail">COVID-19 вирусын жұқтырғанын хабарлаған адамның жанында болғанда, хабарландыру алыңыз.
+  <string name="onboarding_exposure_notifications_description">COVID-19 вирусын жұқтырғанын хабарлаған адамның жанында болғанда, хабарландыру алыңыз.
     \n\nТелефон Bluetooth функциясының көмегімен кездейсоқ идентификаторларды қауіпсіз жинап, оларды маңайдағы басқа құрылғылармен бөліседі.
     \n\nДенсаулық сақтау мекемесі орнатқан параметрлер негізінде хабарлау мүмкіндігі ауру жұқтырғандармен байланыс күніне, оның ұзақтығына және сигнал күшіне байланысты болады.
-    \n\nСынағыңыздың нәтижесі бар SMS алсаңыз, диагнозды денсаулық сақтау мекемесімен бөлісу туралы хабарландыру алуыңыз мүмкін.</string>
+    \n\nСынағыңыздың нәтижесі бар SMS алсаңыз, диагнозды денсаулық сақтау мекемесімен бөлісу туралы хабарландыру алуыңыз мүмкін %1$s</string>
   <string name="onboarding_metrics_title">Осы қолданбаны жақсартуға көмектесіңіз</string>
   <string name="onboarding_metrics_subtitle">Қолданбаның пайдаланылуы, жұмыс өнімділігі дерегін Google-мен бөлісіңіз.</string>
   <string name="onboarding_metrics_description">Қолданбаның жұмыс қалпын сақтап, ісін жақсартып отыру үшін оның пайдаланылуы мен жұмыс өнімділігі туралы кейбір деректер Google-мен бөлісіледі. Бұл деректерде жеке бас мәліметі анықталмайды. %1$s</string>
@@ -214,4 +215,11 @@
   <string name="share_upload_status_negative">Теріс</string>
   <string name="share_upload_status_likely">Жұқтырған болуы мүмкін</string>
   <string name="share_diagnosis_progress_tracker">Қадам: %1$d/%2$d</string>
+  <string name="see_history_device_authentication_title">Жеке басыңызды растаңыз</string>
+  <string name="update_app_dialog_title">Қолданбаны жаңартыңыз</string>
+  <string name="update_app_dialog_content">Сынақ нәтижелерін бөлісуді аяқтау үшін Ауру жұқтырғандармен байланыс туралы хабарландыру жүйесінің соңғы нұсқасын орнатыңыз.</string>
+  <string name="btn_update">Жаңарту</string>
+  <string name="try_again_later_error_message">Бірдеңе дұрыс болмады. Бірнеше сағаттан кейін қайталап көріңіз.</string>
+  <string name="en_turndown_for_area_title">Денсаулық сақтау органы енді Ауру жұқтырғандармен байланыс туралы хабарландыру функциясына қолдау көрсетпейді</string>
+  <string name="en_turndown_title">Ауру жұқтырғандармен байланыс туралы хабарландыру функциясы өшірілді</string>
 </resources>

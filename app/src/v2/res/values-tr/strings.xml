@@ -22,4 +22,7 @@
   <string name="share_positive_diagnosis_card_content">COVID-19\'un yayılmasını önlemeye yardımcı olmak için test sonucunuzu paylaşın</string>
   <string name="share_app_card_content">Topluluğunuzu daha iyi korumak için bu uygulamayı paylaşın</string>
   <string name="how_en_works_card_content">Temas Bildirimleri\'nin işleyiş şekli hakkında daha fazla bilgi</string>
+  <string name="en_turndown_for_area_contents">Resmi sağlık kurumunuz COVID-19\'la mücadelede kendi yöntemini kullandığından artık bu uygulamayı desteklemiyor. Uygulamayı kullandığınız ve topluluğunuzun korunmasına yardımcı olduğunuz için teşekkür ederiz.</string>
+  <string name="en_turndown_contents">Resmi sağlık kurumları COVID-19\'la mücadelede kendi yöntemlerini kullandığından bu uygulama artık desteklenmiyor. Uygulamayı kullandığınız ve topluluğunuzun korunmasına yardımcı olduğunuz için teşekkür ederiz.</string>
+  <string name="en_turndown_see_test_results_card_content">Daha önce Temas Bildirimleri\'ne yüklediğiniz test sonuçlarını görmeye devam edebilirsiniz</string>
 </resources>

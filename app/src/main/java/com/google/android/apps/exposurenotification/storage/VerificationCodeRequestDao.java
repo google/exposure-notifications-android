@@ -69,4 +69,8 @@ public abstract class VerificationCodeRequestDao {
   abstract ListenableFuture<List<VerificationCodeRequestEntity>> getLastXRequestsNotOlderThanThresholdAsync(
       Instant earliestThreshold, int numOfRequestsToRetrieve);
 
+  @AnyThread
+  @Query("DELETE FROM VerificationCodeRequestEntity")
+  abstract ListenableFuture<Void> deleteAll();
+
 }

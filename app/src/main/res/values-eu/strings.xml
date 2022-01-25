@@ -15,6 +15,7 @@
   <string name="btn_verify">Egiaztatu</string>
   <string name="btn_no_thanks">Ez, eskerrik asko</string>
   <string name="btn_share">Partekatu</string>
+  <string name="btn_close_app">Itxi aplikazioa</string>
   <string name="learn_more">Lortu informazio gehiago</string>
   <string name="home_tab_settings_text">Ezarpenak</string>
   <string name="notification_channel_name">COVID-19arekiko esposizio posiblea</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">Baimenak behar dira esposizioari buruzko jakinarazpenak gaitzeko</string>
   <string name="onboarding_finish_title">Baimenak luzatu egin behar dira esposizioari buruzko jakinarazpenak gaitzeko</string>
   <string name="onboarding_exposure_notifications_title">Aktibatu esposizioari buruzko jakinarazpenak</string>
-  <string name="onboarding_exposure_notifications_detail">Jakinarazpenak jasoko dituzu COVID-19a duela adierazi duen norbaitengandik hurbil egon bazara.
+  <string name="onboarding_exposure_notifications_description">Jakinarazpenak jasoko dituzu COVID-19a duela adierazi duen norbaitengandik hurbil egon bazara.
     \n\nTelefonoak Bluetooth bidezko konexioa erabiltzen du ausazko IDak inguruko telefonoetatik modu seguruan biltzeko eta haiekin partekatzeko.
     \n\nEsposizio posible batekin erlazionatutako data, iraupena eta seinalearen intentsitatea erabiliko dira osasun-agintaritzak ezarritako parametroetan oinarrituta jakinarazpenik bidaliko zaizun zehazteko.
-    \n\nProbaren emaitza SMS bidez jasotzen baduzu, baliteke diagnostikoa osasun-agintaritzarekin partekatzeko jakinarazpen bat jasotzea.</string>
+    \n\nProbaren emaitza SMS bidez jasotzen baduzu, baliteke diagnostikoa osasun-agintaritzarekin partekatzeko jakinarazpen bat jasotzea. %1$s</string>
   <string name="onboarding_metrics_title">Lagundu aplikazioa hobetzen</string>
   <string name="onboarding_metrics_subtitle">Partekatu Google-rekin aplikazioaren erabilera- eta errendimendu-datuak</string>
   <string name="onboarding_metrics_description">Aplikazioa mantentzen eta hobetzen laguntzeko, aplikazioaren errendimenduari eta erabilerari buruzko datu anonimoak partekatzen dira Google-rekin. Datuok ez zaituzte identifikatzen. %1$s</string>
@@ -100,7 +101,7 @@
   <string name="delete_test_result_confirmed">Ezabatu da probaren emaitza</string>
   <string name="share_error_no_internet">Interneteko konexiorik gabe ezin dira partekatu probaren emaitzak. Egiaztatu Internetera konektatuta zaudela eta saiatu berriro.</string>
   <string name="share_vaccination_title">COVID-19aren aurkako txertoa jaso duzu?</string>
-  <string name="share_vaccination_description">Gehiago lagun dezakezu. Nortasuna partekatu gabe, COVID-19aren hedapena ulertzen lagun dezakezu %1$s txertoa jaso duzun partekatuz. %1$s erakundeak multzokatuta jasoko ditu datu horiek, zure pribatutasuna babesteko.</string>
+  <string name="share_vaccination_description">Gehiago lagun dezakezu. Identitatea partekatu gabe, COVID-19aren hedapena ulertzen lagun dezakezu %1$s txertoa jaso duzun partekatuz. %1$s erakundeak multzokatuta jasoko ditu datu horiek, zure pribatutasuna babesteko.</string>
   <string name="share_vaccination_learn_more">Lortu informazio gehiago</string>
   <string name="share_vaccination_vaccinated">Bai, txertoa jaso dut</string>
   <string name="share_vaccination_not_vaccinated">Ez</string>
@@ -129,7 +130,7 @@
   </plurals>
   <string name="notify_others_notification_title">Jakinarazi jendeari agian arriskuan egon dela</string>
   <string name="notify_others_if_result_updated_title">Emaitzari buruzko berritasunik bada jendeari jakinaraztea nahi duzu?</string>
-  <string name="notify_others_if_result_updated_content">Baliteke %1$s osasun-agintaritzak beste kode bat bidaltzea probaren emaitza berresteko. Kode horrekin, automatikoki egunera dezakezu COVID-19aren probaren emaitza, eta ausazko IDak egun gehiago egongo dira partekatuta. Hala, baliteke esposizio posiblearen berri ematea besteei. Ez da beste inorekin partekatuko zure nortasuna.</string>
+  <string name="notify_others_if_result_updated_content">Baliteke %1$s osasun-agintaritzak beste kode bat bidaltzea probaren emaitza berresteko. Kode horrekin, automatikoki egunera dezakezu COVID-19aren probaren emaitza, eta ausazko IDak egun gehiago egongo dira partekatuta. Hala, baliteke esposizio posiblearen berri ematea besteei. Ez da beste inorekin partekatuko zure identitatea.</string>
   <string name="btn_pre_auth_yes">Bai, lagundu egin nahi dut</string>
   <string name="btn_pre_auth_no">Ez, eskerrik asko</string>
   <string name="thank_you_for_notifying_title">Eskerrik asko laguntzeagatik</string>
@@ -214,4 +215,11 @@
   <string name="share_upload_status_negative">Negatiboa</string>
   <string name="share_upload_status_likely">Seguruenik positiboa</string>
   <string name="share_diagnosis_progress_tracker">%1$d/%2$d urratsa</string>
+  <string name="see_history_device_authentication_title">Egiaztatu zeu zarela</string>
+  <string name="update_app_dialog_title">Eguneratu aplikazioa</string>
+  <string name="update_app_dialog_content">Eguneratu esposizioari buruzko jakinarazpenen aplikazioaren azken bertsiora proben emaitzak partekatzen amaitzeko.</string>
+  <string name="btn_update">Eguneratu</string>
+  <string name="try_again_later_error_message">Arazoren bat izan da. Saiatu berriro ordu batzuk barru.</string>
+  <string name="en_turndown_for_area_title">Aurrerantzean, zure osasun-agintaritzak ez ditu onartuko esposizioari buruzko jakinarazpenak</string>
+  <string name="en_turndown_title">Desaktibatu egin dira esposizioari buruzko jakinarazpenak</string>
 </resources>

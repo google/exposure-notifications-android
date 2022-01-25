@@ -22,6 +22,10 @@ import static com.google.android.apps.exposurenotification.onboarding.Onboarding
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
+import android.text.style.URLSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,9 +34,11 @@ import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 import androidx.core.widget.NestedScrollView;
 import androidx.lifecycle.ViewModelProvider;
+import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.databinding.FragmentOnboardingV3Binding;
 import com.google.android.apps.exposurenotification.home.ExposureNotificationViewModel.ExposureNotificationState;
 import com.google.android.apps.exposurenotification.settings.PrivateAnalyticsViewModel;
+import com.google.android.apps.exposurenotification.utils.UrlUtils;
 import dagger.hilt.android.AndroidEntryPoint;
 
 /**
@@ -84,6 +90,8 @@ public class OnboardingPermissionV3Fragment extends AbstractOnboardingFragment {
 
     setupUpdateAtBottom(scroller, onboardingButtons, continueButton);
 
+    setupExposureNotificationDetailText();
+
     exposureNotificationViewModel
         .getStateLiveData()
         .observe(getViewLifecycleOwner(), state -> this.state = state);
@@ -113,6 +121,23 @@ public class OnboardingPermissionV3Fragment extends AbstractOnboardingFragment {
                 transitionNext();
               }
             });
+  }
+
+  private void setupExposureNotificationDetailText() {
+    String learnMore = getString(R.string.learn_more);
+    URLSpan learnMoreClickableSpan = UrlUtils.createURLSpan(
+        getString(R.string.en_notification_info_link));
+    String exposureNotificationDescription =
+        getString(R.string.onboarding_exposure_notifications_description, learnMore);
+    SpannableString spannableString = new SpannableString(exposureNotificationDescription);
+    int learnMoreStart = exposureNotificationDescription.indexOf(learnMore);
+    spannableString
+        .setSpan(learnMoreClickableSpan, learnMoreStart, learnMoreStart + learnMore.length(),
+            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+    binding.onboardingExposureNotificationsDetail.setText(spannableString);
+    binding.onboardingExposureNotificationsDetail.setMovementMethod(
+        LinkMovementMethod.getInstance());
   }
 
   @Override

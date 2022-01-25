@@ -15,6 +15,7 @@
   <string name="btn_verify">සත්‍යාපනය කරන්න</string>
   <string name="btn_no_thanks">එපා ස්තුතියි</string>
   <string name="btn_share">බෙදා ගන්න</string>
+  <string name="btn_close_app">යෙදුම වසන්න</string>
   <string name="learn_more">තව දැන ගන්න</string>
   <string name="home_tab_settings_text">සැකසීම්</string>
   <string name="notification_channel_name">විය හැකි COVID-19 නිරාවරණය</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">නිරාවරණ දැනුම්දීම් සබල කිරීමට අවශ්‍ය අවසර</string>
   <string name="onboarding_finish_title">නිරාවරණ දැනුම්දීම් සබල කිරීමට අවශ්‍ය අවසරවල පවත්වා ගෙන යෑම</string>
   <string name="onboarding_exposure_notifications_title">නිරාවරණ දැනුම්දීම් ක්‍රියාත්මක කරන්න</string>
-  <string name="onboarding_exposure_notifications_detail">ඔබ COVID-19 තිබෙන බව වාර්තා වූ යම් කෙනෙකු අසල සිට ඇති නම් දැනුම්දීම් ලබන්න.
-    \n\nඅවට ඇති වෙනත් දුරකථන සමග අහඹු ID ආරක්ෂිතව රැස් කර බෙදා ගැනීමට ඔබගේ දුරකථනය බ්ලූටූත් භාවිත කරයි.
+  <string name="onboarding_exposure_notifications_description">ඔබ COVID-19 තිබෙන බව වාර්තා වූ යම් කෙනෙකු අසල සිට ඇති නම් දැනුම්දීම් ලබන්න.
+    \n\nඅවට ඇති වෙනත් දුරකථන සමග අහඹු ID ආරක්ෂිතව රැස් කර බෙදා ගැනීමට ඔබේ දුරකථනය බ්ලූටූත් භාවිත කරයි.
     \n\nඔබගේ මහජන සෞඛ්‍ය අධිකාරිය විසින් නියම කර ඇති පරාමිති මත පදනම්ව ඔබට දැනුම් දෙනු ලැබේද යන්න තීරණය කිරීම සඳහා විය හැකි නිරාවරණයක් හා සම්බන්ධ දිනය, කාල සීමාව සහ සංඥා ප්‍රබලතාව භාවිත කරනු ඇත.
-    \n\nඔබගේ පරීක්ෂණ ප්‍රතිඵලය සමඟ SMS එකක් ලැබුණහොත් රෝග විනිශ්චය ඔබගේ සෞඛ්‍ය අධිකාරිය සමඟ බෙදා ගැනීමට ඔබට දැනුම් දීමක් ලැබිය හැකිය.</string>
+    \n\nඔබගේ පරීක්ෂණ ප්‍රතිඵලය සමඟ SMS එකක් ලැබුණහොත් රෝග විනිශ්චය ඔබගේ සෞඛ්‍ය අධිකාරිය සමඟ බෙදා ගැනීමට ඔබට දැනුම් දීමක් ලැබිය හැකිය.%1$s</string>
   <string name="onboarding_metrics_title">මෙම යෙදුම වඩා යහපත් කිරීමට උදව් කරන්න</string>
   <string name="onboarding_metrics_subtitle">යෙදුම් භාවිතය සහ කාර්යසාධන දත්ත Google හා බෙදාගන්න</string>
   <string name="onboarding_metrics_description">යෙදුම නඩත්තු කිරීමට සහ වැඩිදියුණු කිරීමට උදව් කිරීම සඳහා, යෙදුම් ක්‍රියාකාරිත්වය සහ භාවිතය පිළිබඳ සීමිත හඳුනා නොගත් දත්ත Google සමඟ බෙදා ගනී. මෙම දත්ත ඔබව හඳුනා නොගනී. %1$s</string>
@@ -214,4 +215,11 @@
   <string name="share_upload_status_negative">නෙගටිව්</string>
   <string name="share_upload_status_likely">බොහෝ දුරට</string>
   <string name="share_diagnosis_progress_tracker">පියවර %2$dහි %1$d</string>
+  <string name="see_history_device_authentication_title">ඒ ඔබ බව සත්‍යාපන කරන්න</string>
+  <string name="update_app_dialog_title">ඔබගේ යෙදුම යාවත්කාලීන කරන්න</string>
+  <string name="update_app_dialog_content">ඔබගේ පරීක්ෂණ ප්‍රතිඵල බෙදා ගැනීම අවසන් කිරීමට නිරාවරණ දැනුම්දීම්වල නවතම අනුවාදයට යාවත්කාලීන කරන්න.</string>
+  <string name="btn_update">යාවත්කාලීන කරන්න</string>
+  <string name="try_again_later_error_message">යම් දෙයක් වැරදිණි. පැය කිහිපයකින් නැවත උත්සාහ කරන්න.</string>
+  <string name="en_turndown_for_area_title">ඔබගේ සෞඛ්‍ය අධිකාරිය තවදුරටත් නිරාවරණ දැනුම්දීම් සඳහා සහාය නොදක්වයි</string>
+  <string name="en_turndown_title">නිරාවරණ දැනුම්දීම් ක්‍රියාවිරහිත කර ඇත</string>
 </resources>

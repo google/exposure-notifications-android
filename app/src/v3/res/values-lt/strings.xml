@@ -14,4 +14,6 @@
   <string name="share_history_delete_test_result_detail">Jūsų %1$s COVID-19 testo rezultatai bus ištrinti iš jūsų telefono.</string>
   <string name="sms_intercept_notice_card_title">Galite gauti priminimą bendrinti rezultatą</string>
   <string name="sms_intercept_notice_card_content">Jei testo rez. teig. ir gaunate patvirt. SMS</string>
+  <string name="en_turndown_contents">Jūsų sveikatos institucijoms ėmusis kitų kovos su COVID-19 būdų, jose pranešimai apie galimą kontaktą su užsikrėtusiu asmeniu nebepalaikomi. Dėkojame, kad naudojotės paslauga, taip padėdami apsaugoti bendruomenę.</string>
+  <string name="en_turndown_for_area_contents">Jūsų sveikatos institucijai ėmusis kitų kovos su COVID-19 būdų, joje pranešimai apie galimą kontaktą su užsikrėtusiu asmeniu nebepalaikomi. Dėkojame, kad naudojotės paslauga, taip padėdami apsaugoti bendruomenę.</string>
 </resources>

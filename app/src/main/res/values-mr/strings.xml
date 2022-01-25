@@ -15,6 +15,7 @@
   <string name="btn_verify">पडताळणी करा</string>
   <string name="btn_no_thanks">नाही, नको</string>
   <string name="btn_share">शेअर करा</string>
+  <string name="btn_close_app">अ‍ॅप बंद करा</string>
   <string name="learn_more">अधिक जाणून घ्या</string>
   <string name="home_tab_settings_text">सेटिंग्ज</string>
   <string name="notification_channel_name">COVID-19 लागणीची शक्यता</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">लागणीबद्दलच्या सूचना सुरू करण्यासाठी आवश्यक परवानग्या</string>
   <string name="onboarding_finish_title">लागणीबद्दलच्या सूचना सुरू करण्यासाठी आवश्यक परवानग्यांचा पुढील भाग</string>
   <string name="onboarding_exposure_notifications_title">लागणीबद्दलच्या सूचना सुरू करा</string>
-  <string name="onboarding_exposure_notifications_detail">तुम्ही COVID-19 ची लागण झालेल्या व्यक्तीच्या जवळपास गेला असल्यास, सूचना मिळवा.
-    \n\nतुमचा फोन जवळपास असलेल्या इतर फोनकडून रँडम आयडी सुरक्षितरीत्या गोळा करण्यासाठी आणि शेअर करण्याकरिता ब्लूटूथ वापरतो.
+  <string name="onboarding_exposure_notifications_description">तुम्ही COVID-19 ची लागण झालेल्या व्यक्तीच्या जवळपास असल्यास, सूचना मिळवा.
+    \n\nतुमचा फोन जवळपास असलेल्या इतर फोनकडून रँडम आयडी सुरक्षितरीत्या गोळा करण्यासाठी आणि शेअर करण्यासाठी ब्लूटूथ वापरतो.
     \n\nतुमच्या सार्वजनिक आरोग्य अधिकाऱ्याने सेट केलेल्या पॅरामीटरनुसार तुम्हाला सूचित केले जावे का, हे ठरवण्यासाठी संभाव्य लागणीशी संबंधित तारीख, कालावधी आणि सिग्नलची क्षमता वापरली जाईल.
-    \n\nतुम्हाला तुमच्या चाचणीच्या परिणामाबाबत एसएमएस मिळाला असल्यास, तुम्हाला तुमच्या आरोग्य अधिकाऱ्यासोबत निदान शेअर करण्याची सूचना मिळू शकते.</string>
+    \n\nतुम्हाला तुमच्या चाचणीच्या परिणामाबाबत एसएमएस मिळाला असल्यास, तुम्हाला तुमच्या आरोग्य अधिकाऱ्यासोबत निदान शेअर करण्याची सूचना मिळू शकते. %1$s</string>
   <string name="onboarding_metrics_title">या ॲपमध्ये सुधारणा करण्यात मदत करा</string>
   <string name="onboarding_metrics_subtitle">Google सह ॲपचा वापर व परफॉर्मन्स डेटा शेअर करा</string>
   <string name="onboarding_metrics_description">ॲपच्या देखभाल आणि सुधारणेत मदतीसाठी ॲप परफॉर्मन्स व वापराबद्दलचा काही पडताळणी न केलेला मर्यादित डेटा Google सोबत शेअर केला जातो. हा डेटा तुमची ओळख उघड करत नाही. %1$s</string>
@@ -214,4 +215,11 @@
   <string name="share_upload_status_negative">निगेटीव्ह</string>
   <string name="share_upload_status_likely">लागण झाल्याची शक्यता</string>
   <string name="share_diagnosis_progress_tracker">%2$d पैकी %1$d पायरी</string>
+  <string name="see_history_device_authentication_title">हे तुम्हीच असल्याची पडताळणी करा</string>
+  <string name="update_app_dialog_title">तुमचे अ‍ॅप अपडेट करा</string>
+  <string name="update_app_dialog_content">तुमच्या चाचणीचे निकाल शेअर करणे पूर्ण करण्यासाठी, लागणीबद्दलच्या सूचना याच्या नवीनतम आवृत्तीवर अपडेट करा.</string>
+  <string name="btn_update">अपडेट करा</string>
+  <string name="try_again_later_error_message">काहीतरी चूक झाली. काही तासांनी पुन्हा प्रयत्न करा.</string>
+  <string name="en_turndown_for_area_title">तुमचा आरोग्य अधिकारी आता लागणीबद्दलच्या सूचना यांना सपोर्ट करत नाही</string>
+  <string name="en_turndown_title">लागणीबद्दलच्या सूचना बंद केल्या आहेत</string>
 </resources>

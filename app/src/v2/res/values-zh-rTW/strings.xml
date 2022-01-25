@@ -22,4 +22,7 @@
   <string name="share_positive_diagnosis_card_content">分享檢測結果可協助防止 COVID-19 傳播</string>
   <string name="share_app_card_content">分享這個應用程式可讓你的社區更安全</string>
   <string name="how_en_works_card_content">進一步瞭解接觸通知功能的運作方式</string>
+  <string name="en_turndown_for_area_contents">你的衛生主管機關調整了 COVID-19 因應措施，因此不再支援這個應用程式。感謝你使用這個應用程式及協助保護你的社區。</string>
+  <string name="en_turndown_contents">衛生主管機關調整了 COVID-19 因應措施，因此不再支援這個應用程式。感謝你使用這個應用程式及協助保護你的社區。</string>
+  <string name="en_turndown_see_test_results_card_content">你仍可查看先前上傳至接觸通知系統的檢測結果</string>
 </resources>

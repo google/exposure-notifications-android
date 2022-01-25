@@ -14,4 +14,6 @@
   <string name="share_history_delete_test_result_detail">Dein COVID-19-Testergebnis vom %1$s wird von deinem Smartphone gelöscht.</string>
   <string name="sms_intercept_notice_card_title">Du wirst eventuell daran erinnert, dein Ergebnis zu teilen</string>
   <string name="sms_intercept_notice_card_content">Bei positivem Test und Erhalt einer SMS mit Absenderüberprüfung</string>
+  <string name="en_turndown_contents">Da Gesundheitsbehörden ihre Reaktion auf die Coronakrise angepasst haben, wird das COVID-19-Benachrichtigungssystem nicht mehr unterstützt. Vielen Dank, dass du diesen Dienst zum Schutz deiner Gemeinde verwendet hast.</string>
+  <string name="en_turndown_for_area_contents">Da deine Gesundheitsbehörde ihre Reaktion auf die Coronakrise angepasst hat, wird das COVID-19-Benachrichtigungssystem nicht mehr unterstützt. Vielen Dank, dass du diesen Dienst zum Schutz deiner Gemeinde verwendet hast.</string>
 </resources>

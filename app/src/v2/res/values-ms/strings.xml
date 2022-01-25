@@ -22,4 +22,7 @@
   <string name="share_positive_diagnosis_card_content">Kongsi keputusan ujian anda untuk menghentikan penyebaran COVID-19</string>
   <string name="share_app_card_content">Kongsikan apl ini untuk melindungi komuniti anda dengan lebih baik</string>
   <string name="how_en_works_card_content">Ketahui lebih lanjut tentang cara Pemberitahuan Pendedahan berfungsi</string>
+  <string name="en_turndown_for_area_contents">Memandangkan pihak berkuasa kesihatan anda menyesuaikan respons COVID-19, pihak berkuasa kesihatan tidak menyokong apl ini lagi. Terima kasih kerana menggunakan apl tersebut dan membantu melindungi komuniti anda.</string>
+  <string name="en_turndown_contents">Memandangkan pihak berkuasa kesihatan menyesuaikan respons COVID-19 mereka, apl ini tidak disokong lagi. Terima kasih kerana menggunakan apl tersebut dan membantu melindungi komuniti anda.</string>
+  <string name="en_turndown_see_test_results_card_content">Anda masih boleh melihat keputusan ujian yang anda telah muat naik sebelum ini ke Pemberitahuan Pendedahan</string>
 </resources>

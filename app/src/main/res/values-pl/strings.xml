@@ -15,6 +15,7 @@
   <string name="btn_verify">Zweryfikuj</string>
   <string name="btn_no_thanks">Nie, dziękuję</string>
   <string name="btn_share">Udostępnij</string>
+  <string name="btn_close_app">Zamknij aplikację</string>
   <string name="learn_more">Więcej</string>
   <string name="home_tab_settings_text">Ustawienia</string>
   <string name="notification_channel_name">Możliwe narażenie na kontakt z COVID-19</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">Uprawnienia niezbędne do włączenia powiadomień o narażeniu na kontakt</string>
   <string name="onboarding_finish_title">Kolejne uprawnienia niezbędne do włączenia powiadomień o narażeniu na kontakt</string>
   <string name="onboarding_exposure_notifications_title">Włącz powiadomienia o narażeniu na kontakt</string>
-  <string name="onboarding_exposure_notifications_detail">Otrzymuj powiadomienia o narażeniu na kontakt po zgłoszeniu zachorowania na COVID-19 przez osoby, które przebywały w pobliżu Ciebie.
+  <string name="onboarding_exposure_notifications_description">Otrzymuj powiadomienia o narażeniu na kontakt po zgłoszeniu zachorowania na COVID-19 przez osoby, które przebywały w pobliżu Ciebie.
     \n\nTelefon korzysta z Bluetootha, aby w bezpieczny sposób zbierać losowe identyfikatory i udostępniać je innym telefonom w pobliżu.
     \n\nTo, czy otrzymasz powiadomienie, będzie zależało od daty, czasu trwania oraz siły sygnału związanych z możliwym narażeniem na kontakt, zgodnie z parametrami określonymi przez instytucję zdrowia publicznego, której podlegasz.
-    \n\nJeśli przyjdzie do Ciebie SMS z wynikiem testu, możesz otrzymać powiadomienie z prośbą o udostępnienie diagnozy instytucji zdrowia publicznego.</string>
+    \n\nJeśli przyjdzie do Ciebie SMS z wynikiem testu, możesz otrzymać powiadomienie z prośbą o udostępnienie diagnozy instytucji zdrowia publicznego. %1$s</string>
   <string name="onboarding_metrics_title">Pomóż ulepszyć tę aplikację</string>
   <string name="onboarding_metrics_subtitle">Udostępnij Google dane o użyciu i wydajności aplikacji</string>
   <string name="onboarding_metrics_description">Do Google wysyłane są pewne dane o użyciu i wydajności aplikacji, ponieważ pomaga to w utrzymywaniu i ulepszaniu aplikacji. Informacje te nie umożliwiają identyfikacji użytkownika. Na ich podstawie nie można Cię rozpoznać. %1$s</string>
@@ -218,4 +219,11 @@
   <string name="share_upload_status_negative">Negatywny</string>
   <string name="share_upload_status_likely">Prawdopodobnie pozytywny</string>
   <string name="share_diagnosis_progress_tracker">Krok %1$d z %2$d</string>
+  <string name="see_history_device_authentication_title">Potwierdź swoją tożsamość</string>
+  <string name="update_app_dialog_title">Zaktualizuj aplikację</string>
+  <string name="update_app_dialog_content">Aby dokończyć udostępnianie wyników testu, zaktualizuj powiadomienia o narażeniu na kontakt do najnowszej wersji.</string>
+  <string name="btn_update">Zaktualizuj</string>
+  <string name="try_again_later_error_message">Coś poszło nie tak. Spróbuj ponownie za kilka godzin.</string>
+  <string name="en_turndown_for_area_title">Instytucja zdrowia publicznego nie obsługuje już powiadomień o narażeniu na kontakt</string>
+  <string name="en_turndown_title">Wyłączono powiadomienia o narażeniu na kontakt</string>
 </resources>

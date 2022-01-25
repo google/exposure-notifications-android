@@ -15,6 +15,7 @@
   <string name="btn_verify">توثیق کریں</string>
   <string name="btn_no_thanks">نہیں شکریہ</string>
   <string name="btn_share">اشتراک کریں</string>
+  <string name="btn_close_app">ایپ بند کریں</string>
   <string name="learn_more">مزید جانیں</string>
   <string name="home_tab_settings_text">ترتیبات</string>
   <string name="notification_channel_name">ممکنہ COVID-19 ایکسپوژر</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">ایکسپوژر نوٹیفیکیشنز کو فعال کرنے کے لیے اجازتیں درکار ہیں</string>
   <string name="onboarding_finish_title">ایکسپوژر نوٹیفیکیشنز کو فعال کرنے کے لیے اجازتوں کا تسلسل درکار ہے</string>
   <string name="onboarding_exposure_notifications_title">ایکسپوژر نوٹیفیکیشنز آن کریں</string>
-  <string name="onboarding_exposure_notifications_detail">اگر آپ کسی ایسے شخص کے قریب رہے ہوں جس نے COVID-19 ہونے کی اطلاع دی ہو تو اس بارے میں مطلع کریں۔
+  <string name="onboarding_exposure_notifications_description">اگر آپ کسی ایسے شخص کے قریب رہے ہوں جس نے COVID-19 ہونے کی اطلاع دی ہو تو اس بارے میں مطلع کریں۔
     \n\nآپ کا فون رینڈم IDs کو محفوظ طریقے سے جمع اور دیگر قریبی فونز کے ساتھ اشتراک کرنے کے لیے بلوٹوتھ کا استعمال کرتا ہے۔
     \n\nممکنہ ایکسپوژر سے وابستہ تاریخ، مدت اور سگنل کی قوت کا استعمال اس بات کا تعین کرنے کے لیے کیا جائے گا کہ آیا آپ کو آپ کی عوامی صحت کی اتھارٹی کے ذریعے طے شدہ پیرامیٹرز کی بنیاد پر مطلع کیا جائے۔
-    \n\nاگر آپ کو اپنے ٹیسٹ کے نتیجے کے ساتھ SMS موصول ہوتا ہے تو آپ کو اپنی ہیلتھ اتھارٹی کے ساتھ تشخیص کا اشتراک کرنے کے لیے ایک اطلاع موصول ہو سکتی ہے۔</string>
+    \n\nاگر آپ کو اپنے ٹیسٹ کے نتیجے کے ساتھ SMS موصول ہوتا ہے تو آپ کو اپنی ہیلتھ اتھارٹی کے ساتھ تشخیص کا اشتراک کرنے کے لیے ایک اطلاع موصول ہو سکتی ہے۔ %1$s</string>
   <string name="onboarding_metrics_title">اس ایپ کو بہتر بنانے میں مدد کریں</string>
   <string name="onboarding_metrics_subtitle">Google کے ساتھ ایپ کے استعمال اور کارکردگی کا اشتراک کریں</string>
   <string name="onboarding_metrics_description">ایپ کو برقرار رکھنے اور اسے بہتر بنانے میں مدد کیلئے، Google کے ساتھ ایپ کی کارکردگی اور استعمال سے متعلق کچھ محدود غیر شناخت کردہ ڈیٹا کا اشتراک کیا جاتا ہے۔ یہ ڈیٹا آپ کی شناخت نہیں کرتا ہے۔ %1$s</string>
@@ -214,4 +215,11 @@
   <string name="share_upload_status_negative">منفی</string>
   <string name="share_upload_status_likely">ممکنہ</string>
   <string name="share_diagnosis_progress_tracker">مرحلہ %1$d از %2$d</string>
+  <string name="see_history_device_authentication_title">توثیق کریں کہ یہ آپ ہیں</string>
+  <string name="update_app_dialog_title">اپنی ایپ اپ ڈیٹ کریں</string>
+  <string name="update_app_dialog_content">اپنے ٹیسٹ کے نتائج کا اشتراک مکمل کرنے کے لیے ایکسپوژر نوٹیفیکیشنز کے تازہ ترین ورژن پر اپ ڈیٹ کریں۔</string>
+  <string name="btn_update">اپ ڈیٹ کریں</string>
+  <string name="try_again_later_error_message">کچھ غلط ہو گیا۔ کچھ گھنٹوں بعد دوبارہ کوشش کریں۔</string>
+  <string name="en_turndown_for_area_title">آپ کی ہیلتھ اتھارٹی ایکسپوژر نوٹیفیکیشنز کو مزید سپورٹ نہیں کرتی ہے</string>
+  <string name="en_turndown_title">ایکسپوژر نوٹیفیکیشنز کو آف کر دیا گیا ہے</string>
 </resources>

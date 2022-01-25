@@ -17,12 +17,18 @@
 
 package com.google.android.apps.exposurenotification.notify;
 
+import static android.app.Activity.RESULT_CANCELED;
+import static android.app.Activity.RESULT_OK;
+
 import android.os.Bundle;
 import android.os.Parcel;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.IntentSenderRequest;
+import androidx.activity.result.contract.ActivityResultContracts.StartIntentSenderForResult;
 import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -53,9 +59,13 @@ import org.threeten.bp.format.FormatStyle;
 @AndroidEntryPoint
 public abstract class ShareDiagnosisBaseFragment extends BaseFragment {
 
+  private static final String STATE_UPDATE_APP_DIALOG_OPEN = "STATE_UPDATE_APP_DIALOG_OPEN";
+
   protected ShareDiagnosisViewModel shareDiagnosisViewModel;
 
+  private ActivityResultLauncher<IntentSenderRequest> activityResultLauncher;
   private Optional<Boolean> lastUpdateAtBottom = Optional.absent();
+  private boolean updateYourAppDialogOpen = false;
 
   @Inject
   Clock clock;
@@ -64,12 +74,75 @@ public abstract class ShareDiagnosisBaseFragment extends BaseFragment {
   @Override
   public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
+
+    if (savedInstanceState != null) {
+      updateYourAppDialogOpen = savedInstanceState.getBoolean(STATE_UPDATE_APP_DIALOG_OPEN, false);
+    }
+
     shareDiagnosisViewModel = new ViewModelProvider(getParentFragment())
         .get(ShareDiagnosisViewModel.class);
 
     if (shareDiagnosisViewModel.isCloseOpen()) {
       showCloseShareDiagnosisFlowAlertDialog();
     }
+
+    // ActivityResultLauncher for handling the in-app update flow.
+    activityResultLauncher = registerForActivityResult(
+        new StartIntentSenderForResult(), activityResult -> {
+          if (activityResult.getResultCode() != RESULT_CANCELED
+              && activityResult.getResultCode() != RESULT_OK) {
+            // Something went wrong when starting the Play update flow. Nothing much we can do here,
+            // so display an error message asking user to try again later.
+            SnackbarUtil.maybeShowRegularSnackbar(view,
+                getResources().getString(R.string.try_again_later_error_message));
+          }
+        });
+
+    shareDiagnosisViewModel
+        .getAppUpdateAvailableLiveEvent()
+        .observe(getViewLifecycleOwner(), unused -> showAppUpdateNeededDialog());
+
+    shareDiagnosisViewModel
+        .getAppUpdateFlowErrorLiveData()
+        .observe(getViewLifecycleOwner(),
+            error -> SnackbarUtil.maybeShowRegularSnackbar(view, error));
+
+    // Ensure we keep the open dialogs open upon rotations.
+    if (updateYourAppDialogOpen) {
+      showAppUpdateNeededDialog();
+    }
+  }
+
+  @Override
+  public void onResume() {
+    super.onResume();
+    // Keep track of the in-progress in-app updates.
+    shareDiagnosisViewModel.maybeTriggerAppUpdateFlowIfUpdateInProgress(activityResultLauncher);
+  }
+
+  @Override
+  public void onSaveInstanceState(@NonNull Bundle bundle) {
+    super.onSaveInstanceState(bundle);
+    bundle.putBoolean(STATE_UPDATE_APP_DIALOG_OPEN, updateYourAppDialogOpen);
+  }
+
+  private void showAppUpdateNeededDialog() {
+    updateYourAppDialogOpen = true;
+    new MaterialAlertDialogBuilder(requireContext(), R.style.ExposureNotificationAlertDialogTheme)
+        .setTitle(R.string.update_app_dialog_title)
+        .setMessage(R.string.update_app_dialog_content)
+        .setCancelable(true)
+        .setNegativeButton(R.string.btn_cancel, (dialog, i) -> {
+          updateYourAppDialogOpen = false;
+          dialog.cancel();
+        })
+        .setPositiveButton(R.string.btn_update,
+            (dialog, i) -> {
+              updateYourAppDialogOpen = false;
+              shareDiagnosisViewModel.triggerAppUpdateFlow(activityResultLauncher);
+            })
+        .setOnCancelListener(dialog -> updateYourAppDialogOpen = false)
+        .show();
   }
 
   @Override

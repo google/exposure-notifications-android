@@ -15,6 +15,7 @@
   <string name="btn_verify">驗證</string>
   <string name="btn_no_thanks">不用了，謝謝</string>
   <string name="btn_share">分享</string>
+  <string name="btn_close_app">關閉應用程式</string>
   <string name="learn_more">瞭解詳情</string>
   <string name="home_tab_settings_text">設定</string>
   <string name="notification_channel_name">可能曾接觸 COVID-19 患者</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">你必須授予相關權限，才能啟用接觸通知系統</string>
   <string name="onboarding_finish_title">你必須一律授予相關權限，才能啟用接觸通知系統</string>
   <string name="onboarding_exposure_notifications_title">開啟接觸通知功能</string>
-  <string name="onboarding_exposure_notifications_detail">如果你曾近距離接觸 COVID-19 確診者，系統就會傳送通知給你。
+  <string name="onboarding_exposure_notifications_description">如果你曾近距離接觸 COVID-19 確診者，系統就會傳送通知給你。
     \n\n你的手機會透過藍牙功能安全地收集附近手機的隨機 ID，並且將你的隨機 ID 與這些手機分享。
     \n\n系統會根據可能接觸的日期、接觸時間長度和藍牙訊號強度資訊，判斷是否要根據公共衛生主管機關設定的參數通知你。
-    \n\n如果你收到檢測結果的簡訊，系統可能會通知你將診斷結果提供給所在地的衛生主管機關。</string>
+    \n\n如果你收到檢測結果的簡訊，系統可能會通知你將診斷結果提供給所在地的衛生主管機關。%1$s</string>
   <string name="onboarding_metrics_title">協助改善這個應用程式</string>
   <string name="onboarding_metrics_subtitle">將應用程式的使用情況和效能資料分享給 Google</string>
   <string name="onboarding_metrics_description">為了協助維護及改善這個應用程式，系統會將少量已去識別化的應用程式效能和使用情況資料分享給 Google。請放心，這類資料無法用於辨識你的身分。%1$s</string>
@@ -214,4 +215,11 @@
   <string name="share_upload_status_negative">陰性</string>
   <string name="share_upload_status_likely">可能為陽性</string>
   <string name="share_diagnosis_progress_tracker">步驟 %2$d 之 %1$d</string>
+  <string name="see_history_device_authentication_title">驗證你的身分</string>
+  <string name="update_app_dialog_title">請更新應用程式</string>
+  <string name="update_app_dialog_content">「接觸通知」必須更新到最新版本，才能完成檢測結果分享。</string>
+  <string name="btn_update">更新</string>
+  <string name="try_again_later_error_message">發生錯誤，請過幾小時後再試一次。</string>
+  <string name="en_turndown_for_area_title">你的衛生主管機關不再支援接觸通知系統</string>
+  <string name="en_turndown_title">接觸通知系統已關閉</string>
 </resources>

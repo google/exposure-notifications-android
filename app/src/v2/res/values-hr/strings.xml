@@ -22,4 +22,7 @@
   <string name="share_positive_diagnosis_card_content">Podijelite svoj rezultat testiranja da biste pomogli zaustaviti širenje bolesti COVID-19</string>
   <string name="share_app_card_content">Podijelite ovu aplikaciju da biste pomogli zaštititi svoju zajednicu</string>
   <string name="how_en_works_card_content">Saznajte više o tome kako funkcionira obavješćivanje o izloženosti</string>
+  <string name="en_turndown_for_area_contents">Budući da vaš zavod za javno zdravstvo mijenja način djelovanja u vezi s bolešću COVID-19, više ne podržava ovu aplikaciju. Hvala što ste je upotrebljavali i sudjelovali u zaštiti svoje zajednice.</string>
+  <string name="en_turndown_contents">Budući da zavodi za javno zdravstvo mijenjaju način djelovanja u vezi s bolešću COVID-19, ova se aplikacija više ne podržava. Hvala što ste je upotrebljavali i sudjelovali u zaštiti svoje zajednice.</string>
+  <string name="en_turndown_see_test_results_card_content">I dalje možete vidjeti rezultate testiranja koje ste prethodno prenijeli u Obavješćivanje o izloženosti</string>
 </resources>

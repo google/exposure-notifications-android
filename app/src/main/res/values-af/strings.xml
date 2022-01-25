@@ -15,6 +15,7 @@
   <string name="btn_verify">Verifieer</string>
   <string name="btn_no_thanks">Nee, dankie</string>
   <string name="btn_share">Deel</string>
+  <string name="btn_close_app">Maak program toe</string>
   <string name="learn_more">Kom meer te wete</string>
   <string name="home_tab_settings_text">Instellings</string>
   <string name="notification_channel_name">Moontlike COVID-19-blootstelling</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">Toestemmings is nodig om Blootstellingkennisgewings te aktiveer</string>
   <string name="onboarding_finish_title">Voortsetting van toestemmings is nodig om Blootstellingkennisgewings te aktiveer</string>
   <string name="onboarding_exposure_notifications_title">Skakel Blootstellingkennisgewings aan</string>
-  <string name="onboarding_exposure_notifications_detail">Word in kennis gestel wanneer jy naby iemand was wat aangemeld het dat hulle COVID-19 het.
+  <string name="onboarding_exposure_notifications_description">Word in kennis gestel wanneer jy naby iemand was wat aangemeld het dat hulle COVID-19 het.
     \n\nJou foon gebruik Bluetooth om ewekansige ID\'s veilig in te samel en met ander fone in die omtrek te deel.
     \n\nDie datum, tydsduur en seinsterkte wat met \'n moontlike blootstelling geassosieer word, sal gebruik word om te bepaal of jy in kennis gestel word op grond van parameters wat deur jou publiekegesondheidowerheid gestel is.
-    \n\nJy sal dalk \'n kennisgewing ontvang om \'n diagnose met jou gesondheidowerheid te deel as jy \'n SMS met jou toetsresultaat ontvang.</string>
+    \n\nJy sal dalk \'n kennisgewing ontvang om \'n diagnose met jou gesondheidowerheid te deel as jy \'n SMS met jou toetsresultaat ontvang. %1$s</string>
   <string name="onboarding_metrics_title">Help om hierdie program beter te maak</string>
   <string name="onboarding_metrics_subtitle">Deel programgebruik- en -werkverrigtingdata met Google</string>
   <string name="onboarding_metrics_description">Sekere beperkte, gedeïdentifiseerde data oor programwerkverrigting en -gebruik sal met Google gedeel word om te help om die program te onderhou en beter te maak. Hierdie data identifiseer jou nie. %1$s</string>
@@ -215,4 +216,11 @@ ontledings met jou gesondheidowerheid</string>
   <string name="share_upload_status_negative">Negatief</string>
   <string name="share_upload_status_likely">Waarskynlik</string>
   <string name="share_diagnosis_progress_tracker">Stap %1$d van %2$d</string>
+  <string name="see_history_device_authentication_title">Verifieer dis jy</string>
+  <string name="update_app_dialog_title">Dateer jou program op</string>
+  <string name="update_app_dialog_content">Dateer op na die jongste weergawe van Blootstellingkennisgewings om die deling van jou toetsuitslag te voltooi.</string>
+  <string name="btn_update">Dateer op</string>
+  <string name="try_again_later_error_message">Iets was fout. Probeer oor \'n paar uur weer.</string>
+  <string name="en_turndown_for_area_title">Jou gesondheidowerheid ondersteun nie meer Blootstellingkennisgewings nie</string>
+  <string name="en_turndown_title">Blootstellingkennisgewings is afgeskakel</string>
 </resources>

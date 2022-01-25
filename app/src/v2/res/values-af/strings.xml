@@ -22,4 +22,7 @@
   <string name="share_positive_diagnosis_card_content">Deel jou toetsresultaat om die verspreiding van COVID-19 te help bekamp</string>
   <string name="share_app_card_content">Deel hierdie program om jou gemeenskap beter te beskerm</string>
   <string name="how_en_works_card_content">Kom meer te wete oor hoe Blootstellingkennisgewings werk</string>
+  <string name="en_turndown_for_area_contents">Jou gesondheidowerheid pas hul reaksie op COVID-19 aan, en ondersteun nie meer hierdie program nie. Dankie dat jy die program gebruik het en gehelp het om jou gemeenskap te beskerm.</string>
+  <string name="en_turndown_contents">Gesondheidowerhede pas hul reaksie op COVID-19 aan, en hierdie program word nie meer gesteun nie. Dankie dat jy die program gebruik het en gehelp het om jou gemeenskap te beskerm.</string>
+  <string name="en_turndown_see_test_results_card_content">Jy kan steeds toetsresultate sien wat jy vroeër na Blootstellingkennisgewings opgelaai het.</string>
 </resources>

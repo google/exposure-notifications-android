@@ -320,6 +320,11 @@ def generateResources(configData) {
       if (!config.get("enableV1toENXMigration")) {
         config["enableV1toENXMigration"] = false;
       }
+      // If an agencyTurndownMessage entry does not exist for the current locale, we set it to
+      // the empty string to disable displaying this message on some of the turndown screens.
+      if (!config.get("agencyTurndownMessage_" + localeSuffix)) {
+        config["agencyTurndownMessage_" + localeSuffix] = "";
+      }
       setUpSelfReportFields(config, localeSuffix)
       doFirst {
         // Emit images.

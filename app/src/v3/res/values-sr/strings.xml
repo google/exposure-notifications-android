@@ -14,4 +14,6 @@
   <string name="share_history_delete_test_result_detail">Резултат теста на COVID-19 од %1$s ће се избрисати са телефона.</string>
   <string name="sms_intercept_notice_card_title">Можда ћете добити подсетник за дељење резултата</string>
   <string name="sms_intercept_notice_card_content">Ако сте на тесту позитивни уз верификован SMS</string>
+  <string name="en_turndown_contents">Пошто надлежни за здравство прилагођавају мере за борбу против пандемије COVID-19, обавештења о изложености више нису подржана. Хвала вам што сте користили услугу и помогли у заштити заједнице.</string>
+  <string name="en_turndown_for_area_contents">Пошто надлежни за здравство прилагођавају мере за борбу против пандемије COVID-19, они више не подржавају обавештења о изложености. Хвала вам што сте користили услугу и помогли у заштити заједнице.</string>
 </resources>

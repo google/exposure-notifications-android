@@ -54,6 +54,11 @@ public class CountryRepository {
     return countryDao.deleteObsoleteCountryCodesAsync(earliestTimestamp.toEpochMilli());
   }
 
+  @AnyThread
+  public ListenableFuture<Void> deleteCountryEntitiesAsync() {
+    return countryDao.deleteAll();
+  }
+
   @WorkerThread
   public void markCountrySeen(String countryCode) {
     countryDao.markCountryCodeSeen(countryCode, clock.currentTimeMillis());

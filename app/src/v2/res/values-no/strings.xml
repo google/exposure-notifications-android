@@ -22,4 +22,7 @@
   <string name="share_positive_diagnosis_card_content">Del testresultatet ditt for å bidra til å stoppe spredningen av covid-19</string>
   <string name="share_app_card_content">Del denne appen for å beskytte lokalsamfunnet ditt</string>
   <string name="how_en_works_card_content">Finn ut mer om hvordan eksponeringsvarsler fungerer</string>
+  <string name="en_turndown_for_area_contents">Siden helsemyndighetene har tilpasset covid-19-tiltakene, støtter de ikke denne appen lenger. Takk for at du har brukt appen, og for at du bidrar til å beskytte lokalsamfunnet ditt.</string>
+  <string name="en_turndown_contents">Siden helsemyndighetene har tilpasset covid-19-tiltakene, støttes ikke denne appen lenger. Takk for at du har brukt appen, og for at du bidrar til å beskytte lokalsamfunnet ditt.</string>
+  <string name="en_turndown_see_test_results_card_content">Du kan fremdeles se testresultater du har lastet opp tidligere til systemet for eksponeringsvarsler</string>
 </resources>

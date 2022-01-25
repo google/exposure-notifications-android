@@ -49,4 +49,7 @@
   <!-- Help Center's page on reporting test results using the Exposure Notifications system. [CHAR_LIMIT=NONE]-->
   <string name="en_reporting_info_link" translatable="false">https://support.google.com/android?p=enx_reporting</string>
 
+  <!-- Help Center's page to learn more about the Exposure Notifications app notifications. [CHAR_LIMIT=NONE]-->
+  <string name="en_notification_info_link" translatable="false">https://support.google.com/android/answer/11063957</string>
+
 </resources>

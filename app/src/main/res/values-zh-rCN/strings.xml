@@ -15,6 +15,7 @@
   <string name="btn_verify">验证</string>
   <string name="btn_no_thanks">不用了</string>
   <string name="btn_share">分享</string>
+  <string name="btn_close_app">关闭应用</string>
   <string name="learn_more">了解详情</string>
   <string name="home_tab_settings_text">设置</string>
   <string name="notification_channel_name">在可能接触过新冠肺炎 (COVID-19) 患者时收到通知</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">需要授予相应权限才能启用接触史通知功能</string>
   <string name="onboarding_finish_title">需要继续授予相应权限才能启用接触史通知功能</string>
   <string name="onboarding_exposure_notifications_title">开启接触史通知</string>
-  <string name="onboarding_exposure_notifications_detail">如果您与报告确诊新冠肺炎 (COVID-19) 的人员有过近距离接触，就会收到通知。
+  <string name="onboarding_exposure_notifications_description">如果您与报告确诊新冠肺炎 (COVID-19) 的人员有过近距离接触，就会收到通知。
     \n\n您的手机会使用蓝牙安全地收集附近其他手机的随机 ID，并与这些手机分享您的随机 ID。
     \n\n系统会参照您所在地的公共卫生机构设定的参数，根据可能的接触事件发生的日期、时长和相关信号强度来确定是否向您发送通知。
-    \n\n如果您收到检测结果短信，系统可能会通知您与卫生机构分享诊断结果。</string>
+    \n\n如果您收到检测结果短信，系统可能会通知您与卫生机构分享诊断结果。%1$s</string>
   <string name="onboarding_metrics_title">协助改进此应用</string>
   <string name="onboarding_metrics_subtitle">与 Google 分享应用使用情况和性能数据</string>
   <string name="onboarding_metrics_description">为帮助维护和改进该应用，系统会将少量与应用性能和使用情况有关的数据（去除了可用于识别个人身份的信息）提供给 Google。这些数据不会泄露您的身份。%1$s</string>
@@ -214,4 +215,11 @@
   <string name="share_upload_status_negative">阴性</string>
   <string name="share_upload_status_likely">疑似</string>
   <string name="share_diagnosis_progress_tracker">第 %1$d 步（共 %2$d 步）</string>
+  <string name="see_history_device_authentication_title">验证您的身份</string>
+  <string name="update_app_dialog_title">更新应用</string>
+  <string name="update_app_dialog_content">必须将“接触史通知”更新到最新版本才能完成检测结果分享。</string>
+  <string name="btn_update">更新</string>
+  <string name="try_again_later_error_message">出错了，请过几小时后重试。</string>
+  <string name="en_turndown_for_area_title">您当地的卫生机构不再支持“接触史通知”</string>
+  <string name="en_turndown_title">“接触史通知”已关闭</string>
 </resources>

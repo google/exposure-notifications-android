@@ -22,4 +22,7 @@
   <string name="share_positive_diagnosis_card_content">Comparte o teu resultado da proba para axudar a deter a propagación da COVID-19</string>
   <string name="share_app_card_content">Comparte esta aplicación para protexer mellor a túa comunidade</string>
   <string name="how_en_works_card_content">Máis información sobre o funcionamento de Notificacións por exposición</string>
+  <string name="en_turndown_for_area_contents">As túas autoridades sanitarias, que van adaptando a súa resposta fronte á COVID-19, xa non admiten esta aplicación. Grazas por utilizala e por axudar a protexer a túa comunidade.</string>
+  <string name="en_turndown_contents">A raíz da adaptación da resposta fronte á COVID-19 por parte das autoridades sanitarias, xa non se admite esta aplicación. Grazas por utilizala e por axudar a protexer a túa comunidade.</string>
+  <string name="en_turndown_see_test_results_card_content">Aínda podes consultar os resultados das probas que cargaches con anterioridade no sistema Notificacións por exposición</string>
 </resources>

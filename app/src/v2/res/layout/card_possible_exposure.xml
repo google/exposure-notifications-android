@@ -73,7 +73,9 @@
         <TextView
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:gravity="start"
+          android:layout_gravity="center_vertical"
+          android:gravity="center|start"
+          android:paddingVertical="@dimen/padding_medium"
           android:text="@string/possible_exposure_card_contents"
           android:textAppearance="?attr/textAppearanceBody2"
           android:textColor="?attr/colorControlNormal" />

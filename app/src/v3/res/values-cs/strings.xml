@@ -14,4 +14,6 @@
   <string name="share_history_delete_test_result_detail">Váš test na covid-19 z %1$s bude z telefonu smazán.</string>
   <string name="sms_intercept_notice_card_title">Můžete dostat připomenutí o sdílení výsledku</string>
   <string name="sms_intercept_notice_card_content">Pokud váš test byl pozitivní a dostanete ověřenou SMS</string>
+  <string name="en_turndown_contents">Zdravotní úřady mění strategii boje proti covidu-19 a oznámení o možném kontaktu už nepodporují. Děkujeme vám, že jste tuto službu používali a pomáhali chránit své okolí.</string>
+  <string name="en_turndown_for_area_contents">Místní zdravotní úřad mění strategii boje proti covidu-19 a oznámení o možném kontaktu už nepodporuje. Děkujeme vám, že jste tuto službu používali a pomáhali chránit své okolí.</string>
 </resources>

@@ -22,4 +22,7 @@
   <string name="share_positive_diagnosis_card_content">Yabelana ngomphumela wakho wokuhlolwa ukusiza ukuvimbela ukusabalala kwe-COVID-19</string>
   <string name="share_app_card_content">Yabelana ngale app ukuvikela kangcono umphakathi wakho</string>
   <string name="how_en_works_card_content">Funda kabanzi ngendlela Izaziso Zokuhlangabezana ezisebenza ngayo</string>
+  <string name="en_turndown_for_area_contents">Njengoba iziphathimandla zakho zezempilo zilungisa indlela esiphendula ngayo ku-COVID-19, asisayisekeli le app. Siyabonga ngokusebenzisa i-app kanye nokusiza ukuvikela umphakathi wakho.</string>
+  <string name="en_turndown_contents">Njengoba iziphathimandla zezempilo zilungisa indlela ezisabela ngayo ku-COVID-19, le app ayisasekelwa. Siyabonga ngokusebenzisa i-app kanye nokusiza ukuvikela umphakathi wakho.</string>
+  <string name="en_turndown_see_test_results_card_content">Usengabona imiphumela yokuhlolwa oyilayishe ngaphambilini Ezazisweni Zokuhlangabezana</string>
 </resources>

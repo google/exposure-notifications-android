@@ -22,4 +22,7 @@
   <string name="share_positive_diagnosis_card_content">COVID-19 virusunun yayılmasının qarşısını almaq üçün test nəticənizi paylaşın</string>
   <string name="share_app_card_content">Cəmiyyətinizi daha yaxşı qorumaq üçün bu tətbiqi paylaşın</string>
   <string name="how_en_works_card_content">Yoluxma Bildirişlərinin işləmə qaydası barədə ətraflı məlumat</string>
+  <string name="en_turndown_for_area_contents">Səhiyyə orqanı COVID-19 cavabını uyğunlaşdırdığına görə bu tətbiq daha dəstəklənmir. Tətbiqdən istifadə etdiyiniz və icmanızı qorumağa kömək etdiyiniz üçün təşəkkür edirik.</string>
+  <string name="en_turndown_contents">Səhiyyə orqanları COVID-19 cavabını uyğunlaşdırdığına görə bu tətbiq daha dəstəklənmir. Tətbiqdən istifadə etdiyiniz və icmanızı qorumağa kömək etdiyiniz üçün təşəkkür edirik.</string>
+  <string name="en_turndown_see_test_results_card_content">Daha əvvəl Yoluxma Bildirişlərinə yüklədiyiniz test nəticələrini hələ də görə bilərsiniz</string>
 </resources>

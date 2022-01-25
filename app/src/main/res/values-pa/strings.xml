@@ -15,6 +15,7 @@
   <string name="btn_verify">ਪੁਸ਼ਟੀ ਕਰੋ</string>
   <string name="btn_no_thanks">ਨਹੀਂ ਧੰਨਵਾਦ</string>
   <string name="btn_share">ਸਾਂਝਾ ਕਰੋ</string>
+  <string name="btn_close_app">ਐਪ ਬੰਦ ਕਰੋ</string>
   <string name="learn_more">ਹੋਰ ਜਾਣੋ</string>
   <string name="home_tab_settings_text">ਸੈਟਿੰਗਾਂ</string>
   <string name="notification_channel_name">COVID-19 ਤੋਂ ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਸੰਬੰਧੀ ਸੰਭਾਵਨਾ</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਦੀਆਂ ਸੂਚਨਾਵਾਂ ਨੂੰ ਚਾਲੂ ਕਰਨ ਲਈ ਇਜਾਜ਼ਤਾਂ ਦੀ ਲੋੜ ਹੈ</string>
   <string name="onboarding_finish_title">ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਦੀਆਂ ਸੂਚਨਾਵਾਂ ਨੂੰ ਚਾਲੂ ਕਰਨ ਲਈ ਇਜਾਜ਼ਤਾਂ ਨੂੰ ਜਾਰੀ ਰੱਖਣ ਦੀ ਲੋੜ ਹੈ</string>
   <string name="onboarding_exposure_notifications_title">ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਦੀਆਂ ਸੂਚਨਾਵਾਂ ਚਾਲੂ ਕਰੋ</string>
-  <string name="onboarding_exposure_notifications_detail">COVID-19 ਪ੍ਰਭਾਵਿਤ ਵਿਅਕਤੀ ਦੇ ਨੇੜੇ ਗਏ ਹੋਣ \'ਤੇ ਸੂਚਨਾ ਪ੍ਰਾਪਤ ਕਰੋ।
+  <string name="onboarding_exposure_notifications_description">COVID-19 ਪ੍ਰਭਾਵਿਤ ਵਿਅਕਤੀ ਦੇ ਨੇੜੇ ਗਏ ਹੋਣ \'ਤੇ ਸੂਚਨਾ ਪ੍ਰਾਪਤ ਕਰੋ।
     \n\nਨੇੜਲੇ ਹੋਰ ਫ਼ੋਨਾਂ ਨਾਲ ਬੇਤਰਤੀਬ ਆਈਡੀਆਂ ਨੂੰ ਇਕੱਤਰ ਕਰਨ ਅਤੇ ਸਾਂਝਾ ਕਰਨ ਲਈ ਤੁਹਾਡਾ ਫ਼ੋਨ ਬਲੂਟੁੱਥ ਵਰਤਦਾ ਹੈ।
     \n\nਕਿਸੇ ਪ੍ਰਭਾਵਿਤ ਵਿਅਕਤੀ ਦੇ ਨੇੜੇ ਹੋਣ ਸੰਬੰਧੀ ਤਾਰੀਖ, ਸਮਾਂ ਅਤੇ ਸਿਗਨਲ ਦੀ ਤੀਬਰਤਾ ਦੀ ਵਰਤੋਂ ਇਹ ਨਿਰਧਾਰਿਤ ਕਰਨ ਲਈ ਕੀਤੀ ਜਾਵੇਗੀ ਕਿ ਕੀ ਤੁਹਾਡੇ ਜਨਤਕ ਸਿਹਤ ਅਧਿਕਾਰੀ ਵੱਲੋਂ ਸੈੱਟ ਕੀਤੇ ਮਾਪਦੰਡਾਂ ਦੇ ਆਧਾਰ \'ਤੇ ਤੁਹਾਨੂੰ ਸੂਚਿਤ ਕੀਤਾ ਜਾਵੇ ਜਾਂ ਨਹੀਂ।
-    \n\nਜੇ ਤੁਹਾਨੂੰ ਆਪਣੇ ਟੈਸਟ ਨਤੀਜੇ ਵਾਲਾ SMS ਮਿਲਦਾ ਹੈ, ਤਾਂ ਤੁਹਾਨੂੰ ਆਪਣੇ ਸਿਹਤ ਅਧਿਕਾਰੀ ਨਾਲ ਤਸ਼ਖੀਸ ਸਾਂਝੀ ਕਰਨ ਲਈ ਸੂਚਨਾ ਪ੍ਰਾਪਤ ਹੋ ਸਕਦੀ ਹੈ।</string>
+    \n\nਜੇ ਤੁਹਾਨੂੰ ਆਪਣੇ ਟੈਸਟ ਨਤੀਜੇ ਵਾਲਾ SMS ਮਿਲਦਾ ਹੈ, ਤਾਂ ਤੁਹਾਨੂੰ ਆਪਣੇ ਸਿਹਤ ਅਧਿਕਾਰੀ ਨਾਲ ਤਸ਼ਖੀਸ ਸਾਂਝੀ ਕਰਨ ਲਈ ਸੂਚਨਾ ਪ੍ਰਾਪਤ ਹੋ ਸਕਦੀ ਹੈ। %1$s</string>
   <string name="onboarding_metrics_title">ਇਸ ਐਪ ਨੂੰ ਬਿਹਤਰ ਬਣਾਉਣ ਵਿੱਚ ਮਦਦ ਕਰੋ</string>
   <string name="onboarding_metrics_subtitle">Google ਦੇ ਨਾਲ ਐਪ ਵਰਤੋਂ ਅਤੇ ਕਾਰਗੁਜ਼ਾਰੀ ਸੰਬੰਧੀ ਡਾਟਾ ਸਾਂਝਾ ਕਰੋ</string>
   <string name="onboarding_metrics_description">ਐਪ ਨੂੰ ਬਣਾਈ ਰੱਖਣ ਅਤੇ ਬਿਹਤਰ ਬਣਾਉਣ ਵਿੱਚ ਮਦਦ ਕਰਨ ਲਈ, Google ਨਾਲ ਐਪ ਦੀ ਕਾਰਗੁਜ਼ਾਰੀ ਅਤੇ ਵਰਤੋਂ ਬਾਰੇ ਕੁਝ ਸੀਮਤ ਗੈਰ-ਪਛਾਣਯੋਗ ਡਾਟਾ ਸਾਂਝਾ ਕੀਤਾ ਗਿਆ ਹੈ। ਇਹ ਡਾਟਾ ਤੁਹਾਡੀ ਪਛਾਣ ਨਹੀਂ ਕਰਦਾ ਹੈ। %1$s</string>
@@ -214,4 +215,11 @@
   <string name="share_upload_status_negative">ਨਕਾਰਾਤਮਕ</string>
   <string name="share_upload_status_likely">ਸੰਭਾਵਿਤ</string>
   <string name="share_diagnosis_progress_tracker">%2$d ਵਿੱਚੋਂ %1$d ਪੜਾਅ</string>
+  <string name="see_history_device_authentication_title">ਆਪਣੀ ਪਛਾਣ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ</string>
+  <string name="update_app_dialog_title">ਆਪਣੀ ਐਪ ਅੱਪਡੇਟ ਕਰੋ</string>
+  <string name="update_app_dialog_content">ਆਪਣੇ ਜਾਂਚ ਦੇ ਨਤੀਜਿਆਂ ਦਾ ਸਾਂਝਾਕਰਨ ਸਮਾਪਤ ਕਰਨ ਲਈ ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਦੀਆਂ ਸੂਚਨਾਵਾਂ ਦੇ ਨਵੀਨਤਮ ਵਰਜਨ \'ਤੇ ਅੱਪਡੇਟ ਕਰੋ।</string>
+  <string name="btn_update">ਅੱਪਡੇਟ ਕਰੋ</string>
+  <string name="try_again_later_error_message">ਕੋਈ ਗੜਬੜ ਹੋ ਗਈ। ਕੁਝ ਘੰਟਿਆਂ ਵਿੱਚ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
+  <string name="en_turndown_for_area_title">ਤੁਹਾਡਾ ਸਿਹਤ ਅਧਿਕਾਰੀ ਹੁਣ ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਦੀਆਂ ਸੂਚਨਾਵਾਂ ਦਾ ਸਮਰਥਨ ਨਹੀਂ ਕਰਦਾ ਹੈ</string>
+  <string name="en_turndown_title">ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਦੀਆਂ ਸੂਚਨਾਵਾਂ ਨੂੰ ਬੰਦ ਕਰ ਦਿੱਤਾ ਗਿਆ ਹੈ</string>
 </resources>

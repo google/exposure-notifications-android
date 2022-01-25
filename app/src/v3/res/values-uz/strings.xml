@@ -14,4 +14,6 @@
   <string name="share_history_delete_test_result_detail">%1$s sanasidagi COVID-19 testi natijalari telefoningizdan oʻchiriladi.</string>
   <string name="sms_intercept_notice_card_title">Natijani ulashish haqida eslatma olishingiz mumkin</string>
   <string name="sms_intercept_notice_card_content">Agar natijangiz musbat chiqsa va SMS orqali tasdiqlansa</string>
+  <string name="en_turndown_contents">Mahalliy sogʻliqni saqlash idorasi COVID-19 ga qarshi kurashda oʻz choralarini koʻradi va endi Ehtimoliy zararlanish bildirishnomalari ishlamaydi. Xizmatdan foydalanib, atrofdagilarni himoyalaganingiz uchun katta rahmat.</string>
+  <string name="en_turndown_for_area_contents">Mahalliy sogʻliqni saqlash idorasi COVID-19 ga qarshi kurashda oʻz choralarini koʻradi va endi Ehtimoliy zararlanish bildirishnomalari bilan ishlamaydi. Xizmatdan foydalanib, atrofdagilarni himoyalaganingiz uchun katta rahmat.</string>
 </resources>

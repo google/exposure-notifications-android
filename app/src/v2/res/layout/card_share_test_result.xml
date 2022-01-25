@@ -94,8 +94,7 @@
         android:text="@string/see_history_button"
         style="@style/Widget.ExposureNotifications.Button.OutlinedButton"
         app:cornerRadius="@dimen/round_button_corner_radius"
-        app:strokeColor="@color/card_border_color"
-        android:visibility="gone" />
+        app:strokeColor="@color/card_border_color" />
 
       <Button
         android:id="@+id/notify_others_button"

@@ -15,6 +15,7 @@
   <string name="btn_verify">ಪರಿಶೀಲಿಸಿ</string>
   <string name="btn_no_thanks">ಬೇಡ</string>
   <string name="btn_share">ಹಂಚಿಕೊಳ್ಳಿ</string>
+  <string name="btn_close_app">ಆ್ಯಪ್ ಅನ್ನು ಮುಚ್ಚಿರಿ</string>
   <string name="learn_more">ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</string>
   <string name="home_tab_settings_text">ಸೆಟ್ಟಿಂಗ್‌ಗಳು</string>
   <string name="notification_channel_name">ಬಹುಷಃ COVID-19 ನ ಸಂಪರ್ಕಕ್ಕೆ ಬಂದಿದ್ದೀರಿ</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">ಎಕ್ಸ್‌ಪೋಶರ್ ಅಧಿಸೂಚನೆಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಲು ಅನುಮತಿಗಳ ಅಗತ್ಯವಿದೆ</string>
   <string name="onboarding_finish_title">ಎಕ್ಸ್‌ಪೋಶರ್ ಅಧಿಸೂಚನೆಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಲು ಅನುಮತಿಗಳನ್ನು ಮುಂದುವರಿಸುವ ಅಗತ್ಯವಿದೆ</string>
   <string name="onboarding_exposure_notifications_title">ಎಕ್ಸ್‌ಪೋಶರ್ ಅಧಿಸೂಚನೆಗಳನ್ನು ಆನ್ ಮಾಡಿ</string>
-  <string name="onboarding_exposure_notifications_detail">COVID-19 ಸೋಂಕಿಗೆ ಒಳಗಾಗಿದ್ದಾರೆ ಎಂದು ವರದಿ ಮಾಡಿರುವ ವ್ಯಕ್ತಿಯ ಸಮೀಪಕ್ಕೆ ನೀವು ಹೋಗಿದ್ದರೆ ಅಧಿಸೂಚನೆಗಳನ್ನು ಪಡೆಯಿರಿ.
+  <string name="onboarding_exposure_notifications_description">COVID-19 ಸೋಂಕಿಗೆ ಒಳಗಾಗಿದ್ದಾರೆ ಎಂದು ವರದಿ ಮಾಡಿರುವ ವ್ಯಕ್ತಿಯ ಸಮೀಪಕ್ಕೆ ನೀವು ಹೋಗಿದ್ದರೆ ಅಧಿಸೂಚನೆಗಳನ್ನು ಪಡೆಯಿರಿ.
     \n\nರ‍್ಯಾಂಡಮ್ ಐಡಿಗಳನ್ನು ಸಮೀಪದಲ್ಲಿರುವ ಇತರ ಫೋನ್‌ಗಳಿಂದ ಸುರಕ್ಷಿತವಾಗಿ ಸಂಗ್ರಹಿಸಲು ಮತ್ತು ಆ ಫೋನ್‌ಗಳ ಜೊತೆಗೆ ಹಂಚಿಕೊಳ್ಳಲು, ನಿಮ್ಮ ಫೋನ್ ಬ್ಲೂಟೂತ್ ಅನ್ನು ಬಳಸುತ್ತದೆ.
     \n\nನಿಮ್ಮ ಸಾರ್ವಜನಿಕ ಆರೋಗ್ಯ ಅಧಿಕಾರಿಗಳು ಸೂಚಿಸಿರುವ ಪ್ಯಾರಾಮೀಟರ್‌ಗಳ ಆಧಾರದ ಮೇಲೆ ನಿಮಗೆ ಅಧಿಸೂಚನೆಗಳನ್ನು ನೀಡಲಾಗುತ್ತದೆಯೇ ಎಂದು ತಿಳಿಯಲು ಸಂಭವನೀಯ ಸಂಪರ್ಕಕ್ಕೆ ಬಂದಿರುವಿಕೆಗೆ ಸಂಬಂಧಿಸಿದ ದಿನಾಂಕ, ಅವಧಿ ಮತ್ತು ಸಿಗ್ನಲ್ ಸಾಮರ್ಥ್ಯವನ್ನು ಬಳಸಲಾಗುತ್ತದೆ.
-    \n\nನಿಮ್ಮ ಪರೀಕ್ಷಾ ಫಲಿತಾಂಶದ SMS ಅನ್ನು ನೀವು ಸ್ವೀಕರಿಸಿದರೆ, ನಿಮ್ಮ ಆರೋಗ್ಯ ಪ್ರಾಧಿಕಾರದಿಂದ ಡಯಾಗ್ನಾಸಿಸ್ ಮಾಹಿತಿಯನ್ನು ಹಂಚಿಕೊಳ್ಳಲು ನೀವು ಅಧಿಸೂಚನೆಯನ್ನು ಸ್ವೀಕರಿಸಬಹುದು.</string>
+    \n\nನಿಮ್ಮ ಪರೀಕ್ಷಾ ಫಲಿತಾಂಶದ SMS ಅನ್ನು ನೀವು ಸ್ವೀಕರಿಸಿದರೆ, ನಿಮ್ಮ ಆರೋಗ್ಯ ಪ್ರಾಧಿಕಾರದಿಂದ ಡಯಾಗ್ನಾಸಿಸ್ ಮಾಹಿತಿಯನ್ನು ಹಂಚಿಕೊಳ್ಳಲು ನೀವು ಅಧಿಸೂಚನೆಯನ್ನು ಸ್ವೀಕರಿಸಬಹುದು. %1$s</string>
   <string name="onboarding_metrics_title">ಈ ಆ್ಯಪ್ ಅನ್ನು ಉತ್ತಮಗೊಳಿಸಲು ಸಹಾಯ ಮಾಡಿ</string>
   <string name="onboarding_metrics_subtitle">ಆ್ಯಪ್ ಬಳಕೆ ಮತ್ತು ಕಾರ್ಯಕ್ಷಮತೆ ಡೇಟಾವನ್ನು Google ಜೊತೆಗೆ ಹಂಚಿಕೊಳ್ಳಿ</string>
   <string name="onboarding_metrics_description">ಆ್ಯಪ್ ಅನ್ನು ನಿರ್ವಹಿಸಲು ಮತ್ತು ಸುಧಾರಿಸಲು, ಆ್ಯಪ್ ಕಾರ್ಯಕ್ಷಮತೆ ಮತ್ತು ಬಳಕೆಯ ಕುರಿತು ಕೆಲವು ಸೀಮಿತ, ಗುರುತಿಸದ ಡೇಟಾವನ್ನು Google ಜೊತೆಗೆ ಹಂಚಿಕೊಳ್ಳಲಾಗುತ್ತದೆ. ಈ ಡೇಟಾ ನಿಮ್ಮನ್ನು ಗುರುತಿಸುವುದಿಲ್ಲ. %1$s</string>
@@ -214,4 +215,11 @@
   <string name="share_upload_status_negative">ನೆಗೆಟಿವ್</string>
   <string name="share_upload_status_likely">ಸಾಧ್ಯತೆ ಇದೆ</string>
   <string name="share_diagnosis_progress_tracker">%2$d ಹಂತಗಳಲ್ಲಿ %1$d ಹಂತ</string>
+  <string name="see_history_device_authentication_title">ಇದು ನೀವೇ ಎಂಬುದನ್ನು ದೃಢೀಕರಿಸಿ</string>
+  <string name="update_app_dialog_title">ನಿಮ್ಮ ಆ್ಯಪ್ ಅಪ್‌ಡೇಟ್ ಮಾಡಿ</string>
+  <string name="update_app_dialog_content">ನಿಮ್ಮ ಪರೀಕ್ಷಾ ಫಲಿತಾಂಶಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳುವ ಪ್ರಕ್ರಿಯೆಯನ್ನು ಪೂರ್ಣಗೊಳಿಸಲು ಎಕ್ಸ್‌ಪೋಶರ್ ಅಧಿಸೂಚನೆಗಳ ಇತ್ತೀಚಿನ ಆವೃತ್ತಿಗೆ ಅಪ್‌ಡೇಟ್ ಮಾಡಿ.</string>
+  <string name="btn_update">ಅಪ್‌ಡೇಟ್ ಮಾಡಿ</string>
+  <string name="try_again_later_error_message">ಏನೋ ತಪ್ಪಾಗಿದೆ. ಕೆಲವು ಗಂಟೆಗಳ ನಂತರ ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.</string>
+  <string name="en_turndown_for_area_title">ನಿಮ್ಮ ಆರೋಗ್ಯ ಇಲಾಖೆಯು ಇನ್ನು ಮುಂದೆ ಎಕ್ಸ್‌ಪೋಶರ್ ಅಧಿಸೂಚನೆಗಳನ್ನು ಬೆಂಬಲಿಸುವುದಿಲ್ಲ</string>
+  <string name="en_turndown_title">ಎಕ್ಸ್‌ಪೋಶರ್ ಅಧಿಸೂಚನೆಗಳನ್ನು ಆಫ್ ಮಾಡಲಾಗಿದೆ</string>
 </resources>

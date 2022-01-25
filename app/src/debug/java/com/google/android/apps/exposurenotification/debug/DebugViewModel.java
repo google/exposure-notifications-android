@@ -47,10 +47,12 @@ import com.google.android.apps.exposurenotification.network.RequestQueueWrapper;
 import com.google.android.apps.exposurenotification.privateanalytics.SubmitPrivateAnalyticsWorker;
 import com.google.android.apps.exposurenotification.privateanalytics.metrics.CodeVerifiedMetric;
 import com.google.android.apps.exposurenotification.privateanalytics.metrics.CodeVerifiedWithReportTypeMetric;
+import com.google.android.apps.exposurenotification.privateanalytics.metrics.DateExposureBiweeklyMetric;
 import com.google.android.apps.exposurenotification.privateanalytics.metrics.DateExposureMetric;
 import com.google.android.apps.exposurenotification.privateanalytics.metrics.HistogramMetric;
 import com.google.android.apps.exposurenotification.privateanalytics.metrics.KeysUploadedAfterNotificationMetric;
 import com.google.android.apps.exposurenotification.privateanalytics.metrics.KeysUploadedMetric;
+import com.google.android.apps.exposurenotification.privateanalytics.metrics.KeysUploadedVaccineStatusBiweeklyMetric;
 import com.google.android.apps.exposurenotification.privateanalytics.metrics.KeysUploadedVaccineStatusMetric;
 import com.google.android.apps.exposurenotification.privateanalytics.metrics.KeysUploadedWithReportTypeMetric;
 import com.google.android.apps.exposurenotification.privateanalytics.metrics.PeriodicExposureNotificationBiweeklyMetric;
@@ -131,6 +133,8 @@ public class DebugViewModel extends ViewModel {
       KeysUploadedVaccineStatusMetric keysUploadedVaccineStatusMetric,
       KeysUploadedAfterNotificationMetric keysUploadedAfterNotificationMetric,
       PeriodicExposureNotificationBiweeklyMetric periodicExposureNotificationBiweeklyMetric,
+      DateExposureBiweeklyMetric dateExposureBiweeklyMetric,
+      KeysUploadedVaccineStatusBiweeklyMetric keysUploadedVaccineStatusBiweeklyMetric,
       Clock clock,
       ExposureNotificationClientWrapper exposureNotificationClientWrapper,
       ExposureNotificationSharedPreferences exposureNotificationSharedPreferences,
@@ -148,7 +152,8 @@ public class DebugViewModel extends ViewModel {
         periodicExposureNotificationInteractionMetric, codeVerifiedMetric,
         codeVerifiedWithReportTypeMetric, keysUploadedMetric, keysUploadedWithReportTypeMetric,
         dateExposureMetric, keysUploadedVaccineStatusMetric, keysUploadedAfterNotificationMetric,
-        periodicExposureNotificationBiweeklyMetric);
+        periodicExposureNotificationBiweeklyMetric, dateExposureBiweeklyMetric,
+        keysUploadedVaccineStatusBiweeklyMetric);
     codeCreator = new VerificationCodeCreator(context, requestQueueWrapper);
     resources = context.getResources();
 
@@ -290,7 +295,9 @@ public class DebugViewModel extends ViewModel {
         DateExposureMetric.METRIC_NAME,
         KeysUploadedVaccineStatusMetric.METRIC_NAME,
         KeysUploadedAfterNotificationMetric.METRIC_NAME,
-        PeriodicExposureNotificationBiweeklyMetric.METRIC_NAME
+        PeriodicExposureNotificationBiweeklyMetric.METRIC_NAME,
+        DateExposureBiweeklyMetric.METRIC_NAME,
+        KeysUploadedVaccineStatusBiweeklyMetric.METRIC_NAME
     ));
   }
 

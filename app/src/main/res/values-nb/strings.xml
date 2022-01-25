@@ -15,6 +15,7 @@
   <string name="btn_verify">Bekreft</string>
   <string name="btn_no_thanks">Nei takk</string>
   <string name="btn_share">Del</string>
+  <string name="btn_close_app">Lukk appen</string>
   <string name="learn_more">Finn ut mer</string>
   <string name="home_tab_settings_text">Innstillinger</string>
   <string name="notification_channel_name">Mulig covid-19-eksponering</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">Tillatelser som kreves for å slå på eksponeringsvarsler</string>
   <string name="onboarding_finish_title">Fortsettelse av tillatelser som kreves for å slå på eksponeringsvarsler</string>
   <string name="onboarding_exposure_notifications_title">Slå på eksponeringsvarsler</string>
-  <string name="onboarding_exposure_notifications_detail">Bli varslet hvis du har vært i nærheten av noen som har rapportert at de har covid-19.
+  <string name="onboarding_exposure_notifications_description">Bli varslet hvis du har vært i nærheten av noen som har rapportert at de har covid-19.
     \n\nTelefonen din bruker Bluetooth for å samle inn og dele tilfeldige ID-er med telefoner i nærheten på en trygg måte.
     \n\nDatoen, varigheten og signalstyrken knyttet til en mulig eksponering brukes til å fastslå hvorvidt du blir varslet, basert på parametere som er angitt av offentlige helsemyndigheter.
-    \n\nDu kan motta et varsel for å dele en diagnose med helsemyndighetene hvis du mottar en SMS med testresultatet ditt.</string>
+    \n\nDet kan hende du mottar et varsel om å dele en diagnose med helsemyndighetene hvis du mottar en SMS med testresultatet ditt. %1$s</string>
   <string name="onboarding_metrics_title">Bidra til å gjøre appen bedre</string>
   <string name="onboarding_metrics_subtitle">Del appbruk og ytelsesdata med Google</string>
   <string name="onboarding_metrics_description">For å vedlikeholde og forbedre appen deles noen begrensede, avidentifiserte data om appytelsen og -bruken med Google. Disse dataene identifiserer deg ikke. %1$s</string>
@@ -214,4 +215,11 @@
   <string name="share_upload_status_negative">Negativ</string>
   <string name="share_upload_status_likely">Sannsynlig</string>
   <string name="share_diagnosis_progress_tracker">Trinn %1$d av %2$d</string>
+  <string name="see_history_device_authentication_title">Bekreft at det er deg</string>
+  <string name="update_app_dialog_title">Oppdater appen</string>
+  <string name="update_app_dialog_content">Oppdater til den nyeste versjonen av eksponeringsvarsler for å fullføre delingen av testresultatene dine.</string>
+  <string name="btn_update">Oppdater</string>
+  <string name="try_again_later_error_message">Noe gikk galt. Prøv på nytt om noen timer.</string>
+  <string name="en_turndown_for_area_title">Helsemyndighetene støtter ikke lenger eksponeringsvarsler</string>
+  <string name="en_turndown_title">Eksponeringsvarsler er slått av</string>
 </resources>

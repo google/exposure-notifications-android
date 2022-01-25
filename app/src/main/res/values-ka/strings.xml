@@ -15,6 +15,7 @@
   <string name="btn_verify">დადასტურება</string>
   <string name="btn_no_thanks">არა, გმადლობთ</string>
   <string name="btn_share">გაზიარება</string>
+  <string name="btn_close_app">აპის დახურვა</string>
   <string name="learn_more">შეიტყვეთ მეტი</string>
   <string name="home_tab_settings_text">პარამეტრები</string>
   <string name="notification_channel_name">COVID-19-თან პოტენციური კონტაქტი</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">კონტაქტის შეტყობინებების ჩასართავად საჭიროა ნებართვები</string>
   <string name="onboarding_finish_title">კონტაქტის შეტყობინებების ჩასართავად საჭიროა ნებართვების გაგრძელება</string>
   <string name="onboarding_exposure_notifications_title">კონტაქტის შეტყობინებების ჩართვა</string>
-  <string name="onboarding_exposure_notifications_detail">მიიღეთ შეტყობინება, თუ ახლოს იმყოფებოდით პირთან, რომელმაც მიუთითა, რომ COVID-19 აქვს.
+  <string name="onboarding_exposure_notifications_description">მიიღეთ შეტყობინება, თუ ახლოს იმყოფებოდით პირთან, რომელმაც მიუთითა, რომ COVID-19 აქვს.
     \n\nთქვენი ტელეფონი იყენებს Bluetooth-ს შემთხვევითი ID-ების უსაფრთხოდ შესაგროვებლად და სხვა ახლომახლო ტელეფონებისთვის გასაზიარებლად.
     \n\nშესაძლო კონტაქტის თარიღის, ხანგრძლივობისა და სიგნალის სიძლიერის მიხედვით განისაზღვრება, მიიღებთ თუ არა შეტყობინებას, თქვენი საზოგადოებრივი ჯანდაცვის უწყების მიერ დაწესებული პარამეტრების მიხედვით.
-    \n\nშესაძლოა, მიიღოთ შეტყობინება ჯანდაცვის უწყებისთვის დიაგნოზის გაზიარების შესახებ, თუ მიიღებთ თქვენი ტესტის პასუხს SMS-ით.</string>
+    \n\nშესაძლოა, მიიღოთ შეტყობინება ჯანდაცვის უწყებისთვის დიაგნოზის გაზიარების შესახებ, თუ SMS-ით მიიღებთ თქვენი ტესტის პასუხს. %1$s</string>
   <string name="onboarding_metrics_title">დაგვეხმარეთ აპის გაუმჯობესებაში</string>
   <string name="onboarding_metrics_subtitle">მოხმარების და შესრულების ინფოს გაზიარება</string>
   <string name="onboarding_metrics_description">აპის გამართულად მუშაობისა და გაუმჯობესებისთვის ზოგიერთი შეზღუდული, არამაიდენტიფიცირებელი ინფორმაცია აპის შესრულებისა და მოხმარების შესახებ გაზიარდება Google-თან. ამ მონაცემებით თქვენი იდენტიფიკაცია არ ხდება. %1$s</string>
@@ -214,4 +215,11 @@
   <string name="share_upload_status_negative">უარყოფითი</string>
   <string name="share_upload_status_likely">შესაძლებელი</string>
   <string name="share_diagnosis_progress_tracker">ნაბიჯი %1$d / %2$d-დან</string>
+  <string name="see_history_device_authentication_title">დაადასტურეთ, რომ თქვენ ხართ</string>
+  <string name="update_app_dialog_title">განაახლეთ თქვენი აპი</string>
+  <string name="update_app_dialog_content">თქვენი ტესტის შედეგების გაზიარების დასასრულებლად განაახლეთ კონტაქტის შეტყობინებები უახლეს ვერსიამდე.</string>
+  <string name="btn_update">განახლება</string>
+  <string name="try_again_later_error_message">წარმოიქმნა შეფერხება. ცადეთ ხელახლა რამდენიმე საათში.</string>
+  <string name="en_turndown_for_area_title">თქვენი ჯანდაცვის უწყება აღარ უჭერს მხარს კონტაქტის შეტყობინებებს</string>
+  <string name="en_turndown_title">კონტაქტის შეტყობინებები გამოირთო</string>
 </resources>

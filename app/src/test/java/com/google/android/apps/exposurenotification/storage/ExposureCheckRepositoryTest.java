@@ -127,7 +127,7 @@ public class ExposureCheckRepositoryTest {
     }
 
     // WHEN
-    exposureCheckRepository.deleteObsoleteChecksIfAny(earliestThreshold);
+    exposureCheckRepository.deleteOutdatedChecksIfAny(earliestThreshold);
     List<ExposureCheckEntity> retrievedChecks = exposureCheckRepository.getAllExposureChecks();
 
     // THEN
@@ -144,11 +144,26 @@ public class ExposureCheckRepositoryTest {
     }
 
     // WHEN
-    exposureCheckRepository.deleteObsoleteChecksIfAny(earliestThreshold);
+    exposureCheckRepository.deleteOutdatedChecksIfAny(earliestThreshold);
     List<ExposureCheckEntity> retrievedChecks = exposureCheckRepository.getAllExposureChecks();
 
     // THEN
     assertThat(retrievedChecks).containsExactlyElementsIn(expectedChecks);
+  }
+
+  @Test
+  public void insertChecks_deleteExposureCheckEntitiesAsync_deletesAll() throws Exception {
+    // GIVEN
+    for (ExposureCheckEntity entity : getEntitiesWithoutObsoletes()) {
+      exposureCheckRepository.insertExposureCheck(entity);
+    }
+
+    // WHEN
+    exposureCheckRepository.deleteExposureCheckEntitiesAsync().get();
+    List<ExposureCheckEntity> retrievedChecks = exposureCheckRepository.getAllExposureChecks();
+
+    // THEN
+    assertThat(retrievedChecks).isEmpty();
   }
 
   private List<ExposureCheckEntity> getEntitiesWithObsoletes() {

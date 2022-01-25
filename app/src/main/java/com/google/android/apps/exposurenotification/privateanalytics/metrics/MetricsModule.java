@@ -64,7 +64,9 @@ public class MetricsModule {
       DateExposureMetric dateExposureMetric,
       KeysUploadedVaccineStatusMetric keysUploadedVaccineStatusMetric,
       KeysUploadedAfterNotificationMetric keysUploadedAfterNotificationMetric,
-      PeriodicExposureNotificationBiweeklyMetric periodicExposureNotificationBiweeklyMetric
+      PeriodicExposureNotificationBiweeklyMetric periodicExposureNotificationBiweeklyMetric,
+      DateExposureBiweeklyMetric dateExposureBiweeklyMetric,
+      KeysUploadedVaccineStatusBiweeklyMetric keysUploadedVaccineStatusBiweeklyMetric
   ) {
     return () -> Futures
         .transform(privateAnalyticsMetricsRemoteConfig.fetchUpdatedConfigs(), remoteConfigs -> {
@@ -100,6 +102,14 @@ public class MetricsModule {
               .periodicExposureNotificationBiweeklyPrioSamplingRate();
           double periodicExposureBiweeklyEpsilon = remoteConfigs
               .periodicExposureNotificationBiweeklyPrioEpsilon();
+          double dateExposureBiweeklySamplingRate = remoteConfigs
+              .dateExposureBiweeklyPrioSamplingRate();
+          double dateExposureBiweeklyEpsilon = remoteConfigs
+              .dateExposureBiweeklyPrioEpsilon();
+          double keysUploadedVaccineStatusBiweeklySamplingRate = remoteConfigs
+              .keysUploadedVaccineStatusBiweeklyPrioSamplingRate();
+          double keysUploadedVaccineStatusBiweeklyEpsilon = remoteConfigs
+              .keysUploadedVaccineStatusBiweeklyPrioEpsilon();
 
           List<PrioDataPoint> dailyMetricsList = new ArrayList<>(
               Arrays.asList(
@@ -131,7 +141,13 @@ public class MetricsModule {
                   keysUploadedAfterNotificationSamplingRate),
               new PrioDataPoint(periodicExposureNotificationBiweeklyMetric,
                   periodicExposureBiweeklySamplingRate,
-                  periodicExposureBiweeklyEpsilon)
+                  periodicExposureBiweeklyEpsilon),
+              new PrioDataPoint(dateExposureBiweeklyMetric,
+                  dateExposureBiweeklySamplingRate,
+                  dateExposureBiweeklyEpsilon),
+              new PrioDataPoint(keysUploadedVaccineStatusBiweeklyMetric,
+                  keysUploadedVaccineStatusBiweeklySamplingRate,
+                  keysUploadedVaccineStatusBiweeklyEpsilon)
           );
 
           return new MetricsCollection() {

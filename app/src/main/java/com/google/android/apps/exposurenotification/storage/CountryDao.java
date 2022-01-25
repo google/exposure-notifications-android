@@ -42,6 +42,9 @@ abstract class CountryDao {
   @Query("DELETE FROM CountryEntity WHERE lastSeenTimestampMillis < :earliestTimestampMillis")
   abstract ListenableFuture<Void> deleteObsoleteCountryCodesAsync(long earliestTimestampMillis);
 
+  @Query("DELETE FROM CountryEntity")
+  abstract ListenableFuture<Void> deleteAll();
+
   void markCountryCodeSeen(String countryCode, long whenSeenMillis) {
     upsert(CountryEntity.create(countryCode, whenSeenMillis));
   }

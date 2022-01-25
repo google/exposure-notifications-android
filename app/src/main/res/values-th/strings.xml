@@ -15,6 +15,7 @@
   <string name="btn_verify">ยืนยัน</string>
   <string name="btn_no_thanks">ไม่เป็นไร</string>
   <string name="btn_share">แชร์</string>
+  <string name="btn_close_app">ปิดแอป</string>
   <string name="learn_more">ดูข้อมูลเพิ่มเติม</string>
   <string name="home_tab_settings_text">การตั้งค่า</string>
   <string name="notification_channel_name">มีความเสี่ยงต่อการติดเชื้อโควิด-19</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">ต้องให้สิทธิ์เพื่อเปิดใช้การแจ้งเตือนความเสี่ยงต่อการติดเชื้อ</string>
   <string name="onboarding_finish_title">ต้องให้สิทธิ์แบบต่อเนื่องเพื่อเปิดใช้การแจ้งเตือนความเสี่ยงต่อการติดเชื้อ</string>
   <string name="onboarding_exposure_notifications_title">เปิดการแจ้งเตือนความเสี่ยงต่อการติดเชื้อ</string>
-  <string name="onboarding_exposure_notifications_detail">รับการแจ้งเตือนหากคุณเข้าใกล้ผู้ที่เคยรายงานว่าติดเชื้อโควิด-19
+  <string name="onboarding_exposure_notifications_description">รับการแจ้งเตือนหากคุณเข้าใกล้ผู้ที่เคยรายงานว่าติดเชื้อโควิด-19
     \n\nโทรศัพท์ของคุณใช้บลูทูธเพื่อรวบรวมและแชร์รหัสแบบสุ่มกับโทรศัพท์เครื่องอื่นที่อยู่ใกล้เคียงอย่างปลอดภัย
     \n\nระบบจะใช้วันที่ ระยะเวลา และความแรงของสัญญาณที่เกี่ยวข้องกับความเสี่ยงต่อการติดเชื้อเพื่อพิจารณาว่าคุณควรได้รับการแจ้งเตือนหรือไม่เมื่อดูจากปัจจัยที่หน่วยงานด้านสาธารณสุขกำหนด
-    \n\nคุณอาจได้รับการแจ้งเตือนให้แชร์การวินิจฉัยกับหน่วยงานด้านสาธารณสุขเมื่อได้รับผลการตรวจหาเชื้อทาง SMS</string>
+    \n\nคุณอาจได้รับการแจ้งเตือนให้แชร์การวินิจฉัยกับหน่วยงานด้านสาธารณสุขเมื่อได้รับผลการตรวจหาเชื้อทาง SMS %1$s</string>
   <string name="onboarding_metrics_title">ช่วยปรับปรุงแอปนี้</string>
   <string name="onboarding_metrics_subtitle">แชร์ข้อมูลการใช้งานและประสิทธิภาพของแอปกับ Google</string>
   <string name="onboarding_metrics_description">ระบบจะแชร์ข้อมูลเกี่ยวกับประสิทธิภาพและการใช้งานแอปเพียงบางอย่างที่ลบการระบุตัวตนแล้วกับ Google เพื่อช่วยคงฟังก์ชันการทำงานและปรับปรุงแอป ข้อมูลนี้ไม่ได้ระบุตัวตนของคุณ %1$s</string>
@@ -214,4 +215,11 @@
   <string name="share_upload_status_negative">ไม่ติดเชื้อ</string>
   <string name="share_upload_status_likely">อาจติดเชื้อ</string>
   <string name="share_diagnosis_progress_tracker">ขั้นตอนที่ %1$d จาก %2$d</string>
+  <string name="see_history_device_authentication_title">ยืนยันว่าเป็นคุณ</string>
+  <string name="update_app_dialog_title">อัปเดตแอป</string>
+  <string name="update_app_dialog_content">อัปเดตการแจ้งเตือนความเสี่ยงต่อการติดเชื้อเป็นเวอร์ชันล่าสุดเพื่อแชร์ผลการตรวจหาเชื้อของคุณให้เสร็จสิ้น</string>
+  <string name="btn_update">อัปเดต</string>
+  <string name="try_again_later_error_message">เกิดข้อผิดพลาด โปรดลองอีกครั้งในอีก 2-3 ชั่วโมง</string>
+  <string name="en_turndown_for_area_title">หน่วยงานด้านสาธารณสุขของคุณไม่รองรับการแจ้งเตือนความเสี่ยงต่อการติดเชื้อแล้ว</string>
+  <string name="en_turndown_title">ระบบได้ปิดการแจ้งเตือนความเสี่ยงต่อการติดเชื้อไปแล้ว</string>
 </resources>

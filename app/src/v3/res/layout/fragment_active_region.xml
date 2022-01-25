@@ -130,14 +130,14 @@
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:textSize="16sp"
-              android:textAppearance="?android:attr/textAppearanceListItem"
+              android:textAppearance="?attr/textAppearanceListItem"
               android:text="@string/settings_private_analytics_subtitle"/>
 
             <TextView
               android:id="@+id/private_analytics_status"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:textAppearance="?android:attr/textAppearanceListItemSecondary"
+              android:textAppearance="?attr/textAppearanceListItemSecondary"
               android:textSize="14sp"
               android:textColor="?android:attr/textColorSecondary"/>
 

@@ -22,4 +22,7 @@
   <string name="share_positive_diagnosis_card_content">Share your test result to help stop the spread of COVID-19</string>
   <string name="share_app_card_content">Share this app to better protect your community</string>
   <string name="how_en_works_card_content">Find out more about how Exposure Notifications works</string>
+  <string name="en_turndown_for_area_contents">As your health authority adapts its COVID-19 response, it will no longer be supporting this app. Thank you for using the app and for helping to protect your community.</string>
+  <string name="en_turndown_contents">As health authorities adapt their COVID-19 response, this app will no longer be supported. Thank you for using the app and for helping to protect your community.</string>
+  <string name="en_turndown_see_test_results_card_content">You can still see test results that you\'ve previously uploaded to Exposure Notifications</string>
 </resources>

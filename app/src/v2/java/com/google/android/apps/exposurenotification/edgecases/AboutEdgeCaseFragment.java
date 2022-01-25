@@ -101,9 +101,8 @@ public class AboutEdgeCaseFragment extends AbstractEdgeCaseFragment {
         break;
       case PAUSED_NOT_IN_ALLOWLIST:
         setContainerVisibility(containerView, true);
-        title.setText(R.string.exposure_notifications_are_turned_off);
-        text.setText(R.string.not_in_allowlist_warning);
-        text.setMovementMethod(LinkMovementMethod.getInstance());
+        title.setText(R.string.en_turndown_for_area_title);
+        text.setText(R.string.en_turndown_for_area_contents);
         button.setVisibility(View.GONE);
         break;
       case PAUSED_HW_NOT_SUPPORT:
@@ -119,15 +118,9 @@ public class AboutEdgeCaseFragment extends AbstractEdgeCaseFragment {
         button.setVisibility(View.GONE);
         break;
       case PAUSED_EN_NOT_SUPPORT:
-        String learnMoreLinkText = getString(R.string.learn_more);
-
         setContainerVisibility(containerView, true);
-        title.setText(R.string.exposure_notifications_are_turned_off);
-        text.setText(StringUtils.generateTextWithHyperlink(
-            UrlUtils.createURLSpan(getString(R.string.en_info_main_page_link)),
-            getString(R.string.en_not_supported_warning, learnMoreLinkText),
-            learnMoreLinkText));
-        text.setMovementMethod(LinkMovementMethod.getInstance());
+        title.setText(R.string.en_turndown_title);
+        text.setText(R.string.en_turndown_contents);
         button.setVisibility(View.GONE);
         break;
       case PAUSED_USER_PROFILE_NOT_SUPPORT:

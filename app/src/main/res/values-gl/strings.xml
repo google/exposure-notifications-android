@@ -15,6 +15,7 @@
   <string name="btn_verify">Verificar</string>
   <string name="btn_no_thanks">Non, grazas</string>
   <string name="btn_share">Compartir</string>
+  <string name="btn_close_app">Pechar aplicación</string>
   <string name="learn_more">Máis información</string>
   <string name="home_tab_settings_text">Configuración</string>
   <string name="notification_channel_name">Posible exposición á COVID-19</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">Requírense permisos para activar as notificacións por exposición</string>
   <string name="onboarding_finish_title">Continuación dos permisos para activar as notificacións por exposición</string>
   <string name="onboarding_exposure_notifications_title">Activa as notificacións por exposición</string>
-  <string name="onboarding_exposure_notifications_detail">Recibe unha notificación se estiveches preto de alguén que indicou que ten a COVID-19.
+  <string name="onboarding_exposure_notifications_description">Recibe unha notificación se estiveches preto de alguén que indicou que ten a COVID-19.
     \n\nO teu teléfono utiliza o Bluetooth para recompilar e compartir de maneira segura códigos aleatorios con outros teléfonos que estean preto.
     \n\nA data, a duración e a intensidade do sinal relacionadas coas posibles exposicións usaranse para determinar se recibirás unha notificación en función dos parámetros definidos pola autoridade sanitaria pública pertinente.
-    \n\nÉ posible que recibas unha notificación na que se che solicita que compartas un diagnóstico coa túa autoridade sanitaria se recibes unha SMS co resultado da túa proba.</string>
+    \n\nÉ posible que recibas unha notificación na que se che solicita que compartas un diagnóstico coa túa autoridade sanitaria se recibes unha SMS co resultado da túa proba. %1$s</string>
   <string name="onboarding_metrics_title">Axuda a mellorar esta aplicación</string>
   <string name="onboarding_metrics_subtitle">Compartir con Google datos de uso e rendemento da aplicación</string>
   <string name="onboarding_metrics_description">Para axudar a manter e mellorar a aplicación, compártense con Google algúns datos limitados e anónimos sobre o rendemento e o uso da aplicación. Estes datos non permiten identificarte. %1$s</string>
@@ -214,4 +215,11 @@
   <string name="share_upload_status_negative">Negativo</string>
   <string name="share_upload_status_likely">Probable</string>
   <string name="share_diagnosis_progress_tracker">Paso %1$d de %2$d</string>
+  <string name="see_history_device_authentication_title">Verifica a túa identidade</string>
+  <string name="update_app_dialog_title">Actualiza a aplicación</string>
+  <string name="update_app_dialog_content">Para rematar de compartir os resultados da proba, actualiza á versión máis recente de Notificacións por exposición.</string>
+  <string name="btn_update">Actualizar</string>
+  <string name="try_again_later_error_message">Produciuse un erro. Téntao de novo nunhas horas.</string>
+  <string name="en_turndown_for_area_title">As túas autoridades sanitarias xa non admiten o sistema Notificacións por exposición</string>
+  <string name="en_turndown_title">Desactivouse o sistema Notificacións por exposición</string>
 </resources>

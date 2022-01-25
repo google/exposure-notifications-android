@@ -37,12 +37,15 @@ import android.os.Build.VERSION_CODES;
 import androidx.core.app.NotificationCompat;
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.work.Configuration;
 import androidx.work.Data;
 import androidx.work.ListenableWorker.Result;
+import androidx.work.WorkManager;
 import androidx.work.WorkerParameters;
+import androidx.work.impl.utils.SynchronousExecutor;
+import androidx.work.testing.WorkManagerTestInitHelper;
 import com.google.android.apps.exposurenotification.R;
-import com.google.android.apps.exposurenotification.common.BuildUtils;
-import com.google.android.apps.exposurenotification.common.BuildUtils.Type;
+import com.google.android.apps.exposurenotification.common.CleanupHelper;
 import com.google.android.apps.exposurenotification.common.IntentUtil;
 import com.google.android.apps.exposurenotification.common.NotificationHelper;
 import com.google.android.apps.exposurenotification.keyupload.Upload;
@@ -50,10 +53,8 @@ import com.google.android.apps.exposurenotification.keyupload.UploadController;
 import com.google.android.apps.exposurenotification.keyupload.UploadController.NoInternetException;
 import com.google.android.apps.exposurenotification.storage.DbModule;
 import com.google.android.apps.exposurenotification.storage.DiagnosisRepository;
-import com.google.android.apps.exposurenotification.storage.ExposureCheckRepository;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationDatabase;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
-import com.google.android.apps.exposurenotification.storage.VerificationCodeRequestRepository;
 import com.google.android.apps.exposurenotification.testsupport.ExposureNotificationRules;
 import com.google.android.apps.exposurenotification.testsupport.FakeClock;
 import com.google.android.apps.exposurenotification.testsupport.FakeShadowResources;
@@ -107,17 +108,13 @@ public class SmsVerificationWorkerTest {
   ExposureNotificationDatabase db = InMemoryDb.create();
 
   @Inject
-  DiagnosisRepository diagnosisRepository;
-  @Inject
   ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
   @Inject
   NotificationHelper notificationHelper;
   @Inject
   PackageConfigurationHelper packageConfigurationHelper;
   @Inject
-  ExposureCheckRepository exposureCheckRepository;
-  @Inject
-  VerificationCodeRequestRepository verificationCodeRequestRepository;
+  DiagnosisRepository diagnosisRepository;
 
   @Mock
   WorkerParameters workerParameters;
@@ -127,14 +124,26 @@ public class SmsVerificationWorkerTest {
   UploadController uploadController;
   @Mock
   SecureRandom secureRandom;
+  @Mock
+  CleanupHelper cleanupHelper;
 
   FakeClock clock = new FakeClock();
   SmsVerificationWorker smsVerificationWorker;
   ShadowNotificationManager notificationManager;
+  WorkManager workManager;
 
   @Before
   public void setUp() {
     rules.hilt().inject();
+
+    // Initialize WorkManager for testing.
+    Context context = ApplicationProvider.getApplicationContext();
+    Configuration config = new Configuration.Builder()
+        .setExecutor(new SynchronousExecutor())
+        .build();
+    WorkManagerTestInitHelper.initializeTestWorkManager(
+        context, config);
+    workManager = WorkManager.getInstance(context);
 
     notificationManager = shadowOf(
         (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE));
@@ -157,13 +166,12 @@ public class SmsVerificationWorkerTest {
             MoreExecutors.newDirectExecutorService(),
             TestingExecutors.sameThreadScheduledExecutor(),
             packageConfigurationHelper,
-            exposureCheckRepository,
-            verificationCodeRequestRepository,
-            clock), clock));
+            cleanupHelper
+        ), clock));
   }
 
   @Test
-  public void smsVerificationWorker_nullDeepLinkUriString_doesNothing() throws Exception {
+  public void startWork_nullDeepLinkUriString_doesNothing() throws Exception {
     // GIVEN
     Data inputData = new Data.Builder()
         .putString(DEEP_LINK_URI_STRING, null)
@@ -178,7 +186,7 @@ public class SmsVerificationWorkerTest {
   }
 
   @Test
-  public void smsVerificationWorker_emptyDeepLinkUriString_doesNothing() throws Exception {
+  public void startWork_emptyDeepLinkUriString_doesNothing() throws Exception {
     // GIVEN
     Data inputData = new Data.Builder()
         .putString(DEEP_LINK_URI_STRING, "")
@@ -193,8 +201,7 @@ public class SmsVerificationWorkerTest {
   }
 
   @Test
-  public void smsVerificationWorker_enableTextMessageVerificationFalse_doesNothing()
-      throws Exception {
+  public void startWork_enableTextMessageVerificationFalse_doesNothing() throws Exception {
     // GIVEN
     resources.addFakeResource(R.bool.enx_enableTextMessageVerification, false);
     Data inputData = new Data.Builder()
@@ -210,8 +217,7 @@ public class SmsVerificationWorkerTest {
   }
 
   @Test
-  public void smsVerificationWorker_testVerificationNotificationBodyEmpty_doesNothing()
-      throws Exception {
+  public void startWork_testVerificationNotificationBodyEmpty_doesNothing() throws Exception {
     // GIVEN
     resources.addFakeResource(R.string.enx_testVerificationNotificationBody, "");
     Data inputData = new Data.Builder()
@@ -227,7 +233,7 @@ public class SmsVerificationWorkerTest {
   }
 
   @Test
-  public void smsVerificationWorker_noInternetConnection_resultRetry() throws Exception {
+  public void startWork_noInternetConnection_resultRetry() throws Exception {
     // GIVEN
     Data inputData = new Data.Builder()
         .putString(DEEP_LINK_URI_STRING, SAMPLE_DEEPLINK.toString())
@@ -248,7 +254,33 @@ public class SmsVerificationWorkerTest {
   }
 
   @Test
-  public void smsVerificationWorker_validDataAndPreAuthPermissionGiven_triggerUploadAndShowNoNotification()
+  public void startWork_isEnabledThrowsException_doesNoWork() throws Exception {
+    // GIVEN
+    Data inputData = new Data.Builder()
+        .putString(DEEP_LINK_URI_STRING, SAMPLE_DEEPLINK.toString())
+        .build();
+    when(workerParameters.getInputData()).thenReturn(inputData);
+    // SMS Verification enabled
+    resources.addFakeResource(R.bool.enx_enableTextMessageVerification, true);
+    resources.addFakeResource(R.string.enx_testVerificationNotificationBody, "non-empty");
+    // ...but isEnabled API call fails
+    when(exposureNotificationClientWrapper.isEnabled())
+        .thenReturn(Tasks.forException(new ApiException(Status.RESULT_INTERNAL_ERROR)));
+
+    // WHEN
+    Result result = smsVerificationWorker.startWork().get();
+
+    // THEN
+    assertThat(result).isEqualTo(Result.failure());
+    verify(exposureNotificationClientWrapper).isEnabled();
+    verify(exposureNotificationClientWrapper, never())
+        .requestPreAuthorizedTemporaryExposureKeyRelease();
+    verify(uploadController, never()).submitCode(any());
+    assertThat(notificationManager.getAllNotifications()).isEmpty();
+  }
+
+  @Test
+  public void startWork_validDataAndPreAuthPermissionGiven_triggerUploadAndShowNoNotification()
       throws Exception {
     // GIVEN
     Data inputData = new Data.Builder()
@@ -270,7 +302,7 @@ public class SmsVerificationWorkerTest {
   }
 
   @Test
-  public void smsVerificationWorker_validDataNoPreAuthPermission_uploadNotTriggeredAndShowNotification()
+  public void startWork_validDataNoPreAuthPermission_uploadNotTriggeredAndShowNotification()
       throws Exception {
     // GIVEN
     Data inputData = new Data.Builder()

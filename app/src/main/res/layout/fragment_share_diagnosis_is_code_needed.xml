@@ -62,8 +62,9 @@
         android:textAppearance="?attr/textAppearanceHeadline5" />
 
       <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/home_screen_banner_height"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/upload_screen_banner_size"
+        android:layout_gravity="center_horizontal"
         android:importantForAccessibility="no"
         android:contentDescription="@null"
         android:layout_marginVertical="@dimen/padding_extra_large"
@@ -75,6 +76,7 @@
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/padding_small"
         android:gravity="start"
+        android:autoLink="web"
         android:text="@string/do_you_have_code_content"
         android:textAppearance="?attr/textAppearanceBody2" />
 

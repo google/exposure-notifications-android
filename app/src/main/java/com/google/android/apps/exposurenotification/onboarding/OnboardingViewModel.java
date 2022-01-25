@@ -18,6 +18,7 @@
 package com.google.android.apps.exposurenotification.onboarding;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.res.Resources;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -45,6 +46,7 @@ public class OnboardingViewModel extends ViewModel {
   private final ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
   private final PrivateAnalyticsEnabledProvider privateAnalyticsEnabledProvider;
   private final WorkManager workManager;
+  private final MigrationManager migrationManager;
 
   private final MutableLiveData<Optional<Boolean>> shouldShowAppAnalyticsLiveData =
       new MutableLiveData<>(Optional.absent());
@@ -56,11 +58,13 @@ public class OnboardingViewModel extends ViewModel {
       ExposureNotificationClientWrapper exposureNotificationClientWrapper,
       ExposureNotificationSharedPreferences exposureNotificationSharedPreferences,
       PrivateAnalyticsEnabledProvider privateAnalyticsEnabledProvider,
-      WorkManager workManager) {
+      WorkManager workManager,
+      MigrationManager migrationManager) {
     this.exposureNotificationClientWrapper = exposureNotificationClientWrapper;
     this.exposureNotificationSharedPreferences = exposureNotificationSharedPreferences;
     this.privateAnalyticsEnabledProvider = privateAnalyticsEnabledProvider;
     this.workManager = workManager;
+    this.migrationManager = migrationManager;
   }
 
   public void setOnboardedState(boolean onboarded) {
@@ -146,5 +150,11 @@ public class OnboardingViewModel extends ViewModel {
                 shouldShowAppAnalyticsLiveData.postValue(Optional.of(false));
               }
             });
+  }
+
+  public void maybeMarkMigratingUserAsOnboarded(Context context) {
+    if (migrationManager.shouldOnboardAsMigratingUser(context)) {
+      migrationManager.markMigratingUserAsOnboarded();
+    }
   }
 }

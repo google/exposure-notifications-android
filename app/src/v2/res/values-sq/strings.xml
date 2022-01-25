@@ -22,4 +22,7 @@
   <string name="share_positive_diagnosis_card_content">Ndaj rezultatin e testit tënd për të ndihmuar në ndalimin e përhapjes së COVID-19</string>
   <string name="share_app_card_content">Ndaje këtë aplikacion për të mbrojtur më mirë komunitetin tënd</string>
   <string name="how_en_works_card_content">Mëso më shumë se si funksionojnë \"Njoftimet rreth ekspozimit\"</string>
+  <string name="en_turndown_for_area_contents">Duke qenë se autoriteti yt shëndetësor e ka përshtatur përgjigjen ndaj COVID-19, ajo nuk e mbështet më këtë aplikacion. Faleminderit që përdor aplikacionin dhe që ndihmon në mbrojtjen e komunitetit tënd.</string>
+  <string name="en_turndown_contents">Duke qenë se autoritetet shëndetësore e kanë përshtatur përgjigjen ndaj COVID-19, ky aplikacion nuk mbështetet më. Faleminderit që përdor aplikacionin dhe që ndihmon në mbrojtjen e komunitetit tënd.</string>
+  <string name="en_turndown_see_test_results_card_content">Mund t\'i shohësh ende rezultatet e testit që ke ngarkuar më parë në \"Njoftimet rreth ekspozimit\"</string>
 </resources>

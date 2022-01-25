@@ -14,4 +14,6 @@
   <string name="share_history_delete_test_result_detail">Matokeo yako ya COVID-19 ya tarehe %1$s yatafutwa kwenye simu yako.</string>
   <string name="sms_intercept_notice_card_title">Huenda ukapokea kikumbusho ili ushiriki matokeo yako</string>
   <string name="sms_intercept_notice_card_content">Ukithibitishwa umeambukizwa na upokee SMS iliyothibitishwa</string>
+  <string name="en_turndown_contents">Mamlaka za afya zinavyobadilisha jinsi zinavyoshughulikia COVID-19, kipengele cha Arifa Kuhusu Kukaribia Aliye na COVID-19 hakitumiki tena. Asante kwa kutumia huduma na kusaidia kulinda jumuiya yako.</string>
+  <string name="en_turndown_for_area_contents">Mamlaka ya afya ya mahali ulipo inavyobadilisha jinsi inavyoshughulikia COVID-19, haitumii kipengele cha Arifa Kuhusu Kukaribia Aliye na COVID-19 tena. Asante kwa kutumia huduma na kusaidia kulinda jumuiya yako.</string>
 </resources>

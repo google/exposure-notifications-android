@@ -15,6 +15,7 @@
   <string name="btn_verify">Потврди</string>
   <string name="btn_no_thanks">Не, фала</string>
   <string name="btn_share">Сподели</string>
+  <string name="btn_close_app">Затвори апликација</string>
   <string name="learn_more">Дознајте повеќе</string>
   <string name="home_tab_settings_text">Поставки</string>
   <string name="notification_channel_name">Можна изложеност на COVID-19</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">Дозволи потребни за да се овозможат „Известувања за изложеност“</string>
   <string name="onboarding_finish_title">Продолжување на дозволите потребни за да се овозможат „Известувања за изложеност“</string>
   <string name="onboarding_exposure_notifications_title">Вклучете „Известувања за изложеност“</string>
-  <string name="onboarding_exposure_notifications_detail">Добијте известување ако сте биле во близина на некој што пријавил дека има COVID-19.
+  <string name="onboarding_exposure_notifications_description">Добијте известување ако сте биле во близина на некој што пријавил дека има COVID-19.
     \n\nЗа безбедно прибирање и споделување идентификатори по случаен избор со другите телефони што се во близина, вашиот телефон користи Bluetooth.
     \n\nДатумот, времетраењето и јачината на сигналот што се поврзани со можно изложување ќе се користат за да се одреди дали ќе добиете известување според параметрите поставени од страна на вашите јавни здравствени органи.
-    \n\nМожеби ќе примите известување да ја споделите дијагнозата со вашиот здравствен орган ако добиете SMS со резултатите од тестирањето.</string>
+    \n\nМожеби ќе примите известување да ја споделите дијагнозата со вашиот здравствен орган ако добиете SMS со резултатите од тестирањето. %1$s</string>
   <string name="onboarding_metrics_title">Помогнете да се подобри апликацијава</string>
   <string name="onboarding_metrics_subtitle">Испрати податоци за користењето на апликацијата до Google</string>
   <string name="onboarding_metrics_description">За одржување и подобрување на апликацијата, некои ограничени податоци за изведбата и користењето на апликацијата коишто не содржат податоци за лична идентификација се споделуваат со Google. Овие податоци не ве идентификуваат. %1$s</string>
@@ -214,4 +215,11 @@
   <string name="share_upload_status_negative">Негативен</string>
   <string name="share_upload_status_likely">Веројатно позитивен</string>
   <string name="share_diagnosis_progress_tracker">Чекор %1$d од %2$d</string>
+  <string name="see_history_device_authentication_title">Потврдете дека сте вие</string>
+  <string name="update_app_dialog_title">Ажурирајте ја апликацијата</string>
+  <string name="update_app_dialog_content">Ажурирајте на најновата верзија на „Известувања за изложеност“ за да завршите со споделување на резултатите од тестот.</string>
+  <string name="btn_update">Ажурирај</string>
+  <string name="try_again_later_error_message">Нешто не е во ред. Обидете се повторно по неколку часа.</string>
+  <string name="en_turndown_for_area_title">Вашиот здравствен орган веќе не поддржува „Известувања за изложеност“</string>
+  <string name="en_turndown_title">„Известувања за изложеност“ е исклучена</string>
 </resources>

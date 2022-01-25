@@ -38,6 +38,7 @@ import com.google.android.apps.exposurenotification.keydownload.DiagnosisKeyDown
 import com.google.android.apps.exposurenotification.logging.AnalyticsLogger;
 import com.google.android.apps.exposurenotification.proto.WorkManagerTask.WorkerTask;
 import com.google.android.apps.exposurenotification.work.WorkerStartupManager;
+import com.google.android.apps.exposurenotification.work.WorkerStartupManager.IsEnabledWithStartupTasksException;
 import com.google.android.gms.nearby.exposurenotification.DiagnosisKeysDataMapping;
 import com.google.common.util.concurrent.FluentFuture;
 import com.google.common.util.concurrent.Futures;
@@ -114,10 +115,14 @@ public class ProvideDiagnosisKeysWorker extends ListenableWorker {
               logger.logWorkManagerTaskStarted(WorkerTask.TASK_PROVIDE_DIAGNOSIS_KEYS);
               // Only continue if it is enabled.
               if (isEnabled) {
-                return TaskToFutureAdapter.getFutureWithTimeout(
+                return FluentFuture.from(TaskToFutureAdapter.getFutureWithTimeout(
                     exposureNotificationClientWrapper.getDiagnosisKeysDataMapping(),
                     GET_DIAGNOSIS_KEY_DATA_MAPPING_TIMEOUT,
-                    scheduledExecutor);
+                    scheduledExecutor))
+                    .catchingAsync(
+                        Exception.class,
+                        e -> Futures.immediateFailedFuture(new DiagnosisKeyDataMappingException()),
+                        backgroundExecutor);
               } else {
                 // Stop here because things aren't enabled. Will still return successful though.
                 return Futures.immediateFailedFuture(new NotEnabledException());
@@ -125,21 +130,22 @@ public class ProvideDiagnosisKeysWorker extends ListenableWorker {
             },
             backgroundExecutor)
         .transformAsync(
-            this::checkDiagnosisKeyDataMappingForUpdate, backgroundExecutor)
-        .catchingAsync(
-            Exception.class,
-            e -> {
-              // Rethrow NotEnabledExceptions to handle at the end of the Future chain
-              if (e instanceof NotEnabledException) {
-                return Futures.immediateFailedFuture(new NotEnabledException());
-              }
-              // Ignore other exceptions thrown during DiagnosisKeyDataMapping calls
-              else {
-                logcat.e("Exception while updating the DiagnosisKeyDataMapping", e);
-                return Futures.immediateVoidFuture();
-              }
-            },
+            diagnosisKeysDataMapping ->
+                FluentFuture.from(checkDiagnosisKeyDataMappingForUpdate(diagnosisKeysDataMapping))
+                    .catchingAsync(
+                        Exception.class,
+                        e -> Futures.immediateFailedFuture(new DiagnosisKeyDataMappingException()),
+                        backgroundExecutor),
             backgroundExecutor)
+        .catchingAsync(
+            DiagnosisKeyDataMappingException.class,
+            e -> {
+              // Ignore exceptions thrown during DiagnosisKeyDataMapping calls
+              logcat.e("Exception while updating the DiagnosisKeyDataMapping", e);
+              return Futures.immediateVoidFuture();
+            },
+            backgroundExecutor
+        )
         .transformAsync(
             (unused) -> downloader.download(), backgroundExecutor)
         .transformAsync(
@@ -155,6 +161,13 @@ public class ProvideDiagnosisKeysWorker extends ListenableWorker {
               // Not enabled. Return as success.
               logger.logWorkManagerTaskAbandoned(WorkerTask.TASK_PROVIDE_DIAGNOSIS_KEYS);
               return Result.success();
+            },
+            backgroundExecutor)
+        .catching(
+            IsEnabledWithStartupTasksException.class,
+            x -> {
+              logger.logWorkManagerTaskFailure(WorkerTask.TASK_PROVIDE_DIAGNOSIS_KEYS, x);
+              return Result.failure();
             },
             backgroundExecutor)
         .catching(
@@ -227,7 +240,20 @@ public class ProvideDiagnosisKeysWorker extends ListenableWorker {
         WORKER_NAME, ExistingPeriodicWorkPolicy.KEEP, workRequest);
   }
 
+  /**
+   * An {@link Exception} thrown if EN is off.
+   */
   private static class NotEnabledException extends Exception {
+
+  }
+
+  /**
+   * An {@link Exception} thrown if either of the
+   * {@link ExposureNotificationClientWrapper#getDiagnosisKeysDataMapping()} or
+   * {@link ExposureNotificationClientWrapper#setDiagnosisKeysDataMapping(DiagnosisKeysDataMapping)}
+   * calls fail.
+   */
+  private static class DiagnosisKeyDataMappingException extends Exception {
 
   }
 }

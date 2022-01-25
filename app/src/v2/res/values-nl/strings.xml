@@ -22,4 +22,7 @@
   <string name="share_positive_diagnosis_card_content">Deel je testresultaat om de verspreiding van COVID-19 tegen te gaan</string>
   <string name="share_app_card_content">Deel deze app om je gemeenschap beter te beschermen</string>
   <string name="how_en_works_card_content">Meer informatie over hoe blootstellingsmeldingen werken</string>
+  <string name="en_turndown_for_area_contents">Omdat je gezondheidsautoriteit de reactie op COVID-19 aanpast, wordt deze app niet meer ondersteund. Bedankt dat je de app hebt gebruikt om de mensen in je omgeving te beschermen.</string>
+  <string name="en_turndown_contents">Omdat gezondheidsautoriteiten hun reactie op COVID-19 aanpassen, wordt deze app niet meer ondersteund. Bedankt dat je de app hebt gebruikt om de mensen in je omgeving te beschermen.</string>
+  <string name="en_turndown_see_test_results_card_content">Je kunt de testresultaten die je eerder naar Blootstellingsmeldingen hebt geüpload, nog steeds bekijken</string>
 </resources>

@@ -22,4 +22,7 @@
   <string name="share_positive_diagnosis_card_content">Condividi il risultato del tuo test per contribuire ad arrestare la diffusione del COVID-19</string>
   <string name="share_app_card_content">Condividi questa app per proteggere meglio la tua comunità</string>
   <string name="how_en_works_card_content">Scopri di più sul funzionamento del sistema Notifiche di esposizione</string>
+  <string name="en_turndown_for_area_contents">In seguito ad alcune modifiche apportate alla risposta al COVID-19 da parte della tua autorità sanitaria, quest\'app non è più supportata. Grazie per aver scelto di utilizzare l\'app e aver contribuito a proteggere la tua comunità.</string>
+  <string name="en_turndown_contents">In seguito ad alcune modifiche apportate alla risposta al COVID-19 da parte delle autorità sanitarie, quest\'app non è più supportata. Grazie per aver scelto di utilizzare l\'app e aver contribuito a proteggere la tua comunità.</string>
+  <string name="en_turndown_see_test_results_card_content">È ancora possibile vedere i risultati dei test caricati in precedenza in Notifiche di esposizione</string>
 </resources>

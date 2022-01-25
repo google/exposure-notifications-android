@@ -17,6 +17,8 @@
 
 package com.google.android.apps.exposurenotification.common;
 
+import static com.google.common.truth.Truth.assertThat;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
@@ -27,11 +29,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.annotation.Config;
-
-import static com.google.common.truth.Truth.assertThat;
+import org.robolectric.annotation.LooperMode;
+import org.robolectric.annotation.LooperMode.Mode;
 
 @RunWith(AndroidJUnit4.class)
 @HiltAndroidTest
+@LooperMode(Mode.LEGACY)
 @Config(application = HiltTestApplication.class)
 public class SingleLiveEventTest {
 

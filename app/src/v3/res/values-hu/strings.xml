@@ -14,4 +14,6 @@
   <string name="share_history_delete_test_result_detail">COVID-19-teszteredménye (%1$s) törölve lesz a telefonjáról.</string>
   <string name="sms_intercept_notice_card_title">Emlékeztetőt kaphat eredményei megosztásáról</string>
   <string name="sms_intercept_notice_card_content">Ha az eredménye pozitív, és erről SMS-t kap</string>
+  <string name="en_turndown_contents">Mivel az egészségügyi hatóságok átalakítják a COVID-19-re adott válaszlépéseiket, a kitettséget jelző értesítések alkalmazást már nem támogatják. Köszönjük, hogy használta a szolgáltatást, és segített megvédeni a közösségét.</string>
+  <string name="en_turndown_for_area_contents">Mivel az egészségügyi hatóság átalakítja a COVID-19-re adott válaszlépéseit, a kitettséget jelző értesítéseket már nem támogatja. Köszönjük, hogy használta a szolgáltatást, és segített megvédeni a közösségét.</string>
 </resources>

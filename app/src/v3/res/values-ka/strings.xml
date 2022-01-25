@@ -14,4 +14,6 @@
   <string name="share_history_delete_test_result_detail">თქვენი COVID-19 ტესტის შედეგი (%1$s) თქვენი ტელეფონიდან წაიშლება.</string>
   <string name="sms_intercept_notice_card_title">შეიძლება მიიღოთ შედეგის გაზიარების შეხსენება</string>
   <string name="sms_intercept_notice_card_content">თუ ტესტი დადებითია და დადასტურებული SMS მიიღეთ</string>
+  <string name="en_turndown_contents">ჯანდაცვის უწყებები COVID-19-ზე რეაგირების მეთოდებთან ადაპტირდება და ამიტომ კონტაქტის შეტყობინებებს მხარდაჭერა აღარ აქვს. გმადლობთ, რომ სარგებლობდით სერვისით და გვეხმარებოდით საზოგადოების დაცვაში.</string>
+  <string name="en_turndown_for_area_contents">თქვენი ჯანდაცვის უწყება COVID-19-ზე რეაგირების მეთოდებთან ადაპტირდება და ამიტომ კონტაქტის შეტყობინებებს მხარს აღარ უჭერს. გმადლობთ, რომ სარგებლობდით სერვისით და გვეხმარებოდით საზოგადოების დაცვაში.</string>
 </resources>

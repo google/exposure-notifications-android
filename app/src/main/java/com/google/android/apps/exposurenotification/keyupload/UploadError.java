@@ -67,7 +67,12 @@ public enum UploadError {
 
   // Cause: HTTP status = 429 (5??)
   // Action: Retry after cool-down. TODO: whether to show error message?
-  RATE_LIMITED;
+  RATE_LIMITED,
+
+  // Cause: HTTP status = 401 (perhaps, a Verification Server API key revocation issue?)
+  // Action: Check if there is an app update available. If yes, prompt user to update the app.
+  //         Otherwise, show a "generic" server error message.
+  UNAUTHORIZED_CLIENT;
 
   public static UploadError fromVolleyError(VolleyError error) {
     if (error.networkResponse == null) {
@@ -122,6 +127,7 @@ public enum UploadError {
             return APP_ERROR;
         }
       case 401:
+        return UNAUTHORIZED_CLIENT;
       case 403:
       case 404:
       case 405:
@@ -158,6 +164,8 @@ public enum UploadError {
         return resources.getString(R.string.network_error_unsupported_test_type);
       case SERVER_ERROR:
         return resources.getString(R.string.network_error_server_error);
+      case UNAUTHORIZED_CLIENT:
+        return resources.getString(R.string.try_again_later_error_message);
       case UNKNOWN:
       case APP_ERROR:
       default:

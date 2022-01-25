@@ -15,6 +15,7 @@
   <string name="btn_verify">Bestätigen</string>
   <string name="btn_no_thanks">Nein danke</string>
   <string name="btn_share">Teilen</string>
+  <string name="btn_close_app">App schließen</string>
   <string name="learn_more">Weitere Informationen</string>
   <string name="home_tab_settings_text">Einstellungen</string>
   <string name="notification_channel_name">Mögliche Begegnung mit infizierter Person</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">Zum Aktivieren der COVID-19-Benachrichtigungen erforderliche Berechtigungen</string>
   <string name="onboarding_finish_title">Fortsetzung der Berechtigungen erforderlich, damit du die COVID-19-Benachrichtigungen aktivieren kannst</string>
   <string name="onboarding_exposure_notifications_title">COVID-19-Benachrichtigungen aktivieren</string>
-  <string name="onboarding_exposure_notifications_detail">Du erhältst eine Benachrichtigung, wenn du dich in der Nähe einer Person aufgehalten hast, die eine COVID-19-Erkrankung gemeldet hat.
+  <string name="onboarding_exposure_notifications_description">Du erhältst eine Benachrichtigung, wenn du dich in der Nähe einer Person aufgehalten hast, die eine COVID-19-Erkrankung gemeldet hat.
     \n\nFür die sichere Erfassung der Zufallskennungen anderer Smartphones und die Weitergabe deiner Zufallskennungen an andere Smartphones in der Nähe muss auf deinem Smartphone Bluetooth aktiviert sein.
-    \n\nAnhand des Datums, der Dauer und der Signalstärke einer möglichen Begegnung mit einer infizierten Person wird auf Grundlage der durch die zuständigen öffentlichen Gesundheitsbehörden festgelegten Parameter festgelegt, ob du eine Benachrichtigung bekommst.
-    \n\nMöglicherweise erhältst du eine Benachrichtigung, um das Testergebnis mit deiner Gesundheitsbehörde zu teilen, wenn du eine SMS mit deinem Testergebnis bekommst.</string>
+    \n\nAnhand des Datums, der Dauer und der Signalstärke einer möglichen Begegnung mit einer infizierten Person wird auf Grundlage der durch die zuständige öffentliche Gesundheitsbehörde festgelegten Parameter festgelegt, ob du eine Benachrichtigung bekommst.
+    \n\nMöglicherweise erhältst du eine Benachrichtigung, um das Testergebnis mit deiner Gesundheitsbehörde zu teilen, wenn du eine SMS mit deinem Testergebnis bekommst. %1$s</string>
   <string name="onboarding_metrics_title">Diese App noch besser machen</string>
   <string name="onboarding_metrics_subtitle">Teile Daten zur App-Nutzung und -Leistung mit Google</string>
   <string name="onboarding_metrics_description">Damit wir die App verwalten und weiter verbessern können, werden die Daten zur App-Leistung und -Nutzung in begrenztem Umfang und in einer Form mit Google geteilt, die keine Identifikation des Nutzers erlauben. Die Daten lassen also keinen Rückschluss auf deine Person zu. %1$s</string>
@@ -214,4 +215,11 @@
   <string name="share_upload_status_negative">Negativ</string>
   <string name="share_upload_status_likely">Wahrscheinlich positiv</string>
   <string name="share_diagnosis_progress_tracker">Schritt %1$d von %2$d</string>
+  <string name="see_history_device_authentication_title">Identität bestätigen</string>
+  <string name="update_app_dialog_title">App aktualisieren</string>
+  <string name="update_app_dialog_content">Installiere die neueste Version der COVID-19-Benachrichtigungen, um mit dem Teilen deiner Testergebnisse fortzufahren.</string>
+  <string name="btn_update">Aktualisieren</string>
+  <string name="try_again_later_error_message">Ein Problem ist aufgetreten. Versuch es in ein paar Stunden noch einmal.</string>
+  <string name="en_turndown_for_area_title">Deine Gesundheitsbehörde unterstützt das COVID-19-Benachrichtigungssystem nicht mehr</string>
+  <string name="en_turndown_title">Das COVID-19-Benachrichtigungssystem wurde deaktiviert</string>
 </resources>

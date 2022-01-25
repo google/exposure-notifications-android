@@ -22,4 +22,7 @@
   <string name="share_positive_diagnosis_card_content">Bagikan hasil tes Anda untuk membantu menghentikan penyebaran COVID-19</string>
   <string name="share_app_card_content">Bagikan aplikasi ini untuk melindungi masyarakat sekitar dengan lebih baik</string>
   <string name="how_en_works_card_content">Pelajari cara kerja Notifikasi Paparan lebih lanjut</string>
+  <string name="en_turndown_for_area_contents">Otoritas kesehatan Anda telah menyesuaikan responsnya terhadap COVID-19 sehingga tidak lagi mendukung aplikasi ini. Terima kasih telah menggunakan aplikasi ini dan telah membantu melindungi masyarakat sekitar.</string>
+  <string name="en_turndown_contents">Otoritas kesehatan telah menyesuaikan responsnya terhadap COVID-19 sehingga aplikasi ini tidak lagi didukung. Terima kasih telah menggunakan aplikasi ini dan telah membantu melindungi masyarakat sekitar.</string>
+  <string name="en_turndown_see_test_results_card_content">Anda masih dapat melihat hasil tes yang sebelumnya Anda upload ke Notifikasi Paparan</string>
 </resources>

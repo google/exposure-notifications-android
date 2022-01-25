@@ -23,13 +23,18 @@ import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import android.content.Context;
 import android.net.Uri;
 import android.os.Build.VERSION_CODES;
 import androidx.hilt.work.HiltWorkerFactory;
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.work.Configuration;
 import androidx.work.ListenableWorker;
+import androidx.work.WorkManager;
 import androidx.work.WorkerParameters;
+import androidx.work.impl.utils.SynchronousExecutor;
+import androidx.work.testing.WorkManagerTestInitHelper;
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.network.RealRequestQueueModule;
 import com.google.android.apps.exposurenotification.network.RequestQueueWrapper;
@@ -99,10 +104,20 @@ public class SubmitPrivateAnalyticsWorkerTest {
   @Inject
   Clock clock;
 
+  WorkManager workManager;
 
   @Before
   public void setUp() {
     rules.hilt().inject();
+
+    // Initialize WorkManager for testing.
+    Context context = ApplicationProvider.getApplicationContext();
+    Configuration config = new Configuration.Builder()
+        .setExecutor(new SynchronousExecutor())
+        .build();
+    WorkManagerTestInitHelper.initializeTestWorkManager(
+        context, config);
+    workManager = WorkManager.getInstance(context);
   }
 
   @Test

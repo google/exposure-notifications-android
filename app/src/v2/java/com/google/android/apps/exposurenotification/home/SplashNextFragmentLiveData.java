@@ -20,6 +20,9 @@ package com.google.android.apps.exposurenotification.home;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
+import com.google.android.apps.exposurenotification.home.ExposureNotificationViewModel.ExposureNotificationState;
+import com.google.android.apps.exposurenotification.onboarding.OnboardingEnTurndownForRegionFragment;
+import com.google.android.apps.exposurenotification.onboarding.OnboardingEnTurndownFragment;
 import com.google.android.apps.exposurenotification.onboarding.OnboardingPermissionDisabledFragment;
 import com.google.android.apps.exposurenotification.onboarding.OnboardingPermissionEnabledFragment;
 import com.google.android.apps.exposurenotification.onboarding.OnboardingPrivateAnalyticsFragment;
@@ -31,18 +34,24 @@ import com.google.android.apps.exposurenotification.onboarding.OnboardingPrivate
 public class SplashNextFragmentLiveData extends MediatorLiveData<Fragment> {
 
   private boolean isEnabled = false;
+  private ExposureNotificationState enState = ExposureNotificationState.DISABLED;
   private boolean isOnboardingStateSet = false;
   private boolean isPrivateAnalyticsSet = false;
   private boolean isPrivateAnalyticsSupported = false;
+  private boolean onboardAsMigratingUser = false;
 
   public static SplashNextFragmentLiveData create(
       LiveData<Boolean> enEnabledLiveData,
+      LiveData<ExposureNotificationState> enStateLiveData,
       LiveData<Boolean> isOnboardingStateSetLiveData,
       LiveData<Boolean> isPrivateAnalyticsSetLiveData,
-      LiveData<Boolean> isPrivateAnalyticsSupportedLiveData) {
+      LiveData<Boolean> isPrivateAnalyticsSupportedLiveData,
+      boolean onboardAsMigratingUser) {
     SplashNextFragmentLiveData splashNextFragmentLiveData = new SplashNextFragmentLiveData();
     splashNextFragmentLiveData
         .addSource(enEnabledLiveData, splashNextFragmentLiveData::setIsEnabled);
+    splashNextFragmentLiveData
+        .addSource(enStateLiveData, splashNextFragmentLiveData::setEnState);
     splashNextFragmentLiveData.addSource(isOnboardingStateSetLiveData,
         splashNextFragmentLiveData::setIsOnboardingStatSet);
     splashNextFragmentLiveData
@@ -51,6 +60,7 @@ public class SplashNextFragmentLiveData extends MediatorLiveData<Fragment> {
     splashNextFragmentLiveData
         .addSource(isPrivateAnalyticsSupportedLiveData,
             splashNextFragmentLiveData::setIsPrivateAnalyticsSupported);
+    splashNextFragmentLiveData.setOnboardAsMigratingUser(onboardAsMigratingUser);
     return splashNextFragmentLiveData;
   }
 
@@ -62,10 +72,23 @@ public class SplashNextFragmentLiveData extends MediatorLiveData<Fragment> {
       if (isEnabled) {
         setValue(new OnboardingPermissionEnabledFragment());
       } else {
-        setValue(new OnboardingPermissionDisabledFragment());
+        if (enState == ExposureNotificationState.PAUSED_EN_NOT_SUPPORT) {
+          // EN has been turned down as a whole.
+          setValue(new OnboardingEnTurndownFragment());
+        } else if (enState == ExposureNotificationState.PAUSED_NOT_IN_ALLOWLIST) {
+          // EN has been turned down for a given region (app).
+          setValue(new OnboardingEnTurndownForRegionFragment());
+        } else {
+          setValue(new OnboardingPermissionDisabledFragment());
+        }
       }
     } else {
-      if (isPrivateAnalyticsSupported
+      if (onboardAsMigratingUser) {
+        // Even though onboarding state is set, a current user might be a migrating user with
+        // their onboarded state set in the V1 app. In this case, we still need to onboard them.
+        setValue(isEnabled ?
+            new OnboardingPermissionEnabledFragment() : new OnboardingPermissionDisabledFragment());
+      } else if (isPrivateAnalyticsSupported
           && !isPrivateAnalyticsSet
           && isEnabled) {
         // private analytics promo
@@ -78,6 +101,11 @@ public class SplashNextFragmentLiveData extends MediatorLiveData<Fragment> {
 
   private void setIsEnabled(boolean isEnabled) {
     this.isEnabled = isEnabled;
+    update();
+  }
+
+  private void setEnState(ExposureNotificationState enState) {
+    this.enState = enState;
     update();
   }
 
@@ -95,4 +123,9 @@ public class SplashNextFragmentLiveData extends MediatorLiveData<Fragment> {
     this.isPrivateAnalyticsSupported = isPrivateAnalyticsSupported;
     update();
   }
+
+  private void setOnboardAsMigratingUser(boolean setOnboardAsMigratingUser) {
+    this.onboardAsMigratingUser = setOnboardAsMigratingUser;
+  }
+
 }

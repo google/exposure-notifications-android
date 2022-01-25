@@ -14,4 +14,6 @@
   <string name="share_history_delete_test_result_detail">%1$s ලැබුණ ඔබගේ COVID-19 පරීක්ෂණ ප්‍රතිඵල ඔබගේ දුරකථනයෙන් මැකෙනු ඇත.</string>
   <string name="sms_intercept_notice_card_title">ඔබට ඔබගේ ප්‍රතිඵලය බෙදා ගැනීමට සිහිකැඳවීමක් ලැබිය හැකිය</string>
   <string name="sms_intercept_notice_card_content">ඔබගේ පරීක්ෂණය පොසිටිව් නම් සහ සත්‍යාපිත SMS එකක් ලැබුණේ නම්</string>
+  <string name="en_turndown_contents">ඔබගේ සෞඛ්‍ය අධිකාරීන් එහි COVID-19 ප්‍රතිචාරයට අනුවර්තනය වන බැවින්, තවදුරටත් නිරාවරණ දැනුම්දීම්වලට සහාය නොදක්වයි. සේවාව භාවිත කිරීම සහ ඔබගේ ප්‍රජාව ආරක්ෂා කිරීමට උදවු කිරීම වෙනුවෙන් ඔබට ස්තුතියි.</string>
+  <string name="en_turndown_for_area_contents">ඔබගේ සෞඛ්‍ය අධිකාරීන් එහි COVID-19 ප්‍රතිචාරයට අනුවර්තනය වන බැවින්, ඒවා තවදුරටත් නිරාවරණ දැනුම්දීම්වලට සහාය නොදක්වයි. සේවාව භාවිත කිරීම සහ ඔබගේ ප්‍රජාව ආරක්ෂා කිරීමට උදවු කිරීම වෙනුවෙන් ඔබට ස්තුතියි.</string>
 </resources>

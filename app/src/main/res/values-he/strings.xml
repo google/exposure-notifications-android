@@ -15,6 +15,7 @@
   <string name="btn_verify">אימות</string>
   <string name="btn_no_thanks">לא תודה</string>
   <string name="btn_share">שיתוף</string>
+  <string name="btn_close_app">סגירת האפליקציה</string>
   <string name="learn_more">מידע נוסף</string>
   <string name="home_tab_settings_text">הגדרות</string>
   <string name="notification_channel_name">חשיפה אפשרית לנגיף הקורונה (COVID-19)</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">יש צורך בהרשאות כדי להפעיל את התראות החשיפה</string>
   <string name="onboarding_finish_title">המשך ההרשאות שנדרשות כדי להפעיל את התראות החשיפה</string>
   <string name="onboarding_exposure_notifications_title">הפעלת התראות החשיפה</string>
-  <string name="onboarding_exposure_notifications_detail">יישלחו אליך התראות אם שהית בקרבת אדם שדיווח על תוצאה חיובית של בדיקת נגיף הקורונה (COVID-19).
+  <string name="onboarding_exposure_notifications_description">יישלחו אליך התראות אם שהית בקרבת אדם שדיווח על תוצאה חיובית של בדיקת נגיף הקורונה (COVID-19).
     \n\nבטלפון שלך נעשה שימוש בחיבור Bluetooth כדי לאסוף מזהים רנדומליים ולשתף אותם באופן מאובטח עם טלפונים אחרים בקרבת מקום.
-    \n\nהנתונים שבהם ייעשה שימוש כדי לקבוע אם תישלח אליך התראה הם התאריך, משך הזמן וחוזק האות שמשויכים לחשיפה אפשרית לנגיף, וזאת על סמך פרמטרים שנקבעו על ידי הרשות לבריאות הציבור.
-    \n\nאם תתקבל הודעת SMS עם תוצאת הבדיקה שלך, יכול להיות שתישלח התראה לשיתוף האבחנה עם הרשות לבריאות הציבור.</string>
+    \n\nהנתונים שבהם ייעשה שימוש כדי לקבוע אם תישלח אליך התראה הם התאריך, משך הזמן ועוצמת האות שמשויכים לחשיפה אפשרית לנגיף, וזאת על סמך פרמטרים שנקבעו על ידי הרשות לבריאות הציבור.
+    \n\nאם תתקבל הודעת SMS עם תוצאת הבדיקה שלך, יכול להיות שתישלח התראה לשיתוף האבחנה עם הרשות לבריאות הציבור.%1$s</string>
   <string name="onboarding_metrics_title">נשמח לעזרתך בשיפור האפליקציה</string>
   <string name="onboarding_metrics_subtitle">שיתוף נתוני שימוש וביצועים עם Google</string>
   <string name="onboarding_metrics_description">כדי לעזור בתחזוקה ובשיפור של האפליקציה, נתונים מסוימים ומוגבלים לגבי ביצועי האפליקציה והשימוש בה משותפים עם Google לאחר הסרת פרטי הזיהוי. לא ניתן לזהות אותך לפי הנתונים האלו. %1$s</string>
@@ -218,4 +219,11 @@
   <string name="share_upload_status_negative">שלילית</string>
   <string name="share_upload_status_likely">סבירות גבוהה</string>
   <string name="share_diagnosis_progress_tracker">שלב %1$d מתוך %2$d</string>
+  <string name="see_history_device_authentication_title">אימות הזהות שלך</string>
+  <string name="update_app_dialog_title">עדכון האפליקציה</string>
+  <string name="update_app_dialog_content">כדי להשלים את השיתוף של תוצאות הבדיקה, צריך לעדכן לגרסה האחרונה של התראות החשיפה.</string>
+  <string name="btn_update">עדכון</string>
+  <string name="try_again_later_error_message">משהו השתבש. אפשר לנסות שוב בעוד כמה שעות.</string>
+  <string name="en_turndown_for_area_title">משרד הבריאות באזורך הפסיק לתמוך ב\'התראות חשיפה\'</string>
+  <string name="en_turndown_title">אפליקציית \'התראות חשיפה\' הושבתה</string>
 </resources>

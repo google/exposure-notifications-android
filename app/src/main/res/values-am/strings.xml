@@ -15,6 +15,7 @@
   <string name="btn_verify">ያረጋግጡ</string>
   <string name="btn_no_thanks">አይ፣ አመሰግናለሁ</string>
   <string name="btn_share">አጋራ</string>
+  <string name="btn_close_app">መተግበሪያን ዝጋ</string>
   <string name="learn_more">የበለጠ ለመረዳት</string>
   <string name="home_tab_settings_text">ቅንብሮች</string>
   <string name="notification_channel_name">ሊሆን የሚችል ለኮቪድ-19 መጋለጥ</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">የተጋላጭነት ማሳወቂያዎችን ለማንቃት ፈቃዶች ያስፈልጋሉ</string>
   <string name="onboarding_finish_title">የተጋላጭነት ማሳወቂያዎችን ለማንቃት የሚያስፈልጉ ፈቃዶች መቀጠል</string>
   <string name="onboarding_exposure_notifications_title">የተጋላጭነት ማስታወቂያዎችን አብራ</string>
-  <string name="onboarding_exposure_notifications_detail">ኮቪድ-19 እንዳለበት ሪፖርት ካደረገ ሰው አጠገብ እንደነበሩ ለማወቅ ማሳወቂያ ያግኙ።
+  <string name="onboarding_exposure_notifications_description">ኮቪድ-19 እንዳለበት ሪፖርት ካደረገ ሰው አጠገብ እንደነበሩ ለማወቅ ማሳወቂያ ያግኙ።
     \n\nየእርስዎ ስልክ ደህንነቱ በተጠበቀ መንገድ በአቅራቢያ ካሉ ሌሎች ስልኮች የዘፈቀደ መታወቂያዎችን መሰብሰብ እና ማጋራት እንዲችል ብሉቱዝን ይጠቀማል።
     \n\nከተጋላጭነት ጋር የሚጎዳኘው ቀን፣ የቆይታ ጊዜ እና የሲግናል ጥንካሬ በሕዝብ ጤና ባለሥልጣንዎ በተቀመጡት መለኪያዎች መሠረት ማሳወቂያ ይላክልዎት እንደሆነ ለማወቅ ሥራ ላይ ይውላሉ።
-    \n\nየምርመራ ውጤትዎን የያዘ ኤስኤምኤስ ከደረሰዎት ምርመራን ለጤና ባለሥልጣንዎ ለማጋራት ማሳወቂያ ሊደርሰዎት ይችላሉ።</string>
+    \n\nየምርመራ ውጤትዎን የያዘ ኤስኤምኤስ ከደረሰዎት ምርመራን ለጤና ባለሥልጣንዎ ለማጋራት ማሳወቂያ ሊደርሰዎት ይችላሉ።%1$s</string>
   <string name="onboarding_metrics_title">ይህ መተግበሪያ የተሻለ እንዲሆን ያግዙ</string>
   <string name="onboarding_metrics_subtitle">የመተግበሪያ አጠቃቀም እና የአፈፃፀም ውሂብን በGoogle ያጋሩ</string>
   <string name="onboarding_metrics_description">መተግበሪያውን ጠብቆ ለማቆየት እና ለማሻሻል ለማገዝ ስለመተግበሪያ አፈፃፀም እና አጠቃቀም አንዳንድ የተወሰነ ማንነት እንዳይገለጽ የሚከለክል ውሂብ ዕውቅና ለGoogle ይጋራል። ይህ ውሂብ እርስዎን ለይቶ አያውቀዎትም። %1$s</string>
@@ -214,4 +215,11 @@
   <string name="share_upload_status_negative">ነገቲቭ</string>
   <string name="share_upload_status_likely">ሊሆን የሚችል</string>
   <string name="share_diagnosis_progress_tracker">ደረጃ %1$d ከ%2$d</string>
+  <string name="see_history_device_authentication_title">እርስዎ መሆንዎን ያረጋግጡ</string>
+  <string name="update_app_dialog_title">መተግበሪያዎን ያዘምኑ</string>
+  <string name="update_app_dialog_content">የሙከራ ውጤቶችን ማጋራት ለመጨረስ ወደ የቅርብ ጊዜው የተጋላጭነት ማሳወቂያዎች ያዘምኑ።</string>
+  <string name="btn_update">አዘምን</string>
+  <string name="try_again_later_error_message">የሆነ ችግር ተፈጥሯል። ከጥቂት ሰዓታት በኋላ እንደገና ይሞክሩ።</string>
+  <string name="en_turndown_for_area_title">የእርስዎ የጤና ባለስልጣን ከእንግዲህ የተጋላጭነት ማሳወቂያዎችን አይደግፍም።</string>
+  <string name="en_turndown_title">የተጋላጭነት ማሳወቂያዎች ጠፍተዋል</string>
 </resources>

@@ -62,6 +62,14 @@ public abstract class BaseFragment extends Fragment {
   }
 
   /**
+   * Helper to close the app. This method finishes all activities in this app task and removes
+   * the task from the recent tasks list.
+   */
+  protected void closeAppAndFinishAppTask() {
+    requireActivity().finishAndRemoveTask();
+  }
+
+  /**
    * Allows child fragments to handle onBackPressed() on their own. Child fragments need to override
    * this method and return true to signal that they handle onBackPressed() on their own.
    *

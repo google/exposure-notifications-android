@@ -14,4 +14,6 @@
   <string name="share_history_delete_test_result_detail">El resultado de tu prueba de COVID-19 del %1$s se eliminará de tu teléfono.</string>
   <string name="sms_intercept_notice_card_title">Recordatorio para compartir tu resultado</string>
   <string name="sms_intercept_notice_card_content">Si das positivo y recibes un SMS verificado</string>
+  <string name="en_turndown_contents">Como las autoridades sanitarias han adoptado sus propias medidas contra el COVID-19, ya no admiten la aplicación de notificaciones de exposición. Gracias por usar este servicio y por ayudar a proteger tu comunidad.</string>
+  <string name="en_turndown_for_area_contents">Como las autoridades sanitarias de tu región han adoptado sus propias medidas contra el COVID-19, ya no admiten la aplicación de notificaciones de exposición. Gracias por usar este servicio y por ayudar a proteger tu comunidad.</string>
 </resources>

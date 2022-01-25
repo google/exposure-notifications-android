@@ -14,4 +14,6 @@
   <string name="share_history_delete_test_result_detail">Je COVID-19-testresultaat van %1$s wordt verwijderd van je telefoon.</string>
   <string name="sms_intercept_notice_card_title">Je krijgt misschien een herinnering om je resultaat te delen</string>
   <string name="sms_intercept_notice_card_content">Bij een positieve test en geverifieerde sms</string>
+  <string name="en_turndown_contents">Omdat gezondheidsautoriteiten hun reactie op COVID-19 aanpassen, wordt Blootstellingsmeldingen niet meer ondersteund. Bedankt dat je de service hebt gebruikt om de mensen in je omgeving te beschermen.</string>
+  <string name="en_turndown_for_area_contents">Omdat je gezondheidsautoriteit de reactie op COVID-19 aanpast, wordt Blootstellingsmeldingen niet meer ondersteund. Bedankt dat je de service hebt gebruikt om de mensen in je omgeving te beschermen.</string>
 </resources>

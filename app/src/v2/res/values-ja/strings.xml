@@ -22,4 +22,7 @@
   <string name="share_positive_diagnosis_card_content">検査結果を共有して、COVID-19 の感染拡大防止にご協力ください</string>
   <string name="share_app_card_content">このアプリを共有して、地域社会を守りましょう</string>
   <string name="how_en_works_card_content">詳しくは、接触通知システムの仕組みについての説明をご覧ください</string>
+  <string name="en_turndown_for_area_contents">お住まいの地域の衛生機関が COVID-19（新型コロナウイルス感染症）の対応状況に合わせ、本アプリのサポートを終了しました。本アプリをご利用いただき、また地域社会の保護にご協力いただきありがとうございました。</string>
+  <string name="en_turndown_contents">衛生機関が COVID-19（新型コロナウイルス感染症）の対応状況に合わせ、本アプリのサポートを終了しました。本アプリをご利用いただき、また地域社会の保護にご協力いただきありがとうございました。</string>
+  <string name="en_turndown_see_test_results_card_content">接触通知システムにこれまでにアップロードした検査結果は引き続きご確認いただけます</string>
 </resources>

@@ -17,42 +17,37 @@
 
 package com.google.android.apps.exposurenotification.work;
 
-import static com.google.android.apps.exposurenotification.work.WorkerStartupManager.VERIFICATION_CODE_REQUEST_MAX_AGE;
-import static com.google.android.apps.exposurenotification.work.WorkerStartupManager.EXPOSURE_CHECK_MAX_AGE;
 import static com.google.common.truth.Truth.assertThat;
 import static org.junit.Assert.assertThrows;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import android.os.Bundle;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
-import com.google.android.apps.exposurenotification.common.time.Clock;
-import com.google.android.apps.exposurenotification.common.time.RealTimeModule;
+import com.google.android.apps.exposurenotification.common.CleanupHelper;
 import com.google.android.apps.exposurenotification.nearby.ExposureNotificationClientWrapper;
 import com.google.android.apps.exposurenotification.nearby.PackageConfigurationHelper;
-import com.google.android.apps.exposurenotification.storage.DbModule;
-import com.google.android.apps.exposurenotification.storage.ExposureCheckEntity;
-import com.google.android.apps.exposurenotification.storage.ExposureCheckRepository;
-import com.google.android.apps.exposurenotification.storage.ExposureNotificationDatabase;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
-import com.google.android.apps.exposurenotification.storage.VerificationCodeRequestEntity;
-import com.google.android.apps.exposurenotification.storage.VerificationCodeRequestRepository;
 import com.google.android.apps.exposurenotification.testsupport.ExposureNotificationRules;
-import com.google.android.apps.exposurenotification.testsupport.FakeClock;
-import com.google.android.apps.exposurenotification.testsupport.InMemoryDb;
+import com.google.android.apps.exposurenotification.work.WorkerStartupManager.IsEnabledWithStartupTasksException;
+import com.google.android.apps.exposurenotification.work.WorkerStartupManager.TurndownException;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.nearby.exposurenotification.ExposureNotificationStatus;
 import com.google.android.gms.nearby.exposurenotification.PackageConfiguration;
 import com.google.android.gms.nearby.exposurenotification.PackageConfiguration.PackageConfigurationBuilder;
+import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.Tasks;
-import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableSet;
+import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.MoreExecutors;
 import com.google.common.util.concurrent.testing.TestingExecutors;
-import dagger.hilt.android.testing.BindValue;
 import dagger.hilt.android.testing.HiltAndroidTest;
 import dagger.hilt.android.testing.HiltTestApplication;
-import dagger.hilt.android.testing.UninstallModules;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 import java.util.concurrent.ExecutionException;
-import java.util.stream.Collectors;
 import javax.inject.Inject;
 import org.junit.Before;
 import org.junit.Rule;
@@ -60,35 +55,34 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.robolectric.annotation.Config;
-import org.threeten.bp.Duration;
-import org.threeten.bp.Instant;
 
 @HiltAndroidTest
 @RunWith(AndroidJUnit4.class)
 @Config(application = HiltTestApplication.class)
-@UninstallModules({DbModule.class, RealTimeModule.class})
 public class WorkerStartupManagerTest {
 
   @Rule
   public ExposureNotificationRules rules =
       ExposureNotificationRules.forTest(this).withMocks().build();
 
+  private static final Task<Set<ExposureNotificationStatus>> TASK_FOR_ACTIVATED =
+      Tasks.forResult(ImmutableSet.of(ExposureNotificationStatus.ACTIVATED));
+  private static final Task<Set<ExposureNotificationStatus>> TASK_FOR_INACTIVATED =
+      Tasks.forResult(ImmutableSet.of(ExposureNotificationStatus.INACTIVATED));
+  private static final Task<Set<ExposureNotificationStatus>> TASK_FOR_EN_TURNDOWN =
+      Tasks.forResult(ImmutableSet.of(ExposureNotificationStatus.EN_NOT_SUPPORT));
+  private static final Task<Set<ExposureNotificationStatus>> TASK_FOR_EN_TURNDOWN_FOR_REGION =
+      Tasks.forResult(ImmutableSet.of(ExposureNotificationStatus.NOT_IN_ALLOWLIST));
+
   @Inject
   PackageConfigurationHelper packageConfigurationHelper;
-  @Inject
-  ExposureCheckRepository exposureCheckRepository;
-  @Inject
-  VerificationCodeRequestRepository verificationCodeRequestRepository;
   @Inject
   ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
 
   @Mock
+  CleanupHelper cleanupHelper;
+  @Mock
   ExposureNotificationClientWrapper exposureNotificationClientWrapper;
-
-  @BindValue
-  ExposureNotificationDatabase db = InMemoryDb.create();
-  @BindValue
-  Clock clock = new FakeClock();
 
   private WorkerStartupManager workerStartupManager;
 
@@ -96,75 +90,111 @@ public class WorkerStartupManagerTest {
   public void setUp() throws Exception {
     rules.hilt().inject();
 
-    for (ExposureCheckEntity exposureCheck : getExposureCheckEntities()) {
-      exposureCheckRepository.insertExposureCheck(exposureCheck);
-    }
-
-    for (VerificationCodeRequestEntity request : getVerificationCodeRequestEntities()) {
-      verificationCodeRequestRepository.upsertAsync(request).get();
-    }
+    // Stub cleanupHelper APIs.
+    doNothing().when(cleanupHelper).deleteOutdatedData();
+    doNothing().when(cleanupHelper).resetOutdatedData();
+    when(cleanupHelper.deleteObsoleteStorageForTurnDown())
+        .thenReturn(Futures.immediateVoidFuture());
+    when(cleanupHelper.cancelPendingRestoreNotificationsAndJob())
+        .thenReturn(Futures.immediateVoidFuture());
 
     workerStartupManager = new WorkerStartupManager(
         exposureNotificationClientWrapper,
         MoreExecutors.newDirectExecutorService(),
         TestingExecutors.sameThreadScheduledExecutor(),
         packageConfigurationHelper,
-        exposureCheckRepository,
-        verificationCodeRequestRepository,
-        clock
+        cleanupHelper
     );
   }
 
   @Test
-  public void getIsEnabledWithStartupTasks_enNotEnabled_returnsFalseAndDeletesObsoletes()
+  public void getIsEnabledWithStartupTasks_enNotEnabledButNotTurnedDown_returnsFalseAndDeletesOutdated()
       throws Exception {
     when(exposureNotificationClientWrapper.isEnabled()).thenReturn(Tasks.forResult(false));
+    when(exposureNotificationClientWrapper.getStatus()).thenReturn(TASK_FOR_INACTIVATED);
 
     boolean isEnabledWithStartupTasks = workerStartupManager.getIsEnabledWithStartupTasks().get();
 
     assertThat(isEnabledWithStartupTasks).isFalse();
-    assertThatObsoleteExposureChecksDeleted();
-    assertThatObsoleteRequestsDeletedAndNoncesForExpiredRequestsReset();
+    verify(cleanupHelper).deleteOutdatedData();
+    verify(cleanupHelper).resetOutdatedData();
+    verify(cleanupHelper, never()).deleteObsoleteStorageForTurnDown();
   }
 
   @Test
-  public void getIsEnabledWithStartupTasks_enClientThrowsException_returnsFalseAndDeletesObsoletes()
-      throws Exception {
+  public void getIsEnabledWithStartupTasks_exception_exceptionThrownAndCleansUpOutdated() {
     when(exposureNotificationClientWrapper.isEnabled())
         .thenReturn(Tasks.forException(new Exception()));
+    when(exposureNotificationClientWrapper.getStatus()).thenReturn(TASK_FOR_INACTIVATED);
 
-    assertThrows(ExecutionException.class,
+    Exception thrown = assertThrows(ExecutionException.class,
         () -> workerStartupManager.getIsEnabledWithStartupTasks().get());
-    assertThatObsoleteExposureChecksDeleted();
-    assertThatObsoleteRequestsDeletedAndNoncesForExpiredRequestsReset();
+    assertThat(thrown.getCause()).isInstanceOf(IsEnabledWithStartupTasksException.class);
+    verify(cleanupHelper).deleteOutdatedData();
+    verify(cleanupHelper).resetOutdatedData();
+    verify(cleanupHelper, never()).deleteObsoleteStorageForTurnDown();
   }
 
   @Test
-  public void getIsEnabledWithStartupTasks_enEnabledGetPckgConfigThrowsException_returnsTrueAndDeletesObsoletes()
+  public void getIsEnabledWithStartupTasks_exceptionAndEnTurnedDownForRegion_turndownWorkTriggered() {
+    when(exposureNotificationClientWrapper.isEnabled())
+        .thenReturn(Tasks.forException(new Exception()));
+    when(exposureNotificationClientWrapper.getStatus()).thenReturn(TASK_FOR_EN_TURNDOWN_FOR_REGION);
+
+    Exception thrown = assertThrows(ExecutionException.class,
+        () -> workerStartupManager.getIsEnabledWithStartupTasks().get());
+    assertThat(thrown.getCause()).isInstanceOf(IsEnabledWithStartupTasksException.class);
+    verify(cleanupHelper).deleteOutdatedData();
+    verify(cleanupHelper).resetOutdatedData();
+    verify(cleanupHelper).deleteObsoleteStorageForTurnDown();
+    verify(cleanupHelper).cancelPendingRestoreNotificationsAndJob();
+  }
+
+  @Test
+  public void getIsEnabledWithStartupTasks_exceptionAndEnTurnedDown_turndownWorkTriggered() {
+    when(exposureNotificationClientWrapper.isEnabled())
+        .thenReturn(Tasks.forException(new Exception()));
+    when(exposureNotificationClientWrapper.getStatus()).thenReturn(TASK_FOR_EN_TURNDOWN);
+
+    Exception thrown = assertThrows(ExecutionException.class,
+        () -> workerStartupManager.getIsEnabledWithStartupTasks().get());
+    assertThat(thrown.getCause()).isInstanceOf(IsEnabledWithStartupTasksException.class);
+    verify(cleanupHelper).deleteOutdatedData();
+    verify(cleanupHelper).resetOutdatedData();
+    verify(cleanupHelper).deleteObsoleteStorageForTurnDown();
+    verify(cleanupHelper).cancelPendingRestoreNotificationsAndJob();
+  }
+
+  @Test
+  public void getIsEnabledWithStartupTasks_enEnabledGetPckgConfigThrowsException_returnsTrueAndCleansUpOutdated()
       throws Exception {
     when(exposureNotificationClientWrapper.isEnabled()).thenReturn(Tasks.forResult(true));
     when(exposureNotificationClientWrapper.getPackageConfiguration())
         .thenReturn(Tasks.forException(new Exception()));
+    when(exposureNotificationClientWrapper.getStatus()).thenReturn(TASK_FOR_ACTIVATED);
 
     boolean isEnabledWithStartupTasks = workerStartupManager.getIsEnabledWithStartupTasks().get();
 
     assertThat(isEnabledWithStartupTasks).isTrue();
-    assertThatObsoleteExposureChecksDeleted();
-    assertThatObsoleteRequestsDeletedAndNoncesForExpiredRequestsReset();
+    verify(cleanupHelper).deleteOutdatedData();
+    verify(cleanupHelper).resetOutdatedData();
+    verify(cleanupHelper, never()).deleteObsoleteStorageForTurnDown();
   }
 
   @Test
-  public void getIsEnabledWithStartupTasks_enEnabledGetPckgConfigSucceeds_returnsTrueAndDeletesObsoletes()
+  public void getIsEnabledWithStartupTasks_enEnabledGetPckgConfigSucceeds_returnsTrueAndCleansUpOutdated()
       throws Exception {
     when(exposureNotificationClientWrapper.isEnabled()).thenReturn(Tasks.forResult(true));
     when(exposureNotificationClientWrapper.getPackageConfiguration())
         .thenReturn(Tasks.forResult(new PackageConfigurationBuilder().build()));
+    when(exposureNotificationClientWrapper.getStatus()).thenReturn(TASK_FOR_ACTIVATED);
 
     boolean isEnabledWithStartupTasks = workerStartupManager.getIsEnabledWithStartupTasks().get();
 
     assertThat(isEnabledWithStartupTasks).isTrue();
-    assertThatObsoleteExposureChecksDeleted();
-    assertThatObsoleteRequestsDeletedAndNoncesForExpiredRequestsReset();
+    verify(cleanupHelper).deleteOutdatedData();
+    verify(cleanupHelper).resetOutdatedData();
+    verify(cleanupHelper, never()).deleteObsoleteStorageForTurnDown();
   }
 
   @Test
@@ -172,6 +202,7 @@ public class WorkerStartupManagerTest {
       throws Exception {
     assertThat(exposureNotificationSharedPreferences.isPlaySmsNoticeSeen()).isFalse();
     when(exposureNotificationClientWrapper.isEnabled()).thenReturn(Tasks.forResult(true));
+    when(exposureNotificationClientWrapper.getStatus()).thenReturn(TASK_FOR_ACTIVATED);
     Bundle bundle = new Bundle();
     bundle.putBoolean(PackageConfigurationHelper.SMS_NOTICE, true);
     PackageConfiguration packageConfiguration =
@@ -183,91 +214,77 @@ public class WorkerStartupManagerTest {
 
     assertThat(isEnabledWithStartupTasks).isTrue();
     assertThat(exposureNotificationSharedPreferences.isPlaySmsNoticeSeen()).isTrue();
+    verify(cleanupHelper).deleteOutdatedData();
+    verify(cleanupHelper).resetOutdatedData();
+    verify(cleanupHelper, never()).deleteObsoleteStorageForTurnDown();
   }
 
   @Test
-  public void getIsEnabledWithStartupTasks_enNotEnabled_doesNotChangeSharedPrefs()
+  public void getIsEnabledWithStartupTasks_enNotEnabledButNotTurnedDown_doesNotChangeSharedPrefsAndDoesNotCleanupStorage()
       throws Exception {
     exposureNotificationSharedPreferences.setPlaySmsNoticeSeen(true);
     when(exposureNotificationClientWrapper.isEnabled()).thenReturn(Tasks.forResult(false));
+    when(exposureNotificationClientWrapper.getStatus()).thenReturn(TASK_FOR_INACTIVATED);
 
     boolean isEnabledWithStartupTasks = workerStartupManager.getIsEnabledWithStartupTasks().get();
 
     assertThat(isEnabledWithStartupTasks).isFalse();
     assertThat(exposureNotificationSharedPreferences.isPlaySmsNoticeSeen()).isTrue();
+    verify(cleanupHelper).deleteOutdatedData();
+    verify(cleanupHelper).resetOutdatedData();
+    verify(cleanupHelper, never()).deleteObsoleteStorageForTurnDown();
   }
 
-  private void assertThatObsoleteExposureChecksDeleted() {
-    List<ExposureCheckEntity> exposureChecks = getExposureCheckEntities();
-    // We expect only those exposure checks, which are not obsolete i.e. captured later than
-    // {@code WorkerStartupManager.TWO_WEEKS} ago.
-    List<ExposureCheckEntity> expectedExposureChecks =
-        exposureChecks.subList(1, exposureChecks.size());
-
-    List<ExposureCheckEntity> storedExposureChecks = new ArrayList<>();
-    exposureCheckRepository
-        .getLastXExposureChecksLiveData(exposureChecks.size())
-        .observeForever(storedExposureChecks::addAll);
-
-    assertThat(storedExposureChecks).containsExactlyElementsIn(expectedExposureChecks);
-  }
-
-  private void assertThatObsoleteRequestsDeletedAndNoncesForExpiredRequestsReset()
+  @Test
+  public void getIsEnabledWithStartupTasks_enTurnedDown_obsoleteDataCleanedUpAndRestoreWorkDismissed()
       throws Exception {
-    List<VerificationCodeRequestEntity> requests = getVerificationCodeRequestEntities();
-    // We expect only those requests, which are not obsolete i.e. captured later than
-    // {@code WorkerStartupManager.THIRTY_DAYS} ago.
-    List<VerificationCodeRequestEntity> expectedRequests;
-    // Reset nonces for expired verification code requests before adding them to a list of expected
-    // requests. An expired verification code request is a request with expiresAtTime in the future.
-    expectedRequests = requests.stream()
-        .filter(request -> request.getNonce().equals("dummy-nonce-to-reset"))
-        .map(request -> request.toBuilder().setNonce("").build())
-        .collect(Collectors.toList());
-    expectedRequests.add(requests.get(requests.size() - 1));
+    when(exposureNotificationClientWrapper.isEnabled()).thenReturn(Tasks.forResult(false));
+    when(exposureNotificationClientWrapper.getStatus()).thenReturn(TASK_FOR_EN_TURNDOWN);
 
-    List<VerificationCodeRequestEntity> storedRequests = verificationCodeRequestRepository
-        .getLastXRequestsNotOlderThanThresholdAsync(Instant.ofEpochMilli(-1L), requests.size())
-        .get();
+    boolean isEnabledWithStartupTasks = workerStartupManager.getIsEnabledWithStartupTasks().get();
 
-    assertThat(storedRequests).containsExactlyElementsIn(expectedRequests);
+    assertThat(isEnabledWithStartupTasks).isFalse();
+    verify(exposureNotificationClientWrapper).isEnabled();
+    verify(exposureNotificationClientWrapper).getStatus();
+    verify(cleanupHelper).deleteOutdatedData();
+    verify(cleanupHelper).resetOutdatedData();
+    verify(cleanupHelper).deleteObsoleteStorageForTurnDown();
+    verify(cleanupHelper).cancelPendingRestoreNotificationsAndJob();
   }
 
-  private List<ExposureCheckEntity> getExposureCheckEntities() {
-    Instant earliestThreshold= clock.now().minus(EXPOSURE_CHECK_MAX_AGE);
-    return ImmutableList.of(
-        // Obsolete exposure check
-        ExposureCheckEntity.create(earliestThreshold.minus(Duration.ofDays(1))),
-        // Non-obsolete exposure checks
-        ExposureCheckEntity.create(earliestThreshold),
-        ExposureCheckEntity.create(earliestThreshold.plus(Duration.ofDays(1))));
+  @Test
+  public void getIsEnabledWithStartupTasks_enTurnedDownForRegion_obsoleteDataCleanedUpAndRestoreWorkDismissed()
+      throws Exception {
+    when(exposureNotificationClientWrapper.isEnabled()).thenReturn(Tasks.forResult(false));
+    when(exposureNotificationClientWrapper.getStatus()).thenReturn(TASK_FOR_EN_TURNDOWN_FOR_REGION);
+
+    boolean isEnabledWithStartupTasks = workerStartupManager.getIsEnabledWithStartupTasks().get();
+
+    assertThat(isEnabledWithStartupTasks).isFalse();
+    verify(exposureNotificationClientWrapper).isEnabled();
+    verify(exposureNotificationClientWrapper).getStatus();
+    verify(cleanupHelper).deleteOutdatedData();
+    verify(cleanupHelper).resetOutdatedData();
+    verify(cleanupHelper).deleteObsoleteStorageForTurnDown();
+    verify(cleanupHelper).cancelPendingRestoreNotificationsAndJob();
   }
 
-  private List<VerificationCodeRequestEntity> getVerificationCodeRequestEntities() {
-    Instant earliestThreshold = clock.now().minus(VERIFICATION_CODE_REQUEST_MAX_AGE);
-    return ImmutableList.of(
-        // Obsolete verification code request
-        VerificationCodeRequestEntity.newBuilder()
-            .setRequestTime(earliestThreshold.minus(Duration.ofDays(1)))
-            .setExpiresAtTime(earliestThreshold.minus(Duration.ofDays(1)))
-            .setNonce("dummy-nonce-0")
-            .build(),
-        // Non-obsolete verification code requests
-        VerificationCodeRequestEntity.newBuilder()
-            .setRequestTime(earliestThreshold)
-            .setExpiresAtTime(earliestThreshold)
-            .setNonce("dummy-nonce-to-reset")
-            .build(),
-        VerificationCodeRequestEntity.newBuilder()
-            .setRequestTime(earliestThreshold.plus(Duration.ofDays(1)))
-            .setExpiresAtTime(earliestThreshold.plus(Duration.ofDays(1)))
-            .setNonce("dummy-nonce-to-reset")
-            .build(),
-        VerificationCodeRequestEntity.newBuilder()
-            .setRequestTime(clock.now())
-            .setExpiresAtTime(clock.now().plus(Duration.ofMinutes(15)))
-            .setNonce("dummy-nonce-2")
-            .build());
+  @Test
+  public void getIsEnabledWithStartupTasks_enDisabledAndGetStatusThrowsException_obsoleteStorageNotCleanedUp() {
+    when(exposureNotificationClientWrapper.isEnabled()).thenReturn(Tasks.forResult(false));
+    when(exposureNotificationClientWrapper.getStatus())
+        .thenReturn(Tasks.forException(new ApiException(Status.RESULT_INTERNAL_ERROR)));
+
+    Exception thrown = assertThrows(ExecutionException.class,
+        () -> workerStartupManager.getIsEnabledWithStartupTasks().get());
+    assertThat(thrown.getCause()).isInstanceOf(IsEnabledWithStartupTasksException.class);
+    assertThat(thrown.getCause().getCause()).isInstanceOf(TurndownException.class);
+    verify(exposureNotificationClientWrapper).isEnabled();
+    verify(exposureNotificationClientWrapper).getStatus();
+    verify(cleanupHelper).deleteOutdatedData();
+    verify(cleanupHelper).resetOutdatedData();
+    verify(cleanupHelper, never()).deleteObsoleteStorageForTurnDown();
+    verify(cleanupHelper, never()).cancelPendingRestoreNotificationsAndJob();
   }
 
 }

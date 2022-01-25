@@ -15,6 +15,7 @@
   <string name="btn_verify">சரிபார்</string>
   <string name="btn_no_thanks">வேண்டாம்</string>
   <string name="btn_share">பகிர்</string>
+  <string name="btn_close_app">ஆப்ஸை மூடுக</string>
   <string name="learn_more">மேலும் அறிக</string>
   <string name="home_tab_settings_text">அமைப்புகள்</string>
   <string name="notification_channel_name">கோவிட்-19 தொற்று சாத்தியம்</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">கோவிட்-19 தொற்று சாத்தியத்தை எச்சரிக்கும் அறிவிப்புகளை இயக்கத் தேவையான அனுமதிகள்</string>
   <string name="onboarding_finish_title">கோவிட்-19 தொற்று சாத்தியத்தை எச்சரிக்கும் அறிவிப்புகளை இயக்கத் தேவையான அனுமதிகளின் தொடர்ச்சி</string>
   <string name="onboarding_exposure_notifications_title">கோவிட்-19 தொற்று சாத்திய எச்சரிக்கைகளை இயக்கு</string>
-  <string name="onboarding_exposure_notifications_detail">கோவிட்-19 நோய்த் தொற்று இருக்கிறது என்று தெரிவித்திருக்கும் யாருக்கேனும் அருகில் நீங்கள் இருந்திருந்தால் அது குறித்த அறிவிப்புகளைப் பெறுங்கள்.
-    \n\nரேண்டம் ஐடிகளைப் பாதுகாப்பாகப் பெற்று அருகிலிருக்கும் பிற மொபைல்களுடன் பகிர்வதற்கு புளூடூத்தை உங்கள் மொபைல் பயன்படுத்தும்.
+  <string name="onboarding_exposure_notifications_description">கோவிட்-19 நோய்த் தொற்று இருக்கிறது என்று தெரிவித்திருக்கும் யாருக்கேனும் அருகில் நீங்கள் இருந்திருந்தால் அது குறித்த அறிவிப்புகளைப் பெறுங்கள்.
+    \n\nரேண்டம் ஐடிகளைப் பாதுகாப்பாகப் பெற்று அருகிலிருக்கும் பிற மொபைல்களுடன் பகிர்வதற்கு உங்கள் மொபைல் புளூடூத்தைப் பயன்படுத்துகிறது.
     \n\nஉங்கள் பொது சுகாதாரத் துறையால் அமைக்கப்பட்ட அளவுருக்களின் அடிப்படையில் நீங்கள் அறிவிப்பைப் பெறுவீர்களா என்பதைத் தீர்மானிக்க, தொற்றின் சாத்தியத்துடன் தொடர்புடைய தேதி, காலம், சிக்னல் அளவு ஆகியவை பயன்படுத்தப்படும்.
-    \n\nஉங்கள் பரிசோதனை முடிவு குறித்துத் தெரிவிக்கும் மெசேஜைப் பெற்றால் உங்கள் சுகாதாரத் துறையிடம் அந்த முடிவைப் பகிரச் சொல்லும் அறிவிப்பை நீங்கள் பெறக்கூடும்.</string>
+    \n\nஉங்கள் பரிசோதனை முடிவு குறித்த மெசேஜ் கிடைத்ததும் அதுகுறித்து உங்கள் சுகாதாரத் துறைக்குத் தெரிவிப்பதற்கான அறிவிப்பை நீங்கள் பெறக்கூடும்.%1$s</string>
   <string name="onboarding_metrics_title">இந்த ஆப்ஸை மேம்படுத்த உதவுங்கள்</string>
   <string name="onboarding_metrics_subtitle">ஆப்ஸ் பயன்பாடு &amp; செயல்திறன் தரவை Googleளுடன் பகிருங்கள்</string>
   <string name="onboarding_metrics_description">ஆப்ஸை நிர்வகிக்கவும் மேம்படுத்தவும் உதவ, ஆப்ஸின் செயல்திறன் மற்றும் பயன்பாடு குறித்த சில வரையறுக்கப்பட்ட, அடையாளம் நீக்கிய தகவல்கள் Googleளுடன் பகிரப்படுகின்றன. இந்தத் தரவின் மூலம் உங்களை அடையாளம் காணமுடியாது. %1$s</string>
@@ -214,4 +215,11 @@
   <string name="share_upload_status_negative">நெகட்டிவ்</string>
   <string name="share_upload_status_likely">இருக்கக்கூடும்</string>
   <string name="share_diagnosis_progress_tracker">படி %1$d / %2$d</string>
+  <string name="see_history_device_authentication_title">இது நீங்கள்தான் என்பதை உறுதிப்படுத்துங்கள்</string>
+  <string name="update_app_dialog_title">உங்கள் ஆப்ஸைப் புதுப்பியுங்கள்</string>
+  <string name="update_app_dialog_content">உங்கள் பரிசோதனை முடிவுகளின் பகிர்தலை நிறைவுசெய்ய, கோவிட்-19 தொற்று சாத்திய எச்சரிக்கைகளின் சமீபத்திய பதிப்பிற்குப் புதுப்பிக்கவும்.</string>
+  <string name="btn_update">புதுப்பியுங்கள்</string>
+  <string name="try_again_later_error_message">ஏதோ தவறாகிவிட்டது. சில மணிநேரத்தில் மீண்டும் முயலவும்.</string>
+  <string name="en_turndown_for_area_title">உங்கள் பகுதியிலுள்ள சுகாதாரத் துறை இனி கோவிட்-19 தொற்று சாத்திய எச்சரிக்கைகளை ஆதரிக்காது</string>
+  <string name="en_turndown_title">கோவிட்-19 தொற்று சாத்திய எச்சரிக்கைகள் அம்சம் முடக்கப்பட்டுள்ளது</string>
 </resources>

@@ -121,6 +121,11 @@ public class DiagnosisRepository {
     return diagnosisDao.createOrMutateById(id, mutateAndMaybeSetCreationTime);
   }
 
+  @AnyThread
+  public ListenableFuture<Void> deleteAllRevisionTokensAsync() {
+    return diagnosisDao.deleteAllRevisionTokens();
+  }
+
   private DiagnosisEntity maybeSetCreationTime(DiagnosisEntity entity) {
     if (entity.getCreatedTimestampMs() < 1) {
       entity = entity.toBuilder().setCreatedTimestampMs(clock.now().toEpochMilli()).build();

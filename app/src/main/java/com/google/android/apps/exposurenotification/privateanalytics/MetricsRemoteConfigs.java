@@ -55,8 +55,16 @@ public abstract class MetricsRemoteConfigs {
   private static final double DEFAULT_KEYS_UPLOADED_AFTER_NOTIFICATION_METRIC_SAMPLING_RATE = 1.0;
   private static final double DEFAULT_KEYS_UPLOADED_AFTER_NOTIFICATION_METRIC_EPSILON = 8.0;
 
-  private static final double DEFAULT_PERIODIC_EXPOSURE_NOTIFICATION_BIWEEKLY_METRIC_SAMPLING_RATE = 1.0;
+  private static final double DEFAULT_PERIODIC_EXPOSURE_NOTIFICATION_BIWEEKLY_METRIC_SAMPLING_RATE
+      = 1.0;
   private static final double DEFAULT_PERIODIC_EXPOSURE_NOTIFICATION_BIWEEKLY_METRIC_EPSILON = 8.0;
+
+  private static final double DEFAULT_DATE_EXPOSURE_BIWEEKLY_METRIC_SAMPLING_RATE = 1.0;
+  private static final double DEFAULT_DATE_EXPOSURE_BIWEEKLY_METRIC_EPSILON = 8.0;
+
+  private static final double DEFAULT_KEYS_UPLOADED_VACCINE_STATUS_BIWEEKLY_METRIC_SAMPLING_RATE
+      = 1.0;
+  private static final double DEFAULT_KEYS_UPLOADED_VACCINE_STATUS_BIWEEKLY_METRIC_EPSILON = 8.0;
 
   public abstract double interactionCountPrioEpsilon();
 
@@ -102,6 +110,14 @@ public abstract class MetricsRemoteConfigs {
 
   public abstract double periodicExposureNotificationBiweeklyPrioSamplingRate();
 
+  public abstract double dateExposureBiweeklyPrioEpsilon();
+
+  public abstract double dateExposureBiweeklyPrioSamplingRate();
+
+  public abstract double keysUploadedVaccineStatusBiweeklyPrioEpsilon();
+
+  public abstract double keysUploadedVaccineStatusBiweeklyPrioSamplingRate();
+
   public static MetricsRemoteConfigs.Builder newBuilder() {
     return new AutoValue_MetricsRemoteConfigs.Builder()
         .setNotificationCountPrioSamplingRate(DEFAULT_NOTIFICATION_COUNT_METRIC_SAMPLING_RATE)
@@ -135,7 +151,14 @@ public abstract class MetricsRemoteConfigs {
         .setPeriodicExposureNotificationBiweeklyPrioSamplingRate(
             DEFAULT_PERIODIC_EXPOSURE_NOTIFICATION_BIWEEKLY_METRIC_SAMPLING_RATE)
         .setPeriodicExposureNotificationBiweeklyPrioEpsilon(
-            DEFAULT_PERIODIC_EXPOSURE_NOTIFICATION_BIWEEKLY_METRIC_EPSILON);
+            DEFAULT_PERIODIC_EXPOSURE_NOTIFICATION_BIWEEKLY_METRIC_EPSILON)
+        .setDateExposureBiweeklyPrioSamplingRate(
+            DEFAULT_DATE_EXPOSURE_BIWEEKLY_METRIC_SAMPLING_RATE)
+        .setDateExposureBiweeklyPrioEpsilon(DEFAULT_DATE_EXPOSURE_BIWEEKLY_METRIC_EPSILON)
+        .setKeysUploadedVaccineStatusBiweeklyPrioSamplingRate(
+            DEFAULT_KEYS_UPLOADED_VACCINE_STATUS_BIWEEKLY_METRIC_SAMPLING_RATE)
+        .setKeysUploadedVaccineStatusBiweeklyPrioEpsilon(
+            DEFAULT_KEYS_UPLOADED_VACCINE_STATUS_BIWEEKLY_METRIC_EPSILON);
   }
 
   @AutoValue.Builder
@@ -193,6 +216,17 @@ public abstract class MetricsRemoteConfigs {
         double value);
 
     public abstract MetricsRemoteConfigs.Builder setPeriodicExposureNotificationBiweeklyPrioSamplingRate(
+        double value);
+
+    public abstract MetricsRemoteConfigs.Builder setDateExposureBiweeklyPrioEpsilon(double value);
+
+    public abstract MetricsRemoteConfigs.Builder setDateExposureBiweeklyPrioSamplingRate(
+        double value);
+
+    public abstract MetricsRemoteConfigs.Builder setKeysUploadedVaccineStatusBiweeklyPrioEpsilon(
+        double value);
+
+    public abstract MetricsRemoteConfigs.Builder setKeysUploadedVaccineStatusBiweeklyPrioSamplingRate(
         double value);
 
     public abstract MetricsRemoteConfigs build();

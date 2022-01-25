@@ -22,4 +22,7 @@
   <string name="share_positive_diagnosis_card_content">Teile dein Testergebnis und trage dazu bei, die Ausbreitung von COVID-19 einzudämmen</string>
   <string name="share_app_card_content">Teile diese App, um dein Umfeld besser zu schützen</string>
   <string name="how_en_works_card_content">Weitere Informationen dazu, wie COVID-19-Benachrichtigungen funktionieren</string>
+  <string name="en_turndown_for_area_contents">Da deine Gesundheitsbehörde ihre Reaktion auf die Coronakrise angepasst hat, wird diese App nicht mehr unterstützt. Vielen Dank, dass du die App zum Schutz deiner Gemeinde verwendet hast.</string>
+  <string name="en_turndown_contents">Da Gesundheitsbehörden ihre Reaktion auf die Coronakrise angepasst haben, wird diese App nicht mehr unterstützt. Vielen Dank, dass du die App zum Schutz deiner Gemeinde verwendet hast.</string>
+  <string name="en_turndown_see_test_results_card_content">Testergebnisse, die du in das COVID-19-Benachrichtigungssystem hochgeladen hast, können weiterhin abgerufen werden</string>
 </resources>

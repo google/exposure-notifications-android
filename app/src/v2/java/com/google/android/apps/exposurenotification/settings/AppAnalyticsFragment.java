@@ -37,7 +37,6 @@ public class AppAnalyticsFragment extends BaseFragment {
 
   private FragmentAppAnalyticsBinding binding;
 
-
   public static AppAnalyticsFragment newInstance() {
     return new AppAnalyticsFragment();
   }

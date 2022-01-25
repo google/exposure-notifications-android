@@ -22,4 +22,7 @@
   <string name="share_positive_diagnosis_card_content">COVID-19 පැතිරීම නැවැත්වීමට ඔබගේ පරීක්ෂණ ප්‍රතිඵලය බෙදා ගන්න</string>
   <string name="share_app_card_content">ඔබගේ ප්‍රජාව වඩා හොඳින් ආරක්ෂා කිරීමට මෙම යෙදුම බෙදා ගන්න</string>
   <string name="how_en_works_card_content">නිරාවරණ දැනුම්දීම් ක්‍රියා කරන ආකාරය ගැන තව දැන ගන්න</string>
+  <string name="en_turndown_for_area_contents">ඔබගේ සෞඛ්‍ය අධිකාරිය එහි COVID-19 ප්‍රතිචාරයට අනුවර්තනය වන බැවින්, එය තවදුරටත් මෙම යෙදුමට සහාය නොදක්වයි. යෙදුම භාවිත කිරීම සහ ඔබගේ ප්‍රජාව ආරක්ෂා කිරීමට උදවු කිරීම වෙනුවෙන් ඔබට ස්තුතියි.</string>
+  <string name="en_turndown_contents">ඔබගේ සෞඛ්‍ය අධිකාරීන් එහි COVID-19 ප්‍රතිචාරයට අනුවර්තනය වන බැවින්, තවදුරටත් මෙම යෙදුමට සහාය නොදක්වයි. යෙදුම භාවිත කිරීම සහ ඔබගේ ප්‍රජාව ආරක්ෂා කිරීමට උදවු කිරීම වෙනුවෙන් ඔබට ස්තුතියි.</string>
+  <string name="en_turndown_see_test_results_card_content">ඔබ පෙරදී නිරාවරණ දැනුම්දීම් වෙත උඩුගත කළ පරීක්ෂණ ප්‍රතිඵල ඔබට තවමත් දැකිය හැකිය</string>
 </resources>

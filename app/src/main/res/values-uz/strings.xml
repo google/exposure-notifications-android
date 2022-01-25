@@ -15,6 +15,7 @@
   <string name="btn_verify">Tasdiqlash</string>
   <string name="btn_no_thanks">Kerak emas</string>
   <string name="btn_share">Ulashish</string>
+  <string name="btn_close_app">Ilovani yopish</string>
   <string name="learn_more">Batafsil</string>
   <string name="home_tab_settings_text">Sozlamalar</string>
   <string name="notification_channel_name">COVID-19 bilan ehtimoliy zararlanish</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">Ehtimoliy zararlanish bildirishnomalarini yoqish uchun ruxsat bering</string>
   <string name="onboarding_finish_title">Ehtimoliy zararlanish bildirishnomalarini yoqish uchun barcha kerakli ruxsatlarni bering</string>
   <string name="onboarding_exposure_notifications_title">Ehtimoliy zararlanish bildirishnomalarini yoqish</string>
-  <string name="onboarding_exposure_notifications_detail">Atrofingizdagi kimdir COVID-19 yuqtirgani haqida ogohlantirish oling.
+  <string name="onboarding_exposure_notifications_description">Atrofingizdagi kimdir COVID-19 yuqtirgani haqida ogohlantirish oling.
     \n\nTelefoningiz tasodifiy identifikatorlarni jamlash va yaqin-atrofdagi boshqa telefonlarga ulashish uchun Bluetooth aloqasidan foydalanadi.
     \n\nIlovaga uchrashilgan sana va telefonlar orqali kontakt davomiyligi hamda Bluetooth signali kuchiga oid axborot sogʻliqni saqlash idoralari tomonidan oʻrnatilgan parametrlarga asoslanib sizga xabar berish uchun ishlatiladi.
-    \n\nTest natijalari haqidagi SM|S kelgan boʻlsa, natijangizni sogʻliqni saqlash idoralari bilan ulashish haqida eslatma olishingiz mumkin.</string>
+    \n\nTest natijalari haqidagi SM|S kelgan boʻlsa, natijangizni sogʻliqni saqlash idoralari bilan ulashish haqida eslatma olishingiz mumkin. %1$s</string>
   <string name="onboarding_metrics_title">Bu ilovani yaxshilashga yordam bering</string>
   <string name="onboarding_metrics_subtitle">Ilova haqidagi axborotlarni Googlega yuborish</string>
   <string name="onboarding_metrics_description">Ilovaning ishlashini yaxshilash uchun Google ilovadan foydalanish va uning xususiyatlari haqida qatʼiy cheklangan anonim axborotlarni jamlaydi. Bu axborotlarda siz haqingizda maʼlumot boʻlmaydi. %1$s</string>
@@ -214,4 +215,11 @@
   <string name="share_upload_status_negative">Manfiy</string>
   <string name="share_upload_status_likely">Yuqqanga oʻxshaydi</string>
   <string name="share_diagnosis_progress_tracker">Bosqich: %1$d / %2$d</string>
+  <string name="see_history_device_authentication_title">Bu siz ekaningizni isbotlang</string>
+  <string name="update_app_dialog_title">Ilovani yangilang</string>
+  <string name="update_app_dialog_content">Test natijalaringizni oxirigacha ulashish uchun Ehtimoliy zararlanish bildirishnomalari ilovasini yangilang</string>
+  <string name="btn_update">Yangilash</string>
+  <string name="try_again_later_error_message">Xatolik yuz berdi. Bir necha soatdan keyin qaytadan urining.</string>
+  <string name="en_turndown_for_area_title">Mahalliy sogʻliqni saqlash idorasi endi Ehtimoliy zararlanish bildirishnomalari bilan ishlamaydi</string>
+  <string name="en_turndown_title">Ehtimoliy zararlanish bildirishnomalari faolsizlantirildi</string>
 </resources>

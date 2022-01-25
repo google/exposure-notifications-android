@@ -90,6 +90,8 @@ public class ExposureNotificationSharedPreferences {
       "ExposureNotificationSharedPreferences.IS_IN_APP_SMS_NOTICE_SEEN";
   private static final String IS_PLAY_SMS_NOTICE_SEEN =
       "ExposureNotificationSharedPreferences.IS_PLAY_SMS_NOTICE_SEEN";
+  private static final String HAS_DISPLAYED_ONBOARDING_FOR_MIGRATING_USERS =
+      "ExposureNotificationSharedPreferences.HAS_DISPLAYED_ONBOARDING_FOR_MIGRATING_USERS";
   // Private analytics
   private static final String SHARE_PRIVATE_ANALYTICS_KEY =
       "ExposureNotificationSharedPreferences.SHARE_PRIVATE_ANALYTICS_KEY";
@@ -395,6 +397,10 @@ public class ExposureNotificationSharedPreferences {
         .commit();
   }
 
+  public void clearAnalyticsLoggingLastTimestamp() {
+    sharedPreferences.edit().remove(ANALYTICS_LOGGING_LAST_TIMESTAMP).commit();
+  }
+
   public boolean isAppAnalyticsSet() {
     return sharedPreferences.contains(SHARE_ANALYTICS_KEY);
   }
@@ -463,6 +469,17 @@ public class ExposureNotificationSharedPreferences {
             EXPOSURE_CLASSIFICATION_DATE_KEY,
             exposureClassification.getClassificationDate()
         )
+        .commit();
+  }
+
+  public void deleteExposureInformation() {
+    sharedPreferences.edit()
+        .remove(EXPOSURE_CLASSIFICATION_INDEX_KEY)
+        .remove(EXPOSURE_CLASSIFICATION_NAME_KEY)
+        .remove(EXPOSURE_CLASSIFICATION_DATE_KEY)
+        .remove(EXPOSURE_CLASSIFICATION_IS_REVOKED_KEY)
+        .remove(EXPOSURE_CLASSIFICATION_IS_CLASSIFICATION_NEW_KEY)
+        .remove(EXPOSURE_CLASSIFICATION_IS_DATE_NEW_KEY)
         .commit();
   }
 
@@ -693,11 +710,6 @@ public class ExposureNotificationSharedPreferences {
           .remove(EXPOSURE_NOTIFICATION_LAST_INTERACTION_TYPE)
           .remove(EXPOSURE_NOTIFICATION_LAST_INTERACTION_CLASSIFICATION);
     }
-    if (getLastVaccinationStatusResponseTime().isBefore(date)) {
-      sharedPreferencesEditor
-          .remove(EXPOSURE_NOTIFICATION_LAST_VACCINATION_STATUS_RESPONSE_TIME_MS);
-      sharedPreferencesEditor.remove(EXPOSURE_NOTIFICATION_LAST_VACCINATION_STATUS);
-    }
     sharedPreferencesEditor.apply();
   }
 
@@ -713,6 +725,11 @@ public class ExposureNotificationSharedPreferences {
     }
     if (getPrivateAnalyticsLastSubmittedKeysTime().isBefore(date)) {
       sharedPreferencesEditor.remove(PRIVATE_ANALYTICS_SUBMITTED_KEYS_TIME);
+    }
+    if (getLastVaccinationStatusResponseTime().isBefore(date)) {
+      sharedPreferencesEditor
+          .remove(EXPOSURE_NOTIFICATION_LAST_VACCINATION_STATUS_RESPONSE_TIME_MS);
+      sharedPreferencesEditor.remove(EXPOSURE_NOTIFICATION_LAST_VACCINATION_STATUS);
     }
     sharedPreferencesEditor.apply();
   }
@@ -863,6 +880,15 @@ public class ExposureNotificationSharedPreferences {
 
   public void markMigrationAsRunOrNotNeeded() {
     sharedPreferences.edit().putBoolean(MIGRATION_RUN_OR_NOT_NEEDED, true).apply();
+  }
+
+  @AnyThread
+  public void markMigratingUserAsOnboardedAsync() {
+    sharedPreferences.edit().putBoolean(HAS_DISPLAYED_ONBOARDING_FOR_MIGRATING_USERS, true).apply();
+  }
+
+  public boolean isMigratingUserOnboarded() {
+    return sharedPreferences.getBoolean(HAS_DISPLAYED_ONBOARDING_FOR_MIGRATING_USERS, false);
   }
 
   public interface AnalyticsStateListener {

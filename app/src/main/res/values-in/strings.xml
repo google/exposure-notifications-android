@@ -15,6 +15,7 @@
   <string name="btn_verify">Verifikasi</string>
   <string name="btn_no_thanks">Tidak</string>
   <string name="btn_share">Bagikan</string>
+  <string name="btn_close_app">Tutup aplikasi</string>
   <string name="learn_more">Pelajari lebih lanjut</string>
   <string name="home_tab_settings_text">Setelan</string>
   <string name="notification_channel_name">Kemungkinan paparan COVID-19</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">Perlu izin untuk mengaktifkan Notifikasi Paparan</string>
   <string name="onboarding_finish_title">Perlu kelanjutan pemberian izin untuk mengaktifkan Notifikasi Paparan</string>
   <string name="onboarding_exposure_notifications_title">Aktifkan Notifikasi Paparan</string>
-  <string name="onboarding_exposure_notifications_detail">Dapatkan notifikasi jika Anda berada di dekat seseorang yang dilaporkan terinfeksi COVID-19.
+  <string name="onboarding_exposure_notifications_description">Dapatkan notifikasi jika Anda berada di dekat seseorang yang dilaporkan terinfeksi COVID-19.
     \n\nPonsel Anda menggunakan Bluetooth untuk mengumpulkan dan membagikan ID acak secara aman ke ponsel lain yang ada di sekitar.
-    \n\nTanggal, durasi, dan kekuatan sinyal yang terkait dengan kemungkinan paparan akan digunakan untuk menentukan apakah Anda akan mendapatkan notifikasi berdasarkan parameter yang ditetapkan oleh otoritas kesehatan masyarakat.
-    \n\nAnda mungkin menerima notifikasi untuk membagikan diagnosis kepada otoritas kesehatan jika mendapatkan SMS yang berisi hasil tes Anda.</string>
+    \n\nTanggal, durasi, dan kekuatan sinyal yang terkait dengan kemungkinan paparan akan digunakan untuk menentukan apakah Anda akan diberi tahu berdasarkan parameter yang ditetapkan oleh otoritas kesehatan masyarakat.
+    \n\nAnda mungkin menerima notifikasi untuk membagikan diagnosis kepada otoritas kesehatan jika mendapatkan SMS yang berisi hasil tes Anda. %1$s</string>
   <string name="onboarding_metrics_title">Bantu agar aplikasi ini menjadi lebih baik</string>
   <string name="onboarding_metrics_subtitle">Bagikan data penggunaan &amp; performa aplikasi kepada Google</string>
   <string name="onboarding_metrics_description">Untuk membantu memelihara dan menyempurnakan aplikasi, beberapa data terbatas yang tidak diidentifikasi tentang performa dan penggunaan aplikasi dibagikan kepada Google. Data ini tidak mengidentifikasikan Anda. %1$s</string>
@@ -214,4 +215,11 @@
   <string name="share_upload_status_negative">Negatif</string>
   <string name="share_upload_status_likely">Mungkin</string>
   <string name="share_diagnosis_progress_tracker">Langkah %1$d dari %2$d</string>
+  <string name="see_history_device_authentication_title">Verifikasi diri Anda</string>
+  <string name="update_app_dialog_title">Update aplikasi Anda</string>
+  <string name="update_app_dialog_content">Update ke Notifikasi Paparan versi terbaru untuk menyelesaikan proses berbagi hasil tes Anda.</string>
+  <string name="btn_update">Update</string>
+  <string name="try_again_later_error_message">Terjadi error. Coba lagi dalam beberapa jam.</string>
+  <string name="en_turndown_for_area_title">Otoritas Kesehatan Anda tidak lagi mendukung Notifikasi Paparan</string>
+  <string name="en_turndown_title">Notifikasi Paparan telah dinonaktifkan</string>
 </resources>

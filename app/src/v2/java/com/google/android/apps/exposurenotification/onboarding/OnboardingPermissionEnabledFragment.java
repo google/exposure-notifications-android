@@ -121,6 +121,9 @@ public class OnboardingPermissionEnabledFragment extends BaseFragment {
         .observe(getViewLifecycleOwner(),
             shouldShowPrivateAnalyticsOnboarding ->
                 this.shouldShowPrivateAnalyticsOnboarding = shouldShowPrivateAnalyticsOnboarding);
+
+    // If we are currently onboarding a migrating user, mark that now this user is onboarded.
+    onboardingViewModel.maybeMarkMigratingUserAsOnboarded(requireContext());
   }
 
   @Override

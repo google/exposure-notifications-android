@@ -15,6 +15,7 @@
   <string name="btn_verify">Bekræft</string>
   <string name="btn_no_thanks">Nej tak</string>
   <string name="btn_share">Del</string>
+  <string name="btn_close_app">Luk app</string>
   <string name="learn_more">Få flere oplysninger</string>
   <string name="home_tab_settings_text">Indstillinger</string>
   <string name="notification_channel_name">Mulig eksponering for COVID-19</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">Der kræves tilladelser for at aktivere notifikationer om eksponering</string>
   <string name="onboarding_finish_title">Fortsættelse af Der kræves tilladelser for at aktivere notifikationer om eksponering</string>
   <string name="onboarding_exposure_notifications_title">Aktivér notifikationer om eksponering</string>
-  <string name="onboarding_exposure_notifications_detail">Få besked, hvis du har været i nærheden af nogen, der har rapporteret, at de er smittet med COVID-19.
+  <string name="onboarding_exposure_notifications_description">Få besked, hvis du har været i nærheden af nogen, der har rapporteret, at de er smittet med COVID-19.
     \n\nDin telefon bruger Bluetooth til sikkert at indsamle og dele vilkårlige id\'er med andre telefoner i nærheden.
     \n\nDatoen, varigheden og signalstyrken i forbindelse med en mulig eksponering bruges til at afgøre, om du skal underrettes i overensstemmelse med de parametre, som sundhedsmyndighederne har angivet.
-    \n\nDu modtager muligvis en notifikation, hvor du bliver bedt om at dele din diagnose med sundhedsmyndighederne, hvis du får en sms med dit testresultat.</string>
+    \n\nDu modtager muligvis en notifikation, hvor du bliver bedt om at dele din diagnose med sundhedsmyndighederne, hvis du får en sms med dit testresultat. %1$s</string>
   <string name="onboarding_metrics_title">Hjælp med at forbedre denne app</string>
   <string name="onboarding_metrics_subtitle">Del data om appforbrug og -effektivitet med Google</string>
   <string name="onboarding_metrics_description">For at vedligeholde og forbedre appen deles visse begrænsede data om appforbrug og -effektivitet med Google. Der deles ingen personlige oplysninger. Disse data er ikke personhenførbare. %1$s</string>
@@ -214,4 +215,11 @@
   <string name="share_upload_status_negative">Negativ</string>
   <string name="share_upload_status_likely">Sandsynlig</string>
   <string name="share_diagnosis_progress_tracker">Trin %1$d af %2$d</string>
+  <string name="see_history_device_authentication_title">Bekræft din identitet</string>
+  <string name="update_app_dialog_title">Opdater din app</string>
+  <string name="update_app_dialog_content">Opdater til den nyeste version af Notifikationer om eksponering for at dele dine testresultater.</string>
+  <string name="btn_update">Opdater</string>
+  <string name="try_again_later_error_message">Noget gik galt. Prøv igen om et par timer.</string>
+  <string name="en_turndown_for_area_title">Sundhedsmyndighederne understøtter ikke længere Notifikationer om eksponering</string>
+  <string name="en_turndown_title">Notifikationer om eksponering er deaktiveret</string>
 </resources>

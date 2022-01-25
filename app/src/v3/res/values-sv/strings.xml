@@ -14,4 +14,6 @@
   <string name="share_history_delete_test_result_detail">Ditt testresultat för covid-19 från den %1$s raderas från telefonen.</string>
   <string name="sms_intercept_notice_card_title">Du kan få en påminnelse om att dela resultatet</string>
   <string name="sms_intercept_notice_card_content">Om du testar positivt och får ett verifierat sms</string>
+  <string name="en_turndown_contents">I och med att hälsovårdsmyndigheternas riktlinjer för covid-19 har förändrats har stödet för Aviseringar om exponering dragits in. Tack för att du har använt tjänsten och hjälpt till att skydda andra.</string>
+  <string name="en_turndown_for_area_contents">I och med att hälsovårdsmyndigheternas riktlinjer för covid-19 har förändrats har deras stöd för Aviseringar om exponering dragits in. Tack för att du har använt tjänsten och hjälpt till att skydda andra.</string>
 </resources>

@@ -28,7 +28,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingVertical="@dimen/padding_small"
-    android:gravity="center"
+    android:gravity="@integer/header_gravity"
     android:text="@string/exposure_notifications_are_turned_off"
     android:textAppearance="?attr/textAppearanceHeadline5"/>
 
@@ -36,7 +36,7 @@
     android:id="@+id/edge_case_content"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="center"
+    android:gravity="@integer/header_gravity"
     android:text="@string/notify_turn_on_exposure_notifications_header"
     android:textAppearance="?attr/textAppearanceBody2"
     android:textColor="?attr/colorControlNormal"/>
@@ -48,6 +48,7 @@
     android:layout_gravity="center"
     android:layout_marginTop="@dimen/padding_small"
     android:paddingHorizontal="@dimen/padding_large"
+    style="@style/Widget.ExposureNotifications.Button"
     android:text="@string/btn_turn_on"
     app:cornerRadius="@dimen/round_button_corner_radius" />
 

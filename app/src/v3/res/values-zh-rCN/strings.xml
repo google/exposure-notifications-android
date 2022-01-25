@@ -14,4 +14,6 @@
   <string name="share_history_delete_test_result_detail">您在 %1$s的新冠肺炎 (COVID-19) 检测结果将会从您的手机中删除。</string>
   <string name="sms_intercept_notice_card_title">您可能会收到关于分享检测结果的提醒</string>
   <string name="sms_intercept_notice_card_content">如果您的检测结果呈阳性并且您收到验证短信</string>
+  <string name="en_turndown_contents">由于卫生机构调整了 COVID-19 应对措施，因此不再支持“接触史通知”。感谢您使用此服务，同时感谢您为自己社区的疫情防控工作做出的积极努力。</string>
+  <string name="en_turndown_for_area_contents">由于您当地的卫生机构调整了 COVID-19 应对措施，因此不再支持“接触史通知”。感谢您使用此服务，同时感谢您为自己社区的疫情防控工作做出的积极努力。</string>
 </resources>

@@ -26,6 +26,7 @@ import android.util.Pair;
 import android.view.View;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.IntentSenderRequest;
+import androidx.activity.result.contract.ActivityResultContract;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.UiThread;
@@ -36,6 +37,10 @@ import androidx.lifecycle.SavedStateHandle;
 import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.appupdate.EnxAppUpdateManager;
+import com.google.android.apps.exposurenotification.appupdate.EnxAppUpdateManager.AppUpdateFlowFailedToLaunchException;
+import com.google.android.apps.exposurenotification.common.BuildUtils;
+import com.google.android.apps.exposurenotification.common.BuildUtils.Type;
 import com.google.android.apps.exposurenotification.common.Qualifiers.BackgroundExecutor;
 import com.google.android.apps.exposurenotification.common.Qualifiers.LightweightExecutor;
 import com.google.android.apps.exposurenotification.common.Qualifiers.ScheduledExecutor;
@@ -50,6 +55,7 @@ import com.google.android.apps.exposurenotification.keyupload.Upload;
 import com.google.android.apps.exposurenotification.keyupload.UploadController;
 import com.google.android.apps.exposurenotification.keyupload.UploadController.NoInternetException;
 import com.google.android.apps.exposurenotification.keyupload.UploadController.UploadException;
+import com.google.android.apps.exposurenotification.keyupload.UploadError;
 import com.google.android.apps.exposurenotification.keyupload.UserReportUpload;
 import com.google.android.apps.exposurenotification.nearby.ExposureNotificationClientWrapper;
 import com.google.android.apps.exposurenotification.network.Connectivity;
@@ -90,7 +96,6 @@ import java.util.Stack;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ScheduledExecutorService;
 import javax.inject.Inject;
-import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 import org.threeten.bp.Duration;
 import org.threeten.bp.Instant;
 import org.threeten.bp.LocalDate;
@@ -181,6 +186,8 @@ public class ShareDiagnosisViewModel extends ViewModel {
   private final MutableLiveData<Boolean> inFlightLiveData = new MutableLiveData<>(false);
 
   private final SingleLiveEvent<Void> deletedLiveEvent = new SingleLiveEvent<>();
+  private final SingleLiveEvent<Void> appUpdateAvailableLiveEvent =
+      new SingleLiveEvent<>();
   private final SingleLiveEvent<String> snackbarLiveEvent = new SingleLiveEvent<>();
   private final SingleLiveEvent<ApiException> teksReleaseResolutionRequiredLiveEvent =
       new SingleLiveEvent<>();
@@ -208,6 +215,8 @@ public class ShareDiagnosisViewModel extends ViewModel {
   private final MutableLiveData<String> verificationErrorLiveData = new MutableLiveData<>();
   private final MutableLiveData<String> requestCodeErrorLiveData = new MutableLiveData<>();
   private final MutableLiveData<String> phoneNumberErrorMessageLiveData = new MutableLiveData<>();
+  private final MutableLiveData<String> appUpdateFlowErrorLiveData = new MutableLiveData<>();
+  private final EnxAppUpdateManager enxAppUpdateManager;
   private final Context context;
 
   private SavedStateHandle savedStateHandle;
@@ -241,6 +250,7 @@ public class ShareDiagnosisViewModel extends ViewModel {
       TelephonyHelper telephonyHelper,
       SecureRandom secureRandom,
       Connectivity connectivity,
+      EnxAppUpdateManager enxAppUpdateManager,
       @BackgroundExecutor ExecutorService backgroundExecutor,
       @LightweightExecutor ExecutorService lightweightExecutor,
       @ScheduledExecutor ScheduledExecutorService scheduledExecutor) {
@@ -256,6 +266,7 @@ public class ShareDiagnosisViewModel extends ViewModel {
     this.telephonyHelper = telephonyHelper;
     this.secureRandom = secureRandom;
     this.connectivity = connectivity;
+    this.enxAppUpdateManager = enxAppUpdateManager;
     this.backgroundExecutor = backgroundExecutor;
     this.lightweightExecutor = lightweightExecutor;
     this.scheduledExecutor = scheduledExecutor;
@@ -393,6 +404,13 @@ public class ShareDiagnosisViewModel extends ViewModel {
    */
   public LiveData<String> getVerificationErrorLiveData() {
     return verificationErrorLiveData;
+  }
+
+  /**
+   * Notifies if the app update flow has failed to launch.
+   */
+  public LiveData<String> getAppUpdateFlowErrorLiveData() {
+    return appUpdateFlowErrorLiveData;
   }
 
   /**
@@ -604,9 +622,7 @@ public class ShareDiagnosisViewModel extends ViewModel {
           return null;
         }, lightweightExecutor)
         .catching(UploadException.class, ex -> {
-          snackbarLiveEvent.postValue(ex.getUploadError().getErrorMessage(
-              resources, ShareDiagnosisFlow.SELF_REPORT.equals(getShareDiagnosisFlow())));
-          inFlightLiveData.postValue(false);
+          handleUploadError(ex.getUploadError(), snackbarLiveEvent);
           return null;
         }, lightweightExecutor)
         .catching(ApiException.class, ex -> {
@@ -786,10 +802,10 @@ public class ShareDiagnosisViewModel extends ViewModel {
           requestCodeErrorLiveData.postValue(resources.getString(R.string.share_error_no_internet));
           return null;
         }, lightweightExecutor)
-        .catchingAsync(UploadException.class, ex -> {
-          captureVerificationCodeRequestAndUploadException(upload, ex);
-          return null;
-        }, lightweightExecutor)
+        .catchingAsync(UploadException.class, ex ->
+                FluentFuture.from(captureVerificationCodeRequestAndUploadException(upload, ex))
+                    .transform(unused -> null, lightweightExecutor),
+            lightweightExecutor)
         .catching(Exception.class, ex -> {
           inFlightLiveData.postValue(false);
           requestCodeErrorLiveData.postValue(resources.getString(R.string.generic_error_message));
@@ -846,11 +862,9 @@ public class ShareDiagnosisViewModel extends ViewModel {
       UserReportUpload upload, UploadException ex) {
     return FluentFuture.from(captureVerificationCodeRequest(upload))
         .transform(unused -> {
-          inFlightLiveData.postValue(false);
-          requestCodeErrorLiveData.postValue(ex.getUploadError().getErrorMessage(
-              resources, ShareDiagnosisFlow.SELF_REPORT.equals(getShareDiagnosisFlow())));
-          return null;
-        }, lightweightExecutor);
+              handleUploadError(ex.getUploadError(), requestCodeErrorLiveData);
+              return null;
+            }, lightweightExecutor);
   }
 
   /**
@@ -963,10 +977,8 @@ public class ShareDiagnosisViewModel extends ViewModel {
           return null;
         }, lightweightExecutor)
         .catching(UploadException.class, ex -> {
-          inFlightLiveData.postValue(false);
           revealCodeStepEvent.postValue(true);
-          verificationErrorLiveData.postValue(ex.getUploadError().getErrorMessage(
-              resources, ShareDiagnosisFlow.SELF_REPORT.equals(getShareDiagnosisFlow())));
+          handleUploadError(ex.getUploadError(), verificationErrorLiveData);
           return null;
         }, lightweightExecutor)
         .catching(Exception.class, ex -> {
@@ -1096,6 +1108,125 @@ public class ShareDiagnosisViewModel extends ViewModel {
   }
 
   /**
+   * Handles upload errors we get when talking to the verification server.
+   *
+   * @param uploadError {@link UploadError} associated with the error returned from the server.
+   * @param errorLiveData LiveData object to update with an error message.
+   */
+  private void handleUploadError(UploadError uploadError, MutableLiveData<String> errorLiveData) {
+    if (uploadError.equals(UploadError.UNAUTHORIZED_CLIENT) && BuildUtils.getType() == Type.V2) {
+      checkForAppUpdateAvailability(uploadError, errorLiveData);
+    } else {
+      inFlightLiveData.postValue(false);
+      errorLiveData.postValue(uploadError.getErrorMessage(
+          resources, ShareDiagnosisFlow.SELF_REPORT.equals(getShareDiagnosisFlow())));
+    }
+  }
+
+  /**
+   * If we get the 401 Unauthorized Client error from the verification server, this might be an
+   * indicator that the current API key, which is used to talk to the server, has been revoked. In
+   * this case, we might have an app update available, which is set up to use a new valid API key to
+   * continue talking to the server.
+   *
+   * <p>This method checks whether there is an app update available and if so, informs the upload
+   * flow about this to trigger the app update flow. Otherwise, it displays a corresponding error
+   * message.
+   *
+   * <p>This method should only be called upon receiving 401 Unauthorized Client error from the
+   * server (i.e. in case of {@link UploadError#UNAUTHORIZED_CLIENT} and for {@link Type#V2} apps.
+   *
+   * @param uploadError {@link UploadError} associated with the error returned from the server.
+   * @param errorLiveData LiveData object to update with an error message.
+   */
+  private void checkForAppUpdateAvailability(
+      UploadError uploadError, MutableLiveData<String> errorLiveData) {
+    enxAppUpdateManager
+        .getAppUpdateInfo()
+        .addOnSuccessListener(
+            appUpdateInfo -> {
+              inFlightLiveData.postValue(false);
+              if (enxAppUpdateManager.isImmediateAppUpdateAvailable(appUpdateInfo)) {
+                appUpdateAvailableLiveEvent.postCall();
+              } else {
+                errorLiveData.postValue(uploadError.getErrorMessage(
+                    resources, ShareDiagnosisFlow.SELF_REPORT.equals(getShareDiagnosisFlow())));
+              }
+            })
+        .addOnFailureListener(
+            lightweightExecutor,
+            ex -> {
+              inFlightLiveData.postValue(false);
+              errorLiveData.postValue(uploadError.getErrorMessage(
+                  resources, ShareDiagnosisFlow.SELF_REPORT.equals(getShareDiagnosisFlow())));
+            });
+  }
+
+  /**
+   * Triggers the in-app update flow.
+   *
+   * @param activityResultLauncher A launcher for a previously-prepared call to start the process of
+   *                               executing an {@link ActivityResultContract}.
+   */
+  public ListenableFuture<Void> triggerAppUpdateFlow(
+      ActivityResultLauncher<IntentSenderRequest> activityResultLauncher) {
+    return FluentFuture
+        .from(enxAppUpdateManager.triggerImmediateAppUpdateFlow(activityResultLauncher))
+        .transformAsync(
+            appUpdateFlowLaunched -> {
+              if (!appUpdateFlowLaunched) {
+                // App update flow didn't launch. Nothing much we can do except asking user to try
+                // again later.
+                appUpdateFlowErrorLiveData.postValue(
+                    context.getResources().getString(R.string.try_again_later_error_message));
+              }
+              return Futures.immediateVoidFuture();
+            }, lightweightExecutor)
+        .catchingAsync(AppUpdateFlowFailedToLaunchException.class, ex -> {
+          appUpdateFlowErrorLiveData.postValue(
+              context.getResources().getString(R.string.try_again_later_error_message));
+          return Futures.immediateVoidFuture();
+        }, lightweightExecutor);
+  }
+
+  /**
+   * Checks whether there is currently in-app update in progress and if so, triggers the in-app
+   * update flow.
+   *
+   * @param activityResultLauncher A launcher for a previously-prepared call to start the process of
+   *                               executing an {@link ActivityResultContract}.
+   */
+  public ListenableFuture<Void> maybeTriggerAppUpdateFlowIfUpdateInProgress(
+      ActivityResultLauncher<IntentSenderRequest> activityResultLauncher) {
+    return enxAppUpdateManager.getAppUpdateInfoFuture()
+        .transformAsync(
+            appUpdateInfo -> {
+              if (enxAppUpdateManager.isAppUpdateInProgress(appUpdateInfo)) {
+                return enxAppUpdateManager
+                    .triggerImmediateAppUpdateFlow(appUpdateInfo, activityResultLauncher);
+              }
+              // No app update in progress. Return true as we don't need to display an error
+              // message.
+              return Futures.immediateFuture(true);
+            }, lightweightExecutor)
+        .transformAsync(
+            appUpdateFlowLaunched -> {
+              if (!appUpdateFlowLaunched) {
+                // Failed to start update flow. Nothing much we can do except asking user to try
+                // again later.
+                appUpdateFlowErrorLiveData.postValue(
+                    context.getResources().getString(R.string.try_again_later_error_message));
+              }
+              return Futures.immediateVoidFuture();
+            }, lightweightExecutor)
+        .catchingAsync(AppUpdateFlowFailedToLaunchException.class, ex -> {
+          appUpdateFlowErrorLiveData.postValue(
+              context.getResources().getString(R.string.try_again_later_error_message));
+          return Futures.immediateVoidFuture();
+        }, lightweightExecutor);
+  }
+
+  /**
    * Requests user authorization to get {@link TemporaryExposureKey}s in the background and stores
    * the user decision.
    *
@@ -1158,6 +1289,13 @@ public class ShareDiagnosisViewModel extends ViewModel {
    */
   public SingleLiveEvent<Void> getDeletedSingleLiveEvent() {
     return deletedLiveEvent;
+  }
+
+  /**
+   * A {@link SingleLiveEvent} that signifies availability of the app update.
+   */
+  public SingleLiveEvent<Void> getAppUpdateAvailableLiveEvent() {
+    return appUpdateAvailableLiveEvent;
   }
 
   /**

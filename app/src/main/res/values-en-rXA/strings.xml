@@ -15,6 +15,7 @@
   <string name="btn_verify">[Véŕîƒý one]</string>
   <string name="btn_no_thanks">[Ñö ţĥåñķš one two]</string>
   <string name="btn_share">[Šĥåŕé one]</string>
+  <string name="btn_close_app">[Çļöšé åþþ one two]</string>
   <string name="learn_more">[Ļéåŕñ möŕé one two]</string>
   <string name="home_tab_settings_text">[Šéţţîñĝš one]</string>
   <string name="notification_channel_name">[Þöššîбļé ÇÖVÎÐ-19 éxþöšûŕé one two three]</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">[Þéŕmîššîöñš ñééðéð ţö éñåбļé Éxþöšûŕé Ñöţîƒîçåţîöñš one two three four five six seven eight nine ten eleven]</string>
   <string name="onboarding_finish_title">[Çöñţîñûåţîöñ öƒ þéŕmîššîöñš ñééðéð ţö éñåбļé Éxþöšûŕé Ñöţîƒîçåţîöñš one two three four five six seven eight nine ten eleven twelve thirteen]</string>
   <string name="onboarding_exposure_notifications_title">[Ţûŕñ öñ Éxþöšûŕé Ñöţîƒîçåţîöñš one two three four five six seven]</string>
-  <string name="onboarding_exposure_notifications_detail">[Ĝéţ ñöţîƒîéð îƒ ýöû\'vé бééñ ñéåŕ šöméöñé ŵĥö ŕéþöŕţéð ĥåvîñĝ ÇÖVÎÐ-19.
+  <string name="onboarding_exposure_notifications_description">[Ĝéţ ñöţîƒîéð îƒ ýöû\'vé бééñ ñéåŕ šöméöñé ŵĥö ŕéþöŕţéð ĥåvîñĝ ÇÖVÎÐ-19.
     \ñ\ñÝöûŕ þĥöñé ûšéš Бļûéţööţĥ ţö šéçûŕéļý çöļļéçţ åñð šĥåŕé ŕåñðöm ÎÐš ŵîţĥ öţĥéŕ þĥöñéš ţĥåţ åŕé ñéåŕбý.
     \ñ\ñŢĥé ðåţé, ðûŕåţîöñ, åñð šîĝñåļ šţŕéñĝţĥ åššöçîåţéð ŵîţĥ å þöššîбļé éxþöšûŕé ŵîļļ бé ûšéð ţö ðéţéŕmîñé ŵĥéţĥéŕ ýöû ŵîļļ бé ñöţîƒîéð бåšéð öñ þåŕåméţéŕš šéţ бý ýöûŕ þûбļîç ĥéåļţĥ åûţĥöŕîţý.
-    \ñ\ñÝöû måý ŕéçéîvé å ñöţîƒîçåţîöñ ţö šĥåŕé å ðîåĝñöšîš ŵîţĥ ýöûŕ ĥéåļţĥ åûţĥöŕîţý îƒ ýöû ĝéţ åñ ŠMŠ ŵîţĥ ýöûŕ ţéšţ ŕéšûļţ. one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty twentyone twentytwo twentythree twentyfour twentyfive twentysix twentyseven twentyeight twentynine thirty thirtyone thirtytwo thirtythree thirtyfour thirtyfive thirtysix thirtyseven thirtyeight thirtynine forty one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty twentyone twentytwo twentythree]</string>
+    \ñ\ñÝöû måý ŕéçéîvé å ñöţîƒîçåţîöñ ţö šĥåŕé å ðîåĝñöšîš ŵîţĥ ýöûŕ ĥéåļţĥ åûţĥöŕîţý îƒ ýöû ĝéţ åñ ŠMŠ ŵîţĥ ýöûŕ ţéšţ ŕéšûļţ. ᐅ%1$sᐊ one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty twentyone twentytwo twentythree twentyfour twentyfive twentysix twentyseven twentyeight twentynine thirty thirtyone thirtytwo thirtythree thirtyfour thirtyfive thirtysix thirtyseven thirtyeight thirtynine forty one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty twentyone twentytwo twentythree twentyfour]</string>
   <string name="onboarding_metrics_title">[Ĥéļþ måķé ţĥîš åþþ бéţţéŕ one two three four five six]</string>
   <string name="onboarding_metrics_subtitle">[Šĥåŕé åþþ ûšåĝé &amp; þéŕƒöŕmåñçé ðåţå ŵîţĥ Ĝööĝļé one two three four five six seven eight nine ten]</string>
   <string name="onboarding_metrics_description">[Ţö ĥéļþ måîñţåîñ åñð îmþŕövé ţĥé åþþ, šömé ļîmîţéð ðé-îðéñţîƒîéð ðåţå åбöûţ åþþ þéŕƒöŕmåñçé åñð ûšåĝé îš šĥåŕéð ŵîţĥ Ĝööĝļé. Ţĥîš ðåţå ðöéš ñöţ îðéñţîƒý ýöû. ᐅ%1$sᐊ one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty twentyone twentytwo twentythree]</string>
@@ -214,4 +215,11 @@
   <string name="share_upload_status_negative">[Ñéĝåţîvé one]</string>
   <string name="share_upload_status_likely">[Ļîķéļý one]</string>
   <string name="share_diagnosis_progress_tracker">[Šţéþ ᐅ%1$dᐊ öƒ ᐅ%2$dᐊ one two three four]</string>
+  <string name="see_history_device_authentication_title">[Véŕîƒý îţ\'š ýöû one two]</string>
+  <string name="update_app_dialog_title">[Ûþðåţé ýöûŕ åþþ one two]</string>
+  <string name="update_app_dialog_content">[Ûþðåţé ţö ţĥé ļåţéšţ véŕšîöñ öƒ Éxþöšûŕé Ñöţîƒîçåţîöñš ţö ƒîñîšĥ šĥåŕîñĝ ýöûŕ ţéšţ ŕéšûļţš. one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen]</string>
+  <string name="btn_update">[Ûþðåţé one]</string>
+  <string name="try_again_later_error_message">[Šöméţĥîñĝ ŵéñţ ŵŕöñĝ. Ţŕý åĝåîñ îñ å ƒéŵ ĥöûŕš. one two three four five six seven eight nine ten]</string>
+  <string name="en_turndown_for_area_title">[Ýöûŕ Ĥéåļţĥ Åûţĥöŕîţý ñö ļöñĝéŕ šûþþöŕţš Éxþöšûŕé Ñöţîƒîçåţîöñš one two three four five six seven eight nine ten eleven twelve]</string>
+  <string name="en_turndown_title">[Éxþöšûŕé Ñöţîƒîçåţîöñš ĥåš бééñ ţûŕñéð öƒƒ one two three four five six seven eight nine]</string>
 </resources>

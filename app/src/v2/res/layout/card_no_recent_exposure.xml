@@ -34,7 +34,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:paddingEnd="@dimen/padding_normal"
+    android:paddingHorizontal="@dimen/padding_normal"
     android:paddingVertical="@dimen/padding_small"
     android:orientation="vertical">
 
@@ -48,7 +48,7 @@
         android:layout_width="@dimen/card_icon_size"
         android:layout_height="@dimen/card_icon_size"
         android:layout_gravity="center"
-        android:layout_marginHorizontal="@dimen/padding_normal"
+        android:layout_marginEnd="@dimen/padding_normal"
         android:importantForAccessibility="no"
         android:contentDescription="@null"
         app:srcCompat="@drawable/ic_no_recent_exposure" />
@@ -74,7 +74,9 @@
           android:id="@+id/no_recent_exposure_body"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:gravity="start"
+          android:layout_gravity="center_vertical"
+          android:gravity="center|start"
+          android:paddingVertical="@dimen/padding_medium"
           android:text="@string/no_recent_exposure_card_content_no_checks"
           android:textAppearance="?attr/textAppearanceBody2"
           android:textColor="?attr/colorControlNormal" />

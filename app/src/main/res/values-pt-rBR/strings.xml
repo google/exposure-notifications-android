@@ -15,6 +15,7 @@
   <string name="btn_verify">Verificar</string>
   <string name="btn_no_thanks">Agora não</string>
   <string name="btn_share">Compartilhar</string>
+  <string name="btn_close_app">Fechar app</string>
   <string name="learn_more">Saiba mais</string>
   <string name="home_tab_settings_text">Configurações</string>
   <string name="notification_channel_name">Possível exposição à COVID-19</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">Permissões necessárias para ativar as Notificações de Exposição</string>
   <string name="onboarding_finish_title">Continuação das permissões necessárias para ativar as Notificações de Exposição</string>
   <string name="onboarding_exposure_notifications_title">Ativar as Notificações de Exposição</string>
-  <string name="onboarding_exposure_notifications_detail">Receba avisos caso você tenha se aproximado de alguém que informou ter COVID-19.
+  <string name="onboarding_exposure_notifications_description">Receba avisos caso você tenha se aproximado de alguém que informou ter COVID-19.
     \n\nSeu smartphone usa o Bluetooth para coletar IDs aleatórios e compartilhá-los de forma segura com outros dispositivos próximos.
     \n\nA data, duração e intensidade do sinal associadas a uma possível exposição serão usadas para determinar se você receberá uma notificação com base nos parâmetros definidos pela sua autoridade de saúde pública.
-    \n\nAo receber um SMS com o resultado do teste, você poderá receber também uma notificação para compartilhar o diagnóstico com sua autoridade de saúde.</string>
+    \n\nAo receber um SMS com o resultado do teste, você pode receber também uma notificação para compartilhar o diagnóstico com sua autoridade de saúde. %1$s</string>
   <string name="onboarding_metrics_title">Ajude a melhorar este app</string>
   <string name="onboarding_metrics_subtitle">Compartilhar dados de uso e desempenho do app com o Google</string>
   <string name="onboarding_metrics_description">Para ajudar a manter e melhorar o app, alguns dados sem identificação sobre o uso e desempenho do app são enviados ao Google. Não é possível usar esses dados para identificar você. %1$s</string>
@@ -214,4 +215,11 @@
   <string name="share_upload_status_negative">Negativo</string>
   <string name="share_upload_status_likely">Provável</string>
   <string name="share_diagnosis_progress_tracker">Etapa %1$d de %2$d</string>
+  <string name="see_history_device_authentication_title">Confirme sua identidade</string>
+  <string name="update_app_dialog_title">Atualize o app</string>
+  <string name="update_app_dialog_content">Atualize o Notificações de Exposição para a versão mais recente e termine de compartilhar os resultados do seu teste.</string>
+  <string name="btn_update">Atualizar</string>
+  <string name="try_again_later_error_message">Algo deu errado. Tente novamente em algumas horas.</string>
+  <string name="en_turndown_for_area_title">Sua autoridade de saúde não oferece mais suporte ao Notificações de Exposição</string>
+  <string name="en_turndown_title">O Notificações de Exposição foi desativado</string>
 </resources>

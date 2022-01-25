@@ -15,6 +15,7 @@
   <string name="btn_verify">ផ្ទៀងផ្ទាត់</string>
   <string name="btn_no_thanks">ទេ អរគុណ</string>
   <string name="btn_share">ចែករំលែក</string>
+  <string name="btn_close_app">បិទកម្មវិធី</string>
   <string name="learn_more">ស្វែងយល់បន្ថែម</string>
   <string name="home_tab_settings_text">ការកំណត់</string>
   <string name="notification_channel_name">អាចនៅជិតអ្នកមានផ្ទុក COVID-19</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">តម្រូវឱ្យមាន​ការអនុញ្ញាត ដើម្បីបើកការជូនដំណឹង​អំពី​ការនៅជិត​អ្នកមានផ្ទុក COVID-19</string>
   <string name="onboarding_finish_title">តម្រូវឱ្យបន្តការអនុញ្ញាត ដើម្បីបើកការជូនដំណឹង​អំពី​ការនៅជិត​អ្នកមានផ្ទុក COVID-19</string>
   <string name="onboarding_exposure_notifications_title">បើកការជូនដំណឹងអំពីការនៅជិតអ្នកមានផ្ទុក COVID-19</string>
-  <string name="onboarding_exposure_notifications_detail">ទទួលបានការជូនដំណឹង ប្រសិនបើ​អ្នកបាននៅជិត​នរណាម្នាក់​ដែលបានរាយការណ៍ថា​មានផ្ទុក COVID-19។
+  <string name="onboarding_exposure_notifications_description">ទទួលបានការជូនដំណឹង ប្រសិនបើ​អ្នកបាននៅជិត​នរណាម្នាក់​ដែលបានរាយការណ៍ថា​មានផ្ទុក COVID-19។
     \n\nទូរសព្ទរបស់អ្នក​ប្រើប៊្លូធូស ដើម្បីប្រមូល និងចែករំលែក​លេខសម្គាល់ចៃដន្យ​ដោយសុវត្ថិភាព​ជាមួយ​ទូរសព្ទផ្សេងទៀត​ដែលនៅជិត។
     \n\nកាលបរិច្ឆេទ រយៈពេល និង​កម្លាំង​រលកសញ្ញា​ដែលពាក់ព័ន្ធនឹង​ការដែលអាចនៅជិត​អ្នកមានផ្ទុក COVID-19 ​នឹងត្រូវបានប្រើ ដើម្បីកំណត់ថាតើអ្នកនឹងទទួលបានការជូនដំណឹង ដោយផ្អែកលើប៉ារ៉ាម៉ែត្រដែលកំណត់ដោយអាជ្ញាធរសុខភាព​សាធារណៈរបស់អ្នកឬអត់។
-    \n\nអ្នកអាចទទួលបានការជូនដំណឹងដើម្បីចែករំលែកលទ្ធផលវិភាគជាមួយអាជ្ញាធរសុខភាពរបស់អ្នក ប្រសិនបើអ្នកទទួលបានសារ SMS អំពីលទ្ធផលធ្វើតេស្តរបស់អ្នក។</string>
+    \n\nអ្នកអាច​ទទួលបាន​ការជូនដំណឹងឱ្យ​ចែករំលែក​លទ្ធផលវិភាគជាមួយ​អាជ្ញាធរសុខាភិបាល​របស់អ្នក ប្រសិនបើអ្នកទទួលបានសារ SMS អំពីលទ្ធផល​ធ្វើតេស្ត​របស់អ្នក។ %1$s</string>
   <string name="onboarding_metrics_title">ជួយធ្វើឱ្យកម្មវិធីនេះ​ប្រសើរជាងមុន</string>
   <string name="onboarding_metrics_subtitle">ចែករំលែកទិន្នន័យប្រតិបត្តិការ និងការប្រើប្រាស់កម្មវិធីជាមួយ Google</string>
   <string name="onboarding_metrics_description">ដើម្បីជួយរក្សា និងកែលម្អ​កម្មវិធីនេះ ទិន្នន័យមានកំណត់មួយចំនួន​ដែលមិនបញ្ជាក់អត្តសញ្ញាណ​អំពីការប្រើប្រាស់ និងប្រតិបត្តិការ​កម្មវិធីត្រូវបាន​ចែករំលែកជាមួយ Google។ ទិន្នន័យនេះ​មិនកំណត់​អត្តសញ្ញាណអ្នកទេ។ %1$s</string>
@@ -214,4 +215,11 @@
   <string name="share_upload_status_negative">អវិជ្ជមាន</string>
   <string name="share_upload_status_likely">ទំនងជា​មានផ្ទុក</string>
   <string name="share_diagnosis_progress_tracker">ជំហានទី %1$d នៃ %2$d</string>
+  <string name="see_history_device_authentication_title">ផ្ទៀងផ្ទាត់ថាជាអ្នក</string>
+  <string name="update_app_dialog_title">ដំឡើងកំណែ​កម្មវិធី​របស់​អ្នក</string>
+  <string name="update_app_dialog_content">ដំឡើងកំណែទៅ​កំណែនៃ​ការជូនដំណឹង​អំពីការនៅជិតអ្នកមានផ្ទុក COVID-19 ចុងក្រោយបំផុត ដើម្បីបញ្ចប់​ការចែករំលែកលទ្ធផលនៃ​ការធ្វើតេស្តរបស់អ្នក។</string>
+  <string name="btn_update">ដំឡើងកំណែ</string>
+  <string name="try_again_later_error_message">មានអ្វីមួយខុសប្រក្រតី។ សូមព្យាយាម​ម្ដងទៀត​នៅក្នុង​រយៈពេល​ពីរបី​ម៉ោងទៀត។</string>
+  <string name="en_turndown_for_area_title">អាជ្ញាធរសុខាភិបាលរបស់អ្នកមិនផ្ដល់ការជូនដំណឹង​អំពី​ការនៅជិត​អ្នកមានផ្ទុក COVID-19 ទៀតទេ</string>
+  <string name="en_turndown_title">ការជូនដំណឹង​អំពី​ការនៅជិត​អ្នកមានផ្ទុក COVID-19 ត្រូវបានបិទ</string>
 </resources>

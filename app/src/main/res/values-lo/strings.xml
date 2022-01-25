@@ -15,6 +15,7 @@
   <string name="btn_verify">ຢັ້ງຢືນ</string>
   <string name="btn_no_thanks">ບໍ່, ຂອບໃຈ</string>
   <string name="btn_share">ແບ່ງປັນ</string>
+  <string name="btn_close_app">ປິດແອັບ</string>
   <string name="learn_more">ສຶກສາເພີ່ມເຕີມ</string>
   <string name="home_tab_settings_text">ການຕັ້ງຄ່າ</string>
   <string name="notification_channel_name">ຄວາມສ່ຽງຕິດເຊື້ອ COVID-19</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">ຕ້ອງການສິດອະນຸຍາດເພື່ອເປີດການນຳໃຊ້ການແຈ້ງເຕືອນຄວາມສ່ຽງຕິດເຊື້ອ</string>
   <string name="onboarding_finish_title">ຈຳເປັນຕ້ອງມີການອະນຸຍາດຢ່າງຕໍ່ເນື່ອງເພື່ອເປີດການນຳໃຊ້ການແຈ້ງເຕືອນຄວາມສ່ຽງຕິດເຊື້ອ</string>
   <string name="onboarding_exposure_notifications_title">ເປີດໃຊ້ການແຈ້ງເຕືອນຄວາມສ່ຽງຕິດເຊື້ອ</string>
-  <string name="onboarding_exposure_notifications_detail">ຮັບການແຈ້ງເຕືອນຫາກທ່ານເຄີຍໄປຢູ່ໃກ້ຄົນທີ່ລາຍງານວ່າມີເຊື້ອ COVID-19.
+  <string name="onboarding_exposure_notifications_description">ຮັບການແຈ້ງເຕືອນຫາກທ່ານເຄີຍໄປຢູ່ໃກ້ຄົນທີ່ລາຍງານວ່າມີເຊື້ອ COVID-19.
     \n\nໂທລະສັບຂອງທ່ານຈະໃຊ້ Bluetooth ເພື່ອເກັບກຳ ແລະ ແບ່ງປັນ ID ແບບສຸ່ມກັບໂທລະສັບອື່ນທີ່ຢູ່ໃກ້ກັນຢ່າງປອດໄພ.
     \n\nວັນທີ, ໄລຍະເວລາ ແລະ ຄວາມແຮງສັນຍານທີ່ເຊື່ອມໂຍງກັບຄວາມສ່ຽງຕິດເຊື້ອທີ່ເປັນໄປໄດ້ຈະຖືກໃຊ້ເພື່ອກຳນົດວ່າທ່ານຈະໄດ້ຮັບການແຈ້ງເຕືອນໂດຍອີງໃສ່ພາຣາມິເຕີທີ່ຕັ້ງໄວ້ໂດຍເຈົ້າໜ້າທີ່ສາທາລະນະສຸກຂອງທ່ານຫຼືບໍ່.
-    \n\nທ່ານອາດໄດ້ຮັບການແຈ້ງເຕືອນໃຫ້ແບ່ງປັນການວິນິໄສໃຫ້ກັບເຈົ້າໜ້າທີ່ສາທາລະນະສຸກຂອງທ່ານຫາກທ່ານໄດ້ຮັບ SMS ທີ່ມີຜົນກວດຂອງທ່ານ.</string>
+    \n\nທ່ານອາດໄດ້ຮັບການແຈ້ງເຕືອນໃຫ້ແບ່ງປັນການວິນິໄສໃຫ້ກັບເຈົ້າໜ້າທີ່ສາທາລະນະສຸກຂອງທ່ານຫາກທ່ານໄດ້ຮັບ SMS ທີ່ມີຜົນກວດຂອງທ່ານ. %1$s</string>
   <string name="onboarding_metrics_title">ຊ່ວຍເຮັດໃຫ້ແອັບນີ້ດີຂຶ້ນ</string>
   <string name="onboarding_metrics_subtitle">ແບ່ງປັນຂໍ້ມູນການນຳໃຊ້ ແລະ ປະສິດທິພາບແອັບໃຫ້ກັບ Google</string>
   <string name="onboarding_metrics_description">ເພື່ອຊ່ວຍບຳລຸງຮັກສາ ແລະ ປັບປຸງແອັບ, ຂໍ້ມູນທີ່ບໍ່ສາມາດລະບຸຕົວຕົນທີ່ຈຳກັດໄວ້ບາງຢ່າງກ່ຽວກັບປະສິດທິພາບ ແລະ ການນຳໃຊ້ແອັບຈະຖືກແບ່ງປັນໃຫ້ກັບ Google. ຂໍ້ມູນນີ້ຈະບໍ່ລະບຸຕົວຕົນຂອງທ່ານ. %1$s</string>
@@ -214,4 +215,11 @@
   <string name="share_upload_status_negative">ຜົນລົບ</string>
   <string name="share_upload_status_likely">ມີຄວາມເປັນໄປໄດ້</string>
   <string name="share_diagnosis_progress_tracker">ຂັ້ນຕອນທີ %1$d ຈາກ %2$d</string>
+  <string name="see_history_device_authentication_title">ຢັ້ງຢືນວ່າແມ່ນທ່ານ</string>
+  <string name="update_app_dialog_title">ອັບເດດແອັບຂອງທ່ານ</string>
+  <string name="update_app_dialog_content">ອັບເດດເປັນການແຈ້ງເຕືອນຄວາມສ່ຽງຕິດເຊື້ອເວີຊັນຫຼ້າສຸດເພື່ອແບ່ງປັນຜົນການກວດຂອງທ່ານໃຫ້ແລ້ວ.</string>
+  <string name="btn_update">ອັບເດດ</string>
+  <string name="try_again_later_error_message">ມີບາງຢ່າງຜິດພາດເກີດຂຶ້ນ. ກະລຸນາລອງໃໝ່ໃນອີກສອງສາມຊົ່ວໂມງ.</string>
+  <string name="en_turndown_for_area_title">ເຈົ້າໜ້າທີ່ສາທາລະນະສຸກຂອງທ່ານບໍ່ຮອງຮັບການແຈ້ງເຕືອນຄວາມສ່ຽງຕິດເຊື້ອອີກຕໍ່ໄປແລ້ວ</string>
+  <string name="en_turndown_title">ການແຈ້ງເຕືອນຄວາມສ່ຽງຕິດເຊື້ອຖືກປິດໄວ້ແລ້ວ</string>
 </resources>

@@ -22,4 +22,7 @@
   <string name="share_positive_diagnosis_card_content">Trimiteți rezultatul testului pentru a contribui la combaterea răspândirii COVID-19</string>
   <string name="share_app_card_content">Distribuiți aplicația pentru a vă proteja mai bine comunitatea</string>
   <string name="how_en_works_card_content">Aflați mai multe despre cum funcționează Notificările privind expunerea</string>
+  <string name="en_turndown_for_area_contents">Întrucât autoritatea dvs. în domeniul sănătății își adaptează soluțiile pentru combaterea COVID-19, nu mai acceptă această aplicație. Vă mulțumim că ați folosit aplicația și că ați contribuit la protejarea comunității dvs.</string>
+  <string name="en_turndown_contents">Întrucât autoritățile în domeniul sănătății își adaptează soluțiile pentru combaterea COVID-19, această aplicație nu mai este acceptată. Vă mulțumim că ați folosit aplicația și că ați contribuit la protejarea comunității dvs.</string>
+  <string name="en_turndown_see_test_results_card_content">Puteți vedea în continuare rezultatele testelor dacă le-ați încărcat anterior în Notificări privind expunerea</string>
 </resources>

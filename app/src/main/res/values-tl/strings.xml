@@ -15,6 +15,7 @@
   <string name="btn_verify">I-verify</string>
   <string name="btn_no_thanks">Huwag na lang</string>
   <string name="btn_share">Ibahagi</string>
+  <string name="btn_close_app">Isara ang app</string>
   <string name="learn_more">Matuto pa</string>
   <string name="home_tab_settings_text">Mga Setting</string>
   <string name="notification_channel_name">Posibleng exposure sa COVID-19</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">Mga kinakailangang pahintulot para ma-enable ang Mga Notification sa Exposure</string>
   <string name="onboarding_finish_title">Pagpapatuloy ng mga kinakailangang pahintulot para ma-enable ang Mga Notification sa Exposure</string>
   <string name="onboarding_exposure_notifications_title">I-on ang Mga Notification sa Exposure</string>
-  <string name="onboarding_exposure_notifications_detail">Maabisuhan kung nalapitan mo ang isang taong nag-ulat na may COVID-19.
+  <string name="onboarding_exposure_notifications_description">Maabisuhan kung nalapitan mo ang isang taong nag-ulat na may COVID-19.
     \n\nGumagamit ang iyong telepono ng Bluetooth para secure na makakolekta at makapagbahagi ng mga random na ID sa iba pang telepono sa malapit.
-    \n\nGagamitin ang petsa, tagal, at lakas ng signal na nauugnay sa isang posibleng exposure para tukuyin kung aabisuhan ka batay sa mga parameter na itinakda ng iyong awtoridad sa pampublikong kalusugan.
-    \n\nPosibleng makatanggap ka ng notification na magbahagi ng diagnosis sa iyong awtoridad sa kalusugan kung makatanggap ka ng SMS na nagsasaad ng resulta ng test mo.</string>
+    \n\nGagamitin ang petsa, tagal, at lakas ng signal na nauugnay sa isang posibleng exposure para tukuyin kung aabisuhan ka ba batay sa mga parameter na itinakda ng iyong awtoridad sa pampublikong kalusugan.
+    \n\nPosibleng makatanggap ka ng notification na magbahagi ng diagnosis sa iyong awtoridad sa kalusugan kung makatanggap ka ng SMS na nagsasaad ng resulta ng test mo. %1$s</string>
   <string name="onboarding_metrics_title">Tumulong na pahusayin ang app na ito</string>
   <string name="onboarding_metrics_subtitle">Magbahagi ng data ng app usage at performance sa Google</string>
   <string name="onboarding_metrics_description">Para makatulong na mapanatili at mapahusay ang app, ibinabahagi sa Google ang ilang limitado at walang pagkakakilanlang data tungkol sa performance at paggamit ng app. Hindi ka makikilala sa data na ito. %1$s</string>
@@ -214,4 +215,11 @@
   <string name="share_upload_status_negative">Negatibo</string>
   <string name="share_upload_status_likely">Malamang na Positibo</string>
   <string name="share_diagnosis_progress_tracker">Hakbang %1$d sa %2$d</string>
+  <string name="see_history_device_authentication_title">I-verify na ikaw ito</string>
+  <string name="update_app_dialog_title">I-update ang iyong app</string>
+  <string name="update_app_dialog_content">Mag-update sa pinakabagong bersyon ng Mga Notification sa Exposure para tapusin ang pagbabahagi ng mga resulta ng iyong pagsusuri.</string>
+  <string name="btn_update">I-update</string>
+  <string name="try_again_later_error_message">Nagkaproblema. Subukan ulit pagkalipas ng ilang oras.</string>
+  <string name="en_turndown_for_area_title">Hindi na sinusuportahan ng iyong Awtoridad sa Kalusugan ang Mga Notification sa Exposure</string>
+  <string name="en_turndown_title">Na-off ang Mga Notification sa Exposure</string>
 </resources>

@@ -22,4 +22,7 @@
   <string name="share_positive_diagnosis_card_content">Chia sẻ kết quả xét nghiệm của bạn để giúp ngăn chặn sự lây lan của COVID-19</string>
   <string name="share_app_card_content">Chia sẻ ứng dụng này để bảo vệ cộng đồng tốt hơn</string>
   <string name="how_en_works_card_content">Tìm hiểu thêm về cách hoạt động của Thông báo tiếp xúc</string>
+  <string name="en_turndown_for_area_contents">Vì cơ quan y tế điều chỉnh biện pháp ứng phó với dịch COVID-19 nên sẽ không hỗ trợ ứng dụng này nữa. Cảm ơn bạn đã dùng ứng dụng và góp sức bảo vệ cộng đồng.</string>
+  <string name="en_turndown_contents">Vì các cơ quan y tế điều chỉnh biện pháp ứng phó với dịch COVID-19 nên sẽ không hỗ trợ ứng dụng này nữa. Cảm ơn bạn đã dùng ứng dụng và góp sức bảo vệ cộng đồng.</string>
+  <string name="en_turndown_see_test_results_card_content">Bạn vẫn có thể xem các kết quả xét nghiệm mà trước đây bạn đã tải lên ứng dụng Thông báo tiếp xúc</string>
 </resources>

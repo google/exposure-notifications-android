@@ -38,6 +38,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import org.threeten.bp.Duration;
 
 /**
  * Wrapper around {@link com.google.android.gms.nearby.Nearby} APIs.
@@ -59,6 +60,8 @@ public class ExposureNotificationClientWrapper {
 
   public static final String ACTION_PRE_AUTHORIZE_RELEASE_PHONE_UNLOCKED =
       "com.google.android.gms.exposurenotification.ACTION_PRE_AUTHORIZE_RELEASE_PHONE_UNLOCKED";
+
+  public static final Duration GET_STATUS_TIMEOUT = Duration.ofSeconds(10);
 
   private final ExposureNotificationClient exposureNotificationClient;
   private final AnalyticsLogger logger;

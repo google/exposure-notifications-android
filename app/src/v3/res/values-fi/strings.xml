@@ -14,4 +14,6 @@
   <string name="share_history_delete_test_result_detail">COVID-19-testituloksesi (%1$s) poistetaan puhelimestasi.</string>
   <string name="sms_intercept_notice_card_title">Saat muistutuksen tuloksen jakamisesta</string>
   <string name="sms_intercept_notice_card_content">Jos tulos on posit. ja tulee vahv. viestillä</string>
+  <string name="en_turndown_contents">Terveydenhuoltoviranomaiset muuttavat COVID-19-toimiaan, eikä altistumisilmoituksia enää tueta. Kiitos, että käytit palvelua ja autoit suojelemaan yhteisöäsi.</string>
+  <string name="en_turndown_for_area_contents">Terveydenhuoltoviranomainen muuttaa COVID-19-toimiaan eikä enää tue altistumisilmoituksia. Kiitos, että käytit palvelua ja autoit suojelemaan yhteisöäsi.</string>
 </resources>

@@ -14,4 +14,6 @@
   <string name="share_history_delete_test_result_detail">COVID-19aren probaren emaitza (%1$s) ezabatu egingo da telefonotik.</string>
   <string name="sms_intercept_notice_card_title">Baliteke emaitza partekatzeko abisu bat jasotzea</string>
   <string name="sms_intercept_notice_card_content">Emaitza positiboa bada eta SMS egiaztatu bat jasotzen baduzu</string>
+  <string name="en_turndown_contents">Osasun-agintaritzak COVID-19ari aurre egiteko duten modua egokitzen ari direnez, aurrerantzean ez dituzte onartuko esposizioari buruzko jakinarazpenak. Eskerrik asko zerbitzua erabiltzeagatik eta zure komunitatea babesteagatik.</string>
+  <string name="en_turndown_for_area_contents">Zure osasun-agintaritza COVID-19ari aurre egiteko duen modua egokitzen ari denez, aurrerantzean ez ditu onartuko esposizioari buruzko jakinarazpenak. Eskerrik asko zerbitzua erabiltzeagatik eta zure komunitatea babesteagatik.</string>
 </resources>

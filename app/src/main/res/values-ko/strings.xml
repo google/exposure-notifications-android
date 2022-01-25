@@ -15,6 +15,7 @@
   <string name="btn_verify">확인</string>
   <string name="btn_no_thanks">거부</string>
   <string name="btn_share">공유</string>
+  <string name="btn_close_app">앱 닫기</string>
   <string name="learn_more">자세히 알아보기</string>
   <string name="home_tab_settings_text">설정</string>
   <string name="notification_channel_name">코로나19 노출 가능성</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">노출 알림을 사용 설정하려면 권한 필요</string>
   <string name="onboarding_finish_title">노출 알림을 사용 설정하려면 계속해서 권한 필요</string>
   <string name="onboarding_exposure_notifications_title">노출 알림 사용 설정</string>
-  <string name="onboarding_exposure_notifications_detail">코로나19에 걸렸다고 신고한 사람의 근처에 간 적이 있다면 알려 줍니다.
+  <string name="onboarding_exposure_notifications_description">코로나19에 걸렸다고 신고한 사람의 근처에 간 적이 있다면 알림을 받게 됩니다.
     \n\n휴대전화에서 블루투스를 사용하여 근처 휴대전화의 임의 ID를 안전하게 수집 및 공유합니다.
     \n\n잠재적인 노출과 관련된 날짜, 기간, 신호 강도는 공공 보건 당국에서 설정한 매개변수를 기준으로 알림을 보낼지 결정하는 데 사용됩니다.
-    \n\n검사 결과를 SMS로 받은 경우 검사 결과를 보건 당국과 공유하라는 알림을 받을 수도 있습니다.</string>
+    \n\n검사 결과를 SMS로 받은 경우 검사 결과를 보건 당국과 공유하라는 알림을 받을 수도 있습니다. %1$s</string>
   <string name="onboarding_metrics_title">앱 개선에 참여하기</string>
   <string name="onboarding_metrics_subtitle">Google에 앱 사용 정보 및 성능 데이터 공유</string>
   <string name="onboarding_metrics_description">앱을 유지관리하고 개선하기 위해 앱 성능 및 사용과 관련된 일부 익명화된 데이터가 Google과 제한적으로 공유됩니다. 이 데이터로는 사용자 식별이 불가능합니다. %1$s</string>
@@ -214,4 +215,11 @@
   <string name="share_upload_status_negative">음성</string>
   <string name="share_upload_status_likely">양성일 가능성 있음</string>
   <string name="share_diagnosis_progress_tracker">총 %2$d단계 중 %1$d단계</string>
+  <string name="see_history_device_authentication_title">본인 인증</string>
+  <string name="update_app_dialog_title">앱 업데이트</string>
+  <string name="update_app_dialog_content">검사 결과 공유를 완료하려면 노출 알림을 최신 버전으로 업데이트하세요.</string>
+  <string name="btn_update">업데이트</string>
+  <string name="try_again_later_error_message">문제가 발생했습니다. 몇 시간 후 다시 시도해 주세요.</string>
+  <string name="en_turndown_for_area_title">현지 보건 당국에서 더 이상 노출 알림을 지원하지 않습니다</string>
+  <string name="en_turndown_title">노출 알림이 사용 중지되었습니다</string>
 </resources>

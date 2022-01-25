@@ -22,4 +22,7 @@
   <string name="share_positive_diagnosis_card_content">Jaa testituloksesi COVID-19:n leviämisen estämiseksi</string>
   <string name="share_app_card_content">Jaa tämä sovellus muiden suojelemiseksi</string>
   <string name="how_en_works_card_content">Lue lisää siitä, miten altistumisilmoitukset toimivat</string>
+  <string name="en_turndown_for_area_contents">Terveydenhuoltoviranomainen muuttaa COVID-19-toimiaan eikä enää tue tätä sovellusta. Kiitos, että käytit sovellusta ja autoit suojelemaan yhteisöäsi.</string>
+  <string name="en_turndown_contents">Terveydenhuoltoviranomaiset muuttavat COVID-19-toimiaan, eikä tätä sovellusta enää tueta. Kiitos, että käytit sovellusta ja autoit suojelemaan yhteisöäsi.</string>
+  <string name="en_turndown_see_test_results_card_content">Voit edelleen nähdä testitulokset, jotka olet aiemmin ladannut altistumisilmoituksiin.</string>
 </resources>

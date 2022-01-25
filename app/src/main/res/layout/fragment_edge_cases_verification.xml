@@ -79,6 +79,20 @@
         android:layout_gravity="center_horizontal"
         android:text="@string/turn_on_exposure_notifications_action" />
 
+      <!-- PHA message that may be displayed in case of the PHA-turndown -->
+      <TextView
+        android:id="@+id/health_authority_turndown_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|start"
+        android:layout_marginVertical="@dimen/padding_medium"
+        android:paddingStart="@dimen/padding_medium"
+        android:autoLink="web"
+        android:text="@string/turndown_agency_message"
+        android:textAppearance="?attr/textAppearanceBody2"
+        android:textColor="?attr/colorControlNormal"
+        android:visibility="gone" />
+
     </LinearLayout>
 
   </androidx.core.widget.NestedScrollView>

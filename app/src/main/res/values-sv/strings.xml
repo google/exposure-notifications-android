@@ -15,6 +15,7 @@
   <string name="btn_verify">Verifiera</string>
   <string name="btn_no_thanks">Nej tack</string>
   <string name="btn_share">Dela</string>
+  <string name="btn_close_app">Stäng appen</string>
   <string name="learn_more">Läs mer</string>
   <string name="home_tab_settings_text">Inställningar</string>
   <string name="notification_channel_name">Möjlig exponering för covid-19</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">Behörigheter som krävs för att aktivera Aviseringar om exponering</string>
   <string name="onboarding_finish_title">Fortsättning om behörigheter som krävs för att aktivera Aviseringar om exponering</string>
   <string name="onboarding_exposure_notifications_title">Aktivera Aviseringar om exponering</string>
-  <string name="onboarding_exposure_notifications_detail">Bli meddelad om du har varit i närheten av någon som har registrerat att han eller hon har covid-19.
+  <string name="onboarding_exposure_notifications_description">Bli meddelad om du har varit i närheten av någon som har registrerat att han eller hon har covid-19.
     \n\nTelefonen använder Bluetooth för att samla in och dela slumpgenererade id:n med telefoner i närheten på ett säkert sätt.
     \n\nDatum, varaktighet och signalstyrka i samband med en exponering används för att fastställa huruvida du blir meddelad utifrån de parametrar som fastställts av hälsomyndigheterna.
-    \n\nDu kan få en avisering om att dela en diagnos med hälsomyndigheten om du får ett sms med ditt testresultat.</string>
+    \n\nDu kan få en avisering om att dela en diagnos med hälsomyndigheterna om du får ett sms med ditt testresultat. %1$s</string>
   <string name="onboarding_metrics_title">Hjälp till att förbättra den här appen</string>
   <string name="onboarding_metrics_subtitle">Dela användnings- och prestandadata med Google</string>
   <string name="onboarding_metrics_description">En begränsad mängd avidentifierad data om appens prestanda och användningen av appen delas med Google i syfte att underhålla och förbättra appen. Det går inte att identifiera dig utifrån denna data. %1$s</string>
@@ -214,4 +215,11 @@
   <string name="share_upload_status_negative">Negativ</string>
   <string name="share_upload_status_likely">Sannolikt positiv</string>
   <string name="share_diagnosis_progress_tracker">Steg %1$d av %2$d</string>
+  <string name="see_history_device_authentication_title">Verifiera din identitet</string>
+  <string name="update_app_dialog_title">Uppdatera appen</string>
+  <string name="update_app_dialog_content">Uppdatera till den senaste versionen av Aviseringar om exponering om du vill dela ditt testresultat.</string>
+  <string name="btn_update">Uppdatera</string>
+  <string name="try_again_later_error_message">Något gick fel. Försök igen om några timmar.</string>
+  <string name="en_turndown_for_area_title">Hälsomyndigheten stöder inte längre Aviseringar om exponering</string>
+  <string name="en_turndown_title">Aviseringar om exponering har inaktiverats</string>
 </resources>

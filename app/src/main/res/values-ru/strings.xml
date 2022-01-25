@@ -15,6 +15,7 @@
   <string name="btn_verify">Подтвердить</string>
   <string name="btn_no_thanks">Нет, спасибо</string>
   <string name="btn_share">Разрешить</string>
+  <string name="btn_close_app">Закрыть приложение</string>
   <string name="learn_more">Подробнее…</string>
   <string name="home_tab_settings_text">Настройки</string>
   <string name="notification_channel_name">COVID-19: возможные контакты</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">Чтобы включить Уведомления о риске инфицирования, предоставьте необходимые разрешения</string>
   <string name="onboarding_finish_title">Чтобы включить Уведомления о риске инфицирования, предоставьте все необходимые разрешения</string>
   <string name="onboarding_exposure_notifications_title">Включите уведомления о риске инфицирования</string>
-  <string name="onboarding_exposure_notifications_detail">Получайте оповещения, если вы находитесь рядом с человеком, который сообщил о заражении инфекцией COVID-19.
+  <string name="onboarding_exposure_notifications_description">Получайте уведомления о том, что вы находились недалеко от человека с COVID-19.
     \n\nВаш телефон использует Bluetooth, чтобы безопасно собирать случайные идентификаторы и обмениваться ими с другими устройствами поблизости.
     \n\nДля отправки сообщений используются сведения о дате и продолжительности контакта между телефонами, а также о силе Bluetooth-сигнала, попадающие в пределы значений, установленных местными государственными органами здравоохранения.
-    \n\nЕсли вы получите SMS с результатом теста, может появиться уведомление с предложением сообщить о диагнозе в местный орган здравоохранения.</string>
+    \n\nЕсли вам придет SMS с результатами тестирования, вы можете получить уведомление с предложением отправить эту информацию в орган здравоохранения. %1$s</string>
   <string name="onboarding_metrics_title">Помогите улучшить приложение</string>
   <string name="onboarding_metrics_subtitle">Включите отправку данных о приложении в Google.</string>
   <string name="onboarding_metrics_description">Чтобы улучшать и поддерживать работу приложения, Google собирает ограниченный набор анонимных данных о его использовании и производительности. Идентифицировать пользователя по этим данным невозможно. %1$s</string>
@@ -218,4 +219,11 @@
   <string name="share_upload_status_negative">Отрицательный</string>
   <string name="share_upload_status_likely">Возможное инфицирование</string>
   <string name="share_diagnosis_progress_tracker">Шаг %1$d из %2$d</string>
+  <string name="see_history_device_authentication_title">Подтвердите свою личность</string>
+  <string name="update_app_dialog_title">Обновите приложение</string>
+  <string name="update_app_dialog_content">Чтобы завершить отправку результатов тестирования, обновите приложение \"Уведомления о риске инфицирования\" до последней версии.</string>
+  <string name="btn_update">Обновить</string>
+  <string name="try_again_later_error_message">Произошла ошибка. Повторите попытку через несколько часов.</string>
+  <string name="en_turndown_for_area_title">Местные органы здравоохранения больше не поддерживают Уведомления о риске инфицирования</string>
+  <string name="en_turndown_title">Уведомления о риске инфицирования отключены</string>
 </resources>

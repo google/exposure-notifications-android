@@ -14,4 +14,6 @@
   <string name="share_history_delete_test_result_detail">תוצאת הבדיקה שלך לנגיף הקורונה (COVID-19) מ-%1$s תימחק מהטלפון.</string>
   <string name="sms_intercept_notice_card_title">יש לך אפשרות לקבל תזכורת לשיתוף תוצאת הבדיקה</string>
   <string name="sms_intercept_notice_card_content">אם תוצאת הבדיקה שלך תהיה חיובית ותתקבל הודעת SMS מאומתת</string>
+  <string name="en_turndown_contents">במשרד הבריאות מעדכנים את אופן ההתמודדות עם נגיף הקורונה, והתמיכה ב\'התראות חשיפה\' הופסקה. תודה שהשתמשת באפליקציה ועזרת להגן על הקהילה שלך.</string>
+  <string name="en_turndown_for_area_contents">במשרד הבריאות באזורך מעדכנים את אופן ההתמודדות עם נגיף הקורונה, והם הפסיקו לתמוך באפליקציה \'התראות חשיפה\'. תודה שהשתמשת באפליקציה ועזרת להגן על הקהילה שלך.</string>
 </resources>

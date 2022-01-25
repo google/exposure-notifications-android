@@ -298,7 +298,7 @@ public class StateUpdatedWorker extends ListenableWorker {
     /*
      * Write a the scores of the DailySummaries to disk for later revocation detection
      */
-    exposureRepository.clearInsertExposureEntities(currentExposureEntities);
+    exposureRepository.deleteInsertExposureEntities(currentExposureEntities);
 
     return showNotification;
   }

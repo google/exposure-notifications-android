@@ -67,6 +67,9 @@
   <!-- Button text shown on the onboarding flow. Clicking will opt-in to private analytics to help contain the spread of COVID-19. [CHAR_LIMIT=40] -->
   <string name="btn_share">Share</string>
 
+  <!-- "Close app" button, which may be displayed at various places in the app. Clicking this button will close the app. [CHAR_LIMIT=40] -->
+  <string name="btn_close_app">Close app</string>
+
   <!-- Link title to more information about a topic where the link is displayed. [CHAR_LIMIT=100] -->
   <string name="learn_more">Learn more</string>
 
@@ -108,12 +111,12 @@
   <!-- Title of the exposure notification section on the onboarding screen explaining that exposure notifications will be turned on. This screen is shown on first use of the app when not previously enabled. [CHAR_LIMIT=60] -->
   <string name="onboarding_exposure_notifications_title">Turn on Exposure Notifications</string>
 
-  <!-- Text of the exposure notification section on the onboarding screen explaining that exposure notifications will be turned on. This screen is shown on first use of the app when not previously enabled. The placeholder string is the app name. [CHAR_LIMIT=NONE] -->
-  <string name="onboarding_exposure_notifications_detail">
+  <!-- Text of the exposure notification section on the onboarding screen explaining that exposure notifications will be turned on. This screen is shown on first use of the app when not previously enabled. The placeholder is a learn more link. [CHAR_LIMIT=NONE] -->
+  <string name="onboarding_exposure_notifications_description">
     Get notified if you\'ve been near someone who reported having COVID-19.
     \n\nYour phone uses Bluetooth to securely collect and share random IDs with other phones that are nearby.
     \n\nThe date, duration, and signal strength associated with a possible exposure will be used to determine whether you will be notified based on parameters set by your public health authority.
-    \n\nYou may receive a notification to share a diagnosis with your health authority if you get an SMS with your test result.
+    \n\nYou may receive a notification to share a diagnosis with your health authority if you get an SMS with your test result. <xliff:g id="learn_more" example="Learn more">%1$s</xliff:g>
   </string>
 
   <!-- Title of the metric sharing section on the onboarding screen explaining that choosing to share metrics will help improve the app. This screen is shown on first use of the app when not previously enabled. [CHAR_LIMIT=60] -->
@@ -664,4 +667,28 @@
 
   <!-- Shown in the notify others flow, displaying the user's progress on the flow. [CHAR_LIMIT=60] -->
   <string name="share_diagnosis_progress_tracker">Step <xliff:g id="current_step" example="1">%1$d</xliff:g> of <xliff:g id="total_number_of_steps" example="2">%2$d</xliff:g></string>
+
+  <!-- Title of the share history bio-auth prompt. This screen prompts the user to authenticate with their lock screen credentials before accessing the share history. [CHAR_LIMIT=100] -->
+  <string name="see_history_device_authentication_title">Verify it\'s you</string>
+
+  <!-- IN-APP UPDATES FLOW -->
+  <!-- Title of the dialog prompting user to update their app. This dialog is shown in the "Notify others" flow when the user needs to get an app update to proceed with the flow since the current app version has an error. [CHAR_LIMIT=60] -->
+  <string name="update_app_dialog_title">Update your app</string>
+
+  <!-- Contents of the "Update your app" dialog, which is prompting user to update their app. This dialog is shown in the "Notify others" flow when the user needs to get an app update to proceed with the flow since the current app version has an error. [CHAR_LIMIT=200] -->
+  <string name="update_app_dialog_content">Update to the latest version of Exposure Notifications to finish sharing your test results.</string>
+
+  <!-- "Update" button on the "Update your app" dialog, which is prompting user to update their app. [CHAR_LIMIT=40] -->
+  <string name="btn_update">Update</string>
+
+  <!-- Error message displayed when there was an error, which might be resolved if the user tries again in a few hours. [CHAR_LIMIT=120] -->
+  <string name="try_again_later_error_message">Something went wrong. Try again in a few hours.</string>
+
+  <!-- EN TURNED DOWN STATE -->
+  <!-- Title of the onboarding and home pages, shown when the user lands on the page and Exposure Notifications has been turned down for the user's area. [CHAR_LIMIT=120] -->
+  <string name="en_turndown_for_area_title">Your Health Authority no longer supports Exposure Notifications</string>
+
+  <!-- Title of the onboarding and home pages, shown when the user lands on the page and Exposure Notifications has been turned down as an entire system. [CHAR_LIMIT=120] -->
+  <string name="en_turndown_title">Exposure Notifications has been turned off</string>
+
 </resources>

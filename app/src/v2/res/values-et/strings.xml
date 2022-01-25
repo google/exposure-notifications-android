@@ -22,4 +22,7 @@
   <string name="share_positive_diagnosis_card_content">Jagage oma testitulemust, et aidata COVID-19 levikut takistada</string>
   <string name="share_app_card_content">Jagage seda rakendust, et oma kogukonda paremini kaitsta</string>
   <string name="how_en_works_card_content">Vaadake lisateavet selle kohta, kuidas kokkupuute märguannete süsteem toimib</string>
+  <string name="en_turndown_for_area_contents">Kuna teie tervishoiuasutus kohandab reageerimist COVID-19-le, ei toeta see enam seda rakendust. Täname teid rakenduse kasutamise ja kogukonna kaitsmisele panustamise eest.</string>
+  <string name="en_turndown_contents">Kuna tervishoiuasutused kohandavad reageerimist COVID-19-le, ei toetata enam seda rakendust. Täname teid rakenduse kasutamise ja kogukonna kaitsmisele panustamise eest.</string>
+  <string name="en_turndown_see_test_results_card_content">Näete siiski testitulemusi, mille olete varem rakendusse Kokkupuute märguanded üles laadinud</string>
 </resources>

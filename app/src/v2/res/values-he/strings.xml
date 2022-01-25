@@ -22,4 +22,7 @@
   <string name="share_positive_diagnosis_card_content">אפשר לשתף את תוצאת הבדיקה שלך כדי לעזור בבלימת ההתפשטות של נגיף הקורונה (COVID-19)</string>
   <string name="share_app_card_content">אפשר לשתף את האפליקציה הזו כדי להגן טוב יותר על הקהילה</string>
   <string name="how_en_works_card_content">מידע נוסף על האופן שבו פועלות התראות החשיפה</string>
+  <string name="en_turndown_for_area_contents">במשרד הבריאות באזורך מעדכנים את אופן ההתמודדות עם נגיף הקורונה, והם הפסיקו לתמוך באפליקציה הזו. תודה שהשתמשת באפליקציה ועזרת להגן על הקהילה שלך.</string>
+  <string name="en_turndown_contents">במשרד הבריאות מעדכנים את אופן ההתמודדות עם נגיף הקורונה, והתמיכה באפליקציה הזו הופסקה. תודה שהשתמשת באפליקציה ועזרת להגן על הקהילה שלך.</string>
+  <string name="en_turndown_see_test_results_card_content">יש לך עדיין אפשרות לראות תוצאות של בדיקות שהעלית ל\'התראות חשיפה\'</string>
 </resources>

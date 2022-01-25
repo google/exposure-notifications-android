@@ -15,6 +15,7 @@
   <string name="btn_verify">Doğrulayın</string>
   <string name="btn_no_thanks">Xeyr, təşəkkür</string>
   <string name="btn_share">Paylaşın</string>
+  <string name="btn_close_app">Tətbiqi qapadın</string>
   <string name="learn_more">Ətraflı məlumat</string>
   <string name="home_tab_settings_text">Ayarlar</string>
   <string name="notification_channel_name">Mümkün COVID-19 yoluxması</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">Yoluxma Bildirişlərini aktivləşdirmək üçün icazələr tələb olunur</string>
   <string name="onboarding_finish_title">Yoluxma Bildirişlərini aktivləşdirmək üçün icazələrin davam etdirilməsi tələb olunur</string>
   <string name="onboarding_exposure_notifications_title">Yoluxma riski haqqında bildirişləri aktiv edin</string>
-  <string name="onboarding_exposure_notifications_detail">COVID-19 xəstəliyinə yoluxduğunu bildirmiş bir şəxsə yaxınlaşdığınız zaman bildiriş alın.
+  <string name="onboarding_exposure_notifications_description">COVID-19 xəstəliyinə yoluxduğunu bildirmiş bir şəxsə yaxınlaşdığınız zaman bildiriş alın.
     \n\nTelefonunuz yaxında olan digər telefonlardan təsadüfi ID\'ləri toplamaq və onlarla paylaşmaq üçün Bluetooth\'dan istifadə edir.
     \n\nEhtimal yoluxma ilə əlaqəli tarix, müddət və siqnal gücü səhiyyə orqanınız tərəfindən təyin olunan parametrlərə əsasən sizə xəbər verilib-verilməməsini təyin etmək üçün istifadə ediləcəkdir.
-    \n\nTest nəticəniz olan SMS alsanız, diaqnozu səhiyyə orqanınızla paylaşmaq üçün bildiriş ala bilərsiniz.</string>
+    \n\nTest nəticəniz olan SMS alsanız, diaqnozu səhiyyə orqanınızla paylaşmaq üçün bildiriş ala bilərsiniz. %1$s</string>
   <string name="onboarding_metrics_title">Bu tətbiqi təkmilləşdirməyə kömək edin</string>
   <string name="onboarding_metrics_subtitle">Tətbiq istifadəsi, məhsuldarlıq datasını Google ilə paylaşın</string>
   <string name="onboarding_metrics_description">Tətbiqin dəstəklənməsi və təkmilləşdirilməsinə kömək etmək üçün tətbiq məhsuldarlığı və istifadəsi barədə şəxsiyyəti müəyyənləşdirməyən bəzi məhdud məlumatlar Google ilə paylaşılır. Bu məlumatlar kimliyinizi müəyyənləşdirmir. %1$s</string>
@@ -214,4 +215,11 @@
   <string name="share_upload_status_negative">Neqativ</string>
   <string name="share_upload_status_likely">Güman ki</string>
   <string name="share_diagnosis_progress_tracker">%1$d/%2$d mərhələ</string>
+  <string name="see_history_device_authentication_title">Kimliyinizi doğrulayın</string>
+  <string name="update_app_dialog_title">Tətbiqinizi güncəlləyin</string>
+  <string name="update_app_dialog_content">Test nəticələrinizi paylaşmağı tamamlamaq üçün Yoluxma Bildirişlərinin ən son versiyasına güncəlləyin.</string>
+  <string name="btn_update">Güncəlləyin</string>
+  <string name="try_again_later_error_message">Xəta baş verdi. Bir neçə saatdan sonra yenidən sınayın.</string>
+  <string name="en_turndown_for_area_title">Səhiyyə Orqanınız daha Yoluxma Bildirişlərini dəstəkləmir</string>
+  <string name="en_turndown_title">Yoluxma Bildirişləri deaktiv edilib</string>
 </resources>

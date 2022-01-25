@@ -15,6 +15,7 @@
   <string name="btn_verify">စိစစ်ရန်</string>
   <string name="btn_no_thanks">မလိုပါ</string>
   <string name="btn_share">မျှဝေရန်</string>
+  <string name="btn_close_app">အက်ပ်ကိုပိတ်ရန်</string>
   <string name="learn_more">ပိုမိုလေ့လာရန်</string>
   <string name="home_tab_settings_text">ဆက်တင်များ</string>
   <string name="notification_channel_name">COVID-19 ထိတွေ့နိုင်ခြေ</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">‘ထိတွေ့မှုအကြောင်းကြားချက်များ’ ဖွင့်ရန် လိုအပ်သောခွင့်ပြုချက်များ</string>
   <string name="onboarding_finish_title">‘ထိတွေ့မှုအကြောင်းကြားချက်များ’ ဖွင့်ရန် လိုအပ်သောခွင့်ပြုချက်များ၏ အဆက်</string>
   <string name="onboarding_exposure_notifications_title">\'ထိတွေ့မှု အကြောင်းကြားချက်များ\' ကို ဖွင့်ပါ</string>
-  <string name="onboarding_exposure_notifications_detail">COVID-19 ရှိကြောင်း သတင်းပို့ထားသူအနားသို့ သင်ရောက်ရှိခဲ့ပါက အကြောင်းကြားချက်ရယူပါ။
-    \n\nသင့်ဖုန်းသည် ကျပန်း ID များကို လုံခြုံစွာစုဆောင်းရန်နှင့် အနီးတစ်ဝိုက်ရှိ အခြားဖုန်းများနှင့် မျှဝေရန် \'ဘလူးတုသ်\' ကို အသုံးပြုသည်။
-    \n\nသင်၏ ပြည်သူ့ ကျန်းမာရေး အာဏာပိုင်က သတ်မှတ်ထားသည့် သတ်မှတ်ချက်ဘောင်များပေါ်အခြေခံ၍ သင့်အား အကြောင်းကြားမည်၊ မကြားမည်ကို ဆုံးဖြတ်ရန် ထိတွေ့နိုင်ခြေနှင့်ဆက်စပ်သော ရက်စွဲ၊ ကြာချိန်နှင့် လိုင်းဆွဲအားတို့ အသုံးပြုမည်။
-    \n\nသင်၏ စစ်ဆေးမှုရလဒ်နှင့်ပတ်သက်၍ SMS ရရှိပါက သင့်ကျန်းမာရေးအာဏာပိုင်ကို ရောဂါတွေ့ရှိချက် မျှဝေရန် အကြောင်းကြားချက်တစ်ခု ရရှိနိုင်သည်။</string>
+  <string name="onboarding_exposure_notifications_description">COVID-19 ရှိကြောင်း သတင်းပို့ထားသူအနားသို့ သင်ရောက်ရှိခဲ့ပါက အကြောင်းကြားချက်ရယူပါ။
+    \n\nသင့်ဖုန်းသည် ကျပန်း ID များကို လုံခြုံစွာစုဆောင်းရန်နှင့် အနီးတစ်ဝိုက်ရှိ အခြားဖုန်းများနှင့် မျှဝေရန် ဘလူးတုသ်သုံးသည်။
+    \n\nသင်၏ ပြည်သူ့ကျန်းမာရေးအာဏာပိုင်က သတ်မှတ်ထားသည့် သတ်မှတ်ချက်ဘောင်များပေါ် အခြေခံ၍ သင့်အား အကြောင်းကြားမည်၊ မကြားမည်ကို ဆုံးဖြတ်ရန် ထိတွေ့နိုင်ခြေနှင့်ဆက်စပ်သော ရက်စွဲ၊ ကြာချိန်နှင့် လိုင်းဆွဲအားတို့ အသုံးပြုမည်။
+    \n\nသင်၏ စစ်ဆေးမှုရလဒ်နှင့်ပတ်သက်၍ SMS ရရှိပါက သင့်ကျန်းမာရေးအာဏာပိုင်ကို ရောဂါတွေ့ရှိချက် မျှဝေရန် အကြောင်းကြားချက်တစ်ခု ရရှိနိုင်သည်။ %1$s</string>
   <string name="onboarding_metrics_title">ဤအက်ပ်ကို ပိုမိုကောင်းမွန်စေရန် ကူညီဆောင်ရွက်ပေးပါ</string>
   <string name="onboarding_metrics_subtitle">အက်ပ်အသုံးပြုမှုနှင့် စွမ်းဆောင်ရည်ဒေတာကို Google နှင့်မျှဝေပါ</string>
   <string name="onboarding_metrics_description">အက်ပ်ကို ကူညီထိန်းသိမ်းရန်နှင့် ပိုမိုကောင်းမွန်စေရန် အက်ပ်စွမ်းဆောင်ရည်၊ အသုံးပြုမှုတို့နှင့်ပတ်သက်သော အမည်ခွဲခြားမသိနိုင်သည့် ဒေတာအချို့ကို Google အားမျှဝေသည်။ ဤဒေတာသည် သင် မည်သူမည်ဝါဖြစ်ကြောင်း ထုတ်ဖော်မည်မဟုတ်ပါ။ %1$s</string>
@@ -214,4 +215,11 @@
   <string name="share_upload_status_negative">ရောဂါပိုးမရှိပါ</string>
   <string name="share_upload_status_likely">ဖြစ်နိုင်ခြေရှိသည်</string>
   <string name="share_diagnosis_progress_tracker">အဆင့် %2$d ဆင့် အနက်မှ %1$d</string>
+  <string name="see_history_device_authentication_title">သင်ဖြစ်ကြောင်း အတည်ပြုခြင်း</string>
+  <string name="update_app_dialog_title">သင့်အက်ပ်ကို အပ်ဒိတ်လုပ်ခြင်း</string>
+  <string name="update_app_dialog_content">သင့်စမ်းသပ်မှု ရလဒ်များကို အဆုံးသတ်မျှဝေနိုင်ရန် ‘ထိတွေ့မှု အကြောင်းကြားချက်များ’ ကို နောက်ဆုံးဗားရှင်းအထိ အပ်ဒိတ်လုပ်ပါ။</string>
+  <string name="btn_update">အပ်ဒိတ်လုပ်ရန်</string>
+  <string name="try_again_later_error_message">တစ်ခုခုမှားသွားသည်။ နာရီအနည်းငယ်အကြာတွင် ထပ်စမ်းကြည့်ပါ။</string>
+  <string name="en_turndown_for_area_title">သင့် ‘ကျန်းမာရေးအာဏာပိုင်’ က ‘ထိတွေ့မှု အကြောင်းကြားချက်များ’ ကိုပံ့ပိုးပေးခြင်း မရှိတော့ပါ</string>
+  <string name="en_turndown_title">‘ထိတွေ့မှု အကြောင်းကြားချက်များ’ ကိုပိတ်ထားသည်</string>
 </resources>

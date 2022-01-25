@@ -19,7 +19,6 @@ package com.google.android.apps.exposurenotification.home;
 
 import static com.google.android.apps.exposurenotification.notify.ShareDiagnosisViewModel.EN_STATES_BLOCKING_SHARING_FLOW;
 import static com.google.common.truth.Truth.assertThat;
-import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -39,7 +38,6 @@ import com.google.android.apps.exposurenotification.storage.DbModule;
 import com.google.android.apps.exposurenotification.storage.DiagnosisRepository;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationDatabase;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
-import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.BadgeStatus;
 import com.google.android.apps.exposurenotification.testsupport.ExposureNotificationRules;
 import com.google.android.apps.exposurenotification.testsupport.FakeClock;
 import com.google.android.apps.exposurenotification.testsupport.InMemoryDb;
@@ -74,10 +72,13 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
+import org.robolectric.annotation.LooperMode;
+import org.robolectric.annotation.LooperMode.Mode;
 
 @HiltAndroidTest
 @RunWith(RobolectricTestRunner.class)
 @Config(application = HiltTestApplication.class)
+@LooperMode(Mode.LEGACY)
 @UninstallModules({DbModule.class, RealTimeModule.class})
 public class ExposureNotificationViewModelTest {
 
@@ -101,6 +102,10 @@ public class ExposureNotificationViewModelTest {
       ImmutableSet.of(ExposureNotificationStatus.ACTIVATED);
   private static final Set<ExposureNotificationStatus> INACTIVATED_SET =
       ImmutableSet.of(ExposureNotificationStatus.INACTIVATED);
+  private static final Set<ExposureNotificationStatus> EN_TURNDOWN_SET =
+      ImmutableSet.of(ExposureNotificationStatus.EN_NOT_SUPPORT);
+  private static final Set<ExposureNotificationStatus> EN_TURNDOWN_FOR_REGION_SET =
+      ImmutableSet.of(ExposureNotificationStatus.NOT_IN_ALLOWLIST);
   /*
    * Maps from the set of ExposureNotificationStatus objects, which may actually be returned by the
    * EN module's getStatus() API, to the single ExposureNotificationState object it corresponds to.
@@ -186,6 +191,10 @@ public class ExposureNotificationViewModelTest {
       Tasks.forResult(ACTIVATED_SET);
   private static final Task<Set<ExposureNotificationStatus>> TASK_FOR_INACTIVATED =
       Tasks.forResult(INACTIVATED_SET);
+  private static final Task<Set<ExposureNotificationStatus>> TASK_FOR_EN_TURNDOWN =
+      Tasks.forResult(EN_TURNDOWN_SET);
+  private static final Task<Set<ExposureNotificationStatus>> TASK_FOR_EN_TURNDOWN_FOR_REGION =
+      Tasks.forResult(EN_TURNDOWN_FOR_REGION_SET);
   private static final int EN_DISABLED_ORDINAL = ExposureNotificationState.DISABLED.ordinal();
   private static final int EN_ENABLED_ORDINAL = ExposureNotificationState.ENABLED.ordinal();
   private static final Task<Void> TASK_FOR_RESULT_API_EXCEPTION =
@@ -352,6 +361,46 @@ public class ExposureNotificationViewModelTest {
     assertThat(pairLiveData.get().second).isFalse();
   }
 
+  @Test
+  public void refreshState_enDisabledAndTurnedDown_liveDataUpdatedWithExpectedValues() {
+    // GIVEN
+    AtomicReference<Pair<ExposureNotificationState, Boolean>> pairLiveData = new AtomicReference<>(
+        Pair.create(ExposureNotificationState.ENABLED, /* isInFlight= */ true));
+    when(exposureNotificationClientWrapper.isEnabled()).thenReturn(TASK_FOR_RESULT_FALSE);
+    when(exposureNotificationClientWrapper.getStatus()).thenReturn(TASK_FOR_EN_TURNDOWN);
+    exposureNotificationViewModel.getStateWithInFlightLiveData()
+        .observeForever(pairLiveData::set);
+
+    // WHEN
+    exposureNotificationViewModel.refreshState();
+
+    // THEN
+    verify(exposureNotificationClientWrapper).isEnabled();
+    verify(exposureNotificationClientWrapper).getStatus();
+    assertThat(pairLiveData.get().first).isEqualTo(ExposureNotificationState.PAUSED_EN_NOT_SUPPORT);
+    assertThat(pairLiveData.get().second).isFalse();
+  }
+
+  @Test
+  public void refreshState_enDisabledAndTurnedDownForRegion_liveDataUpdatedWithExpectedValues() {
+    // GIVEN
+    AtomicReference<Pair<ExposureNotificationState, Boolean>> pairLiveData = new AtomicReference<>(
+        Pair.create(ExposureNotificationState.ENABLED, /* isInFlight= */ true));
+    when(exposureNotificationClientWrapper.isEnabled()).thenReturn(TASK_FOR_RESULT_FALSE);
+    when(exposureNotificationClientWrapper.getStatus()).thenReturn(TASK_FOR_EN_TURNDOWN_FOR_REGION);
+    exposureNotificationViewModel.getStateWithInFlightLiveData()
+        .observeForever(pairLiveData::set);
+
+    // WHEN
+    exposureNotificationViewModel.refreshState();
+
+    // THEN
+    verify(exposureNotificationClientWrapper).isEnabled();
+    verify(exposureNotificationClientWrapper).getStatus();
+    assertThat(pairLiveData.get().first)
+        .isEqualTo(ExposureNotificationState.PAUSED_NOT_IN_ALLOWLIST);
+    assertThat(pairLiveData.get().second).isFalse();
+  }
 
   private ExposureNotificationState callGetStateForStatusAndIsEnabled(
       boolean enabled, Set<ExposureNotificationStatus> statusSet) {
@@ -456,6 +505,24 @@ public class ExposureNotificationViewModelTest {
       assertThat(exposureNotificationState).isEqualTo(
           EN_DISABLED_STATUS_SET_WITH_LOW_STORAGE_TO_STATE_MAP.get(statusSet));
     }
+  }
+
+  @Test
+  public void getStateForStatusAndIsEnabled_enTurndown_pausedEnNotSupport() {
+    ExposureNotificationState exposureNotificationState =
+        callGetStateForStatusAndIsEnabled(false, EN_TURNDOWN_SET);
+
+    assertThat(exposureNotificationState)
+        .isEqualTo(ExposureNotificationState.PAUSED_EN_NOT_SUPPORT);
+  }
+
+  @Test
+  public void getStateForStatusAndIsEnabled_enTurndownForRegion_pausedNotInAllowlist() {
+    ExposureNotificationState exposureNotificationState =
+        callGetStateForStatusAndIsEnabled(false, EN_TURNDOWN_FOR_REGION_SET);
+
+    assertThat(exposureNotificationState)
+        .isEqualTo(ExposureNotificationState.PAUSED_NOT_IN_ALLOWLIST);
   }
 
   @Test

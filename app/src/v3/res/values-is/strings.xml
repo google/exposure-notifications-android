@@ -14,4 +14,6 @@
   <string name="share_history_delete_test_result_detail">Niðurstöðum þínum úr COVID-19 skimun frá %1$s verður eytt úr símanum.</string>
   <string name="sms_intercept_notice_card_title">Þú kannt að fá áminningu um að deila niðurstöðunum</string>
   <string name="sms_intercept_notice_card_content">Ef þú greinist jákvæð(ur) og færð staðfest SMS</string>
+  <string name="en_turndown_contents">Tilkynningar um útsetningu eru ekki studdar lengur vegna þess að heilbrigðisyfirvöld hafa gert breytingar á viðbrögðum við COVID-19. Takk fyrir að nota forritið og aðstoða við að vernda aðra í samfélaginu.</string>
+  <string name="en_turndown_for_area_contents">Heilbrigðisyfirvöld á þínum stað hafa gert breytingar á viðbrögðum við COVID-19 og styðja því ekki lengur tilkynningar um útsetningu. Takk fyrir að nota forritið og aðstoða við að vernda aðra í samfélaginu.</string>
 </resources>

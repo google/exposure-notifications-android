@@ -15,6 +15,7 @@
   <string name="btn_verify">Doğrula</string>
   <string name="btn_no_thanks">Hayır, teşekkürler</string>
   <string name="btn_share">Paylaş</string>
+  <string name="btn_close_app">Uygulamayı kapat</string>
   <string name="learn_more">Daha fazla bilgi</string>
   <string name="home_tab_settings_text">Ayarlar</string>
   <string name="notification_channel_name">Olası COVID-19 teması</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">Temas Bildirimleri\'ni etkinleştirmek için izin gerekli</string>
   <string name="onboarding_finish_title">Temas Bildirimleri\'ni etkinleştirmek için gerekli izinlerin devamı</string>
   <string name="onboarding_exposure_notifications_title">Temas Bildirimleri\'ni açın</string>
-  <string name="onboarding_exposure_notifications_detail">COVID-19 olduğunu bildiren birinin yakınında bulunmanız durumunda bildirim alın.
-    \n\nTelefonunuz, rastgele kimlikleri yakındaki diğer telefonlardan güvenli bir şekilde toplamak ve bu telefonlarla paylaşmak için Bluetooth\'u kullanır.
+  <string name="onboarding_exposure_notifications_description">COVID-19 olduğunu bildiren birinin yakınında bulunmanız durumunda bildirim alın.
+    \n\nTelefonunuz, yakındaki diğer telefonlarda ayarlanmış rastgele kimlikleri güvenli bir şekilde toplamak ve bu telefonlarla paylaşmak için Bluetooth\'u kullanır.
     \n\nOlası temasla ilişkilendirilen tarih, süre ve sinyal gücü bilgileri, kamu sağlığı yetkiliniz tarafından belirlenen parametrelere göre size bildirim gönderilip gönderilmeyeceğini belirlemek için kullanılır.
-    \n\nTest sonucunuzun olduğu bir SMS alırsanız sağlık yetkilinizle teşhisi paylaşmanız doğrultusunda bir bildirim alabilirsiniz.</string>
+    \n\nTest sonucunuzun olduğu bir SMS alırsanız resmi sağlık kurumunuzla teşhisi paylaşmanız doğrultusunda bir bildirim alabilirsiniz. %1$s</string>
   <string name="onboarding_metrics_title">Bu uygulamayı daha iyi hale getirmeye yardımcı olun</string>
   <string name="onboarding_metrics_subtitle">Uygulama kullanım ve performans verilerini Google\'la paylaşın</string>
   <string name="onboarding_metrics_description">Uygulamayı sürdürmek ve iyileştirmek için uygulama performansı ve kullanımı ile ilgili bazı sınırlı, kimlik bilgilerinden arındırılmış veriler Google\'la paylaşılır. Bu veriler kimlik bilgilerinizi tanımlamaz. %1$s</string>
@@ -214,4 +215,11 @@
   <string name="share_upload_status_negative">Negatif</string>
   <string name="share_upload_status_likely">Olası</string>
   <string name="share_diagnosis_progress_tracker">Adım %1$d/%2$d</string>
+  <string name="see_history_device_authentication_title">Kimliğinizi doğrulayın</string>
+  <string name="update_app_dialog_title">Uygulamanızı güncelleyin</string>
+  <string name="update_app_dialog_content">Test sonuçlarınızı paylaşma işlemini tamamlamak için Temas Bildirimleri\'ni son sürüme güncelleyin.</string>
+  <string name="btn_update">Güncelle</string>
+  <string name="try_again_later_error_message">Bir sorun oldu. Birkaç saat içinde tekrar deneyin.</string>
+  <string name="en_turndown_for_area_title">Resmi sağlık kurumunuz artık Temas Bildirimleri\'ni desteklemiyor</string>
+  <string name="en_turndown_title">Temas Bildirimleri kapatılmış</string>
 </resources>

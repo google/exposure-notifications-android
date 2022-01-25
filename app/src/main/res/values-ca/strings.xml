@@ -15,6 +15,7 @@
   <string name="btn_verify">Verifica</string>
   <string name="btn_no_thanks">No, gràcies</string>
   <string name="btn_share">Comparteix</string>
+  <string name="btn_close_app">Tanca l\'aplicació</string>
   <string name="learn_more">Més informació</string>
   <string name="home_tab_settings_text">Configuració</string>
   <string name="notification_channel_name">Possible exposició a la COVID-19</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">Calen permisos per activar Notificacions d\'exposició</string>
   <string name="onboarding_finish_title">Continuació de la sol·licitud de permisos per activar Notificacions d\'exposició</string>
   <string name="onboarding_exposure_notifications_title">Activa les notificacions d\'exposició</string>
-  <string name="onboarding_exposure_notifications_detail">Rep notificacions si has estat a prop d\'algú que ha informat que té la COVID-19.
+  <string name="onboarding_exposure_notifications_description">Rep notificacions si has estat a prop d\'algú que ha informat que té la COVID-19.
     \n\nEl telèfon fa servir el Bluetooth per recollir identificadors aleatoris i compartir-los amb altres telèfons que són a prop de manera segura.
     \n\nLa data, la durada i la intensitat del senyal associades a una possible exposició s\'utilitzaran per determinar si se t\'ha d\'avisar segons els paràmetres definits per les autoritats de salut pública corresponents.
-    \n\nSi reps un SMS amb el resultat d\'una prova, és possible que rebis una notificació en què se\'t demani que comparteixis el diagnòstic amb les autoritats sanitàries.</string>
+    \n\nSi reps un SMS amb el resultat d\'una prova, és possible que rebis una notificació en què se\'t demani que comparteixis el diagnòstic amb les autoritats sanitàries.%1$s</string>
   <string name="onboarding_metrics_title">Ajuda a millorar aquesta aplicació</string>
   <string name="onboarding_metrics_subtitle">Envia a Google dades d\'ús i de rendiment de l\'aplicació</string>
   <string name="onboarding_metrics_description">Per ajudar a mantenir i millorar l\'aplicació, es comparteixen amb Google algunes dades limitades i sense identificar sobre l\'ús i el rendiment de l\'aplicació. Aquestes dades no permeten identificar-te. %1$s</string>
@@ -214,4 +215,11 @@
   <string name="share_upload_status_negative">Negatiu</string>
   <string name="share_upload_status_likely">Probable</string>
   <string name="share_diagnosis_progress_tracker">Pas %1$d de %2$d</string>
+  <string name="see_history_device_authentication_title">Verifica la teva identitat</string>
+  <string name="update_app_dialog_title">Actualitza l\'aplicació</string>
+  <string name="update_app_dialog_content">Actualitza Notificacions d\'exposició a la versió més recent per acabar de compartir els resultats de la teva prova.</string>
+  <string name="btn_update">Actualitza</string>
+  <string name="try_again_later_error_message">S\'ha produït un error. Torna-ho a provar d\'aquí a unes hores.</string>
+  <string name="en_turndown_for_area_title">Les teves autoritats sanitàries ja no admeten Notificacions d\'exposició</string>
+  <string name="en_turndown_title">Notificacions d\'exposició s\'ha desactivat</string>
 </resources>

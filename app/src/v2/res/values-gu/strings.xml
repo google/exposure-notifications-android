@@ -22,4 +22,7 @@
   <string name="share_positive_diagnosis_card_content">COVID-19નો ફેલાવો રોકવામાં સહાય કરવા માટે તમારા પરીક્ષણનું પરિણામ શેર કરો</string>
   <string name="share_app_card_content">તમારા સમુદાયની વધુ સારી સુરક્ષા માટે આ ઍપ શેર કરો</string>
   <string name="how_en_works_card_content">એક્સપોઝર નોટિફિકેશનની કાર્ય કરવાની રીત વિશે વધુ જાણો</string>
+  <string name="en_turndown_for_area_contents">તમારા આરોગ્ય અધિકારી COVID-19 પ્રતિસાદમાં જરૂરી ફેરફાર કરી રહ્યાં હોવાથી તે હવે આ ઍપને સપોર્ટ કરતું નથી. આ ઍપનો ઉપયોગ કરવા અને તમારા સમુદાયને સુરક્ષિત રાખવામાં સહાય કરવા બદલ આપનો આભાર.</string>
+  <string name="en_turndown_contents">આરોગ્ય અધિકારીઓ તેમના COVID-19 પ્રતિસાદમાં જરૂરી ફેરફાર કરી રહ્યાં હોવાથી, હવે આ ઍપને સપોર્ટ કરવામાં આવતો નથી. આ ઍપનો ઉપયોગ કરવા અને તમારા સમુદાયને સુરક્ષિત રાખવામાં સહાય કરવા બદલ આપનો આભાર.</string>
+  <string name="en_turndown_see_test_results_card_content">આમ છતાં તમે એક્સપોઝર નોટિફિકેશનમાં અગાઉ અપલોડ કરેલા તમારા પરીક્ષણના પરિણામો જોઈ શકો છો</string>
 </resources>

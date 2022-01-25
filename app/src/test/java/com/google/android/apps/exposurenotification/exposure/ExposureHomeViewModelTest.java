@@ -17,14 +17,28 @@
 
 package com.google.android.apps.exposurenotification.exposure;
 
+import static com.google.android.apps.exposurenotification.restore.RestoreNotificationWorker.RESTORE_NOTIFICATION_WORKER_TAG;
 import static com.google.common.truth.Truth.assertThat;
+import static org.robolectric.Shadows.shadowOf;
 
+import android.app.NotificationManager;
+import android.content.Context;
 import androidx.lifecycle.LiveData;
 import androidx.test.core.app.ApplicationProvider;
+import androidx.work.Configuration;
+import androidx.work.WorkInfo;
+import androidx.work.WorkInfo.State;
 import androidx.work.WorkManager;
+import androidx.work.impl.utils.SynchronousExecutor;
+import androidx.work.testing.WorkManagerTestInitHelper;
+import com.google.android.apps.exposurenotification.R;
+import com.google.android.apps.exposurenotification.common.BuildUtils;
+import com.google.android.apps.exposurenotification.common.BuildUtils.Type;
 import com.google.android.apps.exposurenotification.common.NotificationHelper;
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.common.time.RealTimeModule;
+import com.google.android.apps.exposurenotification.nearby.ExposureInformationHelper;
+import com.google.android.apps.exposurenotification.restore.RestoreNotificationWorker;
 import com.google.android.apps.exposurenotification.riskcalculation.ExposureClassification;
 import com.google.android.apps.exposurenotification.storage.DbModule;
 import com.google.android.apps.exposurenotification.storage.ExposureCheckEntity;
@@ -32,9 +46,11 @@ import com.google.android.apps.exposurenotification.storage.ExposureCheckReposit
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationDatabase;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.BadgeStatus;
+import com.google.android.apps.exposurenotification.testsupport.ExposureClassificationUtils;
 import com.google.android.apps.exposurenotification.testsupport.ExposureNotificationRules;
 import com.google.android.apps.exposurenotification.testsupport.FakeClock;
 import com.google.android.apps.exposurenotification.testsupport.InMemoryDb;
+import com.google.common.util.concurrent.testing.TestingExecutors;
 import dagger.hilt.android.testing.BindValue;
 import dagger.hilt.android.testing.HiltAndroidTest;
 import dagger.hilt.android.testing.HiltTestApplication;
@@ -47,9 +63,9 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
+import org.robolectric.shadows.ShadowNotificationManager;
 import org.threeten.bp.Instant;
 import org.threeten.bp.LocalDate;
 import org.threeten.bp.OffsetDateTime;
@@ -64,6 +80,10 @@ public class ExposureHomeViewModelTest {
   @Rule
   public ExposureNotificationRules rules = ExposureNotificationRules.forTest(this).build();
 
+  private final Context context = ApplicationProvider.getApplicationContext();
+  private final ShadowNotificationManager notificationManager =
+      shadowOf((NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE));
+
   @Inject
   ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
 
@@ -73,8 +93,8 @@ public class ExposureHomeViewModelTest {
   @Inject
   ExposureCheckRepository exposureCheckRepository;
 
-  @Mock
-  WorkManager workManager;
+  @Inject
+  ExposureInformationHelper exposureInformationHelper;
 
   @BindValue
   Clock clock = new FakeClock();
@@ -83,20 +103,32 @@ public class ExposureHomeViewModelTest {
   ExposureNotificationDatabase database = InMemoryDb.create();
 
   private ExposureHomeViewModel exposureHomeViewModel;
+  private WorkManager workManager;
 
   @Before
   public void setup() {
     rules.hilt().inject();
+
+    // Initialize WorkManager for testing.
+    Configuration config = new Configuration.Builder()
+        .setExecutor(new SynchronousExecutor())
+        .build();
+    WorkManagerTestInitHelper.initializeTestWorkManager(
+        context, config);
+    workManager = WorkManager.getInstance(ApplicationProvider.getApplicationContext());
+
     exposureHomeViewModel = new ExposureHomeViewModel(
-        exposureNotificationSharedPreferences, exposureCheckRepository, notificationHelper, clock,
-        workManager);
+        exposureNotificationSharedPreferences, exposureInformationHelper, exposureCheckRepository,
+        notificationHelper, clock, workManager, TestingExecutors.sameThreadScheduledExecutor()
+    );
   }
 
   @Test
   public void getExposureClassificationLiveData_deliversExposureClassificationToObservers() {
     ExposureClassification exposureClassification = ExposureClassification
         .create(0, "exposureClassification", 0L);
-    AtomicReference<ExposureClassification> exposureClassificationAtomicReference = new AtomicReference<>();
+    AtomicReference<ExposureClassification> exposureClassificationAtomicReference =
+        new AtomicReference<>();
 
     LiveData<ExposureClassification> liveData = exposureHomeViewModel
         .getExposureClassificationLiveData();
@@ -235,6 +267,92 @@ public class ExposureHomeViewModelTest {
 
     // THEN
     assertThat(result).isEqualTo("2 days ago");
+  }
+
+  @Test
+  public void isActiveExposurePresent_noExposure_returnsFalse() {
+    assertThat(exposureHomeViewModel.isActiveExposurePresent()).isFalse();
+  }
+
+  @Test
+  public void isActiveExposurePresent_outdatedExposure_returnsFalse() {
+    exposureNotificationSharedPreferences.setExposureClassification(
+        ExposureClassificationUtils.getOutdatedExposure());
+
+    assertThat(exposureHomeViewModel.isActiveExposurePresent()).isFalse();
+  }
+
+  @Test
+  public void isActiveExposurePresent_activeExposure_returnsTrue() {
+    exposureNotificationSharedPreferences.setExposureClassification(
+        ExposureClassificationUtils.getActiveExposure());
+
+    assertThat(exposureHomeViewModel.isActiveExposurePresent()).isTrue();
+  }
+
+  @Test
+  public void dismissReactivateENAppNotificationAndPendingJob_V2pendingNotificationOnly_notificationCancelled()
+      throws Exception {
+    if (BuildUtils.getType() == Type.V3) {
+      return;
+    }
+
+    // Show restore notification
+    notificationHelper.showReActivateENAppNotification(context,
+        R.string.reactivate_exposure_notification_app_subject,
+        R.string.reactivate_exposure_notification_app_body);
+    // Assert that notification is displayed.
+    assertThat(notificationManager.getAllNotifications()).hasSize(1);
+
+    exposureHomeViewModel.dismissReactivateENAppNotificationAndPendingJob(context).get();
+
+    assertThat(notificationManager.getAllNotifications()).isEmpty();
+  }
+
+  @Test
+  public void dismissReactivateENAppNotificationAndPendingJob_V2pendingJobOnly_jobCanceled()
+      throws Exception {
+    if (BuildUtils.getType() == Type.V3) {
+      return;
+    }
+    // Enqueue restore notification work.
+    RestoreNotificationWorker.scheduleWork(workManager);
+    // Assert that work has been enqueued.
+    List<WorkInfo> workInfos = workManager.getWorkInfosByTag(RESTORE_NOTIFICATION_WORKER_TAG).get();
+    assertThat(workInfos).hasSize(1);
+    assertThat(workInfos.get(0).getState()).isEqualTo(State.ENQUEUED);
+
+    exposureHomeViewModel.dismissReactivateENAppNotificationAndPendingJob(context).get();
+    workInfos = workManager.getWorkInfosByTag(RESTORE_NOTIFICATION_WORKER_TAG).get();
+
+    assertThat(workInfos).hasSize(1);
+    assertThat(workInfos.get(0).getState()).isEqualTo(State.CANCELLED);
+  }
+
+  @Test
+  public void dismissReactivateENAppNotificationAndPendingJob_V2pendingNotificationAndJob_bothCanceled()
+      throws Exception {
+    if (BuildUtils.getType() == Type.V3) {
+      return;
+    }
+    // Enqueue restore notification work.
+    RestoreNotificationWorker.scheduleWork(workManager);
+    // Show restore notification
+    notificationHelper.showReActivateENAppNotification(context,
+        R.string.reactivate_exposure_notification_app_subject,
+        R.string.reactivate_exposure_notification_app_body);
+    // Assert that work has been enqueued and notification is displayed.
+    List<WorkInfo> workInfos = workManager.getWorkInfosByTag(RESTORE_NOTIFICATION_WORKER_TAG).get();
+    assertThat(workInfos).hasSize(1);
+    assertThat(workInfos.get(0).getState()).isEqualTo(State.ENQUEUED);
+    assertThat(notificationManager.getAllNotifications()).hasSize(1);
+
+    exposureHomeViewModel.dismissReactivateENAppNotificationAndPendingJob(context).get();
+    workInfos = workManager.getWorkInfosByTag(RESTORE_NOTIFICATION_WORKER_TAG).get();
+
+    assertThat(workInfos).hasSize(1);
+    assertThat(workInfos.get(0).getState()).isEqualTo(State.CANCELLED);
+    assertThat(notificationManager.getAllNotifications()).isEmpty();
   }
 
 }

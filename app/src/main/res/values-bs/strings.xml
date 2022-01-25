@@ -15,6 +15,7 @@
   <string name="btn_verify">Potvrdi</string>
   <string name="btn_no_thanks">Ne, hvala</string>
   <string name="btn_share">Dijeli</string>
+  <string name="btn_close_app">Zatvori aplikaciju</string>
   <string name="learn_more">Saznajte više</string>
   <string name="home_tab_settings_text">Postavke</string>
   <string name="notification_channel_name">Moguća je izloženost virusu COVID-19</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">Da omogućite Obavještenja o izloženosti, potrebna su odobrenja</string>
   <string name="onboarding_finish_title">Da omogućite Obavještenja o izloženosti, potreban je nastavak odobrenja</string>
   <string name="onboarding_exposure_notifications_title">Uključite Obavještenja o izloženosti</string>
-  <string name="onboarding_exposure_notifications_detail">Primajte obavještenja ako ste bili u blizini osobe koja je prijavila da je zaražena virusom COVID-19.
+  <string name="onboarding_exposure_notifications_description">Primajte obavještenja ako ste bili u blizini osobe koja je prijavila da je zaražena COVID-om 19.
     \n\nVaš telefon koristi Bluetooth da na siguran način prikuplja i dijeli nasumične ID-ove s drugim telefonima u blizini.
-    \n\nDatum, trajanje i jačina signala povezanog s mogućom izloženošću će se koristiti da se utvrdi hoćete li biti obavješteni na osnovu parametara koje je postavila institucija za javno zdravstvo.
-    \n\nMožete primiti obavještenje da podijelite dijagnozu s institucijom za javno zdravstvo ako primite SMS s rezultatom testa.</string>
+    \n\nDatum, trajanje i jačina signala povezanog s mogućom izloženošću će se koristiti da se utvrdi hoćete li biti obaviješteni na osnovu parametara koje je postavila institucija za javno zdravstvo.
+    \n\nMožete primiti obavještenje da podijelite dijagnozu sa zavodom za javno zdravstvo ako primite SMS s rezultatom testa. %1$s</string>
   <string name="onboarding_metrics_title">Pomozite nam da poboljšamo aplikaciju</string>
   <string name="onboarding_metrics_subtitle">Dijelite s Googleom podatke o korištenju i radu aplikacije</string>
   <string name="onboarding_metrics_description">Radi pomoći u održavanju i poboljšanju aplikacije, s Googleom se dijele neki podaci o radu i korištenju aplikacije bez informacija o identitetu. Ti podaci ne otkrivaju vaš identitet. %1$s</string>
@@ -71,7 +72,7 @@
   <string name="share_test_identifier_verified">Kôd je potvrđen</string>
   <string name="share_test_identifier_link">Saznajte više na %1$s</string>
   <string name="share_onset_title">Jeste li imali simptome?</string>
-  <string name="share_onset_subtitle">Pomaže instituciji za zdravstvo da utvrdi kada ste bili zarazni te obavijesti odgovarajuće osobe o mogućoj izloženosti.</string>
+  <string name="share_onset_subtitle">Pomaže zavodu za zdravstvo da utvrdi kada ste bili zarazni te obavijesti odgovarajuće osobe o mogućoj izloženosti.</string>
   <string name="test_date_label">Datum pojave simptoma</string>
   <string name="share_onset_symptoms">Da</string>
   <string name="share_onset_no_symptoms">Ne</string>
@@ -107,13 +108,13 @@
   <string name="share_vaccination_not_vaccinated">Ne</string>
   <string name="share_vaccination_unknown">Radije ne bih odgovorio/la</string>
   <string name="do_you_have_code_title">Jeste li dobili kôd?</string>
-  <string name="do_you_have_code_content">Ako dobijete pozitivan rezultat testa na COVID-19, vaša institucija za javno zdravstvo obično daje kôd za potvrdu telefonom ili SMS-om da možete podijeliti rezultate.</string>
+  <string name="do_you_have_code_content">Ako dobijete pozitivan rezultat testa na COVID-19, vaš zavod za javno zdravstvo obično daje kôd za potvrdu telefonom ili SMS-om da možete podijeliti rezultate.</string>
   <string name="btn_i_have_code">Da, imam kôd</string>
   <string name="btn_i_need_code">Potreban mi je kôd</string>
   <string name="get_verification_code_title">Preuzmite kôd za potvrdu</string>
   <string name="phone_number_prompt">Broj telefona</string>
   <string name="phone_number_help">Kôd za potvrdu vam omogućava da dijelite rezultat testa. Poslat ćemo vam kôd na broj koji navedete.</string>
-  <string name="phone_number_may_be_stored_help">Kako bi se spriječilo da osobe šalju više od jednog rezultata, vaša institucija za javno zdravstvo može privremeno pohraniti vaš broj telefona.</string>
+  <string name="phone_number_may_be_stored_help">Kako bi se spriječilo da osobe šalju više od jednog rezultata, vaš zavod za javno zdravstvo može privremeno pohraniti vaš broj telefona.</string>
   <string name="test_date_prompt">Datum testa</string>
   <string name="test_date_help">Datum testa treba biti u proteklih 14 dana.</string>
   <string name="tested_for_covid_checkbox_text">Dobio/la sam pozitivan rezultat testa na COVID-19 u proteklih 14 dana.</string>
@@ -190,10 +191,10 @@
   <string name="gms_unavailable_error">Obavještenja o izloženosti zahtijevaju najnoviju verziju Google Play usluga.</string>
   <string name="browser_unavailable_error">Da pregledate ovaj sadržaj, provjerite je li najnoviji preglednik instaliran na vašem uređaju.</string>
   <string name="settings_private_analytics_subtitle">Dijelj. analitike Obavj. o izloženosti</string>
-  <string name="private_analytics_title">Pomozite instituciji za javno zdravstvo da bolje razumije širenje virusa COVID-19</string>
-  <string name="private_analytics_subtitle">Dijelite analitiku Obavještenja o izloženosti sa svojom institucijom za javno zdravstvo</string>
-  <string name="private_analytics_footer">Ta analitika, npr. br. obavještenja u vašoj regiji, pomaže instituciji da sazna kako se širi COVID-19. Google je ne može vidjeti, a za instituciju se objedinjuje da se ne bi mogla povezati s vašim tel. %1$s</string>
-  <string name="private_analytics_footer_onboarding">Google ne može vidjeti te analitičke podatke, a za instituciju se objedinjuju da se ne bi mogli povezati s vašim telefonom. %1$s</string>
+  <string name="private_analytics_title">Pomozite zavodu za javno zdravstvo da bolje razumije širenje virusa COVID-19</string>
+  <string name="private_analytics_subtitle">Dijelite analitiku Obavještenja o izloženosti sa svojim zavodom za javno zdravstvo</string>
+  <string name="private_analytics_footer">Ta analitika, npr. br. obavještenja u vašoj regiji, pomaže zavodu za javno zdravstvo da sazna kako se COVID-19 širi. Google je ne može vidjeti, a za zavod se objedinjuje da se ne bi mogla povezati s vašim tel. %1$s</string>
+  <string name="private_analytics_footer_onboarding">Google ne može vidjeti tu analitiku, a za zavod za javno zdravstvo se objedinjuje da se ne bi mogla povezati s vašim telefonom. %1$s</string>
   <string name="private_analytics_footer_learn_more">Saznajte više</string>
   <string name="diagnosis_subtitle_template">%1$s na dan %2$s</string>
   <string name="empty_share_history_body">Nema historije dijeljenja</string>
@@ -216,4 +217,11 @@
   <string name="share_upload_status_negative">Negativan</string>
   <string name="share_upload_status_likely">Vjerovatno</string>
   <string name="share_diagnosis_progress_tracker">%1$d. korak od %2$d</string>
+  <string name="see_history_device_authentication_title">Potvrdite identitet</string>
+  <string name="update_app_dialog_title">Ažurirajte aplikaciju</string>
+  <string name="update_app_dialog_content">Ažurirajte na najnoviju verziju Obavještenja o izloženosti da završite s dijeljenjem rezultata testa.</string>
+  <string name="btn_update">Ažuriraj</string>
+  <string name="try_again_later_error_message">Nešto nije uredu. Pokušajte ponovo za nekoliko sati.</string>
+  <string name="en_turndown_for_area_title">Vaš zavod za javno zdravstvo više ne podržava Obavještenja o izloženosti</string>
+  <string name="en_turndown_title">Obavještenja o izloženosti su isključena</string>
 </resources>

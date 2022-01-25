@@ -15,6 +15,7 @@
   <string name="btn_verify">Validar</string>
   <string name="btn_no_thanks">Não</string>
   <string name="btn_share">Partilhar</string>
+  <string name="btn_close_app">Fechar app</string>
   <string name="learn_more">Saiba mais</string>
   <string name="home_tab_settings_text">Definições</string>
   <string name="notification_channel_name">Possível exposição à COVID-19</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">Autorizações necessárias para ativar as Notificações de exposição</string>
   <string name="onboarding_finish_title">Continuação das autorizações necessárias para ativar as Notificações de exposição</string>
   <string name="onboarding_exposure_notifications_title">Ative as Notificações de Exposição</string>
-  <string name="onboarding_exposure_notifications_detail">Receba uma notificação se tiver estado perto de alguém que tenha comunicado ter COVID-19.
+  <string name="onboarding_exposure_notifications_description">Receba uma notificação se tiver estado perto de alguém que tenha comunicado ter COVID-19.
     \n\nO seu telemóvel utiliza o Bluetooth para recolher e partilhar em segurança IDs aleatórios com outros telemóveis próximos.
     \n\nA data, a duração e a intensidade do sinal associadas a uma possível exposição serão utilizadas para determinar se irá receber uma notificação com base nos parâmetros definidos pela autoridade de saúde pública.
-    \n\nPode receber uma notificação para partilhar um diagnóstico com a autoridade de saúde se receber uma SMS com o resultado do teste.</string>
+    \n\nPode receber uma notificação para partilhar um diagnóstico com a autoridade de saúde se receber uma SMS com o resultado do teste. %1$s</string>
   <string name="onboarding_metrics_title">Ajude a melhorar esta app</string>
   <string name="onboarding_metrics_subtitle">Partilhe dados de utilização/desempenho da app com a Google.</string>
   <string name="onboarding_metrics_description">Para ajudar a manter e melhorar a app, são partilhados dados desidentificados limitados acerca do desempenho e utilização da mesma com a Google. Estes dados não incluem a sua identidade. %1$s</string>
@@ -50,7 +51,7 @@
   <string name="possible_exposures_activity_title">Possível exposição</string>
   <string name="exposure_details_explanation_link">Veja como funcionam as Notificações de exposição</string>
   <plurals name="days_from_start_of_exposure">
-    <item quantity="one">Há %1$d dia</item>
+    <item quantity="one">Há %1$d dia(s)</item>
     <item quantity="other">Há %1$d dias</item>
   </plurals>
   <string name="test_result_type_confirmed">Diagnóstico positivo de COVID-19</string>
@@ -124,7 +125,7 @@
   <string name="self_report_bad_phone_number">Verifique o seu número e tente novamente. %1$s</string>
   <string name="self_report_code_requested_too_many_times">Efetuou demasiados pedidos. Contacte a %1$s se ainda precisar de um código.</string>
   <plurals name="self_report_code_already_requested">
-    <item quantity="one">Efetuou demasiados pedidos. Pode pedir outro código dentro de %1$d minuto.</item>
+    <item quantity="one">Efetuou demasiados pedidos. Pode pedir outro código dentro de %1$d minuto(s).</item>
     <item quantity="other">Efetuou demasiados pedidos. Pode pedir outro código dentro de %1$d minutos.</item>
   </plurals>
   <string name="notify_others_notification_title">Ajude a notificar outras pessoas que possam ter sido expostas</string>
@@ -214,4 +215,11 @@
   <string name="share_upload_status_negative">Negativo</string>
   <string name="share_upload_status_likely">Provável</string>
   <string name="share_diagnosis_progress_tracker">Passo %1$d de %2$d</string>
+  <string name="see_history_device_authentication_title">Valide a sua identidade</string>
+  <string name="update_app_dialog_title">Atualize a sua app</string>
+  <string name="update_app_dialog_content">Atualize para a versão mais recente das Notificações de exposição para terminar de partilhar os resultados do seu teste.</string>
+  <string name="btn_update">Atualizar</string>
+  <string name="try_again_later_error_message">Algo correu mal. Tente novamente dentro de algumas horas.</string>
+  <string name="en_turndown_for_area_title">A sua autoridade de saúde já não suporta as Notificações de exposição</string>
+  <string name="en_turndown_title">As Notificações de exposição foram desativadas</string>
 </resources>

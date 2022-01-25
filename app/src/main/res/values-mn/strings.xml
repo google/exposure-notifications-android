@@ -15,6 +15,7 @@
   <string name="btn_verify">Бататгах</string>
   <string name="btn_no_thanks">Үгүй баярлалаа</string>
   <string name="btn_share">Хуваалцах</string>
+  <string name="btn_close_app">Аппыг хаах</string>
   <string name="learn_more">Нэмэлт мэдээлэл авах</string>
   <string name="home_tab_settings_text">Тохиргоо</string>
   <string name="notification_channel_name">Коронавируст халдвар (COVID-19)-т өртөж болзошгүй</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">Өртсөн тухай мэдэгдлийг идэвхжүүлэхэд зөвшөөрөл өгөх шаардлагатай</string>
   <string name="onboarding_finish_title">Өртсөн тухай мэдэгдлийг идэвхжүүлэхэд үргэлжлүүлэн зөвшөөрөл өгөх шаардлагатай</string>
   <string name="onboarding_exposure_notifications_title">Өртсөн тухай мэдэгдлийг асаах</string>
-  <string name="onboarding_exposure_notifications_detail">Та коронавируст халдвар (COVID-19)-тай гэж мэдээлсэн хэн нэгэнтэй ойр байсан тохиолдолд мэдэгдэл аваарай.
+  <string name="onboarding_exposure_notifications_description">Та коронавируст халдвар (COVID-19)-тай гэж мэдээлсэн хэн нэгэнтэй ойр байсан тохиолдолд мэдэгдэл аваарай.
     \n\nТаны утас санамсаргүй ID-г аюулгүйгээр цуглуулах болон ойролцоох бусад утастай хуваалцахын тулд Bluetooth-г ашиглана.
-    \n\nӨртсөн байж болзошгүй мэдээлэлтэй холбоотой огноо, үргэлжлэх хугацаа болон дохионы хүчийг танай нийгмийн эрүүл мэндийн төрийн байгууллагын тохируулсан параметрт тулгуурлан танд мэдэгдэх эсэхийг шийдвэрлэхэд ашиглана.
-    \n\nТа шинжилгээний хариутай SMS хүлээн авсан тохиолдолд оношилгоогоо эрүүл мэндийн байгууллагатайгаа хуваалцах мэдэгдэл хүлээн авч магадгүй.</string>
+    \n\nӨртсөн байж болзошгүй мэдээлэлтэй холбоотой огноо, үргэлжлэх хугацаа болон дохионы хүчийг танай нийгмийн эрүүл мэндийн төрийн байгууллагаас тогтоосон параметрт тулгуурлан танд мэдэгдэх эсэхийг шийдвэрлэхэд ашиглана.
+    \n\nТа шинжилгээний хариутай SMS хүлээн авсан тохиолдолд оношилгоогоо эрүүл мэндийн байгууллагатайгаа хуваалцах мэдэгдэл хүлээн авч болзошгүй. %1$s</string>
   <string name="onboarding_metrics_title">Энэ аппыг илүү сайн болгоход туслах</string>
   <string name="onboarding_metrics_subtitle">Аппын ашиглалт, гүйцэтгэлийн өгөгдлийг Google-тай хуваалцаарай</string>
   <string name="onboarding_metrics_description">Аппыг хадгалах болон сайжруулахад туслахын тулд аппын гүйцэтгэл болон ашиглалтын талаарх зарим хязгаарлагдмал, танигдуулахгүй өгөгдлийг Google-тай хуваалцдаг. Энэ өгөгдөл таныг танигдуулахгүй. %1$s</string>
@@ -214,4 +215,11 @@
   <string name="share_upload_status_negative">Сөрөг</string>
   <string name="share_upload_status_likely">Магадлалтай</string>
   <string name="share_diagnosis_progress_tracker">%2$d-н %1$d-р алхам</string>
+  <string name="see_history_device_authentication_title">Өөрийгөө мөн болохыг баталгаажуулна уу</string>
+  <string name="update_app_dialog_title">Аппаа шинэчилнэ үү</string>
+  <string name="update_app_dialog_content">Таны шинжилгээний хариуг хуваалцаж дуусгахын тулд Өртсөн тухай мэдэгдлийг хамгийн сүүлийн хувилбарт шинэчилнэ үү</string>
+  <string name="btn_update">Шинэчлэх</string>
+  <string name="try_again_later_error_message">Алдаа гарлаа. Хэдэн цагийн дараа дахин оролдоно уу.</string>
+  <string name="en_turndown_for_area_title">Танай нийгмийн эрүүл мэндийн байгууллага Өртсөн тухай мэдэгдлийг дэмжихээ больсон</string>
+  <string name="en_turndown_title">Өртсөн тухай мэдэгдлийг унтраасан</string>
 </resources>

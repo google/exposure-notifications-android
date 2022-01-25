@@ -15,6 +15,7 @@
   <string name="btn_verify">تأكيد</string>
   <string name="btn_no_thanks">لا، شكرًا</string>
   <string name="btn_share">مشاركة</string>
+  <string name="btn_close_app">إغلاق التطبيق</string>
   <string name="learn_more">مزيد من المعلومات</string>
   <string name="home_tab_settings_text">الإعدادات</string>
   <string name="notification_channel_name">هناك احتمال أنّك تعرّضت لفيروس كورونا المستجد</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">يجب منح الأذونات اللازمة لتفعيل \"إشعارات التعرّض لفيروس كورونا\"</string>
   <string name="onboarding_finish_title">يجب مواصلة منح الأذونات اللازمة لتفعيل \"إشعارات التعرّض لفيروس كورونا\"</string>
   <string name="onboarding_exposure_notifications_title">تفعيل نظام \"إشعارات التعرّض لفيروس كورونا\"</string>
-  <string name="onboarding_exposure_notifications_detail">يمكن أن يتم تنبيهك إذا كنت بالقرب من شخص أبلغ أنه مصاب بفيروس كورونا المستجد (كوفيد-19).
+  <string name="onboarding_exposure_notifications_description">يمكن أن يتم تنبيهك إذا كنت بالقرب من شخص أبلغ أنه مصاب بفيروس كورونا المستجد (كوفيد-19).
     \n\nيستخدم هاتفك البلوتوث لجمع أرقام التعريف العشوائية ومشاركتها بأمان مع الهواتف الأخرى القريبة.
-    \n\nبعض البيانات المحدّدة، التي تشمل التاريخ والمدة المرتبطين بالتعرّض المحتمل للفيروس من الأجهزة المجاورة وقوة إشارة البلوتوث الخاصة بهذه الأجهزة، سيتم استخدامها لتحديد ما إذا كان سيتم تنبيهك بناءً على المعلَمات التي حددتها هيئة الصحة العامة.
-    \n\nقد تتلقّى إشعارًا لمشاركة تشخيص مع هيئة الصحة إذا تلقّيت رسالة قصيرة SMS تحتوي على نتيجة اختبارك.</string>
+    \n\nبعض البيانات المحدّدة، التي تشمل التاريخ والمدة المرتبطين بالتعرّض المحتمل للفيروس من الأجهزة المجاورة وقوة إشارة البلوتوث الخاصة بهذه الأجهزة، سيتم استخدامها لتحديد ما إذا كان سيتم تنبيهك بناءً على المعلَمات التي حددتها الهيئة الصحية العامة.
+    \n\nقد تتلقّى إشعارًا لمشاركة تشخيص مع الهيئة الصحية إذا تلقّيت رسالة قصيرة SMS تحتوي على نتيجة اختبارك. %1$s</string>
   <string name="onboarding_metrics_title">المساعدة في تحسين هذا التطبيق</string>
   <string name="onboarding_metrics_subtitle">مشاركة بيانات استخدام التطبيق وأدائه مع Google</string>
   <string name="onboarding_metrics_description">للمساعدة في الحفاظ على التطبيق وتحسينه، تتم مشاركة بعض البيانات المجهولة الهوية عن استخدام التطبيق وأدائه مع Google. وهذه المعلومات لا تحدّد هويتك. %1$s</string>
@@ -222,4 +223,11 @@
   <string name="share_upload_status_negative">سلبية</string>
   <string name="share_upload_status_likely">محتملة</string>
   <string name="share_diagnosis_progress_tracker">الخطوة %1$d من إجمالي %2$d</string>
+  <string name="see_history_device_authentication_title">إثبات هويتك</string>
+  <string name="update_app_dialog_title">تحديث التطبيق</string>
+  <string name="update_app_dialog_content">يُرجى تثبيت أحدث إصدار من نظام \"إشعارات التعرّض لفيروس كورونا\" لإكمال مشاركة نتائج الاختبار.</string>
+  <string name="btn_update">تحديث</string>
+  <string name="try_again_later_error_message">حدث خطأ. يُرجى إعادة المحاولة خلال بضع ساعات.</string>
+  <string name="en_turndown_for_area_title">لم تعد الهيئة الصحية تدعم نظام \"إشعارات التعرّض لفيروس كورونا\".</string>
+  <string name="en_turndown_title">تم إيقاف نظام \"إشعارات التعرّض لفيروس كورونا\".</string>
 </resources>

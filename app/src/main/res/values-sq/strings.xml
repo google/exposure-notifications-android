@@ -15,6 +15,7 @@
   <string name="btn_verify">Verifiko</string>
   <string name="btn_no_thanks">Jo, faleminderit</string>
   <string name="btn_share">Ndaj</string>
+  <string name="btn_close_app">Mbyll aplikacionin</string>
   <string name="learn_more">Mëso më shumë</string>
   <string name="home_tab_settings_text">Cilësimet</string>
   <string name="notification_channel_name">Ekspozim i mundshëm ndaj COVID-19</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">Nevojiten lejet për të aktivizuar \"Njoftimet rreth ekspozimit\"</string>
   <string name="onboarding_finish_title">Vazhdimi për lejet që nevojiten për të aktivizuar \"Njoftimet rreth ekspozimit\"</string>
   <string name="onboarding_exposure_notifications_title">Aktivizo \"Njoftimet rreth ekspozimit\"</string>
-  <string name="onboarding_exposure_notifications_detail">Merr njoftim nëse ke qenë pranë dikujt që ka raportuar se ka COVID-19.
+  <string name="onboarding_exposure_notifications_description">Merr njoftim nëse ke qenë pranë dikujt që ka raportuar se ka COVID-19.
     \n\nTelefoni yt përdor Bluetooth-in për të mbledhur dhe ndarë në mënyrë të sigurt ID-të e rastësishme me telefonat e tjerë që janë në afërsi.
     \n\nData, kohëzgjatja dhe fuqia e sinjalit në lidhje me një ekspozim të mundshëm do të përdoren për të përcaktuar nëse do të njoftohesh bazuar në parametrat e caktuar nga autoriteti i shëndetit publik.
-    \n\nMund të marrësh një njoftim për të ndarë diagnostikimin me autoritetet shëndetësore nëse merr një SMS me rezultatet e testit.</string>
+    \n\nMund të marrësh një njoftim për të ndarë diagnostikimin me autoritetet shëndetësore nëse merr një SMS me rezultatet e testit. %1$s</string>
   <string name="onboarding_metrics_title">Ndihmo në përmirësimin e këtij aplikacioni</string>
   <string name="onboarding_metrics_subtitle">Ndaj me Google të dhënat e përdorimit dhe të cilësisë së funksionimit të aplikacionit</string>
   <string name="onboarding_metrics_description">Për të ndihmuar në mirëmbajtjen dhe përmirësimin e aplikacionit, disa të dhëna të kufizuara të anonimizuara për cilësinë e funksionimit dhe përdorimin e aplikacionit ndahen me Google. Këto të dhëna nuk të identifikojnë ty. %1$s</string>
@@ -214,4 +215,11 @@
   <string name="share_upload_status_negative">Negativ</string>
   <string name="share_upload_status_likely">I mundshëm</string>
   <string name="share_diagnosis_progress_tracker">Hapi %1$d nga %2$d</string>
+  <string name="see_history_device_authentication_title">Verifiko që je ti</string>
+  <string name="update_app_dialog_title">Përditëso aplikacionin</string>
+  <string name="update_app_dialog_content">Përdotësoje në versionin më të fundit të \"Njoftimeve rreth ekspozimit\" për të përfunduar ndarjen e rezultateve të testit.</string>
+  <string name="btn_update">Përditëso</string>
+  <string name="try_again_later_error_message">Ndodhi një gabim. Provo sërish pas disa orësh.</string>
+  <string name="en_turndown_for_area_title">Autoriteti yt shëndetësor nuk i mbështet më \"Njoftimet rreth ekspozimit\"</string>
+  <string name="en_turndown_title">\"Njoftimet rreth ekspozimit\" janë çaktivizuar</string>
 </resources>

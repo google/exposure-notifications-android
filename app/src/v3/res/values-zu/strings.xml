@@ -14,4 +14,6 @@
   <string name="share_history_delete_test_result_detail">Umphumela wohlolo lwakho lwe-COVID-19 wangomhla ka-%1$s uzosulwa kwifoni yakho.</string>
   <string name="sms_intercept_notice_card_title">Ungathola isikhumbuzi sokwabelana ngomphumela wakho</string>
   <string name="sms_intercept_notice_card_content">Uma kutholakala ukuthi unesifo futhi uthole i-SMS eqinisekisiwe</string>
+  <string name="en_turndown_contents">Njengoba iziphathimandla zezempilo zilungisa indlela ezisabela ngayo ku-COVID-19, Izaziso Zokuhlangabezana azisasekelwa. Siyabonga ngokusebenzisa isevisi kanye nokusiza ukuvikela umphakathi wakho.</string>
+  <string name="en_turndown_for_area_contents">Njengoba iziphathimandla zakho zezempilo zilungisa indlela eziphendula ngayo ku-COVID-19, azisasekeli Izaziso Zokuhlangabezana. Siyabonga ngokusebenzisa isevisi kanye nokusiza ukuvikela umphakathi wakho.</string>
 </resources>

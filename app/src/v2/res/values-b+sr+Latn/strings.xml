@@ -22,4 +22,7 @@
   <string name="share_positive_diagnosis_card_content">Delite rezultat testa da biste pomogli u sprečavanju širenja bolesti COVID-19</string>
   <string name="share_app_card_content">Delite ovu aplikaciju da biste bolje zaštitili zajednicu</string>
   <string name="how_en_works_card_content">Saznajte više o tome kako obaveštenja o izloženosti rade</string>
+  <string name="en_turndown_for_area_contents">Pošto nadležni za zdravstvo prilagođavaju mere za borbu protiv pandemije COVID-19, oni više ne podržavaju ovu aplikaciju. Hvala vam što ste koristili aplikaciju i pomogli u zaštiti zajednice.</string>
+  <string name="en_turndown_contents">Pošto nadležni za zdravstvo prilagođavaju mere za borbu protiv pandemije COVID-19, ova aplikacija više nije podržana. Hvala vam što ste koristili aplikaciju i pomogli u zaštiti zajednice.</string>
+  <string name="en_turndown_see_test_results_card_content">Još uvek možete da vidite rezultate testiranja koje ste prethodno otpremili u obaveštenja o izloženosti</string>
 </resources>

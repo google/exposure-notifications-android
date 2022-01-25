@@ -22,4 +22,7 @@
   <string name="share_positive_diagnosis_card_content">COVID-19 virusi tarqalishining oldini olish uchun tahlil natijangizni ulashing</string>
   <string name="share_app_card_content">Kasallikning tarqalishining oldini olish uchun bu ilova haqida aytib bering</string>
   <string name="how_en_works_card_content">Ehtimoliy zararlanish bildirishnomalari qanday ishlashi haqida batafsil</string>
+  <string name="en_turndown_for_area_contents">Mahalliy sogʻliqni saqlash idorasi COVID-19 ga qarshi kurashda oʻz choralarini koʻradi va endi bu ilova bilan ishlamaydi. Ilovadan foydalanib, atrofdagilarni himoyalaganingiz uchun katta rahmat.</string>
+  <string name="en_turndown_contents">Mahalliy sogʻliqni saqlash idorasi COVID-19 ga qarshi kurashda oʻz choralarini koʻradi va endi bu ilova ishlamaydi. Ilovadan foydalanib, atrofdagilarni himoyalaganingiz uchun katta rahmat.</string>
+  <string name="en_turndown_see_test_results_card_content">Ehtimoliy zararlanish bildirishnomalariga yuklagan eski natijalaringiz hali ham koʻrinadi</string>
 </resources>

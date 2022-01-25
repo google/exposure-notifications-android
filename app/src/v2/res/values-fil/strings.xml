@@ -22,4 +22,7 @@
   <string name="share_positive_diagnosis_card_content">Ibahagi ang resulta ng iyong pagsusuri para tumulong na mapigilan ang pagkalat ng COVID-19</string>
   <string name="share_app_card_content">Ibahagi ang app na ito para mas maprotektahan ang iyong komunidad</string>
   <string name="how_en_works_card_content">Matuto pa tungkol sa kung paano gumagana ang Mga Notification sa Exposure</string>
+  <string name="en_turndown_for_area_contents">Bunsod ng pagbago ng iyong awtoridad sa kalusugan sa pagtugon nila sa COVID-19, hindi na nito sinusuportahan ang app na ito. Salamat sa paggamit sa app at pagtulong na protektahan ang iyong komunidad.</string>
+  <string name="en_turndown_contents">Bunsod ng pagbago ng mga awtoridad sa kalusugan sa pagtugon nila sa COVID-19, hindi na sinusuportahan ang app na ito. Salamat sa paggamit sa app at pagtulong na protektahan ang iyong komunidad.</string>
+  <string name="en_turndown_see_test_results_card_content">Makikita mo pa rin ang mga resulta ng test na dati mong na-upload sa Mga Notification sa Exposure</string>
 </resources>

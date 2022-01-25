@@ -134,6 +134,22 @@ public class PrivateAnalyticsMetricsRemoteConfig {
   static final String CONFIG_METRIC_PERIODIC_EXPOSURE_NOTIFICATION_BIWEEKLY_PRIO_EPSILON_KEY =
       "enpa_metric_periodic_exposure_notification_biweekly_v2_prio_epsilon";
 
+  // Metric "Date Exposure Biweekly"
+  @VisibleForTesting
+  static final String CONFIG_METRIC_DATE_EXPOSURE_BIWEEKLY_SAMPLING_PROB_KEY =
+      "enpa_metric_date_exposure_v2_sampling_prob";
+  @VisibleForTesting
+  static final String CONFIG_METRIC_DATE_EXPOSURE_BIWEEKLY_PRIO_EPSILON_KEY =
+      "enpa_metric_date_exposure_v2_prio_epsilon";
+
+  // Metric "Keys Uploaded Vaccine Status Biweekly"
+  @VisibleForTesting
+  static final String CONFIG_METRIC_KEYS_UPLOADED_VACCINE_STATUS_BIWEEKLY_SAMPLING_PROB_KEY =
+      "enpa_metric_keys_uploaded_vaccine_status_v2_sampling_prob";
+  @VisibleForTesting
+  static final String CONFIG_METRIC_KEYS_UPLOADED_VACCINE_STATUS_BIWEEKLY_PRIO_EPSILON_KEY =
+      "enpa_metric_keys_uploaded_vaccine_status_v2_prio_epsilon";
+
   private final static MetricsRemoteConfigs DEFAULT_REMOTE_CONFIGS = MetricsRemoteConfigs
       .newBuilder().build();
 
@@ -280,7 +296,7 @@ public class PrivateAnalyticsMetricsRemoteConfig {
             jsonObject.getDouble(CONFIG_METRIC_KEYS_UPLOADED_WITH_REPORT_TYPE_PRIO_EPSILON_KEY));
       }
 
-      // Keys uploaded metric params
+      // Date Exposure metric params
       if (jsonObject.has(CONFIG_METRIC_DATE_EXPOSURE_SAMPLING_PROB_KEY)) {
         remoteConfigBuilder.setDateExposurePrioSamplingRate(
             jsonObject.getDouble(CONFIG_METRIC_DATE_EXPOSURE_SAMPLING_PROB_KEY));
@@ -300,7 +316,7 @@ public class PrivateAnalyticsMetricsRemoteConfig {
             jsonObject.getDouble(CONFIG_METRIC_KEYS_UPLOADED_VACCINE_STATUS_PRIO_EPSILON_KEY));
       }
 
-      // Keys uploaded vaccine status metric params
+      // Keys uploaded after notification metric params
       if (jsonObject.has(CONFIG_METRIC_KEYS_UPLOADED_AFTER_NOTIFICATION_SAMPLING_PROB_KEY)) {
         remoteConfigBuilder.setKeysUploadedAfterNotificationPrioSamplingRate(
             jsonObject.getDouble(CONFIG_METRIC_KEYS_UPLOADED_AFTER_NOTIFICATION_SAMPLING_PROB_KEY));
@@ -321,6 +337,29 @@ public class PrivateAnalyticsMetricsRemoteConfig {
             jsonObject
                 .getDouble(CONFIG_METRIC_PERIODIC_EXPOSURE_NOTIFICATION_BIWEEKLY_PRIO_EPSILON_KEY));
       }
+
+      // Date Exposure Biweekly metric params
+      if (jsonObject.has(CONFIG_METRIC_DATE_EXPOSURE_BIWEEKLY_SAMPLING_PROB_KEY)) {
+        remoteConfigBuilder.setDateExposureBiweeklyPrioSamplingRate(
+            jsonObject.getDouble(CONFIG_METRIC_DATE_EXPOSURE_BIWEEKLY_SAMPLING_PROB_KEY));
+      }
+      if (jsonObject.has(CONFIG_METRIC_DATE_EXPOSURE_BIWEEKLY_PRIO_EPSILON_KEY)) {
+        remoteConfigBuilder.setDateExposureBiweeklyPrioEpsilon(
+            jsonObject.getDouble(CONFIG_METRIC_DATE_EXPOSURE_BIWEEKLY_PRIO_EPSILON_KEY));
+      }
+
+      // Keys uploaded vaccine status biweekly metric params
+      if (jsonObject.has(CONFIG_METRIC_KEYS_UPLOADED_VACCINE_STATUS_BIWEEKLY_SAMPLING_PROB_KEY)) {
+        remoteConfigBuilder.setKeysUploadedVaccineStatusBiweeklyPrioSamplingRate(
+            jsonObject
+                .getDouble(CONFIG_METRIC_KEYS_UPLOADED_VACCINE_STATUS_BIWEEKLY_SAMPLING_PROB_KEY));
+      }
+      if (jsonObject.has(CONFIG_METRIC_KEYS_UPLOADED_VACCINE_STATUS_BIWEEKLY_PRIO_EPSILON_KEY)) {
+        remoteConfigBuilder.setKeysUploadedVaccineStatusBiweeklyPrioEpsilon(
+            jsonObject
+                .getDouble(CONFIG_METRIC_KEYS_UPLOADED_VACCINE_STATUS_BIWEEKLY_PRIO_EPSILON_KEY));
+      }
+
 
     } catch (JSONException e) {
       logcat.e("Failed to parse remote config json, using defaults", e);

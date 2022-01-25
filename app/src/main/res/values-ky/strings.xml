@@ -15,6 +15,7 @@
   <string name="btn_verify">Ырастоо</string>
   <string name="btn_no_thanks">Жок, рахмат</string>
   <string name="btn_share">Бөлүшүү</string>
+  <string name="btn_close_app">Колдонмону жабуу</string>
   <string name="learn_more">Кененирээк</string>
   <string name="home_tab_settings_text">Жөндөөлөр</string>
   <string name="notification_channel_name">Коронавирусту (COVID-19) жугузуп алуу коркунучу бар</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">Ооруну жугузуп алуу коркунучу тууралуу билдирмелерди иштетүү үчүн уруксаттарды берүү керек</string>
   <string name="onboarding_finish_title">Ооруну жугузуп алуу коркунучу тууралуу билдирмелерди иштетүү үчүн дагы уруксаттарды берүү керек</string>
   <string name="onboarding_exposure_notifications_title">Ооруну жугузуп алуу коркунучу тууралуу билдирмелерди күйгүзүү</string>
-  <string name="onboarding_exposure_notifications_detail">COVID-19 анализинин жыйынтыгы оң чыккан адамга жакындаганыңызда кабардар болуп туруңуз.
+  <string name="onboarding_exposure_notifications_description">COVID-19 анализинин жыйынтыгы оң чыккан адамга жакындаганыңызда кабардар болуп туруңуз.
     \n\nЖугузуу коркунучун аныктоо үчүн бири-бирине жакын турган телефондор туш келди түзүлгөн идентификаторлорду Bluetooth аркылуу топтоп, алмашышат.
     \n\nБилдирмелерди жөнөтүү үчүн мамлекеттик саламаттыкты сактоо органыңыз койгон параметрлердин негизинде телефондордун байланышуу узактыгы жана күнү, ошондой эле cигналдын күчү тууралуу маалымат колдонулат.
-    \n\nАнализиңиздин жыйынтыгы камтылган SMS алсаңыз, диагнозду cаламаттыкты сактоо органы менен бөлүшүүнү сунуштаган билдирме алышыңыз мүмкүн.</string>
+    \n\nАнализиңиздин жыйынтыгы камтылган SMS алсаңыз, диагнозду cаламаттыкты сактоо органы менен бөлүшүүнү сунуштаган билдирме алышыңыз мүмкүн.%1$s</string>
   <string name="onboarding_metrics_title">Бул колдонмону жакшыртууга жардам бериңиз</string>
   <string name="onboarding_metrics_subtitle">Колдонмонун иштеши жөнүндө маалыматты Google менен бөлүшүңүз</string>
   <string name="onboarding_metrics_description">Колдонмону жакшыртып, бир калыпта иштешин камсыз кылуу үчүн Google анын колдонулушу жана иштеши тууралуу айрым маалыматты чогултуп турат. Мындай маалыматтын негизинде колдонуучунун ким экенин аныктоого болбойт. %1$s</string>
@@ -109,7 +110,7 @@
   <string name="do_you_have_code_content">Эгер сиз тапшырган COVID-19 анализинин жыйынтыгы оң чыкса, аны бөлүшүүңүз үчүн саламаттыкты сактоо органы адатта телефонуңузга чалып же SMS жөнөтүп, текшерүү кодун берет.</string>
   <string name="btn_i_have_code">Ооба, менде код бар</string>
   <string name="btn_i_need_code">Мага код керек</string>
-  <string name="get_verification_code_title">Текшерүү кодун алуу</string>
+  <string name="get_verification_code_title">Текшерүү кодун алыңыз</string>
   <string name="phone_number_prompt">Телефон номери</string>
   <string name="phone_number_help">Текшерүү коду аркылуу анализиңиздин жыйынтыктарын бөлүшө аласыз. Код сиз көрсөткөн номерге жөнөтүлөт.</string>
   <string name="phone_number_may_be_stored_help">Адамдар бирден ашык анализдин жыйынтыгын жөнөтпөшү үчүн, телефон номериңиз мамлекеттик саламаттыкты сактоо органында убактылуу сакталат.</string>
@@ -214,4 +215,11 @@
   <string name="share_upload_status_negative">Терс</string>
   <string name="share_upload_status_likely">Мүмкүн</string>
   <string name="share_diagnosis_progress_tracker">%2$d ичинен %1$d-кадам</string>
+  <string name="see_history_device_authentication_title">Өзүңүз экениңизди тастыктаңыз</string>
+  <string name="update_app_dialog_title">Колдонмоңузду жаңыртыңыз</string>
+  <string name="update_app_dialog_content">Анализдин жыйынтыктарын бөлүшүү үчүн Ооруну жугузуп алуу коркунучу тууралуу билдирмелердин акыркы версиясын жүктөп алыңыз.</string>
+  <string name="btn_update">Жаңыртуу</string>
+  <string name="try_again_later_error_message">Бир жерден ката кетти. Бир нече сааттан кийин кайталап көрүңүз.</string>
+  <string name="en_turndown_for_area_title">Саламаттыкты сактоо органы Ооруну жугузуп алуу коркунучу тууралуу билдирмелерди колдонбой калды</string>
+  <string name="en_turndown_title">Ооруну жугузуп алуу коркунучу тууралуу билдирмелер өчүрүлдү</string>
 </resources>

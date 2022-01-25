@@ -117,6 +117,7 @@
             android:id="@+id/phone_number_help"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:autoLink="web"
             android:text="@string/phone_number_help"
             android:textAppearance="?attr/textAppearanceBody2" />
 
@@ -164,6 +165,7 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_marginTop="@dimen/padding_medium"
+          android:autoLink="web"
           android:text="@string/test_date_help"
           android:textAppearance="?attr/textAppearanceBody2" />
 
@@ -174,6 +176,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingStart="@dimen/padding_medium"
+        android:autoLink="web"
         android:text="@string/tested_for_covid_checkbox_text"
         android:textAppearance="?attr/textAppearanceBody2" />
 

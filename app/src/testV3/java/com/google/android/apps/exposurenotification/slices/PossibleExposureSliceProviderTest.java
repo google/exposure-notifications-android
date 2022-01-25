@@ -37,6 +37,7 @@ import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.common.StringUtils;
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.common.time.RealTimeModule;
+import com.google.android.apps.exposurenotification.nearby.ExposureInformationHelper;
 import com.google.android.apps.exposurenotification.riskcalculation.ExposureClassification;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
 import com.google.android.apps.exposurenotification.testsupport.ExposureNotificationRules;
@@ -84,6 +85,10 @@ public class PossibleExposureSliceProviderTest {
 
   @Inject
   ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
+
+  @BindValue
+  @Mock
+  ExposureInformationHelper exposureInformationHelper;
 
   @Rule
   public ExposureNotificationRules rules =
@@ -150,9 +155,10 @@ public class PossibleExposureSliceProviderTest {
   }
 
   @Test
-  public void onBindSlice_revocationAndSmsNoticeNotSeen_returnNonEmptySliceAndSmsNotice() {
-    // Given permission to access slice, a revocation, and sms notice not seen (default)
+  public void onBindSlice_activeRevocationAndSmsNoticeNotSeen_returnNonEmptySliceAndSmsNotice() {
+    // Given permission to access slice, an active revocation, and sms notice not seen (default)
     when(slicePermissionManager.callingUidHasAccess()).thenReturn(true);
+    when(exposureInformationHelper.isActiveExposurePresent()).thenReturn(true);
     exposureNotificationSharedPreferences.setIsExposureClassificationRevoked(true);
 
     Slice slice = possibleExposureSliceProvider.onBindSlice(POSSIBLE_EXPOSURE_SLICE_URI);
@@ -162,9 +168,23 @@ public class PossibleExposureSliceProviderTest {
   }
 
   @Test
-  public void onBindSlice_exposureSmsNoticeNotSeen_returnPossibleExposureSliceAndSmsNotice() {
-    // GIVEN - permission to access slice, an exposure, and sms notice not seen (default)
+  public void onBindSlice_outdatedRevocationAndSmsNoticeNotSeen_returnSmsNoticeSlice() {
+    // Given permission to access slice, an outdated revocation, and sms notice not seen (default)
     when(slicePermissionManager.callingUidHasAccess()).thenReturn(true);
+    when(exposureInformationHelper.isActiveExposurePresent()).thenReturn(false);
+    exposureNotificationSharedPreferences.setIsExposureClassificationRevoked(true);
+
+    Slice slice = possibleExposureSliceProvider.onBindSlice(POSSIBLE_EXPOSURE_SLICE_URI);
+
+    assertThat(slice).isNotNull();
+    assertSliceIsSmsNoticeSlice(slice.getItems().get(1).getSlice());
+  }
+
+  @Test
+  public void onBindSlice_activeExposureAndSmsNoticeNotSeen_returnPossibleExposureSliceAndSmsNotice() {
+    // GIVEN - permission to access slice, an active exposure, and sms notice not seen (default)
+    when(slicePermissionManager.callingUidHasAccess()).thenReturn(true);
+    when(exposureInformationHelper.isActiveExposurePresent()).thenReturn(true);
     ExposureClassification exposureClassification = ExposureClassification
         .create(1,"exp", LocalDate.of(2021,2,6).toEpochDay());
     exposureNotificationSharedPreferences.setExposureClassification(exposureClassification);
@@ -178,6 +198,25 @@ public class PossibleExposureSliceProviderTest {
     assertThat(slice).isNotNull();
     assertSliceIsPossibleExposureSlice(slice.getItems().get(1).getSlice(), exposureClassification);
     assertSliceIsSmsNoticeSlice(slice.getItems().get(2).getSlice());
+  }
+
+  @Test
+  public void onBindSlice_outdatedExposureAndSmsNoticeNotSeen_returnSmsNoticeSlice() {
+    // GIVEN - permission to access slice, an outdated exposure, and sms notice not seen (default)
+    when(slicePermissionManager.callingUidHasAccess()).thenReturn(true);
+    when(exposureInformationHelper.isActiveExposurePresent()).thenReturn(false);
+    ExposureClassification exposureClassification = ExposureClassification
+        .create(1,"exp", LocalDate.of(2021,2,6).toEpochDay());
+    exposureNotificationSharedPreferences.setExposureClassification(exposureClassification);
+    ((FakeClock) clock).set(Instant.from(OffsetDateTime
+        .of(2021, 3 ,8, 18,0,0,0, ZoneOffset.UTC)));
+
+    // WHEN
+    Slice slice = possibleExposureSliceProvider.onBindSlice(POSSIBLE_EXPOSURE_SLICE_URI);
+
+    // THEN
+    assertThat(slice).isNotNull();
+    assertSliceIsSmsNoticeSlice(slice.getItems().get(1).getSlice());
   }
 
   @Test

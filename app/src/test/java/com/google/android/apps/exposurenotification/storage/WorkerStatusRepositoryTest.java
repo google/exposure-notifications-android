@@ -27,7 +27,6 @@ import com.google.android.apps.exposurenotification.proto.WorkManagerTask.Worker
 import com.google.android.apps.exposurenotification.testsupport.ExposureNotificationRules;
 import com.google.android.apps.exposurenotification.testsupport.FakeClock;
 import com.google.android.apps.exposurenotification.testsupport.InMemoryDb;
-import com.google.common.base.Optional;
 import dagger.hilt.android.testing.BindValue;
 import dagger.hilt.android.testing.HiltAndroidTest;
 import dagger.hilt.android.testing.HiltTestApplication;
@@ -76,7 +75,7 @@ public class WorkerStatusRepositoryTest {
     // But read a different ID and assert nothing is returned.
     assertThat(
         workerStatusRepo.getLastRunTimestamp(WorkerTask.TASK_PROVIDE_DIAGNOSIS_KEYS,
-            Status.STATUS_FAIL.toString())).isEqualTo(Optional.absent());
+            Status.STATUS_FAIL.toString())).isAbsent();
   }
 
   @Test
@@ -84,8 +83,29 @@ public class WorkerStatusRepositoryTest {
     Instant lastRun = Instant.ofEpochMilli(123456789L);
     workerStatusRepo.upsert(WorkerTask.TASK_PROVIDE_DIAGNOSIS_KEYS,
         Status.STATUS_STARTED.toString(), lastRun);
+
     assertThat(
         workerStatusRepo.getLastRunTimestamp(WorkerTask.TASK_PROVIDE_DIAGNOSIS_KEYS,
             Status.STATUS_STARTED.toString())).hasValue(lastRun);
   }
+
+  @Test
+  public void clearWorkerStatusEntities_clearsAllData() throws Exception {
+    Instant lastRunKeysWorker = Instant.ofEpochMilli(123456789L);
+    workerStatusRepo.upsert(WorkerTask.TASK_PROVIDE_DIAGNOSIS_KEYS,
+        Status.STATUS_STARTED.toString(), lastRunKeysWorker);
+    Instant lastRunCountryWorker = Instant.ofEpochMilli(123456790L);
+    workerStatusRepo.upsert(WorkerTask.TASK_COUNTRY_CHECKING,
+        Status.STATUS_STARTED.toString(), lastRunCountryWorker);
+
+    workerStatusRepo.deleteWorkerStatusEntities().get();
+
+    assertThat(
+        workerStatusRepo.getLastRunTimestamp(WorkerTask.TASK_PROVIDE_DIAGNOSIS_KEYS,
+            Status.STATUS_STARTED.toString())).isAbsent();
+    assertThat(
+        workerStatusRepo.getLastRunTimestamp(WorkerTask.TASK_COUNTRY_CHECKING,
+            Status.STATUS_STARTED.toString())).isAbsent();
+  }
+
 }

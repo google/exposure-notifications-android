@@ -37,6 +37,7 @@ import androidx.work.testing.WorkManagerTestInitHelper;
 import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.migrate.Migration.MigrationFailedException;
+import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
 import com.google.android.apps.exposurenotification.testsupport.ExposureNotificationRules;
 import com.google.android.apps.exposurenotification.testsupport.FakeClock;
 import com.google.android.apps.exposurenotification.testsupport.FakeShadowResources;
@@ -45,6 +46,7 @@ import com.google.common.util.concurrent.MoreExecutors;
 import dagger.hilt.android.testing.HiltAndroidTest;
 import dagger.hilt.android.testing.HiltTestApplication;
 import java.util.concurrent.ExecutionException;
+import javax.inject.Inject;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -67,6 +69,9 @@ public class MigrationManagerTest {
   private final Clock clock = new FakeClock();
   // Spy on the Context object as we want to stub some of its methods.
   private final Context context = spy(ApplicationProvider.getApplicationContext());
+
+  @Inject
+  ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
 
   @Mock
   PackageManager packageManager;
@@ -95,6 +100,7 @@ public class MigrationManagerTest {
     // And the SUT.
     migrationManager = new MigrationManager(
         migration,
+        exposureNotificationSharedPreferences,
         MoreExecutors.newDirectExecutorService()
     );
   }
@@ -267,6 +273,70 @@ public class MigrationManagerTest {
     assertThat(thrownException.getCause()).isInstanceOf(MigrationFailedException.class);
     verify(migration).migrate(context);
     verify(migration).markMigrationAsRunOrNotNeeded();
+  }
+
+  @Test
+  public void isMigratingUser_migrationDisabled_returnsFalse() {
+    FakeShadowResources resources = (FakeShadowResources) shadowOf(context.getResources());
+    resources.addFakeResource(R.bool.enx_enableV1toENXMigration, false);
+
+    assertThat(migrationManager.isMigratingUser(context)).isFalse();
+  }
+
+  @Test
+  public void isMigratingUser_firstInstall_returnsFalse() throws Exception {
+    // Migration enabled.
+    FakeShadowResources resources = (FakeShadowResources) shadowOf(context.getResources());
+    resources.addFakeResource(R.bool.enx_enableV1toENXMigration, true);
+    // But this is the first app install.
+    when(packageManager.getPackageInfo(context.getPackageName(), 0))
+        .thenReturn(getAppFirstInstallPackageInfo());
+
+    assertThat(migrationManager.isMigratingUser(context)).isFalse();
+  }
+
+  @Test
+  public void isMigratingUser_notFirstInstallAndMigrationEnabled_returnsTrue() throws Exception {
+    setupConditionsForMigrationToRun();
+
+    assertThat(migrationManager.isMigratingUser(context)).isTrue();
+  }
+
+  @Test
+  public void shouldOnboardAsMigratingUser_notMigratingUser_returnsFalse() {
+    FakeShadowResources resources = (FakeShadowResources) shadowOf(context.getResources());
+    resources.addFakeResource(R.bool.enx_enableV1toENXMigration, false);
+
+    assertThat(migrationManager.shouldOnboardAsMigratingUser(context)).isFalse();
+  }
+
+  @Test
+  public void shouldOnboardAsMigratingUser_migratingUserOnboarded_returnsFalse() throws Exception {
+    setupConditionsForMigrationToRun();
+    exposureNotificationSharedPreferences.markMigratingUserAsOnboardedAsync();
+
+    assertThat(migrationManager.shouldOnboardAsMigratingUser(context)).isFalse();
+  }
+
+  @Test
+  public void shouldOnboardAsMigratingUser_migratingUserNotOnboarded_returnsTrue() throws Exception {
+    setupConditionsForMigrationToRun();
+
+    assertThat(migrationManager.shouldOnboardAsMigratingUser(context)).isTrue();
+  }
+
+  @Test
+  public void markMigratingUserAsOnboarded_updatesSharedPrefs() throws Exception {
+    setupConditionsForMigrationToRun();
+
+    assertThat(migrationManager.shouldOnboardAsMigratingUser(context)).isTrue();
+    assertThat(exposureNotificationSharedPreferences.isMigratingUserOnboarded())
+        .isFalse();
+    migrationManager.markMigratingUserAsOnboarded();
+
+    assertThat(migrationManager.shouldOnboardAsMigratingUser(context)).isFalse();
+    assertThat(exposureNotificationSharedPreferences.isMigratingUserOnboarded())
+        .isTrue();
   }
 
   private void setupConditionsForMigrationToRun() throws Exception {

@@ -17,10 +17,13 @@
 
 package com.google.android.apps.exposurenotification.home;
 
+import android.content.Context;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+import com.google.android.apps.exposurenotification.home.ExposureNotificationViewModel.ExposureNotificationState;
+import com.google.android.apps.exposurenotification.migrate.MigrationManager;
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
 import com.google.android.libraries.privateanalytics.PrivateAnalyticsEnabledProvider;
 import dagger.hilt.android.lifecycle.HiltViewModel;
@@ -34,21 +37,29 @@ public class SplashViewModel extends ViewModel {
 
   private final ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
   private final PrivateAnalyticsEnabledProvider privateAnalyticsEnabledProvider;
+  private final MigrationManager migrationManager;
 
   @Inject
   public SplashViewModel(
       ExposureNotificationSharedPreferences exposureNotificationSharedPreferences,
-      PrivateAnalyticsEnabledProvider privateAnalyticsEnabledProvider) {
+      PrivateAnalyticsEnabledProvider privateAnalyticsEnabledProvider,
+      MigrationManager migrationManager) {
     this.exposureNotificationSharedPreferences = exposureNotificationSharedPreferences;
     this.privateAnalyticsEnabledProvider = privateAnalyticsEnabledProvider;
+    this.migrationManager = migrationManager;
   }
 
-  public LiveData<Fragment> getNextFragmentLiveData(LiveData<Boolean> enEnabledLiveData) {
+  public LiveData<Fragment> getNextFragmentLiveData(
+      LiveData<Boolean> enEnabledLiveData,
+      LiveData<ExposureNotificationState> enStateLiveData,
+      Context context) {
     return SplashNextFragmentLiveData.create(
         enEnabledLiveData,
+        enStateLiveData,
         exposureNotificationSharedPreferences.isOnboardingStateSetLiveData(),
         exposureNotificationSharedPreferences.isPrivateAnalyticsStateSetLiveData(),
-        new MutableLiveData<>(privateAnalyticsEnabledProvider.isSupportedByApp()));
+        new MutableLiveData<>(privateAnalyticsEnabledProvider.isSupportedByApp()),
+        migrationManager.shouldOnboardAsMigratingUser(context));
   }
 
 }

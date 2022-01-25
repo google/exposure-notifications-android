@@ -22,4 +22,7 @@
   <string name="share_positive_diagnosis_card_content">Ossza meg teszteredményét, hogy segíthessen a COVID-19 terjedésének megállításában</string>
   <string name="share_app_card_content">Ossza meg az alkalmazást, hogy hatékonyabb lehessen közössége védelme</string>
   <string name="how_en_works_card_content">További információ a Kitettséget jelző értesítések működéséről</string>
+  <string name="en_turndown_for_area_contents">Mivel egészségügyi hatósága átalakítja a COVID-19-re adott válaszlépéseit, ezt az alkalmazást már nem támogatja. Köszönjük, hogy használta az alkalmazást, és segített megvédeni a közösségét.</string>
+  <string name="en_turndown_contents">Mivel az egészségügyi hatóságok átalakítják a COVID-19-re adott válaszlépéseiket, ezt az alkalmazást már nem támogatják. Köszönjük, hogy használta az alkalmazást, és segített megvédeni a közösségét.</string>
+  <string name="en_turndown_see_test_results_card_content">A korábban feltöltött teszteredményeket továbbra is láthatja a Kitettséget jelző értesítések alkalmazásban.</string>
 </resources>

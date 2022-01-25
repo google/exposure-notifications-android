@@ -22,4 +22,7 @@
   <string name="share_positive_diagnosis_card_content">Delite svoj rezultat testa in tako pomagajte zajeziti širjenje bolezni COVID-19.</string>
   <string name="share_app_card_content">Delite to aplikacijo, da bo vaša skupnost bolje zaščitena.</string>
   <string name="how_en_works_card_content">Preberite več o tem, kako deluje obveščanje o izpostavljenosti.</string>
+  <string name="en_turndown_for_area_contents">Organ za javno zdravje prilagaja odziv na COVID-19, zato ne podpira več te aplikacije. Hvala, ker ste uporabljali aplikacijo in pomagali varovati svojo skupnost.</string>
+  <string name="en_turndown_contents">Organi za javno zdravje prilagajajo odziv na COVID-19, zato ta aplikacija ni več podprta. Hvala, ker ste uporabljali aplikacijo in pomagali varovati svojo skupnost.</string>
+  <string name="en_turndown_see_test_results_card_content">Še vedno si lahko ogledate rezultate testiranj, ki ste jih že naložili v sistem za obveščanje o izpostavljenosti.</string>
 </resources>

@@ -90,7 +90,6 @@
           android:layout_height="wrap_content"
           android:layout_marginStart="@dimen/onboarding_section_header_image_width"
           android:layout_marginVertical="@dimen/padding_small"
-          android:text="@string/onboarding_exposure_notifications_detail"
           android:textAppearance="?attr/textAppearanceBody2" />
 
         <LinearLayout

@@ -66,21 +66,8 @@ public class OnboardingPermissionDisabledFragment extends AbstractOnboardingFrag
     nextButton = binding.onboardingNextButton;
     scroller = binding.onboardingScroll;
 
-    String learnMore = getString(R.string.learn_more);
-    URLSpan learnMoreClickableSpan = UrlUtils.createURLSpan(getString(R.string.app_analytics_link));
-    String onboardingMetricsDescription =
-        getString(R.string.onboarding_metrics_description, learnMore);
-    SpannableString spannableString = new SpannableString(onboardingMetricsDescription);
-    int learnMoreStart = onboardingMetricsDescription.indexOf(learnMore);
-    spannableString
-        .setSpan(learnMoreClickableSpan, learnMoreStart, learnMoreStart + learnMore.length(),
-            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-
-    binding.appAnalyticsDetail.setText(spannableString);
-    binding.appAnalyticsDetail.setMovementMethod(LinkMovementMethod.getInstance());
-
-    binding.onboardingExposureNotificationsDetail.setText(
-        getString(R.string.onboarding_exposure_notifications_detail));
+    setupAppAnalyticsText();
+    setupExposureNotificationDetailText();
 
     setupUpdateAtBottom(scroller, onboardingButtons, nextButton);
 
@@ -138,6 +125,41 @@ public class OnboardingPermissionDisabledFragment extends AbstractOnboardingFrag
         .observe(getViewLifecycleOwner(),
             shouldShowPrivateAnalyticsOnboarding ->
                 this.shouldShowPrivateAnalyticsOnboarding = shouldShowPrivateAnalyticsOnboarding);
+
+    // If we are currently onboarding a migrating user, mark that now this user is onboarded.
+    onboardingViewModel.maybeMarkMigratingUserAsOnboarded(requireContext());
+  }
+
+  private void setupAppAnalyticsText() {
+    String learnMore = getString(R.string.learn_more);
+    URLSpan learnMoreClickableSpan = UrlUtils.createURLSpan(getString(R.string.app_analytics_link));
+    String onboardingMetricsDescription =
+        getString(R.string.onboarding_metrics_description, learnMore);
+    SpannableString spannableString = new SpannableString(onboardingMetricsDescription);
+    int learnMoreStart = onboardingMetricsDescription.indexOf(learnMore);
+    spannableString
+        .setSpan(learnMoreClickableSpan, learnMoreStart, learnMoreStart + learnMore.length(),
+            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+    binding.appAnalyticsDetail.setText(spannableString);
+    binding.appAnalyticsDetail.setMovementMethod(LinkMovementMethod.getInstance());
+  }
+
+  private void setupExposureNotificationDetailText() {
+    String learnMore = getString(R.string.learn_more);
+    URLSpan learnMoreClickableSpan = UrlUtils.createURLSpan(
+        getString(R.string.en_notification_info_link));
+    String exposureNotificationDescription =
+        getString(R.string.onboarding_exposure_notifications_description, learnMore);
+    SpannableString spannableString = new SpannableString(exposureNotificationDescription);
+    int learnMoreStart = exposureNotificationDescription.indexOf(learnMore);
+    spannableString
+        .setSpan(learnMoreClickableSpan, learnMoreStart, learnMoreStart + learnMore.length(),
+            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+    binding.onboardingExposureNotificationsDetail.setText(spannableString);
+    binding.onboardingExposureNotificationsDetail.setMovementMethod(
+        LinkMovementMethod.getInstance());
   }
 
   @Override

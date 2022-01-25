@@ -116,4 +116,47 @@ public class DownloadServerRepositoryTest {
 
     assertThat(downloadServerRepo.getMostRecentSuccessfulDownload(index)).isEqualTo(file3);
   }
+
+  @Test
+  public void saveMultipleServers_clearDownloadServerEntitiesAsync_clearsAllData()
+      throws Exception {
+    Uri index1 = Uri.parse("example-1.com/index");
+    Uri file1 = Uri.parse("example-1.com/file");
+    Uri index2 = Uri.parse("example-2.com/index");
+    Uri file2 = Uri.parse("example-2.com/file");
+    Uri index3 = Uri.parse("example-3.com/index");
+    Uri file3 = Uri.parse("example-3.com/file");
+    DownloadServerEntity record1 = DownloadServerEntity.create(index1, file1);
+    DownloadServerEntity record2 = DownloadServerEntity.create(index2, file2);
+    DownloadServerEntity record3 = DownloadServerEntity.create(index3, file3);
+    downloadServerRepo.upsert(record1);
+    downloadServerRepo.upsert(record2);
+    downloadServerRepo.upsert(record3);
+
+    downloadServerRepo.deleteDownloadServerEntitiesAsync().get();
+
+    assertThat(downloadServerRepo.getMostRecentSuccessfulDownload(index1)).isNull();
+    assertThat(downloadServerRepo.getMostRecentSuccessfulDownload(index2)).isNull();
+    assertThat(downloadServerRepo.getMostRecentSuccessfulDownload(index3)).isNull();
+  }
+
+  @Test
+  public void saveSameServerMultipleTimes_clearDownloadServerEntitiesAsync_clearsAllData()
+      throws Exception {
+    Uri index = Uri.parse("example.com/index");
+    Uri file1 = Uri.parse("example.com/file1");
+    Uri file2 = Uri.parse("example.com/file2");
+    Uri file3 = Uri.parse("example.com/file3");
+    DownloadServerEntity record1 = DownloadServerEntity.create(index, file1);
+    DownloadServerEntity record2 = DownloadServerEntity.create(index, file2);
+    DownloadServerEntity record3 = DownloadServerEntity.create(index, file3);
+    downloadServerRepo.upsert(record1);
+    downloadServerRepo.upsert(record2);
+    downloadServerRepo.upsert(record3);
+
+    downloadServerRepo.deleteDownloadServerEntitiesAsync().get();
+
+    assertThat(downloadServerRepo.getMostRecentSuccessfulDownload(index)).isNull();
+  }
+
 }

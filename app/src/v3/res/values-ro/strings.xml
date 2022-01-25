@@ -14,4 +14,6 @@
   <string name="share_history_delete_test_result_detail">Rezultatul testului pentru COVID-19 de pe %1$s va fi șters de pe telefon.</string>
   <string name="sms_intercept_notice_card_title">E posibil să primiți un memento pentru a trimite rezultatul</string>
   <string name="sms_intercept_notice_card_content">Dacă aveți un rezultat pozitiv, trimis prin SMS verificat</string>
+  <string name="en_turndown_contents">Întrucât autoritățile în domeniul sănătății își adaptează soluțiile pentru combaterea COVID-19, Notificările privind expunerea nu mai sunt acceptate. Vă mulțumim că ați folosit serviciul și că ați contribuit la protejarea comunității dvs.</string>
+  <string name="en_turndown_for_area_contents">Întrucât autoritatea dvs. în domeniul sănătății își adaptează soluțiile pentru combaterea COVID-19, nu mai acceptă Notificările privind expunerea. Vă mulțumim că ați folosit serviciul și că ați contribuit la protejarea comunității dvs.</string>
 </resources>

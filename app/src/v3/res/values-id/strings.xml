@@ -14,4 +14,6 @@
   <string name="share_history_delete_test_result_detail">Hasil tes COVID-19 Anda dari %1$s akan dihapus dari ponsel.</string>
   <string name="sms_intercept_notice_card_title">Anda mungkin mendapat pengingat untuk membagikan hasil tes</string>
   <string name="sms_intercept_notice_card_content">Jika mendapat hasil tes positif &amp; menerima SMS terverifikasi</string>
+  <string name="en_turndown_contents">Otoritas kesehatan telah menyesuaikan responsnya terhadap COVID-19 sehingga Notifikasi Paparan tidak lagi didukung. Terima kasih telah menggunakan layanan ini dan telah membantu melindungi masyarakat sekitar.</string>
+  <string name="en_turndown_for_area_contents">Otoritas kesehatan Anda telah menyesuaikan responsnya terhadap COVID-19 sehingga tidak lagi mendukung Notifikasi Paparan. Terima kasih telah menggunakan layanan ini dan telah membantu melindungi masyarakat sekitar.</string>
 </resources>

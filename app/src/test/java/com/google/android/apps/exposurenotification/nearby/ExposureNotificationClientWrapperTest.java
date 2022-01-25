@@ -38,9 +38,12 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
+import org.robolectric.annotation.LooperMode;
+import org.robolectric.annotation.LooperMode.Mode;
 
 @HiltAndroidTest
 @RunWith(RobolectricTestRunner.class)
+@LooperMode(Mode.LEGACY)
 @Config(application = HiltTestApplication.class)
 public class ExposureNotificationClientWrapperTest {
 

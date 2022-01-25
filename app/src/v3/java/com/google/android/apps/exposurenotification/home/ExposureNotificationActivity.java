@@ -17,11 +17,19 @@
 
 package com.google.android.apps.exposurenotification.home;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.biometric.BiometricPrompt;
+import com.google.android.apps.exposurenotification.common.AuthenticationUtils;
+import com.google.android.apps.exposurenotification.common.BiometricUtil;
+import com.google.android.apps.exposurenotification.common.BiometricUtil.BiometricAuthenticationCallback;
 import com.google.android.apps.exposurenotification.common.IntentUtil;
+import com.google.android.apps.exposurenotification.common.KeyboardHelper;
 import com.google.android.apps.exposurenotification.exposure.PossibleExposureFragment;
 import com.google.android.apps.exposurenotification.notify.ShareDiagnosisFragment;
 import com.google.android.apps.exposurenotification.notify.ShareHistoryFragment;
@@ -37,12 +45,31 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class ExposureNotificationActivity extends BaseActivity {
 
+  private static final String SAVED_INSTANCE_STATE_IS_BIOMETRIC_PROMPT_SHOWING_KEY
+      = "is_biometric_prompt_showing";
   private static final String EXTRA_POSSIBLE_EXPOSURE_SLICE_DISABLED = "slice_disabled";
   public static final String EXTRA_NOT_NOW_CONFIRMATION = "not_now_confirmation";
+
+  private boolean biometricInProgress;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+
+    if (savedInstanceState != null &&
+        savedInstanceState.getBoolean(SAVED_INSTANCE_STATE_IS_BIOMETRIC_PROMPT_SHOWING_KEY,
+            false)) {
+      biometricInProgress = true;
+      BiometricUtil.createBiometricPrompt(this, authenticationCallback);
+    }
+  }
+
+  @Override
+  protected void onSaveInstanceState(@NonNull Bundle savedInstanceState) {
+    super.onSaveInstanceState(savedInstanceState);
+
+    savedInstanceState.putBoolean(SAVED_INSTANCE_STATE_IS_BIOMETRIC_PROMPT_SHOWING_KEY,
+        biometricInProgress);
   }
 
   @Override
@@ -63,8 +90,8 @@ public class ExposureNotificationActivity extends BaseActivity {
             .newInstance(extras.getBoolean(EXTRA_NOT_NOW_CONFIRMATION, false));
         break;
       case IntentUtil.ACTION_SHARE_HISTORY:
-        fragment = new ShareHistoryFragment();
-        break;
+        authenticateUserAndMaybeShowShareHistory();
+        return;
       case IntentUtil.ACTION_SHARE_DIAGNOSIS:
         fragment = ShareDiagnosisFragment.newInstance();
         break;
@@ -109,4 +136,52 @@ public class ExposureNotificationActivity extends BaseActivity {
     }
   }
 
+  /**
+   * This method is called for the user to authenticate when the share history button is clicked.
+   */
+  private void authenticateUserAndMaybeShowShareHistory() {
+    if (!AuthenticationUtils.isAuthenticationAvailable(this)) {
+      transitionToSharingHistoryFragment();
+      return;
+    }
+
+    biometricInProgress = true;
+    BiometricPrompt biometricPrompt = BiometricUtil.createBiometricPrompt(this,
+        authenticationCallback);
+    BiometricUtil.startBiometricPromptAuthentication( this, biometricPrompt);
+  }
+
+  BiometricAuthenticationCallback authenticationCallback = new BiometricAuthenticationCallback() {
+    @Override
+    public void onAuthenticationSucceeded() {
+      transitionToSharingHistoryFragment();
+      biometricInProgress = false;
+      KeyboardHelper.maybeHideKeyboard(ExposureNotificationActivity.this,
+          binding.getRoot());
+    }
+
+    @Override
+    public void onAuthenticationError(boolean isBiometricErrorSkippable) {
+      if (isBiometricErrorSkippable) {
+        transitionToSharingHistoryFragment();
+      } else {
+        biometricInProgress = false;
+        KeyboardHelper.maybeHideKeyboard(ExposureNotificationActivity.this,
+            binding.getRoot());
+        finish();
+      }
+    }
+
+    @Override
+    public void onAuthenticationFailed() {
+      biometricInProgress = false;
+      KeyboardHelper.maybeHideKeyboard(ExposureNotificationActivity.this,
+          binding.getRoot());
+      finish();
+    }
+  };
+
+  private void transitionToSharingHistoryFragment() {
+    transitionToFragmentDirect(new ShareHistoryFragment());
+  }
 }

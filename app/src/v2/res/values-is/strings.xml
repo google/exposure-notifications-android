@@ -22,4 +22,7 @@
   <string name="share_positive_diagnosis_card_content">Deildu niðurstöðu prófsins til að hjálpa til í baráttunni gegn útbreiðslu COVID-19</string>
   <string name="share_app_card_content">Deildu þessu forriti til að vernda samfélagið</string>
   <string name="how_en_works_card_content">Nánar um hvernig tilkynningar um útsetningu virka</string>
+  <string name="en_turndown_for_area_contents">Heilbrigðisyfirvöld á þínum stað hafa gert breytingar á viðbrögðum við COVID-19 og styðja því ekki lengur þetta forrit. Takk fyrir að nota forritið og aðstoða við að vernda aðra í samfélaginu.</string>
+  <string name="en_turndown_contents">Þetta forrit er ekki lengur stutt vegna þess að heilbrigðisyfirvöld hafa gert breytingar á viðbrögðum við COVID-19. Takk fyrir að nota forritið og aðstoða við að vernda aðra í samfélaginu.</string>
+  <string name="en_turndown_see_test_results_card_content">Þú getur áfram skoðað niðurstöður úr skimun sem þú hlóðst upp áður í tilkynningum um útsetningu</string>
 </resources>

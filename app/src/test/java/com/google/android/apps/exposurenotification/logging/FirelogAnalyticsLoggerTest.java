@@ -361,6 +361,22 @@ public class FirelogAnalyticsLoggerTest {
   }
 
   @Test
+  public void logRpcCallFailureAsync_shouldWriteDbRecord_withRpcCallType_andUnauthorizedClient()
+      throws Exception {
+    // WHEN
+    VolleyError e = volleyErrorOf(401);
+    logger.logRpcCallFailureAsync(RpcCallType.RPC_TYPE_KEYS_UPLOAD, e).get();
+
+    // THEN
+    assertThat(storedLogs())
+        .containsExactly(EnxLogExtension.newBuilder()
+            .addRpcCall(RpcCall.newBuilder()
+                .setRpcCallType(RpcCallType.RPC_TYPE_KEYS_UPLOAD)
+                .setRpcCallResult(RpcCallResult.RESULT_FAILED_UNAUTHORIZED_CLIENT))
+            .build());
+  }
+
+  @Test
   public void logRpcCallFailureAsync_shouldWriteDbRecord_withRpcCallType_andGeneric4xxHttpStatus()
       throws Exception {
     // WHEN
@@ -899,7 +915,7 @@ public class FirelogAnalyticsLoggerTest {
 
     // WHEN Removing all items up to a certain position
     int indexToRemoveUpTo = 2;
-    repository.eraseEventsBatchUpToIncludingEvent(eventsBatch.get(indexToRemoveUpTo));
+    repository.deleteEventsBatchUpToIncludingEvent(eventsBatch.get(indexToRemoveUpTo));
     List<AnalyticsLoggingEntity> result = repository.getEventsBatch();
 
     // THEN We should only see the entries after (excluding) the indexToRemoveUpTo

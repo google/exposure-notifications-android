@@ -15,6 +15,7 @@
   <string name="btn_verify">Thibitisha</string>
   <string name="btn_no_thanks">Hapana</string>
   <string name="btn_share">Shiriki</string>
+  <string name="btn_close_app">Funga programu</string>
   <string name="learn_more">Pata maelezo zaidi</string>
   <string name="home_tab_settings_text">Mipangilio</string>
   <string name="notification_channel_name">Huenda umemkaribia mtu aliye na COVID-19</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">Ruhusa zinahitajika ili kuwasha Arifa Kuhusu Kukaribia Aliye na COVID-19</string>
   <string name="onboarding_finish_title">Mwendelezo wa ruhusa zinazohitajika ili kuwasha Arifa Kuhusu Kukaribia Aliye na COVID-19</string>
   <string name="onboarding_exposure_notifications_title">Washa Arifa Kuhusu Kukaribia Aliye na COVID-19</string>
-  <string name="onboarding_exposure_notifications_detail">Pata arifa iwapo umemkaribia mtu aliyeripoti kuwa ameambukizwa COVID-19.
+  <string name="onboarding_exposure_notifications_description">Pata arifa iwapo umemkaribia mtu aliyeripoti kuwa ameambukizwa COVID-19.
     \n\nSimu yako hutumia Bluetooth kukusanya na kushiriki kwa usalama vitambulisho nasibu na simu zingine zilizo karibu nawe.
     \n\nMaelezo ya tarehe, muda na uthabiti wa mawimbi yanayohusiana na kukaribia aliyeambukizwa yatatumiwa ili kubaini iwapo utaarifiwa kulingana na vigezo vilivyowekwa na mamlaka ya afya ya mahali ulipo.
-    \n\nHuenda ukapokea arifa ili ushiriki uchunguzi na mamlaka ya afya ya mahali ulipo ukipokea SMS yenye matokeo yako baada ya kupimwa.</string>
+    \n\nHuenda ukapokea arifa ili ushiriki uchunguzi na mamlaka ya afya ya mahali ulipo ukipokea SMS yenye matokeo yako baada ya kupimwa. %1$s</string>
   <string name="onboarding_metrics_title">Saidia kuboresha programu hii</string>
   <string name="onboarding_metrics_subtitle">Shiriki data ya utendaji na matumizi ya programu na Google</string>
   <string name="onboarding_metrics_description">Ili kusaidia kudumisha na kuboresha programu, data fulani isiyomtambulisha mtu kuhusu matumizi na utendaji wa programu hushirikiwa na Google. Data hii haikutambulishi. %1$s</string>
@@ -214,4 +215,11 @@
   <string name="share_upload_status_negative">Hujaambukizwa</string>
   <string name="share_upload_status_likely">Huenda umeambukizwa</string>
   <string name="share_diagnosis_progress_tracker">Hatua %1$d kati ya %2$d</string>
+  <string name="see_history_device_authentication_title">Thibitisha kwamba ni wewe</string>
+  <string name="update_app_dialog_title">Sasisha programu yako</string>
+  <string name="update_app_dialog_content">Pata toleo jipya zaidi la Arifa Kuhusu Kukaribia Aliye na COVID-19 ili ukamilishe kushiriki matokeo yako baada ya kupimwa.</string>
+  <string name="btn_update">Sasisha</string>
+  <string name="try_again_later_error_message">Hitilafu fulani imetokea. Jaribu tena baada ya saa chache.</string>
+  <string name="en_turndown_for_area_title">Mamlaka ya Afya ya mahali ulipo haitumii kipengele cha Arifa Kuhusu Kukaribia Aliye na COVID-19 tena</string>
+  <string name="en_turndown_title">Arifa Kuhusu Kukaribia Aliye na COVID-19 zimezimwa</string>
 </resources>

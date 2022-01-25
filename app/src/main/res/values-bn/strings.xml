@@ -15,6 +15,7 @@
   <string name="btn_verify">যাচাই করুন</string>
   <string name="btn_no_thanks">না থাক</string>
   <string name="btn_share">শেয়ার করুন</string>
+  <string name="btn_close_app">অ্যাপ বন্ধ করুন</string>
   <string name="learn_more">আরও জানুন</string>
   <string name="home_tab_settings_text">সেটিংস</string>
   <string name="notification_channel_name">আপনার COVID-19 এক্সপোজারের সম্ভাবনা আছে</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">\'Exposure Notifications\' চালু করতে অনুমতিগুলি প্রয়োজন</string>
   <string name="onboarding_finish_title">\'Exposure Notifications\' চালু করতে অনুমতিগুলি দিয়ে রাখতে হবে</string>
   <string name="onboarding_exposure_notifications_title">\'Exposure Notifications\' চালু করুন</string>
-  <string name="onboarding_exposure_notifications_detail">আপনার আশেপাশে কেউ COVID-19 সংক্রমিত হলে তার বিজ্ঞপ্তি পান।
+  <string name="onboarding_exposure_notifications_description">আপনার আশেপাশে কেউ COVID-19 সংক্রমিত হলে তার বিজ্ঞপ্তি পান।
     \n\nআপনার ফোন ব্লুটুথ ব্যবহার করে আশেপাশের অন্যান্য ফোন থেকে নিরাপদে র‍্যান্ডম আইডি সংগ্রহ এবং শেয়ার করবে।
     \n\n সরকারি স্বাস্থ্য কর্তৃপক্ষের সেট করা প্যারামিটার অনুযায়ী, আপনাকে বিজ্ঞপ্তি দেওয়া হবে কিনা তা নির্ধারণ করতে সম্ভাব্য এক্সপোজার সম্পর্কিত তথ্য যেমন তারিখ, সময়কাল ও সিগন্যাল ক্ষমতা ব্যবহার করা হবে।
-    \n\nআপনার পরীক্ষা ফলাফল সংক্রান্ত কোনও এসএমএস পেলে, আপনার স্বাস্থ্য কর্তৃপক্ষের সাথে পরীক্ষা ফলাফল শেয়ার করার বিজ্ঞপ্তি পেতে পারেন।</string>
+    \n\nআপনার পরীক্ষা ফলাফল সংক্রান্ত কোনও এসএমএস পেলে, আপনার স্বাস্থ্য কর্তৃপক্ষের সাথে পরীক্ষার ফলাফল শেয়ার করার বিজ্ঞপ্তি পেতে পারেন। %1$s</string>
   <string name="onboarding_metrics_title">এই অ্যাপটি আরও উন্নত করতে সাহায্য করুন</string>
   <string name="onboarding_metrics_subtitle">Google-এর সাথে অ্যাপের ব্যবহার ও পারফর্ম্যান্স সংক্রান্ত ডেটা শেয়ার করুন</string>
   <string name="onboarding_metrics_description">অ্যাপের গুনমান বজায় রাখতে ও তা আরও উন্নত করতে, অ্যাপের ব্যবহার ও পারফর্ম্যান্সের ব্যাপারে ব্যবহারকারীকে শনাক্ত করে না এমন কিছু সীমিত ডেটা Google-এর সাথে শেয়ার করা হয়। এই ডেটা আপনাকে শনাক্ত করে না। %1$s</string>
@@ -214,4 +215,11 @@
   <string name="share_upload_status_negative">নেগেটিভ</string>
   <string name="share_upload_status_likely">সম্ভবত পজিটিভ</string>
   <string name="share_diagnosis_progress_tracker">%2$dটির মধ্যে %1$dটি ধাপ</string>
+  <string name="see_history_device_authentication_title">নিজের পরিচয় যাচাই করুন</string>
+  <string name="update_app_dialog_title">অ্যাপ আপডেট করুন</string>
+  <string name="update_app_dialog_content">আপনার টেস্টের ফলাফল শেয়ার করার প্রসেস সম্পূর্ণ করতে, Exposure Notifications-এর লেটেস্ট ভার্সনে আপডেট করুন।</string>
+  <string name="btn_update">আপডেট করুন</string>
+  <string name="try_again_later_error_message">কিছু সমস্যা হয়েছে। কয়েক ঘণ্টা পরে আবার চেষ্টা করুন।</string>
+  <string name="en_turndown_for_area_title">আপনার স্বাস্থ্য কর্তৃপক্ষ আর Exposure Notifications পাঠানো তথ্য গ্রহণ করে না</string>
+  <string name="en_turndown_title">Exposure Notifications পরিষেবা বন্ধ করে দেওয়া হয়েছে</string>
 </resources>

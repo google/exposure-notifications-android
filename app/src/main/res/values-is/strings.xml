@@ -15,6 +15,7 @@
   <string name="btn_verify">Staðfesta</string>
   <string name="btn_no_thanks">Nei, takk</string>
   <string name="btn_share">Deila</string>
+  <string name="btn_close_app">Loka forriti</string>
   <string name="learn_more">Frekari upplýsingar</string>
   <string name="home_tab_settings_text">Stillingar</string>
   <string name="notification_channel_name">Möguleg útsetning fyrir COVID-19</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">Heimilda er krafist til að kveikja á tilkynningum um útsetningu</string>
   <string name="onboarding_finish_title">Áframhaldandi heimilda er krafist til að kveikja á tilkynningum um útsetningu</string>
   <string name="onboarding_exposure_notifications_title">Kveikja á tilkynningum um útsetningu</string>
-  <string name="onboarding_exposure_notifications_detail">Fáðu tilkynningu ef þú hefur verið nálægt einhverjum sem greinist með COVID-19.
+  <string name="onboarding_exposure_notifications_description">Fáðu tilkynningu ef þú hefur verið nálægt einhverjum sem greinist með COVID-19.
     \n\nSíminn notar Bluetooth til að safna og deila handahófsvöldum auðkennum á öruggan máta með öðrum símum í nágrenninu.
     \n\nUpplýsingar um dagsetningu, tímalengd og sendistyrk sem tengjast útsetningunni verða notaðar til að ákvarða hvort þú færð tilkynningu í samræmi við viðmið heilbrigðisyfirvalda á þínu svæði.
-    \n\nÞú færð hugsanlega beiðni um að deila sjúkdómsgreiningu með heilbrigðisyfirvöldum ef þú færð niðurstöður úr skimun í SMS-skilaboðum.</string>
+    \n\nÞú færð hugsanlega beiðni um að deila sjúkdómsgreiningu með heilbrigðisyfirvöldum ef þú færð niðurstöður úr skimun í SMS-skilaboðum. %1$s</string>
   <string name="onboarding_metrics_title">Hjálpaðu við að bæta þetta forrit</string>
   <string name="onboarding_metrics_subtitle">Deila forritanotkun og afkastagögnum með Google</string>
   <string name="onboarding_metrics_description">Til að hjálpa við að bæta og þróa forritið er ópersónugreinanlegum gögnum um afköst og notkun forritsins deilt með Google. Ekki eru borin kennsl á þig út frá þessum gögnum. %1$s</string>
@@ -214,4 +215,11 @@
   <string name="share_upload_status_negative">Neikvætt</string>
   <string name="share_upload_status_likely">Líklegt</string>
   <string name="share_diagnosis_progress_tracker">Skref %1$d af %2$d</string>
+  <string name="see_history_device_authentication_title">Staðfestu hver þú ert</string>
+  <string name="update_app_dialog_title">Uppfærðu forritið þitt</string>
+  <string name="update_app_dialog_content">Uppfærðu í nýjustu útgáfu tilkynninga um útsetningu til að ljúka við að deila niðurstöðum prófs.</string>
+  <string name="btn_update">Uppfæra</string>
+  <string name="try_again_later_error_message">Eitthvað fór úrskeiðis. Reyndu aftur eftir nokkrar klukkustundir.</string>
+  <string name="en_turndown_for_area_title">Heilbrigðisyfirvöld á þínum stað styðja ekki lengur tilkynningar um útsetningu</string>
+  <string name="en_turndown_title">Slökkt hefur verið á tilkynningum um útsetningu</string>
 </resources>

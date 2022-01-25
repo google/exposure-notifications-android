@@ -77,6 +77,8 @@ message RpcCall {
     // Corresponds to Volley NetworkError, when Volley fails to capture a
     // response from the network stream.
     RESULT_FAILED_NETWORK_ERROR = 7;
+    // When the request to a server failed with 401 Unauthorized client status.
+    RESULT_FAILED_UNAUTHORIZED_CLIENT = 8;
   }
 
   // deprecated - use region identifier instead.

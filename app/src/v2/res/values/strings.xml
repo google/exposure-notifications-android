@@ -88,4 +88,14 @@
   <!-- Contents of the "How Exposure Notifications works" card on the home page, shown in the "Have questions?" section. Tapping on this card will lead to a web page with more information on how exposure notifications works. [CHAR_LIMIT=200] -->
   <string name="how_en_works_card_content">Learn more about how Exposure Notifications works</string>
 
+  <!-- EN TURNED DOWN STATE -->
+  <!-- Contents of the onboarding and home pages, shown when the user lands on the page and Exposure Notifications has been turned down for the user's area. [CHAR_LIMIT=NONE] -->
+  <string name="en_turndown_for_area_contents">As your health authority adapts its COVID-19 response, it\'s not supporting this app anymore. Thank you for using the app and for helping protect your community.</string>
+
+  <!-- Contents of the home and onboarding pages, shown when the user lands on the page and Exposure Notifications has been turned down as an entire system. [CHAR_LIMIT=NONE] -->
+  <string name="en_turndown_contents">As health authorities adapt their COVID-19 response, this app isn\'t supported anymore. Thank you for using the app and for helping protect your community.</string>
+
+  <!-- Contents of the card displayed on the home page in case of the Exposure Notifications turndown. Tapping on this card will lead to a sharing history page, which lists the user test results. [CHAR_LIMIT=200] -->
+  <string name="en_turndown_see_test_results_card_content">You can still see test results you\'ve previously uploaded to Exposure Notifications</string>
+
 </resources>

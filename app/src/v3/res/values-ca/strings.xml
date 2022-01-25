@@ -14,4 +14,6 @@
   <string name="share_history_delete_test_result_detail">El teu resultat de la prova de la COVID-19 del dia %1$s se suprimirà del telèfon.</string>
   <string name="sms_intercept_notice_card_title">Pot ser que rebis un recordatori per compartir el resultat</string>
   <string name="sms_intercept_notice_card_content">Si dones positiu i reps un SMS verificat</string>
+  <string name="en_turndown_contents">Com les autoritats sanitàries han adaptat la seva resposta a la COVID-19, ja no admeten Notificacions d\'exposició. Gràcies per utilitzar el servei i per ajudar a protegir la teva comunitat.</string>
+  <string name="en_turndown_for_area_contents">Com les teves autoritats sanitàries han adaptat la seva resposta a la COVID-19, ja no admeten Notificacions d\'exposició. Gràcies per utilitzar el servei i per ajudar a protegir la teva comunitat.</string>
 </resources>

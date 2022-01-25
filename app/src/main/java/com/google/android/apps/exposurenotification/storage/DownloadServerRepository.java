@@ -18,7 +18,9 @@
 package com.google.android.apps.exposurenotification.storage;
 
 import android.net.Uri;
+import androidx.annotation.AnyThread;
 import androidx.annotation.WorkerThread;
+import com.google.common.util.concurrent.ListenableFuture;
 import javax.inject.Inject;
 
 /**
@@ -42,4 +44,10 @@ public class DownloadServerRepository {
   public void upsert(DownloadServerEntity server) {
     dao.upsert(server);
   }
+
+  @AnyThread
+  public ListenableFuture<Void> deleteDownloadServerEntitiesAsync() {
+    return dao.deleteAll();
+  }
+
 }

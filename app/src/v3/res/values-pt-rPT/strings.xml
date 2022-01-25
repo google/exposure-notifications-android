@@ -14,4 +14,6 @@
   <string name="share_history_delete_test_result_detail">O resultado do seu teste à COVID-19 de %1$s será eliminado do telemóvel.</string>
   <string name="sms_intercept_notice_card_title">Pode obter lembrete p/ partilhar result.</string>
   <string name="sms_intercept_notice_card_content">Se testar positivo e receber uma SMS validada</string>
+  <string name="en_turndown_contents">À medida que as autoridades de saúde adaptam a respetiva resposta à COVID-19, as Notificações de exposição já não são suportadas. Obrigado por utilizar o serviço e ajudar a proteger a sua comunidade.</string>
+  <string name="en_turndown_for_area_contents">À medida que a sua autoridade de saúde adapta a respetiva resposta à COVID-19, já não suporta esta app. Obrigado por utilizar o serviço e ajudar a proteger a sua comunidade.</string>
 </resources>

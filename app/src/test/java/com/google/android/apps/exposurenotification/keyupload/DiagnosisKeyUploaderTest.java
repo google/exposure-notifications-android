@@ -366,13 +366,13 @@ public final class DiagnosisKeyUploaderTest {
   }
 
   @Test
-  public void status401_throwsKeysSubmitFailureException_withAppError()
+  public void status401_throwsKeysSubmitFailureException_withUnauthClient()
       throws Exception {
     doErrorResponseTest(
         401,
         errorResponse("any-error"),
         KeysSubmitFailureException.class,
-        UploadError.APP_ERROR);
+        UploadError.UNAUTHORIZED_CLIENT);
   }
 
   @Test

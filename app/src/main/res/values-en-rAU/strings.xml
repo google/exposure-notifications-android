@@ -15,6 +15,7 @@
   <string name="btn_verify">Verify</string>
   <string name="btn_no_thanks">No, thanks</string>
   <string name="btn_share">Share</string>
+  <string name="btn_close_app">Close app</string>
   <string name="learn_more">Learn more</string>
   <string name="home_tab_settings_text">Settings</string>
   <string name="notification_channel_name">Possible COVID-19 exposure</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">Permissions needed to enable Exposure Notifications</string>
   <string name="onboarding_finish_title">Continuation of permissions needed to enable Exposure Notifications</string>
   <string name="onboarding_exposure_notifications_title">Turn on Exposure Notifications</string>
-  <string name="onboarding_exposure_notifications_detail">Get notified if you\'ve been near someone who reported having COVID-19.
+  <string name="onboarding_exposure_notifications_description">Get notified if you\'ve been near someone who reported having COVID-19.
     \n\nYour phone uses Bluetooth to securely collect and share random IDs with other phones that are nearby.
-    \n\nThe date, duration and signal strength associated with a possible exposure will be used to determine whether you will be notified based on parameters set by your public health authority.
-    \n\nYou may receive a notification to share a diagnosis with your health authority if you get an SMS with your test result.</string>
+    \n\nThe date, duration and signal strength associated with a possible exposure will be used to determine whether you will be notified, based on parameters set by your public health authority.
+    \n\nYou may receive a notification to share a diagnosis with your health authority if you get an SMS with your test result. %1$s</string>
   <string name="onboarding_metrics_title">Help to make this app better</string>
   <string name="onboarding_metrics_subtitle">Share app usage and performance data with Google</string>
   <string name="onboarding_metrics_description">To help maintain and improve the app, some limited de-identified data about app performance and usage is shared with Google. This data does not identify you. %1$s</string>
@@ -214,4 +215,11 @@
   <string name="share_upload_status_negative">Negative</string>
   <string name="share_upload_status_likely">Likely</string>
   <string name="share_diagnosis_progress_tracker">Step %1$d of %2$d</string>
+  <string name="see_history_device_authentication_title">Verify that it\'s you</string>
+  <string name="update_app_dialog_title">Update your app</string>
+  <string name="update_app_dialog_content">Update to the latest version of Exposure Notifications to finish sharing your test results.</string>
+  <string name="btn_update">Update</string>
+  <string name="try_again_later_error_message">Something went wrong. Try again in a few hours.</string>
+  <string name="en_turndown_for_area_title">Your health authority no longer supports Exposure Notifications</string>
+  <string name="en_turndown_title">Exposure Notifications has been turned off</string>
 </resources>

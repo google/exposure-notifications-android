@@ -15,6 +15,7 @@
   <string name="btn_verify">Ellenőrzés</string>
   <string name="btn_no_thanks">Most nem</string>
   <string name="btn_share">Megosztás</string>
+  <string name="btn_close_app">Alkalmazás bezárása</string>
   <string name="learn_more">További információ</string>
   <string name="home_tab_settings_text">Beállítások</string>
   <string name="notification_channel_name">Lehetséges COVID-19-kitettség</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">A Kitettséget jelző értesítések használatához engedélyekre van szükség</string>
   <string name="onboarding_finish_title">A Kitettséget jelző értesítések használatához engedélyek meghosszabbítására van szükség</string>
   <string name="onboarding_exposure_notifications_title">Kitettséget jelző értesítések bekapcsolása</string>
-  <string name="onboarding_exposure_notifications_detail">Értesítést kaphat, ha olyan személy közelében tartózkodott, aki bejelentette, hogy elkapta a COVID-19 betegséget.
-    \n\nTelefonja Bluetootht használ, hogy biztonságosan gyűjthesse és megoszthassa a véletlenszerű azonosítókat a többi közelben lévő telefonnal.
+  <string name="onboarding_exposure_notifications_description">Értesítést kaphat, ha olyan személy közelében tartózkodott, aki bejelentette, hogy elkapta a COVID-19 betegséget.
+    \n\nTelefonja Bluetooth technológiát használ, hogy biztonságosan gyűjthesse és megoszthassa a véletlenszerű azonosítókat a többi közelben lévő telefonnal.
     \n\nA lehetséges kitettséggel kapcsolatos dátumot, időtartamot és jelerősséget arra használja a rendszer, hogy meghatározza, küldjön-e Önnek értesítést az Ön tartózkodási helyén illetékes közegészségügyi hatóság által beállított paraméterek alapján.
-    \n\nHa SMS-t kap a vizsgálati eredményéről, értesítésben kérheti a rendszer arra, hogy ossza meg a diagnózist az egészségügyi hatósággal.</string>
+    \n\nHa SMS-t kap a vizsgálati eredményéről, értesítésben kérheti a rendszer arra, hogy ossza meg a diagnózist az egészségügyi hatósággal. %1$s</string>
   <string name="onboarding_metrics_title">Segítsen az alkalmazás fejlesztésében</string>
   <string name="onboarding_metrics_subtitle">Apphasználati és teljesítményadatok megosztása a Google-lal</string>
   <string name="onboarding_metrics_description">Az alkalmazás karbantartásának és fejlesztésének segítése érdekében bizonyos azonosításra nem alkalmas adatokat oszt meg az alkalmazás a teljesítményéről és a használatáról a Google-lal. Ezek az adatok nem használhatók az Ön azonosítására. %1$s</string>
@@ -214,4 +215,11 @@
   <string name="share_upload_status_negative">Negatív</string>
   <string name="share_upload_status_likely">Valószínű</string>
   <string name="share_diagnosis_progress_tracker">%2$d/%1$d. lépés</string>
+  <string name="see_history_device_authentication_title">Igazolja személyazonosságát</string>
+  <string name="update_app_dialog_title">Frissítse az alkalmazást</string>
+  <string name="update_app_dialog_content">A teszteredmények megosztásának befejezéséhez frissítsen a Kitettséget jelző értesítések legújabb verziójára.</string>
+  <string name="btn_update">Frissítés</string>
+  <string name="try_again_later_error_message">Hiba történt. Próbálkozzon újra néhány óra múlva.</string>
+  <string name="en_turndown_for_area_title">Egészségügyi hatósága már nem támogatja a Kitettséget jelző értesítéseket</string>
+  <string name="en_turndown_title">Kitettséget jelző értesítések kikapcsolva</string>
 </resources>

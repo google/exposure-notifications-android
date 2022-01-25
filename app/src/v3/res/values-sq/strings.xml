@@ -14,4 +14,6 @@
   <string name="share_history_delete_test_result_detail">Rezultati i testit tënd për COVID-19 nga data %1$s do të fshihet nga telefoni yt.</string>
   <string name="sms_intercept_notice_card_title">Mund të marrësh një alarm rikujtues për të ndarë rezultatin</string>
   <string name="sms_intercept_notice_card_content">Nëse rezulton pozitiv dhe merr një SMS të verifikuar</string>
+  <string name="en_turndown_contents">Duke qenë se autoritetet shëndetësore e kanë përshtatur përgjigjen ndaj COVID-19, \"Njoftimet rreth ekspozimit\" nuk mbështetet më. Faleminderit që përdor shërbimin dhe që ndihmon në mbrojtjen e komunitetit tënd.</string>
+  <string name="en_turndown_for_area_contents">Duke qenë se autoriteti yt shëndetësor e ka përshtatur përgjigjen ndaj COVID-19, ata nuk i mbështesin më \"Njoftimet rreth ekspozimit\". Faleminderit që përdor shërbimin dhe që ndihmon në mbrojtjen e komunitetit tënd.</string>
 </resources>

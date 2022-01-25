@@ -15,6 +15,7 @@
   <string name="btn_verify">వెరిఫై చేయి</string>
   <string name="btn_no_thanks">వద్దు</string>
   <string name="btn_share">షేర్ చేయి</string>
+  <string name="btn_close_app">యాప్‌ను మూసివేయండి</string>
   <string name="learn_more">మరింత తెలుసుకోండి</string>
   <string name="home_tab_settings_text">సెట్టింగ్‌లు</string>
   <string name="notification_channel_name">COVID-19 వ్యాధి సోకే అవకాశం ఉంది</string>
@@ -28,10 +29,10 @@
   <string name="onboarding_opt_in_title">వ్యాధి సోకగల అవకాశాన్ని తెలిపే నోటిఫికేషన్‌లను ఎనేబుల్ చేయడానికి అనుమతులు అవసరం</string>
   <string name="onboarding_finish_title">వ్యాధి సోకగల అవకాశాన్ని తెలిపే నోటిఫికేషన్‌లను ఎనేబుల్ చేయడానికి అవసరమైన అనుమతుల కొనసాగింపు</string>
   <string name="onboarding_exposure_notifications_title">వ్యాధి సోకగల అవకాశాన్ని తెలిపే నోటిఫికేషన్‌లు ఆన్ చేయండి</string>
-  <string name="onboarding_exposure_notifications_detail">COVID-19 నిర్ధారణ అయినట్లు రిపోర్ట్ చేసిన వారు మీకు దగ్గరలో ఉన్న విషయం గురించి నోటిఫికేషన్‌ను అందుకోండి.
+  <string name="onboarding_exposure_notifications_description">COVID-19 నిర్ధారణ అయినట్లు రిపోర్ట్ చేసిన వారు మీకు దగ్గరలో ఉన్న విషయం గురించి నోటిఫికేషన్‌ను అందుకోండి.
     \n\nర్యాండమ్ IDలను సురక్షితంగా సేకరించి, సమీపంలో ఉన్న ఇతర ఫోన్‌లతో షేర్ చేయడానికి, మీ ఫోన్, బ్లూటూత్‌ను ఉపయోగిస్తుంది.
     \n\nమీ ప్రజారోగ్య అధికార యంత్రాంగం సెట్ చేసిన పారామీటర్‌ల ప్రకారం మీకు సమాచారం ఇవ్వాలా వద్దా అని నిర్ణయించడానికి, వ్యాధి సోకే అవకాశంతో అనుబంధంగా ఉన్న తేదీ, వ్యవధి, సిగ్నల్ సామర్థ్యానికి సంబంధించిన వివరాలను ఉపయోగించడం జరుగుతుంది.
-    \n\nమీ టెస్ట్ ఫలితం మీకు SMS వస్తే, మీ అధికార యంత్రాంగంతో సమస్య విశ్లేషణను షేర్ చేయడానికి మీరు నోటిఫికేషన్‌ను అందుకోవచ్చు.</string>
+    \n\nమీ టెస్ట్ ఫలితం మీకు SMS వస్తే, మీ ప్రభుత్వ ఆరోగ్య సంస్థతో సమస్య విశ్లేషణను షేర్ చేయడానికి మీరు నోటిఫికేషన్‌ను అందుకోవచ్చు. %1$s</string>
   <string name="onboarding_metrics_title">ఈ యాప్‌ను మరింత మెరుగుపరచడంలో సహాయపడండి</string>
   <string name="onboarding_metrics_subtitle">యాప్ వినియోగం &amp; పనితీరు డేటాను Googleతో షేర్ చేయండి</string>
   <string name="onboarding_metrics_description">యాప్ నిర్వహణ, మెరుగుదలలో సహాయపడటానికి యాప్ పనితీరు, వినియోగం గురించి పరిమిత పరిధిలో అనామకంగా మార్చిన కొంత డేటా Googleతో షేర్ చేయబడుతుంది. ఈ డేటా మిమ్మల్ని గుర్తించేదిగా ఉండదు. %1$s</string>
@@ -214,4 +215,11 @@
   <string name="share_upload_status_negative">నెగిటివ్</string>
   <string name="share_upload_status_likely">COVID-19 కావచ్చు</string>
   <string name="share_diagnosis_progress_tracker">%2$dలో %1$dవ దశ</string>
+  <string name="see_history_device_authentication_title">ఇది మీరే అని వెరిఫై చేయండి</string>
+  <string name="update_app_dialog_title">మీ యాప్‌ను అప్‌డేట్ చేయండి</string>
+  <string name="update_app_dialog_content">మీ టెస్ట్ ఫలితాలను షేర్ చేయడం పూర్తి చేయడానికి, వ్యాధి సోకగల అవకాశాన్ని తెలిపే నోటిఫికేషన్‌ల తాజా వెర్షన్‌కు అప్‌డేట్ చేయండి.</string>
+  <string name="btn_update">అప్‌డేట్ చేయండి</string>
+  <string name="try_again_later_error_message">ఏదో తప్పు జరిగింది. కొన్ని గంటల తర్వాత మళ్లీ ట్రై చేయండి.</string>
+  <string name="en_turndown_for_area_title">మీ ప్రభుత్వ ఆరోగ్య సంస్థ ఇకపై వ్యాధి సోకగల అవకాశాన్ని తెలిపే నోటిఫికేషన్‌లకు సపోర్ట్ చేయదు</string>
+  <string name="en_turndown_title">వ్యాధి సోకగల అవకాశాన్ని తెలిపే నోటిఫికేషన్‌లు ఆఫ్ చేయబడ్డాయి</string>
 </resources>
