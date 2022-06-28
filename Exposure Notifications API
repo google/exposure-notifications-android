@@ -1,0 +1,32 @@
+git config --global color.ui 
+$ git config --global user.email "[Kingexecutioner909@gmail.com]"
+
+$ git config -- global user. Email [imthaplug909@gmail.com]
+
+$ git config --global user.name "[BennyLuna]"
+
+$ git clone [url] [instagram.google.com]
+
+When startin
+$ git init
+Turn an existing directory into a git repository
+$ git pull
+Updates your current local working branch with all new 
+commits from the corresponding remote branch on GitHub. 
+ git pull is a combination of git fetch and git merge 
+Synchronize changes
+Synchronize your local repository with the remote repository 
+on GitHub.com
+$ git push
+Uploads all local branch commits to GitHub
+
+
+Bootable/recovery/default_device.cpp
+
+Device/totodyne/tardis/recovery/recovery_ui.cpp
+BuiltinAction InvokeMenuItem (int menu_position 
+
+Device/yoyodyne/tardis/recovery/images 
+Device/yoyodyne/tardis/recovery/apps
+Device/yoyodyne/tardis/recovery/messages 
+Device/yoyodyne/tardis/recovery/chrome browser/history 
