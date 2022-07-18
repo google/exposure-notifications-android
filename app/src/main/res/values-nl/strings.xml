@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">Blootstellingsmeldingen aanzetten</string>
   <string name="exposure_details_status_subtitle">Status</string>
   <string name="exposure_details_status_exposure">Mogelijke blootstelling aan COVID-19</string>
-  <string name="exposure_details_date_exposed_subtitle">Datum van mogelijke blootstelling</string>
-  <string name="exposure_details_expiring_subtitle">Blootstellingsrapporten worden gedurende 14 dagen na de mogelijke blootstellingsdatum bewaard</string>
+  <string name="exposure_details_date_exposed_subtitle">Datum</string>
+  <string name="exposure_details_expiring_subtitle">Je laatste mogelijke blootstelling blijft gedurende 2 weken na de blootstellingsdatum op deze pagina staan.</string>
   <string name="exposure_details_learn_more">Meer informatie</string>
   <string name="exposure_details_new_badge">Nieuw</string>
   <string name="possible_exposures_activity_title">Mogelijke blootstelling</string>

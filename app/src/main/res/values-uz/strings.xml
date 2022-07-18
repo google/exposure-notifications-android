@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">Ehtimoliy zararlanish bildirishnomalarini yoqish</string>
   <string name="exposure_details_status_subtitle">Holati</string>
   <string name="exposure_details_status_exposure">COVID-19 bilan ehtimoliy zararlanish</string>
-  <string name="exposure_details_date_exposed_subtitle">Ehtimoliy zararlanish sanasi</string>
-  <string name="exposure_details_expiring_subtitle">Ehtimoliy zararlanish bildirishnomalari 14 kun saqlanadi</string>
+  <string name="exposure_details_date_exposed_subtitle">Sana</string>
+  <string name="exposure_details_expiring_subtitle">Oxirgi ehtimoliy zararlanish axborotingiz zararlanishdan keyingi 2 hafta davomida shu sahifada qoladi.</string>
   <string name="exposure_details_learn_more">Batafsil</string>
   <string name="exposure_details_new_badge">Yangi</string>
   <string name="possible_exposures_activity_title">Ehtimoliy zararlanish</string>
@@ -207,7 +207,7 @@
   <string name="share_upload_symptoms_date_fixed_description">Simptom sanasini %1$s taqdim qilgan</string>
   <string name="share_upload_skip_choice">Tashlab ketish</string>
   <string name="share_upload_travel_subtitle">Sayohat tarixi</string>
-  <string name="travel_history_travelled_recently_choice">Oxirgi 14 kunda safarda boʻlgan</string>
+  <string name="travel_history_travelled_recently_choice">14 kun ichida sayohat qilganman</string>
   <string name="travel_history_no_travel_choice">Sayohatga chiqmaganman</string>
   <string name="share_upload_select_a_date_choice">Sanani tanlang</string>
   <string name="share_upload_status_subtitle">COVID-19 holati</string>

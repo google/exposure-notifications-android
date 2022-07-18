@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">Temas Bildirimleri\'ni aç</string>
   <string name="exposure_details_status_subtitle">Durum</string>
   <string name="exposure_details_status_exposure">Olası COVID-19 teması</string>
-  <string name="exposure_details_date_exposed_subtitle">Olası temas tarihi</string>
-  <string name="exposure_details_expiring_subtitle">Temas raporları, olası temasın gerçekleştiği tarihten itibaren 14 gün saklanır</string>
+  <string name="exposure_details_date_exposed_subtitle">Tarih</string>
+  <string name="exposure_details_expiring_subtitle">Son temasınızla ilgili bilgi, temas tarihinden sonra 2 hafta süreyle bu sayfada görünecektir.</string>
   <string name="exposure_details_learn_more">Daha fazla bilgi</string>
   <string name="exposure_details_new_badge">Yeni</string>
   <string name="possible_exposures_activity_title">Olası temas</string>
@@ -207,7 +207,7 @@
   <string name="share_upload_symptoms_date_fixed_description">Belirti tarihi %1$s tarafından sağlanmıştır</string>
   <string name="share_upload_skip_choice">Atla</string>
   <string name="share_upload_travel_subtitle">Seyahat geçmişi</string>
-  <string name="travel_history_travelled_recently_choice">14 gün içinde seyahat edildi</string>
+  <string name="travel_history_travelled_recently_choice">Son 14 gün içinde seyahat edildi</string>
   <string name="travel_history_no_travel_choice">Seyahat etmedim</string>
   <string name="share_upload_select_a_date_choice">Tarih seçin</string>
   <string name="share_upload_status_subtitle">COVID-19 durumu</string>

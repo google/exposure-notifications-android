@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">Activar notificaciones de exposición</string>
   <string name="exposure_details_status_subtitle">Estado</string>
   <string name="exposure_details_status_exposure">Posible exposición al COVID‑19</string>
-  <string name="exposure_details_date_exposed_subtitle">Fecha de posible exposición</string>
-  <string name="exposure_details_expiring_subtitle">La información sobre las exposiciones se guarda durante 14 días a partir de la fecha de la posible exposición</string>
+  <string name="exposure_details_date_exposed_subtitle">Fecha</string>
+  <string name="exposure_details_expiring_subtitle">La exposición posible más reciente que tengas aparecerá en esta página durante las 2 semanas siguientes a la exposición.</string>
   <string name="exposure_details_learn_more">Más información</string>
   <string name="exposure_details_new_badge">Nuevo</string>
   <string name="possible_exposures_activity_title">Posible exposición</string>
@@ -81,7 +81,7 @@
   <string name="share_travel_no_travel">No</string>
   <string name="share_travel_no_answer">Prefiero no contestar</string>
   <string name="share_review_title">Revisa tu información</string>
-  <string name="share_review_status_subtitle">Resultado de la prueba de COVID‑19</string>
+  <string name="share_review_status_subtitle">Estado de COVID‑19</string>
   <string name="share_review_status_confirmed">Positivo</string>
   <string name="share_review_status_likely">Probable</string>
   <string name="share_review_status_negative">Negativo</string>
@@ -96,7 +96,7 @@
   <string name="share_confirm_title">Gracias por compartir el resultado de tu test de COVID-19</string>
   <string name="not_shared_confirm_title">No se ha compartido el resultado de tu prueba</string>
   <string name="not_shared_confirm_detail">No se ha compartido el resultado de tu prueba de COVID-19. Inténtalo de nuevo.</string>
-  <string name="status_shared_detail_title">Resultado de prueba del COVID‑19 compartido</string>
+  <string name="status_shared_detail_title">Estado de COVID‑19 compartido</string>
   <string name="delete_test_result_title">¿Eliminar el resultado de tu test?</string>
   <string name="delete_test_result_confirmed">Resultado de prueba eliminado</string>
   <string name="share_error_no_internet">No se pueden compartir los resultados de la prueba sin conexión. Comprueba tu conexión a Internet e inténtalo de nuevo.</string>
@@ -130,7 +130,7 @@
   </plurals>
   <string name="notify_others_notification_title">Ayudar a avisar a otros usuarios de que quizá han estado expuestos</string>
   <string name="notify_others_if_result_updated_title">¿Avisar a otras personas cuando se actualice tu resultado?</string>
-  <string name="notify_others_if_result_updated_content">%1$s quizás ha enviado otro código para confirmar el resultado de tu prueba. Con él, puedes cambiar automáticamente el resultado de tu prueba de COVID-19 y compartir IDs aleatorios de más días, con los que avisar a otras personas de que pueden haber estado expuestas. No se revela tu identidad a otros usuarios.</string>
+  <string name="notify_others_if_result_updated_content">%1$s quizás ha enviado otro código para confirmar el resultado de tu prueba. Con él, puedes cambiar automáticamente el estado de COVID-19 y compartir IDs aleatorios de más días, con los que avisar a otras personas de que pueden haber estado expuestas. No se revela tu identidad a otros usuarios.</string>
   <string name="btn_pre_auth_yes">Sí, quiero ayudar</string>
   <string name="btn_pre_auth_no">No, gracias</string>
   <string name="thank_you_for_notifying_title">Gracias por tu ayuda</string>
@@ -207,10 +207,10 @@
   <string name="share_upload_symptoms_date_fixed_description">Fecha de inicio de síntomas proporcionada por %1$s</string>
   <string name="share_upload_skip_choice">Saltar</string>
   <string name="share_upload_travel_subtitle">Historial de viajes</string>
-  <string name="travel_history_travelled_recently_choice">Ha viajado en los últimos 14 días</string>
+  <string name="travel_history_travelled_recently_choice">He viajado en los últimos 14 días</string>
   <string name="travel_history_no_travel_choice">No he viajado</string>
   <string name="share_upload_select_a_date_choice">Elige una fecha</string>
-  <string name="share_upload_status_subtitle">Resultado de la prueba de COVID-19</string>
+  <string name="share_upload_status_subtitle">Estado de COVID-19</string>
   <string name="share_upload_status_confirmed">Positivo</string>
   <string name="share_upload_status_negative">Negativo</string>
   <string name="share_upload_status_likely">Probable</string>

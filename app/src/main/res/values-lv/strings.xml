@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">Ieslēgt paziņojumus par saskari</string>
   <string name="exposure_details_status_subtitle">Statuss</string>
   <string name="exposure_details_status_exposure">Iespējama saskare ar Covid-19</string>
-  <string name="exposure_details_date_exposed_subtitle">Iespējamās saskares datums</string>
-  <string name="exposure_details_expiring_subtitle">Ziņojumi par saskari tiek glabāti 14 dienas no iespējamās saskares datuma.</string>
+  <string name="exposure_details_date_exposed_subtitle">Datums</string>
+  <string name="exposure_details_expiring_subtitle">Jaunākā informācija par iespējamo saskari tiek rādīta šajā lapā 2 nedēļas pēc attiecīgā iespējamās saskares datuma.</string>
   <string name="exposure_details_learn_more">Uzzināt vairāk</string>
   <string name="exposure_details_new_badge">Jaunums</string>
   <string name="possible_exposures_activity_title">Iespējama saskare</string>
@@ -209,7 +209,7 @@
   <string name="share_upload_symptoms_date_fixed_description">Simptomu datumu nodrošina %1$s.</string>
   <string name="share_upload_skip_choice">Izlaist</string>
   <string name="share_upload_travel_subtitle">Ceļošanas vēsture</string>
-  <string name="travel_history_travelled_recently_choice">Ceļošana pēdējo 14 dienu laikā</string>
+  <string name="travel_history_travelled_recently_choice">Ceļoju pēdējo 14 dienu laikā</string>
   <string name="travel_history_no_travel_choice">Es neesmu ceļojis</string>
   <string name="share_upload_select_a_date_choice">Atlasiet datumu</string>
   <string name="share_upload_status_subtitle">Covid-19 statuss</string>

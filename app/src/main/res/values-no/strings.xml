@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">Slå på eksponeringsvarsler</string>
   <string name="exposure_details_status_subtitle">Status</string>
   <string name="exposure_details_status_exposure">Mulig covid-19-eksponering</string>
-  <string name="exposure_details_date_exposed_subtitle">Dato for mulig eksponering</string>
-  <string name="exposure_details_expiring_subtitle">Eksponeringsrapporter lagres i 14 dager fra den mulige eksponeringsdatoen</string>
+  <string name="exposure_details_date_exposed_subtitle">Dato</string>
+  <string name="exposure_details_expiring_subtitle">Den siste mulige eksponeringen din forblir på denne siden i to uker etter eksponeringsdatoen.</string>
   <string name="exposure_details_learn_more">Finn ut mer</string>
   <string name="exposure_details_new_badge">Ny</string>
   <string name="possible_exposures_activity_title">Mulig eksponering</string>
@@ -207,7 +207,7 @@
   <string name="share_upload_symptoms_date_fixed_description">Datoen for symptomer er levert av %1$s</string>
   <string name="share_upload_skip_choice">Hopp over</string>
   <string name="share_upload_travel_subtitle">Reisehistorikk</string>
-  <string name="travel_history_travelled_recently_choice">Reiser de siste 14 dagene</string>
+  <string name="travel_history_travelled_recently_choice">Reist i løpet av de siste 14 dagene</string>
   <string name="travel_history_no_travel_choice">Jeg har ikke reist</string>
   <string name="share_upload_select_a_date_choice">Velg en dato</string>
   <string name="share_upload_status_subtitle">Covid-19-status</string>

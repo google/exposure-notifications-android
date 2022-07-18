@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">[Ţûŕñ öñ Éxþöšûŕé Ñöţîƒîçåţîöñš one two three four five six seven]</string>
   <string name="exposure_details_status_subtitle">[Šţåţûš one]</string>
   <string name="exposure_details_status_exposure">[Þöššîбļé ÇÖVÎÐ-19 éxþöšûŕé one two three]</string>
-  <string name="exposure_details_date_exposed_subtitle">[Þöššîбļé éxþöšûŕé ðåţé one two three]</string>
-  <string name="exposure_details_expiring_subtitle">[Éxþöšûŕé ŕéþöŕţš åŕé šţöŕéð ƒöŕ 14 ðåýš ƒŕöm þöššîбļé éxþöšûŕé ðåţé one two three four five six seven eight nine ten eleven twelve thirteen]</string>
+  <string name="exposure_details_date_exposed_subtitle">[Ðåţé one]</string>
+  <string name="exposure_details_expiring_subtitle">[Ýöûŕ ļåţéšţ þöššîбļé éxþöšûŕé ŕémåîñš öñ ţĥîš þåĝé ƒöŕ 2 ŵééķš åƒţéŕ ţĥé ðåţé öƒ éxþöšûŕé. one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen]</string>
   <string name="exposure_details_learn_more">[Ļéåŕñ möŕé one two]</string>
   <string name="exposure_details_new_badge">[Ñéŵ one]</string>
   <string name="possible_exposures_activity_title">[Þöššîбļé éxþöšûŕé one two three]</string>
@@ -207,7 +207,7 @@
   <string name="share_upload_symptoms_date_fixed_description">[Šýmþţöm ðåţé îš þŕövîðéð бý ᐅ%1$sᐊ one two three four five six seven]</string>
   <string name="share_upload_skip_choice">[Šķîþ one]</string>
   <string name="share_upload_travel_subtitle">[Ţŕåvéļ ĥîšţöŕý one two]</string>
-  <string name="travel_history_travelled_recently_choice">[Ţŕåvéļļéð îñ ţĥé þåšţ 14 ðåýš one two three four five six seven]</string>
+  <string name="travel_history_travelled_recently_choice">[Ţŕåvéļéð îñ ţĥé þåšţ 14 ðåýš one two three four five six]</string>
   <string name="travel_history_no_travel_choice">[Î ðîðñ\'ţ ţŕåvéļ one two]</string>
   <string name="share_upload_select_a_date_choice">[Šéļéçţ å ðåţé one two]</string>
   <string name="share_upload_status_subtitle">[ÇÖVÎÐ-19 šţåţûš one two]</string>

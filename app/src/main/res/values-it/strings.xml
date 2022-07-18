@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">Attiva le Notifiche di esposizione</string>
   <string name="exposure_details_status_subtitle">Stato</string>
   <string name="exposure_details_status_exposure">Possibile esposizione al COVID-19</string>
-  <string name="exposure_details_date_exposed_subtitle">Data di possibile esposizione</string>
-  <string name="exposure_details_expiring_subtitle">I rapporti relativi all\'esposizione vengono memorizzati per 14 giorni dalla data della possibile esposizione</string>
+  <string name="exposure_details_date_exposed_subtitle">Data</string>
+  <string name="exposure_details_expiring_subtitle">La tua possibile esposizione più recente rimarrà su questa pagina per le 2 settimane successive all\'esposizione stessa.</string>
   <string name="exposure_details_learn_more">Scopri di più</string>
   <string name="exposure_details_new_badge">Novità</string>
   <string name="possible_exposures_activity_title">Possibile esposizione</string>
@@ -207,7 +207,7 @@
   <string name="share_upload_symptoms_date_fixed_description">La data di comparsa dei sintomi è fornita da %1$s</string>
   <string name="share_upload_skip_choice">Ignora</string>
   <string name="share_upload_travel_subtitle">Cronologia viaggi</string>
-  <string name="travel_history_travelled_recently_choice">Ho viaggiato negli ultimi 14 giorni</string>
+  <string name="travel_history_travelled_recently_choice">Hai viaggiato negli ultimi 14 giorni</string>
   <string name="travel_history_no_travel_choice">Non ho fatto viaggi</string>
   <string name="share_upload_select_a_date_choice">Seleziona una data</string>
   <string name="share_upload_status_subtitle">Condizione COVID-19</string>

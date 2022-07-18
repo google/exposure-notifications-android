@@ -142,7 +142,7 @@ public final class NotificationHelper {
   /**
    * Creates the notification channel for O and above.
    */
-  private void createNotificationChannel(Context context) {
+  public void createNotificationChannel(Context context) {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
       NotificationChannel channel =
           new NotificationChannel(EXPOSURE_NOTIFICATION_CHANNEL_ID,

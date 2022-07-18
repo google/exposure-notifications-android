@@ -179,140 +179,94 @@ public class StringUtilsTest {
     assertThat(truncated).isEqualTo(ELLIPSIS);
   }
 
-  @Test
-  public void calculateDaysFromStartOfExposure_6Feb3pm_9Feb3pm_3days() {
-    Instant exposure = roundOffZonedDateTimeToUTCStartOfDay(ZonedDateTime
-        .of(2021, 2 ,6, 15,0,0,0, ZoneId.of("America/Los_Angeles")));
-    Instant now = roundOffZonedDateTimeToUTCStartOfDay(ZonedDateTime
-        .of(2021, 2 ,9, 15,0,0,0, ZoneId.of("America/Los_Angeles")));
-
-    long timeSinceExposure = StringUtils.calculateDaysFromStartOfExposure(exposure, now);
-
-    assertThat(timeSinceExposure).isEqualTo(3);
-  }
-
-  @Test
-  public void calculateDaysFromStartOfExposure_6Feb3pm_9Feb6pm_4days() {
-    Instant exposure = roundOffZonedDateTimeToUTCStartOfDay(ZonedDateTime
-        .of(2021, 2 ,6, 15,0,0,0, ZoneId.of("America/Los_Angeles")));
-    Instant now = roundOffZonedDateTimeToUTCStartOfDay(ZonedDateTime
-        .of(2021, 2 ,9, 18,0,0,0, ZoneId.of("America/Los_Angeles")));
-
-    long timeSinceExposure = StringUtils.calculateDaysFromStartOfExposure(exposure, now);
-
-    assertThat(timeSinceExposure).isEqualTo(4);
-  }
-
-  @Test
-  public void calculateDaysFromStartOfExposure_6Feb6pm_9Feb3pm_2days() {
-    Instant exposure = roundOffZonedDateTimeToUTCStartOfDay(ZonedDateTime
-        .of(2021, 2 ,6, 18,0,0,0, ZoneId.of("America/Los_Angeles")));
-    Instant now = roundOffZonedDateTimeToUTCStartOfDay(ZonedDateTime
-        .of(2021, 2 ,9, 15,0,0,0, ZoneId.of("America/Los_Angeles")));
-
-    long timeSinceExposure = StringUtils.calculateDaysFromStartOfExposure(exposure, now);
-
-    assertThat(timeSinceExposure).isEqualTo(2);
-  }
-
-  @Test
-  public void calculateDaysFromStartOfExposure_6Feb6pm_9Feb6pm_3days() {
-    Instant exposure = roundOffZonedDateTimeToUTCStartOfDay(ZonedDateTime
-        .of(2021, 2 ,6, 18,0,0,0, ZoneId.of("America/Los_Angeles")));
-    Instant now = roundOffZonedDateTimeToUTCStartOfDay(ZonedDateTime
-        .of(2021, 2 ,9, 18,0,0,0, ZoneId.of("America/Los_Angeles")));
-
-    long timeSinceExposure = StringUtils.calculateDaysFromStartOfExposure(exposure, now);
-
-    assertThat(timeSinceExposure).isEqualTo(3);
-  }
-
-  // We don't permit 0 days, but always return at least 1
-  @Test
-  public void calculateDaysFromStartOfExposure_6Feb6pm_6Feb6pm_1day() {
-    Instant exposure = Instant.from(OffsetDateTime
-        .of(2021, 2 ,6, 18,0,0,0, ZoneOffset.UTC));
-    Instant now = Instant.from(OffsetDateTime
-        .of(2021, 2 ,6, 18,0,0,0, ZoneOffset.UTC));
-
-    long timeSinceExposure = StringUtils.calculateDaysFromStartOfExposure(exposure, now);
-
-    assertThat(timeSinceExposure).isEqualTo(1);
-  }
-
-  // The following 2 tests check the logic across timezones.
-  @Test
-  public void calculateDaysFromStartOfExposure_exposure6FebMidnightUTC_9Feb459pmPT_3days() {
-    Instant exposure = Instant.from(OffsetDateTime
-        .of(2021, 2 ,6, 0,0,0,0, ZoneOffset.UTC));
-    Instant now = Instant.from(ZonedDateTime
-        .of(2021, 2 ,9, 15,59,0,0, ZoneId.of("America/Los_Angeles")));
-
-    long timeSinceExposure = StringUtils.calculateDaysFromStartOfExposure(exposure, now);
-
-    assertThat(timeSinceExposure).isEqualTo(3);
-  }
-
-  @Test
-  public void calculateDaysFromStartOfExposure_exposure6FebMidnightUTC_9Feb501pmPT_4days() {
-    Instant exposure = Instant.from(OffsetDateTime
-        .of(2021, 2 ,6, 0,0,0,0, ZoneOffset.UTC));
-    Instant now = Instant.from(ZonedDateTime
-        .of(2021, 2 ,9, 16,1,0,0, ZoneId.of("America/Los_Angeles")));
-
-    long timeSinceExposure = StringUtils.calculateDaysFromStartOfExposure(exposure, now);
-
-    assertThat(timeSinceExposure).isEqualTo(4);
-  }
-
   // E2E: test string output and make sure timezone-logic is sane when using ExposureClassification
   @Test
-  public void daysFromStartOfExposure_exposure6FebMidnightUTC_9Feb459pmPT_3days() {
+  public void exposureDateRange_singleMonth_losAngeles() {
     ExposureClassification exposureDate =
-        createExposureClassificationWithUTCDate(LocalDate.of(2021,2,6));
-    Instant now = Instant.from(ZonedDateTime
-        .of(2021, 2 ,9, 15,59,0,0, ZoneId.of("America/Los_Angeles")));
+        createExposureClassificationWithUTCDate(LocalDate.of(2021, 2, 6));
 
-    String result = StringUtils.daysFromStartOfExposure(exposureDate, now, context);
+    String result = StringUtils.exposureDateRange(exposureDate, context,
+        ZoneId.of("America/Los_Angeles"));
 
-    assertThat(result).isEqualTo("3 days ago");
+    assertThat(result).isEqualTo("Feb 5 – 6");
   }
 
   @Test
-  public void daysFromStartOfExposure_exposure6FebMidnightUTC_9Feb501pmPT_4days() {
+  public void exposureDateRange_differentMonths_losAngeles() {
     ExposureClassification exposureDate =
-        createExposureClassificationWithUTCDate(LocalDate.of(2021,2,6));
-    Instant now = Instant.from(ZonedDateTime
-        .of(2021, 2 ,9, 16,1,0,0, ZoneId.of("America/Los_Angeles")));
+        createExposureClassificationWithUTCDate(LocalDate.of(2021, 2, 1));
 
-    String result = StringUtils.daysFromStartOfExposure(exposureDate, now, context);
+    String result = StringUtils.exposureDateRange(exposureDate, context,
+        ZoneId.of("America/Los_Angeles"));
 
-    assertThat(result).isEqualTo("4 days ago");
+    assertThat(result).isEqualTo("Jan 31 – Feb 1");
   }
 
   @Test
-  public void daysFromStartOfExposure_exposure6FebMidnightUTC_6Feb1pmPT_1day() {
+  public void exposureDateRange_differentYears_losAngeles() {
     ExposureClassification exposureDate =
-        createExposureClassificationWithUTCDate(LocalDate.of(2021,2,6));
-    Instant now = Instant.from(ZonedDateTime
-        .of(2021, 2 ,6, 13,0,0,0, ZoneId.of("America/Los_Angeles")));
+        createExposureClassificationWithUTCDate(LocalDate.of(2021, 1, 1));
 
-    String result = StringUtils.daysFromStartOfExposure(exposureDate, now, context);
+    String result = StringUtils.exposureDateRange(exposureDate, context,
+        ZoneId.of("America/Los_Angeles"));
 
-    assertThat(result).isEqualTo("1 day ago");
+    assertThat(result).isEqualTo("Dec 31, 2020 – Jan 1, 2021");
+  }
+
+  @Test
+  public void exposureDateRange_stardardTime_london() {
+    ExposureClassification exposureDate =
+        createExposureClassificationWithUTCDate(LocalDate.of(2021, 2, 6));
+
+    String result = StringUtils.exposureDateRange(exposureDate, context,
+        ZoneId.of("Europe/London"));
+
+    assertThat(result).isEqualTo("Feb 6");
+  }
+
+  @Test
+  public void exposureDateRange_summerTime_london() {
+    ExposureClassification exposureDate =
+        createExposureClassificationWithUTCDate(LocalDate.of(2021, 8, 6));
+
+    String result = StringUtils.exposureDateRange(exposureDate, context,
+        ZoneId.of("Europe/London"));
+
+    assertThat(result).isEqualTo("Aug 6 – 7");
+  }
+
+  @Test
+  public void exposureDateRange_singleMonth_taipei() {
+    ExposureClassification exposureDate =
+        createExposureClassificationWithUTCDate(LocalDate.of(2021, 2, 6));
+
+    String result = StringUtils.exposureDateRange(exposureDate, context, ZoneId.of("Asia/Taipei"));
+
+    assertThat(result).isEqualTo("Feb 6 – 7");
+  }
+
+  @Test
+  public void exposureDateRange_differentMonths_taipei() {
+    ExposureClassification exposureDate =
+        createExposureClassificationWithUTCDate(LocalDate.of(2021, 1, 31));
+
+    String result = StringUtils.exposureDateRange(exposureDate, context, ZoneId.of("Asia/Taipei"));
+
+    assertThat(result).isEqualTo("Jan 31 – Feb 1");
+  }
+
+  @Test
+  public void exposureDateRange_differentYears_taipei() {
+    ExposureClassification exposureDate =
+        createExposureClassificationWithUTCDate(LocalDate.of(2020, 12, 31));
+
+    String result = StringUtils.exposureDateRange(exposureDate, context, ZoneId.of("Asia/Taipei"));
+
+    assertThat(result).isEqualTo("Dec 31, 2020 – Jan 1, 2021");
   }
 
   private static ExposureClassification createExposureClassificationWithUTCDate(LocalDate date) {
     return ExposureClassification
         .create(0,ExposureClassification.NO_EXPOSURE_CLASSIFICATION_NAME, date.toEpochDay());
   }
-
-  private Instant roundOffZonedDateTimeToUTCStartOfDay(ZonedDateTime zonedDateTime) {
-    // Convert to the same time in UTC
-    LocalDateTime localDateTimeUTC =
-        LocalDateTime.ofInstant(zonedDateTime.toInstant(), ZoneOffset.UTC);
-    // Round of the UTC time to start of UTC day, return resulting instant
-    return localDateTimeUTC.toLocalDate().atStartOfDay(ZoneOffset.UTC).toInstant();
-  }
-
 }

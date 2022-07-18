@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">ಎಕ್ಸ್‌ಪೋಶರ್ ಅಧಿಸೂಚನೆಗಳನ್ನು ಆನ್ ಮಾಡಿ</string>
   <string name="exposure_details_status_subtitle">ಸ್ಥಿತಿ</string>
   <string name="exposure_details_status_exposure">ಬಹುಶಃ ನೀವು COVID-19 ಸೋಂಕಿತರೊಬ್ಬರ ಸಂಪರ್ಕಕ್ಕೆ ಬಂದಿದ್ದೀರಿ</string>
-  <string name="exposure_details_date_exposed_subtitle">ಸಂಪರ್ಕಕ್ಕೆ ಬಂದಿರುವ ಸಂಭಾವ್ಯ ದಿನಾಂಕ</string>
-  <string name="exposure_details_expiring_subtitle">ಎಕ್ಸ್‌ಪೋಶರ್ ವರದಿಗಳನ್ನು ಸಂಭವನೀಯ ಎಕ್ಸ್‌ಪೋಶರ್ ದಿನಾಂಕದಿಂದ 14 ದಿನಗಳವರೆಗೆ ಸಂಗ್ರಹಿಸಲಾಗುತ್ತದೆ</string>
+  <string name="exposure_details_date_exposed_subtitle">ದಿನಾಂಕ</string>
+  <string name="exposure_details_expiring_subtitle">ನಿಮ್ಮ ಇತ್ತೀಚಿನ ಸಂಭಾವ್ಯ ಸಂಪರ್ಕಕ್ಕೆ ಬಂದಿರುವಿಕೆಯ ವರದಿಯು ಸಂಪರ್ಕಕ್ಕೆ ಬಂದಿರುವ ದಿನಾಂಕದಿಂದ 2 ವಾರಗಳವರೆಗೆ ಈ ಪುಟದಲ್ಲಿ ಉಳಿದಿರುತ್ತದೆ.</string>
   <string name="exposure_details_learn_more">ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</string>
   <string name="exposure_details_new_badge">ಹೊಸತು</string>
   <string name="possible_exposures_activity_title">ಸಂಭವನೀಯ ಸಂಪರ್ಕಕ್ಕೆ ಬಂದಿರುವಿಕೆ</string>
@@ -207,7 +207,7 @@
   <string name="share_upload_symptoms_date_fixed_description">ರೋಗಲಕ್ಷಣದ ಆರಂಭದ ದಿನಾಂಕವನ್ನು %1$s ಒದಗಿಸಿದ್ದಾರೆ</string>
   <string name="share_upload_skip_choice">ಸ್ಕಿಪ್</string>
   <string name="share_upload_travel_subtitle">ಪ್ರಯಾಣದ ಇತಿಹಾಸ</string>
-  <string name="travel_history_travelled_recently_choice">ಕಳೆದ 14 ದಿನಗಳಲ್ಲಿ ಪ್ರಯಾಣಿಸಿರುವುದು</string>
+  <string name="travel_history_travelled_recently_choice">ಕಳೆದ 14 ದಿನಗಳಲ್ಲಿ ಪ್ರಯಾಣಿಸಲಾಗಿದೆ</string>
   <string name="travel_history_no_travel_choice">ನಾನು ಯಾವುದೇ ಪ್ರಯಾಣ ಮಾಡಿಲ್ಲ</string>
   <string name="share_upload_select_a_date_choice">ದಿನಾಂಕವನ್ನು ಆಯ್ಕೆಮಾಡಿ</string>
   <string name="share_upload_status_subtitle">COVID-19 ಸ್ಥಿತಿ</string>

@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">એક્સપોઝર નોટિફિકેશન ચાલુ કરો</string>
   <string name="exposure_details_status_subtitle">સ્ટેટસ</string>
   <string name="exposure_details_status_exposure">સંભવિત COVID-19 એક્સપોઝર</string>
-  <string name="exposure_details_date_exposed_subtitle">સંભવિત એક્સપોઝરની તારીખ</string>
-  <string name="exposure_details_expiring_subtitle">સંભવિત એક્સપોઝરની તારીખથી 14 દિવસ માટે એક્સપોઝરના રિપોર્ટ સ્ટોર કરવામાં આવે છે</string>
+  <string name="exposure_details_date_exposed_subtitle">તારીખ</string>
+  <string name="exposure_details_expiring_subtitle">એક્સપોઝરની તારીખ પછી 2 અઠવાડિયા સુધી તમારું નવીનતમ સંભવિત એક્સપોઝર આ પેજ પર રહે છે.</string>
   <string name="exposure_details_learn_more">વધુ જાણો</string>
   <string name="exposure_details_new_badge">નવું</string>
   <string name="possible_exposures_activity_title">સંભવિત એક્સપોઝર</string>
@@ -207,7 +207,7 @@
   <string name="share_upload_symptoms_date_fixed_description">લક્ષણ દેખાવાની તારીખ %1$s દ્વારા પ્રદાન કરવામાં આવે છે</string>
   <string name="share_upload_skip_choice">છોડો</string>
   <string name="share_upload_travel_subtitle">મુસાફરીનો ઇતિહાસ</string>
-  <string name="travel_history_travelled_recently_choice">છેલ્લા 14 દિવસમાં કરેલી મુસાફરી</string>
+  <string name="travel_history_travelled_recently_choice">છેલ્લા 14 દિવસમાં મુસાફરી કરી છે</string>
   <string name="travel_history_no_travel_choice">મેં કોઈ મુસાફરી કરી નથી</string>
   <string name="share_upload_select_a_date_choice">કોઈ તારીખ પસંદ કરો</string>
   <string name="share_upload_status_subtitle">COVID-19 સ્ટેટસ</string>

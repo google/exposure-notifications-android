@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">Uključi Obavještenja o izloženosti</string>
   <string name="exposure_details_status_subtitle">Status</string>
   <string name="exposure_details_status_exposure">Moguća je izloženost virusu COVID-19</string>
-  <string name="exposure_details_date_exposed_subtitle">Datum moguće izloženosti</string>
-  <string name="exposure_details_expiring_subtitle">Izvještaji o izloženosti se čuvaju 14 dana od mogućeg datuma izlaganja</string>
+  <string name="exposure_details_date_exposed_subtitle">Datum</string>
+  <string name="exposure_details_expiring_subtitle">Vaša posljednja moguća izloženost ostaje na ovoj stranici 2 sedmice nakon datuma izlaganja.</string>
   <string name="exposure_details_learn_more">Saznajte više</string>
   <string name="exposure_details_new_badge">Novo</string>
   <string name="possible_exposures_activity_title">Moguća izloženost</string>
@@ -209,7 +209,7 @@
   <string name="share_upload_symptoms_date_fixed_description">Datum pojave simptoma pruža %1$s</string>
   <string name="share_upload_skip_choice">Preskoči</string>
   <string name="share_upload_travel_subtitle">Historija putovanja</string>
-  <string name="travel_history_travelled_recently_choice">Putovao/la u posljednjih 14 dana</string>
+  <string name="travel_history_travelled_recently_choice">Putovali u posljednjih 14 dana</string>
   <string name="travel_history_no_travel_choice">Nisam putovao/la</string>
   <string name="share_upload_select_a_date_choice">Odaberite datum</string>
   <string name="share_upload_status_subtitle">Status u vezi s virusom COVID-19</string>

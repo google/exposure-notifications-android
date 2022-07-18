@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">Activar as notificacións por exposición</string>
   <string name="exposure_details_status_subtitle">Estado</string>
   <string name="exposure_details_status_exposure">Posible exposición á COVID-19</string>
-  <string name="exposure_details_date_exposed_subtitle">Posible data da exposición</string>
-  <string name="exposure_details_expiring_subtitle">Os informes de exposición almacénanse durante 14 días desde a data da posible exposición</string>
+  <string name="exposure_details_date_exposed_subtitle">Data</string>
+  <string name="exposure_details_expiring_subtitle">A túa última posible exposición mantense nesta páxina durante 2 semanas tras esa data.</string>
   <string name="exposure_details_learn_more">Máis información</string>
   <string name="exposure_details_new_badge">Novidade</string>
   <string name="possible_exposures_activity_title">Posible exposición</string>
@@ -207,7 +207,7 @@
   <string name="share_upload_symptoms_date_fixed_description">%1$s proporciona a data do síntoma</string>
   <string name="share_upload_skip_choice">Omitir</string>
   <string name="share_upload_travel_subtitle">Historial de viaxes</string>
-  <string name="travel_history_travelled_recently_choice">Viaxaches nos últimos 14 días?</string>
+  <string name="travel_history_travelled_recently_choice">Viaxei nos últimos 14 días</string>
   <string name="travel_history_no_travel_choice">Non viaxei</string>
   <string name="share_upload_select_a_date_choice">Seleccionar unha data</string>
   <string name="share_upload_status_subtitle">Estado relativo á COVID-19</string>

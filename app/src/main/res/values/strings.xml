@@ -157,10 +157,10 @@
   <string name="exposure_details_status_exposure">Possible COVID-19 exposure</string>
 
   <!-- Subtitle shown above the date of COVID-19 exposure on the exposure details page. [CHAR_LIMIT=60] -->
-  <string name="exposure_details_date_exposed_subtitle">Possible exposure date</string>
+  <string name="exposure_details_date_exposed_subtitle">Date</string>
 
   <!-- Subtitle shown at the bottom of the COVID-19 exposure report stating that it will expire in 14 days. [CHAR_LIMIT=NONE] -->
-  <string name="exposure_details_expiring_subtitle">Exposure reports are stored for 14 days from possible exposure date</string>
+  <string name="exposure_details_expiring_subtitle">Your latest possible exposure remains on this page for 2 weeks after the date of exposure.</string>
 
   <!-- Subtitle on the exposure details page above a link to learn more from the health authority webpage. [CHAR_LIMIT=40] -->
   <string name="exposure_details_learn_more">Learn more</string>
@@ -644,8 +644,8 @@
   <!-- Subtitle on the upload screen in the notify others flow, asking the user about their travel history. [CHAR_LIMIT=40] -->
   <string name="share_upload_travel_subtitle">Travel history</string>
 
-  <!-- One of the options on the upload screen in the notify others flow, asking the user if they have travelled within the last 14 days. [CHAR_LIMIT=60] -->
-  <string name="travel_history_travelled_recently_choice">Travelled in the past 14 days</string>
+  <!-- One of the options on the upload screen in the notify others flow, asking the user if they have traveled within the last 14 days. [CHAR_LIMIT=60] -->
+  <string name="travel_history_travelled_recently_choice">Traveled in the past 14 days</string>
 
   <!-- One of the options on the upload screen in the notify others flow, the user selects this option when they have no travel history within the last 14 days. [CHAR_LIMIT=60] -->
   <string name="travel_history_no_travel_choice">I didn\'t travel</string>

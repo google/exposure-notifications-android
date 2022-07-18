@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">लागणीबद्दलच्या सूचना सुरू करा</string>
   <string name="exposure_details_status_subtitle">स्थिती</string>
   <string name="exposure_details_status_exposure">COVID-19 ची लागण झाल्याची संभाव्यता</string>
-  <string name="exposure_details_date_exposed_subtitle">लागण होण्याच्या शक्यतेची संभाव्य तारीख</string>
-  <string name="exposure_details_expiring_subtitle">लागणीबाबतचे अहवाल लागण झाल्याच्या संभाव्य तारखेपासून १४ दिवसांसाठी स्टोअर केले जातात</string>
+  <string name="exposure_details_date_exposed_subtitle">तारीख</string>
+  <string name="exposure_details_expiring_subtitle">तुमची नवीनतम संभाव्य लागण ही लागण झाल्याच्या तारखेनंतर दोन आठवड्यांसाठी या पेजवर राहते.</string>
   <string name="exposure_details_learn_more">अधिक जाणून घ्या</string>
   <string name="exposure_details_new_badge">नवीन</string>
   <string name="possible_exposures_activity_title">संभाव्य लागण</string>
@@ -207,7 +207,7 @@
   <string name="share_upload_symptoms_date_fixed_description">लक्षण दिसण्याची तारीख ही %1$s ने पुरवली आहे</string>
   <string name="share_upload_skip_choice">वगळा</string>
   <string name="share_upload_travel_subtitle">प्रवासाचा इतिहास</string>
-  <string name="travel_history_travelled_recently_choice">मागील १४ दिवसांमध्ये प्रवास केला</string>
+  <string name="travel_history_travelled_recently_choice">मागील १४ दिवसांत प्रवास केला आहे</string>
   <string name="travel_history_no_travel_choice">मी प्रवास केला नव्हता</string>
   <string name="share_upload_select_a_date_choice">तारीख निवडा</string>
   <string name="share_upload_status_subtitle">COVID-19 स्टेटस</string>

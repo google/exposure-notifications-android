@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‎‏‏‎‏‏‏‏‎‏‏‎‏‏‎‏‎‎‎‏‎‏‏‎‎‎‎‎‏‎‏‎‎‎‎‏‏‎‎‎‎‎‏‏‎‏‏‎‏‎‎‏‎‏‎‎‎‏‏‎‎‎‏‎Turn on Exposure Notifications‎‏‎‎‏‎</string>
   <string name="exposure_details_status_subtitle">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‎‏‏‎‎‏‎‎‎‏‏‏‏‎‏‎‏‏‎‎‏‎‏‏‏‏‎‏‎‏‎‎‎‎‏‏‏‏‎‏‎‏‎‎‏‎‎‏‏‎‏‏‏‎‏‎‏‏‏‏‏‏‎Status‎‏‎‎‏‎</string>
   <string name="exposure_details_status_exposure">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‎‏‏‎‏‏‎‎‏‏‎‎‎‏‏‏‎‎‎‎‎‏‏‎‏‏‏‎‎‏‎‎‏‎‎‏‏‎‎‏‎‎‏‏‎‎‏‏‎‎‎‏‏‏‎‎‏‏‏‎‎‎‏‎Possible COVID-19 exposure‎‏‎‎‏‎</string>
-  <string name="exposure_details_date_exposed_subtitle">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‎‏‎‏‎‏‎‎‎‎‏‎‎‏‎‏‏‎‎‏‏‏‏‏‏‏‎‎‏‎‎‎‎‏‏‎‏‎‏‎‎‏‏‎‏‏‎‏‎‏‏‎‏‏‏‎‏‏‏‏‏‎‎Possible exposure date‎‏‎‎‏‎</string>
-  <string name="exposure_details_expiring_subtitle">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‏‏‎‎‏‎‏‏‏‏‏‎‏‏‏‏‎‏‏‏‏‎‏‏‏‎‏‏‎‎‎‎‏‏‎‏‏‏‏‎‎‏‏‎‎‎‏‏‎‏‎‏‏‏‎‎‏‏‏‏‎‏‎Exposure reports are stored for 14 days from possible exposure date‎‏‎‎‏‎</string>
+  <string name="exposure_details_date_exposed_subtitle">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‎‎‎‎‏‏‏‏‎‎‏‏‏‏‏‎‏‎‏‎‎‏‎‏‎‎‎‎‎‎‎‏‎‏‏‏‎‏‎‎‎‎‏‏‎‎‏‎‎‏‏‏‏‏‏‎‎‏‎‎‎‎‎Date‎‏‎‎‏‎</string>
+  <string name="exposure_details_expiring_subtitle">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‎‎‎‏‎‎‏‏‎‎‎‏‎‎‎‎‏‎‏‎‎‎‏‎‎‎‏‎‏‏‏‏‏‏‎‎‎‎‎‎‎‎‎‎‎‏‎‎‏‎‏‎‏‏‎‎‏‎‎‎‏‎‎Your latest possible exposure remains on this page for 2 weeks after the date of exposure.‎‏‎‎‏‎</string>
   <string name="exposure_details_learn_more">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‎‏‎‎‏‏‏‎‏‏‎‏‎‎‎‎‏‎‎‏‎‏‏‎‎‎‏‎‎‏‏‎‎‎‏‏‎‏‎‎‏‎‏‏‎‎‎‎‎‎‎‎‎‎‏‏‏‏‎‎‏‏‎Learn more‎‏‎‎‏‎</string>
   <string name="exposure_details_new_badge">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‎‏‏‏‏‎‎‏‎‎‎‏‎‏‏‎‏‏‎‏‎‎‎‎‎‏‏‏‏‎‏‎‏‎‏‎‏‏‎‏‏‎‎‏‎‏‎‎‎‎‏‎‎‏‎‎‏‎‏‎‎‎‏‎New‎‏‎‎‏‎</string>
   <string name="possible_exposures_activity_title">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‏‏‎‏‎‎‎‏‏‏‏‎‏‏‏‎‎‎‏‏‎‎‎‎‏‎‏‎‏‏‎‏‎‏‏‏‎‎‏‏‎‎‏‏‏‎‎‏‎‏‏‏‎‏‏‎‏‏‎‎‏‎‎Possible exposure‎‏‎‎‏‎</string>
@@ -207,7 +207,7 @@
   <string name="share_upload_symptoms_date_fixed_description">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‏‎‎‏‎‏‏‏‏‏‎‎‎‎‏‏‎‏‎‏‏‏‎‏‎‏‎‎‎‏‎‎‎‏‎‏‏‏‎‎‏‏‎‏‏‎‏‎‎‏‎‎‎‎‎‎‏‏‎‏‎‎‎Symptom date is provided by ‎‏‎‎‏‏‎%1$s‎‏‎‎‏‏‏‎‎‏‎‎‏‎</string>
   <string name="share_upload_skip_choice">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‎‎‏‏‏‏‎‏‎‎‏‎‎‏‏‎‏‏‎‎‎‏‎‎‎‏‎‏‏‏‎‎‏‏‎‏‏‎‏‎‎‎‏‏‏‎‎‎‏‏‏‏‎‏‏‏‎‏‎‎‏‏‎Skip‎‏‎‎‏‎</string>
   <string name="share_upload_travel_subtitle">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‎‎‏‎‎‏‏‎‏‎‎‏‏‎‎‏‎‎‎‏‏‏‎‎‎‏‎‏‎‎‏‏‏‎‏‏‏‏‎‎‎‎‎‎‎‏‏‏‎‏‏‎‏‎‏‎‏‏‏‎‎‏‎Travel history‎‏‎‎‏‎</string>
-  <string name="travel_history_travelled_recently_choice">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‏‏‎‎‏‎‏‎‏‏‎‏‏‏‎‎‏‎‏‏‏‏‎‎‎‎‏‎‏‎‎‏‏‏‏‏‎‏‎‎‎‎‏‏‏‏‏‎‎‏‏‎‎‏‎‏‏‎‎‏‎‏‎Travelled in the past 14 days‎‏‎‎‏‎</string>
+  <string name="travel_history_travelled_recently_choice">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‎‏‏‎‏‎‎‏‎‎‎‏‎‏‎‏‎‏‎‎‎‎‏‎‏‎‎‎‏‎‏‎‏‏‎‎‏‎‎‏‏‎‏‏‎‏‎‎‎‎‎‏‎‎‏‎‏‎‏‎‏‏‎Traveled in the past 14 days‎‏‎‎‏‎</string>
   <string name="travel_history_no_travel_choice">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‏‏‏‏‎‏‏‎‎‎‏‎‏‎‎‎‏‏‎‎‏‏‎‎‏‏‏‎‎‎‎‏‎‎‏‏‎‎‎‎‏‏‏‎‎‎‎‎‎‏‎‎‏‎‎‏‏‎‏‏‏‏‏‏‎I didn\'t travel‎‏‎‎‏‎</string>
   <string name="share_upload_select_a_date_choice">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‎‏‎‎‏‎‏‎‏‏‏‏‏‎‏‎‏‏‎‎‏‎‏‎‎‏‎‎‎‏‏‎‏‏‎‏‎‎‏‏‎‎‎‎‎‎‎‎‎‎‏‎‎‎‎‏‎‏‏‏‏‎‎‎Select a date‎‏‎‎‏‎</string>
   <string name="share_upload_status_subtitle">‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‏‎‏‎‎‏‎‎‏‏‏‏‏‏‎‏‎‏‎‎‎‏‏‏‎‏‎‏‏‎‎‏‎‏‎‎‏‎‏‎‏‎‎‏‎‏‎‎‏‎‎‎‏‏‏‏‎‏‎‎‎‏‏‎‏‎‏‏‎‏‏‎‎‎‏‎‎‎COVID-19 status‎‏‎‎‏‎</string>

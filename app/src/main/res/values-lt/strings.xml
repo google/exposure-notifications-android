@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">Įj. praneš. apie gal. kont. su užs. asm.</string>
   <string name="exposure_details_status_subtitle">Būsena</string>
   <string name="exposure_details_status_exposure">Galimas kontaktas su COVID-19 užsikrėtusiu asmeniu</string>
-  <string name="exposure_details_date_exposed_subtitle">Galimo kontakto su užsikrėtusiu asmeniu data</string>
-  <string name="exposure_details_expiring_subtitle">Galimo kontakto su užsikrėtusiu asmeniu ataskaitos saugomos 14 dienų nuo galimo kontakto su užsikrėtusiu asmeniu datos</string>
+  <string name="exposure_details_date_exposed_subtitle">Data</string>
+  <string name="exposure_details_expiring_subtitle">Paskiausio galimo kontakto su užsikrėtusiu asmeniu informacija saugoma šiame puslapyje dvi savaites nuo galimo kontakto su užsikrėtusiu asmeniu datos.</string>
   <string name="exposure_details_learn_more">Sužinokite daugiau</string>
   <string name="exposure_details_new_badge">Nauja</string>
   <string name="possible_exposures_activity_title">Galimas kontaktas su užsikrėtusiu asmeniu</string>

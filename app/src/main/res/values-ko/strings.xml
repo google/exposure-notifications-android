@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">노출 알림 사용 설정</string>
   <string name="exposure_details_status_subtitle">상태</string>
   <string name="exposure_details_status_exposure">코로나19 노출 가능성</string>
-  <string name="exposure_details_date_exposed_subtitle">노출 가능성이 있는 날짜</string>
-  <string name="exposure_details_expiring_subtitle">노출 보고서는 잠재적 노출 날짜로부터 14일 동안 저장됩니다.</string>
+  <string name="exposure_details_date_exposed_subtitle">날짜</string>
+  <string name="exposure_details_expiring_subtitle">최근 노출 가능성 정보는 노출 날짜부터 2주 동안 이 페이지에 제공됩니다</string>
   <string name="exposure_details_learn_more">자세히 알아보기</string>
   <string name="exposure_details_new_badge">New</string>
   <string name="possible_exposures_activity_title">잠재적인 노출</string>
@@ -207,7 +207,7 @@
   <string name="share_upload_symptoms_date_fixed_description">증상 발현 날짜는 %1$s에서 제공합니다.</string>
   <string name="share_upload_skip_choice">건너뛰기</string>
   <string name="share_upload_travel_subtitle">여행 이력</string>
-  <string name="travel_history_travelled_recently_choice">지난 14일간 여행한 적이 있음</string>
+  <string name="travel_history_travelled_recently_choice">지난 14일간 다른 지역으로 이동한 적이 있음</string>
   <string name="travel_history_no_travel_choice">여행한 적 없음</string>
   <string name="share_upload_select_a_date_choice">날짜 선택</string>
   <string name="share_upload_status_subtitle">코로나19 검사 결과</string>

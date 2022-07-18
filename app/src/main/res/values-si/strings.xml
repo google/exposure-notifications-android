@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">නිරාවරණ දැනුම්දීම් ක්‍රියාත්මක කරන්න</string>
   <string name="exposure_details_status_subtitle">තත්ත්වය</string>
   <string name="exposure_details_status_exposure">විය හැකි COVID-19 නිරාවරණය</string>
-  <string name="exposure_details_date_exposed_subtitle">විය හැකි නිරාවරණ දිනය</string>
-  <string name="exposure_details_expiring_subtitle">නිරාවරණ වාර්තා විය හැකි නිරාවරණ දිනයේ සිට දින 14ක් සඳහා ගබඩා කරයි</string>
+  <string name="exposure_details_date_exposed_subtitle">දිනය</string>
+  <string name="exposure_details_expiring_subtitle">නිරාවරණය වූ දිනට පසුව සති 2ක් ඔබගේ නවතම විය හැකි නිරාවරණය මෙම පිටුවේ පවතී.</string>
   <string name="exposure_details_learn_more">තව දැන ගන්න</string>
   <string name="exposure_details_new_badge">නව</string>
   <string name="possible_exposures_activity_title">විය හැකි නිරාවරණය</string>
@@ -207,7 +207,7 @@
   <string name="share_upload_symptoms_date_fixed_description">රෝග ලක්ෂණ දිනය %1$s විසින් සපයනු ලැබේ</string>
   <string name="share_upload_skip_choice">මඟ හරින්න</string>
   <string name="share_upload_travel_subtitle">සංචාරක ඉතිහාසය</string>
-  <string name="travel_history_travelled_recently_choice">පසුගිය දින 14 තුළ සංචාරය කළේය</string>
+  <string name="travel_history_travelled_recently_choice">පසුගිය දින 14 තුළ සංචාරය කර ඇත</string>
   <string name="travel_history_no_travel_choice">මම සංචාරය නොකළෙමි</string>
   <string name="share_upload_select_a_date_choice">දිනයක් තෝරන්න</string>
   <string name="share_upload_status_subtitle">COVID-19 තත්ත්වය</string>

@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">เปิดการแจ้งเตือนความเสี่ยงต่อการติดเชื้อ</string>
   <string name="exposure_details_status_subtitle">สถานะ</string>
   <string name="exposure_details_status_exposure">มีความเสี่ยงต่อการติดเชื้อโควิด-19</string>
-  <string name="exposure_details_date_exposed_subtitle">วันที่อาจเสี่ยงต่อการติดเชื้อ</string>
-  <string name="exposure_details_expiring_subtitle">ระบบจะจัดเก็บรายงานความเสี่ยงต่อการติดเชื้อไว้เป็นเวลา 14 วันนับจากวันที่อาจเสี่ยงต่อการติดเชื้อ</string>
+  <string name="exposure_details_date_exposed_subtitle">วันที่</string>
+  <string name="exposure_details_expiring_subtitle">ความเสี่ยงต่อการติดเชื้อล่าสุดของคุณจะคงอยู่ในหน้านี้เป็นเวลา 2 สัปดาห์หลังจากวันที่มีความเสี่ยง</string>
   <string name="exposure_details_learn_more">ดูข้อมูลเพิ่มเติม</string>
   <string name="exposure_details_new_badge">ใหม่</string>
   <string name="possible_exposures_activity_title">ความเสี่ยงต่อการติดเชื้อ</string>

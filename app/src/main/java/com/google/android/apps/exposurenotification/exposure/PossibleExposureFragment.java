@@ -36,6 +36,7 @@ import com.google.android.apps.exposurenotification.riskcalculation.ExposureClas
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences.BadgeStatus;
 import com.google.android.apps.exposurenotification.utils.UrlUtils;
 import dagger.hilt.android.AndroidEntryPoint;
+import org.threeten.bp.ZoneId;
 
 /**
  * Possible Exposure details fragment.
@@ -145,9 +146,9 @@ public class PossibleExposureFragment extends BaseFragment {
     TextView exposureDetailsText = binding.exposureDetailsText;
     Button exposureDetailsUrlButton = binding.exposureDetailsUrlButton;
 
-    exposureDetailsDateExposedText.setText(exposureHomeViewModel
-        .getDaysFromStartOfExposureString(exposureClassification, requireContext())
-    );
+    exposureDetailsDateExposedText.setText(
+        exposureHomeViewModel.getExposureDateRangeString(exposureClassification,
+            requireContext(), ZoneId.systemDefault()));
 
     // Catch the revoked edge case
     if (isRevoked) {

@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">Включить уведомления</string>
   <string name="exposure_details_status_subtitle">Статус</string>
   <string name="exposure_details_status_exposure">Возможный контакт с человеком, инфицированным COVID-19</string>
-  <string name="exposure_details_date_exposed_subtitle">Дата возможного контакта</string>
-  <string name="exposure_details_expiring_subtitle">Сообщения о риске инфицирования хранятся в течение 14 дней с даты возможного контакта.</string>
+  <string name="exposure_details_date_exposed_subtitle">Дата</string>
+  <string name="exposure_details_expiring_subtitle">Данные о риске инфицирования будут показываться на этой странице в течение двух недель с даты последнего возможного контакта.</string>
   <string name="exposure_details_learn_more">Подробнее</string>
   <string name="exposure_details_new_badge">Новое</string>
   <string name="possible_exposures_activity_title">Возможный контакт</string>
@@ -211,7 +211,7 @@
   <string name="share_upload_symptoms_date_fixed_description">Дата проявления симптомов получена от этой организации: %1$s.</string>
   <string name="share_upload_skip_choice">Пропустить</string>
   <string name="share_upload_travel_subtitle">История перемещений</string>
-  <string name="travel_history_travelled_recently_choice">Были поездки за последние 14 дней</string>
+  <string name="travel_history_travelled_recently_choice">У меня были поездки за последние 14 дней</string>
   <string name="travel_history_no_travel_choice">У меня не было поездок</string>
   <string name="share_upload_select_a_date_choice">Выберите дату</string>
   <string name="share_upload_status_subtitle">Статус COVID-19</string>

@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">\'एक्सपोज़र नोटिफ़िकेशन\' चालू करें</string>
   <string name="exposure_details_status_subtitle">संक्रमण की स्थिति</string>
   <string name="exposure_details_status_exposure">COVID-19 से संक्रमित व्यक्ति से हुआ संभावित संपर्क</string>
-  <string name="exposure_details_date_exposed_subtitle">संक्रमित व्यक्ति के संपर्क में आने की संभावित तारीख</string>
-  <string name="exposure_details_expiring_subtitle">संक्रमित व्यक्ति से संपर्क में आने की रिपोर्ट, संपर्क में आने की संभावित तारीख से 14 दिन तक सेव रहती है</string>
+  <string name="exposure_details_date_exposed_subtitle">तारीख</string>
+  <string name="exposure_details_expiring_subtitle">हाल ही में, किसी संक्रमित व्यक्ति के संपर्क में आने की आशंका से जुड़ी आपकी जानकारी, संपर्क में आने की तारीख से लेकर दो हफ़्ते तक, इस पेज पर रहती है.</string>
   <string name="exposure_details_learn_more">ज़्यादा जानें</string>
   <string name="exposure_details_new_badge">नई सुविधा</string>
   <string name="possible_exposures_activity_title">संक्रमित व्यक्ति के संपर्क में आने की संभावना से जुड़ी जानकारी</string>
@@ -207,7 +207,7 @@
   <string name="share_upload_symptoms_date_fixed_description">लक्षण दिखने की तारीख की जानकारी %1$s ने दी है</string>
   <string name="share_upload_skip_choice">अभी नहीं</string>
   <string name="share_upload_travel_subtitle">यात्रा का इतिहास</string>
-  <string name="travel_history_travelled_recently_choice">पिछले 14 दिन के अंदर की गई यात्रा</string>
+  <string name="travel_history_travelled_recently_choice">क्या आपने पिछले 14 दिन में कोई यात्रा की है</string>
   <string name="travel_history_no_travel_choice">मैंने कोई यात्रा नहीं की थी</string>
   <string name="share_upload_select_a_date_choice">कोई तारीख चुनें</string>
   <string name="share_upload_status_subtitle">COVID-19 की जांच का नतीजा</string>

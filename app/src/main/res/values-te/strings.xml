@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">వ్యాధి సోకగల అవకాశాన్ని తెలిపే నోటిఫికేషన్‌లు ఆన్ చేయండి</string>
   <string name="exposure_details_status_subtitle">స్టేటస్</string>
   <string name="exposure_details_status_exposure">COVID-19 వ్యాధి సోకే అవకాశం</string>
-  <string name="exposure_details_date_exposed_subtitle">ఈ తేదీ నాడు వ్యాధి సోకి ఉండవచ్చు</string>
-  <string name="exposure_details_expiring_subtitle">వ్యాధి సోకే అవకాశం ఉన్న తేదీ నుండి 14 రోజుల పాటు వ్యాధి సోకే అవకాశం రిపోర్ట్‌లు స్టోర్ చేయబడతాయి</string>
+  <string name="exposure_details_date_exposed_subtitle">తేదీ</string>
+  <string name="exposure_details_expiring_subtitle">మీ తాజా సంక్రమణ వ్యాధి సోకే అవకాశం గురించిన సమాచారం వ్యాధి సోకే అవకాశం నిర్ధారణ అయిన రోజు నుండి 2 వారాల పాటు ఈ పేజీలో ఉంటుంది.</string>
   <string name="exposure_details_learn_more">మరింత తెలుసుకోండి</string>
   <string name="exposure_details_new_badge">కొత్తది</string>
   <string name="possible_exposures_activity_title">వ్యాధి సోకగల అవకాశం</string>

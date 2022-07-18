@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">COVID-19-Benachrichtigungen aktivieren</string>
   <string name="exposure_details_status_subtitle">Status</string>
   <string name="exposure_details_status_exposure">Mögliche Begegnung mit infizierter Person</string>
-  <string name="exposure_details_date_exposed_subtitle">Datum der möglichen Begegnung mit infizierter Person</string>
-  <string name="exposure_details_expiring_subtitle">Benachrichtigungen zu möglichen Begegnungen mit infizierten Personen werden ab dem Datum der möglichen Begegnung 14 Tage lang gespeichert</string>
+  <string name="exposure_details_date_exposed_subtitle">Datum</string>
+  <string name="exposure_details_expiring_subtitle">Deine letzte mögliche Begegnung mit einer infizierten Person wird auf dieser Seite 2 Wochen ab dem Datum der möglichen Begegnung angezeigt.</string>
   <string name="exposure_details_learn_more">Weitere Informationen</string>
   <string name="exposure_details_new_badge">Neu</string>
   <string name="possible_exposures_activity_title">Mögliche Begegnung mit infizierter Person</string>
@@ -207,7 +207,7 @@
   <string name="share_upload_symptoms_date_fixed_description">Das Datum des Beginns von Symptomen wird von %1$s angegeben</string>
   <string name="share_upload_skip_choice">Überspringen</string>
   <string name="share_upload_travel_subtitle">Reisen</string>
-  <string name="travel_history_travelled_recently_choice">In den letzten 14 Tagen auf Reisen gewesen</string>
+  <string name="travel_history_travelled_recently_choice">Während der letzten 14 Tage verreist</string>
   <string name="travel_history_no_travel_choice">Ich bin nicht gereist</string>
   <string name="share_upload_select_a_date_choice">Datum auswählen</string>
   <string name="share_upload_status_subtitle">COVID-19-Status</string>

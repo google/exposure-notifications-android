@@ -44,6 +44,7 @@ import com.google.android.apps.exposurenotification.utils.UrlUtils;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.mikepenz.aboutlibraries.LibsBuilder;
 import dagger.hilt.android.AndroidEntryPoint;
+import org.threeten.bp.ZoneId;
 
 /**
  * Fragment that holds main information on the currently active region.
@@ -231,9 +232,8 @@ public class ActiveRegionFragment extends BaseFragment {
     if (showPossibleExposureIfAny && isExposure) {
       binding.possibleExposureView.setVisibility(View.VISIBLE);
       binding.possibleExposureLayout.possibleExposureDate.setText(
-          exposureHomeViewModel
-              .getDaysFromStartOfExposureString(exposureClassification, getContext())
-      );
+          exposureHomeViewModel.getExposureDateRangeString(exposureClassification,
+              getContext(), ZoneId.systemDefault()));
     } else {
       binding.possibleExposureView.setVisibility(View.GONE);
     }

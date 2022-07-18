@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">Vula Izaziso Zokuhlangabezana</string>
   <string name="exposure_details_status_subtitle">Isimo</string>
   <string name="exposure_details_status_exposure">Ukuhlangabezana ne-COVID-19 okungaba khona</string>
-  <string name="exposure_details_date_exposed_subtitle">Idethi yokuhlangabezana okungase kube khona</string>
-  <string name="exposure_details_expiring_subtitle">Imibiko yokuhlangabezana igcinwa izinsuku eziyi-14 kusuka kudethi yokuhlangabezana okungase kube khona.</string>
+  <string name="exposure_details_date_exposed_subtitle">Ilanga</string>
+  <string name="exposure_details_expiring_subtitle">Okungase kube ukuhlangabezana kwakho kwakamuva kuhlala kuleli khasi amaviki ama-2 ngemva kwelanga lokuhlangabezana.</string>
   <string name="exposure_details_learn_more">Funda kabanzi</string>
   <string name="exposure_details_new_badge">Kusha</string>
   <string name="possible_exposures_activity_title">Ukuhlangabezana okunokwenzeka</string>
@@ -207,7 +207,7 @@
   <string name="share_upload_symptoms_date_fixed_description">Ilanga lophawu luhlinzekwa i-%1$s</string>
   <string name="share_upload_skip_choice">Yeqa</string>
   <string name="share_upload_travel_subtitle">Umlando wokuhamba</string>
-  <string name="travel_history_travelled_recently_choice">Uthathe uhambo ezinsukwini ezi-14 ezedlule</string>
+  <string name="travel_history_travelled_recently_choice">Uhambe ezinsukwini ezi-14 ezedlule</string>
   <string name="travel_history_no_travel_choice">Angizange ngihambe</string>
   <string name="share_upload_select_a_date_choice">Khetha idethi</string>
   <string name="share_upload_status_subtitle">Isimo se-COVID-19</string>

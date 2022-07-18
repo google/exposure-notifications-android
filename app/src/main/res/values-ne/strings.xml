@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सूचना दिने प्रणाली अन गर्नु…</string>
   <string name="exposure_details_status_subtitle">स्थिति</string>
   <string name="exposure_details_status_exposure">तपाईं COVID-19 सङ्क्रमित व्यक्तिको सम्पर्कमा आएको हुन सक्ने सम्भावना छ</string>
-  <string name="exposure_details_date_exposed_subtitle">सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सम्भावित मिति</string>
-  <string name="exposure_details_expiring_subtitle">तपाईं COVID-19 सङ्क्रमित व्यक्तिको सम्पर्कमा आएको कुरासम्बन्धी रिपोर्ट तपाईं सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सम्भावित मितिबाट १४ दिनसम्म राखिन्छ</string>
+  <string name="exposure_details_date_exposed_subtitle">मिति</string>
+  <string name="exposure_details_expiring_subtitle">तपाईं पछिल्लो पटक कोरोनाबाट सङ्क्रमित व्यक्तिसँग सम्पर्कमा आएको हुन सक्ने कुराको जानकारी यो पेजमा सो सम्पर्क भएको मितिदेखि २ हप्तासम्म रहने छ।</string>
   <string name="exposure_details_learn_more">थप जान्नुहोस्</string>
   <string name="exposure_details_new_badge">नयाँ</string>
   <string name="possible_exposures_activity_title">सङ्क्रमित व्यक्तिको सम्पर्कमा आएको हुन सक्ने</string>
@@ -207,7 +207,7 @@
   <string name="share_upload_symptoms_date_fixed_description">%1$s ले लक्षण देखिन थालेको मिति प्रदान गर्नुभएको छ</string>
   <string name="share_upload_skip_choice">स्किप गर्नुहोस्</string>
   <string name="share_upload_travel_subtitle">यात्राको इतिहास</string>
-  <string name="travel_history_travelled_recently_choice">मैले पछिल्ला १४ दिनभित्र यात्रा गरेको छु</string>
+  <string name="travel_history_travelled_recently_choice">विगत १४ दिनमा गरिएका यात्रा</string>
   <string name="travel_history_no_travel_choice">मैले कतै पनि यात्रा गरेको छुइन</string>
   <string name="share_upload_select_a_date_choice">मिति चयन गर्नुहोस्</string>
   <string name="share_upload_status_subtitle">COVID-19 सम्बन्धी स्थिति</string>

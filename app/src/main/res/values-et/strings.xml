@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">Kokkupuute märguannete sisselülitamine</string>
   <string name="exposure_details_status_subtitle">Olek</string>
   <string name="exposure_details_status_exposure">Võimalik kokkupuude COVID-19-ga</string>
-  <string name="exposure_details_date_exposed_subtitle">Võimaliku kokkupuute kuupäev</string>
-  <string name="exposure_details_expiring_subtitle">Kokkupuute teavitused säilitatakse 14 päevaks alates võimaliku kokkupuute kuupäevast</string>
+  <string name="exposure_details_date_exposed_subtitle">Kuupäev</string>
+  <string name="exposure_details_expiring_subtitle">Teie viimane kokkupuude jääb sellele lehele kaheks nädalaks pärast kokkupuute kuupäeva.</string>
   <string name="exposure_details_learn_more">Lisateave</string>
   <string name="exposure_details_new_badge">Uus</string>
   <string name="possible_exposures_activity_title">Võimalik kokkupuude</string>
@@ -207,7 +207,7 @@
   <string name="share_upload_symptoms_date_fixed_description">Sümptomi kuupäeva on esitanud %1$s</string>
   <string name="share_upload_skip_choice">Jäta vahele</string>
   <string name="share_upload_travel_subtitle">Reisimise ajalugu</string>
-  <string name="travel_history_travelled_recently_choice">Reisinud viimase 14 päeva jooksul</string>
+  <string name="travel_history_travelled_recently_choice">Olen viimase 14 päeva jooksul reisinud</string>
   <string name="travel_history_no_travel_choice">Ma ei reisinud</string>
   <string name="share_upload_select_a_date_choice">Valige kuupäev</string>
   <string name="share_upload_status_subtitle">COVID-19 olek</string>

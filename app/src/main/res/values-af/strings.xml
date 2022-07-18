@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">Skakel Blootstellingkennisgewings aan</string>
   <string name="exposure_details_status_subtitle">Status</string>
   <string name="exposure_details_status_exposure">Moontlike COVID-19-blootstelling</string>
-  <string name="exposure_details_date_exposed_subtitle">Datum van moontlike blootstelling</string>
-  <string name="exposure_details_expiring_subtitle">Blootstellingverslae word geberg vir 14 dae vanaf die datum van moontlike blootstelling</string>
+  <string name="exposure_details_date_exposed_subtitle">Datum</string>
+  <string name="exposure_details_expiring_subtitle">Jou jongste moontlike blootstelling bly vir 2 weke ná die blootstellingdatum op hierdie bladsy.</string>
   <string name="exposure_details_learn_more">Kom meer te wete</string>
   <string name="exposure_details_new_badge">Nuut</string>
   <string name="possible_exposures_activity_title">Moontlike blootstelling</string>
@@ -208,7 +208,7 @@ ontledings met jou gesondheidowerheid</string>
   <string name="share_upload_symptoms_date_fixed_description">Data oor simptome is deur %1$s verskaf</string>
   <string name="share_upload_skip_choice">Slaan oor</string>
   <string name="share_upload_travel_subtitle">Reisgeskiedenis</string>
-  <string name="travel_history_travelled_recently_choice">Het die afgelope 14 dae gereis</string>
+  <string name="travel_history_travelled_recently_choice">Die afgelope 14 dae gereis</string>
   <string name="travel_history_no_travel_choice">Ek het nie gereis nie</string>
   <string name="share_upload_select_a_date_choice">Kies \'n datum</string>
   <string name="share_upload_status_subtitle">COVID-19-status</string>

@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">Yoluxma riski haqqında bildirişləri aktiv edin</string>
   <string name="exposure_details_status_subtitle">Status</string>
   <string name="exposure_details_status_exposure">Mümkün COVID-19 təması</string>
-  <string name="exposure_details_date_exposed_subtitle">Ehtimal təmas tarixi</string>
-  <string name="exposure_details_expiring_subtitle">Yoluxma hesabatları ehtimal təmas tarixindən etibarən 14 gün saxlanılır</string>
+  <string name="exposure_details_date_exposed_subtitle">Tarix</string>
+  <string name="exposure_details_expiring_subtitle">Ən son yoluxma ehtimalınız yoluxma tarixindən sonra 2 həftə ərzində bu səhifədə qalır.</string>
   <string name="exposure_details_learn_more">Ətraflı məlumat</string>
   <string name="exposure_details_new_badge">Yeni</string>
   <string name="possible_exposures_activity_title">Ehtimal yoluxma</string>
@@ -207,7 +207,7 @@
   <string name="share_upload_symptoms_date_fixed_description">Simptom tarixi %1$s tərəfindən təmin edilib</string>
   <string name="share_upload_skip_choice">Keçin</string>
   <string name="share_upload_travel_subtitle">Səyahət tarixçəsi</string>
-  <string name="travel_history_travelled_recently_choice">Son 14 gündə səyahət edib</string>
+  <string name="travel_history_travelled_recently_choice">Son 14 gün ərzində səyahət edib</string>
   <string name="travel_history_no_travel_choice">Səyahət etməmişəm</string>
   <string name="share_upload_select_a_date_choice">Tarix seçin</string>
   <string name="share_upload_status_subtitle">COVID-19 statusu</string>

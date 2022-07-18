@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">ایکسپوژر نوٹیفیکیشنز آن کریں</string>
   <string name="exposure_details_status_subtitle">اسٹیٹس</string>
   <string name="exposure_details_status_exposure">ممکنہ COVID-19 ایکسپوژر</string>
-  <string name="exposure_details_date_exposed_subtitle">ایکسپوژر کی ممکنہ تاریخ</string>
-  <string name="exposure_details_expiring_subtitle">ایکسپوژر رپورٹس کو ایکسپوژر کی ممکنہ تاریخ سے 14 دنوں کیلئے اسٹور کیا جاتا ہے</string>
+  <string name="exposure_details_date_exposed_subtitle">تاریخ</string>
+  <string name="exposure_details_expiring_subtitle">آپ کی تازہ ترین ممکنہ ایکسپوژر کی معلومات ایکسپوژر کی تاریخ کے بعد اس صفحے پر 2 ہفتوں تک رہتی ہے۔</string>
   <string name="exposure_details_learn_more">مزید جانیں</string>
   <string name="exposure_details_new_badge">نیا</string>
   <string name="possible_exposures_activity_title">ممکنہ ایکسپوژر</string>

@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">Zapněte oznámení o možném kontaktu</string>
   <string name="exposure_details_status_subtitle">Stav</string>
   <string name="exposure_details_status_exposure">Možný kontakt s COVID-19</string>
-  <string name="exposure_details_date_exposed_subtitle">Datum možného kontaktu</string>
-  <string name="exposure_details_expiring_subtitle">Přehledy kontaktů uchováváme 14 dnů od data možného kontaktu</string>
+  <string name="exposure_details_date_exposed_subtitle">Datum</string>
+  <string name="exposure_details_expiring_subtitle">Datum posledního možného kontaktu je na této stránce uvedeno dva týdny.</string>
   <string name="exposure_details_learn_more">Další informace</string>
   <string name="exposure_details_new_badge">Nové</string>
   <string name="possible_exposures_activity_title">Možný kontakt</string>
@@ -211,7 +211,7 @@
   <string name="share_upload_symptoms_date_fixed_description">Datum příznaku poskytuje organizace %1$s</string>
   <string name="share_upload_skip_choice">Přeskočit</string>
   <string name="share_upload_travel_subtitle">Historie cestování</string>
-  <string name="travel_history_travelled_recently_choice">Cesty za posledních 14 dnů</string>
+  <string name="travel_history_travelled_recently_choice">V posledních 14 dnech jste cestovali</string>
   <string name="travel_history_no_travel_choice">Necestoval(a) jsem</string>
   <string name="share_upload_select_a_date_choice">Vyberte datum</string>
   <string name="share_upload_status_subtitle">COVID-19: stav</string>

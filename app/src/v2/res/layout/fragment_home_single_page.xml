@@ -330,12 +330,12 @@
 
         <!-- Secondary "No recent exposure" card -->
         <include
-          layout="@layout/card_no_recent_exposure"
+          layout="@layout/card_no_recent_exposure_secondary_layout"
           android:id="@+id/no_recent_exposure_secondary_layout" />
 
         <!-- Secondary "Possible exposure" card -->
         <include
-          layout="@layout/card_possible_exposure"
+          layout="@layout/card_possible_exposure_secondary_layout"
           android:id="@+id/possible_exposure_secondary_layout" />
 
       </ViewFlipper>

@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">Ενεργοποίηση Ειδοποιήσεων έκθεσης</string>
   <string name="exposure_details_status_subtitle">Κατάσταση</string>
   <string name="exposure_details_status_exposure">Πιθανή έκθεση στον COVID-19</string>
-  <string name="exposure_details_date_exposed_subtitle">Πιθανή ημερομηνία έκθεσης</string>
-  <string name="exposure_details_expiring_subtitle">Οι ειδοποιήσεις έκθεσης αποθηκεύονται για 14 ημέρες από την ημερομηνία της πιθανής έκθεσης</string>
+  <string name="exposure_details_date_exposed_subtitle">Ημερομηνία</string>
+  <string name="exposure_details_expiring_subtitle">Η πιο πρόσφατη πιθανή σας έκθεση παραμένει σε αυτήν τη σελίδα για 2 εβδομάδες μετά την ημερομηνία της έκθεσης.</string>
   <string name="exposure_details_learn_more">Μάθετε περισσότερα</string>
   <string name="exposure_details_new_badge">Νέα</string>
   <string name="possible_exposures_activity_title">Πιθανή έκθεση</string>

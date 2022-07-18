@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">კონტაქტის შეტყობინებების ჩართვა</string>
   <string name="exposure_details_status_subtitle">სტატუსი</string>
   <string name="exposure_details_status_exposure">COVID-19-თან პოტენციური კონტაქტი</string>
-  <string name="exposure_details_date_exposed_subtitle">შესაძლო კონტაქტის თარიღი</string>
-  <string name="exposure_details_expiring_subtitle">კონტაქტის შეტყობინებები ინახება შესაძლო კონტაქტის თარიღიდან 14 დღის განმავლობაში</string>
+  <string name="exposure_details_date_exposed_subtitle">თარიღი</string>
+  <string name="exposure_details_expiring_subtitle">თქვენი ბოლო შესაძლო კონტაქტი ამ გვერდზე კონტაქტის თარიღიდან 2 კვირის განმავლობაში რჩება.</string>
   <string name="exposure_details_learn_more">შეიტყვეთ მეტი</string>
   <string name="exposure_details_new_badge">ახალი</string>
   <string name="possible_exposures_activity_title">შესაძლო კონტაქტი</string>
@@ -207,7 +207,7 @@
   <string name="share_upload_symptoms_date_fixed_description">სიმპტომის თარიღის მომწოდებელია %1$s</string>
   <string name="share_upload_skip_choice">გამოტოვება</string>
   <string name="share_upload_travel_subtitle">მოგზაურობის ისტორია</string>
-  <string name="travel_history_travelled_recently_choice">მოგზაურობა გასული 14 დღის განმავლობაში</string>
+  <string name="travel_history_travelled_recently_choice">მოგზაურობა ბოლო 14 დღის განმავლობაში</string>
   <string name="travel_history_no_travel_choice">არ მიმოგზაურია</string>
   <string name="share_upload_select_a_date_choice">აირჩიეთ თარიღი</string>
   <string name="share_upload_status_subtitle">COVID-19 სტატუსი</string>

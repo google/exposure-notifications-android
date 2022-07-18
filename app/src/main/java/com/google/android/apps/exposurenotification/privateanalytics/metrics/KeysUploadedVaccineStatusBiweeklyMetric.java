@@ -34,8 +34,8 @@ import org.threeten.bp.Instant;
  */
 public class KeysUploadedVaccineStatusBiweeklyMetric implements PrivateAnalyticsMetric {
 
-  private static final String VERSION = "v2";
-  public static final String METRIC_NAME = "KeysUploadedVaccineStatus-" + VERSION;
+  private static final String VERSION = "v3";
+  public static final String METRIC_NAME = "KeysUploadedVaccineStatus14d-" + VERSION;
   public static final int BIN_LENGTH = 15;
 
   public static final int BIN_UPLOADED = 0;

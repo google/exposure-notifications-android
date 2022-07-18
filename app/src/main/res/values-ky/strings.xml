@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">Ооруну жугузуп алуу коркунучу тууралуу билдирмелерди күйгүзүү</string>
   <string name="exposure_details_status_subtitle">Статусу</string>
   <string name="exposure_details_status_exposure">Коронавирусту (COVID-19) жугузуп алуу коркунучу бар</string>
-  <string name="exposure_details_date_exposed_subtitle">Ооруну жугузуп алуу коркунучуна кабылган күн</string>
-  <string name="exposure_details_expiring_subtitle">Ооруну жугузуп алуу коркунучу тууралуу билдирүүлөр оорулуу адам менен байланышкан күндөн тартып 14 күн сакталат</string>
+  <string name="exposure_details_date_exposed_subtitle">Күн</string>
+  <string name="exposure_details_expiring_subtitle">Ооруну жугузуп алуу коркунучу тууралуу маалымат ал аныкталгандан кийин ушул бетте 2 апта сакталат.</string>
   <string name="exposure_details_learn_more">Кененирээк</string>
   <string name="exposure_details_new_badge">Жаңы</string>
   <string name="possible_exposures_activity_title">Ооруну жугузуп алуу коркунучуна кабылуу</string>
@@ -207,7 +207,7 @@
   <string name="share_upload_symptoms_date_fixed_description">Ооруунун белгиси байкалган күн %1$s тарабынан көрсөтүлдү</string>
   <string name="share_upload_skip_choice">Өткөрүп жиберүү</string>
   <string name="share_upload_travel_subtitle">Барган жерлердин таржымалы</string>
-  <string name="travel_history_travelled_recently_choice">Акыркы 14 күндө саякаттагам</string>
+  <string name="travel_history_travelled_recently_choice">14 күндүн ичинде саякаттагам</string>
   <string name="travel_history_no_travel_choice">Cаякаттаган жокмун</string>
   <string name="share_upload_select_a_date_choice">Күндү тандоо</string>
   <string name="share_upload_status_subtitle">COVID-19 статусу</string>

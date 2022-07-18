@@ -17,7 +17,7 @@
   <string name="btn_share">ସେୟାର୍ କରନ୍ତୁ</string>
   <string name="btn_close_app">ଆପକୁ ବନ୍ଦ କରନ୍ତୁ</string>
   <string name="learn_more">ଅଧିକ ଜାଣନ୍ତୁ</string>
-  <string name="home_tab_settings_text">ସେଟିଂସ୍</string>
+  <string name="home_tab_settings_text">ସେଟିଂସ</string>
   <string name="notification_channel_name">ସମ୍ଭାବ୍ୟ COVID-19 ସଂକ୍ରମଣ</string>
   <string name="notification_channel_description">ଯଦି ଆପଣ COVID-19ରେ ସଂକ୍ରମିତ କୌଣସି ବ୍ୟକ୍ତିଙ୍କ ସଂସ୍ପର୍ଶରେ ଆସିଥିବାର ସମ୍ଭାବନା ରହିଛି, ତେବେ ବିଜ୍ଞପ୍ତିଗୁଡ଼ିକ ପାଆନ୍ତୁ।</string>
   <string name="navigate_up">ପୂର୍ବବର୍ତ୍ତୀ ସ୍କ୍ରିନକୁ ଫେରନ୍ତୁ</string>
@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">ସଂକ୍ରମଣ ବିଜ୍ଞପ୍ତିଗୁଡ଼ିକ ଚାଲୁ କରନ୍ତୁ</string>
   <string name="exposure_details_status_subtitle">ସ୍ଥିତି</string>
   <string name="exposure_details_status_exposure">COVID-19 ସଂକ୍ରମଣର ସମ୍ଭାବନା</string>
-  <string name="exposure_details_date_exposed_subtitle">ସମ୍ଭାବ୍ୟ ସଂକ୍ରମଣ ତାରିଖ</string>
-  <string name="exposure_details_expiring_subtitle">ସଂକ୍ରମଣ ରିପୋର୍ଟଗୁଡ଼ିକ ସମ୍ଭାବ୍ୟ ସଂକ୍ରମଣ ତାରିଖ ଠାରୁ 14 ଦିନ ପାଇଁ ଷ୍ଟୋର୍ କରାଯାଏ</string>
+  <string name="exposure_details_date_exposed_subtitle">ତାରିଖ</string>
+  <string name="exposure_details_expiring_subtitle">ଆପଣଙ୍କ ସମ୍ଭାବ୍ୟ ସଂକ୍ରମଣର ନବୀନତମ ରିପୋର୍ଟ, ସଂକ୍ରମଣ ହେବାର ତାରିଖ ପରେ 2 ସପ୍ତାହ ପାଇଁ ଏହି ପୃଷ୍ଠାରେ ରହିଥାଏ।</string>
   <string name="exposure_details_learn_more">ଅଧିକ ଜାଣନ୍ତୁ</string>
   <string name="exposure_details_new_badge">ନୂଆ</string>
   <string name="possible_exposures_activity_title">ସମ୍ଭାବ୍ୟ ସଂକ୍ରମଣ</string>
@@ -160,7 +160,7 @@
   <string name="app_analytics_detail">ଆପକୁ ପରିଚାଳନା କରିବା ଏବଂ ଉନ୍ନତ କରିବାରେ ସାହାଯ୍ୟ କରିବା ପାଇଁ, ଆପର କାର୍ଯ୍ୟଦକ୍ଷତା ଏବଂ ବ୍ୟବହାର ବିଷୟରେ ବ୍ୟକ୍ତିଗତ ଚିହ୍ନଟକାରୀ ସୂଚନା-ବିନା କିଛି ସୀମିତ ଡାଟା Google ସହ ସେୟାର୍ କରାଯାଏ। ଏହି ଡାଟା ଆପଣଙ୍କୁ ଚିହ୍ନଟ କରେ ନାହିଁ।</string>
   <string name="agency_message_link">%1$sରେ\nଅଧିକ ଜାଣନ୍ତୁ</string>
   <string name="exposure_notifications_are_inactive">ସଂକ୍ରମଣ ବିଜ୍ଞପ୍ତି ନିଷ୍କ୍ରିୟ ଅଛି</string>
-  <string name="device_settings">ଡିଭାଇସ୍ ସେଟିଂସ୍</string>
+  <string name="device_settings">ଡିଭାଇସ ସେଟିଂସ</string>
   <string name="manage_storage">ଷ୍ଟୋରେଜ୍ ପରିଚାଳନା କରନ୍ତୁ</string>
   <string name="location_off_warning">COVID-19ର ସମ୍ଭାବ୍ୟ ସଂକ୍ରମଣ ବିଷୟରେ ସୂଚନା ପାଇବାକୁ ଆପଣଙ୍କ ଡିଭାଇସର ଲୋକେସନ୍ ସେଟିଂକୁ ଚାଲୁ କରନ୍ତୁ।</string>
   <string name="ble_off_warning">COVID-19ର ସମ୍ଭାବ୍ୟ ସଂକ୍ରମଣ ବିଷୟରେ ସୂଚନା ପାଇବାକୁ ବ୍ଲୁଟୁଥକୁ ଚାଲୁ କରନ୍ତୁ।</string>
@@ -200,7 +200,7 @@
   <string name="share_diagnosis_share_test_result_subtitle">କୋଭିଡ-19ର ସଂକ୍ରମଣକୁ ପ୍ରତିରୋଧ କରିବାରେ ସାହାଯ୍ୟ କରିଥିବା ଯୋଗୁଁ ଆପଣଙ୍କୁ ଧନ୍ୟବାଦ।</string>
   <string name="share_diagnosis_share_test_result_body">ଆପଣ ଆପଣଙ୍କ ରିପୋର୍ଟ ସେୟାର୍ କରିବା ସମୟରେ ଆପଣଙ୍କ ଲକ୍ଷଣ କେବେଠାରୁ ଆରମ୍ଭ ହୋଇଥିଲା ତାହା ସେୟାର୍ କରିବାକୁ ମଧ୍ୟ ବାଛିପାରିବେ। ଏହି ସୂଚନା କୋଭିଡ-19କୁ ବ୍ୟାପିବାରୁ ପ୍ରତିରୋଧ କରିବା ଏବଂ ଜୀବନ ବଞ୍ଚାଇବାରେ ସାହାଯ୍ୟ କରିପାରିବ।</string>
   <string name="sms_intercept_notice_title">ନୂଆ କଣ ଅଛି</string>
-  <string name="sms_intercept_notice_content">ଯଦି ଆପଣ ଆପଣଙ୍କ ଟେଷ୍ଟ ରିପୋର୍ଟ ଥିବା ଏକ SMS ପ୍ରାପ୍ତ କରନ୍ତି, ତେବେ ସଂକ୍ରମଣ ବିଜ୍ଞପ୍ତିଗୁଡ଼ିକରେ ଆପଣଙ୍କ ଡାଏଗ୍ନୋସିସ୍ ସେୟାର୍ କରିବାକୁ କହୁଥିବା ଏକ ବିଜ୍ଞପ୍ତି ଆପଣ ପାଇପାରନ୍ତି। ଆପଣ ଯେ କୌଣସି ସମୟରେ ସେଟିଂସରେ ଏହାକୁ ଅକ୍ଷମ କରିପାରିବେ।</string>
+  <string name="sms_intercept_notice_content">ଯଦି ଆପଣ ଆପଣଙ୍କ ଟେଷ୍ଟ ରିପୋର୍ଟ ଥିବା ଏକ SMS ପ୍ରାପ୍ତ କରନ୍ତି, ତେବେ ଏକ୍ସପୋଜର ବିଜ୍ଞପ୍ତିଗୁଡ଼ିକରେ ଆପଣଙ୍କ ଡାଏଗ୍ନୋସିସ ସେୟାର କରିବାକୁ କହୁଥିବା ଏକ ବିଜ୍ଞପ୍ତି ଆପଣ ପାଇପାରନ୍ତି। ଆପଣ ଯେ କୌଣସି ସମୟରେ ସେଟିଂସରେ ଏହାକୁ ଅକ୍ଷମ କରିପାରିବେ।</string>
   <string name="share_upload_title">ଆପଣଙ୍କ କମ୍ୟୁନିଟୀକୁ ସୁରକ୍ଷିତ ରଖିବା ପାଇଁ ଆପଣଙ୍କ ଟେଷ୍ଟ ରିପୋର୍ଟ ସେୟାର୍ କରନ୍ତୁ</string>
   <string name="share_upload_test_result_source_description">%1$s ଫଳାଫଳ ପଠାଇଛନ୍ତି</string>
   <string name="share_upload_symptoms_subtitle">ଏହି ତାରିଖରୁ ଲକ୍ଷଣ ଆରମ୍ଭ ହୋଇଥିଲା</string>

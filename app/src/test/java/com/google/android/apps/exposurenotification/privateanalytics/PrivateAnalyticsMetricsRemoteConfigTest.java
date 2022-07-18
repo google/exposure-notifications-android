@@ -115,6 +115,24 @@ public class PrivateAnalyticsMetricsRemoteConfigTest {
         .put(
             PrivateAnalyticsMetricsRemoteConfig
                 .CONFIG_METRIC_PERIODIC_EXPOSURE_NOTIFICATION_BIWEEKLY_PRIO_EPSILON_KEY,
+            new Random().nextDouble())
+
+        .put(
+            PrivateAnalyticsMetricsRemoteConfig
+                .CONFIG_METRIC_DATE_EXPOSURE_BIWEEKLY_SAMPLING_PROB_KEY,
+            new Random().nextDouble())
+        .put(
+            PrivateAnalyticsMetricsRemoteConfig
+                .CONFIG_METRIC_DATE_EXPOSURE_BIWEEKLY_PRIO_EPSILON_KEY,
+            new Random().nextDouble())
+
+        .put(
+            PrivateAnalyticsMetricsRemoteConfig
+                .CONFIG_METRIC_KEYS_UPLOADED_VACCINE_STATUS_BIWEEKLY_SAMPLING_PROB_KEY,
+            new Random().nextDouble())
+        .put(
+            PrivateAnalyticsMetricsRemoteConfig
+                .CONFIG_METRIC_KEYS_UPLOADED_VACCINE_STATUS_BIWEEKLY_PRIO_EPSILON_KEY,
             new Random().nextDouble());
 
     MetricsRemoteConfigs metricsRemoteConfig = privateAnalyticsMetricsRemoteConfig
@@ -195,6 +213,28 @@ public class PrivateAnalyticsMetricsRemoteConfigTest {
             .get(
                 PrivateAnalyticsMetricsRemoteConfig
                     .CONFIG_METRIC_PERIODIC_EXPOSURE_NOTIFICATION_BIWEEKLY_PRIO_EPSILON_KEY));
+
+    assertThat(metricsRemoteConfig.dateExposureBiweeklyPrioSamplingRate())
+        .isEqualTo(
+            remoteJsonObj.get(
+                PrivateAnalyticsMetricsRemoteConfig
+                    .CONFIG_METRIC_DATE_EXPOSURE_BIWEEKLY_SAMPLING_PROB_KEY));
+    assertThat(metricsRemoteConfig.dateExposureBiweeklyPrioEpsilon())
+        .isEqualTo(remoteJsonObj
+            .get(
+                PrivateAnalyticsMetricsRemoteConfig
+                    .CONFIG_METRIC_DATE_EXPOSURE_BIWEEKLY_PRIO_EPSILON_KEY));
+
+    assertThat(metricsRemoteConfig.keysUploadedVaccineStatusBiweeklyPrioSamplingRate())
+        .isEqualTo(
+            remoteJsonObj.get(
+                PrivateAnalyticsMetricsRemoteConfig
+                    .CONFIG_METRIC_KEYS_UPLOADED_VACCINE_STATUS_BIWEEKLY_SAMPLING_PROB_KEY));
+    assertThat(metricsRemoteConfig.keysUploadedVaccineStatusBiweeklyPrioEpsilon())
+        .isEqualTo(remoteJsonObj
+            .get(
+                PrivateAnalyticsMetricsRemoteConfig
+                    .CONFIG_METRIC_KEYS_UPLOADED_VACCINE_STATUS_BIWEEKLY_PRIO_EPSILON_KEY));
   }
 
   @Test

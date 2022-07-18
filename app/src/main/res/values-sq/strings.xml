@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">Aktivizo \"Njoftimet rreth ekspozimit\"</string>
   <string name="exposure_details_status_subtitle">Statusi</string>
   <string name="exposure_details_status_exposure">Ekspozim i mundshëm ndaj COVID-19</string>
-  <string name="exposure_details_date_exposed_subtitle">Data e mundshme e ekspozimit</string>
-  <string name="exposure_details_expiring_subtitle">Raportet e ekspozimit ruhen për 14 ditë nga data e mundshme e ekspozimit</string>
+  <string name="exposure_details_date_exposed_subtitle">Data</string>
+  <string name="exposure_details_expiring_subtitle">Ekspozimi yt më i fundit i mundshëm qëndron në këtë faqe për 2 javë pas datës së ekspozimit.</string>
   <string name="exposure_details_learn_more">Mëso më shumë</string>
   <string name="exposure_details_new_badge">E re</string>
   <string name="possible_exposures_activity_title">Ekspozim i mundshëm</string>
@@ -207,7 +207,7 @@
   <string name="share_upload_symptoms_date_fixed_description">Data e simptomave jepet nga %1$s</string>
   <string name="share_upload_skip_choice">Kapërce</string>
   <string name="share_upload_travel_subtitle">Historiku i udhëtimeve</string>
-  <string name="travel_history_travelled_recently_choice">Udhëtimet në 14 ditët e fundit</string>
+  <string name="travel_history_travelled_recently_choice">Udhëtimet gjatë 14 ditëve të fundit</string>
   <string name="travel_history_no_travel_choice">Nuk kam udhëtuar</string>
   <string name="share_upload_select_a_date_choice">Zgjidh një datë</string>
   <string name="share_upload_status_subtitle">Statusi i COVID-19</string>

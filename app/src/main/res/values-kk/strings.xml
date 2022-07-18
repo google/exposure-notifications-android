@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">Ауру жұқтырғандармен байланыс туралы хабарландыруды қосу</string>
   <string name="exposure_details_status_subtitle">Күйі</string>
   <string name="exposure_details_status_exposure">COVID-19 жұқтыру қаупі бар</string>
-  <string name="exposure_details_date_exposed_subtitle">Ауру жұқтырғандармен байланыстың ықтимал күні</string>
-  <string name="exposure_details_expiring_subtitle">Ауру жұқтырғандармен байланыс туралы есептер ықтимал оқиғадан бастап 14 күн бойы сақталады.</string>
+  <string name="exposure_details_date_exposed_subtitle">Күні</string>
+  <string name="exposure_details_expiring_subtitle">Ауру жұқтырғандармен соңғы ықтимал байланыс жасау дерегі бұл бетте мұндай оқиға күнінен бастап 2 апта бойы көрсетіледі.</string>
   <string name="exposure_details_learn_more">Толығырақ</string>
   <string name="exposure_details_new_badge">Жаңа</string>
   <string name="possible_exposures_activity_title">Ауру жұқтырғандармен байланыс ықтималдығы</string>
@@ -207,7 +207,7 @@
   <string name="share_upload_symptoms_date_fixed_description">Симптомның пайда болу күнін %1$s көрсетті.</string>
   <string name="share_upload_skip_choice">Өткізіп жіберу</string>
   <string name="share_upload_travel_subtitle">Сапарлар тарихы</string>
-  <string name="travel_history_travelled_recently_choice">Соңғы 14 күн ішінде сапарда болдым</string>
+  <string name="travel_history_travelled_recently_choice">Соңғы 14 күнде саяхаттадым.</string>
   <string name="travel_history_no_travel_choice">Саяхаттамадым</string>
   <string name="share_upload_select_a_date_choice">Күнді таңдау</string>
   <string name="share_upload_status_subtitle">COVID-19 ауруына қатысты күй</string>

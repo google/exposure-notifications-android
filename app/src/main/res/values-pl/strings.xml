@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">Włącz powiadomienia o narażeniu na kontakt</string>
   <string name="exposure_details_status_subtitle">Stan</string>
   <string name="exposure_details_status_exposure">Możliwe narażenie na kontakt z koronawirusem</string>
-  <string name="exposure_details_date_exposed_subtitle">Data możliwego narażenia na kontakt</string>
-  <string name="exposure_details_expiring_subtitle">Raporty o narażeniu są przechowywane przez 14 dni od daty narażenia na kontakt</string>
+  <string name="exposure_details_date_exposed_subtitle">Data</string>
+  <string name="exposure_details_expiring_subtitle">Ostatnie możliwe narażenie na kontakt jest wyświetlane na tej stronie przez 2 tygodnie od daty ekspozycji.</string>
   <string name="exposure_details_learn_more">Więcej informacji</string>
   <string name="exposure_details_new_badge">Nowe</string>
   <string name="possible_exposures_activity_title">Możliwe narażenie na kontakt</string>
@@ -211,7 +211,7 @@
   <string name="share_upload_symptoms_date_fixed_description">Data wytąpienia symptomu została podana przez: %1$s</string>
   <string name="share_upload_skip_choice">Pomiń</string>
   <string name="share_upload_travel_subtitle">Historia podróżowania</string>
-  <string name="travel_history_travelled_recently_choice">Podróżowano w ciągu ostatnich 14 dni</string>
+  <string name="travel_history_travelled_recently_choice">Podróż w ciągu ostatnich 14 dni</string>
   <string name="travel_history_no_travel_choice">Brak podróży</string>
   <string name="share_upload_select_a_date_choice">Wybierz datę</string>
   <string name="share_upload_status_subtitle">Wynik badania na koronawirusa</string>

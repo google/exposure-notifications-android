@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">এক্সপ’জাৰ ন’টিফিকেশ্বন অন কৰক</string>
   <string name="exposure_details_status_subtitle">স্থিতি</string>
   <string name="exposure_details_status_exposure">সম্ভাব্য COVID-19ৰ এক্সপ’জাৰ</string>
-  <string name="exposure_details_date_exposed_subtitle">সম্ভাব্য এক্সপ’জাৰৰ তাৰিখ</string>
-  <string name="exposure_details_expiring_subtitle">এক্সপ’জাৰৰ ৰিপৰ্ট সম্ভাব্য এক্সপ’জাৰৰ তাৰিখটোৰ পৰা ১৪ দিনলৈ ষ্ট\'ৰ কৰি ৰখা হয়</string>
+  <string name="exposure_details_date_exposed_subtitle">তাৰিখ</string>
+  <string name="exposure_details_expiring_subtitle">আপোনাৰ শেহতীয়া সম্ভাব্য এক্সপ’জাৰটো এই পৃষ্ঠাখনত এক্সপ’জাৰৰ তাৰিখটোৰ পৰা ২ সপ্তাহৰ বাবে থাকে।</string>
   <string name="exposure_details_learn_more">অধিক জানক</string>
   <string name="exposure_details_new_badge">নতুন</string>
   <string name="possible_exposures_activity_title">সংস্পৰ্শলৈ অহাৰ সম্ভাৱনা</string>

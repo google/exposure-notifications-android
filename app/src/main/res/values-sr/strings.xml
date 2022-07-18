@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">Укључи обавештења о изложености</string>
   <string name="exposure_details_status_subtitle">Статус</string>
   <string name="exposure_details_status_exposure">Могућа изложеност болести COVID-19</string>
-  <string name="exposure_details_date_exposed_subtitle">Датум могуће изложености</string>
-  <string name="exposure_details_expiring_subtitle">Извештаји о изложености се чувају 14 дана од датума могуће изложености</string>
+  <string name="exposure_details_date_exposed_subtitle">Датум</string>
+  <string name="exposure_details_expiring_subtitle">Последња могућа изложеност остаје на овој страници 2 недеље после датума изложености.</string>
   <string name="exposure_details_learn_more">Сазнајте више</string>
   <string name="exposure_details_new_badge">Ново</string>
   <string name="possible_exposures_activity_title">Могућа изложеност</string>

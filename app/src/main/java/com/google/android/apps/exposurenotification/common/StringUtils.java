@@ -31,6 +31,7 @@ import com.google.android.apps.exposurenotification.riskcalculation.ExposureClas
 import com.google.common.io.BaseEncoding;
 import java.security.SecureRandom;
 import java.text.DateFormat;
+import java.util.Formatter;
 import java.util.Locale;
 import java.util.TimeZone;
 import org.threeten.bp.Duration;
@@ -168,34 +169,25 @@ public final class StringUtils {
   }
 
   /**
-   * Creates the "x days" string informing the user about the date of a possible exposure.
-   * Uses a ExposureClassification and the current time to calculate x.
+   * Creates the string informing the user about the dates of a possible exposure.
+   * Uses a ExposureClassification and the time zone to calculate the date range string.
    */
-  public static String daysFromStartOfExposure(ExposureClassification exposureClassification,
-      Instant nowUTC, Context context) {
+  public static String exposureDateRange(ExposureClassification exposureClassification,
+      Context context, ZoneId timeZone) {
     Instant exposureStartOfDayUTC = LocalDate
         .ofEpochDay(exposureClassification.getClassificationDate())
         .atStartOfDay()
         .toInstant(ZoneOffset.UTC);
-    long daysFromStartOfExposure = calculateDaysFromStartOfExposure(exposureStartOfDayUTC, nowUTC);
-    return context.getResources()
-        .getQuantityString(R.plurals.days_from_start_of_exposure, (int) daysFromStartOfExposure,
-        daysFromStartOfExposure);
-  }
+    Instant exposureEndOfDayUTC = LocalDate
+        .ofEpochDay(exposureClassification.getClassificationDate())
+        .atStartOfDay()
+        .plusDays(1)
+        .toInstant(ZoneOffset.UTC);
 
-  /**
-   * Calculates the x in "x days" to inform the user about the date of a possible exposure.
-   * The calculation does not take into account timezones (timezone-less Instants).
-   */
-  @VisibleForTesting
-  static long calculateDaysFromStartOfExposure(Instant exposureStartOfDayUTC, Instant nowUTC) {
-    Duration timeSinceExposure = Duration.between(exposureStartOfDayUTC, nowUTC);
-    if (timeSinceExposure.isNegative()) {
-      logger.e("Negative time since exposure!");
-      return 1;
-    }
-    long daysSinceExposureRoundedDown = timeSinceExposure.toDays();
-    return Math.max(1, daysSinceExposureRoundedDown);
+    Formatter formatter = new Formatter(new StringBuilder(50), Locale.getDefault());
+    Formatter result = DateUtils.formatDateRange(context, formatter,
+        exposureStartOfDayUTC.toEpochMilli(), exposureEndOfDayUTC.toEpochMilli(),
+        DateUtils.FORMAT_ABBREV_MONTH | DateUtils.FORMAT_NO_YEAR, timeZone.getId());
+    return result.toString();
   }
-
 }

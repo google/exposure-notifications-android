@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">Aktifkan Notifikasi Paparan</string>
   <string name="exposure_details_status_subtitle">Status</string>
   <string name="exposure_details_status_exposure">Kemungkinan paparan COVID-19</string>
-  <string name="exposure_details_date_exposed_subtitle">Tanggal kemungkinan paparan</string>
-  <string name="exposure_details_expiring_subtitle">Laporan paparan disimpan selama 14 hari dari tanggal kemungkinan paparan</string>
+  <string name="exposure_details_date_exposed_subtitle">Tanggal</string>
+  <string name="exposure_details_expiring_subtitle">Kemungkinan paparan terbaru akan tetap ditampilkan di halaman ini selama 2 minggu setelah tanggal paparan.</string>
   <string name="exposure_details_learn_more">Pelajari lebih lanjut</string>
   <string name="exposure_details_new_badge">Baru</string>
   <string name="possible_exposures_activity_title">Kemungkinan paparan</string>

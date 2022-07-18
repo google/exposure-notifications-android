@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">Kveikja á tilkynningum um útsetningu</string>
   <string name="exposure_details_status_subtitle">Staða</string>
   <string name="exposure_details_status_exposure">Möguleg útsetning fyrir COVID-19</string>
-  <string name="exposure_details_date_exposed_subtitle">Dagsetning hugsanlegrar útsetningar</string>
-  <string name="exposure_details_expiring_subtitle">Útsetningartilkynningar eru vistaðar í 14 daga eftir hugsanlega útsetningu</string>
+  <string name="exposure_details_date_exposed_subtitle">Dagsetning</string>
+  <string name="exposure_details_expiring_subtitle">Síðasta hugsanlega útsetning er skráð á þessari síðu í 2 vikur frá dagsetningu útsetningar.</string>
   <string name="exposure_details_learn_more">Frekari upplýsingar</string>
   <string name="exposure_details_new_badge">Nýtt</string>
   <string name="possible_exposures_activity_title">Möguleg útsetning</string>
@@ -207,7 +207,7 @@
   <string name="share_upload_symptoms_date_fixed_description">Dagsetning einkenna er frá %1$s</string>
   <string name="share_upload_skip_choice">Sleppa</string>
   <string name="share_upload_travel_subtitle">Ferðasaga</string>
-  <string name="travel_history_travelled_recently_choice">Ferðaðist á s.l. 14 dögum</string>
+  <string name="travel_history_travelled_recently_choice">Ferðaðist undanfarna 14 daga</string>
   <string name="travel_history_no_travel_choice">Ég hef ekki ferðast</string>
   <string name="share_upload_select_a_date_choice">Veldu dagsetningu</string>
   <string name="share_upload_status_subtitle">COVID-19-staða</string>

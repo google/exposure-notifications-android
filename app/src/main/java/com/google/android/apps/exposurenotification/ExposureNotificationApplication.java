@@ -27,6 +27,7 @@ import androidx.lifecycle.ProcessLifecycleOwner;
 import androidx.work.Configuration;
 import androidx.work.Configuration.Builder;
 import androidx.work.WorkManager;
+import com.google.android.apps.exposurenotification.common.NotificationHelper;
 import com.google.android.apps.exposurenotification.common.Qualifiers.BackgroundExecutor;
 import com.google.android.apps.exposurenotification.common.ThemeUtils;
 import com.google.android.apps.exposurenotification.logging.ApplicationObserver;
@@ -86,6 +87,9 @@ public final class ExposureNotificationApplication extends Application implement
   @Inject
   MigrationManager migrationManager;
 
+  @Inject
+  NotificationHelper notificationHelper;
+
   @Override
   public void onCreate() {
     super.onCreate();
@@ -99,6 +103,8 @@ public final class ExposureNotificationApplication extends Application implement
     if (slicePermissionManager.isPresent()) {
       backgroundExecutor.execute(() -> slicePermissionManager.get().grantSlicePermission());
     }
+
+    notificationHelper.createNotificationChannel(this);
 
     AndroidThreeTen.init(this);
 

@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">എക്‌സ്പോഷർ അറിയിപ്പുകൾ ഓണാക്കുക</string>
   <string name="exposure_details_status_subtitle">നില</string>
   <string name="exposure_details_status_exposure">കോവിഡ്-19 എക്‌സ്പോഷർ സാധ്യത</string>
-  <string name="exposure_details_date_exposed_subtitle">എക്സ്പോഷർ ഉണ്ടായിരിക്കാൻ സാധ്യതയുള്ള തീയതി</string>
-  <string name="exposure_details_expiring_subtitle">എക്‌സ്‌പോഷർ റിപ്പോർട്ടുകൾ, എക്സ്പോഷർ ഉണ്ടായിരിക്കാൻ സാധ്യതയുള്ള തീയതി മുതൽ 14 ദിവസം സൂക്ഷിക്കുന്നു</string>
+  <string name="exposure_details_date_exposed_subtitle">തീയതി</string>
+  <string name="exposure_details_expiring_subtitle">എക്സ്പോഷർ തീയതി കഴിഞ്ഞ് 2 ആഴ്‌ച വരെ നിങ്ങളുടെ ഏറ്റവും പുതിയഎക്സ്പോഷർ സാധ്യത ഈ പേജിൽ നിലനിൽക്കും.</string>
   <string name="exposure_details_learn_more">കൂടുതലറിയുക</string>
   <string name="exposure_details_new_badge">പുതിയത്</string>
   <string name="possible_exposures_activity_title">എക്സ്പോഷർ സാധ്യത</string>

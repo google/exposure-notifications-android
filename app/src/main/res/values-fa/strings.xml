@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">روشن کردن اعلان تماس‌های پرخطر</string>
   <string name="exposure_details_status_subtitle">وضعیت</string>
   <string name="exposure_details_status_exposure">تماس پرخطر احتمالی با کووید-۱۹</string>
-  <string name="exposure_details_date_exposed_subtitle">تاریخ تماس پرخطر احتمالی</string>
-  <string name="exposure_details_expiring_subtitle">گزارش تماس‌های پرخطر تا ۱۴ روز بعداز تاریخ قرار گرفتن درمعرض تماس پرخطر احتمالی ذخیره می‌شود</string>
+  <string name="exposure_details_date_exposed_subtitle">تاریخ</string>
+  <string name="exposure_details_expiring_subtitle">آخرین تماس پرخطر احتمالی شما تا ۲ هفته پس‌از تاریخ تماس پرخطر در این صفحه باقی می‌ماند.</string>
   <string name="exposure_details_learn_more">بیشتر بدانید</string>
   <string name="exposure_details_new_badge">جدید</string>
   <string name="possible_exposures_activity_title">تماس پرخطر احتمالی</string>
@@ -207,7 +207,7 @@
   <string name="share_upload_symptoms_date_fixed_description">%1$s تاریخ نشانه را گزارش کرده است</string>
   <string name="share_upload_skip_choice">رد شدن</string>
   <string name="share_upload_travel_subtitle">سوابق سفر</string>
-  <string name="travel_history_travelled_recently_choice">سفر کردن در ۱۴ روز گذشته</string>
+  <string name="travel_history_travelled_recently_choice">سفر طی ۱۴ روز گذشته</string>
   <string name="travel_history_no_travel_choice">سفر نکردم</string>
   <string name="share_upload_select_a_date_choice">تاریخی انتخاب کنید</string>
   <string name="share_upload_status_subtitle">وضعیت کووید-۱۹</string>

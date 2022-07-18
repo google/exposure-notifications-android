@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">បើកការជូនដំណឹងអំពីការនៅជិតអ្នកមានផ្ទុក COVID-19</string>
   <string name="exposure_details_status_subtitle">ស្ថានភាព</string>
   <string name="exposure_details_status_exposure">ការនៅជិតអ្នក​មានផ្ទុក COVID-19 ដែលអាចកើតមាន</string>
-  <string name="exposure_details_date_exposed_subtitle">កាលបរិច្ឆេទដែលអាចនៅជិតអ្នកមានផ្ទុក COVID-19</string>
-  <string name="exposure_details_expiring_subtitle">របាយការណ៍អំពី​ការនៅជិតអ្នកមានផ្ទុក COVID-19 ត្រូវបានរក្សាទុក​រយៈពេល 14 ថ្ងៃ ចាប់ពី​កាលបរិច្ឆេទដែលអាច​នៅជិត​អ្នកមានផ្ទុក COVID-19</string>
+  <string name="exposure_details_date_exposed_subtitle">កាលបរិច្ឆេទ</string>
+  <string name="exposure_details_expiring_subtitle">ការនៅជិតអ្នក​មានផ្ទុក COVID-19 ដែលអាចកើតមាន​ចុងក្រោយបំផុត​របស់អ្នក​បន្តស្ថិតនៅលើទំព័រនេះ​រយៈពេល 2 សប្ដាហ៍ បន្ទាប់ពី​កាលបរិច្ឆេទនៃ​ការនៅជិតអ្នក​មានផ្ទុក COVID-19។</string>
   <string name="exposure_details_learn_more">ស្វែងយល់បន្ថែម</string>
   <string name="exposure_details_new_badge">ថ្មី</string>
   <string name="possible_exposures_activity_title">ការដែលអាចនៅជិតអ្នកមានផ្ទុក COVID-19</string>
@@ -207,7 +207,7 @@
   <string name="share_upload_symptoms_date_fixed_description">កាលបរិច្ឆេទរោគសញ្ញា​ត្រូវបានផ្ដល់ដោយ %1$s</string>
   <string name="share_upload_skip_choice">រំលង</string>
   <string name="share_upload_travel_subtitle">ប្រវត្តិធ្វើដំណើរ</string>
-  <string name="travel_history_travelled_recently_choice">បានធ្វើដំណើរ​ក្នុងរយៈពេល 14 ថ្ងៃចុងក្រោយ</string>
+  <string name="travel_history_travelled_recently_choice">បានធ្វើដំណើរ​ក្នុងរយៈពេល 14 ថ្ងៃ​ចុងក្រោយ</string>
   <string name="travel_history_no_travel_choice">ខ្ញុំមិនបាន​ធ្វើដំណើរទេ</string>
   <string name="share_upload_select_a_date_choice">ជ្រើសរើស​កាលបរិច្ឆេទ</string>
   <string name="share_upload_status_subtitle">ស្ថានភាព COVID-19</string>

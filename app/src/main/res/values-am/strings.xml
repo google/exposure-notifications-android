@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">የተጋላጭነት ማስታወቂያዎችን አብራ</string>
   <string name="exposure_details_status_subtitle">ሁኔታ</string>
   <string name="exposure_details_status_exposure">ሊሆን የሚችል ለኮቪድ-19 መጋለጥ</string>
-  <string name="exposure_details_date_exposed_subtitle">የተጋለጡበት ሊሆን የሚችል ቀን</string>
-  <string name="exposure_details_expiring_subtitle">የተጋላጭነት ሪፖርቶች ሊጋለጡ ከሚችሉበት ቀን ጀምሮ ለ14 ቀኖች ይቀመጣሉ</string>
+  <string name="exposure_details_date_exposed_subtitle">ቀን</string>
+  <string name="exposure_details_expiring_subtitle">የእርስዎ የቅርብ ጊዜ ሊሆን የሚችል ተጋላጭነት ከተጋለጠበት ቀን በኋላ ለ2 ሳምንታት በዚህ ገጽ ላይ ይቆያል።</string>
   <string name="exposure_details_learn_more">የበለጠ ለመረዳት</string>
   <string name="exposure_details_new_badge">አዲስ</string>
   <string name="possible_exposures_activity_title">ሊሆን የሚችል ተጋላጭነት</string>
@@ -207,7 +207,7 @@
   <string name="share_upload_symptoms_date_fixed_description">የበሽታ ምልክት ቀን የሚቀርበው በ%1$s ነው</string>
   <string name="share_upload_skip_choice">ዝለል</string>
   <string name="share_upload_travel_subtitle">የጉዞ ታሪክ</string>
-  <string name="travel_history_travelled_recently_choice">ባለፉት 14 ቀኖች ውስጥ ተጉዘዋል</string>
+  <string name="travel_history_travelled_recently_choice">ባለፉት 14 ቀናት ውስጥ ተጉዘዋል</string>
   <string name="travel_history_no_travel_choice">አልተጓዝኩም</string>
   <string name="share_upload_select_a_date_choice">ቀን ይምረጡ</string>
   <string name="share_upload_status_subtitle">የኮቪድ-19 ሁኔታ</string>

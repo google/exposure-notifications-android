@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">Hidupkan Pemberitahuan Pendedahan</string>
   <string name="exposure_details_status_subtitle">Status</string>
   <string name="exposure_details_status_exposure">Kemungkinan pendedahan COVID-19</string>
-  <string name="exposure_details_date_exposed_subtitle">Kemungkinan tarikh pendedahan</string>
-  <string name="exposure_details_expiring_subtitle">Laporan pendedahan disimpan selama 14 hari daripada kemungkinan tarikh pendedahan</string>
+  <string name="exposure_details_date_exposed_subtitle">Tarikh</string>
+  <string name="exposure_details_expiring_subtitle">Pendedahan berkemungkinan anda yang terkini akan kekal pada halaman ini selama 2 minggu selepas tarikh pendedahan.</string>
   <string name="exposure_details_learn_more">Ketahui lebih lanjut</string>
   <string name="exposure_details_new_badge">Baharu</string>
   <string name="possible_exposures_activity_title">Kemungkinan pendedahan</string>
@@ -207,7 +207,7 @@
   <string name="share_upload_symptoms_date_fixed_description">Tarikh gejala disediakan oleh %1$s</string>
   <string name="share_upload_skip_choice">Langkau</string>
   <string name="share_upload_travel_subtitle">Sejarah perjalanan</string>
-  <string name="travel_history_travelled_recently_choice">Membuat perjalanan dalam 14 hari yang lalu</string>
+  <string name="travel_history_travelled_recently_choice">Telah membuat perjalanan dalam tempoh 14 hari yang lalu</string>
   <string name="travel_history_no_travel_choice">Saya tidak melakukan sebarang perjalanan</string>
   <string name="share_upload_select_a_date_choice">Pilih tarikh</string>
   <string name="share_upload_status_subtitle">Status COVID-19</string>

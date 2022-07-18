@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">Bật Thông báo tiếp xúc</string>
   <string name="exposure_details_status_subtitle">Trạng thái</string>
   <string name="exposure_details_status_exposure">Khả năng tiếp xúc COVID-19</string>
-  <string name="exposure_details_date_exposed_subtitle">Ngày có khả năng tiếp xúc</string>
-  <string name="exposure_details_expiring_subtitle">Báo cáo tiếp xúc được lưu trữ trong 14 ngày kể từ ngày có khả năng tiếp xúc</string>
+  <string name="exposure_details_date_exposed_subtitle">Ngày</string>
+  <string name="exposure_details_expiring_subtitle">Thông tin mới nhất về khả năng tiếp xúc sẽ tiếp tục hiển thị trên trang này trong 2 tuần kể từ ngày tiếp xúc.</string>
   <string name="exposure_details_learn_more">Tìm hiểu thêm</string>
   <string name="exposure_details_new_badge">Mới</string>
   <string name="possible_exposures_activity_title">Ngày có khả năng tiếp xúc</string>

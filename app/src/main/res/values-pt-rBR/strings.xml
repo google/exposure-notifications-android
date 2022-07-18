@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">Ativar as Notificações de Exposição</string>
   <string name="exposure_details_status_subtitle">Status</string>
   <string name="exposure_details_status_exposure">Possível exposição à COVID-19</string>
-  <string name="exposure_details_date_exposed_subtitle">Data da possível exposição</string>
-  <string name="exposure_details_expiring_subtitle">Os relatórios de exposição são armazenados por 14 dias a partir da possível data de exposição</string>
+  <string name="exposure_details_date_exposed_subtitle">Data</string>
+  <string name="exposure_details_expiring_subtitle">Sua possível exposição mais recente fica nesta página por duas semanas após a data da exposição.</string>
   <string name="exposure_details_learn_more">Saiba mais</string>
   <string name="exposure_details_new_badge">Novo</string>
   <string name="possible_exposures_activity_title">Possível exposição</string>

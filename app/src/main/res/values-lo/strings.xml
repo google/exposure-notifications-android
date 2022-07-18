@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">ເປີດໃຊ້ການແຈ້ງເຕືອນຄວາມສ່ຽງຕິດເຊື້ອ</string>
   <string name="exposure_details_status_subtitle">ສະຖານະ</string>
   <string name="exposure_details_status_exposure">ຄວາມສ່ຽງຕິດເຊື້ອ COVID-19</string>
-  <string name="exposure_details_date_exposed_subtitle">ວັນທີ່ມີຄວາມສ່ຽງຕິດເຊື້ອ</string>
-  <string name="exposure_details_expiring_subtitle">ລາຍງານຄວາມສ່ຽງຕິດເຊື້ອຈະຖືກຈັດເກັບໄວ້ເປັນເວລາ 14 ມື້ນັບຈາກມື້ທີ່ສ່ຽງຕິດເຊື້ອ</string>
+  <string name="exposure_details_date_exposed_subtitle">ວັນທີ</string>
+  <string name="exposure_details_expiring_subtitle">ຄວາມສ່ຽງຕິດເຊື້ອຫຼ້າສຸດຂອງທ່ານຈະສະແດງຢູ່ໜ້ານີ້ເປັນເວລາ 2 ອາທິດຫຼັງຈາກວັນທີຄວາມສ່ຽງຕິດເຊື້ອ.</string>
   <string name="exposure_details_learn_more">ສຶກສາເພີ່ມເຕີມ</string>
   <string name="exposure_details_new_badge">ໃໝ່</string>
   <string name="possible_exposures_activity_title">ຄວາມສ່ຽງຕິດເຊື້ອທີ່ເປັນໄປໄດ້</string>
@@ -207,7 +207,7 @@
   <string name="share_upload_symptoms_date_fixed_description">ວັນທີຂອງອາການແມ່ນສະໜອງໃຫ້ໂດຍ %1$s</string>
   <string name="share_upload_skip_choice">ຂ້າມ</string>
   <string name="share_upload_travel_subtitle">ປະຫວັດການເດີນທາງ</string>
-  <string name="travel_history_travelled_recently_choice">ເດີນທາງໃນຮອບ 14 ມື້ທີ່ຜ່ານມາ</string>
+  <string name="travel_history_travelled_recently_choice">ມີການເດີນທາງໃນຮອບ 14 ມື້ທີ່ຜ່ານມາ</string>
   <string name="travel_history_no_travel_choice">ຂ້ອຍບໍ່ໄດ້ເດີນທາງໄປໃສ</string>
   <string name="share_upload_select_a_date_choice">ເລືອກວັນທີ</string>
   <string name="share_upload_status_subtitle">ສະຖານະ COVID-19</string>

@@ -186,9 +186,8 @@ public class PrivateAnalyticsSubmitterTest {
     // of the modules provides method needs the mock's output.
     rules.hilt().inject();
 
-    // We use a default non-existent day, so that tests always behave the same, regardless of the
-    // day of week they're running.
-    int weeklyMetricsUploadDay = 0;
+    // Choose an offset which won't trigger the bi-weekly extra uploads.
+    int weeklyMetricsUploadDay = biweeklyUploadIndexForToday() + 1;
 
     privateAnalyticsSubmitter = new PrivateAnalyticsSubmitter(prioDataPointsProvider,
         sdkRemoteConfig, firestoreRepository, privateAnalyticsEnabledProvider, loggerFactory,
@@ -221,10 +220,7 @@ public class PrivateAnalyticsSubmitterTest {
   @Test
   public void testSubmitPackets_uploadsWeeklySharesOnCorrectDay()
       throws ExecutionException, InterruptedException {
-    Calendar calendar = Calendar.getInstance();
-    int dayIndex = calendar.get(Calendar.DAY_OF_WEEK) - 1;
-    int weekIndex = calendar.get(Calendar.WEEK_OF_YEAR) % 2;
-    int currentDay = dayIndex + 7 * weekIndex;
+    int currentDay = biweeklyUploadIndexForToday();
     privateAnalyticsSubmitter = new PrivateAnalyticsSubmitter(
         prioDataPointsProvider, sdkRemoteConfig, firestoreRepository,
         privateAnalyticsEnabledProvider, loggerFactory, currentDay);
@@ -269,5 +265,13 @@ public class PrivateAnalyticsSubmitterTest {
     byte[] bytes = new byte[20];
     random.nextBytes(bytes);
     return ByteString.copyFrom(bytes);
+  }
+
+  /* What index should we use to get a biweekly upload to happen today? */
+  private static int biweeklyUploadIndexForToday() {
+    Calendar calendar = Calendar.getInstance();
+    int dayIndex = calendar.get(Calendar.DAY_OF_WEEK) - 1;
+    int weekIndex = calendar.get(Calendar.WEEK_OF_YEAR) % 2;
+    return dayIndex + 7 * weekIndex;
   }
 }

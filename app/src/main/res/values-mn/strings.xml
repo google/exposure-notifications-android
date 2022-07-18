@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">Өртсөн тухай мэдэгдлийг асаах</string>
   <string name="exposure_details_status_subtitle">Төлөв</string>
   <string name="exposure_details_status_exposure">Коронавируст халдвар (COVID-19)-т өртөж болзошгүй</string>
-  <string name="exposure_details_date_exposed_subtitle">Өртсөн байж болзошгүй огноо</string>
-  <string name="exposure_details_expiring_subtitle">Өртөлтийн тайланг өртсөн байж болзошгүй огнооноос эхлэн 14 хоногийн турш хадгалдаг</string>
+  <string name="exposure_details_date_exposed_subtitle">Огноо</string>
+  <string name="exposure_details_expiring_subtitle">Таны хамгийн сүүлийн халдварт өртсөн байж болзошгүй мэдээлэл бүртгэгдсэн өдрөөс хойш 2 долоо хоногийн турш энэ хуудсанд үлдэнэ.</string>
   <string name="exposure_details_learn_more">Нэмэлт мэдээлэл авах</string>
   <string name="exposure_details_new_badge">Шинэ</string>
   <string name="possible_exposures_activity_title">Өртсөн байж болзошгүй мэдээлэл</string>

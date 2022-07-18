@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">தொற்று சாத்திய எச்சரிக்கைகளை இயக்கு</string>
   <string name="exposure_details_status_subtitle">நிலை</string>
   <string name="exposure_details_status_exposure">கோவிட்-19 தொற்றுக்கான சாத்தியக்கூறு உள்ளது</string>
-  <string name="exposure_details_date_exposed_subtitle">தொற்றின் சாத்தியம் இருந்திருக்கக்கூடிய தேதி</string>
-  <string name="exposure_details_expiring_subtitle">பாதிக்கப்பட்டவரின் அருகில் நீங்கள் இருந்த நாளிலிருந்து 14 நாட்களுக்குத் தொற்று சாத்திய அறிக்கைகள் சேமிக்கப்படும்</string>
+  <string name="exposure_details_date_exposed_subtitle">தேதி</string>
+  <string name="exposure_details_expiring_subtitle">உங்கள் சமீபத்திய தொற்றின் சாத்தியம் குறித்த தகவல்கள் அது கண்டறியப்பட்ட நாளிலிருந்து 2 வாரங்களுக்கு இந்தப் பக்கத்தில் இருக்கும்.</string>
   <string name="exposure_details_learn_more">மேலும் அறிக</string>
   <string name="exposure_details_new_badge">புதிது</string>
   <string name="possible_exposures_activity_title">தொற்றின் சாத்தியம்</string>

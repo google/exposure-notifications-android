@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">Turn on Exposure Notifications</string>
   <string name="exposure_details_status_subtitle">Status</string>
   <string name="exposure_details_status_exposure">Possible COVID-19 exposure</string>
-  <string name="exposure_details_date_exposed_subtitle">Possible exposure date</string>
-  <string name="exposure_details_expiring_subtitle">Exposure reports are stored for 14 days from possible exposure date</string>
+  <string name="exposure_details_date_exposed_subtitle">Date</string>
+  <string name="exposure_details_expiring_subtitle">Your latest possible exposure remains on this page for two weeks after the date of exposure.</string>
   <string name="exposure_details_learn_more">Learn more</string>
   <string name="exposure_details_new_badge">New</string>
   <string name="possible_exposures_activity_title">Possible exposure</string>

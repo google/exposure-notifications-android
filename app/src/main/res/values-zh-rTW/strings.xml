@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">開啟接觸通知功能</string>
   <string name="exposure_details_status_subtitle">狀態</string>
   <string name="exposure_details_status_exposure">你可能曾接觸 COVID-19 患者</string>
-  <string name="exposure_details_date_exposed_subtitle">可能的接觸日期</string>
-  <string name="exposure_details_expiring_subtitle">從可能的接觸日期開始算起，接觸報告會保存 14 天</string>
+  <string name="exposure_details_date_exposed_subtitle">日期</string>
+  <string name="exposure_details_expiring_subtitle">如果你最近可能曾接觸確診者，本頁會在接觸日期後的 2 週內顯示這項資訊。</string>
   <string name="exposure_details_learn_more">瞭解詳情</string>
   <string name="exposure_details_new_badge">最新</string>
   <string name="possible_exposures_activity_title">可能接觸過確診者</string>
@@ -207,7 +207,7 @@
   <string name="share_upload_symptoms_date_fixed_description">症狀出現日期是由「%1$s」提供</string>
   <string name="share_upload_skip_choice">略過</string>
   <string name="share_upload_travel_subtitle">旅遊史</string>
-  <string name="travel_history_travelled_recently_choice">過去 14 天去過的地方</string>
+  <string name="travel_history_travelled_recently_choice">過去 14 天內有旅遊史</string>
   <string name="travel_history_no_travel_choice">我沒有旅遊史</string>
   <string name="share_upload_select_a_date_choice">選取日期</string>
   <string name="share_upload_status_subtitle">COVID-19 狀態</string>

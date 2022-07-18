@@ -89,5 +89,15 @@ public class MetricsRemoteConfigsTest {
         .isEqualTo(DEFAULT_SAMPING_RATE);
     assertThat(metricsRemoteConfigs.periodicExposureNotificationBiweeklyPrioEpsilon())
         .isEqualTo(DEFAULT_BIWEEKLY_METRIC_EPSILON);
+
+    assertThat(metricsRemoteConfigs.dateExposureBiweeklyPrioSamplingRate())
+        .isEqualTo(DEFAULT_SAMPING_RATE);
+    assertThat(metricsRemoteConfigs.dateExposureBiweeklyPrioEpsilon())
+        .isEqualTo(DEFAULT_BIWEEKLY_METRIC_EPSILON);
+
+    assertThat(metricsRemoteConfigs.keysUploadedVaccineStatusBiweeklyPrioSamplingRate())
+        .isEqualTo(DEFAULT_SAMPING_RATE);
+    assertThat(metricsRemoteConfigs.keysUploadedVaccineStatusBiweeklyPrioEpsilon())
+        .isEqualTo(DEFAULT_BIWEEKLY_METRIC_EPSILON);
   }
 }

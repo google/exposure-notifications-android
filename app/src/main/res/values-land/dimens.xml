@@ -17,7 +17,6 @@
 
 <resources>
   <dimen name="home_screen_banner_height">150dp</dimen>
-  <dimen name="home_screen_en_on_image_height">100dp</dimen>
   <dimen name="home_screen_en_on_image_margin_top">16dp</dimen>
   <dimen name="home_screen_pulse_size">12dp</dimen>
   <dimen name="no_exposure_padding_vertical">8dp</dimen>

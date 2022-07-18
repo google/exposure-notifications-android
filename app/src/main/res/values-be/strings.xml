@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">Уключыць Апавяшчэнні пра рызыку</string>
   <string name="exposure_details_status_subtitle">Стан</string>
   <string name="exposure_details_status_exposure">Магчымая рызыка заражэння COVID-19</string>
-  <string name="exposure_details_date_exposed_subtitle">Дата магчымага заражэння</string>
-  <string name="exposure_details_expiring_subtitle">Інфармацыя пра рызыку заражэння захоўваецца на працягу 14 дзён з даты магчымага заражэння</string>
+  <string name="exposure_details_date_exposed_subtitle">Дата</string>
+  <string name="exposure_details_expiring_subtitle">Інфармацыя пра апошнюю рызыку заражэння захоўваецца на гэтай старонцы на працягу 2 тыдняў з даты ўзнікнення такой рызыкі.</string>
   <string name="exposure_details_learn_more">Даведацца больш</string>
   <string name="exposure_details_new_badge">Новае</string>
   <string name="possible_exposures_activity_title">Магчымае заражэнне</string>

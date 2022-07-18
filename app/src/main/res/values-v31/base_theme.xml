@@ -25,7 +25,7 @@
     <item name="android:textColorSecondary">@color/textColorSecondary</item>
     <item name="android:textColorPrimaryInverse">@color/textColorPrimaryInverse</item>
     <item name="colorAccent">@color/colorAccentPrimary</item>
-    <item name="colorSurface">@color/colorSurface</item>
+    <item name="colorSurface">@color/colorBackground</item>
     <item name="colorSurfaceVariant">@color/colorSurfaceVariant</item>
     <item name="android:colorBackground">@color/colorBackground</item>
     <item name="android:statusBarColor">@color/status_bar_color</item>

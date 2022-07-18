@@ -40,6 +40,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import javax.inject.Inject;
+import org.threeten.bp.ZoneId;
 
 /**
  * View model that updates on the exposures and the exposure checks.
@@ -132,9 +133,9 @@ public class ExposureHomeViewModel extends ViewModel {
         }, backgroundExecutor);
   }
 
-  public String getDaysFromStartOfExposureString(ExposureClassification exposureClassification,
-      Context context) {
-    return StringUtils.daysFromStartOfExposure(exposureClassification, clock.now(), context);
+  public String getExposureDateRangeString(ExposureClassification exposureClassification,
+      Context context, ZoneId timezone) {
+    return StringUtils.exposureDateRange(exposureClassification, context, timezone);
   }
 
   public boolean isActiveExposurePresent() {

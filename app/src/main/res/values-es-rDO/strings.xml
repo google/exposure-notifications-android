@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">Activar las Notificaciones de exposición</string>
   <string name="exposure_details_status_subtitle">Estado</string>
   <string name="exposure_details_status_exposure">Posible exposición al COVID-19</string>
-  <string name="exposure_details_date_exposed_subtitle">Fecha de posible exposición</string>
-  <string name="exposure_details_expiring_subtitle">Los informes de exposición se almacenan durante 14 días desde la fecha de posible exposición</string>
+  <string name="exposure_details_date_exposed_subtitle">Fecha</string>
+  <string name="exposure_details_expiring_subtitle">Tu posible exposición más reciente permanecerá en esta página 2 semanas después de la fecha registrada.</string>
   <string name="exposure_details_learn_more">Más información</string>
   <string name="exposure_details_new_badge">Nuevo</string>
   <string name="possible_exposures_activity_title">Posible exposición</string>
@@ -207,7 +207,7 @@
   <string name="share_upload_symptoms_date_fixed_description">%1$s proporcionó la fecha de los síntomas</string>
   <string name="share_upload_skip_choice">Omitir</string>
   <string name="share_upload_travel_subtitle">Historial de viajes</string>
-  <string name="travel_history_travelled_recently_choice">¿Viajaste en los últimos 14 días?</string>
+  <string name="travel_history_travelled_recently_choice">Viaje realizado en los últimos 14 días</string>
   <string name="travel_history_no_travel_choice">No viajé</string>
   <string name="share_upload_select_a_date_choice">Selecciona una fecha</string>
   <string name="share_upload_status_subtitle">Resultado de la prueba de COVID-19</string>

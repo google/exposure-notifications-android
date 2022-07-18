@@ -44,14 +44,14 @@
   <string name="turn_on_exposure_notifications_action">Ativar Notificações de Exposição</string>
   <string name="exposure_details_status_subtitle">Estado</string>
   <string name="exposure_details_status_exposure">Possível exposição à COVID-19</string>
-  <string name="exposure_details_date_exposed_subtitle">Data da possível exposição</string>
-  <string name="exposure_details_expiring_subtitle">Os relatórios de exposição são armazenados durante 14 dias a partir da data da possível exposição.</string>
+  <string name="exposure_details_date_exposed_subtitle">Data</string>
+  <string name="exposure_details_expiring_subtitle">A sua possível exposição mais recente permanece nesta página durante 2 semanas após a data da exposição.</string>
   <string name="exposure_details_learn_more">Saiba mais</string>
   <string name="exposure_details_new_badge">Novo</string>
   <string name="possible_exposures_activity_title">Possível exposição</string>
   <string name="exposure_details_explanation_link">Veja como funcionam as Notificações de exposição</string>
   <plurals name="days_from_start_of_exposure">
-    <item quantity="one">Há %1$d dia(s)</item>
+    <item quantity="one">Há %1$d dia</item>
     <item quantity="other">Há %1$d dias</item>
   </plurals>
   <string name="test_result_type_confirmed">Diagnóstico positivo de COVID-19</string>
@@ -125,7 +125,7 @@
   <string name="self_report_bad_phone_number">Verifique o seu número e tente novamente. %1$s</string>
   <string name="self_report_code_requested_too_many_times">Efetuou demasiados pedidos. Contacte a %1$s se ainda precisar de um código.</string>
   <plurals name="self_report_code_already_requested">
-    <item quantity="one">Efetuou demasiados pedidos. Pode pedir outro código dentro de %1$d minuto(s).</item>
+    <item quantity="one">Efetuou demasiados pedidos. Pode pedir outro código dentro de %1$d minuto.</item>
     <item quantity="other">Efetuou demasiados pedidos. Pode pedir outro código dentro de %1$d minutos.</item>
   </plurals>
   <string name="notify_others_notification_title">Ajude a notificar outras pessoas que possam ter sido expostas</string>

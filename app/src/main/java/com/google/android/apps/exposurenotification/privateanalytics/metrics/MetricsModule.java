@@ -25,6 +25,7 @@ import com.google.android.apps.exposurenotification.privateanalytics.PrivateAnal
 import com.google.android.apps.exposurenotification.storage.ExposureNotificationSharedPreferences;
 import com.google.android.libraries.privateanalytics.MetricsCollection;
 import com.google.android.libraries.privateanalytics.PrioDataPoint;
+import com.google.android.libraries.privateanalytics.PrivateAnalyticsMetric;
 import com.google.android.libraries.privateanalytics.PrivateAnalyticsSubmitter.PrioDataPointsProvider;
 import com.google.android.libraries.privateanalytics.Qualifiers.BiweeklyMetricsUploadDay;
 import com.google.common.util.concurrent.Futures;
@@ -35,7 +36,6 @@ import dagger.hilt.InstallIn;
 import dagger.hilt.android.qualifiers.ApplicationContext;
 import dagger.hilt.components.SingletonComponent;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Module
@@ -111,44 +111,44 @@ public class MetricsModule {
           double keysUploadedVaccineStatusBiweeklyEpsilon = remoteConfigs
               .keysUploadedVaccineStatusBiweeklyPrioEpsilon();
 
-          List<PrioDataPoint> dailyMetricsList = new ArrayList<>(
-              Arrays.asList(
-                  new PrioDataPoint(periodicExposureNotificationMetric, notificationCountEpsilon,
-                      notificationCountSampleRate),
-                  new PrioDataPoint(histogramMetric, riskScoreEpsilon, riskScoreSampleRate),
-                  new PrioDataPoint(periodicExposureNotificationInteractionMetric,
-                      interactionCountEpsilon, interactionCountSamplingRate),
-                  new PrioDataPoint(codeVerifiedMetric, codeVerifiedEpsilon,
-                      codeVerifiedSamplingRate),
-                  new PrioDataPoint(keysUploadedMetric, keysUploadedEpsilon,
-                      keysUploadedSamplingRate),
-                  new PrioDataPoint(dateExposureMetric, dateExposureEpsilon,
-                      dateExposureSamplingRate)
-              ));
+          List<PrioDataPoint> dailyMetricsList = new ArrayList<>();
+          addDataPoint(dailyMetricsList, periodicExposureNotificationMetric,
+              notificationCountEpsilon,
+              notificationCountSampleRate);
+          addDataPoint(dailyMetricsList, histogramMetric, riskScoreEpsilon, riskScoreSampleRate);
+          addDataPoint(dailyMetricsList, periodicExposureNotificationInteractionMetric,
+              interactionCountEpsilon, interactionCountSamplingRate);
+          addDataPoint(dailyMetricsList, codeVerifiedMetric, codeVerifiedEpsilon,
+              codeVerifiedSamplingRate);
+          addDataPoint(dailyMetricsList, keysUploadedMetric, keysUploadedEpsilon,
+              keysUploadedSamplingRate);
+          addDataPoint(dailyMetricsList, dateExposureMetric, dateExposureEpsilon,
+              dateExposureSamplingRate);
           if (!TextUtils
               .isEmpty(context.getResources().getString(R.string.share_vaccination_detail))) {
-            dailyMetricsList.add(
-                new PrioDataPoint(keysUploadedVaccineStatusMetric, keysUploadedVaccineStatusEpsilon,
-                    keysUploadedVaccineStatusSamplingRate));
+            addDataPoint(dailyMetricsList, keysUploadedVaccineStatusMetric,
+                keysUploadedVaccineStatusEpsilon,
+                keysUploadedVaccineStatusSamplingRate);
           }
-          List<PrioDataPoint> biweeklyMetricsList = Arrays.asList(
-              new PrioDataPoint(codeVerifiedWithReportTypeMetric, codeVerifiedWithReportTypeEpsilon,
-                  codeVerifiedWithReportTypeSamplingRate),
-              new PrioDataPoint(keysUploadedWithReportTypeMetric, keysUploadedWithReportTypeEpsilon,
-                  keysUploadedWithReportTypeSamplingRate),
-              new PrioDataPoint(keysUploadedAfterNotificationMetric,
-                  keysUploadedAfterNotificationEpsilon,
-                  keysUploadedAfterNotificationSamplingRate),
-              new PrioDataPoint(periodicExposureNotificationBiweeklyMetric,
-                  periodicExposureBiweeklySamplingRate,
-                  periodicExposureBiweeklyEpsilon),
-              new PrioDataPoint(dateExposureBiweeklyMetric,
-                  dateExposureBiweeklySamplingRate,
-                  dateExposureBiweeklyEpsilon),
-              new PrioDataPoint(keysUploadedVaccineStatusBiweeklyMetric,
-                  keysUploadedVaccineStatusBiweeklySamplingRate,
-                  keysUploadedVaccineStatusBiweeklyEpsilon)
-          );
+          List<PrioDataPoint> biweeklyMetricsList = new ArrayList<>();
+          addDataPoint(biweeklyMetricsList, codeVerifiedWithReportTypeMetric,
+              codeVerifiedWithReportTypeEpsilon,
+              codeVerifiedWithReportTypeSamplingRate);
+          addDataPoint(biweeklyMetricsList, keysUploadedWithReportTypeMetric,
+              keysUploadedWithReportTypeEpsilon,
+              keysUploadedWithReportTypeSamplingRate);
+          addDataPoint(biweeklyMetricsList, keysUploadedAfterNotificationMetric,
+              keysUploadedAfterNotificationEpsilon,
+              keysUploadedAfterNotificationSamplingRate);
+          addDataPoint(biweeklyMetricsList, periodicExposureNotificationBiweeklyMetric,
+              periodicExposureBiweeklyEpsilon,
+              periodicExposureBiweeklySamplingRate);
+          addDataPoint(biweeklyMetricsList, dateExposureBiweeklyMetric,
+              dateExposureBiweeklyEpsilon,
+              dateExposureBiweeklySamplingRate);
+          addDataPoint(biweeklyMetricsList, keysUploadedVaccineStatusBiweeklyMetric,
+              keysUploadedVaccineStatusBiweeklyEpsilon,
+              keysUploadedVaccineStatusBiweeklySamplingRate);
 
           return new MetricsCollection() {
             @Override
@@ -163,4 +163,13 @@ public class MetricsModule {
           };
         }, backgroundExecutor);
   }
+
+  private void addDataPoint(List<PrioDataPoint> metricsList, PrivateAnalyticsMetric metric,
+      double epsilon, double sampleRate) {
+    PrioDataPoint point = new PrioDataPoint(metric, epsilon, sampleRate);
+    if (point.isValid()) {
+      metricsList.add(point);
+    }
+  }
+
 }

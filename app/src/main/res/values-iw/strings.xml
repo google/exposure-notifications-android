@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">הפעלת התראות החשיפה</string>
   <string name="exposure_details_status_subtitle">סטטוס</string>
   <string name="exposure_details_status_exposure">חשיפה אפשרית לנגיף הקורונה (COVID-19)</string>
-  <string name="exposure_details_date_exposed_subtitle">תאריך חשיפה אפשרי</string>
-  <string name="exposure_details_expiring_subtitle">דיווחי החשיפה לנגיף נשמרים למשך 14 ימים מתאריך החשיפה האפשרי</string>
+  <string name="exposure_details_date_exposed_subtitle">תאריך</string>
+  <string name="exposure_details_expiring_subtitle">החשיפה האפשרית האחרונה שלך לנגיף תוצג בדף הזה במשך שבועיים מתאריך החשיפה.</string>
   <string name="exposure_details_learn_more">מידע נוסף</string>
   <string name="exposure_details_new_badge">חדש</string>
   <string name="possible_exposures_activity_title">חשיפה אפשרית לנגיף</string>

@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">接触通知システムを有効にする</string>
   <string name="exposure_details_status_subtitle">状態</string>
   <string name="exposure_details_status_exposure">COVID-19 陽性者との接触の可能性あり</string>
-  <string name="exposure_details_date_exposed_subtitle">陽性者との接触の可能性がある日付</string>
-  <string name="exposure_details_expiring_subtitle">陽性者との接触レポートは、陽性者との接触の可能性があった日から 14 日間保存されます</string>
+  <string name="exposure_details_date_exposed_subtitle">日付</string>
+  <string name="exposure_details_expiring_subtitle">陽性者との接触の可能性に関する最新の報告は、陽性者と接触した日から 2 週間、このページに表示されます。</string>
   <string name="exposure_details_learn_more">詳細</string>
   <string name="exposure_details_new_badge">新規</string>
   <string name="possible_exposures_activity_title">陽性者との接触の可能性</string>
@@ -207,7 +207,7 @@
   <string name="share_upload_symptoms_date_fixed_description">発症日は %1$s から提供されています</string>
   <string name="share_upload_skip_choice">スキップ</string>
   <string name="share_upload_travel_subtitle">旅行履歴</string>
-  <string name="travel_history_travelled_recently_choice">過去 14 日間の旅行履歴</string>
+  <string name="travel_history_travelled_recently_choice">過去 14 日間に旅行をした</string>
   <string name="travel_history_no_travel_choice">旅行していない</string>
   <string name="share_upload_select_a_date_choice">日付を選択</string>
   <string name="share_upload_status_subtitle">COVID-19 感染の可能性</string>

@@ -129,26 +129,26 @@ public class PrivateAnalyticsMetricsRemoteConfig {
   // Metric "Periodic Exposure Notification followed by keys upload"
   @VisibleForTesting
   static final String CONFIG_METRIC_PERIODIC_EXPOSURE_NOTIFICATION_BIWEEKLY_SAMPLING_PROB_KEY =
-      "enpa_metric_periodic_exposure_notification_biweekly_v2_sampling_prob";
+      "enpa_metric_periodic_exposure_notification_biweekly_v3_sampling_prob";
   @VisibleForTesting
   static final String CONFIG_METRIC_PERIODIC_EXPOSURE_NOTIFICATION_BIWEEKLY_PRIO_EPSILON_KEY =
-      "enpa_metric_periodic_exposure_notification_biweekly_v2_prio_epsilon";
+      "enpa_metric_periodic_exposure_notification_biweekly_v3_prio_epsilon";
 
   // Metric "Date Exposure Biweekly"
   @VisibleForTesting
   static final String CONFIG_METRIC_DATE_EXPOSURE_BIWEEKLY_SAMPLING_PROB_KEY =
-      "enpa_metric_date_exposure_v2_sampling_prob";
+      "enpa_metric_date_exposure_v3_sampling_prob";
   @VisibleForTesting
   static final String CONFIG_METRIC_DATE_EXPOSURE_BIWEEKLY_PRIO_EPSILON_KEY =
-      "enpa_metric_date_exposure_v2_prio_epsilon";
+      "enpa_metric_date_exposure_v3_prio_epsilon";
 
   // Metric "Keys Uploaded Vaccine Status Biweekly"
   @VisibleForTesting
   static final String CONFIG_METRIC_KEYS_UPLOADED_VACCINE_STATUS_BIWEEKLY_SAMPLING_PROB_KEY =
-      "enpa_metric_keys_uploaded_vaccine_status_v2_sampling_prob";
+      "enpa_metric_keys_uploaded_vaccine_status_v3_sampling_prob";
   @VisibleForTesting
   static final String CONFIG_METRIC_KEYS_UPLOADED_VACCINE_STATUS_BIWEEKLY_PRIO_EPSILON_KEY =
-      "enpa_metric_keys_uploaded_vaccine_status_v2_prio_epsilon";
+      "enpa_metric_keys_uploaded_vaccine_status_v3_prio_epsilon";
 
   private final static MetricsRemoteConfigs DEFAULT_REMOTE_CONFIGS = MetricsRemoteConfigs
       .newBuilder().build();

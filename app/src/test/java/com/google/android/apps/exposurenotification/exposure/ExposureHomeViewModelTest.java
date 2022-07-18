@@ -69,6 +69,7 @@ import org.robolectric.shadows.ShadowNotificationManager;
 import org.threeten.bp.Instant;
 import org.threeten.bp.LocalDate;
 import org.threeten.bp.OffsetDateTime;
+import org.threeten.bp.ZoneId;
 import org.threeten.bp.ZoneOffset;
 
 @HiltAndroidTest
@@ -253,7 +254,7 @@ public class ExposureHomeViewModelTest {
   }
 
   @Test
-  public void getDaysFromStartOfExposureString_exposure2DaysAgo_returns2DaysAgo() {
+  public void getExposureDateRangeString_exposure2DaysAgo_returns2DaysAgo() {
     // GIVEN
     ExposureClassification exposureClassification = ExposureClassification
         .create(0,ExposureClassification.NO_EXPOSURE_CLASSIFICATION_NAME,
@@ -262,11 +263,11 @@ public class ExposureHomeViewModelTest {
         .of(2021, 2 ,8, 18,0,0,0, ZoneOffset.UTC)));
 
     // WHEN
-    String result = exposureHomeViewModel.getDaysFromStartOfExposureString(exposureClassification,
-        ApplicationProvider.getApplicationContext());
+    String result = exposureHomeViewModel.getExposureDateRangeString(exposureClassification,
+        ApplicationProvider.getApplicationContext(), ZoneId.of("Europe/London"));
 
     // THEN
-    assertThat(result).isEqualTo("2 days ago");
+    assertThat(result).isEqualTo("Feb 6");
   }
 
   @Test

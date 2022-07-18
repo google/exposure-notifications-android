@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">开启接触史通知</string>
   <string name="exposure_details_status_subtitle">状况</string>
   <string name="exposure_details_status_exposure">您可能接触过新冠肺炎 (COVID-19) 患者</string>
-  <string name="exposure_details_date_exposed_subtitle">可能接触到 COVID-19 患者的日期</string>
-  <string name="exposure_details_expiring_subtitle">接触史报告会从可能接触到 COVID-19 患者的日期起保留 14 天</string>
+  <string name="exposure_details_date_exposed_subtitle">日期</string>
+  <string name="exposure_details_expiring_subtitle">如果您最近可能有接触史，系统会在接触日之后的两周内在此页面上显示此信息。</string>
   <string name="exposure_details_learn_more">了解详情</string>
   <string name="exposure_details_new_badge">最新</string>
   <string name="possible_exposures_activity_title">可能接触过新冠肺炎 (COVID-19) 患者</string>

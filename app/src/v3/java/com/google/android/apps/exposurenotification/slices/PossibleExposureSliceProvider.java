@@ -48,6 +48,7 @@ import dagger.hilt.EntryPoint;
 import dagger.hilt.EntryPoints;
 import dagger.hilt.InstallIn;
 import dagger.hilt.components.SingletonComponent;
+import org.threeten.bp.ZoneId;
 
 /**
  Enables Android settings / nearby module to embed up-to-date info in their settings via slices
@@ -200,7 +201,7 @@ public class PossibleExposureSliceProvider extends SliceProvider {
     icon.setTintMode(Mode.SRC_IN);
     String title = context.getString(R.string.exposure_details_status_exposure);
     String subtitle =
-        StringUtils.daysFromStartOfExposure(exposureClassification, clock.now(), context);
+        StringUtils.exposureDateRange(exposureClassification, context, ZoneId.systemDefault());
 
     listBuilder.addRow(action, icon, title, subtitle);
   }

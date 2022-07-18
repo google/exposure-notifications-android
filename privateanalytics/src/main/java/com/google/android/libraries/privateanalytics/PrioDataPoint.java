@@ -19,6 +19,17 @@ package com.google.android.libraries.privateanalytics;
 
 public class PrioDataPoint {
 
+  /*
+    Those values create non-overlapping intervals for sampling rate vs epsilon, which allows to
+    check that values have not been inverted by accident.
+
+    The minimum allowed value for epsilon can be arbitrary Prio-wise, but from the Exposure
+    Notifications perspective, it is never expected for an epsilon to be that low.
+   */
+  private static final double MIN_SAMPLING_RATE = 0.;
+  private static final double MAX_SAMPLING_RATE = 1.;
+  private static final double MIN_EPSILON = 2;
+
   private final PrivateAnalyticsMetric metric;
   private final double epsilon;
   private final double sampleRate;
@@ -39,5 +50,15 @@ public class PrioDataPoint {
 
   public double getSampleRate() {
     return sampleRate;
+  }
+
+  public boolean isValid() {
+    if (sampleRate < MIN_SAMPLING_RATE || sampleRate > MAX_SAMPLING_RATE) {
+      return false;
+    }
+    if (epsilon < MIN_EPSILON) {
+      return false;
+    }
+    return true;
   }
 }

@@ -35,6 +35,7 @@ import com.google.android.apps.exposurenotification.testsupport.ExposureNotifica
 import com.google.android.apps.exposurenotification.testsupport.FakeClock;
 import com.google.android.apps.exposurenotification.testsupport.FakeRequestQueue;
 import com.google.android.apps.exposurenotification.testsupport.FakeShadowResources;
+import com.google.android.libraries.privateanalytics.MetricsCollection;
 import com.google.android.libraries.privateanalytics.PrioDataPoint;
 import com.google.android.libraries.privateanalytics.PrivateAnalyticsSubmitter.PrioDataPointsProvider;
 import com.google.common.util.concurrent.Futures;
@@ -63,6 +64,12 @@ import org.robolectric.annotation.Config;
 @Config(application = HiltTestApplication.class, shadows = {FakeShadowResources.class})
 @UninstallModules({RealTimeModule.class, RealRequestQueueModule.class})
 public class MetricsModuleTest {
+
+  private static final double DEFAULT_SAMPING_RATE = 1.0;
+  private static final double DEFAULT_DAILY_METRIC_EPSILON = 8.0;
+  private static final double DEFAULT_BIWEEKLY_METRIC_EPSILON = 8.0;
+  private static final int DAILY_METRICS = 7;
+  private static final int BIWEEKLY_METRICS = 6;
 
   @Rule
   public ExposureNotificationRules rules = ExposureNotificationRules.forTest(this).withMocks()
@@ -120,5 +127,23 @@ public class MetricsModuleTest {
         .map(dataPoint -> dataPoint.getMetric().getMetricName()).collect(Collectors.toList());
 
     assertThat(metricNames).doesNotContain(keysUploadedVaccineStatusMetricMetric.getMetricName());
+  }
+
+  @Test
+  public void getMetricsList_hasAppropriateDefaultConfig()
+      throws ExecutionException, InterruptedException {
+    MetricsCollection metricsList = metricsModule.get().get();
+
+    assertThat(metricsList.getDailyMetrics()).hasSize(DAILY_METRICS);
+    for (PrioDataPoint point: metricsList.getDailyMetrics()) {
+      assertThat(point.getSampleRate()).isEqualTo(DEFAULT_SAMPING_RATE);
+      assertThat(point.getEpsilon()).isEqualTo(DEFAULT_DAILY_METRIC_EPSILON);
+    }
+
+    assertThat(metricsList.getBiweeklyMetrics()).hasSize(BIWEEKLY_METRICS);
+    for (PrioDataPoint point: metricsList.getBiweeklyMetrics()) {
+      assertThat(point.getSampleRate()).isEqualTo(DEFAULT_SAMPING_RATE);
+      assertThat(point.getEpsilon()).isEqualTo(DEFAULT_BIWEEKLY_METRIC_EPSILON);
+    }
   }
 }

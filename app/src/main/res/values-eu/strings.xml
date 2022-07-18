@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">Aktibatu</string>
   <string name="exposure_details_status_subtitle">Egoera</string>
   <string name="exposure_details_status_exposure">COVID-19arekiko esposizio posiblea</string>
-  <string name="exposure_details_date_exposed_subtitle">Esposizio posiblearen data</string>
-  <string name="exposure_details_expiring_subtitle">14 egunez gordetzen dira esposizio-txostenak, esposizio posiblearen datatik hasita</string>
+  <string name="exposure_details_date_exposed_subtitle">Data</string>
+  <string name="exposure_details_expiring_subtitle">Azken esposizio posiblea hura gertatu eta bi asteko epea igaro arte egongo da orri honetan</string>
   <string name="exposure_details_learn_more">Lortu informazio gehiago</string>
   <string name="exposure_details_new_badge">Berria</string>
   <string name="possible_exposures_activity_title">Esposizio posiblea</string>
@@ -181,10 +181,10 @@
   <string name="input_error_onset_date_future">Etorkizuneko data da hori</string>
   <string name="network_error_code_invalid">Egiaztapen-kodea ez dator bat. Saiatu berriro.</string>
   <string name="network_error_code_expired">Egiaztapen-kodea zaharkituta dago. Jarri harremanetan %1$s erakundearekin beste bat eskuratzeko.</string>
-  <string name="network_error_server_error">Arazoren bat izan da. Saiatu berriro.</string>
+  <string name="network_error_server_error">Arazo bat izan da. Saiatu berriro.</string>
   <string name="network_error_unsupported_test_type">Une honetan ezin da erabili egiaztapen-kode hori.</string>
   <string name="share_error">Ezin izan da partekatu probaren emaitza. Saiatu berriro geroago.</string>
-  <string name="generic_error_message">Arazoren bat izan da. Saiatu berriro.</string>
+  <string name="generic_error_message">Arazo bat izan da. Saiatu berriro.</string>
   <string name="code_error_already_submitted">Kodea dagoeneko erabili da probaren emaitza partekatzeko</string>
   <string name="gms_unavailable_error">Google Play Services-en azken bertsioa behar dute esposizioari buruzko jakinarazpenek.</string>
   <string name="browser_unavailable_error">Edukia ikusteko, ziurtatu azken arakatzaileetako bat instalatuta daukazula gailuan.</string>
@@ -207,7 +207,7 @@
   <string name="share_upload_symptoms_date_fixed_description">%1$s agintaritzak eman du sintomak agertu ziren data</string>
   <string name="share_upload_skip_choice">Saltatu</string>
   <string name="share_upload_travel_subtitle">Bidaien historia</string>
-  <string name="travel_history_travelled_recently_choice">Bidaiaren bat egin duzu azken 14 egunetan?</string>
+  <string name="travel_history_travelled_recently_choice">Bidaiarik egin duzu azken 14 egunetan?</string>
   <string name="travel_history_no_travel_choice">Ez dut bidaiatu</string>
   <string name="share_upload_select_a_date_choice">Hautatu data bat</string>
   <string name="share_upload_status_subtitle">COVID-19aren probaren emaitza</string>
@@ -219,7 +219,7 @@
   <string name="update_app_dialog_title">Eguneratu aplikazioa</string>
   <string name="update_app_dialog_content">Eguneratu esposizioari buruzko jakinarazpenen aplikazioaren azken bertsiora proben emaitzak partekatzen amaitzeko.</string>
   <string name="btn_update">Eguneratu</string>
-  <string name="try_again_later_error_message">Arazoren bat izan da. Saiatu berriro ordu batzuk barru.</string>
+  <string name="try_again_later_error_message">Arazo bat izan da. Saiatu berriro ordu batzuk barru.</string>
   <string name="en_turndown_for_area_title">Aurrerantzean, zure osasun-agintaritzak ez ditu onartuko esposizioari buruzko jakinarazpenak</string>
   <string name="en_turndown_title">Desaktibatu egin dira esposizioari buruzko jakinarazpenak</string>
 </resources>

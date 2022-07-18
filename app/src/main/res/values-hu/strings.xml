@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">Kitettséget jelző értesítések bekapcsolása</string>
   <string name="exposure_details_status_subtitle">Állapot</string>
   <string name="exposure_details_status_exposure">Lehetséges COVID-19-kitettség</string>
-  <string name="exposure_details_date_exposed_subtitle">Lehetséges kitettségi dátum</string>
-  <string name="exposure_details_expiring_subtitle">A kitettségi jelentéseket a lehetséges kitettség napjától számítva 14 napig tárolja a rendszer</string>
+  <string name="exposure_details_date_exposed_subtitle">Dátum</string>
+  <string name="exposure_details_expiring_subtitle">A legutóbbi lehetséges kitettség a kitettség napjától számítva két hétig marad ezen az oldalon.</string>
   <string name="exposure_details_learn_more">További információ</string>
   <string name="exposure_details_new_badge">Új</string>
   <string name="possible_exposures_activity_title">Lehetséges kitettség</string>
@@ -207,7 +207,7 @@
   <string name="share_upload_symptoms_date_fixed_description">A tünet dátumát a következő biztosította: %1$s</string>
   <string name="share_upload_skip_choice">Kihagyás</string>
   <string name="share_upload_travel_subtitle">Utazási előzmények</string>
-  <string name="travel_history_travelled_recently_choice">Utaztam az elmúlt 14 napban</string>
+  <string name="travel_history_travelled_recently_choice">Utazott az elmúlt 14 napban</string>
   <string name="travel_history_no_travel_choice">Nem utaztam</string>
   <string name="share_upload_select_a_date_choice">Válasszon dátumot</string>
   <string name="share_upload_status_subtitle">COVID-19-állapot</string>

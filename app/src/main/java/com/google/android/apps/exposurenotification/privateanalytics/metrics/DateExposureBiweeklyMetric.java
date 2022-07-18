@@ -48,8 +48,8 @@ import org.threeten.bp.Instant;
  */
 public class DateExposureBiweeklyMetric implements PrivateAnalyticsMetric {
 
-  private static final String VERSION = "v2";
-  public static final String METRIC_NAME = "DateExposure-" + VERSION;
+  private static final String VERSION = "v3";
+  public static final String METRIC_NAME = "DateExposure14d-" + VERSION;
   private static final int NUMBER_CLASSIFICATIONS = 4;
   private static final int DAY_BUCKETS = 12;
   public static final int BIN_LENGTH = NUMBER_CLASSIFICATIONS * DAY_BUCKETS;

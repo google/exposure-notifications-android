@@ -62,6 +62,7 @@ import org.robolectric.shadows.ShadowContextImpl;
 import org.threeten.bp.Instant;
 import org.threeten.bp.LocalDate;
 import org.threeten.bp.OffsetDateTime;
+import org.threeten.bp.ZoneId;
 import org.threeten.bp.ZoneOffset;
 
 @RunWith(AndroidJUnit4.class)
@@ -262,8 +263,8 @@ public class PossibleExposureSliceProviderTest {
     assertThat(sliceItems.get(0).getSlice().getItems().get(0).getFormat()).isEqualTo("image");
     assertThat(sliceItems.get(1).getText()).isEqualTo( /*"Possible COVID-19 exposure"*/
         context.getString(R.string.exposure_details_status_exposure));
-    assertThat(sliceItems.get(2).getText()).isEqualTo( /*"2 days ago"*/
-        StringUtils.daysFromStartOfExposure(exposureClassification, clock.now(), context));
+    assertThat(sliceItems.get(2).getText()).isEqualTo(
+        StringUtils.exposureDateRange(exposureClassification, context, ZoneId.systemDefault()));
     assertThat(sliceItems.get(3).getAction().getCreatorPackage())
         .isEqualTo(BuildConfig.APPLICATION_ID);
   }

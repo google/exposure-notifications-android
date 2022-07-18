@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">Laita altistumisilmoitukset päälle</string>
   <string name="exposure_details_status_subtitle">Tila</string>
   <string name="exposure_details_status_exposure">Mahdollinen COVID-19-altistuminen</string>
-  <string name="exposure_details_date_exposed_subtitle">Mahdollinen altistumispäivä</string>
-  <string name="exposure_details_expiring_subtitle">Altistumisilmoitus säilytetään 14 päivää mahdollisesta altistumispäivästä</string>
+  <string name="exposure_details_date_exposed_subtitle">Päivämäärä</string>
+  <string name="exposure_details_expiring_subtitle">Viimeisin mahdollinen altistumisesi näkyy tällä sivulla kaksi viikkoa altistumisen jälkeen.</string>
   <string name="exposure_details_learn_more">Lue lisää</string>
   <string name="exposure_details_new_badge">Uusi</string>
   <string name="possible_exposures_activity_title">Mahdollinen altistuminen</string>
@@ -207,7 +207,7 @@
   <string name="share_upload_symptoms_date_fixed_description">%1$s on ilmoittanut oireilupäivän</string>
   <string name="share_upload_skip_choice">Ohita</string>
   <string name="share_upload_travel_subtitle">Matkustushistoria</string>
-  <string name="travel_history_travelled_recently_choice">Matkustanut viimeisten 14 päivän aikana</string>
+  <string name="travel_history_travelled_recently_choice">Matkustanut 14 viime päivän aikana</string>
   <string name="travel_history_no_travel_choice">En matkustanut</string>
   <string name="share_upload_select_a_date_choice">Valitse päivämäärä</string>
   <string name="share_upload_status_subtitle">COVID-19-status</string>

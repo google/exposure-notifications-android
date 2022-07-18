@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">Aktivér notifikationer om eksponering</string>
   <string name="exposure_details_status_subtitle">Status</string>
   <string name="exposure_details_status_exposure">Mulig eksponering for COVID-19</string>
-  <string name="exposure_details_date_exposed_subtitle">Dato for mulig eksponering</string>
-  <string name="exposure_details_expiring_subtitle">Eksponeringsrapporter gemmes i 14 dage fra den dato, hvor den mulige eksponering blev registreret</string>
+  <string name="exposure_details_date_exposed_subtitle">Dato</string>
+  <string name="exposure_details_expiring_subtitle">Din seneste mulige eksponering vises på denne side i 2 uger efter eksponeringsdatoen.</string>
   <string name="exposure_details_learn_more">Få flere oplysninger</string>
   <string name="exposure_details_new_badge">Nyt</string>
   <string name="possible_exposures_activity_title">Mulig eksponering</string>

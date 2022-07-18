@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">Միացնել վարակման վտանգի մասին ծանուցումները</string>
   <string name="exposure_details_status_subtitle">Կարգավիճակ</string>
   <string name="exposure_details_status_exposure">COVID-19 վարակակրի հետ հնարավոր շփում</string>
-  <string name="exposure_details_date_exposed_subtitle">Հնարավոր շփման ամսաթիվը</string>
-  <string name="exposure_details_expiring_subtitle">Վարակման վտանգի մասին հաղորդումները պահվում են 14 օր՝ սկսած վարակակրի հետ հնարավոր շփման օրվանից։</string>
+  <string name="exposure_details_date_exposed_subtitle">Ամսաթիվ</string>
+  <string name="exposure_details_expiring_subtitle">Ձեր վերջին շփումը վարակակրի հետ պահպանվում է այս էջում շփումից հետո 2 շաբաթվա ընթացքում։</string>
   <string name="exposure_details_learn_more">Իմանալ ավելին</string>
   <string name="exposure_details_new_badge">Նոր</string>
   <string name="possible_exposures_activity_title">Վարակակիրների հետ հնարավոր շփումներ</string>
@@ -207,7 +207,7 @@
   <string name="share_upload_symptoms_date_fixed_description">Ախտանիշների առաջացման ամսաթիվը տրվել է %1$s կազմակերպության կողմից</string>
   <string name="share_upload_skip_choice">Բաց թողնել</string>
   <string name="share_upload_travel_subtitle">Ճամփորդությունների պատմություն</string>
-  <string name="travel_history_travelled_recently_choice">Ճամփորդություններ վերջին 14 օրվա ընթացքում</string>
+  <string name="travel_history_travelled_recently_choice">Վերջին 14 օրվա ընթացքում ճամփորդե՞լ եք</string>
   <string name="travel_history_no_travel_choice">Ես չեմ ճամփորդել</string>
   <string name="share_upload_select_a_date_choice">Ընտրեք ամսաթիվը</string>
   <string name="share_upload_status_subtitle">COVID-19 կարգավիճակ</string>

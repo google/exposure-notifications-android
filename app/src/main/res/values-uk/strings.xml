@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">Увімкнути сповіщення про ризик зараження</string>
   <string name="exposure_details_status_subtitle">Статус</string>
   <string name="exposure_details_status_exposure">Можливе зараження COVID-19</string>
-  <string name="exposure_details_date_exposed_subtitle">Дата ймовірного контакту</string>
-  <string name="exposure_details_expiring_subtitle">Повідомлення про ризик зараження зберігаються протягом 14 днів із дати ймовірного контакту</string>
+  <string name="exposure_details_date_exposed_subtitle">Дата</string>
+  <string name="exposure_details_expiring_subtitle">Cповіщення про можливий ризик зараження відображатиметься на цій сторінці протягом 2 тижнів від дати контакту.</string>
   <string name="exposure_details_learn_more">Докладніше</string>
   <string name="exposure_details_new_badge">Нове</string>
   <string name="possible_exposures_activity_title">Можливий ризик зараження</string>
@@ -211,7 +211,7 @@
   <string name="share_upload_symptoms_date_fixed_description">Дату появи симптомів надав орган охорони здоров’я \"%1$s\"</string>
   <string name="share_upload_skip_choice">Пропустити</string>
   <string name="share_upload_travel_subtitle">Історія подорожей</string>
-  <string name="travel_history_travelled_recently_choice">Була подорож упродовж останніх 14 днів</string>
+  <string name="travel_history_travelled_recently_choice">Принаймні одна подорож за останні 14 днів</string>
   <string name="travel_history_no_travel_choice">Я не подорожував(-ла)</string>
   <string name="share_upload_select_a_date_choice">Виберіть дату</string>
   <string name="share_upload_status_subtitle">Статус COVID-19</string>

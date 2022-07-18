@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">Включване на известията</string>
   <string name="exposure_details_status_subtitle">Състояние</string>
   <string name="exposure_details_status_exposure">Възможно излагане на опасност от заразяване с COVID-19</string>
-  <string name="exposure_details_date_exposed_subtitle">Дата на вероятното излагане на опасност от заразяване</string>
-  <string name="exposure_details_expiring_subtitle">Сигналите за излагане на опасност от заразяване се съхраняват 14 дни след датата на вероятното излагане на опасност</string>
+  <string name="exposure_details_date_exposed_subtitle">Дата</string>
+  <string name="exposure_details_expiring_subtitle">Последното ви възможно излагане на опасност от заразяване остава на тази страница в продължение на 2 седмици след датата, на която се е случило.</string>
   <string name="exposure_details_learn_more">Научете повече</string>
   <string name="exposure_details_new_badge">Ново</string>
   <string name="possible_exposures_activity_title">Възможно излагане на опасност от заразяване</string>

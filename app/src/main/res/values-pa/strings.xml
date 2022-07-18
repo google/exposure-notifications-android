@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਦੀਆਂ ਸੂਚਨਾਵਾਂ ਚਾਲੂ ਕਰੋ</string>
   <string name="exposure_details_status_subtitle">ਸਥਿਤੀ</string>
   <string name="exposure_details_status_exposure">COVID-19 ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਸੰਬੰਧੀ ਸੰਭਾਵਨਾ</string>
-  <string name="exposure_details_date_exposed_subtitle">ਸੰਭਾਵੀ ਤੌਰ \'ਤੇ ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਦੀ ਤਾਰੀਖ</string>
-  <string name="exposure_details_expiring_subtitle">ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਸੰਬੰਧੀ ਰਿਪੋਰਟਾਂ ਨੂੰ ਸੰਭਾਵੀ ਤੌਰ \'ਤੇ ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਦੀ ਤਾਰੀਖ ਤੋਂ 14 ਦਿਨਾਂ ਲਈ ਸਟੋਰ ਕੀਤਾ ਜਾਂਦਾ ਹੈ</string>
+  <string name="exposure_details_date_exposed_subtitle">ਤਾਰੀਖ</string>
+  <string name="exposure_details_expiring_subtitle">ਹਾਲ ਹੀ ਵਿੱਚ ਵਾਇਰਸ ਨਾਲ ਪ੍ਰਭਾਵਿਤ ਕਿਸੇ ਵਿਅਕਤੀ ਦੇ ਸੰਪਰਕ ਵਿੱਚ ਆਉਣ ਦੀ ਸੰਭਾਵਨਾ ਨਾਲ ਸੰਬੰਧਿਤ ਜਾਣਕਾਰੀ ਸੰਪਰਕ ਵਿੱਚ ਆਉਣ ਦੀ ਤਾਰੀਖ ਤੋਂ ਲੈ ਕੇ 2 ਹਫ਼ਤਿਆਂ ਤੱਕ ਇਸ ਪੰਨੇ \'ਤੇ ਰਹਿੰਦੀ ਹੈ।</string>
   <string name="exposure_details_learn_more">ਹੋਰ ਜਾਣੋ</string>
   <string name="exposure_details_new_badge">ਨਵਾਂ</string>
   <string name="possible_exposures_activity_title">ਸੰਭਾਵੀ ਤੌਰ \'ਤੇ ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣਾ</string>
@@ -207,7 +207,7 @@
   <string name="share_upload_symptoms_date_fixed_description">ਲੱਛਣ ਦਿਖਣ ਦੀ ਤਾਰੀਖ %1$s ਵੱਲੋਂ ਮੁਹੱਈਆ ਕਰਵਾਈ ਗਈ ਹੈ</string>
   <string name="share_upload_skip_choice">ਛੱਡੋ</string>
   <string name="share_upload_travel_subtitle">ਯਾਤਰਾ ਦਾ ਇਤਿਹਾਸ</string>
-  <string name="travel_history_travelled_recently_choice">ਪਿਛਲੇ 14 ਦਿਨਾਂ ਵਿੱਚ ਕੀਤੀ ਗਈ ਯਾਤਰਾ</string>
+  <string name="travel_history_travelled_recently_choice">ਪਿਛਲੇ 14 ਦਿਨਾਂ ਵਿੱਚ ਕੀਤੀ ਯਾਤਰਾ</string>
   <string name="travel_history_no_travel_choice">ਮੈਂ ਯਾਤਰਾ ਨਹੀਂ ਕੀਤੀ</string>
   <string name="share_upload_select_a_date_choice">ਕੋਈ ਤਾਰੀਖ ਚੁਣੋ</string>
   <string name="share_upload_status_subtitle">COVID-19 ਜਾਂਚ ਦਾ ਨਤੀਜਾ</string>

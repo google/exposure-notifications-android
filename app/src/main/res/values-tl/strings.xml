@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">I-on ang Mga Notification sa Exposure</string>
   <string name="exposure_details_status_subtitle">Status</string>
   <string name="exposure_details_status_exposure">Posibleng exposure sa COVID-19</string>
-  <string name="exposure_details_date_exposed_subtitle">Petsa ng posibleng exposure</string>
-  <string name="exposure_details_expiring_subtitle">Sino-store ang mga ulat sa exposure sa loob ng 14 na araw mula sa petsa ng posibleng exposure</string>
+  <string name="exposure_details_date_exposed_subtitle">Petsa</string>
+  <string name="exposure_details_expiring_subtitle">Mananatili ang iyong pinakakamakailang posibleng exposure sa page na ito nang 2 linggo pagkatapos ng petsa ng exposure.</string>
   <string name="exposure_details_learn_more">Matuto pa</string>
   <string name="exposure_details_new_badge">Bago</string>
   <string name="possible_exposures_activity_title">Posibleng exposure</string>
@@ -207,7 +207,7 @@
   <string name="share_upload_symptoms_date_fixed_description">Nagmula sa %1$s ang petsa ng sintomas</string>
   <string name="share_upload_skip_choice">Laktawan</string>
   <string name="share_upload_travel_subtitle">History ng paglalakbay</string>
-  <string name="travel_history_travelled_recently_choice">Naglakbay sa nakalipas na 14 na araw</string>
+  <string name="travel_history_travelled_recently_choice">Bumiyahe sa nakalipas na 14 na araw</string>
   <string name="travel_history_no_travel_choice">Hindi ako bumiyahe</string>
   <string name="share_upload_select_a_date_choice">Pumili ng petsa</string>
   <string name="share_upload_status_subtitle">Status sa COVID-19</string>

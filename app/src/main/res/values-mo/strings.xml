@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">Activați Notificările privind expunerea</string>
   <string name="exposure_details_status_subtitle">Stare</string>
   <string name="exposure_details_status_exposure">Expunere posibilă la COVID-19</string>
-  <string name="exposure_details_date_exposed_subtitle">Data posibilei expuneri</string>
-  <string name="exposure_details_expiring_subtitle">Rapoartele privind expunerea sunt păstrate 14 zile de la data posibilei expuneri</string>
+  <string name="exposure_details_date_exposed_subtitle">Data</string>
+  <string name="exposure_details_expiring_subtitle">Ultima expunere posibilă rămâne pe această pagină timp de două săptămâni după data expunerii.</string>
   <string name="exposure_details_learn_more">Aflați mai multe</string>
   <string name="exposure_details_new_badge">Nou</string>
   <string name="possible_exposures_activity_title">Expunere posibilă</string>

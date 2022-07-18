@@ -44,8 +44,8 @@
   <string name="turn_on_exposure_notifications_action">Activa les notificacions d\'exposició</string>
   <string name="exposure_details_status_subtitle">Estat</string>
   <string name="exposure_details_status_exposure">Possible exposició a la COVID-19</string>
-  <string name="exposure_details_date_exposed_subtitle">Data de possible exposició</string>
-  <string name="exposure_details_expiring_subtitle">Els informes d\'exposicions s\'emmagatzemen durant 14 dies a partir de la possible data d\'exposició</string>
+  <string name="exposure_details_date_exposed_subtitle">Data</string>
+  <string name="exposure_details_expiring_subtitle">La possible exposició més recent es manté en aquesta pàgina durant 2 setmanes a partir de la data en qüestió.</string>
   <string name="exposure_details_learn_more">Més informació</string>
   <string name="exposure_details_new_badge">Nou</string>
   <string name="possible_exposures_activity_title">Possible exposició</string>
