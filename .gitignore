@@ -89,4 +89,4 @@ prioclient/.cxx
 # Ignore potential locations for the pre-built prioclient AAR
 app/libs/prioclient*.aar
 privateanalytics/libs/prioclient*.aar
-
+prioclient-prebuilt/libs/prioclient*.aar

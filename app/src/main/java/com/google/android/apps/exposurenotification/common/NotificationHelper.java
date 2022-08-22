@@ -17,17 +17,24 @@
 
 package com.google.android.apps.exposurenotification.common;
 
+import android.Manifest.permission;
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.text.TextUtils;
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.StringRes;
 import androidx.annotation.VisibleForTesting;
+import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationCompat.Builder;
 import androidx.core.app.NotificationManagerCompat;
@@ -51,6 +58,33 @@ public final class NotificationHelper {
 
   private static final int POSSIBLE_EXPOSURE_NOTIFICATION_ID = 0;
   private static final int REACTIVATE_APPLICATION_NOTIFICATION_ID = 1;
+
+  public enum NotificationPermissionRequestState {
+    /**
+     * Notification permission granted by user already or Android pre-granted the permission
+     * because the app was already installed before upgrade to Android T.
+     */
+    GRANTED,
+
+    /**
+     * The user has already declined the notification permission request in the past. We cannot
+     * request for notification permission via the system permission dialog. We should take the
+     * user to the app settings to update the notification permission preference.
+     */
+    DENIED,
+
+    /**
+     * The user has not declined the notification permission request in the past. We can still
+     * request for notification permission via the system permission dialog.
+     */
+    NOT_GRANTED_BUT_CAN_REQUEST,
+
+    /**
+     * Notification permission is not available on this api.
+     * {@link permission#POST_NOTIFICATIONS} was added Android T.
+     */
+    NOT_APPLICABLE
+  }
 
   /**
    * Shows a notification based on Strings resources.
@@ -193,4 +227,86 @@ public final class NotificationHelper {
     }
   }
 
+  /**
+   * Requests for notification permission if the permission is available and the permission
+   * has not been denied/granted already.
+   *
+   * Returns true if the permission request was made.
+   */
+  @SuppressLint("InlinedApi")
+  public boolean maybeRequestNotificationPermission(Activity activity,
+      ActivityResultLauncher<String> requestNotificationPermissionLauncher) {
+    NotificationPermissionRequestState state = getNotificationPermissionState(activity);
+
+    switch (state) {
+      case NOT_GRANTED_BUT_CAN_REQUEST:
+        requestNotificationPermissionLauncher.launch(permission.POST_NOTIFICATIONS);
+        return true;
+      case DENIED:
+      case GRANTED:
+      case NOT_APPLICABLE:
+        return false;
+    }
+    return false;
+  }
+
+  /**
+   * Returns a {@link NotificationPermissionRequestState} indicating the current notification
+   * permission state. See {@link NotificationPermissionRequestState } for more details.
+   * */
+  public NotificationPermissionRequestState getNotificationPermissionState(Activity activity) {
+    if (Build.VERSION.SDK_INT < VERSION_CODES.TIRAMISU) {
+      // No notification permission pre Android T.
+      return NotificationPermissionRequestState.NOT_APPLICABLE;
+    } else {
+      if (ContextCompat.checkSelfPermission(activity, permission.POST_NOTIFICATIONS)
+          == PackageManager.PERMISSION_GRANTED) {
+        return NotificationPermissionRequestState.GRANTED;
+      } else if (ActivityCompat.shouldShowRequestPermissionRationale(activity,
+          permission.POST_NOTIFICATIONS)) {
+        return NotificationPermissionRequestState.DENIED;
+      } else {
+        /* User has not granted permission but we can request for notification permission. */
+        return NotificationPermissionRequestState.NOT_GRANTED_BUT_CAN_REQUEST;
+      }
+    }
+  }
+
+  /**
+   * Returns true if the app can post notifications to the user.
+   *
+   * On Android T+, this method returns true if the user already granted notification
+   * permission or if this App is exempted because the user upgraded from a previous version with
+   * notification permission.
+   *
+   * On pre T, this method returns false if the user has turned off notifications in the app's
+   * settings or device settings, otherwise it returns true.
+   * */
+  public boolean areNotificationsEnabled(Context context) {
+    NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
+    return notificationManager.areNotificationsEnabled();
+  }
+
+  /**
+   * Launches the app's notification settings screen. If that was unsuccessful, launch the
+   * app's details settings screen instead.
+   */
+  public void launchAppNotificationSettings(Context context) {
+    try {
+      Intent intent = IntentUtil.getNotificationSettingsIntent(context);
+      context.startActivity(intent);
+    } catch (ActivityNotFoundException e) {
+      // Couldn't launch the app's notification setting, launch the app's details settings instead.
+      launchAppDetailsSettings(context);
+    }
+  }
+
+  private void launchAppDetailsSettings(Context context) {
+    try {
+      Intent intent = IntentUtil.getAppDetailsSettingsIntent(context);
+      context.startActivity(intent);
+    } catch (ActivityNotFoundException e) {
+      logger.e("Error, settings activity could not be launched", e);
+    }
+  }
 }

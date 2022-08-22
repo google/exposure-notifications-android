@@ -177,6 +177,9 @@
   <string name="onboarding_free_up_storage_title">Vapauta tallennustilaa</string>
   <string name="reactivate_exposure_notification_app_subject">Tilaa altistumisilmoitukset</string>
   <string name="reactivate_exposure_notification_app_body">%1$s voi ilmoittaa sinulle mahdollisesta altistumisesta COVID-19:lle</string>
+  <string name="notifications_are_disabled_warning_title">Salli ilmoitukset</string>
+  <string name="notifications_are_disabled_warning_body">Tilaa ilmoitus mahdollisesta COVID-19-altistumisesta.</string>
+  <string name="btn_allow_notifications">Salli</string>
   <string name="input_error_onset_date_past">Päivämäärän on oltava %1$s päivän sisällä tästä päivästä</string>
   <string name="input_error_onset_date_future">Päivämäärä on tulevaisuudessa</string>
   <string name="network_error_code_invalid">Todennuskoodi ei täsmää. Yritä uudelleen.</string>

@@ -80,6 +80,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import javax.inject.Inject;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -175,6 +176,11 @@ public class CleanupHelperTest {
         notificationHelper,
         clock,
         TestingExecutors.sameThreadScheduledExecutor());
+  }
+
+  @After
+  public void tearDown() {
+    db.close();
   }
 
   @Test

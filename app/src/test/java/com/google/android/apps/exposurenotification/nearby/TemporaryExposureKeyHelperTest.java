@@ -19,7 +19,7 @@ package com.google.android.apps.exposurenotification.nearby;
 
 import static com.google.common.truth.Truth.assertThat;
 
-import android.support.test.espresso.core.internal.deps.guava.collect.ImmutableList;
+import com.google.common.collect.ImmutableList;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import com.google.android.apps.exposurenotification.network.DiagnosisKey;
 import com.google.android.apps.exposurenotification.proto.TemporaryExposureKey;

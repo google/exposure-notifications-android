@@ -177,6 +177,9 @@
   <string name="onboarding_free_up_storage_title">Xotirada joy oching</string>
   <string name="reactivate_exposure_notification_app_subject">COVID-19 xabarlarini yoqing</string>
   <string name="reactivate_exposure_notification_app_body">%1$s COVID-19 bilan ehtimoliy zararlanish haqida xabar beradi</string>
+  <string name="notifications_are_disabled_warning_title">Bildirishnomalarni yoqish</string>
+  <string name="notifications_are_disabled_warning_body">COVID-19 Ehtimoliy zararlanishi haqida bildirishnoma olish.</string>
+  <string name="btn_allow_notifications">Ruxsat</string>
   <string name="input_error_onset_date_past">Bugungi sanadan boshlab oxirgi %1$s kun orasidagi sana kiritilishi kerak</string>
   <string name="input_error_onset_date_future">Endi keladigan sana</string>
   <string name="network_error_code_invalid">Tasdiqlash kodi xato. Qayta urining.</string>

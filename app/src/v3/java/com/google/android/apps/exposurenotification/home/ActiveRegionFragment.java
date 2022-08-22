@@ -18,22 +18,28 @@
 package com.google.android.apps.exposurenotification.home;
 
 import static android.app.Activity.RESULT_FIRST_USER;
+import static android.app.Activity.RESULT_OK;
+import static com.google.android.apps.exposurenotification.common.IntentUtil.getUninstallPackageIntent;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts.RequestPermission;
+import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
 import com.google.android.apps.exposurenotification.BuildConfig;
 import com.google.android.apps.exposurenotification.R;
-import com.google.android.apps.exposurenotification.nearby.EnStateUtil;
+import com.google.android.apps.exposurenotification.common.PairLiveData;
 import com.google.android.apps.exposurenotification.databinding.FragmentActiveRegionBinding;
 import com.google.android.apps.exposurenotification.exposure.ExposureHomeViewModel;
 import com.google.android.apps.exposurenotification.exposure.PossibleExposureFragment;
 import com.google.android.apps.exposurenotification.home.ExposureNotificationViewModel.ExposureNotificationState;
+import com.google.android.apps.exposurenotification.nearby.EnStateUtil;
 import com.google.android.apps.exposurenotification.notify.ShareDiagnosisFlowHelper;
 import com.google.android.apps.exposurenotification.riskcalculation.ExposureClassification;
 import com.google.android.apps.exposurenotification.settings.AgencyFragment;
@@ -42,6 +48,7 @@ import com.google.android.apps.exposurenotification.settings.PrivateAnalyticsFra
 import com.google.android.apps.exposurenotification.settings.PrivateAnalyticsViewModel;
 import com.google.android.apps.exposurenotification.utils.UrlUtils;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.common.base.Optional;
 import com.mikepenz.aboutlibraries.LibsBuilder;
 import dagger.hilt.android.AndroidEntryPoint;
 import org.threeten.bp.ZoneId;
@@ -62,6 +69,8 @@ public class ActiveRegionFragment extends BaseFragment {
   private ExposureHomeViewModel exposureHomeViewModel;
   private boolean isRemoveRegionDialogOpen = false;
   private boolean showPossibleExposureIfAny = false;
+  private ActivityResultLauncher<String> requestNotificationPermissionLauncher;
+  private ActivityResultLauncher<Intent> uninstallActivityResultLauncher;
 
   public static ActiveRegionFragment newInstance(boolean possibleExposureSliceDisabled) {
     ActiveRegionFragment activeRegionFragment = new ActiveRegionFragment();
@@ -82,6 +91,13 @@ public class ActiveRegionFragment extends BaseFragment {
   public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
     requireActivity().setTitle(R.string.enx_agencyDisplayName);
+
+    requestNotificationPermissionLauncher = registerForActivityResult(new RequestPermission(),
+        isGranted -> {
+          if (isGranted) {
+            exposureNotificationViewModel.refreshNotificationsEnabledState(requireContext());
+          }
+        });
 
     exposureHomeViewModel =
         new ViewModelProvider(this).get(ExposureHomeViewModel.class);
@@ -117,36 +133,15 @@ public class ActiveRegionFragment extends BaseFragment {
         .observe(getViewLifecycleOwner(), isEnabled -> binding.privateAnalyticsStatus.setText(
             isEnabled ? R.string.settings_analytics_on : R.string.settings_analytics_off));
 
-    exposureNotificationViewModel
-        .getStateLiveData()
-        .observe(getViewLifecycleOwner(), state -> {
-          if (state == ExposureNotificationState.ENABLED) {
-            binding.enOffView.setVisibility(View.GONE);
-            binding.activeRegionHeader.activeRegionSubtitle.setText(
-                getString(R.string.active_region_subtitle,
-                    getString(R.string.agency_message_subtitle_region)));
-          } else {
-            binding.enOffView.setVisibility(View.VISIBLE);
-            binding.activeRegionHeader.activeRegionSubtitle.setText(
-                getString(R.string.active_region_subtitle_en_off,
-                    getString(R.string.agency_message_subtitle_region)));
-            if (EnStateUtil.isEnTurndown(state)) {
-              binding.enOffView.setOnClickListener(v ->
-                  transitionToFragmentWithBackStack(EnTurndownNoticeFragment.newInstance()));
-            } else {
-              binding.enOffView.setOnClickListener(v -> requireActivity().onBackPressed());
-            }
-          }
-        });
+    PairLiveData<ExposureNotificationState, Optional<Boolean>> stateAreNotificationsEnabledLive =
+        PairLiveData.of(exposureNotificationViewModel.getStateLiveData(),
+            exposureNotificationViewModel.getAreNotificationsEnabledLiveData());
+    stateAreNotificationsEnabledLive.observe(getViewLifecycleOwner(),
+        this::refreshUIForState);
 
     exposureNotificationViewModel
         .getEnStoppedLiveEvent()
-        .observe(getViewLifecycleOwner(), enStopped -> {
-          if (enStopped) {
-            getActivity().setResult(RESULT_REMOVE_REGION);
-            getActivity().finish();
-          }
-        });
+        .observe(getViewLifecycleOwner(), unused -> removeRegion());
 
     exposureHomeViewModel
         .getExposureClassificationLiveData()
@@ -174,6 +169,8 @@ public class ActiveRegionFragment extends BaseFragment {
     binding.removeRegion.setOnClickListener(v -> showRemoveRegionDialog());
     binding.smsNoticeLayout.smsNoticeCard.setOnClickListener(
         v -> transitionToFragmentWithBackStack(SmsNoticeFragment.newInstance(false)));
+    binding.cardAllowNotificationsView.allowNotificationsButton.setOnClickListener(
+        v -> maybeRequestForNotificationPermission(requestNotificationPermissionLauncher));
 
     // Set up the Toolbar.
     Toolbar toolbar = binding.activeRegionToolbar;
@@ -189,12 +186,48 @@ public class ActiveRegionFragment extends BaseFragment {
       return false;
     });
     toolbar.setNavigationIcon(R.drawable.ic_back);
+    toolbar.setNavigationContentDescription(getString(R.string.navigate_up));
     toolbar.setNavigationOnClickListener(v -> requireActivity().onBackPressed());
 
     if (BuildConfig.DEBUG) {
       binding.debugModeLink.setVisibility(View.VISIBLE);
       binding.debugModeLink.setOnClickListener(v -> launchDebugScreen());
     }
+
+    // Register an activity result launcher for uninstalling the region.
+    uninstallActivityResultLauncher = registerForActivityResult(
+        new StartActivityForResult(),
+        result -> {
+          // If region was not uninstalled for any reason (e.g. user opts out, there's been an error
+          // when uninstalling, etc.), let the EN module know that a region needs to be removed.
+          if (result.getResultCode() != RESULT_OK) {
+            sendRemoveRegionResult();
+          }
+        });
+  }
+
+  private void refreshUIForState(ExposureNotificationState state, Optional<Boolean> areNotificationsEnabled) {
+    if (state == ExposureNotificationState.ENABLED) {
+      binding.enOffView.setVisibility(View.GONE);
+      binding.activeRegionHeader.activeRegionSubtitle.setText(
+          getString(R.string.active_region_subtitle,
+              getString(R.string.agency_message_subtitle_region)));
+    } else {
+      binding.enOffView.setVisibility(View.VISIBLE);
+      binding.activeRegionHeader.activeRegionSubtitle.setText(
+          getString(R.string.active_region_subtitle_en_off,
+              getString(R.string.agency_message_subtitle_region)));
+      if (EnStateUtil.isEnTurndown(state)) {
+        binding.enOffView.setOnClickListener(v ->
+            transitionToFragmentWithBackStack(EnTurndownNoticeFragment.newInstance()));
+      } else {
+        binding.enOffView.setOnClickListener(v -> requireActivity().onBackPressed());
+      }
+    }
+    // If we don't know the notification permission state. Assume notifications are enabled.
+    // Don't show notification warming card until we're sure notifications are not enabled.
+    binding.allowNotificationsView.setVisibility(
+        areNotificationsEnabled.or(true) ? View.GONE : View.VISIBLE);
   }
 
   @Override
@@ -239,8 +272,40 @@ public class ActiveRegionFragment extends BaseFragment {
     }
   }
 
+  private void removeRegion() {
+    if (shouldUninstallWhenRemoveRegion()) {
+      // Uninstall the region if that's enabled.
+      uninstallRegion();
+    } else {
+      // Otherwise, let the EN module know the region is being removed.
+      sendRemoveRegionResult();
+    }
+  }
+
   /**
-   * Open the share private analytics screen.
+   * Checks whether we need to uninstall the region when it's being removed.
+   */
+  private boolean shouldUninstallWhenRemoveRegion() {
+    return getContext().getResources().getBoolean(R.bool.enx_uninstallWhenRemoveRegion);
+  }
+
+  /**
+   * Uninstalls this region.
+   */
+  private void uninstallRegion() {
+    uninstallActivityResultLauncher.launch(getUninstallPackageIntent(getContext()));
+  }
+
+  /**
+   * Finishes the activity with the {@code RESULT_REMOVE_REGION} set as an activity result.
+   */
+  private void sendRemoveRegionResult() {
+    getActivity().setResult(RESULT_REMOVE_REGION);
+    getActivity().finish();
+  }
+
+  /**
+   * Opens the share private analytics screen.
    */
   private void launchPrivateAnalytics() {
     transitionToFragmentWithBackStack(PrivateAnalyticsFragment.newInstance());

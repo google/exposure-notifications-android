@@ -23,9 +23,9 @@
   <string name="navigate_up">अघिल्लो स्क्रिनमा फर्कनुहोस्</string>
   <string name="btn_close_label">बन्द गर्नुहोस्</string>
   <string name="updated_permission_disabled_notification_title">कोरोना भाइरस सङ्क्रमित व्यक्तिको सम्पर्कमा आएको वा नआएको कुरा जाँच गर्न सकिएन</string>
-  <string name="updated_bluetooth_location_state_notification">कोरोना भाइरस सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सम्भावनाबारे जाँच गरिरहन ब्लुटुथ तथा डिभाइसको स्थानसम्बन्धी सेटिङ अन गर्नुहोस्</string>
+  <string name="updated_bluetooth_location_state_notification">कोरोना भाइरस सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सम्भावनाबारे जाँच गरिरहन ब्लुटुथ तथा डिभाइसको लोकेसन सेटिङ अन गर्नुहोस्</string>
   <string name="updated_bluetooth_state_notification">कोरोना भाइरस सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सम्भावनाबारे जाँच गरिरहन ब्लुटुथ अन गर्नुहोस्।</string>
-  <string name="updated_location_state_notification">कोरोना भाइरस सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सम्भावनाबारे जाँच गरिरहन डिभाइसको स्थानसम्बन्धी सेटिङ अन गर्नुहोस्</string>
+  <string name="updated_location_state_notification">कोरोना भाइरस सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सम्भावनाबारे जाँच गरिरहन डिभाइसको लोकेसन सेटिङ अन गर्नुहोस्</string>
   <string name="onboarding_opt_in_title">सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सूचना दिने प्रणाली अन गर्न तपाईंले दिनु पर्ने अनुमतिहरू</string>
   <string name="onboarding_finish_title">सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सूचना दिने प्रणाली अन गर्न तपाईंले दिनु पर्ने अनुमतिहरूको निरन्तरता</string>
   <string name="onboarding_exposure_notifications_title">सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सूचना दिने प्रणाली अन गर्नु…</string>
@@ -107,7 +107,7 @@
   <string name="share_vaccination_not_vaccinated">अहँ</string>
   <string name="share_vaccination_unknown">म उत्तर दिन चाहन्न</string>
   <string name="do_you_have_code_title">तपाईंले कोड पाउनुभयो?</string>
-  <string name="do_you_have_code_content">COVID-19 को परीक्षण गर्दा तपाईंको नतिजा पोजेटिभ आएका खण्डमा तपाईं आफ्नो नतिजा सेयर गर्न सक्नुहोस् भन्नाका खातिर तपाईंको स्वास्थ्य निकायले सामान्यतया फोन गरेर वा टेक्स्ट म्यासेजमार्फत पुष्टि कोड उपलब्ध गराउँछ।</string>
+  <string name="do_you_have_code_content">COVID-19 को परीक्षण गर्दा तपाईंको नतिजा पोजेटिभ आएका खण्डमा तपाईं आफ्नो नतिजा सेयर गर्न सक्नुहोस् भन्नाका लागि तपाईंको स्वास्थ्य निकायले सामान्यतया फोन गरेर वा टेक्स्ट म्यासेजमार्फत पुष्टि कोड उपलब्ध गराउँछ।</string>
   <string name="btn_i_have_code">अँ, मसँग कोड छ</string>
   <string name="btn_i_need_code">मलाई कोड चाहिन्छ</string>
   <string name="get_verification_code_title">पुष्टि कोड प्राप्त गर्नुहोस्</string>
@@ -150,7 +150,7 @@
   <string name="settings_analytics_off">अफ छ</string>
   <string name="exposure_about_title">सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सूचना दिने प्रणाली</string>
   <string name="exposure_about_toggle">सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सूचना दिने प्रणाली प्रयोग गर्नुहोस्</string>
-  <string name="exposure_about_detail">तपाईं आफू COVID-19 बाट सङ्क्रमित भएको भनी जानकारी पेस गर्ने कुनै व्यक्तिको नजिक जानुभएको छ भने %1$s ले तपाईंलाई सोबारे जानकारी गराउन सकोस् भन्नाका खातिर \'सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सूचना दिने प्रणाली\' अन गर्नुहोस्।
+  <string name="exposure_about_detail">तपाईं आफू COVID-19 बाट सङ्क्रमित भएको भनी जानकारी पेस गर्ने कुनै व्यक्तिको नजिक जानुभएको छ भने %1$s ले तपाईंलाई सोबारे जानकारी गराउन सकोस् भन्नाका लागि \'सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सूचना दिने प्रणाली\' अन गर्नुहोस्।
     \n\nतपाईंको फोनले सुरक्षित रूपमा क्रमरहित ID हरू सङ्कलन गर्न र तिनलाई वरपर रहेका अन्य फोनहरूसँग सेयर गर्न ब्लुटुथ प्रयोग गर्छ।
     \n\nतपाईं सङ्क्रमित व्यक्तिको सम्पर्कमा आउनुभएको मिति, समय र त्यस बखत नेटवर्कको सिग्नल कस्तो थियो भन्ने कुराको जानकारी यस एपसँग सेयर गरिने छ।</string>
   <string name="exposure_turn_off_title">सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सूचना दिने प्रणाली अफ गर्ने हो?</string>
@@ -162,9 +162,9 @@
   <string name="exposure_notifications_are_inactive">सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सूचना दिने प्रणाली निष्क्रिय छ</string>
   <string name="device_settings">डिभाइसका सेटिङ</string>
   <string name="manage_storage">भण्डारणको व्यवस्थापन गर्नुहोस्</string>
-  <string name="location_off_warning">तपाईं COVID-19 सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सम्भावना हुँदा यसको सूचना पाउन आफ्नो डिभाइसको स्थानसम्बन्धी सेटिङ अन गर्नुहोस्।</string>
+  <string name="location_off_warning">तपाईं COVID-19 सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सम्भावना हुँदा यसको सूचना पाउन आफ्नो डिभाइसको लोकेसन सेटिङ अन गर्नुहोस्।</string>
   <string name="ble_off_warning">तपाईं COVID-19 सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सम्भावना हुँदा यसको सूचना पाउन ब्लुटुथ अन गर्नुहोस्।</string>
-  <string name="location_ble_off_warning">तपाईं COVID-19 सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सम्भावना हुँदा यसको सूचना पाउन ब्लुटुथ र आफ्नो डिभाइसको स्थानसम्बन्धी सेटिङ अन गर्नुहोस्।</string>
+  <string name="location_ble_off_warning">तपाईं COVID-19 सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सम्भावना हुँदा यसको सूचना पाउन ब्लुटुथ र आफ्नो डिभाइसको लोकेसन सेटिङ अन गर्नुहोस्।</string>
   <string name="storage_low_warning">तपाईं COVID-19 सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सम्भावना हुँदा यसको सूचना पाउन आफ्नो फोनको भण्डारणमा ठाउँ खाली गर्नुहोस्।</string>
   <string name="not_in_allowlist_warning">तपाईंको क्षेत्रमा अहिले सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सूचना दिने प्रणाली उपलब्ध छैन।</string>
   <string name="hw_not_supported_warning">यो डिभाइसमा सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सूचना दिने प्रणाली प्रयोग गर्न मिल्दैन। %1$s हेर्नुहोस्।</string>
@@ -177,6 +177,9 @@
   <string name="onboarding_free_up_storage_title">भण्डारणमा ठाउँ खाली गर्नुहोस्</string>
   <string name="reactivate_exposure_notification_app_subject">तपाईं COVID-19 सङ्क्रमित व्यक्तिको सम्पर्कमा आएको भएमा सोबारे अलर्ट प्राप्त गर्नु…</string>
   <string name="reactivate_exposure_notification_app_body">%1$s ले तपाईंलाई तपाईं सम्भवतः COVID-19 सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सूचना दिन सक्छ</string>
+  <string name="notifications_are_disabled_warning_title">सूचना प्राप्त गर्ने सुविधा अन गर्नुहोस्</string>
+  <string name="notifications_are_disabled_warning_body">तपाईं COVID-19 सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सम्भावना हुँदा यसबारे सूचना प्राप्त गर्नुहोस्।</string>
+  <string name="btn_allow_notifications">अनुमति दिनुहोस्</string>
   <string name="input_error_onset_date_past">लक्षण देखिन थाल्ने मिति आजदेखि %1$s दिन भित्रको मिति हुनु पर्छ</string>
   <string name="input_error_onset_date_future">लक्षण देखिन थाल्ने मिति भविष्यको मिति हुन्छ</string>
   <string name="network_error_code_invalid">पुष्टि कोड मिलेन। फेरि प्रयास गर्नुहोस्।</string>
@@ -191,8 +194,8 @@
   <string name="settings_private_analytics_subtitle">सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सूचना दिने प्रणालीको विश्लेषणात्मक डेटा सेयरिङ</string>
   <string name="private_analytics_title">आफ्नो स्थानीय स्वास्थ्य निकायलाई COVID-19 को फैलावट बुझ्न मद्दत गर्नुहोस्</string>
   <string name="private_analytics_subtitle">आफ्नो स्थानीय स्वास्थ्य निकायसँग सङ्क्रमित व्यक्तिको सम्पर्कमा आएको सूचना दिने प्रणालीको विश्लेषणात्मक डेटा सेयर गर्नुहोस्</string>
-  <string name="private_analytics_footer">तपाईंको क्षेत्रमा पठाइएका सूचनाहरूको सङ्ख्यालगायतका तथ्याङ्क समावेश यी विश्लेषणात्मक डेटाले स्वास्थ्य निकायहरूलाई COVID-19 कसरी फैलिन्छ भन्ने कुरा बुझ्न मद्दत गर्छन्। Google ले ती डेटा पढ्न सक्दैन। कुन डेटा कुन फोनबाट प्राप्त गरिएको हो भन्ने कुरा पत्ता लगाउन नसकियोस् भन्नाका खातिर तपाईंको स्थानीय स्वास्थ्य निकायको प्रयोजनका लागि ती डेटा समग्र रूपमा सङ्कलन गरिन्छ। %1$s</string>
-  <string name="private_analytics_footer_onboarding">Google ले यी विश्लेषणात्मक डेटा पढ्न सक्दैन। कुन डेटा कुन फोनबाट प्राप्त गरिएको हो भन्ने कुरा पत्ता लगाउन नसकियोस् भन्नाका खातिर तपाईंको स्थानीय स्वास्थ्य निकायको प्रयोजनका लागि ती डेटा समग्र रूपमा सङ्कलन गरिन्छ। %1$s</string>
+  <string name="private_analytics_footer">तपाईंको क्षेत्रमा पठाइएका सूचनाहरूको सङ्ख्यालगायतका तथ्याङ्क समावेश यी विश्लेषणात्मक डेटाले स्वास्थ्य निकायहरूलाई COVID-19 कसरी फैलिन्छ भन्ने कुरा बुझ्न मद्दत गर्छन्। Google ले ती डेटा पढ्न सक्दैन। कुन डेटा कुन फोनबाट प्राप्त गरिएको हो भन्ने कुरा पत्ता लगाउन नसकियोस् भन्नाका लागि तपाईंको स्थानीय स्वास्थ्य निकायको प्रयोजनका लागि ती डेटा समग्र रूपमा सङ्कलन गरिन्छ। %1$s</string>
+  <string name="private_analytics_footer_onboarding">Google ले यी विश्लेषणात्मक डेटा पढ्न सक्दैन। कुन डेटा कुन फोनबाट प्राप्त गरिएको हो भन्ने कुरा पत्ता लगाउन नसकियोस् भन्नाका लागि तपाईंको स्थानीय स्वास्थ्य निकायको प्रयोजनका लागि ती डेटा समग्र रूपमा सङ्कलन गरिन्छ। %1$s</string>
   <string name="private_analytics_footer_learn_more">थप जान्नुहोस्</string>
   <string name="diagnosis_subtitle_template">%2$s मा %1$s</string>
   <string name="empty_share_history_body">विगतमा कुनै पनि जानकारी सेयर गरिएको छैन</string>

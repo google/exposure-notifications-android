@@ -41,6 +41,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 import javax.inject.Inject;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -79,6 +80,11 @@ public class DiagnosisRepositoryTest {
     rules.hilt().inject();
     // Threshold to test maybeGetConfirmedOrSelfReportedDiagnosisSharedAfterThresholdAsync API.
     minThresholdMs = clock.now().minus(DURATION_NINETY_DAYS).toEpochMilli();
+  }
+
+  @After
+  public void tearDown() {
+    db.close();
   }
 
   @Test

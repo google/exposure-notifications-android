@@ -181,6 +181,9 @@
   <string name="onboarding_free_up_storage_title">Zwolnij miejsce na dane</string>
   <string name="reactivate_exposure_notification_app_subject">Otrzymuj alerty o narażeniu na COVID-19</string>
   <string name="reactivate_exposure_notification_app_body">%1$s może powiadomić Cię o potencjalnym narażeniu na kontakt z COVID-19</string>
+  <string name="notifications_are_disabled_warning_title">Zezwalaj na powiadomienia</string>
+  <string name="notifications_are_disabled_warning_body">Otrzymuj powiadomienia o możliwym narażeniu na kontakt z COVID-19.</string>
+  <string name="btn_allow_notifications">Zezwól</string>
   <string name="input_error_onset_date_past">Data powinna przypadać w okresie ostatnich %1$s dni od dzisiaj</string>
   <string name="input_error_onset_date_future">Data przypada w przyszłości</string>
   <string name="network_error_code_invalid">Kod weryfikacyjny się nie zgadza. Spróbuj ponownie.</string>

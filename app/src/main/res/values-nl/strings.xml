@@ -13,7 +13,7 @@
   <string name="btn_done">Klaar</string>
   <string name="btn_previous">Vorige</string>
   <string name="btn_verify">Verifiëren</string>
-  <string name="btn_no_thanks">Nee</string>
+  <string name="btn_no_thanks">Nee, bedankt</string>
   <string name="btn_share">Delen</string>
   <string name="btn_close_app">App sluiten</string>
   <string name="learn_more">Meer informatie</string>
@@ -132,7 +132,7 @@
   <string name="notify_others_if_result_updated_title">Andere mensen informeren als je resultaat wordt geüpdatet?</string>
   <string name="notify_others_if_result_updated_content">%1$s kan je een tweede code sturen om je testresultaat te bevestigen. Met deze tweede code kun je je COVID-19-status automatisch updaten en gedurende extra dagen willekeurige ID\'s delen. Zo kun je anderen informeren over mogelijke blootstelling. Je identiteit wordt niet gedeeld met andere mensen.</string>
   <string name="btn_pre_auth_yes">Ja, ik help graag mee</string>
-  <string name="btn_pre_auth_no">Nee</string>
+  <string name="btn_pre_auth_no">Nee, bedankt</string>
   <string name="thank_you_for_notifying_title">Bedankt voor je hulp</string>
   <string name="thank_you_for_notifying_content">%1$s heeft je tijdlijn voor blootstelling zojuist geüpdatet en heeft anderen misschien geïnformeerd over mogelijke blootstelling.</string>
   <string name="settings_exposure_notifications_subtitle">Blootstellingsmeldingen</string>
@@ -177,6 +177,9 @@
   <string name="onboarding_free_up_storage_title">Maak opslagruimte vrij</string>
   <string name="reactivate_exposure_notification_app_subject">Blootstellingsmeldingen voor COVID-19 krijgen</string>
   <string name="reactivate_exposure_notification_app_body">%1$s kan je meldingen sturen over mogelijke blootstelling aan COVID-19</string>
+  <string name="notifications_are_disabled_warning_title">Meldingen toestaan</string>
+  <string name="notifications_are_disabled_warning_body">Krijg meldingen van mogelijke blootstelling aan COVID-19.</string>
+  <string name="btn_allow_notifications">Toestaan</string>
   <string name="input_error_onset_date_past">Datum moet binnen %1$s dagen van vandaag vallen</string>
   <string name="input_error_onset_date_future">Datum is in de toekomst</string>
   <string name="network_error_code_invalid">De verificatiecode komt niet overeen. Probeer het nog eens.</string>

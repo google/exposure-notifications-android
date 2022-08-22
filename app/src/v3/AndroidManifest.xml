@@ -18,6 +18,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
   package="com.google.android.apps.exposurenotification">
 
+  <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES" />
+
   <application
     android:allowBackup="false"
     android:fullBackupOnly="false"

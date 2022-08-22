@@ -177,6 +177,9 @@
   <string name="onboarding_free_up_storage_title">સ્ટોરેજ સ્પેસ ખાલી કરો</string>
   <string name="reactivate_exposure_notification_app_subject">COVID-19 એક્સપોઝર અલર્ટ મેળવો</string>
   <string name="reactivate_exposure_notification_app_body">COVID-19ના સંભવિત એક્સપોઝર વિશે %1$s તમને સૂચિત કરી શકે છે</string>
+  <string name="notifications_are_disabled_warning_title">નોટિફિકેશનને મંજૂરી આપો</string>
+  <string name="notifications_are_disabled_warning_body">COVID-19ના સંભવિત એક્સપોઝર વિશે સૂચના મેળવો.</string>
+  <string name="btn_allow_notifications">મંજૂરી આપો</string>
   <string name="input_error_onset_date_past">આજની તારીખથી છેલ્લા %1$s દિવસની અંદરની તારીખ હોવી જોઈએ</string>
   <string name="input_error_onset_date_future">આ ભવિષ્યમાં આવનારી તારીખ છે</string>
   <string name="network_error_code_invalid">ચકાસણી કોડ મેળ ખાતો નથી. ફરી પ્રયાસ કરો.</string>

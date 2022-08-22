@@ -177,6 +177,9 @@
   <string name="onboarding_free_up_storage_title">騰出儲存空間</string>
   <string name="reactivate_exposure_notification_app_subject">接收 COVID-19 接觸通知</string>
   <string name="reactivate_exposure_notification_app_body">「%1$s」能通知您可能接觸到 COVID-19 的情況</string>
+  <string name="notifications_are_disabled_warning_title">允許通知</string>
+  <string name="notifications_are_disabled_warning_body">接收可能接觸到 COVID-19 的情況通知。</string>
+  <string name="btn_allow_notifications">允許</string>
   <string name="input_error_onset_date_past">日期必須在今天前 %1$s 天之內</string>
   <string name="input_error_onset_date_future">輸入的日期在未來</string>
   <string name="network_error_code_invalid">驗證碼不符。請再試一次。</string>

@@ -177,6 +177,9 @@
   <string name="onboarding_free_up_storage_title">သိုလှောင်ခန်းတွင် နေရာလွတ် ပြုလုပ်ပါ</string>
   <string name="reactivate_exposure_notification_app_subject">COVID-19 ထိတွေ့မှုသတိပေးချက်များ ရယူပါ</string>
   <string name="reactivate_exposure_notification_app_body">%1$s က ဖြစ်နိုင်ခြေရှိသော COVID-19 ထိတွေ့မှုကို အကြောင်းကြားနိုင်သည်</string>
+  <string name="notifications_are_disabled_warning_title">အကြောင်းကြားချက်များ ခွင့်ပြုပါ</string>
+  <string name="notifications_are_disabled_warning_body">ဖြစ်နိုင်ခြေရှိသော COVID-19 ထိတွေ့မှုကို အကြောင်းကြားချက် ရယူပါ။</string>
+  <string name="btn_allow_notifications">ခွင့်ပြုရန်</string>
   <string name="input_error_onset_date_past">ရက်စွဲသည် ယနေ့မှ နောက်ဆုံး %1$s ရက်အတောအတွင်း ဖြစ်ရမည်။</string>
   <string name="input_error_onset_date_future">ထည့်သွင်းထားသော ရက်စွဲသည် မှန်ကန်သော ရက်အပိုင်းအခြားထက် ကျော်လွန်နေသည်။</string>
   <string name="network_error_code_invalid">အတည်ပြုကုဒ် တူညီမှုမရှိပါ။ ထပ်စမ်းကြည့်ပါ။</string>

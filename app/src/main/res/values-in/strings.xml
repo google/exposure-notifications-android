@@ -177,6 +177,9 @@
   <string name="onboarding_free_up_storage_title">Kosongkan ruang penyimpanan</string>
   <string name="reactivate_exposure_notification_app_subject">Dapatkan notifikasi paparan COVID-19</string>
   <string name="reactivate_exposure_notification_app_body">%1$s dapat memberikan notifikasi potensi paparan COVID-19</string>
+  <string name="notifications_are_disabled_warning_title">Izinkan notifikasi</string>
+  <string name="notifications_are_disabled_warning_body">Dapatkan notifikasi kemungkinan paparan COVID-19.</string>
+  <string name="btn_allow_notifications">Izinkan</string>
   <string name="input_error_onset_date_past">Tanggal harus antara hari ini dan %1$s hari sebelumnya</string>
   <string name="input_error_onset_date_future">Tanggal ada di masa mendatang</string>
   <string name="network_error_code_invalid">Kode verifikasi tidak cocok. Coba lagi.</string>

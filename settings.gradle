@@ -18,9 +18,8 @@
 include ':app'
 include ':privateanalytics'
 
-if (file('privateanalytics/libs/prioclient-release.aar').exists()) {
-  println "Using prebuilt prioclient AAR"
+if (file('prioclient-prebuilt/libs/prioclient-release.aar').exists()) {
+  include ":prioclient-prebuilt"
 } else {
   include ":prioclient"
 }
-

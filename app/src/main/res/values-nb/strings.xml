@@ -95,7 +95,7 @@
   <string name="share_review_travel_no_answer">Ikke svart</string>
   <string name="share_confirm_title">Takk for at du deler covid-19-resultatet ditt</string>
   <string name="not_shared_confirm_title">Testresultatet ditt ble ikke delt</string>
-  <string name="not_shared_confirm_detail">Covid-19-testresultatet ditt ble ikke delt. Prøv igjen.</string>
+  <string name="not_shared_confirm_detail">Covid-19-testresultatet ditt ble ikke delt. Prøv på nytt.</string>
   <string name="status_shared_detail_title">Delt covid-19-status</string>
   <string name="delete_test_result_title">Vil du slette testresultatet ditt?</string>
   <string name="delete_test_result_confirmed">Testresultatet er slettet</string>
@@ -173,10 +173,13 @@
   <string name="focus_lost_warning">Du kan bare bruke én app for eksponeringsvarsler om gangen på enheten.\n\nVil du bytte til %1$s?</string>
   <string name="switch_app_for_exposure_notifications_action">Bytt app</string>
   <string name="en_not_supported_warning">Eksponeringsvarsler er ikke tilgjengelig lenger. %1$s</string>
-  <string name="user_profile_not_supported_warning">Eksponeringsvarsler er ikke tilgjengelige på jobbprofilen. Prøv igjen på den personlige profilen.</string>
+  <string name="user_profile_not_supported_warning">Eksponeringsvarsler er ikke tilgjengelige på jobbprofilen. Prøv på nytt på den personlige profilen.</string>
   <string name="onboarding_free_up_storage_title">Frigjør lagringsplass</string>
   <string name="reactivate_exposure_notification_app_subject">Få varsler om covid-19-eksp.</string>
   <string name="reactivate_exposure_notification_app_body">%1$s kan varsle deg om potensiell covid-19-eksponering</string>
+  <string name="notifications_are_disabled_warning_title">Tillat varsler</string>
+  <string name="notifications_are_disabled_warning_body">Bli varslet om mulig covid-19-eksponering.</string>
+  <string name="btn_allow_notifications">Tillat</string>
   <string name="input_error_onset_date_past">Datoen skal være innen de siste %1$s dagene fra dagens dato</string>
   <string name="input_error_onset_date_future">Datoen er i fremtiden</string>
   <string name="network_error_code_invalid">Bekreftelseskoden samsvarer ikke. Prøv på nytt.</string>

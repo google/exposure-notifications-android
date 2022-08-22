@@ -177,6 +177,9 @@
   <string name="onboarding_free_up_storage_title">ষ্ট’ৰেজত ঠাই খালী কৰক</string>
   <string name="reactivate_exposure_notification_app_subject">COVID-19ৰ সংস্পৰ্শলৈ অহাৰ সতৰ্কবাৰ্তা পাওক</string>
   <string name="reactivate_exposure_notification_app_body">%1$sএ আপোনাক COVID-19ৰ সম্ভাব্য এক্সপ’জাৰৰ বিষয়ে জাননী দিব পাৰে</string>
+  <string name="notifications_are_disabled_warning_title">জাননী সম্পৰ্কীয় অনুমতি দিয়ক</string>
+  <string name="notifications_are_disabled_warning_body">সম্ভাব্য COVID-19ৰ সংস্পৰ্শৰ বিষয়ে জাননী পাওক।</string>
+  <string name="btn_allow_notifications">অনুমতি দিয়ক</string>
   <string name="input_error_onset_date_past">দিয়া তাৰিখটো আজিৰ তাৰিখৰ পৰা যোৱা %1$s দিনৰ ভিতৰত হ’ব লাগিব</string>
   <string name="input_error_onset_date_future">দিয়া তাৰিখটো ভৱিষ্যতৰ তাৰিখ</string>
   <string name="network_error_code_invalid">সত্যাপনৰ ক’ডটো মিলা নাই। পুনৰ চেষ্টা কৰক।</string>

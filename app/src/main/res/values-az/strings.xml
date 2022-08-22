@@ -166,7 +166,7 @@
   <string name="ble_off_warning">Ehtimal COVID-19 yoluxması barədə bildiriş almaq üçün Bluetooth\'u aktiv edin.</string>
   <string name="location_ble_off_warning">Ehtimal COVID-19 yoluxması barədə bildiriş almaq üçün Bluetooth və cihazınızın məkan ayarını aktiv edin.</string>
   <string name="storage_low_warning">Ehtimal COVID-19 yoluxması barədə bildiriş almaq üçün telefonunuzda yer boşaldın.</string>
-  <string name="not_in_allowlist_warning">Yoluxma Bildirişləri artıq regionunuzda əlçatan deyil.</string>
+  <string name="not_in_allowlist_warning">Yoluxma Bildirişləri olduğunuz ölkədə daha yoxdur.</string>
   <string name="hw_not_supported_warning">Bu cihaz Yoluxma Bildirişlərini dəstəkləmir. Baxın: %1$s.</string>
   <string name="device_requirements_link_text">cihaz tələbləri</string>
   <string name="switch_app_for_exposure_notifications">Yoluxma Bildirişləri üçün tətbiq dəyişdirilsin?</string>
@@ -177,6 +177,9 @@
   <string name="onboarding_free_up_storage_title">Yaddaşda yer boşaldın</string>
   <string name="reactivate_exposure_notification_app_subject">COVID-19 yoluxma siqnalları alın</string>
   <string name="reactivate_exposure_notification_app_body">%1$s potensial COVID-19 təması barədə sizə bildiriş verə bilər</string>
+  <string name="notifications_are_disabled_warning_title">Bildirişlərə icazə verin</string>
+  <string name="notifications_are_disabled_warning_body">Ehtimal COVID-19 yoluxması barədə bildiriş alın.</string>
+  <string name="btn_allow_notifications">İcazə verin</string>
   <string name="input_error_onset_date_past">Tarix bugünkü tarixdən etibarən %1$s gün içində olmalıdır</string>
   <string name="input_error_onset_date_future">Tarix gələcəkdədir</string>
   <string name="network_error_code_invalid">Doğrulama kodu uyğun gəlmir. Yenə cəhd edin.</string>

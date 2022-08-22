@@ -177,6 +177,9 @@
   <string name="onboarding_free_up_storage_title">Frigør lagerplads</string>
   <string name="reactivate_exposure_notification_app_subject">Få notifikationer om COVID-19</string>
   <string name="reactivate_exposure_notification_app_body">%1$s kan underrette dig om potentiel COVID-19-eksponering</string>
+  <string name="notifications_are_disabled_warning_title">Tillad notifikationer</string>
+  <string name="notifications_are_disabled_warning_body">Bliv underrettet om mulig eksponering for COVID-19.</string>
+  <string name="btn_allow_notifications">Tillad</string>
   <string name="input_error_onset_date_past">Du skal angive en dato, der ligger inden for %1$s dage fra dags dato</string>
   <string name="input_error_onset_date_future">Du har angivet en fremtidig dato</string>
   <string name="network_error_code_invalid">Bekræftelseskoden er forkert. Prøv igen.</string>

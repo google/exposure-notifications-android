@@ -28,7 +28,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingVertical="@dimen/padding_small"
-    android:gravity="@integer/header_gravity"
+    android:gravity="center"
     android:text="@string/exposure_notifications_are_turned_off"
     android:textAppearance="?attr/textAppearanceHeadline5"/>
 
@@ -36,7 +36,7 @@
     android:id="@+id/edge_case_content"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="@integer/header_gravity"
+    android:gravity="center"
     android:text="@string/notify_turn_on_exposure_notifications_header"
     android:textAppearance="?attr/textAppearanceBody2"
     android:textColor="?attr/colorControlNormal"/>

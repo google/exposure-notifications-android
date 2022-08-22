@@ -28,7 +28,7 @@ import android.app.Application;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.support.test.espresso.core.internal.deps.guava.collect.ImmutableList;
+import com.google.common.collect.ImmutableList;
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.work.Configuration;

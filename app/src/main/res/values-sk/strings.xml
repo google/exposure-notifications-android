@@ -181,6 +181,9 @@
   <string name="onboarding_free_up_storage_title">Uvoľnite ukladací priestor</string>
   <string name="reactivate_exposure_notification_app_subject">dostávajte upozornenia na kontakt s ochorením COVID‑19</string>
   <string name="reactivate_exposure_notification_app_body">%1$s vás môže upozorniť na možný kontakt s ochorením COVID‑19</string>
+  <string name="notifications_are_disabled_warning_title">Povoľte upozornenia</string>
+  <string name="notifications_are_disabled_warning_body">Dostávajte upozornenia na možný kontakt s ochorením COVID‑19.</string>
+  <string name="btn_allow_notifications">Povoliť</string>
   <string name="input_error_onset_date_past">Dátum by mal byť v posledných %1$s dňoch od dnešného dňa</string>
   <string name="input_error_onset_date_future">Dátum je v budúcnosti</string>
   <string name="network_error_code_invalid">Overovací kód sa nezhoduje. Skúste to znova.</string>

@@ -177,6 +177,9 @@
   <string name="onboarding_free_up_storage_title">여유 공간 확보하기</string>
   <string name="reactivate_exposure_notification_app_subject">코로나19 노출 알림 받기</string>
   <string name="reactivate_exposure_notification_app_body">%1$s에서 코로나19에 노출되었을 가능성에 관한 알림을 제공합니다.</string>
+  <string name="notifications_are_disabled_warning_title">알림 허용</string>
+  <string name="notifications_are_disabled_warning_body">코로나19 노출 가능성 알림 받기</string>
+  <string name="btn_allow_notifications">허용</string>
   <string name="input_error_onset_date_past">날짜는 오늘을 기준으로 지난 %1$s일 이내여야 합니다.</string>
   <string name="input_error_onset_date_future">미래 날짜입니다.</string>
   <string name="network_error_code_invalid">인증 코드가 일치하지 않습니다. 다시 시도해 보세요.</string>

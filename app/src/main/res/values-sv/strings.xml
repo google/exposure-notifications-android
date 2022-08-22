@@ -177,6 +177,9 @@
   <string name="onboarding_free_up_storage_title">Frigör lagringsutrymme</string>
   <string name="reactivate_exposure_notification_app_subject">Få aviseringar om covid-19-exponering</string>
   <string name="reactivate_exposure_notification_app_body">%1$s kan meddela dig om en potentiell covid-19-exponering</string>
+  <string name="notifications_are_disabled_warning_title">Tillåt aviseringar</string>
+  <string name="notifications_are_disabled_warning_body">Bli meddelad om möjlig exponering för covid-19.</string>
+  <string name="btn_allow_notifications">Tillåt</string>
   <string name="input_error_onset_date_past">Datumet får vara högst %1$s dagar bakåt i tiden från i dag</string>
   <string name="input_error_onset_date_future">Datumet har inte varit än</string>
   <string name="network_error_code_invalid">Verifieringskoden stämmer inte. Försök igen.</string>

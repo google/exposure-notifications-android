@@ -177,6 +177,9 @@
   <string name="onboarding_free_up_storage_title">Egin biltegiratzeko tokia</string>
   <string name="reactivate_exposure_notification_app_subject">Jaso COVID-19arekiko esposizioari buruzko alertak</string>
   <string name="reactivate_exposure_notification_app_body">%1$s agintaritzak esposizio posibleei buruzko jakinarazpenak bidal diezazkizuke</string>
+  <string name="notifications_are_disabled_warning_title">Eman jakinarazpenak bidaltzeko baimena</string>
+  <string name="notifications_are_disabled_warning_body">Jaso COVID-19arekiko esposizio posibleei buruzko jakinarazpenak.</string>
+  <string name="btn_allow_notifications">Onartu</string>
   <string name="input_error_onset_date_past">Idatzi duzun datak azken %1$s egunetakoa izan behar du</string>
   <string name="input_error_onset_date_future">Etorkizuneko data da hori</string>
   <string name="network_error_code_invalid">Egiaztapen-kodea ez dator bat. Saiatu berriro.</string>

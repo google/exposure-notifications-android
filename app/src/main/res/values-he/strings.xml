@@ -181,6 +181,9 @@
   <string name="onboarding_free_up_storage_title">פינוי מקום אחסון</string>
   <string name="reactivate_exposure_notification_app_subject">התראות חשיפה לנגיף הקורונה</string>
   <string name="reactivate_exposure_notification_app_body">ניתן לקבל התראות על חשיפה אפשרית לנגיף הקורונה (COVID-19) מ%1$s</string>
+  <string name="notifications_are_disabled_warning_title">אישור ההתראות</string>
+  <string name="notifications_are_disabled_warning_body">קבלת התראות על חשיפה אפשרית לנגיף הקורונה (COVID-19).</string>
+  <string name="btn_allow_notifications">אישור</string>
   <string name="input_error_onset_date_past">התאריך צריך לחול ב-%1$s הימים האחרונים שקדמו לתאריך של היום</string>
   <string name="input_error_onset_date_future">התאריך חל בעתיד</string>
   <string name="network_error_code_invalid">קוד האימות לא תואם. יש לנסות שוב.</string>

@@ -181,6 +181,9 @@
   <string name="onboarding_free_up_storage_title">Освободите хранилище</string>
   <string name="reactivate_exposure_notification_app_subject">Включите сообщения о COVID-19</string>
   <string name="reactivate_exposure_notification_app_body">%1$s может сообщать вам о потенциальном риске инфицирования коронавирусом (COVID-19).</string>
+  <string name="notifications_are_disabled_warning_title">Разрешите уведомления</string>
+  <string name="notifications_are_disabled_warning_body">Узнавайте о возможных контактах с зараженными COVID-19.</string>
+  <string name="btn_allow_notifications">Разрешить</string>
   <string name="input_error_onset_date_past">Дата должна быть в пределах последних %1$s дн. от сегодняшней.</string>
   <string name="input_error_onset_date_future">Выберите дату, которая уже наступила.</string>
   <string name="network_error_code_invalid">Код подтверждения не совпадает. Повторите попытку.</string>

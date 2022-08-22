@@ -17,11 +17,9 @@
 
 package com.google.android.apps.exposurenotification.home;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.biometric.BiometricPrompt;
@@ -47,7 +45,6 @@ public class ExposureNotificationActivity extends BaseActivity {
 
   private static final String SAVED_INSTANCE_STATE_IS_BIOMETRIC_PROMPT_SHOWING_KEY
       = "is_biometric_prompt_showing";
-  private static final String EXTRA_POSSIBLE_EXPOSURE_SLICE_DISABLED = "slice_disabled";
   public static final String EXTRA_NOT_NOW_CONFIRMATION = "not_now_confirmation";
 
   private boolean biometricInProgress;

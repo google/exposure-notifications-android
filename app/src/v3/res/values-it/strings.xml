@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="onboarding_activity_title">Operazioni preliminari</string>
   <string name="share_history_activity_title">Visualizza cronologia delle condivisioni</string>
-  <string name="remove_region_link_title">Rimuovi l\'area geografica</string>
+  <string name="remove_region_link_title">Rimuovi la regione</string>
   <string name="delete_shared_diagnosis">Elimina il risultato al test condiviso</string>
   <string name="active_region_subtitle">Le Notifiche di esposizione sono attualmente attive per la tua area geografica (%1$s)</string>
   <string name="active_region_subtitle_en_off">Le Notifiche di esposizione sono attive per la tua area geografica (%1$s), ma sono disattivate sul telefono</string>
-  <string name="remove_region_title">Rimuovi l\'area geografica</string>
+  <string name="remove_region_title">Rimuovi la regione</string>
   <string name="remove_region_detail">Se rimuovi la tua area geografica verranno disattivate le Notifiche di esposizione. Puoi aggiungere di nuovo questa area geografica in qualsiasi momento.</string>
   <string name="btn_remove">Rimuovi</string>
   <string name="exposure_notifications_is_off">Il sistema Notifiche di esposizione è disattivato</string>

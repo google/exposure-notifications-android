@@ -25,7 +25,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.net.UrlQuerySanitizer;
+import android.os.Build.VERSION;
+import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
+import android.provider.Settings;
 import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 import com.google.android.apps.exposurenotification.common.BuildUtils.Type;
@@ -44,9 +47,15 @@ public final class IntentUtil {
   static final int VERIFICATION_CODE_MAX_CHARS = 128;
   @VisibleForTesting
   static final String SELF_REPORT_PATH = "report";
+  @VisibleForTesting
+  static final String PACKAGE_URI_SCHEME = "package:";
   private static final String VERIFICATION_CODE_REGEX =
       String.format(Locale.US, "^[a-zA-Z0-9]{1,%d}$", VERIFICATION_CODE_MAX_CHARS);
   private static final Pattern VERIFICATION_CODE_PATTERN = Pattern.compile(VERIFICATION_CODE_REGEX);
+  private static final String ACTION_APP_NOTIFICATION_SETTINGS =
+      "android.settings.APP_NOTIFICATION_SETTINGS";
+  private static final String EXTRA_APP_PACKAGE = "app_package";
+  private static final String EXTRA_APP_UID = "app_uid";
 
   // V2 & V3
   public static final String EXTRA_NOTIFICATION = "IntentUtil.EXTRA_NOTIFICATION";
@@ -129,6 +138,36 @@ public final class IntentUtil {
   public static Intent getNotificationDeleteIntentSmsVerification(Context context) {
     Intent intent = getNotificationDeleteIntent(context);
     intent.putExtra(EXTRA_SMS_VERIFICATION, true);
+    return intent;
+  }
+
+  public static Intent getNotificationSettingsIntent(Context context) {
+    Intent intent = new Intent();
+    if (VERSION.SDK_INT >= VERSION_CODES.O) {
+      intent.setAction(Settings.ACTION_APP_NOTIFICATION_SETTINGS);
+      intent.putExtra(Settings.EXTRA_APP_PACKAGE, context.getPackageName());
+    } else {
+      intent.setAction(ACTION_APP_NOTIFICATION_SETTINGS);
+      intent.putExtra(EXTRA_APP_PACKAGE, context.getPackageName());
+      intent.putExtra(EXTRA_APP_UID, context.getApplicationInfo().uid);
+    }
+    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    return intent;
+  }
+
+  public static Intent getAppDetailsSettingsIntent(Context context) {
+    Intent intent = new Intent();
+    intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+    intent.addCategory(Intent.CATEGORY_DEFAULT);
+    intent.setData(Uri.parse(String.format("package:%s", context.getPackageName())));
+    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    return intent;
+  }
+
+  public static Intent getUninstallPackageIntent(Context context) {
+    Intent intent = new Intent(Intent.ACTION_UNINSTALL_PACKAGE);
+    intent.addCategory(Intent.CATEGORY_DEFAULT);
+    intent.setData(Uri.parse(PACKAGE_URI_SCHEME + context.getPackageName()));
     return intent;
   }
 

@@ -177,6 +177,9 @@
   <string name="onboarding_free_up_storage_title">ਸਟੋਰੇਜ ਜਗ੍ਹਾ ਖਾਲੀ ਕਰੋ</string>
   <string name="reactivate_exposure_notification_app_subject">COVID-19 ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਦੀਆਂ ਸੁਚੇਤਨਾਵਾਂ ਪ੍ਰਾਪਤ ਕਰੋ</string>
   <string name="reactivate_exposure_notification_app_body">%1$s ਵੱਲੋਂ ਤੁਹਾਨੂੰ COVID-19 ਦੇ ਸੰਭਾਵੀ ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਬਾਰੇ ਸੂਚਿਤ ਕੀਤਾ ਜਾ ਸਕਦਾ ਹੈ</string>
+  <string name="notifications_are_disabled_warning_title">ਸੂਚਨਾਵਾਂ ਦੀ ਆਗਿਆ ਦਿਓ</string>
+  <string name="notifications_are_disabled_warning_body">COVID-19 ਪ੍ਰਭਾਵਿਤ ਨੇੜੇ ਹੋਣ ਸੰਬੰਧੀ ਸੰਭਾਵਨਾ ਬਾਰੇ ਸੂਚਨਾਵਾਂ ਪ੍ਰਾਪਤ ਕਰੋ।</string>
+  <string name="btn_allow_notifications">ਆਗਿਆ ਦਿਓ</string>
   <string name="input_error_onset_date_past">ਤਾਰੀਖ ਅੱਜ ਦੀ ਤਾਰੀਖ ਤੋਂ ਪਿਛਲੇ %1$s ਦਿਨਾਂ ਦੇ ਅੰਦਰ ਦੀ ਹੋਣੀ ਚਾਹੀਦੀ ਹੈ</string>
   <string name="input_error_onset_date_future">ਤਾਰੀਖ ਭਵਿੱਖੀ ਹੈ</string>
   <string name="network_error_code_invalid">ਪੁਸ਼ਟੀਕਰਨ ਕੋਡ ਮੇਲ ਨਹੀਂ ਖਾਂਦਾ। ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>

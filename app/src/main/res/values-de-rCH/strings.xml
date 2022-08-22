@@ -177,6 +177,9 @@
   <string name="onboarding_free_up_storage_title">Speicherplatz freigeben</string>
   <string name="reactivate_exposure_notification_app_subject">COVID-19-Warnungen erhalten</string>
   <string name="reactivate_exposure_notification_app_body">%1$s kann dich informieren, wenn du Kontakt zu einer Person hattest, die möglicherweise mit COVID-19 infiziert ist</string>
+  <string name="notifications_are_disabled_warning_title">Benachrichtigungen zulassen</string>
+  <string name="notifications_are_disabled_warning_body">Erfahren, ob du eine mögliche Begegnung mit einer infizierten Person hattest.</string>
+  <string name="btn_allow_notifications">Zulassen</string>
   <string name="input_error_onset_date_past">Das Datum sollte nicht mehr als %1$s Tage zurückliegen</string>
   <string name="input_error_onset_date_future">Das Datum liegt in der Zukunft</string>
   <string name="network_error_code_invalid">Der Bestätigungscode stimmt nicht überein. Versuch es noch einmal.</string>

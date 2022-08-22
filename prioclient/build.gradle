@@ -28,7 +28,7 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
 
         ndk {
-            debugSymbolLevel = 'FULL'
+            debugSymbolLevel = 'full'
         }
 
         externalNativeBuild {
@@ -37,12 +37,19 @@ android {
             }
         }
     }
+    packagingOptions {
+        jniLibs {
+            keepDebugSymbols += '**/*.so'
+        }
+    }
 
     externalNativeBuild {
         cmake {
             path "../third_party/CMakeLists.txt"
         }
     }
+
+    buildToolsVersion rootProject.ext.buildToolsVersion
 }
 
 protobuf {

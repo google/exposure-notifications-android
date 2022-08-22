@@ -179,6 +179,9 @@
   <string name="onboarding_free_up_storage_title">Atbrīvojiet vietu krātuvē</string>
   <string name="reactivate_exposure_notification_app_subject">Paz. par saskari ar Covid-19</string>
   <string name="reactivate_exposure_notification_app_body">%1$s var informēt jūs par iespējamu saskari ar Covid-19.</string>
+  <string name="notifications_are_disabled_warning_title">Atļaujiet paziņojumus</string>
+  <string name="notifications_are_disabled_warning_body">Saņemiet paziņojumus par iespējamu saskari ar Covid-19.</string>
+  <string name="btn_allow_notifications">Atļaut</string>
   <string name="input_error_onset_date_past">Datumam jābūt ne vairāk kā %1$s dienas pirms šodienas datuma</string>
   <string name="input_error_onset_date_future">Datums ir nākotnē</string>
   <string name="network_error_code_invalid">Verifikācijas kods neatbilst. Mēģiniet vēlreiz.</string>

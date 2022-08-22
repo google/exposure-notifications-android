@@ -58,6 +58,16 @@ public class FakeShadowResources extends ShadowResources {
   }
 
   @Implementation
+  public Integer getInteger(int id) throws Resources.NotFoundException {
+    final Object value = resources.get(id);
+    if (value == null) {
+      // Call the real object since no value was set for this shadow.
+      return directlyOn(realResources, Resources.class).getInteger(id);
+    }
+    return (Integer) value;
+  }
+
+  @Implementation
   public boolean getBoolean(int id) throws Resources.NotFoundException {
     final Object value = resources.get(id);
     if (value == null) {

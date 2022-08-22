@@ -93,7 +93,7 @@
   <string name="share_review_travel_confirmed">Nos últimos 14 dias</string>
   <string name="share_review_travel_no_travel">Sem viagens nos últimos 14 dias</string>
   <string name="share_review_travel_no_answer">Não respondido</string>
-  <string name="share_confirm_title">Agradecemos por compartilhar o resultado do seu teste de COVID-19</string>
+  <string name="share_confirm_title">Ficamos felizes por você compartilhar o resultado do seu teste de COVID-19</string>
   <string name="not_shared_confirm_title">O resultado do seu teste não foi compartilhado</string>
   <string name="not_shared_confirm_detail">O resultado do seu teste de COVID-19 não foi compartilhado. Tente novamente.</string>
   <string name="status_shared_detail_title">Status do teste de COVID-19 compartilhado</string>
@@ -177,6 +177,9 @@
   <string name="onboarding_free_up_storage_title">Liberar espaço de armazenamento</string>
   <string name="reactivate_exposure_notification_app_subject">Receba alertas de exposição à COVID-19</string>
   <string name="reactivate_exposure_notification_app_body">A autoridade %1$s pode enviar a você notificações sobre uma possível exposição à COVID-19</string>
+  <string name="notifications_are_disabled_warning_title">Permitir notificações</string>
+  <string name="notifications_are_disabled_warning_body">Receba notificações de possíveis exposições à COVID-19.</string>
+  <string name="btn_allow_notifications">Permitir</string>
   <string name="input_error_onset_date_past">A data precisa estar entre os últimos %1$s dias</string>
   <string name="input_error_onset_date_future">Data no futuro</string>
   <string name="network_error_code_invalid">Código de verificação incorreto. Tente novamente.</string>
@@ -197,7 +200,7 @@
   <string name="diagnosis_subtitle_template">%1$s em %2$s</string>
   <string name="empty_share_history_body">Sem histórico de compartilhamento</string>
   <string name="share_diagnosis_share_test_result_title">Compartilhe o resultado do seu teste com o app %1$s</string>
-  <string name="share_diagnosis_share_test_result_subtitle">Agradecemos por ajudar no enfrentamento à COVID-19.</string>
+  <string name="share_diagnosis_share_test_result_subtitle">Legal! Você está ajudando no enfrentamento à COVID-19.</string>
   <string name="share_diagnosis_share_test_result_body">Ao compartilhar seu resultado, você também pode informar a data de início dos sintomas. Esse dado pode ajudar a evitar a propagação da COVID-19 e salvar vidas.</string>
   <string name="sms_intercept_notice_title">Novidades</string>
   <string name="sms_intercept_notice_content">Se você receber um SMS com o resultado do teste, é possível que também veja uma notificação para compartilhar o diagnóstico nas Notificações de Exposição. Você pode desativar essa opção a qualquer momento nas configurações.</string>

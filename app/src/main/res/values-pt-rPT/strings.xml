@@ -97,7 +97,7 @@
   <string name="not_shared_confirm_title">O resultado do seu teste não foi partilhado</string>
   <string name="not_shared_confirm_detail">O resultado do seu teste à COVID-19 não foi partilhado. Tente novamente.</string>
   <string name="status_shared_detail_title">Resultado do teste à COVID-19 partilhado</string>
-  <string name="delete_test_result_title">Pretende eliminar o resultado do teste?</string>
+  <string name="delete_test_result_title">Eliminar o resultado do teste?</string>
   <string name="delete_test_result_confirmed">Resultado do teste eliminado</string>
   <string name="share_error_no_internet">Não é possível partilhar os resultados do teste offline. Verifique a ligação à Internet e tente novamente.</string>
   <string name="share_vaccination_title">Recebeu a vacina contra a COVID-19?</string>
@@ -153,7 +153,7 @@
   <string name="exposure_about_detail">Ative as Notificações de Exposição para receber notificações da %1$s se tiver estado perto de alguém que tenha comunicado ter COVID-19.
     \n\nO seu telemóvel utiliza o Bluetooth para recolher e partilhar em segurança IDs aleatórios com outros telemóveis próximos.
     \n\nA data, a duração e a intensidade do sinal associadas a uma exposição serão partilhadas com a app.</string>
-  <string name="exposure_turn_off_title">Pretende desativar as Notificações de exposição?</string>
+  <string name="exposure_turn_off_title">Desativar as Notificações de exposição?</string>
   <string name="exposure_turn_off_detail">Não vai receber notificações se tiver tido exposição à COVID-19.</string>
   <string name="app_analytics_title">Ajudar a melhorar esta app</string>
   <string name="app_analytics_toggle">Partilhar dados de utilização/desempenho</string>
@@ -177,6 +177,9 @@
   <string name="onboarding_free_up_storage_title">Liberte espaço de armazenamento</string>
   <string name="reactivate_exposure_notification_app_subject">Alertas exposição à COVID-19</string>
   <string name="reactivate_exposure_notification_app_body">%1$s pode enviar-lhe uma notificação de potencial exposição à COVID-19.</string>
+  <string name="notifications_are_disabled_warning_title">Permita as notificações</string>
+  <string name="notifications_are_disabled_warning_body">Receba notificações acerca da possível exposição à COVID-19.</string>
+  <string name="btn_allow_notifications">Permitir</string>
   <string name="input_error_onset_date_past">A data tem de estar entre os últimos %1$s dias.</string>
   <string name="input_error_onset_date_future">A data é no futuro.</string>
   <string name="network_error_code_invalid">O código de validação não corresponde. Tente novamente.</string>

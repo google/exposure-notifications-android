@@ -22,7 +22,6 @@ ext.build_label = project.hasProperty('BUILD_LABEL') ? project.getProperty('BUIL
 ext.logsource_id = project.hasProperty('LOGSOURCE_ID') ? project.getProperty('LOGSOURCE_ID') : ""
 ext.release_logging = project.hasProperty('RELEASE_LOGGING') && project.getProperty('RELEASE_LOGGING') == "true"
 
-apply from: 'jacoco.gradle'
 apply from: 'enexpress.gradle'
 apply from: 'robolectric_download.gradle'
 apply plugin: 'com.google.protobuf'
@@ -143,7 +142,7 @@ android {
     lintOptions {
         abortOnError false
     }
-    buildToolsVersion '30.0.1'
+    buildToolsVersion rootProject.ext.buildToolsVersion
 }
 
 protobuf {
@@ -159,10 +158,6 @@ protobuf {
             }
         }
     }
-}
-
-hilt {
-    enableTransformForLocalTests = true
 }
 
 dependencies {
@@ -192,7 +187,9 @@ dependencies {
     implementation 'androidx.room:room-guava:2.2.5'
     implementation 'androidx.room:room-runtime:2.2.5'
     implementation 'androidx.slice:slice-builders:1.0.0'
-    implementation 'androidx.work:work-runtime:2.7.0-rc01'
+    implementation ("androidx.work:work-runtime:2.7.0-rc01") {
+        transitive = true
+    }
     implementation 'com.android.volley:volley:1.1.1'
     implementation 'com.google.android.gms:play-services-base:17.4.0'
     implementation 'com.google.android.gms:play-services-basement:17.4.0'
@@ -208,7 +205,7 @@ dependencies {
     implementation 'com.jakewharton.threetenabp:threetenabp:1.2.4'
     implementation 'commons-io:commons-io:2.6'
     implementation 'org.apache.httpcomponents:httpclient:4.5.12'
-    implementation "com.mikepenz:aboutlibraries:8.5.0"
+    implementation "com.mikepenz:aboutlibraries:8.9.4"
     implementation 'com.googlecode.libphonenumber:libphonenumber:8.12.33'
 
     // Debug-only libraries
@@ -226,14 +223,14 @@ dependencies {
     testImplementation 'androidx.test.ext:junit:1.1.4-alpha01'
     testImplementation 'androidx.test:core:1.4.1-alpha01'
     testImplementation "androidx.work:work-testing:2.7.0-rc01"
-    testImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    testImplementation 'com.android.support.test:runner:1.0.2'
+    testImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    testImplementation 'androidx.test:runner:1.4.0'
     testImplementation 'com.google.guava:guava-testlib:29.0-jre'
     testImplementation 'com.google.dagger:hilt-android-testing:2.38.1'
     testImplementation 'com.google.truth:truth:1.0.1'
     testImplementation 'commons-io:commons-io:2.6'
     testImplementation 'junit:junit:4.13.2'
-    testImplementation 'org.robolectric:robolectric:4.6.1'
+    testImplementation 'org.robolectric:robolectric:4.8.1'
     testImplementation 'androidx.arch.core:core-testing:2.1.0'
     testImplementation ('org.threeten:threetenbp:1.2.4'){
         exclude group:'com.jakewharton.threetenabp', module:'threetenabp'
@@ -243,8 +240,8 @@ dependencies {
     // Instrumented test dependencies
     androidTestImplementation 'androidx.test.ext:junit:1.1.4-alpha01'
     androidTestImplementation 'androidx.test:core:1.4.1-alpha01'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    androidTestImplementation 'androidx.test:runner:1.4.0'
     androidTestImplementation 'com.google.dagger:hilt-android-testing:2.38.1'
     androidTestAnnotationProcessor 'com.google.dagger:hilt-android-compiler:2.38.1'
 }

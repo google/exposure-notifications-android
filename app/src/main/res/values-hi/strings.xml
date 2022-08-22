@@ -177,6 +177,9 @@
   <string name="onboarding_free_up_storage_title">स्टोरेज के लिए जगह खाली करें</string>
   <string name="reactivate_exposure_notification_app_subject">COVID-19 से संक्रमित व्यक्ति के संपर्क में आने पर सूचनाएं पाएं</string>
   <string name="reactivate_exposure_notification_app_body">%1$s आपको COVID-19 से संक्रमित व्यक्ति से संपर्क के खतरे के बारे में सूचना दे सकता है</string>
+  <string name="notifications_are_disabled_warning_title">सूचनाएं भेजने की अनुमति दें</string>
+  <string name="notifications_are_disabled_warning_body">COVID-19 से संक्रमित किसी व्यक्ति के संपर्क में आने पर, इसकी सूचना पाएं.</string>
+  <string name="btn_allow_notifications">अनुमति दें</string>
   <string name="input_error_onset_date_past">लक्षण शुरू होने की तारीख, आज से पिछले %1$s दिनों के अंदर होनी चाहिए</string>
   <string name="input_error_onset_date_future">लक्षण शुरू होने की तारीख, आज के बाद की नहीं होनी चाहिए</string>
   <string name="network_error_code_invalid">पुष्टि करने के लिए डाला गया कोड गलत है. फिर से कोशिश करें.</string>

@@ -59,9 +59,6 @@
   <dimen name="home_screen_en_on_image_margin_top">48dp</dimen>
   <dimen name="home_screen_pulse_size">24dp</dimen>
   <dimen name="no_exposure_padding_vertical">16dp</dimen>
-  <dimen name="home_screen_header_margin_top">0dp</dimen>
-  <dimen name="home_screen_en_off_header_horizontal_padding">@dimen/padding_large</dimen>
-  <dimen name="home_screen_en_off_header_image_margin_start">0dp</dimen>
 
   <dimen name="dialog_corner_radius">8dp</dimen>
 

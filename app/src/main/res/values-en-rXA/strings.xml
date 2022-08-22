@@ -177,6 +177,9 @@
   <string name="onboarding_free_up_storage_title">[Fŕéé ûþ šţöŕåĝé šþåçé one two three four five]</string>
   <string name="reactivate_exposure_notification_app_subject">[Ĝéţ ÇÖVÎÐ-19 éxþöšûŕé åļéŕţš one two three four five six]</string>
   <string name="reactivate_exposure_notification_app_body">[ᐅ%1$sᐊ çåñ ñöţîƒý ýöû öƒ þöţéñţîåļ éxþöšûŕé ţö ÇÖVÎÐ-19 one two three four five six seven eight nine ten eleven]</string>
+  <string name="notifications_are_disabled_warning_title">[Åļļöŵ ñöţîƒîçåţîöñš one two three]</string>
+  <string name="notifications_are_disabled_warning_body">[Ĝéţ ñöţîƒîéð öƒ þöššîбļé ÇÖVÎÐ-19 éxþöšûŕé. one two three four five six seven eight nine]</string>
+  <string name="btn_allow_notifications">[Åļļöŵ one]</string>
   <string name="input_error_onset_date_past">[Ðåţé šĥöûļð öççûŕ ŵîţĥîñ ļåšţ ᐅ%1$sᐊ ðåýš öƒ ţöðåý\’š ðåţé one two three four five six seven eight nine ten eleven]</string>
   <string name="input_error_onset_date_future">[Ðåţé öççûŕš îñ ţĥé ƒûţûŕé one two three four five six]</string>
   <string name="network_error_code_invalid">[Ţĥé véŕîƒîçåţîöñ çöðé ðöéšñ’ţ måţçĥ. Ţŕý åĝåîñ. one two three four five six seven eight nine ten]</string>

@@ -3,7 +3,7 @@
   <string name="btn_got_it">متوجه شدم</string>
   <string name="btn_turn_on">روشن کردن</string>
   <string name="btn_turn_off">خاموش کردن</string>
-  <string name="btn_not_now">الآن نه</string>
+  <string name="btn_not_now">حالا نه</string>
   <string name="btn_cancel">لغو</string>
   <string name="btn_delete_status">حذف وضعیت</string>
   <string name="btn_delete">حذف</string>
@@ -26,8 +26,8 @@
   <string name="updated_bluetooth_location_state_notification">برای ادامه بررسی جهت یافتن تماس پرخطر احتمالی، بلوتوث و تنظیم مکان دستگاه را روشن کنید</string>
   <string name="updated_bluetooth_state_notification">برای ادامه بررسی جهت یافتن تماس پرخطر احتمالی، بلوتوث را روشن کنید.</string>
   <string name="updated_location_state_notification">برای ادامه بررسی جهت یافتن تماس پرخطر احتمالی، تنظیم مکان دستگاه را روشن کنید</string>
-  <string name="onboarding_opt_in_title">اجازه‌های لازم برای فعال کردن «اعلان تماس‌های پرخطر»</string>
-  <string name="onboarding_finish_title">ادامه اجازه‌های لازم برای فعال کردن «اعلان تماس‌های پرخطر»</string>
+  <string name="onboarding_opt_in_title">داشتن اجازه برای فعال کردن «اعلان تماس‌های پرخطر»</string>
+  <string name="onboarding_finish_title">ادامه داشتن اجازه برای فعال کردن «اعلان تماس‌های پرخطر»</string>
   <string name="onboarding_exposure_notifications_title">روشن کردن اعلان تماس‌های پرخطر</string>
   <string name="onboarding_exposure_notifications_description">اگر نزدیک فردی قرار گرفته باشید که آزمایش کووید-۱۹ او مثبت گزارش شده است، اعلان دریافت می‌کنید.
     \n\nتلفنتان برای جمع‌آوری و هم‌رسانی ایمن شناسه‌های تصادفی با دیگر تلفن‌های اطراف از بلوتوث استفاده می‌کند.
@@ -101,7 +101,7 @@
   <string name="delete_test_result_confirmed">نتیجه آزمایش حذف شد</string>
   <string name="share_error_no_internet">نتایج آزمایش درحالت آفلاین هم‌رسانی نمی‌شود. اتصال اینترنت را بررسی و دوباره امتحان کنید.</string>
   <string name="share_vaccination_title">آیا واکسن کووید-۱۹ دریافت کرده‌اید؟</string>
-  <string name="share_vaccination_description">حتی می‌توانید بیشتر کمک کنید. بدون نیاز به هم‌رسانی کردن هویتتان، می‌توانید با هم‌رسانی اینکه واکسن دریافت کرده‌اید یا نه،‌ به %1$s کمک کنید درک بهتری از وضعیت شیوع کووید-۱۹ داشته باشد. برای محافظت از حریم‌خصوصی شما، %1$s این داده‌ها را به‌صورت انبوهشی دریافت می‌کند.</string>
+  <string name="share_vaccination_description">حتی می‌توانید بیشتر کمک کنید. بدون نیاز به هم‌رسانی کردن هویتتان، می‌توانید با هم‌رسانی اینکه واکسن دریافت کرده‌اید یا نه،‌ به %1$s کمک کنید درک بهتری از وضعیت شیوع کووید-۱۹ داشته باشد. برای محافظت از حریم خصوصی شما، %1$s این داده‌ها را به‌صورت انبوهشی دریافت می‌کند.</string>
   <string name="share_vaccination_learn_more">بیشتر بدانید</string>
   <string name="share_vaccination_vaccinated">بله، واکسینه شده‌ام</string>
   <string name="share_vaccination_not_vaccinated">نه</string>
@@ -177,6 +177,9 @@
   <string name="onboarding_free_up_storage_title">آزاد کردن فضای ذخیره‌سازی</string>
   <string name="reactivate_exposure_notification_app_subject">دریافت هشدار تماس پرخطر کووید-۱۹</string>
   <string name="reactivate_exposure_notification_app_body">%1$s می‌تواند شما را از تماس‌های پرخطر احتمالی کووید-۱۹ مطلع کند</string>
+  <string name="notifications_are_disabled_warning_title">مجاز کردن اعلان‌ها</string>
+  <string name="notifications_are_disabled_warning_body">از تماس‌های پرخطر احتمالی با کووید-۱۹ مطلع شوید.</string>
+  <string name="btn_allow_notifications">اجازه دادن</string>
   <string name="input_error_onset_date_past">تاریخ باید بین تاریخ امروز و %1$s روز گذشته باشد</string>
   <string name="input_error_onset_date_future">تاریخ در آینده است</string>
   <string name="network_error_code_invalid">کد راستی‌آزمایی مطابقت ندارد. دوباره امتحان کنید.</string>

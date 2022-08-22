@@ -177,6 +177,9 @@
   <string name="onboarding_free_up_storage_title">Хадгалах сангийн зай гаргана уу</string>
   <string name="reactivate_exposure_notification_app_subject">Ковидын өртөлтийн сэрэмжлүүлэг ав</string>
   <string name="reactivate_exposure_notification_app_body">%1$s нь танд Коронавируст халдвар (COVID-19)-н боломжит өртөлтийн талаар мэдэгдэх боломжтой</string>
+  <string name="notifications_are_disabled_warning_title">Мэдэгдлийг зөвшөөрөх</string>
+  <string name="notifications_are_disabled_warning_body">Коронавируст халдвар (COVID-19)-т өртсөн байж болзошгүй талаар мэдэгдэл аваарай.</string>
+  <string name="btn_allow_notifications">Зөвшөөрөх</string>
   <string name="input_error_onset_date_past">Огноо өнөөдрийн огнооноос сүүлийн %1$s өдөрт байх хэрэгтэй</string>
   <string name="input_error_onset_date_future">Огноо ирээдүйд байна</string>
   <string name="network_error_code_invalid">Баталгаажуулах код таарахгүй байна. Дахин оролдоно уу.</string>

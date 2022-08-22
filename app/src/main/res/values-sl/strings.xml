@@ -181,6 +181,9 @@
   <string name="onboarding_free_up_storage_title">Sprostite prostor v shrambi</string>
   <string name="reactivate_exposure_notification_app_subject">Prejemajte obvestila o izpostavljenosti bolezni COVID-19</string>
   <string name="reactivate_exposure_notification_app_body">Organ za javno zdravje %1$s vas lahko obvešča o morebitni izpostavljenosti bolezni COVID-19</string>
+  <string name="notifications_are_disabled_warning_title">Dovolite obvestila</string>
+  <string name="notifications_are_disabled_warning_body">Prejemajte obvestila o morebitni izpostavljenosti bolezni COVID-19.</string>
+  <string name="btn_allow_notifications">Dovoli</string>
   <string name="input_error_onset_date_past">Datum mora biti znotraj zadnjih toliko dni od današnjega datuma: %1$s</string>
   <string name="input_error_onset_date_future">Datum je v prihodnosti</string>
   <string name="network_error_code_invalid">Potrditvena koda se ne ujema. Poskusite znova.</string>

@@ -177,6 +177,9 @@
   <string name="onboarding_free_up_storage_title">Futa ili upate nafasi ya kuhifadhi</string>
   <string name="reactivate_exposure_notification_app_subject">Pata arifa kuhusu kukaribia aliye na COVID-19</string>
   <string name="reactivate_exposure_notification_app_body">%1$s inaweza kukufahamisha iwapo umemkaribia aliyeambukizwa COVID-19</string>
+  <string name="notifications_are_disabled_warning_title">Ruhusu arifa</string>
+  <string name="notifications_are_disabled_warning_body">Pata arifa unapomkaribia mtu aliyeambukizwa COVID-19</string>
+  <string name="btn_allow_notifications">Ruhusu</string>
   <string name="input_error_onset_date_past">Tarehe inafaa kutokea ndani ya siku %1$s za mwisho kabla ya tarehe ya leo</string>
   <string name="input_error_onset_date_future">Tarehe hutokea katika siku zijazo</string>
   <string name="network_error_code_invalid">Nambari hii ya kuthibitisha hailingani. Jaribu tena.</string>

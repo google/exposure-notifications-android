@@ -177,6 +177,9 @@
   <string name="onboarding_free_up_storage_title">Освободете място в хранилището</string>
   <string name="reactivate_exposure_notification_app_subject">Сигнали, свързани с COVID-19</string>
   <string name="reactivate_exposure_notification_app_body">%1$s може да ви известява за потенциално излагане на опасност от заразяване с COVID-19</string>
+  <string name="notifications_are_disabled_warning_title">Разрешаване на известията</string>
+  <string name="notifications_are_disabled_warning_body">Получавайте известия за възможно излагане на опасност от заразяване с COVID-19.</string>
+  <string name="btn_allow_notifications">Разрешаване</string>
   <string name="input_error_onset_date_past">Датата трябва да е в рамките на последните %1$s дни, считано от днес</string>
   <string name="input_error_onset_date_future">Датата е в бъдещето</string>
   <string name="network_error_code_invalid">Кодът за потвърждение не съответства. Опитайте отново.</string>

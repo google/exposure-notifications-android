@@ -177,6 +177,9 @@
   <string name="onboarding_free_up_storage_title">Տարածք ազատեք</string>
   <string name="reactivate_exposure_notification_app_subject">Միացրեք COVID-19-ի ծանուցումները</string>
   <string name="reactivate_exposure_notification_app_body">«%1$s» հաստատությունը կարող է ծանուցել ձեզ COVID-19-ով վարակման վտանգի մասին</string>
+  <string name="notifications_are_disabled_warning_title">Թույլատրեք ծանուցումները</string>
+  <string name="notifications_are_disabled_warning_body">Ստացեք ծանուցումներ COVID-19-ի վարակակիրների հետ հնարավոր շփումների մասին։</string>
+  <string name="btn_allow_notifications">Թույլատրել</string>
   <string name="input_error_onset_date_past">Ամսաթիվը պետք է լինի վերջին %1$s օրվա միջակայքում՝ այսօրվա ամսաթվից հաշված։</string>
   <string name="input_error_onset_date_future">Ամսաթիվը ապագայում է</string>
   <string name="network_error_code_invalid">Հաստատման կոդը չի համընկնում։ Նորից փորձեք։</string>

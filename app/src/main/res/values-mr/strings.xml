@@ -177,6 +177,9 @@
   <string name="onboarding_free_up_storage_title">स्टोरेजची जागा मोकळी करा</string>
   <string name="reactivate_exposure_notification_app_subject">COVID-19 लागणीबद्दल सूचना मिळवा</string>
   <string name="reactivate_exposure_notification_app_body">%1$s तुम्हाला COVID-19 च्या संभाव्य लागणीबद्दल सूचित करू शकते</string>
+  <string name="notifications_are_disabled_warning_title">सूचनांना अनुमती द्या</string>
+  <string name="notifications_are_disabled_warning_body">COVID-19 च्या संभाव्य लागणीबद्दल सूचना मिळवा.</string>
+  <string name="btn_allow_notifications">अनुमती द्या</string>
   <string name="input_error_onset_date_past">आजच्या तारखेपासून मागील %1$s दिवसांच्या आतील तारीख असणे आवश्यक आहे</string>
   <string name="input_error_onset_date_future">तारीख भविष्यातील आहे</string>
   <string name="network_error_code_invalid">पडताळणी कोड जुळत नाही. पुन्हा प्रयत्न करा.</string>

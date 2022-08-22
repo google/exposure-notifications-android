@@ -177,6 +177,9 @@
   <string name="onboarding_free_up_storage_title">Magbakante ng storage space</string>
   <string name="reactivate_exposure_notification_app_subject">Alerto sa exposure sa COVID-19</string>
   <string name="reactivate_exposure_notification_app_body">Maaabisuhan ka ng %1$s kaugnay ng potensyal na exposure sa COVID-19</string>
+  <string name="notifications_are_disabled_warning_title">Payagan ang mga notification</string>
+  <string name="notifications_are_disabled_warning_body">Maabisuhan kaugnay ng posibleng exposure sa COVID-19.</string>
+  <string name="btn_allow_notifications">Payagan</string>
   <string name="input_error_onset_date_past">Ang petsa ay dapat nasa loob ng %1$s (na) araw mula sa petsa ngayon</string>
   <string name="input_error_onset_date_future">Nasa hinaharap ang petsa</string>
   <string name="network_error_code_invalid">Hindi tumutugma ang code sa pag-verify. Subukan ulit.</string>

@@ -177,6 +177,9 @@
   <string name="onboarding_free_up_storage_title">Liro hapësirë ruajtëse</string>
   <string name="reactivate_exposure_notification_app_subject">Merr sinjalizime për ekspozimin ndaj COVID-19</string>
   <string name="reactivate_exposure_notification_app_body">%1$s mund të të njoftojë për ekspozim të mundshëm ndaj COVID-19</string>
+  <string name="notifications_are_disabled_warning_title">Lejo njoftimet</string>
+  <string name="notifications_are_disabled_warning_body">Merr njoftime për ekspozimin e mundshëm ndaj COVID-19.</string>
+  <string name="btn_allow_notifications">Lejo</string>
   <string name="input_error_onset_date_past">Data duhet të jetë brenda %1$s ditëve të fundit nga data e sotme</string>
   <string name="input_error_onset_date_future">Data është në të ardhmen</string>
   <string name="network_error_code_invalid">Kodi i verifikimit nuk përputhet. Provo përsëri.</string>

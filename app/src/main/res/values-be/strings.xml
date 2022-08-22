@@ -181,6 +181,9 @@
   <string name="onboarding_free_up_storage_title">Вызваліце месца ў сховішчы</string>
   <string name="reactivate_exposure_notification_app_subject">Абвесткі пра заражэнне COVID</string>
   <string name="reactivate_exposure_notification_app_body">%1$s можа апавяшчаць вас пра рызыку заражэння COVID-19</string>
+  <string name="notifications_are_disabled_warning_title">Дазволіць апавяшчэнні</string>
+  <string name="notifications_are_disabled_warning_body">Атрымлівайце апавяшчэнні пра рызыку заражэння COVID-19.</string>
+  <string name="btn_allow_notifications">Дазволіць</string>
   <string name="input_error_onset_date_past">Выберыце дату на працягу апошніх %1$s сут з сённяшняга дня</string>
   <string name="input_error_onset_date_future">Дата выбрана ў будучыні</string>
   <string name="network_error_code_invalid">Код спраўджання не супадае. Паўтарыце спробу.</string>

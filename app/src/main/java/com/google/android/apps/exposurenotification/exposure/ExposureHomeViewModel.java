@@ -18,7 +18,6 @@
 package com.google.android.apps.exposurenotification.exposure;
 
 import android.content.Context;
-import androidx.annotation.AnyThread;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.work.WorkManager;

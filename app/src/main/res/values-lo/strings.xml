@@ -177,6 +177,9 @@
   <string name="onboarding_free_up_storage_title">ສ້າງພື້ນທີ່ຈັດເກັບຂໍ້ມູນເພີ່ມເຕີມ</string>
   <string name="reactivate_exposure_notification_app_subject">ຮັບການແຈ້ງເຕືອນຄວາມສ່ຽງຕິດເຊື້ອ COVID-19</string>
   <string name="reactivate_exposure_notification_app_body">%1$s ສາມາດແຈ້ງເຕືອນທ່ານໃນກໍລະນີມີຄວາມສ່ຽງຕິດເຊື້ອ COVID-19 ໄດ້</string>
+  <string name="notifications_are_disabled_warning_title">ອະນຸຍາດການແຈ້ງເຕືອນ</string>
+  <string name="notifications_are_disabled_warning_body">ຮັບການແຈ້ງເຕືອນຄວາມສ່ຽງຕິດເຊື້ອ COVID-19 ທີ່ເປັນໄປໄດ້.</string>
+  <string name="btn_allow_notifications">ອະນຸຍາດ</string>
   <string name="input_error_onset_date_past">ວັນທີຄວນເກີດຂຶ້ນພາຍໃນ %1$s ມື້ຫຼ້າສຸດຂອງວັນທີມື້ນີ້</string>
   <string name="input_error_onset_date_future">ວັນທີເກີດຂຶ້ນໃນອະນາຄົດ</string>
   <string name="network_error_code_invalid">ລະຫັດການຢັ້ງຢືນບໍ່ກົງກັນ ກະລຸນາລອງໃໝ່.</string>

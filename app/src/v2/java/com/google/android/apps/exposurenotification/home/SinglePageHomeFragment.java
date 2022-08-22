@@ -30,6 +30,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts.RequestPermission;
 import androidx.annotation.NonNull;
 import androidx.biometric.BiometricPrompt;
 import androidx.fragment.app.Fragment;
@@ -42,8 +44,8 @@ import com.google.android.apps.exposurenotification.common.AuthenticationUtils;
 import com.google.android.apps.exposurenotification.common.BiometricUtil;
 import com.google.android.apps.exposurenotification.common.BiometricUtil.BiometricAuthenticationCallback;
 import com.google.android.apps.exposurenotification.common.KeyboardHelper;
+import com.google.android.apps.exposurenotification.common.QuadrupleLiveData;
 import com.google.android.apps.exposurenotification.common.StringUtils;
-import com.google.android.apps.exposurenotification.common.TripleLiveData;
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.databinding.FragmentHomeSinglePageBinding;
 import com.google.android.apps.exposurenotification.edgecases.SingleHomePageEdgeCaseFragment;
@@ -61,6 +63,7 @@ import com.google.android.apps.exposurenotification.settings.SettingsFragment;
 import com.google.android.apps.exposurenotification.storage.DiagnosisEntity;
 import com.google.android.apps.exposurenotification.storage.ExposureCheckEntity;
 import com.google.android.apps.exposurenotification.utils.UrlUtils;
+import com.google.common.base.Optional;
 import dagger.hilt.android.AndroidEntryPoint;
 import javax.inject.Inject;
 
@@ -78,6 +81,7 @@ public class SinglePageHomeFragment extends BaseFragment {
   private static final int EN_IS_OFF = 1;
   private static final int POSSIBLE_EXPOSURE = 2;
   private static final int POSITIVE_DIAGNOSIS = 3;
+  private static final int ALLOW_NOTIFICATIONS = 4;
   // For children of the exposure cards ViewFlipper (in the "Check your exposure status" section)
   private static final int NO_EXPOSURE = 0;
   private static final int EXPOSURE = 1;
@@ -90,6 +94,8 @@ public class SinglePageHomeFragment extends BaseFragment {
   private Animation pulseMedium;
   private Animation pulseLarge;
   private boolean biometricInProgress;
+
+  private ActivityResultLauncher<String> requestNotificationPermissionLauncher;
 
   @Inject
   Clock clock;
@@ -119,6 +125,13 @@ public class SinglePageHomeFragment extends BaseFragment {
   public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
 
+    requestNotificationPermissionLauncher = registerForActivityResult(new RequestPermission(),
+        isGranted -> {
+          if (isGranted) {
+            exposureNotificationViewModel.refreshNotificationsEnabledState(requireContext());
+          }
+        });
+
     requireActivity().setTitle(StringUtils.getApplicationTitle(requireContext()));
 
     FragmentManager childFragmentManager = getChildFragmentManager();
@@ -140,6 +153,12 @@ public class SinglePageHomeFragment extends BaseFragment {
     // Set up all the actionable items.
     binding.settingsButton.setOnClickListener(
         v -> transitionToFragmentWithBackStack(SettingsFragment.newInstance()));
+
+    binding.allowNotificationsButton.setOnClickListener(
+        v -> maybeRequestForNotificationPermission(requestNotificationPermissionLauncher));
+
+    binding.cardEnableNotifications.allowNotificationsButton.setOnClickListener(
+        v -> maybeRequestForNotificationPermission(requestNotificationPermissionLauncher));
 
     binding.possibleExposureLayout.seeDetailsButton.setOnClickListener(
         v -> transitionToFragmentWithBackStack(PossibleExposureFragment.newInstance()));
@@ -186,11 +205,12 @@ public class SinglePageHomeFragment extends BaseFragment {
         0, /* top= */paddingSmallInPixels, 0, 0);
 
     // Listen to all the LiveDatas necessary for updating the UI.
-    TripleLiveData<ExposureNotificationState, ExposureClassification, DiagnosisEntity>
-        stateExposureAndLastNonSharedDiagnosisLiveData = TripleLiveData
+    QuadrupleLiveData<ExposureNotificationState, ExposureClassification, DiagnosisEntity,
+        Optional<Boolean>> stateExposureAndLastNonSharedDiagnosisLiveData = QuadrupleLiveData
         .of(exposureNotificationViewModel.getStateLiveData(),
             exposureHomeViewModel.getExposureClassificationLiveData(),
-            exposureNotificationViewModel.getLastNotSharedDiagnosisLiveEvent());
+            exposureNotificationViewModel.getLastNotSharedDiagnosisLiveEvent(),
+            exposureNotificationViewModel.getAreNotificationsEnabledLiveData());
 
     stateExposureAndLastNonSharedDiagnosisLiveData
         .observe(getViewLifecycleOwner(), this::refreshUiForLiveDataValues);
@@ -233,8 +253,7 @@ public class SinglePageHomeFragment extends BaseFragment {
           .commit();
     }
 
-    exposureHomeViewModel.dismissReactivateENAppNotificationAndPendingJob(
-        requireContext());
+    exposureHomeViewModel.dismissReactivateENAppNotificationAndPendingJob(requireContext());
 
     if (savedInstanceState != null &&
         savedInstanceState.getBoolean(SAVED_INSTANCE_STATE_IS_BIOMETRIC_PROMPT_SHOWING_KEY,
@@ -279,25 +298,27 @@ public class SinglePageHomeFragment extends BaseFragment {
    */
   private void refreshUi() {
     exposureNotificationViewModel.getLastNotSharedDiagnosisIfAny();
+    exposureNotificationViewModel.refreshNotificationsEnabledState(requireContext());
   }
 
   /**
-   * Update UI to match Exposure Notifications state, the current exposure risk classification, and
-   * the last not shared diagnosis (if any).
+   * Update UI to match Exposure Notifications state, the current exposure risk classification, the
+   * last not shared diagnosis (if any) and if notifications are enabled or not.
    *
    * @param state                  the {@link ExposureNotificationState} of the API.
    * @param exposureClassification the {@link ExposureClassification} as returned by
    *                               DailySummaryRiskCalculator.
    * @param lastNotSharedDiagnosis the last not shared {@link DiagnosisEntity}.
+   * @param notificationsEnabled true if notifications are enabled, false otherwise.
    */
   private void refreshUiForLiveDataValues(
       ExposureNotificationState state, ExposureClassification exposureClassification,
-      DiagnosisEntity lastNotSharedDiagnosis) {
+      DiagnosisEntity lastNotSharedDiagnosis, Optional<Boolean> notificationsEnabled) {
     if (binding == null) {
       return;
     }
 
-    boolean isEnabled = state == ExposureNotificationState.ENABLED;
+    boolean isEnEnabled = state == ExposureNotificationState.ENABLED;
     boolean shouldDisplayTurndownMessage = EnStateUtil.isEnTurndownForRegion(state)
         && EnStateUtil.isAgencyTurndownMessagePresent(requireContext());
     boolean isTurndown = EnStateUtil.isEnTurndown(state);
@@ -307,8 +328,11 @@ public class SinglePageHomeFragment extends BaseFragment {
         && !exposureHomeViewModel.getIsExposureClassificationRevoked())
         // Ward off an outdated possible exposure information.
         || !exposureHomeViewModel.isActiveExposurePresent();
+    // If we don't know the notification permission state. Assume notifications are enabled.
+    // Don't show notification edge case until we're sure notifications are not enabled.
+    boolean areNotificationsEnabled = notificationsEnabled.or(/* default = */ true);
 
-    binding.enStatusFlipper.setDisplayedChild(isEnabled ? EN_ACTIVE : EN_INACTIVE);
+    binding.enStatusFlipper.setDisplayedChild(isEnEnabled ? EN_ACTIVE : EN_INACTIVE);
 
     binding.checkExposureStatusSection.setDisplayedChild(noExposure ? NO_EXPOSURE : EXPOSURE);
 
@@ -322,11 +346,25 @@ public class SinglePageHomeFragment extends BaseFragment {
       if (noExposure) {
         // 1. No non-shared diagnoses and no exposure.
         binding.enStatusFlipper.setVisibility(View.GONE);
-        binding.mainUiFlipper.setDisplayedChild(isEnabled ? ACTIVE_AND_CHECKING : EN_IS_OFF);
+        if (isEnEnabled) {
+          if (areNotificationsEnabled) {
+            binding.mainUiFlipper.setDisplayedChild(ACTIVE_AND_CHECKING);
+          } else {
+            binding.enStatusFlipper.setVisibility(View.VISIBLE);
+            binding.mainUiFlipper.setDisplayedChild(ALLOW_NOTIFICATIONS);
+          }
+          binding.enableNotificationsLayout.setVisibility(View.GONE);
+        } else {
+          binding.mainUiFlipper.setDisplayedChild(EN_IS_OFF);
+          binding.enableNotificationsLayout.setVisibility(
+              areNotificationsEnabled ? View.GONE : View.VISIBLE);
+        }
       } else {
         // 2. No non-shared diagnoses but we've got an exposure!
         binding.enStatusFlipper.setVisibility(View.VISIBLE);
         binding.mainUiFlipper.setDisplayedChild(POSSIBLE_EXPOSURE);
+        binding.enableNotificationsLayout.setVisibility(
+            areNotificationsEnabled ? View.GONE : View.VISIBLE);
       }
       if (isTurndown) {
         // EN has been turned down!
@@ -338,6 +376,7 @@ public class SinglePageHomeFragment extends BaseFragment {
         binding.learnHowEnWorks.setVisibility(View.GONE);
         binding.helpProtectCommunitySectionTitle.setVisibility(View.GONE);
         binding.shareAppLayout.setVisibility(View.GONE);
+        binding.enableNotificationsLayout.setVisibility(View.GONE);
       } else {
         // EN not turned down.
         binding.seeTestResultsInTurndown.setVisibility(View.GONE);
@@ -363,13 +402,16 @@ public class SinglePageHomeFragment extends BaseFragment {
     } else {
       if (noExposure) {
         // 3. We have a non-shared diagnosis but no exposure.
-        binding.enStatusFlipper.setVisibility(isEnabled ? View.VISIBLE : View.GONE);
-        binding.mainUiFlipper.setDisplayedChild(isEnabled ? POSITIVE_DIAGNOSIS : EN_IS_OFF);
+        binding.enStatusFlipper.setVisibility(isEnEnabled ? View.VISIBLE : View.GONE);
+        binding.mainUiFlipper.setDisplayedChild(isEnEnabled ? POSITIVE_DIAGNOSIS : EN_IS_OFF);
       } else {
         // 4. We have a non-shared diagnosis and we've got an exposure!
         binding.enStatusFlipper.setVisibility(View.VISIBLE);
-        binding.mainUiFlipper.setDisplayedChild(isEnabled ? POSITIVE_DIAGNOSIS : POSSIBLE_EXPOSURE);
+        binding.mainUiFlipper.setDisplayedChild(
+            isEnEnabled ? POSITIVE_DIAGNOSIS : POSSIBLE_EXPOSURE);
       }
+      binding.enableNotificationsLayout.setVisibility(
+          areNotificationsEnabled ? View.GONE : View.VISIBLE);
       if (isTurndown) {
         // EN has been turned down!
         binding.seeTestResultsInTurndown.setVisibility(View.VISIBLE);
@@ -379,6 +421,7 @@ public class SinglePageHomeFragment extends BaseFragment {
         binding.haveQuestionsSectionTitle.setVisibility(View.GONE);
         binding.checkExposureStatusSectionTitle.setVisibility(View.GONE);
         binding.checkExposureStatusSection.setVisibility(View.GONE);
+        binding.enableNotificationsLayout.setVisibility(View.GONE);
       } else {
         // EN not turned down.
         binding.seeTestResultsInTurndown.setVisibility(View.GONE);
@@ -387,12 +430,14 @@ public class SinglePageHomeFragment extends BaseFragment {
         binding.helpProtectCommunitySectionTitle.setVisibility(View.VISIBLE);
         binding.shareAppLayout.setVisibility(View.VISIBLE);
         // Display secondary "Share your test results" card only if EN is disabled.
-        binding.secondaryShareTestResultLayout.setVisibility(isEnabled ? View.GONE : View.VISIBLE);
+        binding.secondaryShareTestResultLayout.setVisibility(
+            isEnEnabled ? View.GONE : View.VISIBLE);
         // Display "Have questions" only if EN is disabled.
-        binding.haveQuestionsSectionTitle.setVisibility(isEnabled ? View.GONE : View.VISIBLE);
+        binding.haveQuestionsSectionTitle.setVisibility(isEnEnabled ? View.GONE : View.VISIBLE);
         // Display "Check your exposure status" only if EN is enabled.
-        binding.checkExposureStatusSectionTitle.setVisibility(isEnabled ? View.VISIBLE : View.GONE);
-        binding.checkExposureStatusSection.setVisibility(isEnabled ? View.VISIBLE : View.GONE);
+        binding.checkExposureStatusSectionTitle.setVisibility(
+            isEnEnabled ? View.VISIBLE : View.GONE);
+        binding.checkExposureStatusSection.setVisibility(isEnEnabled ? View.VISIBLE : View.GONE);
         /*
          * Display "Continue" button on the secondary "Share your test result" card and, thus, disable
          * this card. Also ensure that TalkBack will not confuse users by announcing this card as
@@ -474,5 +519,4 @@ public class SinglePageHomeFragment extends BaseFragment {
   private void transitionToSharingHistoryFragment() {
     transitionToFragmentWithBackStack(SharingHistoryFragment.newInstance());
   }
-
 }

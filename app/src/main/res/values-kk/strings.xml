@@ -177,6 +177,9 @@
   <string name="onboarding_free_up_storage_title">Жадта орын босатыңыз</string>
   <string name="reactivate_exposure_notification_app_subject">COVID-19 жұқтырғандармен байланыс туралы хабарландыру алу</string>
   <string name="reactivate_exposure_notification_app_body">%1$s COVID-19 ауруының жұғу жағдайы туралы хабарлайды.</string>
+  <string name="notifications_are_disabled_warning_title">Хабарландыруларға рұқсат беру</string>
+  <string name="notifications_are_disabled_warning_body">COVID-19 жұқтырғандармен байланыс ықтималдығы туралы хабарландыру алыңыз.</string>
+  <string name="btn_allow_notifications">Рұқсат беру</string>
   <string name="input_error_onset_date_past">Күн соңғы %1$s күннің бірі болуы керек.</string>
   <string name="input_error_onset_date_future">Күн болашақта көрсетілген.</string>
   <string name="network_error_code_invalid">Растау коды сәйкес келмейді. Қайталап көріңіз.</string>

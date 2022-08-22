@@ -19,14 +19,21 @@ package com.google.android.apps.exposurenotification.home;
 
 import static com.google.android.apps.exposurenotification.notify.ShareDiagnosisViewModel.EN_STATES_BLOCKING_SHARING_FLOW;
 import static com.google.common.truth.Truth.assertThat;
+import static com.google.common.util.concurrent.MoreExecutors.newDirectExecutorService;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
+import static org.robolectric.Shadows.shadowOf;
 
+import android.app.NotificationManager;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Pair;
+import androidx.test.core.app.ApplicationProvider;
 import com.google.android.apps.exposurenotification.common.BuildUtils;
 import com.google.android.apps.exposurenotification.common.BuildUtils.Type;
+import com.google.android.apps.exposurenotification.common.NotificationHelper;
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.common.time.RealTimeModule;
 import com.google.android.apps.exposurenotification.home.ExposureNotificationViewModel.ExposureNotificationState;
@@ -52,7 +59,6 @@ import com.google.android.gms.tasks.Tasks;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
-import com.google.common.util.concurrent.MoreExecutors;
 import dagger.hilt.android.testing.BindValue;
 import dagger.hilt.android.testing.HiltAndroidTest;
 import dagger.hilt.android.testing.HiltTestApplication;
@@ -74,6 +80,7 @@ import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 import org.robolectric.annotation.LooperMode;
 import org.robolectric.annotation.LooperMode.Mode;
+import org.robolectric.shadows.ShadowNotificationManager;
 
 @HiltAndroidTest
 @RunWith(RobolectricTestRunner.class)
@@ -86,12 +93,19 @@ public class ExposureNotificationViewModelTest {
   public ExposureNotificationRules rules = ExposureNotificationRules.forTest(this).withMocks()
       .build();
 
+  private final Context context = ApplicationProvider.getApplicationContext();
+  private final ShadowNotificationManager notificationManager =
+      shadowOf((NotificationManager) context
+          .getSystemService(Context.NOTIFICATION_SERVICE));
+
   @Inject
   ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
   @Inject
   DiagnosisRepository diagnosisRepository;
   @Inject
   PackageConfigurationHelper packageConfigurationHelper;
+  @Inject
+  NotificationHelper notificationHelper;
 
   @BindValue
   Clock clock = new FakeClock();
@@ -216,7 +230,7 @@ public class ExposureNotificationViewModelTest {
         logger,
         packageConfigurationHelper,
         clock,
-        MoreExecutors.newDirectExecutorService());
+        newDirectExecutorService(), notificationHelper);
     when(exposureNotificationClientWrapper.getPackageConfiguration())
         .thenReturn(Tasks.forResult(new PackageConfigurationBuilder().build()));
   }
@@ -728,7 +742,7 @@ public class ExposureNotificationViewModelTest {
   }
 
   @Test
-  public void stopExposureNotifications_clientIsEnabled_onSuccess_enStoppedIsTrue() {
+  public void stopExposureNotifications_onSuccess_enStoppedIsTrueAndStateRefreshed() {
     // GIVEN
     // Configure required mock behavior for all methods that should be called.
     when(exposureNotificationClientWrapper.stop()).thenReturn(TASK_FOR_RESULT_VOID);
@@ -742,19 +756,20 @@ public class ExposureNotificationViewModelTest {
     exposureNotificationViewModel.stopExposureNotifications();
 
     // THEN
-    verify(exposureNotificationClientWrapper, times(2)).isEnabled();
     verify(exposureNotificationClientWrapper).stop();
-    verify(exposureNotificationClientWrapper).getStatus();
     assertThat(enStopped.get()).isTrue();
+    // isEnabled() and getStatus() APIs get called since we call
+    // {@link ExposureNotificationViewModel#refreshState()} if stop() succeeds.
+    verify(exposureNotificationClientWrapper).isEnabled();
+    verify(exposureNotificationClientWrapper).getStatus();
   }
 
   @Test
-  public void stopExposureNotifications_clientIsEnabled_onFailed_enStoppedIsFalse() {
+  public void stopExposureNotifications_onFailed_enStoppedIsFalseAndStateNotRefreshed() {
     // GIVEN
     // Configure required mock behavior for all methods that should be called.
     Task<Void> task = Tasks.forException(new Exception());
     when(exposureNotificationClientWrapper.stop()).thenReturn(task);
-    when(exposureNotificationClientWrapper.isEnabled()).thenReturn(TASK_FOR_RESULT_TRUE);
     // Ensure the enStoppedLiveEvent sends expected updates.
     AtomicBoolean enStopped = new AtomicBoolean(true);
     exposureNotificationViewModel.getEnStoppedLiveEvent().observeForever(enStopped::set);
@@ -763,30 +778,10 @@ public class ExposureNotificationViewModelTest {
     exposureNotificationViewModel.stopExposureNotifications();
 
     // THEN
-    verify(exposureNotificationClientWrapper).isEnabled();
     verify(exposureNotificationClientWrapper).stop();
     assertThat(enStopped.get()).isFalse();
-  }
-
-  @Test
-  public void stopExposureNotifications_clientIsNotEnabled_stopCalled_enStoppedIsTrue() {
-    // GIVEN
-    // Configure required mock behavior for all methods that should be called.
-    when(exposureNotificationClientWrapper.stop()).thenReturn(TASK_FOR_RESULT_API_EXCEPTION);
-    when(exposureNotificationClientWrapper.isEnabled()).thenReturn(TASK_FOR_RESULT_FALSE);
-    when(exposureNotificationClientWrapper.getStatus()).thenReturn(TASK_FOR_INACTIVATED);
-    // Ensure the enStoppedLiveEvent sends expected updates
-    AtomicBoolean enStopped = new AtomicBoolean(false);
-    exposureNotificationViewModel.getEnStoppedLiveEvent().observeForever(enStopped::set);
-
-    // WHEN
-    exposureNotificationViewModel.stopExposureNotifications();
-
-    // THEN
-    verify(exposureNotificationClientWrapper, times(2)).isEnabled();
-    verify(exposureNotificationClientWrapper, times(1)).stop();
-    verify(exposureNotificationClientWrapper).getStatus();
-    assertThat(enStopped.get()).isTrue();
+    // Verify no more EN APIs have been called
+    verifyNoMoreInteractions(exposureNotificationClientWrapper);
   }
 
   @Test
@@ -938,6 +933,37 @@ public class ExposureNotificationViewModelTest {
     verify(exposureNotificationClientWrapper).isEnabled();
     verify(exposureNotificationClientWrapper).getPackageConfiguration();
     assertThat(shouldShowSmsNotice.get()).isEqualTo(true);
+  }
+
+  @Test
+  public void refreshNotificationsEnabledState_notificationDisabled_areNotificationsEnabledLiveDataUpdated() {
+    // GIVEN
+    notificationManager.setNotificationsEnabled(false);
+    AtomicReference<Boolean> areNotificationEnabled = new AtomicReference<>();
+    exposureNotificationViewModel.getAreNotificationsEnabledLiveData()
+        .observeForever(b -> areNotificationEnabled.set(b.isPresent() && b.get()));
+
+    // WHEN
+    exposureNotificationViewModel.refreshNotificationsEnabledState(context);
+
+    // THEN
+    assertThat(areNotificationEnabled.get()).isFalse();
+  }
+
+  @Test
+  public void refreshNotificationsEnabledState_notificationEnabled_areNotificationsEnabledLiveDataUpdated() {
+    // GIVEN
+    notificationManager.setNotificationsEnabled(true);
+
+    AtomicReference<Boolean> areNotificationEnabled = new AtomicReference<>();
+    exposureNotificationViewModel.getAreNotificationsEnabledLiveData()
+        .observeForever(b -> areNotificationEnabled.set(b.isPresent() && b.get()));
+
+    // WHEN
+    exposureNotificationViewModel.refreshNotificationsEnabledState(context);
+
+    // THEN
+    assertThat(areNotificationEnabled.get()).isTrue();
   }
 
 }

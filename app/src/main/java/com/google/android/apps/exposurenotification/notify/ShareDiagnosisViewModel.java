@@ -17,6 +17,8 @@
 
 package com.google.android.apps.exposurenotification.notify;
 
+import static com.google.android.apps.exposurenotification.notify.ShareDiagnosisFlowHelper.getSelfReportTimeoutDays;
+
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.res.Resources;
@@ -130,9 +132,6 @@ public class ShareDiagnosisViewModel extends ViewModel {
           .setPeriodDuration(Duration.ofMinutes(30))
           .setNumOfRequests(1)
           .build();
-  // Number of days in which a user can't self-report after self-reporting or reporting a confirmed
-  // positive COVID-19 test result. Used to mitigate an abuse of a Self-report functionality.
-  private static final int SELF_REPORT_DISABLED_NUM_OF_DAYS = 90;
 
   private static final Duration REQUEST_PRE_AUTH_TEKS_HISTORY_API_TIMEOUT = Duration.ofSeconds(5);
 
@@ -415,10 +414,11 @@ public class ShareDiagnosisViewModel extends ViewModel {
 
   /**
    * A LiveData that tracks a positive (i.e. confirmed or self-reported) diagnosis shared within
-   * the last {@link ShareDiagnosisViewModel#SELF_REPORT_DISABLED_NUM_OF_DAYS} days.
+   * the last {@link ShareDiagnosisFlowHelper#getSelfReportTimeoutDays} days.
    */
   public LiveData<Optional<DiagnosisEntity>> getRecentlySharedPositiveDiagnosisLiveData() {
-    long minTimestampMs = clock.now().minus(Duration.ofDays(SELF_REPORT_DISABLED_NUM_OF_DAYS))
+    long minTimestampMs = clock.now()
+        .minus(Duration.ofDays(getSelfReportTimeoutDays(context)))
         .toEpochMilli();
     return diagnosisRepository.getPositiveDiagnosisSharedAfterThresholdLiveData(minTimestampMs);
   }

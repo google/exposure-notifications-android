@@ -177,6 +177,9 @@
   <string name="onboarding_free_up_storage_title">സ്‌റ്റോറേജ് സ്‌പെയ്‌സ് സൃഷ്‌ടിക്കുക</string>
   <string name="reactivate_exposure_notification_app_subject">കോവിഡ്-19 എക്സ്പോഷർ അറിയിപ്പ് നേടൂ</string>
   <string name="reactivate_exposure_notification_app_body">കോവിഡ്-19 എക്സ്പോഷർ സാധ്യതയെക്കുറിച്ച് നിങ്ങളെ അറിയിക്കാൻ %1$s എന്നതിന് കഴിയും</string>
+  <string name="notifications_are_disabled_warning_title">അറിയിപ്പുകൾ അനുവദിക്കുക</string>
+  <string name="notifications_are_disabled_warning_body">സാധ്യതയുള്ള കോവിഡ്-19 എക്സ്പോഷറിനെ കുറിച്ച് അറിയിപ്പ് നേടുക.</string>
+  <string name="btn_allow_notifications">അനുവദിക്കുക</string>
   <string name="input_error_onset_date_past">കഴിഞ്ഞ %1$s ദിവസത്തിനുള്ളിലെ ഒരു തീയതി ആയിരിക്കണം</string>
   <string name="input_error_onset_date_future">വരാനിരിക്കുന്ന തീയതിയാണ്</string>
   <string name="network_error_code_invalid">പരിശോധനാ കോഡ് പൊരുത്തപ്പെടുന്നില്ല. വീണ്ടും ശ്രമിക്കുക.</string>

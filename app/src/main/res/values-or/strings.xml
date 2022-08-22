@@ -4,7 +4,7 @@
   <string name="btn_turn_on">ଚାଲୁ କରନ୍ତୁ</string>
   <string name="btn_turn_off">ବନ୍ଦ କରନ୍ତୁ</string>
   <string name="btn_not_now">ବର୍ତ୍ତମାନ ନୁହେଁ</string>
-  <string name="btn_cancel">ବାତିଲ୍ କରନ୍ତୁ</string>
+  <string name="btn_cancel">ବାତିଲ କରନ୍ତୁ</string>
   <string name="btn_delete_status">ସ୍ଥିତି ଡିଲିଟ୍ କରନ୍ତୁ</string>
   <string name="btn_delete">ଡିଲିଟ୍ କରନ୍ତୁ</string>
   <string name="btn_no_go_back">ନାହିଁ, ଫେରି ଯାଆନ୍ତୁ</string>
@@ -177,6 +177,9 @@
   <string name="onboarding_free_up_storage_title">ଷ୍ଟୋରେଜ୍ ସ୍ପେସ୍ ଖାଲି କରନ୍ତୁ</string>
   <string name="reactivate_exposure_notification_app_subject">COVID-19 ସଂକ୍ରମଣ ଆଲର୍ଟ ପାଅ</string>
   <string name="reactivate_exposure_notification_app_body">%1$s ଆପଣଙ୍କୁ COVID-19ର ସମ୍ଭାବ୍ୟ ସଂକ୍ରମଣ ବିଷୟରେ ସୂଚିତ କରିପାରିବ</string>
+  <string name="notifications_are_disabled_warning_title">ବିଜ୍ଞପ୍ତିଗୁଡ଼ିକୁ ଅନୁମତି ଦିଅନ୍ତୁ</string>
+  <string name="notifications_are_disabled_warning_body">ସମ୍ଭାବ୍ୟ କୋଭିଡ-19 ସଂକ୍ରମଣ ବିଷୟରେ ସୂଚନା ପାଆନ୍ତୁ।</string>
+  <string name="btn_allow_notifications">ଅନୁମତି ଦିଅନ୍ତୁ</string>
   <string name="input_error_onset_date_past">ଦିଆଯାଇଥିବା ତାରିଖ ଆଜିର ତାରିଖରୁ ଗତ %1$s ଦିନ ମଧ୍ୟରେ ହେବା ଉଚିତ</string>
   <string name="input_error_onset_date_future">ଦିଆଯାଇଥିବା ତାରିଖ ଭବିଷ୍ୟତରେ ଅଛି</string>
   <string name="network_error_code_invalid">ଯାଞ୍ଚକରଣ କୋଡ୍ ମେଳ ହେଉନାହିଁ। ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।</string>

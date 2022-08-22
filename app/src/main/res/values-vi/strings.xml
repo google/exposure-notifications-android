@@ -177,6 +177,9 @@
   <string name="onboarding_free_up_storage_title">Giải phóng dung lượng bộ nhớ</string>
   <string name="reactivate_exposure_notification_app_subject">Nhận cảnh báo tiếp xúc COVID-19</string>
   <string name="reactivate_exposure_notification_app_body">%1$s có thể thông báo cho bạn về nguy cơ tiếp xúc với người mắc COVID-19</string>
+  <string name="notifications_are_disabled_warning_title">Cho phép thông báo</string>
+  <string name="notifications_are_disabled_warning_body">Nhận thông báo về khả năng tiếp xúc COVID-19.</string>
+  <string name="btn_allow_notifications">Cho phép</string>
   <string name="input_error_onset_date_past">Ngày này phải cách hôm nay tối đa %1$s ngày</string>
   <string name="input_error_onset_date_future">Ngày diễn ra trong tương lai</string>
   <string name="network_error_code_invalid">Mã xác minh không trùng khớp. Hãy thử lại.</string>

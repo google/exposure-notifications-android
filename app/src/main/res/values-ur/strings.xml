@@ -177,6 +177,9 @@
   <string name="onboarding_free_up_storage_title">اسٹوریج کی جگہ خالی کریں</string>
   <string name="reactivate_exposure_notification_app_subject">COVID-19 ایکسپوژر الرٹس حاصل کریں</string>
   <string name="reactivate_exposure_notification_app_body">%1$s آپ کو COVID-19 کے ممکنہ ایکسپوژر کے بارے میں مطلع کر سکتی ہے۔</string>
+  <string name="notifications_are_disabled_warning_title">اطلاعات کی اجازت دیں</string>
+  <string name="notifications_are_disabled_warning_body">COVID-19 کے ممکنہ ایکسپوژر کے بارے میں اطلاع حاصل کریں۔</string>
+  <string name="btn_allow_notifications">اجازت دیں</string>
   <string name="input_error_onset_date_past">تاریخ آج کی تاریخ سے گزشتہ %1$s دن کے اندر کی ہونی چاہیے</string>
   <string name="input_error_onset_date_future">تاریخ مستقبل کی ہے</string>
   <string name="network_error_code_invalid">توثیقی کوڈ مماثل نہیں ہے۔ دوبارہ کوشش کریں۔</string>

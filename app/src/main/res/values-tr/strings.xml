@@ -177,6 +177,9 @@
   <string name="onboarding_free_up_storage_title">Depolama alanını boşaltın</string>
   <string name="reactivate_exposure_notification_app_subject">COVID-19 temas uyarıları alın</string>
   <string name="reactivate_exposure_notification_app_body">%1$s, COVID-19 ile olası temas durumunda sizi bilgilendirebilir</string>
+  <string name="notifications_are_disabled_warning_title">Bildirimlere izin verin</string>
+  <string name="notifications_are_disabled_warning_body">COVID-19 ile olası temas durumunda bildirim alın.</string>
+  <string name="btn_allow_notifications">İzin ver</string>
   <string name="input_error_onset_date_past">Belirti başlama tarihi, bugünün tarihinden itibaren son %1$s gün içinde olmalıdır</string>
   <string name="input_error_onset_date_future">Belirti başlama tarihi gelecekte</string>
   <string name="network_error_code_invalid">Doğrulama kodu eşleşmiyor. Tekrar deneyin.</string>

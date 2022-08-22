@@ -177,6 +177,9 @@
   <string name="onboarding_free_up_storage_title">Libera espazo de almacenamento</string>
   <string name="reactivate_exposure_notification_app_subject">Alertas exposición á COVID-19</string>
   <string name="reactivate_exposure_notification_app_body">%1$s pode notificarche a posible exposición á COVID-19</string>
+  <string name="notifications_are_disabled_warning_title">Permitir as notificacións</string>
+  <string name="notifications_are_disabled_warning_body">Recibir notificacións sobre as posibles exposicións á COVID-19.</string>
+  <string name="btn_allow_notifications">Permitir</string>
   <string name="input_error_onset_date_past">A data debe corresponder aos últimos %1$s días anteriores a hoxe</string>
   <string name="input_error_onset_date_future">A data pertence ao futuro</string>
   <string name="network_error_code_invalid">O código de verificación non coincide. Téntao de novo.</string>

@@ -177,6 +177,9 @@
   <string name="onboarding_free_up_storage_title">Ослободете простор за складирање</string>
   <string name="reactivate_exposure_notification_app_subject">Добивајте предупредувања за изложеност на COVID-19</string>
   <string name="reactivate_exposure_notification_app_body">%1$s може да ве известува за потенцијална изложеност на COVID-19</string>
+  <string name="notifications_are_disabled_warning_title">Дозволете известувања</string>
+  <string name="notifications_are_disabled_warning_body">Добивајте известувања за можна изложеност на COVID-19.</string>
+  <string name="btn_allow_notifications">Дозволи</string>
   <string name="input_error_onset_date_past">Датумот треба да биде во рамките на последните %1$s дена од денешниот датум</string>
   <string name="input_error_onset_date_future">Датумот e во иднина</string>
   <string name="network_error_code_invalid">Кодот за потврда е погрешен. Обидете се повторно.</string>

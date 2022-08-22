@@ -177,6 +177,9 @@
   <string name="onboarding_free_up_storage_title">გაათავისუფლეთ მეხსიერება</string>
   <string name="reactivate_exposure_notification_app_subject">მიიღეთ COVID-19 კონტაქ. გაფრთ</string>
   <string name="reactivate_exposure_notification_app_body">%1$s-ს შეუძლია, შეგატყობინოთ COVID-19-თან პოტენციური კონტაქტის შესახებ</string>
+  <string name="notifications_are_disabled_warning_title">შეტყობინებების დაშვება</string>
+  <string name="notifications_are_disabled_warning_body">მიიღეთ შეტყობინებები COVID-19-თან შესაძლო კონტაქტის შესახებ.</string>
+  <string name="btn_allow_notifications">დაშვება</string>
   <string name="input_error_onset_date_past">მითითებული თარიღი დღეიდან %1$s დღის ფარგლებში უნდა იყოს</string>
   <string name="input_error_onset_date_future">მითითებულია მომავალი თარიღი</string>
   <string name="network_error_code_invalid">დამადასტურებელი კოდი არასწორია. ცადეთ ხელახლა.</string>

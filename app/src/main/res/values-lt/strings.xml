@@ -181,6 +181,9 @@
   <string name="onboarding_free_up_storage_title">Saugyklos vietos atlaisvinimas</string>
   <string name="reactivate_exposure_notification_app_subject">Įsp. apie gal. kont. su užs.</string>
   <string name="reactivate_exposure_notification_app_body">%1$s gali pranešti jums apie galimą kontaktą su COVID-19 užsikrėtusiu asmeniu</string>
+  <string name="notifications_are_disabled_warning_title">Leisti pranešimus</string>
+  <string name="notifications_are_disabled_warning_body">Gaukite pranešimus apie galimą kontaktą su COVID-19 užsikrėtusiu asmeniu.</string>
+  <string name="btn_allow_notifications">Leisti</string>
   <string name="input_error_onset_date_past">Data negali būti vėlesnė nei pastarosios %1$s d. nuo šiandien</string>
   <string name="input_error_onset_date_future">Įvesta data yra ateityje</string>
   <string name="network_error_code_invalid">Patvirtinimo kodas neatitinka. Bandykite dar kartą.</string>

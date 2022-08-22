@@ -177,6 +177,9 @@
   <string name="onboarding_free_up_storage_title">Allibera espai d\'emmagatzematge</string>
   <string name="reactivate_exposure_notification_app_subject">Alertes d\'exposició COVID-19</string>
   <string name="reactivate_exposure_notification_app_body">%1$s pot notificar-te les possibles exposicions a la COVID-19</string>
+  <string name="notifications_are_disabled_warning_title">Permet les notificacions</string>
+  <string name="notifications_are_disabled_warning_body">Rep notificacions sobre possibles exposicions a la COVID-19.</string>
+  <string name="btn_allow_notifications">Permet</string>
   <string name="input_error_onset_date_past">La data ha de ser entre avui i els %1$s darrers dies</string>
   <string name="input_error_onset_date_future">La data ha de ser en el futur</string>
   <string name="network_error_code_invalid">El codi de verificació no coincideix. Torna-ho a provar.</string>

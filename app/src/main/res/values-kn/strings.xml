@@ -177,6 +177,9 @@
   <string name="onboarding_free_up_storage_title">ಸಂಗ್ರಹಣೆಯ ಸ್ಥಳವನ್ನು ಮುಕ್ತಗೊಳಿಸಿ</string>
   <string name="reactivate_exposure_notification_app_subject">COVID-19 ಸಂಪರ್ಕಕ್ಕೆ ಬಂದಿರುವ ಕುರಿತು ಎಚ್ಚರಿಕೆಗಳು</string>
   <string name="reactivate_exposure_notification_app_body">%1$s ನಿಮಗೆ COVID-19 ಸಂಭವನೀಯ ಸಂಪರ್ಕಕ್ಕೆ ಬಂದಿರುವಿಕೆಯ ಕುರಿತು ಸೂಚಿಸಬಲ್ಲದು</string>
+  <string name="notifications_are_disabled_warning_title">ಅಧಿಸೂಚನೆಗಳನ್ನು ಅನುಮತಿಸಿ</string>
+  <string name="notifications_are_disabled_warning_body">ಸಂಭವನೀಯ COVID-19 ಸಂಪರ್ಕಕ್ಕೆ ಬಂದಿರುವ ಕುರಿತು ಸೂಚನೆ ಪಡೆಯಿರಿ.</string>
+  <string name="btn_allow_notifications">ಅನುಮತಿಸಿ</string>
   <string name="input_error_onset_date_past">ಕಳೆದ %1$s ದಿನಗಳ ಒಳಗಿನ ದಿನಾಂಕವನ್ನು ನಮೂದಿಸಬೇಕು</string>
   <string name="input_error_onset_date_future">ಇದು ಭವಿಷ್ಯದ ದಿನಾಂಕವಾಗಿದೆ</string>
   <string name="network_error_code_invalid">ಪರಿಶೀಲನೆಯ ಕೋಡ್ ಹೊಂದಾಣಿಕೆಯಾಗುತ್ತಿಲ್ಲ. ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.</string>

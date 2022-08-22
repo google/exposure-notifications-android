@@ -177,6 +177,9 @@
   <string name="onboarding_free_up_storage_title">Vabastage salvestusruumi</string>
   <string name="reactivate_exposure_notification_app_subject">Hankige COVID-19-ga kokkupuute märguandeid</string>
   <string name="reactivate_exposure_notification_app_body">%1$s võib teid teavitada võimalikust kokkupuutest COVID-19-ga</string>
+  <string name="notifications_are_disabled_warning_title">Luba märguanded</string>
+  <string name="notifications_are_disabled_warning_body">Hankige märguandeid võimaliku kokkupuute kohta COVID-19-ga.</string>
+  <string name="btn_allow_notifications">Luba</string>
   <string name="input_error_onset_date_past">Kuupäev peaks jääma %1$s päeva piiresse alates tänasest kuupäevast</string>
   <string name="input_error_onset_date_future">Kuupäev on tulevikus</string>
   <string name="network_error_code_invalid">Kinnituskood ei ühti. Proovige uuesti.</string>

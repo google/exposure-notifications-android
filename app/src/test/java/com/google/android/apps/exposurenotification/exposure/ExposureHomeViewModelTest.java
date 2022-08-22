@@ -59,6 +59,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 import javax.inject.Inject;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -122,6 +123,11 @@ public class ExposureHomeViewModelTest {
         exposureNotificationSharedPreferences, exposureInformationHelper, exposureCheckRepository,
         notificationHelper, clock, workManager, TestingExecutors.sameThreadScheduledExecutor()
     );
+  }
+
+  @After
+  public void tearDown() {
+    database.close();
   }
 
   @Test

@@ -177,6 +177,9 @@
   <string name="onboarding_free_up_storage_title">ගබඩා ඉඩ නිදහස් කර ගන්න</string>
   <string name="reactivate_exposure_notification_app_subject">COVID-19 නිරාවරණ ඇඟවීම් ලබන්න</string>
   <string name="reactivate_exposure_notification_app_body">%1$s හට විය හැකි COVID-19 නිරාවරණයක් ගැන ඔබට දැනුම්දීමට හැකිය</string>
+  <string name="notifications_are_disabled_warning_title">දැනුම්දීම්වලට ඉඩ දෙන්න</string>
+  <string name="notifications_are_disabled_warning_body">විය හැකි COVID-19 නිරාවරණය පිළිබඳව දැනුවත් වන්න.</string>
+  <string name="btn_allow_notifications">ඉඩ දෙන්න</string>
   <string name="input_error_onset_date_past">දිනය අද දිනයෙන් පසු අවසන් දින %1$s තුළ විය යුතුය</string>
   <string name="input_error_onset_date_future">දිනය අනාගතයෙහි එකකි</string>
   <string name="network_error_code_invalid">සත්‍යාපන කේතය නොගැළපෙයි. නැවත උත්සාහ කරන්න.</string>

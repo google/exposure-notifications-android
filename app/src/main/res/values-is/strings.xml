@@ -177,6 +177,9 @@
   <string name="onboarding_free_up_storage_title">Losaðu geymslurými</string>
   <string name="reactivate_exposure_notification_app_subject">Fáðu COVID-19 útsetningarviðvaranir</string>
   <string name="reactivate_exposure_notification_app_body">%1$s getur tilkynnt þér um mögulega útsetningu fyrir COVID-19</string>
+  <string name="notifications_are_disabled_warning_title">Leyfa tilkynningar</string>
+  <string name="notifications_are_disabled_warning_body">Fá tilkynningar um mögulega COVID-19-útsetningu.</string>
+  <string name="btn_allow_notifications">Leyfa</string>
   <string name="input_error_onset_date_past">Dagsetning þarf að vera innan %1$s daga frá deginum í dag</string>
   <string name="input_error_onset_date_future">Dagsetning er í framtíðinni</string>
   <string name="network_error_code_invalid">Staðfestingarkóðinn passar ekki. Reyndu aftur.</string>

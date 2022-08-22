@@ -16,8 +16,5 @@
   -->
 
 <resources>
-  <dimen name="home_screen_header_margin_top">28dp</dimen>
-  <dimen name="home_screen_en_off_header_horizontal_padding">8dp</dimen>
-  <dimen name="home_screen_en_off_header_image_margin_start">@dimen/padding_medium</dimen>
   <dimen name="default_corner_radius">24dp</dimen>
 </resources>

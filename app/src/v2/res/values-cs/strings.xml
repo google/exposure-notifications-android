@@ -17,7 +17,7 @@
   <string name="possible_exposure_card_contents">Někdo ve vašem okolí měl pozitivní test na covid-19</string>
   <string name="see_details_button">Zobrazit podrobnosti</string>
   <string name="share_test_result_card_title">Pomozte předcházet covidu-19 ve vašem okolí</string>
-  <string name="share_test_result_card_content">Pokaždé, když někdo sdílí pozitivní výsledek testu, pomůže tím zabránit dalšímu případu covidu-19. Při sdílení výsledku testu se ostatní nedozví vaši totožnost.</string>
+  <string name="share_test_result_card_content">Pokaždé, když někdo sdílí pozitivní výsledek testu, pomůže tím zabránit dalšímu případu covidu-19. Při sdílení výsledku testu se ostatní nedozví vaši identitu.</string>
   <string name="see_history_button">Zobrazit historii</string>
   <string name="share_positive_diagnosis_card_content">Sdílejte výsledek testu a pomozte zabránit šíření onemocnění COVID-19</string>
   <string name="share_app_card_content">Sdílejte tuto aplikaci, abyste ochránili své okolí</string>

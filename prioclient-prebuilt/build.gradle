@@ -1,0 +1,4 @@
+println "Using prebuilt prioclient AAR"
+
+configurations.maybeCreate("default")
+artifacts.add("default", file("libs/prioclient-release.aar"))

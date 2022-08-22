@@ -21,6 +21,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -88,5 +89,14 @@ public abstract class BaseFragment extends Fragment {
     FragmentActivity activity = requireActivity();
     Preconditions.checkArgument(activity instanceof BaseActivity);
     return (BaseActivity) activity;
+  }
+
+  /**
+   * Requests for notification permission if not granted already.
+   */
+  protected void maybeRequestForNotificationPermission(
+      ActivityResultLauncher<String> activityResultLauncher) {
+    exposureNotificationViewModel.requestNotificationPermissionOrLaunchAppNotificationSettings(
+        requireActivity(), activityResultLauncher);
   }
 }

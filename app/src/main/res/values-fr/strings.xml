@@ -177,6 +177,9 @@
   <string name="onboarding_free_up_storage_title">Libérez de l\'espace de stockage</string>
   <string name="reactivate_exposure_notification_app_subject">Alertes d\'exposition COVID-19</string>
   <string name="reactivate_exposure_notification_app_body">%1$s peut vous avertir en cas d\'exposition potentielle à la COVID-19</string>
+  <string name="notifications_are_disabled_warning_title">Autoriser les notifications</string>
+  <string name="notifications_are_disabled_warning_body">Soyez prévenu en cas d\'exposition possible à la COVID-19.</string>
+  <string name="btn_allow_notifications">Autoriser</string>
   <string name="input_error_onset_date_past">La date doit se situer dans les %1$s derniers jours</string>
   <string name="input_error_onset_date_future">La date a lieu dans le futur</string>
   <string name="network_error_code_invalid">Le code de validation ne correspond pas. Veuillez réessayer.</string>

@@ -177,6 +177,9 @@
   <string name="onboarding_free_up_storage_title">స్టోరేజ్ స్పేస్‌ను ఖాళీ చేయండి</string>
   <string name="reactivate_exposure_notification_app_subject">COVID-19 వ్యాధి సోకే అవకాశం గురించిన అలర్ట్‌లను పొందండి</string>
   <string name="reactivate_exposure_notification_app_body">COVID-19 వ్యాధి సోకే అవకాశం ఉందని %1$s మీకు తెలియజేస్తుంది</string>
+  <string name="notifications_are_disabled_warning_title">నోటిఫికేషన్‌లను అనుమతించండి</string>
+  <string name="notifications_are_disabled_warning_body">COVID-19 వ్యాధి సోకే అవకాశాన్ని గురించిన నోటిఫికేషన్‌లను పొందండి.</string>
+  <string name="btn_allow_notifications">అనుమతించండి</string>
   <string name="input_error_onset_date_past">తేదీ నేటి తేదీ నుండి చివరి %1$s రోజులలో ఉండాలి</string>
   <string name="input_error_onset_date_future">ఇచ్చిన తేదీ భవిష్యత్తులో ఉంది</string>
   <string name="network_error_code_invalid">వెరిఫికేషన్ కోడ్ మ్యాచ్ అవ్వడం లేదు. మళ్లీ ట్రై చేయండి.</string>

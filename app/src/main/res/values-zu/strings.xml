@@ -177,6 +177,9 @@
   <string name="onboarding_free_up_storage_title">Khulula isikhala sesitoreji</string>
   <string name="reactivate_exposure_notification_app_subject">Thola izexwayiso zokuhlangabezana ne-COVID-19</string>
   <string name="reactivate_exposure_notification_app_body">I-%1$s ingakwazisa ngokudaluleka okungaba khona ku-COVID-19</string>
+  <string name="notifications_are_disabled_warning_title">Vumela izaziso</string>
+  <string name="notifications_are_disabled_warning_body">Yaziswa ngokuhlangabezana okungase kube khona kwe-COVID-19</string>
+  <string name="btn_allow_notifications">Vumela</string>
   <string name="input_error_onset_date_past">Idethi kufanele yenzeke phakathi nezinsuku zokugcina ezingu-%1$s zedethi yanamuhla</string>
   <string name="input_error_onset_date_future">Idethi yenzeka esikhathini esizayo</string>
   <string name="network_error_code_invalid">Ikhodi yokuqinisekisa ayifani. Zama futhi.</string>

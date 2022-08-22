@@ -22,7 +22,6 @@ import static org.mockito.Mockito.when;
 import static org.robolectric.Shadows.shadowOf;
 
 import android.content.Context;
-import android.support.test.espresso.core.internal.deps.guava.util.concurrent.ListenableFuture;
 import com.google.android.apps.exposurenotification.R;
 import com.google.android.apps.exposurenotification.common.time.Clock;
 import com.google.android.apps.exposurenotification.common.time.RealTimeModule;
@@ -38,6 +37,7 @@ import com.google.android.apps.exposurenotification.testsupport.FakeShadowResour
 import com.google.android.libraries.privateanalytics.MetricsCollection;
 import com.google.android.libraries.privateanalytics.PrioDataPoint;
 import com.google.android.libraries.privateanalytics.PrivateAnalyticsSubmitter.PrioDataPointsProvider;
+import com.google.common.util.concurrent.ListenableFuture;
 import com.google.common.util.concurrent.Futures;
 import dagger.hilt.android.qualifiers.ApplicationContext;
 import dagger.hilt.android.testing.BindValue;

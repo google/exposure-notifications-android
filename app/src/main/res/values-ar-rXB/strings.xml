@@ -185,6 +185,9 @@
   <string name="onboarding_free_up_storage_title">‏‮Free‬‏ ‏‮up‬‏ ‏‮storage‬‏ ‏‮space‬‏</string>
   <string name="reactivate_exposure_notification_app_subject">‏‮Get‬‏ ‏‮COVID‬‏-19 ‏‮exposure‬‏ ‏‮alerts‬‏</string>
   <string name="reactivate_exposure_notification_app_body">%1$s ‏‮can‬‏ ‏‮notify‬‏ ‏‮you‬‏ ‏‮of‬‏ ‏‮potential‬‏ ‏‮exposure‬‏ ‏‮to‬‏ ‏‮COVID‬‏-19</string>
+  <string name="notifications_are_disabled_warning_title">‏‮Allow‬‏ ‏‮notifications‬‏</string>
+  <string name="notifications_are_disabled_warning_body">‏‮Get‬‏ ‏‮notified‬‏ ‏‮of‬‏ ‏‮possible‬‏ ‏‮COVID‬‏-19 ‏‮exposure‬‏.</string>
+  <string name="btn_allow_notifications">‏‮Allow‬‏</string>
   <string name="input_error_onset_date_past">‏‮Date‬‏ ‏‮should‬‏ ‏‮occur‬‏ ‏‮within‬‏ ‏‮last‬‏ %1$s ‏‮days‬‏ ‏‮of‬‏ ‏‮today‬‏\’‏‮s‬‏ ‏‮date‬‏</string>
   <string name="input_error_onset_date_future">‏‮Date‬‏ ‏‮occurs‬‏ ‏‮in‬‏ ‏‮the‬‏ ‏‮future‬‏</string>
   <string name="network_error_code_invalid">‏‮The‬‏ ‏‮verification‬‏ ‏‮code‬‏ ‏‮doesn‬‏’‏‮t‬‏ ‏‮match‬‏. ‏‮Try‬‏ ‏‮again‬‏.</string>

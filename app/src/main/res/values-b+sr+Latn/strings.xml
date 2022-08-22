@@ -179,6 +179,9 @@
   <string name="onboarding_free_up_storage_title">Oslobodite memorijski prostor</string>
   <string name="reactivate_exposure_notification_app_subject">Dob. COVID-19: obav. o izl.</string>
   <string name="reactivate_exposure_notification_app_body">%1$s može da vas obaveštava o potencijalnoj izloženosti bolesti COVID-19</string>
+  <string name="notifications_are_disabled_warning_title">Dozvolite obaveštenja</string>
+  <string name="notifications_are_disabled_warning_body">Dobijajte obaveštenja o mogućoj izloženosti bolesti COVID-19.</string>
+  <string name="btn_allow_notifications">Dozvoli</string>
   <string name="input_error_onset_date_past">Datum treba da bude u periodu od %1$s dana pre današnjeg datuma</string>
   <string name="input_error_onset_date_future">Datum je u budućnosti</string>
   <string name="network_error_code_invalid">Ovaj verifikacioni kôd se ne podudara. Probajte ponovo.</string>

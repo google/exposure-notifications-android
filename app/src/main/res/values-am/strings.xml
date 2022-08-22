@@ -177,6 +177,9 @@
   <string name="onboarding_free_up_storage_title">የማከማቻ ቦታ ያስለቅቁ</string>
   <string name="reactivate_exposure_notification_app_subject">የኮቪድ-19 የተጋላጭ ማንቂያዎችን ያግኙ</string>
   <string name="reactivate_exposure_notification_app_body">%1$s ለኮቪድ-19 ተጋላጭ የመሆን ዕድል ካለዎት ሊያሳውቅዎት ይችላል</string>
+  <string name="notifications_are_disabled_warning_title">ማሳወቂያዎችን ፍቀድ</string>
+  <string name="notifications_are_disabled_warning_body">ሊኖር ስለሚችል የኮቪድ-19 ተጋላጭነት ማሳወቂያ ያግኙ።</string>
+  <string name="btn_allow_notifications">ፍቀድ</string>
   <string name="input_error_onset_date_past">ቀን ከዛሬው ቀን ጀምሮ ባለፉት %1$s ቀናት ውስጥ የነበረ መሆን አለበት</string>
   <string name="input_error_onset_date_future">ቀን የወደፊት ነው</string>
   <string name="network_error_code_invalid">ማረጋገጫ ኮዱ አይዛመድም። እንደገና ይሞክሩ።</string>

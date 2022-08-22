@@ -27,6 +27,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts.RequestPermission;
 import androidx.annotation.NonNull;
 import androidx.core.widget.NestedScrollView;
 import com.google.android.apps.exposurenotification.R;
@@ -43,6 +45,9 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class OnboardingPermissionDisabledFragment extends AbstractOnboardingFragment {
 
+  private static final String SAVED_INSTANCE_STATE_SHOULD_REQUEST_NOTIFICATION_PERMISSION =
+      "should_request_notification_permission";
+
   private FragmentOnboardingPermissionDisabledBinding binding;
   private ExposureNotificationState state;
 
@@ -50,6 +55,8 @@ public class OnboardingPermissionDisabledFragment extends AbstractOnboardingFrag
   private Button nextButton;
   private NestedScrollView scroller;
   private boolean shouldShowPrivateAnalyticsOnboarding = false;
+  private boolean shouldRequestForNotificationPermission = true;
+  private ActivityResultLauncher<String> requestNotificationPermissionLauncher;
 
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup parent,
@@ -59,8 +66,21 @@ public class OnboardingPermissionDisabledFragment extends AbstractOnboardingFrag
   }
 
   @Override
+  public void onSaveInstanceState(@NonNull Bundle savedInstanceState) {
+    super.onSaveInstanceState(savedInstanceState);
+    savedInstanceState.putBoolean(SAVED_INSTANCE_STATE_SHOULD_REQUEST_NOTIFICATION_PERMISSION,
+        shouldRequestForNotificationPermission);
+  }
+
+  @Override
   public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
+
+    requestNotificationPermissionLauncher = registerForActivityResult(new RequestPermission(),
+        isGranted -> {
+          // Proceed with on-boarding irrespective of the user's decision
+          transitionNext();
+        });
 
     onboardingButtons = binding.onboardingButtons;
     nextButton = binding.onboardingNextButton;
@@ -86,6 +106,15 @@ public class OnboardingPermissionDisabledFragment extends AbstractOnboardingFrag
                 binding.onboardingButtonsLoadingSwitcher.setDisplayedChild(0);
               }
             });
+
+    exposureNotificationViewModel.getAreNotificationsEnabledLiveData()
+        .observe(getViewLifecycleOwner(), areNotificationsEnabled -> {
+          // If we don't know the notification permission state. Assume notifications are not
+          // enabled. If its enabled already, android would ignore our permission request.
+          if (areNotificationsEnabled.or(/* default = */ false)) {
+            shouldRequestForNotificationPermission = false;
+          }
+        });
 
     exposureNotificationViewModel
         .getApiErrorLiveEvent()
@@ -128,6 +157,14 @@ public class OnboardingPermissionDisabledFragment extends AbstractOnboardingFrag
 
     // If we are currently onboarding a migrating user, mark that now this user is onboarded.
     onboardingViewModel.maybeMarkMigratingUserAsOnboarded(requireContext());
+
+    if (savedInstanceState != null &&
+        savedInstanceState.containsKey(
+            SAVED_INSTANCE_STATE_SHOULD_REQUEST_NOTIFICATION_PERMISSION)) {
+      shouldRequestForNotificationPermission = savedInstanceState.getBoolean(
+          SAVED_INSTANCE_STATE_SHOULD_REQUEST_NOTIFICATION_PERMISSION,
+          true);
+    }
   }
 
   private void setupAppAnalyticsText() {
@@ -177,6 +214,7 @@ public class OnboardingPermissionDisabledFragment extends AbstractOnboardingFrag
   @Override
   void nextAction() {
     onboardingViewModel.markSmsInterceptNoticeSeenAsync();
+
     if (ExposureNotificationState.STORAGE_LOW.equals(this.state)) {
       showManageStorageDialog();
     } else {
@@ -185,6 +223,17 @@ public class OnboardingPermissionDisabledFragment extends AbstractOnboardingFrag
   }
 
   private void transitionNext() {
+    if (shouldRequestForNotificationPermission) {
+      // Request for notification just once, If the user denies/dismisses the popup the first
+      // time; they should be able to proceed with app on-boarding irrespective their decision.
+      shouldRequestForNotificationPermission = false;
+      // If the permission request could not be made, proceed with onboarding.
+      if (exposureNotificationViewModel.maybeRequestNotificationPermission(requireActivity(),
+          requestNotificationPermissionLauncher)) {
+        return;
+      }
+    }
+
     if (shouldShowPrivateAnalyticsOnboarding) {
       OnboardingPrivateAnalyticsFragment.transitionToOnboardingPrivateAnalyticsFragment(this);
     } else {

@@ -63,6 +63,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.atomic.AtomicInteger;
 import javax.inject.Inject;
 import org.apache.commons.io.FileUtils;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -142,6 +143,11 @@ public class DiagnosisKeyDownloaderTest {
   @Before
   public void setUp() {
     rules.hilt().inject();
+  }
+
+  @After
+  public void tearDown() {
+    db.close();
   }
 
   @Test

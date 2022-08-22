@@ -177,6 +177,9 @@
   <string name="onboarding_free_up_storage_title">បង្កើនទំហំ​ផ្ទុកទំនេរ</string>
   <string name="reactivate_exposure_notification_app_subject">ទទួលបានការជូនដំណឹងអំពីការនៅជិត​អ្នកមានផ្ទុក COVID-19</string>
   <string name="reactivate_exposure_notification_app_body">%1$s អាច​ជូនដំណឹង​ដល់អ្នកអំពី​ការនៅជិត​អ្នកដែលអាច​មានផ្ទុក COVID-19</string>
+  <string name="notifications_are_disabled_warning_title">អនុញ្ញាត​ការជូនដំណឹង</string>
+  <string name="notifications_are_disabled_warning_body">ទទួលបាន​ការជូនដំណឹងអំពី​ការដែលអាចនៅជិតអ្នកមានផ្ទុក COVID-19។</string>
+  <string name="btn_allow_notifications">អនុញ្ញាត</string>
   <string name="input_error_onset_date_past">កាលបរិច្ឆេទគួរតែស្ថិតក្នុងរយៈពេល %1$s ថ្ងៃចុងក្រោយនៃកាលបរិច្ឆេទថ្ងៃនេះ</string>
   <string name="input_error_onset_date_future">កាលបរិច្ឆទស្ថិតនៅពេលអនាគត</string>
   <string name="network_error_code_invalid">លេខកូដ​ផ្ទៀងផ្ទាត់​មិនត្រូវគ្នាទេ។ សូមព្យាយាមម្ដងទៀត។</string>

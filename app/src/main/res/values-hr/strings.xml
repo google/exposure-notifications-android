@@ -179,6 +179,9 @@
   <string name="onboarding_free_up_storage_title">Oslobađanje prostora za pohranu</string>
   <string name="reactivate_exposure_notification_app_subject">Izloženost bolesti COVID-19</string>
   <string name="reactivate_exposure_notification_app_body">%1$s vas može obavještavati o mogućoj izloženosti bolesti COVID-19</string>
+  <string name="notifications_are_disabled_warning_title">Dopusti obavijesti</string>
+  <string name="notifications_are_disabled_warning_body">Primajte obavijesti o mogućoj izloženosti bolesti COVID-19.</string>
+  <string name="btn_allow_notifications">Dopusti</string>
   <string name="input_error_onset_date_past">Podaci ne bi trebali biti stariji od %1$s dana prije današnjeg datuma</string>
   <string name="input_error_onset_date_future">Podaci se odnose na budućnost</string>
   <string name="network_error_code_invalid">Kontrolni se kôd ne podudara. Pokušajte ponovo.</string>

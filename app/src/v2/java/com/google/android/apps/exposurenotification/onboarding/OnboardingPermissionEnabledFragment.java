@@ -29,6 +29,8 @@ import android.view.ViewTreeObserver;
 import android.view.accessibility.AccessibilityEvent;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts.RequestPermission;
 import androidx.annotation.NonNull;
 import androidx.core.widget.NestedScrollView;
 import androidx.core.widget.NestedScrollView.OnScrollChangeListener;
@@ -46,6 +48,9 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class OnboardingPermissionEnabledFragment extends BaseFragment {
 
+  private static final String SAVED_INSTANCE_STATE_SHOULD_REQUEST_NOTIFICATION_PERMISSION =
+      "should_request_notification_permission";
+
   private FragmentOnboardingPermissionEnabledBinding binding;
   private OnboardingViewModel onboardingViewModel;
 
@@ -54,6 +59,8 @@ public class OnboardingPermissionEnabledFragment extends BaseFragment {
   private NestedScrollView scroller;
 
   private boolean shouldShowPrivateAnalyticsOnboarding = false;
+  private boolean shouldRequestForNotificationPermission = true;
+  private ActivityResultLauncher<String> requestNotificationPermissionLauncher;
 
   @Override
   public View onCreateView(
@@ -63,8 +70,21 @@ public class OnboardingPermissionEnabledFragment extends BaseFragment {
   }
 
   @Override
+  public void onSaveInstanceState(@NonNull Bundle savedInstanceState) {
+    super.onSaveInstanceState(savedInstanceState);
+    savedInstanceState.putBoolean(SAVED_INSTANCE_STATE_SHOULD_REQUEST_NOTIFICATION_PERMISSION,
+        shouldRequestForNotificationPermission);
+  }
+
+  @Override
   public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
+
+    requestNotificationPermissionLauncher = registerForActivityResult(new RequestPermission(),
+        isGranted -> {
+          // Proceed with on-boarding irrespective of the user's decision
+          transitionNext();
+        });
 
     onboardingViewModel = new ViewModelProvider(this).get(OnboardingViewModel.class);
 
@@ -122,8 +142,25 @@ public class OnboardingPermissionEnabledFragment extends BaseFragment {
             shouldShowPrivateAnalyticsOnboarding ->
                 this.shouldShowPrivateAnalyticsOnboarding = shouldShowPrivateAnalyticsOnboarding);
 
+    exposureNotificationViewModel.getAreNotificationsEnabledLiveData()
+        .observe(getViewLifecycleOwner(), areNotificationsEnabled -> {
+          // If we don't know the notification permission state. Assume notifications are not
+          // enabled. If its enabled already, android would ignore our permission request.
+          if (areNotificationsEnabled.or( /* default = */ false)) {
+            shouldRequestForNotificationPermission = false;
+          }
+        });
+
     // If we are currently onboarding a migrating user, mark that now this user is onboarded.
     onboardingViewModel.maybeMarkMigratingUserAsOnboarded(requireContext());
+
+    if (savedInstanceState != null &&
+        savedInstanceState.containsKey(
+            SAVED_INSTANCE_STATE_SHOULD_REQUEST_NOTIFICATION_PERMISSION)) {
+      shouldRequestForNotificationPermission = savedInstanceState.getBoolean(
+          SAVED_INSTANCE_STATE_SHOULD_REQUEST_NOTIFICATION_PERMISSION,
+          true);
+    }
   }
 
   @Override
@@ -167,6 +204,17 @@ public class OnboardingPermissionEnabledFragment extends BaseFragment {
   }
 
   private void transitionNext() {
+    if (shouldRequestForNotificationPermission) {
+      // Request for notification just once, If the user denies/dismisses the popup the first
+      // time; they should be able to proceed with app on-boarding irrespective their decision.
+      shouldRequestForNotificationPermission = false;
+      // If the permission request could not be made, proceed with onboarding.
+      if (exposureNotificationViewModel.maybeRequestNotificationPermission(requireActivity(),
+          requestNotificationPermissionLauncher)) {
+        return;
+      }
+    }
+
     if (shouldShowPrivateAnalyticsOnboarding) {
       OnboardingPrivateAnalyticsFragment.transitionToOnboardingPrivateAnalyticsFragment(this);
     } else {

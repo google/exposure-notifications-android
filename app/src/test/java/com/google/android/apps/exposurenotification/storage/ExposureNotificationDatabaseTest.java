@@ -23,6 +23,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 import com.google.android.apps.exposurenotification.testsupport.InMemoryDb;
 import dagger.hilt.android.testing.HiltAndroidTest;
 import dagger.hilt.android.testing.HiltTestApplication;
+import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.annotation.Config;
@@ -36,6 +37,11 @@ import org.robolectric.annotation.Config;
 public class ExposureNotificationDatabaseTest {
 
   private final ExposureNotificationDatabase database = InMemoryDb.create();
+
+  @After
+  public void tearDown() {
+    database.close();
+  }
 
   @Test
   public void testDatabase() {

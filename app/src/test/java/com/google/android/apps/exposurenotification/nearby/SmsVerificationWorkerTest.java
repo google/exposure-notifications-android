@@ -73,6 +73,7 @@ import dagger.hilt.android.testing.HiltTestApplication;
 import dagger.hilt.android.testing.UninstallModules;
 import java.security.SecureRandom;
 import javax.inject.Inject;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -168,6 +169,11 @@ public class SmsVerificationWorkerTest {
             packageConfigurationHelper,
             cleanupHelper
         ), clock));
+  }
+
+  @After
+  public void tearDown() {
+    db.close();
   }
 
   @Test

@@ -177,6 +177,9 @@
   <string name="onboarding_free_up_storage_title">เพิ่มพื้นที่เก็บข้อมูล</string>
   <string name="reactivate_exposure_notification_app_subject">รับการแจ้งเตือนความเสี่ยงต่อการติดเชื้อโควิด-19</string>
   <string name="reactivate_exposure_notification_app_body">%1$s แจ้งเตือนความเสี่ยงต่อการติดเชื้อโควิด-19 ได้</string>
+  <string name="notifications_are_disabled_warning_title">อนุญาตการแจ้งเตือน</string>
+  <string name="notifications_are_disabled_warning_body">รับการแจ้งเตือนความเสี่ยงต่อการติดเชื้อโควิด-19</string>
+  <string name="btn_allow_notifications">อนุญาต</string>
   <string name="input_error_onset_date_past">วันที่ควรอยู่ในช่วง %1$s วันที่ผ่านมานับจากวันนี้</string>
   <string name="input_error_onset_date_future">วันที่ป้อนเป็นวันที่ในอนาคต</string>
   <string name="network_error_code_invalid">รหัสยืนยันไม่ตรงกัน โปรดลองอีกครั้ง</string>

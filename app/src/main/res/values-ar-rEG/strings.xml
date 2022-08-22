@@ -185,6 +185,9 @@
   <string name="onboarding_free_up_storage_title">يُرجى إخلاء مساحة تخزين.</string>
   <string name="reactivate_exposure_notification_app_subject">تلقّي تنبيهات التعرّض للفيروس</string>
   <string name="reactivate_exposure_notification_app_body">يمكن لـ %1$s إشعارك بالتعرّض المحتمل لفيروس كورونا المستجد (كوفيد-19).</string>
+  <string name="notifications_are_disabled_warning_title">السماح بالإشعارات</string>
+  <string name="notifications_are_disabled_warning_body">يمكنك الحصول على إشعارات بشأن التعرّض المحتمَل لفيروس كورونا المستجد (كوفيد-19).</string>
+  <string name="btn_allow_notifications">السماح</string>
   <string name="input_error_onset_date_past">من المفترض أن يقع التاريخ خلال آخر %1$s يوم قبل تاريخ اليوم.</string>
   <string name="input_error_onset_date_future">يقع هذا التاريخ في المستقبل.</string>
   <string name="network_error_code_invalid">رمز التحقّق غير مطابق. يُرجى إعادة المحاولة.</string>

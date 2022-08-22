@@ -103,7 +103,7 @@
   <string name="delete_test_result_confirmed">Výsledek testu byl smazán</string>
   <string name="share_error_no_internet">Výsledky testu nelze sdílet offline. Zkontrolujte připojení k internetu a zkuste to znovu.</string>
   <string name="share_vaccination_title">Už jste očkovaní proti onemocnění COVID-19\?</string>
-  <string name="share_vaccination_description">Můžete pomoct ještě víc. Pokud už jste očkovaní, můžete úřadu %1$s pomoct lépe pochopit, jak se covid-19 šíří. Svou totožnost při tom sdílet nebudete. Aby bylo ochráněno vaše soukromí, úřad %1$s tato data dostane v agregované formě.</string>
+  <string name="share_vaccination_description">Můžete pomoct ještě víc. Pokud už jste očkovaní, můžete úřadu %1$s pomoct lépe pochopit, jak se covid-19 šíří. Svou identitu při tom sdílet nebudete. Aby bylo ochráněno vaše soukromí, úřad %1$s tato data dostane v agregované formě.</string>
   <string name="share_vaccination_learn_more">Další informace</string>
   <string name="share_vaccination_vaccinated">Ano, mám očkování</string>
   <string name="share_vaccination_not_vaccinated">Ne</string>
@@ -181,6 +181,9 @@
   <string name="onboarding_free_up_storage_title">Uvolněte úložiště</string>
   <string name="reactivate_exposure_notification_app_subject">Dostávat oznámení</string>
   <string name="reactivate_exposure_notification_app_body">Úřad %1$s vás může informovat o možném kontaktu s onemocněním COVID-19</string>
+  <string name="notifications_are_disabled_warning_title">Povolte oznámení</string>
+  <string name="notifications_are_disabled_warning_body">Nechte se upozornit na možný kontakt s covidem-19</string>
+  <string name="btn_allow_notifications">Povolit</string>
   <string name="input_error_onset_date_past">Datum musí být vzdálené maximálně %1$s dní ode dneška</string>
   <string name="input_error_onset_date_future">Zadané datum je v budoucnosti</string>
   <string name="network_error_code_invalid">Ověřovací kód se neshoduje. Zkuste to znovu.</string>
@@ -219,7 +222,7 @@
   <string name="share_upload_status_negative">Negativní</string>
   <string name="share_upload_status_likely">Pravděpodobně pozitivní</string>
   <string name="share_diagnosis_progress_tracker">Krok %1$d z %2$d</string>
-  <string name="see_history_device_authentication_title">Ověřte svou totožnost</string>
+  <string name="see_history_device_authentication_title">Ověřte svou identitu</string>
   <string name="update_app_dialog_title">Aktualizujte aplikaci</string>
   <string name="update_app_dialog_content">Dokončení sdílení výsledků testu vyžaduje aktualizaci na nejnovější verzi aplikace Oznámení o možném kontaktu.</string>
   <string name="btn_update">Aktualizovat</string>

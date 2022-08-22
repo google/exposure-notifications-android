@@ -177,6 +177,9 @@
   <string name="onboarding_free_up_storage_title">释放存储空间</string>
   <string name="reactivate_exposure_notification_app_subject">接收新冠肺炎 (COVID-19) 患者接触史通知</string>
   <string name="reactivate_exposure_notification_app_body">%1$s可在您可能接触到了新冠肺炎 (COVID-19) 患者时通知您</string>
+  <string name="notifications_are_disabled_warning_title">允许通知</string>
+  <string name="notifications_are_disabled_warning_body">在可能接触过新冠肺炎 (COVID-19) 患者时收到通知。</string>
+  <string name="btn_allow_notifications">允许</string>
   <string name="input_error_onset_date_past">输入的日期必须是过去的日期并且在距今天 %1$s 天的日期范围内</string>
   <string name="input_error_onset_date_future">输入的日期为将来的日期</string>
   <string name="network_error_code_invalid">验证码不符。请重试。</string>

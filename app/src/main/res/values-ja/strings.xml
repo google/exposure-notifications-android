@@ -177,6 +177,9 @@
   <string name="onboarding_free_up_storage_title">空き容量を増やしてください</string>
   <string name="reactivate_exposure_notification_app_subject">陽性者との接触通知を受け取る</string>
   <string name="reactivate_exposure_notification_app_body">%1$sから、COVID-19（新型コロナウイルス感染症）の接触通知を受け取ることができます</string>
+  <string name="notifications_are_disabled_warning_title">通知の許可</string>
+  <string name="notifications_are_disabled_warning_body">COVID-19（新型コロナウイルス感染症）陽性者との接触の可能性を通知する</string>
+  <string name="btn_allow_notifications">許可</string>
   <string name="input_error_onset_date_past">今日から過去 %1$s 日以内の日付を設定してください</string>
   <string name="input_error_onset_date_future">設定した日付が過去ではありません</string>
   <string name="network_error_code_invalid">確認コードが一致しません。もう一度お試しください。</string>

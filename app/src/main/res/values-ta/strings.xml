@@ -177,6 +177,9 @@
   <string name="onboarding_free_up_storage_title">சேமிப்பிடத்தைக் காலியாக்குங்கள்</string>
   <string name="reactivate_exposure_notification_app_subject">கோவிட்-19 அறிவிப்புகளைப் பெறுக</string>
   <string name="reactivate_exposure_notification_app_body">கோவிட்-19 தொற்றுக்கான சாத்தியம் இருந்தால் அதுகுறித்து %1$s உங்களுக்குத் தெரிவிக்க முடியும்</string>
+  <string name="notifications_are_disabled_warning_title">அறிவிப்புகளை அனுமதித்தல்</string>
+  <string name="notifications_are_disabled_warning_body">கோவிட்-19 தொற்றின் சாத்தியம் குறித்த அறிவிப்பைப் பெறுங்கள்.</string>
+  <string name="btn_allow_notifications">அனுமதி</string>
   <string name="input_error_onset_date_past">கடந்த %1$s நாட்களுக்குள் ஒரு தேதியை உள்ளிடவும்</string>
   <string name="input_error_onset_date_future">தேதி எதிர்காலத்தில் இருக்கக்கூடாது</string>
   <string name="network_error_code_invalid">சரிபார்ப்புக் குறியீடு பொருந்தவில்லை. மீண்டும் முயலவும்.</string>

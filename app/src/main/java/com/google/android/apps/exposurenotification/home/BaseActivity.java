@@ -207,6 +207,7 @@ public abstract class BaseActivity extends AppCompatActivity {
    */
   private void refreshState() {
     exposureNotificationViewModel.refreshState();
+    exposureNotificationViewModel.refreshNotificationsEnabledState(this);
   }
 
   /**

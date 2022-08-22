@@ -38,7 +38,7 @@ import static org.robolectric.Shadows.shadowOf;
 import android.content.Context;
 import android.content.IntentSender.SendIntentException;
 import android.net.Uri;
-import android.support.test.espresso.core.internal.deps.guava.collect.ImmutableList;
+import com.google.common.collect.ImmutableList;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.IntentSenderRequest;
 import androidx.annotation.Nullable;
@@ -118,6 +118,7 @@ import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.AtomicReference;
 import javax.inject.Inject;
 import org.json.JSONObject;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -244,6 +245,11 @@ public class ShareDiagnosisViewModelTest {
         MoreExecutors.newDirectExecutorService(),
         TestingExecutors.sameThreadScheduledExecutor());
     when(connectivity.hasInternet()).thenReturn(true);
+  }
+
+  @After
+  public void tearDown() {
+    database.close();
   }
 
   @Test

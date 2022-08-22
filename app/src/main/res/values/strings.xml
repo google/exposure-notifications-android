@@ -548,6 +548,14 @@
   <!-- Body of the notification prompting user to reactivate exposure notifications app 24 hours after a backup restore is complete. The placeholder string is the health authority name. [CHAR_LIMIT=80] -->
   <string name="reactivate_exposure_notification_app_body"><xliff:g id="ha" example="Heartland Public Health">%1$s</xliff:g> can notify you of potential exposure to COVID-19</string>
 
+  <!-- Title of both the notification edge case on the home screen and the warning card on the active region screen. Shown when notifications are disabled and the app can't deliver exposure alerts to the user. [CHAR_LIMIT=60] -->
+  <string name="notifications_are_disabled_warning_title">Allow notifications</string>
+
+  <!-- Displayed on the home screen and on the active region screen when the notifications are disable and the app can't deliver exposure alerts to the user. [CHAR_LIMIT=NONE] -->
+  <string name="notifications_are_disabled_warning_body">Get notified of possible COVID-19 exposure.</string>
+
+  <!-- Button text shown when notifications are disable and the app can't deliver exposure alerts to the user. [CHAR_LIMIT=60] -->
+  <string name="btn_allow_notifications">Allow</string>
   <!-- ERROR MESSAGE -->
 
   <!-- Displayed in the notify others flow when the symptom onset date enterred by the user is too far in the past and not in the valid date range. [CHAR_LIMIT=NONE] -->
@@ -690,5 +698,4 @@
 
   <!-- Title of the onboarding and home pages, shown when the user lands on the page and Exposure Notifications has been turned down as an entire system. [CHAR_LIMIT=120] -->
   <string name="en_turndown_title">Exposure Notifications has been turned off</string>
-
 </resources>

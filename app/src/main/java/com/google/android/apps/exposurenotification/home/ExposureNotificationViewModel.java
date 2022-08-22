@@ -22,6 +22,7 @@ import static com.google.android.apps.exposurenotification.notify.ShareDiagnosis
 
 import android.app.Activity;
 import android.app.PendingIntent;
+import android.content.Context;
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.IntentSenderRequest;
@@ -36,6 +37,8 @@ import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 import com.google.android.apps.exposurenotification.common.BuildUtils;
 import com.google.android.apps.exposurenotification.common.BuildUtils.Type;
+import com.google.android.apps.exposurenotification.common.NotificationHelper;
+import com.google.android.apps.exposurenotification.common.NotificationHelper.NotificationPermissionRequestState;
 import com.google.android.apps.exposurenotification.common.PairLiveData;
 import com.google.android.apps.exposurenotification.common.Qualifiers.LightweightExecutor;
 import com.google.android.apps.exposurenotification.common.SingleLiveEvent;
@@ -55,7 +58,6 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.nearby.exposurenotification.ExposureNotificationStatus;
 import com.google.android.gms.nearby.exposurenotification.ExposureNotificationStatusCodes;
-import com.google.android.gms.tasks.Tasks;
 import com.google.common.base.Optional;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
@@ -80,6 +82,9 @@ public class ExposureNotificationViewModel extends ViewModel {
   private final MutableLiveData<Boolean> isLocationEnableRequired = new MutableLiveData<>(true);
   private final MutableLiveData<Optional<Boolean>> isPackageConfigurationSmsNoticeSeenLiveData =
       new MutableLiveData<>(Optional.absent());
+  private final MutableLiveData<Optional<Boolean>> areNotificationsEnabledLiveData =
+      new MutableLiveData<>(Optional.absent());
+
   private final ExposureNotificationSharedPreferences exposureNotificationSharedPreferences;
   private final PairLiveData<ExposureNotificationState, Boolean> stateWithInFlightLiveData;
   private final PairLiveData<ExposureNotificationState, ExposureClassification>
@@ -98,6 +103,7 @@ public class ExposureNotificationViewModel extends ViewModel {
   private final PackageConfigurationHelper packageConfigurationHelper;
   private final Clock clock;
   private final ExecutorService lightweightExecutor;
+  private final NotificationHelper notificationHelper;
 
   private @Nullable LiveData<Boolean> shouldShowSmsNoticeLiveData = null;
   private boolean inFlightIsEnabled = false;
@@ -129,7 +135,8 @@ public class ExposureNotificationViewModel extends ViewModel {
       AnalyticsLogger logger,
       PackageConfigurationHelper packageConfigurationHelper,
       Clock clock,
-      @LightweightExecutor ExecutorService lightweightExecutor) {
+      @LightweightExecutor ExecutorService lightweightExecutor,
+      NotificationHelper notificationHelper) {
     this.exposureNotificationSharedPreferences = exposureNotificationSharedPreferences;
     this.exposureNotificationClientWrapper = exposureNotificationClientWrapper;
     this.diagnosisRepository = diagnosisRepository;
@@ -137,6 +144,7 @@ public class ExposureNotificationViewModel extends ViewModel {
     this.packageConfigurationHelper = packageConfigurationHelper;
     this.clock = clock;
     this.lightweightExecutor = lightweightExecutor;
+    this.notificationHelper = notificationHelper;
 
     boolean isEnabled = exposureNotificationSharedPreferences.getIsEnabledCache();
     enEnabledLiveData = new MutableLiveData<>(isEnabled);
@@ -236,6 +244,14 @@ public class ExposureNotificationViewModel extends ViewModel {
   }
 
   /**
+   * Returns true if the app can post notifications to the user. Should be used to decide if
+   * the notification permission warning is shown.
+   */
+  public LiveData<Optional<Boolean>> getAreNotificationsEnabledLiveData() {
+    return areNotificationsEnabledLiveData;
+  }
+
+  /**
    * Returns {@link PairLiveData} to observe changes both in the {@link ExposureNotificationState}
    * and 'in-flight' status of the API request.
    */
@@ -284,6 +300,12 @@ public class ExposureNotificationViewModel extends ViewModel {
   public void refreshState() {
     maybeRefreshIsEnabled();
     maybeRefreshPackageConfig();
+  }
+
+  /** Refresh the areNotificationsEnabled state. */
+  public void refreshNotificationsEnabledState(Context context) {
+    areNotificationsEnabledLiveData.setValue(
+        Optional.of(notificationHelper.areNotificationsEnabled(context)));
   }
 
   private synchronized void maybeRefreshIsEnabled() {
@@ -564,18 +586,7 @@ public class ExposureNotificationViewModel extends ViewModel {
   public void stopExposureNotifications() {
     inFlightLiveData.setValue(true);
     exposureNotificationClientWrapper
-        .isEnabled()
-        .continueWithTask(
-            isEnabled -> {
-              if (isEnabled.getResult()) {
-                return exposureNotificationClientWrapper.stop();
-              } else {
-                // Even if En is disabled, call stop to correctly gather STOP metrics.
-                // This call will fail with an exception, so we ignore the result.
-                return exposureNotificationClientWrapper.stop()
-                    .continueWithTask(stop -> Tasks.forResult(null));
-              }
-            })
+        .stop()
         .addOnSuccessListener(
             result -> {
               refreshState();
@@ -665,4 +676,34 @@ public class ExposureNotificationViewModel extends ViewModel {
     exposureNotificationSharedPreferences.markInAppSmsNoticeSeenAsync();
   }
 
+  /**
+   * Requests for notification permission if possible. If that's not possible, launch the app's
+   * notification settings screen. If the app's notification settings screen is not available,
+   * launch the app's details settings screen.
+   */
+  public void requestNotificationPermissionOrLaunchAppNotificationSettings(Activity activity,
+      ActivityResultLauncher<String> activityResultLauncher) {
+    NotificationPermissionRequestState state = notificationHelper.getNotificationPermissionState(
+        activity);
+
+    switch (state) {
+      case NOT_GRANTED_BUT_CAN_REQUEST:
+        maybeRequestNotificationPermission(activity, activityResultLauncher);
+        break;
+      case DENIED:
+      case NOT_APPLICABLE:
+        notificationHelper.launchAppNotificationSettings(activity);
+        break;
+      default:
+        /* This shouldn't happen. We got here because the user already granted the notification
+         permission but NotificationManager.areNotificationsEnabled() returned false, maybe race
+         condition. Refresh the areNotificationsEnabled livedata if this happens. */
+        refreshNotificationsEnabledState(activity);
+    }
+  }
+
+  public boolean maybeRequestNotificationPermission(Activity activity,
+      ActivityResultLauncher<String> activityResultLauncher) {
+    return notificationHelper.maybeRequestNotificationPermission(activity, activityResultLauncher);
+  }
 }

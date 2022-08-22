@@ -60,6 +60,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 import javax.inject.Inject;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -128,6 +129,11 @@ public class KeyFileSubmitterTest {
   public void setUp() {
     rules.hilt().inject();
     when(exposureNotificationClient.provideDiagnosisKeys(any())).thenReturn(Tasks.forResult(null));
+  }
+
+  @After
+  public void tearDown() {
+    db.close();
   }
 
   @Test

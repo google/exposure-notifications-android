@@ -177,6 +177,9 @@
   <string name="onboarding_free_up_storage_title">Maak bergingspasie beskikbaar</string>
   <string name="reactivate_exposure_notification_app_subject">Kry COVID-19-blootstellingwaarskuwings</string>
   <string name="reactivate_exposure_notification_app_body">%1$s kan jou van moontlike blootstelling aan COVID-19 in kennis stel</string>
+  <string name="notifications_are_disabled_warning_title">Laat kennisgewings toe</string>
+  <string name="notifications_are_disabled_warning_body">Word in kennis gestel van moontlike COVID-19-blootstelling.</string>
+  <string name="btn_allow_notifications">Laat toe</string>
   <string name="input_error_onset_date_past">Datum moet binne %1$s dae voor vandag se datum wees</string>
   <string name="input_error_onset_date_future">Datum is in die toekoms</string>
   <string name="network_error_code_invalid">Die verifikasiekode stem nie ooreen nie. Probeer weer.</string>

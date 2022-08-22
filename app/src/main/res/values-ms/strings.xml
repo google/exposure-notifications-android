@@ -177,6 +177,9 @@
   <string name="onboarding_free_up_storage_title">Kosongkan ruang storan</string>
   <string name="reactivate_exposure_notification_app_subject">Dapatkan makluman pendedahan COVID-19</string>
   <string name="reactivate_exposure_notification_app_body">%1$s boleh memberitahu anda tentang kemungkinan pendedahan COVID-19</string>
+  <string name="notifications_are_disabled_warning_title">Benarkan pemberitahuan</string>
+  <string name="notifications_are_disabled_warning_body">Dapatkan pemberitahuan kemungkinan pendedahan COVID-19.</string>
+  <string name="btn_allow_notifications">Benarkan</string>
   <string name="input_error_onset_date_past">Tarikh sepatutnya berlaku dalam %1$s hari lalu dari tarikh hari ini</string>
   <string name="input_error_onset_date_future">Tarikh berlaku pada masa hadapan</string>
   <string name="network_error_code_invalid">Kod pengesahan tidak sepadan. Cuba lagi.</string>

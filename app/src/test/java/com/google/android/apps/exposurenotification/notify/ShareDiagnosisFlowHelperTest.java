@@ -24,8 +24,6 @@ import android.content.Context;
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import com.google.android.apps.exposurenotification.R;
-import com.google.android.apps.exposurenotification.common.BuildUtils;
-import com.google.android.apps.exposurenotification.common.BuildUtils.Type;
 import com.google.android.apps.exposurenotification.notify.ShareDiagnosisFlowHelper.ShareDiagnosisFlow;
 import com.google.android.apps.exposurenotification.notify.ShareDiagnosisViewModel.Step;
 import com.google.android.apps.exposurenotification.storage.DiagnosisEntity;
@@ -538,5 +536,15 @@ public class ShareDiagnosisFlowHelperTest {
         ShareDiagnosisFlow.SELF_REPORT, Step.CODE)).isEqualTo(2);
     assertThat(ShareDiagnosisFlowHelper.getNumberForCurrentStepInDiagnosisFlow(
         ShareDiagnosisFlow.SELF_REPORT, Step.UPLOAD)).isEqualTo(3);
+  }
+
+  @Test
+  public void getSelfReportTimeoutDays_valueProvided_returnsProvidedValue() {
+    int selfReportTimeoutDays = 60;
+    FakeShadowResources resources = (FakeShadowResources) shadowOf(context.getResources());
+    resources.addFakeResource(R.integer.enx_selfReportTimeoutDays, selfReportTimeoutDays);
+
+    assertThat(ShareDiagnosisFlowHelper.getSelfReportTimeoutDays(context))
+        .isEqualTo(selfReportTimeoutDays);
   }
 }

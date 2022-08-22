@@ -34,24 +34,26 @@ import org.robolectric.annotation.Config;
 @RunWith(AndroidJUnit4.class)
 @HiltAndroidTest
 @Config(application = HiltTestApplication.class)
-public class TripleLiveDataTest {
+public class QuadrupleLiveDataTest {
 
   @Rule
   public ExposureNotificationRules rules = ExposureNotificationRules.forTest(this).build();
 
   @Test
-  public void oneSourceValueIsNull_tripleLiveDataDoesNotReact() {
+  public void oneSourceValueIsNull_quadrupleLiveDataDoesNotReact() {
     // GIVEN
     List<String> values = new ArrayList<>();
     MutableLiveData<String> firstLiveData = new MutableLiveData<>();
     MutableLiveData<String> secondLiveData = new MutableLiveData<>();
     MutableLiveData<String> thirdLiveData = new MutableLiveData<>();
-    TripleLiveData<String, String, String> tripleLiveData = TripleLiveData.of(
-        firstLiveData, secondLiveData, thirdLiveData);
-    tripleLiveData.observeForever((first, second, third) -> {
+    MutableLiveData<String> fourthLiveData = new MutableLiveData<>();
+    QuadrupleLiveData<String, String, String, String> fourLiveData = QuadrupleLiveData.of(
+        firstLiveData, secondLiveData, thirdLiveData, fourthLiveData);
+    fourLiveData.observeForever((first, second, third, fourth) -> {
       values.add(first);
       values.add(second);
       values.add(third);
+      values.add(fourth);
     });
 
     // WHEN
@@ -63,57 +65,67 @@ public class TripleLiveDataTest {
   }
 
   @Test
-  public void updateAllSourceValuesOnce_tripleLiveDataReacts() {
+  public void updateAllSourceValuesOnce_quadrupleLiveDataReacts() {
     // GIVEN
     List<String> values = new ArrayList<>();
     MutableLiveData<String> firstLiveData = new MutableLiveData<>();
     MutableLiveData<String> secondLiveData = new MutableLiveData<>();
     MutableLiveData<String> thirdLiveData = new MutableLiveData<>();
-    TripleLiveData<String, String, String> tripleLiveData = TripleLiveData.of(
-        firstLiveData, secondLiveData, thirdLiveData);
-    tripleLiveData.observeForever((first, second, third) -> {
+    MutableLiveData<String> fourthLiveData = new MutableLiveData<>();
+    QuadrupleLiveData<String, String, String, String> fourLiveData = QuadrupleLiveData.of(
+        firstLiveData, secondLiveData, thirdLiveData, fourthLiveData);
+    fourLiveData.observeForever((first, second, third, fourth) -> {
       values.add(first);
       values.add(second);
       values.add(third);
+      values.add(fourth);
     });
 
     // WHEN
     firstLiveData.setValue("First");
     secondLiveData.setValue("Second");
     thirdLiveData.setValue("Third");
+    fourthLiveData.setValue("Fourth");
 
     // THEN
-    assertThat(values).containsExactly("First", "Second", "Third");
+    assertThat(values).containsExactly("First", "Second", "Third", "Fourth");
   }
 
   @Test
-  public void updateAllSourceValuesMultipleTimes_tripleLiveDataReactsToEachUpdate() {
+  public void updateAllSourceValuesMultipleTimes_quadrupleLiveDataReactsToEachUpdate() {
     // GIVEN
     List<String> valuesA = new ArrayList<>();
     List<String> valuesB = new ArrayList<>();
     List<String> valuesC = new ArrayList<>();
+    List<String> valuesD = new ArrayList<>();
     MutableLiveData<String> firstLiveData = new MutableLiveData<>();
     MutableLiveData<String> secondLiveData = new MutableLiveData<>();
     MutableLiveData<String> thirdLiveData = new MutableLiveData<>();
-    TripleLiveData<String, String, String> tripleLiveData = TripleLiveData.of(
-        firstLiveData, secondLiveData, thirdLiveData);
-    tripleLiveData.observeForever((first, second, third) -> {
+    MutableLiveData<String> fourthLiveData = new MutableLiveData<>();
+
+    QuadrupleLiveData<String, String, String, String> quadrupleLiveData = QuadrupleLiveData.of(
+        firstLiveData, secondLiveData, thirdLiveData, fourthLiveData);
+    quadrupleLiveData.observeForever((first, second, third, fourth) -> {
       valuesA.add(first);
       valuesB.add(second);
       valuesC.add(third);
+      valuesD.add(fourth);
     });
 
     // WHEN
     firstLiveData.setValue("A");
     secondLiveData.setValue("X");
     thirdLiveData.setValue("R");
+    fourthLiveData.setValue("U");
     firstLiveData.setValue("B");
     secondLiveData.setValue("Y");
     thirdLiveData.setValue("S");
+    fourthLiveData.setValue("V");
 
     // THEN
-    assertThat(valuesA).containsExactly("A", "B", "B", "B").inOrder();
-    assertThat(valuesB).containsExactly( "X", "X", "Y", "Y").inOrder();
-    assertThat(valuesC).containsExactly( "R", "R", "R", "S").inOrder();
+    assertThat(valuesA).containsExactly( "A", "B", "B", "B", "B").inOrder();
+    assertThat(valuesB).containsExactly( "X", "X", "Y", "Y", "Y").inOrder();
+    assertThat(valuesC).containsExactly( "R", "R", "R", "S", "S").inOrder();
+    assertThat(valuesD).containsExactly( "U", "U", "U", "U", "V").inOrder();
   }
 }

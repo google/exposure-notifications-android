@@ -179,6 +179,9 @@
   <string name="onboarding_free_up_storage_title">Eliberați spațiu de stocare</string>
   <string name="reactivate_exposure_notification_app_subject">Primiți alerte privind expunerea la COVID-19</string>
   <string name="reactivate_exposure_notification_app_body">%1$s vă poate anunța privind expunerea potențială la COVID-19</string>
+  <string name="notifications_are_disabled_warning_title">Permiteți notificări</string>
+  <string name="notifications_are_disabled_warning_body">Primiți notificări privind posibila expunere la COVID-19.</string>
+  <string name="btn_allow_notifications">Permiteți</string>
   <string name="input_error_onset_date_past">Data ar trebui să se încadreze în ultimele %1$s zile</string>
   <string name="input_error_onset_date_future">Data este în viitor</string>
   <string name="network_error_code_invalid">Codul de verificare nu corespunde. Încercați din nou.</string>

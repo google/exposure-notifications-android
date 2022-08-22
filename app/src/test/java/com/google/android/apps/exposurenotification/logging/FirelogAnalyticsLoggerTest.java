@@ -27,7 +27,7 @@ import static org.mockito.Mockito.when;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.test.espresso.core.internal.deps.guava.collect.ImmutableList;
+import com.google.common.collect.ImmutableList;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import com.android.volley.NetworkError;
 import com.android.volley.NetworkResponse;
@@ -96,6 +96,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeoutException;
 import javax.inject.Inject;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -172,6 +173,11 @@ public class FirelogAnalyticsLoggerTest {
     rules.hilt().inject();
     // Logging is enabled for most of these tests. Can override in specific tests.
     setAppAnalyticsConsent(true);
+  }
+
+  @After
+  public void tearDown() {
+    db.close();
   }
 
   @Test

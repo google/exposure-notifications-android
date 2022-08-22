@@ -21,8 +21,6 @@ import android.content.Context;
 import android.text.TextUtils;
 import androidx.annotation.Nullable;
 import com.google.android.apps.exposurenotification.R;
-import com.google.android.apps.exposurenotification.common.BuildUtils;
-import com.google.android.apps.exposurenotification.common.BuildUtils.Type;
 import com.google.android.apps.exposurenotification.notify.ShareDiagnosisViewModel.Step;
 import com.google.android.apps.exposurenotification.storage.DiagnosisEntity;
 import com.google.android.apps.exposurenotification.storage.DiagnosisEntity.Shared;
@@ -30,7 +28,7 @@ import com.google.android.apps.exposurenotification.storage.DiagnosisEntity.Test
 import com.google.common.base.Optional;
 
 /**
- * Helper class for defining the flows.
+ * Helper class for defining the "Share Diagnosis" flows and providing helper information for it.
  *
  * <pre>{@code
  * VIEW --------------------------------------\
@@ -310,6 +308,16 @@ public class ShareDiagnosisFlowHelper {
         && ShareDiagnosisFlowHelper.isSelfReportEnabled(context)
         && ShareDiagnosisFlowHelper.isPreAuthForSelfReportEnabled(context)
         && ShareDiagnosisFlowHelper.isSmsInterceptEnabled(context);
+  }
+
+  /**
+   * Returns the value of the self-report timeout interval in days.
+   *
+   * <p>This value should be provided by the Health Authority. Otherwise, the app build script
+   * will set it to a default value of 30 days.
+   */
+  public static int getSelfReportTimeoutDays(Context context) {
+    return context.getResources().getInteger(R.integer.enx_selfReportTimeoutDays);
   }
 
   private ShareDiagnosisFlowHelper() {

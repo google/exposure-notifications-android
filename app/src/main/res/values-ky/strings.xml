@@ -160,7 +160,7 @@
   <string name="app_analytics_detail">Колдонмонун иштешин жакшыртуу үчүн Google анын колдонулушу жана мүнөздөмөлөрү тууралуу маалыматты жашыруун түрдө чогултуп турат. Мындай маалымат аркылуу өздүгүңүздү аныктоого болбойт.</string>
   <string name="agency_message_link">Кеңири маалымат:\n%1$s</string>
   <string name="exposure_notifications_are_inactive">Ооруну жугузуп алуу коркунучу тууралуу билдирмелер жигерсиз</string>
-  <string name="device_settings">Түзмөктүн жөндөөлөрү</string>
+  <string name="device_settings">Түзмөктү тууралоо</string>
   <string name="manage_storage">Сактагычты башкаруу</string>
   <string name="location_off_warning">COVID-19 вирусун жугузуп алуу коркунучу тууралуу билдирмелерди алуу үчүн түзмөгүңүздүн жайгашкан жерин аныктоо функциясын күйгүзүңүз.</string>
   <string name="ble_off_warning">COVID-19 вирусун жугузуп алуу коркунучу тууралуу билдирмелерди алуу үчүн Bluetooth\'ду күйгүзүңүз.</string>
@@ -177,6 +177,9 @@
   <string name="onboarding_free_up_storage_title">Сактагычтан орун бошотуңуз</string>
   <string name="reactivate_exposure_notification_app_subject">COVID-19 жугузуп алуу коркунучу тууралуу билдирмелерди алып туруңуз</string>
   <string name="reactivate_exposure_notification_app_body">%1$s аркылуу COVID-19 вирусунун мүмкүн болгон очогу тууралуу кабарланып турасыз</string>
+  <string name="notifications_are_disabled_warning_title">Билдирмелерге уруксат берүү</string>
+  <string name="notifications_are_disabled_warning_body">COVID-19 вирусун жугузуп алуу коркунучу тууралуу билдирмелерди алыңыз.</string>
+  <string name="btn_allow_notifications">Уруксат берүү</string>
   <string name="input_error_onset_date_past">Акыркы %1$s күндүн ичиндеги күндү көрсөтүү керек</string>
   <string name="input_error_onset_date_future">Келечектеги күн көрсөтүлдү</string>
   <string name="network_error_code_invalid">Текшерүү коду дал келген жок. Кайталап көрүңүз.</string>

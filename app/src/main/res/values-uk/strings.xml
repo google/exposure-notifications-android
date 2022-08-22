@@ -181,6 +181,9 @@
   <string name="onboarding_free_up_storage_title">Звільніть місце в пам\'яті</string>
   <string name="reactivate_exposure_notification_app_subject">Дізнавайтеся про ризик COVID-19</string>
   <string name="reactivate_exposure_notification_app_body">%1$s може сповіщати вас про можливий ризик зараження COVID-19</string>
+  <string name="notifications_are_disabled_warning_title">Увімкніть сповіщення</string>
+  <string name="notifications_are_disabled_warning_body">Отримуйте сповіщення про ризик зараження COVID-19.</string>
+  <string name="btn_allow_notifications">Увімкнути</string>
   <string name="input_error_onset_date_past">Дата має перебувати в діапазоні %1$s дн. від сьогоднішньої</string>
   <string name="input_error_onset_date_future">Указана дата ще не настала</string>
   <string name="network_error_code_invalid">Код підтвердження не збігається. Повторіть спробу.</string>

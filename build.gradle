@@ -27,8 +27,8 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.1.2'
-        classpath 'com.google.dagger:hilt-android-gradle-plugin:2.28-alpha'
+        classpath 'com.android.tools.build:gradle:7.0.4'
+        classpath 'com.google.dagger:hilt-android-gradle-plugin:2.38.1'
         classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.13'
         classpath 'org.jacoco:org.jacoco.core:0.8.5'
         classpath 'com.mikepenz.aboutlibraries.plugin:aboutlibraries-plugin:8.5.0'
@@ -42,7 +42,7 @@ buildscript {
 allprojects {
     repositories {
         google()
-	mavenCentral()
+        mavenCentral()
         jcenter()
         mavenLocal()
     }
@@ -53,8 +53,9 @@ task clean(type: Delete) {
 }
 
 ext {
-    compileSdkVersion = 31
-    targetSdkVersion = 31
+    compileSdkVersion = 33
+    targetSdkVersion = 33
     minSdkVersion = 21
     ndkVersion = '21.3.6528147'
+    buildToolsVersion = '33.0.0'
 }

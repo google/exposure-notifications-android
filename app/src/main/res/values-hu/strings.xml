@@ -177,6 +177,9 @@
   <string name="onboarding_free_up_storage_title">Szabadítson fel tárhelyet!</string>
   <string name="reactivate_exposure_notification_app_subject">COVID-19 kitettség-értesítés</string>
   <string name="reactivate_exposure_notification_app_body">A(z) %1$s értesítheti Önt az esetleges COVID-19-kitettségről</string>
+  <string name="notifications_are_disabled_warning_title">Értesítések engedélyezése</string>
+  <string name="notifications_are_disabled_warning_body">Értesítést kaphat a lehetséges COVID-19-kitettségről.</string>
+  <string name="btn_allow_notifications">Engedélyezés</string>
   <string name="input_error_onset_date_past">A dátumnak az elmúlt %1$s napon belülre kell esnie</string>
   <string name="input_error_onset_date_future">Jövőbeli dátum</string>
   <string name="network_error_code_invalid">Nem egyezik az ellenőrző kód. Próbálkozzon újra.</string>

@@ -17,6 +17,7 @@
 
 package com.google.android.apps.exposurenotification.common;
 
+import static com.google.android.apps.exposurenotification.common.IntentUtil.PACKAGE_URI_SCHEME;
 import static com.google.android.apps.exposurenotification.common.IntentUtil.SELF_REPORT_PATH;
 import static com.google.android.apps.exposurenotification.notify.ShareDiagnosisFragment.EXTRA_DIAGNOSIS_ID;
 import static com.google.android.apps.exposurenotification.notify.ShareDiagnosisFragment.EXTRA_STEP;
@@ -234,5 +235,15 @@ public class IntentUtilTest {
 
     assertThat(IntentUtil.isSelfReportUri(ensUri)).isTrue();
     assertThat(IntentUtil.isSelfReportUri(httpsUri)).isTrue();
+  }
+
+  @Test
+  public void getUninstallPackageIntent_hasActionUninstallPackageAndCorrectData() {
+    Uri expectedUri = Uri.parse(PACKAGE_URI_SCHEME + context.getPackageName());
+
+    Intent intent = IntentUtil.getUninstallPackageIntent(context);
+
+    assertThat(intent.getAction()).isEqualTo(Intent.ACTION_UNINSTALL_PACKAGE);
+    assertThat(intent.getData()).isEqualTo(expectedUri);
   }
 }

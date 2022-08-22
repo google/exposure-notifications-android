@@ -99,6 +99,21 @@
 
         </LinearLayout>
 
+        <!-- "Allow notifications" card -->
+        <LinearLayout
+          android:id="@+id/allow_notifications_view"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:paddingBottom="@dimen/padding_normal"
+          android:paddingHorizontal="@dimen/padding_normal"
+          android:visibility="gone">
+
+          <include
+            android:id="@+id/card_allow_notifications_view"
+            layout="@layout/card_notification_permission_warning" />
+
+        </LinearLayout>
+
         <include layout="@layout/horizontal_divider"/>
 
         <LinearLayout
