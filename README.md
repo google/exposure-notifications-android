@@ -1,5 +1,11 @@
 # Exposure Notifications API: Android Reference Design
 
+## Archive Status Announcement
+
+Exposure Notifications is no longer available as of September 18, 2023. The Exposure Notifications project will be moving into archive status.
+
+## Overview
+
 This is a reference design for an Android app implementing the
 [Exposure Notifications API](https://www.blog.google/inside-google/company-announcements/apple-and-google-partner-covid-19-contact-tracing-technology/)
 provided by Apple and Google.
